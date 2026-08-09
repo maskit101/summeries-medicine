@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>סיכומי כירורגיה פלסטית - Neligan Vol.1</title>
 <style>
   :root{color-scheme:light}
@@ -9,7 +10,11 @@
   html,body{height:100%; margin:0}
   body{font-family:'Segoe UI','Arial Hebrew',sans-serif; background:#f3f4f6; color:#1f2937; display:flex; flex-direction:column}
   .layout{display:flex; flex:1; min-height:0}
-  .sidebar{width:340px; flex-shrink:0; background:#111827; color:#f9fafb; padding:22px 18px; overflow-y:auto}
+  .sidebar{width:340px; flex-shrink:0; background:#111827; color:#f9fafb; padding:22px 18px; overflow-y:auto; position:relative; transition:width .22s ease, max-height .22s ease}
+  .sidebar-toggle{position:sticky; top:0; width:34px; height:34px; border-radius:8px; background:#374151; color:#fff; border:none; cursor:pointer; font-size:16px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:2}
+  .sidebar-toggle:hover{background:#4b5563}
+  .sidebar.collapsed{width:52px; padding:14px 9px}
+  .sidebar.collapsed .sidebar-inner{display:none}
   .sidebar h2{font-size:16px; margin:0 0 4px}
   .sidebar .progress-wrap{background:#374151; border-radius:6px; height:8px; margin:10px 0 4px; overflow:hidden}
   .sidebar .progress-bar{background:#22c55e; height:100%; width:6%}
@@ -57,21 +62,29 @@
   .latest button.link-btn:hover{text-decoration:underline}
   .latest a{color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:6px 0}
   .empty{color:#6b7280}
-  @media (max-width:800px){ .layout{flex-direction:column} .sidebar{width:100%; max-height:260px} }
+  @media (max-width:800px){
+    .layout{flex-direction:column}
+    .sidebar{width:100%; max-height:320px}
+    .sidebar.collapsed{width:100%; max-height:52px; padding:9px}
+    .content-nav button{padding:10px 14px; font-size:13.5px}
+    .empty-wrap{padding:24px 18px}
+  }
 </style>
 </head>
 <body>
 <div class="layout">
-  <nav class="sidebar">
-    <h2>Neligan Vol.1 · Principles</h2>
-    <div class="progress-wrap"><div class="progress-bar"></div></div>
-    <div class="progress-text">2 / 36 פרקים הושלמו (6%)</div>
-    <div class="top-links">
-      <a class="home" href="index.html">&#8592; עמוד כירורגיה פלסטית</a>
-      <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
-    </div>
-    <ul class="ch-list" id="chList">
-      
+  <nav class="sidebar" id="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" title="קפל/הרחב תפריט פרקים" aria-label="קפל/הרחב תפריט פרקים">&#9776;</button>
+    <div class="sidebar-inner">
+      <h2>Neligan Vol.1 · Principles</h2>
+      <div class="progress-wrap"><div class="progress-bar"></div></div>
+      <div class="progress-text">2 / 36 פרקים הושלמו (6%)</div>
+      <div class="top-links">
+        <a class="home" href="index.html">&#8592; עמוד כירורגיה פלסטית</a>
+        <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
+      </div>
+      <ul class="ch-list" id="chList">
+        
             <li class="ch-item done" data-n="1">
               <button class="ch-btn" data-n="1">
                 <div class="ch-num">1</div>
@@ -328,7 +341,8 @@
                 <div class="ch-status">בקרוב</div>
               </div>
             </li>
-    </ul>
+      </ul>
+    </div>
   </nav>
   <main>
     <div class="content-nav" id="contentNav">
@@ -414,6 +428,27 @@ nextBtn.addEventListener('click', function(){
 document.querySelectorAll('.ch-btn').forEach(function(btn){
   btn.addEventListener('click', function(){ openChapter(parseInt(btn.getAttribute('data-n'), 10)); });
 });
+
+// --- collapsible sidebar (for reading comfortably on a phone) ---
+var sidebarEl = document.getElementById('sidebar');
+var sidebarToggle = document.getElementById('sidebarToggle');
+var COLLAPSE_KEY = 'ps_sidebar_collapsed';
+
+function setSidebarCollapsed(v){
+  sidebarEl.classList.toggle('collapsed', v);
+  try{ localStorage.setItem(COLLAPSE_KEY, v ? '1' : '0'); }catch(e){}
+}
+
+sidebarToggle.addEventListener('click', function(){
+  setSidebarCollapsed(!sidebarEl.classList.contains('collapsed'));
+});
+
+(function initSidebarState(){
+  var saved = null;
+  try{ saved = localStorage.getItem(COLLAPSE_KEY); }catch(e){}
+  if(saved !== null){ setSidebarCollapsed(saved === '1'); }
+  else if(window.innerWidth < 700){ setSidebarCollapsed(true); }
+})();
 </script>
 </body>
 </html>
