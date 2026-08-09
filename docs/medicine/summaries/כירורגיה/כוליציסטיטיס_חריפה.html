@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כוליציסטיטיס חריפה - סיכום</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c; --red-bg:#fef2f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+  .info-box{background:#f8fafc; border:1px solid var(--line); border-radius:6px; padding:12px 16px; margin:12px 0}
+  .info-box b.tag{color:var(--blue)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:var(--red-bg); color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:var(--red-bg); border-color:var(--red)}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .askbox{border:2px dashed var(--purple); border-radius:8px; padding:14px 18px; margin:14px 0; background:var(--purple-bg)}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .src-note{font-size:13.5px; color:var(--sub); margin-top:6px}
+</style>
+</head>
+<body>
+
+<h1>כוליציסטיטיס חריפה <span class="term">(Acute Cholecystitis)</span></h1>
+<div class="subtitle">כירורגיה כללית · מערכת המרה · הסיבה השכיחה ביותר לניתוח דחוף על רקע מחלת מרה</div>
+
+<p>דלקת חריפה בדופן כיס המרה, ברוב המקרים (כ-90%) על רקע אבן שחוסמת את צינור הכיס
+<span class="term">(Cystic duct)</span>. זו לא רק "כאב בטן" - זו סדרת אירועים מכנית ואיסכמית
+שאם לא נעצרת, מסתיימת בנמק של דופן האיבר.</p>
+
+<figure>
+  <img src="https://www.niddk.nih.gov/-/media/Images/Health-Information/Digestive-Diseases/gallbladderBile330x330.jpg" alt="איור: אבן חוסמת את דרכי המרה וגורמת להתקף כיס מרה">
+  <figcaption>איור: אבן בכיס המרה חוסמת את דרכי המרה ומובילה להתקף כיס מרה. מקור:
+  <a href="https://www.niddk.nih.gov/health-information/digestive-diseases/gallstones/symptoms-causes" target="_blank">NIDDK / NIH (המכון הלאומי האמריקאי לסוכרת ומחלות עיכול וכליות)</a></figcaption>
+</figure>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+<p>
+<span class="key">אבן נודדת</span> מכיס המרה ונתקעת בצוואר הכיס או בצינור הכיס. עכשיו
+כיס המרה הוא בעצם שק סגור: הדופן שלו ממשיכה להפריש נוזל ורירית, אבל שום דבר לא יוצא.
+<span class="key">הלחץ בתוך הכיס עולה</span> - וזה לחץ מכני אמיתי על הרקמה. שני דברים
+קורים בו-זמנית בגלל הלחץ הזה:
+</p>
+<p>
+<b>1. פגיעה ישירה ברירית (עוד לפני כל חיידק).</b> הלחץ מותח ופוגע בתאי הרירית, והתאים
+הפגועים משחררים אנזים בשם פוספוליפאז, שהופך את הלציטין שנמצא במרה עצמה לחומר רעיל בשם
+<span class="term">Lysolecithin</span> - שפוגע עוד יותר ברירית. הרקמה הפגועה משחררת
+פרוסטגלנדינים (PGE2, PGI2), וזה בדיוק מה ש<b>יוצר את הדלקת עצמה</b> - לא "פרשנות" של
+הגוף, אלא נזק רקמתי אמיתי שגורר תגובה דלקתית אמיתית (הרחבת כלי דם, בצקת, כאב).
+<span class="key">בשלב הזה הדלקת עדיין סטרילית לגמרי - אין אף חיידק מעורב.</span>
+</p>
+<p>
+<b>2. חנק של אספקת הדם.</b> לכיס המרה יש בעיקר עורק אחד, ה<span class="term">Cystic
+artery</span>. לחץ שעולה מספיק בתוך השק סוגר את העורק הקטן הזה מבחוץ - כמו לקשור גומייה
+סביב אצבע - והתוצאה היא <b>איסכמיה</b> של הדופן.
+</p>
+<p>
+<b>ואז מצטרפים החיידקים.</b> מרה שלא מתנקזת היא מרה סטגנטית, והרירית שכבר פגועה כבר לא
+מתפקדת כמחסום. זה בדיוק התנאי שמאפשר לחיידקים ש<i>תמיד</i> נמצאים במעי לעלות ולהתרבות
+בתוך הכיס (בדרך כלל תוך שעות עד ימים). אם שום דבר לא עוצר את השרשרת: איסכמיה מתקדמת →
+נמק ממשי של הדופן <span class="term">(gangrenous cholecystitis)</span> → פרפורציה.
+</p>
+<p class="key-box">
+חום ולויקוציטוזיס <b>אינם הוכחה שיש חיידקים</b> - הם תגובה דלקתית סיסטמית (ציטוקינים
+כמו IL-1, IL-6, TNF-α) שיכולה להתחיל כבר בשלב הסטרילי, מהנזק הרקמתי לבדו. ברגע שמצטרף
+זיהום חיידקי, אותה תגובה רק מתעצמת.
+</p>
+</div>
+
+<h3>אילו חיידקים מצטרפים, ומאיפה?</h3>
+<p>החיידקים שמזהמים משנית הם פלורת המעי הרגילה שעולה במעלה דרכי המרה - לא "חיידק אקראי".
+לפי נתוני תרביות מרה במחקרים שונים (השכיחות המדויקת משתנה בין מוסדות ואוכלוסיות):</p>
+<table>
+<thead><tr><th>חיידק</th><th>שכיחות משוערת בתרביות מרה</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td><span class="term">Escherichia coli</span></td><td>~30-35%</td><td>הגורם השכיח ביותר - פלורת מעי רגילה</td></tr>
+<tr><td><span class="term">Enterococcus spp.</span></td><td>~20-25%</td><td>גראם חיובי - חשוב כי צפלוספורינים כמו צפטריאקסון לא מכסים אותו</td></tr>
+<tr><td><span class="term">Klebsiella spp.</span></td><td>~15-20%</td><td>גראם שלילי</td></tr>
+<tr><td><span class="term">Enterobacter spp.</span></td><td>~10%</td><td>גראם שלילי</td></tr>
+<tr><td>אנאירובים (<span class="term">Bacteroides</span>, קלוסטרידיום)</td><td>פחות שכיח במקרה הפשוט</td><td>משמעותיים בסוכרתיים/מדוכאי חיסון ובכוליציסטיטיס אמפיזמטית</td></tr>
+</tbody>
+</table>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופיזיולוגיה</h2>
+<p>
+כיס המרה יושב בגומחה על פני התחתית של הכבד, ומתנקז דרך צינור הכיס אל
+<span class="term">Common Bile Duct (CBD)</span>. אספקת הדם שלו כמעט כולה דרך עורק אחד -
+ה<span class="term">Cystic artery</span> - וזו הסיבה שהוא כה פגיע לאיסכמיה כשעולה לחץ.
+תפקידו התקין הוא לרכז ולאחסן מרה בין ארוחות, ולהתכווץ בתגובה להורמון
+<span class="term">CCK (Cholecystokinin)</span> שמופרש מהתריסריון כשיש שומן במזון.
+חסימת הצינור פוגעת בדיוק בפעולה הזו: הכיס ממשיך "לעבוד" אבל לא יכול "לגמור את העבודה".
+היסטולוגית, בשלב החריף רואים בצקת ותסנין נויטרופילים בדופן; אם המחלה מתקדמת - נמק של
+הרירית ולבסוף של הדופן כולה.
+</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>
+<span class="key">הטריאדה הקלאסית: חום + לויקוציטוזיס + כאב קבוע ויציב ב-RUQ</span> (לא
+כאב קוליקי כמו ב<span class="term">Biliary colic</span>). <b>צהבת אינה שכיחה</b> - אם
+היא כן מופיעה, זה דגל אדום שמכוון ל<span class="term">Mirizzi syndrome</span> או לכולנגיטיס.
+</p>
+<p>
+<b>סימן מרפי <span class="term">(Murphy's sign)</span> - איך בדיוק עושים אותו:</b> הבודק
+מניח יד מתחת לקשת הצלעות הימנית באזור ה-RUQ, ומבקש מהמטופל לנשום עמוק. בנשימה עמוקה
+הסרעפת יורדת, והכבד עם כיס המרה יורד איתה - כך שכיס המרה המודלק "נופל" ישר לתוך האצבעות
+הלוחצות. אם המטופל <b>עוצר את הנשימה מיידית</b> מכאב - הסימן חיובי.
+</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p>
+במעבדה: <b>לויקוציטוזיס</b> (בד"כ 12,000-15,000), עלייה קלה ב-ALKP, עלייה קלה בבילירובין
+(עד כ-5 מ"ג/ד"ל) ובטרנסאמינזות.
+</p>
+<div class="info-box">
+<p><b class="tag">למה עולה ALKP (אלקלין פוספטאז)?</b> ALKP הוא אנזים (לא קינאז - פוספטאז)
+שיושב על הממברנה של תאי הכבד ותאי אפיתל דרכי המרה. הוא לא "דולף" סתם מנזק לתא (כמו
+טרנסאמינזות) - התאים האלה מגיבים לכל הפרעה בזרימת המרה, גם הפרעה מקומית וחלקית, בייצור
+<i>מוגבר</i> של האנזים, שדולף לדם. במילים אחרות: ALKP גבוה הוא סמן ל"שיבוש כלשהו בזרימת
+המרה", לא בהכרח חסימה מלאה. בכוליציסטיטיס השיבוש הזה מקומי - הבצקת/הדלקת בגומחת הכיס
+לוחצת על תעלות מרה זעירות סמוכות בתוך רקמת הכבד הצמודה - ולכן העלייה קלה, לא כמו בחסימת
+CBD אמיתית.</p>
+</div>
+
+<h3>אבחנה מבדלת - איך לא להתבלבל</h3>
+<table>
+<thead><tr><th>מצב</th><th>חום/לויקוציטוזיס</th><th>צהבת</th><th>סימן מרפי</th><th>ההבדל בהדמיה</th></tr></thead>
+<tbody>
+<tr><td>Biliary colic</td><td>לא</td><td>לא</td><td>שלילי</td><td>אבנים בכיס, דופן תקינה, כאב חולף &lt;6 שעות</td></tr>
+<tr><td><b>כוליציסטיטיס חריפה</b></td><td>כן</td><td>נדיר</td><td>חיובי</td><td>דופן מעובה, אבן תקועה בצוואר, נוזל פריכיסטי</td></tr>
+<tr><td>Choledocholithiasis</td><td>לרוב לא</td><td>כן</td><td>שלילי</td><td>CBD מורחב מעל 8 מ"מ, כיס תקין</td></tr>
+<tr><td>כולנגיטיס אקוטית</td><td>כן (טריאדת שארקו)</td><td>כן, משמעותית</td><td>שלילי</td><td>CBD מורחב + סימני זיהום עולה</td></tr>
+</tbody>
+</table>
+
+<h3>הדמיה</h3>
+<p>
+<b><span class="term">US</span> היא הבדיקה המועדפת</b> - זמינה, מהירה, לא פולשנית ורגישה.
+מחפשים: אבנים, <span class="key">דופן כיס מעובה מעל 3 מ"מ</span>, נוזל פריכיסטי, וסימן
+מרפי סונוגרפי.
+</p>
+<div class="info-box">
+<p><b class="tag">מה זה בכלל HIDA scan?</b> מזריקים לוריד חומר רדיואקטיבי (טכנציום-99m
+על מולקולת IDA) שהכבד לוקח מהדם ומפריש למרה - בדיוק כמו שהוא מפריש בילירובין. מצלמת גמא
+עוקבת אחרי החומר: תוך כ-30-60 דקות הוא אמור למלא את כיס המרה ולהגיע למעי. <b>אם כיס המרה
+לא מתמלא כלל</b> - זו הוכחה ישירה (לא רק היסק עקיף כמו ב-US) שצינור הכיס חסום לגמרי.
+זו הבדיקה הרגישה והספציפית ביותר, ומשתמשים בה כשה-US לא חד-משמעי.</p>
+</div>
+<div class="figure-pair">
+  <figure>
+    <span class="label normal">תקין - סכמה</span>
+    <svg viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg" style="background:#0a0a0a;border-radius:8px">
+      <ellipse cx="130" cy="95" rx="70" ry="45" fill="#1a1a1a" stroke="#4ade80" stroke-width="2"/>
+      <ellipse cx="130" cy="95" rx="63" ry="38" fill="#050505"/>
+      <text x="130" y="150" text-anchor="middle" font-size="12" fill="#4ade80" font-family="Assistant, sans-serif">דופן דקה (&lt;3 מ"מ), חלל נקי</text>
+    </svg>
+    <figcaption>שרטוט סכמטי (לא US אמיתי) הממחיש דופן דקה ותוכן נקי מהדים, להשוואה.</figcaption>
+  </figure>
+  <figure>
+    <span class="label abnormal">פתולוגי - US אמיתי</span>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ultrasonography_of_sludge_and_gallstones,_annotated.jpg" alt="US של כיס מרה עם בוץ ואבנים, מסומן">
+    <figcaption>US מסומן: בוץ מרתי ואבנים בכיס המרה. מקור: Wikimedia Commons (רישיון פתוח)</figcaption>
+  </figure>
+</div>
+<p class="src-note">אם התמונה השמאלית לא נטענת אצלך - הקישור המלא נמצא גם בסעיף 8 למטה.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>
+הטיפול הראשוני תמיד <b>שמרני-מייצב</b>, ואז - כמעט תמיד - ניתוח.
+<span class="key-box">שום טיפול תרופתי לא פותר את הבעיה המקורית - הוא רק מייצב ומרגיע
+את הדלקת. הפתרון הסופי הוא תמיד לפתוח את החסימה, בפועל ע"י כריתת הכיס.</span>
+</p>
+<div class="info-box">
+<p><b class="tag">הערה על שונות בפרוטוקולים - Rocephin + Flagyl:</b> במחלקות רבות (ואולי
+גם אצלך) נהוג לתת <span class="term">Ceftriaxone (Rocephin)</span> +
+<span class="term">Metronidazole (Flagyl)</span> כברירת מחדל <b>לכל</b> מקרה של כוליציסטיטיס
+חריפה, ולא רק במקרים "מיוחדים". זה בהחלט פרוטוקול מקובל ותקין - ה-Tokyo Guidelines
+משאירים מקום לשיקול דעת מוסדי, וההיגיון של לתת את השילוב תמיד הוא לקבל מיד כיסוי רחב
+(אירובי גראם-שלילי + אנאירובי) בלי להמתין לזיהוי גורמי סיכון ספציפיים. בטבלה למטה מוצג
+העיקרון של כל תרופה בנפרד כדי שיהיה ברור <i>למה</i> כל אחת שם - לא כדי לרמוז שהשילוב
+נדיר.</p>
+</div>
+<table>
+<thead><tr><th>טיפול</th><th>מנגנון פעולה</th><th>כיסוי חיידקי</th><th>איך עוזר לבעיה הספציפית</th><th>קונטרא-אינדיקציה / שימו לב</th></tr></thead>
+<tbody>
+<tr>
+<td>נוזלים IV - <span class="term">NS</span> או <span class="term">Lactated Ringer's</span></td>
+<td>מילוי נפח תוך-וסקולרי</td>
+<td>-</td>
+<td>מייצב המודינמית מטופל בצום/עם תגובה דלקתית סיסטמית; רינגר מועדף בנפחים גדולים (פחות סיכון לחמצת היפרכלורמית מ-NS)</td>
+<td>רינגר - זהירות באי-ספיקת כבד קשה והיפרקלמיה קשה</td>
+</tr>
+<tr>
+<td><span class="term">Ceftriaxone (Rocephin)</span> IV</td>
+<td>בטא-לקטם - נקשר לחלבוני PBP וחוסם סינתזת דופן התא החיידקית → ליזיס</td>
+<td>גראם-שליליים אירוביים בעיקר (E.coli, Klebsiella). <b>לא מכסה אנאירובים ולא אנטרוקוקוס</b></td>
+<td>פוגע ישירות בחיידקי המעי שהזדהמו משנית במרה הסטגנטית</td>
+<td>אלרגיה לפניצילין/צפלוספורינים; אין לתת עם תמיסות המכילות סידן (סיכון שקיעה, בעיקר בילודים); שימוש ממושך במינון גבוה יכול לגרום בעצמו לבוץ/אבנים (Pseudolithiasis)</td>
+</tr>
+<tr>
+<td><span class="term">Metronidazole (Flagyl)</span> IV</td>
+<td>פרודרוג שמצטמצם ע"י מערכת הפרדוקסין החיידקית האנאירובית ליצירת רדיקלים חופשיים הפוגעים ב-DNA החיידקי</td>
+<td>אנאירובים (Bacteroides, קלוסטרידיום). <b>לא מכסה אירוביים</b></td>
+<td>סוגר את הפער שצפטריאקסון משאיר - כיסוי אנאירובי משלים</td>
+<td>תגובה דמוית-דיסולפירם עם אלכוהול; להימנע בשליש ראשון להריון; נוירופתיה פריפרית בשימוש ממושך</td>
+</tr>
+<tr>
+<td><span class="term">Piperacillin-Tazobactam</span> (מחלה קשה/גריידיים גבוה)</td>
+<td>פניצילין רחב-טווח + מעכב בטא-לקטמאז</td>
+<td>רחב: גראם חיובי ושלילי + אנאירובים - כיסוי חד-תרופתי</td>
+<td>מתאים למטופל לא יציב/ספטי שצריך כיסוי רחב מיידי</td>
+<td>אלרגיה לפניצילין</td>
+</tr>
+<tr>
+<td>אנלגזיה - אופיואידים IV</td>
+<td>אגוניזם לקולטני מיו-אופיואידיים</td>
+<td>-</td>
+<td>מקל על כאב ממתיחת דופן הכיס הדלקתית</td>
+<td>מעקב נשימתי</td>
+</tr>
+</tbody>
+</table>
+
+<div class="surgery">
+  <h4>הכנה לפני הניתוח</h4>
+  <p>ייצוב ראשוני (נוזלים, אנטיביוטיקה, אנלגזיה) כבר רץ. בנוסף: הערכת סיכון קרדיאלי,
+  תיקון הפרעות קרישה אם יש, צום, הסכמה מדעת. <b>קונטרא-אינדיקציות לניתוח דחוף: MI פעיל,
+  CHF לא יציב, מיוקרדיטיס</b> - במקרים אלו מייצבים תחילה או עוברים לניקוז מלעורי.</p>
+
+  <h4>מהלך הניתוח - כריתת כיס מרה לפרוסקופית</h4>
+  <p>יוצרים פנאומופריטונאום (CO2), ומכניסים 3-4 טרוקרים. מנתחים את
+  <span class="term">Calot's triangle</span> (המשולש ההפטוציסטי - גבולותיו צינור הכיס,
+  ה-CBD/הכבד המשותף וגבול הכבד) כדי לחשוף את צינור הכיס ואת ה-Cystic artery.</p>
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cystohepatic_triangle.png" alt="תרשים המשולש ההפטוציסטי (Calot's triangle)">
+    <figcaption>תרשים המשולש ההפטוציסטי - הגבולות והמבנים שבתוכו. מקור: Wikimedia Commons</figcaption>
+  </figure>
+  <p><b class="tag">מה זה בכלל Cystic plate?</b> רצועת רקמת חיבור סיבית שכיס המרה
+  "שוכב" עליה, בתוך גומחה על פני התחתית של הכבד. חשיפתה (הפרדת השליש התחתון של הכיס
+  ממנה) היא אחד משלושת התנאים להשגת Critical View of Safety - היא ה"רצפה" שהמנתח צריך
+  להגיע אליה כדי לדעת שהוא לא נשאר עמוק מדי בתוך רקמת הכבד עצמה.</p>
+
+  <h4>נקודת הזהירות הקריטית - Critical View of Safety</h4>
+  <p><span class="key">לפני שקושרים או חותכים כל דבר</span>, המנתח חייב שלושה תנאים:
+  (1) המשולש ההפטוציסטי נקי משומן/רקמת חיבור, (2) השליש התחתון של הכיס מופרד מהפלייט
+  וחושף אותה, (3) נראים <b>רק שני מבנים</b> נכנסים לכיס (צינור ועורק). כאן קורים רוב
+  מקרי הפגיעה בדרכי המרה - כשבגלל דלקת המנתח מזהה בטעות את ה-CBD כצינור הכיס. אם אי
+  אפשר להשיג את זה בבטחה - עוברים לניתוח פתוח או כריתה חלקית.</p>
+
+  <h4>החלמה</h4>
+  <p>אשפוז קצר (יום-יומיים). כאב מופנה לכתף אפשרי (גירוי סרעפת מה-CO2). שלשול/צואה רכה
+  זמנית שכיח - כי המרה כבר לא מאוחסנת בין ארוחות אלא מטפטפת ברציפות. סימנים לפנייה
+  דחופה: כאב מחמיר, חום, הפרשה מרתית מהנקז, צהבת.</p>
+  <p class="src-note">הדגמת הניתוח: <a href="https://csurgeries.com/video/a-safe-stepwise-approach-to-the-critical-view-of-safety-during-laparoscopic-cholecystectomy/" target="_blank">CSurgeries - Critical View of Safety</a></p>
+</div>
+<p>
+במטופלים בסיכון ניתוחי גבוה: ניקוז מלעורי בהנחיית US והשארת
+<span class="term">כוליציסטוסטום</span> - דוחה את הניתוח ב-3 עד 6 חודשים.
+</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - "חל״ב"</h3>
+  <p><b>ח</b>ום + <b>ל</b>ויקוציטוזיס + <b>ב</b>טן כואבת (RUQ, קבוע). "חלב" גם מזכיר את
+  הטריגר - מזון שומני מפעיל CCK שגורם לכיס להתכווץ ולדחוף אבן לצוואר.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>כיס המרה כחדר אחסון עם דלת צרה אחת. אבן נתקעת בדלת - הקירות ממשיכים "להזיע" נוזל
+  פנימה, החדר מתנפח כמו בלון שלא נפתח, עד שהוא לוחץ על צינור הדם היחיד שמזין אותו -
+  כמו גומייה סביב אצבע. בלי ניקיון שוטף, חיידקים שבדרך כלל נשטפים נשארים ומתרבים.
+  <b>אבן → חסימה → בלון בלחץ → נחנק מדם → מתלכלך מחיידקים → נמק.</b></p>
+  <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="260" cy="110" r="75" fill="#d1fae5" stroke="#047857" stroke-width="3"/>
+    <circle cx="260" cy="110" r="6" fill="#047857"/>
+    <text x="260" y="115" text-anchor="middle" font-size="11" fill="#047857" font-family="Assistant, sans-serif" dy="35">"החדר" מתנפח</text>
+    <rect x="170" y="95" width="26" height="30" fill="#92400e"/>
+    <circle cx="183" cy="95" r="13" fill="#78350f"/>
+    <text x="183" y="145" text-anchor="middle" font-size="10.5" fill="#78350f" font-family="Assistant, sans-serif">אבן בדלת</text>
+    <line x1="60" y1="110" x2="150" y2="110" stroke="#b91c1c" stroke-width="3"/>
+    <text x="55" y="105" text-anchor="end" font-size="11" fill="#b91c1c" font-family="Assistant, sans-serif">כלי דם נחנק ←</text>
+    <line x1="140" y1="70" x2="140" y2="150" stroke="#b91c1c" stroke-width="5"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.osmosis.org/learn/Acute_cholecystitis" target="_blank">Osmosis - Acute cholecystitis</a>
+    <div class="desc">סרטון קצר ומאויר - כל המנגנון, הקליניקה והטיפול.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=dGdQ-xWXOTE" target="_blank">Armando Hasudungan - Acute Cholecystitis: Overview</a>
+    <div class="desc">הרצאה מצוירת-ביד, כולל אבחנה מבדלת מול כולנגיטיס.</div></li>
+  <li><a href="https://radiopaedia.org/articles/acute-cholecystitis-summary" target="_blank">Radiopaedia - Acute cholecystitis (summary)</a>
+    <div class="desc">מאמר ייחוס רדיולוגי עם מקרים אמיתיים של US/CT/HIDA.</div></li>
+  <li><a href="https://radiologyassistant.nl/abdomen/biliary-system/gallbladder-wall-thickening" target="_blank">Radiology Assistant - Gallbladder wall thickening</a>
+    <div class="desc">תמונות תקינות מול מעובות זו לצד זו.</div></li>
+  <li><a href="https://csurgeries.com/video/a-safe-stepwise-approach-to-the-critical-view-of-safety-during-laparoscopic-cholecystectomy/" target="_blank">CSurgeries - הניתוח המלא</a>
+    <div class="desc">וידאו כירורגי של ההגעה ל-Critical View of Safety.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/Special:FilePath/Ultrasonography_of_sludge_and_gallstones,_annotated.jpg" target="_blank">US אמיתי מסומן (קישור ישיר)</a>
+    <div class="desc">אם התמונה בסעיף 5 לא נטענת - זה הקישור הישיר.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 45, עודף משקל, מגיעה למיון עם כאב קבוע ב-RUQ מזה כ-14 שעות, שהחל אחרי ארוחה
+  שומנית. בבדיקה: חום 38.3°C, דופק 102, רגישות ו-Guarding ב-RUQ, וסימן מרפי חיובי. אין
+  צהבת. במעבדה: לויקוציטים 14,200, בילירובין 1.6, ALKP מעט מוגבר. US: אבן תקועה בצוואר
+  הכיס, דופן מעובה 5 מ"מ, נוזל פריכיסטי.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה בין הממצאים הבאים הכי עוזר להבדיל בין המקרה הזה ל-Biliary colic פשוט?</div>
+  <button class="opt" data-i="0">גיל המטופלת</button>
+  <button class="opt" data-i="1">הקשר לארוחה שומנית</button>
+  <button class="opt" data-i="2">חום + סימן מרפי חיובי</button>
+  <button class="opt" data-i="3">נוכחות אבנים ב-US</button>
+  <div class="explain"><b>נכון: חום + סימן מרפי חיובי.</b> הם מעידים על דלקת פעילה - זה מה שמבדיל
+  כוליציסטיטיס מ-Biliary colic. גיל לא מבדיל; ארוחה שומנית קשורה גם לקוליק פשוט; אבנים נמצאות
+  בשני המצבים - ההבדל הוא בדלקת, לא בנוכחות האבנים.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה קורה ראשון, מיד עם עליית הלחץ בכיס המרה - עוד לפני הצטרפות חיידקים?</div>
+  <button class="opt" data-i="0">פרפורציה מיידית של הדופן</button>
+  <button class="opt" data-i="1">פגיעה ברירית ושחרור מתווכי דלקת (דלקת כימית סטרילית)</button>
+  <button class="opt" data-i="2">חיידקי מעי חודרים ישירות מהתריסריון</button>
+  <button class="opt" data-i="3">הכיס מתכווץ בחוזקה ודוחף את האבן החוצה</button>
+  <div class="explain"><b>נכון: פגיעה ברירית ושחרור מתווכי דלקת.</b> הלחץ פוגע ברירית ישירות,
+  משחרר ליזוצין ופרוסטגלנדינים - דלקת אמיתית עוד לפני חיידק. פרפורציה היא שלב מאוחר; חיידקים
+  לא "חודרים ישירות" אלא עולים מסטגנציה; חסימה מונעת ריקון - הכיס לא יכול לדחוף אבן שתקועה
+  ביציאה שלו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. מדוע נוסיף מטרונידזול לצפטריאקסון (Rocephin+Flagyl)?</div>
+  <button class="opt" data-i="0">מטרונידזול מחזק את הפעילות של צפטריאקסון נגד E. coli</button>
+  <button class="opt" data-i="1">צפטריאקסון לא מכסה אנאירובים, ומטרונידזול סוגר את הפער</button>
+  <button class="opt" data-i="2">מטרונידזול מחליף את הצורך בניתוח</button>
+  <button class="opt" data-i="3">מטרונידזול פועל נגד אותם חיידקים, למקרה שהם עמידים</button>
+  <div class="explain"><b>נכון: צפטריאקסון לא מכסה אנאירובים.</b> מטרונידזול תופס את הכיסוי
+  האנאירובי המשלים - זה שילוב משלים, לא כפילות. אף אנטיביוטיקה לא מחליפה את הצורך לפתוח את
+  החסימה; שתי התרופות מכסות אוכלוסיות חיידקים שונות, לא זהות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מהו השלב הקריטי ביותר בניתוח למניעת פגיעה בדרכי המרה?</div>
+  <button class="opt" data-i="0">ביצוע כולנגיוגרפיה תוך-ניתוחית לכל מטופל</button>
+  <button class="opt" data-i="1">השגת Critical View of Safety לפני קשירה/חיתוך של כל מבנה</button>
+  <button class="opt" data-i="2">הזרקת ירוק אינדוציאנין בכל מקרה</button>
+  <button class="opt" data-i="3">ביצוע הניתוח תמיד בגישה פתוחה</button>
+  <div class="explain"><b>נכון: השגת Critical View of Safety.</b> זיהוי ודאי של שני המבנים
+  לפני קשירה מונע את הטעות הקלאסית של קשירת ה-CBD בטעות. כלים אחרים תומכים אך לא הכרחיים;
+  רוב הניתוחים היום לפרוסקופיים - מעבר לפתוח שמור למקרים שבהם CVS לא בר-השגה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופל בן 78 עם כוליציסטיטיס חריפה ו-MI לפני 5 ימים. מה הגישה המתאימה?</div>
+  <button class="opt" data-i="0">כריתת כיס מרה לפרוסקופית מיידית</button>
+  <button class="opt" data-i="1">ניקוז מלעורי (כוליציסטוסטום) עד להתייצבות קרדיאלית</button>
+  <button class="opt" data-i="2">מעקב בלבד ללא כל התערבות</button>
+  <button class="opt" data-i="3">ERCP דחוף כפתרון מכריע</button>
+  <div class="explain"><b>נכון: ניקוז מלעורי.</b> MI לאחרונה הוא קונטרא-אינדיקציה לניתוח דחוף.
+  ניתוח מיידי מסוכן קרדיאלית; מעקב בלבד מסוכן כי המחלה עלולה להתקדם לנמק; ERCP פותר חסימת
+  CBD, לא חסימת צינור הכיס עצמו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה שילוב ממצאים הכי יחשיד ל-Mirizzi syndrome ולא כוליציסטיטיס פשוטה?</div>
+  <button class="opt" data-i="0">סימן מרפי שלילי בלבד</button>
+  <button class="opt" data-i="1">לויקוציטוזיס קל ללא חום</button>
+  <button class="opt" data-i="2">צהבת משמעותית + עלייה בולטת ב-ALKP/בילירובין</button>
+  <button class="opt" data-i="3">נוכחות אבנים בכיס המרה ב-US</button>
+  <div class="explain"><b>נכון: צהבת משמעותית + עלייה בולטת.</b> ב-Mirizzi, אבן בצוואר הכיס
+  לוחצת מבחוץ על ה-CBD הסמוך וגורמת לחסימה אמיתית - ולכן צהבת ועלייה משמעותית. אבנים נמצאות
+  כמעט תמיד גם בכוליציסטיטיס רגילה - לא מבדיל.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כוליציסטיטיס חריפה = דלקת בכיס המרה, ברוב המקרים בגלל אבן שחוסמת את צינור הכיס.</li>
+    <li>מנגנון: חסימה → עליית לחץ → פגיעה ברירית + ליזוצין → דלקת סטרילית → לחץ סוגר את ה-Cystic artery → איסכמיה → מרה סטגנטית → זיהום משני (E.coli, Enterococcus, Klebsiella) → ללא טיפול: נמק/פרפורציה.</li>
+    <li>ALKP/בילירובין עולים קלות מהפרעה מקומית בזרימת מרה תוך-כבדית סמוכה - לא חסימת CBD אמיתית.</li>
+    <li>קליניקה: טריאדת "חל״ב", סימן מרפי חיובי, צהבת נדירה.</li>
+    <li>אבחנה: US (דופן &gt;3 מ"מ, אבנים, נוזל פריכיסטי, מרפי סונוגרפי) → HIDA (אי-מילוי הכיס) אם לא ברור.</li>
+    <li>טיפול: NPO+נוזלים+אנטיביוטיקה (Ceftriaxone+Metronidazole נפוץ כברירת מחדל)+אנלגזיה, ואז כריתת כיס מרה לפרוסקופית מוקדם. השלב הקריטי: Critical View of Safety.</li>
+    <li>קונטרא-אינדיקציה לניתוח דחוף: MI פעיל/CHF לא יציב/מיוקרדיטיס → ניקוז מלעורי ודחיית ניתוח.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

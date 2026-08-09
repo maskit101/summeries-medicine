@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>המטולוגיה 4/4: עמילואידוזיס, הפרעות טסיות והפרעות קרישה</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c; --teal:#0f766e; --teal-bg:#f0fdfa;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:920px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:27px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:15.5px; margin-bottom:28px}
+  h2.section-title{font-size:24px; margin:48px 0 6px; padding:10px 14px; border-radius:8px; color:#fff}
+  h2.section-title.a{background:var(--teal)}
+  h2.section-title.b{background:var(--purple)}
+  h2.section-title.c{background:var(--blue)}
+  h2{font-size:21px; margin:30px 0 10px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:14px; flex-shrink:0}
+  h3{font-size:18px; margin:18px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr h3{color:#93c5fd; margin:16px 0 4px}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .toc{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin:20px 0; font-size:15px}
+  .toc a{color:var(--blue); text-decoration:none; font-weight:600}
+</style>
+</head>
+<body>
+
+<h1>המטולוגיה — חלק 4/4: עמילואידוזיס, הפרעות טסיות והפרעות קרישה</h1>
+<div class="subtitle">נתח #4 מתוך 39 | עמ' 74–90 מתוך "איחוד סיכומים מבחן גמר בפנימית - לי גלמור" | נוצר אוטומטית לקראת בחינת גמר בפנימית</div>
+
+<div class="toc">
+  <b>בנתח הזה:</b>
+  <a href="#partA">א. עמילואידוזיס (Amyloidosis)</a> ·
+  <a href="#partB">ב. הפרעות טסיות (Platelet Disorders)</a> ·
+  <a href="#partC">ג. הפרעות קרישה (Coagulation Disorders)</a>
+</div>
+
+<p>הנתח הזה מסיים את פרק ההמטולוגיה (חלק 4 מתוך 4) ועובר משלושה נושאים שונים לגמרי מבחינת "איפה בזרם הדם" הבעיה נמצאת: קודם חלבון פתולוגי ששוקע ברקמות (עמילואידוזיס), אחר כך תפקוד הטסיות (המוסטזיס ראשוני), ולבסוף קסקדת הקרישה עצמה (המוסטזיס שניוני). המשותף לשלושתם: מבחנים אוהבים לבחון "האם זו בעיה כמותית או איכותית", ו"מה בדיוק מבדיל את המצב הזה מהמצב הדומה לו".</p>
+
+<!-- ============================================================ -->
+<h2 class="section-title a" id="partA">א. עמילואידוזיס (Amyloidosis)</h2>
+<p>קבוצת מחלות המאוחדות ע"י מנגנון משותף — שקיעה חוץ-תאית של חלבון שהתקפל בצורה לא תקינה — אך עם אטיולוגיות, איברי מטרה וטיפולים שונים לגמרי בין הסוגים. הסיווג הקליני החשוב ביותר: <span dir="ltr" class="term">systemic</span> מול <span dir="ltr" class="term">localized</span>, ו<span dir="ltr" class="term">acquired</span> מול <span dir="ltr" class="term">hereditary</span>.</p>
+
+<h2><span class="num">2</span> המנגנון — למה חלבון "מתקפל לא נכון" הורג רקמות?</h2>
+<div class="mechanism">
+  <p class="chain">
+    בכל סוגי העמילואידוזיס, החלבון השוקע (בין אם שרשראות קלות, בין אם חלבון דלקתי) מאבד את המבנה התלת-ממדי התקין שלו ומתקפל מחדש לצורת <b><span dir="ltr" class="term">β-pleated sheet</span></b> — סליל שטוח שנוטה להצטבר לסיבים ארוכים ובלתי מסיסים. בניגוד לחלבון פגום "רגיל" שהגוף מפרק במהירות, המבנה הזה עמיד בפני אנזימי פירוק, ולכן הסיבים מצטברים בהדרגה בין התאים ברקמות שונות.
+    ההצטברות הזו לא "תופסת מקום" בלבד — היא פוגעת בתפקוד הרקמה בשתי דרכים: <b>מכנית</b> (הסתננות פיזית שמפריעה לארכיטקטורה התקינה, למשל מעבה את דפנות הלב וגורמת ל<span dir="ltr" class="term">restrictive cardiomyopathy</span>) ו<b>טוקסית ישירה</b> (במיוחד ב-AL, שרשראות קלות חופשיות רעילות ישירות לתאי שריר הלב ולתאי הכליה, גם לפני שנוצרת שקיעה מסיבית — זו הסיבה שנזק לבבי ב-AL יכול להיות מהיר וחמור יחסית לכמות החלבון שנצפית).
+    ההבדל בין הסוגים הוא <b>מקור החלבון</b>: ב-<b>AL</b> — ריבוי קלונלי של תאי פלזמה (בדומה ל-multiple myeloma, ולעתים באסוציאציה ישירה אליו) מייצר עודף שרשראות קלות חד-שבטיות; ב-<b>AA</b> — דלקת כרונית (RA, מחלת מעי דלקתית, FMF, זיהומים כרוניים) גורמת לייצור מתמשך של <span dir="ltr" class="term">serum amyloid A</span>, חלבון-פאזה-חריפה שבריכוזים כרוניים גבוהים "מצטבר" ומשקע.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="190" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="45" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">AL: קלון תאי פלזמה</text>
+  <text x="115" y="63" text-anchor="middle" font-size="11" fill="#4b5563">שרשראות קלות עודפות</text>
+  <rect x="20" y="110" width="190" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="115" y="135" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">AA: דלקת כרונית</text>
+  <text x="115" y="153" text-anchor="middle" font-size="11" fill="#4b5563">עודף Serum Amyloid A</text>
+  <path d="M210 50 H280" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrAm)"/>
+  <path d="M210 140 H280" stroke="#b45309" stroke-width="2" marker-end="url(#arrAm)"/>
+  <rect x="280" y="75" width="200" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="380" y="100" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">קיפול שגוי</text>
+  <text x="380" y="118" text-anchor="middle" font-size="11" fill="#4b5563">β-pleated sheet, עמיד לפירוק</text>
+  <path d="M480 108 H550" stroke="#2563eb" stroke-width="2" marker-end="url(#arrAm)"/>
+  <rect x="550" y="20" width="160" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="630" y="45" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">פגיעה מכנית</text>
+  <text x="630" y="63" text-anchor="middle" font-size="10.5" fill="#4b5563">הסתננות רקמה (לב/כליה)</text>
+  <rect x="550" y="110" width="160" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="630" y="135" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">רעילות ישירה</text>
+  <text x="630" y="153" text-anchor="middle" font-size="10.5" fill="#4b5563">בעיקר AL — שריר לב/טובולוס</text>
+  <path d="M710 50 H780" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrAm)"/>
+  <path d="M710 140 H780" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrAm)"/>
+  <rect x="780" y="75" width="105" height="65" rx="8" fill="#111827"/>
+  <text x="832" y="102" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">כשל</text>
+  <text x="832" y="120" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">איברי</text>
+  <defs><marker id="arrAm" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+
+<h3>AL מול AA — טבלת השוואה (מה שהכי נשאל)</h3>
+<table>
+  <thead><tr><th></th><th><span dir="ltr" class="term">AL Amyloidosis</span></th><th><span dir="ltr" class="term">AA Amyloidosis</span></th></tr></thead>
+  <tbody>
+    <tr><td>אטיולוגיה</td><td>שיבוט תאי פלזמה, ראשוני או משני ל-<span dir="ltr" class="term">multiple myeloma</span>/לימפומה</td><td>משני לדלקת כרונית: RA, IBD, FMF, זיהומים כרוניים (TB, osteomyelitis)</td></tr>
+    <tr><td>איבר מעורב עיקרי</td><td><b>לב</b> (50-60%) — סיבת המוות המובילה; גם כליה, כבד, עצבים</td><td><b>כליה</b> (70-80%) — proteinuria נפרוטית; hepatosplenomegaly</td></tr>
+    <tr><td>ביטוי פתוגנומוני</td><td><span dir="ltr" class="term">Macroglossia</span>, <span dir="ltr" class="term">periorbital ecchymosis</span> (raccoon eyes)</td><td>אין ביטוי פתוגנומוני ספציפי</td></tr>
+    <tr><td>מנגנון דימום</td><td>נטייה לדימום — קשירת פקטור X לסיבי העמילואיד (חסר תפקודי)</td><td>פחות בולט</td></tr>
+    <tr><td>אבחנה ראשונית</td><td>שרשראות קלות בסרום/שתן, אימונופיקסציה</td><td>זיהוי מחלת הרקע הדלקתית</td></tr>
+    <tr><td>פרוגנוזה ללא טיפול</td><td>גרועה — שרידות ממוצעת שנה-שנתיים</td><td>תלוית מחלת הרקע</td></tr>
+    <tr><td>טיפול</td><td>כימותרפיה (בדומה ל-myeloma) ולאחר מכן שיקול השתלת מח עצם</td><td>טיפול במחלת הרקע (למשל קולכיצין ב-FMF)</td></tr>
+  </tbody>
+</table>
+
+<h3>אבחנה — הביופסיה והצביעה</h3>
+<p>הרקמה הנגישה ביותר לביופסיה היא <b>שומן בטני</b> — חיובית ביותר מ-80% מהחולים עם עמילואידוזיס סיסטמי (אם שלילית, אפשר לשקול ביופסיה מכליה/כבד/מערכת העיכול, או ביופסיה ישירה מהאיבר החשוד — יעיל יותר במיוחד ב-AA). קביעת האבחנה: צביעת <b><span dir="ltr" class="term">Congo red</span></b>, שנקשרת למבנה ה-β-pleated sheet של הסיבים; תחת אור מקוטב (<span dir="ltr" class="term">polarized light</span>) הסיבים נצבעים ב<b>ירוק-תפוח</b> (<span dir="ltr" class="term">apple-green birefringence</span>) — זהו סטנדרט הזהב. לאחר האבחנה ההיסטולוגית, סיווג לתת-סוג (AL/AA/ATTR וכו') נעשה בבדיקות אימונו-היסטוכימיות/ביוכימיות/גנטיות.</p>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Amyloid_Liver_Congo_Red_Bar%3D100um.jpg" alt="Congo red staining of amyloid in liver tissue" loading="lazy">
+  <figcaption>רקמת כבד צבועה ב-Congo red המדגימה שקיעת עמילואיד (Wikimedia Commons). תחת אור מקוטב, סיבים כאלה מציגים את הבירפרינגנציה הירוקה-האופיינית. <a href="https://commons.wikimedia.org/wiki/File:Amyloid_Liver_Congo_Red_Bar=100um.jpg" target="_blank">קישור ישיר</a></figcaption>
+</figure>
+
+<h3>ATTR ו-Aβ2M — בקצרה</h3>
+<p><span dir="ltr" class="term">ATTR (transthyretin amyloid)</span> — "<span dir="ltr" class="term">familial amyloidosis</span>", נובע ממוטציה בחלבון <span dir="ltr" class="term">transthyretin</span>; מתייצג כנוירופתיה פריפרית משפחתית (סנסורית-מוטורית ואוטונומית) או כקרדיומיופתיה. הטיפול — <b>השתלת כבד</b>, שמבטלת את מקור החלבון הפגום. ללא טיפול, תוחלת החיים לאחר הופעת המחלה כ-5-15 שנים. <span dir="ltr" class="term">Aβ2M (β2-microglobulin)</span> — עמילואידוזיס בחולי המודיאליזה כרונית, גורם בעיקר למחלת פרקים (<span dir="ltr" class="term">carpal tunnel syndrome</span>, תפליטים מפרקיים, נגעים ציסטיים בעצם).</p>
+
+<div class="link-card">
+  <span class="ico">📄</span>
+  <div><div class="t"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12095761/" target="_blank">Periorbital Purpura as a Key Diagnostic Clue in AL Amyloidosis — PMC</a></div>
+  <div class="d">מאמר מקרה עם תמונה קלינית (Figure 1) של פורפורה periorbital דו-צדדית ("raccoon eyes") — פחות מ-15% מהחולים חווים זאת, אך זהו ממצא ספציפי מאוד ל-AL amyloidosis.</div></div>
+</div>
+
+<div class="mnemonic">
+  <h3>ראשי תיבות וסיפור דמיוני</h3>
+  <p><b>איך לזכור את ההבדל:</b> <b>AL = "L" כמו Light chains וכמו Lev (לב)</b> — תזכרי חולה מיאלומה (Light chains) שהעמילואיד "יורד ללב" (Lev). <b>AA = "A" כמו Arthritis/Autoimmune</b> — התהליך הדלקתי הכרוני (RA, FMF) הוא זה שמזין את החלבון, וה"כתובת" המועדפת שלו היא הכליה.</p>
+  <p><b>הסיפור:</b> דמייני שני "מפעלים" שמייצרים את אותו סוג לבנים (β-pleated sheets) אבל מחומרי גלם שונים: מפעל אחד (AL) מקבל את חומר הגלם משיירי ייצור עודף של מפעל שרשראות-קלות סורר; מפעל שני (AA) מקבל את חומר הגלם מ"אש דלקתית" שבוערת ברקע (RA/FMF) ולא נכבית. שני המפעלים בונים את אותן לבנים (β-sheets), אבל בונים אותן ב"שכונות" שונות בגוף — AL בונה בעיקר בלב, AA בונה בעיקר בכליה.</p>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="section-title b" id="partB">ב. הפרעות טסיות (Platelet Disorders)</h2>
+<p>טסיות אחראיות ל<span dir="ltr" class="term">hemostasis</span> ראשוני — אדהזיה לסב-אנדותל, אקטיבציה, ואגרגציה ליצירת קריש ראשוני. רמתן התקינה 150,000-450,000/μL, זמן חיים 7-10 ימים, ו-33% מהן ממוקמות בטחול (אחוז זה עולה כשהטחול גדל). הבחנה בין <b>כמות</b> נמוכה (thrombocytopenia) לבין <b>תפקוד</b> לקוי (qualitative disorders) היא הציר המרכזי של הפרק הזה.</p>
+
+<h2><span class="num">2</span> המנגנון — שלושת "המסלולים" לטרומבוציטופניה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל גורם לטרומבוציטופניה שייך לאחת משלוש קטגוריות פתופיזיולוגיות, וההבחנה ביניהן קובעת את כל הבירור: <b>(1) פגיעה בייצור</b> — לרוב חלק ממחלה שפוגעת גם בשורות דם אחרות (אפלזיה, פיברוזיס, הסננה ממאירה של מח העצם); מאובחנת ע"י ביופסיית מח עצם שמדגימה מיעוט מגה-קריוציטים. <b>(2) עלייה בהרס</b> — מנגנון אימוני (ITP, HIT) או לא-אימוני (TTP/HUS, DIC, וסקוליטיס) — כאן <b>מח העצם תקין ואף מפצה ביתר</b> (מגה-קריוציטים מוגברים), ולכן ביופסיית מח עצם לרוב מיותרת. <b>(3) אגירה בטחול</b> — טחול מוגדל (לרוב עקב יתר לחץ דם פורטלי או הסננת גידול) "תופס" יותר מ-33% מהטסיות במחזור, מבלי לפגוע כלל בייצור או בהישרדות הטסית הבודדת.
+    ההבחנה הראשונה שחייבים לעשות לפני הכל: האם זו טרומבוציטופניה <b>אמיתית</b>? <b><span dir="ltr" class="term">Pseudo-thrombocytopenia</span></b> היא ארטיפקט מעבדתי שכיח — אגלוטינציה (הצטברות) של טסיות בתגובה ל-<span dir="ltr" class="term">EDTA</span> שבמבחנת הדגימה גורמת למונה התאים "לפספס" אותן. נשללת ע"י משטח דם (רואים צברי טסיות) וע"י חזרה על הספירה במבחנת ציטראט/הפרין.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="60" width="180" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="110" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">1. פגיעה בייצור</text>
+  <text x="110" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">↓מגה-קריוציטים במח עצם</text>
+  <rect x="240" y="60" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="330" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">2. עלייה בהרס</text>
+  <text x="330" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">אימוני (ITP/HIT) / TMA / DIC</text>
+  <rect x="460" y="60" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="550" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">3. אגירה בטחול</text>
+  <text x="550" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">טחול מוגדל תופס &gt;33%</text>
+  <rect x="690" y="60" width="190" height="70" rx="8" fill="#111827"/>
+  <text x="785" y="90" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Thrombocytopenia</text>
+  <text x="785" y="110" text-anchor="middle" font-size="10.5" fill="#d1d5db">&lt;150,000/μL</text>
+  <path d="M200 95 H240" stroke="#374151" stroke-width="2" marker-end="url(#arrPl)"/>
+  <path d="M420 95 H460" stroke="#374151" stroke-width="2" marker-end="url(#arrPl)"/>
+  <path d="M640 95 H690" stroke="#374151" stroke-width="2" marker-end="url(#arrPl)"/>
+  <defs><marker id="arrPl" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+
+<h3>ITP — Immune Thrombocytopenic Purpura</h3>
+<p>הרס אימוני של טסיות (וייתכן גם עיכוב בשחרור מגה-קריוציטים). בילדים לרוב אקוטית, אחרי זיהום, <span dir="ltr" class="term">self-limited</span>; במבוגרים לרוב כרונית. <b>אבחנה בשלילה</b> — דימומים בעור/רירית עם טסיות נמוכות ויתר המדדים תקינים; בדיקה סרולוגית לנוגדנים אינה יעילה. Coombs נדרש בנוכחות אנמיה, לשלילת <span dir="ltr" class="term">Evans' syndrome</span> (AIHA + ITP במקביל).</p>
+<table>
+  <thead><tr><th>מצב</th><th>גישה</th></tr></thead>
+  <tbody>
+    <tr><td>טסיות &gt;30,000, א-סימפטומטי</td><td>מעקב קליני ומעבדתי בלבד — סיכון לדימום ספונטני אפסי</td></tr>
+    <tr><td>טסיות &lt;30,000 / דימום / הכנה לפעולה</td><td>קו ראשון: <span dir="ltr" class="term">prednisone</span>; במקרים חמורים + IVIG או anti-Rh0(D) (רק ב-Rh+)</td></tr>
+    <tr><td>רפרקטורי לקו ראשון</td><td>קו שני: <span dir="ltr" class="term">rituximab</span>, <span dir="ltr" class="term">splenectomy</span> (מומלץ חיסון קפסולריים לפני), <span dir="ltr" class="term">TPO receptor agonists</span></td></tr>
+  </tbody>
+</table>
+<div class="key-box"><span dir="ltr" class="term">Wet purpura</span> (שלפוחיות דם ברירית הפה) ודימום ברשתית מבשרים דימום מסכן חיים — סימן לאשפוז ולטיפול אגרסיבי מיידי.</div>
+
+<h3>HIT — Heparin-Induced Thrombocytopenia</h3>
+<p>נוגדנים כנגד קומפלקס <span dir="ltr" class="term">PF4/heparin</span> — מפעילים טסיות במקום להרוס אותן "בשקט", ולכן <b>הסיכון העיקרי הוא טרומבוזיס, לא דימום</b> (בניגוד לרוב סיבות הטרומבוציטופניה האחרות). לרוב טרומבוציטופניה לא מאוד חמורה (נדיר מתחת ל-20,000). שכיח יותר עם <span dir="ltr" class="term">unfractionated heparin</span> מ-LMWH. מופיע 5-14 ימים לאחר חשיפה (מוקדם יותר בחשיפה חוזרת תוך 100 יום).</p>
+<table>
+  <thead><tr><th><span dir="ltr" class="term">4Ts</span></th><th>מה בודקים</th></tr></thead>
+  <tbody>
+    <tr><td><b>T</b>hrombocytopenia</td><td>עוצמת הירידה בספירת הטסיות (%)</td></tr>
+    <tr><td><b>T</b>iming</td><td>תזמון הירידה ביחס לתחילת הפרין (5-14 ימים = אופייני)</td></tr>
+    <tr><td><b>T</b>hrombosis</td><td>נוכחות טרומבוזיס או תגובות עוריות ממוקמות</td></tr>
+    <tr><td>o<b>T</b>her causes</td><td>שלילת סיבות אחרות לטרומבוציטופניה</td></tr>
+  </tbody>
+</table>
+<p>אבחנה בעיקרה קלינית (לפי 4Ts), נתמכת בבדיקות נוגדנים: <span dir="ltr" class="term">ELISA</span> (רגישה, לא ספציפית) או <span dir="ltr" class="term">platelet activation/serotonin release assay</span> (ספציפית יותר). <b>טיפול:</b> הפסקה מידית של הפרין/LMWH, מעבר לנוגד קרישה חלופי (<span dir="ltr" class="term">argatroban</span> — מעכב ישיר של טרומבין; גם bivalirudin/fondaparinux יעילים אך לא מאושרי FDA להתוויה זו). <b>אין להשתמש ב-LMWH</b> — קרוס-ריאקטיביות. לאחר נרמול טסיות אפשר לעבור לקומדין (בחפיפה, כי קומדין לבד מוריד protein C/S ומגביר טרומבוזיס — venous gangrene).</p>
+
+<h3>TTP ו-HUS — Thrombotic Microangiopathies</h3>
+<div class="mechanism">
+  <p class="chain">
+    ב-<b><span dir="ltr" class="term">TTP</span></b>, חסר (תורשתי, אידיופתי או משני) או נוגדנים כנגד <b><span dir="ltr" class="term">ADAMTS13</span></b> — האנזים שבאופן תקין "חותך" מולטימרים ענקיים של <span dir="ltr" class="term">von Willebrand factor (vWF)</span> לגודל תפקודי רגיל — משאירים את ה-vWF בצורתו הענקית והלא-חתוכה. המולטימרים הענקיים הללו הם "דביקים" במיוחד: הם קושרים טסיות ספונטנית לאורך כלי הדם הקטנים, ויוצרים מיקרו-טרומבי מפושטים שגם <b>תופסים טסיות</b> (טרומבוציטופניה) וגם <b>גורזים תאי דם אדומים</b> שעוברים דרכם (אנמיה המוליטית מיקרואנגיופתית, עם schistocytes במשטח). בניגוד ל-DIC, כאן <b>אין</b> צריכה של פקטורי קרישה — לכן PT/aPTT נשארים תקינים, וזה ההבדל המעבדתי המכריע.
+    ב-<b><span dir="ltr" class="term">HUS</span></b> הקשור לשלשול (לרוב ילדים, <span dir="ltr" class="term">E. coli O157:H7</span>), הטריגר שונה: טוקסין חיידקי (שיגה-טוקסין) פוגע ישירות באנדותל הכלייתי וגורם לאותו תהליך מיקרו-טרומבוטי, אך ממוקד בעיקר בכליה וללא חסר ADAMTS13.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="65" width="170" height="65" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="105" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">↓ADAMTS13</text>
+  <text x="105" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">חסר/נוגדנים</text>
+  <path d="M190 97 H250" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrT)"/>
+  <rect x="250" y="65" width="190" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="345" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">מולטימרים ענקיים</text>
+  <text x="345" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">vWF לא-חתוך</text>
+  <path d="M440 97 H500" stroke="#b45309" stroke-width="2" marker-end="url(#arrT)"/>
+  <rect x="500" y="65" width="190" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="595" y="92" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">מיקרו-טרומבי מפושטים</text>
+  <text x="595" y="110" text-anchor="middle" font-size="10.5" fill="#4b5563">קושרים טסיות + גוזרים RBC</text>
+  <path d="M690 97 H750" stroke="#2563eb" stroke-width="2" marker-end="url(#arrT)"/>
+  <rect x="750" y="30" width="130" height="55" rx="8" fill="#111827"/>
+  <text x="815" y="52" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">טרומבוציטופניה</text>
+  <text x="815" y="70" text-anchor="middle" font-size="10" fill="#d1d5db">+ אנמיה המוליטית</text>
+  <rect x="750" y="110" width="130" height="55" rx="8" fill="#111827"/>
+  <text x="815" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">אי ספיקת כליות</text>
+  <text x="815" y="150" text-anchor="middle" font-size="10" fill="#d1d5db">+ נוירולוגי + חום</text>
+  <defs><marker id="arrT" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+<div class="mnemonic">
+  <h3>ראשי תיבות: FAT RN (פנטדת TTP)</h3>
+  <p><b>F</b>ever (חום) · <b>A</b>nemia — microangiopathic hemolytic · <b>T</b>hrombocytopenia · <b>R</b>enal failure · <b>N</b>eurologic findings. נדיר לראות את כל 5 יחד היום (הודות לאבחנה מוקדמת יותר) — אך גם 2-3 מהם בשילוב עם schistocytes במשטח מספיקים כדי להתחיל <b>plasma exchange בדחיפות</b> (מצב חירום המטולוגי!) מבלי לחכות לתוצאת ADAMTS13.</p>
+</div>
+<p><b>טיפול TTP:</b> <span dir="ltr" class="term">plasma exchange</span> — עמוד התווך, יש להתחיל מוקדם ככל האפשר (הפחית תמותה מ-85-100% ל-10-30%!) ולהמשיך יומיים לפחות אחרי נרמול טסיות והיעלמות סימני המוליזה. גלוקוקורטיקואידים כתוספת. <b>טיפול HUS</b> (הקשור לשלשול) — תומך בעיקר, שיעור תמותה נמוך (&lt;5%) גם ללא plasma exchange (שאינו יעיל כאן!). <span dir="ltr" class="term">Atypical HUS</span> (לא קשור לשלשול, אקטיבציה כרונית של מערכת המשלים) — <span dir="ltr" class="term">eculizumab</span> (נוגדן anti-C5) יעיל.</p>
+
+<h3>VWD — Von Willebrand Disease</h3>
+<p>מחלת הדימום התורשתית השכיחה ביותר (0.1% מהאוכלוסייה). vWF הוא מולקולת האדהזיה העיקרית שמעגנת טסיות לסב-אנדותל, וגם נשא לפקטור VIII (מאריך את זמן מחצית חייו). לכן ברוב המקרים (טיפוס 1, 80%) התסמינים דומים להפרעת טסיות (דימומים מוקוזליים), ורק ב-VWD חמורה (טיפוס 3) רמות פקטור VIII נמוכות מספיק כדי לדמות המופיליה.</p>
+<table>
+  <thead><tr><th>סוג</th><th>מנגנון</th><th>שכיחות</th></tr></thead>
+  <tbody>
+    <tr><td>Type 1</td><td>פגיעה כמותית (חלקית) ב-vWF</td><td>≥80% — השכיח ביותר</td></tr>
+    <tr><td>Type 2 (A/B/M/N)</td><td>פגיעה תפקודית — קישור לטסיות/קולגן, או ל-FVIII (2N)</td><td>מיעוט</td></tr>
+    <tr><td>Type 3</td><td>היעדר vWF כמעט מוחלט, FVIII&lt;10%</td><td>נדיר — severe VWD</td></tr>
+  </tbody>
+</table>
+<p><b>טיפול Type 1:</b> <span dir="ltr" class="term">DDAVP</span> — משחרר vWF ופקטור VIII ממאגרים אנדותליאליים (שיא תוך 30 דק' IV / שעתיים בספריי אף); תופעת לוואי עיקרית — היפונתרמיה (הגבלת נוזלים 24 שעות אחרי). <b>Type 2/3:</b> תחליפי vWF. תרופות אנטי-פיברינוליטיות (tranexamic acid) כתוספת לדימום מוקוזלי. <span dir="ltr" class="term">Heyde's syndrome</span> — VWD נרכשת (type 2 פונקציונלית) בחולי aortic stenosis עקב unfolding מכני של vWF במעבר דרך המסתם המוצר; גורם לדימום GI מ-angiodysplasia; חולף עם החלפת המסתם.</p>
+
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/video/Heparin-induced_thrombocytopenia" target="_blank">Heparin-induced thrombocytopenia — Osmosis</a></div>
+  <div class="d">סרטון הסבר קצר על מנגנון PF4/heparin, 4Ts score וטיפול ב-HIT.</div></div>
+</div>
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/video/Thrombotic_thrombocytopenic_purpura" target="_blank">Thrombotic thrombocytopenic purpura — Osmosis</a></div>
+  <div class="d">הסבר חזותי על מנגנון ADAMTS13/vWF ב-TTP והפנטדה הקלינית.</div></div>
+</div>
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/video/Von_Willebrand_disease" target="_blank">Von Willebrand disease — Osmosis</a></div>
+  <div class="d">סקירת שלושת הטיפוסים של VWD, תפקידי vWF וטיפול ב-DDAVP.</div></div>
+</div>
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/video/Immune_thrombocytopenia" target="_blank">Immune thrombocytopenia (ITP) — Osmosis</a></div>
+  <div class="d">מנגנון ההרס האימוני של טסיות ב-ITP, קליניקה וטיפול.</div></div>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="section-title c" id="partC">ג. הפרעות קרישה (Coagulation Disorders)</h2>
+<p>ההמוסטזיס השניוני — קסקדת פקטורי הקרישה שמייצבת את הקריש הראשוני עם רשת פיברין. כאן ההבחנה המרכזית היא <b>אילו פקטורים חסרים</b> (לפי PT/aPTT), ו<b>למה</b> הם חסרים: תורשתי (חסר גנטי בפקטור בודד), נרכש (כשל בסינתזה — כבד/ויטמין K), או צריכתי (DIC — הרס מהיר של הרבה פקטורים בבת אחת).</p>
+
+<h2><span class="num">2</span> המנגנון — קסקדת הקרישה ומה PT/aPTT בעצם מודדים</h2>
+<div class="mechanism">
+  <p class="chain">
+    בדיקת <b><span dir="ltr" class="term">PT (Prothrombin Time)</span></b> מדמה את המסלול ה<b>חיצוני</b> (פקטור <span dir="ltr" class="term">VII</span>) והמסלול <b>המשותף</b> (פקטורים <span dir="ltr" class="term">X, V, II</span> ופיברינוגן); בדיקת <b><span dir="ltr" class="term">aPTT</span></b> מדמה את המסלול ה<b>פנימי</b> (פקטורים <span dir="ltr" class="term">XII, XI, IX, VIII</span>) והמסלול המשותף. לכן: הארכה מבודדת של PT מצביעה על חסר בפקטור VII בלבד; הארכה מבודדת של aPTT מצביעה על חסר באחד מ-8/9/11/12; והארכה של שניהם יחד מצביעה על פגיעה במסלול המשותף (2/5/10/פיברינוגן) — או על מצב שפוגע ביותר מפקטור אחד בבת אחת (כשל כבדי, DIC, חסר ויטמין K מתקדם).
+    המפתח לזכור: <b>פקטור VII הוא בעל זמן מחצית החיים הקצר ביותר</b> מכל פקטורי הקרישה (שעות בודדות) — ולכן בכל מצב שפוגע בסינתזת פקטורים (חסר ויטמין K, כשל כבדי מוקדם) הוא הראשון לרדת ולהאריך את ה-PT, לפני שה-aPTT מושפע כלל.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="220" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="130" y="45" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">מסלול חיצוני (Extrinsic)</text>
+  <text x="130" y="63" text-anchor="middle" font-size="10.5" fill="#4b5563">פקטור VII — PT</text>
+  <rect x="20" y="150" width="220" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="130" y="175" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">מסלול פנימי (Intrinsic)</text>
+  <text x="130" y="193" text-anchor="middle" font-size="10.5" fill="#4b5563">פקטורים 8,9,11,12 — aPTT</text>
+  <path d="M240 48 L390 100" stroke="#2563eb" stroke-width="2" marker-end="url(#arrC)"/>
+  <path d="M240 178 L390 120" stroke="#b45309" stroke-width="2" marker-end="url(#arrC)"/>
+  <rect x="390" y="85" width="220" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="500" y="110" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">מסלול משותף (Common)</text>
+  <text x="500" y="128" text-anchor="middle" font-size="10.5" fill="#4b5563">פקטורים 10,5,2, פיברינוגן</text>
+  <path d="M610 112 H680" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrC)"/>
+  <rect x="680" y="85" width="200" height="55" rx="8" fill="#111827"/>
+  <text x="780" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">קריש פיברין יציב</text>
+  <text x="780" y="128" text-anchor="middle" font-size="10" fill="#d1d5db">(פקטור XIII — cross-linking)</text>
+  <defs><marker id="arrC" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+
+<h3>המופיליה — Hemophilia A/B</h3>
+<p>מחלה רצסיבית בתאחיזה ל-X: חסר פקטור <span dir="ltr" class="term">VIII</span> (המופיליה A, 80% מהמקרים) או פקטור <span dir="ltr" class="term">IX</span> (המופיליה B). לא ניתן להבחין קלינית בין השתיים. הפנוטיפ בקורלציה לפעילות הרזידואלית: קשה (&lt;1%), בינוני (1-5%), קל (6-30%). <b>ביטוי קלאסי: <span dir="ltr" class="term">hemarthrosis</span></b> (דימום למפרק, בעיקר ברך/מרפק/קרסול/כתף/ירך) — דימומים חוזרים לאותו מפרק יוצרים "<span dir="ltr" class="term">target joint</span>" עם עיבוי סינוביאלי ונזק פרוגרסיבי בלתי הפיך.</p>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Knee_joint_of_a_haemophiliac_Wellcome_L0062595.jpg" alt="Knee joint of a haemophiliac" loading="lazy">
+  <figcaption>מפרק ברך של חולה המופיליה עם ארטרופתיה כרונית (אוסף Wellcome, Wikimedia Commons) — תוצאה של אפיזודות חוזרות של hemarthrosis לא-מטופלות. <a href="https://commons.wikimedia.org/wiki/File:Knee_joint_of_a_haemophiliac_Wellcome_L0062595.jpg" target="_blank">קישור ישיר</a></figcaption>
+</figure>
+<p><b>מעבדה:</b> הארכה מבודדת של aPTT; PT, זמן דימום וספירת טסיות תקינים. אבחנה ודאית — בדיקת פעילות ספציפית ל-FVIII/FIX. <b>טיפול:</b> מתן פקטור רקומביננטי, כתגובה לדימום או פרופילקטית (שמירה על רמת הפקטור החסר ≥1% למניעת דימום ספונטני). זמן מחצית חיים: FVIII כ-8-12 שעות (2 זריקות/יום), FIX ארוך יותר, כ-24 שעות (זריקה אחת/יום). <span dir="ltr" class="term">DDAVP</span> יעיל בהמופיליה A קלה-בינונית בלבד (מעלה FVIII משחרור ממאגרים) — לא בהמופיליה B ולא בהמופיליה A קשה (אין מאגרים לשחרר).</p>
+<div class="key-box">הסיבוך המאג'ורי ביותר של טיפול בהמופיליה: <b>נוגדנים מעכבים</b> לפקטור (30% מחולי המופיליה A קשה) — מעלים תחלואה ותמותה. חשד קליני: אי-תגובה לתחליף פקטור במינון טיפולי. אישוש: תערובת דם החולה + פלזמה תקינה ביחס 1:1 — אם aPTT נשאר מוארך (במקום להתתקן), יש נוגדן מעכב.</div>
+
+<h3>DIC — Disseminated Intravascular Coagulation</h3>
+<div class="mechanism">
+  <p class="chain">
+    ב-DIC, חשיפת הדם לרמות פתולוגיות של <span dir="ltr" class="term">tissue factor</span> (מספסיס, טראומה, סיבוכי היריון, ממאירות) גורמת לייצור טרומבין <b>לא מבוקר וסיסטמי</b> — לא מקומי כמו בקרישה תקינה. הטרומבין הזה יוצר שקיעה נרחבת של פיברין בכלי דם קטנים ובינוניים בכל הגוף, פוגע באספקת דם לאיברים רבים (ריאות, כבד, כליות, מוח) וגורם לכשל איברים. במקביל, השפעול המתמשך "צורך" בהדרגה את מלאי פקטורי הקרישה והטסיות הזמינים — ולכן, באירוניה, <b>אותו תהליך שיוצר קרישי-יתר גם גורם לדימום סיסטמי</b> כשהמלאי מתרוקן. הדימום מוחמר עוד יותר ע"י היפר-פיברינוליזה משנית (הגוף מנסה לפרק את כל הפיברין העודף, ומפרק גם פיברין שהיה נחוץ).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="50" width="180" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="110" y="75" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">Tissue Factor↑</text>
+  <text x="110" y="93" text-anchor="middle" font-size="10.5" fill="#4b5563">ספסיס/טראומה/APL/היריון</text>
+  <path d="M200 80 H260" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrD)"/>
+  <rect x="260" y="50" width="180" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="350" y="75" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">טרומבין לא מבוקר</text>
+  <text x="350" y="93" text-anchor="middle" font-size="10.5" fill="#4b5563">שקיעת פיברין סיסטמית</text>
+  <path d="M440 80 H500" stroke="#b45309" stroke-width="2" marker-end="url(#arrD)"/>
+  <rect x="500" y="10" width="180" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="590" y="32" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">מיקרו-טרומבי</text>
+  <text x="590" y="50" text-anchor="middle" font-size="10.5" fill="#4b5563">כשל איברים (ריאה/כליה/מוח)</text>
+  <rect x="500" y="100" width="180" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="590" y="122" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">צריכת פקטורים+טסיות</text>
+  <text x="590" y="140" text-anchor="middle" font-size="10.5" fill="#4b5563">דימום סיסטמי</text>
+  <path d="M440 80 L500 40" stroke="#374151" stroke-width="1.5"/>
+  <path d="M440 80 L500 128" stroke="#374151" stroke-width="1.5"/>
+  <defs><marker id="arrD" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+<p><b>ממצאי מעבדה ב-DIC אקוטי:</b> הארכת PT ו/או aPTT; טרומבוציטופניה (&lt;100,000 או ירידה מהירה); schistocytes במשטח; עלייה בתוצרי פירוק פיברין (הבדיקה הרגישה ביותר) ובמיוחד <b>D-dimer</b> (ספציפית יותר); ירידה בפיברינוגן — <b>רק במקרים קשים</b> (זמן מחצית חיים ארוך של פיברינוגן). <span dir="ltr" class="term">Purpura fulminans</span> — צורה חמורה של DIC עם טרומבוזיס נרחב בעור, בעיקר בילדים לאחר זיהום (במיוחד עם חסר ב-protein C).</p>
+<p><b>DIC כרוני (low-grade)</b> — מתרחש עם giant hemangioma, קרצינומה גרורתית או dead fetus syndrome: הגוף מפצה על הצריכה הכרונית, כך ש-PT/aPTT/פיברינוגן נשארים תקינים או גבוהים, וטרומבוציטופניה קלה בלבד — בניגוד לצריכה המהירה והדרמטית ב-DIC אקוטי.</p>
+<p><b>טיפול:</b> שליטה/טיפול במחלת הרקע היא הבסיס — בלעדיו הטיפול הישיר ב-DIC נכשל. לדימום פעיל/סיכון מוגבר: FFP ו/או טסיות; cryoprecipitate כשפיברינוגן&lt;100 מ"ג/ד"ל. הפרין במינון נמוך שמור למצבים ספציפיים (DIC כרוני עם גידול סולידי, APL, purpura fulminans) — ב-DIC אקוטי הפרין <b>מחמיר</b> את הדימום.</p>
+
+<h3>חסר ויטמין K לעומת מחלת כבד לעומת DIC — טבלת הבדלה</h3>
+<table>
+  <thead><tr><th>מצב</th><th>PT</th><th>aPTT</th><th>טסיות</th><th>פיברינוגן</th></tr></thead>
+  <tbody>
+    <tr><td>חסר ויטמין K / קומדין</td><td>ארוך</td><td>ארוך (בשלב מתקדם)</td><td>תקינות</td><td>תקין</td></tr>
+    <tr><td>DIC</td><td>ארוך</td><td>ארוך</td><td>מופחתות</td><td>נמוך</td></tr>
+    <tr><td>כשל כבדי מתקדם</td><td>ארוך</td><td>ארוך</td><td>מופחתות</td><td>נמוך</td></tr>
+    <tr><td>VWD</td><td>תקין</td><td>ארוך</td><td>תקינות</td><td>תקין</td></tr>
+    <tr><td>המופיליה</td><td>תקין</td><td>ארוך</td><td>תקינות</td><td>תקין</td></tr>
+  </tbody>
+</table>
+<p>חלבונים תלויי-ויטמין K — פקטורים 2, 7, 9, 10 (וגם protein C, S). חסר ויטמין K (תת-ספיגה, מחלת כבד כרונית, אנטיביוטיקה רחבת טווח) פוגע רק ב<b>סינתזה</b> — ולכן טסיות ופיברינוגן תקינים לגמרי, בניגוד ל-DIC שהוא תהליך <b>צריכה</b> הפוגע גם בהם. <b>טיפול:</b> ויטמין K פרנטרלי (IV, 10 מ"ג) — מחזיר פקטורים לנורמה תוך 8-10 שעות; בדימום פעיל/צורך מיידי — FFP או PCC (להימנע ב-מחלת כבד קשה עקב סיכון טרומבוטי). <b>כשל כבדי:</b> פקטור <span dir="ltr" class="term">V</span> (לא תלוי ויטמין K) יורד רק כשיש כשל הפטוציטי אמיתי — לכן FV תקין + FVII נמוך מצביע על חסר ויטמין K, בעוד ששניהם נמוכים מצביע על כשל כבדי.</p>
+
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/video/Disseminated_intravascular_coagulation" target="_blank">Disseminated intravascular coagulation — Osmosis</a></div>
+  <div class="d">הדמיה של המנגנון הכפול (קרישה מול דימום) ב-DIC, וממצאי המעבדה האופייניים.</div></div>
+</div>
+<div class="link-card">
+  <span class="ico">▶️</span>
+  <div><div class="t"><a href="https://www.osmosis.org/learn/Hemophilia" target="_blank">Hemophilia — Osmosis</a></div>
+  <div class="d">סקירת המופיליה A/B, קסקדת הקרישה ופקטורי VIII/IX.</div></div>
+</div>
+
+<!-- ============================================================ -->
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה 1</h3>
+  <p>גבר בן 58 מאושפז לאחר ניתוח אורתופדי וקיבל הפרין לא-פרקציונרי למניעת DVT. ביום ה-8 לאשפוז נצפית ירידה של כ-55% בספירת הטסיות מהבסיס (מ-220,000 ל-100,000), ומתפתחת נפיחות וכאב פתאומיים ברגל שמאל. דופלר מדגים DVT חדש בווריד הפמורלי.</p>
+  <h3>וינייטה 2</h3>
+  <p>אישה בת 45 עם היסטוריה של תפליטים חוזרים במפרקים ומחלת מעי דלקתית כרונית (Crohn's) מגיעה עם בצקות ברגליים, חלבון בשתן ברמה נפרוטית, ורמות אלבומין נמוכות. ביופסיית שומן בטני חיובית לצביעת Congo red.</p>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">1. בחולה מוינייטה 1, מהי האבחנה הסבירה ביותר והצעד הטיפולי המיידי?</div>
+  <button class="opt" data-i="0">HIT — הפסקה מיידית של ההפרין ומעבר לנוגד קרישה חלופי (לא LMWH)</button>
+  <button class="opt" data-i="1">ITP — התחלת פרדניזון</button>
+  <button class="opt" data-i="2">DIC — עירוי טסיות בלבד</button>
+  <button class="opt" data-i="3">TTP — plasma exchange מיידי</button>
+  <div class="explain">נכון: <b>HIT</b> — התזמון (יום 8), הירידה המשמעותית בטסיות, והטרומבוזיס החדש הם התמונה הקלאסית. יש להפסיק הפרין מיידית ולעבור לנוגד קרישה חלופי כמו argatroban, ולהימנע מ-LMWH (קרוס-ריאקטיביות). ITP ו-TTP אינם קשורים לחשיפה להפרין; DIC היה מלווה בהארכת PT/PTT וירידה בפיברינוגן, לא רק בטרומבוציטופניה מבודדת.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. בחולה מוינייטה 2, שילוב מחלת המעי הדלקתית עם ביופסיה חיובית ל-Congo red מכוון בעיקר לאבחנת:</div>
+  <button class="opt" data-i="0">AL amyloidosis</button>
+  <button class="opt" data-i="1">Multiple myeloma ראשוני</button>
+  <button class="opt" data-i="2">AA amyloidosis משנית למחלת המעי הדלקתית</button>
+  <button class="opt" data-i="3">ATTR amyloidosis משפחתית</button>
+  <div class="explain">נכון: <b>AA amyloidosis</b> — מחלת רקע דלקתית כרונית (Crohn's) עם מעורבות כלייתית בולטת (פרוטאינוריה נפרוטית) היא התמונה האופיינית ל-AA, שנגרם מעודף serum amyloid A כתוצר של דלקת ממושכת. AL הייתה מתאימה יותר עם מעורבות לבבית/גמופתיה מונוקלונלית; אין כאן רמז למיאלומה או להיסטוריה משפחתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. מהו ההבדל המעבדתי המכריע בין TTP לבין DIC, למרות ששניהם עלולים לגרום לטרומבוציטופניה עם schistocytes במשטח?</div>
+  <button class="opt" data-i="0">ב-TTP הפיברינוגן תמיד גבוה מהנורמה</button>
+  <button class="opt" data-i="1">ב-TTP אין צריכת פקטורי קרישה, ולכן PT ו-aPTT תקינים; ב-DIC שניהם מוארכים</button>
+  <button class="opt" data-i="2">ב-DIC יש תמיד חום גבוה ותסמינים נוירולוגיים</button>
+  <button class="opt" data-i="3">ב-TTP רמת ה-D-dimer תמיד תקינה</button>
+  <div class="explain">נכון: TTP נובע מחסימה מכנית של כלי דם קטנים ע"י מולטימרים ענקיים של vWF שקושרים טסיות — לא מתהליך צריכה של פקטורי קרישה, ולכן PT/aPTT נשארים תקינים. DIC הוא בדיוק ההפך — תהליך צריכה גורף שמאריך את שניהם. חום ותסמינים נוירולוגיים שייכים לפנטדת TTP (FAT RN), לא ל-DIC באופן ספציפי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. ילד עם דימום ספונטני חוזר לאותו מפרק ברך, aPTT מוארך ו-PT תקין. הבדיקה המאששת ביותר לקביעת האבחנה הספציפית היא:</div>
+  <button class="opt" data-i="0">רמות D-dimer</button>
+  <button class="opt" data-i="1">רמות vWF ופעילות ריסטוצטין</button>
+  <button class="opt" data-i="2">ביופסיית מח עצם</button>
+  <button class="opt" data-i="3">בדיקת פעילות ספציפית לפקטור VIII (ו/או IX)</button>
+  <div class="explain">נכון: aPTT מוארך עם PT תקין מכוון למסלול הפנימי (פקטורים 8/9/11/12), ותמונת ה-target joint הקלאסית מחשידה להמופיליה. הבדיקה המאששת והמכמתת חומרה היא פעילות ספציפית של FVIII (המופיליה A) או FIX (המופיליה B) — לא vWF (שהיה מתאים ל-VWD, שם aPTT יכול להיות מוארך אך המנגנון שונה) ולא ביופסיית מח עצם (לא רלוונטית לבירור קרישה).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">5. מטופלת עם שחמת כבד מתקדמת מציגה PT ו-aPTT מוארכים, טרומבוציטופניה קלה ופיברינוגן בגבול תחתון. מה ההבדל העיקרי בינה לבין DIC אקוטי, שיכול להסביר ממצאים מעבדתיים דומים?</div>
+  <button class="opt" data-i="0">בכשל כבדי הממצאים המעבדתיים יציבים לאורך זמן; ב-DIC הם משתנים במהירות תוך שעות</button>
+  <button class="opt" data-i="1">בכשל כבדי הטסיות תמיד תקינות לחלוטין</button>
+  <button class="opt" data-i="2">ב-DIC ה-D-dimer תמיד תקין</button>
+  <button class="opt" data-i="3">אין שום דרך להבדיל בין המצבים</button>
+  <div class="explain">נכון: ההבדל המרכזי הוא הדינמיקה הזמנית — במחלת כבד כרונית הממצאים "יציבים" (אותה חומרה יחסית לאורך זמן), בעוד ש-DIC אקוטי מאופיין בשינוי דרמטי ומהיר (שעות עד ימים), ולכן מומלץ לחזור על הבדיקות תוך 6-8 שעות כשיש חשד ל-DIC. בנוסף, במחלת כבד יש עדות קלינית/מעבדתית נוספת למחלת הכבד הבסיסית (בילירובין, אלבומין וכו').</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h3>א. עמילואידוזיס</h3>
+  <ul>
+    <li>מנגנון משותף: חלבון מתקפל ל-β-pleated sheet, עמיד לפירוק, שוקע חוץ-תאית</li>
+    <li>AL — קלון תאי פלזמה (שרשראות קלות), פוגע בעיקר בלב (סיבת מוות מובילה); AA — דלקת כרונית (RA/FMF/IBD), פוגע בעיקר בכליה</li>
+    <li>אבחנה: ביופסיית שומן בטני, צביעת Congo red, בירפרינגנציה ירוקה-תפוח תחת אור מקוטב</li>
+    <li>ביטויים פתוגנומוניים ל-AL: macroglossia, periorbital ecchymosis</li>
+    <li>ATTR — מוטציית transthyretin, טיפול = השתלת כבד</li>
+  </ul>
+  <h3>ב. הפרעות טסיות</h3>
+  <ul>
+    <li>3 מנגנונים לטרומבוציטופניה: ↓ייצור (מח עצם), ↑הרס (אימוני/לא-אימוני), אגירה בטחול — ותמיד לשלול pseudo-thrombocytopenia תחילה</li>
+    <li>ITP — אבחנה בשלילה; טיפול רק כשטסיות&lt;30,000 או עם דימום</li>
+    <li>HIT — סיכון עיקרי הוא טרומבוזיס לא דימום; הפסקת הפרין + argatroban, לא LMWH</li>
+    <li>TTP — חסר ADAMTS13, פנטדת FAT RN, PT/aPTT תקינים (בניגוד ל-DIC); plasma exchange דחוף</li>
+    <li>VWD — מחלת הדימום התורשתית השכיחה ביותר; DDAVP לטיפוס 1</li>
+  </ul>
+  <h3>ג. הפרעות קרישה</h3>
+  <ul>
+    <li>PT = מסלול חיצוני (FVII) ומשותף; aPTT = מסלול פנימי (8,9,11,12) ומשותף</li>
+    <li>המופיליה A/B — חסר FVIII/FIX בתאחיזה ל-X; aPTT מוארך בלבד; hemarthrosis קלאסי</li>
+    <li>DIC — ייצור טרומבין לא מבוקר ⟶ צריכת פקטורים+טסיות ⟶ גם קרישה וגם דימום; D-dimer↑, פיברינוגן↓ (רק בחמור)</li>
+    <li>חסר ויטמין K — פוגע רק בסינתזה (טסיות ופיברינוגן תקינים), בניגוד ל-DIC/כשל כבדי (תהליך צריכה, גם טסיות/פיברינוגן נפגעים)</li>
+    <li>פקטור VII (זמן מחצית חיים קצר ביותר) יורד ראשון בחסר ויטמין K ⟶ PT מוארך לפני aPTT</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

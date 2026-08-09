@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אתר הסיכומים - בחינת גמר בפנימית</title>
+<style>
+  :root{
+    --primary:#028090; --secondary:#00A896; --accent:#02C39A; --dark:#013A40;
+    --tint:#E4F5F3; --muted:#5C7A78; --bg:#F7FAF9; --card-bg:#FFFFFF; --line:#e0eceb;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0}
+  body{font-family:'Segoe UI', Arial, sans-serif; background:var(--bg); color:var(--dark); display:flex; flex-direction:column;}
+  header{background:var(--dark); color:#fff; padding:14px 22px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
+  header h1{margin:0; font-size:19px}
+  header .sub{font-size:12.5px; color:#9FD4CF; margin-top:2px}
+  .layout{flex:1; display:flex; min-height:0}
+  aside{width:340px; min-width:280px; max-width:400px; background:#fff; border-inline-end:1px solid var(--line); display:flex; flex-direction:column; overflow:hidden}
+  .tabs{display:flex; border-bottom:1px solid var(--line)}
+  .tab{flex:1; padding:12px 8px; text-align:center; font-size:13.5px; font-weight:700; cursor:pointer; color:var(--muted); background:#fafdfc; border-bottom:3px solid transparent}
+  .tab.active{color:var(--primary); border-bottom-color:var(--secondary); background:#fff}
+  .sidebar-content{flex:1; overflow-y:auto; padding:10px}
+  .stat-line{padding:8px 14px; font-size:12.5px; color:var(--muted); border-bottom:1px solid var(--line); background:#fafdfc}
+  .stat-line b{color:var(--primary)}
+
+  /* by-topic tree */
+  .topic-group{margin-bottom:6px}
+  .topic-head{display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:var(--tint); border-radius:8px; cursor:pointer; font-weight:700; font-size:13.5px; color:var(--dark)}
+  .topic-head .count{font-size:11px; color:var(--muted); font-weight:600}
+  .topic-body{display:none; padding:4px 4px 4px 0}
+  .topic-body.open{display:block}
+  .chunk-item, .flat-item{display:block; width:100%; text-align:start; background:none; border:none; padding:9px 14px; margin:2px 0; border-radius:7px; cursor:pointer; font-size:13px; color:var(--dark); font-family:inherit}
+  .chunk-item:hover, .flat-item:hover{background:#F3F6F6}
+  .chunk-item.active, .flat-item.active{background:var(--secondary); color:#fff}
+  .chunk-item .meta, .flat-item .meta{display:block; font-size:11px; color:var(--muted); margin-top:2px}
+  .chunk-item.active .meta, .flat-item.active .meta{color:#eafaf7}
+  .flat-item{display:flex; align-items:center; gap:8px}
+  .flat-idx{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--tint); color:var(--primary); font-size:11px; font-weight:700; flex-shrink:0}
+  .chunk-item.active .flat-idx, .flat-item.active .flat-idx{background:#fff; color:var(--primary)}
+  .flat-text{flex:1; min-width:0}
+  .flat-title{font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+  main{flex:1; display:flex; flex-direction:column; min-width:0}
+  .content-frame{flex:1; border:none; background:#fff}
+  .empty-state{flex:1; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:15px; text-align:center; padding:40px}
+
+  /* סיכומים נוספים - מחוץ לתוכנית הכרונולוגית, לא חלק מ-manifest.json */
+  .extra-section{border-top:1px solid var(--line); padding:10px; background:#fafdfc}
+  .extra-title{font-size:12px; font-weight:700; color:var(--muted); padding:4px 8px 8px}
+  .extra-item{display:block; width:100%; text-align:start; background:#fff; border:1px solid var(--line); padding:9px 12px; margin:4px 0; border-radius:7px; cursor:pointer; font-size:13px; color:var(--dark); font-family:inherit; font-weight:600}
+  .extra-item:hover{background:#F3F6F6}
+  .extra-item.active{background:var(--secondary); color:#fff; border-color:var(--secondary)}
+  .extra-item .meta{display:block; font-size:11px; color:var(--muted); margin-top:2px; font-weight:400}
+  .extra-item.active .meta{color:#eafaf7}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>אתר הסיכומים - בחינת גמר בפנימית</h1>
+    <div class="sub">איחוד סיכומים מבחן גמר בפנימית - לי גלמור</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:14px"><a href="../index.html" style="color:#9FD4CF;font-size:12.5px;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a><div class="sub" id="headerStats"></div></div>
+</header>
+
+<div class="layout">
+  <aside>
+    <div class="tabs">
+      <div class="tab active" data-view="topic">לפי נושא</div>
+      <div class="tab" data-view="chrono">לפי סדר כרונולוגי</div>
+    </div>
+    <div class="stat-line" id="statLine"></div>
+    <div class="sidebar-content" id="sidebarContent"></div>
+    <div class="extra-section" id="extraSection"></div>
+  </aside>
+  <main>
+    <iframe id="contentFrame" class="content-frame" style="display:none"></iframe>
+    <div class="empty-state" id="emptyState">בחרי נושא מהתפריט בצד כדי לפתוח את הסיכום</div>
+  </main>
+</div>
+
+<script>
+// === נתוני המניפסט - מוטמעים ישירות (לא fetch חיצוני) כדי שהאתר יעבוד גם כקובץ מקומי ===
+var MANIFEST = [
+  {
+    "topic_index": 0,
+    "parent_topic": "אונקולוגיה",
+    "parent_topic_en": "Oncology",
+    "chunk_part": "1/1",
+    "page_start": 2,
+    "page_end": 19,
+    "date": "2026-08-06",
+    "file": "00_Oncology_1-1.html",
+    "title": "תופעות לוואי כימותרפיה, מצבי חירום אונקולוגיים וגידולים ספציפיים"
+  },
+  {
+    "topic_index": 1,
+    "parent_topic": "המטולוגיה",
+    "parent_topic_en": "Hematology",
+    "chunk_part": "1/4",
+    "page_start": 20,
+    "page_end": 37,
+    "date": "2026-08-07",
+    "file": "02_Hematology_1-4.html",
+    "title": "אנמיה מחסר ברזל, המוגלובינופתיות (אנמיה חרמשית, תלסמיות) ואנמיות מגלובלסטיות"
+  },
+  {
+    "topic_index": 2,
+    "parent_topic": "המטולוגיה",
+    "parent_topic_en": "Hematology",
+    "chunk_part": "2/4",
+    "page_start": 38,
+    "page_end": 55,
+    "date": "2026-08-08",
+    "file": "02_Hematology_2-4.html",
+    "title": "אנמיות המוליטיות (חסר G6PD, AIHA, PNH), כשל מח העצם (אנמיה אפלסטית, MDS) ולוקמיות (AML/APL, CML, ALL, CLL)"
+  },
+  {
+    "topic_index": 3,
+    "parent_topic": "המטולוגיה",
+    "parent_topic_en": "Hematology",
+    "chunk_part": "3/4",
+    "page_start": 56,
+    "page_end": 73,
+    "date": "2026-08-09",
+    "file": "03_Hematology_3-4.html",
+    "title": "סיבוכי CLL (זיהומים, אוטואימוניות, Richter's), לימפומת הודג'קין, והפרעות תאי פלזמה (Multiple Myeloma, MGUS, Waldenström)"
+  },
+  {
+    "topic_index": 4,
+    "parent_topic": "המטולוגיה",
+    "parent_topic_en": "Hematology",
+    "chunk_part": "4/4",
+    "page_start": 74,
+    "page_end": 90,
+    "date": "2026-08-09",
+    "file": "04_Hematology_4-4.html",
+    "title": "עמילואידוזיס (AL/AA), הפרעות טסיות (ITP, HIT, TTP/HUS, VWD) והפרעות קרישה (המופיליה, DIC, חסר ויטמין K)"
+  }
+];
+
+var TOTAL_TOPICS = 39;
+
+// === סיכומי כירורגיה - מחוץ לתוכנית הכרונולוגית של topics.json (שהיא סיכומי פנימית), לא נגזרים מ-manifest.json ===
+// כדי לא לפגוע בהיגיון "next_topic_index" של המשימה היומית, פריטים כאן לא נכנסים ל-MANIFEST.
+// קבצים נמצאים בתת-תיקייה summaries/כירורגיה/.
+var EXTRA_SUMMARIES = [
+  {
+    "file": "כירורגיה/כוליציסטיטיס_חריפה.html",
+    "title": "כוליציסטיטיס חריפה",
+    "note": "Acute Cholecystitis"
+  }
+];
+
+function el(tag, cls, html){
+  var e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(html !== undefined) e.innerHTML = html;
+  return e;
+}
+
+function loadSummary(item, btn){
+  document.querySelectorAll('.chunk-item, .flat-item, .extra-item').forEach(function(b){ b.classList.remove('active'); });
+  if(btn) btn.classList.add('active');
+  var frame = document.getElementById('contentFrame');
+  var empty = document.getElementById('emptyState');
+  frame.src = 'summaries/' + item.file;
+  frame.style.display = 'block';
+  empty.style.display = 'none';
+}
+
+function buildExtraSection(){
+  var wrap = document.getElementById('extraSection');
+  wrap.innerHTML = '';
+  if(EXTRA_SUMMARIES.length === 0) return;
+  wrap.appendChild(el('div', 'extra-title', 'סיכומי כירורגיה'));
+  EXTRA_SUMMARIES.forEach(function(item){
+    var btn = el('button', 'extra-item');
+    btn.innerHTML = item.title + '<span class="meta">' + (item.note || '') + '</span>';
+    btn.addEventListener('click', function(){ loadSummary(item, btn); });
+    wrap.appendChild(btn);
+  });
+}
+
+function buildTopicView(){
+  var wrap = el('div');
+  var groups = {};
+  var order = [];
+  MANIFEST.forEach(function(item){
+    if(!groups[item.parent_topic]){ groups[item.parent_topic] = []; order.push(item.parent_topic); }
+    groups[item.parent_topic].push(item);
+  });
+  if(order.length === 0){
+    wrap.appendChild(el('div', '', '<p style="padding:16px; color:var(--muted); font-size:13px;">עדיין אין סיכומים באתר.</p>'));
+    return wrap;
+  }
+  order.forEach(function(topicName, gi){
+    var items = groups[topicName].slice().sort(function(a,b){ return a.topic_index - b.topic_index; });
+    var group = el('div', 'topic-group');
+    var head = el('div', 'topic-head');
+    head.innerHTML = '<span>' + topicName + '</span><span class="count">' + items.length + ' נתחים</span>';
+    var body = el('div', 'topic-body' + (gi === 0 ? ' open' : ''));
+    items.forEach(function(item){
+      var btn = el('button', 'chunk-item');
+      btn.innerHTML = (item.title || item.chunk_part) +
+        '<span class="meta">חלק ' + item.chunk_part + ' | עמ׳ ' + item.page_start + '-' + item.page_end + '</span>';
+      btn.addEventListener('click', function(){ loadSummary(item, btn); });
+      body.appendChild(btn);
+    });
+    head.addEventListener('click', function(){ body.classList.toggle('open'); });
+    group.appendChild(head);
+    group.appendChild(body);
+    wrap.appendChild(group);
+  });
+  return wrap;
+}
+
+function buildChronoView(){
+  var wrap = el('div');
+  if(MANIFEST.length === 0){
+    wrap.appendChild(el('div', '', '<p style="padding:16px; color:var(--muted); font-size:13px;">עדיין אין סיכומים באתר.</p>'));
+    return wrap;
+  }
+  var sorted = MANIFEST.slice().sort(function(a,b){ return a.topic_index - b.topic_index; });
+  sorted.forEach(function(item){
+    var btn = el('button', 'flat-item');
+    var idx = el('span', 'flat-idx', String(item.topic_index));
+    var text = el('span', 'flat-text');
+    text.innerHTML = '<span class="flat-title">' + item.parent_topic + ' (' + item.chunk_part + ')</span>' +
+      '<span class="meta">עמ׳ ' + item.page_start + '-' + item.page_end + ' | נוצר ב-' + item.date + '</span>';
+    btn.appendChild(idx);
+    btn.appendChild(text);
+    btn.addEventListener('click', function(){ loadSummary(item, btn); });
+    wrap.appendChild(btn);
+  });
+  return wrap;
+}
+
+function render(view){
+  var container = document.getElementById('sidebarContent');
+  container.innerHTML = '';
+  container.appendChild(view === 'chrono' ? buildChronoView() : buildTopicView());
+}
+
+document.querySelectorAll('.tab').forEach(function(tab){
+  tab.addEventListener('click', function(){
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+    tab.classList.add('active');
+    render(tab.getAttribute('data-view'));
+  });
+});
+
+var doneCount = MANIFEST.length;
+var cycles = Math.floor(doneCount / TOTAL_TOPICS);
+var inCycle = doneCount % TOTAL_TOPICS;
+document.getElementById('headerStats').textContent = doneCount + ' סיכומים | ' + inCycle + '/' + TOTAL_TOPICS + ' במחזור הנוכחי' + (cycles > 0 ? ' (מחזור ' + (cycles+1) + ')' : '');
+document.getElementById('statLine').innerHTML = '<b>' + doneCount + '</b> סיכומים קיימים מתוך ' + TOTAL_TOPICS + ' נתחי הקורס';
+
+render('topic');
+buildExtraSection();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>המטולוגיה 3/4: סיבוכי CLL, לימפומת הודג'קין והפרעות תאי פלזמה</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c; --teal:#0f766e; --teal-bg:#f0fdfa;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:920px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:27px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:15.5px; margin-bottom:28px}
+  h2.section-title{font-size:24px; margin:48px 0 6px; padding:10px 14px; border-radius:8px; color:#fff}
+  h2.section-title.a{background:var(--teal)}
+  h2.section-title.b{background:var(--purple)}
+  h2.section-title.c{background:var(--blue)}
+  h2{font-size:21px; margin:30px 0 10px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:14px; flex-shrink:0}
+  h3{font-size:18px; margin:18px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr h3{color:#93c5fd; margin:16px 0 4px}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .toc{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin:20px 0; font-size:15px}
+  .toc a{color:var(--blue); text-decoration:none; font-weight:600}
+</style>
+</head>
+<body>
+
+<h1>המטולוגיה — חלק 3/4: סיבוכי CLL, לימפומת הודג'קין והפרעות תאי פלזמה</h1>
+<div class="subtitle">נתח #3 מתוך 39 | עמ' 56–73 מתוך "איחוד סיכומים מבחן גמר בפנימית - לי גלמור" | נוצר אוטומטית לקראת בחינת גמר בפנימית</div>
+
+<div class="toc">
+  <b>בנתח הזה:</b>
+  <a href="#partA">א. השלמת CLL — סיבוכים, סטייג'ינג וטיפול</a> ·
+  <a href="#partB">ב. לימפומת הודג'קין (Hodgkin Lymphoma)</a> ·
+  <a href="#partC">ג. הפרעות תאי פלזמה — Multiple Myeloma, MGUS, SMM, Waldenström</a>
+</div>
+
+<p>הנתח הזה ממשיך ישירות מהסיכום הקודם (לוקמיות, כולל תחילת CLL) ועובר לשלושה נושאים גדולים: תמונת הסיבוכים והטיפול המלאה ב-CLL, לימפומת הודג'קין על שני סוגיה, ואשכול "הפרעות תאי פלזמה" שבמרכזו Multiple Myeloma. שלושתם ממאירויות לימפואידיות/פלזמוציטיות בוגרות, אבל המנגנון שגורם לתסמינים בכל אחת שונה לגמרי — וזה בדיוק מה שמבחנים אוהבים לבחון.</p>
+
+<!-- ============================================================ -->
+<h2 class="section-title a" id="partA">א. השלמת CLL — סיבוכים, סטייג'ינג וטיפול</h2>
+
+<h2><span class="num">2</span> המנגנון — למה חולי CLL חולים כל כך הרבה מזיהומים ומתופעות אוטואימוניות?</h2>
+<div class="mechanism">
+  <p class="chain">
+    ב-CLL, לא רק שיש עודף לימפוציטים ממאירים — יש <b>קריסה מתואמת של כל מערכת החיסון</b>, גם המולדת וגם הנרכשת, ולכן הזיהומים הם לא "תופעת לוואי" אלא הגורם המוביל לתחלואה ותמותה (30-50% מהחולים).
+    בזרוע ה<span dir="ltr" class="term">innate</span>: יורדת רמת חלבוני המשלים, נפגע תפקוד הנויטרופילים ותפקוד תאי ה-<span dir="ltr" class="term">NK</span> — כלומר גם קו ההגנה המהיר נגד חיידקים נפגע.
+    בזרוע ה<span dir="ltr" class="term">adaptive</span>: תאי ה-T עצמם (לא הממאירים!) עוברים שינוי פנוטיפי מ-<span dir="ltr" class="term">Th1</span> (שמסייעים בהריגת פתוגנים) ל-<span dir="ltr" class="term">Th2</span> (אימונו-סופרסיביים) — כך שגם כשיש "עדיין" תאי T תקינים מבחינה מספרית, הם לא מתפקדים נכון.
+    בנוסף, מקרופאג'ים סביב הגידול הופכים ל"<span dir="ltr" class="term">nurse-like cells</span>" שמפרישים ציטוקינים וכימוקינים שמזינים ומגנים על תאי ה-CLL — במקום לתקוף אותם.
+    התוצאה הסופית והקריטית ביותר: מיעוט תאי B תקינים (התאים הממאירים "דוחקים" את הקלון הבריא) מוביל ל<b><span dir="ltr" class="term">hypogammaglobinemia</span></b> ב-85% מהחולים בשלב כלשהו — ירידה בייצור נוגדנים תקינים. ככל ש-IgG ו-IgA יורדים, כך עולה הסיכון לזיהומים מוקו-קוטנאיים (סינוסיטיס, ברונכיטיס, UTI); לא הוכח קשר דומה ל-IgM.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="110" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">קלון CLL ממאיר</text>
+  <text x="110" y="68" text-anchor="middle" font-size="11" fill="#4b5563">דוחק תאי B תקינים</text>
+  <path d="M200 55 H260" stroke="#2563eb" stroke-width="2" marker-end="url(#arrH)"/>
+  <rect x="260" y="20" width="190" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="355" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Hypogamma-</text>
+  <text x="355" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">globinemia (85%)</text>
+  <text x="355" y="78" text-anchor="middle" font-size="10.5" fill="#4b5563">↓IgG / ↓IgA</text>
+  <path d="M460 55 H520" stroke="#2563eb" stroke-width="2" marker-end="url(#arrH)"/>
+  <rect x="520" y="20" width="190" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="615" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">זיהומים חוזרים</text>
+  <text x="615" y="68" text-anchor="middle" font-size="11" fill="#4b5563">30–50% מהתמותה</text>
+  <path d="M720 55 H780" stroke="#2563eb" stroke-width="2" marker-end="url(#arrH)"/>
+  <rect x="20" y="130" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="110" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">Th1→Th2 shift</text>
+  <text x="110" y="178" text-anchor="middle" font-size="11" fill="#4b5563">+ ירידה ב-NK/משלים</text>
+  <path d="M200 165 H260" stroke="#047857" stroke-width="2" marker-end="url(#arrG)"/>
+  <rect x="260" y="130" width="190" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="355" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">אובדן פיקוח חיסוני</text>
+  <text x="355" y="178" text-anchor="middle" font-size="11" fill="#4b5563">על קלוני T/B אוטוריאקטיביים</text>
+  <path d="M460 165 H520" stroke="#047857" stroke-width="2" marker-end="url(#arrG)"/>
+  <rect x="520" y="130" width="190" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="615" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">סיבוכים אוטואימוניים</text>
+  <text x="615" y="170" text-anchor="middle" font-size="11" fill="#4b5563">AIHA / ITP / Evan's</text>
+  <defs>
+    <marker id="arrH" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker>
+    <marker id="arrG" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#047857"/></marker>
+  </defs>
+</svg>
+
+<p><b>מעבר לזיהומים ולאוטואימוניות</b> — ה-clone הממאיר עצמו יכול להצטרף למחלה חדשה ואגרסיבית לגמרי: <b><span dir="ltr" class="term">Richter's transformation</span></b>. ב-0.5% בשנה CLL הופך ל-<span dir="ltr" class="term">DLBCL</span> (לימפומה מפושטת מתאי B גדולים) ולעתים נדירות יותר (0.05% בשנה) ל-<span dir="ltr" class="term">Hodgkin lymphoma</span>. גורמי סיכון: לימפאדנופתיה בולקית, מוטציית <span dir="ltr" class="term">NOTCH1</span>, ומחיקת <span dir="ltr" class="term">del(17)(p13.1)</span>. חשוב להבדיל אם הלימפומה החדשה <b>קלונלית קשורה</b> ל-CLL המקורי (פרוגנוזה גרועה, הישרדות חציונית 6-16 חודשים) או <b>לא קשורה</b> (פרוגנוזה טובה בהרבה, כ-5 שנים) — הבדל שנקבע ברמת ריצוף גנטי, לא קליני. הכלי הראשון לחשד: <span dir="ltr" class="term">PET-CT</span> — <span dir="ltr" class="term">SUV</span> מעל 10 מחשיד מאוד לטרנספורמציה (SUV מתחת ל-5 שולל ברוב המקרים). האבחנה נקבעת ב-<span dir="ltr" class="term">excisional biopsy</span> בלבד — <b>לא</b> ב-needle biopsy, כי צריך לראות את ארכיטקטורת הבלוטה כולה.</p>
+
+<h3>אבחנה, סטייג'ינג וקריטריונים לטיפול</h3>
+<p>האבחנה: לימפוציטוזיס קלונלי ב-<span dir="ltr" class="term">flow cytometry</span> (מרקרים <span dir="ltr" class="term">CD20, CD22, CD23</span>) מעל <span dir="ltr" class="term">5×10⁹</span> תאי B קלונליים/ליטר — מספיק לבדו, בלי בדיקות נוספות. פחות מכך עם לימפאדנופתיה/ספלנומגלי = <span dir="ltr" class="term">Small Lymphocytic Lymphoma (SLL)</span> — אותה ביולוגיה, אותו טיפול, אך המחלה יושבת ברקמה ולא בדם. עוד פחות מכך, בלי ציטופניה או קליניקה = <span dir="ltr" class="term">Monoclonal B-cell Lymphocytosis (MBL)</span> — מצב טרום-CLL.</p>
+<table>
+  <thead><tr><th>מערכת סטייג'ינג</th><th>שימוש</th><th>מבוסס על</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">Rai</span></td><td>ארה"ב</td><td>0=לימפוציטוזיס בלבד; I/II=+לימפאדנופתיה/ספלנומגלי; III/IV=+אנמיה/טרומבוציטופניה ממעורבות מח עצם</td></tr>
+    <tr><td><span dir="ltr" class="term">Binet</span></td><td>אירופה</td><td>A=&lt;3 אזורי לימפאדנופתיה; B=≥3 אזורים; C=Hb≤10 ו/או טסיות&lt;100,000</td></tr>
+  </tbody>
+</table>
+<p>רוב החולים <b>אינם</b> דורשים טיפול מיידי (<span dir="ltr" class="term">watchful waiting</span>). התוויה לטיפול: כשל פרוגרסיבי של מח העצם, ספלנומגלי/לימפאדנופתיה מסיבית ופרוגרסיבית, ציטופניה אוטואימונית עמידה לטיפול סטנדרטי, או תסמינים סיסטמיים (ירידת משקל ≥10% ב-6 חודשים, עייפות משמעותית, חום ≥38° ללא זיהום, הזעות לילה).</p>
+
+<h3>טיפול</h3>
+<table>
+  <thead><tr><th>טיפול</th><th>מנגנון</th><th>לאיזה חולים</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">FCR</span> (Fludarabine+Cyclophosphamide+Rituximab)</td><td>אנלוג נוקלאוזיד + אלקילטור + anti-CD20</td><td>חולים צעירים (≤65), fit</td><td>gold standard, PFS ~5 שנים, אך מיאלוסופרשן קשה וסיכון 3-5% לממאירות מיאלואידית משנית קטלנית כמעט תמיד</td></tr>
+    <tr><td>Chlorambucil+Obinutuzumab/Rituximab</td><td>אלקילטור + anti-CD20</td><td>חולים מבוגרים/קו-מורבידיים</td><td>רמיסיה קצרה יותר (2-3 שנים) אך תופעות לוואי מתונות יותר</td></tr>
+    <tr><td><span dir="ltr" class="term">Ibrutinib</span></td><td>מעכב BTK בלתי-הפיך</td><td>גם כקו ראשון</td><td>עדיף על chlorambucil ו-ofatumumab; תופעות לוואי: דימומים (זהירות עם אנטיקואגולציה), פרפור עליות, שלשול</td></tr>
+    <tr><td><span dir="ltr" class="term">Idelalisib</span></td><td>מעכב PI3K סלקטיבי ל-B cells</td><td>עם rituximab</td><td>עליית טרנסאמינזות, קוליטיס, pneumonitis</td></tr>
+    <tr><td><span dir="ltr" class="term">Venetoclax</span></td><td>מעכב BCL2 (אנטי-אפופטוטי)</td><td>מחלה רפרקטורית עם del(17p)</td><td>סיכון ל-tumor lysis syndrome — נדרשת עלייה הדרגתית במינון</td></tr>
+    <tr><td>IVIG</td><td>השלמת נוגדנים</td><td>Hypogammaglobinemia + זיהומים חוזרים/IgG&lt;300/אשפוז עקב זיהום</td><td>לא משפר שרידות, אך מפחית זיהומים חיידקיים</td></tr>
+  </tbody>
+</table>
+<div class="key-box">רוב הזיהומים ב-CLL הם <b>מוקו-קוטנאיים</b> (לא זיהומים אופורטוניסטיים קלאסיים) — כי המנגנון המרכזי הוא חוסר נוגדנים, לא רק חוסר תאי T. AIHA מאובחנת ע"י אנמיה + רטיקולוציטוזיס + LDH/בילירובין↑ + הפטוגלובין↓ + Coombs חיובי (לרוב warm IgG, אך יכול להיות שלילי).</div>
+
+<!-- ============================================================ -->
+<h2 class="section-title b" id="partB">ב. לימפומת הודג'קין (Hodgkin Lymphoma)</h2>
+<p>ממאירות של תאי B בוגרים, כ-10% מכלל הלימפומות. פיזור גילאים בי-מודלי (פיק בשנות ה-20 ופיק נוסף בשנות ה-80). שיעורי ריפוי מעל 85% — ולכן מוקד הדיון הקליני עבר לרעילות המאוחרת של הטיפול, לא רק לריפוי המחלה עצמה.</p>
+
+<h2><span class="num">2</span> המנגנון — איך תא בודד "משתלט" על כל בלוטת לימפה?</h2>
+<div class="mechanism">
+  <p class="chain">
+    התאים הממאירים, <span dir="ltr" class="term">Hodgkin-Reed-Sternberg (HRS) cells</span>, מקורם בתאי B ממרכז נבט (<span dir="ltr" class="term">germinal center</span>) שרכשו מוטציות שהופכות את קולטן ה-B (<span dir="ltr" class="term">BCR</span>) שלהם ללא-תפקודי — תא כזה אמור לעבור אפופטוזיס. תאי ה-HRS "בורחים" מהמוות הזה בזכות הפעלה אברנטית ומתמדת של מסלול <span dir="ltr" class="term">NF-κB</span>, שמעניקה להם אות הישרדות גם בלי BCR תקין.
+    כתוצאה, הם מאבדים ביטוי של רוב סמני תאי ה-B (כמו <span dir="ltr" class="term">CD20/CD19</span>) — ולכן קשה "לזהות" אותם כתאי B, אבל מבטאים <span dir="ltr" class="term">CD30</span> (100% מהמקרים) ו-<span dir="ltr" class="term">CD15</span> (85%).
+    זה המפתח למה שרואים בביופסיה: תאי HRS מהווים <b>פחות מ-1%</b> מסלולריות הגידול! הם מגייסים ומתחזקים סביבם ים של תאי דלקת תקינים (לימפוציטים, אאוזינופילים, נויטרופילים, תאי פלזמה, פיברובלסטים, מקרופאג'ים) ע"י הפרשת ציטוקינים וכימוקינים — סביבה מיקרו-תומכת שגם מזינה אותם וגם <b>מגנה עליהם מהמערכת החיסונית</b>.
+    ההגנה הזו מתבצעת בין היתר ע"י ביטוי-יתר של <span dir="ltr" class="term">PD-L1</span> על פני תאי ה-HRS — ליגנד שנקשר לקולטן המעכב <span dir="ltr" class="term">PD-1</span> על תאי T סמוכים ומשתיק אותם. זו הסיבה הביולוגית לכך שמעכבי checkpoint (<span dir="ltr" class="term">nivolumab, pembrolizumab</span>) יעילים בהישנות של HL — הם משחררים בלם שהגידול עצמו הפעיל.
+    <b>תסמיני B</b> (חום, הזעות לילה, ירידה במשקל) נובעים מציטוקינים פרו-דלקתיים (בעיקר <span dir="ltr" class="term">IL-6</span>) שמופרשים הן מהתאים הממאירים והן מהתסנין הדלקתי הריאקטיבי — תגובה דלקתית סיסטמית אמיתית, לא "תוצר לוואי" של הגידול.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="150" cy="110" r="55" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="150" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">תא HRS</text>
+  <text x="150" y="122" text-anchor="middle" font-size="10" fill="#4b5563">&lt;1% מהגידול</text>
+  <g font-size="10" fill="#4b5563">
+    <circle cx="270" cy="55" r="14" fill="#fef2f2" stroke="#b91c1c"/>
+    <circle cx="300" cy="90" r="14" fill="#fef2f2" stroke="#b91c1c"/>
+    <circle cx="260" cy="150" r="14" fill="#fef2f2" stroke="#b91c1c"/>
+    <circle cx="310" cy="170" r="14" fill="#fef2f2" stroke="#b91c1c"/>
+    <circle cx="320" cy="40" r="14" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="250" y="30" font-size="11" fill="#4b5563">תסנין דלקתי מגויס: לימפוציטים, אאוזינופילים, מקרופאג'ים...</text>
+  </g>
+  <path d="M205 110 H420" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrP)"/>
+  <text x="310" y="102" text-anchor="middle" font-size="10" fill="#6d28d9">PD-L1 ⟶ PD-1</text>
+  <rect x="420" y="80" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="505" y="105" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">תא T סמוך</text>
+  <text x="505" y="123" text-anchor="middle" font-size="10.5" fill="#4b5563">"מושתק" — לא תוקף</text>
+  <rect x="640" y="30" width="220" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="750" y="55" text-anchor="middle" font-size="12" font-weight="700" fill="#1f2937">IL-6 וציטוקינים נוספים</text>
+  <text x="750" y="75" text-anchor="middle" font-size="10.5" fill="#4b5563">⟶ חום, הזעות לילה, ↓משקל (B symptoms)</text>
+  <path d="M150 55 V40 H640 V60" fill="none" stroke="#b45309" stroke-width="1.5" marker-end="url(#arrA)"/>
+  <defs>
+    <marker id="arrP" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6d28d9"/></marker>
+    <marker id="arrA" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<h3>ארבעת הסוגים ההיסטולוגיים (classical HL)</h3>
+<table>
+  <thead><tr><th>סוג</th><th>שכיחות</th><th>אופייני ל-</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">Nodular Sclerosis (NSHL)</span></td><td>הנפוץ ביותר, יחד עם MCHL = 95%</td><td>צעירים, מעורבות מדיאסטינלית</td></tr>
+    <tr><td><span dir="ltr" class="term">Mixed Cellularity (MCHL)</span></td><td>-</td><td>מבוגרים, HIV+, מדינות עולם שלישי</td></tr>
+    <tr><td><span dir="ltr" class="term">Lymphocyte-Rich</span></td><td>נדיר</td><td>-</td></tr>
+    <tr><td><span dir="ltr" class="term">Lymphocyte-Depleted</span></td><td>נדיר ביותר</td><td>מבוגרים/HIV, פרוגנוזה גרועה יותר</td></tr>
+  </tbody>
+</table>
+<p>בנפרד מארבעת אלה קיים <span dir="ltr" class="term">Nodular Lymphocyte-Predominant HL (NLPHL)</span> — 5% מהמקרים, ביולוגית קרוב יותר ל-NHL: התאים הממאירים ("<span dir="ltr" class="term">popcorn cells</span>"/L&H cells) חיוביים ל-CD20/CD45/CD79a אך <b>שליליים</b> ל-CD15/CD30 (הפוך מ-cHL הקלאסי). מהלך כרוני עם הישנויות רבות, בדומה ל-NHL אינדולנטית; יכול לעבור טרנספורמציה ל-DLBCL.</p>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>לרוב לימפאדנופתיה נימושה, לא רגישה, בצוואר/סופרה-קלביקולרי/בית השחי; מעל 50% עם <span dir="ltr" class="term">mediastinal adenopathy</span>. שליש מהחולים עם תסמיני B. ביטוי נדיר אך אופייני-לזיהוי-במבחן: <span dir="ltr" class="term">Pel-Ebstein fever</span> (חום מחזורי שחוזר ונעלם), גרד לא מוסבר, וכאב בבלוטות הלימפה <b>לאחר שתיית אלכוהול</b> — סימן ספציפי יחסית ל-HL.</p>
+<div class="link-card">
+  <span class="ico">🔬</span>
+  <div><div class="t"><a href="https://radiopaedia.org/cases/reed-sternberg-cell-histology" target="_blank">Reed-Sternberg cell histology — Radiopaedia</a></div>
+  <div class="d">תמונת היסטולוגיה של תא Reed-Sternberg: תא גדול עם גרעין דו-אונתי/גרעינים מרובים ו"עיני ינשוף" (owl-eye nucleoli) בתוך ים של לימפוציטים תקינים — בדיוק הדימוי שכדאי לזכור לזיהוי בביופסיה.</div></div>
+</div>
+
+<h2><span class="num">5</span> אבחנה וסטייג'ינג</h2>
+<p>האבחנה מבוססת <b>ביופסיה</b> (עדיף אקססיונלית) המדגימה תאי HRS מועטים בתוך תסנין דלקתי פוליקלונלי. אבחנה מבדלת: תהליכים דלקתיים, mononucleosis, NHL, adenopathy משנית ל-phenytoin, ממאירויות לא-לימפומטיות. <span dir="ltr" class="term">PET/CT</span> משמש ל-staging ומדויק יותר מביופסיית מח עצם (מעורבות מח עצם ב-cHL נוטה להיות פאטצ'ית ועלולה להתפספס בביופסיה נקודתית).</p>
+<table>
+  <thead><tr><th>Stage (Ann Arbor)</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td>I</td><td>אזור אחד של בלוטות/מבנה לימפואידי בודד</td></tr>
+    <tr><td>II</td><td>≥2 אזורים באותו צד הסרעפת</td></tr>
+    <tr><td>III</td><td>אזורים משני צדי הסרעפת (III1=מעורבות סב-דיאפרגמטית מוגבלת; III2=נרחבת יותר)</td></tr>
+    <tr><td>IV</td><td>מעורבות אקסטרה-נודלית מפושטת, כולל כבד/מח עצם</td></tr>
+  </tbody>
+</table>
+<p>+ סיומת <span dir="ltr" class="term">E</span> (מעורבות אקסטרה-לימפטית מקומית) ו-<span dir="ltr" class="term">A/B</span> (היעדר/נוכחות תסמיני B). מחלה מוקדמת (I-II) מסווגת ל-<span dir="ltr" class="term">favorable/unfavorable</span> לפי: מחלה בולקית, מספר אזורי מעורבות, ESR גבוה (&gt;30 עם תסמיני B, &gt;50 בלעדיהם), וגיל. מחלה מתקדמת (III-IV) — <span dir="ltr" class="term">International Prognostic Score (IPS)</span>: מין זכר, גיל&gt;45, stage IV, אלבומין&lt;4, Hb&lt;10.5, WBC≥15,000, לימפוציטים&lt;600/μL או &lt;8% מה-WBC.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>הרוב המכריע נרפא בכימותרפיה בלבד או בשילוב עם הקרנות. פרוטוקול הבסיס בכל השלבים: <b><span dir="ltr" class="term">ABVD</span></b> (Adriamycin/doxorubicin, Bleomycin, Vinblastine, Dacarbazine), אחת לשבועיים.</p>
+<table>
+  <thead><tr><th>מצב</th><th>גישה</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>מוקדם, favorable</td><td>4-6 מחזורי ABVD ± קרינה מוגבלת</td><td>PFS 88-92%, OS 97-100% ל-5-7 שנים; PET-CT שלילי אחרי 2 מחזורים ⟵ אפשר להסתפק ב-ABVD בלבד ללא קרינה</td></tr>
+    <tr><td>מוקדם, unfavorable</td><td>4 מחזורי ABVD + קרינה, או 6 מחזורי ABVD לבד</td><td>שדה קרינה/תוספת תלוי במידת ה-bulk</td></tr>
+    <tr><td>מתקדם (III-IV)</td><td>ABVD × 6</td><td>אין תועלת מקרינה נוספת לאחר תגובה מלאה</td></tr>
+    <tr><td>הישנות</td><td>Salvage (ICE / GND) ואז השתלת מח עצם אוטולוגית</td><td>קורטיבית ב-50% מהמגיבים באופן מלא/כמעט מלא; brentuximab vedotin (anti-CD30-MMAE) כגשר להשתלה אלוגנאית; nivolumab/pembrolizumab יעילים בהישנות</td></tr>
+  </tbody>
+</table>
+<div class="key-box">למה נמנעים מקרינה כברירת מחדל היום? כי הרעילות המאוחרת שלה (מחלה קרדיו-וסקולרית, ממאירות משנית, תת-פעילות תריס) לא משתלמת מול שיפור צנוע בלבד בהישנות, כשהכימותרפיה עצמה כבר משיגה שיעורי ריפוי גבוהים מאוד.</div>
+
+<h3>סיבוכים ארוכי טווח (חשוב לזכור — הם היום מוקד הדיון הקליני)</h3>
+<p>פגיעה לבבית (קרינה למדיאסטינום מאיצה CAD), ממאירות משנית — לוקמיה אקוטית ב-10 השנים הראשונות (בעיקר עם alkylators+קרינה, גבוה יותר ב-MOPP/BEACOPP מ-ABVD) וקרצינומות מעל 10 שנים (קשור לקרינה — נשים צריכות ממוגרפיה 5-10 שנים לאחר הטיפול), תת-פעילות תריס (מעקב TSH), <span dir="ltr" class="term">Lhermitte's syndrome</span> ("שוק חשמלי" ברגליים בכיפוף צוואר, אחרי קרינה לחזה), ופגיעה בפוריות (כמעט תמידית בגברים עם alkylators; נדירה מאוד לאחר ABVD בלבד).</p>
+
+<div class="mnemonic">
+  <h3>ראשי תיבות וסיפור דמיוני</h3>
+  <p><b>איך לזכור את ה-CD-ים:</b> "15 שנים ו-30" — <span dir="ltr" class="term">HRS</span> חיובי ל-CD15 (85%) ול-CD30 (100%), שני מספרים גדולים בהתאמה לאחוזים.</p>
+  <p><b>הסיפור:</b> דמייני תא HRS כ"מלך" נסתר בתוך ארמון שבנה לעצמו מתאי דלקת תמימים — הוא מסתתר כי איבד את התג המזהה שלו (CD20), אבל הוא מפעיל שני שומרים אישיים: אחד לובש שלט "PD-L1" ומראה אותו לכל שוטר-T שמתקרב, כדי שהשוטר "יסתובב ולא יראה כלום". השני צועק "IL-6!" לכל הכיוונים כדי שגם מחוץ לארמון (בגוף כולו) ידעו שיש "משהו דלקתי קורה" — ומכאן החום וההזעות.</p>
+  <svg class="diagram" viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="90" r="45" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="120" y="85" text-anchor="middle" font-size="12" font-weight="700">👑 HRS</text>
+    <text x="120" y="102" text-anchor="middle" font-size="9">"המלך הנסתר"</text>
+    <rect x="220" y="30" width="120" height="40" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="280" y="55" text-anchor="middle" font-size="11">🛡️ PD-L1 "שוטר, אל תראה כלום"</text>
+    <rect x="220" y="100" width="120" height="40" rx="6" fill="#fffbeb" stroke="#b45309"/>
+    <text x="280" y="125" text-anchor="middle" font-size="11">📢 IL-6 "יש דלקת!"</text>
+    <path d="M165 80 L220 50" stroke="#6d28d9" stroke-width="1.5"/>
+    <path d="M165 100 L220 120" stroke="#6d28d9" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<!-- ============================================================ -->
+<h2 class="section-title c" id="partC">ג. הפרעות תאי פלזמה — Multiple Myeloma, MGUS, SMM, Waldenström</h2>
+
+<h2><span class="num">2</span> המנגנון — למה תא פלזמה בודד גורם לכאבי עצמות, אי-ספיקת כליות, אנמיה והיפרקלצמיה בו-זמנית?</h2>
+<div class="mechanism">
+  <p class="chain">
+    <span dir="ltr" class="term">Multiple Myeloma (MM)</span> מתפתחת מטרנספורמציה ממאירה של תא פלזמה בודד שכבר עבר את מרכז הנבט (<span dir="ltr" class="term">post-germinal center plasma cell</span>). התהליך דו-שלבי: קודם נוצרת <span dir="ltr" class="term">MGUS</span> — שיבוט של תאי פלזמה שמייצרים אימונוגלובולין מונוקלונלי (M protein), בעקבות הפרעות ציטוגנטיות ראשוניות (לרוב תגובה לגירוי אנטיגני). לאחר מכן, פגיעה גנטית נוספת (טרנסלוקציות כמו <span dir="ltr" class="term">t(11;14), t(4;14)</span>, hyperdiploidy, מחיקת 17p) או שינוי במיקרו-סביבת מח העצם — דוחפת מ-MGUS ל-<span dir="ltr" class="term">Smoldering MM</span> ולבסוף ל-MM פעילה.
+    <b>המפתח להבנת כל התסמינים: תאי המיאלומה "משוחחים" עם מיקרו-סביבת מח העצם.</b> הם משפעלים אוסטאוקלסטים (דרך גורמים כמו <span dir="ltr" class="term">osteoclast activating factor</span>) ובו-זמנית מדכאים אוסטאובלסטים — ולכן הנגעים הם <b>ליטיים טהורים, בלי בנייה מפצה של עצם חדשה</b>. זה שונה מהותית ממטסטזות עצם רגילות (שיכולות לגרות גם אוסטאובלסטים) — ולכן מיפוי עצם קלאסי (שמזהה פעילות אוסטאובלסטית) <b>פחות יעיל</b> באבחון MM מצילום רגיל/CT/PET-CT.
+    ההרס הגרמי המתמשך משחרר סידן לזרם הדם ⟶ <b>היפרקלצמיה</b> (הסיבה השכיחה ביותר לאי-ספיקת כליות ב-MM). במקביל, שרשראות קלות חופשיות (<span dir="ltr" class="term">light chains</span>) שמסונכרנות בעודף עוברות סינון כלייתי ומזיקות ישירות לטובולוס הפרוקסימלי (<span dir="ltr" class="term">Fanconi's syndrome</span> — אובדן גלוקוז וחומצות אמינו), ויכולות לשקוע כעמילואיד בגלומרולוס — כך שיש כמה מנגנונים כלייתיים מקבילים, לא אחד בלבד.
+    ה<b>אנמיה</b> נובעת משילוב: תפיסה פיזית של מח העצם ע"י תאי הגידול, דיכוי המטופויזה ע"י ציטוקינים, וירידה בייצור EPO עקב הנזק הכלייתי.
+    ה<b>נטייה לזיהומים</b> (75% מהחולים יחוו זיהום קשה בשלב כלשהו) נובעת מ-<span dir="ltr" class="term">diffuse hypogammaglobinemia</span> — התאים הממאירים מייצרים כמויות עצומות של אימונוגלובולין <b>אחד</b> חסר-תועלת (ה-M protein) בזמן שמדכאים את ייצור הנוגדנים התקינים (גם דרך תאים רגולטוריים אברנטיים).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="360" y="10" width="180" height="50" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="450" y="40" text-anchor="middle" font-size="13" font-weight="700">קלון תאי פלזמה ממאיר</text>
+  <path d="M400 60 V90" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrM)"/>
+  <path d="M450 60 V90" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrM)"/>
+  <path d="M500 60 V90" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrM)"/>
+  <rect x="20" y="90" width="200" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="120" y="112" text-anchor="middle" font-size="12" font-weight="700">↑אוסטאוקלסטים ↓אוסטאובלסטים</text>
+  <text x="120" y="132" text-anchor="middle" font-size="11" fill="#4b5563">C - נגעים ליטיים ⟶ שברים</text>
+  <path d="M120 145 V175" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrM)"/>
+  <rect x="20" y="175" width="200" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="120" y="203" text-anchor="middle" font-size="12" font-weight="700">R - היפרקלצמיה + כליה</text>
+
+  <rect x="250" y="90" width="200" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="112" text-anchor="middle" font-size="12" font-weight="700">שרשראות קלות חופשיות</text>
+  <text x="350" y="132" text-anchor="middle" font-size="11" fill="#4b5563">נזק טובולרי/גלומרולרי</text>
+  <path d="M350 145 V175" stroke="#2563eb" stroke-width="2" marker-end="url(#arrM)"/>
+  <rect x="250" y="175" width="200" height="45" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="203" text-anchor="middle" font-size="12" font-weight="700">A - אי ספיקת כליות</text>
+
+  <rect x="480" y="90" width="200" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="580" y="112" text-anchor="middle" font-size="12" font-weight="700">תפיסת מח עצם + ↓EPO</text>
+  <text x="580" y="132" text-anchor="middle" font-size="11" fill="#4b5563">B - אנמיה</text>
+
+  <rect x="700" y="90" width="180" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="790" y="112" text-anchor="middle" font-size="12" font-weight="700">M protein יחיד עודף</text>
+  <text x="790" y="132" text-anchor="middle" font-size="11" fill="#4b5563">Hypogammaglobinemia</text>
+  <path d="M790 145 V175" stroke="#b45309" stroke-width="2" marker-end="url(#arrM)"/>
+  <rect x="700" y="175" width="180" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="790" y="203" text-anchor="middle" font-size="12" font-weight="700">זיהומים חוזרים</text>
+  <defs><marker id="arrM" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#374151"/></marker></defs>
+</svg>
+<p><b>Waldenström's macroglobulinemia</b> — לימפומה לימפופלזמציטית שמפרישה <span dir="ltr" class="term">IgM</span> במבנה פנטמרי (5 יחידות מחוברות) — בגלל הגודל העצום של המולקולה הזו, ריכוזים גבוהים גורמים ל<b><span dir="ltr" class="term">hyperviscosity syndrome</span></b> (סחרחורת, כאבי ראש, הפרעות ראייה, דימומים מהאף, לעתים paresis חולף) — מנגנון פיזי-מכני, לא חיסוני. מוטציית <span dir="ltr" class="term">MYD88 L265P</span> נמצאת ביותר מ-90% מהמטופלים. שונה מ-MM: אין פגיעה עצמית והיפרקלצמיה, ולרוב אין פגיעה כלייתית.</p>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>כאבי עצמות (70% מהחולים, הסימפטום השכיח ביותר) — <b>מחמיר בפעילות</b> (בניגוד לכאב ממקור גרורתי שמחמיר בלילה) כי הוא נובע מהחלשת המבנה המכני של העצם, לא מלחץ תוך-גרמי בלבד. כאב קבוע/ממוקד מחשיד לשבר פתולוגי או ל-<span dir="ltr" class="term">cord compression</span>.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p>ה-<span dir="ltr" class="term">CRAB criteria</span> (myeloma-defining events) — כל אחד מהם מייצג את אחד מארבעת מסלולי הנזק שתוארו למעלה:</p>
+<table>
+  <thead><tr><th>אות</th><th>קריטריון</th></tr></thead>
+  <tbody>
+    <tr><td><b>C</b>alcium</td><td>סידן &gt;1 מ"ג/ד"ל מעל הגבול העליון, או &gt;11 מ"ג/ד"ל</td></tr>
+    <tr><td><b>R</b>enal</td><td>קריאטינין &gt;2 מ"ג/ד"ל, או clearance&lt;40 מ"ל/דקה</td></tr>
+    <tr><td><b>A</b>nemia</td><td>Hb &gt;2 גרם/ד"ל מתחת לתחתון הנורמה, או &lt;10 גרם/ד"ל</td></tr>
+    <tr><td><b>B</b>one</td><td>≥1 נגע אוסטאוליטי בצילום/CT/PET-CT</td></tr>
+  </tbody>
+</table>
+<p>אבחנה = פלזמציטוזיס במח עצם ≥10% (או פלזמציטומה מוכחת בביופסיה) + M component בסרום/שתן + לפחות אחד מ-CRAB, <b>או</b> אחד ממדדי ממאירות ביולוגית: תאי פלזמה קלונליים ≥60%, יחס שרשראות קלות חולות/בריאות ≥100, או יותר מנגע פוקלי אחד ב-MRI.</p>
+<h3>אבחנה מבדלת — הרצף MGUS ⟵ SMM ⟵ MM</h3>
+<table>
+  <thead><tr><th>מצב</th><th>M protein</th><th>פלזמציטוזיס במח עצם</th><th>פגיעה באיבר מטרה (CRAB)</th></tr></thead>
+  <tbody>
+    <tr><td>MGUS</td><td>&lt;30 גרם/ליטר</td><td>&lt;10%</td><td>אין</td></tr>
+    <tr><td>Smoldering MM</td><td>≥30 גרם/ליטר</td><td>≥10%</td><td>אין</td></tr>
+    <tr><td>Multiple Myeloma</td><td>נוכח</td><td>≥10% (או פלזמציטומה)</td><td>יש (CRAB או מדד ביולוגי)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">MGUS שכיחה פי אלפים מ-MM בפועל: 1% מעל גיל 50, עד 10% מעל גיל 75 — אך רק כ-1% מהם מתקדמים ל-myeloma בכל שנה נתונה. גורמי סיכון להתקדמות: תת-סוג שאינו IgG, יחס kappa/lambda לא תקין, M protein&gt;15 גרם/ליטר.</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>MGUS ו-SMM ברירת המחדל היא מעקב בלבד (אלקטרופורזה, ספירת דם, קריאטינין, סידן — פעם בשנה ב-MGUS רגיל, כל חצי שנה ב-high-risk). MM סימפטומטית דורשת טיפול סיסטמי + טיפול תומך.</p>
+<table>
+  <thead><tr><th>קבוצה</th><th>תרופות</th><th>מנגנון</th><th>הערות בטיחות</th></tr></thead>
+  <tbody>
+    <tr><td>מעכבי פרוטאזום</td><td><span dir="ltr" class="term">Bortezomib, Carfilzomib, Ixazomib</span></td><td>חוסמים פירוק חלבונים תוך-תאי ⟶ הצטברות רעילה בתא הממאיר</td><td>Bortezomib: נוירופתיה (מופחתת במתן תת-עורי/שבועי), נדרש טיפול מניעתי לרה-אקטיבציה של Herpes zoster</td></tr>
+    <tr><td>IMiDs</td><td><span dir="ltr" class="term">Lenalidomide, Thalidomide, Pomalidomide</span></td><td>אימונו-מודולציה, אנטי-אנגיוגני</td><td>Lenalidomide: סיכון DVT (מניעה באספירין/LMWH), לאסוף תאי גזע תוך 6 חודשים משימוש</td></tr>
+    <tr><td>נוגדנים חד-שבטיים</td><td><span dir="ltr" class="term">Daratumumab</span> (anti-CD38), <span dir="ltr" class="term">Elotuzumab</span> (anti-SLAMF7)</td><td>תיוג התאים הממאירים להרס חיסוני</td><td>ניתנים בשילוב עם dexamethasone±IMiD/PI, לא כטיפול בודד</td></tr>
+    <tr><td>HDAC inhibitor</td><td><span dir="ltr" class="term">Panobinostat</span></td><td>שינוי אפיגנטי</td><td>למחלה רפרקטורית עמידה</td></tr>
+    <tr><td>סטרואיד</td><td><span dir="ltr" class="term">Dexamethasone</span></td><td>אפופטוזיס של תאי פלזמה</td><td>מדכא חיסון — מגביר רגישות לזיהומים חיידקיים/פטרייתיים</td></tr>
+  </tbody>
+</table>
+<p>בחולים <b>מועמדים להשתלה</b> (בד"כ &lt;70, ללא קו-מורבידיות משמעותית): אינדוקציה (למשל <span dir="ltr" class="term">VRd</span> — bortezomib+lenalidomide+dexamethasone, תגובה כמעט 100%) ⟶ השתלת מח עצם אוטולוגית (<span dir="ltr" class="term">high-dose therapy</span>) ⟶ קונסולידציה/אחזקה עם lenalidomide (משפר שרידות). <b>יש להימנע מ-alkylating agents לפני איסוף תאי גזע</b> — הם פוגעים בתאי הגזע עצמם. בחולים <b>שאינם מועמדים</b> — אותה אינדוקציה בהתאמת מינון, או lenalidomide+dexamethasone.</p>
+
+<h3>טיפול תומך — לפי סיבוך</h3>
+<table>
+  <thead><tr><th>סיבוך</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>היפרקלצמיה</td><td>הידרציה, ביספוספונטים (גם מונעים עתידיים סיבוכי עצם), גלוקוקורטיקואידים</td></tr>
+    <tr><td>אי ספיקת כליות אקוטית מ-light chains</td><td><span dir="ltr" class="term">Plasmapheresis</span> יעיל פי 10 מדיאליזה פריטונאלית בסילוק שרשראות קלות; lenalidomide ניתן בהתאמת מינון</td></tr>
+    <tr><td><span dir="ltr" class="term">Cord compression</span></td><td>קרינה מקומית + גלוקוקורטיקואידים דחוף; דה-קומפרסיה כירורגית אם חסר נוירולוגי מתקדם</td></tr>
+    <tr><td>זיהומים</td><td>חיסון פנאומוקוקלי מסוג conjugate (יעיל יותר מהפוליסכרידי); IVIG פרופילקטי בזיהומים חוזרים חמורים</td></tr>
+    <tr><td>Hyperviscosity (בעיקר WM)</td><td>Plasmapheresis</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h3>ראשי תיבות וסיפור דמיוני</h3>
+  <p><b>CRAB</b> — דמייני סרטן ים (crab 🦀) עם 4 צבתות, כל צבת "תופסת" איבר אחר: צבת אחת תופסת עצם (Bone), אחת תופסת כליה (Renal), אחת "סוחטת" את הדם מברזל/תאי דם אדומים (Anemia), ואחת מרימה גוש סידן (Calcium). כל הצבתות מונעות ע"י אותו גוף מרכזי — קלון תאי הפלזמה.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="250" cy="110" rx="70" ry="45" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="250" y="115" text-anchor="middle" font-size="13" font-weight="700">קלון תאי פלזמה</text>
+    <path d="M190 90 Q140 60 110 40" fill="none" stroke="#b91c1c" stroke-width="3"/>
+    <text x="90" y="35" font-size="12" fill="#b91c1c" font-weight="700">C סידן</text>
+    <path d="M190 130 Q140 160 110 175" fill="none" stroke="#2563eb" stroke-width="3"/>
+    <text x="70" y="185" font-size="12" fill="#2563eb" font-weight="700">R כליה</text>
+    <path d="M310 90 Q360 60 390 40" fill="none" stroke="#047857" stroke-width="3"/>
+    <text x="380" y="35" font-size="12" fill="#047857" font-weight="700">A אנמיה</text>
+    <path d="M310 130 Q360 160 390 175" fill="none" stroke="#b45309" stroke-width="3"/>
+    <text x="370" y="185" font-size="12" fill="#b45309" font-weight="700">B עצם</text>
+  </svg>
+  <p><b>למה נגעי MM ליטיים "טהורים" ולא נראים במיפוי עצם:</b> תזכרי "MM שותקת בעצם" — כי אין בכלל אקטיבציה של אוסטאובלסטים (שדווקא הם ה"רועשים" במיפוי עצם), רק הרס. לכן צילום/CT/PET הם הכלי, לא bone scan.</p>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://radiopaedia.org/cases/reed-sternberg-cell-histology" target="_blank">Reed-Sternberg cell — Radiopaedia</a><div class="desc">תמונת היסטולוגיה מוערת של תא Reed-Sternberg בתוך הרקע הדלקתי.</div></li>
+  <li><a href="https://www.myeloma.org/bone-disease" target="_blank">International Myeloma Foundation — Bone Disease</a><div class="desc">הסבר קליני ותמונות של נגעים ליטיים ("punched-out") אופייניים ב-Multiple Myeloma, כולל צילומי גולגולת.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK542333/" target="_blank">StatPearls — Reed-Sternberg Cells</a><div class="desc">סקירה תמציתית של המורפולוגיה והאימונופנוטיפ של תאי HRS, טובה לחזרה מהירה.</div></li>
+</ul>
+
+<!-- ============================================================ -->
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה 1</h3>
+  <p>גבר בן 68 עם CLL ידועה מזה 4 שנים, במעקב ללא טיפול. מגיע עם עייפות מחמירה, וספירת דם מדגימה Hb 8.2, רטיקולוציטים מוגברים, LDH ובילירובין עולים, והפטוגלובין נמוך. בבדיקה הגופנית נמצאת לימפאדנופתיה צווארית חדשה בגודל 6 ס"מ שלא הייתה קיימת לפני חודשיים, ו-LDH גבוה משמעותית מהערכים הקודמים שלו.</p>
+  <h3>וינייטה 2</h3>
+  <p>אישה בת 71 מתלוננת על כאבי גב מתמשכים המחמירים בהליכה, עייפות והזעות לילה. בדיקות: Hb 9.4, קריאטינין 2.3 מ"ג/ד"ל, סידן 11.8 מ"ג/ד"ל. באלקטרופורזה מזוהה פיק מונוקלונלי, ובביופסיית מח עצם 35% תאי פלזמה קלונליים. צילום עמוד שדרה מדגים נגעים ליטיים מרובים ללא סקלרוזיס מסביב.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. בחולה מוינייטה 1, הממצא של לימפאדנופתיה חדשה שגדלה במהירות + LDH מזנק — מחשיד בעיקר ל:</div>
+  <button class="opt" data-i="0">AIHA משנית ל-CLL</button>
+  <button class="opt" data-i="1">Monoclonal B-cell Lymphocytosis</button>
+  <button class="opt" data-i="2">Richter's transformation</button>
+  <button class="opt" data-i="3">Small Lymphocytic Lymphoma</button>
+  <div class="explain">נכון: <b>Richter's transformation</b> — התקדמות מהירה של adenopathy באזור ספציפי (לא סימטרית כמו CLL רגיל) יחד עם LDH גבוה הם הסימנים הקליניים הקלאסיים. AIHA הייתה מסבירה את האנמיה וההמוליזה, אבל לא את הבלוטה הבודדת שגדלה מהר. MBL ו-SLL הן ישויות פחות-אגרסיביות שלא מתאימות לתמונה הדינמית הזו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. הצעד הבא המתאים ביותר לאישוש החשד ב-Richter's transformation הוא:</div>
+  <button class="opt" data-i="0">Needle biopsy של הבלוטה</button>
+  <button class="opt" data-i="1">PET-CT ולאחריו excisional biopsy באזור ה-SUV הגבוה ביותר</button>
+  <button class="opt" data-i="2">מעקב קליני בלבד ל-3 חודשים</button>
+  <button class="opt" data-i="3">בדיקת Coombs</button>
+  <div class="explain">נכון: <b>PET-CT ואז excisional biopsy</b>. PET-CT מזהה את האזור עם הפעילות המטבולית הגבוהה ביותר (SUV≥10 מחשיד מאוד) ומכוון לביופסיה במקום הנכון. Needle biopsy נמנעת ממנה במפורש כי לא מאפשרת לראות ארכיטקטורה. Coombs רלוונטי לחשד AIHA, לא לטרנספורמציה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. תא Reed-Sternberg מהווה פחות מ-1% ממסת הגידול ב-Hodgkin lymphoma. הסיבה העיקרית לכך שהוא מצליח "לשרוד ולשלוט" למרות זאת היא:</div>
+  <button class="opt" data-i="0">קצב חלוקה גבוה במיוחד</button>
+  <button class="opt" data-i="1">עמידות מולדת לכימותרפיה</button>
+  <button class="opt" data-i="2">חוסר ביטוי CD30 שמקשה על זיהוי חיסוני</button>
+  <button class="opt" data-i="3">גיוס תסנין דלקתי תומך והשתקת תאי T סמוכים דרך PD-L1</button>
+  <div class="explain">נכון: תא ה-HRS יוצר סביבה מיקרו-תומכת (ציטוקינים שמגייסים תאי דלקת) ומשתיק תאי T תוקפים דרך PD-L1/PD-1 — כך הוא "שולט" בסביבתו למרות המיעוט המספרי. הוא דווקא כן מבטא CD30 (ב-100% מהמקרים) — זה סמן אבחנתי, לא מנגנון הישרדות. אין לו קצב חלוקה חריג במיוחד ואינו עמיד מולד לכימותרפיה (שיעורי הריפוי גבוהים מאוד).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. חולה עם Hodgkin lymphoma מוקדם (Stage II), favorable, שהראה PET-CT שלילי לאחר שני מחזורי ABVD. הגישה המועדפת היא:</div>
+  <button class="opt" data-i="0">להשלים טיפול ב-ABVD בלבד, ללא קרינה</button>
+  <button class="opt" data-i="1">להוסיף קרינה בכל מקרה כדי למזער סיכון להישנות</button>
+  <button class="opt" data-i="2">לעבור ל-BEACOPP</button>
+  <button class="opt" data-i="3">להפסיק טיפול לחלוטין</button>
+  <div class="explain">נכון: PET-CT שלילי לאחר 2 מחזורי ABVD מנבא תוצאות טובות עם המשך ABVD בלבד, ללא צורך בקרינה — כך נמנעת הרעילות המאוחרת שלה מבלי לפגוע בתוצאות. BEACOPP שמור למחלה מתקדמת/בסיכון גבוה יותר, ואי אפשר להפסיק טיפול לגמרי (עדיין נדרשים מספר מחזורים).</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בחולה מוינייטה 2, נגעי העצם הליטיים המרובים ללא סקלרוזיס נובעים בעיקר מ:</div>
+  <button class="opt" data-i="0">גרורות אוסטאובלסטיות מגידול נסתר</button>
+  <button class="opt" data-i="1">חוסר ויטמין D וזרחן</button>
+  <button class="opt" data-i="2">שפעול אוסטאוקלסטים ודיכוי אוסטאובלסטים ע"י תאי המיאלומה</button>
+  <button class="opt" data-i="3">שקיעת עמילואיד בעצם</button>
+  <div class="explain">נכון: זהו המנגנון המרכזי ב-MM — לכן אין תגובת בנייה מפצה (בניגוד לגרורות אוסטאובלסטיות), והנגעים נראים "punched out" בצילום. עמילואיד קשור בעיקר לפגיעה כלייתית/רקמות רכות, לא לנגעים הליטיים עצמם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. חולה MM המועמד להשתלת תאי גזע אוטולוגית ומטופל ב-lenalidomide לפני איסוף התאים. הסיכון העיקרי שיש לקחת בחשבון הוא:</div>
+  <button class="opt" data-i="0">רה-אקטיבציה של Herpes zoster</button>
+  <button class="opt" data-i="1">פגיעה ביכולת לאסוף מספיק תאי גזע אם השימוש מתמשך</button>
+  <button class="opt" data-i="2">נוירופתיה סנסורית בלתי הפיכה</button>
+  <button class="opt" data-i="3">Tumor lysis syndrome</button>
+  <div class="explain">נכון: שימוש ממושך ב-lenalidomide עלול לפגוע ביכולת לאסוף מספיק תאי גזע — לכן יש לאסוף אותם תוך 6 חודשים משימוש. רה-אקטיבציה של הרפס זוסטר קשורה בעיקר ל-bortezomib, נוירופתיה גם היא יותר bortezomib/thalidomide, ו-tumor lysis syndrome קשור ל-venetoclax.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h3>א. CLL — סיבוכים וטיפול</h3>
+  <ul>
+    <li>קריסה חיסונית כוללת (innate+adaptive) ⟶ hypogammaglobinemia ב-85% ⟶ זיהומים = הגורם המוביל לתמותה</li>
+    <li>סיבוכים אוטואימוניים: AIHA (הכי שכיח), ITP, Evan's syndrome (שניהם יחד)</li>
+    <li>Richter's transformation: ל-DLBCL (0.5%/שנה) או HL (0.05%/שנה); PET-CT SUV≥10 מחשיד; אבחנה = excisional biopsy בלבד</li>
+    <li>Staging: Rai (ארה"ב) / Binet (אירופה) — לפי עומס מחלה, לא הדמיה</li>
+    <li>טיפול: FCR (צעירים), chlorambucil+CD20 (מבוגרים), ibrutinib/idelalisib/venetoclax (ממוקד מסלול)</li>
+  </ul>
+  <h3>ב. Hodgkin Lymphoma</h3>
+  <ul>
+    <li>תא HRS &lt;1% מהגידול; שורד דרך NF-κB; CD15+/CD30+, CD20-; מגייס תסנין דלקתי ומשתיק T cells דרך PD-L1</li>
+    <li>NSHL+MCHL = 95% מהמקרים; NLPHL נפרד ביולוגית (CD20+, קרוב ל-NHL)</li>
+    <li>אבחנה = biopsy; Ann Arbor staging; טיפול בסיס = ABVD, מונחה PET-CT אחרי 2 מחזורים</li>
+    <li>שיעור ריפוי &gt;85% — מוקד הדיון: רעילות מאוחרת (לב, ממאירות משנית, תריס, פוריות)</li>
+  </ul>
+  <h3>ג. הפרעות תאי פלזמה</h3>
+  <ul>
+    <li>MGUS ⟶ SMM ⟶ MM — רצף מוגדר ע"י % פלזמציטוזיס ורמת M protein + CRAB</li>
+    <li>CRAB = Calcium, Renal, Anemia, Bone — כל אחד ממנגנון שונה (אוסטאוקלסטים, שרשראות קלות, תפיסת מח עצם, הרס עצם)</li>
+    <li>נגעים ליטיים "טהורים" — bone scan פחות יעיל מ-CT/PET/צילום</li>
+    <li>טיפול: מעכבי פרוטאזום (bortezomib), IMiDs (lenalidomide), נוגדנים (daratumumab), ± השתלה אוטולוגית</li>
+    <li>Waldenström: IgM פנטמרי ⟶ hyperviscosity; MYD88 L265P ב-90%+; פלזמפרזיס למקרי חירום</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

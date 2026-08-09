@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אונקולוגיה (חלק 1/1) - עקרונות טיפול, זיהומים, מצבי חירום וגידולים ספציפיים</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:920px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:20px}
+  .toc{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px 20px; margin-bottom:30px; font-size:15px}
+  .toc summary{cursor:pointer; font-weight:700; color:var(--blue)}
+  .toc ol{margin:10px 0 0; padding-inline-start:22px}
+  .toc a{color:var(--ink); text-decoration:none}
+  .toc a:hover{text-decoration:underline; color:var(--blue)}
+  h2{font-size:23px; margin:46px 0 12px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--line); padding-bottom:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:22px 0 8px; color:#111827}
+  h4{font-size:16px; margin:16px 0 6px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3,.mnemonic h4{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0; border-bottom:1px solid #374151}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr h3{color:#93c5fd; margin:18px 0 6px}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .badge{display:inline-block; background:var(--blue); color:#fff; font-size:12px; font-weight:700; padding:2px 9px; border-radius:12px; margin-inline-end:6px}
+</style>
+</head>
+<body>
+
+<h1>אונקולוגיה - עקרונות טיפול, זיהומים, מצבי חירום וגידולים ספציפיים <span dir="ltr" class="term">(Oncology)</span></h1>
+<div class="subtitle">חלק 1/1 מתוך פרק-העל "אונקולוגיה" | עמודים 2-19 במקור | מבוסס על Medexams | לקראת מבחן גמר בפנימית</div>
+
+<details class="toc" open>
+<summary>תוכן העניינים</summary>
+<ol>
+  <li><a href="#chemo">תופעות לוואי של כימותרפיה ותרופות אימונו-רגולטוריות</a></li>
+  <li><a href="#infections">זיהומים בחולי סרטן וחום נויטרופני</a></li>
+  <li><a href="#emergencies">מצבי חירום באונקולוגיה: SCC, SVCS, TLS</a></li>
+  <li><a href="#lung">סרטן ריאה</a></li>
+  <li><a href="#breast">סרטן שד ו-<span dir="ltr">BRCA</span></a></li>
+  <li><a href="#colon">סרטן המעי הגס ותסמונת <span dir="ltr">Lynch</span></a></li>
+  <li><a href="#liver">גידולי כבד: אדנומה ו-<span dir="ltr">HCC</span></a></li>
+  <li><a href="#pancreas">סרטן הלבלב</a></li>
+  <li><a href="#carcinoid">תסמונת <span dir="ltr">Carcinoid</span></a></li>
+  <li><a href="#paraneoplastic">תסמונות פארא-נאופלסטיות אנדוקריניות</a></li>
+  <li><a href="#comparison">טבלת השוואה - סוגי הסרטן</a></li>
+  <li><a href="#resources">תמונות וסרטונים נוספים</a></li>
+  <li><a href="#case">מקרים קליניים ותרגול</a></li>
+  <li><a href="#tldr">סיכום של הסיכום</a></li>
+</ol>
+</details>
+
+<p>הפרק הזה הוא "פרק-על" רחב שמכסה כמעט את כל הפינות הקליניות שבהן אונקולוגיה נפגשת עם פנימית כללית:
+תופעות לוואי של תרופות, זיהומים בחולה המדוכא-חיסונית, מצבי חירום אמיתיים שדורשים זיהוי מהיר, וכמה
+מהגידולים הסולידיים השכיחים ביותר. הגישה הנכונה למבחן היא לא לשנן כל תרופה בנפרד, אלא להבין
+<span class="key">שלוש שאלות חוזרות</span>: מה המנגנון שמסביר את התופעה הקלינית? איך מבדילים בין אבחנות
+דומות? ומה משנה את הטיפול (דחיפות, סוג הגידול, מצב תפקודי)?</p>
+
+<h2 id="chemo"><span class="num">1</span> תופעות לוואי של כימותרפיה ותרופות אימונו-רגולטוריות</h2>
+
+<div class="mechanism">
+  <p class="chain">
+    כמעט כל תופעות הלוואי ה"קלאסיות" של כימותרפיה נובעות מעקרון אחד: התרופות פוגעות בתאים
+    שמתחלקים במהירות - וזה נכון גם לתאי הגידול (הרצוי) וגם לרקמות בריאות עם קצב חלוקה גבוה
+    (הבלתי-רצוי) כמו מח העצם, רירית מערכת העיכול, זקיקי השיער והאפיתל הרבייתי. משם נגזרות
+    התופעות המשותפות: <span class="key">דיכוי מח עצם</span> (אנמיה, נויטרופניה, טרומבוציטופניה),
+    <span class="key">Mucositis</span> ופגיעה בפוריות. מעבר לזה, לכל משפחת תרופות יש "טביעת אצבע"
+    ספציפית שנובעת ממנגנון הפעולה הייחודי שלה או מהרקמה שהיא נצברת בה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="70" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="100" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">כימותרפיה</text>
+  <text x="100" y="113" text-anchor="middle" font-size="11" fill="#4b5563">פוגעת בתאים מתחלקים</text>
+  <line x1="180" y1="100" x2="250" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow1)"/>
+  <rect x="250" y="20" width="150" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="50" text-anchor="middle" font-size="12" fill="#1f2937">מח עצם → ציטופניות</text>
+  <rect x="250" y="80" width="150" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="110" text-anchor="middle" font-size="12" fill="#1f2937">רירית מעי → Mucositis</text>
+  <rect x="250" y="140" width="150" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="170" text-anchor="middle" font-size="12" fill="#1f2937">שיער/גונדות → נשירה/פוריות</text>
+  <line x1="180" y1="100" x2="250" y2="45" stroke="#2563eb" stroke-width="1.5"/>
+  <line x1="180" y1="100" x2="250" y2="165" stroke="#2563eb" stroke-width="1.5"/>
+  <rect x="450" y="70" width="200" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="550" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">תופעה ספציפית למשפחה</text>
+  <text x="550" y="113" text-anchor="middle" font-size="11" fill="#4b5563">לב / ריאה / כליה / שלפוחית</text>
+  <line x1="400" y1="100" x2="450" y2="100" stroke="#b45309" stroke-width="2" marker-end="url(#arrow2)"/>
+  <text x="720" y="105" font-size="11" fill="#4b5563" text-anchor="middle">תלוי במנגנון</text>
+  <text x="720" y="120" font-size="11" fill="#4b5563" text-anchor="middle">הייחודי לתרופה</text>
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<h3>תופעות לוואי לפי משפחת תרופה</h3>
+<table>
+<thead><tr><th>משפחה / תרופה</th><th>מנגנון-מפתח</th><th>תופעות לוואי אופייניות</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Alkylating agents</span> (Cyclophosphamide, Chlorambucil, Melphalan, Platinum-based)</td>
+<td>פוגעים ב-DNA של תאים מתחלקים בכל שלב במחזור התא</td>
+<td>נשירת שיער, דיכוי מח עצם, פגיעה בפוריות, אפקט טרטוגני, סיכון מוגבר לגידולים משניים (לוקמיה חריפה, <span dir="ltr" class="term">MDS</span>).
+<b>Cyclophosphamide</b> - פגיעה בשריר הלב במינון גבוה, <span dir="ltr" class="term">hemorrhagic cystitis</span> וסיכון לסרטן שלפוחית (המטבוליט <span dir="ltr" class="term">acrolein</span> רעיל לאורותליום), פגיעה ריאתית אינטרסטיציאלית.
+<b>Melphalan</b> - תופעות GI קשות עקב פגיעה מוקוזלית.
+<b>תכשירי פלטינום (Cisplatin)</b> - הקאות קשות, נפרוטוקסיות טובולרית, נוירופתיה, אוטוטוקסיות; <span dir="ltr" class="term">Carboplatin</span> פחות נפרו/נוירוטוקסי אך יותר מיאלוטוקסי.</td></tr>
+<tr><td>אנטיביוטיקות נוגדות גידול <span dir="ltr" class="term">(Bleomycin, Daunorubicin, Adriamycin/Doxorubicin)</span></td>
+<td>יוצרות שברים ב-DNA (Bleomycin) או נכנסות בין בסיסי ה-DNA ומעכבות טופואיזומראז (אנתרציקלינים)</td>
+<td>נשירת שיער, דיכוי מח עצם, <b>Bleomycin</b> - פגיעה ריאתית עד פיברוזיס (מצטברת, בלתי הפיכה - לכן בודקים תפקודי ריאה לפני/במהלך טיפול), Raynaud, נוירופתיה פריפרית, רגישות יתר.
+<b>אנתרציקלינים (Doxorubicin)</b> - קרדיוטוקסיות מצטברת (נזק חמצוני לשריר הלב) עד אי-ספיקת לב כרונית - חולים עם אי-ספיקת לב קיימת יקבלו בד"כ פרוטוקול בלי אנתרציקלין.</td></tr>
+<tr><td><span dir="ltr" class="term">Methotrexate (MTX)</span> - אנטי-מטבוליט</td>
+<td>מעכב <span dir="ltr" class="term">dihydrofolate reductase</span> ↓ חוסם סינתזת פורינים/פירימידינים בתאים מתחלקים</td>
+<td>פגיעה ריאתית (pneumonitis מתיווך רגישות-יתר, פיברוזיס), Mucositis, דיכוי מח עצם, פגיעה כלייתית וכבדית, זיהומים, טרטוגניות. מתן אינטרה-תקאלי עלול לגרום ל-<span dir="ltr" class="term">arachnoiditis</span>.</td></tr>
+<tr><td><span dir="ltr" class="term">Vincristine</span></td><td>מעכב פולימריזציה של מיקרוטובולים ↓ עוצר מיטוזה</td><td>נוירופתיה פריפרית קשה, תופעות קרדיאליות</td></tr>
+</tbody>
+</table>
+
+<div class="key-box">כשמופיע חולה עם ממצא ריאתי-אינטרסטיציאלי או תפקוד לב ירוד שנים אחרי טיפול כימותרפי - <b>תמיד לברר היסטוריית תרופות מהעבר</b>. תופעות לוואי כמו פיברוזיס ריאתי מ-Bleomycin או קרדיומיופתיה מאנתרציקלינים יכולות להופיע שנים לאחר החשיפה.</div>
+
+<h3>תרופות אימונו-רגולטוריות</h3>
+<p><b><span dir="ltr" class="term">Ipilimumab</span></b> - נוגדן כנגד <span dir="ltr" class="term">CTLA-4</span> שעל תאי ה-T; חסימתו מסירה "בלם" מתאי ה-T ומגבירה את פעילותם נגד הגידול (בשימוש במלנומה גרורתית כקו טיפול ראשוני). המחיר: תגובה אימונית עודפת שתוקפת רקמות בריאות - <span dir="ltr" class="term">colitis</span> חיסונית (מחקה IBD; כשהשלשולים מסיביים מוסיפים סטרואידים או מעכבי <span dir="ltr" class="term">TNF</span>), הפטיטיס, פגיעה עורית והיפופיזיטיס.</p>
+
+<h3>פרוטוקול <span dir="ltr" class="term">R-CHOP</span> - הטיפול הסטנדרטי בלימפומה מפושטת מתאי B גדולים</h3>
+<table>
+<thead><tr><th>מרכיב</th><th>סוג/מנגנון</th><th>תופעת לוואי מרכזית</th></tr></thead>
+<tbody>
+<tr><td><b>R</b> - Rituximab</td><td>נוגדן כימרי כנגד <span dir="ltr" class="term">CD-20</span> על תאי B</td><td><span dir="ltr" class="term">PML</span> (progressive multifocal leukoencephalopathy), רה-אקטיבציה של HBV - <b>יש לבדוק סרולוגיית HBV לפני התחלת טיפול</b></td></tr>
+<tr><td><b>C</b> - Cyclophosphamide</td><td>Alkylating agent</td><td>פגיעה בפוריות, טוקסיות לשלפוחית עד ממאירות</td></tr>
+<tr><td><b>H</b> - Hydroxydaunorubicin (Doxorubicin)</td><td>אנתרציקלין</td><td>קרדיוטוקסיות, דיכוי מח עצם, Alopecia, Mucositis</td></tr>
+<tr><td><b>O</b> - Oncovin (Vincristine)</td><td>מעכב מיקרוטובולים</td><td>נוירופתיה, תופעות קרדיאליות</td></tr>
+<tr><td><b>P</b> - Prednisone</td><td>סטרואיד</td><td>-</td></tr>
+</tbody>
+</table>
+
+<div class="mnemonic">
+<h3>טכניקת זכירה</h3>
+<p><b>ראשי תיבות:</b> חישבו על "<span dir="ltr" class="term">BAM-CV</span>" לתופעות הלב-ריאה-כליה: <span dir="ltr" class="term">B</span>leomycin→ריאות, <span dir="ltr" class="term">A</span>nthracycline→לב, <span dir="ltr" class="term">M</span>ethotrexate→ריאות/כבד/כליה, <span dir="ltr" class="term">C</span>yclophosphamide→שלפוחית, <span dir="ltr" class="term">V</span>incristine→עצבים.</p>
+<p><b>סיפור דמיוני:</b> דמיינו "צוות הרס" שכל חבר בו מתמחה באיבר משלו - הבלונר (Bleomycin) מנקב את הריאות עד שהן מצטלקות; הלביניסט (Anthracycline) שוחק את שריר הלב עד שהוא נחלש; ה"פצצת שלפוחית" (Cyclophosphamide) משאירה דימום בדרכי השתן; והחשמלאי (Vincristine) מקצר את חוטי העצבים הפריפריים.</p>
+</div>
+
+<h2 id="infections"><span class="num">2</span> זיהומים בחולי סרטן וחום נויטרופני</h2>
+
+<div class="mechanism">
+  <p class="chain">
+    כימותרפיה הורגת תאים מתחלקים מהר - ותאי מח העצם המייצרים נויטרופילים הם בדיוק כאלה.
+    כשספירת הנויטרופילים יורדת (<span dir="ltr" class="term">ANC</span> &lt; 500), קו ההגנה
+    הראשון נגד חיידקים כמעט נעלם. במקביל, הכימותרפיה פוגעת גם ברירית מערכת העיכול - וזו
+    בדיוק הדרך שבה חיידקי המעי (פלורה נורמלית) "בורחים" מהלומן אל זרם הדם (<span class="key">translocation</span>),
+    וגורמים לבקטרמיה בלי מקור זיהומי ברור מבחוץ. משום כך <b>חום בחולה נויטרופני נחשב זיהום
+    חיידקי משמעותי עד שיוכח אחרת</b> - ולא מחכים לתרביות לפני שמתחילים טיפול.
+  </p>
+</div>
+
+<h3>חום נויטרופני <span dir="ltr" class="term">(Febrile Neutropenia)</span></h3>
+<p>הגדרה: מדידה בודדת &ge; 38.5°C, או שלוש מדידות &ge; 38°C ב-24 שעות, בחולה נויטרופני
+(<span dir="ltr" class="term">ANC</span> &lt; 500, או צפוי לרדת מתחת ל-500). המחוללים השכיחים
+והמסוכנים: קוקים גראם-חיוביים (<span dir="ltr" class="term">Staph, Strep</span>) ומתגים גראם-שליליים,
+בפרט <span dir="ltr" class="term">Pseudomonas</span> - חיידק אגרסיבי שמסוגל לגרום לספסיס מהיר בחולה
+ללא הגנה נויטרופילית.</p>
+
+<svg class="diagram" viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="15" width="220" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="130" y="38" text-anchor="middle" font-size="13" font-weight="700">חום נויטרופני (ANC&lt;500)</text>
+  <text x="130" y="55" text-anchor="middle" font-size="11" fill="#4b5563">= זיהום חיידקי עד שיוכח אחרת</text>
+  <line x1="130" y1="70" x2="130" y2="100" stroke="#1f2937" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="20" y="100" width="220" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="130" y="123" text-anchor="middle" font-size="12.5" font-weight="700">אנטיביוטיקה אמפירית IV</text>
+  <text x="130" y="140" text-anchor="middle" font-size="11" fill="#4b5563">Tazocin / Carbapenem / Cefepime</text>
+  <line x1="130" y1="155" x2="130" y2="185" stroke="#1f2937" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="20" y="185" width="220" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="130" y="208" text-anchor="middle" font-size="12.5" font-weight="700">חום נמשך 4-7 ימים?</text>
+  <text x="130" y="225" text-anchor="middle" font-size="11" fill="#4b5563">למרות אנטיביוטיקה רחבת טווח</text>
+  <line x1="240" y1="212" x2="330" y2="212" stroke="#1f2937" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="330" y="185" width="230" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="445" y="208" text-anchor="middle" font-size="12.5" font-weight="700">הוסף כיסוי אנטי-פטרייתי</text>
+  <text x="445" y="225" text-anchor="middle" font-size="11" fill="#4b5563">Amphotericin B / Caspofungin</text>
+  <rect x="330" y="90" width="230" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="445" y="112" text-anchor="middle" font-size="12.5" font-weight="700">צנתר מרכזי?</text>
+  <text x="445" y="130" text-anchor="middle" font-size="11" fill="#4b5563">שקילת Vancomycin (כיסוי MRSA)</text>
+  <text x="445" y="145" text-anchor="middle" font-size="11" fill="#4b5563">חוסר יציבות → הוצאת הצנתר</text>
+  <rect x="620" y="90" width="230" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="735" y="112" text-anchor="middle" font-size="12.5" font-weight="700">המשך עד התאוששות</text>
+  <text x="735" y="130" text-anchor="middle" font-size="11" fill="#4b5563">נויטרופילים &gt; 500</text>
+  <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f2937"/></marker></defs>
+</svg>
+
+<h3>הערכה ראשונית וטיפול</h3>
+<p>בדיקה גופנית מלאה (כולל צנתרים, שיניים, מוקוזה, אזור פרי-רקטלי וגניטלי), תרביות דם/שתן/כיח,
+צילום חזה. טיפול: <b>אנטיביוטיקה רחבת טווח ללא דיחוי</b> - ברירת מחדל אשפוזית IV (חולים בסיכון
+נמוך עשויים לקבל PO בבית):</p>
+<table>
+<thead><tr><th>תרופה</th><th>מנגנון</th><th>כיסוי חיידקי</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Tazocin</span> (Piperacillin-Tazobactam)</td><td>מעכב סינתזת דופן תא (בטא-לקטם) + מעכב בטא-לקטמאז</td><td>גראם+/-, כולל Pseudomonas ואנאירובים</td><td>קו ראשון נפוץ</td></tr>
+<tr><td>Carbapenem (למשל Meropenem)</td><td>בטא-לקטם רחב-טווח</td><td>גראם+/-, אנאירובים, Pseudomonas</td><td>לחולים בסיכון גבוה/אלרגיה לפניצילין (בזהירות)</td></tr>
+<tr><td>Cefepime</td><td>צפלוספורין דור 4</td><td>גראם+/- כולל Pseudomonas</td><td>חלופה</td></tr>
+<tr><td>Vancomycin - תוספת</td><td>מעכב סינתזת דופן (גליקופפטיד)</td><td>גראם+ כולל MRSA</td><td>רק בחשד ספציפי (צנתר, חוסר יציבות, זיהום עור/רקמה רכה)</td></tr>
+</tbody>
+</table>
+<p>אם החום נמשך <b>4-7 ימים</b> תחת טיפול אנטיביוטי רחב-טווח - יש לשקול תוספת כיסוי אנטי-פטרייתי
+(<span dir="ltr" class="term">Candida, Aspergillus</span>) עם <span dir="ltr" class="term">Amphotericin B</span>
+או <span dir="ltr" class="term">Caspofungin</span>, ולברר באופן אקטיבי זיהום פטרייתי.</p>
+
+<h3>נויטרופניה ללא חום</h3>
+<p>אין צורך באנטיביוטיקה פרופילקטית - רק הנחיה להימנע מסביבה מסכנת זיהום ולפנות מיד בהופעת תסמינים.</p>
+
+<h3>מתי לתת <span dir="ltr" class="term">GCSF</span></h3>
+<p>גורם גדילה שמזרז יצירת נויטרופילים במח העצם. לא ניתן באופן רוטיני. אינדיקציות: (1) פרוטוקול
+עם סיכון &gt;20% לחום נויטרופני, (2) חום נויטרופני בסיכון גבוה (ספסיס, זיהום פטרייתי, אשפוז בעת
+עליית החום, פנאומוניה, גיל&gt;65, נויטרופילים&lt;100), (3) סיבוך נויטרופני בטיפול קודם.</p>
+
+<h3><span dir="ltr" class="term">Typhlitis (Neutropenic Enterocolitis)</span></h3>
+<div class="mechanism">
+  <p class="chain">
+    כימותרפיה פוגעת ברירית ה-<span dir="ltr" class="term">cecum</span> (בעל אספקת דם יחסית דלה
+    וקיבולת מתיחה גבוהה) ← פגיעה מוקוזלית + נויטרופניה מונעת תגובה חיסונית תקינה ← חיידקי המעי
+    פולשים לדופן המעי וגורמים לדלקת ונמק (<span dir="ltr" class="term">necrosis</span>) של ה-cecum
+    והרקמות סביבו - סיבוך שיכול להתקדם לפרפורציה ואלח דם.
+  </p>
+</div>
+<p>קליניקה: כאב בטן ימני-תחתון עם סימני גירוי צפקי, בטן תפוחה, שלשול מימי (לרוב דמי), בקטרמיה.
+שכיח יותר בילדים ובחולי <span dir="ltr" class="term">AML/ALL</span>. אבחנה: <span dir="ltr" class="term">CT</span>
+מדגים cecum מעובה, לעתים <span dir="ltr" class="term">pneumatosis intestinalis</span> (אוויר בדופן
+המעי - סימן לנמק טרנס-מוראלי). טיפול: אנטיביוטיקה רחבת טווח (למשל Tazocin), מנוחת מעיים, זונדה,
+GCSF; ניתוח רק במקרים קשים (פרפורציה, פריטוניטיס, מעי גנגרנוטי, דימום GI משמעותי).</p>
+
+<h3><span dir="ltr" class="term">Aspergillus</span> בחולה מדוכא-חיסון</h3>
+<p>גורמי הסיכון המרכזיים: נויטרופניה ממושכת וטיפול ממושך בסטרואידים. ברוב המקרים הזיהום ריאתי
+(80% ממעורבויות סיסטמיות). בצילום חזה: הסננה פוקלית או נודול; <span dir="ltr" class="term">aspergilloma</span>
+= הפטרייה "מתיישבת" בגרנולומה קיימת. יש לחשוד כשחום נויטרופני לא מגיב לאנטיביוטיקה רחבת-טווח
+אחרי 4-7 ימים.</p>
+
+<h2 id="emergencies"><span class="num">3</span> מצבי חירום באונקולוגיה</h2>
+
+<h3><span dir="ltr" class="term">Spinal Cord Compression (SCC)</span></h3>
+<div class="mechanism">
+  <p class="chain">
+    גידול או גרורה בעמוד השדרה (בדר"כ אפידוראלי) גדל ולוחץ מכנית על חוט השדרה או ה-<span dir="ltr" class="term">cauda equina</span>
+    ← לחץ ישיר + בצקת סביבתית פוגעים בהולכה העצבית ← ככל שהלחץ נמשך, נגרם נזק וסקולרי (איסכמיה של
+    חוט השדרה) שהופך בלתי-הפיך. זו הסיבה שהמהירות באבחון וטיפול קריטית: <span class="key">הפרוגנוזה
+    התפקודית נקבעת לפי המצב הנוירולוגי בתחילת הטיפול</span> - 75% נשארים ניידים אם היו ניידים
+    בהתחלה, לעומת 10% בלבד אם כבר הייתה פרפלגיה.
+  </p>
+</div>
+<p>גורמים שכיחים: סרטן ריאה (NSCLC/SCLC), שד, פרוסטטה; גם MM, לימפומה, מלנומה, RCC. אזורי פגיעה:
+Thoracic 70%, Lumbosacral 20%, Cervical 10%. קליניקה - כאב גב ממוקם שמוחמר בשכיבה (התסמין המוקדם
+ביותר, לרוב ימים-חודשים לפני סימנים נוירולוגיים), כאב רדיקולרי, פגיעה סנסורית (נימול, Lhermitte's
+sign - תחושת "זרם חשמלי" בכיפוף צוואר), פגיעה מוטורית (חולשה, בבינסקי חיובי), ולבסוף פגיעה
+אוטונומית בסוגרים (סימן מאוחר ופרוגנוסטי גרוע).</p>
+<p><b>טיפול:</b> חשד קליני → <span dir="ltr" class="term">Dexamethasone</span> במינון גבוה מיידית
+(אפילו לפני הדמיה!) להפחתת הבצקת ← <span dir="ltr" class="term">MRI</span> של עמוד השדרה (הדמיית
+בחירה, לא לעכב בגללה מתן סטרואידים) ← קרינה (גידולים רגישי-קרינה) או ניתוח (אי-יציבות מכנית) ←
+כימותרפיה בחולים לאחר הקרנות שאינם מועמדים לניתוח. ביספוספונטים/Denosumab יכולים לסייע במניעה
+במעורבות גרמית.</p>
+
+<h3><span dir="ltr" class="term">Superior Vena Cava Syndrome (SVCS)</span></h3>
+<div class="mechanism">
+  <p class="chain">
+    גידול מדיאסטינלי (בעיקר סרטן ריאה - <span dir="ltr" class="term">small cell/squamous</span> -
+    80-85% מהמקרים) לוחץ או פולש לדופן ה-<span dir="ltr" class="term">SVC</span> ← זרימת הדם הוורידית
+    מהראש, הצוואר והגפיים העליונות אינה יכולה להתנקז כרגיל ← <span class="key">גודש וורידי ובצקת
+    בפלג הגוף העליון</span>, שמחמירה בשכיבה (בגלל אובדן הסיוע הגרביטציוני לניקוז). כשהבצקת מגיעה
+    ללרינקס או למוח - מדובר במצב מסכן חיים (חסימת נתיב אוויר, בצקת מוחית).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="270" y="10" width="160" height="45" rx="8" fill="#f3f4f6" stroke="#4b5563"/>
+  <text x="350" y="37" text-anchor="middle" font-size="12.5" font-weight="700">גידול מדיאסטינלי</text>
+  <line x1="350" y1="55" x2="350" y2="80" stroke="#1f2937" stroke-width="2" marker-end="url(#a4)"/>
+  <rect x="250" y="80" width="200" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="350" y="107" text-anchor="middle" font-size="12.5" font-weight="700">חסימת/לחץ על ה-SVC</text>
+  <line x1="350" y1="125" x2="350" y2="150" stroke="#1f2937" stroke-width="2" marker-end="url(#a4)"/>
+  <rect x="230" y="150" width="240" height="45" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="172" text-anchor="middle" font-size="12" font-weight="700">גודש ורידי בראש/צוואר/זרועות</text>
+  <text x="350" y="188" text-anchor="middle" font-size="10.5" fill="#4b5563">בצקת פנים, גודש צוואר, קולטרלים בחזה</text>
+  <rect x="20" y="90" width="180" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="110" y="112" text-anchor="middle" font-size="11.5" font-weight="700">בצקת לרינקס/מוח</text>
+  <text x="110" y="127" text-anchor="middle" font-size="10.5" fill="#4b5563">← מסכן חיים</text>
+  <line x1="200" y1="112" x2="250" y2="100" stroke="#b45309" stroke-width="1.5"/>
+  <defs><marker id="a4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f2937"/></marker></defs>
+</svg>
+
+<p>קליניקה: נפיחות פנים/צוואר (בעיקר סביב עיניים), קוצר נשימה, שיעול, צרידות, נפיחות לשון, כאבי
+ראש, המופטיזיס, סינקופה - כל אלה מוחמרים בשכיבה או ברכינה קדימה. בבדיקה: גודש וורידי צוואר
+וקולטרלים בחזה, ציאנוזה, בצקת שמחמירה בשכיבה; במקרים חמורים - Proptosis, ירידה הכרתית.</p>
+<p><b>אבחנה:</b> קלינית + הדמיה. צילום חזה - הרחבת מדיאסטינום עליון (לרוב ימני); CT - הכי אמין
+להערכת המדיאסטינום. במטופל עם ממאירות ידועה אין צורך בביופסיה לפני טיפול.</p>
+<p><b>טיפול:</b> הקלה זמנית (חמצן, משתנים, דיאטה דלת-מלח, הרמת ראש). ספציפי לגידול: לימפומה →
+סטרואידים; NSCLC/גרורות סולידיות → קרינה; SCLC/Germ cell tumor → כימותרפיה. בסימפטומים קשים או
+מחלה חוזרת → סטנט אינטרה-וסקולרי. אם הגורם הוא קריש על ליין מרכזי → הוצאת הליין + אנטי-קואגולציה
+(אם מוקדם - פיברינוליזה תוך הימנעות מהוצאת הקטטר).</p>
+
+<h3><span dir="ltr" class="term">Tumor Lysis Syndrome (TLS)</span></h3>
+<div class="mechanism">
+  <p class="chain">
+    כימותרפיה יעילה מאוד (בעיקר בגידולים עם קצב שגשוג גבוה כמו <span dir="ltr" class="term">Burkitt's
+    lymphoma</span> או <span dir="ltr" class="term">ALL</span>) הורגת כמות עצומה של תאי גידול
+    <b>בבת אחת</b> ← התאים מתפרקים ומשחררים את תוכנם התוך-תאי לזרם הדם: חומצות גרעין (מתפרקות
+    לחומצה אורית), אשלגן ופוספט. <span class="key">חומצה אורית שוקעת בטובולי, במדולה ובקוליקטינג
+    דאקט של הכליה</span> וגורמת לנפרופתיה חסימתית; פוספט עודף נקשר לסידן ויוצר משקעי קלציום-פוספט
+    שגם הם פוגעים בכליה - ובמקביל "שואבים" סידן מהדם וגורמים להיפוקלצמיה (עם איריטביליות נוירו-מוסקולרית
+    וטטניה). התוצאה: אי-ספיקת כליות שמונעת סילוק יעיל של אשלגן - והיפרקלמיה מסכנת חיים (אריתמיות,
+    מוות פתאומי).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 880 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="80" width="160" height="50" rx="8" fill="#f3f4f6" stroke="#4b5563"/>
+  <text x="100" y="110" text-anchor="middle" font-size="12.5" font-weight="700">ליזיס מסיבי של תאי גידול</text>
+  <line x1="180" y1="105" x2="230" y2="105" stroke="#1f2937" stroke-width="2" marker-end="url(#a5)"/>
+  <rect x="230" y="20" width="180" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="320" y="47" text-anchor="middle" font-size="12">שחרור חומצות גרעין → חומצה אורית ↑</text>
+  <rect x="230" y="80" width="180" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="320" y="107" text-anchor="middle" font-size="12">שחרור פוספט תוך-תאי → פוספט ↑</text>
+  <rect x="230" y="140" width="180" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="320" y="167" text-anchor="middle" font-size="12">שחרור אשלגן תוך-תאי → K+ ↑</text>
+  <line x1="410" y1="42" x2="470" y2="90" stroke="#1f2937" stroke-width="1.5" marker-end="url(#a5)"/>
+  <line x1="410" y1="105" x2="470" y2="105" stroke="#1f2937" stroke-width="1.5" marker-end="url(#a5)"/>
+  <rect x="470" y="80" width="180" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="560" y="100" text-anchor="middle" font-size="12" font-weight="700">שקיעה בטובולי הכליה</text>
+  <text x="560" y="118" text-anchor="middle" font-size="11" fill="#4b5563">אי-ספיקת כליות חריפה</text>
+  <line x1="650" y1="105" x2="700" y2="105" stroke="#1f2937" stroke-width="2" marker-end="url(#a5)"/>
+  <rect x="700" y="80" width="160" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="780" y="100" text-anchor="middle" font-size="12" font-weight="700">היפרקלמיה קשה</text>
+  <text x="780" y="118" text-anchor="middle" font-size="11" fill="#4b5563">אריתמיה / מוות פתאומי</text>
+  <line x1="320" y1="163" x2="470" y2="163" stroke="#1f2937" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <text x="395" y="180" text-anchor="middle" font-size="10.5" fill="#4b5563">פוספט+סידן → היפוקלצמיה/טטניה</text>
+  <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f2937"/></marker></defs>
+</svg>
+
+<p>אבחנה: גבישי חומצה אורית בשתן, יחס קריאטינין/חומצה אורית בשתן &gt;1 מרמז על <span dir="ltr" class="term">hyperuricemic nephropathy</span>.
+לרוב מופיע 1-5 ימים לאחר הכימותרפיה. הערכה טרום-טיפולית: ספירת דם, כימיה, בדיקת שתן; בתפקוד
+כלייתי לא תקין - US/CT לשלול חסימה.</p>
+<table>
+<thead><tr><th>אסטרטגיה</th><th>מנגנון/הערה</th></tr></thead>
+<tbody>
+<tr><td>מניעה: הידרציה אגרסיבית + Allopurinol</td><td>Allopurinol מעכב Xanthine oxidase ומונע יצירת חומצה אורית חדשה. הבססת שתן בביקרבונט <b>אינה</b> מקובלת ב-TLS.</td></tr>
+<tr><td>Febuxostat</td><td>מעכב Xanthine oxidase, יעיל יותר מ-Allopurinol בממאירויות המטולוגיות, פחות תופעות לוואי, אין צורך בהתאמת מינון באי-ספיקת כליות קלה-בינונית.</td></tr>
+<tr><td>Rasburicase (urate oxidase רקומביננטי)</td><td>מפרק חומצה אורית קיימת במהירות (שעות). תגובות רגישות-יתר אפשריות (bronchospasm, hypoxemia, תת-ל"ד). <b>קונטרא-אינדיקציה: חסר G6PD</b> (עלול לגרום להמוליזה).</td></tr>
+<tr><td>דיאליזה (עדיפות: המודיאליזה)</td><td>כשהטיפול המניעתי נכשל והמטופל מפתח אי-ספיקת כליות קשה עם הפרעות אלקטרוליטריות.</td></tr>
+</tbody>
+</table>
+
+<div class="mnemonic">
+<h3>טכניקת זכירה למצבי החירום</h3>
+<p><b>SCC-SVCS-TLS:</b> "S-S-T" = <b>ש</b>לד לוחץ (SCC - עמוד שדרה), <b>ש</b>קע וורידי (SVCS - חסימת ניקוז), <b>ת</b>אים מתפוצצים (TLS - ליזיס תאי).</p>
+<p><b>סיפור דמיוני ל-TLS:</b> דמיינו "מפעל" (תא הגידול) שמתפוצץ בבת אחת ומשליך את כל הציוד הפנימי שלו לרחוב (זרם הדם) - חומצה אורית, פוספט ואשלגן מציפים את "מערכת הביוב" (הכליה) שנסתמת ולא מצליחה לפנות את הפסולת, עד שהעיר כולה (הגוף) נכנסת למשבר חשמלי (הפרעת קצב מהיפרקלמיה).</p>
+<svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="90" cy="75" r="35" fill="#fde68a" stroke="#b45309"/>
+  <text x="90" y="80" text-anchor="middle" font-size="12">💥תא</text>
+  <line x1="130" y1="75" x2="220" y2="75" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#a6)"/>
+  <text x="175" y="60" text-anchor="middle" font-size="20">🧪⚡🧂</text>
+  <rect x="220" y="45" width="120" height="60" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="280" y="80" text-anchor="middle" font-size="12">כליה נסתמת</text>
+  <line x1="340" y1="75" x2="420" y2="75" stroke="#b91c1c" stroke-width="2" marker-end="url(#a6)"/>
+  <text x="460" y="80" text-anchor="middle" font-size="22">⚡❤️</text>
+  <defs><marker id="a6" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b45309"/></marker></defs>
+</svg>
+</div>
+
+<h2 id="lung"><span class="num">4</span> סרטן ריאה</h2>
+<p>סרטן הריאה הוא הגידול הממאיר השני בשכיחותו (אחרי פרוסטטה בגברים ושד בנשים) אך <b>סיבת המוות
+מסרטן מספר 1</b> בעולם המערבי בשני המגדרים. עישון סיגריות הוא גורם הסיכון הדומיננטי - עישון פעיל
+מעלה סיכון עד פי 20 לעומת מי שלא עישן מעולם; לאחר הפסקת עישון הסיכון יורד עם השנים אך אינו משתווה
+לחלוטין לסיכון של מי שמעולם לא עישן.</p>
+
+<h3>תת-סוגים היסטולוגיים</h3>
+<table>
+<thead><tr><th>סוג</th><th>מיקום טיפוסי</th><th>קשר לעישון</th><th>תופעה ייחודית</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Adenocarcinoma</span></td><td>פריפרי (הכי שכיח)</td><td>קשר קיים אך פחות דומיננטי</td><td>-</td></tr>
+<tr><td><span dir="ltr" class="term">Squamous cell</span></td><td>מרכזי</td><td>קשר חזק מאוד</td><td>נוטה לגרום להיפרקלצמיה של ממאירות (הפרשת PTHrP)</td></tr>
+<tr><td><span dir="ltr" class="term">Small cell</span></td><td>מרכזי</td><td>קשר חזק מאוד</td><td>נוטה לגרום ל-Cushing's syndrome (הפרשה אקטופית של ACTH)</td></tr>
+</tbody>
+</table>
+
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lung_Cancer_on_Chest_X-Ray.jpg" alt="צילום חזה עם מסת סרטן ריאה">
+  <figcaption>צילום חזה המדגים מסה ריאתית - כך נראית ברוב המקרים ההצגה הראשונית שמעוררת חשד לסרטן ריאה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Lung_Cancer_on_Chest_X-Ray.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://www.osmosis.org/learn/Lung_cancer:_Clinical_sciences" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Lung Cancer: Clinical Sciences - Osmosis</div>
+    <div class="d">סקירה קלינית של NSCLC לעומת SCLC - תת-סוגים, הצגה קלינית וגישת סטייג'ינג.</div>
+  </span>
+</a>
+
+<h3>תסמונת <span dir="ltr" class="term">Horner</span> וגידול <span dir="ltr" class="term">Pancoast</span></h3>
+<div class="mechanism">
+  <p class="chain">
+    השרשרת הסימפתטית עולה מבית החזה לכיוון הצוואר והראש. גידול שיושב בפסגת הריאה (<span dir="ltr" class="term">superior sulcus</span> -
+    "גידול Pancoast") נמצא בדיוק בנקודה שבה הוא יכול לפלוש לשרשרת הזו ולמבנים סמוכים - וכל
+    מבנה שנפגע "מדבר" בשפה קלינית משלו.
+  </p>
+</div>
+<p>Ptosis (עפעף צונח - אובדן עצבוב סימפתטי לשריר Müller), Miosis (אישון מכווץ - אובדן הרפיית
+המפשק) ו-Anhidrosis (חוסר הזעה בצד הפגוע) מרכיבים את תסמונת Horner - עדות למעורבות ה-<span dir="ltr" class="term">sympathetic trunk</span>.
+מעורבות ה-<span dir="ltr" class="term">brachial plexus</span> גורמת לכאב וחולשה בכתף/יד; מעורבות
+ה-<span dir="ltr" class="term">recurrent laryngeal nerve</span> גורמת לצרידות.</p>
+
+<svg class="diagram" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="350" cy="60" rx="70" ry="40" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="350" y="65" text-anchor="middle" font-size="12" font-weight="700">גידול Pancoast</text>
+  <text x="350" y="80" text-anchor="middle" font-size="10.5" fill="#4b5563">פסגת הריאה</text>
+  <line x1="290" y1="90" x2="150" y2="150" stroke="#2563eb" stroke-width="2" marker-end="url(#a7)"/>
+  <rect x="30" y="150" width="200" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="130" y="172" text-anchor="middle" font-size="11.5" font-weight="700">שרשרת סימפתטית</text>
+  <text x="130" y="188" text-anchor="middle" font-size="10.5" fill="#4b5563">Horner: Ptosis-Miosis-Anhidrosis</text>
+  <line x1="350" y1="100" x2="350" y2="150" stroke="#047857" stroke-width="2" marker-end="url(#a7)"/>
+  <rect x="250" y="150" width="200" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="350" y="172" text-anchor="middle" font-size="11.5" font-weight="700">Brachial plexus</text>
+  <text x="350" y="188" text-anchor="middle" font-size="10.5" fill="#4b5563">כאב וחולשה בכתף/יד</text>
+  <line x1="410" y1="90" x2="560" y2="150" stroke="#b45309" stroke-width="2" marker-end="url(#a7)"/>
+  <rect x="470" y="150" width="200" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="570" y="172" text-anchor="middle" font-size="11.5" font-weight="700">Recurrent laryngeal n.</text>
+  <text x="570" y="188" text-anchor="middle" font-size="10.5" fill="#4b5563">צרידות</text>
+  <defs><marker id="a7" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f2937"/></marker></defs>
+</svg>
+<a class="link-card" href="https://www.osmosis.org/video/Pancoast_tumor" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Pancoast Tumor - Osmosis</div>
+    <div class="d">הקשר האנטומי בין גידול Pancoast לשרשרת הסימפתטית, ה-brachial plexus וה-recurrent laryngeal nerve.</div>
+  </span>
+</a>
+
+<h3>Screening וגישה לקשרית ריאתית חדשה</h3>
+<p><span dir="ltr" class="term">Low-dose CT</span> חזה מומלץ למבוגרים מעשנים/שעישנו בעבר בסיכון
+גבוה - מוכח כמפחית תמותה, אך כרוך בשיעור גבוה של False positive. הגישה לקשרית תלויה בגודל (מעל
+8 מ"מ = גדול; מתחת ל-4 מ"מ = קטן) ובגורמי הסיכון (גיל, עישון, מאפייני הדמיה). קשרית גדולה + הרבה
+גורמי סיכון → ביופסיה; קשרית קטנה + מעט גורמי סיכון → מעקב CT.</p>
+<p>אופי הדגימה תלוי במיקום: ממצא פריפרי → מחט שאיבה דרך דופן החזה בהכוונת CT (סיבוכים: דימום,
+פנאומותורקס); ממצא מרכזי (עם "Bronchus מוביל") → ברונכוסקופיה. במרבית המקרים כיום - <span dir="ltr" class="term">VATS (thoracoscopy)</span>.</p>
+
+<h3>Staging וטיפול</h3>
+<table>
+<thead><tr><th>שלב (Stage)</th><th>מאפיין מרכזי (TNM מפושט)</th><th>גישה טיפולית טיפוסית</th></tr></thead>
+<tbody>
+<tr><td>0 - Carcinoma in situ</td><td>גידול תוך-אפיתליאלי, ללא פלישה</td><td>כריתה מקומית/אבלציה</td></tr>
+<tr><td>I</td><td>גידול מוגבל לריאה, ללא מעורבות בלוטות</td><td>ניתוח (לרוב Lobectomy) לריפוי</td></tr>
+<tr><td>II</td><td>גידול גדול יותר ו/או מעורבות בלוטות הילום הומולטרליות</td><td>ניתוח ± כימותרפיה אדג'ובנטית</td></tr>
+<tr><td>III</td><td>מעורבות בלוטות מדיאסטינליות ו/או פלישה למבנים סמוכים</td><td>לרוב טיפול משולב: כימותרפיה+קרינה ± ניתוח, תלוי נתיחות</td></tr>
+<tr><td>IV</td><td>גרורות מרוחקות, תפליט פלאורלי/פריקרדיאלי ממאיר</td><td>טיפול סיסטמי (כימותרפיה/אימונותרפיה/טיפול ממוקד), ניתוח אינו אופציה לריפוי</td></tr>
+</tbody>
+</table>
+<p><b>NSCLC:</b> ה-stage (לפי TNM) הוא הגורם הפרוגנוסטי החשוב ביותר, יחד עם מסוגלות המטופל לעמוד
+בטיפול. תפליט פלאורלי/פריקרדיאלי ממאיר או גרורה מחוץ לחזה = stage 4 אוטומטית. טיפול מועדף - ניתוח
+כשניתן להסיר את הגידול במלואו לריפוי. ניתוח אינו אופציה במחלה מפושטת/גרורתית, מעורבות מבנים
+קריטיים (כלי דם, מיתרי קול, phrenic nerve, SVCS) או מעורבות בלוטות/ריאה קונטרה-לטרלית (לעומת
+מעורבות איפסי-לטרלית שעדיין עשויה לאפשר כריתה מלאה).</p>
+<p><b>SCLC:</b> מחלה מוגבלת (צד אחד, בשדה קרינה אחד) לעומת מפושטת (גרורות מרוחקות, תפליטים,
+מעורבות דו-צדדית). מסורתית - קרינה+כימותרפיה בלבד ללא ניתוח (בהנחת גרורות סמויות גם במחלה
+"מוגבלת"). לאחרונה: ב-stage I לאחר שלילת גרורות מרוחקות, ניתן להציע ניתוח + כימותרפיה אדג'ובנטית
+(מיעוט החולים).</p>
+<p><span dir="ltr" class="term">Lobectomy</span> לא גורמת לשינוי משמעותי בממברנה או בנפחי הדם
+הריאתיים (יש אדפטציה בזרימת הדם באזורים הנותרים) - ולכן <b>אינה</b> גורמת לירידה ב-DLCO.</p>
+
+<h2 id="breast"><span class="num">5</span> סרטן שד ו-<span dir="ltr" style="font-weight:400" class="term">BRCA</span></h2>
+<div class="mechanism">
+  <p class="chain">
+    <span dir="ltr" class="term">BRCA1/2</span> מקודדים לחלבונים שמעורבים בתיקון DNA - במיוחד בתיקון
+    שברי DNA דו-גדיליים (<span dir="ltr" class="term">homologous recombination repair</span>). כשיש
+    מוטציה פוגענית באלל אחד, האלל השני עדיין תקין ומספיק לתפקוד תקין - אך עם הזמן מצטברות "פגיעות
+    שניה" אקראיות (<span class="key">loss of heterozygosity</span>) שמשביתות גם את האלל השני בתאי
+    השד/שחלה. ברגע שה-DNA repair מושבת לגמרי, כל פגיעה נוספת ב-DNA (יש הרבה, גם בתהליכי חלוקה תקינים)
+    נשארת לא מתוקנת ומצטברת - וזו הדרך שבה מוטציה תורשתית "מתפתחת" לגידול סרטני בפועל.
+  </p>
+</div>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mammo_breast_cancer.jpg" alt="ממוגרפיה - שד תקין מול שד עם סרטן">
+  <figcaption>ממוגרפיה: שד תקין (משמאל) לעומת שד עם מסה חשודה לסרטן (מימין) - כך נראית ההבחנה הבסיסית בין רקמה בריאה לממצא חריג. מקור: <a href="https://commons.wikimedia.org/wiki/File:Mammo_breast_cancer.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://www.osmosis.org/video/Breast_cancer" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Breast Cancer - Osmosis</div>
+    <div class="d">סקירת סוגי סרטן השד, גורמי סיכון (כולל BRCA) והבדלים בין תת-סוגים.</div>
+  </span>
+</a>
+<p><span dir="ltr" class="term">BRCA1</span> - נשאיות מוטציה באלל אחד: 60-80% סיכון לסרטן שד ו-33% לסרטן שחלות במהלך החיים; לרוב מדובר בסרטן שד
+מסוג <span dir="ltr" class="term">triple negative</span> (חסר רצפטורים לאסטרוגן, פרוגסטרון ו-HER2
+- ולכן לא מגיב לטיפולים הורמונליים או אנטי-HER2). גברים נשאי BRCA1 - סיכון מוגבר לסרטן שד ופרוסטטה.</p>
+<p><b>מניעה:</b> Mastectomy דו-צדדית מניעתית מפחיתה היארעות ותמותה מסרטן שד ב-95%; כריתת שחלות
+מניעתית מפחיתה סיכון לסרטן שחלות ב-50%.</p>
+<p><b>Tamoxifen</b> - SERM (Selective Estrogen Receptor Modulator) לטיפול אנדוקריני בסרטן שד
+חיובי-רצפטורים הורמונליים. פעילות אנטגוניסטית על השד והמוח, אך <span class="key">אגוניסטית בעצם,
+בכבד וברחם</span> - כלומר מגן מפני אוסטאופורוזיס פוסט-מנופאוזלית אך מעלה סיכון לסרטן אנדומטריום
+ולתרומבואמבוליזם. מפחית הישנות מקומית ב-DCIS, והישנות מרוחקת/מוות מסרטן שד ב-40%.</p>
+
+<h2 id="colon"><span class="num">6</span> סרטן המעי הגס ותסמונת <span dir="ltr" style="font-weight:400" class="term">Lynch</span></h2>
+<p>ממאירות שנייה בשכיחותה כגורם תמותה מסרטן במערב (אחרי ריאה); ההיארעות והתמותה במגמת ירידה
+הודות לסקר מוקדם. גורמי סיכון: תזונה עתירת קלוריות/בשר/שומן, IBD ממושכת (מעל 10 שנים), Lynch
+syndrome, בקטרמיה על רקע <span dir="ltr" class="term">Strep bovis</span>, עישון.</p>
+
+<div class="mechanism">
+  <p class="chain">
+    רוב הקרצינומות במעי הגס מקורן באדנומה שעוברת רצף מוטציות קרצינוגניות (<span dir="ltr" class="term">adenoma-carcinoma sequence</span>,
+    כ-10 שנים בממוצע) - אובדן גנים מדכאי-גידול ושפעול פרוטו-אונקוגנים. הסיכון של פוליפ להתקדם
+    לקרצינומה תלוי בגודל (מעל 2.5 ס"מ - מתקדם תוך 5 שנים), היסטולוגיה (villous גרוע יותר) ומראה
+    בקולונוסקופיה (פוליפים ססיליים גדולים - הכי מועדים).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 860 130" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="35" width="150" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="85" y="60" text-anchor="middle" font-size="12">אפיתל תקין</text>
+  <text x="85" y="76" text-anchor="middle" font-size="10" fill="#4b5563">אובדן APC</text>
+  <line x1="160" y1="62" x2="220" y2="62" stroke="#1f2937" stroke-width="2" marker-end="url(#a8)"/>
+  <rect x="220" y="35" width="150" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="295" y="60" text-anchor="middle" font-size="12">אדנומה מוקדמת</text>
+  <text x="295" y="76" text-anchor="middle" font-size="10" fill="#4b5563">מוטציית KRAS</text>
+  <line x1="370" y1="62" x2="430" y2="62" stroke="#1f2937" stroke-width="2" marker-end="url(#a8)"/>
+  <rect x="430" y="35" width="150" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="505" y="60" text-anchor="middle" font-size="12">אדנומה מתקדמת</text>
+  <text x="505" y="76" text-anchor="middle" font-size="10" fill="#4b5563">אובדן p53</text>
+  <line x1="580" y1="62" x2="640" y2="62" stroke="#1f2937" stroke-width="2" marker-end="url(#a8)"/>
+  <rect x="640" y="35" width="150" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="715" y="60" text-anchor="middle" font-size="12" font-weight="700">קרצינומה</text>
+  <text x="715" y="76" text-anchor="middle" font-size="10" fill="#4b5563">כ-10 שנים</text>
+  <defs><marker id="a8" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#1f2937"/></marker></defs>
+</svg>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Colon_cancer.jpg" alt="מפרט כריתת מעי גס עם קרצינומה ופוליפים אדנומטוטיים">
+  <figcaption>מפרט כירורגי (colectomy) פתוח המדגים קרצינומה פולשנית של המעי הגס לצד שני פוליפים אדנומטוטיים - הדגמה חזותית ישירה של רצף אדנומה-קרצינומה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Colon_cancer.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://www.osmosis.org/video/Colorectal_polyps_and_cancer:_Pathology_review" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Colorectal Polyps and Cancer: Pathology Review - Osmosis</div>
+    <div class="d">סקירת פתולוגיה של פוליפים ורצף אדנומה-קרצינומה במעי הגס.</div>
+  </span>
+</a>
+
+<h3>תסמונת <span dir="ltr" class="term">Lynch (HNPCC)</span></h3>
+<p>תורשה אוטוזומלית דומיננטית ממוטציות בגני <span dir="ltr" class="term">DNA mismatch repair</span> -
+פגיעה ביציבות ה-DNA וטעויות ברפליקציה שמגבירות גדילה אבנורמלית. היארעות מוגברת של CRC (בעיקר
+פרוקסימלי), חציון גיל &lt;50 (כ-10-15 שנה מוקדם מהאוכלוסייה הכללית); למרות דרגת התמיינות נמוכה
+ברוב הגידולים - הפרוגנוזה טובה יותר מגידולים ספורדיים באותו גיל. שכיחות מוגברת גם של גידולי שחלה,
+רחם, קיבה ומערכת השתן.</p>
+<p><b>קריטריוני אמסטרדם</b> (חשד קליני): (1) &ge;3 קרובי משפחה עם CRC (אחד לפחות מדרגה ראשונה),
+(2) CRC בשתי דורות, (3) לפחות מקרה אחד &lt;50. סקר: קולונוסקופיה כל שנתיים מגיל 25 (או 10 שנים
+לפני גיל האבחנה במשפחה), ומגיל 40 - אחת לשנה.</p>
+<a class="link-card" href="https://www.youtube.com/watch?v=DnRux4q_PrY" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Lynch Syndrome (HNPCC)</div>
+    <div class="d">גנטיקה, קריטריונים קליניים ומעקב בתסמונת Lynch.</div>
+  </span>
+</a>
+
+<h3>Screening כללי לסרטן מעי גס</h3>
+<p>דם סמוי בצואה - ספציפיות נמוכה (רק 2-10% מהחיוביים אכן CRC), רגישות בינונית (~50%) עקב אופי
+הדימום האינטרמיטנטי. תועלת אמיתית רק בבדיקה שנתית לאורך 13 שנים (מפחיתה תמותה ב-22%; בדיקה
+בודדת אינה מפחיתה תמותה). השיטה המקובלת: קולונוסקופיה כל 10 שנים, או דם סמוי שנתי + סיגמואידוסקופיה
+כל 5 שנים.</p>
+
+<h2 id="liver"><span class="num">7</span> גידולי כבד: אדנומה ו-<span dir="ltr" style="font-weight:400" class="term">HCC</span></h2>
+<h3>אדנומות בכבד</h3>
+<p>גידולים שפירים ונדירים; הסכנה העיקרית - דימום והתפתחות HCC. קשורות לגלולות למניעת היריון
+ולתוספי הורמונים אנאבוליים בגברים; שכיחות פי 10 בנשים, גיל קלאסי 35-40.</p>
+<table>
+<thead><tr><th>קבוצה</th><th>מוטציה</th><th>אפיון</th><th>סיכון ל-HCC</th></tr></thead>
+<tbody>
+<tr><td>1 (10-20%)</td><td><span dir="ltr" class="term">CTNNB1</span></td><td>גברים על סטרואידים אנאבוליים</td><td>כן - דורש ביופסיה לאבחון מולקולרי</td></tr>
+<tr><td>2 (50-60%)</td><td>אדנומות דלקתיות (מוטציה נקודתית)</td><td>נשים עם השמנה/סוכרת</td><td>נמוך</td></tr>
+<tr><td>3</td><td>אינאקטיבציה של <span dir="ltr" class="term">HNF1A</span></td><td>-</td><td>נמוך</td></tr>
+</tbody>
+</table>
+<p>אבחנה: CT/MRI (MRI יעיל להבחין בין קבוצה 2 ל-3). טיפול: כריתה - אדנומה &gt;5 ס"מ, או כל גודל
+עם מוטציית CTNNB1; אחרת - הרדת משקל, הפסקת גלולות/סטרואידים ומעקב הדמייתי שנתי. דימום - עצירה
+ראשונית ע"י אמבוליזציה, כריתה בשלב שני.</p>
+
+<h3><span dir="ltr" class="term">Hepatocellular Carcinoma (HCC)</span></h3>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Triphasic_CT_scan_of_hepatocellular_carcinoma.jpg" alt="CT תלת-פאזי המדגים HCC">
+  <figcaption>CT תלת-פאזי של HCC - הממצא הקלאסי הוא האדרה עורקית חזקה של הנגע ואז "שטיפה" (washout) מהירה יחסית לפרנכימת הכבד בפאזה הוורידית/מאוחרת - דפוס שכמעט פתוגנומוני ל-HCC בכבד שחמתי. מקור: <a href="https://commons.wikimedia.org/wiki/File:Triphasic_CT_scan_of_hepatocellular_carcinoma.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://radiopaedia.org/cases/hepatocellular-carcinoma-ct-and-mri?lang=us" target="_blank">
+  <span class="ico">🩻</span>
+  <span>
+    <div class="t">Hepatocellular Carcinoma - CT and MRI - Radiopaedia</div>
+    <div class="d">מקרה מלא עם CT ו-MRI, כולל הסבר על דפוס ההאדרה-ושטיפה.</div>
+  </span>
+</a>
+<p>Staging מורכב עם מספר שיטות דירוג. בחולה בסטטוס תפקודי טוב עם Child's score A ונגע בודד לא
+גרורתי → כריתה מקומית. בסטטוס תפקודי ירוד עם מחלה גרורתית/פלישה לכלי דם פורטליים → טיפול סיסטמי
+(Sorafenib, Lenvatinib). בתווך - Radiofrequency ablation, כימואמבוליזציה, השתלת כבד.</p>
+<p><b>קריטריוני מילאן</b> להשתלת כבד: נגע בודד &lt;5 ס"מ, או עד 3 נגעים שכל אחד &lt;3 ס"מ, סטטוס
+תפקודי טוב וללא קונטרא-אינדיקציות רפואיות.</p>
+
+<h2 id="pancreas"><span class="num">8</span> סרטן הלבלב</h2>
+<p>הסיבה השלישית לתמותה מסרטן בארה"ב, פרוגנוזה רעה - ב-85-90% מהחולים בזמן האבחנה יש כבר מחלה
+גרורתית או בלתי-נתיחה. מאובחן לרוב בגילאי 65-74, שכיחות ותמותה גבוהות יותר בגברים ובשחורים.
+מרקרים: <span dir="ltr" class="term">CA19-9</span> (הקלאסי), גם CEA עלול להיות גבוה.</p>
+<p>גורמי סיכון: עישון, Pancreatitis כרונית, השמנה, קבוצת דם ABO, גנטיקה (BRCA2 ב-10-16% מהמקרים).</p>
+
+<div class="mechanism">
+  <p class="chain">
+    גידול בראש הלבלב (המיקום השכיח ביותר) גדל בסמוך למקום שבו צינור המרה המשותף (<span dir="ltr" class="term">common bile duct</span>)
+    עובר דרך רקמת הלבלב בדרכו לתריסריון ← הגידול לוחץ/חוסם את הצינור מבחוץ ← מרה לא יכולה להתנקז
+    למעי ומצטברת בדם - <span class="key">בילירובין ישיר (מצומד)</span> עולה (כי הכבד כבר הצליח
+    לצמד אותו, הבעיה היא רק בניקוז) - ומכאן צהבת חסימתית. מכיוון שהחסימה מתפתחת בהדרגה וללא
+    דלקת/זיהום חריפים - היא <b>אינה מלווה בכאב</b> ברוב המקרים (בשונה מחסימת אבן מרה שמתפתחת פתאום
+    וגורמת לכאב קוליקי).
+  </p>
+</div>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Ultrasonography_of_pancreatic_cancer.jpg" alt="אולטרסאונד המדגים גידול בלבלב">
+  <figcaption>אולטרסאונד בטן המדגים מסה בלבלב - בדיקת מיון ראשונית זמינה וזולה, אך בעלת רגישות נמוכה יותר מ-CT ותלוית-בודק; ברוב המקרים תשמש רק כבדיקת סקר ראשונית לפני CT בפרוטוקול לבלב. מקור: <a href="https://commons.wikimedia.org/wiki/File:Ultrasonography_of_pancreatic_cancer.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://www.osmosis.org/video/Pancreatic_cancer:_Clinical_sciences" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Pancreatic Cancer: Clinical Sciences - Osmosis</div>
+    <div class="d">סימפטומים, גורמי סיכון ובירור קליני של סרטן הלבלב.</div>
+  </span>
+</a>
+<p>ביטוי קליני: <b>צהבת חסימתית ללא כאבים</b>, ירידה במשקל; פחות שכיח - כאבי בטן/גב, סוכרת חדשה,
+פנקראטיטיס. <span dir="ltr" class="term">Trousseau syndrome</span> - תסמונת פארא-נאופלסטית של
+thrombophlebitis מיגרטורית (נודדת ממקום למקום) בנוכחות ממאירות ויסראלית, קשורה בעיקר לסרטן לבלב
+אך יכולה ללוות כל ממאירות.</p>
+<p>בירור: CT בפרוטוקול לבלב הוא בדיקת הבחירה ל-staging והערכת נתיחות. אבחנה היסטולוגית חיונית
+(Cutting biopsy - לא ציטולוגיה בלבד), עם בדיקה ל-MSI, KRAS ומולקולות נוספות; ביופסיה תחת EUS,
+ובנוכחות גרורות - גם דרך הכבד או Virchow's node. לפני טיפול לוקחים CEA, CA19-9 (ואם שליליים -
+CA-125) - לא מסייעים ל-staging אך שימושיים במעקב תגובה לטיפול.</p>
+
+<h2 id="carcinoid"><span class="num">9</span> תסמונת <span dir="ltr" style="font-weight:400" class="term">Carcinoid</span></h2>
+<div class="mechanism">
+  <p class="chain">
+    גידול נוירואנדוקריני (לרוב Carcinoid של המעי הדק) מפריש כמויות עודפות של סרוטונין
+    ומטבוליטים נוספים ← מסלול המטבוליזם התקין של <span dir="ltr" class="term">Tryptophan</span>
+    (בדרך כלל ל-Niacin) "נחטף" לכיוון ייצור <span dir="ltr" class="term">5-HT (סרוטונין)</span> ←
+    עודף סרוטונין גורם להסמקה, שלשול מימי, אסטמה ופלאקים פיברוטיים על האנדוקרד (בעיקר לב ימני,
+    כי הכבד/הריאה "מסננים" את הסרוטונין לפני שהוא מגיע ללב שמאל - ולכן מעורבות לב שמאל נדירה
+    ומתרחשת בעיקר כשיש PFO שמאפשר "מעקף").
+  </p>
+</div>
+<p>קליניקה: הסמקה עם גרד ודמעת, שלשול מימי, אסטמה, Pellagra (פריחה אופיינית - תוצאה של "גזל"
+ה-Tryptophan מייצור Niacin). מעורבות קרדיאלית עד 40% מהמקרים - פלאקים על המסתם הטריקוספידלי
+(Tricuspid regurgitation); Pulmonary stenosis נדיר יותר; מעורבות שמאלית נדירה ביותר. תופעות
+פיברוטיות נוספות: חסימת מעיים, פיברוזיס רטרו-פריטונאלי.</p>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Typical_carcinoid_tumor_of_the_lung,_prominent_rosettes.jpg" alt="היסטולוגיה של גידול קרסינואיד">
+  <figcaption>היסטולוגיה של גידול קרסינואיד טיפוסי - תאים נוירואנדוקריניים אחידים המסודרים בתבנית "רוזטות" אופיינית. מקור: <a href="https://commons.wikimedia.org/wiki/File:Typical_carcinoid_tumor_of_the_lung,_prominent_rosettes.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<a class="link-card" href="https://www.osmosis.org/learn/Carcinoid_syndrome" target="_blank">
+  <span class="ico">🎥</span>
+  <span>
+    <div class="t">Carcinoid Syndrome - Osmosis</div>
+    <div class="d">מנגנון תסמונת הקרסינואיד והקשר לגרורות כבדיות.</div>
+  </span>
+</a>
+<p>אבחנה: איסוף שתן למטבוליטים של סרוטונין. טיפול: כירורגי כקו ראשון; אם לא ניתן - אנטגוניסטים
+לסרוטונין, אנלוגים של סומטוסטטין, אינטרפרון, אנטי-היסטמינים.</p>
+
+<h2 id="paraneoplastic"><span class="num">10</span> תסמונות פארא-נאופלסטיות אנדוקריניות</h2>
+<h3><span dir="ltr" class="term">Cushing's syndrome</span> אקטופי</h3>
+<p>הסיבה השכיחה ביותר ל-Cushing בכלל היא נטילת סטרואידים כרונית; מבין הסיבות האנדוגניות - אדנומה
+היפופיזרית מפרישת ACTH היא השכיחה ביותר. <b>הגידולים ה"אקטופיים" השכיחים ביותר להפרשת ACTH הם
+גידולי ריאה, בעיקר Small cell</b> (Carcinoid ו-Pheochromocytoma נדירים בהרבה כמחוללים). Cushing
+על רקע הפרשה אקטופית מגידול - מהלך סוער ומהיר יותר, מיופתיה קשה יותר, היפרפיגמנטציה (גירוי
+מלנוציטים ע"י ACTH), והפרעות מעבדתיות קשות יותר.</p>
+<p>ביטויים קליניים: השמנה מרכזית, פני ירח, סטריאות סגולות, עור דק ושביר, מיופתיה, הפרעות מצב
+רוח, סוכרת, יתר לחץ דם, אוסטאופורוזיס. במעבדה - היפוקלמיה ובססת מטבולית (מפעילות מינרלוקורטיקואידית
+של עודפי הקורטיזול על קולטני האלדוסטרון בכליה).</p>
+
+<h3>היפרקלצמיה של ממאירות</h3>
+<p>מאפיינת בעיקר גידולים מסוג Squamous cell - נגרמת עקב הפרשת <span dir="ltr" class="term">PTHrP</span>
+(חלבון דמוי-PTH) מהגידול, שנקשר לאותם קולטנים כמו PTH בעצם ובכליה וגורם לספיגת סידן מוגברת. סיבות
+אחרות: הפרשת ציטוקינים שמפעילים אוסטאוקלסטים (למשל Multiple myeloma), ייצור עודף ויטמין D (לימפומות),
+מעורבות גרורתית בלאסטית נרחבת בעצם, ולעתים נדירות - הפרשת PTH אמיתית מהגידול עצמו.</p>
+
+<h2 id="comparison"><span class="num">11</span> טבלת השוואה - סוגי הסרטן שבפרק</h2>
+<table>
+<thead><tr><th>סוג סרטן</th><th>גורם סיכון/רקע עיקרי</th><th>ממצא אבחנתי-מפתח</th><th>ביטוי קליני ייחודי</th><th>עיקרון טיפולי מרכזי</th></tr></thead>
+<tbody>
+<tr><td>ריאה - NSCLC</td><td>עישון</td><td>CT חזה + ביופסיה, TNM staging</td><td>Pancoast → Horner's syndrome</td><td>ניתוח אם ניתן לכריתה מלאה; אחרת טיפול סיסטמי/קרינה</td></tr>
+<tr><td>ריאה - SCLC</td><td>עישון (הקשר החזק ביותר)</td><td>לרוב מרכזי, מתגלה כבר עם גרורות</td><td>Cushing אקטופי (ACTH), SVCS</td><td>כימותרפיה+קרינה (מוגבל); כימותרפיה (מפושט)</td></tr>
+<tr><td>שד</td><td>BRCA1/2, גיל, היסטוריה משפחתית</td><td>ממוגרפיה, ביופסיה + סטטוס רצפטורים</td><td>BRCA1 → לרוב triple negative</td><td>ניתוח/הקרנה/הורמונלי (Tamoxifen) לפי סטטוס רצפטורים</td></tr>
+<tr><td>מעי גס</td><td>תזונה, IBD, Lynch syndrome</td><td>קולונוסקופיה + ביופסיה</td><td>Strep bovis בקטרמיה; Lynch - CRC פרוקסימלי מוקדם</td><td>כריתה כירורגית ± כימותרפיה אדג'ובנטית</td></tr>
+<tr><td>HCC</td><td>שחמת כבד (הפטיטיס, אלכוהול)</td><td>CT/MRI - האדרה עורקית + washout</td><td>לרוב על רקע מחלת כבד כרונית ידועה</td><td>כריתה/השתלה (קריטריוני מילאן) עד טיפול סיסטמי</td></tr>
+<tr><td>לבלב</td><td>עישון, פנקראטיטיס כרונית, BRCA2</td><td>CT בפרוטוקול לבלב, CA19-9</td><td>צהבת חסימתית ללא כאב, Trousseau syndrome</td><td>כריתה (Whipple) אם נתיח; לרוב כימותרפיה - מרבית החולים לא נתיחים באבחנה</td></tr>
+<tr><td>Carcinoid</td><td>גידול נוירואנדוקריני של המעי הדק</td><td>מטבוליטי סרוטונין בשתן</td><td>הסמקה, שלשול, מעורבות מסתם טריקוספידלי</td><td>כירורגי; תרופתי (סומטוסטטין) אם לא נתיח</td></tr>
+</tbody>
+</table>
+
+<h2 id="resources"><span class="num">12</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=p2ctcB4688s" target="_blank">Acute Complications of Chemotherapy - Armando Hasudungan</a>
+    <div class="desc">סרטון מצויר שמסביר את המנגנון של סיבוכי כימותרפיה חריפים (מיאלוסופרסיה, מוקוזיטיס, TLS ועוד) - טוב כרקע לכל סעיף 1.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Alkylating_agents:_Nursing_Pharmacology" target="_blank">Alkylating Agents - Osmosis</a>
+    <div class="desc">הסבר קצר וממוקד על מנגנון הפעולה של Alkylating agents (Cyclophosphamide, Melphalan, Platinum) ותופעות הלוואי האופייניות.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/video/Febrile_neutropenia:_Clinical_sciences" target="_blank">Febrile Neutropenia: Clinical Sciences - Osmosis</a>
+    <div class="desc">גישה קלינית שיטתית לחום נויטרופני - הגדרה, בירור וטיפול אמפירי, מתאים ישירות לסעיף 2.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/cases/spinal-cord-compressions-secondary-to-epidural-metastases?lang=us" target="_blank">Spinal Cord Compression Secondary to Epidural Metastases - Radiopaedia</a>
+    <div class="desc">מקרה MRI אמיתי של לחץ על חוט השדרה מגרורות אפידורליות, עם תיוג הממצאים - להמחשת סעיף SCC.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/cases/superior-vena-cava-obstruction-9" target="_blank">Superior Vena Cava Obstruction - Radiopaedia</a>
+    <div class="desc">מקרה CT/קליני של חסימת SVC עם נפיחות פנים וצוואר וגודש קולטרלי - להמחשת סעיף SVCS.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Tumor_lysis_syndrome_(TLS):_Nursing_Process_(ADPIE)" target="_blank">Tumor Lysis Syndrome - Osmosis</a>
+    <div class="desc">סקירת המנגנון וההפרעות המטבוליות של TLS (חומצה אורית, פוספט, אשלגן, סידן) והטיפול בהן.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/video/Pancoast_tumor" target="_blank">Pancoast Tumor - Osmosis</a>
+    <div class="desc">הסבר על גידול Pancoast והקשר האנטומי שלו לשרשרת הסימפתטית, ה-brachial plexus וה-recurrent laryngeal nerve.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/video/Horner_syndrome" target="_blank">Horner Syndrome - Osmosis</a>
+    <div class="desc">מנגנון תסמונת הורנר (Ptosis, Miosis, Anhidrosis) והקשר לפגיעה בשרשרת הסימפתטית.</div>
+  </li>
+  <li>
+    <a href="https://www.cancer.gov/types/colorectal/patient/colon-treatment-pdq" target="_blank">Colon Cancer Treatment - National Cancer Institute</a>
+    <div class="desc">מקור רשמי (NCI) לעקרונות הטיפול בסרטן המעי הגס לפי שלב, כולל רקע על ה-adenoma-carcinoma sequence.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/cases/hepatocellular-carcinoma-ct-and-mri?lang=us" target="_blank">Hepatocellular Carcinoma - CT and MRI - Radiopaedia</a>
+    <div class="desc">מקרה עם התמונה הקלאסית של HCC ב-CT: האדרה עורקית ו"שטיפה" (washout) בפאזה הוורידית, בכבד שחמתי.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Carcinoid_syndrome" target="_blank">Carcinoid Syndrome - Osmosis</a>
+    <div class="desc">מנגנון תסמונת הקרסינואיד - הפרשת סרוטונין, הקשר לגרורות כבדיות, ומעורבות המסתם הטריקוספידלי.</div>
+  </li>
+</ul>
+
+<h2 id="case"><span class="num">13</span> מקרים קליניים ותרגול</h2>
+
+<div class="case">
+<h3>וינייטה 1</h3>
+<p>גבר בן 58, מעשן כבד, מטופל ב-R-CHOP עבור לימפומה מפושטת מתאי B גדולים לפני 10 ימים, מגיע עם
+חום 38.7°C. ספירת דם: ANC = 210. בבדיקה - נראה חולה אך המודינמית יציב, ללא מוקד זיהומי ברור.</p>
+</div>
+<div class="case">
+<h3>וינייטה 2</h3>
+<p>אישה בת 64 עם סרטן ריאה מסוג Small cell, מגיעה עם נפיחות פנים וצוואר שמחמירה בבוקר, גודש
+וורידי צוואר וקוצר נשימה קל. צילום חזה מדגים הרחבת מדיאסטינום עליון מימין.</p>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">1. מהו הצעד הראשון והדחוף ביותר בטיפול בחולה מוינייטה 1?</div>
+  <button class="opt" data-i="0">התחלת אנטיביוטיקה אמפירית רחבת-טווח IV (למשל Tazocin) ללא המתנה לתוצאות תרביות</button>
+  <button class="opt" data-i="1">המתנה לתוצאות תרבית דם לפני התחלת טיפול, כדי לכוון טיפול ממוקד</button>
+  <button class="opt" data-i="2">מתן GCSF בלבד עד לעליית הנויטרופילים</button>
+  <button class="opt" data-i="3">שחרור הביתה עם מעקב אמבולטורי מכיוון שהחולה יציב המודינמית</button>
+  <div class="explain">חום נויטרופני (ANC&lt;500) נחשב זיהום חיידקי משמעותי עד שיוכח אחרת - יש להתחיל אנטיביוטיקה רחבת-טווח מיידית תוך כדי בירור מקביל. המתנה לתרביות (תשובה 2) מסכנת את החולה בהתקדמות לספסיס. GCSF לבדו (3) אינו מטפל בזיהום החיידקי הפעיל. שחרור הביתה (4) אינו מתאים - זהו מטופל בסיכון גבוה (לאחר כימותרפיה אינטנסיבית, ANC נמוך מאוד).</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. אם החום בחולה מוינייטה 1 נמשך 6 ימים למרות טיפול אנטיביוטי רחב-טווח מתאים, מה הצעד הבא המתאים?</div>
+  <button class="opt" data-i="0">להחליף לאנטיביוטיקה אחרת מאותו ספקטרום</button>
+  <button class="opt" data-i="1">להפסיק אנטיביוטיקה ולעקוב קלינית</button>
+  <button class="opt" data-i="2">להוסיף כיסוי אנטי-פטרייתי אמפירי (Amphotericin B / Caspofungin)</button>
+  <button class="opt" data-i="3">לתת דיאליזה</button>
+  <div class="explain">חום שנמשך 4-7 ימים תחת אנטיביוטיקה רחבת-טווח מעלה חשד לזיהום פטרייתי פולשני (Candida, Aspergillus) - מקובל להוסיף כיסוי אנטי-פטרייתי אמפירי ולברר באופן אקטיבי. החלפת אנטיביוטיקה (1) לא מכוונת לבעיה הסבירה. הפסקת טיפול (2) מסוכנת בחולה נויטרופני. דיאליזה (4) לא רלוונטית - אין אינדיקציה כלייתית כאן.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. באבחנה המבדלת של החולה מוינייטה 2, מה המימצא הכי אופייני שיבדיל SVCS מאי-ספיקת לב ימנית כגורם לבצקת?</div>
+  <button class="opt" data-i="0">בצקת ברגליים</button>
+  <button class="opt" data-i="1">הופעת קולטרלים וורידיים בולטים בדופן החזה, עם הרחבת מדיאסטינום בהדמיה</button>
+  <button class="opt" data-i="2">עלייה ב-BNP</button>
+  <button class="opt" data-i="3">חרחורים דו-צדדיים בבסיסי הריאות</button>
+  <div class="explain">SVCS נובע מחסימה מכנית מקומית של ה-SVC ולכן מתבטא בבצקת/גודש מוגבל לפלג הגוף העליון עם קולטרלים וורידיים בחזה והרחבת מדיאסטינום בהדמיה - לא בבצקת רגליים (1, סימן לאי-ספיקת לב ימנית סיסטמית), BNP גבוה (3, מעיד על עומס לבבי) או חרחורים (4, מעיד על גודש ריאתי מאי-ספיקת לב שמאלית).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו הטיפול הראשוני הצפוי לחולה מוינייטה 2, בהתחשב בסוג הגידול (Small cell lung cancer)?</div>
+  <button class="opt" data-i="0">קרינה בלבד ללא כימותרפיה</button>
+  <button class="opt" data-i="1">ניתוח דחוף להסרת הגידול</button>
+  <button class="opt" data-i="2">סטרואידים בלבד וללא טיפול נוסף</button>
+  <button class="opt" data-i="3">כימותרפיה (הקו הטיפולי המועדף ב-SCLC/Germ cell tumor הגורמים ל-SVCS), עם שקילת סטנט אם קשה</button>
+  <div class="explain">ב-SVCS על רקע SCLC (או Germ cell tumor) הטיפול הספציפי המועדף הוא כימותרפיה, בעוד ב-NSCLC/גרורות סולידיות אחרות מעדיפים קרינה, ובלימפומה - סטרואידים. ניתוח (2) אינו רלוונטי ב-SVCS חריף. סטרואידים בלבד (3) לא מטפלים בגורם.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">5. אישה בת 45 עם היסטוריה משפחתית של סרטן מעי גס אצל אמה (גיל 44) וסבתה (גיל 60), עוברת קולונוסקופיה שמדגימה CRC פרוקסימלי בדרגת התמיינות נמוכה. מה האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">תסמונת Lynch (HNPCC)</button>
+  <button class="opt" data-i="1">Familial adenomatous polyposis</button>
+  <button class="opt" data-i="2">CRC ספורדי</button>
+  <button class="opt" data-i="3">IBD ממושכת</button>
+  <div class="explain">שני קרובי משפחה מדרגה ראשונה/שנייה עם CRC בשתי דורות, אחד מתחת לגיל 50, ומיקום פרוקסימלי - עונים על קריטריוני אמסטרדם ומחשידים ל-Lynch syndrome. FAP (2) מתאפיין באלפי פוליפים ולא צוין כאן. CRC ספורדי (3) פחות סביר עם ההיסטוריה המשפחתית החזקה הזו. אין ציון ל-IBD (4) בווינייטה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. חולה עם Burkitt's lymphoma מתחיל טיפול כימותרפי אינטנסיבי. יומיים לאחר מכן מפתח היפרקלמיה, היפרפוספטמיה והיפוקלצמיה עם עלייה בקריאטינין. מה מנגנון הבחירה למניעת הסיבוך שכבר קרה?</div>
+  <button class="opt" data-i="0">הבססת שתן עם ביקרבונט</button>
+  <button class="opt" data-i="1">מתן דיאליזה מונעת לכל חולה בסיכון</button>
+  <button class="opt" data-i="2">הידרציה אגרסיבית + Allopurinol או Rasburicase לפני הכימותרפיה</button>
+  <button class="opt" data-i="3">מתן GCSF לפני הכימותרפיה</button>
+  <div class="explain">מניעת TLS מבוססת על זיהוי חולים בסיכון (כמו Burkitt's - שגשוג מהיר) ומתן הידרציה אגרסיבית עם Allopurinol/Febuxostat (מניעת יצירת חומצה אורית) או Rasburicase (בסיכון גבוה יותר) עוד לפני הטיפול. הבססת שתן בביקרבונט (1) אינה מקובלת ב-TLS. דיאליזה מונעת לכולם (2) אינה סטנדרט הטיפול - שמורה למקרים שנכשלו במניעה. GCSF (4) לא רלוונטי למניעת TLS.</div>
+</div>
+
+<div class="tldr" id="tldr">
+<h2><span class="num">14</span> סיכום של הסיכום</h2>
+
+<h3>כימותרפיה ואימונותרפיה</h3>
+<ul>
+<li>עיקרון-על: פגיעה בתאים מתחלקים מהר → מח עצם, מוקוזה, שיער, גונדות נפגעים תמיד.</li>
+<li>Bleomycin → ריאות (פיברוזיס); Anthracyclines → לב; Cyclophosphamide → שלפוחית (hemorrhagic cystitis); Cisplatin → כליה/עצבים/שמיעה; MTX → ריאות/כבד/כליה.</li>
+<li>R-CHOP = Rituximab (בדוק HBV לפני!) + Cyclophosphamide + Doxorubicin + Vincristine + Prednisone - הטיפול הסטנדרטי ב-DLBCL.</li>
+<li>Ipilimumab (anti-CTLA-4) → colitis חיסונית מחקה IBD.</li>
+</ul>
+
+<h3>זיהומים וחום נויטרופני</h3>
+<ul>
+<li>חום נויטרופני (ANC&lt;500) = זיהום חיידקי עד שיוכח אחרת → אנטיביוטיקה אמפירית IV מיידית (Tazocin/Carbapenem/Cefepime) המכסה Pseudomonas.</li>
+<li>חום נמשך 4-7 ימים → הוסף כיסוי אנטי-פטרייתי (Amphotericin B/Caspofungin).</li>
+<li>Typhlitis - דלקת ונמק cecum בנויטרופנים; CT מדגים דופן מעובה ± pneumatosis; טיפול שמרני ברוב המקרים.</li>
+</ul>
+
+<h3>מצבי חירום</h3>
+<ul>
+<li>SCC - כאב גב + חשד → Dexamethasone מיידי לפני MRI; פרוגנוזה תלויה במצב נוירולוגי בהתחלה.</li>
+<li>SVCS - בעיקר מסרטן ריאה; בצקת פנים/צוואר שמחמירה בשכיבה; טיפול לפי גורם (לימפומה-סטרואידים, NSCLC-קרינה, SCLC-כימותרפיה).</li>
+<li>TLS - ליזיס מסיבי של תאי גידול → חומצה אורית↑, פוספט↑, K+↑, סידן↓ → אי-ספיקת כליות; מניעה = הידרציה + Allopurinol/Rasburicase (לא ביקרבונט!).</li>
+</ul>
+
+<h3>גידולים ספציפיים</h3>
+<ul>
+<li>סרטן ריאה - Small cell/Squamous קשורים חזק לעישון, מרכזיים; Pancoast tumor → Horner's syndrome.</li>
+<li>סרטן שד - BRCA1 → triple negative בעיקר; Tamoxifen מגן על עצם אך מסכן רחם ותרומבואמבוליזם.</li>
+<li>סרטן מעי גס - adenoma-carcinoma sequence כ-10 שנים; Lynch syndrome = MMR genes, קריטריוני אמסטרדם.</li>
+<li>HCC - קריטריוני מילאן להשתלה: נגע יחיד&lt;5 ס"מ או עד 3 נגעים&lt;3 ס"מ.</li>
+<li>סרטן לבלב - צהבת חסימתית ללא כאבים, Trousseau syndrome, CA19-9.</li>
+<li>Carcinoid - עודף סרוטונין → הסמקה/שלשול/מעורבות מסתם טריקוספידלי (לב ימני).</li>
+<li>פארא-נאופלסטי: ACTH אקטופי מ-Small cell lung ca → Cushing סוער; PTHrP מ-Squamous cell → היפרקלצמיה.</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>המטולוגיה 2/4: אנמיות המוליטיות, כשל מח עצם ולוקמיות</title>
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:900px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  h1.chapter{font-size:24px; margin-top:56px; color:var(--blue); border-bottom:2px solid var(--blue-bg); padding-bottom:8px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:21px; margin:32px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:14px; flex-shrink:0}
+  h3{font-size:17.5px; margin:18px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h3{color:#fbbf24; margin:16px 0 4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .toc{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:20px 0}
+  .toc a{color:var(--blue); text-decoration:none; font-weight:600}
+  .toc ol{margin:8px 0 0; padding-inline-start:22px}
+  .toc li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<h1>המטולוגיה — חלק 2/4: אנמיות המוליטיות, כשל מח העצם ולוקמיות</h1>
+<div class="subtitle">מבוסס על עמודים 38–55 מסיכום גמר בפנימית (לי גלמור) · נתח כרונולוגי #3 מתוך 39</div>
+
+<div class="toc">
+  <strong>בתוך הנתח היום:</strong>
+  <ol>
+    <li><a href="#sec-hemolytic">אנמיות המוליטיות — חסר G6PD, אנמיה המוליטית אוטואימונית (AIHA), PNH</a></li>
+    <li><a href="#sec-failure">תסמונות כשל מח העצם — אנמיה אפלסטית ו-MDS</a></li>
+    <li><a href="#sec-leukemia">לוקמיות — AML/APL, CML, ALL, CLL</a></li>
+  </ol>
+</div>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-hemolytic">1. אנמיות המוליטיות — חסר G6PD, AIHA ו-PNH</h1>
+
+<p>המכנה המשותף לכל המצבים כאן: כדורית אדומה שנהרסת <span class="key">מוקדם מדי</span> — לפני תום 120 הימים הרגילים שלה. השאלה המארגנת היא <em>איפה</em> נהרסת הכדורית (בתוך כלי הדם = תוך-כלית, או בטחול/כבד = חוץ-כלית) ו<em>למה</em> — כי זה קובע גם את התמונה המעבדתית וגם את הטיפול.</p>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <strong>חסר G6PD:</strong> <span class="term" dir="ltr">Glucose-6-phosphate dehydrogenase</span> הוא האנזים הראשון והקצב-מגביל במסלול הפנטוז-פוספט (<span class="term" dir="ltr">pentose phosphate pathway</span>) — המסלול היחיד שבו לכדורית האדומה (שאין לה מיטוכונדריה או גרעין) יש אמצעי לייצר <span class="term" dir="ltr">NADPH</span>. ה-NADPH הזה הוא הדלק שמשמר את הגלוטתיון (<span class="term" dir="ltr">glutathione, GSH</span>) במצב מחוזר — והגלוטתיון המחוזר הוא קו ההגנה העיקרי של הכדורית מפני נזק חמצוני. כשהאנזים חסר (מוטציה בגן ב-X, ולכן <span class="key">שכיח יותר בגברים</span>), הכדורית מתפקדת נורמלית ברוב הזמן — אבל כשהיא נחשפת לעומס חמצוני (זיהום, תרופות מחמצנות כמו <span class="term" dir="ltr">dapsone/primaquine/sulfamethoxazole</span>, או אכילת פול = <span class="term" dir="ltr">favism</span>) אין לה עתודת NADPH לייצר GSH מספיק מהר, ההמוגלובין עצמו מתחמצן ומשקע (יוצר <span class="term" dir="ltr">Heinz bodies</span>), הממברנה ניזוקה — והטחול "נושך" את המשקעים האלה מהתא (יוצר <span class="term" dir="ltr">bite cells</span>) או שהתא נהרס ישירות בתוך כלי הדם. זו הסיבה שההתקף מתחיל <span class="key">2-3 ימים אחרי</span> הטריגר ולא מיד.
+  </p>
+  <p>
+    <strong>AIHA (אנמיה המוליטית אוטואימונית):</strong> נוגדן עצמי נקשר לאנטיגן על פני הכדורית. יש שני "טעמים" עיקריים, לפי סוג הנוגדן וטמפרטורת הפעילות שלו: נוגדן <span class="term" dir="ltr">IgG</span> ("חם", פעיל ב-37°C) מצפה את הכדורית אך <span class="key">אינו מפעיל משלים ביעילות</span> — לכן מקרופאג'ים בטחול ובכבד "מזהים" את חלק ה-Fc של הנוגדן ובולעים את הכדורית (פאגוציטוזה) — זו המוליזה <span class="key">חוץ-כלית</span> איטית יחסית. לעומת זאת נוגדן <span class="term" dir="ltr">IgM</span> ("קר") הוא נוגדן גדול ויעיל מאוד בהפעלת מערכת המשלים — הוא מפעיל את המסלול הקלאסי עד ליצירת <span class="term" dir="ltr">MAC (membrane attack complex)</span> שמנקב חור בממברנה — זו המוליזה <span class="key">תוך-כלית</span> חדה יותר, ומוחמרת בחשיפה לקור כי אז הנוגדן ה-IgM נקשר טוב יותר לכדורית בגפיים הקרות.
+  </p>
+  <p>
+    <strong>PNH (המוגלובינוריה לילית התקפית):</strong> מוטציה סומטית נרכשת (לא תורשתית!) בגן <span class="term" dir="ltr">PIGA</span> שנמצא על כרומוזום X, בתא גזע המטופויטי בודד שמתרבה ויוצר שיבוט (<span class="key">קלון</span>). PIGA נדרש לייצור <span class="term" dir="ltr">GPI (glycosylphosphatidylinositol)</span> — "עוגן" מולקולרי שמצמיד חלבונים מסוימים לממברנת התא. שניים מהחלבונים הללו — <span class="term" dir="ltr">CD55</span> ו-<span class="term" dir="ltr">CD59</span> — תפקידם לעכב את מערכת המשלים (CD59 בפרט חוסם את הכנסת C9 ואת השלמת ה-MAC). בלי העוגן, הכדורית "עירומה" מול מערכת המשלים העצמית שלה — כל הפעלה שגרתית של המשלים (למשל בזמן זיהום) הופכת להרס תוך-כלית של הכדוריות החסרות-GPI. אותו חוסר משפיע גם על טסיות וגרנולוציטים, ולכן ל-PNH יש טריאדה קלינית ייחודית: המוליזה + <span class="key">נטייה לפקקת ורידית</span> (מנגנון לא לגמרי מובן, קשור להפעלת טסיות ולירידה ב-NO הזמין בגלל ההמוליזה התוך-כלית) + ציטופניות (עדות לכשל נלווה של מח העצם).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="15" width="270" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="150" y="38" text-anchor="middle" font-size="13" fill="#1f2937">חסר G6PD</text>
+  <text x="150" y="56" text-anchor="middle" font-size="11" fill="#4b5563">אין NADPH → אין GSH מחוזר</text>
+  <text x="150" y="72" text-anchor="middle" font-size="11" fill="#4b5563">עומס חמצוני (תרופה/פול/זיהום)</text>
+  <path d="M285,55 L345,55" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="345" y="15" width="230" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="460" y="40" text-anchor="middle" font-size="13" fill="#1f2937">Heinz bodies + bite cells</text>
+  <text x="460" y="58" text-anchor="middle" font-size="11" fill="#4b5563">המוליזה תוך + חוץ-כלית</text>
+  <text x="460" y="76" text-anchor="middle" font-size="11" fill="#4b5563">2-3 ימים אחרי הטריגר</text>
+
+  <rect x="15" y="115" width="270" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="150" y="138" text-anchor="middle" font-size="13" fill="#1f2937">נוגדן עצמי IgG ("חם")</text>
+  <text x="150" y="156" text-anchor="middle" font-size="11" fill="#4b5563">Fc מזוהה ע"י מקרופאג'ים</text>
+  <path d="M285,155 L345,155" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="345" y="115" width="230" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="460" y="140" text-anchor="middle" font-size="13" fill="#1f2937">פאגוציטוזה בטחול/כבד</text>
+  <text x="460" y="158" text-anchor="middle" font-size="11" fill="#4b5563">המוליזה חוץ-כלית</text>
+
+  <rect x="615" y="115" width="290" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="760" y="138" text-anchor="middle" font-size="13" fill="#1f2937">נוגדן IgM ("קר") / חוסר CD55,59 (PNH)</text>
+  <text x="760" y="156" text-anchor="middle" font-size="11" fill="#4b5563">הפעלת משלים עד MAC</text>
+  <text x="760" y="174" text-anchor="middle" font-size="11" fill="#4b5563">חור בממברנה → המוליזה תוך-כלית</text>
+
+  <rect x="615" y="15" width="290" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="760" y="38" text-anchor="middle" font-size="13" fill="#1f2937">מוטציה סומטית ב-PIGA</text>
+  <text x="760" y="56" text-anchor="middle" font-size="11" fill="#4b5563">אין עוגן GPI → אין CD55/CD59</text>
+  <path d="M760,95 L760,115" stroke="#b45309" stroke-width="2" marker-end="url(#a2)"/>
+
+  <rect x="240" y="220" width="440" height="35" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="460" y="243" text-anchor="middle" font-size="12.5" fill="#1f2937">בכולם: LDH↑↑, Haptoglobin↓↓, בילירובין לא-ישיר↑, רטיקולוציטוזיס</text>
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p><strong>חסר G6PD:</strong> רוב הנשאים א-תסמיניים כל חייהם. שני התייצגויות אופייניות: <span class="key">צהבת נאונטלית</span> (יום 2-3 לחיים) ו<span class="key">התקף המוליטי אקוטי</span> — עייפות, חולשה, כאב בטן/מותניים, ואחרי 2-3 שעות צהבת ולעתים שתן כהה. הסכנה הגדולה ביותר היא <span class="key">אי ספיקת כליות אקוטית</span> (נדירה בילדים).</p>
+<p><strong>AIHA:</strong> התחלה פתאומית ודרמטית — המוגלובין יכול לרדת תוך ימים לכ-4 גרם/ד"ל. צהבת, לעתים טחול מוגבל (warm AIHA), ובהמוליזה תוך-כלית — <span class="term" dir="ltr">hemoglobinuria</span>.</p>
+<p><strong>PNH:</strong> ההתייצגות ה"קלאסית" (שתן דמי בבוקר) בפועל נדירה יחסית לשים לב אליה. שכיח יותר: אנמיה, כאבי בטן חזקים (פקקים ורידיים בטניים), ותסמונת <span class="term" dir="ltr">Budd-Chiari</span> (הפטומגליה חדה ומיימת מפקקת בווריד הכבדי) — <span class="key">אם מופיעה בלי מחלת כבד רקע, יש לחשוד ב-PNH</span>.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>אבחנה מבדלת בין המצבים ההמוליטיים</h3>
+<table>
+  <thead><tr><th>מצב</th><th>Coombs (DAT)</th><th>מיקום עיקרי</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>חסר G6PD</td><td>שלילי</td><td>תוך+חוץ-כלית</td><td>Bite cells, Heinz bodies; טריגר ברור (תרופה/פול/זיהום)</td></tr>
+    <tr><td>Warm AIHA</td><td>חיובי (IgG±C3)</td><td>חוץ-כלית (טחול)</td><td>ספרוציטים במשטח; לעתים קשור ל-SLE/CLL</td></tr>
+    <tr><td>Cold agglutinin disease</td><td>חיובי (C3 בלבד)</td><td>תוך-כלית</td><td>החמרה בחשיפה לקור; טיטר IgM גבוה, לעתים spike מונוקלונלי</td></tr>
+    <tr><td>PNH</td><td>שלילי</td><td>תוך-כלית</td><td>Flow cytometry שלילי ל-CD55/CD59; נטייה לפקקת</td></tr>
+  </tbody>
+</table>
+<p>מבחן ה-<span class="term" dir="ltr">Coombs</span> (<span class="term" dir="ltr">DAT</span>) בודק אם נוגדנים/משלים דבוקים ישירות על הכדורית — לכן הוא חיובי ב-AIHA (יש נוגדן עצמי) אך שלילי בחסר G6PD וב-PNH (שם ההרס לא נובע מנוגדן על התא אלא מפגם תוך-תאי או ברמת הממברנה). ל-PNH ה-<span class="term" dir="ltr">gold standard</span> הוא <span class="term" dir="ltr">flow cytometry</span> שמדגים אוכלוסיית תאים דו-שיאית (חלק שלילי ל-CD55/CD59).</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון</th><th>מתי משתמשים</th><th>הערות/תופעות לוואי</th></tr></thead>
+  <tbody>
+    <tr><td>סטרואידים במינון גבוה</td><td>דיכוי חיסוני כללי</td><td>קו ראשון ב-Warm AIHA</td><td>רמיסיה מיידית בלפחות 50% מהחולים</td></tr>
+    <tr><td><span class="term" dir="ltr">Rituximab</span></td><td>נוגדן אנטי-CD20, מדלדל תאי B</td><td>Warm AIHA (קו ראשון/שני), CLL</td><td>עד 60% תגובה</td></tr>
+    <tr><td><span class="term" dir="ltr">Eculizumab</span></td><td>נוגדן מונוקלונלי אנושי אנטי-C5 — חוסם היווצרות MAC</td><td>PNH</td><td>מפחית צורך בעירויים ואירועים טרומבוטיים; מנה כל שבועיים; המוליזה חוץ-כלית שיורית (C3 עדיין נקשר)</td></tr>
+    <tr><td>Splenectomy</td><td>הסרת אתר ההרס העיקרי (חוץ-כלית)</td><td>Warm AIHA עמידה</td><td>לא מרפאת; מעלה סיכון ל-sepsis וטרומבוזיס</td></tr>
+  </tbody>
+</table>
+<div class="key-box">בחסר G6PD הטיפול בעיקרו הימנעות מטריגרים + תמיכה; ב-Cold agglutinin disease סטרואידים ו-splenectomy <strong>אינם יעילים</strong> (ההרס תוך-כלי ולא בטחול) — שם עדיף Rituximab או plasma exchange.</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — טריגרים לחסר G6PD</h3>
+  <p><strong>"פול תרופה זיהום"</strong> — Favism (פול), תרופות מחמצנות (Dapsone, Primaquine, Sulfa-drugs, Rasburicase), זיהומים. וזכרו: ההתקף מתחיל <strong>יומיים-שלושה אחרי</strong> החשיפה, לא מיידית.</p>
+  <h3>סיפור דמיוני — PNH</h3>
+  <p>דמיינו כדורית אדומה שיצאה לרחוב בלי "מעיל הגנה" (עוגן ה-GPI נקרע). היא מסתובבת <strong>עירומה</strong> מול משטרת המשלים (complement) שתופסת כל תא בלי תעודת זהות (CD55/CD59) ומנקבת בו חור. בלילה, כשריכוז החומצה בשתן עולה וקרישי הדם מתפרקים — משתחררת המוגלובין לשתן = שתן כהה בבוקר.</p>
+  <svg class="diagram" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="90" cy="90" r="45" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="90" y="95" text-anchor="middle" font-size="12" fill="#1f2937">RBC "עירום"</text>
+    <path d="M150,90 L230,90" stroke="#6d28d9" stroke-width="2" marker-end="url(#a3)"/>
+    <text x="190" y="80" text-anchor="middle" font-size="11" fill="#6d28d9">משלים תוקף</text>
+    <polygon points="260,60 340,60 340,120 260,120" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="300" y="94" text-anchor="middle" font-size="20">💥</text>
+    <path d="M340,90 L420,90" stroke="#b45309" stroke-width="2" marker-end="url(#a3)"/>
+    <text x="460" y="85" text-anchor="middle" font-size="24">🌙</text>
+    <text x="460" y="110" text-anchor="middle" font-size="11" fill="#4b5563">שתן כהה בבוקר</text>
+    <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6d28d9"/></marker></defs>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> קישורים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://en.wikipedia.org/wiki/Glucose-6-phosphate_dehydrogenase_deficiency" target="_blank">Wikipedia — G6PD deficiency</a><div class="desc">סקירה נגישה של המנגנון, הטריגרים והתאחיזה ל-X.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Paroxysmal_nocturnal_hemoglobinuria" target="_blank">Wikipedia — Paroxysmal nocturnal hemoglobinuria</a><div class="desc">כולל תרשים מסלול ה-GPI anchor ותפקיד CD55/CD59.</div></li>
+  <li><a href="https://osmosis.org" target="_blank">Osmosis — ערוץ הסברים רפואיים</a><div class="desc">כדאי לחפש שם "G6PD deficiency" ו-"autoimmune hemolytic anemia" לסרטוני הסבר קצרים עם אנימציה.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 ממוצא ים-תיכוני מגיע למיון עם חולשה, כאב מותניים וצבע שתן כהה, יומיים לאחר שהחל טיפול ב-Trimethoprim-sulfamethoxazole עבור זיהום בדרכי השתן. בבדיקה: חיוור, אקטרי קלות. במעבדה: המוגלובין 8.2 (היה 14 שבועיים קודם), רטיקולוציטוזיס, LDH גבוה מאוד, הפטוגלובין לא ניתן לגילוי, בילירובין לא-ישיר גבוה. Coombs שלילי. במשטח דם: bite cells ו-Heinz bodies.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי הבדיקה הנכונה לאבחנה מרמזת (ולא בהכרח מדויקת) בזמן ההתקף האקוטי, ומדוע?</div>
+  <button class="opt" data-i="0">בדיקת Coombs — כי היא תמיד חיובית בהמוליזה חמורה</button>
+  <button class="opt" data-i="1">רמת ברזל בסרום — כי חסר ברזל גורם להמוליזה</button>
+  <button class="opt" data-i="2">רמת אנזים G6PD — אך היא עלולה לצאת שגויה-תקינה (false negative) כי הרטיקולוציטים הצעירים מכילים יותר אנזים</button>
+  <button class="opt" data-i="3">ביופסיית מח עצם — נדרשת תמיד לאבחנת חסר G6PD</button>
+  <div class="explain">התשובה הנכונה: מדידת G6PD היא הבדיקה האבחנתית, אבל בזמן התקף אקוטי הרטיקולוציטים (הצעירים, שהוחלפו זה עתה) מכילים ריכוז אנזים גבוה יחסית — מה שעלול "להסוות" את החסר ולתת false negative. לכן לעתים עדיף לבדוק שוב כמה שבועות אחרי ההתקף. Coombs שלילי כאן (לא זו הבעיה) ואין קשר לחסר ברזל. ביופסיית מח עצם לא נדרשת לאבחנה זו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. אישה בת 68 עם היסטוריה של Budd-Chiari syndrome ללא מחלת כבד ידועה. איזו בדיקה תסייע ביותר לאבחנה החשודה?</div>
+  <button class="opt" data-i="0">בדיקת Coombs</button>
+  <button class="opt" data-i="1">Flow cytometry לזיהוי היעדר CD55/CD59 בכדוריות ובגרנולוציטים</button>
+  <button class="opt" data-i="2">רמת G6PD</button>
+  <button class="opt" data-i="3">ביופסיית כבד בלבד</button>
+  <div class="explain">Budd-Chiari בהיעדר מחלת כבד רקע הוא "דגל אדום" קלאסי ל-PNH. הבדיקה המומלצת (gold standard) היא flow cytometry שמדגימה אוכלוסיית תאים שלילית ל-CD55/CD59 (חוסר עוגן GPI). Coombs יהיה שלילי ב-PNH (ההרס אינו נוגדני), וזה לא קשור ל-G6PD.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-failure">2. תסמונות כשל מח העצם — אנמיה אפלסטית ו-MDS</h1>
+
+<p>שני המצבים מתבטאים ב<span class="key">ציטופניה</span> (ירידה בשורות הדם), אבל מסיבות הפוכות: באנמיה אפלסטית מח העצם <em>ריק</em> — אין מספיק תאי גזע לייצר ממנו דבר. ב-MDS מח העצם <em>מלא</em>, אך התהליך פגום — התאים מתים בתוך מח העצם עצמו לפני שהם מספיקים "לצאת" לדם ההיקפי (<span class="term" dir="ltr">ineffective hematopoiesis</span>).</p>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <strong>אנמיה אפלסטית (AA):</strong> ברוב המקרים הנרכשים, תאי <span class="term" dir="ltr">T</span> אוטו-ריאקטיביים מפרישים ציטוקינים דלקתיים (בראשם <span class="term" dir="ltr">interferon-γ</span>) שגורמים לביטוי יתר של <span class="term" dir="ltr">FAS</span> על פני תאי הגזע ההמטופויטיים (המסומנים ב-CD34) — הפעלת FAS מובילה לאפופטוזיס (מוות תאי מתוכנת) שלהם. התוצאה: מאגר תאי הגזע קורס (יכול לרדת ל-1% ומטה מהתקין), ומח העצם "מוחלף" פיזית בשומן. במקרים תורשתיים (כמו <span class="term" dir="ltr">Fanconi anemia</span>) יש פגם אינטרינזי בתיקון DNA שגורם לתמותת תאי גזע ספונטנית, ולא תלוי-חיסון.
+  </p>
+  <p>
+    <strong>MDS (תסמונת מיאלודיספלסטית):</strong> מוטציות סומטיות מצטברות (עם הגיל, אחרי כימותרפיה/קרינה, או חשיפה סביבתית) בתא גזע יוצרות שיבוט (קלון) לא-יציב גנטית. תאי הקלון <em>כן</em> מתחלקים (ולכן מח העצם נשאר סלולרי או אף היפר-סלולרי) — אך ההתמיינות שלהם פגומה (<span class="term" dir="ltr">dysplastic</span>), והם עוברים אפופטוזיס מוגבר <span class="key">בתוך מח העצם עצמו</span> לפני שהגיעו לבשלות. זו הסיבה הפרדוקסלית לכך שיש "יותר מדי" תאים במח העצם אך "מעט מדי" מגיעים לדם ההיקפי. ככל שמצטברות יותר מוטציות/אבנורמליות ציטוגנטיות, גדל הסיכוי שקלון אחד "יברח" ממסלול ההתמיינות לגמרי — וזו ההתקדמות ל-<span class="term" dir="ltr">AML</span>.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="220" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="130" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">תאי T אוטו-ריאקטיביים</text>
+  <text x="130" y="63" text-anchor="middle" font-size="11" fill="#4b5563">IFN-γ → FAS על CD34+</text>
+  <path d="M240,55 L300,55" stroke="#2563eb" stroke-width="2" marker-end="url(#b1)"/>
+  <rect x="300" y="20" width="220" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="410" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">אפופטוזיס של תאי גזע</text>
+  <text x="410" y="63" text-anchor="middle" font-size="11" fill="#4b5563">מח עצם מוחלף בשומן</text>
+  <path d="M520,55 L580,55" stroke="#b91c1c" stroke-width="2" marker-end="url(#b1)"/>
+  <rect x="580" y="20" width="300" height="70" rx="8" fill="#f8fafc" stroke="#4b5563"/>
+  <text x="730" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">Pancytopenia ללא organomegaly</text>
+  <text x="730" y="63" text-anchor="middle" font-size="11" fill="#4b5563">מח עצם: היפו-סלולרי (&lt;25%)</text>
+
+  <rect x="20" y="115" width="220" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="130" y="140" text-anchor="middle" font-size="12.5" fill="#1f2937">מוטציות סומטיות מצטברות</text>
+  <text x="130" y="158" text-anchor="middle" font-size="11" fill="#4b5563">קלון עם התמיינות פגומה</text>
+  <path d="M240,150 L300,150" stroke="#b45309" stroke-width="2" marker-end="url(#b2)"/>
+  <rect x="300" y="115" width="220" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="410" y="140" text-anchor="middle" font-size="12.5" fill="#1f2937">אפופטוזיס תוך מח-העצם</text>
+  <text x="410" y="158" text-anchor="middle" font-size="11" fill="#4b5563">Ineffective hematopoiesis</text>
+  <path d="M520,150 L580,150" stroke="#6d28d9" stroke-width="2" marker-end="url(#b2)"/>
+  <rect x="580" y="115" width="300" height="70" rx="8" fill="#f8fafc" stroke="#4b5563"/>
+  <text x="730" y="140" text-anchor="middle" font-size="12.5" fill="#1f2937">ציטופניה + מח עצם סלולרי/היפרסלולרי</text>
+  <text x="730" y="158" text-anchor="middle" font-size="11" fill="#4b5563">סיכון עולה ל-AML</text>
+  <defs>
+    <marker id="b1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b91c1c"/></marker>
+    <marker id="b2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#6d28d9"/></marker>
+  </defs>
+</svg>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p><strong>AA:</strong> החולים "מרגישים ונראים טוב" יחסית לירידה הדרסטית בספירות — כי המחלה מוגבלת למח העצם, ללא סימפטומים סיסטמיים, ללא ירידה במשקל/לימפאדנופתיה/הגדלת טחול (אלו דווקא <span class="key">לא אופייניים</span> ל-AA ומכוונים לאבחנה אחרת). התסמין המוקדם השכיח ביותר: דימום (חבורות, דימום חניכיים/אף). ב-<span class="term" dir="ltr">Fanconi anemia</span> — קומה נמוכה, כתמי café au lait, אנומליות באגודל/רדיוס.</p>
+<p><strong>MDS:</strong> מחלת הגיל המבוגר (גיל חציוני 70). כמחצית א-תסמיניים ומאובחנים במקרה. כשיש תסמינים — בעיקר סימני אנמיה. הגדלת טחול ב-20% בלבד (בניגוד ל-CML).</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>אבחנה מבדלת: Pancytopenia לפי מח עצם</h3>
+<table>
+  <thead><tr><th>מח עצם היפו-סלולרי</th><th>מח עצם סלולרי (משני למחלה סיסטמית)</th><th>מח עצם סלולרי (מחלה ראשונית)</th></tr></thead>
+  <tbody>
+    <tr><td>אנמיה אפלסטית (נרכשת/מולדת)</td><td>SLE, Hypersplenism, חסר B12/פולאט, HIV, ספסיס</td><td>MDS, PNH, Myelofibrosis</td></tr>
+  </tbody>
+</table>
+<p><strong>אנמיה אפלסטית — קריטריון חומרה</strong> (2 מתוך 3 = מחלה חמורה, שרידות לשנה 20% ללא טיפול): נויטרופילים &lt;500/μL, טסיות &lt;20,000/μL, רטיקולוציטים מתוקנים &lt;1%.</p>
+<p><strong>MDS:</strong> אנמיה מאקרוציטית לרוב, נויטרופילים <span class="term" dir="ltr">hypo-granulated</span> עם Döhle bodies, טסיות ענקיות ללא גרנולות. במח עצם — <span class="term" dir="ltr">ring sideroblasts</span>, מגה-קריוציטים עם גרעינים לא מאורגנים. פחות מ-20% בלאסטים מבדיל מ-AML.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<table>
+  <thead><tr><th>מצב</th><th>קו טיפול ראשון</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>AA — חולה צעיר עם תורם מתאים</td><td>השתלת מח עצם אלוגנאית</td><td>שרידות ~90% בילדים; ריפוי אמיתי</td></tr>
+    <tr><td>AA — מבוגר / ללא תורם</td><td>ATG + Cyclosporine</td><td>התאוששות המטולוגית ב-60-70%; הישנות שכיחה כשמפסיקים Cyclosporine</td></tr>
+    <tr><td>MDS — סיכון נמוך</td><td>טיפול תומך (EPO, G-CSF, עירויים)</td><td></td></tr>
+    <tr><td>MDS — 5q- ספציפית</td><td><span class="term" dir="ltr">Lenalidomide</span></td><td>מפחית צורך בעירויים, מתקן ציטוגנטיקה; תופעות לוואי: דיכוי מח עצם, PE/DVT</td></tr>
+    <tr><td>MDS — כללי</td><td><span class="term" dir="ltr">Azacitidine / Decitabine</span> (Pyrimidine analogs)</td><td>משרים התמיינות בלסטים; דיכוי מח עצם, סיכון ממאירות</td></tr>
+  </tbody>
+</table>
+<div class="key-box">גלוקוקורטיקואידים <strong>אינם יעילים</strong> כטיפול ראשוני באנמיה אפלסטית ואף עלולים להזיק — טעות נפוצה במבחנים.</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — סימני Fanconi anemia</h3>
+  <p><strong>"פנקוני קצר וכתום"</strong> — קומה נמוכה, כתמי café au lait (חום-קפה), אנומליה של האגודל/רדיוס, AR (אוטוזומלי רצסיבי), מוטציה ב-FANCA, כרומוזומים שבירים ל-DNA cross-linking agents.</p>
+  <h3>סיפור דמיוני — AA מול MDS</h3>
+  <p>דמיינו מפעל (מח העצם): ב<strong>אנמיה אפלסטית</strong> — המפעל <strong>ריק ונטוש</strong>, אין פועלים בכלל. ב<strong>-MDS</strong> — המפעל <strong>מלא פועלים</strong> שעובדים, אבל כל המוצרים שהם מייצרים פגומים ונזרקים לפח <strong>לפני שיוצאים בשער</strong> (=מח העצם). זה מסביר למה ב-MDS מח העצם עמוס אך הדם ריק.</p>
+  <svg class="diagram" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="30" width="200" height="100" rx="8" fill="#f8fafc" stroke="#4b5563"/>
+    <text x="120" y="55" text-anchor="middle" font-size="12" fill="#1f2937">מפעל ריק</text>
+    <text x="120" y="80" text-anchor="middle" font-size="24">🏚️</text>
+    <text x="120" y="115" text-anchor="middle" font-size="11" fill="#4b5563">אנמיה אפלסטית</text>
+    <rect x="300" y="30" width="200" height="100" rx="8" fill="#fffbeb" stroke="#b45309"/>
+    <text x="400" y="55" text-anchor="middle" font-size="12" fill="#1f2937">מפעל עמוס, פח מלא</text>
+    <text x="400" y="80" text-anchor="middle" font-size="24">🏭🗑️</text>
+    <text x="400" y="115" text-anchor="middle" font-size="11" fill="#4b5563">MDS</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> קישורים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://en.wikipedia.org/wiki/Aplastic_anemia" target="_blank">Wikipedia — Aplastic anemia</a><div class="desc">מנגנון אוטואימוני, אטיולוגיות תורשתיות מול נרכשות.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Myelodysplastic_syndrome" target="_blank">Wikipedia — Myelodysplastic syndrome</a><div class="desc">כולל טבלת סיווג IPSS-R לפרוגנוזה.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>נער בן 16, נמוך קומה יחסית לגילו, עם מספר כתמי café au lait על הגב. מגיע עם חבורות ספונטניות ודימומי חניכיים בשבועיים האחרונים. ספירת דם: פנציטופניה. אין הגדלת טחול או בלוטות לימפה.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">3. איזו בדיקה תסייע ביותר לאישוש האבחנה החשודה בנער זה?</div>
+  <button class="opt" data-i="0">Flow cytometry ל-CD55/CD59</button>
+  <button class="opt" data-i="1">בדיקת שבירת כרומוזומים בדם היקפי (chromosomal breakage test)</button>
+  <button class="opt" data-i="2">רמת G6PD</button>
+  <button class="opt" data-i="3">Coombs test</button>
+  <div class="explain">השילוב של קומה נמוכה, café au lait ופנציטופניה בגיל צעיר מחשיד ל-Fanconi anemia — אבחנה מולדת של אנמיה אפלסטית. הבדיקה הסטנדרטית היא שבירת כרומוזומים (רגישות ל-DNA cross-linking agents). Flow cytometry ל-CD55/CD59 היא ל-PNH, לא כאן.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. אישה בת 45 עם MDS מסוג 5q- מבודד. מהו הטיפול המתאים ביותר?</div>
+  <button class="opt" data-i="0">Lenalidomide</button>
+  <button class="opt" data-i="1">גלוקוקורטיקואידים במינון גבוה</button>
+  <button class="opt" data-i="2">Eculizumab</button>
+  <button class="opt" data-i="3">Splenectomy</button>
+  <div class="explain">Lenalidomide יעילה במיוחד בתת-הסוג עם מחיקת 5q, מפחיתה תלות בעירויים ואף מתקנת את הממצא הציטוגנטי. סטרואידים לא יעילים ב-MDS, Eculizumab הוא ל-PNH, ו-splenectomy לא רלוונטית כאן.</div>
+</div>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-leukemia">3. לוקמיות — AML/APL, CML, ALL, CLL</h1>
+
+<p>ההבחנה החשובה ביותר בלוקמיות: <span class="key">אקוטית מול כרונית</span> נקבעת לפי בשלות התאים (בלאסטים לא-בשלים באקוטית, תאים בוגרים-יחסית בכרונית), ו<span class="key">מיאלואידית מול לימפואידית</span> נקבעת לפי שורת המקור. השילוב נותן ארבע מחלות שונות לגמרי בהתנהגות: AML, ALL, CML, CLL.</p>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <strong>AML:</strong> טרנספורמציה ממארת של תא גזע מיאלואידי שנתקע ("חסימת התמיינות") בשלב לא-בשל ומצטבר — כשהבלאסטים עוברים 20% ממח העצם/הדם, זו האבחנה. הבלאסטים דוחקים את ההמטופויאזה התקינה — מכאן כל התסמינים (אנמיה, זיהומים מנויטרופניה, דימומים מטרומבוציטופניה). <span class="key">הגורם הפרוגנוסטי החשוב ביותר הוא הציטוגנטיקה</span>: t(15;17) — הטרנסלוקציה של <span class="term" dir="ltr">APL (acute promyelocytic leukemia)</span> — היא הטובה ביותר (85% ריפוי!) כי היא יוצרת חלבון כימרי <span class="term" dir="ltr">PML-RARA</span> שניתן "לפתוח" מחדש עם תרופה (ATRA) ולגרום לבלאסטים <em>להתמיין</em> במקום להשמידם — אך דווקא ההתמיינות הזו (או הכימותרפיה הסטנדרטית) גורמת לשחרור פתאומי של גרנולות פרו-קרישתיות מהפרומיאלוציטים — ולכן <span class="key">DIC הוא סיבוך אופייני וקטלני ב-APL</span>.
+  </p>
+  <p>
+    <strong>CML:</strong> טרנסלוקציה בין כרומוזום 9 ל-22 — <span class="term" dir="ltr">t(9;22)</span>, "כרומוזום פילדלפיה" — יוצרת חלבון כימרי <span class="term" dir="ltr">BCR-ABL</span> שהוא <span class="term" dir="ltr">tyrosine kinase</span> פעיל-קבוע (לא תלוי אות חיצוני). זה גורם לפרוליפרציה בלתי-מבוקרת של התאים המיאלואידים — אבל בניגוד ל-AML, ההתמיינות <em>לא</em> חסומה, ולכן רואים בדם תאים בכל שלבי ההבשלה (לא רק בלאסטים) — זו הסיבה שהמחלה מתחילה כרונית ואיטית, ורק אם מצטברות מוטציות נוספות היא "מתפוצצת" ל-blast crisis (הופכת אקוטית).
+  </p>
+  <p>
+    <strong>ALL:</strong> טרנספורמציה של פרוגניטור לימפואידי (מח עצם או מערכת הלימפה) — הסננה של בלאסטים לא-בשלים גורמת לאותה תמונה של דיכוי המטופויאזה, אך יש נטייה ייחודית להסננה ל<span class="key">מערכת העצבים המרכזית</span> (עד 30% ללא טיפול מונע) ולבלוטות לימפה/טחול (tumor bulk).
+  </p>
+  <p>
+    <strong>CLL:</strong> פרוליפרציה קלונלית של לימפוציטים בוגרים (לא בלאסטים!) — לכן זו מחלה איטית שיכולה להישאר א-תסמינית שנים. הגורם הפרוגנוסטי המרכזי הוא סטטוס המוטציה ב-<span class="term" dir="ltr">IGHV</span>: תא עם מוטציות רבות (≥2% ביחס ל-germline) הוא תא "בשל" יותר ומקושר למחלה אינדולנטית; תא עם מעט מוטציות (&lt;2%) מעיד על מהלך אגרסיבי יותר.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 920 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="15" y="20" width="210" height="75" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="120" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">AML: חסימת התמיינות</text>
+  <text x="120" y="63" text-anchor="middle" font-size="11" fill="#4b5563">בלאסטים ≥20% → דוחקים מח עצם</text>
+  <rect x="245" y="20" width="210" height="75" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="350" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">APL: t(15;17) PML-RARA</text>
+  <text x="350" y="63" text-anchor="middle" font-size="11" fill="#4b5563">ATRA→התמיינות, סיכון DIC</text>
+  <rect x="475" y="20" width="210" height="75" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="580" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">CML: t(9;22) BCR-ABL</text>
+  <text x="580" y="63" text-anchor="middle" font-size="11" fill="#4b5563">TK פעיל קבוע, התמיינות תקינה</text>
+  <rect x="705" y="20" width="200" height="75" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="805" y="45" text-anchor="middle" font-size="12.5" fill="#1f2937">CLL: לימפוציטים בוגרים</text>
+  <text x="805" y="63" text-anchor="middle" font-size="11" fill="#4b5563">IGHV קובע פרוגנוזה</text>
+
+  <rect x="15" y="120" width="440" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="235" y="145" text-anchor="middle" font-size="12.5" fill="#1f2937">ALL: הסננת בלאסטים לימפואידיים</text>
+  <text x="235" y="163" text-anchor="middle" font-size="11" fill="#4b5563">נטייה ייחודית להסננת CNS (עד 30%)</text>
+  <rect x="475" y="120" width="430" height="60" rx="8" fill="#f8fafc" stroke="#4b5563"/>
+  <text x="690" y="145" text-anchor="middle" font-size="12.5" fill="#1f2937">אקוטי = בלאסטים לא-בשלים | כרוני = תאים בוגרים</text>
+  <text x="690" y="163" text-anchor="middle" font-size="11" fill="#4b5563">מחלק גם לפי מקור: מיאלואיד (AML/CML) / לימפואיד (ALL/CLL)</text>
+</svg>
+
+<h2><span class="num">5</span> אבחנה — ציטוגנטיקה ב-AML</h2>
+<table>
+  <thead><tr><th>קטגוריה</th><th>ממצא</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>פרוגנוזה טובה</td><td>t(15,17), inv(16), t(8,21), מוטציה NPM1/CEBPA</td><td>t(15,17) = APL, עד 85% ריפוי</td></tr>
+    <tr><td>פרוגנוזה גרועה</td><td>t(6,9), inv(3), complex karyotype, -7, FLT3-ITD</td><td>שיעורי הישנות גבוהים</td></tr>
+  </tbody>
+</table>
+<p><strong>רמיסיה מלאה (CR) מוגדרת:</strong> בדם — נויטרופילים ≥1000, טסיות ≥100,000, ללא בלאסטים; במח עצם — פחות מ-5% בלאסטים ללא Auer rods.</p>
+<p><strong>CLL — ציטוגנטיקה (FISH):</strong> del(13q14) בלבד = פרוגנוזה טובה ביותר; trisomy 12 = ביניים; del(11q22) (מחיקת ATM) = אגרסיבי; <span class="key">del(17p13) (מחיקת TP53) = פרוגנוזה הגרועה ביותר</span> — עמידות לכימותרפיה סטנדרטית.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון פעולה</th><th>שימוש</th><th>תופעות לוואי עיקריות</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Cytarabine</span></td><td>מעכב סינתזת DNA (פגיעה בשלב S)</td><td>אינדוקציה ב-AML (3+7)</td><td>רעילות המטולוגית; במינון גבוה — רעילות מוחית/ריאתית</td></tr>
+    <tr><td>אנתרציקלינים (Daunorubicin/Idarubicin)</td><td>מעכבים Topoisomerase II → שברי DNA</td><td>אינדוקציה ב-AML</td><td>קרדיוטוקסיות</td></tr>
+    <tr><td><span class="term" dir="ltr">ATRA (Tretinoin)</span></td><td>משרה התמיינות בלסטים דרך PML-RARA</td><td>APL — ניתנת <strong>במקום</strong> Cytarabine בפרוטוקול</td><td>APL differentiation syndrome (חום, קוצר נשימה, בצקות) — טיפול בסטרואידים</td></tr>
+    <tr><td><span class="term" dir="ltr">Arsenic trioxide</span></td><td>מדרדר את חלבון PML-RARA</td><td>APL בסיכון נמוך + ATRA (עדיף על ATRA+כימו)</td><td></td></tr>
+    <tr><td><span class="term" dir="ltr">Imatinib (Gleevec)</span></td><td>מעכב טירוזין קינאז BCR-ABL</td><td>קו ראשון ב-CML</td><td>אגירת נוזלים, בחילות, התכווצויות שרירים</td></tr>
+  </tbody>
+</table>
+<div class="key-box">ב-APL: הטיפול הסטנדרטי-ל-AML גורם לשחרור גרנולות ול-DIC קטלני — ATRA מונעת את זה כי היא <strong>לא הורגת</strong> את התא אלא מבשילה אותו. שיעור הריפוי כיום עם ATRA+ATO — עד 85%.</div>
+<p><strong>ALL — שלבי טיפול:</strong> אינדוקציה (סטרואידים, Vincristine, L-asparaginase) → קונסולידציה → אחזקה (עד שנתיים וחצי) + מניעת CNS (אינטרה-תקלי/סיסטמי/הקרנה).</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות</h3>
+  <p><strong>"15-17, מוצא 85"</strong> — טרנסלוקציה t(15,17) = APL = 85% ריפוי. <strong>"9-22 פילדלפיה, TKI מנצח"</strong> — CML.</p>
+  <h3>סיפור דמיוני — AML מול CML</h3>
+  <p>ב-AML זה כמו פס ייצור שנתקע (חסימת התמיינות) — כל הפועלים חסומים בתחנה אחת ומצטברים שם (בלאסטים). ב-CML פס הייצור <strong>עובד</strong> אך "המהירות תקועה על מקסימום" (הטירוזין קינאז BCR-ABL פעיל תמידית) — כל השלבים ממשיכים לצאת החוצה, רק בקצב מוגזם.</p>
+  <svg class="diagram" viewBox="0 0 520 150" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="30" width="200" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="120" y="55" text-anchor="middle" font-size="12" fill="#1f2937">AML</text>
+    <text x="120" y="80" text-anchor="middle" font-size="22">🚧📦📦📦</text>
+    <text x="120" y="105" text-anchor="middle" font-size="10.5" fill="#4b5563">פס ייצור חסום</text>
+    <rect x="300" y="30" width="200" height="90" rx="8" fill="#fffbeb" stroke="#b45309"/>
+    <text x="400" y="55" text-anchor="middle" font-size="12" fill="#1f2937">CML</text>
+    <text x="400" y="80" text-anchor="middle" font-size="22">⚙️💨💨💨</text>
+    <text x="400" y="105" text-anchor="middle" font-size="10.5" fill="#4b5563">פס ייצור מהיר מדי</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> קישורים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://en.wikipedia.org/wiki/Acute_promyelocytic_leukemia" target="_blank">Wikipedia — Acute promyelocytic leukemia</a><div class="desc">מנגנון t(15;17), ATRA וסיבוך ה-differentiation syndrome.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Chronic_myelogenous_leukemia" target="_blank">Wikipedia — Chronic myelogenous leukemia</a><div class="desc">כרומוזום פילדלפיה ומעכבי טירוזין קינאז.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Chronic_lymphocytic_leukemia" target="_blank">Wikipedia — Chronic lymphocytic leukemia</a><div class="desc">כולל טבלת ממצאי FISH פרוגנוסטיים.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 45 מגיע עם דימום חניכיים חמור, פטכיות ואפיסטקסיס. בבדיקת דם: פנציטופניה קלה עם נוכחות בלאסטים, PT/PTT מוארכים ופיברינוגן נמוך (תואם DIC). במשטח דם רואים תאים עם גרנולות ראשוניות רבות ו-Auer rods.</p>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">5. מהו הטיפול המיידי המתאים ביותר שיש להתחיל בו, מעבר לתמיכה ב-DIC?</div>
+  <button class="opt" data-i="0">Imatinib</button>
+  <button class="opt" data-i="1">Rituximab</button>
+  <button class="opt" data-i="2">כימותרפיה סטנדרטית 3+7 בלבד</button>
+  <button class="opt" data-i="3">ATRA (Tretinoin), משום שהתמונה תואמת APL</button>
+  <div class="explain">גרנולות ראשוניות בשפע, Auer rods, ו-DIC בהתייצגות — קלאסי ל-APL. יש להתחיל ATRA מיד עם החשד הקליני (עוד לפני אישור ציטוגנטי סופי), כי היא מדרדרת את PML-RARA ומונעת שחרור גרנולות נוסף. מתן כימותרפיה סטנדרטית בלבד (ללא ATRA) עלול להחמיר את ה-DIC. Imatinib ו-Rituximab לא רלוונטיים כאן.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. אישה בת 71 מאובחנת עם CLL, ובבדיקת FISH נמצא del(17p13). מה המשמעות הפרוגנוסטית?</div>
+  <button class="opt" data-i="0">פרוגנוזה מצוינת, כמו del(13q) מבודד</button>
+  <button class="opt" data-i="1">פרוגנוזה הגרועה ביותר — עמידות צפויה לכימותרפיה סטנדרטית (מחיקת TP53)</button>
+  <button class="opt" data-i="2">אין משמעות פרוגנוסטית, רק אבחנתית</button>
+  <button class="opt" data-i="3">מצביע על טרנספורמציה מיידית ל-AML</button>
+  <div class="explain">del(17p13) כרוך במחיקת TP53 (גן מדכא גידולים) — זהו הממצא הציטוגנטי עם הפרוגנוזה הגרועה ביותר ב-CLL, עם עמידות לכימותרפיה סטנדרטית מבוססת-DNA damage (כי TP53 נדרש לתגובת התא לנזק DNA). זה שונה לגמרי מ-del(13q) מבודד שהוא הממצא הטוב ביותר.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h3>אנמיות המוליטיות</h3>
+  <ul>
+    <li>חסר G6PD: אנזים מסלול הפנטוז-פוספט חסר → אין NADPH/GSH → המוליזה בתגובה לעומס חמצוני (תרופות/פול/זיהום), 2-3 ימים אחרי הטריגר; Coombs שלילי; bite cells/Heinz bodies.</li>
+    <li>AIHA: Coombs חיובי. Warm (IgG) → פאגוציטוזה בטחול. Cold (IgM) → הפעלת משלים, המוליזה תוך-כלית, מוחמר בקור.</li>
+    <li>PNH: מוטציה נרכשת ב-PIGA → חוסר CD55/CD59 → הרס משלים תוך-כלי. טריאדה: המוליזה+פקקת+ציטופניה. Flow cytometry לאבחנה, Eculizumab לטיפול.</li>
+  </ul>
+  <h3>כשל מח העצם</h3>
+  <ul>
+    <li>אנמיה אפלסטית: תאי T תוקפים תאי גזע → מח עצם ריק. ללא organomegaly. טיפול: BMT (צעיר+תורם) או ATG+Cyclosporine.</li>
+    <li>MDS: קלון עם התמיינות פגומה → מח עצם מלא אך ייצור לא-יעיל. Ring sideroblasts. סיכון להתקדם ל-AML.</li>
+  </ul>
+  <h3>לוקמיות</h3>
+  <ul>
+    <li>AML: בלאסטים ≥20%. APL — t(15,17), ATRA±ATO, סיכון DIC, פרוגנוזה מצוינת.</li>
+    <li>CML: t(9,22) BCR-ABL, הטיפול — TKI (Imatinib). התמיינות תקינה, לכן כרונית.</li>
+    <li>ALL: לוקמיה שכיחה בילדים; נטייה להסננת CNS; טיפול משולש שלבים + מניעת CNS.</li>
+    <li>CLL: תאים בוגרים; פרוגנוזה לפי IGHV וציטוגנטיקה — del(17p)/TP53 = הגרוע ביותר.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

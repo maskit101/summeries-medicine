@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>המטולוגיה 1/4: אנמיות היפו-פרוליפרטיביות, המוגלובינופתיות ואנמיות מגלובלסטיות</title>
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:900px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  h1.chapter{font-size:24px; margin-top:56px; color:var(--blue); border-bottom:2px solid var(--blue-bg); padding-bottom:8px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:21px; margin:32px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:14px; flex-shrink:0}
+  h3{font-size:17.5px; margin:18px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h3{color:#fbbf24; margin:16px 0 4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .toc{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:20px 0}
+  .toc a{color:var(--blue); text-decoration:none; font-weight:600}
+  .toc ol{margin:8px 0 0; padding-inline-start:22px}
+  .toc li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<h1>המטולוגיה — חלק 1/4: אנמיות היפו-פרוליפרטיביות, המוגלובינופתיות ואנמיות מגלובלסטיות</h1>
+<div class="subtitle">מבוסס על עמודים 20–37 מסיכום גמר בפנימית (לי גלמור) · נתח כרונולוגי #2 מתוך 39</div>
+
+<div class="toc">
+  <strong>בתוך הנתח היום:</strong>
+  <ol>
+    <li><a href="#sec-ida">אנמיה מחסר ברזל ואנמיות היפו-פרוליפרטיביות אחרות</a></li>
+    <li><a href="#sec-hb">המוגלובינופתיות — אנמיה חרמשית, תלסמיות, מטהמוגלובינמיה</a></li>
+    <li><a href="#sec-meg">אנמיות מגלובלסטיות — חסר B12 וחומצה פולית</a></li>
+  </ol>
+</div>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-ida">1. אנמיה מחסר ברזל ואנמיות היפו-פרוליפרטיביות אחרות</h1>
+
+<p>אנמיה היפו-פרוליפרטיבית = מצב שבו מח העצם לא מגייס מספיק כוח ייצור ביחס לחומרת האנמיה (ספירת רטיקולוציטים נמוכה מהצפוי). <span class="key">חסר ברזל הוא הגורם השכיח ביותר לאנמיה בעולם</span> (כ-50% מהמקרים), אך אותה תמונה קלינית-מעבדתית (אנמיה מיקרוציטית-היפוכרומית או נורמוציטית) יכולה לנבוע גם מדלקת כרונית, ממחלת כליות או ממצבים היפו-מטבוליים — וההבדל ביניהם הוא לב הנושא.</p>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    ברזל נספג בעיקר בתריסריון ובמעי הדק הפרוקסימלי, עובר בדם קשור ל-<span class="term" dir="ltr">transferrin</span>, ונאגר בגוף כ-<span class="term" dir="ltr">ferritin</span>. ההורמון <span class="term" dir="ltr">hepcidin</span> (מיוצר בכבד) הוא "השוער" של מטבוליזם הברזל — הוא חוסם את שחרור הברזל מהתאים ומעודד את אגירתו. כשמאזן הברזל הופך שלילי (דימום, גדילה, היריון, תזונה לקויה) בלי מספיק ברזל נכנס — קודם מתרוקנים <span class="key">המאגרים</span> (ferritin יורד, TIBC/transferrin עולה כדי "לחפש" יותר ברזל בדם), ורק כשגם הברזל הזמין בסרום יורד מתחת לסף מסוים, ייצור ההמוגלובין עצמו נפגע ‑ ואז מופיעה אנמיה מיקרוציטית-היפוכרומית (RBC קטנות, עם מעט המוגלובין בכל תא).
+  </p>
+  <p>לעומת זאת, ב<span class="key">אנמיה של מחלה כרונית</span> הבעיה היא לא חוסר ברזל אמיתי אלא "כליאה" שלו: ציטוקינים פרו-דלקתיים (IL-6 ואחרים) מעלים את רמת ה-hepcidin, שחוסם שחרור ברזל מהמאגרים ופגיעה בספיגתו במעי — כך שיש ברזל בגוף, אך הוא לא זמין למח העצם. באנמיה של מחלת כליות כרונית הבעיה שונה לחלוטין: ירידה בייצור <span class="term" dir="ltr">EPO</span> (אריתרופויאטין) בכליה הפוגעת — כך שגם עם ברזל תקין, אין מספיק אות הורמונלי לגירוי ייצור כדוריות דם.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="110" y="45" text-anchor="middle" font-size="13" fill="#1f2937">מאזן ברזל שלילי</text>
+  <text x="110" y="63" text-anchor="middle" font-size="11" fill="#4b5563">(דימום/תזונה/גדילה)</text>
+  <path d="M200,50 L260,50" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="260" y="20" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="45" text-anchor="middle" font-size="13" fill="#1f2937">ferritin ↓ , TIBC ↑</text>
+  <text x="350" y="63" text-anchor="middle" font-size="11" fill="#4b5563">דלדול מאגרים (מח עצם עדיין תקין)</text>
+  <path d="M440,50 L500,50" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="500" y="20" width="200" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="600" y="45" text-anchor="middle" font-size="13" fill="#1f2937">ברזל סרום ↓, סטורציה &lt;15%</text>
+  <text x="600" y="63" text-anchor="middle" font-size="11" fill="#4b5563">פגיעה בסינתזת המוגלובין</text>
+  <path d="M600,80 L600,120" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow-r)"/>
+  <rect x="480" y="120" width="240" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="600" y="145" text-anchor="middle" font-size="13" fill="#1f2937">אנמיה מיקרוציטית-היפוכרומית</text>
+  <text x="600" y="163" text-anchor="middle" font-size="11" fill="#4b5563">MCV↓ MCH↓ RDW↑</text>
+
+  <rect x="20" y="130" width="220" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="130" y="152" text-anchor="middle" font-size="13" fill="#1f2937">דלקת כרונית / ממאירות</text>
+  <text x="130" y="170" text-anchor="middle" font-size="11" fill="#4b5563">IL-6 ↑ → Hepcidin ↑</text>
+  <text x="130" y="186" text-anchor="middle" font-size="11" fill="#4b5563">ברזל "כלוא" במאגרים</text>
+  <path d="M240,165 L470,150" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#arrow-a)"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker>
+    <marker id="arrow-r" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b91c1c"/></marker>
+    <marker id="arrow-a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<div class="key-box">בכל גבר או אישה פוסט-מנופאוזלית עם אנמיה מחסר ברזל — יש להניח דימום ממערכת העיכול עד שיוכח אחרת, ולהפנות לבירור אנדוסקופי (קולונוסקופיה ± גסטרוסקופיה).</div>
+
+<h2><span class="num">3</span> פתופיזיולוגיה נוספת ומעורבות מערכתית</h2>
+<p>ככל שהאנמיה מחמירה (המוגלובין 7-8), מח העצם עובר מ"היפו-פרוליפרטיבי" ל<span class="term" dir="ltr">Erythroid hyperplasia</span> לא-אפקטיבי, עם תאים צעירים שלא מבשילים כראוי. אובדן ברזל מהגוף מתאפשר רק דרך אובדן דם או אובדן אפיתל (עור, מעי, דרכי שתן/מין) — אין מנגנון פיזיולוגי פעיל להפרשת עודף ברזל, ולכן <span class="key">עודף ברזל טוקסי</span> (חשוב לזכור לקראת נושא ה-hemosiderosis בהמשך). צליאק הוא גורם שכיח לתת-ספיגת ברזל שיש לזכור — אבחנה ע"י נוגדני <span class="term" dir="ltr">anti-TTG, anti-endomysial, anti-gliadin</span> ואישור בביופסיית מעי דק.</p>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>סימפטומים כלליים של אנמיה — עייפות, חיוורון, ירידה בסיבולת מאמצים, קוצר נשימה וטכיקרדיה במאמץ. ביטויים ייחודיים לחסר ברזל (על רקע פגיעה באפיתל שדורש חלוקת תאים מהירה): <span class="key">cheilosis</span> (סדקים בזוויות הפה) ו-<span class="key">koilonychia</span> (התקערות ציפורניים בצורת כפית).</p>
+
+<h2><span class="num">5</span> אבחנה ואבחנה מבדלת</h2>
+<p>ערכי המעבדה נקראים כשרשרת: כשהברזל הזמין יורד, <span class="term" dir="ltr">Transferrin</span> וה-TIBC (מדד עקיף לכמות הטרנספרין בדם) עולים כפיצוי — הגוף "מגייס יותר מוניות" להביא ברזל, גם שאין ברזל להביא. ה-ferritin יורד כי הוא משקף ישירות את מאגרי הברזל התוך-תאיים; אך הוא גם <span class="term" dir="ltr">acute phase reactant</span>, ולכן בדלקת פעילה יכול להיות "מזויף" גבוה גם כשיש חסר ברזל אמיתי במקביל.</p>
+<table>
+  <thead><tr><th>מצב</th><th>ברזל בסרום</th><th>TIBC</th><th>סטורציית טרנספרין</th><th>Ferritin</th></tr></thead>
+  <tbody>
+    <tr><td>חסר ברזל</td><td>↓ (&lt;30)</td><td>↑ (&gt;360)</td><td>↓ (&lt;10%)</td><td>↓ (&lt;15)</td></tr>
+    <tr><td>דלקת/מחלה כרונית</td><td>↓ (&lt;50)</td><td>↓ (&lt;300)</td><td>10–20%</td><td>↑ (acute phase)</td></tr>
+    <tr><td>תלסמיה</td><td>תקין-גבוה</td><td>תקין</td><td>30–80%</td><td>תקין-גבוה</td></tr>
+    <tr><td>אנמיה סידרובלסטית</td><td>תקין-גבוה</td><td>תקין</td><td>משתנה</td><td>תקין-גבוה</td></tr>
+  </tbody>
+</table>
+<p><span class="key">RDW גבוה</span> (שונות בגודל התאים) מבדיל חסר ברזל מתלסמיה — בתלסמיה ה-RDW בד"כ תקין כי כל התאים קטנים בצורה אחידה, ואילו בחסר ברזל יש תערובת של תאים ישנים (גדולים יותר) וחדשים (קטנים מאוד) שנוצרים עם פחות ופחות המוגלובין ככל שהחסר מחמיר.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<table>
+  <thead><tr><th>קו טיפול</th><th>מתי</th><th>נקודות מפתח</th></tr></thead>
+  <tbody>
+    <tr><td>ברזל פומי (<span dir="ltr" class="term">ferrous sulfate</span> ודומיו)</td><td>רוב המקרים הלא-אקוטיים</td><td>ליטול על בטן ריקה (מזון וחלב פוגעים בספיגה); תופעות לוואי GI ב-15-20%; רטיקולוציטוזיס תוך 4-7 ימים; המשך 6-12 חודשים אחרי תיקון ההמוגלובין כדי למלא מאגרים</td></tr>
+    <tr><td>ברזל תוך-ורידי</td><td>אי-סבילות/אי-תגובה לפומי, תת-ספיגה, אובדן דם מתמשך</td><td>סיכון לתגובה אנפילקטית-דמוית (פריחה, ארטרלגיה, חום, בחומרה: כאבים בחזה/תת ל"ד — יש להפסיק מתן)</td></tr>
+    <tr><td>עירוי דם</td><td>המוגלובין &lt;7, אי-יציבות המודינמית, מחלת רקע לבבית/ריאתית</td><td>מתקן אקוטית ומספק גם מקור ברזל לשימוש חוזר</td></tr>
+    <tr><td>EPO תוך-ורידי</td><td>CKD, דלקת כרונית (EPO אנדוגני נמוך)</td><td>לוודא מאגרי ברזל מלאים לפני מתן; סיכון טרומבו-אמבולי והחשה של גדילת גידול — לשקול בזהירות בחולי סרטן</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: "כד ריק לפני שהברז נסגר"</h3>
+  <p>דמייני כד מים (מאגרי הברזל = ferritin) שמתרוקן קודם, ורק אחר כך גם הברז עצמו (ברזל בסרום) מפסיק לזרום. כל עוד יש מים בכד — הצנרת (transferrin/TIBC) עדיין "מבקשת" יותר ומתרחבת (TIBC↑), אבל רק כשגם הכד ריק וגם הברז חסום, המפעל (מח העצם) לא מקבל חומר גלם וכדוריות הדם יוצאות "רזות וחיוורות" (מיקרוציטיות-היפוכרומיות).</p>
+  <h3>סיפור דמיוני להבדלה מדלקת כרונית</h3>
+  <p>בחסר ברזל אמיתי — <span class="key">אין ברזל בבית</span> (המאגרים ריקים, ferritin↓). בדלקת כרונית — <span class="key">יש ברזל בבית אבל הדלת נעולה</span> (hepcidin↑ נועל את השחרור, ferritin נשאר תקין-גבוה כי הוא סוגר את הברזל ולא משקף מחסור אמיתי).</p>
+  <svg class="diagram" viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="30" width="140" height="100" rx="10" fill="#ecfdf5" stroke="#047857"/>
+    <text x="100" y="20" text-anchor="middle" font-size="12" fill="#047857">חסר ברזל</text>
+    <circle cx="100" cy="80" r="22" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="3,3"/>
+    <text x="100" y="85" text-anchor="middle" font-size="11" fill="#4b5563">כד ריק</text>
+    <rect x="330" y="30" width="140" height="100" rx="10" fill="#fffbeb" stroke="#b45309"/>
+    <text x="400" y="20" text-anchor="middle" font-size="12" fill="#b45309">דלקת כרונית</text>
+    <circle cx="400" cy="80" r="22" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="400" y="85" text-anchor="middle" font-size="10" fill="#4b5563">כד מלא</text>
+    <rect x="388" y="102" width="24" height="10" fill="#b45309"/>
+    <text x="400" y="140" text-anchor="middle" font-size="10" fill="#4b5563">מנעול (Hepcidin)</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK559311/" target="_blank">StatPearls – Spoon Nails (Koilonychia)</a><div class="desc">תיאור מפורט וקצר עם הקשר קליני לחסר ברזל, ממאגר NCBI/StatPearls.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5838265/" target="_blank">Spoon nails: still seen in today's world (PMC)</a><div class="desc">סקירה על קוילוניכיה עם תמונות קליניות אמיתיות ורקע אטיולוגי.</div></li>
+</ul>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-hb">2. המוגלובינופתיות — אנמיה חרמשית, תלסמיות, מטהמוגלובינמיה</h1>
+
+<p>המוגלובינופתיות הן קבוצת הפרעות תורשתיות (לרוב) במבנה, בתפקוד או בייצור ההמוגלובין. שתי המשפחות העיקריות: <span class="term" dir="ltr">structural hemoglobinopathies</span> (שינוי ברצף חומצות האמינו — כמו HbS באנמיה חרמשית) מול <span class="term" dir="ltr">thalassemias</span> (פגם בכמות הייצור של שרשרת גלובין תקינה). שתיהן שכיחות באזורים אנדמיים למלריה, כנראה כי הן מספקות יתרון הישרדותי מסוים מפני הטפיל.</p>
+
+<h2><span class="num">2</span> אנמיה חרמשית — המנגנון</h2>
+<div class="mechanism">
+  <p class="chain">מוטציה בגן ה-<span class="term" dir="ltr">β-globin</span> יוצרת <span class="term" dir="ltr">HbS</span>. כש-HbS עובר <span class="term" dir="ltr">דה-אוקסיגנציה</span> (משחרר חמצן, כמו שקורה בנימיות הקטנות) הוא עובר <span class="key">פולימריזציה הפיכה</span> — יוצר רשת פולימרים פיברוטיים בתוך התא. זה מקשיח את ממברנת ה-RBC, מייבש אותה (זליגת אשלגן וכניסת סידן), והופך אותה לצורת חרמש נוקשה שלא עוברת בקלות בנימיות ונדבקת בצורה לא-תקינה לאנדותל. משתי התוצאות האלה נובעים <span class="key">שני מנגנוני הנזק</span>: (1) חסימה מיקרו-וסקולרית → איסכמיה בכל איבר, ו-(2) הרס מוגבר של הכדוריות המעוותות ע"י הטחול והכבד → אנמיה המוליטית כרונית.</p>
+</div>
+<svg class="diagram" viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="85" y="45" text-anchor="middle" font-size="12" fill="#1f2937">מוטציית β-globin</text><text x="85" y="63" text-anchor="middle" font-size="11" fill="#4b5563">→ HbS</text>
+  <path d="M160,50 L210,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="285" y="45" text-anchor="middle" font-size="12" fill="#1f2937">דה-אוקסיגנציה</text><text x="285" y="63" text-anchor="middle" font-size="11" fill="#4b5563">פולימריזציה של HbS</text>
+  <path d="M360,50 L410,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="410" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="485" y="45" text-anchor="middle" font-size="12" fill="#1f2937">כדורית חרמשית</text><text x="485" y="63" text-anchor="middle" font-size="11" fill="#4b5563">נוקשה, דביקה</text>
+  <path d="M485,80 L400,110" stroke="#b91c1c" stroke-width="2" marker-end="url(#a2)"/>
+  <path d="M485,80 L570,110" stroke="#b91c1c" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="290" y="110" width="200" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="390" y="132" text-anchor="middle" font-size="12" fill="#1f2937">חסימה מיקרו-וסקולרית</text><text x="390" y="148" text-anchor="middle" font-size="10" fill="#4b5563">→ painful crisis, אוטמים</text>
+  <rect x="570" y="110" width="200" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="670" y="132" text-anchor="middle" font-size="12" fill="#1f2937">הרס בטחול/כבד</text><text x="670" y="148" text-anchor="middle" font-size="10" fill="#4b5563">→ אנמיה המוליטית</text>
+  <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#2563eb"/></marker>
+  <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#b91c1c"/></marker></defs>
+</svg>
+
+<h3>ביטויים קליניים לפי איבר</h3>
+<table>
+  <thead><tr><th>מערכת</th><th>ביטוי</th><th>מנגנון בקצרה</th></tr></thead>
+  <tbody>
+    <tr><td>טחול</td><td>אוטו-ספלנקטומיה עד גיל 18-36 ח' → סיכון לזיהום בחיידקים מקופסלים (בעיקר <span dir="ltr" class="term">pneumococcus</span>); לעיתים <span dir="ltr" class="term">splenic sequestration crisis</span> חריף</td><td>מיקרו-אוטמים חוזרים הורסים את הטחול בהדרגה</td></tr>
+    <tr><td>ריאה</td><td><span dir="ltr" class="term">Acute chest syndrome</span> — כאב חזה, טכיפנאה, חום, היפוקסיה</td><td>התחרמשות ברקמת הריאה או מיקרו-תסחיפים ממח העצם</td></tr>
+    <tr><td>CNS</td><td>שבץ (בעיקר בילדים)</td><td>חסימה של כלי דם מוחיים גדולים</td></tr>
+    <tr><td>כליה</td><td><span dir="ltr" class="term">Papillary necrosis</span>, <span dir="ltr" class="term">isosthenuria</span></td><td>הסביבה ההיפרטונית/היפוקסית במדולה הכלייתית מעודדת חרמוש מקומי</td></tr>
+    <tr><td>שריר-שלד</td><td>Aseptic necrosis (ראש הומרוס/פמור), dactylitis, אוסטאומיאליטיס (Salmonella)</td><td>איסכמיה עצמית ופגיעות לזיהום עצם משני לאוטמים</td></tr>
+    <tr><td>מין (גברים)</td><td>Priapism</td><td>חסימה ורידית של הפין</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> אבחנה וטיפול</h2>
+<p>אבחנה ע"י אלקטרופורזה של המוגלובין, <span dir="ltr" class="term">mass spectroscopy</span> ומבחן <span dir="ltr" class="term">sickling</span>. חשוב לאפיין את סוג ההמוגלובינופתיה במדויק — ל-hemoglobin SC יש פרוגנוזה שונה. חולים עם היסטוריה של &gt;3 משברים בשנה, CVA, hand-foot syndrome או ACS חוזר — פקטורים פרוגנוסטיים שליליים.</p>
+<table>
+  <thead><tr><th>מצב</th><th>טיפול מרכזי</th><th>הערה מנגנונית</th></tr></thead>
+  <tbody>
+    <tr><td>Painful crisis</td><td>הידרציה, אנלגזיה אגרסיבית (מורפיום), הערכת טריגר</td><td>הידרציה מקטינה צמיגות הדם ומפחיתה נטייה לפולימריזציה</td></tr>
+    <tr><td>Acute chest syndrome</td><td>חמצן, הידרציה זהירה (סכנת בצקת ריאות), אנטיביוטיקה, לעיתים exchange transfusion</td><td>מצב חירום אמיתי — עלול להצריך טיפול נמרץ</td></tr>
+    <tr><td>מניעה כרונית</td><td><span dir="ltr" class="term">Hydroxyurea</span></td><td>מעלה HbF, שאינו נכנס לפולימריזציה — "מדלל" את HbS</td></tr>
+    <tr><td>מניעת זיהומים</td><td>חיסון פנאומוקוק/Hib, אנטיביוטיקה פרופילקטית בילדים ללא טחול</td><td>אספלניה תפקודית</td></tr>
+    <tr><td>מרפא היחיד</td><td>השתלת מח עצם</td><td>יעילה בעיקר בילדים, שמורה למקרים קשים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה — אנמיה חרמשית</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות לסיבוכים: SICKLE</h3>
+  <p><b>S</b>plenic sequestration/aspleнia · <b>I</b>nfection (מקופסלים) · <b>C</b>risis כואב · <b>K</b>idney (papillary necrosis) · <b>L</b>ung (acute chest) · <b>E</b>ye (רטינופתיה, היפרדות רשתית)</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני קבוצת <span class="key">סהרונים קטנים וקשוחים</span> שמנסים להיכנס בריצה למנהרה צרה (הנימית) — הם נתקעים, חוסמים את התור מאחוריהם (חסימה=כאב), ובנוסף כל פעם שסהרון "נשבר" בדרך, מישהו בכניסה לטחול תופס אותו ומוציא אותו מהמשחק (המוליזה בטחול).</p>
+  <svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="60" width="460" height="30" fill="#f3f4f6" stroke="#9ca3af"/>
+    <path d="M60,75 a10,10 0 1,0 20,0 a8,8 0 1,1 -20,0" fill="#b91c1c"/>
+    <path d="M100,75 a10,10 0 1,0 20,0 a8,8 0 1,1 -20,0" fill="#b91c1c"/>
+    <path d="M140,75 a10,10 0 1,0 20,0 a8,8 0 1,1 -20,0" fill="#b91c1c"/>
+    <text x="250" y="30" text-anchor="middle" font-size="12" fill="#4b5563">"פקק סהרונים" בנימית צרה</text>
+    <rect x="380" y="55" width="90" height="40" rx="6" fill="#ecfdf5" stroke="#047857"/>
+    <text x="425" y="80" text-anchor="middle" font-size="11" fill="#047857">טחול תופס</text>
+  </svg>
+</div>
+
+<h2><span class="num">2b</span> תלסמיות — המנגנון</h2>
+<div class="mechanism">
+  <p class="chain">בתלסמיה הבעיה היא לא שרשרת פגומה אלא <span class="key">חוסר איזון כמותי</span> בין שרשראות α ו-β. ב-β-thalassemia major, כמעט אין שרשראות β תקינות, אך שרשראות α ממשיכות להיווצר כרגיל — הן מצטברות בעודף, לא מסיסות, ויוצרות גופיפי הסגר טוקסיים שהורגים אריתרובלסטים כבר בתוך מח העצם (<span class="term" dir="ltr">ineffective erythropoiesis</span>). המעטים ששורדים ויוצאים לדם מזוהים ע"י הטחול כפגומים ונהרסים שם — אנמיה המוליטית קשה. הגוף מגיב בשחרור EPO מוגבר, אך זה רק מגביר את ההיפרפלזיה הלא-יעילה — כולל בעצמות (מכאן "פני סנאי" ושברים פתולוגיים) ובכבד/טחול (המטופואזה חוץ-מדולרית).</p>
+</div>
+
+<h3>α-thalassemia — כמה מחיקות = כמה חומרה</h3>
+<table>
+  <thead><tr><th>מס' loci מחוקים מתוך 4</th><th>שם</th><th>קליניקה</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Silent carrier</td><td>א-תסמיני</td></tr>
+    <tr><td>2</td><td>Alpha thalassemia trait</td><td>מיקרוציטוזיס/היפוכרומיה ללא אנמיה משמעותית</td></tr>
+    <tr><td>3</td><td>HbH disease</td><td>אנמיה המוליטית בינונית (β4 tetramers = HbH), לעיתים דורש עירויים/כריתת טחול</td></tr>
+    <tr><td>4</td><td>Hb Barts / hydrops fetalis</td><td>אין ייצור המוגלובין פונקציונלי → תמותה תוך-רחמית</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">תלסמיה מול חסר ברזל: ב-<span class="key">שתיהן</span> יש מיקרוציטוזיס/היפוכרומיה, אך בתלסמיה ספירת ה-RBC תקינה-גבוהה וה-RDW תקין (כל התאים קטנים בצורה אחידה), ואילו בחסר ברזל ספירת ה-RBC נמוכה וה-RDW גבוה.</div>
+
+<h2><span class="num">6b</span> טיפול בתלסמיה ובעיית העומס בברזל</h2>
+<p>עירויי דם חוזרים משפרים אספקת חמצן ומדכאים את ה-erythropoiesis הלא-יעיל, אך <span class="key">יחידת דם אחת מכילה כ-250-300 מ"ג ברזל</span> — שתי מנות שוות לצריכת ברזל פומי של שנה-שנתיים! מכיוון שאין מנגנון פיזיולוגי להפרשת עודף ברזל, חולים שקיבלו מעל 100 מנות דם כמעט תמיד יפתחו <span dir="ltr" class="term">transfusional hemosiderosis</span> — עם פגיעה אנדוקרינית, שחמת כבד וקרדיומיופתיה (סיבת מוות מובילה). הפתרון: כילציה של ברזל (<span dir="ltr" class="term">Deferoxamine</span> פראנטרלי או <span dir="ltr" class="term">Deferasirox</span> פומי), שיש להתחיל לפני גיל 5-8.</p>
+
+<h2><span class="num">2c</span> מטהמוגלובינמיה — בקצרה</h2>
+<p>חמצון של הברזל ב-Heme ממצב <span dir="ltr" class="term">ferrous</span> (Fe²⁺) ל-<span dir="ltr" class="term">ferric</span> (Fe³⁺) יוצר <span dir="ltr" class="term">methemoglobin</span> — בעל אפיניות גבוהה מאוד לחמצן, כך שכמעט אין שחרור חמצן לרקמות למרות PaO2 תקין (ציאנוזה "מדומה"). גורמים: מולד (מוטציה בגלובין או באנזימים שמפרקים methemoglobin) או נרכש (חשיפה לניטרטים/תרופות מחמצנות). טיפול חירום: <span dir="ltr" class="term">Methylene blue IV</span>.</p>
+
+<h2><span class="num">8b</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Sickle_cells.jpg" target="_blank">Wikimedia Commons – Sickle cells (משטח דם)</a><div class="desc">תמונת משטח דם עם כדוריות חרמשיות אופייניות, מוטמעת למטה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/Category:Sickle-cell_disease_blood_films" target="_blank">Wikimedia Commons – קטגוריית תמונות משטחי דם באנמיה חרמשית</a><div class="desc">אוסף תמונות נוספות להשוואה.</div></li>
+</ul>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sickle_cells.jpg" alt="משטח דם עם כדוריות חרמשיות">
+  <figcaption>כדוריות דם בצורת חרמש (מטבע ה"סהר") לצד תאי דם תקינים במשטח. מקור: <a href="https://commons.wikimedia.org/wiki/File:Sickle_cells.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<!-- ==================================================================== -->
+<h1 class="chapter" id="sec-meg">3. אנמיות מגלובלסטיות — חסר B12 וחומצה פולית</h1>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">B12 (<span class="term" dir="ltr">cobalamin</span>) וחומצה פולית (<span class="term" dir="ltr">folate</span>) הם קו-אנזימים הכרחיים בסינתזת פורינים ופירימידינים — אבני הבניין של DNA. כשהם חסרים, <span class="key">סינתזת ה-DNA נפגעת בתאים שמתחלקים מהר</span> (בעיקר מח עצם ואפיתל מערכת העיכול) — אבל סינתזת RNA וחלבון (ציטופלזמה) ממשיכה כרגיל. התוצאה היא <span class="key">א-סינכרון גרעין-ציטופלזמה</span>: התא גדל וממשיך לצבור המוגלובין בציטופלזמה, אך חלוקת הגרעין מתעכבת — נוצרים תאים גדולים ומגושמים (מגלובלסטים) שרובם מתים במח העצם עוד לפני שיוצאים לדם (erythropoiesis לא-יעיל, בדומה לתלסמיה אך ממנגנון שונה לגמרי).</p>
+</div>
+<svg class="diagram" viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="55" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="80" text-anchor="middle" font-size="12" fill="#1f2937">חסר B12/folate</text><text x="90" y="98" text-anchor="middle" font-size="11" fill="#4b5563">קו-אנזימים ל-DNA</text>
+  <path d="M170,85 L220,85" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="220" y="55" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="310" y="80" text-anchor="middle" font-size="12" fill="#1f2937">פגיעה בסינתזת DNA</text><text x="310" y="98" text-anchor="middle" font-size="10" fill="#4b5563">RNA/חלבון תקינים</text>
+  <path d="M400,85 L450,85" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="450" y="55" width="200" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="550" y="80" text-anchor="middle" font-size="12" fill="#1f2937">א-סינכרון גרעין-ציטופלזמה</text><text x="550" y="98" text-anchor="middle" font-size="10" fill="#4b5563">מגלובלסטים</text>
+  <path d="M650,85 L700,85" stroke="#b91c1c" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="700" y="55" width="190" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="795" y="80" text-anchor="middle" font-size="12" fill="#1f2937">Erythropoiesis לא-יעיל</text><text x="795" y="98" text-anchor="middle" font-size="10" fill="#4b5563">↑LDH ↑בילירובין עקיף ↓הפטוגלובין</text>
+</svg>
+
+<p><span class="key">בדיקת מעבדה שכיחה שמבלבלת</span>: הפירוק התוך-מדולרי של מגלובלסטים (לא מגיע כלל לדם ההיקפי!) גורם לעלייה ב-LDH ובבילירובין <span class="key">הלא-ישיר (עקיף)</span> — כי זה בילירובין שמקורו בפירוק המוגלובין טרם קונוגציה בכבד — ולירידה בהפטוגלובין (נצרך לקשירת המוגלובין חופשי). זו תמונה "המוליטית לכאורה" גם בלי הרס בדם ההיקפי עצמו.</p>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>מערכתית: אנורקסיה, ירידה במשקל, שלשולים/עצירות, <span dir="ltr" class="term">glossitis</span> ו-cheilosis, חום נמוך. <span class="key">רק חסר B12 (לא folate) גורם לתסמינים נוירולוגיים</span> — כי B12 דרוש למיאליניזציה ב-CNS: פגיעה בעמודות האחוריות של חוט השדרה (פגיעה בפרופריוספציה ובשיווי משקל), נוירופתיה פריפרית, ואף פסיכוזה ודמנציה. תסמינים נוירולוגיים יכולים להופיע <span class="key">גם ללא אנמיה</span>.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<table>
+  <thead><tr><th>ממצא</th><th>מנגנון</th></tr></thead>
+  <tbody>
+    <tr><td>MCV &gt;100 (מקרוציטוזיס)</td><td>תאים גדולים בגלל א-סינכרון גרעין-ציטופלזמה</td></tr>
+    <tr><td>נויטרופילים היפר-סגמנטריים (&gt;5 אונות)</td><td>אותה פגיעה ב-DNA משפיעה גם על שורת התאים הלבנים</td></tr>
+    <tr><td>Reticulocyte production index נמוך</td><td>erythropoiesis לא-יעיל — מעט תאים בשלים יוצאים לדם</td></tr>
+    <tr><td>Pancytopenia (במצבים קשים)</td><td>הפגיעה ב-DNA פוגעת בכל שורות התאים במח העצם</td></tr>
+    <tr><td>LDH↑, בילירובין עקיף↑, הפטוגלובין↓</td><td>המוליזה תוך-מדולרית (ראו מנגנון למעלה)</td></tr>
+  </tbody>
+</table>
+<figure>
+  <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hypersegmented_neutrophil.png" alt="נויטרופיל היפר-סגמנטרי">
+  <figcaption>נויטרופיל עם גרעין רב-אונות (hypersegmented) — סימן קלאסי במשטח דם באנמיה מגלובלסטית. מקור: <a href="https://commons.wikimedia.org/wiki/File:Hypersegmented_neutrophil.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>B12 מול folate — מה מבדיל</h3>
+<table>
+  <thead><tr><th></th><th>חסר B12</th><th>חסר Folate</th></tr></thead>
+  <tbody>
+    <tr><td>קצב התפתחות</td><td>איטי (מאגרים ל-3-4 שנים)</td><td>מהיר (מאגרים ל-3-4 חודשים בלבד)</td></tr>
+    <tr><td>תסמינים נוירולוגיים</td><td>כן</td><td>לא (אלא אם משולב)</td></tr>
+    <tr><td>גורם קלאסי</td><td>Pernicious anemia (חסר Intrinsic Factor)</td><td>אלכוהוליזם, תזונה דלה, היריון</td></tr>
+  </tbody>
+</table>
+
+<h3>Pernicious anemia</h3>
+<p>מחלה אוטואימונית שפוגעת ברירית הקיבה וגורמת להיעדר <span dir="ltr" class="term">Intrinsic Factor (IF)</span> — חלבון החיוני לספיגת B12 ב-ileum הטרמינלי. שני סוגי נוגדנים: <span class="term" dir="ltr">Type 1 (blocking)</span> מונע יצירת קומפלקס IF-B12 (55% מהחולים), <span class="term" dir="ltr">Type 2 (binding)</span> מונע קישור ל-ileum (35%). קשורה למחלות אוטואימוניות נוספות (ויטיליגו, סוכרת סוג 1, מחלת בלוטת התריס).</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<table>
+  <thead><tr><th>חסר</th><th>טיפול</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td>B12</td><td>זריקות IM (1 מ"ג, 6 זריקות במרווחי 3-7 ימים ואז אחזקה כל 3 חודשים); אלטרנטיבה: מינון פומי גבוה (1000-2000 מק"ג)</td><td>ספיגה פסיבית קטנה (&lt;1%) עובדת גם בהיעדר IF</td></tr>
+    <tr><td>Folate</td><td>PO 5-15 מ"ג ליום, כ-4 חודשים</td><td>עד שכל ה-RBCs חסרי הפולאט מוחלפים בתאים חדשים</td></tr>
+  </tbody>
+</table>
+<div class="key-box">לפני מתן פולאט לחולה עם חסר B12 לא מאובחן — יש לבדוק גם B12! מתן פולאט לבד "יתקן" את התמונה ההמטולוגית (אנמיה) אך <span class="key">יחמיר את הפגיעה הנוירולוגית</span> הבלתי-הפיכה שנגרמת מחסר B12.</div>
+<p>סיבוך אופייני בתחילת טיפול: <span class="key">היפוקלמיה</span> — ייצור מוגבר פתאומי של תאי דם צורך אשלגן בכמות גדולה; יש לעקוב אחר רמות האשלגן.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני <span class="key">מפעל הרכבה (התא)</span> שבו קו הייצור של גוף המכונית (הגרעין, ה-DNA) נתקע כי חסר ברגים (B12/folate), אבל צוות הצביעה והריפוד (הציטופלזמה, ההמוגלובין) ממשיך לעבוד כרגיל. התוצאה: מכוניות "מנופחות" מבחוץ עם שלד לא גמור מבפנים — גדולות אך לא תפקודיות, ורובן נפסלות בבדיקת האיכות (מח העצם) לפני שיוצאות מהמפעל.</p>
+  <svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="40" width="200" height="70" rx="10" fill="#ecfdf5" stroke="#047857"/>
+    <text x="130" y="30" text-anchor="middle" font-size="12" fill="#047857">קו הרכבה תקין</text>
+    <circle cx="80" cy="75" r="15" fill="#047857"/><rect x="105" y="65" width="80" height="20" rx="4" fill="#047857"/>
+    <rect x="270" y="40" width="200" height="70" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="370" y="30" text-anchor="middle" font-size="12" fill="#b91c1c">קו הרכבה תקוע (גרעין)</text>
+    <circle cx="320" cy="75" r="22" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="3,2"/><rect x="355" y="60" width="100" height="30" rx="4" fill="#b91c1c" opacity="0.5"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://en.wikipedia.org/wiki/Megaloblastic_anemia" target="_blank">Wikipedia – Megaloblastic anemia</a><div class="desc">סקירה כללית עם תמונות משטח דם נוספות ותרשים מנגנון.</div></li>
+</ul>
+
+<!-- ==================================================================== -->
+<h1 class="chapter">מקרים קליניים ותרגול</h1>
+
+<div class="case">
+  <h3>מקרה 1 — חסר ברזל</h3>
+  <p>אישה בת 34, ללא רקע רפואי, מגיעה עם עייפות וקוצר נשימה במאמץ בחודשים האחרונים, ומחזורים כבדים וממושכים. בבדיקה: חיוורון, ציפורניים שטוחות-מעט קעורות. ספירת דם: Hb 9.2, MCV 68, RDW גבוה. ברזל בסרום 22, TIBC 410, ferritin 8.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">אנמיה של מחלה כרונית</button>
+  <button class="opt" data-i="1">אנמיה מחסר ברזל</button>
+  <button class="opt" data-i="2">β-thalassemia minor</button>
+  <button class="opt" data-i="3">אנמיה מגלובלסטית</button>
+  <div class="explain">נכון: <b>חסר ברזל</b> — TIBC גבוה + ferritin נמוך מאוד + RDW גבוה, עם גורם ברור (מחזורים כבדים). באנמיה של מחלה כרונית TIBC היה נמוך. בתלסמיה RDW היה תקין ו-ferritin תקין-גבוה. באנמיה מגלובלסטית MCV היה גבוה, לא נמוך.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה הצעד הבא המתאים ביותר אם מתעדים מחדש חוסר תגובה לברזל פומי אחרי 3 חודשים בגבר בן 55 עם אותה תמונה מעבדתית?</div>
+  <button class="opt" data-i="0">להכפיל את מינון הברזל הפומי ולהמתין עוד חודש</button>
+  <button class="opt" data-i="1">להתחיל טיפול ב-EPO</button>
+  <button class="opt" data-i="2">קולונוסקופיה (± גסטרוסקופיה) לשלול דימום GI</button>
+  <button class="opt" data-i="3">מתן חומצה פולית</button>
+  <div class="explain">נכון: בגבר עם חסר ברזל, יש לשלול דימום ממערכת העיכול עד שיוכח אחרת — במיוחד כשאין תגובה לטיפול. הכפלת מינון לא מטפלת בגורם; EPO ופולאט לא רלוונטיים לחסר ברזל.</div>
+</div>
+
+<div class="case">
+  <h3>מקרה 2 — אנמיה חרמשית</h3>
+  <p>ילד בן 6 עם אנמיה חרמשית ידועה מגיע עם כאבי חזה פתאומיים, חום 38.5°, טכיפנאה וסטורציה 91% באוויר חדר. בצילום חזה — הסתמנות חדשה באונה תחתונה.</p>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי האבחנה המסתמנת?</div>
+  <button class="opt" data-i="0">Acute chest syndrome</button>
+  <button class="opt" data-i="1">Splenic sequestration crisis</button>
+  <button class="opt" data-i="2">Aplastic crisis על רקע Parvovirus B19</button>
+  <button class="opt" data-i="3">דלקת ריאות ויראלית פשוטה שאינה קשורה למחלת הרקע</button>
+  <div class="explain">נכון: כאב חזה + טכיפנאה + חום + היפוקסיה + הסתמנות ריאתית חדשה בילד עם אנמיה חרמשית = acute chest syndrome עד שיוכח אחרת — מצב חירום. Splenic sequestration מתבטא בירידה פתאומית בהמוגלובין וטחול מוגדל, לא בתמונה ריאתית. Aplastic crisis מתבטא ברטיקולופניה עמוקה, לא בממצא ריאתי.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">4. איזו תרופה משמשת למניעה כרונית של משברים באנמיה חרמשית ופועלת ע"י העלאת HbF?</div>
+  <button class="opt" data-i="0">Deferasirox</button>
+  <button class="opt" data-i="1">Methylene blue</button>
+  <button class="opt" data-i="2">Erythropoietin</button>
+  <button class="opt" data-i="3">Hydroxyurea</button>
+  <div class="explain">נכון: Hydroxyurea מעלה HbF, שאינו נכנס לפולימריזציה כמו HbS ולכן "מדלל" את הנטייה להתחרמשות. Deferasirox הוא כילטור ברזל (רלוונטי לתלסמיה/עומס ברזל). Methylene blue מטפל במטהמוגלובינמיה. EPO אינו טיפול סטנדרטי במחלה זו.</div>
+</div>
+
+<div class="case">
+  <h3>מקרה 3 — אנמיה מגלובלסטית</h3>
+  <p>גבר בן 68, טבעוני, מגיע עם עייפות, נימול בכפות הרגליים ותחושת חוסר יציבות בהליכה. בבדיקה: אובדן תחושת ויברציה בגפיים תחתונות, Romberg חיובי. ספירת דם: Hb 9.8, MCV 118. במשטח: מקרוציטים אובליים ונויטרופילים היפר-סגמנטריים.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. מה הגורם הסביר ביותר לתמונה?</div>
+  <button class="opt" data-i="0">חסר חומצה פולית</button>
+  <button class="opt" data-i="1">חסר ויטמין B12</button>
+  <button class="opt" data-i="2">אנמיה של מחלה כרונית</button>
+  <button class="opt" data-i="3">תלסמיה</button>
+  <div class="explain">נכון: תסמינים נוירולוגיים (נימול, אובדן פרופריוספציה, Romberg חיובי) מופיעים בחסר B12 ולא בחסר folate. דיאטה טבעונית היא גורם סיכון קלאסי (B12 ממקור מן החי בלבד). MCV גבוה שולל אנמיה של מחלה כרונית ותלסמיה (שתיהן נותנות תמונה שונה).</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה סיבוך יש לעקוב אחריו בתחילת הטיפול התחליפי?</div>
+  <button class="opt" data-i="0">היפרקלמיה</button>
+  <button class="opt" data-i="1">היפרקלצמיה</button>
+  <button class="opt" data-i="2">היפוקלמיה</button>
+  <button class="opt" data-i="3">היפונתרמיה</button>
+  <div class="explain">נכון: תחילת ייצור מוגבר של תאי דם עם התחלת הטיפול צורכת אשלגן בכמות גדולה לתוך התאים החדשים — עלולה לגרום להיפוקלמיה משמעותית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h3>חסר ברזל / היפו-פרוליפרטיביות</h3>
+  <ul>
+    <li>חסר ברזל: ferritin↓, TIBC↑, סטורציה↓, RDW↑ — גבר/פוסט-מנופאוזה = בירור GI עד שיוכח אחרת</li>
+    <li>מחלה כרונית: hepcidin↑ כולא ברזל — ferritin↑ (acute phase), TIBC↓</li>
+    <li>מחלת כליות: EPO↓ — טיפול ב-EPO אחרי מילוי מאגרי ברזל</li>
+    <li>טיפול: ברזל פומי על קיבה ריקה → המשך 6-12 חודשים אחרי תיקון Hb</li>
+  </ul>
+  <h3>המוגלובינופתיות</h3>
+  <ul>
+    <li>אנמיה חרמשית: HbS פולימריזציה בדה-אוקסיגנציה → חסימה + המוליזה; Hydroxyurea מעלה HbF</li>
+    <li>תלסמיה: עודף שרשראות לא מאוזנות → ineffective erythropoiesis; זהירות מעומס ברזל בעירויים</li>
+    <li>תלסמיה מול חסר ברזל: RDW ו-RBC count מבדילים</li>
+  </ul>
+  <h3>אנמיות מגלובלסטיות</h3>
+  <ul>
+    <li>פגיעה בסינתזת DNA → א-סינכרון גרעין-ציטופלזמה → MCV↑, נויטרופילים היפר-סגמנטריים</li>
+    <li>רק B12 גורם לתסמינים נוירולוגיים (עמודות אחוריות, נוירופתיה)</li>
+    <li>Pernicious anemia = חסר IF אוטואימוני; טיפול B12 IM/PO גבוה</li>
+    <li>לא לתת פולאט בלי לשלול חסר B12 — עלול להסוות ולהחמיר נזק נוירולוגי</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
