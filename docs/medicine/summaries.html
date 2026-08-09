@@ -16,7 +16,12 @@
   header h1{margin:0; font-size:19px}
   header .sub{font-size:12.5px; color:#9FD4CF; margin-top:2px}
   .layout{flex:1; display:flex; min-height:0}
-  aside{width:340px; min-width:280px; max-width:400px; background:#fff; border-inline-end:1px solid var(--line); display:flex; flex-direction:column; overflow:hidden}
+  aside{width:340px; min-width:280px; max-width:400px; background:#fff; border-inline-end:1px solid var(--line); display:flex; flex-direction:column; overflow:hidden; position:relative; transition:width .22s ease, min-width .22s ease, max-height .22s ease}
+  aside.collapsed{width:52px; min-width:52px; max-width:52px}
+  aside.collapsed .aside-inner{display:none}
+  .aside-toggle{width:34px; height:34px; border-radius:8px; background:var(--dark); color:#fff; border:none; cursor:pointer; font-size:16px; margin:9px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+  .aside-toggle:hover{background:#025961}
+  .aside-inner{flex:1; display:flex; flex-direction:column; min-height:0}
   .tabs{display:flex; border-bottom:1px solid var(--line)}
   .tab{flex:1; padding:12px 8px; text-align:center; font-size:13.5px; font-weight:700; cursor:pointer; color:var(--muted); background:#fafdfc; border-bottom:3px solid transparent}
   .tab.active{color:var(--primary); border-bottom-color:var(--secondary); background:#fff}
@@ -53,6 +58,11 @@
   .extra-item.active{background:var(--secondary); color:#fff; border-color:var(--secondary)}
   .extra-item .meta{display:block; font-size:11px; color:var(--muted); margin-top:2px; font-weight:400}
   .extra-item.active .meta{color:#eafaf7}
+  @media (max-width:800px){
+    .layout{flex-direction:column}
+    aside{width:100%; min-width:0; max-width:none; max-height:320px}
+    aside.collapsed{max-height:52px}
+  }
 </style>
 </head>
 <body>
@@ -62,18 +72,24 @@
     <h1>אתר הסיכומים - בחינת גמר בפנימית</h1>
     <div class="sub">איחוד סיכומים מבחן גמר בפנימית - לי גלמור</div>
   </div>
-  <div style="display:flex;align-items:center;gap:14px"><a href="../index.html" style="color:#9FD4CF;font-size:12.5px;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a><div class="sub" id="headerStats"></div></div>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="../index.html" style="color:#9FD4CF;font-size:12.5px;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+    <div class="sub" id="headerStats"></div>
+  </div>
 </header>
 
 <div class="layout">
-  <aside>
-    <div class="tabs">
-      <div class="tab active" data-view="topic">לפי נושא</div>
-      <div class="tab" data-view="chrono">לפי סדר כרונולוגי</div>
+  <aside id="asideNav">
+    <button class="aside-toggle" id="asideToggle" title="קפל/הרחב תפריט" aria-label="קפל/הרחב תפריט">&#9776;</button>
+    <div class="aside-inner">
+      <div class="tabs">
+        <div class="tab active" data-view="topic">לפי נושא</div>
+        <div class="tab" data-view="chrono">לפי סדר כרונולוגי</div>
+      </div>
+      <div class="stat-line" id="statLine"></div>
+      <div class="sidebar-content" id="sidebarContent"></div>
+      <div class="extra-section" id="extraSection"></div>
     </div>
-    <div class="stat-line" id="statLine"></div>
-    <div class="sidebar-content" id="sidebarContent"></div>
-    <div class="extra-section" id="extraSection"></div>
   </aside>
   <main>
     <iframe id="contentFrame" class="content-frame" style="display:none"></iframe>
@@ -260,6 +276,25 @@ document.getElementById('statLine').innerHTML = '<b>' + doneCount + '</b> סיכ
 
 render('topic');
 buildExtraSection();
+
+// --- collapsible sidebar (for reading comfortably on a phone) ---
+var asideNav = document.getElementById('asideNav');
+var asideToggle = document.getElementById('asideToggle');
+var MED_COLLAPSE_KEY = 'med_sidebar_collapsed';
+
+function setAsideCollapsed(v){
+  asideNav.classList.toggle('collapsed', v);
+  try{ localStorage.setItem(MED_COLLAPSE_KEY, v ? '1' : '0'); }catch(e){}
+}
+asideToggle.addEventListener('click', function(){
+  setAsideCollapsed(!asideNav.classList.contains('collapsed'));
+});
+(function initAsideState(){
+  var saved = null;
+  try{ saved = localStorage.getItem(MED_COLLAPSE_KEY); }catch(e){}
+  if(saved !== null){ setAsideCollapsed(saved === '1'); }
+  else if(window.innerWidth < 700){ setAsideCollapsed(true); }
+})();
 </script>
 
 </body>
