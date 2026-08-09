@@ -6,23 +6,27 @@
 <style>
   :root{color-scheme:light}
   *{box-sizing:border-box}
-  body{font-family:'Segoe UI','Arial Hebrew',sans-serif; margin:0; background:#f3f4f6; color:#1f2937}
-  .layout{display:flex; min-height:100vh}
-  .sidebar{width:340px; flex-shrink:0; background:#111827; color:#f9fafb; padding:22px 18px; overflow-y:auto; max-height:100vh; position:sticky; top:0}
+  html,body{height:100%; margin:0}
+  body{font-family:'Segoe UI','Arial Hebrew',sans-serif; background:#f3f4f6; color:#1f2937; display:flex; flex-direction:column}
+  .layout{display:flex; flex:1; min-height:0}
+  .sidebar{width:340px; flex-shrink:0; background:#111827; color:#f9fafb; padding:22px 18px; overflow-y:auto}
   .sidebar h2{font-size:16px; margin:0 0 4px}
   .sidebar .progress-wrap{background:#374151; border-radius:6px; height:8px; margin:10px 0 4px; overflow:hidden}
   .sidebar .progress-bar{background:#22c55e; height:100%; width:6%}
   .sidebar .progress-text{font-size:12.5px; color:#9ca3af; margin-bottom:16px}
   .ch-list{list-style:none; padding:0; margin:0}
-  .ch-item{display:flex; gap:10px; padding:10px 6px; border-radius:8px; margin-bottom:4px}
-  .ch-item.done{background:#1f2937}
-  .ch-item.pending{opacity:.55}
+  .ch-item{margin-bottom:4px}
+  .ch-btn{display:flex; gap:10px; padding:10px 6px; border-radius:8px; width:100%; text-align:start; background:#1f2937; border:none; cursor:pointer; font-family:inherit; color:inherit}
+  .ch-btn:hover{background:#28344a}
+  .ch-item.done.active .ch-btn{background:#22c55e; color:#052e16}
+  .ch-item.done.active .ch-btn .ch-num{background:#052e16; color:#22c55e}
+  .ch-item.done.active .ch-links span{color:#052e16}
+  .ch-item.pending{display:flex; gap:10px; padding:10px 6px; border-radius:8px; opacity:.55}
   .ch-num{width:24px; height:24px; border-radius:50%; background:#374151; color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
   .ch-item.done .ch-num{background:#22c55e; color:#052e16}
   .ch-title{font-size:13.5px; line-height:1.4}
   .ch-links{margin-top:4px; display:flex; gap:10px}
-  .ch-links a{color:#93c5fd; font-size:12.5px; text-decoration:none}
-  .ch-links a:hover{text-decoration:underline}
+  .ch-links span{color:#93c5fd; font-size:12.5px}
   .ch-status{font-size:11.5px; color:#6b7280; margin-top:2px}
   .top-links{display:flex; flex-direction:column; gap:8px; margin-bottom:18px}
   .top-links a{color:#f9fafb; background:#1f2937; border-radius:8px; padding:9px 12px; font-size:13px; text-decoration:none; font-weight:600; display:block}
@@ -31,18 +35,29 @@
   .top-links a.flashcards:hover{background:#026e7a}
   .top-links a.home{background:transparent; border:1px solid #374151; color:#9ca3af; font-weight:400}
 
-  .main{flex:1; padding:40px 44px; max-width:760px}
-  .main h1{font-size:28px; margin:0 0 8px}
-  .main .sub{color:#6b7280; margin-bottom:28px}
+  main{flex:1; display:flex; flex-direction:column; min-width:0}
+  .content-nav{display:none; align-items:center; justify-content:space-between; gap:10px; padding:10px 20px; background:#fff; border-bottom:1px solid #e5e7eb}
+  .content-nav.show{display:flex}
+  .content-nav .nav-title{font-size:13.5px; font-weight:700; color:#1f2937; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .content-nav button{background:#f3f4f6; border:1px solid #e5e7eb; border-radius:8px; padding:8px 14px; font-size:13px; font-family:inherit; cursor:pointer; color:#1f2937; flex-shrink:0}
+  .content-nav button:hover:not(:disabled){background:#e5e7eb}
+  .content-nav button:disabled{opacity:.4; cursor:default}
+  .content-frame{flex:1; border:none; display:none; background:#fff}
+
+  .empty-wrap{flex:1; padding:40px 44px; max-width:760px; overflow-y:auto}
+  .empty-wrap h1{font-size:28px; margin:0 0 8px}
+  .empty-wrap .sub{color:#6b7280; margin-bottom:28px}
   .stat-cards{display:flex; gap:14px; margin-bottom:28px; flex-wrap:wrap}
   .stat-card{background:#fff; border-radius:10px; padding:16px 22px; box-shadow:0 1px 3px rgba(0,0,0,.08); min-width:120px}
   .stat-card b{display:block; font-size:26px}
   .stat-card span{font-size:13px; color:#6b7280}
   .latest{background:#fff; border-radius:10px; padding:20px 24px; box-shadow:0 1px 3px rgba(0,0,0,.08); margin-bottom:20px}
   .latest h3{margin-top:0}
-  .latest a{color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:4px 0}
+  .latest button.link-btn{background:none; border:none; padding:0; color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:6px 0; font-size:14.5px; cursor:pointer; font-family:inherit; text-align:start}
+  .latest button.link-btn:hover{text-decoration:underline}
+  .latest a{color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:6px 0}
   .empty{color:#6b7280}
-  @media (max-width:800px){ .layout{flex-direction:column} .sidebar{width:100%; max-height:none; position:static} }
+  @media (max-width:800px){ .layout{flex-direction:column} .sidebar{width:100%; max-height:260px} }
 </style>
 </head>
 <body>
@@ -55,25 +70,25 @@
       <a class="home" href="index.html">&#8592; עמוד כירורגיה פלסטית</a>
       <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
     </div>
-    <ul class="ch-list">
+    <ul class="ch-list" id="chList">
       
             <li class="ch-item done" data-n="1">
-              <div class="ch-num">1</div>
-              <div class="ch-body">
-                <div class="ch-title">כירורגיה פלסטית וחדשנות ברפואה</div>
-                <div class="ch-links">
-                  <a href="summaries/01-plastic-surgery-and-innovation-in-medicine.html">📄 סיכום</a>
+              <button class="ch-btn" data-n="1">
+                <div class="ch-num">1</div>
+                <div class="ch-body">
+                  <div class="ch-title">כירורגיה פלסטית וחדשנות ברפואה</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
                 </div>
-              </div>
+              </button>
             </li>
             <li class="ch-item done" data-n="2">
-              <div class="ch-num">2</div>
-              <div class="ch-body">
-                <div class="ch-title">היסטוריה של כירורגיה משחזרת ואסתטית</div>
-                <div class="ch-links">
-                  <a href="summaries/02-history-of-reconstructive-and-aesthetic-surgery.html">📄 סיכום</a>
+              <button class="ch-btn" data-n="2">
+                <div class="ch-num">2</div>
+                <div class="ch-body">
+                  <div class="ch-title">היסטוריה של כירורגיה משחזרת ואסתטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
                 </div>
-              </div>
+              </button>
             </li>
             <li class="ch-item pending" data-n="3">
               <div class="ch-num">3</div>
@@ -315,24 +330,90 @@
             </li>
     </ul>
   </nav>
-  <main class="main">
-    <h1>סיכומי כירורגיה פלסטית</h1>
-    <div class="sub">Plastic Surgery, Neligan – כרך 1: Principles &middot; סיכום + כרטיסיות תרגול לכל פרק, בעברית</div>
-
-    <div class="stat-cards">
-      <div class="stat-card"><b>36</b><span>סה"כ פרקים</span></div>
-      <div class="stat-card"><b>2</b><span>הושלמו</span></div>
-      <div class="stat-card"><b>34</b><span>ממתינים</span></div>
+  <main>
+    <div class="content-nav" id="contentNav">
+      <button id="prevBtn">&#9664; הקודם</button>
+      <div class="nav-title" id="navTitle"></div>
+      <button id="nextBtn">הבא &#9654;</button>
     </div>
+    <iframe id="contentFrame" class="content-frame"></iframe>
+    <div class="empty-wrap" id="emptyWrap">
+      <h1>סיכומי כירורגיה פלסטית</h1>
+      <div class="sub">Plastic Surgery, Neligan – כרך 1: Principles &middot; סיכום + כרטיסיות תרגול לכל פרק, בעברית</div>
 
-    <div class="latest">
-      <h3>הפרקים האחרונים שנוספו</h3>
-      <a href="summaries/02-history-of-reconstructive-and-aesthetic-surgery.html">פרק 2: היסטוריה של כירורגיה משחזרת ואסתטית — סיכום</a><a href="summaries/01-plastic-surgery-and-innovation-in-medicine.html">פרק 1: כירורגיה פלסטית וחדשנות ברפואה — סיכום</a>
-      <a href="flashcards.html" style="margin-top:6px">🗂️ כל הכרטיסיות של כל הפרקים — מאגר מאוחד אחד</a>
+      <div class="stat-cards">
+        <div class="stat-card"><b>36</b><span>סה"כ פרקים</span></div>
+        <div class="stat-card"><b>2</b><span>הושלמו</span></div>
+        <div class="stat-card"><b>34</b><span>ממתינים</span></div>
+      </div>
+
+      <div class="latest">
+        <h3>הפרקים האחרונים שנוספו</h3>
+        <div id="latestList"></div>
+        <a href="flashcards.html" style="margin-top:6px">🗂️ כל הכרטיסיות של כל הפרקים — מאגר מאוחד אחד</a>
+      </div>
+
+      <p style="color:#6b7280; font-size:14px">כל בוקר מתווסף כאן סיכום וחבילת כרטיסיות לפרק הבא בספר, לפי הסדר. השתמשי בתפריט הצד או בכפתורי "הבא/הקודם" כדי לעבור בין הפרקים שכבר הושלמו — התפריט נשאר גלוי כל הזמן.</p>
     </div>
-
-    <p style="color:#6b7280; font-size:14px">כל בוקר מתווסף כאן סיכום וחבילת כרטיסיות לפרק הבא בספר, לפי הסדר. השתמשי בתפריט הצד כדי לעבור בין הפרקים שכבר הושלמו.</p>
   </main>
 </div>
+
+<script>
+var CHAPTERS = [{"n": 1, "title": "כירורגיה פלסטית וחדשנות ברפואה", "file": "summaries/01-plastic-surgery-and-innovation-in-medicine.html"}, {"n": 2, "title": "היסטוריה של כירורגיה משחזרת ואסתטית", "file": "summaries/02-history-of-reconstructive-and-aesthetic-surgery.html"}];
+
+var latestList = document.getElementById('latestList');
+if(CHAPTERS.length === 0){
+  latestList.innerHTML = '<p class="empty">עדיין לא נוסף אף סיכום.</p>';
+} else {
+  CHAPTERS.slice(-3).reverse().forEach(function(c){
+    var btn = document.createElement('button');
+    btn.className = 'link-btn';
+    btn.textContent = 'פרק ' + c.n + ': ' + c.title + ' — סיכום';
+    btn.addEventListener('click', function(){ openChapter(c.n); });
+    latestList.appendChild(btn);
+  });
+}
+
+var frame = document.getElementById('contentFrame');
+var emptyWrap = document.getElementById('emptyWrap');
+var contentNav = document.getElementById('contentNav');
+var navTitle = document.getElementById('navTitle');
+var prevBtn = document.getElementById('prevBtn');
+var nextBtn = document.getElementById('nextBtn');
+var currentN = null;
+
+function indexOfN(n){ return CHAPTERS.findIndex(function(c){ return c.n === n; }); }
+
+function openChapter(n){
+  var idx = indexOfN(n);
+  if(idx === -1) return;
+  currentN = n;
+  var c = CHAPTERS[idx];
+  frame.src = c.file;
+  frame.style.display = 'block';
+  emptyWrap.style.display = 'none';
+  contentNav.classList.add('show');
+  navTitle.textContent = 'פרק ' + c.n + ': ' + c.title;
+  prevBtn.disabled = (idx === 0);
+  nextBtn.disabled = (idx === CHAPTERS.length - 1);
+
+  document.querySelectorAll('.ch-item').forEach(function(li){ li.classList.remove('active'); });
+  var activeLi = document.querySelector('.ch-item[data-n="' + n + '"]');
+  if(activeLi) activeLi.classList.add('active');
+}
+
+prevBtn.addEventListener('click', function(){
+  var idx = indexOfN(currentN);
+  if(idx > 0) openChapter(CHAPTERS[idx - 1].n);
+});
+nextBtn.addEventListener('click', function(){
+  var idx = indexOfN(currentN);
+  if(idx < CHAPTERS.length - 1) openChapter(CHAPTERS[idx + 1].n);
+});
+
+document.querySelectorAll('.ch-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){ openChapter(parseInt(btn.getAttribute('data-n'), 10)); });
+});
+</script>
 </body>
 </html>
