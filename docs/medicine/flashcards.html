@@ -101,6 +101,19 @@
 
   .nav-row{display:flex; justify-content:space-between; align-items:center; margin-top:16px; gap:10px;}
   .nav-row button{background:#fff; color:var(--dark); box-shadow:0 1px 4px rgba(1,58,64,0.1);}
+
+  #quizSetupBody{border-top:1px solid #eef3f2; margin-top:10px; padding-top:12px;}
+  #quizSetupBody .filters{align-items:center;}
+  #quizSetupBody label{display:flex; align-items:center; gap:6px; font-size:13px;}
+  #quizSetupBody input[type=number]{width:72px; padding:6px 8px; border-radius:8px; border:1px solid #d5e6e4; font-family:inherit;}
+  #quizSetupMsg{font-size:12.5px; color:var(--danger); margin-top:8px; min-height:16px;}
+  #quizStatusBar{display:none; align-items:center; gap:14px; background:var(--tint); border-radius:10px; padding:9px 14px; margin-bottom:10px; font-size:13px; font-weight:700; color:var(--primary); flex-wrap:wrap;}
+  #quizStatusBar .btn-reset{margin-inline-start:auto;}
+  .quiz-result{align-items:center; text-align:center; justify-content:center;}
+  .quiz-result.good{border-inline-start-color:var(--ok) !important;}
+  .quiz-result.bad{border-inline-start-color:var(--amber) !important;}
+  .quiz-result .emoji{font-size:44px; margin-bottom:8px;}
+  .quiz-result .qr-actions{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:16px;}
   .empty-state{text-align:center; padding:60px 20px; color:var(--muted);}
   .empty-state h2{color:var(--dark);}
   .loader-drop{border:2px dashed #a9d3cf; border-radius:14px; padding:40px 20px; text-align:center; color:var(--muted); margin:20px 0; background:#fff;}
@@ -115,7 +128,7 @@
     <h1 id="appTitle">📚 כרטיסיות לימוד לבחינת גמר בפנימית</h1>
     <div class="sub" id="subTitle">טוען...</div>
   </div>
-  <div class="top-actions"><a href="../index.html" style="color:#9FD4CF;font-size:13px;text-decoration:none;font-weight:600;align-self:center">&#8592; כל הנושאים</a>
+  <div class="top-actions">
     <button class="btn-lang active" id="langHe">עברית</button>
     <button class="btn-lang" id="langEn">English</button>
     <button class="btn-outline" id="reloadBtn">🔄</button>
@@ -143,6 +156,10 @@
   let lang = 'he';
   let view = 'question';      // 'question' | 'answer'
   let picked = null;          // index the user clicked on the current card
+
+  let quizActive = false;
+  let quizQueue = [];
+  let quizSessionAnswers = new Map(); // id -> boolean correct, this session only
 
   const PALETTE = ['#028090','#B85042','#6D2E46','#2C5F2D','#21295C','#F96167','#84B59F','#990011','#1C7293','#69A297'];
   function colorFor(str){
@@ -180,7 +197,18 @@
       footer:'הכרטיסיות נטענות מקובץ flashcards_all.json המתעדכן מדי יום · הדירוגים ותוצאות השאלון נשמרים בדפדפן זה בלבד',
       loadFailTitle:'לא ניתן לטעון אוטומטית',
       loadFailBody:'הדפדפן חוסם קריאת קבצים מקומיים. גררי לכאן את הקובץ <b>flashcards_all.json</b>, או לחצי על "JSON" למעלה.',
-      resetConfirm:'לאפס את כל הסטטיסטיקה והדירוגים?'
+      resetConfirm:'לאפס את כל הסטטיסטיקה והדירוגים?',
+      quizTitle:'🎯 מצב בוחן', quizSetupToggle:'⚙️ הגדרות בוחן',
+      quizDesc:'בחרי כמה כרטיסיות ואופציות, ותתחילי בוחן ממוקד עם סטטיסטיקה נפרדת משלו.',
+      quizNumCards:'מספר כרטיסיות', quizOnlyUnanswered:'רק כרטיסיות שעוד לא ענית עליהן',
+      quizStart:'🚀 התחל בוחן', quizExit:'✖ יציאה מהבוחן',
+      quizProgress:(a,b)=>`שאלה ${a} מתוך ${b}`, quizScoreSoFar:(c,a)=>`${c}/${a} נכון`,
+      quizNotEnough:'אין מספיק כרטיסיות תואמות לאפשרויות שנבחרו',
+      quizFinishedGoodTitle:'🎉 כל הכבוד!',
+      quizFinishedGoodBody:(c,t,p)=>`ענית נכון על ${c} מתוך ${t} (${p}%). עבודה מצוינת!`,
+      quizFinishedBadTitle:'💪 סיימת את הבוחן',
+      quizFinishedBadBody:(c,t,p)=>`ענית נכון על ${c} מתוך ${t} (${p}%). את/ה בדרך הנכונה — קצת תרגול נוסף ותשתפר/י!`,
+      quizNewQuiz:'🔁 בוחן חדש', quizBackFree:'↩ חזרה לתרגול חופשי'
     },
     en: {
       title:'📚 Internal medicine board flashcards',
@@ -210,7 +238,18 @@
       footer:'Cards load from flashcards_all.json, updated daily · Ratings and quiz results are stored in this browser only',
       loadFailTitle:'Could not load automatically',
       loadFailBody:'The browser blocks reading local files. Drag <b>flashcards_all.json</b> here, or use the "JSON" button above.',
-      resetConfirm:'Reset all statistics and ratings?'
+      resetConfirm:'Reset all statistics and ratings?',
+      quizTitle:'🎯 Quiz mode', quizSetupToggle:'⚙️ Quiz settings',
+      quizDesc:'Choose how many cards and which options, then start a focused quiz with its own stats.',
+      quizNumCards:'Number of cards', quizOnlyUnanswered:'Only cards you haven\'t answered yet',
+      quizStart:'🚀 Start quiz', quizExit:'✖ Exit quiz',
+      quizProgress:(a,b)=>`Question ${a} of ${b}`, quizScoreSoFar:(c,a)=>`${c}/${a} correct`,
+      quizNotEnough:'Not enough matching cards for the chosen options',
+      quizFinishedGoodTitle:'🎉 Well done!',
+      quizFinishedGoodBody:(c,t,p)=>`You got ${c} out of ${t} right (${p}%). Excellent work!`,
+      quizFinishedBadTitle:'💪 Quiz complete',
+      quizFinishedBadBody:(c,t,p)=>`You got ${c} out of ${t} right (${p}%). You're on the right track — a bit more practice and you'll improve!`,
+      quizNewQuiz:'🔁 New quiz', quizBackFree:'↩ Back to free practice'
     }
   };
   const t = () => TXT[lang];
@@ -331,10 +370,23 @@
         <div class="panel-title"><span>📊 ${t().statsTitle}</span><button class="btn-reset" id="resetBtn">${t().reset}</button></div>
         <div id="statsBody"></div>
       </div>
+      <div class="panel" id="quizPanel">
+        <div class="panel-title"><span>${t().quizTitle}</span><button class="btn-outline" style="color:var(--primary);border-color:#028090aa;" id="quizToggleBtn">${t().quizSetupToggle}</button></div>
+        <div id="quizSetupBody" style="display:none;">
+          <p style="font-size:12.5px;color:var(--muted);margin:0 0 10px;">${t().quizDesc}</p>
+          <div class="filters">
+            <label>${t().quizNumCards}: <input type="number" id="quizNumInput" min="1" value="10"></label>
+            <label><input type="checkbox" id="quizUnansweredOnly"> ${t().quizOnlyUnanswered}</label>
+            <button class="btn-accent" id="quizStartBtn">${t().quizStart}</button>
+          </div>
+          <div id="quizSetupMsg"></div>
+        </div>
+      </div>
       <div class="progress-wrap">
         <div class="progress-label" id="progressLabel"></div>
         <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
       </div>
+      <div id="quizStatusBar"></div>
       <div id="cardStage"></div>
       <div class="nav-row">
         <button id="prevBtn">${t().prev}</button>
@@ -353,9 +405,120 @@
         renderStats(); renderCard();
       }
     });
+    document.getElementById('quizToggleBtn').addEventListener('click', ()=>{
+      const body = document.getElementById('quizSetupBody');
+      body.style.display = body.style.display === 'none' ? 'block' : 'none';
+    });
+    document.getElementById('quizStartBtn').addEventListener('click', startQuiz);
+  }
+
+  function startQuiz(){
+    const msg = document.getElementById('quizSetupMsg');
+    msg.textContent = '';
+    const nRaw = parseInt(document.getElementById('quizNumInput').value, 10);
+    const n = Math.max(1, isNaN(nRaw) ? 10 : nRaw);
+    const onlyUnanswered = document.getElementById('quizUnansweredOnly').checked;
+    const quiz = getQuiz();
+    let pool = filtered.slice();
+    if(onlyUnanswered) pool = pool.filter(c => !quiz[c.id]);
+    if(!pool.length){ msg.textContent = t().quizNotEnough; return; }
+    pool = shuffleArr(pool).slice(0, n);
+    quizQueue = pool;
+    quizActive = true;
+    quizSessionAnswers = new Map();
+    filtered = quizQueue;
+    currentIndex = 0;
+    document.getElementById('quizSetupBody').style.display = 'none';
+    renderCard();
+  }
+
+  function updateQuizStatusBar(){
+    const el = document.getElementById('quizStatusBar');
+    if(!el) return;
+    if(!quizActive || !filtered.length){ el.style.display = 'none'; el.innerHTML = ''; return; }
+    let correct = 0;
+    quizSessionAnswers.forEach(v => { if(v) correct++; });
+    el.style.display = 'flex';
+    el.innerHTML = `<span>🎯 ${t().quizProgress(currentIndex+1, filtered.length)}</span><span>${t().quizScoreSoFar(correct, quizSessionAnswers.size)}</span><button class="btn-reset" id="quizExitBtn">${t().quizExit}</button>`;
+    const exitBtn = document.getElementById('quizExitBtn');
+    if(exitBtn) exitBtn.addEventListener('click', ()=>{ quizActive = false; applyFilters(); });
+  }
+
+  function finishQuiz(){
+    const total = quizQueue.length;
+    let correct = 0;
+    quizSessionAnswers.forEach(v => { if(v) correct++; });
+    const answered = quizSessionAnswers.size;
+    const pct = answered ? Math.round(correct/answered*100) : 0;
+    quizActive = false;
+    renderQuizResult(total, answered, correct, pct);
+  }
+
+  function renderQuizResult(total, answered, correct, pct){
+    const stage = document.getElementById('cardStage');
+    const pl = document.getElementById('progressLabel');
+    const pf = document.getElementById('progressFill');
+    const qsb = document.getElementById('quizStatusBar');
+    if(qsb){ qsb.style.display = 'none'; qsb.innerHTML = ''; }
+    if(pl) pl.textContent = '';
+    if(pf) pf.style.width = '0%';
+    const good = answered > 0 && pct >= 70;
+    const title = good ? t().quizFinishedGoodTitle : t().quizFinishedBadTitle;
+    const body = good ? t().quizFinishedGoodBody(correct, total, pct) : t().quizFinishedBadBody(correct, total, pct);
+    stage.innerHTML = `<div class="card quiz-result ${good ? 'good' : 'bad'}">
+        <div class="emoji">${good ? '🎉' : '💪'}</div>
+        <h2 style="margin:0 0 10px;">${esc(title)}</h2>
+        <p style="font-size:16px;margin:0 0 6px;">${esc(body)}</p>
+        <p style="font-size:13px;color:var(--muted);margin:0;">${esc(t().quizProgress(answered, total))}</p>
+        <div class="qr-actions">
+          <button class="btn-accent" id="quizAgainBtn">${t().quizNewQuiz}</button>
+          <button class="btn-outline" style="color:var(--dark);border-color:#d5e6e4;" id="quizFreeBtn">${t().quizBackFree}</button>
+        </div>
+      </div>`;
+    document.getElementById('quizAgainBtn').addEventListener('click', ()=>{
+      applyFilters();
+      const body2 = document.getElementById('quizSetupBody');
+      if(body2){ body2.style.display = 'block'; document.getElementById('quizPanel').scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+    document.getElementById('quizFreeBtn').addEventListener('click', applyFilters);
+    if(good) launchConfetti();
+  }
+
+  function launchConfetti(){
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999;';
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const colors = ['#028090','#00A896','#02C39A','#D99A2B','#B85042','#6D2E46','#F96167'];
+    const pieces = Array.from({length: 140}, () => ({
+      x: Math.random() * canvas.width,
+      y: -20 - Math.random() * canvas.height * 0.5,
+      w: 6 + Math.random() * 6, h: 8 + Math.random() * 8,
+      speed: 2 + Math.random() * 3, drift: -1.5 + Math.random() * 3,
+      rot: Math.random() * 360, rotSpeed: -8 + Math.random() * 16,
+      color: colors[Math.floor(Math.random() * colors.length)]
+    }));
+    let frames = 0;
+    const maxFrames = 220;
+    function tick(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      pieces.forEach(p => {
+        p.y += p.speed; p.x += p.drift; p.rot += p.rotSpeed;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot * Math.PI / 180);
+        ctx.fillStyle = p.color; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+      });
+      frames++;
+      if(frames < maxFrames && canvas.parentNode) requestAnimationFrame(tick);
+      else if(canvas.parentNode) canvas.remove();
+    }
+    tick();
+    setTimeout(()=>{ if(canvas.parentNode) canvas.remove(); }, 4200);
   }
 
   function applyFilters(){
+    quizActive = false;
     const q = (document.getElementById('searchBox').value||'').toLowerCase();
     const topic = document.getElementById('topicFilter').value;
     const cat = document.getElementById('catFilter').value;
@@ -437,6 +600,10 @@
 
   function navigate(dir){
     if(!filtered.length) return;
+    if(quizActive && dir === 1 && currentIndex === filtered.length - 1){
+      finishQuiz();
+      return;
+    }
     currentIndex = (currentIndex + dir + filtered.length) % filtered.length;
     renderCard();
   }
@@ -486,6 +653,7 @@
     const col = colorFor(catOf(c));
     pl.textContent = t().cardXofY(currentIndex+1, filtered.length);
     pf.style.width = `${((currentIndex+1)/filtered.length)*100}%`;
+    updateQuizStatusBar();
 
     const head = `<div class="card-tags">
         <span class="pill-outline" style="--topic-color:${col}">${esc(catOf(c))}</span>
@@ -522,7 +690,9 @@
         btn.addEventListener('click', ()=>{
           if(picked !== null) return;
           picked = Number(btn.dataset.i);
-          setQuiz(c.id, picked === c.correct_index);
+          const isCorrect = picked === c.correct_index;
+          setQuiz(c.id, isCorrect);
+          if(quizActive) quizSessionAnswers.set(c.id, isCorrect);
           renderStats();
           draw();
         });
