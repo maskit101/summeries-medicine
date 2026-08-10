@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מחלות זיהומיות 1/5 — CAP, VAP, אבצס ריאתי ואנדוקרדיטיס</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h2.group{border-top:2px dashed var(--line); padding-top:28px; margin-top:56px}
+  h2.group .num{background:var(--purple)}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3,.mnemonic h4{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h3{color:#fbbf24; margin-bottom:4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>מחלות זיהומיות — חלק 1/5: דלקת ריאות נרכשת בקהילה (CAP), VAP, אבצס ריאתי ואנדוקרדיטיס</h1>
+<div class="subtitle">נתח #6 מתוך 39 | עמ' 91–107 מתוך "איחוד סיכומים מבחן גמר בפנימית - לי גלמור" | נוצר אוטומטית לקראת בחינת גמר בפנימית</div>
+
+<p>ארבע ישויות קליניות מרכזיות מעולם הזיהומים: <span dir="ltr" class="term">CAP</span> — דלקת הריאות השכיחה ביותר שגורמת לאשפוז, <span dir="ltr" class="term">VAP</span> — הזיהום השכיח ביותר ביחידות טיפול נמרץ, אבצס ריאתי — סיבוך מקומי חמור של אספירציה, ואנדוקרדיטיס — זיהום של המסתמים שיכול לזרוע חיידקים לכל הגוף. המשותף לכולן: המחולל מגיע לאתר "מוגן" יחסית (ריאה תחתונה, אנדוקרד), והנזק הקליני נובע לא רק מהחיידק עצמו אלא בעיקר מהתגובה הדלקתית/חיסונית של הגוף.</p>
+
+<h2 class="group"><span class="num">A</span> דלקת ריאות נרכשת בקהילה — <span dir="ltr" class="term">Community-Acquired Pneumonia (CAP)</span></h2>
+
+<h3>2. המנגנון — למה זה קורה</h3>
+<div class="mechanism">
+  <p class="chain">
+    דלקת ריאות היא לא "זיהום שיושב שם" אלא <span class="key">תוצאה של שני תהליכים במקביל</span>: פרוליפרציה של הפתוגן ברמת ה<span dir="ltr" class="term">Alveoli</span>, ו<b>תגובת המאכסן</b> לפתוגן — וזו האחרונה, לא החיידק כשלעצמו, שיוצרת את התסמונת הקלינית.<br>
+    <b>איך המיקרואורגניזם מגיע לריאה?</b> ברוב המקרים (הדרך השכיחה ביותר) — <b>אספירציה מה<span dir="ltr" class="term">oropharynx</span></b>, בעיקר בשינה (במיוחד קשישים) או במצב הכרה ירוד. פחות שכיח: התפשטות המטוגנית (למשל מ<span dir="ltr" class="term">Endocarditis</span> טריקוספידלי) או התפשטות מאתר סמוך (פלאורה/מדיאסטינום).<br>
+    <b>שרשרת האירועים:</b> חיידקים מגיעים לאלוואולי → מפעילים תאי מקרופאג' ותאי אפיתל אלוואולריים → אלו משחררים ציטוקינים דלקתיים (<span dir="ltr" class="term">IL-1, IL-6, TNF-α</span>) → הציטוקינים גורמים לגיוס נויטרופילים, לעליית חדירות כלי הדם ולדליפת נוזל ופיברין לתוך האלוואולי (זהו ה<span dir="ltr" class="term">consolidation</span> שרואים בצילום) → התמלאות האלוואולי בתאי דלקת ונוזל מונעת חילופי גזים תקינים → קוצר נשימה והיפוקסמיה.<br>
+    <b>למה יש חום?</b> הציטוקינים הפרו-דלקתיים (בעיקר <span dir="ltr" class="term">IL-1</span> ו-<span dir="ltr" class="term">TNF</span>) פועלים על מרכז הוויסות בהיפותלמוס ומעלים את "נקודת הכיוון" של הטמפרטורה — זו תגובה דלקתית סיסטמית ולא "נוכחות פיזית" של החיידק בדם.<br>
+    <b>למה יש לויקוציטוזיס?</b> אותם ציטוקינים (בעיקר <span dir="ltr" class="term">IL-6</span>) מגרים את מח העצם לשחרר נויטרופילים מהמאגר השולי ולהאיץ ייצור חדש.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="80" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="105" font-size="13" text-anchor="middle" fill="#1f2937">אספירציה מה-</text>
+  <text x="85" y="123" font-size="12" text-anchor="middle" fill="#1f2937" font-family="monospace">oropharynx</text>
+  <line x1="160" y1="110" x2="200" y2="110" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="205" y="80" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="280" y="105" font-size="13" text-anchor="middle">פתוגנים באלוואולי</text>
+  <text x="280" y="123" font-size="12" text-anchor="middle">מקרופאג' + אפיתל מופעלים</text>
+  <line x1="355" y1="110" x2="395" y2="110" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="400" y="80" width="150" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="475" y="105" font-size="13" text-anchor="middle">ציטוקינים</text>
+  <text x="475" y="123" font-size="11" text-anchor="middle" font-family="monospace">IL-1, IL-6, TNF-α</text>
+  <line x1="550" y1="110" x2="590" y2="110" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="595" y="30" width="150" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="670" y="55" font-size="13" text-anchor="middle">חום + לויקוציטוזיס</text>
+  <text x="670" y="73" font-size="11" text-anchor="middle">(תגובה סיסטמית)</text>
+  <rect x="595" y="130" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="670" y="155" font-size="13" text-anchor="middle">נוזל+נויטרופילים</text>
+  <text x="670" y="173" font-size="11" text-anchor="middle">לתוך האלוואולי (Consolidation)</text>
+  <line x1="670" y1="90" x2="670" y2="80" stroke="#2563eb" stroke-width="0"/>
+  <line x1="550" y1="100" x2="595" y2="60" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <line x1="550" y1="120" x2="595" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <rect x="800" y="130" width="90" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="845" y="155" font-size="12" text-anchor="middle">היפוקסמיה</text>
+  <text x="845" y="173" font-size="11" text-anchor="middle">וקוצר נשימה</text>
+  <line x1="745" y1="160" x2="798" y2="160" stroke="#2563eb" stroke-width="2" marker-end="url(#a1)"/>
+  <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+</svg>
+
+<h3>אטיולוגיה</h3>
+<p>רוב המקרים נגרמים ע"י מעט פתוגנים. <b><span dir="ltr" class="term">Streptococcus pneumoniae</span> הוא המחולל השכיח ביותר ל-CAP בכל דרגות החומרה</b>.</p>
+<table>
+<thead><tr><th>קבוצה</th><th>פתוגנים עיקריים</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td>מחוללים טיפיים</td><td><span dir="ltr" class="term">S. pneumoniae, H. influenzae, S. aureus, gram-negative bacilli (Klebsiella, Pseudomonas)</span></td><td>&nbsp;</td></tr>
+<tr><td>מחוללים א-טיפיים</td><td><span dir="ltr" class="term">Mycoplasma pneumoniae, Chlamydia pneumoniae, Legionella</span></td><td>עמידות אינטרינזית ל-<span dir="ltr" class="term">β-lactam</span> — יש לטפל ב<span dir="ltr" class="term">macrolide, fluoroquinolone</span> או <span dir="ltr" class="term">tetracycline</span></td></tr>
+<tr><td>וירוסים נשימתיים</td><td><span dir="ltr" class="term">influenza, adenovirus, RSV, human metapneumovirus</span></td><td>&nbsp;</td></tr>
+<tr><td>אנאירוביים</td><td>חלק מזיהום פולי-מיקרוביאלי</td><td>חשובים אחרי אספירציה; מסתבכים לאבצס/<span dir="ltr" class="term">empyema</span></td></tr>
+</tbody>
+</table>
+<p>ב-10–15% מהמקרים הזיהום פולי-מיקרוביאלי (שילוב טיפי + א-טיפי). ביותר מ-50% מהמקרים <b>לא נקבעת אטיולוגיה ספציפית כלל</b>.</p>
+
+<div class="key-box">S. aureus יכול לסבך שפעת (superinfection קלאסי), וגם MRSA מהקהילה (CA-MRSA) יכול לגרום ל-CAP ראשוני עם נטייה ל-necrotizing pneumonia — Hemoptysis גס מרמז עליו.</div>
+
+<h3>ביטוי קליני</h3>
+<p>וריאביליות גדולה — מאינדולנטית ועד פולמיננטית. תסמינים: חום, טכיקרדיה, צמרמורות/הזעות, שיעול (יבש/פרודוקטיבי), קוצר נשימה, כאבים פלאוריטיים, ולעיתים תסמינים גסטרו-אינטסטינליים (עד 20%). <b>בקשישים הביטוי הקליני לעיתים קרובות עמום — בלבול חדש/מוחמר עשוי להיות התסמין הבולט היחיד.</b> בבדיקה: <span dir="ltr" class="term">Fremitus</span> משתנה, ניקוש עמום (קונסולידציה) או שטוח (תפליט), קרפיטציות וקולות ברונכיאליים.</p>
+
+<h3>5. אבחנה</h3>
+<p>אבחנה קלינית משולבת עם צילום חזה, שמאפשר להבדיל CAP ממצבים אחרים (בצקת ריאות, PE) ולהכווין לאטיולוגיה (<span dir="ltr" class="term">pneumatoceles</span>→S. aureus, קביטציה בלובוס עליון→שחפת). ה-CT שימושי בחשד ל-<span dir="ltr" class="term">post-obstructive pneumonia</span> או מחלה קביטרית.</p>
+<h4>בדיקות אטיולוגיה</h4>
+<table>
+<thead><tr><th>בדיקה</th><th>עיקרי</th></tr></thead>
+<tbody>
+<tr><td>צביעת גראם + תרבית כיח</td><td>דגימה טובה: &gt;25 נויטרופילים, &lt;10 תאי אפיתל בשדה. Yield נמוך אם ניתנה אנטיביוטיקה קודם</td></tr>
+<tr><td>תרביות דם</td><td>Yield נמוך (5–14% מהמאושפזים), לרוב <span dir="ltr" class="term">S. pneumoniae</span>. <b>לא נדרשות שגרתית</b> — רק בסיכון גבוה: נויטרופניה, אספלניה, חסר משלים, מחלת כבד כרונית, CAP חמור</td></tr>
+<tr><td>אנטיגן בשתן</td><td>Pneumococcus (רגישות/ספציפיות ~70%/&gt;90%) ו-Legionella serogroup 1 (~70%/99%) — חיוביים גם אחרי תחילת טיפול</td></tr>
+<tr><td>PCR נשימתי</td><td>סטנדרט לזיהום ויראלי; מזהה גם Legionella, Mycoplasma, Chlamydia</td></tr>
+<tr><td>ביו-מרקרים</td><td>CRP/Procalcitonin — עוזרים להעריך חומרה ולהבדיל חיידקי מוויראלי, לא משמשים לבד</td></tr>
+</tbody>
+</table>
+
+<h3>הערכת חומרה — מי מאושפז?</h3>
+<table>
+<thead><tr><th>כלי</th><th>עיקרון</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">CURB-65</span></td><td>5 משתנים: <b>C</b>onfusion, <b>U</b>rea&gt;7mmol/L, <b>R</b>R≥30, <b>B</b>P (סיסטולי≤90 או דיאסטולי≤60), גיל≥65. ציון 0 → טיפול בקהילה (תמותה 1.5%); 1–2 → אשפוז; ≥3 → תמותה ~22%, שקילת טיפול נמרץ</td></tr>
+<tr><td><span dir="ltr" class="term">PSI</span></td><td>20 משתנים (גיל, קו-מורבידיות, ממצאים) → 5 קבוצות סיכון תמותה (0.1%–29.2%). פחות פרקטי במיון בגלל כמות המשתנים</td></tr>
+</tbody>
+</table>
+<p class="key">שוק ספטי או כשל נשימתי במיון = אינדיקציה ישירה לטיפול נמרץ, בלי קשר לציון.</p>
+
+<h3>6. טיפול אנטיביוטי אמפירי</h3>
+<table>
+<thead><tr><th>קבוצת חולים</th><th>טיפול קו ראשון</th></tr></thead>
+<tbody>
+<tr><td>בקהילה, ללא קו-מורבידיות</td><td><span dir="ltr" class="term">Amoxicillin</span> במינון גבוה / <span dir="ltr" class="term">Doxycycline</span> / <span dir="ltr" class="term">Macrolide</span> (תלוי בשיעור עמידות מקומי ל-macrolide)</td></tr>
+<tr><td>בקהילה, עם קו-מורבידיות</td><td><span dir="ltr" class="term">β-lactam במינון גבוה + Macrolide</span>, או <span dir="ltr" class="term">fluoroquinolone נשימתי</span> (מוקסיפלוקסצין/לבופלוקסצין) לבד</td></tr>
+<tr><td>מאושפז, לא בט"נ</td><td><span dir="ltr" class="term">β-lactam (ceftriaxone/ampicillin) + macrolide</span>, או <span dir="ltr" class="term">fluoroquinolone נשימתי</span></td></tr>
+<tr><td>מאושפז, טיפול נמרץ</td><td><span dir="ltr" class="term">β-lactam IV + azithromycin</span> (או fluoroquinolone) — <b>ב-CAP חמור יש יתרון מוכח בהוספת מאקרולידים ל-β-lactam</b></td></tr>
+<tr><td>חשד ל-<span dir="ltr" class="term">Pseudomonas</span></td><td><span dir="ltr" class="term">Antipseudomonal β-lactam</span> (פיפרצילין-טזובקטם/צפפים/מרופנם) + <span dir="ltr" class="term">ciprofloxacin</span> או אמינוגליקוזיד</td></tr>
+<tr><td>חשד ל-<span dir="ltr" class="term">CA-MRSA</span></td><td>הוספת <span dir="ltr" class="term">vancomycin</span> או <span dir="ltr" class="term">linezolid</span></td></tr>
+</tbody>
+</table>
+<p><b>משך טיפול:</b> ב-CAP לא מסובך — 5 ימים מספיקים (לפי מחקרים עם fluoroquinolones), בניגוד ל-10–14 יום שהיה נהוג בעבר. משך ארוך יותר נדרש בבקטרמיה, זיהום מטסטטי, סיבוכים, או מחוללים וירולנטיים (Pseudomonas, CA-MRSA).</p>
+<p><b>צמצום טיפול:</b> גם אם מבודד pneumococcus, יש 15% co-infection עם א-טיפיים — צמצום נמדד בזהירות.</p>
+
+<h3>סיבוכים והיעדר שיפור</h3>
+<p>סיכון מוגבר לאירועים קרדיווסקולריים (MI, אי ספיקת לב, הפרעות קצב) — עד 90% מהתסמונות הכליליות החריפות בשבוע הראשון, בין היתר בגלל <span dir="ltr" class="term">pneumolysis</span> שמפעיל טסיות. אם אין שיפור תוך 2–3 ימים: לחשוד במחולל עמיד/טיפול לא מתאים, סיבוך מקומי (<span dir="ltr" class="term">empyema</span>, אבצס — לאבחנת empyema נדרש pH&lt;7, גלוקוז&lt;2.2mmol/L, LDH&gt;1000U/L או צמיחה בתרבית), זריעה מטסטטית, מחולל לא טיפוסי (וירוס/מיקובקטריה/פטרייה), מחלה אחרת (COP, drug fever), או זיהום נוזוקומיאלי.</p>
+
+<h2 class="group"><span class="num">B</span> דלקת ריאות בחולה מונשם — <span dir="ltr" class="term">Ventilator-Associated Pneumonia (VAP)</span></h2>
+<div class="mechanism">
+  <p class="chain"><b>שלושה גורמים</b> יוצרים VAP: קולוניזציה של הלוע, אספירציה, ופגיעה במנגנוני הגנה. הטובוס האנדוטרכיאלי הוא גורם הסיכון המרכזי — הוא עוקף פיזית את מנגנוני ההגנה שמונעים מיקרו-אספירציה, החולים המורדמים לא יכולים לפנות הפרשות, והפלורה האוראלית משתנה תחת אשפוז וטיפול אנטיביוטי.<br>
+  תרופות מעלות סיכון: אנטיביוטיקה (בררנית לזנים עמידים), משככי כאבים/סדציה (מדכאים רפלקס שיעול ומעלים אספירציה), ו-PPI/נוגדי חומצה (משנים פלורת מעי וגורמים ל-<span dir="ltr" class="term">bacterial overgrowth</span> — לכן מומלץ להימנע מהם כשניתן).</p>
+</div>
+<p><b>אטיולוגיה:</b> חיידקים MDR ולא-MDR. הלא-MDR דומים למחוללי CAP חמור (עם פחות א-טיפיים, פרט ל-Legionella). ה-MDR כוללים <span dir="ltr" class="term">Pseudomonas, MRSA, Acinetobacter, ESBL gram-negatives</span>.</p>
+<p><b>מניעה:</b> הרמת ראש המיטה ל-30–45°, היגיינת פה, שאיבת הפרשות, שקילת <span dir="ltr" class="term">tracheostomy</span> מוקדמת, הימנעות מאינטובציה כשאפשר (הנשמה לא פולשנית), שליטה גליקמית, היגיינת ידיים, הימנעות מסדציה מיותרת.</p>
+<p><b>קליניקה:</b> חום, קושי בהנשמה וצורך בחמצן גבוה, הפרשות מרובות בטובוס, לויקוציטוזיס, תסנין חדש בצילום.</p>
+<p><b>טיפול:</b> ללא גורמי סיכון ל-MDR — אנטיביוטיקה בודדת; בסיכון ל-MDR — כיסוי כפול ל-Pseudomonas + כיסוי MRSA (vancomycin/linezolid — בישראל בד"כ רק אם סיכון גבוה ממשי). משך טיפול (אם יש שיפור) — <b>8 ימים</b>.</p>
+
+<h2 class="group"><span class="num">C</span> אבצס ריאתי</h2>
+<h3>2. המנגנון</h3>
+<div class="mechanism">
+  <p class="chain">אבצס ריאתי הוא <span dir="ltr" class="term">necrosis</span> וקביטציה של רקמת הריאה בעקבות זיהום חיידקי, לרוב נגע דומיננטי בודד בקוטר מעל 2 ס"מ.</p>
+  <h4 style="margin:10px 0 4px">אבצס ראשוני (80%) — שרשרת הזמן</h4>
+  <p class="chain">אספירציה (בעיקר בחולים עם ירידה במצב הכרה, פרכוסים, אלכוהוליזם, מנת יתר, פגיעה בולברית, CVA) → חיידקים אנאירוביים ו-<span dir="ltr" class="term">microaerophilic streptococci</span> מה-<span dir="ltr" class="term">gingival crevices</span> נשאפים לפרנכימה → תחילה מתפתחת <span dir="ltr" class="term">pneumonitis</span> "רגילה" (שלב זיהומי, לא סטרילי — כבר כאן יש חיידקים אנאירוביים מעורבים) → <b>לאחר 7–14 ימים</b> החיידק האנאירובי מייצר נמק וקביטציה בפרנכימה, שהיקפם תלוי באינטראקציה פתוגן-מאכסן (זיהומים פולימיקרוביאליים גורמים לנמק נרחב יותר בגלל סינרגיזם של פקטורים וירולנטיים).</p>
+  <h4 style="margin:10px 0 4px">אבצס שניוני (20%)</h4>
+  <p class="chain">מתפתח על רקע מצב בסיסי — תהליך חסימתי (גידול/גוף זר) שמונע פינוי הפרשות מה-oropharynx, או מצב סיסטמי (HIV, דיכוי חיסוני) שפוגע במנגנוני הגנה ומאפשר גם פתוגנים אופורטוניסטיים. יכול לנבוע גם מ-<span dir="ltr" class="term">septic emboli</span> (למשל endocarditis טריקוספידלי, לרוב S. aureus, או Lemierre's syndrome).</p>
+</div>
+<p><b>מיקום שכיח:</b> סגמנטים "דפנדנטיים" — החלק הפוסטריורי של האונות העליונות והחלק הסופריורי של האונות התחתונות; שכיח יותר בריאה ימנית (מבנה ה-main bronchus הימני יותר ישר).</p>
+
+<h3>מיקרוביולוגיה</h3>
+<table>
+<thead><tr><th>סוג אבצס</th><th>פתוגנים אופייניים</th></tr></thead>
+<tbody>
+<tr><td>ראשוני</td><td>פולי-מיקרוביאלי אנאירובי: <span dir="ltr" class="term">Peptostreptococcus, Prevotella, Bacteroides, Strep. milleri</span>. ב-40% לא מבודד פתוגן ("לא ספציפי") — מניחים אנאירוביים</td></tr>
+<tr><td>שניוני</td><td><span dir="ltr" class="term">S. aureus, Pseudomonas, Enterobacteriaceae, Nocardia, Aspergillus, Mucorales, Cryptococcus</span> — תלוי במצב החיסוני</td></tr>
+</tbody>
+</table>
+<p><b><span dir="ltr" class="term">Putrid lung abscess</span></b> — ריח רע מהפה/כיח/אמפיאמה — דיאגנוסטי לאבצס אנאירובי.</p>
+
+<h3>קליניקה ואבחנה</h3>
+<p>ראשית דומה ל-CAP (חום, שיעול, כיח, כאבים פלאוריטיים). באבצסים אנאירוביים — מהלך כרוני-אינדולנטי יותר (הזעות לילה, עייפות, אנמיה). ב-S. aureus — מהלך פולמיננטי. בבדיקה: היגיינת שיניים ירודה, קולות נשימה אמורפיים/<span dir="ltr" class="term">cavernous</span>, Clubbing.</p>
+<p><b>הדמיה:</b> צילום חזה מדגים חלל עם דופן מעובה ופלס אוויר-נוזל. CT מדויק יותר, מדגים קביטציה מוקדם יותר, ומסייע להבדיל אבצס פריפרי מתפליט פלאורלי (הבדל קריטי — empyema דורש ניקוז דחוף).</p>
+
+<h3>6. טיפול</h3>
+<div class="surgery">
+<h4>אבצס ראשוני</h4>
+<p>אנטיביוטי תמיד תחילה: <span dir="ltr" class="term">Clindamycin</span> 600מ"ג IV פעמיים ביום (ואז 300מ"ג PO 4 פעמים ביום עם שיפור), או <span dir="ltr" class="term">β-lactam/β-lactamase IV → amoxicillin-clavulanate PO</span>. משך: 3–4 שבועות ועד 14 שבועות, עד רזולוציה בהדמיה.</p>
+<h4>נקודת הזהירות הקריטית</h4>
+<p>עד 10–20% לא מגיבים לאנטיביוטיקה בלבד. אבצס מעל 6–8 ס"מ פחות נוטה להגיב. לאחר כשבוע ללא תגובה — יש לשקול ניקוז/כריתה ניתוחית, במיוחד אם החולה אינו מועמד לניתוח. סיבוכי ניקוז מלעורי: קונטמינציה של החלל הפלאורלי, pneumothorax, hemothorax.</p>
+<h4>אבצס שניוני</h4>
+<p>טיפול ממוקד לפתוגן המזוהה, לרוב קורס ממושך יותר, ולעיתים נדרשת התערבות לגורם הבסיסי (הקלת חסימה וכו').</p>
+</div>
+<p>פרוגנוזה: תמותה 2% באבצס ראשוני, עד 75% בשניוני (בסדרות מסוימות) — גורמים פרוגנוסטיים שליליים: גיל&gt;60, sepsis בהתייצגות, סימפטומים&gt;8 שבועות, גודל&gt;6 ס"מ.</p>
+
+<h2 class="group"><span class="num">D</span> אנדוקרדיטיס זיהומית — <span dir="ltr" class="term">Infective Endocarditis</span></h2>
+<h3>2. המנגנון — איך נוצרת וגטציה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>Acute (ABE)</b> — מחלת חום שפוגעת במהירות במבני הלב וגורמת לזריעה המטוגנית מרוחקת; ללא טיפול קטלנית תוך שבועות. <b>Subacute (SBE)</b> — מהלך אינדולנטי, נדיר שגורם לזריעה מרוחקת, ממשיכה להתקדם בהדרגה אלא אם מופיע סיבוך.<br>
+    <b>שרשרת ההיווצרות:</b> זרימת דם טורבולנטית סביב מסתם פגוע (מחלה מסתמית, מסתם תותב, מכשיר תוך-לבבי) גורמת <b>לפגיעה אנדותליאלית</b> → שקיעה מקומית של טסיות ופיברין (וגטציה סטרילית, "<span dir="ltr" class="term">non-bacterial thrombotic endocarditis</span>") → <b>בקטרמיה חולפת</b> (ממקור אוראלי, עורי, גניטו-אורינרי או GI) מאפשרת לחיידקים להיצמד ל"מלכודת" הפיברין-טסיות הזו ולהתבצר בתוכה, מוגנים חלקית ממערכת החיסון ומאנטיביוטיקה → החיידקים ממשיכים לגייס עוד טסיות ופיברין וגדלים לכדי וגטציה בשלה.<br>
+    מהוגטציה נובעים <b>שלושה סוגי נזק</b>: (1) נזק מקומי — הרס מסתמי/קרע chordae→רגורגיטציה, פיזור מעבר לעלי המסתם לרקמות סמוכות→אבצס פריוולוולרי/פיסטולה, פגיעה במערכת ההולכה→AV block; (2) <b>תסחיפים ספטיים</b> — חתיכות מהוגטציה נשברות וזורמות לאיברים מרוחקים (מוח, טחול, כליה, עור) וגורמות שם לזיהום פוקלי או אוטם; (3) <b>שקיעת קומפלקסים חיסוניים</b> — נוגדנים נגד רכיבי החיידק יוצרים קומפלקסים שמצטברים בכלי דם קטנים (גלומרולונפריטיס, Osler nodes) — זהו מנגנון עקיף, לא זיהום ישיר של האתר.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="70" width="140" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="80" y="98" font-size="12" text-anchor="middle">זרימה טורבולנטית</text>
+  <text x="80" y="116" font-size="12" text-anchor="middle">+ פגיעה אנדותליאלית</text>
+  <line x1="150" y1="105" x2="188" y2="105" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="193" y="70" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="263" y="98" font-size="12" text-anchor="middle">וגטציה סטרילית</text>
+  <text x="263" y="116" font-size="11" text-anchor="middle">(טסיות + פיברין)</text>
+  <line x1="333" y1="105" x2="371" y2="105" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="376" y="70" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="446" y="98" font-size="12" text-anchor="middle">בקטרמיה חולפת</text>
+  <text x="446" y="116" font-size="11" text-anchor="middle">נצמדת ומתבצרת</text>
+  <line x1="516" y1="105" x2="554" y2="105" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <rect x="559" y="70" width="130" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="624" y="98" font-size="12" text-anchor="middle">וגטציה בשלה</text>
+  <line x1="689" y1="90" x2="720" y2="40" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <text x="800" y="35" font-size="12" text-anchor="middle">נזק מקומי</text>
+  <line x1="689" y1="105" x2="720" y2="105" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <text x="800" y="110" font-size="12" text-anchor="middle">תסחיפים ספטיים</text>
+  <line x1="689" y1="120" x2="720" y2="170" stroke="#2563eb" stroke-width="2" marker-end="url(#a2)"/>
+  <text x="800" y="180" font-size="12" text-anchor="middle">קומפלקסים חיסוניים</text>
+  <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+</svg>
+
+<h3>גורמי פרה-דיספוזיציה ואטיולוגיה</h3>
+<p>במדינות מתפתחות — מחלת לב ראומטית כרונית; במפותחות — <span dir="ltr" class="term">IV drug use</span>, מחלות מסתמיות דגנרטיביות, מכשירים תוך-לבביים. מסתם תותב אחראי ל-16–30% מהמקרים, עם סיכון מרבי ב-6–12 החודשים הראשונים.</p>
+<p>רוב המקרים נגרמים ע"י קבוצה מצומצמת: <span dir="ltr" class="term">Strep. viridans</span> (מהפה), <span dir="ltr" class="term">Staph</span> (מהעור) וחיידקי <span dir="ltr" class="term">HACEK</span> (מדרכי הנשימה העליונות). <b><span dir="ltr" class="term">Streptococcus gallolyticus</span> (S. bovis biotype 1)</b> — מקורו במערכת העיכול ובאסוציאציה לפוליפים/גידולי מעי — <b>מחייב קולונוסקופיה</b>. <span dir="ltr" class="term">Enterococci</span> — מקורם בדרכי השתן/המין.</p>
+<div class="key-box">בזיהום IE ב-IV drug users — לרוב מעורב המסתם הטריקוספידלי, נגרם ע"י S. aureus (לעיתים MRSA), וגורם לתסחיפים ריאתיים ספטיים (שיעול, כאב פלאוריטי, תסנינים נודולריים, לעיתים empyema).</div>
+
+<h3>4. קליניקה</h3>
+<p>חום (80–90%), אוושה חדשה/משתנה (80–85%), Splenomegaly, ביטויים נוירולוגיים (20–40%), וביטויים פריפריים קלאסיים (2–15%): <span dir="ltr" class="term">Janeway lesions</span> (נגעים מקולריים לא-כואבים בכפות — שקיעת חיידקים ישירה/תסחיף ספטי), <span dir="ltr" class="term">Osler nodes</span> (נגעים כואבים — שקיעת קומפלקסים חיסוניים), <span dir="ltr" class="term">Roth spots</span> (דימומי רשתית). המהלך הטמפורלי נקבע לרוב ע"י המחולל: β-hemolytic strep/S.aureus/pneumococci→אקוטי; Strep viridans/enterococci/HACEK→סב-אקוטי; Bartonella/Coxiella→אינדולנטי מאוד.</p>
+<p><b>סיבוכים כלייתיים:</b> Glomerulonephritis משקיעת קומפלקסים חיסוניים — מתפתח על פני 10–14 יום (שלב סב-אקוטי); יתר לחץ דם, המטוריה, פרוטאינוריה. <b>סיבוכים נוירולוגיים:</b> תסחיף צרברווסקולרי (15–35%), מיקרו-אבצסים (בעיקר S. aureus), meningitis, דימום תוך-מוחי.</p>
+
+<h3>5. אבחנה — קריטריוני DUKE</h3>
+<table>
+<thead><tr><th>קטגוריה</th><th>קריטריונים</th></tr></thead>
+<tbody>
+<tr><td>מאג'וריים</td><td>תרביות דם חיוביות (אורגניזם טיפוסי מ-2 תרביות נפרדות, או תרביות פרסיסטנטיות חיוביות, או Coxiella בודד/סרולוגיה חיובית) <b>+</b> עדות למעורבות אנדוקרדיאלית (וגטציה/אבצס/דהיסנס חלקי חדש באקו, או רגורגיטציה חדשה)</td></tr>
+<tr><td>מינוריים</td><td>פרה-דיספוזיציה לבבית/IVDU, חום≥38°, תופעות וסקולריות (תסחיפים, mycotic aneurysm, Janeway), תופעות אימונולוגיות (GN, Osler, Roth, RF), עדות מיקרוביולוגית שלא עונה על הקריטריון המאג'ורי</td></tr>
+</tbody>
+</table>
+<table>
+<thead><tr><th>Definite IE</th><th>Possible IE</th><th>Rejected</th></tr></thead>
+<tbody>
+<tr><td>2 מאג'וריים, או 1 מאג'ורי+3 מינוריים, או 5 מינוריים</td><td>1 מאג'ורי+1 מינורי, או 3 מינוריים</td><td>אבחנה אלטרנטיבית מבוססת, או חלוף תסמינים תוך ≤4 ימי טיפול</td></tr>
+</tbody>
+</table>
+
+<h3>תרביות דם והדמיה</h3>
+<p>בידוד האורגניזם קריטי — 3 סטים בהפרש ≥שעתיים לאורך 24 שעות (אם לא ניתנה אנטיביוטיקה בשבועיים האחרונים). <b>Culture-negative IE</b> (5–15%): לרוב עקב חשיפה קודמת לאנטיביוטיקה (33–50%), או אורגניזמים "מפונקים" (<span dir="ltr" class="term">HACEK, Coxiella, Bartonella, Abiotrophia/Granulicatella</span>) שדורשים סרולוגיה.</p>
+<table>
+<thead><tr><th>בדיקה</th><th>מאפיינים</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">TTE</span></td><td>לא פולשנית, סגוליות גבוהה מאוד, אך פחות רגישה — קושי בוגטציות קטנות/מסתמים תותבים/אמפיזמה</td></tr>
+<tr><td><span dir="ltr" class="term">TEE</span></td><td>מזהה וגטציות ב-&gt;90% (False negative עד 6–18%); אופטימלית ל-PVE, CIED endocarditis, אבצס מיוקרדיאלי ופיסטולה</td></tr>
+</tbody>
+</table>
+<p><b>גישה:</b> חשד גבוה → ישר TEE. חשד נמוך → התחל ב-TTE; אם שלילי אך החשד נשאר גבוה קלינית → TEE; אם TTE חיובי עם סימני חומרה (וגטציה גדולה, אי ספיקת מסתם, זיהום פארא-מסתמי) → להמשיך ל-TEE לחיפוש סיבוכים.</p>
+
+<h3>6. עקרונות טיפול (המשך בנתח הבא)</h3>
+<p>עיקרון העל: <b>יש להשמיד את כל החיידקים בתוך הוגטציה</b>, ולכן הטיפול חייב להיות <b>בקטריוצידי וממושך</b> (לא בקטריוסטטי, ולא קורס קצר כמו בזיהומים "רגילים") — כי הוגטציה היא מבנה אווסקולרי-יחסית שמגן על החיידקים מתאי החיסון, ורק אנטיביוטיקה הורגת-חיידק בריכוז גבוה ולאורך זמן ממשי חודרת ומחסלת את כל האוכלוסייה. במטופל יציב עם מחלה סב-אקוטית ניתן להמתין לתרביות; במטופל לא יציב/אקוטי/הזקוק לניתוח דחוף — טיפול אמפירי מיד לאחר 3 סטים של תרביות. (המשך פרוטוקולי הטיפול הספציפיים — נתח הבא בקורס.)</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h4>CAP — CURB-65</h4>
+<p><b>C</b>onfusion, <b>U</b>rea&gt;7, <b>R</b>R≥30, <b>B</b>P נמוך, גיל≥65 — "<b>C</b>an <b>U</b>ncle <b>R</b>obert <b>B</b>reathe at <b>65</b>?"</p>
+<h4>אבצס ריאתי ראשוני — "7 עד 14 יום, ואז מתפוצץ"</h4>
+<p>דמייני בלון (ה-pneumonitis) שמתמלא אט-אט במשך שבוע-שבועיים מגזי ריקבון של חיידקים אנאירוביים, עד שהוא "נוקב" את עצמו מבפנים ויוצר חלל עם רמת נוזל — בדיוק כמו הפלס אוויר-נוזל שרואים בצילום.</p>
+<svg class="diagram" viewBox="0 0 500 160" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="120" cy="80" rx="70" ry="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="120" y="85" font-size="13" text-anchor="middle">יום 1: אספירציה</text>
+  <line x1="200" y1="80" x2="250" y2="80" stroke="#2563eb" stroke-width="2" marker-end="url(#a3)"/>
+  <text x="225" y="70" font-size="11" text-anchor="middle">7-14 יום</text>
+  <circle cx="350" cy="80" r="55" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <rect x="320" y="105" width="60" height="15" fill="#93c5fd"/>
+  <text x="350" y="60" font-size="12" text-anchor="middle">חלל + פלס</text>
+  <text x="350" y="75" font-size="11" text-anchor="middle">אוויר-נוזל</text>
+  <defs><marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+</svg>
+<h4>אנדוקרדיטיס — "המלכודת של הוגטציה"</h4>
+<p>דמייני רשת דייגים (הפיברין-טסיות) שנפרשת על פני שריטה בזרם המים (הפגיעה האנדותליאלית) — כל דגה שעוברת (בקטרמיה חולפת) עלולה להיתפס ברשת, ואז לגדול בתוכה מוגנת מהכריש (המערכת החיסונית) עד שחתיכות מהרשת נשברות ונסחפות (תסחיפים) לכל מקום בים (הגוף).</p>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://radiopaedia.org/articles/community-acquired-pneumonia" target="_blank">Radiopaedia — Community-acquired pneumonia</a>
+    <div class="desc">סקירת הדמיה מלאה של CAP כולל דוגמאות צילום חזה ו-CT עם קונסולידציה, air bronchograms וסיבוכים.</div></li>
+  <li><a href="https://radiopaedia.org/articles/pulmonary-abscess" target="_blank">Radiopaedia — Pulmonary (lung) abscess</a>
+    <div class="desc">דוגמאות CT/צילום של אבצס ריאתי עם דופן מעובה ופלס אוויר-נוזל, כולל אבחנה מבדלת מ-empyema.</div></li>
+  <li><a href="https://radiopaedia.org/articles/infective-endocarditis" target="_blank">Radiopaedia — Infective endocarditis</a>
+    <div class="desc">הסבר על ממצאי הדמיה (אקו/CT לב) בוגטציות, אבצס פריוולוולרי ופיסטולות.</div></li>
+  <li><a href="https://www.youtube.com/results?search_query=Ninja+Nerd+infective+endocarditis" target="_blank">Ninja Nerd — Infective Endocarditis (יוטיוב)</a>
+    <div class="desc">הרצאה מפורטת על מנגנון היווצרות הוגטציה, קריטריוני Duke וטיפול — ערוץ לימודי רפואי מוכר.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרים קליניים ותרגול</h2>
+
+<div class="case">
+<h3>וינייטה 1 — CAP</h3>
+<p>גבר בן 74, דמנציה קלה ותושב בית אבות, מובא עם בלבול חדש מהיום, ללא חום מדווח ע"י הצוות. בבדיקה: RR 32/דקה, לחץ דם 88/56, סטורציה 89% באוויר חדר. באוזן — קרפיטציות בבסיס ריאה ימין. מעבדה: BUN 22 מ"ג/ד"ל (~7.9 mmol/L), לויקוציטים 16,500.</p>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">1. מהו ציון ה-CURB-65 של החולה, ומה המשמעות הטיפולית?</div>
+  <button class="opt" data-i="0">5 — כל חמשת המרכיבים מתקיימים (בלבול, אוריאה≥7, RR≥30, BP נמוך, גיל≥65); ציון≥3 מחייב שקילת טיפול נמרץ</button>
+  <button class="opt" data-i="1">2 — ניתן לשקול טיפול בקהילה</button>
+  <button class="opt" data-i="2">1 — מעקב מרפאתי בלבד</button>
+  <button class="opt" data-i="3">0 — שחרור הביתה</button>
+  <div class="explain">נכון: בחולה זה מתקיימים כל 5 המרכיבים — Confusion (בלבול חדש), Urea≥7mmol/L, Respiratory rate≥30, Blood pressure נמוך (88/56), וגיל≥65 — ציון 5/5. ציון≥3 קשור לתמותה גבוהה (עד 22%+) ומחייב אשפוז בטיפול נמרץ, במיוחד כשמצטרפת גם היפוקסמיה. שוק ספטי/כשל נשימתי גלוי במיון הם אינדיקציה ישירה לטיפול נמרץ בלי קשר לציון המספרי.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהו הפתוגן השכיח ביותר הגורם ל-CAP בכל דרגות החומרה?</div>
+  <button class="opt" data-i="0">Legionella pneumophila</button>
+  <button class="opt" data-i="1">Streptococcus pneumoniae</button>
+  <button class="opt" data-i="2">Mycoplasma pneumoniae</button>
+  <button class="opt" data-i="3">Pseudomonas aeruginosa</button>
+  <div class="explain">נכון: S. pneumoniae — המחולל השכיח ביותר בכל דרגות החומרה של CAP. Legionella ו-Mycoplasma הם א-טיפיים ופחות שכיחים. Pseudomonas שכיח בעיקר במחלת ריאות מבנית קשה (bronchiectasis, CF, COPD קשה) ולא כמחולל CAP כללי.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזו תרופה יש להוסיף אמפירית ל-β-lactam בחולה עם CAP חמור המחייב טיפול נמרץ?</div>
+  <button class="opt" data-i="0">Macrolide (למשל azithromycin)</button>
+  <button class="opt" data-i="1">Metronidazole</button>
+  <button class="opt" data-i="2">Vancomycin לכולם ללא יוצא מן הכלל</button>
+  <button class="opt" data-i="3">Amphotericin B</button>
+  <div class="explain">נכון: מאקרוליד — יש יתרון מוכח בהוספתו ל-β-lactam ב-CAP חמור, גם מעבר לכיסוי אנטיביוטי (השערות כוללות אפקט אימונומודולטורי). Metronidazole מיועד לאנאירוביים (לא שגרתי ב-CAP). Vancomycin נשמר לחשד ל-MRSA ספציפי, לא שגרתי לכולם. Amphotericin B הוא אנטי-פטרייתי — לא רלוונטי לטיפול אמפירי ב-CAP.</div>
+</div>
+
+<div class="case">
+<h3>וינייטה 2 — אבצס ריאתי</h3>
+<p>גבר בן 52 עם היסטוריה של שימוש כרוני באלכוהול ומחלת חניכיים מוזנחת, מתייצג עם שבועיים של חום נמוך, הזעות לילה, ירידה במשקל וכיח בעל ריח רע. צילום חזה מדגים חלל עם דופן מעובה ופלס אוויר-נוזל בסגמנט הפוסטריורי של האונה העליונה הימנית.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. מהו גורם הסיכון העיקרי להתפתחות אבצס ריאתי ראשוני במקרה זה?</div>
+  <button class="opt" data-i="0">חסימה ברונכיאלית ע"י גידול</button>
+  <button class="opt" data-i="1">אספירציה כרונית על רקע שינוי במצב ההכרה/אלכוהוליזם + קולוניזציה אנאירובית מחניכיים פגועות</button>
+  <button class="opt" data-i="2">דיכוי חיסוני עקב HIV</button>
+  <button class="opt" data-i="3">Septic emboli מ-endocarditis טריקוספידלי</button>
+  <div class="explain">נכון: אלכוהוליזם וירידה במצב ההכרה מעלים סיכון לאספירציה, ומחלת חניכיים מוסיפה עומס חיידקים אנאירוביים ב-gingival crevices — שילוב קלאסי לאבצס ראשוני. חסימה ע"י גידול ודיכוי חיסוני מאפיינים אבצס שניוני. תסחיפים ספטיים גם הם מנגנון של אבצס שניוני (לרוב S. aureus).</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. הריח הרע מהכיח ("putrid") מרמז בעיקר על:</div>
+  <button class="opt" data-i="0">זיהום פטרייתי (Aspergillus)</button>
+  <button class="opt" data-i="1">שחפת ריאתית</button>
+  <button class="opt" data-i="2">זיהום אנאירובי</button>
+  <button class="opt" data-i="3">זיהום ויראלי</button>
+  <div class="explain">נכון: putrid lung abscess דיאגנוסטי לזיהום אנאירובי — חיידקים אנאירוביים מייצרים תוצרי פירוק בעלי ריח אופייני. Aspergillus, שחפת וזיהום ויראלי לא קשורים לריח רע זה.</div>
+</div>
+
+<div class="case">
+<h3>וינייטה 3 — אנדוקרדיטיס</h3>
+<p>אישה בת 68 עם מסתם אבי העורקים ביולוגי שהושתל לפני 4 חודשים, מתייצגת עם חום ממושך, עייפות ואוושה חדשה. בבדיקת עיניים — כתמי Roth. תרביות דם (2 סטים נפרדים) חיוביות ל-Staphylococcus coagulase-negative.</p>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. מהי האבחנה הסבירה ביותר ומה מייחד את המחולל שבודד?</div>
+  <button class="opt" data-i="0">Prosthetic Valve Endocarditis — CoNS הוא המחולל השכיח ביותר בשנה הראשונה לאחר השתלת מסתם, ואינו נחשב קונטמינציה במטופל כזה</button>
+  <button class="opt" data-i="1">CAP עם bacteremia משנית</button>
+  <button class="opt" data-i="2">Culture-negative endocarditis</button>
+  <button class="opt" data-i="3">אבצס ריאתי שניוני עם זריעה סיסטמית</button>
+  <div class="explain">נכון: מסתם תותב + טווח זמן קצר מהניתוח + CoNS = PVE קלאסי. בחולה רגיל CoNS לרוב קונטמינציה מהעור, אך אחרי השתלת מסתם יש להתייחס ברצינות לצמיחה שלו (בעיקר חוזרת). התרביות כאן חיוביות ולא culture-negative. אין תיאור קליני לאבצס ריאתי.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">10</span> סיכום של הסיכום</h2>
+<h3>CAP</h3>
+<ul>
+  <li>מנגנון: אספירציה מהלוע → זיהום אלוואולרי → ציטוקינים (IL-1/6, TNF) → קונסולידציה, חום, לויקוציטוזיס</li>
+  <li>מחולל שכיח ביותר: S. pneumoniae; א-טיפיים: Mycoplasma, Chlamydia, Legionella</li>
+  <li>הערכת חומרה: CURB-65 (בלבול, אוריאה, RR, BP, גיל≥65)</li>
+  <li>טיפול: β-lactam+macrolide או fluoroquinolone נשימתי; 5 ימים ברוב המקרים; ב-CAP חמור להוסיף macrolide</li>
+</ul>
+<h3>VAP</h3>
+<ul>
+  <li>טובוס עוקף הגנות → מיקרו-אספירציה → זיהום, MDR שכיח יותר מ-CAP</li>
+  <li>מניעה: הרמת ראש מיטה, היגיינת פה, מזעור סדציה</li>
+  <li>טיפול: כיסוי כפול Pseudomonas + MRSA בסיכון MDR; 8 ימים</li>
+</ul>
+<h3>אבצס ריאתי</h3>
+<ul>
+  <li>ראשוני (80%): אספירציה→pneumonitis→(7-14 יום)→נמק אנאירובי וקביטציה</li>
+  <li>טיפול ראשוני: Clindamycin או β-lactam/β-lactamase, 3-4 שבועות; ניקוז/ניתוח אם אין תגובה תוך שבוע</li>
+</ul>
+<h3>אנדוקרדיטיס זיהומית</h3>
+<ul>
+  <li>מנגנון: פגיעה אנדותליאלית→וגטציה סטרילית→הידבקות בקטרמיה חולפת→נזק מקומי+תסחיפים+קומפלקסים חיסוניים</li>
+  <li>אבחנה: קריטריוני Duke (מאג'ורי: תרביות+מעורבות אנדוקרדיאלית באקו)</li>
+  <li>הדמיה: TTE קו ראשון בחשד נמוך, TEE בחשד גבוה/PVE</li>
+  <li>טיפול: בקטריוצידי וממושך (וגטציה מגנה על החיידקים) — פרטים בנתח הבא</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
