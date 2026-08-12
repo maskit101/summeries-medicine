@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מחלות זיהומיות 4/5: השלמת UTI, Bacterial Meningitis ופתיחת Tuberculosis</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:900px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:20px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px; color:var(--blue)}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .section-tag{display:inline-block; background:#111827; color:#fff; font-size:13px; padding:3px 10px;
+    border-radius:20px; margin-bottom:6px}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid var(--line); margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fbbf24; margin:14px 0 4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>מחלות זיהומיות — נתח 4/5 (עמ' 142–158)</h1>
+<div class="subtitle">השלמת <span dir="ltr" class="term">Urinary Tract Infection (UTI)</span> — גברים, סוכרת, סיבוכים, טיפול • <span dir="ltr" class="term">Bacterial Meningitis</span> במלואו • פתיחת <span dir="ltr" class="term">Tuberculosis</span> (אפידמיולוגיה, מיקרוביולוגיה, מהלך טבעי)</div>
+
+<p>נתח זה משלים את נושא ה-<span dir="ltr" class="term">UTI</span> שנפתח בנתח הקודם (גברים, סוכרת, סיבוכים, אבחנה וטיפול), עובר לנושא מרכזי ומסוכן — <span dir="ltr" class="term">Bacterial Meningitis</span> — ומסיים בפתיחת נושא השחפת (<span dir="ltr" class="term">Tuberculosis</span>), שתושלם בנתח הבא (5/5).</p>
+
+<h2><span class="num">1</span> השלמת <span dir="ltr" class="term">UTI</span>: גברים, סוכרת וסיבוכים</h2>
+<p>ברוב הגברים עם <span dir="ltr" class="term">UTI</span> יש אבנורמליות פונקציונלית או אנטומית בדרכי השתן — לרוב חסימה משנית ל<b>היפרטרופיה של הערמונית</b>. עם זאת, לא לכל הגברים עם <span dir="ltr" class="term">UTI</span> יש הפרעה שניתנת לזיהוי — נכון בעיקר לגברים מתחת לגיל 45. <b>גברים לא-נימולים</b> נמצאים בסיכון מוגבר ל-<span dir="ltr" class="term">E. coli UTI</span>, כי החיידק נוטה לעשות קולוניזציה בעורלה ומשם לעלות לדרכי השתן.</p>
+<p>נשים עם <b>סוכרת</b> נמצאות בסיכון גבוה פי 2-3 ל-<span dir="ltr" class="term">ASB</span> ו-<span dir="ltr" class="term">UTI</span>, מכמה סיבות מצטברות: סוכרת ממושכת, שימוש באינסולין, פגיעה בתפקוד השלפוחית (נוירופתיה אוטונומית → התרוקנות לא מלאה → שתן שיורי שמשמש "בריכת גידול" לחיידקים), חסימה של זרימת השתן, ופגיעה בהפרשת ציטוקינים (תגובה חיסונית מקומית מוחלשת). גם מעכבי <span dir="ltr" class="term">SGLT2</span> תורמים במידה מסוימת — הם גורמים ל-<span dir="ltr" class="term">glycosuria</span> (סוכר בשתן), שמספק מצע גדילה נוסף לחיידקים.</p>
+
+<div class="mechanism">
+  <p class="chain">שרשרת הסיבוכים בסוכרת: <b>נוירופתיה אוטונומית של השלפוחית</b> → התרוקנות לא מלאה ושתן שיורי → <b>סביבה נוחה לגדילת חיידקים</b> → זיהום עולה לכליה (<span dir="ltr" class="term">pyelonephritis</span>) → אם יש גם מחלת כלי דם קטנים (כמו בסוכרת ממושכת), האספקה הקטנה ממילא לפפילות הכליה נפגעת עוד יותר על ידי הזיהום והדלקת → <b>נמק פפילרי (Papillary necrosis)</b>: פפילות שהתנוונו (<span dir="ltr" class="term">sloughed papillae</span>) עלולות לנשור ולחסום את השופכן.</p>
+</div>
+
+<p>סיבוכים ספציפיים של <span dir="ltr" class="term">pyelonephritis</span> בחולי סוכרת (חשוב מאוד לבחינה):</p>
+<table>
+<thead><tr><th>סיבוך</th><th>מנגנון / הקשר</th><th>טיפול</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Emphysematous pyelonephritis</span></td><td>צורה קשה מאוד, קשורה לייצור <b>גז</b> ברקמת הכליה והרקמה הפרינפרית — מתרחשת <b>כמעט אך ורק בחולי סוכרת</b> (חיידקים מותססים גלוקוז לגז בסביבה איסכמית).</td><td>ניקוז מלעורי, ולאחר מכן <span dir="ltr" class="term">nephrectomy</span>.</td></tr>
+<tr><td><span dir="ltr" class="term">Xanthogranulomatous pyelonephritis</span></td><td>חסימה כרונית (לרוב אבני <span dir="ltr" class="term">staghorn</span>) + זיהום כרוני → הרס מוגלתי של רקמת הכליה.</td><td><span dir="ltr" class="term">Nephrectomy</span>.</td></tr>
+<tr><td><span dir="ltr" class="term">Papillary necrosis</span></td><td>ראו שרשרת למעלה; יכול להתרחש גם ב-<span dir="ltr" class="term">pyelonephritis</span> שמסתבכת ע"י חסימה, אנמיה חרמשית או <span dir="ltr" class="term">analgesic nephropathy</span>.</td><td>הקלה על החסימה לשיפור התפקוד הכלייתי.</td></tr>
+<tr><td><span dir="ltr" class="term">Intra-parenchymal abscess</span></td><td>יש לחשוד כשחום/בקטרמיה נמשכים למרות טיפול אנטיביוטי הולם.</td><td>לרוב ניקוז + אנטיביוטיקה ממושכת.</td></tr>
+</tbody>
+</table>
+
+<h3>גישה אבחנתית</h3>
+<p>לאנמנזה יש ערך מנבא גבוה מאוד ב-<span dir="ltr" class="term">uncomplicated cystitis</span>: בנשים עם סימפטום אחד (<span dir="ltr" class="term">dysuria</span>, תכיפות, <span dir="ltr" class="term">hematuria</span> או כאב גב) ללא גורמים מסבכים — סבירות 50% ל-UTI; בנוכחות <b>גם</b> גורמי סיכון וללא הפרשות נרתיקיות — כמעט 90%; שילוב <span dir="ltr" class="term">dysuria</span> + תכיפות ללא הפרשות — 96%, ואז אפשר להתחיל טיפול דפיניטיבי בלי בירור נוסף. <b>תרבית שתן היא ה-gold standard</b> לאבחנה (סף ≥10⁵ מושבות/מ"ל בנשים, ≥10³ בגברים/עם קטטר), אך לוקח לה זמן — ולכן ברוב המקרים הפשוטים מטפלים אמפירית על בסיס אנמנזה/סטיק בלבד.</p>
+<p><b>סטיק שתן</b>: ניטריטים חיוביים רק אם מדובר במשפחת <span dir="ltr" class="term">Enterobacteriaceae</span> (הופכות ניטראט לניטריט) וכאשר יש זמן שהייה מספיק של שתן בשלפוחית. <span dir="ltr" class="term">Leukocyte esterase</span> חיובי + ניטריט שלילי — עדיין תומך ב-UTI. חשוב: סטיק <b>שלילי אינו מספיק</b> לשלול <span dir="ltr" class="term">bacteriuria</span> בהיריון, שם חובה לאתר כל אפיזודה.</p>
+
+<h3>טיפול ב-UTI לא מסובך בנשים</h3>
+<p>בבחירת הטיפול יש לשקול את <b>הנזק הקולטרלי</b> — יצירת עמידויות, פגיעה בפלורה, סיכון ל-<span dir="ltr" class="term">C. difficile</span>. <span dir="ltr" class="term">Nitrofurantoin</span>, <span dir="ltr" class="term">Fosfomycin</span> ו-<span dir="ltr" class="term">Pivmecillinam</span> פוגעות הכי פחות בפלורה ולכן מועדפות.</p>
+<table>
+<thead><tr><th>תרופה</th><th>מינון</th><th>תופעות לוואי שכיחות</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Nitrofurantoin</span></td><td>100mg פעמיים ביום, 5-7 ימים</td><td>בחילות, כאבי ראש</td><td>כמעט ולא התפתחה עמידות; <b>לא מתאימה ל-pyelonephritis</b> כי לא מגיעה לריכוז רקמתי מספק.</td></tr>
+<tr><td><span dir="ltr" class="term">TMP-SMX (Resprim)</span></td><td>כדור DS פעמיים ביום, 3 ימים</td><td>פריחה, בחילות/הקאות, אבנורמליות המטולוגיות</td><td>תרופת בחירה היסטורית, כיום רק באזורים עם עמידות &lt;20%.</td></tr>
+<tr><td><span dir="ltr" class="term">Fosfomycin</span></td><td>מנה בודדת 3 גרם</td><td>שלשולים, בחילות, כאבי ראש</td><td>לא נותנים ב-pyelonephritis (אין הוכחה שמנה בודדת מספיקה).</td></tr>
+<tr><td><span dir="ltr" class="term">Pivmecillinam</span></td><td>400mg פעמיים ביום, 3-7 ימים</td><td>בחילות, הקאות, שלשולים</td><td>נזק קולטרלי נמוך.</td></tr>
+<tr><td><span dir="ltr" class="term">Fluoroquinolones</span></td><td>משתנה, לרוב 3 ימים</td><td>בחילות, שלשולים, כאבי ראש, נדודי שינה</td><td>נשמרות למקרים בהם אין אלטרנטיבה — כדי למנוע עמידות.</td></tr>
+<tr><td><span dir="ltr" class="term">β-Lactams</span></td><td>משתנה, 5-7 ימים</td><td>שלשולים, בחילות, פריחה</td><td>פחות יעילות מהאחרות בד"כ.</td></tr>
+</tbody>
+</table>
+
+<h3>טיפול לפי תסמונת ואוכלוסייה</h3>
+<table>
+<thead><tr><th>מצב</th><th>טיפול</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Pyelonephritis</span></td><td><span dir="ltr" class="term">Quinolones</span> קו ראשון (Ciprofloxacin PO, 7 ימים); TMP-SMX אם רגישות ידועה (+ מנת <span dir="ltr" class="term">Ceftriaxone IV</span> בודדת אם לא ידועה). במצב פראנטרלי — <span dir="ltr" class="term">Carbapenem</span>/צפלוספורין רחב-טווח ± אמינוגליקוזיד.</td></tr>
+<tr><td>UTI בהיריון</td><td>אמפיצילין וצפלוספורין (בטוחים יחסית); 4-7 ימים סימפטומטי, 4-7 ימים גם ב-ASB; ב-pyelonephritis — β-lactam פראנטרלי ± אמינוגליקוזיד; פלואורוקינולון/TMP-SMX רק אם הפתוגן רגיש.</td></tr>
+<tr><td>UTI בגברים / <span dir="ltr" class="term">prostatitis</span></td><td>חשד ל-acute bacterial prostatitis — תרביות דם+שתן ואז אנטיביוטיקה ל-2-4 שבועות; chronic bacterial prostatitis — 4-6 שבועות; הישנות — 12 שבועות.</td></tr>
+<tr><td><span dir="ltr" class="term">CAUTI</span></td><td>החלפת קטטר (הסרת ביופילם) + אנטיביוטיקה לפי תרבית, 7-14 ימים. סף bacteriuria ≥10³.</td></tr>
+<tr><td><span dir="ltr" class="term">Candiduria</span></td><td>א-סימפטומטי — הוצאת קטטר לרוב מספיקה; סימפטומטי/סיכון גבוה — <span dir="ltr" class="term">Fluconazole</span> 7-14 ימים; עמיד — Flucytosine/Amphotericin B IV.</td></tr>
+<tr><td><span dir="ltr" class="term">Pseudomonas</span> UTI</td><td>Ciprofloxacin, Levofloxacin או אמינוגליקוזיד.</td></tr>
+<tr><td><span dir="ltr" class="term">Enterococcus faecalis</span> UTI</td><td>אמפיצילין (בהיעדר בקטרמיה), Fosfomycin או Nitrofurantoin.</td></tr>
+<tr><td><span dir="ltr" class="term">ESBL</span> UTI</td><td>Carbapenem (imipenem/meropenem/ertapenem) או amikacin.</td></tr>
+</tbody>
+</table>
+<div class="key-box">הישנות של <span dir="ltr" class="term">uncomplicated cystitis</span> בנשים בגיל הפוריות שכיחה מאוד. שלוש אסטרטגיות מניעה: טיפול מונע <b>ממושך</b> (מינון נמוך TMP-SMX/quinolone/nitrofurantoin, לרוב 6 חודשים), טיפול <b>לאחר יחסי מין</b>, וטיפול <b>עצמי בהנחיית המטופלת</b> (תרבית עצמאית + קורס אנטיביוטי מוכן מראש). <span dir="ltr" class="term">Cystitis</span> חוזרת מהווה גורם סיכון גם ל-pyelonephritis, אך pyelonephritis כרונית <b>לא</b> הוכחה כגורם סיכון לאי-ספיקת כליות באנשים ללא אבנורמליות אנטומיות.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/QpKr7kvaH5c" title="Lumbar Puncture (LP) - CSF Analysis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון על טכניקת ניקור מותני ואנליזת CSF — רלוונטי גם להמשך הסיכום (מנינגיטיס). מקור: YouTube.</p>
+
+<h2><span class="num">2</span> <span dir="ltr" class="term">Bacterial Meningitis</span> — מנגנון</h2>
+<p><span dir="ltr" class="term">Meningitis</span> חיידקי הוא זיהום אקוטי פורולנטי בחלל התת-עכבישי (<span dir="ltr" class="term">subarachnoid space, SAS</span>), הגורם לתגובה דלקתית של ה-<span dir="ltr" class="term">CNS</span> שעלולה להוביל לירידה בהכרה, פרכוסים, עלייה בלחץ התוך-גולגולתי ואף שבץ. ההיארעות השנתית בארה"ב היא כ-2.5 מקרים ל-100,000. המחוללים העיקריים הנרכשים בקהילה: <span dir="ltr" class="term">Strep. pneumoniae</span> (~50%), <span dir="ltr" class="term">Neisseria meningitidis</span> (~25%), <span dir="ltr" class="term">Group B strep</span> (~15%), <span dir="ltr" class="term">Listeria monocytogenes</span> (~10%), <span dir="ltr" class="term">H. influenzae type b</span> (&lt;10%).</p>
+
+<div class="mechanism">
+  <p class="chain">
+    שרשרת הפתוגנזה: <b>קולוניזציה של האורופרינקס</b> (בעיקר S. pneumoniae ו-N. meningitidis) → החיידקים חוצים את תאי האפיתל אל <b>החלל התוך-כלי-דמי</b> (בקטרמיה) → הודות ל<b>קפסולה פוליסכרידית</b> הם מתחמקים מפגוציטוזה ומהמשלים → מגיעים ל-<span dir="ltr" class="term">choroid plexus</span> וחודרים ל-<span dir="ltr" class="term">CSF</span> → בתוך ה-CSF יש <b>היעדר הגנה חיסונית טבעית</b> (מעט מאוד תאי דם לבנים, משלים ואימונוגלובולינים) — כך שהחיידקים מתרבים במהירות כמעט ללא התנגדות → פירוק דופן החיידק (ספונטני או ע"י אנטיביוטיקה) משחרר רכיבים שמעוררים <b>שחרור ציטוקינים</b> (<span dir="ltr" class="term">TNF-α, IL-1β</span>) → אלו מעלים את חדירות מחסום הדם-מוח (<span dir="ltr" class="term">BBB</span>) → בצקת ודלף חלבונים ל-SAS, ירידה בזרימת הדם המוחית ואובדן אוטו-רגולציה צרברו-וסקולרית → <b>עלייה בלחץ התוך-גולגולתי (ICP)</b> ובמקרים קשים הרניאציה.
+  </p>
+</div>
+<p><b>נקודת מפתח לבחינה:</b> רוב הביטויים והסיבוכים הנוירולוגיים נגרמים <b>מהתגובה הדלקתית של המאכסן</b> ולא מפגיעה ישירה של החיידק ברקמה — ולכן הפגיעה יכולה להמשיך ולהתקדם גם אחרי שה-CSF כבר הפך סטרילי בזכות האנטיביוטיקה. זה בדיוק הבסיס לכך שנותנים <span dir="ltr" class="term">Dexamethasone</span> (ראו סעיף טיפול) — לא נגד החיידק אלא נגד תגובת הגוף אליו.</p>
+
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ar1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+  <rect x="10" y="90" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="80" y="115" text-anchor="middle" font-size="13" fill="#1f2937">קולוניזציה</text>
+  <text x="80" y="132" text-anchor="middle" font-size="11" fill="#4b5563">אורופרינקס</text>
+  <path d="M150 120 L190 120" stroke="#2563eb" stroke-width="2" marker-end="url(#ar1)"/>
+  <rect x="192" y="90" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="262" y="112" text-anchor="middle" font-size="13" fill="#1f2937">בקטרמיה</text>
+  <text x="262" y="130" text-anchor="middle" font-size="11" fill="#4b5563">קפסולה חומקת ממשלים</text>
+  <path d="M332 120 L372 120" stroke="#2563eb" stroke-width="2" marker-end="url(#ar1)"/>
+  <rect x="374" y="90" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="444" y="112" text-anchor="middle" font-size="13" fill="#1f2937">Choroid plexus</text>
+  <text x="444" y="130" text-anchor="middle" font-size="11" fill="#4b5563">כניסה ל-CSF</text>
+  <path d="M514 120 L554 120" stroke="#2563eb" stroke-width="2" marker-end="url(#ar1)"/>
+  <rect x="556" y="90" width="150" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="631" y="112" text-anchor="middle" font-size="13" fill="#1f2937">ריבוי חופשי ב-CSF</text>
+  <text x="631" y="130" text-anchor="middle" font-size="11" fill="#4b5563">אין הגנה חיסונית</text>
+  <path d="M706 120 L746 120" stroke="#b45309" stroke-width="2" marker-end="url(#ar1)"/>
+  <rect x="748" y="90" width="145" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="820" y="112" text-anchor="middle" font-size="13" fill="#1f2937">ציטוקינים</text>
+  <text x="820" y="130" text-anchor="middle" font-size="11" fill="#4b5563">TNF-α, IL-1β</text>
+  <path d="M820 150 L820 170 L262 170 L262 152" stroke="#b91c1c" stroke-width="2" fill="none" marker-end="url(#ar1)"/>
+  <text x="540" y="192" text-anchor="middle" font-size="12" fill="#b91c1c">חדירות BBB↑ → בצקת, ↓זרימת דם מוחית, ↑ICP → הרניאציה</text>
+</svg>
+
+<h2><span class="num">3</span> ביטוי קליני</h2>
+<p>הטריאדה הקלינית הקלאסית: <b>חום, כאב ראש וקשיון עורף</b> (לא תמיד קיימת במלואה). ירידה במצב ההכרה מתרחשת ביותר מ-75% מהחולים (מלתרגיה ועד קומה). ביטויים נוספים שכיחים: הקאות, בחילות, פוטופוביה.</p>
+<ul>
+<li><b>פרכוסים</b> — ב-20-40% מהחולים. פוקליים לרוב מאיסכמיה עורקית מקומית/אוטם/פקקת ורידים קורטיקליים; כלליים/status epilepticus יכולים לנבוע מהיפונתרמיה, אנוקסיה מוחית או טוקסיות אנטיביוטית (נדיר).</li>
+<li><b>עלייה ב-ICP</b> — סיבה מרכזית לירידה בהכרה וקומה. ל&gt;90% מהחולים לחץ פתיחה &gt;180 מ"מ מים. סימנים: הידרדרות בהכרה, <span dir="ltr" class="term">papilledema</span>, אישונים מורחבים לא מגיבים, שיתוק CN6, מנח דצרברציה, ורפלקס קושינג (ברדיקרדיה + יתר לחץ דם + שינויי נשימה). הסיבוך החמור ביותר — הרניאציה מוחית (1-8%).</li>
+<li><b>פריחה</b> — רמז ל-<span dir="ltr" class="term">meningococcemia</span>: מתחילה כפריחה מקולו-פפולרית אריתמטוטית דיפוזית, והופכת במהרה לפטכיות על הגו, הגפיים התחתונות, ריריות, לחמיות ולעתים כפות ידיים/רגליים. מופיעה ב-66% ממקרי מנינגוקוקמיה.</li>
+</ul>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Petechial_rash.JPG?width=650" alt="פריחה פטכיאלית">
+  <figcaption class="media-cap">פריחה פטכיאלית טיפוסית — נקודות אדומות-סגולות שאינן נעלמות בלחץ (non-blanching), רמז חשוב לזיהום מנינגוקוקלי פולשני. מקור: <a href="https://commons.wikimedia.org/wiki/File:Petechial_rash.JPG" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>בדיקה גופנית — סימני גירוי מנינגיאלי</h3>
+<table>
+<thead><tr><th>סימן</th><th>איך בודקים</th><th>מה נחשב חיובי</th></tr></thead>
+<tbody>
+<tr><td>קשיון עורף</td><td>ניסיון כיפוף פסיבי של הצוואר קדימה</td><td>התנגדות לכיפוף — פתוגנומוני לגירוי קרומי המוח, אך False positive שכיח במבוגרים עם מחלת עמ"ש צווארי</td></tr>
+<tr><td><span dir="ltr" class="term">Kernig's sign</span></td><td>החולה שוכב על גבו, מכופפים ירך כלפי הבטן עם ברך מכופפת, ואז מנסים ליישר את הברך</td><td>כאב בניסיון היישור</td></tr>
+<tr><td><span dir="ltr" class="term">Brudzinski's sign</span></td><td>החולה שוכב על גבו, מכופפים את הצוואר</td><td>כיפוף רפלקטורי של הירך והברך</td></tr>
+</tbody>
+</table>
+<p>הרגישות והספציפיות של קרניג וברודזינסקי אינן ברורות/גבוהות — הם עשויים שלא להופיע בצעירים מאוד, מבוגרים, מדוכאי חיסון או חולים עם ירידה משמעותית בהכרה. לכן <b>היעדרם אינו שולל</b> מנינגיטיס.</p>
+
+<h2><span class="num">4</span> אבחנה</h2>
+<p>בחשד למנינגיטיס חיידקי — יש לקחת <b>תרביות דם מיד</b> ולהתחיל טיפול אנטיביוטי אמפירי + סטרואידים <b>ללא עיכוב</b>. האבחנה נעשית לפי ה-CSF.</p>
+<h3>מתי חובה CT לפני LP</h3>
+<p>ניתן לבצע LP ללא הדמיה מקדימה במטופל אימונוקומפטנטי, ללא טראומת ראש ריסנטית, בהכרה תקינה וללא papilledema/חסרים פוקליים. אך יש לבצע CT קודם אם קיים אחד מ: (1) חבלת/טראומת ראש, (2) סימנים נוירולוגיים פוקליים כולל פרכוס, (3) papilledema, (4) שינוי במצב ההכרה, (5) דיכוי חיסוני, (6) גידול ב-CNS. <b>אם ה-LP נדחה — יש להתחיל אנטיביוטיקה אמפירית מיד לאחר תרביות הדם</b>: אנטיביוטיקה שניתנה כמה שעות לפני LP לא משנה משמעותית WBC/גלוקוז ב-CSF ולא מונעת זיהוי החיידק בגראם/PCR.</p>
+
+<h3>האבנורמליות הקלאסיות ב-CSF</h3>
+<table>
+<thead><tr><th>פרמטר</th><th>ערך אופייני במנינגיטיס חיידקית</th></tr></thead>
+<tbody>
+<tr><td>לחץ פתיחה</td><td>&gt;180 מ"מ מים</td></tr>
+<tr><td>תאי דם לבנים</td><td>10 עד 10,000/μL, דומיננטיות נויטרופילים</td></tr>
+<tr><td>תאי דם אדומים</td><td>נעדרים (בניקור לא-טראומטי)</td></tr>
+<tr><td>גלוקוז</td><td>&lt;40 מ"ג/ד"ל, ו/או יחס CSF:סרום &lt;0.4 (מתקנן היפרגליקמיה שיכולה למסך ירידה יחסית — יחס &lt;0.4 סוגסטיבי מאוד אך אינו ספציפי לחיידקי, יכול להופיע גם בפטרייתי/TB/ממאירות)</td></tr>
+<tr><td>חלבון</td><td>&gt;45 מ"ג/ד"ל</td></tr>
+<tr><td>צביעת גראם</td><td>חיובית ב-60-90% מהחולים</td></tr>
+<tr><td>תרבית</td><td>חיובית ב-60-80% מהחולים</td></tr>
+<tr><td>PCR</td><td>מזהה DNA חיידקי, רגישות וספציפיות גבוהות</td></tr>
+</tbody>
+</table>
+<p>למה גלוקוז יורד? החיידקים המתרבים בפראזיטיזם וגם הלויקוציטים הפעילים <b>צורכים גלוקוז</b>, ובנוסף פוחתת ההובלה שלו דרך המחסום הפגוע — ולכן היחס CSF:סרום יורד. חלבון עולה כי ה-BBB הפגוע "מדליף" חלבוני סרום ל-CSF.</p>
+<p>בדיקות משלימות: <span dir="ltr" class="term">Latex agglutination</span> (ספציפיות 95-100% ל-S. pneumoniae/N. meningitidis, אך רגישות נמוכה — כיום פחות בשימוש, הוחלף ב-PCR); <span dir="ltr" class="term">Limulus lysate</span> — חיובי בחיידקים גראם שליליים (ספציפיות 85-100%, רגישות כמעט 100%). ב-<span dir="ltr" class="term">Listeria</span> — בשלב האקוטי יש פלאוציטוזיס עם יחסית מעט נויטרופילים, וב-30% בלבד צביעת גראם חיובית.</p>
+
+<h3>אבחנה מבדלת</h3>
+<table>
+<thead><tr><th>מצב</th><th>ממצא מבדיל</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">HSV encephalitis</span></td><td>כאבי ראש, חום, שינוי הכרה, חסרים פוקליים (דיספזיה, המיפרזיס), פרכוסים פוקליים/כלליים. CSF: פלאוציטוזיס לימפוציטרי, גלוקוז תקין (בניגוד לחיידקי!). PCR ל-HSV: רגישות 96%, ספציפיות 99%. MRI: סיגנל גבוה באונות טמפורליות ו-orbitofrontal תוך 48 שעות. EEG: דפוס אופייני בחלק מהחולים.</td></tr>
+<tr><td>זיהומי CNS פוקליים מוגלתיים (אמפיאמה, אבצס מוחי)</td><td>יש לחשוד בנוכחות סימנים פוקליים; מצריך MRI.</td></tr>
+<tr><td>מנינגיטיס לא-זיהומית</td><td>דימום תת-עכבישי, מנינגיטיס תרופתית, מנינגיטיס כימית (קרע גידול ציסטי), מנינגיטיס לימפומטית/קרצינומטית, מחלות דלקתיות (SLE, Behçet, סרקואידוזיס).</td></tr>
+<tr><td>מנינגיטיס סב-אקוטית</td><td>M. tuberculosis, Cryptococcus neoformans, Histoplasma capsulatum, Coccidioides immitis, Treponema pallidum.</td></tr>
+</tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/XRdWGA2OODg" title="Pathophysiology of Bacterial Meningitis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון המסביר את פתופיזיולוגיית המנינגיטיס החיידקית — כולל דרכי הכניסה ל-CNS ותפקיד ה-BBB. מקור: YouTube.</p>
+
+<h2><span class="num">5</span> טיפול</h2>
+<p>מנינגיטיס חיידקית היא <b>מצב חירום</b> — המטרה היא להתחיל טיפול אנטיביוטי תוך 60 דקות מהגעה למיון, עוד לפני חזרת תוצאות גראם ותרבית.</p>
+<table>
+<thead><tr><th>תרופה</th><th>מכסה</th><th>מתי מוסיפים</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Ceftriaxone / Cefotaxime</span> (צפלוספורין דור 3)</td><td>S. pneumoniae, GBS, H. influenzae, כיסוי מספק ל-N. meningitidis</td><td>בסיס הטיפול האמפירי בכל חולה</td></tr>
+<tr><td><span dir="ltr" class="term">Cefepime</span> (דור 4)</td><td>רחב טווח, גם Enterobacter ו-Pseudomonas</td><td>חשד לגראם שליליים נרחב יותר</td></tr>
+<tr><td><span dir="ltr" class="term">Vancomycin</span></td><td>S. pneumoniae עמיד לפניצילין/צפלוספורין</td><td>שגרתי באזורים עם עמידות שכיחה, עד לתוצאות רגישות</td></tr>
+<tr><td><span dir="ltr" class="term">Ampicillin</span></td><td>Listeria monocytogenes</td><td>גיל &lt;3 חודשים, &gt;55, פגיעה בחיסוניות תאית (מחלה כרונית, השתלה, היריון, ממאירות, דיכוי חיסוני)</td></tr>
+<tr><td><span dir="ltr" class="term">Acyclovir</span></td><td>HSV encephalitis</td><td>תמיד בטיפול אמפירי — עד לשלילת HSV, כי זו אבחנה מבדלת מרכזית</td></tr>
+<tr><td><span dir="ltr" class="term">Doxycycline</span></td><td>Rickettsia / זיהומי קרציות</td><td>בעונת הקרציות</td></tr>
+<tr><td><span dir="ltr" class="term">Metronidazole</span></td><td>אנאירוביים גראם שליליים</td><td>מקור אוטיטיס, סינוסיטיס או מסטואידיטיס</td></tr>
+</tbody>
+</table>
+<p>מנינגיטיס נרכשת בבית חולים (post-neurosurgery) — Staph וגראם שליליים כולל <span dir="ltr" class="term">P. aeruginosa</span>: טיפול אמפירי = Vancomycin + Meropenem/Ceftazidime.</p>
+<p>משכי טיפול ספציפיים: מנינגוקוקלי — שבוע IV; פנאומוקוקלי — שבועיים IV (ועם LP חוזר 24-36 שעות לאחר תחילת טיפול לתעד סטריליזציה — היעדרה מרמז על עמידות); גראם-שליליים — 3 שבועות; ליסטריה — לפחות 3 שבועות אמפיצילין ± גנטמיצין בחולים קריטיים.</p>
+
+<h3>סטרואידים כתוספת</h3>
+<p><span dir="ltr" class="term">Dexamethasone</span> מפחית סיבוכים נוירולוגיים (למשל אובדן שמיעה סנסורי-נוירלי), עם התועלת הגדולה ביותר ב-pneumococcal meningitis. המנגנון: פירוק דופן החיידק ע"י האנטיביוטיקה משחרר רכיבים שמעוררים ציטוקינים (IL-1β, TNF-α) — Dexamethasone <b>מעכב את הסינתזה שלהם</b>, מפחית התנגדות לזרימת CSF ומייצב את ה-BBB. <b>לכן הוא צריך להינתן 20 דקות לפני האנטיביוטיקה</b> (או לכל המאוחר יחד איתה) — כי הוא מונע ייצור TNF-α רק אם ניתן לפני שהתאים כבר הופעלו ע"י האנדוטוקסין המשתחרר. שימו לב: Dexamethasone גם מפחית את חדירות Vancomycin ל-CSF — ולכן במקרים כאלה שוקלים Vancomycin תוך-חדרי.</p>
+
+<h3>טיפול ב-ICP מוגבר</h3>
+<p>הרמת ראש המיטה ל-30-45 מעלות, אינטובציה + היפר-ונטילציה (יעד PaCO2 25-30 מ"מ כספית), מניטול, ניהול ביחידה לטיפול נמרץ.</p>
+
+<h3>פרוגנוזה</h3>
+<p>שיעורי תמותה: H. influenzae/N. meningitidis/GBS — 3-7%; Listeria — 15%; S. pneumoniae — 20% (למרות טיפול!). גורמי סיכון לתמותה: ירידה בהכרה בקבלה, פרכוסים ב-24 השעות הראשונות, סימני ICP מוגבר, גיל קיצוני (תינוקות/&gt;50), קו-מורבידיות (שוק, צורך בהנשמה), עיכוב בתחילת טיפול, ו-CSF עם גלוקוז נמוך מאוד + חלבון גבוה מאוד (&gt;300). ל-25% מהחולים נזק בינוני-חמור — ירידה בתפקוד אינטלקטואלי, פגיעה בזיכרון, אובדן שמיעה, פרכוסים, סחרחורת והפרעות הליכה.</p>
+<p><b>מניעה — N. meningitidis</b>: פרופילקסיס לחולה ולכל הקרובים (מגע הפרשות אורופרינגיאליות — נשיקות, צעצועים משותפים, סיגריות/משקאות משותפים) ע"י Rifampin יומיים (לא בטוח בהיריון) או מנה בודדת של Azithromycin/Ceftriaxone.</p>
+
+<h2><span class="num">6</span> פתיחת <span dir="ltr" class="term">Tuberculosis</span> — להשלמה בנתח הבא</h2>
+<p>90% ממקרי השחפת החדשים והתמותה ממנה הם במדינות מתפתחות, בעיקר דרום אפריקה והפיליפינים. בישראל שכיחה בעיקר במהגרים, עולים מאפריקה ומברית המועצות לשעבר. 2/3 מהחולים הם גברים. שחפת לטנטית שכיחה בעיקר במבוגרים מעל 65, שחורים, נשאי HIV, מהגרים ואוכלוסיות שוליים.</p>
+
+<h3>מיקרוביולוגיה</h3>
+<p>ה-<span dir="ltr" class="term">Mycobacteria</span> הם מתגים אירוביים דקים שאינם יוצרים נבגים, עם שלוש תכונות ביולוגיות שמסבירות ישירות את ההתנהגות הקלינית של המחלה:</p>
+<table>
+<thead><tr><th>תכונה</th><th>המשמעות הקלינית</th></tr></thead>
+<tbody>
+<tr><td><b>אירובי אובליגטורי</b></td><td>זקוק לחמצן כדי לגדול → מתיישב ב<span dir="ltr" class="term">apex</span> הריאה, האזור עם אספקת החמצן הגבוהה ביותר (עקב יחס אוורור-זילוח גבוה יחסית) — ולכן שחפת שניונית/רה-אקטיבציה ממוקמת בעיקר שם.</td></tr>
+<tr><td><b>דופן חריגה</b></td><td>מכילה שומנים (מיקוליק אציד) וחלבונים בכמות גבוהה → צביעה כ-<span dir="ltr" class="term">Acid Fast Bacilli</span> (עמידה לחומצה בצביעת Ziehl-Neelsen) ועמידות טבעית לאנטיביוטיקות רבות.</td></tr>
+<tr><td><b>צמיחה איטית</b></td><td>זמן הכפלה 15-20 שעות (לעומת דקות בחיידקים רגילים) → מסביר את ה<b>כרוניות</b> של המחלה ואת הזמן הרב שלוקח לקבל תרבית חיובית במעבדה.</td></tr>
+</tbody>
+</table>
+<p>העברה: <b>אווירנית</b>, דרך שיעול, עיטוש או דיבור. מידבקות תלויה במעבדה: משטח כיח חיובי (Acid fast) על רקע מחלה קביטרית או מעורבות הלרינקס — הכי מדבקים; משטח שלילי עם תרבית חיובית, או נשאי HIV ללא קביטציות — מדבקים פחות; מחלה עם תרבית כיח שלילית או מחלה חוץ-ריאתית — לא נחשבים מדבקים.</p>
+
+<h3>מהחשיפה למחלה — שני שלבים נפרדים</h3>
+<p>הסבירות ל<b>הידבקות</b> תלויה בעיקר בגורמים אקסוגניים (משך המגע, קרבה, אוורור). הסיכוי לפתח <b>מחלה</b> לאחר הידבקות תלוי בעיקר בגורמים אנדוגניים — בעיקר תפקוד המערכת החיסונית.</p>
+<ul>
+<li><b>Primary TB</b> — קליניקה שמופיעה בסמוך לחשיפה, בעיקר בילדים קטנים ומדוכאי חיסון. יכולה להיות חמורה, אך לרוב לא מדבקת בשלב זה.</li>
+<li><b>Secondary / post-primary TB (רה-אקטיבציה)</b> — במערכת חיסון בשלה, הזיהום הראשוני מוכל, אך בהמשך יכולה להתרחש רה-אקטיבציה — עם שכיחות גבוהה יותר של קביטציות, ולכן החולים <b>מדבקים יותר</b> בשלב הזה.</li>
+</ul>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#047857"/></marker></defs>
+  <rect x="20" y="30" width="160" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="100" y="55" text-anchor="middle" font-size="13" fill="#1f2937">חשיפה/הדבקה</text>
+  <text x="100" y="72" text-anchor="middle" font-size="11" fill="#4b5563">Primary infection</text>
+  <path d="M100 85 L100 115" stroke="#047857" stroke-width="2" marker-end="url(#ar2)"/>
+  <rect x="20" y="118" width="160" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="100" y="140" text-anchor="middle" font-size="13" fill="#1f2937">95%: א-סימפטומטי</text>
+  <text x="100" y="157" text-anchor="middle" font-size="11" fill="#4b5563">רוב יפתחו LTBI</text>
+  <path d="M180 145 L360 145" stroke="#047857" stroke-width="2" marker-end="url(#ar2)"/>
+  <rect x="362" y="118" width="180" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="452" y="140" text-anchor="middle" font-size="13" fill="#1f2937">שחפת לטנטית (LTBI)</text>
+  <text x="452" y="157" text-anchor="middle" font-size="11" fill="#4b5563">מוכלת ע"י חיסון תאי</text>
+  <path d="M542 145 L680 145" stroke="#b45309" stroke-width="2" marker-end="url(#ar2)"/>
+  <rect x="682" y="90" width="200" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="782" y="112" text-anchor="middle" font-size="12.5" fill="#1f2937">10% סיכוי לשחפת פעילה</text>
+  <text x="782" y="129" text-anchor="middle" font-size="10.5" fill="#4b5563">post-primary/reactivation</text>
+  <rect x="20" y="205" width="160" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="100" y="225" text-anchor="middle" font-size="12" fill="#1f2937">5%: מחלה פעילה</text>
+  <text x="100" y="240" text-anchor="middle" font-size="10.5" fill="#4b5563">בהדבקה ראשונית (נדיר)</text>
+  <path d="M100 173 L100 202" stroke="#b91c1c" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="782" y="160" text-anchor="middle" font-size="10.5" fill="#4b5563">5% בשנתיים הראשונות + 5% לאורך כל החיים</text>
+</svg>
+
+<h3>גורמי סיכון לרה-אקטיבציה (חשוב לזכור)</h3>
+<p><span dir="ltr" class="term">Jejunoileal bypass</span>, מצב לאחר השתלה (כליה/לב), שימוש בסמים תוך-ורידי (<span dir="ltr" class="term">IVDU</span>), אי ספיקת כליות/המודיאליזה, זיהום ב-HIV, טיפול אימונו-סופרסיבי, זיהום ריסנטי (&lt;שנה). סוכרת, עישון ותת-משקל מוזכרים בספרות אך נחשבים פחות משמעותיים.</p>
+
+<h3>ביטוי קליני ראשוני</h3>
+<table>
+<thead><tr><th></th><th>שחפת ראשונית (Primary)</th><th>שחפת שניונית/רה-אקטיבציה</th></tr></thead>
+<tbody>
+<tr><td>מיקום</td><td>אזורים אמצעיים ותחתונים (הפעילים ביותר בנשימה בילדים)</td><td>פסגות הריאה — עקב לחץ חמצן גבוה יותר</td></tr>
+<tr><td>ממצא אופייני</td><td><span dir="ltr" class="term">Ghon focus</span> (נגע פריפרי שנוטה להחלים) + <span dir="ltr" class="term">Ghon complex</span> (עם לימפאדנופתיה הילארית, תפליט או עיבוי פלאורלי)</td><td>תסנין קטן ועד נגעים קביטריים גדולים שמתמזגים ל-<span dir="ltr" class="term">caseating pneumonia</span></td></tr>
+<tr><td>סימפטומים</td><td>לרוב א-סימפטומטית, לעתים חום וכאב פלאוריטי</td><td>חום נמוך-אינטרמיטנטי, הזעות לילה, ירידה בתיאבון ובמשקל, עייפות, שיעול פרודוקטיבי ממושך ± המופטיזיס, קוצר נשימה</td></tr>
+</tbody>
+</table>
+<p>פיזור המטוגני לאחר זיהום ראשוני, בהיעדר תגובה חיסונית מספקת, עלול להוביל ל-<span dir="ltr" class="term">miliary TB</span> — גרנולומות באיברים רבים, כולל קרומי המוח (קישור ישיר לנושא המנינגיטיס לעיל — מנינגיטיס שחפתית היא אחת הצורות הסב-אקוטיות שהוזכרו בסעיף האבחנה המבדלת).</p>
+<p><i>המשך נושא השחפת — אבחנה (PPD/IGRA, הדמיה, תרביות), טיפול (RIPE) וסיבוכים — יופיע בסיכום הבא בסדרה (5/5).</i></p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/dD-gFhDHXKo" title="Tuberculosis - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מקיפה על שחפת (מיקרוביולוגיה, מהלך טבעי, קליניקה) — רלוונטית לחלק שנפתח כאן ולהמשך בנתח הבא. מקור: YouTube / Ninja Nerd.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/TB_CXR.jpg?width=650" alt="צילום חזה עם קביטציה בשחפת">
+  <figcaption class="media-cap">צילום חזה עם חץ המצביע על קביטציה באונה העליונה — ממצא אופייני לשחפת שניונית/רה-אקטיבציה. מקור: <a href="https://commons.wikimedia.org/wiki/File:TB_CXR.jpg" target="_blank">Wikimedia Commons (CDC Core Curriculum on TB)</a></figcaption>
+</figure>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>טיפול אמפירי במנינגיטיס — "הזמנה של ארבעה אורחים לפני שהזיהוי הגיע"</h3>
+<p>דמייני מסיבה שאת חייבת לארח <b>לפני שידעת מי בדיוק מגיע</b> (לפני תרבית וגראם): את שולחת <b>מגן ראשי</b> (Ceftriaxone — מכסה את רוב האורחים הצפויים), <b>שומר מיוחד</b> נגד אורח עמיד (Vancomycin — עמידות פניצילין), <b>שוער נוסף</b> לאורח מבוגר/צעיר/חלש חיסונית בשם ליסטריה (Ampicillin), ו<b>תרופה נגד הנבל הנסתר</b> שיכול להתחזות לאותה מסיבה בדיוק — הרפס (Acyclovir). ולפני שכולם נכנסים — את שולחת "מרגיע" (Dexamethasone) <b>שנכנס ראשון</b>, כי הוא צריך להספיק להירגע לפני שהאורחים "יתפוצצו" (התפרקות דופן החיידק וציטוקינים).</p>
+<svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="90" height="50" rx="6" fill="#fffbeb" stroke="#b45309"/>
+  <text x="65" y="50" text-anchor="middle" font-size="12" fill="#1f2937">Dexamethasone</text>
+  <text x="65" y="80" text-anchor="middle" font-size="11" fill="#b45309">נכנס ראשון!</text>
+  <path d="M110 45 L150 45" stroke="#4b5563" stroke-width="2" marker-end="url(#ar3)"/>
+  <defs><marker id="ar3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#4b5563"/></marker></defs>
+  <rect x="152" y="20" width="90" height="50" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="197" y="50" text-anchor="middle" font-size="12" fill="#1f2937">Ceftriaxone</text>
+  <rect x="252" y="20" width="90" height="50" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="297" y="45" text-anchor="middle" font-size="12" fill="#1f2937">Vancomycin</text>
+  <text x="297" y="60" text-anchor="middle" font-size="10" fill="#4b5563">עמיד-פניצילין</text>
+  <rect x="352" y="20" width="120" height="50" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="412" y="45" text-anchor="middle" font-size="12" fill="#1f2937">Ampicillin</text>
+  <text x="412" y="60" text-anchor="middle" font-size="10" fill="#4b5563">Listeria</text>
+  <rect x="152" y="100" width="120" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="212" y="125" text-anchor="middle" font-size="12" fill="#1f2937">Acyclovir</text>
+  <text x="212" y="140" text-anchor="middle" font-size="10" fill="#4b5563">נגד HSV encephalitis "הנסתר"</text>
+</svg>
+</div>
+
+<div class="mnemonic">
+<h3>שחפת — "המטפס לפסגה"</h3>
+<p>דמייני את חיידק ה-TB כ<b>מטפס הרים</b> שחייב חמצן טהור (אירובי אובליגטורי) — לכן הוא תמיד שואף להגיע <b>לפסגה</b> (אפקס הריאה) בטיפוס השני (רה-אקטיבציה). בטיפוס הראשון (הדבקה ראשונית), הוא עדיין חלש ונשאר <b>באמצע ההר</b> (אונות אמצעיות-תחתונות). המטפס לובש <b>שריון שומני עבה</b> (הדופן העשירה בשומנים) שמגן עליו מפני רוב הנשקים (אנטיביוטיקות), אבל בגלל השריון הכבד הוא <b>מטפס לאט מאוד</b> (זמן הכפלה 15-20 שעות) — ולכן המחלה כרונית וגם התרבית איטית.</p>
+</div>
+
+<div class="mnemonic">
+<h3>נזק קולטרלי מינימלי ב-UTI — "NFP הכי עדינות לפלורה"</h3>
+<p>ראשי תיבות לזכירה: <b>N</b>itrofurantoin, <b>F</b>osfomycin, <b>P</b>ivmecillinam — שלוש התרופות שפוגעות הכי פחות בפלורה הרגילה ("NFP לא הורסות פרחים" — flora=פרחים) ולכן עדיפות בזיהום פשוט, בניגוד לפלואורוקינולונים שנשמרים למקרים בהם אין ברירה.</p>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+<li>
+<a href="https://commons.wikimedia.org/wiki/File:Petechial_rash.JPG" target="_blank">Wikimedia Commons — Petechial rash</a>
+<div class="desc">קישור ישיר לתמונת הפריחה הפטכיאלית שהוטמעה בסעיף 3 לעיל.</div>
+</li>
+<li>
+<a href="https://commons.wikimedia.org/wiki/File:TB_CXR.jpg" target="_blank">Wikimedia Commons — TB CXR (CDC)</a>
+<div class="desc">קישור ישיר לצילום החזה עם הקביטציה שהוטמע בסעיף 6.</div>
+</li>
+<li>
+<a href="https://www.youtube.com/watch?v=xQC6L8M6XfU" target="_blank">(Bacterial) Meningitis Pathophysiology — Armando Hasudungan</a>
+<div class="desc">סרטון נוסף (לא מוטמע) על פתופיזיולוגיית המנינגיטיס, בסגנון איור-חי, טוב כחיזוק ויזואלי לסעיף 2.</div>
+</li>
+<li>
+<a href="https://www.osmosis.org/learn/Meningitis_and_brain_abscess:_Clinical_sciences" target="_blank">Osmosis — Meningitis and brain abscess</a>
+<div class="desc">חומר לימוד נוסף (טקסט + וידאו בתשלום/הרשמה) על מנינגיטיס ואבצס מוחי, כולל אנטומיית ה-CSF.</div>
+</li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>וינייטה</h3>
+<p>גבר בן 22, סטודנט המתגורר במעונות, מגיע למיון עם חום של 39.2°C, כאב ראש עז ובחילות שהחלו לפני כ-10 שעות. בבדיקה — <b>קשיון עורף</b> בולט, ו-<span dir="ltr" class="term">Kernig's sign</span> חיובי. בבדיקת העור מבחינים בפריחה פטכיאלית מפושטת בגפיים התחתונות ובגו, שלא נעלמת בלחץ. לחץ הדם 92/58, דופק 118. אין חסרים נוירולוגיים פוקליים ואין papilledema.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">1. מה הצעד הבא הנכון ביותר בניהול המטופל?</div>
+<button class="opt" data-i="0">CT מוח דחוף, ורק לאחריו LP ואנטיביוטיקה</button>
+<button class="opt" data-i="1">תרביות דם מיד, ואז התחלת אנטיביוטיקה אמפירית + דקסמתזון ללא עיכוב, עם LP בהקדם האפשרי</button>
+<button class="opt" data-i="2">להמתין לתוצאות LP לפני מתן אנטיביוטיקה, כדי לא "להרוס" את התרבית</button>
+<button class="opt" data-i="3">לתת רק דקסמתזון ולעקוב מקרוב 24 שעות</button>
+<div class="explain">התשובה הנכונה: תרביות דם + אנטיביוטיקה אמפירית + דקסמתזון מיד. למטופל אין אף אחד מהקריטריונים המחייבים CT לפני LP (ללא טראומה, ללא הכרה משתנה, ללא חסרים פוקליים/papilledema, לא מדוכא חיסון) — כך שאפשר וצריך לבצע LP ללא עיכוב לצורך הדמיה. גם אם ה-LP היה נדחה מסיבה כלשהי, אין להמתין עם האנטיביוטיקה — עיכוב הטיפול הוא גורם הסיכון המשמעותי ביותר לתמותה, ומתן אנטיביוטיקה לפני LP לא פוגע משמעותית ביכולת לזהות את החיידק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+<div class="q">2. הפריחה הפטכיאלית בתרחיש זה מרמזת בעיקר על זיהום באיזה חיידק?</div>
+<button class="opt" data-i="0">Streptococcus pneumoniae</button>
+<button class="opt" data-i="1">Listeria monocytogenes</button>
+<button class="opt" data-i="2">Neisseria meningitidis</button>
+<button class="opt" data-i="3">Haemophilus influenzae</button>
+<div class="explain">נכון: Neisseria meningitidis. פריחה פטכיאלית/פורפורית שמתפתחת מפריחה מקולו-פפולרית מוקדמת יותר היא רמז קליני מרכזי למנינגוקוקמיה (מופיעה ב-66% מהמקרים), ונובעת מזריעה דרמלית של החיידק עם נזק לאנדותל כלי הדם. S. pneumoniae ו-H. influenzae לא גורמים בדרך כלל לפריחה פטכיאלית אופיינית כזו, ו-Listeria נוטה למהלך אינדולנטי יותר ללא הביטוי העורי הזה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+<div class="q">3. מדוע חשוב לתת Dexamethasone לפני או יחד עם מנת האנטיביוטיקה הראשונה, ולא אחריה?</div>
+<button class="opt" data-i="0">כי הוא מעכב את שחרור הציטוקינים (TNF-α, IL-1β) שנגרם מפירוק דופן החיידק, ופעולה זו יעילה רק אם ניתן לפני שהתאים כבר הופעלו ע"י האנדוטוקסין</button>
+<button class="opt" data-i="1">כי הוא הורג את החיידק מהר יותר מהאנטיביוטיקה</button>
+<button class="opt" data-i="2">כי הוא משפר את חדירת הוונקומיצין ל-CSF</button>
+<button class="opt" data-i="3">כי הוא מונע פרכוסים ישירות</button>
+<div class="explain">נכון: מנגנון העיכוב של שחרור הציטוקינים. Dexamethasone לא הורג חיידקים כלל — הוא סטרואיד אנטי-דלקתי. הוא דווקא <b>מפחית</b> את חדירות הוונקומיצין ל-CSF (ולא משפר אותה), ואינו מונע פרכוסים באופן ישיר. התזמון קריטי כי ברגע שהאנטיביוטיקה הורסת חיידקים, משתחררים רכיבי דופן שמעוררים ציטוקינים — ואם הסטרואיד לא כבר "במקום", הוא לא מספיק למנוע את הקסקדה הדלקתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">4. מדוע שחפת שניונית (רה-אקטיבציה) ממוקמת בדרך כלל בפסגות הריאה ולא באונות התחתונות?</div>
+<button class="opt" data-i="0">כי הפסגות מנוקזות פחות טוב לימפטית</button>
+<button class="opt" data-i="1">כי M. tuberculosis הוא אירובי אובליגטורי, והפסגות הן האזור עם לחץ/ריכוז חמצן הגבוה ביותר בריאה</button>
+<button class="opt" data-i="2">כי שם יש הכי הרבה מקרופאגים אלוואולריים</button>
+<button class="opt" data-i="3">כי הפסגות חשופות יותר לאוויר נשאף מזוהם</button>
+<div class="explain">נכון: תלות בחמצן. M. tuberculosis הוא אירובי אובליגטורי — הוא זקוק לסביבה עשירה בחמצן כדי לשגשג, והפסגות הן האזור עם הלחץ החלקי הגבוה ביותר של חמצן ברקמת הריאה. זו הסיבה הישירה לכך שרה-אקטיבציה (בניגוד לזיהום הראשוני, שממוקם באונות אמצעיות-תחתונות) מתמקמת שם.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+<div class="q">5. חולה סוכרת בת 68 מגיעה עם חום גבוה, כאב מותני וגז נראה בהדמיה ברקמת הכליה. מהי האבחנה הסבירה ביותר, ומה הטיפול הראשוני?</div>
+<button class="opt" data-i="0">Xanthogranulomatous pyelonephritis; נפרקטומיה מיידית</button>
+<button class="opt" data-i="1">Papillary necrosis; טיפול תומך בלבד</button>
+<button class="opt" data-i="2">Uncomplicated cystitis; Nitrofurantoin פומי</button>
+<button class="opt" data-i="3">Emphysematous pyelonephritis; ניקוז מלעורי ולאחר מכן נפרקטומיה אם נדרש</button>
+<div class="explain">נכון: Emphysematous pyelonephritis. נוכחות גז ברקמת הכליה/פרינפרית בחולת סוכרת היא כמעט פתוגנומונית לצורה קשה זו של pyelonephritis (חיידקים מתססים גלוקוז לגז ברקמה איסכמית). הטיפול ההתחלתי הוא ניקוז מלעורי, ולאחר מכן נפרקטומיה במידת הצורך — ולא נפרקטומיה מיידית כמו ב-Xanthogranulomatous (שקשורה לחסימה כרונית ואבנים, לא לגז). Nitrofurantoin לא מתאים כלל למצב פרנכימלי-חמור כזה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+<div class="q">6. מהו ההסבר המנגנוני הנכון לירידת רמת הגלוקוז ב-CSF במנינגיטיס חיידקית?</div>
+<button class="opt" data-i="0">החיידקים מפרישים אנזים שהורס גלוקוז ישירות ב-CSF</button>
+<button class="opt" data-i="1">עלייה ב-ICP גורמת לירידה בזלוף וכך פחות גלוקוז מגיע</button>
+<button class="opt" data-i="2">צריכת גלוקוז מוגברת ע"י החיידקים המתרבים והלויקוציטים הפעילים, יחד עם פגיעה בהובלתו דרך המחסום הפגוע</button>
+<button class="opt" data-i="3">התייבשות המטופל גורמת להיפוגליקמיה סיסטמית שמשתקפת ב-CSF</button>
+<div class="explain">נכון: צריכה מוגברת + הפרעה בהובלה. גם החיידקים המתרבים במהירות ב-CSF וגם הלויקוציטים הפעילים צורכים גלוקוז לצורך מטבוליזם, ובמקביל המחסום הפגוע (BBB) מוביל גלוקוז בצורה פחות יעילה מהסרום ל-CSF. לכן מסתכלים על היחס CSF:סרום (לא רק על הערך המוחלט) — כדי לתקנן היפרגליקמיה סיסטמית שיכולה למסך ירידה יחסית.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">10</span> סיכום של הסיכום</h2>
+<h4>UTI — השלמה</h4>
+<ul>
+<li>גברים: לרוב חסימה ע"י ערמונית מוגדלת; סוכרת: נוירופתיה→שתן שיורי→זיהום, +סיבוכים ספציפיים (emphysematous, xanthogranulomatous, papillary necrosis).</li>
+<li>אבחנה: תרבית = gold standard, אך אנמנזה/סטיק מספיקים ברוב המקרים הפשוטים.</li>
+<li>טיפול קו ראשון לא-מסובך: Nitrofurantoin / Fosfomycin / Pivmecillinam (נזק קולטרלי נמוך); Pyelonephritis: Quinolones/Ceftriaxone/Carbapenem.</li>
+</ul>
+<h4>Bacterial Meningitis</h4>
+<ul>
+<li>מנגנון: קולוניזציה אורופרינקס → בקטרמיה (בריחה מפגוציטוזה בזכות קפסולה) → CSF → ריבוי חופשי → ציטוקינים → BBB פגוע → ICP↑. הנזק בעיקר מהתגובה הדלקתית, לא מהחיידק עצמו.</li>
+<li>טריאדה: חום, כאב ראש, קשיון עורף; פריחה פטכיאלית = מנינגוקוקמיה.</li>
+<li>אבחנה: LP + CSF (WBC↑ נויטרופילי, גלוקוז↓, חלבון↑, גראם/תרבית/PCR); CT קודם רק אם יש קריטריון ספציפי.</li>
+<li>טיפול: Ceftriaxone+Vancomycin±Ampicillin+Acyclovir, עם Dexamethasone <b>לפני/יחד עם</b> האנטיביוטיקה הראשונה. חירום — תוך 60 דקות.</li>
+</ul>
+<h4>Tuberculosis (פתיחה)</h4>
+<ul>
+<li>אירובי אובליגטורי (→אפקס בשחפת שניונית), דופן שומנית (Acid fast, עמידות), צמיחה איטית (כרוניות).</li>
+<li>הידבקות (אקסוגני) ≠ מחלה (אנדוגני): 95% א-סימפטומטיים/LTBI, 5% מחלה פעילה מהזיהום הראשוני; מ-LTBI — 5% תוך שנתיים + 5% נוספים לאורך החיים.</li>
+<li>ראשונית: Ghon focus/complex, אונות אמצעיות-תחתונות. שניונית: פסגות, קביטציות, caseating pneumonia — ממשיך בנתח הבא.</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
