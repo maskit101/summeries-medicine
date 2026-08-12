@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מחלות זיהומיות 3/5: פריטוניטיס, שלשולים זיהומיים ו-C. difficile</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:900px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:20px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px; color:var(--blue)}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .section-tag{display:inline-block; background:#111827; color:#fff; font-size:13px; padding:3px 10px;
+    border-radius:20px; margin-bottom:6px}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid var(--line); margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fbbf24; margin:14px 0 4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>מחלות זיהומיות — נתח 3/5 (עמ' 125–141)</h1>
+<div class="subtitle">המשך <span dir="ltr" class="term">osteomyelitis</span> (כף רגל וסיבוכי עמוד שדרה) • זיהומים בחלל הבטן ו<span dir="ltr" class="term">peritonitis</span> • שלשולים זיהומיים חריפים והרעלות מזון • <span dir="ltr" class="term">Clostridioides difficile</span> • פתיחת נושא <span dir="ltr" class="term">UTI</span></div>
+
+<p>נתח זה ממשיך ישירות מהסיכום הקודם (זיהומי עצם ומפרק) ועובר לשלושה נושאים מרכזיים מאד לבחינה: פריטוניטיס על תת-סוגיה, שלשול זיהומי חריף/הרעלת מזון, ו-<span dir="ltr" class="term">C. difficile</span> — שלושתם חוזרים כמעט בכל בחינת פנימית. בסוף הנתח מתחיל נושא ה-<span dir="ltr" class="term">UTI</span>, שיושלם בנתח הבא.</p>
+
+<h2><span class="num">1</span> סיום נושא זיהומי עצם: <span dir="ltr" class="term">Foot OM</span> וסיבוך עמוד השדרה</h2>
+
+<h3>אבצס אפידורלי כסיבוך של <span dir="ltr" class="term">Vertebral OM</span></h3>
+<div class="mechanism">
+  <p class="chain">זיהום שהתחיל בגוף החוליה (<span dir="ltr" class="term">vertebral body</span>) יכול להתפשט ישירות לרקמה הסמוכה בתעלה הספינלית ולהצטבר כמוגלה בין הדורה (<span dir="ltr" class="term">dura</span>) לעצם — זהו <b>אבצס אפידורלי</b>, המופיע ב-15–20% מהמקרים ושכיח יותר בעמוד השדרה הצווארי (30%) מאשר המותני (12%), כנראה בגלל שהחלל האפידורלי בצוואר צר יותר וקל יותר ללחוץ על חוט השדרה.</p>
+</div>
+<p>יש לחשוד באבצס כשיש <b class="key">כאב פרסיסטנטי, עלייה מתמשכת ב-<span dir="ltr" class="term">CRP</span>, או חסר נוירולוגי חדש</b> — כי אלה מסמנים שהזיהום "יצא" מגבולות העצם והתחיל ללחוץ מכנית על מבנים עצביים. האבחנה היא <span dir="ltr" class="term">MRI</span> עמוד שדרה, והטיפול הוא התערבות כירורגית (ניקוז) — לא רק אנטיביוטיקה, כי מוגלה תחת לחץ בחלל סגור לא תיפתר מטיפול תרופתי בלבד ועלולה לגרום לנזק נוירולוגי בלתי הפיך.</p>
+<p>כאב פרסיסטנטי <b>למרות</b> נורמליזציה של ה-<span dir="ltr" class="term">CRP</span> מרמז דווקא על סיבוך <b>מכני</b> (לא זיהומי פעיל) כמו <span dir="ltr" class="term">osteonecrosis</span> או אי-יציבות ספינלית — ולכן דורש ייעוץ אורתופדי, לא הארכת אנטיביוטיקה.</p>
+
+<h3><span dir="ltr" class="term">Foot osteomyelitis</span> (זיהום עצם בכף רגל סוכרתית)</h3>
+<div class="mechanism">
+  <p class="chain">בסוכרת, נוירופתיה פריפרית מבטלת את תחושת הכאב המגנה, ומחלת כלי דם היקפית מפחיתה זילוח → כיב לחץ בכף הרגל לא מרגיש ולא מחלים → פצע פתוח וכרוני → חיידקים חודרים <b>מבחוץ</b> (זיהום <b>אקסוגני</b>, לא המטוגני!) דרך הכיב ומתקדמים מרקמה רכה לעצם.</p>
+</div>
+<p>ל-20–60% מהחולים עם זיהום כף רגל סוכרתית יש בפועל גם <span dir="ltr" class="term">OM</span>, ונוכחות <span dir="ltr" class="term">OM</span> מעלה משמעותית את הסיכון לקטיעה — לכן זיהוי מוקדם קריטי.</p>
+<h4>מיקרוביולוגיה</h4>
+<p>הקורלציה בין תרבית מהפצע לתרבית מהעצם <b>נמוכה</b> — פצע פתוח תמיד "מזוהם" משטחית בפלורת עור, כך שתרבית פצע משקפת מה שיושב על הפצע ולא בהכרח את מה שבאמת הרג את העצם. הקורלציה טובה יותר כשמזוהה <span dir="ltr" class="term">S. aureus</span> (40-50%) ופחות טובה עם אנאירוביים (25-30%), <span dir="ltr" class="term">gram-negative bacilli</span> (20-30%) או <span dir="ltr" class="term">coagulase-negative staph</span> (0-20%). בביופסיה מהעצם עצמה — <span dir="ltr" class="term">S. aureus</span> (25-40%), אנאירוביים (5-20%), <span dir="ltr" class="term">gram-negative bacilli</span> (18-40%).</p>
+<h4>אבחנה</h4>
+<p>המבחן המרכזי הוא <b><span dir="ltr" class="term">probe-to-bone</span></b> — ניסיון לגעת ישירות בעצם דרך הכיב באמצעות בדיקה מתכתית סטרילית; אם ניתן למשש עצם, הערך המנבא החיובי לזיהום עצם הוא כ-90% בחולים עם <span dir="ltr" class="term">pretest probability</span> גבוה, כי כיב שחודר עד לעצם כמעט תמיד כבר "זרע" אותה בחיידקים. בחולים עם סיכוי נמוך יותר מראש — <span dir="ltr" class="term">MRI</span> (רגישות 80-100%, ספציפיות 80-90%). צילום רגיל פחות רגיש (30-90%) אך שימושי למעקב אחר זיהום שכבר אובחן.</p>
+<table>
+<thead><tr><th>עקרון טיפול</th><th>הסבר</th></tr></thead>
+<tbody>
+<tr><td>לתרבת מהעצם לפני החלטה</td><td>מונע כיסוי אמפירי מיותר ומכוון טיפול לפי הפתוגן האמיתי</td></tr>
+<tr><td>הטריה (<span dir="ltr" class="term">debridement</span>) + אנטיביוטיקה 4-6 שבועות</td><td>מוריד צורך בקטיעה ב-66% מהחולים</td></tr>
+<tr><td>חשד ל-<span dir="ltr" class="term">MRSA</span></td><td>להוסיף כיסוי — <span dir="ltr" class="term">vancomycin</span></td></tr>
+<tr><td>לא קיבל אנטיביוטיקה לאחרונה</td><td>לכסות קוקים גראם+: <span dir="ltr" class="term">clindamycin</span> או <span dir="ltr" class="term">ampicillin-sulbactam</span></td></tr>
+<tr><td>קיבל אנטיביוטיקה בחודש האחרון</td><td>להוסיף כיסוי גראם-שלילי: <span dir="ltr" class="term">clindamycin + fluoroquinolone</span></td></tr>
+<tr><td>סיכון ל-<span dir="ltr" class="term">pseudomonas</span></td><td><span dir="ltr" class="term">piperacillin-tazobactam</span> או <span dir="ltr" class="term">cefepime</span></td></tr>
+<tr><td>עצם מזוהמת לא הוסרה כירורגית לגמרי</td><td>אנטיביוטיקה ארוכה (עד 3 חודשים+), נדיר להשיג ריפוי מלא</td></tr>
+</tbody>
+</table>
+
+<div class="key-box">בכל הפרק הזה על עצם — הכלל החוזר הוא ש<b>תרבית מהעצם</b> תמיד עדיפה על תרבית מהפצע/רקמה רכה, כי רק היא משקפת את הפתוגן שבאמת יושב בתוך העצם.</div>
+
+<h2><span class="num">2</span> זיהומים בחלל הבטן ופריטוניטיס — הליבה של הנתח</h2>
+<p>זיהומים תוך-פריטונאליים נובעים כמעט תמיד מ<b>כשל במחסום אנטומי</b> שאמור להפריד בין לומן המעי (מלא חיידקים) לחלל הפריטונאלי הסטרילי: תוספתן/דיברטיקולום/כיב שנקרעים, קיר מעי שנחלש (איסכמיה, גידול, דלקת), או דלף אנזימטי/חיידקי מאיבר סמוך (למשל <span dir="ltr" class="term">pancreatitis</span> או <span dir="ltr" class="term">pelvic inflammatory disease</span>).</p>
+<div class="mechanism">
+  <p class="chain">באופן תקין יש בחלל הפריטונאלי מעט נוזל סרוטי (עד 30 גר'/ליטר חלבון, עד 300 תאים לבנים/מיקרוליטר, בעיקר <span dir="ltr" class="term">mononuclear</span>). ברגע שחיידקים נכנסים — שני שלבים: <b>(1) פריטוניטיס</b> — אירוע מסכן חיים, לרוב עם בקטרמיה וספסיס, ואז <b>(2) יצירת אבצס</b> — הגוף "מגדר" את הזיהום ברקמת גרנולציה כדי למנוע התפשטות נוספת.</p>
+</div>
+<svg class="diagram" viewBox="0 0 880 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="60" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="95" y="90" text-anchor="middle" font-size="14" fill="#1f2937">כשל מחסום אנטומי</text>
+  <text x="95" y="110" text-anchor="middle" font-size="12" fill="#4b5563">(קרע/דלף/איסכמיה)</text>
+  <path d="M185 95 L235 95" stroke="#2563eb" stroke-width="3" marker-end="url(#a1)"/>
+  <rect x="240" y="60" width="170" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="325" y="90" text-anchor="middle" font-size="14" fill="#1f2937">חיידקי מעי בחלל</text>
+  <text x="325" y="110" text-anchor="middle" font-size="12" fill="#4b5563">הפריטונאלי הסטרילי</text>
+  <path d="M415 95 L465 95" stroke="#2563eb" stroke-width="3" marker-end="url(#a1)"/>
+  <rect x="470" y="60" width="180" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="560" y="85" text-anchor="middle" font-size="14" fill="#1f2937">פריטוניטיס</text>
+  <text x="560" y="105" text-anchor="middle" font-size="12" fill="#4b5563">בקטרמיה / ספסיס</text>
+  <path d="M655 95 L705 95" stroke="#2563eb" stroke-width="3" marker-end="url(#a1)"/>
+  <rect x="710" y="60" width="160" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="790" y="90" text-anchor="middle" font-size="14" fill="#1f2937">"גידור" הזיהום</text>
+  <text x="790" y="110" text-anchor="middle" font-size="12" fill="#4b5563">= יצירת אבצס</text>
+  <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+</svg>
+
+<h3>1. <span dir="ltr" class="term">Primary (Spontaneous) Bacterial Peritonitis (SBP)</span></h3>
+<div class="mechanism">
+  <p class="chain">בשחמת, <b>יתר לחץ דם פורטלי</b> יוצר שינויים במערכת הוורידית הפורטלית שמאפשרים לחיידקי מעי "לדלוג" ישירות לזרם הדם בלי שהכבד יסנן אותם (<span dir="ltr" class="term">bacterial translocation</span>) → החיידקים מגיעים דרך הדם למיימת (<span dir="ltr" class="term">ascites</span>) הקיימת → המיימת עצמה היא <b>מצע גידול טוב</b> לחיידקים כי בשחמת יש גם <b>ירידה ברמות המשלים (<span dir="ltr" class="term">complement</span>)</b> בנוזל וגם פגיעה בתפקוד ה-<span dir="ltr" class="term">PMN</span> — כלומר שני קווי ההגנה החיסוניים המקומיים חלשים בו-זמנית. בנוסף, שינויים במיקרוביום המעי (<span dir="ltr" class="term">bacterial overgrowth</span>) מגבירים את כמות החיידקים הזמינים להעברה.</p>
+</div>
+<p>לכן זה נקרא "<span dir="ltr" class="term">spontaneous</span>" — <b class="key">אין מקור קרע/פרפורציה נראה לעין</b>; הזיהום מגיע המטוגנית, לא ממחסום שנקרע.</p>
+<h4>אטיולוגיות ל-SBP</h4>
+<p>שחמת (הסיבה השכיחה ביותר במבוגרים, לרוב על רקע אלכוהוליזם; מתפתחת ב-≤10% מחולי השחמת), ממאירות גרורתית, שחמת פוסט-נקרוטית, <span dir="ltr" class="term">Hepatitis</span> ויראלית כרונית או אקוטית, אי ספיקת לב, <span dir="ltr" class="term">SLE</span>, <span dir="ltr" class="term">lymphedema</span> — ולעתים גם בחולים בריאים לגמרי ללא מחלת רקע.</p>
+<h4>ביטוי קליני</h4>
+<p>חום (80%), לעתים כאב בטן וסימני גירוי פריטונאלי כביטוי היחיד, החמרה של המיימת, הופעה חדה של כאבי בטן, וסימנים כלליים כמו חולשה, אנצפלופתיה ועייפות. <b class="key">היעדר הממצאים הללו לא שולל את האבחנה</b> — לכן נדרשת דרגת חשד גבוהה בכל חולה שחמת עם מיימת שמתדרדר קלינית, גם בלי ממצא בטני ברור.</p>
+<h4>אבחנה</h4>
+<p>קריטריון דיאגנוסטי: <b>מעל 250 <span dir="ltr" class="term">PMNs</span>/μL</b> בנוזל המיימת (קריטריון זה <b>לא</b> תקף לפריטוניטיס שניונית!). יש לשלוח את הנוזל גם למשטח ישיר ותרבית, ותרבית דם לפני מתן אנטיביוטיקה. לרוב מבודד פתוגן <b>בודד</b> — השכיח ביותר <span dir="ltr" class="term">E. coli</span> ומתגים גראם-שליליים אנטריים אחרים, אך גם <span dir="ltr" class="term">Streptococci, enterococci, pneumococci</span>. <b>צמיחה פולימיקרוביאלית בתרבית מרמזת על פריטוניטיס שניונית</b> ומחייבת <span dir="ltr" class="term">CT</span> בטן לחיפוש מקור.</p>
+<p>אין הדמיה ספציפית לאבחון SBP עצמה — ההדמיה (בעיקר <span dir="ltr" class="term">CT</span> עם ניגוד) משמשת <b>לשלול</b> מקור תוך-בטני אחר (כלומר לשלול פריטוניטיס שניונית).</p>
+<h3>אבחנה מבדלת: SBP מול פריטוניטיס שניונית</h3>
+<table>
+<thead><tr><th>מאפיין</th><th>SBP (ראשונית)</th><th>שניונית</th></tr></thead>
+<tbody>
+<tr><td>מקור</td><td>אין מקור נראה — המטוגני</td><td>יש מקור תוך-בטני ברור (למשל כיב קיבה שנקרע)</td></tr>
+<tr><td>תרבית נוזל</td><td>פתוגן בודד</td><td>פלורה מעורבת — גראם-שליליים + אנאירוביים</td></tr>
+<tr><td>אנאירוביים בתרבית</td><td>פחות שכיחים</td><td>שכיחים (בעיקר <span dir="ltr" class="term">B. fragilis</span>)</td></tr>
+<tr><td>טיפול</td><td>אנטיביוטיקה בלבד לרוב מספיקה</td><td>כמעט תמיד דורש ניתוח + אנטיביוטיקה</td></tr>
+</tbody>
+</table>
+
+<h4>טיפול ב-SBP</h4>
+<table>
+<thead><tr><th>תרופה</th><th>כיסוי</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Cefotaxime</span> (צפלוספורין דור 3)</td><td>גראם-שליליים אירוביים + קוקים גראם-חיוביים</td><td>קו ראשון</td></tr>
+<tr><td><span dir="ltr" class="term">Piperacillin/Tazobactam</span> או <span dir="ltr" class="term">Ceftriaxone</span></td><td>כנ"ל</td><td>חלופה</td></tr>
+<tr><td><span dir="ltr" class="term">Carbapenem</span></td><td>גראם-שליליים עמידים</td><td>אם SBP נוקוזומיאלי</td></tr>
+</tbody>
+</table>
+<p><b class="key">אין צורך לכסות אנאירוביים</b> ב-SBP (בניגוד לשניונית!) כי המקור אינו מעי פגוע אלא מעבר המטוגני של אירוביים בעיקר. אם קריאטינין ≥1 מ"ג/ד"ל, <span dir="ltr" class="term">BUN</span>≥30, או בילירובין ≥4 — <b>מתן אלבומין מפחית תמותה</b> (מונע תסמונת הפטו-רנלית). לרוב שיפור תוך 72 שעות; אם תגובה טובה מספיקים 5 ימים טיפול, אם בקטרמיה/שיפור איטי — שבועיים.</p>
+<h4>מניעה</h4>
+<p>עד 70% מהחולים חווים הישנות תוך שנה. מניעה שניונית: <span dir="ltr" class="term">Ciprofloxacin/Norfloxacin</span> או <span dir="ltr" class="term">Trimethoprim-sulfamethoxazole</span> — מפחית הישנות ל-20% ומשפר שרידות קצרת-טווח (אך טיפול ממושך מעלה סיכון לזיהום <span dir="ltr" class="term">Staph</span> עמיד). מניעה ראשונית מומלצת אם חלבון המיימת נמוך (&lt;1.5 גר'/ד"ל) בשילוב פגיעה כלייתית/כבדית משמעותית, ובחולי שחמת עם דימום <span dir="ltr" class="term">GI</span> — 7 ימי טיפול פרופילקטי.</p>
+
+<h3>2. <span dir="ltr" class="term">Secondary Peritonitis</span></h3>
+<div class="mechanism">
+  <p class="chain">חיידק פולש לפריטונאום <b>ישירות מאיבר תוך-בטני</b> (למשל כיב קיבה שנקרע → תוכן קיבה חומצי גורם תחילה לגירוי כימי, ואז חיידקים מצטרפים) → כמעט תמיד <b>פלורה משולבת</b>: מתגים גראם-שליליים פקולטטיביים (בעיקר <span dir="ltr" class="term">E. coli</span>) + אנאירוביים (בעיקר <span dir="ltr" class="term">B. fragilis</span>) → אנדוטוקסינים בזרם הדם גורמים לתמותה מוקדמת מספסיס.</p>
+</div>
+<p>קליניקה: כאב מקומי בהתחלה (למשל אפיגסטרי בכיב קיבה שנקרע), ואז כשהזיהום מתפשט — כאב מתגבר ומתפזר בכל הבטן. המטופל נוטה לשכב ללא תזוזה, לעתים ברכיים מכופפות (מפחית מתח על הפריטונאום המגורה); שיעול/עיטוש מחמירים כאב חד. בבדיקה: <span dir="ltr" class="term">guarding</span>, רגישות ו-<span dir="ltr" class="term">rebound</span>. מעבדה: לויקוציטוזיס עם סטייה שמאלה. <span dir="ltr" class="term">CT</span> בטן למציאת מקור (אלא אם המטופל לא יציב — אז ניתוח ללא הדמיה מקדימה).</p>
+<h4>טיפול</h4>
+<table>
+<thead><tr><th>משטר</th><th>כיסוי</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Piperacillin/Tazobactam</span> או <span dir="ltr" class="term">Ticarcillin/Clavulanate</span></td><td>פניצילין רחב טווח + מעכב β-לקטמאז — גראם+/- ואנאירוביים ביחד</td></tr>
+<tr><td><span dir="ltr" class="term">Ceftriaxone/Levofloxacin + Metronidazole</span></td><td>צפלוספורין/פלואורוקינולון (גראם-שליליים) + מטרונידזול (אנאירוביים)</td></tr>
+<tr><td><span dir="ltr" class="term">Imipenem/Meropenem</span> או <span dir="ltr" class="term">Piperacillin/Tazobactam</span> במינון גבוה</td><td>למטופלי <span dir="ltr" class="term">ICU</span> / זיהום נוזוקומיאלי (כיסוי <span dir="ltr" class="term">Pseudomonas</span>)</td></tr>
+</tbody>
+</table>
+<p>לכיסוי <span dir="ltr" class="term">Enterococci</span> ניתן להוסיף <span dir="ltr" class="term">Ampicillin</span> או <span dir="ltr" class="term">Vancomycin</span>; ל-<span dir="ltr" class="term">VRE</span> — <span dir="ltr" class="term">Linezolid</span> או <span dir="ltr" class="term">Daptomycin</span>; כיסוי אנטי-פטרייתי אם יש צמיחת <span dir="ltr" class="term">Candida</span> מאתר סטרילי. <b class="key">כמעט תמיד נדרש שילוב של ניתוח (סגירת המקור) + אנטיביוטיקה</b> — אנטיביוטיקה לבדה לא סוגרת חור פיזי במעי.</p>
+
+<h3>3. פריטוניטיס בדיאליזה פריטונאלית (<span dir="ltr" class="term">CAPD</span>)</h3>
+<div class="mechanism">
+  <p class="chain">הקטטר הפריטונאלי הוא "נקודת כניסה" קבועה לעור → אורגניזמים של העור נודדים לאורך הקטטר פנימה → לרוב חיידק <b>בודד</b> (בניגוד לפריטוניטיס שניונית!) כי המקור הוא נקודת כניסה אחת, לא קרע במעי.</p>
+</div>
+<p>אטיולוגיות: <span dir="ltr" class="term">Staph</span> — 45% מהמקרים (בעיקר <span dir="ltr" class="term">CoNS</span>, ואז <span dir="ltr" class="term">S. aureus</span> — שכיח בנשאים נזאליים ובזיהומי אתר יציאה), מתגים גראם-שליליים, פטריות (<span dir="ltr" class="term">Candida</span>), ולעתים <span dir="ltr" class="term">VRE</span>. אבחנה: דיאליזאט עכור עם מעל 100 <span dir="ltr" class="term">WBCs</span>/µL ו-&gt;50% נויטרופילים (המספר האבסולוטי חשוב יותר מהאחוז לצורך ה-<span dir="ltr" class="term">differential</span>) + תרבית מהנוזל.</p>
+<h4>טיפול</h4>
+<p><span dir="ltr" class="term">Cefazolin</span> (גראם+) + <span dir="ltr" class="term">Fluoroquinolone</span> או צפלוספורין דור-3 כמו <span dir="ltr" class="term">Ceftazidime</span> (גראם-שלילי); באזורים עם <span dir="ltr" class="term">MRSA</span> גבוה — <span dir="ltr" class="term">Vancomycin</span> במקום <span dir="ltr" class="term">Cefazolin</span>. האנטיביוטיקה ניתנת <b>לתוך חלל הצפק</b> (לא רק <span dir="ltr" class="term">IV</span>!) — כי זה מאפשר ריכוז גבוה ישירות במקום הזיהום. משך הטיפול 14 יום. הוצאת הקטטר נדרשת אם אין תגובה תוך 48-96 שעות, זיהום חוזר, זיהום בתעלת הקטטר, או מחולל עמיד/פטרייתי.</p>
+
+<h2><span class="num">3</span> שלשולים זיהומיים חריפים והרעלות מזון בקטריאליות</h2>
+<p>המפתח לגישה לחולה עם שלשול חריף הוא סיווג ראשוני: <b>דלקתי לעומת לא-דלקתי</b>, כי זה קובע מיקום פגיעה, מנגנון, ורשימת חשודים שונה לגמרי.</p>
+<svg class="diagram" viewBox="0 0 880 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="330" y="10" width="220" height="40" rx="8" fill="#111827"/>
+  <text x="440" y="35" text-anchor="middle" font-size="14" fill="#fff">שלשול חריף — סיווג</text>
+  <path d="M400 50 L250 90" stroke="#2563eb" stroke-width="2"/>
+  <path d="M480 50 L630 90" stroke="#2563eb" stroke-width="2"/>
+  <rect x="60" y="90" width="380" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="250" y="115" text-anchor="middle" font-size="13" fill="#1f2937">Non-inflammatory (enterotoxin)</text>
+  <text x="250" y="135" text-anchor="middle" font-size="12" fill="#4b5563">מעי דק פרוקסימלי · שלשול מימי · ללא WBC בצואה</text>
+  <rect x="440" y="90" width="380" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="630" y="115" text-anchor="middle" font-size="13" fill="#1f2937">Inflammatory (invasion/cytotoxin)</text>
+  <text x="630" y="135" text-anchor="middle" font-size="12" fill="#4b5563">מעי גס/דק דיסטלי · דיזנטריה · PMN + Lactoferrin↑</text>
+  <text x="250" y="175" text-anchor="middle" font-size="12" fill="#4b5563">דוגמאות: Cholera, ETEC, Rotavirus, Norovirus</text>
+  <text x="630" y="175" text-anchor="middle" font-size="12" fill="#4b5563">דוגמאות: Shigella, Salmonella, Campylobacter, EHEC, C. difficile</text>
+</svg>
+
+<h3>מנגנוני הנזק החיידקיים</h3>
+<p><b><span dir="ltr" class="term">Inoculum</span></b> — כמות המחולל הנדרשת לגרימת מחלה משתנה: ל-<span dir="ltr" class="term">cholera</span> נדרשים 10⁵-10⁸ חיידקים, ואילו ל-<span dir="ltr" class="term">EHEC, Shigella, Giardia</span> מספיקים 10-100 חיידקים בלבד — ככל שנדרש <span dir="ltr" class="term">inoculum</span> נמוך יותר, כך החיידק "אלים" (וירולנטי) יותר. <b>היצמדות</b> למוקוזה היא לרוב שלב ראשון הכרחי. <b>ייצור טוקסינים</b>: <span dir="ltr" class="term">enterotoxin</span> (למשל <span dir="ltr" class="term">cholera toxin</span>) גורם להפרשת כלור ומניעת ספיגת נתרן — כלומר "פותח ברז" נוזלים לתוך לומן המעי בלי להרוס תאים; <span dir="ltr" class="term">cytotoxin</span> (למשל <span dir="ltr" class="term">Shiga toxin</span>) הורס בפועל תאי מעי וגורם לתגובה דלקתית ודיזנטריה; <span dir="ltr" class="term">neurotoxin</span> (<span dir="ltr" class="term">S. aureus, B. cereus</span>) מיוצר <b>מחוץ</b> למאכסן (בתוך המזון עצמו) ופועל ישירות על <span dir="ltr" class="term">CNS/PNS</span> — לכן גורם להקאות קשות עם כמעט ללא שלשולים. <b>פלישה</b> (<span dir="ltr" class="term">invasion</span>) — <span dir="ltr" class="term">Shigella/EIEC</span> פולשים לתאי המוקוזה ומשתכפלים בתוכם ובין תאים, <span dir="ltr" class="term">Salmonella</span> פולשת אך לא הורסת תאים באותה מידה.</p>
+<h4>מנגנוני הגנה של המאכסן — למה אנחנו לא חולים מכל חשיפה</h4>
+<p>חומצת קיבה (הורגת חיידקים לפני שמגיעים למעי — לכן <span dir="ltr" class="term">PPIs</span>/<span dir="ltr" class="term">H2-blockers</span> מעלים סיכון לזיהום), פלורה טבעית (מונעת קולוניזציה של פתוגנים — לכן טיפול אנטיביוטי הורס את ההגנה הזו ומאפשר <span dir="ltr" class="term">dysbiosis</span>), מוטיליות מעיים תקינה (מפנה חיידקים פיזית — טיפול באופיאטים מוריד מוטיליות ומעלה סיכון), שכבת <span dir="ltr" class="term">mucin</span> (חוצץ פיזי + מכיל נוגדנים אנטי-מיקרוביאליים), ומערכת החיסון (הומורלית ותאית).</p>
+
+<h3>גישה לחולה: אנמנזה מכוונת</h3>
+<table>
+<thead><tr><th>סימן</th><th>מרמז על</th></tr></thead>
+<tbody>
+<tr><td>צואה רירית/דמית ("מוקוס+דם")</td><td>התכייבות מעי גס — תהליך דלקתי (<span dir="ltr" class="term">Shigella, Campylobacter</span>)</td></tr>
+<tr><td>צואה דמית <b>ללא</b> לויקוציטים</td><td>חשד ל-<span dir="ltr" class="term">Shiga toxin</span>-producing <span dir="ltr" class="term">EHEC</span></td></tr>
+<tr><td>צואה "מי אורז" (<span dir="ltr" class="term">"rice-water"</span>)</td><td>קלאסי ל-<span dir="ltr" class="term">cholera</span> — תהליך טוקסיגני מימי מסיבי</td></tr>
+<tr><td><span dir="ltr" class="term">Tenesmus</span> (דחף עז, מעבר מועט)</td><td><span dir="ltr" class="term">Proctitis</span> — <span dir="ltr" class="term">shigellosis/amebiasis</span></td></tr>
+<tr><td>סינדרום דמוי אפנדיציטיס</td><td>מאפיין <span dir="ltr" class="term">Yersinia enterocolitica</span></td></tr>
+<tr><td>נפיחות בטנית בולטת</td><td>שכיחה ב-<span dir="ltr" class="term">giardiasis</span></td></tr>
+<tr><td>טיפול אנטיביוטי נוכחי/אחרון</td><td>לחשוד ב-<span dir="ltr" class="term">C. difficile</span></td></tr>
+</tbody>
+</table>
+
+<h4>הערכה מעבדתית</h4>
+<p>מראה מקרוסקופי (ריר/דם) מרמז על תהליך דלקתי, אך בדיקת <b><span dir="ltr" class="term">Lactoferrin</span> בצואה</b> (מרקר עקיף ללויקוציטים) נחשבת רגישה ואמינה יותר מספירת לויקוציטים ישירה בצואה. תרבית צואה, בדיקת פרזיטים, ותרבית דם (בזיהום קשה/חום ממושך).</p>
+
+<h3>הרעלות מזון בקטריאליות — לפי משך אינקובציה</h3>
+<table>
+<thead><tr><th>משך אינקובציה</th><th>גורם</th><th>מנגנון וקליניקה</th></tr></thead>
+<tbody>
+<tr><td>1-6 שעות (קצרה ביותר)</td><td><span dir="ltr" class="term">S. aureus, B. cereus</span> (<span dir="ltr" class="term">emetic form</span>)</td><td><span dir="ltr" class="term">enterotoxin</span> מוכן מראש במזון (אורז מטוגן שהושאר בחום חדר) — הקאות קשות, שלשול ובחילות, חום נדיר</td></tr>
+<tr><td>8-16 שעות</td><td><span dir="ltr" class="term">C. perfringens, B. cereus</span> (<span dir="ltr" class="term">diarrheal form</span>)</td><td>ספורות עמידות לחום ששרדו בבשר/עוף לא מבושל כראוי; הרעלן מיוצר <b>במעי עצמו</b> לאחר עיכול — התכווצויות ושלשול, הקאות/חום נדירים, <span dir="ltr" class="term">self-limited</span> תוך 24 שעות</td></tr>
+<tr><td>מעל 16 שעות</td><td><span dir="ltr" class="term">E. coli, cholera, Salmonella, Campylobacter</span></td><td>דורש שלב שכפול/פלישה חיידקית ולא רק בליעת טוקסין מוכן — ולכן זמן חביון ארוך יותר</td></tr>
+</tbody>
+</table>
+
+<h3>טיפול</h3>
+<p>עמוד התווך הוא <b>רה-הידרציה</b> — תמיסת <span dir="ltr" class="term">ORS</span> (המכילה <span dir="ltr" class="term">KCl</span>, <span dir="ltr" class="term">sodium bicarbonate</span>, גלוקוז, <span dir="ltr" class="term">NaCl</span>) הפחיתה תמותה מכולרה מ-&gt;50% ל-&lt;1%, כי הגלוקוז מאפשר ספיגה משותפת (<span dir="ltr" class="term">co-transport</span>) של נתרן במעי גם כשהמנגנון ההפרשתי פעיל.</p>
+<table>
+<thead><tr><th>מצב</th><th>טיפול אנטיביוטי</th></tr></thead>
+<tbody>
+<tr><td>דיזנטריה (צואה דמית + חום)</td><td><span dir="ltr" class="term">Fluoroquinolone</span> או <span dir="ltr" class="term">macrolide</span> אמפירית עד תוצאות מיקרוביולוגיות; <span dir="ltr" class="term">Shigella</span> — 3-7 ימים; <span dir="ltr" class="term">Campylobacter</span> — מועדף <span dir="ltr" class="term">macrolide</span> (עמידות עולה ל-<span dir="ltr" class="term">fluoroquinolone</span>)</td></tr>
+<tr><td>סלמונלה</td><td>לא תמיד מטופל — טיפול <b>מאריך</b> קולוניזציה; לטפל רק בתינוקות, מכשור פרוסטטי, מעל גיל 50, דיכוי חיסוני</td></tr>
+<tr><td><span dir="ltr" class="term">EHEC</span></td><td><b class="key">אין לתת אנטיביוטיקה!</b> — מגביר ייצור טוקסין ומעלה סיכון ל-<span dir="ltr" class="term">HUS</span> וכשל כלייתי פי 20</td></tr>
+<tr><td>שלשול מטיילים</td><td>אנטיביוטיקה מקצרת מחלה מ-3-4 ימים ל-24-36 שעות, אך קשורה לעליית עמידות (<span dir="ltr" class="term">MDR</span>) — לכן שיקול דעת</td></tr>
+</tbody>
+</table>
+<p>סיבוכים כרוניים אפשריים אחרי אפיזודה חריפה: <span dir="ltr" class="term">reactive arthritis</span> (בעיקר אחרי <span dir="ltr" class="term">Shigella, Salmonella, Campylobacter, Yersinia</span>), <span dir="ltr" class="term">HUS</span> (אחרי <span dir="ltr" class="term">Shiga toxin</span>), ו<span dir="ltr" class="term">Guillain-Barré syndrome</span> (בעיקר אחרי <span dir="ltr" class="term">Campylobacter</span>).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/7ylgYbLCEA0" title="Diarrhea - Clinical Medicine" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הסבר על סוגי השלשול (אוסמוטי/הפרשתי/דלקתי) והגישה הקלינית. מקור: YouTube — Clinical Medicine.</p>
+
+<h2><span class="num">4</span> <span dir="ltr" class="term">Clostridioides difficile infection (CDI)</span></h2>
+<p><span dir="ltr" class="term">CDI</span> היא מחלת השלשול הנרכשת-בבית-חולים השכיחה ביותר, וברוב המקרים נגרמת בעקבות טיפול אנטיביוטי שפגע בפלורת המעי התקינה.</p>
+<div class="mechanism">
+  <p class="chain">חשיפה לאנטיביוטיקה רחבת-טווח פוגעת בפלורת המעי התקינה שבדרך כלל "תופסת מקום" ומונעת קולוניזציה של פתוגנים → נבגי <span dir="ltr" class="term">C. difficile</span> (שנבלעו ושרדו את חומציות הקיבה, כי נבגים עמידים לחום ולחומצה) נובטים במעי הדק ומתיישבים בדרכי העיכול התחתונות → מייצרים שני טוקסינים: <b><span dir="ltr" class="term">Toxin A</span> (<span dir="ltr" class="term">enterotoxin</span>)</b> ו-<b><span dir="ltr" class="term">Toxin B</span> (<span dir="ltr" class="term">cytotoxin</span>)</b> → הטוקסינים גורמים לאינאקטיבציה של חלבוני <span dir="ltr" class="term">Rho GTPase</span> בתוך התא (דרך <span dir="ltr" class="term">glucosylation</span>) → שינוי שלד התא (<span dir="ltr" class="term">cytoskeleton</span>) → התפוררות אפיתל, עלייה בחדירות המעי ופגיעה בטרנספורטרים סופחי-נוזל → שלשול + תגובה דלקתית → במקרים קשים היווצרות <b>פסאודוממברנות</b> (משקעים לבנבנים-צהבהבים על רירית המעי, תערובת של תאים מתים, פיברין ותאי דלקת).</p>
+</div>
+<p><b class="key">שלושה תנאים דרושים בו-זמנית להתפתחות CDI:</b> (1) חשיפה לאנטי-מיקרוביאליים שפוגעת בפלורה, (2) רכישת <span dir="ltr" class="term">C. difficile</span> טוקסיקוגני, (3) תגובת מאכסן לא מספקת + אירועים נוספים (זן וירולנטי, חשיפה תרופתית נוספת). רכישת החיידק לבדה יכולה להישאר <b>קולוניזציה א-סימפטומטית</b> בלי להתקדם למחלה.</p>
+
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Clostridium_difficile_01.jpg?width=500" alt="תצלום מיקרוסקופ אלקטרוני של Clostridioides difficile">
+    <figcaption class="media-cap">מיקרוסקופ אלקטרוני סורק של <span dir="ltr" class="term">C. difficile</span> מדגימת צואה (מקור: CDC / <a href="https://commons.wikimedia.org/wiki/File:Clostridium_difficile_01.jpg" target="_blank">Wikimedia Commons</a>).</figcaption>
+  </figure>
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Clostridioides_(pseudomembranous)_colitis%E2%80%93_close-up.jpg?width=500" alt="קולונוסקופיה עם פסאודוממברנות">
+    <figcaption class="media-cap">תצפית קולונוסקופית — פסאודוממברנות צהבהבות-לבנות אופייניות ל-<span dir="ltr" class="term">pseudomembranous colitis</span> (מקור: <a href="https://commons.wikimedia.org/wiki/File:Clostridioides_(pseudomembranous)_colitis%E2%80%93_close-up.jpg" target="_blank">Wikimedia Commons</a>).</figcaption>
+  </figure>
+</div>
+
+<h3>אנטיביוטיקות מקושרות ל-CDI</h3>
+<p>הראשונות שזוהו: <span dir="ltr" class="term">Clindamycin, Ampicillin</span> וצפלוספורינים. צפלוספורינים דור 2-3 (<span dir="ltr" class="term">cefotaxime, ceftriaxone, cefuroxime, ceftazidime</span>) שכיחים כגורם. <span dir="ltr" class="term">Fluoroquinolones</span> זוהו כגורם להתפרצויות אחרונות. שילוב פניצילין+מעכב β-לקטמאז מהווה <b>סיכון נמוך משמעותית</b>. <b class="key">חשוב לזכור: גם <span dir="ltr" class="term">Vancomycin</span> ו-<span dir="ltr" class="term">Metronidazole</span> עצמן — התרופות שמטפלות ב-CDI — הן גם גורם סיכון להתפתחותו</b>, כי כל אנטיביוטיקה פוגעת בפלורה במידה כלשהי.</p>
+<h3>גורמי סיכון</h3>
+<p>אשפוז/שהייה במוסד כרוני, גיל מבוגר, ניתוח במערכת העיכול, הזנה אנטרלית, טיפול בנוגדי חומצה, מחלת רקע קשה, ומד חום רקטלי אלקטרוני (וקטור מכני להעברת נבגים).</p>
+
+<h3>ביטוי קליני</h3>
+<p>שלשול (הביטוי השכיח ביותר) בעל ריח אופנסיבי אופייני, לרוב <b>לא דמי</b>, מרך ועד מימי/מוקואידי. חום (28%), כאבי בטן (22%), לויקוציטוזיס (50%). <b class="key">לויקוציטוזיס בלתי מוסבר עם WBC≥15,000 מעלה חשד ל-CDI</b> גם ללא שלשול בולט — במיוחד כי לעתים מתפתח <span dir="ltr" class="term">ileus</span> א-דינמי (20% מהמקרים בצילום) שמסתיר את השלשול ועלול לגרום לפספוס האבחנה.</p>
+
+<h3>אבחנה</h3>
+<p>שני קריטריונים: (1) שלשול — 3+ צואות רכות ב-24 שעות למשך יומיים+, ללא סיבה אחרת, ו-(2) נוכחות <span dir="ltr" class="term">toxin A/B</span> בצואה, זיהוי <span dir="ltr" class="term">NAAT</span>/תרבית טוקסיגנית, או פסאודוממברנות באנדוסקופיה (מופיעות ב-50% מהחולים ומעידות על מחלה מתקדמת). <b class="key">אין לבדוק ולא לטפל בחולים א-סימפטומטיים</b> — נשאות לא חוזה הישנות קלינית.</p>
+
+<h3>טיפול — סולם מדורג</h3>
+<table>
+<thead><tr><th>מצב</th><th>טיפול מומלץ</th><th>הערה</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">CDI</span> ראשוני</td><td><span dir="ltr" class="term">Vancomycin PO</span> או <span dir="ltr" class="term">Fidaxomicin PO</span>; <span dir="ltr" class="term">Metronidazole</span> רק אם אין זמינות אחרת ובמחלה קלה</td><td>10 ימים. <b>Vancomycin IV אינו יעיל</b> — התרופה צריכה להגיע פיזית ללומן המעי, לא דרך הדם</td></tr>
+<tr><td>הישנות ראשונה</td><td><span dir="ltr" class="term">Vancomycin PO</span> (אפשר <span dir="ltr" class="term">tapering</span>) או <span dir="ltr" class="term">Fidaxomicin</span> (פחות הישנויות)</td><td>הישנות מעלה סיכון להישנות נוספת ל-30-60%</td></tr>
+<tr><td>הישנויות מרובות</td><td><span dir="ltr" class="term">Vancomycin</span> ארוך-טווח עם <span dir="ltr" class="term">taper</span>, או <span dir="ltr" class="term">Vancomycin</span>+<span dir="ltr" class="term">rifaximin/fidaxomicin</span>, או השתלת צואה (<span dir="ltr" class="term">FMT</span>)</td><td>להימנע מקורסים חוזרים של <span dir="ltr" class="term">metronidazole</span> — רעילות עצבית</td></tr>
+<tr><td>מחלה פולמיננטית (תת ל"ד, שוק, <span dir="ltr" class="term">ileus</span>, <span dir="ltr" class="term">toxic megacolon</span>)</td><td><span dir="ltr" class="term">Vancomycin PO</span> (±חוקן) + <span dir="ltr" class="term">Metronidazole IV</span>; אם אין תגובה — <span dir="ltr" class="term">colectomy</span></td><td>לנתח לפני שלקטט מגיע ל-5 mmol/L</td></tr>
+</tbody>
+</table>
+<p>טיפול תומך: הידרציה; להימנע מתרופות אנטי-פריסטלטיות ואופיאטים (עלולים למסך סימפטומים ולהחמיר את המחלה) — אך <b>בטוחות</b> לשימוש יחד עם <span dir="ltr" class="term">vancomycin/metronidazole</span> ב-CDI קל-בינוני בלבד.</p>
+<h4>מניעה</h4>
+<p>היגיינת ידיים — <b class="key">מים וסבון, לא רק ג'ל אלכוהולי</b> (נבגי C. difficile עמידים לאלכוהול!), כפפות, אלימינציית מדי חום מזוהמים, והימנעות מאנטיביוטיקות בסיכון גבוה (<span dir="ltr" class="term">clindamycin</span>, צפלוספורינים דור 2-3, <span dir="ltr" class="term">fluoroquinolones</span>) בחולים שכבר נחשפו.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Y1lDhZbEV_E" title="Clostridium difficile (Pseudomembranous colitis) - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון Osmosis על פתופיזיולוגיה, אבחנה וטיפול ב-CDI. מקור: YouTube — Osmosis.</p>
+
+<h2><span class="num">5</span> פתיחת נושא <span dir="ltr" class="term">Urinary Tract Infection (UTI)</span> — להשלמה בנתח הבא</h2>
+<p>המונח <span dir="ltr" class="term">UTI</span> כולל למעשה כמה אבחנות שונות בחומרה: <b><span dir="ltr" class="term">Asymptomatic bacteriuria (ASB)</span></b> — נוכחות חיידקים בשתן ללא סימפטומים, לרוב <b>לא</b> דורשת טיפול; <b><span dir="ltr" class="term">Cystitis</span></b> — זיהום סימפטומטי של שלפוחית השתן; <b><span dir="ltr" class="term">Pyelonephritis</span></b> — זיהום סימפטומטי של הכליות. מבחינים בין <span dir="ltr" class="term">Uncomplicated UTI</span> (בנשים לא-הרות, ללא אבנורמליות אנטומיות/מכשור) ל-<span dir="ltr" class="term">Complicated UTI</span> (כל השאר).</p>
+<p>שכיחות גבוהה משמעותית בנשים (50-80% מהנשים יחוו UTI לפחות פעם בחייהן). גורמי סיכון ל-<span dir="ltr" class="term">cystitis</span>: יחסי מין תכופים, שימוש בדיאפרגמה+קוטל זרע, היסטוריית UTI קודמת. ב-<span dir="ltr" class="term">pyelonephritis</span> — אותם גורמים בתוספת פרטנר חדש וסוכרת, כי לרוב מדובר בעליית חיידקים משלפוחית השתן לדרכי השתן העליונות. חשוב: <span dir="ltr" class="term">ASB</span> בהיריון <b>כן</b> מטופל — כי הוא מקושר ל-<span dir="ltr" class="term">pyelonephritis</span> אימהי ולידה מוקדמת. <i>המשך הנושא (אבחנה, טיפול, UTI מסובך) יופיע בסיכום הבא בסדרה.</i></p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/xPEGzo_esTo" title="Spontaneous Bacterial Peritonitis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הסבר קליני על אבחנה וטיפול ב-SBP — לחיזוק סעיף 2 לעיל. מקור: YouTube.</p>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>SBP — "המבצר עם החומה הסדוקה"</h3>
+<p>דמייני כבד שחמתי כמו <b>מבצר עם חומה סדוקה</b> (יתר לחץ דם פורטלי פגע ב"מחסום" הפורטלי) — חיידקי מעי לא צריכים לפרוץ דרך; הם פשוט <b>שוחים דרך הסדק</b> (בקטרמיה המטוגנית) ישר אל "אגם" שכבר עומד שם בלי הגנה (מיימת עם משלים נמוך ו-PMN חלשים). זה ה"ספונטני" — אין קרע, רק חומה שכבר סדוקה מראש.</p>
+<svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+  <rect x="40" y="40" width="140" height="110" fill="#d1d5db" stroke="#4b5563"/>
+  <rect x="90" y="60" width="15" height="90" fill="#fff"/>
+  <text x="110" y="30" text-anchor="middle" font-size="13" fill="#4b5563">חומה סדוקה (כבד שחמתי)</text>
+  <circle cx="97" cy="100" r="5" fill="#b91c1c"/>
+  <circle cx="97" cy="120" r="5" fill="#b91c1c"/>
+  <path d="M110 110 Q220 110 300 110" stroke="#b91c1c" stroke-width="2" fill="none" marker-end="url(#a2)"/>
+  <ellipse cx="400" cy="110" rx="90" ry="55" fill="#bfdbfe" stroke="#2563eb"/>
+  <text x="400" y="105" text-anchor="middle" font-size="13" fill="#1f2937">אגם (מיימת)</text>
+  <text x="400" y="125" text-anchor="middle" font-size="11" fill="#1f2937">ללא שוטרים = ↓משלים,↓PMN</text>
+  <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b91c1c"/></marker></defs>
+</svg>
+</div>
+
+<div class="mnemonic">
+<h3>C. difficile — "הגינה שרוססה"</h3>
+<p>ראשי תיבות לזכירה: <b>A-B-C-diff</b> — <span dir="ltr" class="term">Antibiotics</span> הורסות את הגינה (הפלורה), <span dir="ltr" class="term">Bacteria</span> (נבגים) נובטים בלי מתחרים, <span dir="ltr" class="term">Cytotoxin</span> A/B הורסים את שלד התא. סיפור: גינה עם דשא בריא ועבות (הפלורה התקינה) מונעת מעשבים זרים (נבגי C. diff) לתפוס שורש. מישהו מרסס קוטל-עשבים <b>רחב-טווח</b> (אנטיביוטיקה) שהורג גם את הדשא הטוב — ואז העשבים העמידים (נבגים עמידי חום/חומצה) משתלטים ופולטים רעל שהופך את הגינה לשממה מכוסה קרום לבן (פסאודוממברנות).</p>
+<svg class="diagram" viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="100" width="460" height="50" fill="#ecfdf5" stroke="#047857"/>
+  <text x="250" y="130" text-anchor="middle" font-size="13" fill="#047857">גינה עם דשא בריא = פלורה תקינה</text>
+  <path d="M100 40 L100 95" stroke="#b45309" stroke-width="3"/>
+  <path d="M250 40 L250 95" stroke="#b45309" stroke-width="3"/>
+  <path d="M400 40 L400 95" stroke="#b45309" stroke-width="3"/>
+  <text x="250" y="25" text-anchor="middle" font-size="13" fill="#b45309">ריסוס אנטיביוטיקה רחבת-טווח</text>
+</svg>
+</div>
+
+<div class="mnemonic">
+<h3>שלשול — "ברז פתוח מול שדה קרב"</h3>
+<p>שלשול לא-דלקתי = <b>ברז שנפתח</b> במעי הדק הפרוקסימלי (טוקסין "פותח ברז" נוזלים — מימי, ללא הרס תאים). שלשול דלקתי = <b>שדה קרב</b> במעי הגס (פלישה ממשית של חיידק, "גופות" נשארות בצואה = לויקוציטים ודם).</p>
+</div>
+
+<h2><span class="num">7</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+<li><a href="https://www.osmosis.org/learn/Spontaneous_bacterial_peritonitis:_Clinical_sciences" target="_blank">Osmosis — Spontaneous Bacterial Peritonitis</a><div class="desc">סיכום כתוב + וידאו נוסף על SBP, כולל גישת ABCDE קלינית.</div></li>
+<li><a href="https://www.osmosis.org/learn/Infectious_gastroenteritis_and_enterocolitis:_Clinical_sciences" target="_blank">Osmosis — Infectious Gastroenteritis and Enterocolitis</a><div class="desc">סיכום מורחב על פתוגני מעי, כולל טבלת רמזים אנמנסטיים (עוף/ביצים → סלמונלה וכו').</div></li>
+<li><a href="https://www.osmosis.org/learn/Clostridioides_difficile_infection:_Clinical_sciences" target="_blank">Osmosis — Clostridioides difficile infection: Clinical Sciences</a><div class="desc">גרסה קלינית מורחבת עם דגש על אבחנה וטיפול מדורג.</div></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Clostridioides_(pseudomembranous)_colitis%E2%80%93_close-up.jpg" target="_blank">Wikimedia Commons — תמונת קולונוסקופיה CDI</a><div class="desc">קישור ישיר לתמונה המוטמעת למעלה, לגיבוי.</div></li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>וינייטה</h3>
+<p>אישה בת 74 אושפזה לפני 12 ימים בשל דלקת ריאות נרכשת בקהילה וטופלה ב-<span dir="ltr" class="term">Ceftriaxone IV</span>. כעת, יומיים לאחר סיום הטיפול, היא מפתחת שלשולים מימיים תכופים (6 יציאות ביום, ריח חריף, ללא דם), כאבי בטן דיפוזיים וחום 38.4°C. בבדיקת דם: <span dir="ltr" class="term">WBC</span> 17,200, קריאטינין עלה מ-0.9 ל-1.1 מ"ג/ד"ל לעומת הבסיס. בצילום בטן נראה <span dir="ltr" class="term">ileus</span> קל, ללא סימני חסימה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+<div class="q">1. מהו המנגנון המרכזי שהוביל להתפתחות מצבה של החולה?</div>
+<button class="opt" data-i="0">חדירה ישירה של פתוגן מהמעי לחלל הפריטונאלי</button>
+<button class="opt" data-i="1">ירידה בחומציות הקיבה עקב מתן אנטיביוטיקה</button>
+<button class="opt" data-i="2">פגיעה בפלורת המעי התקינה ע"י אנטיביוטיקה רחבת-טווח, המאפשרת נביטת נבגי C. difficile</button>
+<button class="opt" data-i="3">פלישה ישירה של החיידק לתאי המוקוזה של המעי הדק</button>
+<div class="explain">נכון: זהו התיאור הקלאסי של CDI — <span dir="ltr" class="term">Ceftriaxone</span> (צפלוספורין דור 3) הוא גורם סיכון מוכר. תשובה א' מתארת פריטוניטיס שניונית, לא שלשול. תשובה ב' — לא זה המנגנון העיקרי (חומציות קיבה לא קשורה ישירות לאירוע כאן). תשובה ד' מתארת מנגנון פלישה כמו ב-Shigella, לא את מנגנון הטוקסין של C. difficile.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">2. איזה ממצא בבדיקת דם צריך להעלות חשד ל-CDI גם אם השלשול פחות בולט?</div>
+<button class="opt" data-i="0">המוגלובין נמוך</button>
+<button class="opt" data-i="1">לויקוציטוזיס בלתי מוסבר עם WBC≥15,000</button>
+<button class="opt" data-i="2">טסיות גבוהות</button>
+<button class="opt" data-i="3">נתרן גבוה</button>
+<div class="explain">נכון: לויקוציטוזיס משמעותי ובלתי מוסבר, במיוחד עם ileus (כמו במקרה שלנו), הוא דגל אדום ל-CDI גם כשהשלשול "נעלם" בגלל האילאוס. שאר האפשרויות אינן מרקרים ספציפיים ל-CDI.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+<div class="q">3. מהו הטיפול המומלץ הראשוני עבור אפיזודה ראשונה ולא-פולמיננטית?</div>
+<button class="opt" data-i="0">Vancomycin PO</button>
+<button class="opt" data-i="1">Vancomycin IV</button>
+<button class="opt" data-i="2">Ciprofloxacin PO</button>
+<button class="opt" data-i="3">Ceftriaxone IV נוסף</button>
+<div class="explain">נכון: Vancomycin PO (או Fidaxomicin PO) הוא קו ראשון, כי התרופה צריכה להגיע פיזית ללומן המעי. Vancomycin IV לא יעיל לזה כלל (ספיגה מערכתית, לא מגיע למעי). Ciprofloxacin לא מטפל ב-CDI. הוספת עוד צפלוספורין רק תחמיר את ה-dysbiosis.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+<div class="q">4. אילו ממצאים היו הופכים את המצב ל"CDI פולמיננטי" המחייב שינוי גישה טיפולית?</div>
+<button class="opt" data-i="0">שלשול שנמשך מעל שבועיים</button>
+<button class="opt" data-i="1">חום מעל 38°C בלבד</button>
+<button class="opt" data-i="2">CRP מוגבר בלבד</button>
+<button class="opt" data-i="3">תת לחץ דם, שוק, ileus משמעותי או toxic megacolon</button>
+<div class="explain">נכון: ההגדרה הפורמלית של CDI פולמיננטי כוללת תת לחץ דם/שוק/ileus/toxic megacolon — אלה מחייבים Vancomycin PO (±חוקן) + Metronidazole IV, ובהיעדר תגובה: colectomy. שאר האפשרויות אינן קריטריון להגדרת "פולמיננטי".</div>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">5. חולה שחמת אחרת מתקבלת עם מיימת, חום וכאב בטן; ניקור אבחנתי מדגים 400 PMNs/μL בנוזל ותרבית עם פתוגן בודד (E. coli). מה סוג הפריטוניטיס הסביר, ומדוע אין צורך לכסות אנאירוביים בטיפול האמפירי?</div>
+<button class="opt" data-i="0">שניונית — כי המקור הוא תמיד קרע מעי, שדורש כיסוי אנאירובי</button>
+<button class="opt" data-i="1">ראשונית (SBP) — מקור המטוגני ולא ממעי פגוע, ולכן פתוגן בודד אירובי ולא פלורה מעורבת עם אנאירוביים</button>
+<button class="opt" data-i="2">CAPD-קשורה — כי יש קטטר פריטונאלי</button>
+<button class="opt" data-i="3">שניונית — כי יש חום וכאב בטן</button>
+<div class="explain">נכון: פתוגן בודד + מעל 250 PMN + הקשר של שחמת/מיימת = SBP קלאסית. באין קרע מעי, החיידקים מגיעים בדרך המטוגנית ולא כוללים בדרך כלל אנאירוביים (שמקורם בלומן המעי הפגוע). שניונית הייתה מציגה פלורה מעורבת. אין מידע על קטטר דיאליזה בווינייטה.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">9</span> סיכום של הסיכום</h2>
+<h4>Foot / Vertebral OM</h4>
+<ul>
+<li>אבצס אפידורלי — סיבוך של Vertebral OM (15-20%), MRI לאבחנה, ניקוז כירורגי + אנטיביוטיקה</li>
+<li>Foot OM — זיהום אקסוגני (לא המטוגני!), אבחנה: probe-to-bone / MRI, טיפול לפי תרבית מהעצם (לא מהפצע)</li>
+</ul>
+<h4>פריטוניטיס</h4>
+<ul>
+<li>SBP: המטוגנית, אין מקור נראה, פתוגן בודד, &gt;250 PMN/μL, אין צורך בכיסוי אנאירובי, ±אלבומין</li>
+<li>שניונית: קרע/פרפורציה במעי, פלורה מעורבת (גראם-שליליים+אנאירוביים), ניתוח+אנטיביוטיקה</li>
+<li>CAPD: פתוגן בודד מהעור, אנטיביוטיקה תוך-פריטונאלית</li>
+</ul>
+<h4>שלשול זיהומי</h4>
+<ul>
+<li>לא-דלקתי (מעי דק, טוקסין, מימי) מול דלקתי (מעי גס, פלישה/ציטוטוקסין, דמי/PMN)</li>
+<li>EHEC — אסור אנטיביוטיקה (מעלה סיכון HUS פי 20); רה-הידרציה היא עמוד התווך</li>
+</ul>
+<h4>C. difficile</h4>
+<ul>
+<li>אנטיביוטיקה → פגיעה בפלורה → נביטת נבגים → Toxin A/B → פסאודוממברנות</li>
+<li>אבחנה: שלשול + toxin/NAAT חיובי; טיפול: Vancomycin PO / Fidaxomicin (לא IV!); פולמיננטי: +Metronidazole IV ±colectomy</li>
+<li>מניעה: מים וסבון (אלכוהול לא הורג נבגים)</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
