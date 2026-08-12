@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 5: ביולוגיית תאי גזע במערכת העצבים המרכזית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הפרקים</a></div>
+
+<h1>פרק 5: ביולוגיית תאי גזע במערכת העצבים המרכזית <span class="term" dir="ltr">Stem Cell Biology in the Central Nervous System</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Philip J. Horner, Samuel E. Nutt</div>
+
+<p>עד שנות ה-90 המוקדמות, הדוגמה הרווחת ברפואה הייתה שהמוח הבוגר "נגמר לבנות את עצמו" - כל הנוירונים שיהיו לנו נוצרים בהיריון, ומאותו רגע ואילך רק מתים. הפרק הזה מספר איך דוגמה זו קרסה: מתברר שגם המוח הבוגר מכיל אוכלוסיות תאי גזע (<span class="term" dir="ltr">neural stem cells, NSCs</span>) פעילות, שממשיכות לייצר נוירונים חדשים לאורך כל החיים בשני אזורים ספציפיים, ותאי גזע/פרוגניטור גליאליים שמפוזרים כמעט בכל רקמת ה-CNS. להבנה הזו יש שתי השלכות ישירות לנוירוכירורגיה: מצד אחד, אותם מנגנוני "התחדשות עצמית" שמאפיינים תאי גזע בריאים מעורבים גם בהיווצרות גליומות; מצד שני, תאי הגזע האלה הם המצע הביולוגי שעליו מבוססות תקוות רבות לטיפולים עתידיים בפגיעות ומחלות של המוח וחוט השדרה.</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: מהו תא גזע עצבי, ולמה זה מפתיע שדווקא אסטרוציט הוא זה</h2>
+<div class="mechanism">
+  <p class="chain">
+    ההגדרה הפונקציונלית של תא גזע (<span class="term" dir="ltr">stem cell</span>) פשוטה: תא שמסוגל לעשות שני דברים בלבד - <b>להתחדש עצמית</b> (self-renewal, כלומר לחלק ולהשאיר לפחות תא בת אחד זהה לו) ו<b>להתמיין</b> לתא מובחן. זה שונה מ"פרוגניטור" (progenitor) - תא שכבר מחויב לשושלת מסוימת אך עדיין מתחלק - ומ"תא transit-amplifying" - תא ביניים שמתחלק במהירות גבוהה אך למספר מחזורים מוגבל בלבד, ואז מפסיק.
+  </p>
+  <p>
+    <b>ההפתעה המרכזית של הפרק:</b> תא הגזע העצבי העיקרי במוח הבוגר (המכונה <b>תא B</b>) הוא בעצם <b>אסטרוציט</b> - תא שנחשב באופן מסורתי ל"דבק" תומך וסופי-התמיינות, לא לתא גזע. ההסבר לכך הוא התפתחותי: תאי B הם ההמשך הישיר של <b>הגליה הרדיאלית</b> (radial glia), תא הגזע העצבי העיקרי של המוח הקדמי העוברי (ראו סעיף 5). כלומר, "תכונת תא הגזע" לא הומצאה מחדש בבגרות - היא תפקיד עוברי ששרד.
+  </p>
+</div>
+<p class="key-box">שני אתרים בלבד במוח הבוגר מייצרים <b>נוירונים</b> חדשים לאורך כל החיים: האזור התת-חדרי (<span class="term" dir="ltr">Subventricular Zone, SVZ</span>) ליד החדרים הצדדיים, והאזור התת-גרעיני (<span class="term" dir="ltr">Subgranular Zone, SGZ</span>) בגירוס המשונן של ההיפוקמפוס. לעומת זאת, פרוגניטורים <b>גליאליים</b> קיימים כמעט בכל רקמת ה-CNS - כ-3% עד 9% מכלל התאים הבוגרים.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Nr7L0BYLA88" title="What is neurogenesis?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר שמסביר את תגלית הנוירוגנזה במוח הבוגר ואת שני האזורים הנוירוגניים העיקריים - נקודת פתיחה טובה לפני הצלילה למנגנון המפורט.</p>
+
+<h2><span class="num">2</span> הנישה הראשונה: האזור התת-חדרי (SVZ) - היררכיית B←C←A ומסלול הנדידה אל הבולבוס האולפקטורי</h2>
+<p>ההיסטוריה קצרה יחסית: בשנות ה-60 <b>Altman</b> ועמיתיו דיווחו על תאים מתחלקים בעלי מורפולוגיה נוירונלית במוח החולדה - תגלית שהתקבלה בספקנות רבה כי הדוגמה הרווחת הייתה שהמוח הבוגר אינו מסוגל להתחדש. רק בתחילת שנות ה-90, כאשר <b>Reynolds ו-Weiss</b> גילו תאים במוח העכבר הבוגר שמתרבים ומתמיינים לנוירונים ואסטרוציטים (ומבטאים נסטין, סמן תאי גזע נוירואפיתליאליים), התגבשה ההבנה שה-SVZ הוא "נישה נוירוגנית" של ממש.</p>
+<div class="mechanism">
+  <p class="chain">בתוך ה-SVZ קיימת ארכיטקטורה תאית מסודרת בת שלוש רמות, שכל אחת מהן ממלאת תפקיד שונה:</p>
+  <p>
+    <b>שלב 1 - תאי B (אסטרוציטים, GFAP+/PSA-NCAM+):</b> מתחלקים באיטיות, ממוקמים לטרלית לשכבת האפנדימה שמצפה את החדר הצדדי (בארכיטקטורת "גלגל שיניים" - pinwheel), ומגיעים לחדר עצמו דרך תהליך אפיקלי קצר. אלה תאי הגזע האמיתיים.<br>
+    <b>שלב 2 - תאי C (transit-amplifying, GFAP-/PSA-NCAM-):</b> תא B מתחלק א-סימטרית - בת אחת נשארת תא B (שימור עצמי), השנייה הופכת לתא C. תאי C עוברים תקופה קצרה של פעילות מיטוטית מוגברת, שמגבירה מספרית את התפוקה בלי לבזבז את תא הגזע המקורי.<br>
+    <b>שלב 3 - תאי A (נוירובלסטים נודדים, מסומנים ב-doublecortin):</b> תאי C מייצרים תאי A, שנודדים דרך מסלול ייעודי הנקרא <b>ה-RMS</b> (<span class="term" dir="ltr">Rostral Migratory Stream</span>) - תחילה בתנועה טנגנציאלית לאורך "מנהרות תאיות" הבנויות מתאי B עצמם, ולאחר ההגעה לבולבוס האולפקטורי עוברים למיגרציה רדיאלית.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg">
+  <title>ארכיטקטורת ה-SVZ: B, C, A ומסלול ה-RMS</title>
+  <desc>תרשים סכמטי של היררכיית תאי B, C, A באזור התת-חדרי ומסלול הנדידה לבולבוס האולפקטורי</desc>
+  <rect x="20" y="30" width="140" height="90" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="90" y="70" font-size="26" text-anchor="middle" fill="#1e3a8a" font-weight="700">B</text>
+  <text x="90" y="95" font-size="12" text-anchor="middle" fill="#1e3a8a">אסטרוציט, GFAP+</text>
+  <text x="90" y="110" font-size="11" text-anchor="middle" fill="#1e3a8a">תא הגזע (NSC)</text>
+  <rect x="220" y="30" width="140" height="90" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="290" y="70" font-size="26" text-anchor="middle" fill="#713f12" font-weight="700">C</text>
+  <text x="290" y="95" font-size="12" text-anchor="middle" fill="#713f12">transit-amplifying</text>
+  <text x="290" y="110" font-size="11" text-anchor="middle" fill="#713f12">GFAP-/PSA-NCAM-</text>
+  <rect x="420" y="30" width="140" height="90" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="490" y="70" font-size="26" text-anchor="middle" fill="#7f1d1d" font-weight="700">A</text>
+  <text x="490" y="95" font-size="12" text-anchor="middle" fill="#7f1d1d">נוירובלסט נודד</text>
+  <text x="490" y="110" font-size="11" text-anchor="middle" fill="#7f1d1d">DCX+</text>
+  <line x1="160" y1="75" x2="218" y2="75" stroke="#4b5563" stroke-width="3" marker-end="url(#arrA)"/>
+  <line x1="360" y1="75" x2="418" y2="75" stroke="#4b5563" stroke-width="3" marker-end="url(#arrA)"/>
+  <path d="M90,120 C90,150 40,150 40,30" stroke="#2563eb" stroke-width="2" fill="none" stroke-dasharray="4,4" marker-end="url(#arrA)"/>
+  <text x="30" y="150" font-size="10" fill="#1e3a8a">חלוקה א-סימטרית: B נשאר B</text>
+  <defs><marker id="arrA" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#4b5563"/></marker></defs>
+  <rect x="580" y="30" width="180" height="90" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="670" y="65" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">בולבוס אולפקטורי</text>
+  <text x="670" y="85" font-size="11" text-anchor="middle" fill="#14532d">אינטרנוירונים מעכבים:</text>
+  <text x="670" y="102" font-size="11" text-anchor="middle" fill="#14532d">תאי גרנולה + periglomerular</text>
+  <line x1="560" y1="75" x2="578" y2="75" stroke="#4b5563" stroke-width="3" marker-end="url(#arrA)"/>
+  <text x="390" y="160" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">מסלול RMS (Rostral Migratory Stream) - תנועה טנגנציאלית ואז רדיאלית</text>
+  <line x1="60" y1="200" x2="720" y2="200" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrA)"/>
+  <text x="390" y="225" font-size="11" text-anchor="middle" fill="#6b7280">מדי שבועות: לידה ב-SVZ → נדידה ב-RMS → הגעה → מיגרציה רדיאלית → השתלבות תפקודית</text>
+  <text x="390" y="245" font-size="11" text-anchor="middle" fill="#6b7280">כ-50% מהתאים החדשים לא ישרדו ללא קלט חושי מספק</text>
+</svg>
+<p>תפקיד חשוב לתאי האפנדימה עצמם: הם מייצרים <b>noggin</b>, אנטגוניסט ל-<span class="term" dir="ltr">bone morphogenetic proteins (BMPs)</span> - חלבונים שמעכבים נוירוגנזה ומעודדים אסטרוגליוגנזה. כלומר, האפנדימה לא "רק" מרפדת את החדר, אלא פעילה בשימור הנישה הנוירוגנית עצמה.</p>
+
+<h2><span class="num">3</span> הנישה השנייה: האזור התת-גרעיני (SGZ) בהיפוקמפוס - B←D←תא גרנולה←CA3</h2>
+<p>האתר השני שבו נוצרים נוירונים חדשים לאורך החיים הוא ה-SGZ, השוכן בין הגירוס המשונן (dentate gyrus) לבין ההילום של ההיפוקמפוס. השם "B" חוזר גם כאן (אסטרוציטים GFAP+), אבל שאר המינוח והמסלול שונים לגמרי מה-SVZ:</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray717.png?width=700" alt="Gray's Anatomy coronal section of the brain showing the hippocampus and dentate gyrus">
+<p class="media-cap">חתך כלילי קלאסי מתוך Gray's Anatomy המראה את ההיפוקמפוס, הגירוס המשונן והמבנים הסובבים - האזור האנטומי שבו שוכן ה-SGZ. מקור: Wikimedia Commons.</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>שלב 1 - תאי B (אסטרוציטים GFAP+):</b> הפרוגניטור הראשוני, כמו ב-SVZ.<br>
+    <b>שלב 2 - תאי D (ביניים, PSA-NCAM+/DCX+):</b> בניגוד לתאי C ב-SVZ, תאי D <b>פחות מיטוטיים</b> - כלומר שלב ההגברה המספרית כאן מוגבל יותר, מה שכנראה מסביר מדוע קצב ייצור הנוירונים ב-SGZ נמוך יותר בסך הכול מב-SVZ.<br>
+    <b>שלב 3 - תאי גרנולה מעוררים חדשים:</b> תאי D מתמיינים לתאי גרנולה - בניגוד לאינטרנוירונים המעכבים שנוצרים ב-SVZ, אלה נוירונים <b>מעוררים (excitatory)</b>. הם נודדים <b>מרחק קצר בלבד</b> לשכבת הגרנולה, קרוב מאוד למקורם האסטרוציטי - לא כמו המסע הארוך של נוירובלסטי ה-SVZ.
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DCX-expressing_cells_in_the_subgranular_zone.jpg?width=700" alt="Immunohistochemistry image showing doublecortin-expressing (DCX+) newborn neurons in the subgranular zone of the dentate gyrus">
+<p class="media-cap">תצלום היסטולוגי אמיתי: תאים המבטאים doublecortin (DCX, סמן לנוירונים חדשים לא-בשלים) באזור התת-גרעיני - זו בדיוק השיטה שבה חוקרים "רואים" נוירוגנזה בפועל תחת המיקרוסקופ. מקור: Wikimedia Commons.</p>
+<p>תאי הגרנולה הבשלים משלחים אקסונים הנקראים <b>mossy fibers</b> לאזור <b>CA3</b> של ההיפוקמפוס - תת-שדה המעורב ישירות בלמידה ובזיכרון. השתלבותם במעגל התפקודי (יצירת סינפסות מעוררות עם אינטרנוירונים ותאי פירמידה ב-CA3) מתרחשת תוך כשבוע בלבד.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/o98crZWauPI" title="Stem cells and adult neurogenesis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון על תאי גזע ונוירוגנזה במוח הבוגר, כולל התייחסות לשני האזורים הנוירוגניים ולתהליך ההתמיינות.</p>
+
+<h2><span class="num">4</span> רגולציה של נוירוגנזה: מה מגביר, מה מדכא, ולמה זה חשוב תפקודית</h2>
+<div class="mechanism">
+  <p class="chain">נוירוגנזה אינה קבועה - היא מווסתת באופן דינמי על ידי גורמים סביבתיים, קוגניטיביים והורמונליים:</p>
+  <p>
+    <b>מעודדים:</b> העשרה סביבתית וחשיפה לריחות מורכבים (מגבירה שילוב נוירונים חדשים ומשפרת זיכרון ריחני קצר-טווח), פעילות גופנית, למידה, הריון וגירוי פרומונלי.<br>
+    <b>מדכאים:</b> חסך חושי (חסך ריחני חד-צדדי מקטין את נפח הבולבוס - הפיך עם שיקום הגירוי), <b>סטרס</b> ורמות קורטיקוסטרואידים מוגברות (בקופי מרמוסט בוגרים, סטרס מפחית את מספר פרקורסורי תאי הגרנולה המתחלקים בגירוס המשונן).<br>
+    ברמה המולקולרית, <span class="term" dir="ltr">GABA</span> ו<span class="term" dir="ltr">גלוטמט</span> משפיעים על שלבי הפרוליפרציה, ההישרדות וההשתלבות של הנוירונים החדשים.
+  </p>
+</div>
+<p class="key-box">משמעות תפקודית מוכחת: עכברים חסרי <span class="term" dir="ltr">NCAM</span> מראים ירידה של 40% בנפח הבולבוס האולפקטורי (מוגבלת לשכבת הגרנולה) ופגיעה בהבחנה ריחית. תרופות נוגדות דיכאון מגבירות נוירוגנזה בהיפוקמפוס - אך <b>רק לאחר טיפול כרוני, לא חד-פעמי</b> - עדות לכך שהאפקט הטיפולי שלהן עשוי לפעול בין השאר דרך מנגנון זה ולא רק דרך שינוי מיידי ברמות מוליכים עצביים.</p>
+
+<h2><span class="num">5</span> מקור תאי B: גליה רדיאלית ואסטרוציטים כתאי גזע</h2>
+<div class="mechanism">
+  <p class="chain">
+    בהינתן שאסטרוציט נחשב באופן מסורתי לתא "תמיכה" סופי-התמיינות, איך בכלל תאי B יכולים לשמש תא גזע? התשובה טמונה בהתפתחות: תאי B מקורם ב<b>גליה רדיאלית</b> - תא הגזע העצבי העיקרי של המוח הקדמי היונקי העוברי. שני סוגי התאים חולקים תכונות מבניות: שניהם NSCs, שניהם תופסים את האזור הפריוונטריקולרי, ושניהם מגיעים לחדר עצמו דרך <b>תהליך אפיקלי</b>. הגליה הרדיאלית מוסיפה גם <b>תהליך בזאלי</b> המשתרע עד לפני הפיה - וחלק מתאי B הבוגרים ב-SVZ שומרים תהליך דומה, אם כי קצר יותר.
+  </p>
+</div>
+<p>מבנית, אסטרוציטים "מתאימים" באופן טבעי לתפקיד פרוגניטור מרכזי: התהליכים הרבים שלהם באים במגע עם סוגי תאים רבים ועם הלמינה הבזלית של כלי הדם, ותקשורת בין-אסטרוציטית מתקיימת דרך <span class="term" dir="ltr">gap junctions</span>. תכונות אלה מציבות אותם באופן אידיאלי לשלב אותות מגוונים ולווסת את נישת תא הגזע. חשוב להדגיש: אסטרוציטים <b>פרנכימליים</b> (מחוץ ל-SVZ/SGZ) אינם נוירוגניים <span class="term" dir="ltr">in vivo</span>, גם אם אסטרוציטים מהקורטקס, המוחון וחוט השדרה (בשבועיים הראשונים אחרי הלידה) מסוגלים ליצור נוירוספרות <span class="term" dir="ltr">in vitro</span>.</p>
+
+<h2><span class="num">6</span> גליוגנזה: פרוגניטורים אוליגודנדרוציטיים (OPC) ואסטרוציטיים (APC)</h2>
+<p>מרבית תשומת הלב מוקדשת לנוירוגנזה, אבל <b>גליוגנזה</b> - ייצור אסטרוציטים ואוליגודנדרוציטים חדשים - מתרחשת כמעט בכל רקמת ה-CNS. פרוגניטורים גליאליים מהווים 3%-9% מכלל התאים הבוגרים, וגורם השעתוק <span class="term" dir="ltr">Olig2</span> הוא חתימה מולקולרית מרכזית שלהם - הוא מנוגד לנוירוגנזה ב-SVZ אך קובע גורל גליאלי.</p>
+<div class="table-scroll">
+<table>
+<tr><th>סוג תא</th><th>סמנים עיקריים</th><th>ממצא תפקודי מרכזי</th></tr>
+<tr><td><b>OPC</b> (תאי פרוגניטור אוליגודנדרוציטיים)</td><td>NG2, <span class="term" dir="ltr">PDGFR-α</span>, A2B5</td><td>עד 3% מתאי חומר לבן תת-קורטיקלי בוגר; <span class="term" dir="ltr">PDGF-A</span> knockout → אובדן פרוגניטורים PDGFR-α+, היפומיאלינציה חמורה ופנוטיפ רעד</td></tr>
+<tr><td><b>APC</b> (תאי פרוגניטור אסטרוציטיים)</td><td>A2B5+, GFAP-, תלויים ב-FGF</td><td>סמן מוצע: CD44 (ברקמה עוברית אנושית ובגליומות מסוימות); פחות מאופיינים מ-OPCs</td></tr>
+</table>
+</div>
+<p>ה"סתירה" לכאורה בין NG2, PDGFR-α ו-A2B5 (האם הם מסמנים את אותה אוכלוסייה?) נפתרת חלקית: NG2 ו-PDGFR-α מבוטאים לעיתים קרובות יחד, מגיבים יחד ל-<span class="term" dir="ltr">bFGF</span>, ואף יוצרים קומפלקס מולקולרי - NG2 נדרש בפועל להעברת אות PDGF יעילה. A2B5, לעומת זאת, מבוטא גם על פרוגניטורים נוירונליים וסוגי אסטרוציטים מסוימים - ולכן פחות ספציפי. תפקיד ה-OPCs כולל תחזוקת מיאלין לאורך החיים (רלוונטי במיוחד להזדקנות) ותגובה מהירה לדה-מיאלינציה, טראומה או איסכמיה: הם מתרבים, משנים מורפולוגיה ומתמיינים לאוליגודנדרוציטים ממיאלינטים.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lNMibSvlj3k" title="Oligodendrocytes and myelination | Demyelination in Multiple sclerosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון על אוליגודנדרוציטים, תהליך המיאלינציה ודה-מיאלינציה - רקע שימושי להבנת תפקיד ה-OPCs שתואר למעלה.</p>
+
+<h2><span class="num">7</span> תאי גזע בחוט השדרה: כשהנישה קובעת יותר מהתא עצמו</h2>
+<div class="mechanism">
+  <p class="chain">
+    גם בחוט השדרה הבוגר קיימים NSCs מתחדשים עצמית ורב-פוטנטיים, בקרבת התעלה המרכזית ובפרנכימת החומר הלבן. אלא שיש להם התנהגות שונה באופן מהותי מ-SVZ/SGZ: <span class="term" dir="ltr">בתוך חוט השדרה עצמו (in vivo) הם glial-restricted</span> - כלומר אינם מייצרים נוירונים כלל, למרות שהם עצמם מוגדרים כרב-פוטנטיים.
+  </p>
+  <p>
+    הניסוי המכריע: כאשר אותם תאים מבודדים וגדלים <span class="term" dir="ltr">in vitro</span>, הם כן מסוגלים לייצר נוירונים. וכאשר הם מושתלים לתוך נישה נוירוגנית זרה - הגירוס המשונן - הם <b>שוב</b> מייצרים נוירונים. המסקנה: ההגבלה הגליאלית אינה תכונה תוך-תאית קבועה, אלא תוצאה של הנישה המקומית. גורל התא נקבע במשותף על ידי גורמים תוך-תאיים (אינטרינזיים) <b>וגם</b> על ידי הסביבה החוץ-תאית - כולל תאי אנדותל ואסטרוציטים.
+  </p>
+</div>
+
+<h2><span class="num">8</span> תגובת תאי גזע ופרוגניטורים לפגיעה במערכת העצבים</h2>
+<p>לאחר פגיעה מוחית (טראומטית, איסכמית או כימית) מתרחש תיקון אנדוגני, אך הוא מוגבל. האזורים הנוירוגניים עצמם (SVZ, היפוקמפוס) מגיבים לפגיעה איסכמית ול-kainate בעלייה בפרוליפרציה - לאחר אוטם בסטריאטום, נוירונים חדשים אף רוכשים פנוטיפ סטריאטלי וממשיכים להיווצר במשך <b>חודשים</b> לאחר הפגיעה הראשונית.</p>
+<p class="key-box">אבל התגובה הפרוליפרטיבית <b>הדומיננטית</b> בכל רקמת ה-CNS אינה נוירוגנית אלא גליאלית: OPCs בפרנכימה מתרבים, נודדים לאזור הנגע וממיאלינטים מחדש בתגובה לטראומה, איסכמיה ודה-מיאלינציה. גורמי גדילה שעולים לאחר פגיעה (למשל PDGF, FGF) הם מיטוגניים ל-OPCs - אך אותם גורמים עצמם <b>מעכבים התמיינות סופית</b>, כך שיש "לנטרל" את האפקט המיטוגני לפני שמיאלינציה בפועל יכולה להתרחש. התמיינות נוירונלית מחוץ ל-SVZ/SGZ נותרת נדירה ולרוב אבורטיבית - ולכן תיקון אנדוגני לבדו כמעט תמיד אינו מספיק להחלמה תפקודית מלאה.</p>
+
+<h2><span class="num">9</span> עדות לנוירוגנזה במבוגר האנושי, והדמיית תאי גזע</h2>
+<p>NSCs זוהו לא רק במכרסמים אלא גם בהיפוקמפוס, ה-SVZ, ואף בקורטקס ובחומר הלבן התת-קורטיקלי של המוח האנושי הבוגר, ומסוגלים לייצר צאצא נוירונלי וגליאלי <span class="term" dir="ltr">in vitro</span>. פגיעה איסכמית מעוררת נוירוגנזה גם במוח האנושי, ותאי גזע עצביים אנושיים בוגרים (ahNSCs) שהושתלו לחוט שדרה מדה-מיילן של מכרסם תרמו לרמיאלינציה. עם זאת, המחקר בתחום עדיין בחיתוליו, והידע חלקי ביחס למכרסמים.</p>
+<p>כדי לעקוב אחרי התנהגות NSCs (בעיקר בהקשר טיפולי-מחקרי), נעשה שימוש בכמה שיטות הדמיה, שכל אחת מהן מציעה מידע משלים: <b>MRI</b> (לרוב לאחר תיוג תאים בחלקיקי תחמוצת ברזל, למעקב אחר נדידה), <b>PET</b> (לרוב בשילוב MRI, למעקב אחר מטבוליזם), ו<b>הדמיה אופטית</b> - למשל <span class="term" dir="ltr">bioluminescence imaging</span>, שבה מהנדסים את התאים לבטא גן דיווח לוציפראז שפולט פוטונים הניתנים למדידה, ומספקים מידע על הישרדות, גידוליות (tumorigenicity) ואימונוגניות. מכיוון שלכל שיטה יתרונות וחסרונות שונים (מהירות, רזולוציה, ספציפיות וזמינות התיוג), גישות רב-מודליות צפויות להידרש למחקר NSC מקיף.</p>
+
+<h2><span class="num">10</span> תאי גזע וסרטן: היפותזת תא הגזע הסרטני וגליומה</h2>
+<div class="mechanism">
+  <p class="chain">
+    תאי גזע ותאי גידול חולקים תכונות מהותיות - שניהם מתחדשים עצמית ומייצרים צאצא הטרוגני פנוטיפית. מסלולי איתות שמשמרים NSCs, כמו <span class="term" dir="ltr">Sonic Hedgehog (Shh)</span> ו-<span class="term" dir="ltr">Notch</span>, מעורבים גם בהיווצרות מדולובלסטומה וגליומות כולל גליובלסטומה מולטיפורמה. יש לכך שתי פרשנויות אפשריות: (1) תאי סרטן "משתלטים" על מנגנוני התחדשות עצמית האופייניים לתאי גזע, או (2) תאי גזע מועדים מלכתחילה להפוך לגידוליים כי המכונה הזו כבר פעילה בהם.
+  </p>
+  <p>
+    <b>היפותזת תא הגזע הסרטני</b> אינה טוענת שתא גזע הוא בהכרח "תא המקור" הקרצינוגני, אלא שבתוך גידולים מסוימים קיימת תת-אוכלוסייה מתחדשת עצמית המסוגלת לשחזר את הגידול המקורי במלוא הטרוגניותו - מוכח בהשתלה סדרתית לפונדק חדש. נדרשים ככל הנראה <b>שני אירועים מולקולריים</b> להפיכת פרוגניטור לתא גזע סרטני: (1) אובדן בקרת מחזור התא, לרוב עקב מוטציה בגן דכאי-גידול כמו <span class="term" dir="ltr">Pten</span> או <span class="term" dir="ltr">p53</span>, ו-(2) חוסר רגישות נרכש לאותות התמיינות, כך שהתאים ממשיכים להתרבות מבלי להבשיל.
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Glioblastoma_multiforme_-_MRT_T1KM_ax.jpg?width=700" alt="Axial contrast-enhanced MRI showing glioblastoma multiforme">
+<p class="media-cap">MRI צירי עם חומר ניגוד המדגים גליובלסטומה מולטיפורמה - הגידול הפרימרי החמור ביותר של ה-CNS, שבו נמצאו תאים המבטאים סמני גזע/פרוגניטור (נסטין, CD133, NG2, PDGFR-α, A2B5). מקור: Wikimedia Commons.</p>
+<p>סמנים כמו <b>נסטין</b> ו-<b>CD133</b> משמשים בפועל לחיזוי פרוגנוזה קלינית בחולי גליומה. תאים המבטאים סמני OPC (NG2, PDGFR-α, A2B5, בכל שילוב) נמצאו במגוון גליומות - אסטרוציטומות, אסטרוציטומות מעורבות ואוליגודנדרוגליומות. עם זאת, נוכחות פרוגניטורים בתוך גליומה אינה מוכיחה בהכרח שהם "תא המקור" - ייתכן שתאי גזע נורמליים נגררו לאזור הגידול על ידי גורמי גדילה, ציטוקינים וכימוקינים שהוא מפריש, שגשגו שם ותרמו למסה הגידולית מבלי להיות מקור ההתהוות.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/mnTQTjBZoAE" title="The Cancer Stem Cell Theory" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון של האוניברסיטה בקרדיף על היפותזת תא הגזע הסרטני - איך תת-אוכלוסייה בתוך הגידול עשויה להיות אחראית להישנות ולהתפשטות.</p>
+
+<h2><span class="num">11</span> טיפולים מבוססי תאי גזע: גירוי אנדוגני מול השתלה</h2>
+<p>תאי גזע מהווים משאב פוטנציאלי למגוון רחב של מצבים שנוירוכירורגים נתקלים בהם. שתי אסטרטגיות עיקריות:</p>
+<h3>גירוי מנגנוני תיקון אנדוגניים</h3>
+<p>מטרת גישה זו היא להגביר תהליכים שכבר קורים באופן ספונטני אך אינם מספיקים לבד. ניתן למקד כמעט כל שלב בנוירוגנזה - הישרדות, פרוליפרציה, מיגרציה, התמיינות - באמצעות ציטוקינים כמו bFGF, EGF, BDNF, noggin, אריתרופואטין (EPO) ו-VEGF. לדוגמה, <span class="term" dir="ltr">TGF-α</span> שימש לגרות NSCs לפרוליפרציה, מיגרציה והתמיינות לנוירונים במודל חייתי של מחלת פרקינסון. שיקול קריטי: רמות ציטוקינים חשובים ל-NSC (FGF2, IGF-I, VEGF, EGF) יורדות עם הגיל - כך שגירוי אנדוגני עשוי להיות פחות יעיל במטופלים מבוגרים. סיכון בטיחות מרכזי: הגברת פרוליפרציה של תאי גזע עלולה תיאורטית לקדם גידוליות.</p>
+<h3>השתלת תאי גזע</h3>
+<p>ניתן להשתיל תאים במצב בלתי-מובחן (אם צריך כמה סוגי תאים לשחזור הרקמה הפגועה) או לאחר התמיינות מוקדמת <span class="term" dir="ltr">in vitro</span> (כשצריך סוג תא ספציפי, למשל במחלת פרקינסון או ALS). פרמטרים נוספים שדורשים התאמה: תזמון, נתיב מתן, ודיכוי חיסוני.</p>
+<p class="key-box">ממצא טיפולי מכריע: NSCs שהושתלו ל-CNS נוטים בחוזקה להתמיין <b>לתאי גליה (בעיקר אסטרוציטים)</b> - למרות יכולת מוכחת ליצור נוירונים in vitro ובנישות נוירוגניות. תופעה זו, <span class="term" dir="ltr">lineage restriction</span>, מגבילה משמעותית את התוצאה הטיפולית ומדגישה שוב את חשיבות הנישה: פותחו "נישות מלאכותיות" (artificial niches) שנועדו לשפר את סיכויי ההתמיינות הנוירונלית לאחר השתלה.</p>
+<p>אסטרטגיה נוספת: הנדסת תאי גזע ל<b>מסירת תרופות ממוקדת</b>, תוך ניצול הטרופיזם הטבעי שלהם לאזורי פגיעה/מחלה (למשל טרופיזם לגידולים, המתווך ככל הנראה על ידי VEGF). דוגמה קונקרטית: תאי NSC אנושיים שהונדסו לבטא ציטוזין דיאמינאז, אנזים ההופך פרודראג (5-fluorocytosine) לחומר אנטי-סרטני פעיל (5-fluorouracil) - שימש במודלים חייתיים להקטנת גרורות מוחיות של סרטן שד ומלנומה, ובמודלים של מדולובלסטומה, גליובלסטומה ונוירובלסטומה גרורתית.</p>
+
+<h2><span class="num">12</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>שני "מפעלי משפחה" של תא B: <span dir="ltr" class="term">SVZ vs SGZ</span></h3>
+  <p>
+    לזכור את שני האתרים הנוירוגניים כמו שני עסקים משפחתיים שמנוהלים על ידי אותה "אמא" (תא B, אסטרוציט), אבל בשיטות שונות לגמרי:<br>
+    <b>SVZ - עסק ה"שליחים למרחקים":</b> B → C (עובד זמני נמרץ) → A (שליח נודד). ה-A נשלח למסע ארוך דרך ה-RMS עד הבולבוס האולפקטורי, שם הוא הופך לאינטרנוירון <b>מעכב</b>.<br>
+    <b>SGZ - עסק ה"נשארים בבית":</b> B → D (עובד ביניים פחות זריז מ-C) → תא גרנולה <b>מעורר</b>. הוא נודד רק כמה מילימטרים ונשאר ליד הבית, שולח רק "חוט טלפון" אחד (mossy fiber) לשכן הקרוב (CA3).
+  </p>
+  <p><b>ראשי תיבות לזכירה: B-C-A נודדים הרחק (Bulb), B-D-G נשארים קרוב (Granule/CA3).</b></p>
+  <svg class="diagram" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+    <title>שני מפעלי המשפחה של תא B</title>
+    <desc>איור מטאפורי המשווה בין שרשרת ה-SVZ (מסע ארוך) לשרשרת ה-SGZ (נשארים קרוב)</desc>
+    <text x="320" y="25" font-size="13" text-anchor="middle" fill="#111827" font-weight="700">אותה "אמא" B, שני עסקים משפחתיים שונים</text>
+    <circle cx="80" cy="70" r="26" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="80" y="76" font-size="18" text-anchor="middle" fill="#1e3a8a" font-weight="700">B</text>
+    <text x="80" y="30" font-size="10" text-anchor="middle" fill="#1e3a8a">"אמא" (אסטרוציט)</text>
+    <line x1="106" y1="70" x2="150" y2="70" stroke="#4b5563" stroke-width="2" marker-end="url(#arrM)"/>
+    <circle cx="180" cy="70" r="24" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+    <text x="180" y="76" font-size="16" text-anchor="middle" fill="#713f12" font-weight="700">C</text>
+    <line x1="204" y1="70" x2="248" y2="70" stroke="#4b5563" stroke-width="2" marker-end="url(#arrM)"/>
+    <circle cx="278" cy="70" r="24" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="278" y="76" font-size="16" text-anchor="middle" fill="#7f1d1d" font-weight="700">A</text>
+    <line x1="302" y1="70" x2="470" y2="70" stroke="#9ca3af" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arrM)"/>
+    <text x="390" y="55" font-size="10" text-anchor="middle" fill="#6b7280">מסע ארוך (RMS)</text>
+    <rect x="480" y="45" width="130" height="50" rx="6" fill="#dcfce7" stroke="#15803d"/>
+    <text x="545" y="65" font-size="11" text-anchor="middle" fill="#14532d" font-weight="700">בולבוס אולפקטורי</text>
+    <text x="545" y="82" font-size="10" text-anchor="middle" fill="#14532d">אינטרנוירון מעכב</text>
+    <defs><marker id="arrM" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#4b5563"/></marker></defs>
+    <circle cx="80" cy="180" r="26" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="80" y="186" font-size="18" text-anchor="middle" fill="#1e3a8a" font-weight="700">B</text>
+    <text x="80" y="220" font-size="10" text-anchor="middle" fill="#1e3a8a">אותה "אמא" (SGZ)</text>
+    <line x1="106" y1="180" x2="150" y2="180" stroke="#4b5563" stroke-width="2" marker-end="url(#arrM)"/>
+    <circle cx="180" cy="180" r="24" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+    <text x="180" y="186" font-size="16" text-anchor="middle" fill="#713f12" font-weight="700">D</text>
+    <line x1="204" y1="180" x2="248" y2="180" stroke="#4b5563" stroke-width="2" marker-end="url(#arrM)"/>
+    <rect x="255" y="158" width="90" height="44" rx="6" fill="#fde2e2" stroke="#b91c1c"/>
+    <text x="300" y="184" font-size="10" text-anchor="middle" fill="#7f1d1d" font-weight="700">תא גרנולה</text>
+    <line x1="345" y1="180" x2="470" y2="180" stroke="#6d28d9" stroke-width="2" stroke-dasharray="3,3" marker-end="url(#arrM)"/>
+    <text x="405" y="165" font-size="10" text-anchor="middle" fill="#6d28d9">חוט טלפון (mossy fiber)</text>
+    <rect x="480" y="155" width="130" height="50" rx="6" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="545" y="175" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">CA3 - שכן קרוב</text>
+    <text x="545" y="192" font-size="10" text-anchor="middle" fill="#4c1d95">נוירון מעורר</text>
+  </svg>
+</div>
+
+<h2><span class="num">13</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Subventricular_zone" target="_blank">Subventricular zone – Wikipedia</a>
+    <div class="desc">רקע מפורט על ארכיטקטורת ה-SVZ, תאי B/C/A ומסלול ה-RMS.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Dentate_gyrus" target="_blank">Dentate gyrus – Wikipedia</a>
+    <div class="desc">אנטומיה ופיזיולוגיה של הגירוס המשונן וה-SGZ.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Radial_glial_cell" target="_blank">Radial glial cell – Wikipedia</a>
+    <div class="desc">תפקיד הגליה הרדיאלית בהתפתחות המוח וכתא גזע עוברי.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Oligodendrocyte_progenitor_cell" target="_blank">Oligodendrocyte progenitor cell – Wikipedia</a>
+    <div class="desc">רקע על OPCs, סמנים (NG2, PDGFR-α) ותפקידם במיאלינציה ורמיאלינציה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cancer_stem_cell" target="_blank">Cancer stem cell – Wikipedia</a>
+    <div class="desc">היפותזת תא הגזע הסרטני, מסלולי Shh/Notch, וזיהוי תאי גזע בגליומות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">14</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>ילדה בת 7 מאובחנת עם מדולובלסטומה בפוסה האחורית. בבדיקה פתולוגית של הגידול מזוהה ביטוי יתר של מסלול Sonic Hedgehog (Shh), ותת-אוכלוסיית תאים המבטאת נסטין ו-CD133. הגידול מגיב חלקית לכימותרפיה ראשונית אך חוזר כעבור 8 חודשים באתר הניתוחי המקורי. הצוות הרפואי דן באפשרות טיפולית עתידית שתכוון ספציפית לתת-אוכלוסיית התאים "דמויי הגזע" בתוך הגידול.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע ביטוי היתר של מסלול Shh רלוונטי במיוחד למדולובלסטומה, לאור מה שהפרק מתאר על תאי גזע?</div>
+  <button class="opt" data-i="0">Shh קשור אך ורק לגליוגנזה ואינו מעורב בתאי גזע עצביים כלל</button>
+  <button class="opt" data-i="1">Shh פועל רק בחוט השדרה הבוגר, לא במוחון העוברי</button>
+  <button class="opt" data-i="2">Shh הוא אחד המסלולים ששומרים על NSCs, ולכן הפעלת יתר שלו עשויה "לנעול" תאים במצב מתחדש-עצמית ובלתי-מובחן - בדיוק המנגנון שהוכח כמעורב בהיווצרות מדולובלסטומה וגליובלסטומה</button>
+  <button class="opt" data-i="3">Shh מדכא לחלוטין כל חלוקת תאים, ולכן ביטוי יתר שלו אמור למנוע גידולים</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש ש-Shh ו-Notch משמרים NSCs, ומעורבים בהיווצרות מדולובלסטומה וגליובלסטומה - ביטוי יתר עלול לשמר תאים במצב "תא גזע" (מתחדש עצמית, לא-מובחן) במקום לאפשר להם להבשיל, מה שתומך בצמיחה גידולית מתמשכת. תשובות 0, 1 ו-3 סותרות את המידע בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה שילוב של שני אירועים מולקולריים נדרש, לפי הפרק, כדי שתת-אוכלוסיית תאים תהפוך לתא גזע סרטני מלא?</div>
+  <button class="opt" data-i="0">עלייה בביטוי GFAP וירידה בביטוי Olig2</button>
+  <button class="opt" data-i="1">אובדן בקרת מחזור התא (למשל מוטציה ב-Pten או p53) בשילוב עם חוסר רגישות נרכש לאותות התמיינות</button>
+  <button class="opt" data-i="2">עלייה בביטוי PSA-NCAM וירידה בביטוי doublecortin</button>
+  <button class="opt" data-i="3">אובדן ביטוי נסטין ו-CD133 באופן מוחלט</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר מפורשות ששני האירועים הנדרשים הם אובדן בקרת מחזור התא (מוטציות בגנים דכאי-גידול כמו Pten/p53) וחוסר רגישות נרכש לאותות התמיינות - כך שהתאים ממשיכים להתרבות בלי להבשיל. תשובות 0, 2 ו-3 אינן תואמות את המנגנון המתואר.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אם הצוות הרפואי היה שוקל השתלת NSCs להחלפת רקמה שאבדה לאחר הניתוח, איזו מגבלה מרכזית עליו לקחת בחשבון על סמך הפרק?</div>
+  <button class="opt" data-i="0">NSCs שהושתלו ל-CNS נוטים בחוזקה להתמיין לתאי גליה (במיוחד אסטרוציטים) ולא לנוירונים, גם אם הם היו מסוגלים לייצר נוירונים in vitro - נדרשת התייחסות מיוחדת לנישת ההשתלה (למשל נישות מלאכותיות)</button>
+  <button class="opt" data-i="1">NSCs תמיד מתים מיד לאחר השתלה ולכן הטיפול חסר תוחלת לחלוטין</button>
+  <button class="opt" data-i="2">NSCs תמיד מתמיינים לנוירונים בהצלחה מלאה ללא כל מגבלה, ללא קשר לאתר ההשתלה</button>
+  <button class="opt" data-i="3">אין שום קשר בין נישת ההשתלה לתוצאה - רק זהות התא קובעת</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין ש-NSCs שהושתלו ל-CNS נוטים בחוזקה לגורל גליאלי (lineage restriction) למרות פוטנציאל נוירוני מוכח, ושפותחו נישות מלאכותיות כדי להתמודד עם המגבלה. תשובות 1, 2 ו-3 אינן נתמכות על ידי הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. במקרה שבו הגידול חוזר לאחר כימותרפיה, איזה עיקרון מהפרק מסביר בצורה הטובה ביותר מדוע תת-אוכלוסיית התאים "דמויי הגזע" עשויה להיות אחראית לחזרה?</div>
+  <button class="opt" data-i="0">כל תאי הגידול רגישים באותה מידה לכימותרפיה, ולכן החזרה אקראית לחלוטין</button>
+  <button class="opt" data-i="1">רק תאים מבוגרים ומובחנים לחלוטין יכולים לגרום להישנות גידול</button>
+  <button class="opt" data-i="2">תאי הגזע הסרטניים מאבדים לחלוטין את יכולת ההתחדשות העצמית שלהם לאחר טיפול</button>
+  <button class="opt" data-i="3">היפותזת תא הגזע הסרטני קובעת שתת-אוכלוסייה מתחדשת-עצמית בתוך הגידול מסוגלת לשחזר את הגידול המקורי במלוא הטרוגניותו - כפי שהודגם בהשתלה סדרתית לפונדק חדש - ולכן אם תת-אוכלוסייה זו שורדת את הטיפול, היא יכולה "לזרוע" מחדש את כל הגידול</button>
+  <div class="explain">התשובה הנכונה: זו בדיוק ההגדרה התפקודית של תא גזע סרטני שהפרק מציג - תא שמסוגל לשחזר תוך השתלה סדרתית תא גידול הטרוגני חדש. אם תת-אוכלוסייה כזו שורדת טיפול (למשל בזכות עמידות יחסית של תאי גזע לכימותרפיה, נושא מוכר בספרות אונקולוגית), היא יכולה להוביל להישנות. תשובות 0, 1 ו-2 סותרות את עקרונות ההיפותזה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">15</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>תא גזע = <b>התחדשות עצמית + התמיינות</b>; שונה מ"פרוגניטור" (מחויב לשושלת, עדיין מתחלק) ומ"transit-amplifying cell" (מתחלק מהר, מספר מחזורים מוגבל בלבד).</li>
+    <li>שני אתרים בלבד מייצרים נוירונים חדשים לאורך החיים: <b>SVZ</b> (B→C→A, נדידה ב-RMS לבולבוס האולפקטורי, אינטרנוירונים מעכבים) ו<b>SGZ</b> בהיפוקמפוס (B→D→תא גרנולה מעורר, mossy fiber ל-CA3).</li>
+    <li>תא B (אסטרוציט) הוא תא הגזע האמיתי בשני האתרים, וצאצא ישיר של <b>גליה רדיאלית</b> עוברית - ההסבר לכך שאסטרוציטים "בוגרים" יכולים לשמש כתאי גזע.</li>
+    <li>גליוגנזה נרחבת בכל ה-CNS (3%-9% מהתאים): <b>OPCs</b> (NG2, PDGFR-α, A2B5) תומכים במיאלין; PDGF-A knockout → היפומיאלינציה + רעד - קשר סיבתי מוכח.</li>
+    <li>תאי גזע בחוט השדרה הם <b>glial-restricted in vivo</b>, אך מייצרים נוירונים in vitro או לאחר השתלה לנישה נוירוגנית - הוכחה שהנישה קובעת גורל לא פחות מגורמים תוך-תאיים.</li>
+    <li>לאחר פגיעה - התגובה הפרוליפרטיבית הדומיננטית היא <b>גליאלית (OPC)</b>, לא נוירונלית; נוירוגנזה מוגבלת ל-SVZ/SGZ בלבד.</li>
+    <li><b>היפותזת תא הגזע הסרטני</b>: תת-אוכלוסייה בגידול מסוגלת לשחזר אותו במלואו; דורשת שני מכות - אובדן בקרת מחזור תא (Pten/p53) + חוסר רגישות לאיתות התמיינות. מסלולי Shh/Notch משותפים ל-NSC וגליומה/מדולובלסטומה.</li>
+    <li>טיפולים מבוססי תאי גזע: גירוי אנדוגני (ציטוקינים, מוגבל עם הגיל) והשתלה (מוגבלת על ידי <b>lineage restriction</b> לכיוון גליה - נדרשות נישות מלאכותיות); הנדסת תאים למסירת תרופות ממוקדת מנצלת טרופיזם טבעי לאזורי פגיעה/גידול.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
