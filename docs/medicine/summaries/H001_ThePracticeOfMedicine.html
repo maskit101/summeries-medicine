@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Harrison's פרק 1: The Practice of Medicine — אמנות ומדע הרפואה</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:900px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:20px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px; color:var(--blue)}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .source-tag{display:inline-block; background:#111827; color:#fff; font-size:12.5px; padding:3px 10px; border-radius:20px; margin-bottom:14px}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid var(--line); margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fbbf24; margin:14px 0 4px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div class="source-tag">Harrison's Principles of Internal Medicine, 21e — Part 1, Chapter 1 (עמ' 42-48)</div>
+<h1>The Practice of Medicine — אמנות ומדע הרפואה</h1>
+<div class="subtitle">פרק מבוא: מיומנויות קליניות, קבלת החלטות מבוססת-ראיות, עבודת צוות, טכנולוגיה ברפואה, מקצועיות ואתיקה, והקשר רופא-חולה</div>
+
+<p>זהו פרק הפתיחה של הריסון — לא פרק על מחלה ספציפית, אלא על <b>מהות העיסוק ברפואה פנימית</b> עצמו. שלא כמו רוב הפרקים הבאים, אין כאן מנגנון פתופיזיולוגי או טיפול תרופתי — אלא עקרונות שחוזרים בכל בחינה: אנמנזה ובדיקה גופנית, רפואה מבוססת-ראיות (<span dir="ltr" class="term">EBM</span>), משפט בייס ורגישות/סגוליות של בדיקות, הסכמה מדעת, ומקצועיות רפואית. אלו בדיוק הנושאים ה"רכים" שנוטים לחזור כשאלות בודדות במבחנים.</p>
+
+<h2><span class="num">1</span> מדע ואמנות הרפואה — ולמה שניהם עדיין נחוצים</h2>
+<div class="mechanism">
+  <p class="chain">הטענה המרכזית של הפרק: התפוצצות הידע המדעי (גנומיקה, הדמיה, בינה מלאכותית) <b>לא מייתרת</b> את "אמנות הרפואה" — השילוב של ידע, אינטואיציה, ניסיון ושיפוט קליני. <b>אנמנזה ובדיקה גופנית נשארות חיוניות</b> גם כשיש בדיקות הדמיה רגישות מאוד, כי: (1) ממצא גופני עדין (פטכיות בודדות, אוושה דיאסטולית עדינה) עשוי לא להתגלות כלל בבדיקות; (2) בדיקה גופנית קפדנית יכולה "לייתר" ממצא מעבדתי (למשל לזהות שאוושה רגורגיטנטית מסוימת בהדמיה היא שפירה); (3) הבדיקה עצמה בונה את הקשר עם החולה.</p>
+</div>
+<p>לקיחת אנמנזה טובה: לתת לחולה לספר את סיפורו <b>ללא הפרעה תכופה</b> בשלב הראשוני, כי גם פרט שנראה טריוויאלי עשוי להיות המפתח לפתרון. שפת גוף, טון דיבור והבעות פנים נותנים רמזים על התפיסה של החולה את המחלה שלו. יש לתעד את הממצאים <b>מיד</b> בזמן הבדיקה, לא שעות אחר כך כשהזיכרון כבר מטשטש.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Luke_Fildes_(1891)_The_Doctor.png?width=650" alt="הציור The Doctor מאת Luke Fildes">
+  <figcaption class="media-cap">"The Doctor" מאת Luke Fildes (1891) — מתאר רופא ויקטוריאני יושב לצד ילדה חולה קשה. הציור מבוסס על אובדן בנו של הצייר עצמו מטיפוס הבהרות, וממחיש את הטיפול החומל גם כשלכלים הרפואיים של התקופה לא הייתה יכולת ריפוי. מובא בפרק כדוגמה לקשר רופא-חולה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Luke_Fildes_(1891)_The_Doctor.png" target="_blank">Wikimedia Commons</a> (Tate Britain)</figcaption>
+</figure>
+
+<h2><span class="num">2</span> בדיקות אבחנתיות — שימוש נבון, לא אוטומטי</h2>
+<p>סוללות בדיקות (batteries) נלקחות בדרך כלל יחד מדגימה אחת בעלות נמוכה יחסית. ממצא בודד לא-צפוי (כמו סידן גבוה שמצביע על <span dir="ltr" class="term">hyperparathyroidism</span>) יכול לבדו לכוון לאבחנה. אך <b>ריבוי בדיקות מגדיל את הסיכוי לממצא אקראי לא-קשור</b> ("red herring") — ויש לשקול תמיד אם ממצא כזה שווה בירור נוסף, ואם הבדיקה/טיפול המוצע נושא סיכון גדול יותר מהמחלה עצמה. בדיקות סקר (כמו LDL) הן שימושיות ביותר כשהן מכוונות למחלות שכיחות, וכשהתוצאה שלהן מנחה החלטה קונקרטית להמשך.</p>
+
+<h3>קבלת החלטות מבוססת-ראיות: משפט בייס</h3>
+<p>קבלת החלטות קלינית משלבת ידע פתופיזיולוגי, ניסיון, שיפוט — ובכלים כמותיים. <b>משפט בייס (Bayes' theorem)</b> הוא הכלי המרכזי שמקשר בין <span dir="ltr" class="term">pretest probability</span> (הסבירות למחלה לפני הבדיקה, על סמך שכיחות ומאפייני החולה) ל-<span dir="ltr" class="term">posttest probability</span> (הסבירות אחרי קבלת תוצאת בדיקה) — באמצעות רגישות הבדיקה (<span dir="ltr" class="term">sensitivity</span> — שיעור החיוביים-אמת) וסגוליות שלה (<span dir="ltr" class="term">specificity</span> — שיעור השליליים-אמת). המשמעות המעשית: <b>אותה תוצאת בדיקה "שוקלת" אחרת</b> תלוי בהסתברות המוקדמת — בדיקה חיובית למחלה נדירה בחולה ללא גורמי סיכון עדיין עשויה להשאיר סבירות נמוכה יחסית למחלה (False positive רב יותר מ-True positive), ולהפך.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ju2B1iYOY6k" title="What is evidence-based medicine?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר המסביר מהי רפואה מבוססת-ראיות (Evidence-Based Medicine) והמקום שלה בין ניסיון קליני, ערכי החולה והראיות המדעיות. מקור: YouTube.</p>
+
+<h3>רפואה מבוססת-ראיות (EBM) מול שיפוט קליני</h3>
+<p><span dir="ltr" class="term">Evidence-based medicine</span> מנוגדת לניסיון אנקדוטלי מוטה. עם זאת — <span class="key">רק חלק קטן מההחלטות הקליניות בפועל מבוסס על ראיות ממחקרים אקראיים מבוקרים חזקים</span>; רבות מההמלצות בהנחיות קליניות (<span dir="ltr" class="term">practice guidelines</span>) מבוססות על קונצנזוס מומחים וראיות חלשות יותר. הנחיות קליניות מגנות על חולים מטיפול תת-סטנדרטי, אך <b>מפשטות יתר על המידה</b> את מורכבות המקרה הפרטני ולא תמיד מתאימות לכל חולה.</p>
+
+<h3>רפואה מדויקת (Precision Medicine)</h3>
+<p>מייצגת את האבולוציה הבאה של הנחיות קליניות: סיווג מחלות שהיו פעם "גוש אחד" (למשל סוגי סרטן) לתת-קבוצות לפי סמנים גנטיים/ביומרקרים/פנוטיפיים — כדי למקד טיפול ולמזער תופעות לוואי במי שלא צפוי להגיב. הדוגמה הבולטת ביותר: בדיקות גנטיות באונקולוגיה שמנבאות תגובה לטיפולים ממוקדים.</p>
+
+<h2><span class="num">3</span> עבודת צוות ומבנה האשפוז המודרני</h2>
+<p>הרפואה המודרנית מבוססת על צוות רב-מקצועי: רופאים, אחיות, פיזיותרפיסטים, רוקחים, עובדים סוציאליים ועוד. שני תפקידים מרכזיים בבתי חולים מודרניים:</p>
+<table>
+<thead><tr><th>תפקיד</th><th>הגדרה</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Hospitalists</span></td><td>פנימאים בעלי הסמכה, שאחראים באופן ראשוני על טיפול בחולים מאושפזים, ועבודתם מוגבלת לגמרי לסביבת בית החולים.</td></tr>
+<tr><td><span dir="ltr" class="term">Intensivists</span></td><td>רופאים בעלי הסמכה נוספת ברפואה קריטית, שמנהלים ומטפלים בחולים הקשים ביותר ביחידות טיפול נמרץ.</td></tr>
+</tbody>
+</table>
+<p>מגמת קיצור משך האשפוז והעברת טיפול לקהילה (בזכות טכנולוגיות כמו עירוי אנטיביוטיקה ביתי, ניתוחים זעיר-פולשניים) יצרה אתגר תקשורתי מרכזי: <b>"handoffs"</b> — מעברי אחריות בין מטפלים (מהקהילה לאשפוז, בין מחלקות, מטיפול נמרץ למחלקה כללית) — נקודת תורפה מוכרת לטעויות רפואיות אם לא מתבצעים בקפידה.</p>
+
+<h2><span class="num">4</span> הערכת תוצאות וטעויות במערכת הבריאות</h2>
+<p>מדדי תוצאה (מוות, משך אשפוז, שיעור אשפוזים חוזרים) בדרך כלל <b>מתוקננים לסיכון</b> (risk-adjusted), כי לחולה יש לרוב מחלות רקע מורכבות שמשפיעות על הפרוגנוזה. מעבר למדדים אובייקטיביים, איכות החיים הסובייקטיבית (נוחות גופנית, תפקוד, תפיסת הבריאות) נמדדת גם היא — למשל דרך סקרי <span dir="ltr" class="term">HCAHPS</span> (Hospital Consumer Assessment of Healthcare Providers and Systems) בארה"ב.</p>
+<div class="key-box">דוחות ה-Institute of Medicine (כיום National Academy of Medicine) הובילו למאמץ ארצי להפחתת טעויות רפואיות: הזמנות אלקטרוניות (למניעת טעויות קריאת כתב יד), פרוטוקולים סטנדרטיים למניעת זיהומי קו מרכזי (Central-line) וזיהומי קטטר שתן (CAUTI), פרוטוקולים לניתוח נכון (מניעת wrong-site surgery), ומניעת נפילות — כל אלה הצילו אלפי חיים בשנה.</div>
+
+<h2><span class="num">5</span> רשומה רפואית ממוחשבת (EMR) — יתרונות מול מחיר</h2>
+<table>
+<thead><tr><th>יתרונות</th><th>חסרונות</th></tr></thead>
+<tbody>
+<tr><td>גישה מהירה להיסטוריה, הדמיה, מעבדה; הפחתת טעויות דרך התראות אוטומטיות; מעקב תהליכי טיפול ותוצאות בזמן אמת</td><td>יוצר מרחק בין רופא לחולה אם לא נשמר קשר עין; דורש זמן הזנה משמעותי; מעודד "העתק-הדבק" מרשומות קודמות (מגביר סיכון לטעויות); משבש את הזרימה הנרטיבית הטבעית של התיעוד; תורם לשחיקת רופאים</td></tr>
+</tbody>
+</table>
+<p>נקודה חשובה: טכנולוגיית המידע היא <b>כלי בלבד</b> ואינה יכולה להחליף שיפוט קליני — ההחלטה הסופית תמיד נשארת של הרופא.</p>
+
+<h2><span class="num">6</span> הקשר רופא-חולה, הסכמה מדעת, וגישה לפרוגנוזה קשה</h2>
+<p><b>הסכמה מדעת (Informed consent)</b> נשענת על שני עקרונות אתיים יסודיים: פעולה לטובת החולה, וכיבוד האוטונומיה שלו. על הרופא להסביר בבירור חלופות, סיכונים, יתרונות והשלכות צפויות — ולעתים לחזור על ההסבר מספר פעמים, כי זו בדיוק ההגדרה של הסכמה מדעת אמיתית (לא רק חתימה על טופס).</p>
+<p><b>גישה לפרוגנוזה קשה ומוות</b>: שקיפות מותאמת היא קריטית. גם חולים שנראים לא-מודעים למצבם לרוב מבינים יותר ממה שנראה. כשמדובר במחלה סופנית — <b>מטרת הרפואה עוברת מריפוי לטיפול תומך</b> (מהמונח הלטיני <i>Primum succurrere</i> — "קודם כל לעזור"). יש לוודא תקשורת עקבית בין כל אנשי הצוות המטפל, ולפנות ליועצי פליאטיב כשמתאים (הפניה לפרק 12 בספר).</p>
+
+<h2><span class="num">7</span> הומניזם ומקצועיות</h2>
+<p>ה-<span dir="ltr" class="term">Charter on Medical Professionalism</span> (של ה-American Board of Internal Medicine יחד עם גופים אירופאים) מגדיר שלושה עקרונות מרכזיים בחוזה שבין הרופא לחברה:</p>
+<ol>
+<li><b>עדיפות רווחת החולה</b> (primacy of patient welfare)</li>
+<li><b>אוטונומיית החולה</b> (patient autonomy)</li>
+<li><b>צדק חברתי</b> (social justice)</li>
+</ol>
+<p>איכות חיים היא הערכה סובייקטיבית של מה שהכי חשוב לחולה עצמו — ודורשת שיחות חוזרות ולא-ממהרות כדי להבין אותה לעומק.</p>
+
+<h2><span class="num">8</span> גבולות מתרחבים: עידן ה"אומיקס" והגלובליזציה</h2>
+<p>מאז פענוח הגנום האנושי (2003), התפתחו כמה תחומי "אומיקס" שכל אחד מהם בוחן שכבת מידע ביולוגי אחרת:</p>
+<table>
+<thead><tr><th>תחום</th><th>מה נחקר</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Epigenetics</span></td><td>שינויים בכרומטין, בהיסטונים ובמתילציה של DNA שמשפיעים על ביטוי גנים בלי לשנות את רצף ה-DNA עצמו. מסביר איך לכל תאי הגוף אותו DNA אך פנוטיפים שונים לגמרי.</td></tr>
+<tr><td><span dir="ltr" class="term">Proteomics</span></td><td>מכלול החלבונים שמיוצרים בתא/איבר — מרחיב את 23,000 הגנים לעושר חלבוני עצום דרך שחבור חלופי (alternative splicing) ושינויים בתר-תרגומיים.</td></tr>
+<tr><td><span dir="ltr" class="term">Microbiomics / Metagenomics</span></td><td>חקר המיקרואורגניזמים החיים בגוף (יותר גנים מהגנום האנושי עצמו!) ותפקידם בהתפתחות מערכת החיסון, מטבוליזם ותפקוד המוח.</td></tr>
+<tr><td><span dir="ltr" class="term">Metabolomics</span></td><td>חקר המטבוליטים בתאים/איברים ושינוים במצבי מחלה — כולל "טביעות אצבע" מטבוליות של תהליך ההזדקנות.</td></tr>
+<tr><td><span dir="ltr" class="term">Exposomics</span></td><td>חקר ה"אקספוזום" — כלל החשיפות הסביבתיות (עישון, שמש, תזונה, פעילות גופנית) שמשפיעות על הבריאות לאורך זמן.</td></tr>
+</tbody>
+</table>
+<p><b>גלובליזציה</b>: נסיעות בינלאומיות מעלות סיכון להעברת מחלות אנדמיות אזוריות (למשל התפרצות זיקה באמריקות). האינטרנט שינה מהותית את זמינות המידע הרפואי — הן לרופאים והן לחולים, אך ללא ביקורת עמיתים (peer review) מובנית — ולכן יש להיזהר ממידע לא-מבוסס.</p>
+
+<h2><span class="num">9</span> ציפיות הציבור, אתיקה וטכנולוגיה, ולמידה מתמשכת</h2>
+<p>ציפיות הציבור מהרפואה עלו בהתמדה — רופאים נדרשים היום להיות אחראים גם לעלות ולשביעות רצון החולה, לא רק לטיפול הטכני. תשלום-לפי-ביצועים (<span dir="ltr" class="term">pay-for-performance</span>) מנסה לקשר תגמול לאיכות טיפול.</p>
+<p>טכנולוגיות חדשות (שיבוט, הנדסה גנטית, ממשקי מוח-מחשב, ננוטכנולוגיה) מציבות דילמות אתיות חדשות שמחייבות את הרופאים לקחת חלק בעיצוב הדיון הציבורי סביבן.</p>
+<div class="key-box">דוח Flexner (Flexner Report) — מחקר יסוד שפורסם לפני יותר ממאה שנה ושינה מהותית את החינוך הרפואי, בהדגישו בסיס מדעי מוצק לצד רכישת מיומנויות קליניות. שעות העבודה של מתמחים הוגבלו בהדרגה: מעל 90 שעות/שבוע ב-1980, ל-80 שעות/שבוע ב-1989, וב-2010 הוגבל משמרת רצופה לשנה א' למתמחים ל-16 שעות. הראיות שהגבלת השעות אכן הפחיתה טעויות רפואיות — <b>מוגבלות</b>, ותופעת הלוואי היא עלייה במספר ה"handoffs".</div>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>שלושת עקרונות המקצועיות — "WAS" (רווחה, אוטונומיה, צדק)</h3>
+<p>דמייני חוזה שהרופא חותם עם החברה, ובו שלושה סעיפים: <b>W</b>elfare (רווחת החולה קודם כל), <b>A</b>utonomy (החולה מחליט על עצמו), <b>S</b>ocial justice (צדק חברתי בהקצאת המשאבים). "WAS" — מה שהיה תמיד הבסיס למקצוע.</p>
+</div>
+<div class="mnemonic">
+<h3>עולם ה"אומיקס" — "המשפחה המורחבת של הגנום"</h3>
+<p>דמייני את הגנום כ"הורה" ומסביבו משפחה מורחבת של תחומי מחקר, כל אחד בוחן "ילד" שונה שנולד ממנו: <b>אפיגנום</b> (איך הגנום מתלבש/מתכסה), <b>פרוטאום</b> (מה הגנום בונה בפועל), <b>מיקרוביום</b> (מי עוד גר איתנו בגוף), <b>מטבולום</b> (מה קורה בתהליכי החילוף), <b>אקספוזום</b> (מה מהסביבה נכנס אלינו). כולם ביחד = "big data" שדורש בינה מלאכותית כדי להבין.</p>
+</div>
+
+<h2><span class="num">11</span> תמונות ומשאבים נוספים</h2>
+<ul class="resource-list">
+<li>
+<a href="https://commons.wikimedia.org/wiki/File:Luke_Fildes_(1891)_The_Doctor.png" target="_blank">Wikimedia Commons — The Doctor (Luke Fildes, 1891)</a>
+<div class="desc">קישור ישיר לציור שהוטמע בסעיף 1 לעיל.</div>
+</li>
+<li>
+<a href="https://www.osmosis.org/learn/Sensitivity_and_specificity" target="_blank">Osmosis — Sensitivity and Specificity</a>
+<div class="desc">חומר לימוד נוסף (טקסט+וידאו) שמסביר לעומק את המושגים שמאחורי משפט בייס בהקשר אבחנתי.</div>
+</li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>וינייטה</h3>
+<p>אישה בת 55 מגיעה למרפאה עם עייפות כללית וירידה קלה במשקל. הרופאה המטפלת שוקלת לשלוח סוללת בדיקות דם רחבה "כדי לא לפספס כלום", אך נזכרת בעקרונות מהפרק. במקום זאת היא לוקחת אנמנזה מפורטת (כולל היסטוריה משפחתית ותרופתית), עורכת בדיקה גופנית מקיפה מכף רגל ועד ראש, ורק אז מזמינה בדיקות ממוקדות (תפקודי כבד וכליה, תפקודי בלוטת התריס) בהתאם לממצאים. אחת הבדיקות (TSH) חוזרת גבולית-גבוהה. הרופאה בוחרת לחזור על הבדיקה בעוד שישה שבועות במקום להתחיל מיד טיפול, ומסבירה לחולה בבירור את הרציונל ואת האפשרות שמדובר בממצא חולף.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">1. מדוע הרופאה בחרה לחזור על בדיקת ה-TSH הגבולית לפני התחלת טיפול, במקום לטפל מיידית?</div>
+<button class="opt" data-i="0">כי בדיקות TSH אינן אמינות באופן עקרוני</button>
+<button class="opt" data-i="1">כי ממצא מעבדתי גבולי בחולה שאין חשד קליני חזק אצלה, יכול לשקף שגיאת מעבדה או תנודה זמנית, ולכן יש לוודא לפני קבלת החלטה טיפולית</button>
+<button class="opt" data-i="2">כי טיפול בתת-פעילות בלוטת התריס תמיד מסוכן</button>
+<button class="opt" data-i="3">כי המטרה היא לחסוך בעלות בדיקות</button>
+<div class="explain">נכון: תשובה 2. הפרק מדגיש שכשאין סיבה חזקה לחשוד במחלה בסיסית, ממצא מעבדתי חריג בודד לרוב חוזר על עצמו לבירור לפני קבלת החלטה קלינית, כדי לשלול שגיאת מעבדה או תנודה חולפת - בירור-יתר אחרי כל חריגה קלה הוא לרוב מיותר ובזבזני, כפי שנכתב במפורש בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+<div class="q">2. איזה מהבאים משקף נכון את הקשר בין רגישות (sensitivity), סגוליות (specificity) ומשפט בייס בקבלת החלטות אבחנתיות?</div>
+<button class="opt" data-i="0">רגישות וסגוליות קובעות את התוצאה הקלינית ללא קשר לשכיחות המחלה באוכלוסייה</button>
+<button class="opt" data-i="1">משפט בייס משמש רק במחקר, לא בפרקטיקה הקלינית היומיומית</button>
+<button class="opt" data-i="2">משפט בייס משלב את הסבירות המוקדמת (pretest probability) עם רגישות/סגוליות הבדיקה כדי לחשב סבירות מעודכנת (posttest probability) — כך שאותה תוצאת בדיקה יכולה "לשקול" אחרת בחולים שונים</button>
+<button class="opt" data-i="3">ככל שבדיקה רגישה יותר, אין צורך יותר להתחשב בסבירות המוקדמת של המחלה</button>
+<div class="explain">נכון: תשובה 3. משפט בייס הוא בדיוק הכלי שמראה שתוצאת בדיקה אינה "אמת מוחלטת" בפני עצמה - היא צריכה תמיד להתפרש לאור הסבירות המוקדמת (שכיחות המחלה, גורמי סיכון של החולה הספציפי). זו הסיבה שבדיקת סקר חיובית באוכלוסייה בסיכון נמוך עדיין עשויה לשקף בעיקר תוצאות שגויות-חיוביות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+<div class="q">3. מהם שלושת העקרונות המרכזיים ב-Charter on Medical Professionalism?</div>
+<button class="opt" data-i="0">עדיפות רווחת החולה, אוטונומיית החולה, וצדק חברתי</button>
+<button class="opt" data-i="1">מהירות טיפול, עלות נמוכה, ושביעות רצון המבטח</button>
+<button class="opt" data-i="2">דיוק אבחנתי, מהירות אבחון, וזמינות טכנולוגית</button>
+<button class="opt" data-i="3">מחקר, הוראה, וטיפול קליני</button>
+<div class="explain">נכון: תשובה 1. שלושת העקרונות שהוגדרו במפורש ב-Charter (בשיתוף ה-ABIM, ACP-ASIM והפדרציה האירופאית לרפואה פנימית) הם: primacy of patient welfare, patient autonomy, ו-social justice.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+<div class="q">4. מהי אחת ההשלכות השליליות המרכזיות שמתוארות בפרק לגבי רשומות רפואיות אלקטרוניות (EMR)?</div>
+<button class="opt" data-i="0">הן אינן מאפשרות גישה להיסטוריה רפואית קודמת</button>
+<button class="opt" data-i="1">הנטייה ל"העתק-הדבק" מרשומות קודמות עלולה להגביר טעויות, וזמן ההזנה הנדרש תורם לשחיקת רופאים</button>
+<button class="opt" data-i="2">הן אסורות לשימוש ברוב בתי החולים בעולם</button>
+<button class="opt" data-i="3">הן מחליפות לגמרי את הצורך בשיפוט קליני</button>
+<div class="explain">נכון: תשובה 2. הפרק מציין במפורש את הסיכון שבפרקטיקת "cutting and pasting" מרשומות קודמות (המגבירה טעויות), ואת התרומה של זמן התיעוד הנדרש לתחושת שחיקה ואי-שביעות רצון בקרב רופאים - זאת למרות היתרונות הברורים בגישה למידע.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">13</span> סיכום של הסיכום</h2>
+<ul>
+<li>אנמנזה ובדיקה גופנית נשארות חיוניות גם בעידן ההדמיה המתקדמת - ממצאים עדינים עלולים להתפספס בבדיקות, ותשאול/בדיקה טובים בונים את הקשר הטיפולי.</li>
+<li>משפט בייס: pretest probability + רגישות/סגוליות הבדיקה → posttest probability. אותה תוצאה "שוקלת" אחרת תלוי בהסתברות המוקדמת.</li>
+<li>EBM חשובה, אך רוב ההחלטות הקליניות בפועל עדיין נשענות על שיפוט קליני ולא רק על ראיות RCT חזקות.</li>
+<li>Charter on Medical Professionalism: רווחת החולה, אוטונומיה, צדק חברתי.</li>
+<li>EMR: יתרונות בגישה למידע, אך סיכון לטעויות מ"העתק-הדבק" ותרומה לשחיקה.</li>
+<li>הסכמה מדעת = תהליך מתמשך של הסבר והבנה, לא רק חתימה על טופס.</li>
+<li>במחלה סופנית - המטרה עוברת מריפוי לטיפול תומך (Primum succurrere).</li>
+<li>עידן האומיקס: אפיגנטיקה, פרוטאומיקה, מיקרוביומיקה, מטבולומיקה, אקספוזומיקה - כולם תורמים ל"big data" ברפואה מדויקת.</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
