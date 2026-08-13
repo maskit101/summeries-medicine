@@ -157,6 +157,7 @@ def main():
       <div class="progress-wrap"><div class="progress-bar"></div></div>
       <div class="progress-text">{len(done)} / {len(chapters)} פרקים הושלמו ({pct}%)</div>
       <div class="top-links">
+        <a class="home" href="../index.html">&#8962; כל הנושאים (עמוד הבית)</a>
         <a class="home" href="index.html">&#8592; עמוד נוירוכירורגיה</a>
         <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
       </div>
