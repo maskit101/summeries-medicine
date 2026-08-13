@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אפנדיציטיס חריפה (Acute Appendicitis)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>אפנדיציטיס חריפה <span class="term" dir="ltr">(Acute Appendicitis)</span></h1>
+<div class="subtitle">הניתוח הדחוף השכיח ביותר בכירורגיה כללית — פרק 51 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>אפנדיציטיס היא הגורם השכיח ביותר לניתוח בטן דחוף בארה"ב (כ-300,000 אשפוזים בשנה), עם סיכון מצטבר לאורך החיים של כ-6%–7%, ושיא שכיחות בעשור השני לחיים. האתגר המרכזי הוא קליני: אין סימן או בדיקת מעבדה בודדים שמאבחנים את המחלה בוודאות — האבחנה נבנית מצירוף של ההיסטוריה, הבדיקה הגופנית, המעבדה וההדמיה יחד.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    חסימה של לומן התוספתן <span class="term" dir="ltr">(luminal obstruction)</span> — לרוב עקב פֵּקָלִית/אבן צואה <span class="term" dir="ltr">(fecalith)</span>, ולעיתים היפרפלזיה לימפואידית, גידול, שאריות פרי/ירק, בריום שנבלע, או טפילים (אסקריס, תולעת סיכה) — <b>גורמת</b> להצטברות ריר שממשיך להיות מופרש מעבר לחסימה, בשילוב עם גז שמיוצר על ידי חיידקים בתוך הלומן הסגור. מכיוון שהתוספתן צר וארוך יחסית, גם חסימה קטנה יוצרת עלייה מהירה בלחץ התוך-לומינלי. <b>העלייה בלחץ פוגעת קודם כול בניקוז הוורידי</b> (לחץ ורידי נמוך יותר מהעורקי, ולכן נחסם ראשון) — וזה <b>גורם</b> לאיסכמיה של הרירית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">בשלב הזה הדלקת עדיין "סטרילית/כימית"</span> — נובעת ממתווכי דלקת ומפגיעה איסכמית ברירית, <b>לא מזיהום חיידקי פעיל</b>. עם המשך החסימה, סטזיס החיידקים בלומן הסגור <b>גורם</b> לריבוי חיידקי מקומי (bacterial overgrowth), ורק אז <b>מצטרף שלב חיידקי</b> — זיהום פוליmicrobial טיפוסי, עם חיידקים גראם-שליליים אירוביים (בעיקר <span class="term" dir="ltr">E. coli</span> ‏— כ-65% מהבידודים בתוספתן מנוקב, וגם <span class="term" dir="ltr">Klebsiella pneumoniae</span>, <span class="term" dir="ltr">Pseudomonas aeruginosa</span>) ואנאירובים (בעיקר <span class="term" dir="ltr">Bacteroides fragilis</span>), לצד אנטרוקוקים גראם-חיוביים. ריבוי החיידקים הזה משמעותי קלינית כי הוא מגדיל את "המנה החיידקית" המשתחררת אם התוספתן ינקב. עם המשך הלחץ, מתפתחת <b>איסכמיה טרנס-מוראלית מלאה</b> (כל עובי הדופן), שמובילה בסופו של דבר ל<b>נקב</b> <span class="term" dir="ltr">(perforation)</span>. הזמן מתחילת החסימה ועד לנקב משתנה מאוד — משעות בודדות ועד ימים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>הכאב</b>: בהתחלה הכאב <b>ויסצרלי</b> — עמום, סביב הטבור, נובע מהמתיחה (distention) של דופן התוספתן ומגירוי סיבים אפרנטיים ויסצרליים שאינם ממוקדים אנטומית. רק כשקצה התוספתן הדלקתי מגרה את הצפק הפריאטלי הסמוך (או כשמתרחש נקב), הכאב הופך <b>סומטי</b> וממוקם — זה הרגע שבו הכאב "עובר" לרביע ימני תחתון, ותופעה זו (מיגרציה של הכאב) היא אחד הסימנים האמינים ביותר לאפנדיציטיס.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>חום ולויקוציטוזיס</b>: אלה <b>לא נובעים ישירות "מחיידקים"</b> אלא מתגובה דלקתית סיסטמית — ציטוקינים כמו <span class="term" dir="ltr">IL-1, IL-6, TNF-α</span> משתחררים כבר בשלב הדלקתי הכימי הראשוני (לפני שיש זיהום חיידקי פעיל), ומעוררים את מרכז הוויסות בהיפותלמוס ואת מוח העצם לשחרר נויטרופילים. זו הסיבה שחום נמוך ולויקוציטוזיס קלים יכולים להופיע עוד לפני שהתפתח זיהום חיידקי של ממש — וגם הסיבה שהיעדר חום <b>אינו שולל</b> אפנדיציטיס.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון האפנדיציטיס</title>
+  <defs></defs>
+  <!-- row 1 -->
+  <rect x="10" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="90" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">חסימת לומן</text>
+  <text x="90" y="64" font-size="11" text-anchor="middle" fill="#4b5563">(פקאלית / לימפואיד)</text>
+
+  <polygon points="180,55 200,48 200,62" fill="#2563eb"/>
+  <rect x="205" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="285" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">↑ לחץ תוך-לומינלי</text>
+  <text x="285" y="64" font-size="11" text-anchor="middle" fill="#4b5563">ריר + גז חיידקי</text>
+
+  <polygon points="375,55 395,48 395,62" fill="#2563eb"/>
+  <rect x="400" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="480" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">פגיעה בניקוז ורידי</text>
+  <text x="480" y="64" font-size="11" text-anchor="middle" fill="#4b5563">איסכמיה רירית (סטרילי)</text>
+
+  <polygon points="570,55 590,48 590,62" fill="#2563eb"/>
+  <rect x="595" y="20" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="670" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">ריבוי חיידקי בסטזיס</text>
+  <text x="670" y="64" font-size="11" text-anchor="middle" fill="#4b5563">מצטרף זיהום חיידקי</text>
+
+  <polygon points="760,55 780,48 780,62" fill="#b45309"/>
+  <rect x="785" y="20" width="105" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="837" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">איסכמיה</text>
+  <text x="837" y="64" font-size="11" text-anchor="middle" fill="#4b5563">טרנס-מוראלית</text>
+
+  <polygon points="837,90 830,110 844,110" fill="#b91c1c"/>
+  <rect x="762" y="115" width="150" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="837" y="148" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">נקב (Perforation)</text>
+
+  <!-- pain row -->
+  <rect x="10" y="180" width="330" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="175" y="205" font-size="12.5" text-anchor="middle" fill="#1f2937">כאב ויסצרלי סביב הטבור</text>
+  <text x="175" y="222" font-size="11" text-anchor="middle" fill="#4b5563">מתיחת דופן התוספתן</text>
+  <polygon points="345,210 365,203 365,217" fill="#6d28d9"/>
+  <rect x="370" y="180" width="330" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="535" y="205" font-size="12.5" text-anchor="middle" fill="#1f2937">כאב סומטי ב-RLQ</text>
+  <text x="535" y="222" font-size="11" text-anchor="middle" fill="#4b5563">גירוי צפק פריאטלי / מק-ברני</text>
+</svg>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה</h2>
+<p>התוספתן <span class="term" dir="ltr">(vermiform appendix)</span> הוא איבר של המעי התיכון (midgut), ומופיע לראשונה כבליטה קטנה בצקום כבר בשבוע 8 להיריון. הרירית שלו מסוג קולוני — אפיתל עמודני, תאים נוירואנדוקריניים ותאי גובלט מפרישי ריר. ברירית התת-רירית שלו יש רקמה לימפואידית, מה שהוביל להשערה שהתוספתן משתתף בתפקוד חיסוני ומשמש כמעין "מאגר" לחיידקי מעי "טובים" המסייעים בשיקום הפלורה התקינה של המעי הגס לאחר פגיעה בה (למשל אחרי זיהום <span class="term" dir="ltr">Clostridium difficile</span>).</p>
+<p>אספקת הדם מגיעה מעורק ה-<span class="term" dir="ltr">SMA</span> דרך העורק האילאוקולי ואז עורק התוספתן, שעובר במזו-תוספתן (יחד עם הניקוז הלימפתי לבלוטות האילאוצקליות). <b>מיקום קצה התוספתן משתנה מאוד ומשפיע ישירות על התמונה הקלינית</b>: רטרוצקלי תוך-צפקי בכ-60% מהאנשים (התייצגות "קלאסית"), אגני בכ-30% (עלול לתת כאב סוּפְּרַאפּוּבּי המחקה זיהום בדרכי השתן), ורטרופריטונאלי ב-7%–10% (עלול לתת כאב גב/מותן ולעכב את האבחנה כי זה לא נראה כמו "אפנדיציטיס טיפוסית").</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>ההיסטוריה הקלאסית: כאב עמום סביב הטבור שמתקדם למיגרציה לרביע ימני תחתון (RLQ), לרוב עם חוסר תיאבון, בחילה עם/בלי הקאות, ולעיתים שלשול או עצירות. המטופל נוטה לשכב בשקט (תנועה מכאיבה בגלל צפקת מקומית), עם טכיקרדיה קלה והתייבשות מתונה. חום נע מתת-חום (<38.5°C) ועד חום גבוה יותר בהתאם לחומרת התהליך — <b>אך היעדר חום אינו שולל את האבחנה</b>.</p>
+<p>בבדיקת הבטן: רגישות והגנה ברביע ימני תחתון, קלאסית מעל <b>נקודת מק-ברני</b> <span class="term" dir="ltr">(McBurney's point)</span> — הממוקמת בשליש המרחק בין עמוד השדרה הכסל הקדמי-עליון (ASIS) לטבור. רגישות חבטה (rebound) מעידה על צפקת מקומית; קשיחות דיפוזית של דופן הבטן מרמזת בחוזקה על נקב.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/McBurney%27s_point.jpg?width=500" alt="נקודת מק-ברני">
+  <figcaption class="media-cap">נקודת מק-ברני — שליש המרחק בין ה-ASIS לטבור, מקום הרגישות הקלאסי באפנדיציטיס. מקור: <a href="https://commons.wikimedia.org/wiki/File:McBurney%27s_point.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p>סימנים נוספים בעלי עניין היסטורי (לא ספציפיים למחלה עצמה, אלא מעידים על צפקת מקומית): <b>סימן רוֹבְזִינג</b> — כאב ב-RLQ בלחיצה על הרביע השמאלי התחתון; <b>סימן אוֹבּטוּרָטוֹר</b> — כאב ב-RLQ ברוטציה פנימית של הירך; <b>סימן פְּסוֹאָס</b> — כאב בהרחבת הירך הימנית (מגרה את שריר הפסואס הסמוך לתוספתן רטרוצקלי). בבדיקה רקטלית הממצאים בד"כ תקינים אלא אם קצה התוספתן אגני. בנשים חשוב לשלול פתולוגיה גינקולוגית — אך רגישות בהזזת צוואר הרחם (cervical motion tenderness) יכולה להופיע גם באפנדיציטיס עצמה עקב גירוי איברי האגן הסמוכים, ולא בהכרח מעידה על מחלת רחם/חצוצרות.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/AA-Tjz0LSzM" title="Appendicitis - Osmosis Pathology Review" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת פתולוגיה של אפנדיציטיס (Osmosis) — מנגנון, תמונה קלינית ואבחנה, בקצב מהיר ומצוין לחזרה. מקור: <a href="https://www.youtube.com/watch?v=AA-Tjz0LSzM" target="_blank">YouTube - Osmosis</a></p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p>מעבדה תומכת באבחנה, לא קובעת אותה. לויקוציטוזיס, לרוב עם "left shift" (עודף נויטרופילים/צעירים), מופיע ב-90% מהמקרים — אך ספירה תקינה ב-10% מהמקרים <b>אינה שוללת</b>. חלבון <span class="term" dir="ltr">CRP</span> הוא הרגיש מבין הסמנים הביולוגיים הנוספים (פרוקלציטונין, IL-6) אך אף אחד מהם לא ספציפי מספיק לבד. בדיקת הריון <b>חובה</b> בכל אישה בגיל הפוריות.</p>
+
+<h3>ציון אלברדו (Alvarado) — כלי ניבוי קליני</h3>
+<p>הכלי הקליני הנפוץ ביותר לכימות החשד לאפנדיציטיס, ומזכר בראשי התיבות <b>MANTRELS</b> (ראו סעיף טכניקות זכירה).</p>
+<table>
+  <thead><tr><th>קטגוריה</th><th>ממצא</th><th>נקודות</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3">תסמינים</td><td>מיגרציה של הכאב ל-RLQ</td><td>1</td></tr>
+    <tr><td>אנורקסיה</td><td>1</td></tr>
+    <tr><td>בחילה/הקאות</td><td>1</td></tr>
+    <tr><td rowspan="3">סימנים</td><td>רגישות ברביע ימני תחתון</td><td>2</td></tr>
+    <tr><td>רגישות חבטה (Rebound)</td><td>1</td></tr>
+    <tr><td>עליית חום</td><td>1</td></tr>
+    <tr><td rowspan="2">מעבדה</td><td>לויקוציטוזיס</td><td>2</td></tr>
+    <tr><td>הסטה שמאלה (Left shift)</td><td>1</td></tr>
+  </tbody>
+</table>
+<p><b>פענוח</b>: ‎&lt;4 — אפנדיציטיס לא סבירה (רגישות 96% לשלילה); 5–6 — תואם; 7–8 — סבירה; 9–10 — סבירה מאוד. חשוב: ציון גבוה <b>אינו ספציפי</b> מספיק כדי לקבוע ניתוח לבד — הוא כלי עזר, לא תחליף לשיקול קליני.</p>
+
+<h3>אבחנה מבדלת</h3>
+<table>
+  <thead><tr><th>מצב</th><th>אוכלוסייה טיפוסית</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>דלקת בלוטות מזנטריות <span class="term" dir="ltr">(mesenteric adenitis)</span></td><td>ילדים</td><td>לרוב לאחר מחלה ויראלית לאחרונה; ללא צפקת אמיתית</td></tr>
+    <tr><td>ציסטה שחלתית קרועה / פיתול שחלה / הריון חוץ-רחמי</td><td>נשים בגיל הפוריות</td><td>בדיקה גינקולוגית, בטא-hCG, אולטרסאונד אגן</td></tr>
+    <tr><td>מקל דיברטיקוליטיס <span class="term" dir="ltr">(Meckel diverticulitis)</span></td><td>כל גיל</td><td>לרוב מאובחן רק בניתוח עצמו</td></tr>
+    <tr><td>דיברטיקוליטיס (במיוחד צקלית)</td><td>קשישים</td><td>CT מדגים דיברטיקולים</td></tr>
+    <tr><td>פיתול אשך <span class="term" dir="ltr">(testicular torsion)</span></td><td>גברים צעירים</td><td>כאב וממצאים באשך עצמו</td></tr>
+    <tr><td>טיפליטיס <span class="term" dir="ltr">(typhlitis)</span></td><td>נויטרופניים</td><td>הקשר לנויטרופניה, מעורבות צקום מפושטת ב-CT</td></tr>
+  </tbody>
+</table>
+
+<h3>הדמיה</h3>
+<p><b>CT עם חומר ניגוד תוך-ורידי בלבד</b> (לא אנטרלי) היא ההדמיה השכיחה והמדויקת ביותר — רגישות 76%–100%, סגוליות 83%–100%. ממצאים: תוספתן מעובה בקוטר מעל 7 מ"מ, האדרה של הדופן ("target sign"), ו"stranding" של השומן הפריאפנדיקולרי — נוזל או אוויר פריאפנדיקולרי מרמזים על נקב.</p>
+<p><b>אולטרסאונד</b> עם לחיצה מדורגת (graded compression) — התוספתן הדלקתי מוגדל, לא ניתן לדחיסה, ולעיתים עם זרימת דם מוגברת בדופלר ("ring of fire"). רגישות 71%–94%, תלוי מאוד במיומנות הבודק/ת — שיטת הבחירה בילדים ובנשים בהריון כדי להימנע מקרינה.</p>
+<p><b>MRI</b> (ללא ניגוד) שמורה בעיקר להריון — רגישות כ-97%, סגוליות כ-95%.</p>
+<div class="link-card" style="text-decoration:none">
+  <span class="ico">🩻</span>
+  <div>
+    <div class="t"><a href="https://radiopaedia.org/articles/appendicitis-summary?lang=us" target="_blank">Appendicitis (summary) — Radiopaedia</a></div>
+    <div class="d">מאמר ייחוס רדיולוגי עם דוגמאות אמיתיות ומתויגות של CT ואולטרסאונד תקין מול דלקתי — מומלץ לצפות לפני מבחן OSCE/הדמיה.</div>
+  </div>
+</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>הטיפול המוגדר (gold standard) באפנדיציטיס לא-מסובכת הוא <b>אפנדקטומיה מהירה</b>, לאחר החייאת נוזלים והתחלה מיידית של אנטיביוטיקה IV רחבת טווח. יש לכסות גראם-שליליים ואנאירובים גם יחד — לא "אנטיביוטיקה" סתמית.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון פעולה</th><th>כיסוי חיידקי</th><th>איך זה פותר את הבעיה</th><th>קונטרא-אינדיקציה עיקרית</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="term" dir="ltr">Ceftriaxone</span> (Rocephin) + <span class="term" dir="ltr">Metronidazole</span> (Flagyl)</td>
+      <td>צפלוספורין דור 3 חוסם סינתזת דופן תא (PBP) + ניטרואימידזול פוגע ב-DNA אנאירובי</td>
+      <td>גראם-שלילי אירובי (<span class="term" dir="ltr">E. coli</span>, <span class="term" dir="ltr">Klebsiella</span>) + אנאירובים (<span class="term" dir="ltr">B. fragilis</span>)</td>
+      <td>מכסה בדיוק את שני מרכיבי הפלורה הפוליmicrobial שנמצאו בתרביות תוספתן מנוקב</td>
+      <td>אלרגיה לצפלוספורינים; המנע משתייה אלכוהולית עם מטרונידזול (תגובה דמוית-דיסולפירם)</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Piperacillin-tazobactam</span> (Zosyn)</td>
+      <td>פניצילין רחב טווח + מעכב בטא-לקטמאז</td>
+      <td>גראם-שלילי (כולל <span class="term" dir="ltr">Pseudomonas</span>) + אנאירובים + אנטרוקוק</td>
+      <td>תרופה בודדת המכסה את כל הספקטרום — מתאימה למקרים מסובכים/חמורים יותר</td>
+      <td>אלרגיה לפניצילינים</td>
+    </tr>
+  </tbody>
+</table>
+<p>באפנדיציטיס <b>לא-מסובכת</b> — מנה טרום-ניתוחית בודדת מספיקה, ללא המשך אחרי הניתוח. באפנדיציטיס <b>מנוקבת/מסובכת</b> — ממשיכים אנטיביוטיקה 4–7 ימים לפי הנחיות <span class="term" dir="ltr">IDSA</span>.</p>
+
+<div class="surgery">
+  <h4>הכנה לפני הניתוח</h4>
+  <p>החייאת נוזלים, מתן אנטיביוטיקה IV מיידי, וריקון שלפוחית השתן (קטטר או השתנה עצמאית) לפני הכניסה הלפרוסקופית כדי להימנע מפגיעה בשלפוחית.</p>
+  <h4>מהלך הניתוח — אפנדקטומיה לפרוסקופית (הגישה המועדפת)</h4>
+  <p>כניסה בטבור להחדרת המצלמה ואישור האבחנה, ואז שני פורטים עובדים נוספים (בד"כ ברביע שמאלי תחתון ובאזור סופרה-פובי/סופרה-אמבילקלי). המזו-תוספתן מנותק בעזרת מכשיר אנרגיה (למשל אולטרסאונד הרמוני), הבסיס מאובטח בעזרת אנדולופים (שתי לולאות פרוקסימלית + לולאה שלישית דיסטלית למניעת דליפת תוכן הלומן) או מכשיר סטפלר אנדוסקופי, וההוצאה נעשית בתוך שקית שליפה כדי להימנע מזיהום פצע הכניסה.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>בתוספתן מנוקב/גנגרנוטי הרקמה שבירה מאוד — הטיפול חייב להיות עדין כדי למנוע פגיעה נוספת. הסיבוך המסוכן ביותר הוא <b>דליפה מהגדם</b> (stump leak) אם הרקמה שנשארת רעועה מדי; לכן, כשכל התוספתן שביר, מעדיפים למקם את קו הסטפלר מעט יותר פרוקסימלית, על שוליים בריאים של הצקום.</p>
+  <h4>החלמה</h4>
+  <p>באפנדיציטיס לא-מסובכת — האכלה דרך הפה מתחילה כמעט מיד, שחרור לרוב למחרת הניתוח. במסובכת — ממתינים לחזרת פעילות מעיים, העדר חום, וספירת דם תקינה. <b>תסמין מחשיד לסיבוך</b>: חום, לויקוציטוזיס, כאב וחזרה מאוחרת של פעילות המעי לאחר הניתוח — מרמזים על <b>אבצס בתר-ניתוחי</b>, שמסבך 10%–20% מהמקרים המנוקבים ומטופל בניקוז דרך CT.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/FB8V7hg-CqA" title="Appendicitis Clinical Presentation - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">התייצגות קלינית וניהול של אפנדיציטיס (Osmosis) — כולל דיון בהחלטת ניתוח מול טיפול שמרני. מקור: <a href="https://www.youtube.com/watch?v=FB8V7hg-CqA" target="_blank">YouTube - Osmosis</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — MANTRELS (ידוע ומקובל, מרכיבי ציון אלברדו)</h3>
+  <p>
+    <b>M</b>igration of pain (מיגרציה של הכאב ל-RLQ) — 1<br>
+    <b>A</b>norexia (אנורקסיה) — 1<br>
+    <b>N</b>ausea/vomiting (בחילה/הקאות) — 1<br>
+    <b>T</b>enderness in RLQ (רגישות ב-RLQ) — 2<br>
+    <b>R</b>ebound pain (רגישות חבטה) — 1<br>
+    <b>E</b>levated temperature (חום) — 1<br>
+    <b>L</b>eukocytosis (לויקוציטוזיס) — 2<br>
+    <b>S</b>hift left (הסטה שמאלה) — 1
+  </p>
+  <h3>סיפור דמיוני — "צינור הגינה החסום"</h3>
+  <p>דמיינו צינור גינה דק וארוך (התוספתן) שהקצה שלו נחסם על ידי אבן קטנה שנפלה לתוכו (הפֵּקָלִית). הברז בקצה השני ממשיך לזרום (הפרשת ריר נמשכת) — הצינור מתחיל להתנפח כמו בלון. הבלון המנופח לוחץ על עצמו וחונק את זרימת המים החוצה (ניקוז ורידי) — המים העומדים בפנים מתחילים "להסריח" (חיידקים שהיו רדומים מתרבים בסטגנציה). הלחץ ממשיך לעלות עד שהבלון פשוט <b>מתפוצץ</b> (נקב).</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: צינור הגינה החסום</title>
+    <rect x="20" y="90" width="120" height="24" rx="10" fill="#84cc16" stroke="#3f6212"/>
+    <text x="80" y="106" font-size="11" text-anchor="middle" fill="#1f2937">ברז (מקור לחץ)</text>
+    <ellipse cx="300" cy="102" rx="110" ry="60" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <text x="300" y="98" font-size="13" text-anchor="middle" fill="#1f2937">"בלון" מתנפח</text>
+    <text x="300" y="116" font-size="11" text-anchor="middle" fill="#4b5563">= תוספתן דלוח</text>
+    <circle cx="205" cy="102" r="9" fill="#78350f"/>
+    <text x="205" y="132" font-size="10" text-anchor="middle" fill="#4b5563">אבן (פקאלית) חוסמת</text>
+    <polygon points="430,102 460,88 460,116" fill="#b91c1c"/>
+    <text x="470" y="106" font-size="20" text-anchor="start" fill="#b91c1c">💥</text>
+    <text x="300" y="180" font-size="11" text-anchor="middle" fill="#4b5563">לחץ עולה → ניקוז ורידי נחסם → איסכמיה → זיהום → נקב</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Blausen_0043_Appendix_Child.png" target="_blank">איור אנטומי של התוספתן (Blausen) — Wikimedia Commons</a>
+    <div class="desc">מיקום התוספתן ביחס לצקום ולמעי הגס — טוב להתמצאות אנטומית לפני קריאת הפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.ninjanerd.org/notes/appendicitis/" target="_blank">Appendicitis — Ninja Nerd (הרצאה + סיכום כתוב)</a>
+    <div class="desc">הרצאה מקיפה עם דגש על פתופיזיולוגיה שלב-אחר-שלב, כולל דיאגרמות משלהם.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Appendicitis:_Pathology_review" target="_blank">Appendicitis: Pathology Review — Osmosis</a>
+    <div class="desc">סיכום קצר וממוקד-מבחן של הפתולוגיה, טוב לחזרה מהירה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 19 מגיעה למיון עם כאב בטן שהחל לפני כ-18 שעות באזור הטבור והיגר לרביע ימני תחתון. מלווה בחוסר תיאבון ובחילה קלה, ללא הקאות. בבדיקה: חום 37.8°C, דופק 96, רגישות מובהקת ורגישות חבטה מעל <b>נקודת מק-ברני</b>, ללא קשיחות דיפוזית. בדיקת שתן להריון שלילית. ספירת דם: לויקוציטים 14,200 עם הסטה שמאלה. ציון אלברדו מחושב כ-8. בוצע CT בטן/אגן עם ניגוד IV שהדגים תוספתן מעובה בקוטר 9 מ"מ עם "stranding" של השומן הסובב, ללא נוזל חופשי או אוויר.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו המנגנון הראשוני (המוקדם ביותר) בשרשרת הפתופיזיולוגית של אפנדיציטיס?</div>
+  <button class="opt" data-i="0">זיהום חיידקי ראשוני של דופן התוספתן</button>
+  <button class="opt" data-i="1">איסכמיה עורקית מוחלטת</button>
+  <button class="opt" data-i="2">חסימת הלומן ועלייה בלחץ התוך-לומינלי</button>
+  <button class="opt" data-i="3">נקב ספונטני ללא חסימה קודמת</button>
+  <div class="explain">נכון: החסימה (לרוב פקאלית) היא הטריגר הראשוני — היא זו שגורמת לעלייה בלחץ ולפגיעה בניקוז הוורידי. זיהום חיידקי (אופציה 1) מצטרף רק בשלב מאוחר יותר, לאחר שכבר יש איסכמיה וסטזיס. איסכמיה עורקית (2) אינה השלב הראשון — הוורידים נחסמים קודם כי הלחץ בהם נמוך יותר. נקב ללא חסימה (4) אינו התהליך הטיפוסי המתואר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע הכאב באפנדיציטיס "נודד" מסביב לטבור אל הרביע הימני התחתון?</div>
+  <button class="opt" data-i="0">כי הזיהום החיידקי מתפשט פיזית לאורך המעי</button>
+  <button class="opt" data-i="1">כי הכאב הראשוני ויסצרלי ובלתי ממוקם, והופך לסומטי כשקצה התוספתן מגרה את הצפק הפריאטלי</button>
+  <button class="opt" data-i="2">כי המטופל משנה תנוחה ולכן חש בכאב במקום אחר</button>
+  <button class="opt" data-i="3">כי הלחץ התוך-בטני עולה ודוחף את הכאב ימינה</button>
+  <div class="explain">נכון: מתיחת דופן התוספתן מגרה סיבים אפרנטיים ויסצרליים לא-ממוקדים (תחושה עמומה סביב הטבור), ורק כשהדלקת מגיעה לצפק הפריאטלי (עצבנות סומטית, ממוקמת היטב) הכאב עובר למיקומו הקלאסי ב-RLQ. שאר האופציות אינן המנגנון הפיזיולוגי האמיתי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזו הדמיה מועדפת בחשד לאפנדיציטיס באישה בהיריון עם בדיקה גופנית לא חד-משמעית?</div>
+  <button class="opt" data-i="0">אולטרסאונד עם לחיצה מדורגת, ובמידת הצורך MRI ללא ניגוד</button>
+  <button class="opt" data-i="1">CT בטן/אגן עם ניגוד פומי ותוך-ורידי כבדיקת קו ראשון</button>
+  <button class="opt" data-i="2">צילום רנטגן פשוט של הבטן</button>
+  <button class="opt" data-i="3">קולונוסקופיה דחופה</button>
+  <div class="explain">נכון: באישה בהיריון מעדיפים להימנע מקרינה מייננת — לכן אולטרסאונד הוא קו ראשון, ואם לא חד-משמעי, MRI ללא גדוליניום הוא הבחירה הבאה (רגישות/סגוליות מצוינות, ללא קרינה). CT (1) נשמר למקרים שבהם US ו-MRI אינם זמינים/חד-משמעיים. צילום פשוט (2) לא רגיש/סגולי מספיק. קולונוסקופיה (3) אינה כלי אבחון לאפנדיציטיס חריפה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע משלבים Ceftriaxone עם Metronidazole (ולא Ceftriaxone לבד) לכיסוי אמפירי באפנדיציטיס מנוקבת?</div>
+  <button class="opt" data-i="0">כדי להגביר את הכיסוי נגד MRSA</button>
+  <button class="opt" data-i="1">כי Ceftriaxone לבדו רעיל מדי במינון גבוה</button>
+  <button class="opt" data-i="2">כדי לקצר את משך הטיפול הכולל</button>
+  <button class="opt" data-i="3">כי הזיהום פוליmicrobial וכולל אנאירובים (כמו B. fragilis) ש-Ceftriaxone אינו מכסה</button>
+  <div class="explain">נכון: הפלורה בתוספתן מנוקב מקבילה לזו של המעי הגס — גראם-שליליים אירוביים ואנאירובים גם יחד. Ceftriaxone מכסה גראם-שליליים אך לא אנאירובים, ולכן מטרונידזול נחוץ להשלמת הכיסוי. שאר האופציות אינן הסיבה הרפואית האמיתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. שישה ימים לאחר אפנדקטומיה לפרוסקופית לתוספתן מנוקב, המטופלת מפתחת חום, לויקוציטוזיס, כאב בטן וחזרה מאוחרת של פעילות המעי. הצעד הבא המתאים ביותר הוא:</div>
+  <button class="opt" data-i="0">הרגעה — זו תופעה צפויה לאחר ניתוח בטני</button>
+  <button class="opt" data-i="1">התחלת אנטיביוטיקה פומית בלבד ומעקב</button>
+  <button class="opt" data-i="2">CT בטן עם ניגוד IV לאיתור אבצס, עם אפשרות לניקוז מלעורי בו-זמנית</button>
+  <button class="opt" data-i="3">חזרה מיידית לחדר ניתוח לכריתה חוזרת</button>
+  <div class="explain">נכון: התמונה קלאסית לאבצס בתר-ניתוחי, שמסבך 10%–20% ממקרי אפנדיציטיס מנוקבת. CT עם ניגוד הוא גם אבחנתי וגם מאפשר ניקוז מלעורי בו-זמנית (source control) — הטיפול הסטנדרטי. תשובות 1 ו-2 מתעלמות מהצורך באבחון ובניקוז. ניתוח חוזר מיידי (4) אינו קו ראשון כשניתן לנקז מלעורית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: דלקת חריפה של התוספתן עקב חסימת לומן — הניתוח הבטני הדחוף השכיח ביותר.</li>
+    <li><b>המנגנון</b>: חסימה → ↑לחץ → פגיעה ורידית → איסכמיה סטרילית → ריבוי חיידקי → זיהום חיידקי פוליmicrobial → איסכמיה מלאה → נקב.</li>
+    <li><b>קליני</b>: כאב נודד מהטבור ל-RLQ, אנורקסיה, רגישות מעל נקודת מק-ברני; ציון אלברדו (MANTRELS) מסייע לכימות החשד.</li>
+    <li><b>אבחנה</b>: קלינית + מעבדה תומכת (לויקוציטוזיס 90%) + CT (קו ראשון במבוגר) / US (ילדים, הריון) / MRI (הריון, קו שני).</li>
+    <li><b>טיפול</b>: נוזלים + אנטיביוטיקה IV רחבת טווח (כיסוי גראם-שלילי + אנאירובי) + אפנדקטומיה לפרוסקופית דחופה. מנוקב → המשך אנטיביוטיקה 4–7 ימים; אבצס בתר-ניתוחי → ניקוז מלעורי בהכוונת CT.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
