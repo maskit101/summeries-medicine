@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>קידום בריאות ומניעה - Promoting Good Health</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>קידום בריאות ומניעה <span dir="ltr" class="term" style="font-weight:400">(Promoting Good Health)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 2, עמ' 49-53. פרק מבוא (לא מחלה ספציפית) על עקרונות המניעה וקידום הבריאות שעליהם מבוססת כל הרפואה הפנימית הקלינית.</div>
+
+<p>הפרק הזה שונה מרוב פרקי הריסון: הוא לא עוסק במחלה בודדת אלא בתשתית המושגית של <span dir="ltr" class="term">prevention</span> ו-<span dir="ltr" class="term">health promotion</span> — איך מגדירים "בריאות" מעבר להיעדר מחלה, איך ממיינים אסטרטגיות מניעה, ואילו התערבויות התנהגותיות (תזונה, פעילות גופנית, שינה, משקל) מוכיחות תועלת. זהו בסיס למספר רב של פרקים קליניים אחרים בספר (Chap. 6 - סקרינינג, Chap. 332 - תזונה, ועוד).</p>
+
+<h2><span class="num">2</span> המנגנון - למה מניעה עובדת (ולמה "מוקדם" תמיד עדיף)</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל בן אדם נולד עם "מלאי בריאות" (<span dir="ltr" class="term">stock of health</span>) שדועך עם הגיל בקצב שמואץ עם השנים (הזדקנות נורמטיבית). הנזק מגורמי סיכון כרוניים (יתר לחץ דם, עישון, השמנה) <span class="key">אינו נקודתי אלא מצטבר עם הזמן</span> — לכן מטופל עם יתר לחץ דם שטופל מאוחר ומאוזן היטב עדיין נמצא בסיכון קרדיווסקולרי כפול לעומת מי ששמר על ערכים תקינים מלכתחילה, למרות שברגע הנוכחי שני המטופלים "נראים" זהים במדדים. הסיבה: משך הזמן שרקמת כלי הדם והלב חשופה ללחץ גבוה גורם לנזק מבני מצטבר (עיבוי שריר הלב - <span dir="ltr" class="term">LV mass</span>, פגיעה כלייתית, טרשת עורקים) שאינו הפיך גם כאשר לאחר מכן מאזנים את הערך המספרי. זו בדיוק הסיבה לכך שמניעה <span class="key">"פרימורדיאלית"</span> (מניעת היווצרות גורם הסיכון מלכתחילה, ולא רק טיפול בו לאחר שהתפתח) חזקה יותר מכל התערבות מאוחרת יותר — "לגעת בשעון" לפני שהנזק המבני נצבר, ולא רק לעצור אותו אחרי.
+  </p>
+  <p>
+    מבחינה זו, ה"מנגנון" של מניעה מוצלח הוא בעצם <span class="key">דחיסת התחלואה</span> (<span dir="ltr" class="term">compression of morbidity</span>): אם משך החיים הכולל פחות או יותר קבוע, המטרה היא לדחוס את התקופה שבה אדם חולה וסובל לזמן קצר ככל האפשר סמוך למוות, ולא להאריך את התקופה החולה. זה שונה ממטרת "הארכת חיים" גרידא.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="860" height="220" fill="#fff"/>
+  <line x1="70" y1="220" x2="860" y2="220" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="70" y1="30" x2="70" y2="220" stroke="#9ca3af" stroke-width="2"/>
+  <text x="460" y="248" text-anchor="middle" font-size="15" fill="#4b5563">גיל (0→100)</text>
+  <text x="35" y="125" text-anchor="middle" font-size="15" fill="#4b5563" transform="rotate(-90 35 125)">מלאי בריאות</text>
+  <path d="M70,50 C300,55 500,90 850,215" fill="none" stroke="#b91c1c" stroke-width="4"/>
+  <text x="620" y="150" font-size="14" fill="#b91c1c" font-weight="700">הזדקנות נורמטיבית (ירידה הדרגתית)</text>
+  <path d="M70,50 C400,55 700,60 850,210" fill="none" stroke="#047857" stroke-width="4" stroke-dasharray="6,4"/>
+  <text x="560" y="70" font-size="14" fill="#047857" font-weight="700">"עקומה מרובעת" - מניעה פרימורדיאלית מוצלחת</text>
+  <text x="740" y="230" font-size="13" fill="#6b7280">מוות</text>
+</svg>
+
+<h2><span class="num">3</span> סוגי המניעה, וההבחנה בין מניעה לסקרינינג</h2>
+<p>
+  הריסון מגדיר ארבע רמות של מניעה, ולכל אחת <span class="key">אוכלוסיית יעד ומטרה שונה מבחינה מהותית</span>, לא רק "עוד סטייג' על ציר הזמן":
+</p>
+<table>
+  <thead><tr><th>סוג מניעה</th><th>אוכלוסיית יעד</th><th>מטרה</th><th>דוגמה מהפרק</th></tr></thead>
+  <tbody>
+    <tr><td><b>פרימורדיאלית</b> <span dir="ltr" class="term">(Primordial)</span></td><td>כלל האוכלוסייה, לפני שנוצר גורם סיכון</td><td>מניעת <b>היווצרות</b> גורם הסיכון עצמו (לא רק מניעת המחלה)</td><td>קידום תזונה/פעילות בריאה מגיל צעיר כדי שלחץ דם לא יעלה מלכתחילה</td></tr>
+    <tr><td><b>ראשונית</b> <span dir="ltr" class="term">(Primary)</span></td><td>יש כבר גורם סיכון אחד או יותר, אין עדיין מחלה</td><td>מניעת <b>הופעת</b> המחלה</td><td>טיפול תרופתי ביתר לחץ דם לפני שהתפתחה שבץ/אירוע קרדיאלי</td></tr>
+    <tr><td><b>שניונית</b> <span dir="ltr" class="term">(Secondary)</span></td><td>המחלה כבר קיימת/אובחנה</td><td>מניעת <b>הישנות</b> והחמרה</td><td>טמוקסיפן לאחר סרטן שד ER-חיובי, כדי למנוע הישנות</td></tr>
+    <tr><td><b>שלישונית</b> <span dir="ltr" class="term">(Tertiary)</span></td><td>מחלה חריפה/מתקדמת פעילה</td><td>פעולה מהירה למניעת <b>מוות מיידי</b></td><td>צנתור כלילי ראשוני ב-STEMI</td></tr>
+  </tbody>
+</table>
+<p><b>חשוב להבדיל מסקרינינג</b>: סקרינינג (Chap. 6) אינו מניעה בפני עצמו — הוא כלי לזיהוי מחלה/גורם סיכון <b>בשלב מוקדם</b> (למשל דיסליפידמיה, היפרגליקמיה) כדי שאפשר יהיה להפעיל אחת מרמות המניעה שלמעלה בזמן. סקרינינג בלי התערבות בעקבותיו אינו משנה תוצאה קלינית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/4b9ruadugZk" title="Primary Secondary Tertiary Prevention: Levels of Disease Prevention" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר שמסביר את ארבע רמות המניעה עם דוגמאות קליניות. YouTube.</p>
+
+<h2><span class="num">4</span> הערכת בריאות קרדיווסקולרית - מ"Life's Simple 7" ל-"Life's Essential 8"</h2>
+<p>
+  ה-<span dir="ltr" class="term">American Heart Association</span> הגדיר ב-2010 קונסטרוקט אובייקטיבי ל"בריאות קרדיווסקולרית" (עודכן ב-2022 ל-<b>Life's Essential 8</b>), על מנת להפוך "בריאות" ממושג מעורפל למדד מספרי בר-מדידה שאפשר לעקוב אחריו לאורך זמן. שמונת המרכיבים מתחלקים לשתי קטגוריות:
+</p>
+<ul>
+  <li><b>התנהגויות בריאות</b> (4): דפוס אכילה, פעילות גופנית, עישון/חשיפה לניקוטין, שינה</li>
+  <li><b>גורמי בריאות</b> (4): מדד מסת גוף <span dir="ltr" class="term">(BMI)</span>, שומני דם, גלוקוז בדם, לחץ דם</li>
+</ul>
+<p>כל מרכיב מקבל 0 (גרוע), 1 (בינוני) או 2 (אידאלי) נקודות, לציון מצטבר של 0-14. ציון גבוה בגיל צעיר-בינוני מנבא אריכות ימים, פחות תחלואה כרונית (כולל דמנציה וסרטן, לא רק מחלת לב), ודחיסת תחלואה — כלומר המדד הזה הוא בעצם המדידה הכמותית של המנגנון שתואר בסעיף 2.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/USDA_MyPlate_green.svg?width=260" alt="תרשים הצלחת הבריאה (MyPlate)">
+  <figcaption class="media-cap">"הצלחת הבריאה" (MyPlate) - הייצוג הוויזואלי הרשמי של USDA לדפוס אכילה מומלץ (מחצית פירות/ירקות, רבע דגנים, רבע חלבון, מנת חלב). מקור: Wikimedia Commons / USDA.</figcaption>
+</figure>
+<p>למידע הרשמי המלא על Life's Essential 8: <a href="https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8" target="_blank">American Heart Association</a>.</p>
+
+<h2><span class="num">5</span> ההמלצות המבוססות-ראיות המרכזיות (טבלת סיכום)</h2>
+<p>הפרק סוקר ראיות עבור חמישה תחומי התנהגות מרכזיים. הטבלה מסכמת את היעד המספרי המדויק שהריסון מציין לכל אחד - זה הפירוט שנשאל במבחנים, לא רק הכיוון הכללי:</p>
+<table>
+  <thead><tr><th>תחום</th><th>המלצה מספרית מדויקת</th><th>מקור/ביסוס</th></tr></thead>
+  <tbody>
+    <tr><td>פעילות גופנית אירובית</td><td>150 דק' עצימות בינונית <b>או</b> 75 דק' עצימות גבוהה בשבוע, בפרקים של ≥5 דק' לפחות</td><td>US Physical Activity Guidelines 2nd ed. (2018)</td></tr>
+    <tr><td>חיזוק שרירים</td><td>≥2 ימים בשבוע, כל קבוצות השריר העיקריות</td><td>אותו מקור</td></tr>
+    <tr><td>שינה (מבוגר ≥18)</td><td>7-9 שעות/לילה</td><td>קשור לתמותה מכל סיבה, השמנה, סוכרת, יל"ד, דיכאון</td></tr>
+    <tr><td>נתרן</td><td>&lt;2300 מ"ג/יום (פחות עוד לילדים &lt;14)</td><td>Dietary Guidelines for Americans 2020-2025</td></tr>
+    <tr><td>שומן רווי</td><td>&lt;10% מהקלוריות היומיות (מגיל 2)</td><td>אותו מקור</td></tr>
+    <tr><td>סוכר מוסף</td><td>&lt;10% מהקלוריות (מגיל 2); הימנעות מוחלטת מתחת לגיל 2</td><td>אותו מקור</td></tr>
+    <tr><td>אלכוהול</td><td>≤2 מנות/יום לגברים, ≤1 מנה/יום לנשים (אם בכלל שותים)</td><td>אותו מקור</td></tr>
+  </tbody>
+</table>
+<div class="key-box">שינוי מהותי לעומת האינטואיציה הרווחת: <b>ה"בדיקה השנתית השגרתית"</b> (Periodic Health Evaluation) לאדם אסימפטומטי בסיכון ממוצע — הראיות עקביות שאין לה תועלת בתמותה כוללת (לא תמותה קרדיווסקולרית ולא תמותה מסרטן), אם כי היא כן משפרת אבחון של יל"ד/דיסליפידמיה ומסירת שירותי סקרינינג מומלצים. בדיקה גופנית מלאה שגרתית לאדם בריא נחשבת "תפוקה נמוכה" (<span dir="ltr" class="term">low yield</span>) ועדיף להשקיע את הזמן בייעוץ ממוקד גורמי סיכון.</div>
+
+<h2><span class="num">6</span> איך מתרגמים ידע לשינוי התנהגות בפועל - הגישה הקלינית</h2>
+<p>
+  זהו "הטיפול" של הפרק הזה: לא מרשם תרופתי, אלא שיטה. הריסון מדגיש שני עקרונות מפתח שלא אינטואיטיביים:
+</p>
+<ol>
+  <li><b>מסירת מידע על סיכון בלבד אינה משנה התנהגות</b> — מחקרים חוזרים ונשנים מראים שהצגת "כמה מסוכן" עישון/השמנה אינה מספיקה, ולעיתים אף יוצרת "ניהיליזם טיפולי" (המטופל מרגיש חסר אונים ומוותר). לעומת זאת <b>מיקוד בבריאות ("מה תרוויח")</b> ולא רק במחלה ("ממה תיפגע"), יחד עם מתן כלים מעשיים, יעיל משמעותית יותר.</li>
+  <li><b>ריאיון מוטיבציוני</b> <span dir="ltr" class="term">(motivational interviewing)</span> — שותפות עם המטופל בבחירת תחום השינוי הראשון, ולא כפייה של סדר עדיפויות רפואי "אובייקטיבי". אם המטופל מהסס באיזה כיוון להתחיל, כלל אצבע קליני: להתמקד קודם בגורם הסיכון עם הפוטנציאל המהיר ביותר להפחתת סיכון לאירוע חריף (למשל, אם יש גם יתר לחץ דם וגם דיסליפידמיה - <b>להתחיל בלחץ הדם</b>, כי הוא גם גורם סיכון כרוני וגם טריגר אקוטי ישיר לאירוע קרדיווסקולרי).</li>
+</ol>
+<p>ב<b>מניעה שניונית</b> (מטופל עם מחלה קיימת) האתגר שונה מהותית: לא שכנוע להתחיל, אלא <b>הקפדה (אדהרנס)</b> — הריסון מציין שרק כ-50% מהמטופלים נוטלים תרופות מניעה שניונית מבוססות-ראיות (כמו סטטינים) כעבור שנה מאוטם שריר הלב, למרות שהתרופה כבר נרשמה. חסמים כוללים עלות, זמן, אוריינות בריאותית ויכולת המטפל העיקרי לארגן את המשטר התרופתי.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TlGe80Mi85U" title="Levels of Prevention" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון משלים על מדרג רמות המניעה ויישומן הקליני. YouTube.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - ארבע רמות המניעה</h3>
+  <p><b>"פ-ר-ש-ש"</b> (בעברית, לפי סדר ההתקדמות): <b>פ</b>רימורדיאלית (מניעת גורם הסיכון עצמו) → <b>ר</b>אשונית (מניעת המחלה) → <b>ש</b>ניונית (מניעת הישנות) → <b>ש</b>לישונית (מניעת מוות מיידי). באנגלית: <span dir="ltr" class="term">"0° before disease exists, 1° before disease occurs, 2° after diagnosis, 3° acute rescue"</span>.</p>
+  <h3>סיפור דמיוני - "ארבעת השומרים על הגשר"</h3>
+  <p>דמייני גשר אחד ארוך שבסופו תהום (=מוות/נכות קשה מהמחלה). על הגשר עומדים ארבעה שומרים לפי הסדר: <b>השומר הראשון</b> עומד עוד לפני שהגשר נבנה בכלל - הוא מונע את <b>הקמת</b> הגשר (=מונע את היווצרות גורם הסיכון - פרימורדיאלית). <b>השומר השני</b> עומד בכניסה לגשר ומונע כניסה למי שעדיין לא דרך עליו (=מונע הופעת מחלה במי שיש לו כבר גורם סיכון - ראשונית). <b>השומר השלישי</b> עומד באמצע הגשר, אחרי שמישהו כבר עבר אירוע, ומוודא שהוא לא יחזור שוב לאותו מקום (=מונע הישנות - שניונית). <b>השומר הרביעי</b> עומד ממש בקצה, ליד התהום, ותופס אנשים שכבר נופלים (=מציל חיים מיידית - שלישונית).</p>
+  <svg class="diagram" viewBox="0 0 560 190" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="90" width="500" height="18" fill="#d1d5db"/>
+    <circle cx="60" cy="70" r="16" fill="#2563eb"/><text x="60" y="130" text-anchor="middle" font-size="12" fill="#1f2937">שומר 1</text><text x="60" y="146" text-anchor="middle" font-size="11" fill="#4b5563">פרימורדיאלית</text>
+    <circle cx="190" cy="70" r="16" fill="#047857"/><text x="190" y="130" text-anchor="middle" font-size="12" fill="#1f2937">שומר 2</text><text x="190" y="146" text-anchor="middle" font-size="11" fill="#4b5563">ראשונית</text>
+    <circle cx="320" cy="70" r="16" fill="#b45309"/><text x="320" y="130" text-anchor="middle" font-size="12" fill="#1f2937">שומר 3</text><text x="320" y="146" text-anchor="middle" font-size="11" fill="#4b5563">שניונית</text>
+    <circle cx="450" cy="70" r="16" fill="#b91c1c"/><text x="450" y="130" text-anchor="middle" font-size="12" fill="#1f2937">שומר 4</text><text x="450" y="146" text-anchor="middle" font-size="11" fill="#4b5563">שלישונית</text>
+    <polygon points="500,108 550,108 550,150 500,150" fill="#111827"/>
+    <text x="525" y="170" text-anchor="middle" font-size="12" fill="#111827">תהום</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.heart.org/en/healthy-living/healthy-lifestyle/lifes-essential-8" target="_blank">American Heart Association - Life's Essential 8</a>
+    <div class="desc">העמוד הרשמי עם פירוט מלא של שמונת המרכיבים, מחשבון ציון בריאות קרדיווסקולרית, והפניה למאמר המקור ב-Circulation.</div>
+  </li>
+  <li>
+    <a href="https://health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf" target="_blank">Physical Activity Guidelines for Americans, 2nd edition</a>
+    <div class="desc">המסמך המלא שממנו נלקחות המלצות הפעילות הגופנית המדויקות שצוטטו בטבלה בסעיף 5.</div>
+  </li>
+  <li>
+    <a href="https://www.dietaryguidelines.gov/" target="_blank">Dietary Guidelines for Americans</a>
+    <div class="desc">אתר משרד החקלאות/הבריאות האמריקאי - מקור ההמלצות התזונתיות המדויקות (נתרן, שומן רווי, סוכר מוסף).</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 52, ללא תלונות, מגיע לביקור שגרתי. עישון עד לפני שנה (הפסיק), BMI 29, לחץ דם 148/92 בשתי מדידות, LDL 165 מ"ג/ד"ל, ללא מחלת לב ידועה. עובד במשרד, פעילות גופנית "כמעט לא", ישן 5-6 שעות/לילה בגלל עומס עבודה. הוא שואל: "האם אני צריך תרופה ללחץ דם, או שמספיק שאני כבר הפסקתי לעשן?"</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי רמת המניעה הרלוונטית ביותר עבור המטופל הזה כרגע ביחס ליתר לחץ הדם והדיסליפידמיה שלו (בהנחה שאין עדיין מחלה קרדיווסקולרית מאובחנת)?</div>
+  <button class="opt" data-i="0">מניעה שניונית - כי כבר יש לו גורמי סיכון</button>
+  <button class="opt" data-i="1">מניעה ראשונית - יש גורמי סיכון אך אין עדיין מחלה קרדיווסקולרית מאובחנת</button>
+  <button class="opt" data-i="2">מניעה פרימורדיאלית - כי הוא עדיין א-סימפטומטי</button>
+  <button class="opt" data-i="3">מניעה שלישונית - כי הוא בסיכון גבוה לאוטם</button>
+  <div class="explain">נכון: <b>מניעה ראשונית</b>. מניעה שניונית מיועדת למי שכבר <b>אובחן</b> עם מחלה (למשל אוטם שריר לב בעבר) ומטרתה מניעת הישנות - לא המצב כאן. מניעה פרימורדיאלית הייתה רלוונטית לפני שהתפתחו גורמי הסיכון עצמם (יל"ד, דיסליפידמיה) - אך אצל מטופל זה הם כבר קיימים, אז "החלון" הזה כבר נסגר. מניעה שלישונית רלוונטית רק במצב חירום חריף (כמו אוטם בהתהוות), לא בביקור שגרתי אסימפטומטי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. לפי הגישה שתוארה בסעיף 6 להעדפת סדר הטיפול כאשר יש כמה גורמי סיכון בו-זמנית, באיזה גורם סיכון כדאי להתמקד ראשית אצל מטופל זה?</div>
+  <button class="opt" data-i="0">שינה - כי היא הכי קלה לשינוי</button>
+  <button class="opt" data-i="1">BMI - כי הוא הבסיס לכל שאר הבעיות</button>
+  <button class="opt" data-i="2">לחץ הדם - הוא גם גורם סיכון כרוני וגם טריגר אקוטי ישיר לאירוע קרדיווסקולרי</button>
+  <button class="opt" data-i="3">אין להתמקד בגורם ספציפי - יש לטפל בכולם בו-זמנית תמיד</button>
+  <div class="explain">נכון: <b>לחץ הדם</b>. הריסון מציין במפורש שכאשר יש כמה גורמי סיכון בו-זמנית וקשה לתעדף, לחץ דם ראוי לעדיפות כי הוא ייחודי בכך שהוא גם גורם סיכון כרוני מצטבר וגם יכול לשמש כטריגר ישיר ומיידי לאירוע חריף (כגון שבץ). שינה חשובה אך לא מוגדרת כטריגר אקוטי ישיר. "לטפל בכולם בו-זמנית" נשמע אידאלי אך מתעלם מהעיקרון של ריאיון מוטיבציוני - עומס יתר של יעדים מפחית סיכוי להצלחה בכל אחד מהם.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. המטופל שואל אם כדאי לו לעבור בדיקת "צ'ק אפ" שנתית מקיפה כולל בדיקה גופנית מלאה. מה ההמלצה המבוססת-ראיות?</div>
+  <button class="opt" data-i="0">אין הוכחה לתועלת בתמותה כוללת מבדיקה גופנית מקיפה שגרתית באדם א-סימפטומטי; עדיף להתמקד בסקרינינג ממוקד גורמי סיכון וייעוץ התנהגותי</button>
+  <button class="opt" data-i="1">כן, בדיקה גופנית מלאה שנתית מוכחת כמפחיתה תמותה קרדיווסקולרית וסרטנית</button>
+  <button class="opt" data-i="2">בדיקה גופנית מלאה מומלצת רק מגיל 65 ומעלה</button>
+  <button class="opt" data-i="3">בדיקה גופנית מלאה מזיקה ואסור לבצעה כלל</button>
+  <div class="explain">נכון: התשובה הראשונה. סקירות שיטתיות עקביות הראו <b>חוסר תועלת (וגם חוסר נזק) בתמותה כוללת</b> מהערכת בריאות תקופתית מקיפה. עם זאת היא כן משפרת אבחון יל"ד/דיסליפידמיה ומסירת שירותי מניעה - כך שהתשובה אינה "מזיק לגמרי" (מסיח ד') אלא "תפוקה נמוכה יחסית לזמן שמושקע", ולכן עדיף למקד את הזמן הקליני בייעוץ ובסקרינינג ממוקד-סיכון ולא בבדיקה גופנית מקיפה גורפת.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו העיקרון המרכזי שהריסון מדגיש לגבי האופן שבו כדאי למסור מידע על סיכון כדי לעודד שינוי התנהגות בפועל?</div>
+  <button class="opt" data-i="0">יש למסור לחולה רק את המספרים המדויקים (אחוזי סיכון) ולתת לו להחליט לבד ללא הכוונה נוספת</button>
+  <button class="opt" data-i="1">יש להדגיש כמה שיותר את חומרת הסיכונים כדי ליצור מוטיבציה מפחד</button>
+  <button class="opt" data-i="2">אין צורך למסור מידע על סיכון כלל, כי זה לא משפיע על התנהגות בכל מקרה</button>
+  <button class="opt" data-i="3">מסירת מידע על סיכון בלבד אינה מספיקה לשינוי התנהגות; שילוב עם מסרים חיוביים על בריאות והעצמה עם כלים מעשיים (למשל ריאיון מוטיבציוני) יעיל משמעותית יותר</button>
+  <div class="explain">נכון: תשובה 4. הריסון מדגיש ששילוב מידע על סיכון עם מסרים חיוביים (מה יש להרוויח) והעצמה עם כלים מעשיים משיג הקפדה טובה יותר. הדגשת חומרה בלבד (מסיח ב') הוכחה כגורמת ל"ניהיליזם טיפולי" ולעיתים אף מזיקה למוטיבציה. מסירת מספרים בלבד ללא ליווי (מסיח א') הוכחה כלא-מספיקה. הטענה ש"אין צורך" (מסיח ג') שגויה - יש ערך למידע, רק לא כאסטרטגיה בלעדית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ארבע רמות מניעה, לפי סדר התקדמות: <b>פרימורדיאלית</b> (מונעת גורם סיכון) → <b>ראשונית</b> (מונעת מחלה) → <b>שניונית</b> (מונעת הישנות) → <b>שלישונית</b> (הצלה חריפה מיידית).</li>
+    <li>סקרינינג ≠ מניעה: סקרינינג הוא כלי לזיהוי מוקדם שמאפשר להפעיל מניעה - לא תחליף לה.</li>
+    <li>מנגנון: נזק מגורמי סיכון כרוניים מצטבר עם משך הזמן ואינו הפיך לגמרי גם לאחר איזון מאוחר - לכן מוקדם תמיד עדיף ("compression of morbidity").</li>
+    <li>Life's Essential 8 (AHA): 4 התנהגויות (תזונה, פעילות, ניקוטין, שינה) + 4 גורמים (BMI, שומנים, גלוקוז, ל"ד), ציון 0-14.</li>
+    <li>המלצות מספריות מרכזיות: 150 דק' פעילות בינונית/שבוע (או 75 דק' עצימה), שינה 7-9 שעות, נתרן &lt;2300 מ"ג/יום, שומן רווי וסוכר מוסף &lt;10% קלוריות.</li>
+    <li>בדיקה גופנית שנתית מקיפה לאדם בריא = תפוקה נמוכה; עדיף ייעוץ ממוקד וסקרינינג מבוסס-ראיות.</li>
+    <li>אסטרטגיית שינוי התנהגות: מסרים חיוביים + ריאיון מוטיבציוני + שותפות בבחירת סדר עדיפויות > הצגת סיכון בלבד. אתגר במניעה שניונית = הקפדה (~50% בלבד נוטלים תרופות שנה אחרי אוטם).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
