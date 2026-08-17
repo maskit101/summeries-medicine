@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: נוירונים ותאי גליה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 6: נוירונים ותאי גליה <span class="term" dir="ltr">Neurons and Neuroglia</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Bruce D. Trapp, Karl Herrup</div>
+
+<p>הפרק הזה עונה על שאלה שנשמעת בסיסית אך מסתבכת מהר: <b>מהו בכלל נוירון, ומה תפקידם של כל שאר התאים שמסביבו?</b> התשובה המפתיעה היא שאי אפשר להגדיר נוירון לפי צורה - תא Purkinje, פוטורצפטור ברשתית ותא בגנגליון השורש הדורסלי נראים שונים לגמרי, ובכל זאת שלושתם נוירונים. ההגדרה האמיתית היא <b>תפקודית</b>: תא מקוטב שמעביר מידע חשמלי מנקודה אחת בגופו לנקודה אחרת. סביב הנוירונים פועלת אוכלוסיית תאי הגליה (<span class="term" dir="ltr">neuroglia</span>) - פי 10 מספרם מהנוירונים - שאינה "דבק" פסיבי כפי שחשבו במאה ה-19, אלא שותפה פעילה בהזנה, בבידוד, בהגנה החיסונית ובתיקון של מערכת העצבים. הבנת הזהות והתפקוד של כל אחד מהתאים האלה היא הבסיס להבנת גידולים גליאליים, ניוון עצבי, פגיעות עצב היקפי והשתלות תאים - כולם נושאים נוירוכירורגיים ישירים.</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: זהות תפקודית, לא מורפולוגית</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל קשה להגדיר "מהו נוירון"? כי מבחינה צורנית, שלוש דוגמאות קלאסיות מהפרק נראות כמעט בלתי קשורות: <b>תא Purkinje</b> במוחון - עם דנדריט ברור, גוף תא גדול ואקסון בודד; <b>פוטורצפטור (מוט) ברשתית</b> - שהחלק ה"קולט" שלו הוא ערימת ממברנות רגישות לאור ולא דנדריט קלאסי; ו<b>נוירון בגנגליון השורש הדורסלי</b> - שהתהליך שיוצא מגופו מתפצל לשני ענפים כמעט זהים מורפולוגית, אחד היקפי ואחד מרכזי, כך שלפי ההגדרה הצורנית הרגילה אף אחד מהם לא "דנדריט" קלאסי.
+  </p>
+  <p>
+    המשותף לכל השלושה אינו הצורה אלא <b>שתי תכונות תפקודיות</b>: (1) כולם תאים מקוטבים שמקורם באפיתל, תכונה שמשמעותית כבר בשלב ההתפתחות; (2) כולם מעבירים מידע מנקודה אחת בתא לנקודה אחרת, באמצעות אותות חשמליים (יוניים) שמאפשרים העברת "חבילת מידע" על פני מרחק של מיקרומטרים עד מטרים בתוך שבריר שנייה.
+  </p>
+</div>
+<p class="key-box">מכאן ואילך, כשבפרק מופיע תיאור של "נוירון טיפוסי" עם דנדריט, גוף תא, אקסון וטרמינל סינפטי - זהו מודל שימושי להוראה, אך יש לזכור שהוא רק אחת מהצורות האפשריות. הפונקציה (העברת מידע מקוטבת) היא הקבוע; הצורה היא המשתנה.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Purkinje_cell_by_Cajal.png?width=700" alt="Cajal drawing of a Purkinje cell showing dendrites, cell body and axon">
+<p class="media-cap">רישום מקורי של סנטיאגו רמון אי קחל (Cajal) של תא Purkinje במוחון - אחת הדוגמאות הקלאסיות בפרק לצורת נוירון "טיפוסית" עם דנדריט אחד ברור, גוף תא ואקסון בודד. קחל הוא גם מי שזיהה לראשונה את קיומם של תאי גליה כאוכלוסייה נפרדת. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">2</span> נוירונים חושיים: שלוש משפחות קולטנים</h2>
+<p>נוירונים חושיים אינם מקבלים קלט מנוירון קודם במעגל, אלא ישירות מהסביבה. הפרק מחלק אותם לשלוש משפחות לפי אופי הגירוי:</p>
+<table>
+  <tr><th>משפחה</th><th>דוגמאות</th><th>מנגנון</th></tr>
+  <tr><td><b>קולטנים מכניים</b><br><span class="term" dir="ltr">Mechanoreceptors</span></td><td>גופיפי Meissner, Merkel, Pacini, Ruffini (מגע/כאב בעור); תאי שיער בשבלול ובמערכת הווסטיבולרית</td><td>עיוות מכני של הממברנה או של סטריאוצילייה פותח תעלות יונים רגישות-למתיחה</td></tr>
+  <tr><td><b>קולטנים כימיים</b><br><span class="term" dir="ltr">Chemoreceptors</span></td><td>קולטני טעם בלשון; קולטני ריח באפיתל האף</td><td>קולטנים מצומדי חלבון G, שמפעילים אדנילט ציקלאז ומעלים cAMP, שפותח תעלת יונים תלוית-נוקלאוטיד</td></tr>
+  <tr><td><b>קולטנים פיזיקליים</b><br><span class="term" dir="ltr">Physical receptors</span></td><td>פוטורצפטורים ברשתית (מוטות ותרמידים); קולטני חום בעור</td><td>קליטת פוטונים על ידי רודופסין מפעילה קסקדה כימית הדומה למנגנון הריח</td></tr>
+</table>
+<p>בכל שלושת המקרים, התוצאה הסופית זהה: פתיחת אוכלוסיית תעלות יונים ספציפית, שינוי מוליכות הממברנה, ויצירת "חבילת מידע" חשמלית שמופצת הלאה לשאר המוח.</p>
+
+<h2><span class="num">3</span> נוירונים אפקטוריים, נוירוסקרטוריים, וארגון מעגלים</h2>
+<p>מרבית הנוירונים ("<b>נוירונים אפקטוריים</b>") מטרתם אינה תא לא-עצבי אלא נוירון אחר - הרוב המכריע של אקסונים מסתיימים בסינפסות על דנדריטים, גופי תא או אפילו טרמינלים פרה-סינפטיים אחרים. סוג מיוחד הוא <b>המוטונוירון</b>: גוף תא גדול, דנדריטים מרובים, ואקסון ארוך שיוצא מה-CNS ומסתיים ב"פלטת קצה מוטורית" (motor end plate) - סינפסה מיוחדת עם סיב שריר בודד, העטופה בתא שוואן. קבוצה קטנה נוספת היא <b>התאים הנוירוסקרטוריים</b> (כמו תאי ההיפותלמוס/יותרת המוח), שמפרישים הורמונים (למשל LH, FSH) ישירות למחזור הדם ולא לסינפסה.</p>
+<p>ברמת המעגל, נוירונים מסווגים גם לפי טווח הפעולה: <b>נוירוני פרויקציה</b> (<span class="term" dir="ltr">projection neurons</span>) שולחים אקסונים ארוכים לאזורים מרוחקים (למשל תלמוקורטיקלי, דנטטורוברלי), לעומת <b>אינטרנוירונים מקומיים</b> (<span class="term" dir="ltr">local circuit interneurons</span>) עם אקסון קצר ומסועף שמשתתף בעיבוד מקומי בלבד - ולעיתים קרובות מדובר בנוירונים <b>מעכבים</b>, שתפקידם לחדד תגובה בזמן ובמרחב ולמנוע "ריצה משתוללת" של מעגל. כשל בפעולה מעכבת כזו נחשד כמעורב באפילפסיה.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Complete_neuron_cell_diagram_en.svg?width=700" alt="Labeled diagram of a neuron showing dendrites, cell body, nucleus, axon, myelin sheath and axon terminals">
+<p class="media-cap">מבנה נוירון "טיפוסי": דנדריטים, גוף התא (סומה) עם הגרעין, אקסון עטוף מיאלין, וטרמינלים סינפטיים בקצה. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/qOmmqu6_g3s" title="Neurology | Neuron Anatomy and Function" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון סקירה על אנטומיה ותפקוד הנוירון - דנדריטים, גוף התא, אקסון והולכת האות. ערוץ Ninja Nerd.</p>
+
+<h2><span class="num">4</span> אנטומיה תפקודית של נוירון בודד: מדנדריט לטרמינל</h2>
+<div class="mechanism">
+  <p class="chain">
+    מסלול "חבילת המידע" מתחיל בקצה הדנדריטי ומסתיים בטרמינל הסינפטי, בשרשרת של ארבעה שלבים:
+  </p>
+  <p>
+    <b>שלב 1 - קליטה בעמוד השדרה הדנדריטי (spine):</b> קלט סינפטי מגיע לרוב לעמודים דנדריטיים - בליטות קטנות בקצה זרוע דקה. עמוד יחיד יכול לקבל קלט מאקסון בודד או ממספר אקסונים.<br>
+    <b>שלב 2 - הולכה אלקטרוטונית לכיוון האקסון היליק:</b> האות הדנדריטי מופץ בצורה אנלוגית (מדורגת - <span class="term" dir="ltr">graded</span>), ומצטבר עם אותות אחרים בגוף התא, עד שהוא מגיע ל<b>אקסון היליק</b> (<span class="term" dir="ltr">axon hillock / initial segment</span>) - אזור עם צפיפות גבוהה של תעלות נתרן וסף נמוך יחסית להפעלה.<br>
+    <b>שלב 3 - החלטת "הכל או כלום":</b> אם הסכימה החשמלית שמגיעה לאקסון היליק חזקה מספיק - נוצר פוטנציאל פעולה שמתפשט ללא היחלשות לכל אורך האקסון, ללא תלות בעוצמת הגירוי; אם לא - האות נעצר.<br>
+    <b>שלב 4 - שחרור נוירוטרנסמיטר בטרמינל:</b> הגעת פוטנציאל הפעולה לטרמינל הסינפטי מפעילה כניסת סידן, שמניעה מיזוג שלפוחיות סינפטיות עם הממברנה ושחרור נוירוטרנסמיטר לרווח הסינפטי.
+  </p>
+</div>
+<p class="key-box">ההבחנה בין דנדריט לאקסון אינה תמיד ברורה מבחינה מורפולוגית (שניהם יכולים להיראות דומה בתרבית), אך קריטריון מעשי הוא: דנדריט לרוב <b>מתקצר בקוטרו</b> ככל שמתרחקים מגוף התא, ואילו אקסון שומר על <b>קוטר קבוע</b> לאורך כל מהלכו.</p>
+
+<h3>טרנספורט אקסונלי - בעיית הלוגיסטיקה של תא ארוך</h3>
+<p>מכיוון שהמכונה הגנטית של הנוירון (הגרעין) יושבת בגוף התא, בעוד הטרמינל הסינפטי עשוי להיות מרוחק ממנו עד מטר שלם, נדרשת מערכת הובלה יעילה:</p>
+<table>
+  <tr><th>סוג טרנספורט</th><th>כיוון</th><th>קצב</th><th>מטען טיפוסי</th></tr>
+  <tr><td>זרימה בסיסית (bulk flow)</td><td>אורתוגרדי (מהגוף לטרמינל)</td><td>~0.5 מ"מ ליום</td><td>חלבונים מסיסים</td></tr>
+  <tr><td>טרנספורט אקסונלי מהיר</td><td>אורתוגרדי</td><td>עד 400 מ"מ ליום</td><td>אברונים, שלפוחיות</td></tr>
+  <tr><td>טרנספורט רטרוגרדי</td><td>מהטרמינל בחזרה לגוף</td><td>כמחצית מהקצב האורתוגרדי המהיר</td><td>אותות טרופיים, פסולת תאית - וגם נגיפים/רעלנים המנצלים את המסלול (למשל טטנוס, הרפס)</td></tr>
+</table>
+
+<h2><span class="num">5</span> הולכה מהירה: הבעיה שמיאלין פותר</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל צריך מיאלין? כי קיימות שתי דרכים בלבד להאיץ הולכה עצבית: הגדלת קוטר האקסון (הפתרון של חסרי חוליות), או בידוד הממברנה. במוח האנושי עם <b>10<sup>11</sup> נוירונים</b>, הגדלת קוטר כל האקסונים המוטוריים (שהיו צריכים להגיע לכמה מילימטרים) הייתה יוצרת חוט שדרה בעובי עמוד טלפון. הפתרון האבולוציוני החלופי: לעטוף את האקסון במיאלין ולרכז את הפעילות החשמלית רק בנקודות בדידות.
+  </p>
+</div>
+<p>מיאלין הוא הרחבה ספירלית ודחוסה של ממברנת התא - של <b>אוליגודנדרוציט</b> ב-CNS ושל <b>תא שוואן</b> ב-PNS. כל "אינטרנוד" (מקטע מיאלין) מופרד מהשכן שלו ב<b>נוד ראנוויה</b> (<span class="term" dir="ltr">node of Ranvier</span>) - מקטע קצר וחשוף, עשיר בתעלות נתרן. פוטנציאל הפעולה "קופץ" מנוד לנוד בתהליך שנקרא <b>הולכה סלטטורית</b> (<span class="term" dir="ltr">saltatory conduction</span>), שמעניקה שלושה יתרונות בו-זמנית: מהירות הולכה, חיסכון באנרגיה, וחיסכון בנפח.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Neuron_with_oligodendrocyte_and_myelin_sheath.svg?width=700" alt="Diagram of an oligodendrocyte myelinating multiple axon segments with nodes of Ranvier">
+<p class="media-cap">אוליגודנדרוציט יחיד יכול למיילן מספר אינטרנודים על מספר אקסונים שונים בו-זמנית (בניגוד לתא שוואן ב-PNS, שממיילן אינטרנוד בודד על אקסון בודד). מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ikFUv-gdNLQ" title="Saltatory conduction in neurons - Khan Academy" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של הולכה סלטטורית - כיצד פוטנציאל הפעולה "קופץ" בין נודי ראנוויה. ערוץ Khan Academy.</p>
+
+<h3>תאי שוואן ורגנרציה בפריפריה</h3>
+<p>בניגוד לאוליגודנדרוציטים, <b>תאי שוואן</b> יכולים לתמוך ברגנרציה אקסונלית. לאחר חתך עצב היקפי, המקטע הדיסטלי (המנותק מגוף התא) עובר ניוון וואלריאני - המיאלין מתפרק, ותאי השוואן מתרבים ויוצרים "צינור" רציף בתוך הלמינה הבזלית שהם עצמם הפרישו. הקצה הפרוקסימלי של האקסון, שעדיין מחובר לגוף התא, יכול לצמוח לתוך צינור זה ולעיתים להגיע מחדש ליעדו. עיקרון זה הוא הבסיס להשתלת מקטעי עצב היקפי או תאי שוואן מבודדים לקידום רגנרציה - שיטה נפוצה בניתוחי עצב היקפי, ונחקרת גם כטיפול בפגיעת חוט שדרה.</p>
+
+<h2><span class="num">6</span> הסינפסה: משחרור נוירוטרנסמיטר ועד המחזור מחדש</h2>
+<p>בטרמינל הפרה-סינפטי, שלפוחיות סינפטיות ממולאות בנוירוטרנסמיטר על ידי חלבוני הובלה ייעודיים, ונעות לאזור פעיל (active zone) קטן בגודל כ-0.1 מיקרומטר². תהליך ATP-תלוי "מכין" (primes) את השלפוחית, וכניסת סידן בעקבות פוטנציאל הפעולה מפעילה מיזוג שלפוחית-ממברנה ושחרור התוכן לרווח הסינפטי. לאחר מכן מתבצע מחזור אנדוציטי של הממברנה בחזרה לתוך התא. נוירוטרנסמיטרים נעים בין מולקולות קטנות (אצטילכולין, נוראדרנלין) לפפטידים (חומר P, VIP).</p>
+
+<h2><span class="num">7</span> מוות תאי נוירונלי: אפופטוזיס, נמק, אוטופגיה ואקסיטוטוקסיות</h2>
+<p>מוות תאי נוירונלי אינו תהליך פסיבי אחד אלא רצף של מנגנונים שונים, שהאיזון ביניהם קובע אם נוירון בסטרס ישרוד או ימות:</p>
+<table>
+  <tr><th>מנגנון</th><th>אופי</th><th>עיקרי התהליך</th></tr>
+  <tr><td><b>אפופטוזיס</b><br>(מוות תאי מתוכנת)</td><td>אקטיבי, תלוי תעתוק/תרגום</td><td>כיווץ התא, קונדנסציה של הגרעין; מסלול פנימי (שחרור ציטוכרום C ממיטוכונדריה &#8592; אפופטוזום &#8592; קספאזות) או חיצוני (קשירת TNF/Fas &#8592; קספאז 8/10); מווסת על ידי משפחת Bcl2</td></tr>
+  <tr><td><b>נמק</b><br>(מוות ציטופלזמטי)</td><td>פסיבי, לא תלוי סינתזה</td><td>ירידת ATP, נפיחות תא ואברונים, אובדן שלמות הממברנה ושפיכת תוכן התא לחלל החוץ-תאי - שכיח לאחר טראומה מוחית</td></tr>
+  <tr><td><b>אוטופגיה</b></td><td>הרס עצמי מבוקר שיוצא משליטה</td><td>תהליך שתפקידו התקין הוא סילוק חלבונים מקופלים-לא-נכון, שעלול "לאכול" את התא כשהוא הופך על-פעיל</td></tr>
+  <tr><td><b>אקסיטוטוקסיות</b></td><td>ייחודי לנוירונים</td><td>פעילות סינפטית עודפת (למשל אחרי פרכוס או אירוע וסקולרי) &#8592; עומס סידן תוך-תאי &#8592; הפעלת פרוטאזות/תעלות תלויות-סידן &#8592; קספאז קסקייד</td></tr>
+</table>
+<p class="key-box">תגלית מפתיעה: בכמה מחלות ניווניות (אלצהיימר, פרקינסון, ALS, אטקסיה-טלנגיאקטזיה) נוירונים בוגרים - שיצאו ממחזור התא באופן קבוע בעובר - מבטאים מחדש חלבוני מחזור תא (Ki-67, cdk4, ציקלין D). המחזור אינו מסתיים במיטוזה אמיתית, אך כניסה אליו נראית קטלנית לנוירון - ממצא שהופך "כניסה מחודשת למחזור התא" לאחד המנגנונים המוצעים לניוון עצבי.</p>
+
+<h2><span class="num">8</span> אלצהיימר כמודל להבנת שיתוף הפעולה בין נוירונים לגליה</h2>
+<p>מחלת אלצהיימר ממחישה למה אי אפשר להבין ניוון עצבי בלי להבין את הגליה: המחלה מוגדרת פתולוגית על ידי משקעי <b>עמילואיד-β חוץ-תאיים</b> ו<b>סבך נוירופיברילרי</b> תוך-תאי, אך התהליך הדלקתי המלווה אינו הצטברות מונוציטים קלאסית - הוא <b>הפעלת מיקרוגליה</b> ראשונית. אסטרוציטים ומיקרוגליה מקיפים ופולשים למשקע העמילואיד (זו כנראה ניסיון "עטיפה" והרס שנכשל), אך תגובה זו עצמה עלולה לפגוע בנוירונים ובאקסונים סמוכים ("bystander effect") - דוגמה לכך ש<b>תגובתיות גליאלית יכולה להיות גם מגנה וגם הרסנית</b>, עיקרון שחוזר גם בטרשת נפוצה ובפגיעות טראומטיות.</p>
+
+<h2><span class="num">9</span> נוירוגליה: סקירה כללית</h2>
+<p>המונח <span class="term" dir="ltr">neuroglia</span> ("דבק עצבי") נטבע על ידי וירכוב ב-1846 - תיאור מטעה, כפי שהיום ברור. קחל זיהה לראשונה שני מרכיבים גליאליים: אסטרוציטים, ו"האלמנט השלישי" של ה-CNS. לאחר מכן <b>דל ריו-הורטגה</b> חילק את "האלמנט השלישי" לשניים: <b>אוליגודנדרוציטים</b> (יוצרי מיאלין) ו<b>מיקרוגליה</b> (תאי חיסון תושבים). בעשורים האחרונים זוהתה אוכלוסייה רביעית - <b>תאי מבשר אוליגודנדרוציטים (OPCs)</b> - שכיחה כמעט כמו שלוש האחרות, וחמישית - <b>תאי אפנדימה</b>, המצפים את מערכת החדרים. ב-PNS, המקבילה התפקודית היא <b>תא שוואן</b>. סך תאי הגליה במוח האנושי גדול פי 10 ממספר הנוירונים.</p>
+
+<h2><span class="num">10</span> אסטרוציטים: אחות הבית של ה-CNS</h2>
+<p>אסטרוציטים הם התאים השכיחים ביותר ב-CNS (עד 20%-50% מנפח רקמות מוח מסוימות), והפרק מתאר אותם כ"מווסת ההומאוסטזיס" המרכזי של המוח. שלושה תת-סוגים עיקריים:</p>
+<table>
+  <tr><th>תת-סוג</th><th>מיקום/מקור</th><th>תפקוד עיקרי</th></tr>
+  <tr><td>גליה רדיאלית</td><td>אוכלוסייה זמנית בהתפתחות; מקור לרוב האסטרוציטים הבוגרים</td><td>פיגום פיזי להגירת נוירונים; נשארת בבגרות כגליית ברגמן (מוחון), תאי מולר (רשתית)</td></tr>
+  <tr><td>אסטרוציט חומר לבן (סיבי, טיפוס I)</td><td>חומר לבן</td><td>תמיכה מבנית, פיגום לצרורות אקסונים, גבול פיאלי/חדרי (<span class="term" dir="ltr">glial limitans</span>)</td></tr>
+  <tr><td>אסטרוציט חומר אפור (פרוטופלזמטי, טיפוס II)</td><td>חומר אפור</td><td>עוטף סינפסות, גופי תא ודנדריטים; קולט גלוטמט וחוצץ אשלגן</td></tr>
+</table>
+<div class="mechanism">
+  <p class="chain">מנגנון מרכזי: מחזור גלוטמט-גלוטמין ואספקת אנרגיה לסינפסה</p>
+  <p>המוח מהווה 2% ממשקל הגוף אך צורך 25% מהגלוקוז שלו. עבור כל מולקולת גלוטמט שמשתחררת סינפטית ונקלטת מחדש על ידי טרנספורטר גלוטמט אסטרוציטרי, נכנסת מולקולת גלוקוז אחת לאותו אסטרוציט מהמחזור הדם (דרך תאי אנדותל). מגלוקוז זה מופקים 2 ATP בגליקוליזה, ומשתחררים 2 מולקולות לקטט הנצרכות על ידי הסינפסה להפקת 18 ATP נוספים בזרחון חמצוני. במקביל, האסטרוציט משחרר גלוטמין שחוזר לנוירון ומחדש את מאגר הגלוטמט. כלומר: <b>רוב מטבוליזם האנרגיה הסינפטי מתרחש בפועל באסטרוציטים, לא בנוירונים</b> - ומכאן שהדמיית PET עם FDG משקפת בעיקר קליטה אסטרוציטרית, לא צריכה ישירה על ידי נוירונים.</p>
+</div>
+<p>תפקוד קריטי נוסף: תהליכי הקצה האסטרוציטריים ("end-feet") עוטפים כמעט את כל כלי הדם במוח, ומעניקים אפקט טרופי חוץ-תאי שמשרה ומקיים את הצמתים ההדוקים (tight junctions) בין תאי אנדותל שכנים - מרכיב חיוני להיווצרות ולתחזוקת <b>מחסום הדם-מוח</b> (מפורט בפרק 8). בפגיעה מוחית, אסטרוציטים הופכים היפרטרופיים (ולעיתים היפרפלסטיים) - תהליך שנקרא <b>גליוזיס</b> (<span class="term" dir="ltr">reactive astrogliosis</span>) - עם עלייה בביטוי GFAP. גליוזיס יכול לייצב את הרקמה הפגועה, אך גם להפריש חומרים (פרוטאוגליקנים, גורמי גדילה) שמעכבים רגנרציה אקסונלית.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Astrocyte5.jpg?width=700" alt="Fluorescent microscopy image of an astrocyte stained for GFAP showing its star-shaped processes">
+<p class="media-cap">אסטרוציט בצביעה אימונופלואורסצנטית ל-GFAP (חלבון סיבי חומצי גליאלי) - המדגימה את תהליכיו הרבים המסועפים ("צורת כוכב") האופייניים. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/w2gI-IAokJg" title="Neurology | Glial Cells: Astrocytes, Oligodendrocytes, Schwann Cells, Ependymal Cells, Microglia" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה מקיפה של כל אוכלוסיות תאי הגליה - אסטרוציטים, אוליגודנדרוציטים, תאי שוואן, אפנדימה ומיקרוגליה - ותפקידיהם.</p>
+
+<h2><span class="num">11</span> מיקרוגליה: המאבטח החיסוני של המוח</h2>
+<div class="mechanism">
+  <p class="chain">מיקרוגליה מקורה במונוציטים ממקור מח עצם שחודרים למוח מוקדם בהתפתחות, ולא מתאי גזע עצביים - ומכאן קרבתן התפקודית למקרופאגים היקפיים: הן מבטאות סמני מונוציט מופעל (MHC I/II), מסוגלות להציג אנטיגן לתאי T, ומגיבות מהר לכל פתולוגיה מוחית.</p>
+</div>
+<p>מיקרוגליה במנוחה ("ramified") מהוות 5%-20% מתאי הגליה, שכיחות יותר בחומר אפור מאשר בחומר לבן. בתגובה לפתולוגיה הן עוברות "הפעלה" (activation) - שינוי מורפולוגי (תהליכים עבים וקצרים יותר), ולאחר מכן הופכות <b>פגוציטריות</b> ומסלקות רקמה פגועה. תכונה ייחודית: מיקרוגליה יכולות להגיב גם ללא פתולוגיה נמקית ממשית - למשל לאחר חתך עצב הפנים ההיקפי, מיקרוגליה בגרעין עצב הפנים "עוקרות" סינפסות אפרנטיות מהמוטונוירונים הפגועים, בתהליך שנקרא <b>קילוף סינפטי</b> (<span class="term" dir="ltr">synaptic stripping</span>). בקצה השני של הספקטרום, מיקרוגליה משחררות חומרים ציטוטוקסיים (תחמוצת חנקן, TNF, פרוטאזות, גלוטמט) שיכולים לפגוע בעצמם בנוירונים סמוכים.</p>
+
+<h3>תאי מבשר אוליגודנדרוציטים (OPCs) ותאי אפנדימה</h3>
+<p>OPCs (הידועים גם כ-O2A מהמחקר הקלאסי בתרבית) מבטאים PDGFαR ו-NG2, מהווים כ-10%-15% מתאי הגליה במוח הבוגר, ומפוזרים ברשת דמוית-סריג הדומה מאוד בפיזורה לזו של המיקרוגליה - אך ממקור שונה לחלוטין. תפקידם המדויק במוח הבוגר אינו ידוע במלואו, אך הם מסוגלים לחדש אוליגודנדרוציטים לצורך רה-מיאלינציה, כפי שנצפה בחלק מנגעי טרשת נפוצה. <b>תאי אפנדימה</b> מצפים את מערכת החדרים בשכבת תאים קובואידליים ריסניים; הריסים (המכים כ-200 פעימות בדקה) מסייעים לזרימת נוזל השדרה, וחוסר צמתים הדוקים ביניהם מאפשר חילופין חופשי בין המרווח החוץ-תאי המוחי לנוזל השדרה.</p>
+
+<h2><span class="num">12</span> משמעות נוירוכירורגית: גידולים גליאליים והשתלות תאים</h2>
+<p>הבנת זהות תאי הגליה אינה אקדמית בלבד - היא מבססת שתי תחומי פרקטיקה נוירוכירורגית מרכזיים:</p>
+<h3>מקור הגידולים הגליאליים</h3>
+<p>יותר מ-50% מהגידולים התוך-גולגולתיים הם אסטרוציטומות, אוליגודנדרוגליומות או אפנדימומות - כלומר גידולים על שם תאי הגליה שהם "מדמים" מורפולוגית. עם זאת, אוליגודנדרוגליומות לרוב <b>אינן</b> מבטאות אנטיגנים אופייניים לאוליגודנדרוציטים בוגרים; לעומת זאת, הן וגם אסטרוציטומות פילוציטיות מבטאות בעקביות PDGFαR ו-NG2 - סמני OPC. ממצא זה תומך בהשערה ש-OPCs (ולא אוליגודנדרוציטים או אסטרוציטים בוגרים) הם מקור אפשרי לגידולים אלה - בעוד גליובלסטומה מולטיפורמה עשויה לנבוע משושלת מבשר גליאלי נפרדת.</p>
+<h3>טיפולי השתלת תאים</h3>
+<table>
+  <tr><th>מחלת יעד</th><th>תא מושתל</th><th>עיקרון/סטטוס</th></tr>
+  <tr><td>פרקינסון</td><td>נוירונים דופמינרגיים עובריים</td><td>מושתלים ישירות לסטריאטום (אין צורך בהארכת אקסון); ניסויים פתוחים - הצלחה; ניסויים כפולי-סמיות - תוצאות מעורבות, שיפור בעיקר מתחת לגיל 60</td></tr>
+  <tr><td>מחלות מיאלין תורשתיות</td><td>OPCs</td><td>מוכח בבעלי חיים: OPCs אנושיים מושתלים למוח ילוד מיילנים מסלולי חומר לבן ומאריכים הישרדות; המוח הניאונטלי קולט השתלה טוב יותר מהמוח הבוגר</td></tr>
+  <tr><td>טרשת נפוצה (MS)</td><td>OPCs / תאי גזע</td><td>רה-מיאלינציה אנדוגנית כבר קיימת בחלק מהנגעים - מרמזת שהשתלה עשויה לסייע בנגעים שנכשלים לתקן את עצמם; מכשולים רבים עדיין לפני ניסויים אנושיים</td></tr>
+  <tr><td>פגיעת עצב היקפי / חוט שדרה</td><td>תאי שוואן / מקטעי עצב</td><td>שגרתי ומוכח בעצב היקפי; עדיין ניסיוני בחוט שדרה</td></tr>
+</table>
+
+<h2><span class="num">13</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>שם דמיוני: <span dir="ltr">N-A-O-M-E</span> ("נעמי מנהלת את בית המוח")</h3>
+  <p>
+    <b>N</b> - <span class="term" dir="ltr">Neuron</span> - <b>הרופא/ה</b> של הבית: מקבל מידע, מחליט (הכל-או-כלום באקסון היליק), ומעביר הלאה בסינפסה.<br>
+    <b>A</b> - <span class="term" dir="ltr">Astrocyte</span> - <b>האחות</b>: מזינה (מחזור גלוטמט-גלוטמין), מנקה (חציצת אשלגן/נוירוטרנסמיטר), ושומרת על אבטחת הכניסה (end-feet ומחסום הדם-מוח).<br>
+    <b>O</b> - <span class="term" dir="ltr">Oligodendrocyte / Schwann</span> - <b>החשמלאי</b>: מבודד את הכבלים (מיאלין) כדי שהאותות יזרמו מהר וביעילות; באגף ה-PNS (שוואן) הוא גם היחיד שיודע לתקן כבל שנקרע (רגנרציה).<br>
+    <b>M</b> - <span class="term" dir="ltr">Microglia</span> - <b>המאבטח</b>: סורק כל הזמן, "עוצר" תהליכים חשודים, והופך לפגוציט אגרסיבי כשיש פריצה אמיתית.<br>
+    <b>E</b> - <span class="term" dir="ltr">Ependymal cells / OPCs</span> - <b>צוות התחזוקה</b>: תאי האפנדימה מזרימים את "מערכת הביוב" (CSF), וה-OPCs הם כוח המילואים שיכול, בעת הצורך, להפוך לחשמלאי חדש (אוליגודנדרוציט) ולתקן קווי חשמל שניזוקו.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בניין רב-קומות שבו הרופא/ה (הנוירון) מקבל/ת החלטות חשובות, אבל לא יכול/ה לתפקד לבד: האחות (אסטרוציט) מביאה לו אוכל ומים ומגנה על הכניסה מפני חדירת זרים; החשמלאי (אוליגודנדרוציט/שוואן) עוטף כל כבל חשמל בבידוד כדי שהאותות יעברו מהר בלי "לדלוף"; המאבטח (מיקרוגליה) מסתובב במסדרונות כל הזמן ומזהה בעיות מיד; וצוות התחזוקה (אפנדימה ו-OPCs) שומר שהצנרת תזרום וש"יהיה מי שיחליף חשמלאי" אם צריך. כשאחד מהצוות הזה נופל - במיוחד המאבטח או האחות - כל הבניין (ובמיוחד הרופא/ה, הנוירון) בסכנה, גם אם באופן ישיר "אף אחד לא נגע" בו.</p>
+  <svg class="diagram" viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+    <title>מנגנון NAOME - חמשת התפקידים של תאי מערכת העצבים</title>
+    <desc>תרשים המציג את חמשת סוגי התאים העיקריים ותפקידם המטפורי בבית המוח</desc>
+    <rect x="30" y="20" width="560" height="44" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="310" y="47" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">N — נוירון: הרופא/ה (מקבל החלטות, אקסון היליק, סינפסה)</text>
+    <rect x="30" y="74" width="560" height="44" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+    <text x="310" y="101" font-size="14" text-anchor="middle" fill="#14532d" font-weight="700">A — אסטרוציט: האחות (הזנה, BBB, חציצה, גליוזיס)</text>
+    <rect x="30" y="128" width="560" height="44" rx="6" fill="#fefce8" stroke="#a16207" stroke-width="2"/>
+    <text x="310" y="155" font-size="14" text-anchor="middle" fill="#713f12" font-weight="700">O — אוליגודנדרוציט/שוואן: החשמלאי (מיאלין, הולכה סלטטורית)</text>
+    <rect x="30" y="182" width="560" height="44" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="310" y="209" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">M — מיקרוגליה: המאבטח (חיסון תושב, פגוציטוזה)</text>
+    <rect x="30" y="236" width="560" height="44" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="310" y="263" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">E — אפנדימה / OPC: צוות התחזוקה (זרימת CSF, כוח מילואים גליאלי)</text>
+  </svg>
+</div>
+
+<h2><span class="num">14</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Neuron" target="_blank">Neuron – Wikipedia</a>
+    <div class="desc">רקע כללי על מבנה ותפקוד הנוירון, כולל סיווגים נוספים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Astrocyte" target="_blank">Astrocyte – Wikipedia</a>
+    <div class="desc">הרחבה על תת-סוגי אסטרוציטים ותפקודיהם המולקולריים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Node_of_Ranvier" target="_blank">Node of Ranvier – Wikipedia</a>
+    <div class="desc">פירוט מולקולרי על מבנה הנוד והבסיס להולכה הסלטטורית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Microglia" target="_blank">Microglia – Wikipedia</a>
+    <div class="desc">רקע על מקור המיקרוגליה מתאי מונוציט וסמנים לזיהוין.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Wallerian_degeneration" target="_blank">Wallerian Degeneration – Wikipedia</a>
+    <div class="desc">תהליך הניוון והרגנרציה של עצב היקפי לאחר חתך.</div>
+  </li>
+</ul>
+
+<h2><span class="num">15</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34 עבר חתך מלא של העצב האולנרי בפרק כף היד בעקבות פציעת סכין. שבועיים לאחר תפירה מיקרוכירורגית ראשונית של העצב, בבדיקת הולכה עצבית נראה שהמקטע הדיסטלי לחתך אינו מוליך גירוי כלל, בעוד המקטע הפרוקסימלי תקין. המנתחת מסבירה למטופל שתהליך החלמה עצבית איטי צפוי, ושיש חשיבות לכך שהתפירה תשאיר את שני קצות העצב בקרבה טובה. בנפרד, באותו שבוע מגיעה למרפאה מטופלת בת 68 עם מחלת פרקינסון מתקדמת ותנודות תגובה קשות לתרופות, ומבררת על אפשרות של השתלת תאים עובריים.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע המקטע הדיסטלי לחתך אינו מוליך גירוי, בזמן שהפרוקסימלי תקין?</div>
+  <button class="opt" data-i="0">כי תאי השוואן במקטע הדיסטלי מתו מיד לאחר החתך</button>
+  <button class="opt" data-i="1">כי המקטע הדיסטלי מנותק מגוף התא של הנוירון ועובר ניוון וואלריאני - האקסון והמיאלין שלו מתפרקים, בעוד תאי השוואן שם דווקא מתרבים ומכינים "צינור" לרגנרציה עתידית</button>
+  <button class="opt" data-i="2">כי החתך פגע רק בעצבי החישה ולא במוטוריים</button>
+  <button class="opt" data-i="3">כי אין קשר בין מיקום החתך לתפקוד ההולכה</button>
+  <div class="explain">התשובה הנכונה: לאחר חתך עצב היקפי, המקטע הדיסטלי - המנותק מגוף התא שממנו מגיעה כל התמיכה הסינתטית - עובר ניוון וואלריאני: האקסון והמיאלין מתפרקים במהירות ואינם יכולים להוליך גירוי. תאי השוואן במקטע זה, בניגוד לאקסון, אינם מתים - הם מתרבים ויוצרים רצף בתוך הלמינה הבזלית שנשארת שלמה, ומהווים את ה"תשתית" שהאקסון הפרוקסימלי המתחדש יכול לצמוח לתוכה. תשובה 0 שגויה כי תאי השוואן דווקא שורדים ומתרבים. תשובות 2 ו-3 אינן מדויקות מבחינה עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. למה חשוב לשמור על קרבה בין קצוות העצב בתפירה המיקרוכירורגית?</div>
+  <button class="opt" data-i="0">כדי למנוע זיהום בפצע</button>
+  <button class="opt" data-i="1">כי זה משפר את זרימת הדם לעצב בלבד</button>
+  <button class="opt" data-i="2">כי האקסון הפרוקסימלי צריך "לתפוס" את צינור הלמינה הבזלית שיצרו תאי השוואן הדיסטליים כדי לצמוח לאורכו וליצור המשכיות/מגע ישיר עם היעד</button>
+  <button class="opt" data-i="3">אין לכך משמעות ביולוגית, זו רק שיטת עבודה מקובלת</button>
+  <div class="explain">התשובה הנכונה: הרגנרציה תלויה בכך שהצומח האקסונלי הפרוקסימלי יגיע ויכנס לתוך צינור הלמינה הבזלית שיצרו תאי השוואן במקטע הדיסטלי. פער גדול מדי בין הקצוות מקטין דרמטית את הסיכוי שהצמיחה "תמצא" את הצינור הנכון, מה שעלול לגרום לצמיחה אקטופית (נוירומה) במקום רגנרציה תפקודית. תשובה 0 נכונה כללית לניתוח אך אינה הסיבה הביולוגית הספציפית כאן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע לתאי שוואן (בניגוד לאוליגודנדרוציטים ב-CNS) יש יכולת לתמוך ברגנרציה אקסונלית?</div>
+  <button class="opt" data-i="0">כי הם יוצרים למינה בזלית משלהם סביב כל אינטרנוד, שמספקת מצע פיזי רציף וסביבה תומכת-צמיחה לאקסון המתחדש</button>
+  <button class="opt" data-i="1">כי הם אינם עוברים ניוון כלל לאחר חתך</button>
+  <button class="opt" data-i="2">כי הם מסוגלים ליצור פוטנציאלי פעולה עצמאיים</button>
+  <button class="opt" data-i="3">כי הם מקורם מתאי גזע עצביים ולא מהעצבייה (neural crest)</button>
+  <div class="explain">התשובה הנכונה: היכולת הייחודית של תא שוואן לתמוך ברגנרציה נובעת מיצירת למינה בזלית רציפה סביב כל אינטרנוד, שנשארת כמבנה יציב גם לאחר ניוון האקסון והמיאלין, ומספקת "מסילה" פיזית ומולקולרית לצמיחה אקסונלית מחודשת. אוליגודנדרוציט ב-CNS אינו יוצר מבנה תומך מקביל, ומיאלין CNS פגוע אף מכיל מולקולות מעכבות צמיחה. תשובות 1, 2 ו-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. במטופלת עם פרקינסון השוקלת השתלת נוירונים דופמינרגיים עובריים - מדוע גישה זו נחשבת "מועמדת אטרקטיבית" יחסית לגישות השתלה אחרות בפרק?</div>
+  <button class="opt" data-i="0">כי נוירונים דופמינרגיים אינם דורשים כלל השתלה מדויקת</button>
+  <button class="opt" data-i="1">כי לא נדרשת כל תמיכה חיסונית לאחר ההשתלה</button>
+  <button class="opt" data-i="2">כי מדובר בטיפול תרופתי בלבד ולא בהשתלת תאים</button>
+  <button class="opt" data-i="3">כי הנוירונים מושתלים ישירות באתר העצבוב (הסטריאטום) ולכן אינם צריכים להאריך אקסונים למרחקים - בשונה מנוירוני פרויקציה שדורשים חיבור מדויק ליעד רחוק</button>
+  <div class="explain">התשובה הנכונה: הפרק מסביר שהאתגר המרכזי בהשתלת נוירונים הוא חוסר היכולת של נוירונים בוגרים להאריך אקסונים למרחקים ולהתחבר ליעדים הנכונים. בפרקינסון, הבעיה היא אובדן עצבוב דופמינרגי בסטריאטום - ולכן ניתן להשתיל את הנוירונים ישירות באתר שבו נדרשת פעילותם, ללא צורך בהארכת אקסון למרחק. עם זאת, הפרק מציין גם שניסויים כפולי-סמיות היו מאכזבים ברמת האוכלוסייה הכללית (עם תועלת חלקית מתחת לגיל 60). תשובות 0-2 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. אם בבדיקת הדמיה של אותה מטופלת מתגלה גם גידול תוך-גולגולתי המבטא בחוזקה PDGFαR ו-NG2 אך לא אנטיגנים אופייניים לאוליגודנדרוציט בוגר - מהי המשמעות הסבירה ביותר?</div>
+  <button class="opt" data-i="0">הגידול ודאי שפיר ואינו דורש מעקב</button>
+  <button class="opt" data-i="1">דפוס זה תואם השערה שהגידול (למשל אוליגודנדרוגליומה) מקורו בתאי מבשר אוליגודנדרוציטים (OPCs) ולא באוליגודנדרוציטים או אסטרוציטים בוגרים עצמם</button>
+  <button class="opt" data-i="2">דפוס זה מוכיח שהגידול מקורו במיקרוגליה</button>
+  <button class="opt" data-i="3">PDGFαR ו-NG2 הם סמנים ייחודיים לנוירונים בלבד ולכן הגידול נוירונלי</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין שאוליגודנדרוגליומות ואסטרוציטומות פילוציטיות מבטאות בעקביות PDGFαR ו-NG2 - סמנים האופייניים ל-OPCs - למרות שהן אינן מבטאות סמנים של תאים בוגרים. זה תומך בהשערה שמקור הגידולים הללו הוא באוכלוסיית ה-OPC ולא בתא הבוגר שהגידול "מדמה" מורפולוגית. תשובות 0, 2 ו-3 אינן נתמכות על ידי הפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">16</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>נוירון מוגדר <b>תפקודית</b> (תא מקוטב שמעביר מידע חשמלי), לא לפי צורה - Purkinje, פוטורצפטור ותא בגנגליון השורש הדורסלי נראים שונים לגמרי אך כולם נוירונים.</li>
+    <li>מסלול המידע בנוירון: <b>דנדריט (spine) &#8592; הולכה אלקטרוטונית מדורגת &#8592; אקסון היליק (החלטת הכל-או-כלום) &#8592; פוטנציאל פעולה &#8592; טרמינל סינפטי</b>. טרנספורט אקסונלי מהיר יכול להגיע ל-400 מ"מ/יום.</li>
+    <li>מיאלין (אוליגודנדרוציט ב-CNS, שוואן ב-PNS) מאפשר <b>הולכה סלטטורית</b> בין נודי ראנוויה - מהירה, חסכונית באנרגיה ובנפח. רק תא שוואן תומך ברגנרציה אקסונלית לאחר פגיעה, בזכות הלמינה הבזלית שהוא יוצר.</li>
+    <li>מוות תאי נוירונלי כולל לפחות ארבעה מנגנונים חופפים: <b>אפופטוזיס</b> (מסלול פנימי/חיצוני, קספאזות), <b>נמק</b>, <b>אוטופגיה</b> ו<b>אקסיטוטוקסיות</b> - וכניסה מחודשת למחזור התא נקשרת לניוון עצבי (אלצהיימר, פרקינסון, ALS).</li>
+    <li>תאי גליה (פי 10 ממספר הנוירונים) כוללים <b>אסטרוציטים</b> (הזנה, BBB, חציצה, גליוזיס), <b>אוליגודנדרוציטים/שוואן</b> (מיאלין), <b>מיקרוגליה</b> (חיסון תושב ממקור מונוציטרי), ו<b>OPCs/אפנדימה</b> (רזרבה גליאלית וזרימת CSF).</li>
+    <li>ברמה הנוירוכירורגית: מרבית הגידולים התוך-גולגולתיים (&gt;50%) הם גליאליים, וייתכן שמקורם ב-OPCs (סמני PDGFαR/NG2); השתלות תאים (נוירונים דופמינרגיים בפרקינסון, OPCs במחלות מיאלין ו-MS, שוואן בפגיעת עצב היקפי) הן כיוון טיפולי פעיל.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
