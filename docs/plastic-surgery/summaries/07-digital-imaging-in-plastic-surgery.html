@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: הדמיה דיגיטלית בכירורגיה פלסטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 7: הדמיה דיגיטלית בכירורגיה פלסטית <span class="term" dir="ltr">Digital Imaging in Plastic Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Daniel Z. Liu, Brian M. Kinney</div>
+
+<p>זהו פרק "עקרונות" טכני ולא פרק מחלה: הוא עוסק בצילום ובהדמיה כ<b>סטנדרט טיפול</b> (<span class="term" dir="ltr">standard of care</span>) בכירורגיה פלסטית – לא "נחמד שיהיה" אלא רכיב חובה בתיעוד רפואי, בהסכמה מדעת, בתכנון ניתוחי ובהגנה משפטית. מכיוון שההתמחות שלנו מבוססת על הערכה ויזואלית של צורה ותפקוד, איכות התיעוד הוויזואלי משפיעה ישירות על איכות הטיפול.</p>
+
+<h2><span class="num">1</span> למה צילום הוא "סטנדרט טיפול" ולא רק תיעוד נחמד</h2>
+<div class="mechanism">
+  <p class="chain">
+    התמונה הרפואית ממלאת בכירורגיה פלסטית תפקיד מקביל לצילום רנטגן בהתמחויות אחרות: היא <b>מסמך אובייקטיבי</b> שמלווה את כל מסלול הטיפול – טרום-ניתוחי (הערכת מצב, תכנון), תוך-ניתוחי (תיעוד שלבים), ואחרי-ניתוחי (מעקב, הדרכת המטופל, הערכת תוצאה מול תכנון).
+  </p>
+  <p>הסיבה שזה קריטי דווקא כאן: מנתחים <b class="key">לא אמינים בזיכרון העצמי שלהם</b> לגבי איך המטופל נראה לפני הניתוח – ותופעה נפוצה במיוחד בניתוחים אסתטיים היא שהמטופל עצמו "משכתב" בזיכרון את מצבו הקודם ("נקודת ייחוס" פסיכולוגית מתעדכנת למצב הנוכחי), מה שיוצר ציפיות מוגזמות מהמשך הטיפול. בלי תמונה אובייקטיבית משתי הצדדים, אי אפשר להתווכח עם זיכרון מוטה. בנוסף, התמונה מכילה סוגי מידע (צבע, מרקם, וסקולריות, יחסים אנטומיים מרחביים) שקשה מאוד לתעד במילים בלבד.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>תפקידי הצילום לאורך מסלול הטיפול</title>
+  <rect x="660" y="20" width="170" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="745" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">טרום-ניתוחי</text>
+  <text x="745" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">הערכה + תכנון + הסכמה</text>
+
+  <rect x="440" y="20" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="525" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">תוך-ניתוחי</text>
+  <text x="525" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">תיעוד שלבי הפרוצדורה</text>
+
+  <rect x="220" y="20" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="305" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אחרי-ניתוחי</text>
+  <text x="305" y="63" font-size="12" text-anchor="middle" fill="#065f46">מעקב, הדרכה, השוואה לתכנון</text>
+
+  <rect x="10" y="20" width="170" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="95" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">רשומה קבועה</text>
+  <text x="95" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">מחקר, מדדי איכות, משפטי</text>
+
+  <polygon points="620,50 660,44 660,56" fill="#374151"/>
+  <line x1="660" y1="50" x2="620" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="400,50 440,44 440,56" fill="#374151"/>
+  <line x1="440" y1="50" x2="400" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="180,50 220,44 220,56" fill="#374151"/>
+  <line x1="220" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="150" y="120" width="560" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="148" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מנתח לא אמין בזיכרון עצמי + מטופל "משכתב" מצב קודם &#8592; רק תמונה אובייקטיבית פותרת</text>
+  <text x="430" y="167" font-size="12" text-anchor="middle" fill="#78350f">(מסביר למה תיעוד שיטתי הוא לא אופציונלי)</text>
+  <polygon points="430,120 424,100 436,100" fill="#b45309"/>
+  <line x1="430" y1="120" x2="430" y2="100" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<p class="key-box">כמעט כל מטופל מבין שצילום הוא חלק מהרשומה הרפואית, ורוב המנתחים יסרבו לנתח מטופל שמסרב לצילום רפואי. יש טווח אפשרויות הסכמה: שימוש פנימי בלבד, שיתוף עם מטופלים אחרים ללא זיהוי, או שימוש בלתי מוגבל (אינטרנט, פרסום) – וזה חייב להיות מוסדר בטופס הסכמה ייעודי לתמונות, נפרד מהסכמת הניתוח הכללית.</p>
+
+<h2><span class="num">2</span> העקרונות הטכניים ל"עקביות" – למה כל פרמטר חייב להישאר קבוע</h2>
+<p>הרעיון המרכזי: תמונה טרום-ניתוחית ותמונה אחרי-ניתוחית שימושיות להשוואה <b>רק אם כל משתנה מלבד המטופל עצמו נשאר זהה</b>. שינוי במצלמה, בתאורה, בזווית או באיזון הלבן פוסל את ההשוואה כי אי אפשר לדעת אם השינוי שרואים נובע מהניתוח או מתנאי הצילום.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>עיקרון</th><th>מה זה אומר בפועל</th></tr></thead>
+  <tbody>
+    <tr><td><b>אותה מצלמה וצלם</b></td><td>החלפת מצלמה משנה את איזון הצבע, הרגישות הפוטונית ועיבוד החומרה הפנימי – גם אם שני הדגמים "דומים" על הנייר.</td></tr>
+    <tr><td><b>מהירות תריס וצמצם (Aperture) קבועים</b></td><td>צמצם צר (F-stop גבוה, לפחות <b>F16</b>) מגדיל את עומק השדה כדי ששני אזורים בעומק שונה (למשל אזור העין ואזור הסנטר) יהיו חדים בו-זמנית. תריס איטי מדי מיטשטש בתנועה; לכן נדרש <b>1/60 שנייה או מהיר יותר</b>.</td></tr>
+    <tr><td><b>איזון לבן (White balance) קבוע</b></td><td>מקורות אור שונים (פלואורסנט, פלאש, שמש) "צובעים" את הלבן בגוונים שונים; המצלמה מפצה על כך כדי לשמר צבעי עור טבעיים. שינוי איזון הלבן בין ביקורים הופך השוואת גוון עור לחסרת משמעות.</td></tr>
+    <tr><td><b>רקע כחול בינוני / אפור 18%</b></td><td>נותן את גוון העור הטבעי ביותר ומשפיע הכי פחות על החשיפה. רקע לבן/שחור "מטעה" את מד האור הרגיל (מטריקס) ומחייב מעבר למד נקודתי על העור – אך אז נוצר ניגוד חד שלא נראה טבעי. מגבות ניתוח כחולות מתאימות; ירוקות – לא.</td></tr>
+    <tr><td><b>מיקום צילום קבוע</b></td><td>סימוני רצפה (טייפ) לעמידת המטופל, כדי לשמר את המרחק והזווית בין ביקורים.</td></tr>
+    <tr><td><b>רזולוציה מספקת אך לא מוגזמת</b></td><td>מינימום מומלץ &gt;3000×2000 פיקסלים (כ-6 מגה-פיקסל) – זה קובע את <i>תקרת</i> האיכות, לא את הרצפה. מצלמות מודרניות מציעות 16+ מגה-פיקסל, אך זה כבר מעבר לנדרש קלינית.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">3</span> פורמטים דיגיטליים ואיך המצלמה "רואה" צבע</h2>
+<p>חיישן המצלמה (CCD או CMOS) מסונן ברוב המצלמות בתבנית <b>Bayer</b>: כל פיקסל שני ירוק, ואחד מכל ארבעה אדום או כחול (יותר ירוק כי העין האנושית רגישה יותר לירוק). זה ההסבר <i>למה</i> "מגה-פיקסלים" לבד לא מספרים את כל הסיפור – איכות התמונה תלויה גם באלגוריתם שמפרש את דפוס הצבעים הזה ובאיכות העדשה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פורמט</th><th>מהות</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b class="term" dir="ltr">RAW</b></td><td>"הנגטיב הדיגיטלי" – נתוני החיישן הגולמיים, ללא עיבוד כלל (בלי איזון לבן, דחיסה או חידוד)</td><td>איכות תמונה מרבית, שליטה מלאה בעיבוד בדיעבד, דחיסה ללא אובדן מידע</td><td>קובץ גדול פי 2–6 מ-JPEG; דורש תוכנה ייעודית לכל דגם מצלמה (אין תקן אחיד)</td></tr>
+    <tr><td><b class="term" dir="ltr">TIFF</b></td><td>פורמט "מבוסס-פיקסל" (raster) עם עומק צבע 24-ביט</td><td>הטוב ביותר להדפסה; דחיסה חסרת-אובדן (LZW)</td><td>קובץ גדול יחסית</td></tr>
+    <tr><td><b class="term" dir="ltr">JPEG/JPG</b></td><td>פורמט הכי נפוץ, דחיסה "עם אובדן" (lossy) בסולם עד 90%</td><td>קובץ קטן, נוח לשליחה/דוא"ל, נתמך בכל תוכנה</td><td>איבוד מידע קבוע ובלתי הפיך בכל שמירה חוזרת</td></tr>
+    <tr><td><b class="term" dir="ltr">PSD</b> (Photoshop)</td><td>פורמט קנייני של Adobe</td><td>שכבות עריכה, ניהול צבע, עומק צבע 48-ביט</td><td>לא פורמט "רפואי" סטנדרטי; דורש תוכנה ספציפית</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">4</span> חמשת התצוגות הסטנדרטיות (Five Standard Views) והכללים לכל אזור אנטומי</h2>
+<p>לרוב אזורי הגוף, בסיס הצילום הוא <b>חמש תצוגות</b>: <span class="term" dir="ltr">AP (anterior-posterior)</span> אחת, שתי תצוגות אלכסון (<span class="term" dir="ltr">oblique</span>, 45°) ושתי תצוגות פרופיל (<span class="term" dir="ltr">lateral</span>, 90°) – ימין ושמאל לכל אחת מהאחרונות. לגוף התחתון/גפיים מוסיפים לרוב גם תצוגה אחורית (<span class="term" dir="ltr">posterior</span>).</p>
+<svg class="diagram" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+  <title>חמש התצוגות הסטנדרטיות סביב הראש</title>
+  <circle cx="350" cy="110" r="60" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="350" y="115" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">המטופל</text>
+  <g font-size="12" fill="#1f2937" font-weight="700" text-anchor="middle">
+    <circle cx="350" cy="20" r="26" fill="#ecfdf5" stroke="#047857"/>
+    <text x="350" y="24">AP&#8288; 0°</text>
+    <circle cx="530" cy="60" r="26" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="530" y="64">אלכסון 45°</text>
+    <circle cx="600" cy="170" r="26" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="600" y="174">פרופיל 90°</text>
+    <circle cx="170" cy="60" r="26" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="170" y="64">אלכסון 45°</text>
+    <circle cx="100" cy="170" r="26" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="100" y="174">פרופיל 90°</text>
+  </g>
+  <line x1="350" y1="46" x2="350" y2="60" stroke="#9ca3af" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="500" y1="75" x2="410" y2="95" stroke="#9ca3af" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="580" y1="150" x2="440" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="200" y1="75" x2="290" y2="95" stroke="#9ca3af" stroke-width="2" stroke-dasharray="3,3"/>
+  <line x1="120" y1="150" x2="260" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="3,3"/>
+</svg>
+<p class="figcap">חמש התצוגות מצולמות סביב המטופל: AP, שני אלכסונים (45°) ושני פרופילים (90°) – ימין ושמאל</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אזור</th><th>כללים ייחודיים</th></tr></thead>
+  <tbody>
+    <tr><td><b>פנים מלאות</b></td><td>גבול עליון: כ-10% מגובה התמונה מעל קודקוד הגולגולת. גבול תחתון: מתחת לחריץ העל-חזי. <span class="term" dir="ltr">Frankfort horizontal plane</span> (מחבר את שולי הארובה התחתונים לטראגוס) נשמר מקביל לרצפה כדי שהזווית תהיה עקבית בין ביקורים.</td></tr>
+    <tr><td><b>עיניים</b></td><td>מעבר לחמש התצוגות – עוד ארבע: עצימה קלה (מדגישה את הקפל העל-טרסלי), מבט כלפי מעלה (מדגיש כריות שומן תת-ארובתיות), עיניים קמוצות בחוזקה (שריר אורביקולריס), ועיוות/היצרות עפעפיים.</td></tr>
+    <tr><td><b>שד</b></td><td>שלוש אפשרויות תנוחת ידיים (לצד הגוף / על הירכיים / מאחורי הגב התחתון) – חייבות להיות עקביות בין ביקורים לאותו מטופל.</td></tr>
+    <tr><td><b>בטן תחתונה/ישבן</b></td><td>משתמשים ב"תחתוני צילום" נייר כחולים חד-פעמיים (<i>modesty garments</i>) – <b class="key">לא בגלל צניעות בלבד, אלא כדי לנטרל משתנה מבלבל</b>: תחתונים אישיים משתנים בצבע/מרקם/קו שיזוף בין ביקורים ומטעים את ההשוואה.</td></tr>
+    <tr><td><b>חלל הפה / ניתוחי לסת</b></td><td>נדרשים מרחיקי לחיים שקופים לתצוגה אוקלוזלית תוך-פומית.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">5</span> תיוג, פרטיות ורגולציה של תמונות דיגיטליות</h2>
+<div class="mechanism">
+  <p class="chain">
+    תמונה רפואית דיגיטלית מלווה במטא-דאטה מסוג <b class="term" dir="ltr">EXIF</b> (סוג מצלמה, עדשה, תאריך, שעה, תריס, צמצם) – אך בכירורגיה פלסטית נדרש מידע קריטי נוסף שהמצלמה לא מייצרת אוטומטית: גיל/מין/משקל המטופל, קודי אבחנה (<span class="term" dir="ltr">ICD-10</span>) וקוד פרוצדורה (<span class="term" dir="ltr">CPT</span>), סוג שתל, ותאריך ביחס לניתוח (טרום/אחרי).
+  </p>
+  <p>מכיוון שתמונה דיגיטלית היא "רשומה רפואית" לכל דבר, היא כפופה ל-<b class="term" dir="ltr">HIPAA</b> (1996) שמגן על פרטיות המטופל – ו-<b class="term" dir="ltr">ARRA</b> (2009, <i>American Recovery and Reinvestment Act</i>) הרחיב את חובות ה-HIPAA גם לספקי שירות חיצוניים (למשל חברת ענן לאחסון תמונות) וקבע קנסות אזרחיים ופליליים משמעותיים על הפרה. <b class="key">אובדן תמונה דיגיטלית מסוכן הרבה יותר מאובדן תצלום נייר</b> – קובץ שדלף עלול "להתפרסם ברשת" ולהגיע למיליוני אנשים תוך זמן קצר, בעוד תצלום פיזי גנוב מוגבל בהיקפו.</p>
+</div>
+
+<h2><span class="num">6</span> החזית החדשה: הדמיה תלת-ממדית, תכנון וירטואלי ווידאו</h2>
+<p>בניגוד להתמחויות אחרות שבהן ההצלחה נמדדת בקריטריונים אובייקטיביים, בכירורגיה פלסטית אסתטית <b>שביעות הרצון הסובייקטיבית של המטופל היא לרוב הקריטריון המכריע</b> – גם ניתוח מוצלח טכנית עלול "להיכשל" אם התוצאה לא תואמת את הציפייה. זה מסביר למה כלים שמאפשרים למטופל "לראות מראש" את התוצאה חשובים כל כך:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>כלי</th><th>עקרון פעולה</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td>הדמיה תלת-ממדית (<span class="term" dir="ltr">3D surface imaging</span>)</td><td>מספר מצלמות מצלמות בו-זמנית מזוויות שונות; תוכנה מרכיבה מודל תלת-ממדי של פני השטח, ולעיתים משתמשת בניתוח אלמנטים סופיים פיזיקלי (<span class="term" dir="ltr">FEA – finite element analysis</span>) כדי לדמות שינוי נפח (למשל שתל שד) על המודל</td><td>חברות מסחריות מובילות בתחום: Canfield, Crisalix, Nex-Tech, Stryker</td></tr>
+    <tr><td>תכנון ניתוחי וירטואלי (<span class="term" dir="ltr">VSP – virtual surgical planning</span>)</td><td>שילוב מדידות טופוגרפיות מדויקות של המטופל עם תכנון קדם-ניתוחי, לעיתים לצד הדפסת תלת-ממד של שתלים/תותבות מותאמים אישית</td><td>הקשר חשוב: דוח מכון הרפואה האמריקאי (IOM) <i>To Err Is Human</i> (2000) העריך כ-<b>44,000 מקרי מוות שנתיים</b> כתוצאה משגיאות רפואיות – חלק ניכר בתכנון ניתוחי – מה שמניע את המעבר לתכנון מבוסס-הדמיה מדויק</td></tr>
+    <tr><td>וידאו רפואי</td><td>כמעט כל מצלמה דיגיטלית מודרנית מצלמת וידאו; שימושי לתיעוד טווח תנועה, טונוס/גמישות, וניתוח דינמי של תוצאה אסתטית</td><td>עדיין <b>לא הוגדר כסטנדרט טיפול מחייב</b> (בשונה מצילום סטילס) – בגלל דרישות ציוד, עריכה ומיומנות מקצועיות גבוהות יותר</td></tr>
+  </tbody>
+</table>
+</div>
+<p>כיוון עתידי שהפרק מציין: שילוב בינה מלאכותית לניתוח תוכן התמונה עצמו (לא רק תיוג מטא-דאטה) – לדוגמה זיהוי אוטומטי של איכות תוצאה, ציוני וסקולריות של פלאפ, או ספירת תאים בעבודה מיקרוסקופית.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">C-L-B-F</span> לעקביות בצילום קליני</h3>
+  <p>
+    <b>C</b> – <span class="term" dir="ltr">Camera</span> (אותה מצלמה וצלם, תמיד).<br>
+    <b>L</b> – <span class="term" dir="ltr">Lighting</span> (תאורה/פלאש קבועים, איזון לבן קבוע).<br>
+    <b>B</b> – <span class="term" dir="ltr">Background</span> (רקע כחול/אפור קבוע, ללא שינוי בגדים/תחתונים).<br>
+    <b>F</b> – <span class="term" dir="ltr">Framing</span> (מסגור, זווית ומרחק קבועים – חמש התצוגות, אותם סימוני רצפה).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני צלם שמצלם אותו "דגם" (המטופל) פעמיים – פעם לפני החנות ופעם אחריה – אבל כדי שההשוואה תהיה הוגנת, הוא נועל את כל שאר הסטודיו בברגים: אותו מצלם קבוע לחצובה (המצלמה), אותה נורה בדיוק דולקת מעל (התאורה), אותו יריעת בד כחולה נמתחת מאחור (הרקע), וסימון על הרצפה שמראה בדיוק איפה לעמוד (המסגור). רק כשארבעת הברגים האלה נשארים בדיוק באותו מקום, ההבדל בתמונה מספר על הניתוח – ולא על הצילום.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>ארבעת ה"ברגים" שנועלים את הסטודיו</title>
+    <rect x="30" y="30" width="440" height="120" rx="10" fill="#f8fafc" stroke="#9ca3af" stroke-dasharray="4,4"/>
+    <text x="250" y="20" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">הסטודיו "נעול בברגים"</text>
+    <g font-size="12" text-anchor="middle" font-weight="700">
+      <circle cx="100" cy="90" r="34" fill="#eff6ff" stroke="#2563eb"/>
+      <text x="100" y="94" fill="#1e3a8a">מצלמה</text>
+      <circle cx="200" cy="90" r="34" fill="#ecfdf5" stroke="#047857"/>
+      <text x="200" y="94" fill="#065f46">תאורה</text>
+      <circle cx="300" cy="90" r="34" fill="#fef2f2" stroke="#b91c1c"/>
+      <text x="300" y="94" fill="#7f1d1d">רקע</text>
+      <circle cx="400" cy="90" r="34" fill="#f5f3ff" stroke="#6d28d9"/>
+      <text x="400" y="94" fill="#4c1d95">מסגור</text>
+    </g>
+    <text x="250" y="180" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">רק כך ההבדל בתמונה = הניתוח, לא רעש צילומי</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים לעיון</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4924408/" target="_blank">Clinical Photography for Periorbital and Facial Aesthetic Practice – PMC</a>
+    <div class="desc">סקירה שפיטה מפורטת על עקרונות צילום קליני בפרקטיקה אסתטית של הפנים והעיניים, כולל דגשי ציוד ותאורה.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/9703100/" target="_blank">Photographic Standards in Plastic Surgery – PubMed</a>
+    <div class="desc">המאמר המכונן (DiBernardo ואחרים, Plast Reconstr Surg 1998) שהניח את התקנים הפוטוגרפיים המצוטטים גם בפרק עצמו.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/11293523/" target="_blank">Guidelines for Standard Photography in Plastic Surgery – PubMed</a>
+    <div class="desc">הנחיות מעודכנות לצילום סטנדרטי הכוללות את חמש התצוגות ואת הכללים הספציפיים לכל אזור אנטומי.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מרפאה פלסטית חדשה קלטה מצלמה משודרגת (16 מגה-פיקסל) להחלפת המצלמה הישנה (10 מגה-פיקסל) באמצע סדרת מעקב אחרי מטופלת שעברה הגדלת שד לפני 3 חודשים. הצלם השתמש באותו רקע כחול ואותה תאורה, אך שינה את הגדרת מהירות התריס ל-1/30 שנייה כדי "לתפוס יותר אור" בחדר החשוך יחסית, והשאיר את המצלמה על איזון לבן אוטומטי. בבדיקת התמונות שהתקבלו, גוון עור המטופלת נראה שונה במידה ניכרת בין הביקור הקודם לנוכחי, והתמונה מעט מטושטשת.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה הבעיה המרכזית בתרחיש שתואר בווינייטה?</div>
+  <button class="opt" data-i="0">הרזולוציה הגבוהה יותר (16MP) פוגעת באיכות ההשוואה</button>
+  <button class="opt" data-i="1">שינוי המצלמה, מהירות התריס ואיזון הלבן האוטומטי – כל אחד לחוד כבר פוסל השוואה אמינה בין הביקורים</button>
+  <button class="opt" data-i="2">אין בעיה, כל עוד הרקע והתאורה נשארו זהים</button>
+  <button class="opt" data-i="3">הבעיה היא רק הטשטוש, וניתן להתעלם משינוי הגוון</button>
+  <div class="explain">התשובה הנכונה: עקביות ההשוואה טרום/אחרי-ניתוח דורשת ששום פרמטר לא ישתנה מלבד המטופל עצמו. כאן השתנו שלושה משתנים בבת אחת: המצלמה עצמה (משנה רגישות פוטונית ועיבוד פנימי), מהירות התריס (1/30 איטית מדי – מתחת לסף המומלץ של 1/60, גורמת לטשטוש תנועה), ואיזון הלבן על אוטומטי (עלול "להיסחף" בהתאם לתאורה הרגעית ולשנות את גוון העור הנקלט). רזולוציה גבוהה יותר (תשובה 1) קובעת תקרת איכות ולא פוגעת בהשוואה. רקע ותאורה זהים (תשובה 2) הם תנאי הכרחי אך לא מספיק. הטשטוש (תשובה 4) הוא רק חלק אחד מהבעיה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע נבחר רקע כחול בינוני או אפור 18% דווקא, ולא לבן או שחור?</div>
+  <button class="opt" data-i="0">כי זה הרקע הזול ביותר לרכישה</button>
+  <button class="opt" data-i="1">כי חוקי ASPS מחייבים רקע כחול בלבד</button>
+  <button class="opt" data-i="2">כי הוא נותן את גוון העור הטבעי ביותר ומשפיע הכי פחות על החשיפה, בעוד רקעי קיצון מחייבים מעבר למד אור נקודתי שיוצר ניגוד לא-טבעי</button>
+  <button class="opt" data-i="3">כי מגבות ניתוח ירוקות תמיד זמינות בחדר ניתוח</button>
+  <div class="explain">התשובה הנכונה: רקע לבן או שחור "מטעה" את מד האור הרגיל של המצלמה (מטריקס) בגלל הניגוד הקיצוני, ומחייב מעבר למד ספוט על העור – אך זה יוצר ניגוד חד שלא נראה טבעי בתמונה. כחול בינוני/אפור 18% נותן חשיפה מאוזנת וגוון עור אמין. אין התייחסות לעלות (תשובה 1) בפרק. תשובה 2 הופכת עובדה שהוזכרה (עדיפות מגבות כחולות) לכלל מחייב שלא קיים. מגבות ירוקות (תשובה 4) צוינו במפורש כ<i>לא</i> מתאימות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו היתרון המרכזי של פורמט RAW על פני JPEG בצילום רפואי?</div>
+  <button class="opt" data-i="0">הנתונים הגולמיים ללא עיבוד/דחיסה עם אובדן, ולכן שליטה מלאה ואיכות מרבית בעיבוד בדיעבד</button>
+  <button class="opt" data-i="1">קובץ RAW תמיד קטן יותר מ-JPEG</button>
+  <button class="opt" data-i="2">RAW הוא פורמט תקני אחיד שנפתח בכל תוכנה ללא צורך בהמרה</button>
+  <button class="opt" data-i="3">RAW תמיד כולל דחיסת LZW חסרת אובדן כמו TIFF</button>
+  <div class="explain">התשובה הנכונה: RAW הוא "הנגטיב הדיגיטלי" – נתוני החיישן הגולמיים בלי איזון לבן, עיבוד צבע, חידוד או דחיסה עם אובדן, מה שמאפשר שליטה מלאה ואיכות מקסימלית בעריכה מאוחרת. תשובה 2 הפוכה – RAW גדול פי 2–6 מ-JPEG. תשובה 3 הפוכה – RAW משתנה מיצרן ליצרן ודורש תוכנה ייעודית, בניגוד ל-JPEG שנפתח כמעט בכל מקום. תשובה 4 מבלבלת בין תכונת TIFF (LZW) לבין RAW.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע השימוש בתחתוני צילום נייר חד-פעמיים ("modesty garments") חשוב מבחינה מדעית, ולא רק מבחינת צניעות?</div>
+  <button class="opt" data-i="0">הם זולים יותר מתחתונים רגילים</button>
+  <button class="opt" data-i="1">הם נדרשים על פי חוק HIPAA</button>
+  <button class="opt" data-i="2">הם מגינים מפני זיהום בחדר ניתוח</button>
+  <button class="opt" data-i="3">הם מנטרלים משתנה מבלבל – תחתונים אישיים משתנים בצבע/מרקם/קו שיזוף בין ביקורים ועלולים להטעות את ההשוואה החזותית</button>
+  <div class="explain">התשובה הנכונה: מטרתם המדעית היא לשמור על עקביות מוחלטת של הלבוש בין ביקורים – בלעדיהם, מטופלת עשויה להגיע עם תחתונים בצבע/מרקם שונה, או עם קו שיזוף קיצי שונה, מה שמוסיף "רעש" ויזואלי שאינו קשור לניתוח עצמו. HIPAA (תשובה 2) עוסק בפרטיות נתונים דיגיטליים, לא בלבוש. סטריליות (תשובה 3) אינה הסיבה שהפרק נותן להקשר הצילומי הזה. עלות (תשובה 1) אינה נזכרת כטעם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו התפקיד המרכזי שממלאת הדמיה תלת-ממדית (3D surface imaging) בכירורגיה פלסטית אסתטית, ולמה זה חשוב דווקא כאן יותר מבהתמחויות אחרות?</div>
+  <button class="opt" data-i="0">היא מחליפה לחלוטין את הצורך בצילום דו-ממדי סטנדרטי</button>
+  <button class="opt" data-i="1">היא מאפשרת למטופל "לראות מראש" תוצאה משוערת ולהיות שותף אקטיבי בתהליך – חשוב כי בניגוד להתמחויות אחרות, ההצלחה נמדדת בעיקר בשביעות רצון סובייקטיבית</button>
+  <button class="opt" data-i="2">היא נדרשת על פי חוק בכל ניתוח אסתטי</button>
+  <button class="opt" data-i="3">היא מבטלת את הצורך בהסכמה מדעת לניתוח</button>
+  <div class="explain">התשובה הנכונה: בניגוד להתמחויות שנמדדות בקריטריונים אובייקטיביים, בכירורגיה אסתטית התוצאה נשפטת בעיקר לפי הציפייה הסובייקטיבית של המטופל – ולכן כלי שמאפשר למטופל "לחוות" מראש תוצאה משוערת (למשל בבחירת גודל שתל שד) משפר שיתוף פעולה, מפחית פערי ציפיות וכפועל יוצא מפחית ניתוחים חוזרים וסיכון משפטי. תשובה 1 שגויה – 3D הוא כלי משלים, לא תחליף. תשובה 3 אינה נתמכת בטקסט. תשובה 4 הפוכה – הדמיה משמשת <i>לתמוך</i> בתהליך ההסכמה מדעת, לא לבטלו (ואף יש אזהרה מפורשת מפני "רושם מובטח" של תוצאה).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>צילום רפואי בכירורגיה פלסטית הוא <b>סטנדרט טיפול</b>, לא תוספת – משמש לתיעוד, תכנון, הסכמה מדעת, מחקר והגנה משפטית.</li>
+    <li>עקרון-העל: <b>כל פרמטר קבוע חוץ מהמטופל</b> – מצלמה, צלם, תאורה, איזון לבן, רקע (כחול בינוני/אפור 18%), מרחק וזווית (סימוני רצפה).</li>
+    <li>הגדרות טכניות מרכזיות: F-stop &#8804;16, תריס &#8805;1/60 שנייה, מינימום כ-6 מגה-פיקסל.</li>
+    <li><b>חמש תצוגות סטנדרטיות</b>: AP, שני אלכסונים (45°), שני פרופילים (90°) – עם כללים ייחודיים לכל אזור אנטומי.</li>
+    <li>פורמטים: RAW (איכות מרבית, קובץ גדול) &#8594; TIFF (הדפסה) &#8594; JPEG (שיתוף מהיר, דחיסה עם אובדן).</li>
+    <li>תמונה דיגיטלית = רשומה רפואית לכל דבר: כפופה ל-HIPAA/ARRA, דורשת מטא-דאטה קלינית (EXIF + ICD-10/CPT) והסכמה ייעודית.</li>
+    <li>חזית העתיד: הדמיה תלת-ממדית ותכנון ניתוחי וירטואלי (VSP) – חשובים במיוחד כי הצלחה אסתטית נמדדת בעיקר בשביעות רצון סובייקטיבית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
