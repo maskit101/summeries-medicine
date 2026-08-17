@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>התנגדות והיסוס לחיסונים - Vaccine Opposition and Hesitancy</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>התנגדות והיסוס לחיסונים <span dir="ltr" class="term" style="font-weight:400">(Vaccine Opposition and Hesitancy)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 3, עמ' 13-20 (חלק ראשון של הפרק - "Vaccination"/"Vaccine Opposition and Hesitancy"; שאר עמודי הטווח שייכים להמשך פרק 2 שכבר סוכם). מחברות: Julie A. Bettinger, Hana Mitchell.</div>
+
+<p>חיסונים הם מההישגים הגדולים ביותר של בריאות הציבור במאה ה-20, אך ההיסוס וההתנגדות אליהם אינם תופעה חדשה - הם קיימים מאז שאדוארד ג'נר הציג את חיסון האבעבועות השחורות במאה ה-18. ה-<span dir="ltr" class="term">World Health Organization</span> דירג את ההיסוס לחיסונים כאחד מעשרת האיומים הגדולים ביותר על בריאות הציבור העולמית ב-2019. הפרק עוסק בהגדרת התופעה, בגורמים לה, ובכלים תקשורתיים שרופא/ה יכולים להפעיל בפגישה קלינית בודדת כדי להעלות שיעורי חיסון.</p>
+
+<h2><span class="num">2</span> המנגנון - למה היסוס מתורגם להתפרצויות מחלה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כדי להבין למה היסוס לחיסונים מסוכן ברמת האוכלוסייה (ולא רק ברמת הפרט שמחליט לא להתחסן), צריך להבין את מושג <b>חסינות העדר</b> <span dir="ltr" class="term">(herd immunity)</span>: מחלה מדבקת מתפשטת כשאדם חולה מדביק אנשים רגישים (לא-חיסוניים) נוספים. אם אחוז גבוה מספיק מהאוכלוסייה חיסוני (בין אם דרך חיסון ובין אם דרך מחלה קודמת), אדם חולה "פוגש" בעיקר אנשים חיסוניים ואינו מצליח להעביר את השרשרת הלאה - שרשרת ההדבקה נקטעת גם בלי שכל אדם ואדם חיסוני.
+  </p>
+  <p>
+    הסף המדויק הזה (<b>Herd Immunity Threshold, HIT</b>) אינו שרירותי - הוא נגזר ישירות ממספר ה<span dir="ltr" class="term">R0</span> (מספר השחלוף הבסיסי) של המחלה, לפי הנוסחה <b>HIT = 1 − 1/R0</b>. חצבת (<span dir="ltr" class="term">measles</span>) היא אחד הנגיפים המדבקים ביותר שידועים (R0≈12-18, כלומר חולה אחד לא-מטופל מדביק בממוצע 12-18 אנשים רגישים בסביבתו) - ולכן נדרש כיסוי חיסוני גבוה במיוחד, <span class="key">93-95%</span>, כדי לחצות את סף חסינות העדר. זו הסיבה שדווקא חצבת (ולא מחלות עם R0 נמוך יותר) היא "חיישן ההיסוס" הרגיש ביותר במערכת בריאות הציבור: גם ירידה קלה מתחת ל-95% כבר עלולה לאפשר התפרצות.
+  </p>
+  <p>
+    אבל יש כאן נקודה קריטית שקל לפספס: <span class="key">ממוצע ארצי גבוה יכול להסתיר אשכולות מקומיים נמוכים בהרבה</span>. כיסוי חיסון החצבת הארצי בגיל שנתיים עומד על כ-92% בארה"ב וכ-88% בקנדה - נראה קרוב לסף - אך מכיוון שהיסוס והתנגדות נוטים <b>להתאשכל</b> (קהילות דתיות פונדמנטליסטיות מסוימות, קהילות "תרבות אלטרנטיבית", רשתות חברתיות מקוונות של הורים דומי-דעות) ולא להתפזר אקראית באוכלוסייה, נוצרים כיסים גיאוגרפיים/חברתיים עם כיסוי חיסוני נמוך בהרבה מ-93-95%, גם כאשר הממוצע הארצי נראה תקין. אלו בדיוק המקומות שבהם קורות התפרצויות (טבלה 3-1 בפרק, ראו סעיף 3).
+  </p>
+  <p>
+    השלב האחרון בשרשרת: <b>מה גורם להיסוס מלכתחילה?</b> ה-<span dir="ltr" class="term">SAGE Working Group</span> של ה-WHO מגדיר שלושה גורמים ("שלוש ה-C") שמשפיעים זה על זה: <b>שאננות</b> <span dir="ltr" class="term">(complacency)</span> - כשהסיכון הנתפס של המחלה עצמה נמוך (פרדוקסלית, לעיתים בגלל שהחיסון כבר כל-כך הצליח שהמחלה כמעט נעלמה מהזיכרון הציבורי); <b>נוחות</b> <span dir="ltr" class="term">(convenience)</span> - חסמי גישה בפועל (עלות, מרחק, שפה, אוריינות בריאותית); ו<b>אמון</b> <span dir="ltr" class="term">(confidence)</span> - אמון בבטיחות החיסון, במערכת הבריאות ובקובעי המדיניות. שחיקת אמון (למשל בעקבות אירוע בטיחות אמיתי כמו הקשר בין חיסון שפעת פנדמית <span dir="ltr" class="term">Pandemrix</span> לנרקולפסיה, טענות שווא כמו הקשר המופרך בין MMR לאוטיזם, או ניסויים רפואיים לא-אתיים היסטוריים בקהילות שחורות ואינדיאניות שיצרו חוסר אמון מתמשך) היא המניע המרכזי של גל ההיסוס העכשווי, ומוגברת על ידי "תאי הד" ברשתות החברתיות שמחזקים אמונות קיימות במקום לחשוף למידע מנוגד.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <text x="450" y="24" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2937">חסינות עדר: אותו כיסוי ארצי, תוצאה שונה לגמרי</text>
+
+  <text x="220" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#047857">כיסוי מפוזר אחיד (95%+)</text>
+  <g id="grid1">
+    <!-- 6x4 grid, mostly blue (immune), few red -->
+  </g>
+  <!-- generate grid manually -->
+  <g transform="translate(50,60)">
+    <circle cx="10" cy="10" r="9" fill="#2563eb"/><circle cx="40" cy="10" r="9" fill="#2563eb"/><circle cx="70" cy="10" r="9" fill="#2563eb"/><circle cx="100" cy="10" r="9" fill="#2563eb"/><circle cx="130" cy="10" r="9" fill="#b91c1c"/><circle cx="160" cy="10" r="9" fill="#2563eb"/><circle cx="190" cy="10" r="9" fill="#2563eb"/><circle cx="220" cy="10" r="9" fill="#2563eb"/><circle cx="250" cy="10" r="9" fill="#2563eb"/><circle cx="280" cy="10" r="9" fill="#2563eb"/>
+    <circle cx="10" cy="40" r="9" fill="#2563eb"/><circle cx="40" cy="40" r="9" fill="#2563eb"/><circle cx="70" cy="40" r="9" fill="#2563eb"/><circle cx="100" cy="40" r="9" fill="#2563eb"/><circle cx="130" cy="40" r="9" fill="#2563eb"/><circle cx="160" cy="40" r="9" fill="#2563eb"/><circle cx="190" cy="40" r="9" fill="#b91c1c"/><circle cx="220" cy="40" r="9" fill="#2563eb"/><circle cx="250" cy="40" r="9" fill="#2563eb"/><circle cx="280" cy="40" r="9" fill="#2563eb"/>
+    <circle cx="10" cy="70" r="9" fill="#2563eb"/><circle cx="40" cy="70" r="9" fill="#2563eb"/><circle cx="70" cy="70" r="9" fill="#b91c1c"/><circle cx="100" cy="70" r="9" fill="#2563eb"/><circle cx="130" cy="70" r="9" fill="#2563eb"/><circle cx="160" cy="70" r="9" fill="#2563eb"/><circle cx="190" cy="70" r="9" fill="#2563eb"/><circle cx="220" cy="70" r="9" fill="#2563eb"/><circle cx="250" cy="70" r="9" fill="#b91c1c"/><circle cx="280" cy="70" r="9" fill="#2563eb"/>
+    <text x="145" y="105" text-anchor="middle" font-size="12" fill="#4b5563">רגישים (אדום) מבודדים בין חיסוניים (כחול)</text>
+    <text x="145" y="122" text-anchor="middle" font-size="12" fill="#047857" font-weight="700">← שרשרת ההדבקה נקטעת מהר</text>
+  </g>
+
+  <text x="680" y="46" text-anchor="middle" font-size="14" font-weight="700" fill="#b91c1c">אותו ממוצע ארצי, אך אשכול לא-מחוסן</text>
+  <g transform="translate(510,60)">
+    <circle cx="10" cy="10" r="9" fill="#2563eb"/><circle cx="40" cy="10" r="9" fill="#2563eb"/><circle cx="70" cy="10" r="9" fill="#2563eb"/><circle cx="100" cy="10" r="9" fill="#2563eb"/><circle cx="130" cy="10" r="9" fill="#2563eb"/><circle cx="160" cy="10" r="9" fill="#2563eb"/><circle cx="190" cy="10" r="9" fill="#2563eb"/><circle cx="220" cy="10" r="9" fill="#b91c1c"/><circle cx="250" cy="10" r="9" fill="#b91c1c"/><circle cx="280" cy="10" r="9" fill="#b91c1c"/>
+    <circle cx="10" cy="40" r="9" fill="#2563eb"/><circle cx="40" cy="40" r="9" fill="#2563eb"/><circle cx="70" cy="40" r="9" fill="#2563eb"/><circle cx="100" cy="40" r="9" fill="#2563eb"/><circle cx="130" cy="40" r="9" fill="#2563eb"/><circle cx="160" cy="40" r="9" fill="#2563eb"/><circle cx="190" cy="40" r="9" fill="#b91c1c"/><circle cx="220" cy="40" r="9" fill="#b91c1c"/><circle cx="250" cy="40" r="9" fill="#b91c1c"/><circle cx="280" cy="40" r="9" fill="#b91c1c"/>
+    <circle cx="10" cy="70" r="9" fill="#2563eb"/><circle cx="40" cy="70" r="9" fill="#2563eb"/><circle cx="70" cy="70" r="9" fill="#2563eb"/><circle cx="100" cy="70" r="9" fill="#2563eb"/><circle cx="130" cy="70" r="9" fill="#2563eb"/><circle cx="160" cy="70" r="9" fill="#2563eb"/><circle cx="190" cy="70" r="9" fill="#b91c1c"/><circle cx="220" cy="70" r="9" fill="#b91c1c"/><circle cx="250" cy="70" r="9" fill="#b91c1c"/><circle cx="280" cy="70" r="9" fill="#b91c1c"/>
+    <rect x="205" y="-3" width="90" height="86" fill="none" stroke="#b91c1c" stroke-width="2" stroke-dasharray="4,3"/>
+    <text x="145" y="105" text-anchor="middle" font-size="12" fill="#4b5563">אותם 8 "אדומים" מתוך 30, אך מקובצים יחד</text>
+    <text x="145" y="122" text-anchor="middle" font-size="12" fill="#b91c1c" font-weight="700">← בתוך האשכול נשברת חסינות העדר → התפרצות</text>
+  </g>
+</svg>
+
+<h2><span class="num">3</span> אפידמיולוגיה - מרצף הקבלה ועד התפרצויות בפועל</h2>
+<p>
+  שימושי לחשוב על עמדות כלפי חיסונים כ<b>רצף</b> (<span dir="ltr" class="term">continuum</span>) ולא כחלוקה בינארית "בעד/נגד". ברוב האוכלוסייה נמצא בבסיס הפירמידה - <b>ביקוש פעיל</b> לחיסונים (הקבוצה הגדולה ביותר), ואילו <b>סירוב מוחלט</b> לכל החיסונים הוא הקבוצה הקטנה ביותר, בקצה הפירמידה. באמצע נמצא ההיסוס עצמו, שדרגתו משתנה - מספקות קלות ועד ספקות רבות. חשוב: מטופל יכול להיות <b>מחוסן במלואו ועדיין היסוסי</b> (ולהזדקק לביסוס אמון מתמשך), ומטופל אחר יכול להיות <b>לא-מחוסן בגלל בעיות גישה בלבד ולא להיות היסוסי כלל</b> - ולכן אחוזי כיסוי חיסוני לבדם אינם מדד להיסוס.
+</p>
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <text x="350" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">פירמידת רצף קבלת החיסונים (Fig. 3-1)</text>
+  <polygon points="350,40 420,110 280,110" fill="#b91c1c"/>
+  <text x="350" y="80" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">סירוב</text>
+  <text x="440" y="80" font-size="12" fill="#b91c1c">מוחלט - הקבוצה הקטנה ביותר</text>
+
+  <polygon points="280,110 420,110 450,155 250,155" fill="#f97316"/>
+  <text x="350" y="138" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">איחור וברירנות</text>
+
+  <polygon points="250,155 450,155 480,200 220,200" fill="#f59e0b"/>
+  <text x="350" y="183" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">היסוס - ספקות רבים</text>
+
+  <polygon points="220,200 480,200 510,245 190,245" fill="#facc15"/>
+  <text x="350" y="228" text-anchor="middle" font-size="12" fill="#1f2937" font-weight="700">היסוס - ספקות קלים</text>
+
+  <polygon points="190,245 510,245 540,290 160,290" fill="#047857"/>
+  <text x="350" y="273" text-anchor="middle" font-size="13" fill="#fff" font-weight="700">ביקוש פעיל - הקבוצה הגדולה ביותר</text>
+</svg>
+
+<p>הנתונים האפידמיולוגיים תומכים במנגנון שתואר בסעיף 2: בכל התפרצויות החצבת המתועדות בצפון אמריקה מאז 2010, <b>מעל 80%</b> מהמקרים אירעו באנשים לא-מחוסנים או מחוסנים חלקית, ורבות מההתפרצויות ניצתו על ידי נוסע/ת לא-מחוסן/ת ששבו ממדינה עם תחלואה פעילה והדביקו קהילה מקומית עם כיסוי חיסוני נמוך:</p>
+<table>
+  <thead><tr><th>שנה/מקום</th><th>מס' מקרים</th><th>גורם</th></tr></thead>
+  <tbody>
+    <tr><td>2011/קנדה (קוויבק)</td><td>776</td><td>יובאה מצרפת ע"י נוסע לא-מחוסן; התפשטה בקהילה דתית שלא מתחסנת</td></tr>
+    <tr><td>2015/ארה"ב</td><td>147</td><td>התפרצות רב-מדינתית שקושרה לפארק שעשועים דיסנילנד; מעל 80% מהמקרים בלא-מחוסנים</td></tr>
+    <tr><td>2019/ארה"ב</td><td>1282</td><td>73% מהמקרים (כ-935) קשורים להתפרצויות בקהילות דתיות לא-מתחסנות בניו יורק</td></tr>
+  </tbody>
+</table>
+<p>נקודה חשובה נוספת מהפרק: לא כל מי שמופיע ב"מקרה חצבת" הוא בהכרח לא-מחוסן - חלק מהמקרים הם באנשים שקיבלו מנה אחת או שתיים אך <b>ההגנה שלהם לא הייתה מלאה</b> (עקב מאפיינים אישיים כמו גיל/דיכוי חיסוני) או <b>דעכה עם הזמן</b> - ופה בדיוק חסינות העדר קריטית: כשהיא נשברת, אפילו אנשים מחוסנים באופן חלקי חשופים יותר.</p>
+
+<h2><span class="num">4</span> מי המטופל ה"היסוסי" - מאפיינים לפי מדרג הרצף</h2>
+<p>
+  שווה לזהות בפגישה קלינית קצרה איפה המטופל/ת נמצא/ת על הרצף, כי סגנון השיחה הנדרש שונה מקצה לקצה:
+</p>
+<table>
+  <thead><tr><th>מיקום ברצף</th><th>מאפיינים אופייניים</th><th>גישה מתאימה</th></tr></thead>
+  <tbody>
+    <tr><td><b>ביקוש פעיל</b></td><td>בוטח בצוות הרפואי ובמערכת, נורמה חברתית של התחסנות, ללא ספקות</td><td>שיחה קצרה מאוד, לוודא שאין שאלה שלא נענתה</td></tr>
+    <tr><td><b>היסוס קל</b></td><td>שאננות (תפיסת סיכון נמוכה למחלה), אך בוטח בצוות הרפואי ובמערכת</td><td>שיחה ארוכה קצת יותר, לרוב ניתן להשלים באותה פגישה</td></tr>
+    <tr><td><b>היסוס רב</b></td><td>מחפש/ת מידע באופן פעיל, רגשות מנוגדים לגבי במי לבטוח, מבולבל/ת ממידע סותר</td><td>שיחה ממושכת, ייתכן שתידרש יותר מפגישה אחת</td></tr>
+    <tr><td><b>איחור וברירנות</b></td><td>נורמה חברתית היא <b>אי</b>-התחסנות בסביבתו, ייתכן ניסיון טראומטי קודם עם המערכת</td><td>נדרש קשר אמון ארוך טווח עם מטפל/ת קבוע/ה, שיחות חוזרות</td></tr>
+    <tr><td><b>סירוב</b></td><td>חוסר אמון עמוק במערכת/בתעשייה/בממשל, לעיתים שיקולים דתיים/מוסריים חזקים, נוטים להתאשכל בקהילות</td><td>התחסנות בפועל לא סבירה בקרוב; להתמקד באסטרטגיות הגנה חלופיות ובשימור הקשר הטיפולי</td></tr>
+  </tbody>
+</table>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Measles_rash_PHIL_4497_lores.jpg?width=520" alt="פריחת חצבת אופיינית על גב וישבן ילד, יום 3 למחלה">
+  <figcaption class="media-cap">התוצאה הקלינית שאותה מנסים למנוע: פריחה מקולו-פפולרית אדומה אופיינית של חצבת, יום 3 להופעה, מתפשטת מהפנים כלפי מטה. מקור: CDC Public Health Image Library, דרך Wikimedia Commons.</figcaption>
+</figure>
+
+<h2><span class="num">5</span> "אבחנה" - זיהוי היסוס, לא רק מדידת כיסוי</h2>
+<p>
+  מכיוון שכיסוי חיסוני (סעיף 3) אינו שקול להיסוס (יכול להיות מחוסן-והיסוסי, או לא-מחוסן-ולא-היסוסי מסיבות גישה), הפרק מציע ארבע שאלות פתיחה שימושיות לזיהוי היסוס בפגישה קלינית: (1) "עברת על עלון החיסון שנתנו לך? היו שאלות?" (2) "היה מצב שהיססת לגבי חיסון לעצמך/לילד שלך? מה הסיבות?" (3) "יש לחצים אחרים בחיים שמונעים ממך להתחסן/לחסן בזמן?" (4) "במי/באילו מקורות את/ה הכי בוטח/ת ובמי הכי פחות?"
+</p>
+<h3>הבדלה בין היסוס לבעיית נגישות (חשוב לא לבלבל)</h3>
+<table>
+  <thead><tr><th>מצב</th><th>אמון בחיסון</th><th>הגורם המרכזי לאי-חיסון</th><th>ההתערבות הנכונה</th></tr></thead>
+  <tbody>
+    <tr><td>היסוס אמיתי</td><td>נמוך/מעורב</td><td>ספקות לגבי בטיחות/יעילות/מהימנות המערכת</td><td>שיחה ממוקדת (3C, המלצה חזקה - ראו סעיף 6)</td></tr>
+    <tr><td>"הזדמנות שהוחמצה" <span dir="ltr" class="term">(missed opportunity)</span></td><td>תקין - רוצה להתחסן</td><td>מגע עם מערכת הבריאות שלא נוצל להצעת החיסון (למשל ביקור במיון, מרפאת סוכרת)</td><td>הצעה יזומה של החיסון בכל מגע רפואי, לא רק בביקורי שגרה</td></tr>
+    <tr><td>אי-שוויון בנגישות</td><td>תקין - רוצה להתחסן</td><td>עלות, מרחק גיאוגרפי, שפה, אוריינות בריאותית</td><td>הפניה למימון חלופי (למשל <span dir="ltr" class="term">Vaccines for Children</span> בארה"ב), לא ויתור על ההמלצה</td></tr>
+  </tbody>
+</table>
+<div class="key-box">עד <b>45%</b> מהילדים תת-מחוסנים יכולים להיות מעודכנים בכל החיסונים המומלצים לגילם, ועד <b>90%</b> מהמתבגרות יכולות להיות מעודכנות בחיסון HPV, אם כל "הזדמנות שהוחמצה" הייתה מנוצלת. זהו הפער הגדול ביותר שניתן לסגור בלי לשכנע אף מתנגד - רק ע"י יוזמה של הצוות הרפואי.</div>
+
+<h2><span class="num">6</span> "טיפול" - איך מנהלים שיחה יעילה עם מטופל היסוסי</h2>
+<p>
+  אין "פרוטוקול תרופתי" בפרק הזה - ה"התערבות" היא תקשורתית. הריסון מגדיר חמישה עקרונות שכל המלצת חיסון אפקטיבית צריכה לכלול, ולצידם שתי גישות שיח שהיעילות שלהן משתנה לפי מיקום המטופל על הרצף (סעיף 4):
+</p>
+<table>
+  <thead><tr><th>עיקרון</th><th>מה זה אומר בפועל</th><th>למה זה עוזר לבעיה הספציפית</th></tr></thead>
+  <tbody>
+    <tr><td><b>חזקה</b> <span dir="ltr" class="term">(strong)</span></td><td>לומר במפורש שההמלצה היא להתחסן, לא רק "להציג אפשרויות"</td><td>המלצה חד-משמעית מרופא/ה בוטח/ת היא הגורם הבודד המשפיע ביותר על החלטת מטופל היסוסי להתחסן</td></tr>
+    <tr><td><b>מותאמת אישית</b> <span dir="ltr" class="term">(tailored)</span></td><td>להכיר את מיקום המטופל על הרצף (סעיף 4) ולהתאים את אורך/עומק השיחה</td><td>אותה שיחה קצרה שמספיקה למי שביקוש פעיל, לא מספיקה למי שהיסוס רב - ועלולה להרתיע</td></tr>
+    <tr><td><b>שקופה ומדויקת</b> <span dir="ltr" class="term">(transparent &amp; accurate)</span></td><td>לפרט גם תועלות וגם סיכונים אמיתיים (למשל: 3 מתוך 10,000 עם MMR יפתחו פרכוס חום - נדיר וחולף - לעומת 1 מתוך 1,000 חולי חצבת שיפתחו דלקת מוח)</td><td>בונה אמון (הגורם "Confidence" מ-3C) בכך שלא "מסתירים" מידע - וממסגרת סיכון בהקשר הנכון</td></tr>
+    <tr><td><b>נתמכת במקורות אמינים</b></td><td>לתת חומר שאפשר לבדוק אחרי הפגישה (עלון CDC/משרד בריאות)</td><td>מטופל היסוסי-רב לרוב ימשיך לחפש מידע לבד - עדיף שיגיע למקור מהימן</td></tr>
+    <tr><td><b>חוזרת ומתחזקת</b> <span dir="ltr" class="term">(revisited)</span></td><td>לחזור על ההמלצה בכל מגע עתידי, גם אם סורבה בעבר</td><td>היסוס אינו קבוע לאורך זמן - חשיפה חוזרת לגישה תומכת יכולה להזיז מטופל על הרצף</td></tr>
+  </tbody>
+</table>
+<p><b>שתי סגנונות שיח</b>: גישה <b>מכתיבה/מניחה-הסכמה</b> <span dir="ltr" class="term">(presumptive - "הילד שלך צריך את חיסון ה-MMR")</span> מוכחת כמעלה שיעורי היענות יותר מגישה <b>שיתופית-מנחה</b> <span dir="ltr" class="term">(participatory - "מה דעתך על חיסון ה-MMR?")</span> - אך גישה מכתיבה בלעדית עלולה להרחיק מטופלים גבוה על הרצף (היסוס-רב, איחור וברירנות) שמרגישים לחוצים לפני שספקותיהם נשמעו. לכן: <b>מכתיבה כברירת מחדל, שיתופית כשמזהים היסוס משמעותי</b> - ובכל מקרה, המלצה חזקה בסוף השיחה, לא רק "נשאיר את זה פתוח".</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/-1giK4mf-_Q" title="What is vaccine hesitancy?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר שמסביר את הגדרת ה-WHO להיסוס לחיסונים ואת מודל שלוש ה-C (Complacency, Convenience, Confidence). YouTube.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ikPcr26c100" title="Understanding and Addressing Vaccine Hesitancy" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון שמדגים גישות תקשורת מעשיות (כולל דוגמאות משפטים) לשיחה עם מטופל/הורה היסוסי. YouTube / MedAnimations.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות</h3>
+  <p><b>שלוש ה-C של ההיסוס</b> (הגורמים לו): <span dir="ltr" class="term"><b>C</b>omplacency</span> (שאננות - "הסיכון במחלה נמוך"), <span dir="ltr" class="term"><b>C</b>onvenience</span> (נוחות - חסמי גישה), <span dir="ltr" class="term"><b>C</b>onfidence</span> (אמון - בחיסון/במערכת/בקובעי מדיניות).</p>
+  <p><b>STARR</b> - חמשת עקרונות ההמלצה האפקטיבית (סעיף 6): <span dir="ltr" class="term"><b>S</b>trong, <b>T</b>ailored, <b>A</b>ccurate/transparent, <b>R</b>esourced, <b>R</b>evisited</span>.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני <b>גשר תלוי</b> שמחבר בין "מחלה" ל"בריאות הקהילה", ובנוי מהמון חוליות-שרשרת קטנות (=אנשים חיסוניים). כל עוד לפחות 93-95 חוליות מתוך 100 חזקות (=מחוסנות), הגשר מחזיק וחוצה בבטחה גם אם כמה חוליות בודדות חלשות ומפוזרות. אבל אם החוליות החלשות <b>מקובצות יחד באותו מקום</b> (=אשכול קהילתי לא-מחוסן) - נוצר שם קרע מקומי בגשר, גם אם ברוב אורכו הוא נראה תקין ("92% כיסוי ארצי"). ליד הקרע עומדים <b>שלושה שומרי-שער בשם C, C, C</b> ששמרו על החוליות מלהתחזק מלכתחילה: אחד ישן (שאננות), אחד תקוע מאחורי דלת נעולה (נוחות/גישה), ואחד מסתכל בחשדנות על כל מי שמנסה לתקן (אמון). כדי לתקן את הקרע, צריך HCP עם <b>STARR</b> בכיס - חמישה כלים שממש נראים ככוכב - שמדבר עם כל שומר לפי הבעיה הספציפית שלו, לא באותה שיטה על כולם.</p>
+  <svg class="diagram" viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20,150 Q280,40 540,150" fill="none" stroke="#9ca3af" stroke-width="6"/>
+    <g fill="#2563eb">
+      <circle cx="60" cy="130" r="7"/><circle cx="100" cy="107" r="7"/><circle cx="140" cy="88" r="7"/><circle cx="180" cy="72" r="7"/>
+      <circle cx="380" cy="72" r="7"/><circle cx="420" cy="88" r="7"/><circle cx="460" cy="107" r="7"/><circle cx="500" cy="130" r="7"/>
+    </g>
+    <g fill="#b91c1c">
+      <circle cx="220" cy="60" r="7"/><circle cx="250" cy="55" r="7"/><circle cx="280" cy="53" r="7"/><circle cx="310" cy="55" r="7"/><circle cx="340" cy="60" r="7"/>
+    </g>
+    <text x="280" y="35" text-anchor="middle" font-size="13" fill="#b91c1c" font-weight="700">אשכול חלש → קרע בגשר</text>
+    <text x="280" y="185" text-anchor="middle" font-size="13" fill="#4b5563">שלושת שומרי השער: Complacency · Convenience · Confidence</text>
+    <text x="280" y="203" text-anchor="middle" font-size="12" fill="#047857" font-weight="700">מתקנים עם STARR - מותאם לכל שומר בנפרד</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tC47JjakPSA" title="What is herd immunity?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה קצרה שממחישה חזותית איך חסינות עדר קוטעת שרשרת הדבקה - משלימה את הסבר המנגנון בסעיף 2. YouTube.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.cdc.gov/vaccines/covid-19/vaccinate-with-confidence.html" target="_blank">CDC - Vaccinate with Confidence</a>
+    <div class="desc">אסטרטגיית ה-CDC להתמודדות עם היסוס לחיסונים ברמת המערכת, כולל חומרי הדרכה למטפלים.</div>
+  </li>
+  <li>
+    <a href="https://www.who.int/teams/immunization-vaccines-and-biologicals/essential-programme-on-immunization/demand" target="_blank">WHO - Improving Vaccination Demand and Addressing Hesitancy</a>
+    <div class="desc">מסגרת ה-WHO/SAGE להגדרת היסוס לחיסונים ולמדידתו, כולל שאלוני סקר לדוגמה.</div>
+  </li>
+  <li>
+    <a href="https://www.vaccineinformation.org/photos/measles/" target="_blank">Immunization Action Coalition - Measles Photos</a>
+    <div class="desc">גלריית תמונות קליניות נוספות של חצבת (כולל כתמי Koplik בפה) ממקור מבוסס-CDC.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אם בת 32 מגיעה עם תינוקה בן 12 חודשים לביקור טיפת חלב לחיסון MMR מתוכנן. כשהאחות מציעה את החיסון, האם מהססת: "שמעתי שיש קשר בין החיסון הזה לאוטיזם, ואני לא בטוחה שאני רוצה לתת לו את זה עכשיו. אולי נדחה קצת." בבירור מתברר שהאם עצמה מחוסנת במלואה, אין לה התנגדות דתית או פילוסופית לחיסונים באופן כללי, וילדיה הקודמים קיבלו את כל חיסוני התינוקות בזמן. היא ציינה שקראה הרבה ברשתות חברתיות לאחרונה ומרגישה "מבולבלת ממי לסמוך."</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. איפה על רצף קבלת החיסונים (סעיף 3-4) הכי מתאים למקם את האם הזו?</div>
+  <button class="opt" data-i="0">סירוב מוחלט - היא לא תסכים להתחסן לעולם</button>
+  <button class="opt" data-i="1">איחור וברירנות - הנורמה החברתית שלה היא אי-התחסנות</button>
+  <button class="opt" data-i="2">היסוס - ספקות (קלים עד בינוניים): מחוסנת בעצמה, ילדיה הקודמים מחוסנים, מחפשת מידע באופן פעיל ומרגישה קונפליקט</button>
+  <button class="opt" data-i="3">בעיית נגישות בלבד, לא היסוס אמיתי</button>
+  <div class="explain">נכון: <b>היסוס - ספקות</b>. המאפיינים (מחפשת מידע פעיל, מרגישה קונפליקט לגבי במי לבטוח, נורמה חברתית אצלה היא כן להתחסן - כל ילדיה הקודמים מחוסנים) תואמים בדיוק את הפרופיל בטבלת סעיף 4 להיסוס, לא לסירוב (שם הנורמה החברתית היא אי-חיסון וההסתברות להתחסנות נמוכה) ולא לבעיית נגישות (שם אין ספק לגבי בטיחות/יעילות, רק חסם מעשי).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה הגורם המרכזי מבין "שלוש ה-C" שכנראה הכי משפיע כאן, ולמה?</div>
+  <button class="opt" data-i="0">נוחות (Convenience) - היא בטח לא מגיעה לתחנה בקלות</button>
+  <button class="opt" data-i="1">אמון (Confidence) - חשיפה למידע סותר ברשתות חברתיות פוגעת בביטחון שלה בבטיחות החיסון הספציפי</button>
+  <button class="opt" data-i="2">שאננות (Complacency) - היא לא מודאגת מחצבת כי לא ראתה מקרה מעולם</button>
+  <button class="opt" data-i="3">אף אחד מהשלושה - זו בעיה גנטית משפחתית</button>
+  <div class="explain">נכון: <b>אמון (Confidence)</b>. היא הגיעה בפועל לביקור (אין בעיית נוחות/גישה) ולא הביעה שאננות כלפי המחלה עצמה - החשש שלה נובע ישירות מחשיפה לטענת-שווא (הקשר MMR-אוטיזם, שנסתר במחקרים רבים) ברשתות חברתיות, שפוגעת באמון שלה במקור המידע ובבטיחות החיסון הספציפי. זהו בדיוק המנגנון שתואר בסעיף 2 לגבי "תאי הד" ברשתות חברתיות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזו גישת תקשורת (מתוך סעיף 6) מתאימה יותר במקרה הזה - מכתיבה או שיתופית?</div>
+  <button class="opt" data-i="0">מכתיבה בלבד - "החיסון חובה, אין על מה לדבר"</button>
+  <button class="opt" data-i="1">להימנע מהנושא כליל כדי לא לפגוע בקשר עם האם</button>
+  <button class="opt" data-i="2">לדחות את ההחלטה למועד אחר בלי לדון בה כעת</button>
+  <button class="opt" data-i="3">שיתופית-מנחה: להקשיב לחשש הספציפי, לתת מידע שקוף ומדויק (כולל הפרכת הקשר MMR-אוטיזם), ולסיים בהמלצה חזקה</button>
+  <div class="explain">נכון: תשובה 4. מכיוון שהאם נמצאת גבוה יחסית על רצף ההיסוס (ולא בביקוש פעיל), גישה מכתיבה-בלעדית עלולה להרחיק אותה ולפגוע בקשר הטיפולי. הגישה הנכונה משלבת שיתופיות (הקשבה לחשש הספציפי) עם שקיפות ודיוק (נתונים, לא רק הרגעה כללית) - <b>ומסתיימת בכל זאת בהמלצה חזקה</b>, כי המלצה חזקה נותרת הגורם היחיד המשפיע ביותר על החלטת חיסון, גם בגישה שיתופית. הימנעות מוחלטת מהנושא או דחייה בלי דיון מפספסות הזדמנות ליצור אמון.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. אם חיסון החצבת הארצי בקהילה שבה חיה האם עומד על 88% בלבד (נמוך מ-93-95%), מה המשמעות המדויקת מבחינת המנגנון שתואר בסעיף 2?</div>
+  <button class="opt" data-i="0">חסינות העדר נשברת - שרשרת ההדבקה לא נקטעת מהר מספיק, כי ה-HIT לחצבת (R0 גבוה מאוד) דורש כיסוי גבוה יותר מכל מחלה אחרת</button>
+  <button class="opt" data-i="1">אין משמעות - 88% נחשב כיסוי מספק לכל המחלות המנוהלות בתכנית החיסונים</button>
+  <button class="opt" data-i="2">המשמעות היא רק שהתינוקות הלא-מחוסנים עצמם בסיכון, ואין השפעה על אחרים</button>
+  <button class="opt" data-i="3">88% מספיק לחצבת אך לא לאבעבועות רוח</button>
+  <div class="explain">נכון: תשובה 1. HIT = 1-1/R0; מכיוון ש-R0 של חצבת גבוה מאוד (12-18), נדרשים 93-95% כיסוי - 88% נמוך מהסף ומאפשר לשרשרת ההדבקה להימשך. זה שונה ממחלות עם R0 נמוך יותר, שבהן סף חסינות עדר נמוך יותר. חשוב: הסיכון אינו רק לתינוקות/ילדים לא-מחוסנים ישירות אלא גם לכל מי שמסתמך על חסינות הסביבה (תינוקות מתחת לגיל חיסון, מדוכאי חיסון) - זו בדיוק המשמעות של "עדר" בחסינות עדר.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מה ההבדל המהותי בין "היסוס לחיסונים" ל"הזדמנות שהוחמצה לחיסון" (missed opportunity), כפי שהוגדר בסעיף 5?</div>
+  <button class="opt" data-i="0">אין הבדל - שני המושגים מתארים בדיוק את אותו מצב</button>
+  <button class="opt" data-i="1">היסוס תמיד חמור יותר מבחינה אפידמיולוגית</button>
+  <button class="opt" data-i="2">בהיסוס יש ספק אמיתי לגבי בטיחות/יעילות/אמון; בהזדמנות שהוחמצה המטופל זכאי ורוצה להתחסן, אך המערכת פשוט לא הציעה זאת במגע קליני זמין</button>
+  <button class="opt" data-i="3">הזדמנות שהוחמצה מתייחסת רק לחיסוני ילדים, לעולם לא למבוגרים</button>
+  <div class="explain">נכון: תשובה 3. ה-WHO מגדיר הזדמנות שהוחמצה כמגע עם מערכת הבריאות של אדם זכאי לחיסון שלא הביא לקבלת המנה - זה כשל מערכתי/יזמות, לא ספק של המטופל. הטיפול שונה לגמרי: בהיסוס נדרשת שיחה (STARR), בהזדמנות שהוחמצה נדרשת רק הצעה יזומה בכל מגע (כולל מיון, מרפאות התמחות) - ולא רק בביקורי שגרה. הדוגמה בפרק (עד 90% מהמתבגרות יכולות להיות מעודכנות ב-HPV) ממחישה שזה רלוונטי גם למבוגרים/מתבגרים, לא רק תינוקות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>היסוס לחיסונים (WHO/SAGE): "עיכוב בקבלה או סירוב לחיסונים חרף זמינות שירותי החיסון" - רצף, לא בינארי.</li>
+    <li>מנגנון: כיסוי מתחת לסף חסינות עדר (HIT=1−1/R0) שובר את קטיעת שרשרת ההדבקה; לחצבת (R0 גבוה) נדרש 93-95%. אשכולות חברתיים/גיאוגרפיים של לא-מחוסנים מסוכנים גם כשהממוצע הארצי גבוה.</li>
+    <li>שלושה גורמי היסוס (3C): שאננות (Complacency), נוחות/גישה (Convenience), אמון (Confidence).</li>
+    <li>יש להבדיל היסוס אמיתי מ"הזדמנות שהוחמצה" (מגע רפואי שלא נוצל) ומבעיית נגישות גרידא - הטיפול שונה לכל אחד.</li>
+    <li>טיפול = תקשורת: 5 עקרונות STARR (חזקה, מותאמת, שקופה ומדויקת, נתמכת במקורות, חוזרת) + גישה מכתיבה כברירת מחדל, שיתופית כשההיסוס גבוה - תמיד לסיים בהמלצה חזקה.</li>
+    <li>התפרצויות חצבת בצפ"א 2010-2019: מעל 80% מהמקרים בלא/תת-מחוסנים, לרוב יובאו ע"י נוסע לא-מחוסן והתפשטו בקהילה לא-מתחסנת.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
