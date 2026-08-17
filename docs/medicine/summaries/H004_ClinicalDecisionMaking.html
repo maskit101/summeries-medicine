@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>קבלת החלטות ברפואה קלינית (Clinical Decision-Making)</title>
+<style>
+  :root{color-scheme:light}
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>קבלת החלטות ברפואה קלינית <span dir="ltr" class="term">(Clinical Decision-Making)</span></h1>
+<div class="subtitle">פרק 4 מתוך Harrison's Principles of Internal Medicine, מהדורה 21 — עמ' 62-70. איך רופאים בפועל חושבים, איך בודקים אבחנתיים "משקרים" בלי כוונה, ואיך בונים החלטה טיפולית על בסיס ראיות ולא רק אינטואיציה.</div>
+
+<p>זהו לא פרק על מחלה ספציפית, אלא על <b>איך מקבלים החלטה קלינית בכלל</b> — משלוש זוויות שמתחברות זו לזו: (1) איך תהליך החשיבה האבחנתי בפועל עובד בראש של קלינאי ואיפה הוא נכשל; (2) איך "קוראים" בדיקה אבחנתית בצורה כמותית נכונה במקום להסתמך על תחושת בטן; (3) איך משלבים ראיות ממחקר קליני (Evidence-Based Medicine) עם השיפוט האישי כדי להגיע להחלטת טיפול. שלושת הנושאים חוזרים כל הזמן בפועל בכל תיק - וגם מככבים הרבה בשאלות בורדס.</p>
+
+<h2><span class="num">2</span> איך קלינאים חושבים - וההטיות שגורמות לטעויות</h2>
+<div class="mechanism">
+  <p class="chain">
+    יש שני "מצבי חשיבה" מקבילים (<span dir="ltr" class="term">dual-process theory</span>):
+    <b><span dir="ltr" class="term">System 1</span> (אינטואיציה)</b> - זיהוי דפוס מהיר, ללא מאמץ, מבוסס על "ספרייה" גדולה של מקרים שהמוח כבר ראה בעבר (למשל לזהות תסמונת ממבט אחד, כמו שמזהים פרצוף מוכר).
+    לעומתו <b><span dir="ltr" class="term">System 2</span> (אנליזה)</b> - איטי, שיטתי, מאומץ, מבוסס על רשימת אבחנות מבדלות ובדיקה שיטתית שלהן אחת-אחת (<span dir="ltr" class="term">hypothetico-deductive model</span>).
+    הבעיה: <span class="key">System 1 מהיר אבל משתמש ב"קיצורי דרך" (heuristics) שיכולים להטעות</span>, ו-System 2 מדויק יותר אבל איטי ולא תמיד מופעל - במיוחד כשהמצב "נראה" פשוט.
+    כשקלינאי מסתמך רק על System 1 בלי לעצור ולאמת (verification) - נוצרת <b>סגירה מוקדמת</b> (<span dir="ltr" class="term">premature closure</span>): קפיצה למסקנה לפני שכל הנתונים הרלוונטיים נאספו, וזו אחת מסיבות השורש השכיחות ביותר לטעויות אבחון.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="180" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="110" y="50" text-anchor="middle" font-size="15" fill="#1f2937">מטופל מגיע עם תלונה</text>
+  <line x1="200" y1="45" x2="260" y2="45" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="260" y="20" width="200" height="50" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="360" y="45" text-anchor="middle" font-size="14" fill="#1f2937">System 1: זיהוי דפוס מהיר</text>
+  <text x="360" y="60" text-anchor="middle" font-size="11" fill="#6b7280">(ייצוגיות/זמינות/עיגון/פשטות)</text>
+
+  <line x1="360" y1="70" x2="360" y2="120" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="260" y="120" width="200" height="50" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="360" y="148" text-anchor="middle" font-size="14" fill="#1f2937">אבחנה "ברורה מאליה"</text>
+
+  <line x1="460" y1="145" x2="620" y2="90" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#arrowRed)"/>
+  <rect x="620" y="65" width="240" height="55" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="740" y="88" text-anchor="middle" font-size="14" fill="#991b1b" font-weight="700">סגירה מוקדמת</text>
+  <text x="740" y="106" text-anchor="middle" font-size="11" fill="#991b1b">ללא אימות = סיכון לטעות אבחון</text>
+
+  <line x1="460" y1="150" x2="620" y2="200" stroke="#047857" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  <rect x="620" y="175" width="240" height="65" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="740" y="198" text-anchor="middle" font-size="14" fill="#065f46" font-weight="700">System 2: אימות שיטתי</text>
+  <text x="740" y="216" text-anchor="middle" font-size="11" fill="#065f46">התאמה (adequacy) + עקביות (coherency)</text>
+  <text x="740" y="230" text-anchor="middle" font-size="11" fill="#065f46">→ אבחנה מאומתת</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#374151"/></marker>
+    <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b91c1c"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#047857"/></marker>
+  </defs>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/QmBXhRD0yBQ" title="Thinking Fast and Slow - Animated Summary System 1 & 2" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סיכום מונפש של "Thinking, Fast and Slow" מאת דניאל כהנמן - המקור הפסיכולוגי של מודל ה-Dual Process שממנו הרפואה שאלה את המונחים System 1/System 2.</p>
+
+<p><b>ארבעת קיצורי הדרך (heuristics) העיקריים של System 1, וכיצד כל אחד יכול להטעות:</b></p>
+<ul>
+<li><b>ייצוגיות (<span dir="ltr" class="term">representativeness</span>)</b> - שיפוט לפי דמיון לתבנית "קלאסית", בלי להתחשב בשכיחות הבסיסית (<span dir="ltr" class="term">prior probability</span>). דוגמה מהפרק: מטופל עם יתר לחץ דם, כאב ראש, פלפיטציות והזעה - התבנית "הקלאסית" של <span dir="ltr" class="term">pheochromocytoma</span>. אבל בפועל <span class="key">גורמים שכיחים בהרבה ליתר לחץ דם קיימים בהרבה יותר חולים</span>, ולכן ההסתברות בפועל ל-pheochromocytoma נמוכה גם כשהתבנית "מתאימה".</li>
+<li><b>זמינות (<span dir="ltr" class="term">availability</span>)</b> - שיפוט לפי קלות ההיזכרות במקרה דומה. מקרים קטסטרופליים נדירים (כמו MI שהוחמץ) נשארים בזיכרון בעוצמה לא פרופורציונלית לשכיחותם האמיתית, ולכן משפיעים יתר על המידה על החלטות עתידיות.</li>
+<li><b>עיגון (<span dir="ltr" class="term">anchoring</span>, גם "שמרנות")</b> - אי-התאמה מספקת של ההסתברות הראשונית גם אחרי תוצאת בדיקה שסותרת אותה (למשל להמשיך להאמין שיש מחלת לב כלילית למרות בדיקת מאמץ שלילית, לפי חוק בייס למטה).</li>
+<li><b>פשטות / תער אוקהם (<span dir="ltr" class="term">Occam's razor</span>)</b> - להעדיף את ההסבר הפשוט ביותר שמסביר את כל הממצאים. שימושי, אבל <span class="key">אין לו בסיס ביולוגי מוכח</span> - חולה יכול לגמרי לסבול משתי מחלות בו-זמנית, וההנחה שהכל "חייב" להיות אבחנה אחת יכולה לגרום להזנחת ממצא לא-מוסבר.</li>
+</ul>
+
+<div class="key-box">אבחנה "ברורה מדי מהר" מחייבת <b>שלב שני של אימות</b> (diagnostic verification) - לבדוק אם היא מסבירה את <b>כל</b> הממצאים (adequacy) ואם היא <b>עקבית</b> עם המנגנון הפתופיזיולוגי (coherency). ממצא שלילי (למשל "אין דופק א-סימטרי") חשוב בדיוק כמו ממצא חיובי, כי הוא מוריד הסתברות לאבחנות אחרות.</div>
+
+<p><b>אימפרטיב אבחנתי (<span dir="ltr" class="term">diagnostic imperative</span>):</b> מצבים נדירים אך קטלניים שחייבים להישלל באופן שגרתי בגלל המחיר העצום של החמצה - למשל <span dir="ltr" class="term">aortic dissection</span> (Chap. 280) בכל כאב חזה חריף וחמור, גם כשהתמונה "נראית" כמו MI רגיל: בדיקת לחץ דם בשתי הזרועות וחיפוש הפרשי דופק הם חלק שגרתי מהערכה בדיוק בגלל זה.</p>
+
+<div class="case" style="margin-top:20px">
+<h3 style="color:#6d28d9">דוגמה לסגירה מוקדמת מהפרק - מקרה אמיתי</h3>
+<p>גבר בן 45 הגיע לחדר מיון עם 3 שבועות של "צינון" - קוצר נשימה ושיעול פרודוקטיבי. הרופא השתמש ב"טופס הערכת URI" הסטנדרטי, לא איתר חום, שלח את המטופל הביתה עם דיכוי שיעול ואבחנת ברונכיטיס. באותו לילה המטופל פיתח בחילות והקיא, קרס, והובא בדום לב. הנתיחה שלאחר המוות גילתה MI בדופן האחורית עם קריש טרי בעורק כלילי ימני. <b>מה קרה?</b> הרופא נעל את עצמו על פרוטוקול ה-URI לפני שאסף היסטוריה מלאה - ולכן לא שאל על הקשר בין הקוצר נשימה למאמץ, כבדות בחזה, והקלה במנוחה, שהיו רומזים בבירור על מחלה לבבית ולא נשימתית.</p>
+</div>
+
+<h2><span class="num">3</span> התשתית הכמותית: מדדי דיוק של בדיקה אבחנתית וחוק בייס</h2>
+<p>מטרת כל בדיקה אבחנתית היא <b>להפחית אי-ודאות</b>, לא לספק "כן/לא" מוחלט. אפילו אנמנזה ובדיקה גופנית נחשבות "בדיקה אבחנתית" במובן הזה. הדיוק של בדיקה נמדד תמיד ביחס ל"תקן זהב" (gold standard) בטבלת 2X2:</p>
+
+<svg class="diagram" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+  <rect x="180" y="10" width="230" height="30" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="295" y="30" text-anchor="middle" font-size="13" font-weight="700">מצב המחלה (תקן זהב)</text>
+  <rect x="180" y="40" width="115" height="30" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="237" y="60" text-anchor="middle" font-size="12">חיובי (חולה)</text>
+  <rect x="295" y="40" width="115" height="30" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="352" y="60" text-anchor="middle" font-size="12">שלילי (בריא)</text>
+
+  <rect x="60" y="70" width="120" height="70" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="120" y="110" text-anchor="middle" font-size="12" font-weight="700">בדיקה חיובית</text>
+
+  <rect x="180" y="70" width="115" height="70" fill="#ecfdf5" stroke="#047857"/>
+  <text x="237" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">TP</text>
+  <text x="237" y="118" text-anchor="middle" font-size="11" fill="#065f46">אמת-חיובי</text>
+
+  <rect x="295" y="70" width="115" height="70" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="352" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#991b1b">FP</text>
+  <text x="352" y="118" text-anchor="middle" font-size="11" fill="#991b1b">שקר-חיובי</text>
+
+  <rect x="60" y="140" width="120" height="70" fill="#f3f4f6" stroke="#e5e7eb"/>
+  <text x="120" y="180" text-anchor="middle" font-size="12" font-weight="700">בדיקה שלילית</text>
+
+  <rect x="180" y="140" width="115" height="70" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="237" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#991b1b">FN</text>
+  <text x="237" y="188" text-anchor="middle" font-size="11" fill="#991b1b">שקר-שלילי</text>
+
+  <rect x="295" y="140" width="115" height="70" fill="#ecfdf5" stroke="#047857"/>
+  <text x="352" y="170" text-anchor="middle" font-size="13" font-weight="700" fill="#065f46">TN</text>
+  <text x="352" y="188" text-anchor="middle" font-size="11" fill="#065f46">אמת-שלילי</text>
+
+  <text x="470" y="90" font-size="12" fill="#374151">רגישות = TP/(TP+FN)</text>
+  <text x="470" y="115" font-size="12" fill="#374151">= מזהה נכון חולים</text>
+  <text x="470" y="150" font-size="12" fill="#374151">סגוליות = TN/(TN+FP)</text>
+  <text x="470" y="175" font-size="12" fill="#374151">= מזהה נכון בריאים</text>
+</svg>
+
+<p><b>מנגנון:</b> <span class="term">רגישות</span> (<span dir="ltr" class="term">sensitivity</span>) = TP/(TP+FN) - מתוך כל החולים באמת, כמה הבדיקה תופסת. <span class="term">סגוליות</span> (<span dir="ltr" class="term">specificity</span>) = TN/(TN+FP) - מתוך כל הבריאים באמת, כמה הבדיקה נכון "מזכה". שינוי נקודת הניתוק (cut-point) של הבדיקה יוצר טרייד-אוף: "מחמירים" את הסף מעלה רגישות → מורידים רגישות אך מעלים סגוליות (וההיפך). ה-<span dir="ltr" class="term">ROC curve</span> מציג את הטרייד-אוף הזה גרפית (רגישות מול 1-סגוליות), וה-<span dir="ltr" class="term">AUC</span> (שטח מתחת לעקומה) מסכם את כלל תכולת המידע של הבדיקה: 0.5 = כמו הטלת מטבע, 1.0 = בדיקה מושלמת.</p>
+
+<div class="key-box">מנמוניקה מהספר עצמו: <b><span dir="ltr" class="term">SnNout</span></b> - בדיקה עם רגישות (Sn) גבוהה מאוד, כשהיא שלילית (N), <b>שוללת</b> מחלה (out). <b><span dir="ltr" class="term">SpPin</span></b> - בדיקה עם סגוליות (Sp) גבוהה מאוד, כשהיא חיובית (P), <b>מאשרת</b> מחלה (in).</div>
+
+<h3>יחס סבירות (<span dir="ltr" class="term">Likelihood Ratio</span>) וחוק בייס</h3>
+<p>בעולם האמיתי אין בדיקה מושלמת - לכן חוק בייס מחשב את <b>הסתברות שלאחר הבדיקה</b> (<span dir="ltr" class="term">posttest probability</span>) משלושה מרכיבים: ההסתברות לפני הבדיקה (<span dir="ltr" class="term">pretest probability</span> - נאמדת משכיחות המחלה באוכלוסיה או מהקשר קליני כמו גיל/מין/סוג כאב), רגישות הבדיקה, וסגוליות הבדיקה. <b>יחס הסבירות לתוצאה חיובית</b> = רגישות/(1-סגוליות); ככל שהוא גבוה יותר (מעל 10) - תוצאה חיובית "מאשרת" מחלה בביטחון רב יותר.</p>
+
+<p><b>דוגמה מהפרק:</b> אישה בת 64 עם כאב חזה לא טיפוסי, הסתברות טרום-בדיקה 50%, בדיקה עם רגישות וסגוליות 90% כל אחת, ותוצאה חיובית:</p>
+<p style="text-align:center; font-family:monospace; background:#f8fafc; padding:10px; border-radius:6px">
+הסתברות שלאחר הבדיקה = (0.5×0.9) / [(0.5×0.9)+(0.5×0.1)] = 0.90
+</p>
+<p>כלומר הבדיקה החיובית העלתה את ההסתברות מ-50% ל-90%. אבל <span class="key">חשוב: התועלת של הבדיקה תלויה גם בהסתברות ההתחלתית</span> - כשההסתברות הטרום-בדיקה נמוכה מאוד (למשל סקר ב-HIV באוכלוסיה בסיכון נמוך), אפילו בדיקה עם סגוליות מרשימה של 99.995% תעלה את ההסתברות רק לכ-67% אם השכיחות הבסיסית היא 0.01% - כי מספר השקר-חיוביים המוחלט עדיין גדול ביחס למספר החיוביים האמיתיים המעטים. השינוי הגדול ביותר בהסתברות מתרחש כשההסתברות הטרום-בדיקה באמצע (30%-70%) - שם הרופא הכי לא בטוח, ושם הבדיקה הכי "עוזרת".</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lG4VkPoG3ko" title="The medical test paradox, and redesigning Bayes' rule - 3Blue1Brown" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">3Blue1Brown מסביר ויזואלית למה בדיקות מדויקות מאוד יכולות עדיין להטעות כשהמחלה נדירה - בדיוק הרעיון שמאחורי הדוגמה של סקר HIV למעלה, עם דגש על "פרדוקס" חוק בייס.</p>
+
+<h2><span class="num">4</span> יישום קליני לדוגמה: אבחון מחלת לב כלילית (<span dir="ltr" class="term">CAD</span>)</h2>
+<p>הפרק ממחיש איך כל זה נפגש בפועל דרך שתי בדיקות נפוצות ל-CAD:</p>
+<table>
+<thead><tr><th>בדיקה</th><th>רגישות</th><th>סגוליות</th><th>יחס סבירות לתוצאה חיובית</th></tr></thead>
+<tbody>
+<tr><td><span dir="ltr" class="term">Exercise treadmill</span> (מבחן מאמץ ECG)</td><td>~60%</td><td>~75%</td><td>2.4 (יכולת אבחנתית "צנועה")</td></tr>
+<tr><td><span dir="ltr" class="term">Exercise SPECT</span> (הדמיית פרפוזיה בזמן מאמץ)</td><td>~90%</td><td>~90%</td><td>9.0 (יכולת אבחנתית "בינונית-גבוהה")</td></tr>
+</tbody>
+</table>
+<p>בגבר בן 41 עם כאב לא-טיפוסי (הסתברות טרום-בדיקה 10%) - בדיקת מאמץ חיובית מעלה את ההסתברות רק ל-~30%. באישה בת 60 עם כאב טיפוסי (הסתברות טרום-בדיקה 80%) - אותה בדיקה מעלה ל-~95%. <span class="key">אותה תוצאת בדיקה "אומרת" משהו שונה לגמרי בהתאם למי שנבדק</span> - זו הסיבה שאי אפשר לפרש בדיקה בלי לדעת את ההקשר הקליני לפני שהיא בוצעה.</p>
+
+<h2><span class="num">5</span> כלים תומכי החלטה: מודלים סטטיסטיים, קריטריון Wells, ומערכות ממוחשבות</h2>
+<p>כשיש הרבה משתנים בו-זמנית, מודל רגרסיה לוגיסטית יכול לשקלל את כולם יחד בצורה שהמוח האנושי לא מסוגל לעשות "בראש". הדוגמה המוכרת ביותר לכך היא <b>קריטריון Wells</b> לתסחיף ריאתי (<span dir="ltr" class="term">Pulmonary Embolism, PE</span>) - כלי מבוסס-מחקר ומאומת (בניגוד לרוב "המודלים החדשים" שלא עברו אימות מספק באוכלוסיה נפרדת):</p>
+<table>
+<thead><tr><th>ממצא קליני</th><th>ניקוד</th></tr></thead>
+<tbody>
+<tr><td>סימנים קליניים ל-<span dir="ltr" class="term">DVT</span></td><td>3</td></tr>
+<tr><td>אבחנה חלופית פחות סבירה מ-PE</td><td>3</td></tr>
+<tr><td>דופק &gt;100</td><td>1.5</td></tr>
+<tr><td>קיבוע/ניתוח ב-4 השבועות האחרונים</td><td>1.5</td></tr>
+<tr><td>היסטוריה של DVT/PE</td><td>1.5</td></tr>
+<tr><td>המופטיזיס</td><td>1</td></tr>
+<tr><td>ממאירות (בטיפול תוך 6 חודשים)</td><td>1</td></tr>
+</tbody>
+</table>
+<p>פירוש: ציון &gt;6 = סבירות גבוהה, 2-6 = בינונית, &lt;2 = נמוכה.</p>
+
+<p><b>מערכות תמיכת החלטה ממוחשבות:</b> ברמה הבסיסית הן נותנות גישה למידע; ברמה הגבוהה יותר הן מייצרות תחזיות (מודלים בייסיאניים/רגרסיה) או אפילו "מדמות" את תהליך ההחלטה כולו (בינה מלאכותית). למידת מכונה כבר משמשת למשימות זיהוי דפוסים ספציפיות (נגעי עור, פענוח צילומים), אבל מערכות "כלליות" (כמו IBM Watson) עדיין לא הוכיחו תועלת קלינית משכנעת. מערכות תזכורת המשולבות ב-<span dir="ltr" class="term">EHR</span> (תיק רפואי אלקטרוני) הראו את ההבטחה הגדולה ביותר בפועל - בעיקר בתיקון מינוני תרופות ובעידוד היצמדות לגיידליינים.</p>
+
+<p><b>ניתוח החלטה (<span dir="ltr" class="term">decision analysis</span>):</b> גישה נורמטיבית להחלטות מדיניות בריאות מורכבות. דוגמה מהפרק: מודל <span dir="ltr" class="term">CISNET</span> (2016) שבדק 8 אסטרטגיות סקר לסרטן השד - מצא שסקר דו-שנתי מגיל 50-74 מונע 7 מקרי מוות לכל 1000 נשים, וסקר שנתי מגיל 40 מונע 3 מקרי מוות נוספים אך דורש 20,000 ממוגרפיות נוספות ו-1988 תוצאות שקר-חיוביות נוספות - טרייד-אוף קלאסי בין תועלת לנזק שאי אפשר לפתור בניסוי אקראי (לא אתי/לא מעשי לבצע), ולכן פתרו אותו בסימולציה סטטיסטית.</p>
+
+<div class="key-box">שגיאות אבחון נחשבות היום ל<b>בעיה של מערכת</b>, לא כישלון אישי של רופא בודד. הערכות מצביעות על כך שכמעט כל אדם יחווה לפחות שגיאת אבחון אחת בחייו. פתרונות ברמת המערכת (תזכורות ב-EHR, רשימות תיוג/checklists) הראו תועלת בהקשרים מסוימים (חדרי ניתוח, טיפול נמרץ), אך התועלת שלהם במניעת שגיאות אבחון עצמן עדיין לא הוכחה במלואה.</div>
+
+<h2><span class="num">6</span> החלטה טיפולית מבוססת ראיות (<span dir="ltr" class="term">Evidence-Based Medicine, EBM</span>)</h2>
+<p><b>למה זה חשוב:</b> אי אפשר להסתמך על הניסיון האישי של הרופא כדי לדעת אם טיפול "עובד" - מדגמים קטנים ואירועים נדירים הופכים היסק סיבתי אישי לא אמין. לרוב המחלות הכרוניות, יעילות טיפולית מוכחת רק סטטיסטית באוכלוסיות גדולות.</p>
+
+<p>ה-EBM (שהוגדר לראשונה באוניברסיטת McMaster בתחילת שנות ה-90) כולל 4 שלבים: (1) ניסוח שאלת הניהול הקלינית; (2) חיפוש הספרות למידע רלוונטי; (3) הערכת תוקף ורלוונטיות הראיות; (4) שילוב ההערכה עם המאפיינים והעדפות הפרט. </p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hierarchy_of_Evidence.png?width=650" alt="פירמידת היררכיית הראיות ברפואה מבוססת-ראיות">
+  <figcaption class="media-cap">היררכיית הראיות: סקירות שיטתיות ומטה-אנליזות בפסגה (הכי אמינות אך הכי נדירות), אחריהן ניסויים אקראיים מבוקרים, מחקרי תצפית, ודוחות מקרה בתחתית. מקור: <a href="https://commons.wikimedia.org/wiki/File:Hierarchy_of_Evidence.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<p><b>ניסוי אקראי מבוקר (<span dir="ltr" class="term">RCT</span>)</b> נותן את ההגנה הטובה ביותר מפני הטיה בבחירת הטיפול (<span dir="ltr" class="term">selection bias</span>) בזכות הקצאה אקראית - אבל לא תמיד "מכליל" היטב לחיי היום-יום אם קריטריוני ההכללה/הדחה היו נוקשים מדי. <b>מחקר תצפית (<span dir="ltr" class="term">observational</span>)</b> משקף אוכלוסייה רחבה יותר, אך חשוף להטיית בחירת טיפול - אלא אם השוואה נעשית מול <b>בקרה עכשווית (concurrent controls)</b>; השוואה מול <b>בקרה היסטורית</b> (חולים מעשור קודם) מטעה בקלות כי הטיפול הרפואי הכללי משתפר עם הזמן.</p>
+
+<p><b>מטה-אנליזה</b> משלבת סטטיסטית תוצאות ממספר ניסויים כדי לחשוף אפקט שכל ניסוי בודד היה חלש מדי לגלות (כמו יעילות סטרפטוקינאז ב-MI, שנראתה במטה-אנליזה כבר שנים לפני שהוכחה בניסוי הגדול ISIS-2 ב-1988). אבל מטה-אנליזה לא יכולה "לתקן" ניסויים מקוריים גרועים או קטנים מדי - זבל פנימה, זבל החוצה.</p>
+
+<h3>מדדי תועלת טיפול: <span dir="ltr" class="term">ARR</span> ו-<span dir="ltr" class="term">NNT</span></h3>
+<p>דוגמה מהפרק: טיפול שמפחית תמותה ל-5 שנים מ-12% (קבוצת ביקורת) ל-8% (קבוצת טיפול):</p>
+<table>
+<thead><tr><th>מדד</th><th>נוסחה</th><th>חישוב</th></tr></thead>
+<tbody>
+<tr><td>הפחתת סיכון יחסית</td><td>(בקרה-טיפול)/בקרה</td><td>33%</td></tr>
+<tr><td><span dir="ltr" class="term">ARR</span> - הפחתת סיכון מוחלטת</td><td>בקרה - טיפול</td><td>12%-8% = 4%</td></tr>
+<tr><td><span dir="ltr" class="term">NNT</span> - מספר הדרוש לטיפול</td><td>1/ARR</td><td>1/0.04 = 25</td></tr>
+</tbody>
+</table>
+<p><span class="key">אותו טיפול, באותה הפחתה יחסית של 33%, אך באוכלוסיה בסיכון נמוך יותר (תמותה בסיסית 6% במקום 12%) - ה-ARR יורד ל-2% וה-NNT עולה ל-50.</span> כלומר תועלת הטיפול (במספרים מוחלטים) תלויה מאוד ברמת הסיכון הבסיסית של המטופל הספציפי, לא רק ב"אחוז ההפחתה" שמדווח במאמר.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/HbaIEXZoz9E" title="Number Needed to Treat (NNT) Explained Clearly - MedCram" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">ד"ר Seheult (MedCram) פותר שאלת בורדס לדוגמה על חישוב NNT צעד-אחר-צעד - אותה נוסחה בדיוק כמו בדוגמה למעלה.</p>
+
+<h3>גיידליינים קליניים ומה שלא כתוב בהם</h3>
+<p>גיידליין (לפי הגדרת ה-<span dir="ltr" class="term">Institute of Medicine</span> משנת 1990) הוא מסמך שנועד "לסייע" בהחלטה - לא להכתיב אותה במוחלט - כי ראיות ברמת גיידליין לבדן אף פעם לא מספיקות להחלטה על מטופל ספציפי (למשל האם לבצע החייאה בחולה סופני). <span class="key">בבדיקה של גיידליינים קרדיווסקולריים נמצא שפחות מ-15% מההמלצות התבססו על רמת הראיות הגבוהה ביותר (ניסויים אקראיים מרובים)</span> - השאר מבוססים על ניסוי בודד, מחקרי תצפית, או פשוט קונצנזוס מומחים כשאין ראיות טובות יותר. חשוב לדעת את זה לפני שמתייחסים לגיידליין כאל "אמת מוחלטת".</p>
+
+<h3>גורמים לא-קליניים שמשפיעים על החלטות (בקצרה)</h3>
+<p>מעבר לראיות עצמן, <b>סגנון עבודה</b> (למשל קרדיולוגים נוטים יותר להדמיית מאמץ מאשר אינטרנים), <b>רפואה הגנתית</b> (בדיקות/טיפולים עם תועלת שולית קטנה כדי להימנע מתביעה עתידית), ו<b>מערכת התשלום</b> (fee-for-service מעודד יתר-שימוש; capitation מעודד תת-שימוש; מודלים value-based מנסים לאזן בין השניים) - כולם משפיעים על ההחלטה הקלינית בפועל, גם כשהראיות זהות.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות</h3>
+  <p><b><span dir="ltr" class="term">SnNout / SpPin</span></b> (כבר מהספר עצמו - הכי שימושי לזכור): <span dir="ltr" class="term">Sn</span>-רגישות גבוהה, כש-<span dir="ltr" class="term">N</span>-שלילית → שוללת (out). <span dir="ltr" class="term">Sp</span>-סגוליות גבוהה, כש-<span dir="ltr" class="term">P</span>-חיובית → מאשרת (in).</p>
+  <p>לארבעת ה-heuristics: <b>"ר-ז-ע-פ"</b> - <b>ר</b>יצוגיות, <b>ז</b>מינות, <b>ע</b>יגון, <b>פ</b>שטות - כל האותיות של המילה "רזעפ" הן גם קיצור הגיוני: "בלש עייף עובד <b>ר</b>ק <b>ז</b>ריז <b>ע</b>ם <b>פ</b>תרון אחד" - כלומר בלש שממהר בוחר את הפתרון הכי נגיש, לא בהכרח הכי נכון.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בלש עייף (System 1) שנכנס לזירת פשע ומיד "מזהה" את החשוד לפי דמיון לתיק ישן (ייצוגיות), נזכר במקרה מפורסם שראה בחדשות (זמינות), נדבק לתאוריה הראשונה שלו גם כשמגיעה ראיה סותרת (עיגון), ובוחר את ההסבר הכי פשוט כי הוא לא רוצה לחפור עוד (פשטות). <b>שותפו, הבלש השני (System 2), עוצר אותו ליד הדלת</b> ומכריח אותו לענות על שתי שאלות לפני שסוגרים את התיק: "זה מסביר <b>הכל</b>? זה <b>מתיישב</b> עם שאר הראיות?" - רק אם התשובה כן לשתיהן, מותר לסגור את התיק.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="110" cy="90" r="42" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <text x="110" y="85" text-anchor="middle" font-size="24">🕵️</text>
+    <text x="110" y="150" text-anchor="middle" font-size="13" fill="#92400e" font-weight="700">בלש 1 (System 1)</text>
+    <text x="110" y="168" text-anchor="middle" font-size="11" fill="#92400e">רץ מהר לתיאוריה</text>
+
+    <path d="M160 90 L235 90" stroke="#374151" stroke-width="2" marker-end="url(#arrow2)"/>
+
+    <rect x="235" y="55" width="70" height="70" rx="10" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="270" y="98" text-anchor="middle" font-size="26">🚪</text>
+    <text x="270" y="140" text-anchor="middle" font-size="12" fill="#991b1b" font-weight="700">דלת האימות</text>
+
+    <circle cx="390" cy="90" r="42" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="390" y="85" text-anchor="middle" font-size="24">🕵️‍♀️</text>
+    <text x="390" y="150" text-anchor="middle" font-size="13" fill="#065f46" font-weight="700">בלש 2 (System 2)</text>
+    <text x="390" y="168" text-anchor="middle" font-size="11" fill="#065f46">שואל: הכל מוסבר? עקבי?</text>
+    <defs><marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#374151"/></marker></defs>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.mayoclinicproceedings.org/article/S0025-6196(11)65108-2/fulltext" target="_blank">Mayo Clinic Proceedings - The Wizard of Odds: Bayes' Theorem and Diagnostic Testing</a>
+    <div class="desc">מאמר הסבר קליני קצר על שימוש בחוק בייס בפרקטיקה היומיומית, כולל דוגמאות מספריות נוספות.</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6457916/" target="_blank">The likelihood ratio and its graphical representation (PMC)</a>
+    <div class="desc">הסבר מפורט על נומוגרם Fagan (הגרסה הגרפית של חוק בייס שמוזכרת בפרק, איור 4-2) - איך משתמשים בו בפועל עם סרגל.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=lG4VkPoG3ko" target="_blank">3Blue1Brown - The medical test paradox</a>
+    <div class="desc">אותו סרטון שמוטמע למעלה, לצפייה ישירה ביוטיוב אם ההטמעה לא נטענת.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58 מגיעה למיון עם כאב חזה חד שהחל פתאום לפני שעתיים, מקרין לגב. יש לה יתר לחץ דם לא מאוזן. הרופא התורן, שראה 3 מקרי MI טיפוסיים באותה משמרת, נוטה לאבחן MI ומתחיל פרוטוקול חד-משמעי. עמיתה, שנזכרת בהנחיית "אימפרטיב אבחנתי", עוצרת ומודדת לחץ דם בשתי הזרועות - ומוצאת הפרש של 25 ממ"כ. צילום חזה מראה מדיאסטינום מורחב. האבחנה הסופית: <span dir="ltr" class="term">aortic dissection</span>.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. איזו הטיה קוגניטיבית כמעט גרמה לרופא התורן להחמיץ את האבחנה הנכונה בווינייטה?</div>
+  <button class="opt" data-i="0">עיגון (Anchoring)</button>
+  <button class="opt" data-i="1">זמינות (Availability)</button>
+  <button class="opt" data-i="2">תער אוקהם (Occam's razor)</button>
+  <button class="opt" data-i="3">אימפרטיב אבחנתי</button>
+  <div class="explain">נכון: <b>זמינות</b> - הרופא ראה לאחרונה מספר מקרי MI, מה שהפך את האבחנה הזו ל"נגישה" יותר בזיכרון ומוטה את השיפוט לכיוונה. עיגון היה רלוונטי רק אם כבר הייתה תוצאת בדיקה סותרת שהוא התעלם ממנה. תער אוקהם עוסק בהעדפת ההסבר הפשוט - לא הרלוונטי כאן ישירות. "אימפרטיב אבחנתי" הוא לא הטיה אלא בדיוק ההפך - העיקרון שהציל את המטופלת.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. בדיקה חדשה בוצעה על 200 חולים עם המחלה ו-800 בריאים. 180 מהחולים קיבלו תוצאה חיובית, ו-40 מהבריאים קיבלו תוצאה חיובית (שקר-חיובי). מהי הרגישות של הבדיקה?</div>
+  <button class="opt" data-i="0">80%</button>
+  <button class="opt" data-i="1">95%</button>
+  <button class="opt" data-i="2">90%</button>
+  <button class="opt" data-i="3">18%</button>
+  <div class="explain">נכון: <b>90%</b>. רגישות = TP/(TP+FN) = 180/200 = 0.90. (95% הוא הסגוליות: TN/(TN+FP) = 760/800 = 0.95. 80% ו-18% אינם מחושבים נכון מהנתונים.)</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופל עם הסתברות טרום-בדיקה של 10% למחלת לב כלילית עובר בדיקה עם יחס סבירות חיובי של 10 (בדיקה "מדויקת מאוד"). מה סביר להניח לגבי ההסתברות שלאחר הבדיקה?</div>
+  <button class="opt" data-i="0">תישאר נמוכה יחסית (בסביבות 50% ומטה) ולא תספיק "לאשר" את האבחנה בביטחון</button>
+  <button class="opt" data-i="1">תעלה מיד לכ-99%</button>
+  <button class="opt" data-i="2">תישאר בדיוק 10%, כי יחס סבירות לא משפיע על הסתברות נמוכה</button>
+  <button class="opt" data-i="3">אי אפשר לדעת בלי לדעת את הסגוליות המדויקת בנפרד</button>
+  <div class="explain">נכון: <b>ההסתברות תישאר נמוכה יחסית</b>. בדיוק כפי שהפרק מדגיש - תוצאה חיובית עם יחס סבירות 10 כשההסתברות הטרום-בדיקה נמוכה (20% ומטה) עדיין לא מעלה את ההסתברות מספיק גבוה כדי "לאשר" מחלה בביטחון (למשל ל-80%+). זה בדיוק המקום שבו בדיקות "מדויקות" יכולות עדיין להטעות בסקר של אוכלוסיה נמוכת-סיכון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. טיפול הפחית תמותה מ-20% ל-15% (הפחתת סיכון מוחלטת). כמה חולים צריך לטפל בהם כדי למנוע מקרה מוות אחד (NNT)?</div>
+  <button class="opt" data-i="0">5</button>
+  <button class="opt" data-i="1">20</button>
+  <button class="opt" data-i="2">15</button>
+  <button class="opt" data-i="3">75</button>
+  <div class="explain">נכון: <b>20</b>. ARR = 20%-15% = 5% = 0.05. NNT = 1/ARR = 1/0.05 = 20.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">5. לפי הפרק, איזה אחוז בערך מהמלצות בגיידליינים קרדיווסקולריים מבוסס על רמת הראיות הגבוהה ביותר (ניסויים אקראיים מרובים)?</div>
+  <button class="opt" data-i="0">כ-75%</button>
+  <button class="opt" data-i="1">כ-50%</button>
+  <button class="opt" data-i="2">כ-30%</button>
+  <button class="opt" data-i="3">פחות מ-15%</button>
+  <div class="explain">נכון: <b>פחות מ-15%</b> - וזה לא השתפר בעשור שנבדק, למרות עלייה משמעותית במספר הניסויים שפורסמו. חשוב לזכור את זה כדי לא להתייחס לכל שורה בגיידליין כאילו יש מאחוריה אותה רמת ביטחון.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. בדיקה עם רגישות של 98% חוזרת שלילית אצל מטופל. לפי מנמוניקת SnNout, מה המשמעות הקלינית הנכונה ביותר?</div>
+  <button class="opt" data-i="0">התוצאה השלילית מסייעת לשלול את המחלה בביטחון גבוה יחסית</button>
+  <button class="opt" data-i="1">התוצאה השלילית מאשרת שהמטופל בריא לחלוטין, ללא צורך בהערכה נוספת</button>
+  <button class="opt" data-i="2">התוצאה לא אומרת דבר כי לא ידועה הסגוליות</button>
+  <button class="opt" data-i="3">התוצאה מרמזת שיש לחזור על הבדיקה מיד</button>
+  <div class="explain">נכון: <b>מסייעת לשלול</b> (SnNout: Sensitivity high, Negative → rules out). אך "מסייעת לשלול" אינו זהה ל"מאשרת בריאות מוחלטת" - עדיין תלוי בהסתברות הטרום-בדיקה ובהקשר הקליני המלא, ולכן תשובה 2 מנוסחת בצורה קיצונית מדי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>חשיבה קלינית פועלת בשני מצבים: <b>System 1</b> (מהיר, מבוסס דפוסים, נתון להטיות) ו-<b>System 2</b> (איטי, שיטתי, מאמת). סגירה מוקדמת = דילוג על שלב האימות.</li>
+    <li>ארבעה heuristics מרכזיים שמטעים: <b>ייצוגיות, זמינות, עיגון, פשטות</b> (Occam - ללא בסיס ביולוגי מוכח).</li>
+    <li><b>אימפרטיב אבחנתי</b>: מצבים נדירים אך קטלניים (כמו aortic dissection) שחייבים להישלל שגרתית.</li>
+    <li>רגישות = TP/(TP+FN); סגוליות = TN/(TN+FP). <b>SnNout</b> (רגישות גבוהה+שלילי=שולל) / <b>SpPin</b> (סגוליות גבוהה+חיובי=מאשר).</li>
+    <li>חוק בייס: הסתברות שלאחר בדיקה תלויה בהסתברות טרום-בדיקה + יחס סבירות. בדיקה "מדויקת" על אוכלוסיה נדירת-שכיחות עדיין עלולה להטעות.</li>
+    <li>קריטריון Wells לתסחיף ריאתי - דוגמה למודל אבחנתי מאומת בפועל.</li>
+    <li>EBM = 4 שלבים (ניסוח שאלה→חיפוש→הערכה→שילוב עם המטופל). RCT &gt; מחקר תצפית מבחינת הגנה מפני הטיית בחירה, אך לא תמיד מוכלל היטב.</li>
+    <li><b>NNT = 1/ARR</b> - תלוי מאוד ברמת הסיכון הבסיסית של המטופל.</li>
+    <li>פחות מ-15% מהמלצות גיידליין מבוססות על הרמה הגבוהה ביותר של ראיות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
