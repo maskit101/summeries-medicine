@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>רפואה מדויקת ורפואה קלינית (Precision Medicine and Clinical Care)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:15.5px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>רפואה מדויקת ורפואה קלינית <span dir="ltr" class="term">(Precision Medicine and Clinical Care)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 5, עמ' 71–77 (חלק 1: מקצוע הרפואה)</div>
+
+<p>רפואה מדויקת <span dir="ltr" class="term">(Precision Medicine)</span> היא לא "תחום חדש" שנולד עם מיפוי הגנום האנושי, אלא השלב האחרון (נכון להיום) בתהליך היסטורי ארוך שבו הגדרת המחלה הופכת מדויקת ואישית יותר ויותר. הרעיון המרכזי: שני חולים עם "אותה" אבחנה יכולים להיות שונים מאוד מבחינה ביולוגית, ולהבין את השוני הזה — דרך שילוב של פנוטיפ קליני, מדדים תת-קליניים (אנדופנוטיפ) ומידע גנומי — הוא מה שמאפשר לבחור את הטיפול הנכון לחולה הספציפי, לא רק ל"מחלה" בהגדרתה הכללית.</p>
+
+<h2><span class="num">2</span> המנגנון - למה בכלל צריך "רפואה מדויקת"</h2>
+<div class="mechanism">
+  <p class="chain">
+    לאורך ההיסטוריה, כל דור של רפואה "דייק" את הגדרת המחלה ברזולוציה עמוקה יותר מקודמו: מ"החולה השלם" (המאה ה-18) → ל"איבר הפגוע" שנראה בנתיחה שלאחר המוות (תחילת המאה ה-19, מורגני) → ל"תא ומיקרוב" שנראים במיקרוסקופ (סוף המאה ה-19, זיהוי <span dir="ltr" class="term">M. tuberculosis</span>) → ל"פגם המולקולרי" שנבדק במעבדה (סוף המאה ה-20) → ועד לאתגר של המאה ה-21: <b class="key">להרכיב מחדש את כל השכבות הללו לכדי תמונה שלמה אחת של החולה הספציפי שמולנו</b>, ולא רק לפרק אותו לרכיב המולקולרי הקטן ביותר.
+  </p>
+  <p>
+    הסיבה שבגללה הרדוקציוניזם המולקולרי (מיזוג הגנום האנושי כלל, בתקווה שכל מחלה תוסבר על ידי גן בודד) <b>לא הספיק</b>: גם כשהמנגנון המולקולרי הראשוני ידוע במדויק — כמו המוטציה בשרשרת ה-β של הגלובין הגורמת לאנמיה חרמשית, הידועה כבר מאמצע המאה ה-20 — היא <b>אינה מנבאת</b> אילו ביטויים קליניים יפתח חולה נתון: שבץ מוחי, משבר כאבים, או משבר המוליטי. הסיבה: כל אדם נושא "הקשר גנומי" (<span dir="ltr" class="term">genomic context</span>) ייחודי משלו — גנים מווסתים (<span dir="ltr" class="term">modifier genes</span>) שאינם קשורים ישירות למוטציה הראשית, אך משפיעים באופן משוקלל על האופן שבו היא באה לידי ביטוי בפועל. לכן ה"רפואה המדויקת" מתמקדת לא רק בזיהוי הפגם המולקולרי המרכזי, אלא בהבנת ההקשר הגנומי הייחודי שמעצב את ביטויו אצל כל חולה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <text x="450" y="24" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">קשת הרדוקציוניזם בהיסטוריה של הרפואה</text>
+  <!-- boxes -->
+  <g font-family="Arial" font-size="12.5">
+    <rect x="20" y="60" width="150" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="95" y="85" text-anchor="middle" font-weight="700" fill="#1f2937">המאה ה-18</text>
+    <text x="95" y="105" text-anchor="middle" fill="#4b5563">"החולה השלם"</text>
+    <text x="95" y="122" text-anchor="middle" fill="#4b5563">(Sick person)</text>
+
+    <rect x="195" y="60" width="150" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="270" y="85" text-anchor="middle" font-weight="700" fill="#1f2937">תחילת המאה ה-19</text>
+    <text x="270" y="105" text-anchor="middle" fill="#4b5563">האיבר הפגוע</text>
+    <text x="270" y="122" text-anchor="middle" fill="#4b5563">(מורגני, נתיחות)</text>
+
+    <rect x="370" y="60" width="150" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="445" y="85" text-anchor="middle" font-weight="700" fill="#1f2937">סוף המאה ה-19</text>
+    <text x="445" y="105" text-anchor="middle" fill="#4b5563">התא והמיקרוב</text>
+    <text x="445" y="122" text-anchor="middle" fill="#4b5563" dir="ltr">(M. tuberculosis)</text>
+
+    <rect x="545" y="60" width="150" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="620" y="85" text-anchor="middle" font-weight="700" fill="#1f2937">סוף המאה ה-20</text>
+    <text x="620" y="105" text-anchor="middle" fill="#4b5563">הפגם המולקולרי</text>
+    <text x="620" y="122" text-anchor="middle" fill="#4b5563">(בדיקות אינטרפרון)</text>
+
+    <rect x="720" y="60" width="160" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+    <text x="800" y="85" text-anchor="middle" font-weight="700" fill="#1f2937">המאה ה-21</text>
+    <text x="800" y="105" text-anchor="middle" fill="#047857" font-weight="700">אתגר ההרכבה מחדש</text>
+    <text x="800" y="122" text-anchor="middle" fill="#4b5563">(רפואה מדויקת)</text>
+  </g>
+  <g stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrow5)">
+    <line x1="170" y1="105" x2="193" y2="105"/>
+    <line x1="345" y1="105" x2="368" y2="105"/>
+    <line x1="520" y1="105" x2="543" y2="105"/>
+    <line x1="695" y1="105" x2="718" y2="105"/>
+  </g>
+  <defs>
+    <marker id="arrow5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0L10,5L0,10z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <text x="450" y="185" text-anchor="middle" font-size="12" fill="#6b7280">כל שלב "דייק" את המחלה ברזולוציה עמוקה יותר — אך רק בשלב האחרון מנסים להרכיב את כל השכבות בחזרה יחד, לחולה ספציפי</text>
+</svg>
+
+<div class="key-box">שני עקרונות מבלבלים שכל קלינאי חייב להכיר: <b>פנוטיפים מתכנסים</b> (<span dir="ltr" class="term">convergent</span>) — מחלות שונות לגמרי שנראות דומה, ו<b>פנוטיפים מתפצלים</b> (<span dir="ltr" class="term">divergent</span>) — אותה מחלה בדיוק שנראית שונה לגמרי אצל חולים שונים.</div>
+
+<p><b>למה נוצרת התכנסות (convergence)?</b> כמה גורמים מולקולריים שונים לגמרי יכולים לפגוע באותו "צוואר בקבוק" פיזיולוגי משותף, ולכן להיראות דומה קלינית. למשל, <b>מיקרואנגיופתיה טרומבוטית</b> (פגיעה בכלי דם קטנים עם קרישה מקומית) יכולה להיגרם מ-<span dir="ltr" class="term">TTP</span> (מחסור באנזים <span dir="ltr" class="term">ADAMTS13</span>), <span dir="ltr" class="term">HUS</span> (רעלן חיידקי), יתר לחץ דם ממאיר, משבר כלייתי בסקלרודרמה, רעלת הריון, ותסמונת אנטיפוספוליפידים — מנגנוני מוצא שונים לחלוטין שכולם "נופלים" בסופו של דבר לאותו נתיב סופי משותף של פגיעה אנדותליאלית. באופן דומה, שריר לב מעובה (<span dir="ltr" class="term">hypertrophic cardiomyopathy</span>-like) יכול לנבוע ממחלה גנטית סרקומרית, מהסתננות עמילואיד, מהיצרות אבי העורקים, או מיתר לחץ דם כרוני שלא טופל.</p>
+
+<p><b>למה נוצרת התפצלות (divergence)?</b> אותו גורם ראשוני (מוטציה, זיהום) עובר "סינון" דרך ההקשר הגנומי הייחודי של כל אדם (הגנים המווסתים) ודרך חשיפותיו הסביבתיות המצטברות לאורך החיים — ולכן מגיע לביטוי קליני שונה בכל חולה. זה מה שמסביר למה סיסטיק פיברוזיס או אנמיה חרמשית יכולות להיראות כה שונה מאדם לאדם, וגם למה חדירות לא-מלאה (<span dir="ltr" class="term">incomplete penetrance</span>) קיימת במחלות תורשתיות רבות.</p>
+
+<h2><span class="num">3</span> שכבות המידע הביולוגי - מהגנום ועד למחלה</h2>
+<p>כדי לתאר חולה ברזולוציה גבוהה, רפואה מדויקת משתמשת ב"רב-אומיקס" (<span dir="ltr" class="term">multi-omics</span>) — שכבות מידע ביולוגי המסודרות מהסטטי ביותר לדינמי ביותר:</p>
+<ul>
+  <li><b>גנום (<span dir="ltr" class="term">genome</span>)</b> — רצף ה-DNA עצמו; ה"תוכנית" הסטטית, זהה בכל תא בגוף (למעט שינויים סומטיים, כמו בסרטן).</li>
+  <li><b>תעתיק (<span dir="ltr" class="term">transcriptome</span>)</b> — אילו גנים בפועל "נקראים" לכדי mRNA ברקמה נתונה וברגע נתון; דינמי וספציפי לרקמה.</li>
+  <li><b>פרוטאום (<span dir="ltr" class="term">proteome</span>)</b> — החלבונים שבאמת מיוצרים, כולל שינויים לאחר-תרגומיים (<span dir="ltr" class="term">post-translational modifications</span>) שמשנים את פעילותם.</li>
+  <li><b>מטבולום (<span dir="ltr" class="term">metabolome</span>)</b> — התוצרים המטבוליים הקטנים; השכבה הקרובה ביותר לפנוטיפ בפועל.</li>
+  <li><b>אפיגנום (<span dir="ltr" class="term">epigenome</span>)</b> — סימונים כימיים על ה-DNA וההיסטונים שקובעים אילו גנים "פתוחים" לקריאה, בלי לשנות את הרצף עצמו.</li>
+  <li><b>מטגנום/מיקרוביום (<span dir="ltr" class="term">metagenome</span>)</b> — הרכב החיידקים האישי של האדם, שמשפיע גם הוא על ביטוי המחלה.</li>
+</ul>
+<p>כדי לחבר בין כל השכבות האלה למחלה ספציפית, נבנה <b>אינטראקטום</b> (<span dir="ltr" class="term">interactome</span>) — מפת-רשת מקיפה של כל האינטראקציות בין חלבון לחלבון בתא או באיבר נתון. תת-הרשת שבתוך האינטראקטום הקשורה למחלה מסוימת נקראת <b>מודול מחלה</b> (<span dir="ltr" class="term">disease module</span>). כאשר מזהים את הווריאנטים הגנטיים הייחודיים לחולה ספציפי בתוך מודול המחלה שלו, מתקבל <b><span dir="ltr" class="term">reticulotype</span></b> ("רשתוטיפ") — הפרופיל האישי שמקשר בין הגנוטיפ לפנוטיפ של אותו חולה בדיוק, ומשמש בסיס לבחירת טיפול ממוקד עבורו.</p>
+
+<div class="key-box">אין צורך בידע מלא על כל הגנום כדי לתרגל רפואה מדויקת. הרשתות הביולוגיות "מוגדרות-יתר" (<span dir="ltr" class="term">overdetermined</span>) — כלומר עודפות ורדונדנטיות במידה רבה, כך שדי בזיהוי הגורם הראשי (<span dir="ltr" class="term">primary driver</span>) והבנת האופן שבו הוא "משוקלל" על ידי מאפיינים גנומיים אחרים של אותו אדם, בלי צורך במיפוי מוחלט של כל הממדים.</p></div>
+
+<h2><span class="num">4</span> ביטוי קליני - פנוטיפינג מעמיק</h2>
+<p>קלינאים מנוסים כבר מכירים היטב את ההבדלים העדינים בהצגת אותה מחלה אצל חולים שונים. פנוטיפינג מעמיק (<span dir="ltr" class="term">deep phenotyping</span>) דורש אנמנזה מפורטת (כולל היסטוריה משפחתית וחשיפות סביבתיות), בדיקות תפקודיות והדמיה (כולל הדמיה מולקולרית כשרלוונטי), ובדיקות ביוכימיות, אימונולוגיות ומולקולריות של נוזלי גוף — אלו מרכיבות יחד את ה<b>אנדופנוטיפ</b> (<span dir="ltr" class="term">endophenotype</span>): מאפיינים של המחלה שאינם נראים בבדיקה גופנית רגילה, אלא נחשפים רק במעבדה ובבדיקות תפקודיות.</p>
+<p>דוגמה קלאסית לתת-סיווג שנוצר מפנוטיפינג מדויק יותר: אי-ספיקת לב עם שבר פליטה מופחת <span dir="ltr" class="term">(HFrEF)</span> לעומת אי-ספיקת לב עם שבר פליטה שמור <span dir="ltr" class="term">(HFpEF)</span> — הבחנה שהתאפשרה רק עם שכלול האקוקרדיוגרפיה ומדידות דופלר רקמתי, ושחשובה קלינית כי HFpEF אינה מגיבה היטב לרוב קבוצות התרופות היעילות ב-HFrEF.</p>
+<p>מושג חשוב נוסף: <b>פנוטיפינג אורתוגונלי</b> (<span dir="ltr" class="term">orthogonal phenotyping</span>) — בדיקת ממדים קליניים, מולקולריים או תפקודיים שלכאורה אינם קשורים לתלונה העיקרית, מפני שמחלות רבות משפיעות באופן תת-קליני על מערכות איברים אחרות מזו שבה מופיעים התסמינים הראשיים (כמו ב<span dir="ltr" class="term">systemic lupus erythematosus</span>, המערבת מערכות רבות בו-זמנית).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/r7JPI9ik4tg" title="What is precision medicine? Easy explanation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר המסביר בשפה פשוטה מהי רפואה מדויקת ולמה "מידה אחת לא מתאימה לכולם" בטיפול הרפואי המסורתי.</p>
+
+<h2><span class="num">5</span> "אבחנה" - שלושת המרכיבים הנדרשים לרפואה מדויקת</h2>
+<p>כל מאמץ ברפואה מדויקת בנוי משלושה מרכיבים משלימים: <b>פנוטיפינג</b> (המראה הקליני החיצוני), <b>אנדופנוטיפינג</b> (המדדים התת-קליניים במעבדה ובתפקוד), ו<b>פרופיל גנומי</b> (רצף ה-DNA, ביטוי הגנים, ועוד). שילוב שלושתם — לא כל אחד לחוד — הוא מה שמאפשר לבנות "רשתוטיפ" מלא לחולה.</p>
+
+<table>
+  <thead><tr><th>מחלה</th><th>עידן טרום-גנומי</th><th>עידן פוסט-גנומי</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>אי-ספיקת לב</td>
+      <td>שילוב אמפירי של משתנים, דיגוקסין, חוסמי בטא, מעכבי RAAS לפי תגובה קלינית</td>
+      <td>תת-סיווג ל-HFrEF/HFpEF לפי הדמיה תפקודית; מחקר לזהות חתימות גנומיות שינבאו תגובה לכל קבוצת תרופות</td>
+    </tr>
+    <tr>
+      <td>יתר לחץ דם ריאתי (<span dir="ltr" class="term">PAH</span>)</td>
+      <td>ללא טיפול יעיל עד שנות ה-90; לאחר מכן חוסמי תעלות סידן, פרוסטציקלינים, אנטגוניסטים לאנדותלין לפי מנגנון כללי</td>
+      <td>זיהוי גנוטיפים ייחודיים כמו אנדופנוטיפ פיברוטי המווסת ע"י חלבון <span dir="ltr" class="term">NEDD-9</span>, המאפשר טיפול ממוקד יותר</td>
+    </tr>
+    <tr>
+      <td>דמנציות</td>
+      <td>סיווג לפי תמונה קלינית בלבד ("אלצהיימר", "דמנציה פרונטוטמפורלית")</td>
+      <td>סיווג לפי גנים ומסלולים ספציפיים ומיקום צבירת החלבונים במערכת העצבים (למשל תת-סוגי דמנציה פרונטוטמפורלית שונים)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>"עד כמה מדויקים צריך להיות?" - עקרון ה"העשרה" בניסויים קליניים</h3>
+<p>מכיוון שאי אפשר (וגם לא הכרחי) לאסוף את כל מימדי הגנום, התעתיק, הפרוטאום, המטבולום, האקספוזום (חשיפות סביבתיות/חברתיות) והמיקרוביום עבור כל חולה, נעשה שימוש ב<b>אסטרטגיות העשרה</b> (<span dir="ltr" class="term">enrichment strategies</span>) לצמצום ה"רעש" הביולוגי: <b>העשרה פרוגנוסטית</b> — בחירת חולים בסיכון גבוה במיוחד לתוצא הנחקר (מקלה על ביצוע הניסוי, אך לא בהכרח משפרת דיוק בבחירת הטיפול), לעומת <b>העשרה פרדיקטיבית</b> — שימוש במאפייני המשתתפים ובנתונים שנאספו לפני/במהלך הניסוי כדי לחזות מי ככל הנראה יגיב היטב לטיפול הנבדק.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/yPWcM6lBwUA" title="Precision Medicine Explained in 10 Minutes" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר מורחב יותר (כ-10 דקות) על עקרונות הרפואה המדויקת ועל שימוש בנתוני "ביג דאטה" (גנומיקה, תפקוד, אורח חיים) לחיזוי תגובה לטיפול.</p>
+
+<h2><span class="num">6</span> טיפול - כשרפואה מדויקת פוגשת מרשם בפועל</h2>
+<p>שני יישומים מרכזיים של רפואה מדויקת בטיפול: (1) <b>טיפולים ממוקדי-מטרה</b> (<span dir="ltr" class="term">targeted therapy</span>) המבוססים על מסלול אונקוגני או מולקולרי ספציפי שזוהה בחולה, ו-(2) <b>פרמקוגנומיקה</b> (<span dir="ltr" class="term">pharmacogenomics</span>) — התאמת מינון/בחירת תרופה לפי הפרופיל הגנטי של האדם המשפיע על פירוק התרופה או הפעלתה.</p>
+
+<table>
+  <thead><tr><th>תרופה / גישה</th><th>מנגנון / מטרה מולקולרית</th><th>מצב קליני</th><th>עקרון הרפואה המדויקת</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span dir="ltr" class="term">Imatinib</span> (Gleevec)</td>
+      <td>מעכב את הטירוזין-קינאז <span dir="ltr" class="term">BCR-ABL</span></td>
+      <td>לוקמיה מיאלואידית כרונית <span dir="ltr" class="term">(CML)</span> עם כרומוזום פילדלפיה חיובי</td>
+      <td>זיהוי מסלול אונקוגני יחיד ומוגדר לחלוטין (מתוך פחות מ-20 מסלולים אונקוגניים משותפים לרוב הממאירויות) והתאמת מעכב ספציפי</td>
+    </tr>
+    <tr>
+      <td><span dir="ltr" class="term">Erlotinib</span></td>
+      <td>מעכב <span dir="ltr" class="term">EGFR</span></td>
+      <td>סרטן ריאה שאינו תאים קטנים עם מוטציית <span dir="ltr" class="term">EGFR</span></td>
+      <td>טיפול ממוקד-מוטציה, לא ממוקד-איבר בלבד</td>
+    </tr>
+    <tr>
+      <td><span dir="ltr" class="term">Ibrutinib</span></td>
+      <td>מעכב <span dir="ltr" class="term">Bruton tyrosine kinase (BTK)</span></td>
+      <td>לוקמיה לימפוציטית כרונית <span dir="ltr" class="term">(CLL)</span></td>
+      <td>טיפול ממוקד-אנזים המבוסס על תלות התא הממאיר בו לשרידות</td>
+    </tr>
+    <tr>
+      <td><span dir="ltr" class="term">Sirolimus</span> (שימוש-מחדש)</td>
+      <td>מעכב <span dir="ltr" class="term">mTOR</span></td>
+      <td>מחלת <span dir="ltr" class="term">Castleman</span> מולטיצנטרית</td>
+      <td>"שימוש-מחדש ברשת" (<span dir="ltr" class="term">network-based drug repurposing</span>) — זיהוי קרבה בין מטרת התרופה הקיימת למודול המחלה, בלי צורך בפיתוח תרופה חדשה</td>
+    </tr>
+    <tr>
+      <td>מינון <span dir="ltr" class="term">Azathioprine</span> לפי גנוטיפ <span dir="ltr" class="term">TPMT</span></td>
+      <td>אנזים <span dir="ltr" class="term">TPMT</span> מפרק את התרופה; מטבוליזרים איטיים צוברים מטבוליטים רעילים</td>
+      <td>מחלות אוטואימוניות/דלקתיות המטופלות באזתיופרין</td>
+      <td>בדיקת גנוטיפ לפני התחלת הטיפול מונעת דיכוי מח עצם קשה במטבוליזרים איטיים</td>
+    </tr>
+    <tr>
+      <td>יעילות <span dir="ltr" class="term">Clopidogrel</span> לפי גנוטיפ <span dir="ltr" class="term">CYP2C19</span></td>
+      <td>קלופידוגרל הוא פרו-תרופה הזקוקה להפעלה ע"י <span dir="ltr" class="term">CYP2C19</span></td>
+      <td>מניעת קרישה לאחר צנתור/תסמונת כלילית חריפה</td>
+      <td>מטבוליזרים איטיים לא יפיקו את המטבוליט הפעיל — ייתכן צורך בתרופה חלופית</td>
+    </tr>
+  </tbody>
+</table>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Philadelphia_Chromosom.svg" alt="תרשים כרומוזום פילדלפיה - טרנסלוקציה t(9;22) היוצרת את מיזוג הגנים BCR-ABL">
+  <p class="media-cap">תרשים סכמטי של כרומוזום פילדלפיה — טרנסלוקציה בין כרומוזום 9 ל-22 היוצרת את גן המיזוג <span dir="ltr">BCR-ABL</span>, המטרה המולקולרית של <span dir="ltr">imatinib</span> בטיפול ב-CML. מקור: <a href="https://commons.wikimedia.org/wiki/File:Philadelphia_Chromosom.svg" target="_blank">Wikimedia Commons</a>.</p>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/oaOSGmhU5-w" title="Pharmacogenetics in Action" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של פרמקוגנטיקה בפועל — כיצד בדיקת גנוטיפ יכולה לשנות את בחירת התרופה או המינון עבור חולה ספציפי.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: פ-א-ג</h3>
+  <p>שלושת מרכיבי הרפואה המדויקת - <b>פ</b>נוטיפ (מה רואים), <b>א</b>נדופנוטיפ (מה מודדים במעבדה), <b>ג</b>נום (מה כתוב ב-DNA). בלי שלושתם יחד - אין "רשתוטיפ" שלם.</p>
+  <h3>סיפור דמיוני: החייט האישי</h3>
+  <p>דמייני חייט שתופר חליפה בהתאמה אישית. הוא לא מסתפק במבט חטוף (זה ה"פנוטיפ" - המראה החיצוני). הוא לוקח אותך מאחורי הפרגוד ומודד מידות נסתרות שאף אחד לא רואה מבחוץ (זה ה"אנדופנוטיפ" - בדיקות המעבדה וההדמיה). ולבסוף הוא בודק גם את "טביעת האצבע" הייחודית של הבד שלך - איך הסיבים שלך שונים מסיבי כל לקוח אחר (זה ה"גנום" וההקשר הגנומי האישי). חליפה "מידה אחת מתאימה לכולם" תתאים אולי ל-40% מהלקוחות - וזה בדיוק הנתון שהריסון מביא: עד 60% מהחולים לא מגיבים לתרופות ה"יעילות ביותר" כשהן ניתנות בגישת מידה-אחידה-לכולם.</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="90" cy="60" r="34" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="90" y="65" text-anchor="middle" font-size="24">👁️</text>
+    <text x="90" y="110" text-anchor="middle" font-size="12" fill="#4b5563">פנוטיפ</text>
+
+    <circle cx="230" cy="60" r="34" fill="#fffbeb" stroke="#b45309"/>
+    <text x="230" y="65" text-anchor="middle" font-size="24">🧪</text>
+    <text x="230" y="110" text-anchor="middle" font-size="12" fill="#4b5563">אנדופנוטיפ</text>
+
+    <circle cx="370" cy="60" r="34" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="370" y="65" text-anchor="middle" font-size="24">🧬</text>
+    <text x="370" y="110" text-anchor="middle" font-size="12" fill="#4b5563">גנום</text>
+
+    <g stroke="#94a3b8" stroke-width="2" fill="none" marker-end="url(#arrowM)">
+      <line x1="120" y1="90" x2="215" y2="140"/>
+      <line x1="230" y1="94" x2="250" y2="140"/>
+      <line x1="345" y1="90" x2="290" y2="140"/>
+    </g>
+    <defs>
+      <marker id="arrowM" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M0,0L10,5L0,10z" fill="#94a3b8"/>
+      </marker>
+    </defs>
+    <rect x="185" y="145" width="150" height="45" rx="8" fill="#ecfdf5" stroke="#047857"/>
+    <text x="260" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#047857">חליפה בהתאמה אישית</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6616999/" target="_blank">Network Medicine in Pathobiology - PMC (NIH)</a>
+    <div class="desc">מאמר מקור (Lee &amp; Loscalzo) שממנו נלקחו האיורים על אינטראקטום, מודולי מחלה ו"רשתוטיפ" בפרק זה - מומלץ למי שרוצה להעמיק במתודולוגיה של רפואת הרשתות.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=Oxc8JfArbeg" target="_blank">Tidbits with Dr Chris Lieu | Precision Medicine</a>
+    <div class="desc">הסבר קליני קצר על יישום רפואה מדויקת בטיפול באונקולוגיה, כולל דוגמאות לבחירת טיפול לפי פרופיל גנטי של הגידול.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Philadelphia_chromosome" target="_blank">Category: Philadelphia chromosome - Wikimedia Commons</a>
+    <div class="desc">אוסף תמונות ותרשימים נוספים של כרומוזום פילדלפיה וטרנסלוקציית t(9;22), למי שרוצה לראות גם צילומי FISH אמיתיים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58 מגיעה עם עייפות מתמשכת ותחושת מלאות בבטן העליונה-שמאלית. בבדיקה גופנית מזוהה טחול מוגדל. ספירת דם מראה לויקוציטוזיס בולט עם ספקטרום רחב של תאים מיאלואידיים בשלבי הבשלה שונים. בדיקה ציטוגנטית של מח העצם מגלה טרנסלוקציה <span dir="ltr" class="term">t(9;22)</span> - כרומוזום פילדלפיה חיובי, עם גן מיזוג <span dir="ltr" class="term">BCR-ABL</span>. במקום להתחיל כימותרפיה כללית (כפי שהיה נהוג בעידן הטרום-גנומי), הרופאה המטפלת בוחרת ב-<span dir="ltr" class="term">imatinib</span> - מעכב ממוקד לחלבון ה-BCR-ABL עצמו. לאחר כמה חודשים, כשעולה הצורך להוסיף לה <span dir="ltr" class="term">azathioprine</span> עבור בעיה אוטואימונית נלווית, נבדק תחילה גנוטיפ <span dir="ltr" class="term">TPMT</span> שלה כדי לוודא שהיא לא מטבוליזרית איטית בסיכון לדיכוי מח עצם קשה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. שני חולים עם אותה מוטציה בדיוק הגורמת לאנמיה חרמשית - אחד מפתח שבץ מוחי, השני מפתח בעיקר משברי כאב. מה מסביר בעיקר את השוני?</div>
+  <button class="opt" data-i="0">האחד נושא את המוטציה בהומוזיגוטיות והשני בהטרוזיגוטיות</button>
+  <button class="opt" data-i="1">מדובר בטעות מעבדתית - לא ייתכן הבדל כזה מאותה מוטציה</button>
+  <button class="opt" data-i="2">ההקשר הגנומי הייחודי (גנים מווסתים) וההשפעות הסביבתיות המצטברות של כל אחד מהם</button>
+  <button class="opt" data-i="3">רמת ההיענות לטיפול בלבד</button>
+  <div class="explain">התשובה הנכונה: זהו בדיוק הדוגמה שהריסון פותח איתה - אותה מוטציה גלובינית בדיוק אינה מנבאת אילו ביטויים קליניים יתפתחו, כי הביטוי מעוצב על ידי הגנים המווסתים הייחודיים לכל אדם (ההקשר הגנומי) ועל ידי חשיפות סביבתיות. הומוזיגוטיות/הטרוזיגוטיות (תשובה 1) קובעת אם יש מחלה בכלל (תכונה חרמשית מול מחלה חרמשית), לא איזה סיבוך יתפתח. אין כאן טעות מעבדתית (2) - זו בדיוק התופעה שהפרק מתאר. היענות לטיפול (4) אינה הגורם המרכזי המוזכר בטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהי ההגדרה הנכונה ביותר ל"אנדופנוטיפ" (endophenotype)?</div>
+  <button class="opt" data-i="0">רצף ה-DNA המלא של החולה</button>
+  <button class="opt" data-i="1">מאפיינים של המחלה שאינם נצפים בבדיקה גופנית רגילה, אלא מתגלים במעבדה, בדימות או בבדיקות תפקודיות</button>
+  <button class="opt" data-i="2">התסמינים שהחולה מדווח עליהם באנמנזה</button>
+  <button class="opt" data-i="3">התגובה הרגשית של החולה למחלתו</button>
+  <div class="explain">תשובה 2 נכונה - אנדופנוטיפ הוא בדיוק המדדים ה"סמויים" שדורשים בדיקות ביוכימיות, אימונולוגיות, מולקולריות או תפקודיות כדי להיחשף. תשובה 1 מתארת גנום, לא אנדופנוטיפ. תשובה 3 מתארת פנוטיפ קליני גלוי (מה שהחולה מדווח/רואים בבדיקה), לא את השכבה הנסתרת. תשובה 4 אינה חלק מההגדרה הרפואית של המונח.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מיקרואנגיופתיה טרומבוטית יכולה להיגרם מ-TTP, HUS, יתר לחץ דם ממאיר, משבר כלייתי בסקלרודרמה, רעלת הריון ותסמונת אנטיפוספוליפידים - כולן נראות דומה קלינית. איזה מושג מתאר תופעה זו?</div>
+  <button class="opt" data-i="0">פנוטיפים מתכנסים (convergent phenotypes)</button>
+  <button class="opt" data-i="1">פנוטיפים מתפצלים (divergent phenotypes)</button>
+  <button class="opt" data-i="2">אנדופנוטיפינג אורתוגונלי</button>
+  <button class="opt" data-i="3">רדונדנטיות רשתית</button>
+  <div class="explain">תשובה 0 נכונה: זו ההגדרה המדויקת של "פנוטיפים מתכנסים" - מחלות שונות עם מנגנוני מוצא שונים לחלוטין שמתכנסות לאותה תמונה קלינית סופית (כאן: פגיעה אנדותליאלית בכלי דם קטנים). "פנוטיפים מתפצלים" (1) זה ההיפך - אותה מחלה שנראית שונה בין חולים. "פנוטיפינג אורתוגונלי" (2) מתאר בדיקת מערכות לא-קשורות לתלונה העיקרית. "רדונדנטיות רשתית" (3) מתאר את התכונה שבגללה אין צורך במיפוי גנומי מלא - מושג אחר לגמרי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. חולה עוברת צנתור לב ומתחילה קלופידוגרל למניעת קרישה. איזו בדיקה גנטית הכי רלוונטית לפני קביעת יעילות התרופה?</div>
+  <button class="opt" data-i="0">TPMT</button>
+  <button class="opt" data-i="1">EGFR</button>
+  <button class="opt" data-i="2">BCR-ABL</button>
+  <button class="opt" data-i="3">CYP2C19</button>
+  <div class="explain">CYP2C19 (תשובה 3) הוא האנזים שהופך את קלופידוגרל (פרו-תרופה) לצורתו הפעילה - מטבוליזרים איטיים לא יפיקו הגנה אנטי-טסיסתית מספקת. TPMT (0) רלוונטי לאזתיופרין, לא לקלופידוגרל. EGFR (1) הוא מטרה בטיפול בסרטן ריאה, לא גן מטבולי. BCR-ABL (2) הוא גן המיזוג בלוקמיה מיאלואידית כרונית, לא קשור לקלופידוגרל.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. למה, לפי הפרק, בפועל אין צורך בידע גנומי מלא (כל השכבות, כל הזמן) כדי לתרגל רפואה מדויקת?</div>
+  <button class="opt" data-i="0">כי רפואה מדויקת מתייחסת רק לסרטן, שבו קל יותר לדגום רקמה</button>
+  <button class="opt" data-i="1">כי הרשתות הביולוגיות מוגדרות-יתר (עודפות), ודי בזיהוי הגורם הראשי והבנת האופן שבו הוא מווסת ע"י תכונות גנומיות אחרות</button>
+  <button class="opt" data-i="2">כי טכנולוגיות הריצוף עדיין יקרות מדי לשימוש שגרתי</button>
+  <button class="opt" data-i="3">כי רוב המחלות נגרמות מגן בודד ולא דורשות ניתוח רשת מורכב</button>
+  <div class="explain">תשובה 1 נכונה ומדויקת לטקסט: המושג "overdetermined" (מוגדר-יתר/רדונדנטי) מוסבר בפרק כסיבה לכך שאפשר להסתפק בגורם המוביל ובמשקלים של גנים מווסתים, בלי מיפוי גנומי שלם. תשובה 0 שגויה - הפרק דן ברפואה מדויקת במגוון רחב של מחלות, לא רק סרטן (אם כי הוא מציין שסרטן נוח יחסית לדגימה חוזרת). תשובה 2 היא שיקול כלכלי-טכני שאינו הנימוק המרכזי שמובא בטקסט. תשובה 3 מנוגדת ישירות למסר המרכזי של הפרק - שרוב המחלות דווקא לא נובעות מגן בודד.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו "מודול מחלה" (disease module) במסגרת רפואת הרשתות (network medicine)?</div>
+  <button class="opt" data-i="0">מאגר הנתונים הקליניים המלא של חולה בודד</button>
+  <button class="opt" data-i="1">שם כללי לכל בדיקות ההדמיה הזמינות למחלה נתונה</button>
+  <button class="opt" data-i="2">תת-רשת בתוך האינטראקטום הכולל (מפת חלבון-חלבון) שקשורה למחלה מסוימת</button>
+  <button class="opt" data-i="3">רשימת התרופות המאושרות לטיפול במחלה</button>
+  <div class="explain">תשובה 2 נכונה: "מודול מחלה" הוא בדיוק תת-הרשת בתוך האינטראקטום (מפת האינטראקציות בין חלבון לחלבון) שמזוהה כקשורה לפתופנוטיפ של מחלה נתונה - זה הבסיס לזיהוי מטרות תרופתיות חדשות ולשימוש-מחדש ברשת (כמו הדוגמה של סירולימוס במחלת קאסלמן). שאר האפשרויות מתארות מושגים קליניים אחרים שאינם המונח הטכני "disease module".</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>רפואה מדויקת = המשך היסטורי טבעי של דיוק הולך וגדל בהגדרת מחלה, לא תחום חדש שנולד עם הגנום.</li>
+    <li>המנגנון: מוטציה/גורם מוצא בודד לא מנבא ביטוי קליני - ההקשר הגנומי הייחודי (גנים מווסתים) והסביבה קובעים את התמונה בפועל. חובה להכיר פנוטיפים מתכנסים (מחלות שונות → תמונה דומה) ומתפצלים (מחלה אחת → תמונות שונות).</li>
+    <li>שלושת המרכיבים: פנוטיפ (מה רואים), אנדופנוטיפ (מה מודדים במעבדה/תפקוד), גנום (רצף + ביטוי + אפיגנום + מיקרוביום). האינטראקטום, מודול המחלה וה-reticulotype מחברים ביניהם.</li>
+    <li>אין צורך במיפוי גנומי מלא - רשתות ביולוגיות רדונדנטיות (overdetermined) מאפשרות להסתפק בגורם המוביל + משקלים מווסתים.</li>
+    <li>טיפול: טיפולים ממוקדי-מטרה (imatinib/BCR-ABL, erlotinib/EGFR, ibrutinib/BTK) ופרמקוגנומיקה (TPMT לפני אזתיופרין, CYP2C19 לפני קלופידוגרל).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
