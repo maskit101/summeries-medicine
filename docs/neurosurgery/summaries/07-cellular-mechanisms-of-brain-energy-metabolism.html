@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: מנגנונים תאיים של מטבוליזם אנרגטי במוח</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 7: מנגנונים תאיים של מטבוליזם אנרגטי במוח <span class="term" dir="ltr">Cellular Mechanisms of Brain Energy Metabolism</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Albert Gjedde, Pierre Magistretti</div>
+
+<p>הפרק הזה עונה על שאלה שנשמעת תיאורטית אבל היא בליבת הפרקטיקה הנוירוכירורגית והנוירוקריטית: <b>מאיפה המוח מקבל את האנרגיה שלו, לאן היא הולכת, ומה קורה כשההספקה נקטעת?</b> המוח שוקל כ-1%-2% ממשקל הגוף אך צורך לפחות 10% מהגלוקוז והחמצן שהגוף מייצר במנוחה, ומקבל 10% מתפוקת הלב - יחס שלא קיים כמעט בשום איבר אחר. הפרק בונה תמונה מכנית מלאה: יונים→ ממברנה→ <span class="term" dir="ltr">Na⁺,K⁺-ATPase</span>→ גליקוליזה→ מיטוכונדריה→ ATP, ולאורך כל השרשרת מדגיש נקודה קלינית מרכזית - שהמוח כמעט ואין לו רזרבות אנרגיה, ולכן כל הפרעה (איסכמיה, היפוגליקמיה, פגיעת ראש) פוגעת תוך שניות-דקות, לא שעות.</p>
+
+<h2><span class="num">1</span> למה נוירוכירורג צריך להכיר את זה?</h2>
+<div class="mechanism">
+  <p class="chain">
+    שלושה תרחישים קליניים יומיומיים נשענים ישירות על הפיזיולוגיה בפרק הזה:
+  </p>
+  <p>
+    <b>1. ניטור מולטי-מודלי בטראומה/דמם תת-עכבישי:</b> קטטר מיקרודיאליזה מודד גלוקוז, לקטט ופירובט ברקמת המוח בזמן אמת - הפרשנות שלו דורשת הבנה של גליקוליזה מול פוספורילציה חמצונית.<br>
+    <b>2. הדמיית PET-FDG בגידולים:</b> גידולים ממאירים "אוהבים גליקוליזה" (אפקט <span class="term" dir="ltr">Warburg</span>) ומראים קליטת גלוקוז גבוהה, בזמן שרקמה נמקית/מוקרנת מראה קליטה נמוכה - הבחנה קריטית באבחנה מבדלת.<br>
+    <b>3. בקרת גלוקוז בטיפול נמרץ נוירוכירורגי:</b> גם היפוגליקמיה וגם היפרגליקמיה קשות מזיקות למוח פגוע, בגלל תלות כמעט מוחלטת בגלוקוז כדלק וגלוקונאוגנזה אנאירובית שמייצרת חומצה בזמן איסכמיה.
+  </p>
+</div>
+<p class="key-box">המוח כמעט ולא שומר עתודות אנרגיה - הריכוזים של ATP וגליקוגן מספיקים לדקה-שתיים בלבד. זו הסיבה שהפסקת זרימת דם למוח (דום לב, קליפ עורקי זמני) גורמת לאובדן הכרה תוך שניות ולנזק בלתי הפיך תוך דקות.</p>
+
+<h2><span class="num">2</span> הצרכן הגדול ביותר: שאיבת יונים דרך הממברנה</h2>
+<p>המידע במוח מועבר באמצעות שינויים בפוטנציאל הממברנה - דהיינו, תנועת יוני נתרן, אשלגן, כלוריד וסידן. שמירה על הגרדיאנטים האלה נגד הזרימה הפסיבית שלהם דורשת אנרגיה מתמדת, שמסופקת על ידי המשאבה <span class="term" dir="ltr">Na⁺,K⁺-ATPase</span>.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sodium-potassium_pump.svg?width=700" alt="Diagram of the sodium-potassium pump mechanism showing ATP hydrolysis and ion exchange across the cell membrane">
+<p class="media-cap">מנגנון משאבת הנתרן-אשלגן: הידרוליזה של ATP מניעה יציאה של 3 יוני נתרן והכנסה של 2 יוני אשלגן בכל מחזור. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/cYO04a0RhlI" title="Sodium Potassium Pump Na/K-ATPase - Dr. Najeeb Lectures" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר מפורט על מנגנון המשאבה, האלקטרוגניות שלה, והקשר לפוטנציאל המנוחה. מקור: Dr. Najeeb Lectures, YouTube.</p>
+<div class="mechanism">
+  <p class="chain">שרשרת המנגנון: גירוי עצבי (עירור/עיכוב) → כניסת Na⁺ תוך-תאית ויציאת K⁺ חוץ-תאית → הפעלת Na⁺,K⁺-ATPase → פירוק ATP → החזרת Na⁺ החוצה ו-K⁺ פנימה → שחזור הגרדיאנט המקורי, מוכן לגירוי הבא.</p>
+  <p>לפי חישובי "תקציב האנרגיה" של המוח (Attwell ועמיתיו), <b>כ-90% מתחלופת האנרגיה במוח הפרימטי מוקדשת לפעילות "סינפטית"</b> - כלומר לשמירה על פוטנציאל הממברנה סביב פעילות תפקודית - כאשר כ-80% מהתחלופה מתרחשת בנוירונים וכ-15% בתאי גליה. זהו ההסבר לכך שנוירונים כה רגישים לירידה בהספקת אנרגיה: כל הפרעה במשאבה גורמת לדה-פולריזציה בלתי-נשלטת, שחרור גלוטמט מוגזם, וקסקדת נזק אקסיטוטוקסית - המנגנון הבסיסי שמסביר חלק גדול מהנזק המשני באיסכמיה ובחבלת ראש.</p>
+</div>
+
+<h2><span class="num">3</span> שלבי הפעילות התפקודית ומודל הכפלת חילוף החומרים</h2>
+<p>המחברים מציעים חלוקה למצבים פונקציונליים בדידים, שכל אחד מהם קשור לקצב מטבולי מוגדר בקירוב, לפי הנוסחה <span class="term" dir="ltr">CMR(S) = CMR(0) × 2<sup>S</sup></span> - כלומר קצב חילוף החומרים המוחי מוכפל בערך פי 2 עם כל עלייה קטגורית ברמת הפעילות.</p>
+<div class="table-scroll">
+<table>
+<tr><th>שלב (S)</th><th>שם</th><th>תיאור קליני</th></tr>
+<tr><td>0</td><td>בסיס מטבולי (Metabolic baseline)</td><td>העדר שינוע יונים לחלוטין - לא תואם הישרדות, גורם להתמוססות הדרגתית של הגרדיאנטים היוניים</td></tr>
+<tr><td>1</td><td>בסיס תפקודי (Functional baseline)</td><td>שינוע יונים תקין אך ללא פעילות תפקודית - למשל איזואלקטריות ב-EEG</td></tr>
+<tr><td>2</td><td>פעילות נמוכה</td><td>קורטקס מנותק, תרדמת, מצב וגטטיבי מתמשך, הרדמה - כ-50% מהערך הרגיל בערות</td></tr>
+<tr><td>3</td><td>ברירת מחדל (Default)</td><td>מוח ער ומתפקד באופן תקין במנוחה - זהו הערך שברוב המדידות הקליניות נחשב "נורמלי"</td></tr>
+<tr><td>4</td><td>הפעלה פיזיולוגית מרבית</td><td>הרמה הגבוהה ביותר של פעילות פיזיולוגית תקינה; מעבר לרמה זו נחשב פתולוגי (למשל התקף אפילפטי)</td></tr>
+</table>
+</div>
+<p class="key-box">ערכי הייחוס לקורטקס אנושי בשלב 3 (ברירת מחדל): צריכת חמצן (<span class="term" dir="ltr">CMRO₂</span>) כ-1.6 µmol/g/min, צריכת גלוקוז (<span class="term" dir="ltr">CMRGlc</span>) כ-0.3 µmol/g/min, ויחס חמצן-גלוקוז (<span class="term" dir="ltr">OGI</span>) של כ-5.3-5.6 - כלומר כ-90% מהגלוקוז עובר חמצון מלא ורק כ-10% הופך ללקטט.</p>
+
+<h2><span class="num">4</span> אספקת דלק: הובלת גלוקוז וחמצן דרך מחסום הדם-מוח</h2>
+<p>גלוקוז חוצה את מחסום הדם-מוח באמצעות משפחת נשאי <span class="term" dir="ltr">GLUT</span>: <b>GLUT1 (55kD)</b> נמצא באופן בלעדי באנדותל הנימים (המחסום עצמו), <b>GLUT1 (45kD)</b> באסטרוציטים ובמקלעת הכורואיד, ו-<b>GLUT3</b> בממברנות הנוירונים. תכולת ההובלה של GLUT1 במחסום גבוהה פי 4-8 מהצריכה בפועל - כך שבמצב תקין הובלת הגלוקוז כמעט אף פעם אינה גורם מגביל, אלא רק בהיפוגליקמיה קשה.</p>
+<p>חמצן, לעומת זאת, מוגבל מבחינה פיזית: כ-40% מהחמצן בדם מופק במעבר בנימי המוח, אך שיעור זה יכול לעלות עד כ-60% לכל היותר. מעבר לסף הזה, לחץ החמצן בנימים נמוך מדי כדי לתמוך בדיפוזיה נוספת - <b>זהו סף פיזיולוגי לכשל הספקת חמצן, שרלוונטי ישירות להבנת האיסכמיה המוחית ותופעת ה"פנומברה".</b></p>
+
+<h2><span class="num">5</span> גליקוליזה: הדלק המהיר, לקטט ופירובט כ"מטבע עובר לסוחר"</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Glycolysis_metabolic_pathway.svg?width=700" alt="Diagram of the glycolysis metabolic pathway from glucose to pyruvate">
+<p class="media-cap">שלבי הגליקוליזה מגלוקוז לפירובט - עד לשלב הזה התהליך אינו זקוק לחמצן, אך יעילותו האנרגטית נמוכה בהרבה מהחמצון המלא במיטוכונדריה. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/2_ceHsFmLVk" title="Cellular Respiration: Glycolysis, Krebs Cycle & the Electron Transport Chain" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה של שלושת שלבי הנשימה התאית - גליקוליזה, מחזור קרבס ושרשרת הובלת האלקטרונים - הרלוונטיים ישירות לפרק זה.</p>
+<div class="mechanism">
+  <p class="chain">גלוקוז → (גליקוליזה, ציטופלזמה, ללא חמצן) → 2 פירובט + רווח נטו של 2 ATP. אם הפירובט מומר ללקטט (גליקוליזה אנאירובית), הרווח נשאר 2 ATP בלבד לכל מולקולת גלוקוז. אם הפירובט נכנס למיטוכונדריה ועובר חמצון מלא, הרווח התיאורטי המרבי הוא 38 ATP (בפועל כ-30, בשל "דליפות" ואי-צימוד מיטוכונדריאלי).</p>
+</div>
+<p>הובלת פירובט ולקטט בין תאים ובתוך התא נעשית על ידי משפחת נשאי <span class="term" dir="ltr">MCT</span> (מונוקרבוקסילט): <b>MCT1 ו-MCT4</b> - נשאים בזיקה נמוכה, שולטים באנדותל ובאסטרוציטים; <b>MCT2</b> - נשא בזיקה גבוהה, ספציפי לנוירונים, בעיקר בסינפסות גלוטמטרגיות. פער הזיקה הזה הוא הבסיס לכיוון הזרימה בין אסטרוציטים לנוירונים - נושא הסעיף הבא.</p>
+<p>האנזים <span class="term" dir="ltr">Lactate Dehydrogenase (LDH)</span> קיים במספר איזופורמים (LDH1-LDH5); איזופורמים "שריר-דמויי" (LDH4/LDH5) שולטים באסטרוציטים ומעדיפים ייצור לקטט, ואילו LDH1 ("לב-דמוי") נפוץ יותר בקצוות סינפטיים ומתאים לחמצון פירובט - הבדל אנזימטי שמתכתב עם ההבדל התפקודי בין שני סוגי התאים.</p>
+
+<h2><span class="num">6</span> ה"מעטפת" בין אסטרוציטים לנוירונים: Astrocyte-Neuron Lactate Shuttle</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/jKaexZsH1R0" title="Astrocyte Neuron Lactate Shuttle" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של מנגנון ה-ANLS - כיצד קליטת גלוטמט באסטרוציטים מובילה לייצור לקטט שמוזן לנוירונים.</p>
+<div class="mechanism">
+  <p class="chain">
+    שרשרת המנגנון (מודל Pellerin-Magistretti): נוירון פרה-סינפטי משחרר <b>גלוטמט</b> → אסטרוציט קולט אותו יחד עם 3 יוני נתרן (סימפורט EAAT) → עלייה בנתרן התוך-תאי מפעילה את Na⁺,K⁺-ATPase האסטרוציטרית → העלייה בביקוש ל-ATP מזרזת <b>גליקוליזה</b> באסטרוציט → נוצר עודף לקטט → הלקטט מיוצא דרך MCT4/MCT1 ונקלט בנוירון הפוסט-סינפטי דרך MCT2 בזיקה גבוהה → הנוירון מחמצן את הלקטט (דרך פירובט) במיטוכונדריה שלו לצורך אנרגיה.
+  </p>
+</div>
+<p class="key-box">המשמעות הקלינית: אסטרוציטים פועלים כ"מפעל דלק גליקוליטי" עבור נוירונים סמוכים, במיוחד בזמן פעילות אינטנסיבית. זה מסביר מדוע פגיעה באסטרוציטים (כפי שקורה בבצקת ציטוטוקסית, איסכמיה, או לאחר חבלת ראש) פוגעת בהזנת האנרגיה של הנוירונים גם כאשר אספקת הגלוקוז מהדם עצמה תקינה.</p>
+
+<h2><span class="num">7</span> פוספורילציה חמצונית: המיטוכונדריה כמפעל האנרגיה האמיתי</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mitochondrial_electron_transport_chain_(annotated_diagram).svg?width=700" alt="Annotated diagram of the mitochondrial electron transport chain complexes I to IV and ATP synthase">
+<p class="media-cap">שרשרת הובלת האלקטרונים במיטוכונדריה - קומפלקסים I-IV וסינתאז ה-ATP, עם חמצן כקולט האלקטרונים הסופי. מקור: Wikimedia Commons.</p>
+<div class="mechanism">
+  <p class="chain">
+    פירובט נכנס למיטוכונדריה (דרך נשא mMCT) → קומפלקס <span class="term" dir="ltr">Pyruvate Dehydrogenase (PDH)</span> ממיר אותו לאצטיל-CoA → מחזור <span class="term" dir="ltr">TCA (קרבס)</span> מייצר NADH ו-FADH₂ → אלה מזינים את קומפלקסים I ו-II בשרשרת הובלת האלקטרונים → זרם המימן דרך הממברנה הפנימית מניע את <span class="term" dir="ltr">ATP synthase</span> → נוצר ATP, וחמצן מתחזר למים בקומפלקס IV (ציטוכרום c אוקסידאז).
+  </p>
+  <p>יוני סידן שנכנסים למיטוכונדריה בעקבות גירוי גלוטמטרגי מפעילים ישירות את האנזימים המווסתים (PDH, ציטראט סינתאז, איזוציטראט דהידרוגנאז) - כך שעודף סידן תוך-מיטוכונדריאלי (למשל בעומס אקסיטוטוקסי) יכול גם להעצים חילוף חומרים חמצוני וגם, בעודף, לפגוע בקרום המיטוכונדריאלי ולעורר אפופטוזיס - קישור ישיר בין הפיזיולוגיה כאן לפתופיזיולוגיה של פגיעה עצבית משנית.</p>
+</div>
+
+<h2><span class="num">8</span> חיץ הביטחון המהיר: פוספוקריאטין וקריאטין קינאז</h2>
+<p>מכיוון שגליקוליזה מגיבה תוך אלפיות שנייה ופוספורילציה חמצונית מגיבה תוך שניות-דקות, נדרש חיץ מהיר שישמור את ריכוז ה-ATP כמעט קבוע גם בעליות פתאומיות בביקוש. אנזים <span class="term" dir="ltr">Creatine Kinase (CK)</span> - בצורתו הציטופלזמית (BB-CK, ספציפית למוח) ובצורתו המיטוכונדריאלית (Mi-CK) - מעביר קבוצת פוספט מפוספוקריאטין (PC) ל-ADP, ומייצר ATP מיידית מבלי להמתין לגליקוליזה או לחמצון. מכיוון שפוספוקריאטין מתפזר בציטופלזמה מהר יותר בסדר גודל מאשר ATP עצמו, מערכת ה-CK/PC מהווה "רשת ביטחון" מיידית שמקנה למוח יכולת לשאת שינויים גדולים בקצב העבודה (עד פי 10) כמעט ללא שינוי בריכוז ה-ATP הנמדד.</p>
+
+<div class="mnemonic">
+<h3>טכניקת זכירה</h3>
+<p><b>ראשי תיבות: "גל"ם-אור" (גלוקוז → לקטט → מיטוכונדריה - אור/ATP)</b></p>
+<p><b>ג</b>לוקוז נכנס דרך <b>G</b>LUT (GLUT1 במחסום, GLUT3 בנוירון). <b>ל</b>קטט זורם מאסטרוציט לנוירון דרך <b>M</b>CT (MCT4/1 באסטרוציט, MCT2 בנוירון - "זיכרון: 2=2 שלוקח לנוירון"). <b>מ</b>יטוכונדריה מייצרת <b>א</b>נרגיה (ATP) - <b>אור</b> = תוצר סופי, כמו שנורה דולקת בזכות זרם אלקטרונים בשרשרת ההובלה. סיפור דמיוני: תארי לעצמך אסטרוציט כ"תחנת דלק" שמתדלקת נוירון עייף בלקטט אחרי שהוא "עבד קשה" (שחרר גלוטמט) - בדיוק כמו שמלווים מזון לספורטאי אחרי מאמץ.</p>
+</div>
+
+<h2><span class="num">9</span> יישום קליני: ניטור מטבולי בטיפול נמרץ נוירוכירורגי והדמיית PET</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/fsinAbrB76U" title="Cerebral microdialysis - M. Oddo lecture" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה על מיקרודיאליזה מוחית - ניטור בצד המיטה של גלוקוז, לקטט ופירובט בטראומת ראש ודמם תת-עכבישי.</p>
+<div class="mechanism">
+  <p class="chain">קטטר מיקרודיאליזה שמושתל ברקמת המוח דוגם את הנוזל החוץ-תאי ומודד גלוקוז, לקטט, פירובט וגלוטמט. יחס לקטט/פירובט (<span class="term" dir="ltr">LPR</span>) מעל 25 מצביע על מטבוליזם אנאירובי/כשל מיטוכונדריאלי, ומהווה סמן פרוגנוסטי עצמאי לתוצא גרוע בטראומת ראש קשה - זהו יישום ישיר של המושגים גליקוליזה מול חמצון שנלמדו בפרק.</p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pet_scan_of_a_normal_brain.jpg?width=700" alt="PET scan of a normal brain showing symmetric FDG uptake">
+<p class="media-cap">PET-FDG של מוח תקין - קליטת גלוקוז סימטרית וגבוהה בקורטקס, תואמת לצריכת האנרגיה הגבוהה שתוארה בפרק. מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/PET_glioblastoma_brain_cancer.jpg?width=700" alt="PET scan showing hypermetabolic glioblastoma with high FDG uptake">
+<p class="media-cap">PET-FDG בגליובלסטומה - קליטה גבוהה במיוחד (היפר-מטבולית) בגידול, ביטוי של אפקט Warburg (העדפה גליקוליטית גם בנוכחות חמצן). מקור: Wikimedia Commons.</p>
+<p class="key-box">בקרת גלוקוז בטיפול נמרץ: היפוגליקמיה (פחות מ-70 מ"ג/ד"ל) מסכנת רקמת מוח שתלויה כמעט לחלוטין בגלוקוז כדלק. אך גם היפרגליקמיה מזיקה - היא מזינה גליקוליזה אנאירובית מוגברת ברקמה איסכמית, מייצרת חמצת לקטית מקומית ומחמירה נזק משני. המטרה הקלינית המקובלת היא טווח גלוקוז מתון (בדרך כלל כ-140-180 מ"ג/ד"ל) ולא נורמליזציה קפדנית.</p>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Astrocyte%E2%80%93neuron_lactate_shuttle" target="_blank">Astrocyte-Neuron Lactate Shuttle – Wikipedia</a>
+    <div class="desc">רקע מפורט על מודל Pellerin-Magistretti וההיסטוריה של המחלוקת המדעית סביבו.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Na%2B/K%2B-ATPase" target="_blank">Na⁺/K⁺-ATPase – Wikipedia</a>
+    <div class="desc">מבנה, מנגנון ותפקידים פיזיולוגיים נוספים של המשאבה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cerebral_microdialysis" target="_blank">Cerebral Microdialysis – Wikipedia</a>
+    <div class="desc">רקע קליני על השימוש בניטור מולטי-מודלי בטיפול נמרץ נוירוכירורגי.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Warburg_effect_(oncology)" target="_blank">Warburg Effect – Wikipedia</a>
+    <div class="desc">הבסיס לקליטת FDG גבוהה בגידולים ממאירים, כולל גידולי מוח.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Oxidative_phosphorylation" target="_blank">Oxidative Phosphorylation – Wikipedia</a>
+    <div class="desc">פירוט מלא של שרשרת הובלת האלקטרונים ומחזור קרבס.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 27 עבר תאונת דרכים עם חבלת ראש קשה (GCS 6 בזירה). ב-CT: דימום תת-קשתי דיפוזי קל ובצקת מוחית. הוחדר קטטר ICP ומיקרודיאליזה מוחית. בשעות הראשונות: גלוקוז מוחי תקין, לקטט עולה, פירובט יורד, יחס לקטט/פירובט (LPR) עולה ל-45 (נורמה עד כ-25), ללא עלייה ב-ICP. למחרת מופיעה גם ירידה בגלוקוז המוחי המקומי לצד ה-LPR הגבוה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. ה-LPR הגבוה עם פירובט יורד (ולא רק לקטט עולה) בשלב הראשון מרמז בעיקר על:</div>
+  <button class="opt" data-i="0">עודף אספקת חמצן למוח</button>
+  <button class="opt" data-i="1">כשל בפוספורילציה חמצונית/כניסת פירובט למיטוכונדריה, ולא רק עלייה בגליקוליזה - כי אילו הבעיה הייתה גליקוליזה מוגברת בלבד, פירובט היה עולה יחד עם הלקטט</button>
+  <button class="opt" data-i="2">עלייה תקינה בפעילות התפקודית (שלב 4 לפי מודל CMR)</button>
+  <button class="opt" data-i="3">חוסר בגלוקוז זמין בלבד</button>
+  <div class="explain">התשובה הנכונה: כאשר גליקוליזה בלבד מואצת (למשל בפעילות תפקודית מוגברת תקינה), גם לקטט וגם פירובט עולים יחד וה-LPR משתנה פחות דרמטית. ירידה בפירובט לצד עלייה בלקטט מרמזת שהבעיה היא בצד ה"צריכה" - כשל בכניסת פירובט למיטוכונדריה או בפעילות מיטוכונדריאלית עצמה (כפי שקורה באיסכמיה מוקדמת/כשל מיטוכונדריאלי לאחר טראומה) ולא רק בייצור מוגבר. תשובה 0 הפוכה מהמצב בפועל. תשובה 2 אינה מתאימה כי עלייה תפקודית תקינה אינה גורמת ל-LPR כה גבוה. תשובה 3 אינה מוסברת - בשלב הזה הגלוקוז המוחי עדיין תקין.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע ירידה בגלוקוז המוחי המקומי ביום השני, לצד LPR שנשאר גבוה, מדאיגה במיוחד?</div>
+  <button class="opt" data-i="0">כי זה מצביע על החלמה - המוח "משתמש" בגלוקוז לצורך תיקון</button>
+  <button class="opt" data-i="1">גלוקוז מוחי נמוך תמיד נובע מהיפוגליקמיה סיסטמית ואינו קשור לפרק</button>
+  <button class="opt" data-i="2">היא מרמזת שגם אספקת הדלק (גלוקוז) וגם ניצולו (מיטוכונדריה) פגועים בו-זמנית - שילוב "משבר אנרגטי" כפול שמנבא תוצא גרוע יותר מכל בעיה בפני עצמה</button>
+  <button class="opt" data-i="3">אין לזה משמעות קלינית</button>
+  <div class="explain">התשובה הנכונה: כשל מיטוכונדריאלי (LPR גבוה) לצד ירידה באספקת/זמינות הגלוקוז המוחי המקומי (יכולה לנבוע מירידה בזרימת דם מקומית, בצקת, או וזוספזם) יוצר "משבר אנרגטי כפול" - לא רק שהתא לא מסוגל לנצל דלק ביעילות, גם הדלק עצמו הולך ואוזל. שילוב זה תואם דפוסי מיקרודיאליזה שתועדו כמנבאי תוצא גרוע בספרות. תשובות 0, 1 ו-3 אינן מדויקות לפי הפיזיולוגיה שתוארה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. באיזה מנגנון תלוי המוח כמעט לחלוטין להזנת נוירונים בזמן פעילות עצבית אינטנסיבית, לפי מודל ה-ANLS?</div>
+  <button class="opt" data-i="0">קליטת גלוטמט על ידי אסטרוציטים מפעילה Na⁺,K⁺-ATPase אסטרוציטרית, מזרזת גליקוליזה ומייצרת לקטט שמיוצא לנוירון דרך MCT ונקלט על ידי MCT2 בזיקה גבוהה</button>
+  <button class="opt" data-i="1">נוירונים מייצרים את כל הלקטט שהם צריכים בעצמם, ללא תלות באסטרוציטים</button>
+  <button class="opt" data-i="2">אסטרוציטים מעבירים חמצן ישירות לנוירונים ללא צורך בגלוקוז</button>
+  <button class="opt" data-i="3">המוח משתמש בחלבונים כדלק העיקרי בזמן פעילות</button>
+  <div class="explain">התשובה הנכונה: זהו בדיוק מודל ה-Astrocyte-Neuron Lactate Shuttle שתואר בפרק - שרשרת שמתחילה בשחרור גלוטמט מהנוירון, נקלטת עם נתרן באסטרוציט, מפעילה את המשאבה, מזרזת גליקוליזה, ומזינה את הנוירון בלקטט דרך MCT2 הספציפי לנוירונים. תשובה 1 סותרת את המודל. תשובות 2 ו-3 אינן מבוססות בפרק - הדלק העיקרי הוא גלוקוז/לקטט, לא חלבון, וההעברה אינה של חמצן ישיר אלא של מטבוליט (לקטט).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע נורמליזציה קפדנית של רמת הסוכר בדם (שאיפה לטווח נמוך-נורמלי) עלולה להזיק בחולה עם טראומת ראש קשה?</div>
+  <button class="opt" data-i="0">כי גלוקוז גבוה תמיד מגן על המוח</button>
+  <button class="opt" data-i="1">כי גלוקוז לא חוצה כלל את מחסום הדם-מוח</button>
+  <button class="opt" data-i="2">כי המוח אינו זקוק לגלוקוז בזמן טראומה</button>
+  <button class="opt" data-i="3">כי המוח כמעט אינו מחזיק רזרבות אנרגיה, ובקרה קפדנית מדי עלולה לגרום לאפיזודות היפוגליקמיה מוחית מקומית (גם כשהסוכר הסיסטמי "נורמלי" למראית עין) בזמן שהאזור הפגוע כבר סובל מהפרעה בהובלה/ניצול גלוקוז</button>
+  <div class="explain">התשובה הנכונה: כפי שהודגש בפרק, למוח כמעט אין עתודות אנרגיה (ATP וגליקוגן מספיקים לדקות בודדות), וברקמה פגועה ההובלה והניצול של גלוקוז כבר פגומים. מחקרים קליניים (כמו Van den Berghe ואחרים בהקשר רחב יותר) הראו שבקרת סוכר קפדנית מדי בחולי טראומה קשה מעלה את הסיכון להיפוגליקמיה מוחית מקומית ותוצא גרוע יותר - ולכן הטווח המומלץ כיום מתון יחסית. תשובות 0-2 סותרות ישירות את הפיזיולוגיה שתוארה בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>המוח (2% ממשקל הגוף) צורך לפחות 10% מהגלוקוז והחמצן במנוחה, וכמעט ללא רזרבות אנרגיה - כל הפרעה באספקה פוגעת תוך שניות-דקות.</li>
+    <li>הצרכן העיקרי של אנרגיה הוא שמירת גרדיאנטים יוניים על ידי <b>Na⁺,K⁺-ATPase</b> (כ-90% מהתחלופה, לפי מודל תקציב האנרגיה, מתוכה כ-80% בנוירונים וכ-15% באסטרוציטים).</li>
+    <li>קצב חילוף החומרים המוחי מוכפל בערך פי 2 עם כל דרגת פעילות (<b>CMR(S)=CMR(0)×2<sup>S</sup></b>), מ"בסיס מטבולי" (0) ועד "הפעלה מרבית" (4).</li>
+    <li>גלוקוז חוצה את המחסום דרך <b>GLUT1</b> (אנדותל/גליה) ו-<b>GLUT3</b> (נוירונים); חמצן מוגבל דיפוזיונית ומופק בכ-40%-60% מהזרימה - מעבר לכך אספקת החמצן נכשלת (בסיס פיזיולוגי לפנומברה).</li>
+    <li><b>Astrocyte-Neuron Lactate Shuttle</b>: קליטת גלוטמט באסטרוציט מפעילה גליקוליזה וייצור לקטט, שמוזן לנוירון דרך MCT2 בזיקה גבוהה - אסטרוציטים כ"תחנת דלק" לנוירונים פעילים.</li>
+    <li><b>פוספורילציה חמצונית</b> במיטוכונדריה (PDH → TCA → שרשרת הובלת אלקטרונים) מניבה עד 38 ATP למולקולת גלוקוז, לעומת 2 ATP בלבד בגליקוליזה אנאירובית; פוספוקריאטין/קריאטין קינאז מספקים חיץ מיידי.</li>
+    <li>קליני: יחס <b>לקטט/פירובט (LPR)</b> מעל 25 במיקרודיאליזה מוחית מרמז על כשל מיטוכונדריאלי ומנבא תוצא גרוע בטראומת ראש; <b>PET-FDG</b> מנצל קליטת גלוקוז גבוהה בגידולים (אפקט Warburg); בקרת סוכר בטיפול נמרץ נוירוכירורגי צריכה להיות מתונה, לא קפדנית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
