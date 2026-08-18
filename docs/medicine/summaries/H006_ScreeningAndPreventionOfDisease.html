@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סינון וגילוי מוקדם של מחלות (Screening and Prevention of Disease)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:15.5px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>סינון וגילוי מוקדם של מחלות <span dir="ltr" class="term">(Screening and Prevention of Disease)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 6, עמ' 78–82 (חלק 1: מקצוע הרפואה)</div>
+
+<p>גם זה אינו פרק על מחלה ספציפית, אלא על <b>העקרונות שקובעים מתי בדיקת סינון (<span dir="ltr" class="term">screening</span>) באמת מצילה חיים, ומתי היא רק "נראית" מועילה בלי לשנות שום דבר בפועל</b>. זהו אחד הפרקים החשובים ביותר לבורדס בדיוק בגלל זה: השאלות לא בודקות "מה עושים" אלא "איך יודעים אם זה עבד" - ושם מסתתרות המלכודות הסטטיסטיות הקלאסיות (<span dir="ltr" class="term">lead time bias</span>, <span dir="ltr" class="term">length time bias</span>, <span dir="ltr" class="term">overdiagnosis</span>).</p>
+
+<h2><span class="num">2</span> המנגנון - למה בדיקת סינון עוזרת, ולמה היא לפעמים רק <i>נראית</i> כאילו עוזרת</h2>
+<div class="mechanism">
+  <p class="chain">
+    לכל מחלה יש היסטוריה טבעית: <b>התחלה ביולוגית</b> (למשל תא ראשון שהופך סרטני) ← <b>שלב תת-קליני/סמוי הניתן לגילוי</b> (<span dir="ltr" class="term">detectable preclinical phase</span> - המחלה כבר קיימת וניתנת לזיהוי בבדיקה, אך המטופל עדיין א-סימפטומטי) ← <b>הופעה קלינית רגילה</b> (המטופל היה מגיע לרופא גם בלי סינון, כי מופיעים תסמינים) ← <b>תוצאה</b> (החלמה/סיבוך/מוות). <span class="key">מטרת הסינון היא "לתפוס" את המחלה בחלון הזמן של השלב הסמוי, ולהתערב לפני שהיא הייתה מתגלה ממילא - בתנאי שההתערבות המוקדמת באמת משנה את התוצאה הסופית, ולא רק את תאריך האבחנה.</span>
+  </p>
+  <p>
+    וכאן נכנסת המלכודת המרכזית של הפרק: <b><span dir="ltr" class="term">lead time bias</span> (הטיית זמן הקדמה)</b>. אם בודקים "כמה זמן שרד המטופל <i>מרגע האבחנה</i>", סינון מזיז את תאריך האבחנה אחורה בזמן - בלי לגעת בכלל בתאריך המוות. התוצאה: המטופל "נראה" ששרד יותר זמן אחרי האבחנה, גם אם הסינון לא הועיל לו כלל וגם אם לא טופל בצורה שונה. <span class="key">זו הסיבה שבגללה חובה למדוד את התועלת מסינון לפי תמותה או תחלואה <i>מרגע ההצטרפות למחקר/רנדומיזציה</i>, ולא לפי "הישרדות מרגע האבחנה"</span> - מדד ה"הישרדות מאבחנה" מוטה מבנית לטובת סינון, גם אם הוא לא עושה שום דבר.
+  </p>
+  <p>
+    מלכודת שנייה, עדינה יותר: <b><span dir="ltr" class="term">length time bias</span> (הטיית אורך זמן)</b>. בדיקת סינון מתבצעת בנקודת זמן בודדת (למשל פעם בשנה). גידול שגדל <b>לאט</b> נמצא זמן רב יחסית בשלב הסמוי הניתן לגילוי, ולכן יש סיכוי גבוה יותר ש"תפגוש" בדיקת סינון אקראית בדיוק בחלון הזה. גידול <b>אגרסיבי ומהיר</b> לרוב "קופץ" ישר משלב א-סימפטומטי לתסמינים בין שתי בדיקות סינון, ומתגלה קלינית ולא בסינון. התוצאה: אוכלוסיית החולים שהתגלו <i>על ידי</i> הסינון מוטה מראש לכיוון גידולים "טובים" ואיטיים, מה שגורם לסינון להיראות יעיל יותר משהוא באמת - תופעה קיצונית של זה נקראת <b><span dir="ltr" class="term">overdiagnosis</span> (אבחון יתר)</b>: גילוי מחלה שלעולם לא הייתה גורמת לתסמינים או למוות במהלך חייו הטבעיים של המטופל (למשל 15–40% ממקרי סרטן השד שמתגלים במיפוי ו-15–37% ממקרי סרטן הערמונית שמתגלים ב-<span dir="ltr" class="term">PSA</span>, לפי הערכות בפרק).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <text x="450" y="22" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">היסטוריה טבעית של המחלה - וחלון הסינון</text>
+  <line x1="60" y1="70" x2="840" y2="70" stroke="#374151" stroke-width="2" marker-end="url(#arrowH)"/>
+  <circle cx="90" cy="70" r="5" fill="#374151"/>
+  <text x="90" y="95" text-anchor="middle" font-size="12" fill="#1f2937">התחלה ביולוגית</text>
+
+  <rect x="180" y="50" width="260" height="40" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="310" y="75" text-anchor="middle" font-size="12.5" fill="#065f46" font-weight="700">שלב סמוי הניתן לגילוי (חלון הסינון)</text>
+
+  <circle cx="560" cy="70" r="5" fill="#b45309"/>
+  <text x="560" y="45" text-anchor="middle" font-size="12" fill="#b45309" font-weight="700">הופעה קלינית רגילה</text>
+  <text x="560" y="95" text-anchor="middle" font-size="11" fill="#6b7280">(ללא סינון - כאן מתגלה)</text>
+
+  <circle cx="800" cy="70" r="5" fill="#b91c1c"/>
+  <text x="800" y="95" text-anchor="middle" font-size="12" fill="#991b1b">תוצאה (החלמה/מוות)</text>
+
+  <line x1="310" y1="110" x2="310" y2="70" stroke="#2563eb" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrowBlue)"/>
+  <text x="310" y="130" text-anchor="middle" font-size="12" fill="#2563eb" font-weight="700">אבחנה ע"י סינון (מוקדם)</text>
+
+  <line x1="560" y1="130" x2="560" y2="90" stroke="#b45309" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrowAmber)"/>
+  <text x="560" y="150" text-anchor="middle" font-size="12" fill="#b45309" font-weight="700">אבחנה ללא סינון (מאוחר)</text>
+
+  <text x="450" y="185" text-anchor="middle" font-size="12.5" fill="#374151" font-weight="700">"זמן ההקדמה" (lead time) בין שתי נקודות האבחון - אם המוות מגיע באותו תאריך בשני המקרים,</text>
+  <text x="450" y="203" text-anchor="middle" font-size="12.5" fill="#374151" font-weight="700">"ההישרדות מרגע האבחנה" תיראה ארוכה יותר בקבוצה שסוננה - בלי שהחיים התארכו בפועל</text>
+
+  <line x1="310" y1="230" x2="800" y2="230" stroke="#94a3b8" stroke-width="10"/>
+  <text x="555" y="248" text-anchor="middle" font-size="11" fill="#4b5563">משך "ההישרדות" הנמדד מהאבחנה עד המוות - זהה, אך נראה שונה כי נקודת ההתחלה זזה</text>
+
+  <defs>
+    <marker id="arrowH" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#374151"/></marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker>
+    <marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/F74nOMrNdoA" title="What Is Lead Time Bias?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קצר וממוקד על lead time bias - למה סינון "מזיז" את תאריך האבחנה בלי לשנות את תאריך המוות, ואיך זה יוצר רושם מטעה של שיפור בהישרדות.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Gap8CPOsENk" title="What Is Length Time Bias?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קצר על length time bias - למה בדיקת סינון בנקודת זמן בודדת "תופסת" בעיקר גידולים איטיים, ומטה את התוצאות לטובת הסינון.</p>
+
+<div class="key-box">בגלל שתי ההטיות האלה, נקודת המפתח בהערכת יעילות סינון: <b>מדד התוצאה חייב להיות שכיחות (<span dir="ltr" class="term">incidence</span>) או תמותה ספציפית למחלה, נמדדות מרגע ההצטרפות למחקר - ולא "הישרדות" הנמדדת מרגע האבחנה.</b> תקן הזהב להוכחת יעילות הוא <span dir="ltr" class="term">RCT</span> עם תמותה כתוצאה; כשזה לא אפשרי (כמו בסינון לסרטן צוואר הרחם), נעזרים בנתונים תצפיתיים/אקולוגיים, בזהירות רבה יותר.</div>
+
+<h2><span class="num">3</span> מתי בכלל שווה להנהיג תוכנית סינון - עקרונות ה-WHO</h2>
+<p>עקרונות הסינון של ארגון הבריאות העולמי (1968, טבלה 6-1 בפרק) עדיין מהווים את מסגרת ההחלטה הבסיסית - וכל תנאי שחסר הופך את תוכנית הסינון לבעייתית:</p>
+<table>
+  <thead><tr><th>#</th><th>התנאי</th><th>למה זה קריטי - דוגמה מהפרק</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>המצב הוא בעיית בריאות חשובה</td><td>נטל מחלה גדול באוכלוסייה - מחלות לב, סרטן, שבץ הן היעד הטבעי</td></tr>
+    <tr><td>2</td><td>קיים טיפול למצב</td><td>אלצהיימר הוא סיבת המוות השישית בארה"ב, אך <b>אין</b> טיפול מרפא או הוכחה שטיפול מוקדם משפר תוצאה - ולכן אין סינון אוכלוסייתי</td></tr>
+    <tr><td>3</td><td>קיימים מתקני אבחון וטיפול</td><td>אתגר מרכזי במדינות מתפתחות - הוביל לגישות "לראות ולטפל" (see and treat) לסרטן צוואר הרחם</td></tr>
+    <tr><td>4</td><td>יש שלב סמוי (latent) של המחלה</td><td>פוליפ במעי הגס לוקח שנים עד שהופך לסרטן פולשני - חלון סינון ארוך וטוב</td></tr>
+    <tr><td>5</td><td>יש בדיקה למצב</td><td>ללא בדיקה מהימנה - אין סינון</td></tr>
+    <tr><td>6</td><td>הבדיקה מקובלת על האוכלוסייה</td><td>בדיקה פולשנית/כואבת מדי תפגע בהיענות ותצמצם את התועלת בפועל</td></tr>
+    <tr><td>7</td><td>ההיסטוריה הטבעית מובנת</td><td>סרטן ערמונית - חוסר ודאות לגבי מי יתקדם ומי יישאר "שקט" הוא בדיוק הבעיה שמקשה על מדיניות ברורה</td></tr>
+    <tr><td>8</td><td>יש מדיניות מוסכמת למי לטפל</td><td>ללא הסכמה על "סף טיפול" - סינון עלול לגרום לטיפול-יתר</td></tr>
+    <tr><td>9</td><td>עלות איתור מקרה מאוזנת מול ההוצאה הרפואית הכוללת</td><td>עלות/QALY נבחנת מול חלופות אחרות לשיפור בריאות (ראו סעיף 6)</td></tr>
+  </tbody>
+</table>
+
+<p><b>דוגמה מנוגדת ומאלפת מהפרק - למה סרטן ריאה ולב שונים כל כך בקלות הסינון:</b> בסרטן המעי הגס, השלב הסמוי (פוליפ) ארוך ומאפשר התערבות (פוליפקטומיה) לפני שהוא בכלל הופך לממאירות. בסרטן הריאה, לעומת זאת, החלון בין "ניתן לגילוי" ל"בלתי-ניתן לריפוי" קצר מאוד ברזולוציה של צילום חזה רגיל - ולכן סינון בצילום חזה לא הוכיח תועלת. רק עם פיתוח <span dir="ltr" class="term">CT</span> חזה במינון נמוך (שמזהה נגעים קטנים בהרבה) ניתן היה להראות ירידה של <b>20%</b> בתמותה מסרטן ריאה אצל מעשנים בעלי היסטוריה של 30 <span dir="ltr" class="term">pack-years</span> ומעלה. <span class="key">כלומר: התועלת מסינון תלויה לא רק ב"עקרון" אלא ברזולוציה בפועל של הבדיקה הזמינה.</span></p>
+
+<h2><span class="num">4</span> איך מודדים בפועל את התועלת - ולמה "ממוצע" מטעה</h2>
+<p>הפרק מדגיש כמה מדדים משלימים, כי כל אחד לבד יכול להטעות:</p>
+<ol>
+<li><b>ההבדל האבסולוטי מול היחסי בתמותה/שכיחות</b> - בניתוח-על של ניסויי מיפוי שד שוודיים (גילאי 40-70): כ-<b>1.2</b> פחות מקרי מוות מסרטן שד לכל 1000 נשים שסוננו לאורך 12 שנה. לעומת זאת סינון לסרטן המעי הגס בבדיקת דם סמוי בצואה (<span dir="ltr" class="term">FOBT</span>) שנתית לאורך 13 שנה חוסך כ-<b>3</b> חיים לכל 1000, ועד <b>20-24</b> חיים לכל 1000 על פני 25 שנה - כלומר סינון לסרטן המעי עשוי להציל יותר חיים בפועל ממיפוי שד, למרות שההפחתה <i>היחסית</i> (30% ב-FOBT מול 14-32% במיפוי) דומה בסדר גודל. <span class="key">המספר האבסולוטי (חיים שניצלו לכל 1000 מסוננים) הוא זה שמאפשר להשוות בין תוכניות סינון שונות - לא רק האחוז היחסי.</span></li>
+<li><b>מספר הנדרשים לסינון (<span dir="ltr" class="term">Number Needed to Screen, NNS</span>)</b> - ההופכי של ההבדל האבסולוטי בתמותה. לדוגמה: יש לסנן <b>731</b> נשים בגילאי 65-69 בצפיפות עצם (<span dir="ltr" class="term">DEXA</span>) ולטפל בהתאם כדי למנוע שבר ירך אחד מאוסטאופורוזיס.</li>
+<li><b>עלייה ממוצעת בתוחלת חיים לאוכלוסייה</b> - חשוב: זה ממוצע <b>אוכלוסייתי</b>, לא הבטחה אישית. רוב האוכלוסייה כלל לא מרוויחה דבר מבדיקת סינון נתונה - Pap smear לא מועיל ל-98% מהנשים שלעולם לא יפתחו סרטן צוואר רחם, אך עבור ה-2% שכן היו מפתחות, הבדיקה יכולה להוסיף עד 25 שנות חיים. יעד סביר לתוכנית סינון אוכלוסייתית: עלייה ממוצעת של כחודש בתוחלת החיים.</li>
+</ol>
+
+<h2><span class="num">5</span> אילו בדיקות סינון קיימות בפועל, ואיך בוחרים ביניהן</h2>
+<p>טבלה 6-4 בפרק (USPSTF, עדכון 2017 עם תוספות מאוחרות) מפרטת את הבדיקות המומלצות למבוגר בסיכון ממוצע. לדוגמה עבור סרטן המעי הגס יש כמה אפשרויות שוות-ערך מבחינת המלצה, אך שונות מהותית ביעילות, בפולשנות ובעלות:</p>
+<table>
+  <thead><tr><th>שיטה</th><th>הפחתת תמותה יחסית משוערת</th><th>תדירות</th><th>שיקול מרכזי</th></tr></thead>
+  <tbody>
+    <tr><td>בדיקת דם סמוי בצואה שנתית (<span dir="ltr" class="term">FOBT</span>)</td><td>15-30%</td><td>כל שנה</td><td>לא פולשנית, אך תדירות גבוהה ורגישות נמוכה יחסית</td></tr>
+    <tr><td><span dir="ltr" class="term">Flexible sigmoidoscopy</span></td><td>40-60%</td><td>כל 5 שנים</td><td>מכסה רק את המעי הגס הדיסטלי</td></tr>
+    <tr><td><span dir="ltr" class="term">Colonoscopy</span></td><td>~70%</td><td>כל 10 שנים</td><td>התועלת הגבוהה ביותר, אך עלות וסיכון (פרפורציה/דימום) גבוהים יותר</td></tr>
+  </tbody>
+</table>
+<p>עלות-תועלת של שלוש השיטות דומה בסופו של דבר ($10,000-25,000 לחיים שניצל), ולכן ה-USPSTF משאיר את הבחירה בין השיטות ל<b>קבלת החלטה משותפת</b> (<span dir="ltr" class="term">shared decision-making</span>) עם המטופל - זה לא "מקרה בורר" עם תשובה יחידה נכונה.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Polyp.jpeg?width=650" alt="פוליפ במעי הגס בקולונוסקופיה">
+  <figcaption>תמונת קולונוסקופיה של פוליפ סיסילי (~1 ס"מ) בקולון הסיגמואידי, לפני הוצאה בכריתת לולאה (<span dir="ltr" class="term">snare cautery</span>) - זו בדיוק הנגע שסינון קולונוסקופי נועד לתפוס בשלב הסמוי, לפני התקדמות לסרטן פולשני. מקור: <a href="https://commons.wikimedia.org/wiki/File:Polyp.jpeg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="figure-pair">
+  <figure>
+    <span class="label normal">בדיקת סינון - ציטולוגיה תקינה</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Normal_PAP_(Cervical)_Smear.jpg?width=650" alt="Pap smear תקין">
+    <figcaption>משטח <span dir="ltr" class="term">Pap smear</span> תקין - תאי אפיתל שטוחים אחידים ללא אטיפיה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Normal_PAP_(Cervical)_Smear.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+  <figure>
+    <span class="label normal">מיפוי שד תקין למעקב</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mammogram.jpg?width=650" alt="ממוגרפיה">
+    <figcaption>צילום ממוגרפיה - הדגמה של רקמת שד וצפיפותה; ממצא חשוד יופיע ככתם/עיוות מקומי הדורש הערכה נוספת (ביופסיה). מקור: <a href="https://commons.wikimedia.org/wiki/File:Mammogram.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<p><b>מיהו "בסיכון גבוה" שבו הסינון מתחיל מוקדם יותר ובאגרסיביות שונה?</b> נשים עם מוטציה ב<span dir="ltr" class="term">BRCA1</span> או <span dir="ltr" class="term">BRCA2</span> - שני הגנים המרכזיים המדכאים גידולי שד/שחלה - נמצאות בסיכון גבוה פי 5-20 לסרטן שד ושחלה, ועבורן ההמלצות כוללות אף כריתת שחלות מונעת (<span dir="ltr" class="term">prophylactic oophorectomy</span>) ו-<span dir="ltr" class="term">MRI</span> שד - התערבויות שנחשבות "יקרות מדי" מבחינת נזק-מול-תועלת עבור אישה בסיכון ממוצע. מוטציות בגנים בעלי חדירות גבוהה (<span dir="ltr" class="term">high-penetrance genes</span>) מסבירות רק כ-5-10% ממקרי המחלה הרווחת, אך תמהיל של גנים בחדירות בינונית/נמוכה, ולאחרונה <b>ציוני סיכון פוליגני</b> (<span dir="ltr" class="term">polygenic risk scores</span> - שילוב מידע ממאות שינויים גנטיים), הופכים כלי מבטיח לזיהוי מי צריך סינון אינטנסיבי יותר עוד לפני הופעת תסמינים.</p>
+
+<h2><span class="num">6</span> הצד השני של המטבע: נזקי הסינון, ואיך שוקלים תועלת מול נזק</h2>
+<p>מאחר שסינון מוצע לאנשים <b>בריאים א-סימפטומטיים</b>, רף ההוכחה לתועלת גבוה במיוחד - כל נזק "עולה" יותר יחסית לתועלת הפוטנציאלית:</p>
+<table>
+  <thead><tr><th>סוג נזק</th><th>מנגנון/דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td>תוצאה חיובית-כוזבת (<span dir="ltr" class="term">false positive</span>)</td><td>ממוגרפיה/CT חזה: ממצא לא-ממאיר שדורש ביופסיה נוספת. Pap smear: זיהוי שינויים טרום-ממאירים רבים שרק מיעוטם היה מתקדם לסרטן פולשני בפועל</td></tr>
+    <tr><td>אבחון יתר (<span dir="ltr" class="term">overdiagnosis</span>)</td><td>15-40% מסרטני השד שמתגלים במיפוי, ו-15-37% מסרטני הערמונית שמתגלים ב-PSA, ככל הנראה לא היו מתבטאים קלינית לעולם - תוצאה ישירה של length time bias בקצה הקיצוני שלה</td></tr>
+    <tr><td>חשיפה לקרינה</td><td>ממוגרפיה, CT חזה - כמות זעירה בכל בדיקה בודדת, אך ההשפעה המצטברת מבדיקות חוזרות עדיין נחקרת</td></tr>
+    <tr><td>חרדה</td><td>נמצאה עלייה בחרדה סביב תהליך הסינון (בעיקר עם תוצאה חיובית-כוזבת), אך אין עדות מוצקה להשפעה ארוכת-טווח על התנהגות סינון עתידית</td></tr>
+    <tr><td>עלות כלכלית וחברתית</td><td>לא רק עלות הבדיקה - גם זמן חופש מעבודה, עלויות המשך בירור, ו"ממצאים אקראיים" (<span dir="ltr" class="term">incidentalomas</span>) שדורשים בירור נוסף בעצמם</td></tr>
+  </tbody>
+</table>
+
+<p><b>איך שוקלים את זה כלכלית:</b> יעילות-עלות נמדדת לרוב כעלות לשנת חיים מותאמת-איכות שנחסכה (<span dir="ltr" class="term">quality-adjusted life-year, QALY</span>) - אסטרטגיה הנחשבת "יעילת-עלות" עולה בדרך כלל <b>$50,000-100,000 לכל QALY</b>. ה-<span dir="ltr" class="term">U.S. Preventive Services Task Force (USPSTF)</span> הוא הגוף המרכזי המפרסם המלצות מבוססות-ראיות שכבר שוקללו את מאזן התועלת-נזק הזה עבור כל בדיקה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/DtWE2Ft7ACk" title="Overview of the U.S. Preventive Services Task Force" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר רשמי המסביר מיהו ה-USPSTF, איך הוא בונה את דירוגי ההמלצות (A/B/C/D) ולמה הרופאים מסתמכים עליו כמקור המרכזי להמלצות סינון.</p>
+
+<h3>התערבויות מניעה נוספות (לא רק בדיקות סינון) - טבלה 6-5</h3>
+<table>
+  <thead><tr><th>התערבות</th><th>מטרה</th><th>אוכלוסיית יעד</th><th>הערה מנגנונית</th></tr></thead>
+  <tbody>
+    <tr><td>אספירין (<span dir="ltr" class="term">chemoprevention</span>)</td><td>מניעת אירוע לבבי-כלי דם</td><td>גילאי 50-59 עם סיכון ≥10% ל-10 שנים</td><td>מעכב תרומבוקסן A2 בטסיות - מוריד סיכון לקריש, אך <b>מעלה סיכון דימום</b> שעלול לאזן את התועלת בחלק מהקבוצות</td></tr>
+    <tr><td>חומצה פולית</td><td>מניעת מומי תעלה עצבית בעובר</td><td>נשים המתכננות/מסוגלות להיריון</td><td>תעלה עצבית נסגרת בשבועות הראשונים להיריון - לרוב לפני שהאישה יודעת שהיא בהיריון, ולכן חייבים לתת <b>לפני</b> ולא רק אחרי אבחון היריון</td></tr>
+    <tr><td>Tamoxifen / Raloxifene</td><td>מניעת סרטן שד</td><td>נשים בסיכון גבוה</td><td>חוסמי קולטן אסטרוגן - מונעים גירוי גדילה של רקמת שד רגישה להורמון</td></tr>
+    <tr><td>ויטמין D</td><td>מניעת שברים/נפילות</td><td>גיל 65+ בסיכון מוגבר לנפילה</td><td>תומך בספיגת סידן ובכוח שריר - מפחית סיכון שבר לא רק דרך צפיפות עצם</td></tr>
+    <tr><td>חיסון פנאומוקוק/שפעת/זוסטר</td><td>מניעת זיהום</td><td>לפי גיל (ראו פרקים 123-124)</td><td>מונע מחלה זיהומית שמהווה סיבת תחלואה/תמותה מובילה בקשישים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - עקרונות ה-WHO לסינון (מהפרק, מקוצר לזכירה)</h3>
+  <p><b><span dir="ltr" class="term">"IMPORTANT"</span></b> - <span dir="ltr" class="term">Important disease, Management (treatment) exists, Preclinical latent phase, Opinion (agreed policy on whom to treat), Resources/facilities available, Test exists and acceptable, Amenable natural history (understood), Necessary cost-balance, Timely (early detection changes outcome)</span>. אם חסר אחד מהתנאים האלה - כדאי לעצור ולשאול האם התוכנית באמת תעזור.</p>
+  <h3>סיפור דמיוני - "המרוץ עם קו הסיום הקבוע"</h3>
+  <p>דמייני שני רצים ששניהם ימותו (יגיעו לקו הסיום) בדיוק באותו רגע - זה כבר קבוע מראש ולא ניתן לשינוי. עכשיו את מפעילה את שעון העצר של רץ אחד <b>מוקדם יותר</b> (זו בדיוק אבחנה מוקדמת ע"י סינון). כשהוא "יגיע לקו הסיום", השעון שלו יראה זמן ריצה ארוך יותר - למרות שהוא בכלל לא רץ יותר טוב ולא הגיע יותר מאוחר בפועל. <span class="key">זה בדיוק ה-lead time bias: הזזת קו ההתחלה גורמת ל"זמן המדוד" להיראות ארוך יותר, בלי לשנות את התאריך האמיתי של קו הסיום.</span></p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <text x="260" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">קו הסיום קבוע - רק קו ההתחלה זז</text>
+    <line x1="440" y1="60" x2="440" y2="150" stroke="#b91c1c" stroke-width="3"/>
+    <text x="440" y="170" text-anchor="middle" font-size="11" fill="#991b1b">קו הסיום (מוות) - קבוע</text>
+
+    <circle cx="120" cy="80" r="6" fill="#2563eb"/>
+    <line x1="120" y1="80" x2="430" y2="80" stroke="#2563eb" stroke-width="4"/>
+    <text x="120" y="65" text-anchor="middle" font-size="11" fill="#2563eb" font-weight="700">התחלה מוקדמת (סינון)</text>
+    <text x="275" y="95" text-anchor="middle" font-size="11" fill="#2563eb">"זמן ריצה" נמדד - נראה ארוך</text>
+
+    <circle cx="280" cy="130" r="6" fill="#b45309"/>
+    <line x1="280" y1="130" x2="430" y2="130" stroke="#b45309" stroke-width="4"/>
+    <text x="280" y="115" text-anchor="middle" font-size="11" fill="#b45309" font-weight="700">התחלה מאוחרת (ללא סינון)</text>
+    <text x="355" y="147" text-anchor="middle" font-size="11" fill="#b45309">"זמן ריצה" נמדד - נראה קצר</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.uspreventiveservicestaskforce.org/uspstf/" target="_blank">USPSTF - אתר ההמלצות הרשמי</a>
+    <div class="desc">טבלאות עדכניות של כל המלצות הסינון לפי גיל, מגדר וגורמי סיכון - הכלי הפרקטי ביותר לשימוש קליני יומיומי</div>
+  </li>
+  <li>
+    <a href="https://catalogofbias.org/biases/lead-time-bias/" target="_blank">Catalog of Bias - Lead Time Bias</a>
+    <div class="desc">הסבר אקדמי מורחב עם דוגמאות נוספות מהספרות על lead time bias ואיך נמנעים ממנו בעיצוב מחקר</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Length_time_bias" target="_blank">Wikipedia - Length Time Bias</a>
+    <div class="desc">רקע נוסף על length time bias כולל דיאגרמות המחשה משלימות לזו שבסיכום</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 62, ללא תסמינים, מגיעה לביקור שגרתי. בבירור עולה: לא עברה קולונוסקופיה מעולם, עברה ממוגרפיה אחרונה לפני 3 שנים, מעשנת כ-25 שנות-קופסה (<span dir="ltr" class="term">pack-years</span>) והפסיקה לעשן לפני 8 שנים, ואמה אובחנה עם סרטן מעי גס בגיל 58. המטופלת מספרת שקראה כתבה על "בדיקת דם חדשנית לגילוי מוקדם של סרטן" שלטענת החברה המפרסמת "מכפילה את משך ההישרדות מרגע האבחנה" בהשוואה לחולים שלא נבדקו, ושואלת אם כדאי לה להתחיל להשתמש בה מיד.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה הבעיה המרכזית בטענת השיווק "מכפילה את משך ההישרדות מרגע האבחנה" עבור בדיקת הדם החדשה?</div>
+  <button class="opt" data-i="0">אין בעיה - זהו מדד תקף לחלוטין להוכחת יעילות בדיקת סינון</button>
+  <button class="opt" data-i="1">מדובר במדד שרגיש ל-lead time bias - ייתכן שהבדיקה רק מזיזה את תאריך האבחנה מוקדם יותר בלי לשנות את תאריך המוות בפועל</button>
+  <button class="opt" data-i="2">הבעיה היא שהחברה לא פרסמה את מחיר הבדיקה</button>
+  <button class="opt" data-i="3">מדובר במדד תקף, אך רק אם הבדיקה אושרה ע"י ה-FDA</button>
+  <div class="explain">"הישרדות מרגע האבחנה" נמדדת מנקודת האבחון ואילך - וסינון, לפי הגדרתו, מזיז את נקודת ההתחלה הזו מוקדם יותר. גם בדיקה חסרת ערך לגמרי יכולה "להראות" הישרדות ארוכה יותר במדד הזה. המדד התקף היחיד הוא תמותה/שכיחות הנמדדות מרגע רנדומיזציה/הצטרפות למחקר, לא מרגע האבחנה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע ייתכן שבדיקת סינון מסוימת "תופסת" בעיקר גידולים איטיים ופחות גידולים אגרסיביים?</div>
+  <button class="opt" data-i="0">כי גידולים אגרסיביים אינם ניתנים לזיהוי בבדיקות הדמיה כלל</button>
+  <button class="opt" data-i="1">כי גידולים איטיים גורמים לתסמינים מוקדם יותר</button>
+  <button class="opt" data-i="2">כי גידול איטי נשאר זמן רב בשלב הסמוי הניתן לגילוי, ולכן יש סיכוי גבוה יותר שבדיקת סינון בנקודת-זמן בודדת "תפגוש" אותו בשלב הזה; גידול מהיר נוטה להופיע כתסמין קליני בין שתי בדיקות סינון</button>
+  <button class="opt" data-i="3">כי הפרוטוקול הרפואי אוסר לדווח על גידולים אגרסיביים שהתגלו בסינון</button>
+  <div class="explain">זהו בדיוק ה-length time bias שתואר בסעיף 2 - תוצאה של משך הזמן היחסי שכל סוג גידול "מבלה" בשלב הניתן לגילוי, לא של יכולת הבדיקה לזהות גידולים ספציפיים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזו שיטת סינון לסרטן המעי הגס מציעה את ההפחתה היחסית הגבוהה ביותר בתמותה, לפי הנתונים בפרק?</div>
+  <button class="opt" data-i="0">קולונוסקופיה כל 10 שנים (~70% הפחתה)</button>
+  <button class="opt" data-i="1">בדיקת דם סמוי בצואה שנתית (15-30% הפחתה)</button>
+  <button class="opt" data-i="2">Flexible sigmoidoscopy כל 5 שנים (40-60% הפחתה)</button>
+  <button class="opt" data-i="3">כל השיטות שקולות לחלוטין בהפחתת התמותה</button>
+  <div class="explain">קולונוסקופיה מציעה את ההפחתה הגבוהה ביותר (~70%) אך גם את הפולשנות והעלות/סיכון הגבוהים ביותר - ולכן ה-USPSTF משאיר את הבחירה הסופית ל"קבלת החלטה משותפת" עם המטופל, ולא קובע שיטה אחת "נכונה" לכולם.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אישה בת 35 מגלה שהיא נשאית מוטציה ב-BRCA1. איזו מהבאות <b>אינה</b> המלצה סבירה לפי הפרק, מכיוון שהנזק שלה עולה על התועלת עבור אישה בסיכון ממוצע?</div>
+  <button class="opt" data-i="0">שקילת MRI שד בנוסף לממוגרפיה</button>
+  <button class="opt" data-i="1">שקילת כריתת שחלות מונעת</button>
+  <button class="opt" data-i="2">התחלת מעקב מוקדם יותר מגיל הסינון הסטנדרטי</button>
+  <button class="opt" data-i="3">כל התשובות הן המלצות סבירות עבור נשאית BRCA1, בגלל הסיכון המוגבר פי 5-20</button>
+  <div class="explain">כל השלוש הראשונות מוזכרות בפרק כהמלצות סבירות דווקא <b>בגלל</b> הסיכון המוגבר - למרות שהן "יקרות מדי" מבחינת יחס נזק-תועלת עבור אישה בסיכון ממוצע. זה ממחיש את העיקרון שסף ההתערבות תלוי ברמת הסיכון הבסיסית, לא רק בקיום הבדיקה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו "מספר הנדרשים לסינון" (NNS) של 731 עבור DEXA בנשים 65-69, ומה המשמעות הקלינית שלו?</div>
+  <button class="opt" data-i="0">731 נשים יפתחו שבר ירך אם לא יסונן אף אחת מהן</button>
+  <button class="opt" data-i="1">יש לסנן (ולטפל בהתאם) 731 נשים בגיל הזה כדי למנוע שבר ירך אחד מאוסטאופורוזיס - זהו ההופכי של ההבדל האבסולוטי בתמותה/תחלואה</button>
+  <button class="opt" data-i="2">731 הוא אחוז הנשים שיאובחנו עם אוסטאופורוזיס בבדיקת הצפיפות</button>
+  <button class="opt" data-i="3">731 הוא מספר הימים הממוצע בין בדיקת סינון לבין קבלת התוצאה</button>
+  <div class="explain">NNS הוא מדד קליני שימושי בדיוק בגלל ש"הפחתת סיכון יחסית" (למשל 30%) לא מספרת לך כמה אנשים צריך לסנן בפועל כדי למנוע אירוע אחד - NNS נותן את המספר הקונקרטי הזה, ומאפשר להשוות עומס/עלות מול תועלת ממשית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מדוע לא הוכנס סינון אוכלוסייתי שגרתי למחלת אלצהיימר, על אף היותה סיבת המוות השישית בארה"ב?</div>
+  <button class="opt" data-i="0">כי אין בדיקה כלל שיכולה לזהות סימנים מוקדמים של המחלה</button>
+  <button class="opt" data-i="1">כי המחלה נדירה מדי כדי להצדיק תוכנית סינון אוכלוסייתית</button>
+  <button class="opt" data-i="2">כי אין טיפול מרפא, ואין הוכחה שאבחון וטיפול מוקדמים משפרים את התוצאה הקלינית - כלומר לא מתקיים תנאי ה-WHO "קיים טיפול יעיל למצב"</button>
+  <button class="opt" data-i="3">כי הבדיקות הקיימות יקרות מדי לתקציב הבריאות הלאומי</button>
+  <div class="explain">זו דוגמה מובהקת מהפרק לכך שלא מספיק שמחלה תהיה "חשובה" (תנאי 1 של ה-WHO) - חייב להתקיים גם תנאי 2 (טיפול קיים) ותנאי המראה שהתערבות מוקדמת משנה תוצאה. ללא זה, סינון עלול רק להוסיף חרדה ואבחון-יתר בלי תועלת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>סינון = ניסיון לתפוס מחלה בשלב הסמוי (preclinical) שלה, לפני ההופעה הקלינית הרגילה - בתנאי שהתערבות מוקדמת משנה בפועל את התוצאה.</li>
+    <li><b>Lead time bias</b>: אבחון מוקדם יותר לבד "מאריך" את ההישרדות הנמדדת מהאבחנה, גם בלי שום תועלת אמיתית - לכן מודדים תמותה/שכיחות מרגע ההצטרפות למחקר, לא מרגע האבחנה.</li>
+    <li><b>Length time bias</b> ו<b>overdiagnosis</b>: סינון תופס באופן לא-פרופורציונלי גידולים איטיים/לא-מתקדמים, מה שמטה תוצאות לטובת הסינון ועלול לגרום לטיפול מיותר.</li>
+    <li>עקרונות ה-WHO (9 תנאים): מחלה חשובה + טיפול קיים + מתקנים זמינים + שלב סמוי + בדיקה קיימת ומקובלת + היסטוריה טבעית מובנת + מדיניות טיפול מוסכמת + עלות מאוזנת.</li>
+    <li>מדדי תועלת משלימים: הפחתה אבסולוטית מול יחסית, NNS (מספר נדרש לסינון), ועלייה ממוצעת בתוחלת חיים (אך רוב האוכלוסייה לא נהנית כלל - ה"רווח" מרוכז במיעוט).</li>
+    <li>נזקי סינון: תוצאות חיוביות-כוזבות, אבחון יתר, קרינה, חרדה, עלות - נשקלים מול התועלת דרך עלות ל-QALY (בדרך כלל $50,000-100,000 נחשב יעיל-עלות).</li>
+    <li>ה-USPSTF הוא הגוף המרכזי שמפרסם המלצות סינון מבוססות-ראיות (טבלאות 6-4, 6-5) לפי גיל, מגדר וגורמי סיכון (כולל BRCA1/2 ופרופיל סיכון פוליגני).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
