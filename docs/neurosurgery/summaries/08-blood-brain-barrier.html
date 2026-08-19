@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: מחסום הדם-מוח</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 8: מחסום הדם-מוח <span class="term" dir="ltr">Blood-Brain Barrier</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Shahid M. Nimjee, Gerald A. Grant, H. Richard Winn, Damir Janigro</div>
+
+<p>מחסום הדם-מוח (Blood-Brain Barrier, BBB) הוא לא "קרום" פשוט אלא <b>יחידה נוירווסקולרית (neurovascular unit)</b> שלמה - שכבת תאי אנדותל צמודים זה לזה, עטופה בממברנת בסיס, פריציטים, שלוחות רגל של אסטרוציטים, ותאי מיקרוגליה. המטרה הכפולה שלו היא ניגודית באופן מכוון: מצד אחד להעביר בצורה מבוקרת חמצן, גלוקוז וחומרים חיוניים, ומצד שני לחסום כמעט הכל אחר - כולל תרופות שהיינו רוצים שיגיעו למוח. הפרק הזה בעצם עונה על שאלה קלינית מרכזית אחת: אם המחסום כל כך יעיל בהגנה על המוח, איך בכלל אפשר לטפל תרופתית במחלות מוח?</p>
+
+<h2><span class="num">1</span> אנטומיה של המחסום: איך בכלל בונים קיר שכזה</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת ההיגיון של הפרק: תא אנדותל מוחי <b>שונה משמעותית</b> מתא אנדותל היקפי בשלושה מאפיינים שכולם משרתים את אותה מטרה - איטום מקסימלי:</p>
+  <p>
+    <b>1. אין פנסטרציות (fenestrations) וכמעט אין וזיקולות פינוציטוזיס</b> - כלומר אין "חורים" ואין "שקיות הובלה" אקראיות שדרכן נוזל יכול לדלוף דרך התא עצמו (transcellular).<br>
+    <b>2. Tight Junctions (TJs) בין כל שני תאי אנדותל סמוכים</b> - אלה חוסמות את המסלול <span class="term" dir="ltr">paracellular</span> (החלל שבין תא לתא), שהוא בדרך כלל "החור הקל" לזליגה בכלי דם רגילים.<br>
+    <b>3. ריכוז מיטוכונדריה גבוה פי כמה מאנדותל היקפי</b> - כי חסימת שני המסלולים הפסיביים (טרנס-תאי ופרה-תאי) מחייבת להעביר כמעט הכל דרך הובלה פעילה, שדורשת אנרגיה (ATP) בכמויות גדולות.
+  </p>
+</div>
+<p class="key-box">המחסום "האמיתי" הוא לא רק ה-Tight Junction עצמו, אלא כל היחידה הנוירווסקולרית: אנדותל (הקיר), ממברנת הבסיס (היסוד), פריציטים (סיור היקפי), אסטרוציטים (מתווכים בין כלי הדם לרקמת המוח - יותר מ-90% מהשלוחות שלהם עוטפות תאי אנדותל), ומיקרוגליה (מודיעין/סיור חיסוני).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/The_cellular_components_of_the_neurovascular_unit.jpg?width=700" alt="Diagram of the cellular components of the neurovascular unit including endothelium, pericytes, astrocytes and neurons">
+<p class="media-cap">מרכיבי היחידה הנוירווסקולרית: תאי אנדותל, פריציטים, שלוחות רגל של אסטרוציטים ונוירונים סביב הנימית המוחית. מקור: Wikimedia Commons.</p>
+
+<svg class="diagram" viewBox="0 0 760 320" xmlns="http://www.w3.org/2000/svg">
+  <title>חתך רוחב סכמטי של נימית מוחית - שכבות המחסום דם-מוח</title>
+  <desc>תרשים המראה מהלומן של הנימית (דם) כלפי חוץ: תאי אנדותל עם Tight Junction ביניהם, מיטוכונדריה, ממברנת בסיס, פריציט, שלוחות רגל של אסטרוציטים, ונוירון</desc>
+  <rect x="20" y="90" width="150" height="140" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="95" y="165" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">לומן נימי</text>
+  <text x="95" y="184" font-size="12" text-anchor="middle" fill="#7f1d1d">(דם)</text>
+
+  <rect x="170" y="70" width="90" height="80" rx="6" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+  <rect x="170" y="170" width="90" height="80" rx="6" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+  <circle cx="200" cy="100" r="5" fill="#a16207"/>
+  <circle cx="225" cy="115" r="5" fill="#a16207"/>
+  <circle cx="205" cy="200" r="5" fill="#a16207"/>
+  <circle cx="230" cy="215" r="5" fill="#a16207"/>
+  <text x="215" y="45" font-size="13" text-anchor="middle" fill="#713f12" font-weight="700">תאי אנדותל</text>
+  <text x="215" y="60" font-size="11" text-anchor="middle" fill="#713f12">(נקודות = מיטוכונדריה רבה)</text>
+
+  <path d="M260 150 L268 140 L276 160 L284 140 L292 160 L300 150" fill="none" stroke="#1f2937" stroke-width="3"/>
+  <text x="280" y="270" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">Tight Junction</text>
+  <text x="280" y="286" font-size="11" text-anchor="middle" fill="#4b5563">(אוקלודין, קלאודין, ZO-1)</text>
+
+  <rect x="300" y="60" width="18" height="200" fill="#d1d5db" stroke="#6b7280" stroke-width="1.5"/>
+  <text x="309" y="45" font-size="11.5" text-anchor="middle" fill="#374151" font-weight="700">ממברנת</text>
+  <text x="309" y="58" font-size="10.5" text-anchor="middle" fill="#374151">בסיס</text>
+
+  <circle cx="355" cy="160" r="34" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <text x="355" y="156" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">פריציט</text>
+  <text x="355" y="171" font-size="10" text-anchor="middle" fill="#4c1d95">(Pericyte)</text>
+
+  <path d="M420 60 Q470 40 520 70 Q560 90 560 160 Q560 230 520 250 Q470 280 420 260 Q460 220 450 160 Q460 100 420 60Z" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="490" y="158" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">שלוחות רגל</text>
+  <text x="490" y="174" font-size="11.5" text-anchor="middle" fill="#14532d">אסטרוציט</text>
+
+  <circle cx="650" cy="160" r="30" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <line x1="650" y1="130" x2="630" y2="95" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="650" y1="130" x2="670" y2="95" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="650" y1="190" x2="630" y2="225" stroke="#2563eb" stroke-width="2.5"/>
+  <line x1="650" y1="190" x2="670" y2="225" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="650" y="164" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">נוירון</text>
+  <line x1="590" y1="160" x2="620" y2="160" stroke="#374151" stroke-width="2" stroke-dasharray="4,3"/>
+</svg>
+<p class="figcap">חתך סכמטי מלומן הנימית (שמאל) כלפי חוץ: אנדותל עם Tight Junction, ממברנת בסיס, פריציט, שלוחות רגל אסטרוציט ונוירון.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Fc0a71F5Pgw" title="The Blood-Brain Barrier" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר המדגים את מבנה תאי האנדותל, ה-Tight Junctions ותפקיד האסטרוציטים והפריציטים במחסום דם-מוח.</p>
+
+<p>שלוש חלבוני העוגן העיקריים של ה-Tight Junction הם <span class="term" dir="ltr">occludin</span> (חלבון עם ארבעה דומיינים טרנסממברניים, מווסת תעתיקית ומרוכז הרבה יותר באנדותל מוחי מאשר היקפי), <span class="term" dir="ltr">claudins</span> (בעיקר claudin-5 - נחשבים "השלד המבני" האמיתי של ה-TJ, כי דווקא הם, ולא occludin, יוצרים שכבות דמויות-TJ כשמבטאים אותם ביתר), ומשפחת <span class="term" dir="ltr">ZO (zona occludens) 1-3</span> שמעגנת את שני הקודמים לשלד הציטוסקלטלי של אקטין. ככל שיש יותר זרחון (phosphorylation) של ZO-1 - כך יורדת ההתנגדות החשמלית הטרנס-אנדותליאלית ועולה החדירות. זה ההסבר המנגנוני לכך שגורמים כמו VEGF (שגורם לזרחון TJ) פותחים את המחסום, בעוד גורמים אחרים סוגרים אותו.</p>
+
+<h2><span class="num">2</span> דרכי המעבר דרך המחסום - ארבעה נתיבים</h2>
+<div class="mechanism">
+  <p class="chain">מכיוון שאין "חורים" פסיביים, כל חומר שצריך להגיע למוח חייב לעבור באחת מארבע דרכים בלבד - וההבדל ביניהן קובע איזה תרופות בכלל יכולות לעבוד על המוח:</p>
+  <p>
+    <b>1. דיפוזיה פשוטה (Simple diffusion)</b> - ישירות דרך הממברנה השומנית של האנדותל, לפי שיפוע ריכוז. עובד רק לחומרים שומן-אוהבים (ליפופיליים) עם משקל מולקולרי מתחת ל-400-500 דלטון.<br>
+    <b>2. דיפוזיה מקלה (Facilitated diffusion)</b> - חלבון נשא ספציפי (למשל GLUT-1 לגלוקוז) מוביל את החומר לפי שיפוע ריכוז, בלי צריכת אנרגיה.<br>
+    <b>3. הובלה פעילה (Active transport)</b> - היחידה שמסוגלת להעביר <b>נגד</b> שיפוע ריכוז, במחיר ATP - למשל משאבת Na+,K+-ATPase.<br>
+    <b>4. הובלה מתווכת-קולטן (Receptor-mediated transcytosis)</b> - למולקולות גדולות (אינסולין, טרנספרין): קשירה לקולטן על פני האנדותל גוררת יצירת שלפוחית (vesicle) שעוברת דרך התא כולו.
+  </p>
+</div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blood-brain_barrier_transport_en.png?width=700" alt="Diagram illustrating passive diffusion, facilitated diffusion, active transport and receptor-mediated transcytosis across the blood-brain barrier">
+<p class="media-cap">ארבעת מנגנוני ההובלה העיקריים דרך המחסום דם-מוח. מקור: Wikimedia Commons.</p>
+
+<svg class="diagram" viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg">
+  <title>ארבעה מנגנוני הובלה דרך המחסום דם-מוח</title>
+  <desc>ארבעה עמודות: דיפוזיה פשוטה, דיפוזיה מקלה, הובלה פעילה, הובלה מתווכת קולטן, כל אחת עם חץ מהדם למוח דרך שכבת אנדותל</desc>
+  <text x="30" y="30" font-size="13" fill="#1f2937" font-weight="700">דם</text>
+  <line x1="10" y1="40" x2="750" y2="40" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/>
+  <rect x="10" y="90" width="740" height="40" fill="#fef9c3" stroke="#a16207" stroke-width="1.5"/>
+  <text x="30" y="200" font-size="13" fill="#1f2937" font-weight="700">מוח</text>
+  <line x1="10" y1="190" x2="750" y2="190" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <circle cx="100" cy="60" r="8" fill="#2563eb"/>
+  <line x1="100" y1="68" x2="100" y2="150" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow1)"/>
+  <text x="100" y="230" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">1. דיפוזיה פשוטה</text>
+  <text x="100" y="246" font-size="10.5" text-anchor="middle" fill="#4b5563">(ליפופילי, קטן)</text>
+
+  <circle cx="290" cy="60" r="8" fill="#15803d"/>
+  <rect x="278" y="95" width="24" height="30" rx="5" fill="#fff" stroke="#15803d" stroke-width="2"/>
+  <line x1="290" y1="68" x2="290" y2="95" stroke="#15803d" stroke-width="2.5"/>
+  <line x1="290" y1="125" x2="290" y2="150" stroke="#15803d" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <text x="290" y="230" font-size="12" text-anchor="middle" fill="#14532d" font-weight="700">2. דיפוזיה מקלה</text>
+  <text x="290" y="246" font-size="10.5" text-anchor="middle" fill="#4b5563">(נשא, לפי שיפוע - GLUT-1)</text>
+
+  <circle cx="480" cy="60" r="8" fill="#b91c1c"/>
+  <rect x="468" y="95" width="24" height="30" rx="5" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <line x1="480" y1="68" x2="480" y2="95" stroke="#b91c1c" stroke-width="2.5"/>
+  <line x1="480" y1="125" x2="480" y2="150" stroke="#b91c1c" stroke-width="2.5" marker-end="url(#arrow3)"/>
+  <text x="510" y="112" font-size="10" fill="#b91c1c" font-weight="700">ATP&#8594;ADP</text>
+  <text x="480" y="230" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">3. הובלה פעילה</text>
+  <text x="480" y="246" font-size="10.5" text-anchor="middle" fill="#4b5563">(נגד שיפוע, צורכת אנרגיה)</text>
+
+  <circle cx="660" cy="55" r="14" fill="#6d28d9"/>
+  <rect x="648" y="95" width="24" height="30" rx="5" fill="#fff" stroke="#6d28d9" stroke-width="2"/>
+  <line x1="660" y1="69" x2="660" y2="95" stroke="#6d28d9" stroke-width="2.5"/>
+  <ellipse cx="660" cy="140" rx="16" ry="11" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <line x1="660" y1="151" x2="660" y2="150" stroke="#6d28d9" stroke-width="2.5"/>
+  <line x1="660" y1="151" x2="660" y2="165" stroke="#6d28d9" stroke-width="2.5" marker-end="url(#arrow4)"/>
+  <text x="660" y="230" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">4. מתווכת קולטן</text>
+  <text x="660" y="246" font-size="10.5" text-anchor="middle" fill="#4b5563">(אינסולין, טרנספרין)</text>
+
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#15803d"/></marker>
+    <marker id="arrow3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b91c1c"/></marker>
+    <marker id="arrow4" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6d28d9"/></marker>
+  </defs>
+</svg>
+<p class="figcap">ארבעת נתיבי ההובלה העיקריים דרך שכבת האנדותל (המלבן הצהוב) מהדם למוח.</p>
+
+<p><b>דוגמה קלינית קלאסית לדרך מס' 2+אנזים:</b> לבודופה (levodopa) לטיפול בפרקינסון דומה מבנית לחומצת אמינו ניטרלית גדולה ונכנסת דרך הנשא <span class="term" dir="ltr">L-type</span> (דיפוזיה מקלה). בתוך תאי האנדותל עצמם קיים דופא-דקרבוקסילאז שהופך אותה לדופאמין - ולכן <b>הכמות שמגיעה בפועל למוח מוגבלת על ידי ביטוי האנזים הזה באנדותל</b>, לא רק על ידי ההובלה. לכן משלבים קרבידופה (carbidopa) - שלא חוצה את המחסום בעצמו - כדי לעכב את הפירוק ההיקפי ולהותיר יותר לבודופה זמינה למעבר.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/noWwbvmdhL0" title="Blood Brain Barrier, Animation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה המדגימה כיצד חומרים שונים חוצים (או לא חוצים) את המחסום, כולל תפקיד משאבת ה-Pgp.</p>
+
+<h2><span class="num">3</span> ויסות חדירות המחסום - מי פותח ומי סוגר</h2>
+<p>חדירות ה-Tight Junctions היא <b>דינמית</b>, לא קבועה - מגוון מתווכים ביוכימיים יכולים לפתוח או לסגור אותה תוך דקות, בעיקר דרך שינוי מצב הזרחון של חלבוני ה-ZO. זה בעל משמעות קלינית ישירה: מצבים דלקתיים (זיהום, שבץ, טראומה) מפעילים בדיוק את המתווכים שפותחים את המחסום.</p>
+<div class="table-scroll">
+<table>
+<tr><th>מקטין חדירות (סוגר את המחסום)</th><th>מגביר חדירות (פותח את המחסום)</th></tr>
+<tr><td>סטרואידים (למשל דקסמתזון)</td><td>ברדיקינין, היסטמין, תרומבין</td></tr>
+<tr><td>נוראדרנלין</td><td>גלוטמט</td></tr>
+<tr><td>גורמי גדילה: bFGF, GDNF, TGF-&beta;</td><td>ציטוקינים דלקתיים: IL-1&alpha;/&beta;, IL-6, TNF-&alpha;</td></tr>
+<tr><td>cAMP תוך-תאי</td><td>VEGF (זירחון ישיר של TJ)</td></tr>
+<tr><td>חומצות שומן רב-בלתי-רוויות</td><td>רדיקלים חופשיים, תחמוצת החנקן (NO)</td></tr>
+</table>
+</div>
+<p class="key-box">זה ההסבר המנגנוני לכך שדקסמתזון ניתן יחד עם אנטיביוטיקה בדלקת קרום המוח החיידקית: הוא "מהדק" מחדש את ה-TJ שנפתחו על ידי הציטוקינים הדלקתיים, ומקטין את הבצקת - למרות שבמבט ראשון היה אפשר לחשוב שהוא "יפריע" לחדירת האנטיביוטיקה.</p>
+
+<h2><span class="num">4</span> כשהמחסום נשבר: מצבים פתולוגיים</h2>
+<p>אקסטרווזציה של לויקוציטים דרך מחסום שנפגע מתרחשת בשלושה שלבים סדורים: <b>1) התגלגלות (rolling)</b> - קישור רופף בין סלקטינים לליגנדים שלהם; <b>2) הצמדות (adhesion)</b> - אינטגרינים נקשרים ל-VCAM/ICAM שעולים בביטוי בתגובה לציטוקינים דלקתיים; <b>3) חדירה (extravasation)</b> - שינוי בשלד האקטין פותח "חלון" זמני במחסום.</p>
+<div class="table-scroll">
+<table>
+<tr><th>מצב</th><th>מה קורה למחסום ולמה</th></tr>
+<tr><td>זיהום חיידקי (למשל Pneumococci, Neisseria meningitidis)</td><td>דה-פוספורילציה של TJ מגבירה חדירות; Pneumococci נקשרים לקולטן PAF ומעלים הובלה פרה-תאית; פירוק TJ משחרר IL-1, TNF ומטלופרוטאינזות (MMPs)</td></tr>
+<tr><td>וירוסים (HIV, הרפס, כלבת)</td><td>לרוב חודרים בטרנסציטוזה או "בתוך" תאי דם לבנים נגועים (HIV) ולא דרך פירוק ישיר של TJ - לכן פוגעים במחסום פחות מחיידקים</td></tr>
+<tr><td>שבץ/איסכמיה</td><td>שחרור MMP הורס קולגן IV ולמינין בממברנת הבסיס &#8592; בצקת וזוגנית + חדירה מוגברת &#8592; קשור לסיכון גבוה יותר להמרה דימומית לאחר רה-פרפוזיה</td></tr>
+<tr><td>טראומה</td><td>שינוי בפעילות נשאים - חסימת כניסת חומרים חיוניים תוך אפשור כניסת פתוגנים ורעלים</td></tr>
+<tr><td>אלצהיימר</td><td>&beta;-עמילואיד נכנס למוח דרך קולטן RAGE ויוצא דרך LDL receptor-related protein-1; חוסר איזון בין השניים תורם לשקיעת עמילואיד מוקדמת</td></tr>
+<tr><td>אפילפסיה</td><td>ירידה בביטוי GLUT-1, דלקת, ועלייה בביטוי MDR/Pgp שמוציא תרופות אנטי-אפילפטיות מהמוח - מנגנון אפשרי לעמידות תרופתית (כ-30% מהחולים)</td></tr>
+<tr><td>גידולי מוח</td><td>כלי הדם הגידוליים מציגים פנסטרציות, וזיקולות פינוציטוזיס רבות, וחסרים שלוחות רגל גליאליות - "מחסום הגידול" חדיר יותר במרכז הגידול אך נשאר תקין ברקמה התקינה שמסביב</td></tr>
+</table>
+</div>
+<p>שני סוגי בצקת מוחית (לפי Klatzo) קשורים ישירות למצב המחסום: <b>בצקת ציטוטוקסית</b> - תאי המוח נפוחים על חשבון החלל החוץ-תאי, <b>בעוד המחסום עצמו שלם</b>; לעומת <b>בצקת וזוגנית</b> - חדירות מוגברת עקב פירוק המחסום מאפשרת זרימת חלבוני פלזמה והתרחבות החלל החוץ-תאי. בשבץ, שני הסוגים מתרחשים בו-זמנית.</p>
+
+<h2><span class="num">5</span> האתגר הקליני המרכזי: איך בכלל נותנים תרופה למוח</h2>
+<div class="mechanism">
+  <p class="chain">מתוך 6304 תרופות שנסקרו במחקר אחד, רק 6% שימשו לטיפול ב-CNS - לא בגלל חוסר מחלות מוח, אלא כי רוב התרופות פשוט לא עוברות את המחסום. הכלל האמפירי: תרופה חוצה מחסום ביעילות אם משקלה המולקולרי מתחת ל-400-500 דלטון, ומקדם החלוקה שלה אוקטנול/מים בין 0.5- ל-6.0 (ליפופיליות מספקת בלי יותר מדי).</p>
+</div>
+<div class="table-scroll">
+<table>
+<tr><th>אסטרטגיה</th><th>איך היא עוקפת את המחסום</th><th>דוגמה</th><th>מגבלה עיקרית</th></tr>
+<tr><td>שינוי ליפופיליות / פרו-דראג</td><td>הצמדת קבוצה שומנית מגבירה מעבר פסיבי; אנזים במוח משחרר את התרופה הפעילה</td><td>הרואין (100 פעם חדיר יותר ממורפין, מומר בחזרה במוח)</td><td>עלייה במסה מעל 400-500 דלטון מבטלת את היתרון; רעילות לאיברים אחרים</td></tr>
+<tr><td>עיכוב Pgp (משאבת היעפה)</td><td>חוסם את משאבת ה-efflux שמוציאה תרופות ליפופיליות בחזרה ללומן</td><td>מעכבי דור שלישי: tariquidar, zosuquidar</td><td>מעכבי דור ראשון (ציקלוספורין, ורפמיל) רעילים; אינטראקציות תרופתיות</td></tr>
+<tr><td>פתיחה אוסמוטית של TJ</td><td>עירוי מניטול היפרטוני לעורק הצוואר הפנימי מכווץ תאי אנדותל &#8592; TJ נפתחים זמנית</td><td>מניטול 25% תוך-עורקי לפני כימותרפיה בלימפומה ראשונית של ה-CNS</td><td>פרכוסים (4-8%), עלייה חולפת בלחץ תוך-גולגולתי, וזוספזם, זיהום</td></tr>
+<tr><td>מתן ישיר לגידול (Convection-enhanced delivery)</td><td>עירוי תרופה תחת לחץ קבוע דרך קטטר ישירות לתוך מיטת הגידול</td><td>כימותרפיה לגליומה בעזרת הדמיה מכוונת</td><td>נזק מהחדרת הקטטר, זליגה לאחור (backflow), לחץ בין-רקמתי</td></tr>
+<tr><td>פוליימר ביו-מתכלה בחלל הכריתה</td><td>דיפוזיה פסיבית איטית מוואפרים המושתלים בזמן הניתוח</td><td>קרמוסטין (Gliadel wafer) בגליומה ממאירה</td><td>שחרור לא אחיד של התרופה; דורש קרניוטומיה</td></tr>
+<tr><td>הובלה מתווכת-קולטן ("סוס טרויאני")</td><td>הצמדת התרופה לנוגדן/ליגנד לקולטן טרנספרין או אינסולין &#8592; טרנסציטוזה</td><td>ליפוזום מצומד לפוליאתילן גליקול הנושא גן טיפולי</td><td>עדיין בשלבים פרה-קליניים ברוב היישומים</td></tr>
+<tr><td>אולטרסאונד ממוקד (Focused ultrasound)</td><td>יוצר פגיעה ממוקדת וזמנית ב-TJ, במעקב MRI תרמומטרי</td><td>ניסוי עם דוקסורוביצין ממוקד באזור המטופל</td><td>טכנולוגיה יקרה, דורש דיוק הדמייתי גבוה</td></tr>
+</table>
+</div>
+<p class="key-box">עקרון ה"אפקט הכיור" (sink effect) בגידולי מוח: כיוון שהמחסום פתוח יותר במרכז הגידול אך שמור ברקמה שסביבו, רוב התרופה "נשאבת" למרכז - ותאי גידול בפריפריה (שיכולים לגרום להישנות) נשארים חשופים לריכוזים נמוכים בהרבה. פתיחה אוסמוטית של המחסום גם ברקמה שמסביב פותרת בעיה זו.</p>
+
+<h2><span class="num">6</span> ניטור ודימות פגיעה במחסום</h2>
+<p>ה-BBB ניתן להדמיה עקיפה: CT/MRI עם חומר ניגוד מדגימים <b>הגברה</b> באזורים שבהם המחסום פתוח (כי חומר הניגוד דולף החוצה מכלי הדם). MRI מסוג T1 עם דגימה דינמית (DSC) מאפשר לחשב מפת <span class="term" dir="ltr">K<sub>trans</sub></span> - קצב דליפת חומר הניגוד דרך המחסום - ולעקוב אחרי תגובה לטיפול לאורך זמן (למשל לפני ואחרי בבזיציזומאב בגליובלסטומה חוזרת).</p>
+<p>המרקר ההיקפי הטוב ביותר לפגיעה במחסום הוא <b><span class="term" dir="ltr">S-100&beta;</span></b> - חלבון קושר-סידן ממשפחת S-100, המרוכז כמעט אך ורק בשלוחות הרגל של אסטרוציטים ובתאי שוואן. כשהוא מופיע בדם בריכוז גבוה, זהו סימן ישיר לכך שהמחסום נפתח (כי בתקינה הוא כמעט ולא דולף לפריפריה) - בניגוד למרקרים אחרים (כמו GFAP) שאינם עומדים באותם קריטריונים של ריכוז נמוך בפלזמה תקינה.</p>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">E-P-A-M</span> - ארבעת השומרים של היחידה הנוירווסקולרית</h3>
+  <p>
+    <b>E</b> - <span class="term" dir="ltr">Endothelium</span> (אנדותל עם Tight Junctions - "חומת המבצר" עם דלת נעולה)<br>
+    <b>P</b> - <span class="term" dir="ltr">Pericyte</span> (פריציט - "שומר הסף" הצמוד לקיר, שנעלם ראשון בטראומה/היפוקסיה)<br>
+    <b>A</b> - <span class="term" dir="ltr">Astrocyte</span> (שלוחות רגל - "השליחים" שמתווכים בין הקיר לתושבי העיר)<br>
+    <b>M</b> - <span class="term" dir="ltr">Microglia</span> (מיקרוגליה - "הבלשים" הסמויים שתופסים כל פולש שחדר בכל זאת)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני מבצר מוקף חומה אחת בלבד (לא שתיים!) - זו שכבת האנדותל, עם דלת אחת שננעלת ונפתחת (Tight Junction). על החומה עצמה יושבים שומרי סף צמודים (הפריציטים) שמסתובבים ומשגיחים. מבפנים, שליחים (שלוחות הרגל של האסטרוציטים) עומדים צמודים לחומה מהצד הפנימי ומעבירים הודעות בין החומה לתושבי העיר (הנוירונים). ובתוך העיר עצמה מסתובבים בלשים סמויים (מיקרוגליה) שתופסים כל חומר זר שהצליח להיכנס בכל זאת ומגישים אותו ל"בית משפט" (תאי T).</p>
+  <svg class="diagram" viewBox="0 0 620 240" xmlns="http://www.w3.org/2000/svg">
+    <title>מבצר עם ארבעה שומרים - EPAM</title>
+    <desc>איור מטאפורי של מבצר עם חומה אחת, שומרי סף, שליחים ובלשים</desc>
+    <rect x="40" y="40" width="540" height="160" fill="#fef9c3" stroke="#a16207" stroke-width="4"/>
+    <text x="310" y="30" font-size="15" text-anchor="middle" fill="#713f12" font-weight="700">E — חומת האנדותל (עם Tight Junction)</text>
+    <rect x="290" y="40" width="40" height="30" fill="#fff" stroke="#1f2937" stroke-width="2"/>
+    <circle cx="330" cy="55" r="4" fill="#1f2937"/>
+    <circle cx="150" cy="40" r="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+    <circle cx="470" cy="40" r="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+    <text x="150" y="20" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">P</text>
+    <text x="470" y="20" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">P</text>
+    <path d="M60 200 Q100 170 140 200" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <path d="M480 200 Q520 170 560 200" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="100" y="220" font-size="11.5" text-anchor="middle" fill="#14532d" font-weight="700">A - שליח</text>
+    <text x="520" y="220" font-size="11.5" text-anchor="middle" fill="#14532d" font-weight="700">A - שליח</text>
+    <circle cx="310" cy="120" r="14" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+    <text x="310" y="150" font-size="11.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">M - בלש (מיקרוגליה)</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blood_Brain_Barrier.jpg?width=700" alt="General diagram of the blood brain barrier showing capillary and brain tissue">
+<p class="media-cap">תרשים כללי של מחסום הדם-מוח - כלי הדם המוחי ורקמת המוח שסביבו. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/e9sN9gOEdG4" title="2-Minute Neuroscience: Blood-Brain Barrier" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סיכום קצר ומהיר (כ-2 דקות) על מבנה ותפקיד המחסום דם-מוח - טוב לחזרה מהירה לפני מבחן.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Constituents_of_the_BBB_in_the_capillary.jpg" target="_blank">Constituents of the BBB in the capillary – Wikimedia Commons</a>
+    <div class="desc">תרשים נוסף של מרכיבי המחסום בתוך דופן הנימית, כולל ממברנת הבסיס.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8668349/" target="_blank">Blood-Brain Barrier Overview: Structural and Functional Correlation – PMC</a>
+    <div class="desc">סקירה מדעית מעודכנת יותר על מבנה ותפקוד המחסום, כולל טבלת חלבוני Tight Junction.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52 מאובחנת עם גליובלסטומה חוזרת (recurrent GBM) לאחר כשל בטיפול הראשוני. הצוות המטפל שוקל עירוי תוך-עורקי של מניטול היפרטוני (25%) לעורק הצוואר הפנימי כדי לפתוח את המחסום דם-מוח לפני מתן כימותרפיה, במטרה להעלות את חדירות התרופה לרקמה הגידולית ולשוליה. יום לאחר ההליך, המטופלת מפתחת אירוע פרכוסי בודד ועלייה חולפת בסמן S-100&beta; בדם.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו המנגנון המקובל שדרכו מניטול היפרטוני תוך-עורקי פותח את המחסום דם-מוח?</div>
+  <button class="opt" data-i="0">מניטול הורס ישירות את חלבוני ה-Tight Junction באופן בלתי הפיך</button>
+  <button class="opt" data-i="1">ההיפר-אוסמולריות גורמת להתכווצות (shrinkage) של תאי האנדותל, מה שמותח ופותח את ה-Tight Junctions באופן זמני והפיך; מחקרים חדשים יותר מציעים גם מנגנון אקטיבי הכולל זרחון של &beta;-קטנין</button>
+  <button class="opt" data-i="2">מניטול חוסם ישירות את משאבת ה-Pgp</button>
+  <button class="opt" data-i="3">מניטול גורם לוואזודילטציה של כלי הדם המוחיים ומעלה זרימת דם בלבד, בלי להשפיע על ה-TJ</button>
+  <div class="explain">התשובה הנכונה: (1). ההשערה המרכזית (Rapoport) היא שהתכווצות אוסמוטית של תאי האנדותל "מותחת" ומפרידה זמנית את ה-TJ ופותחת מסלול פרה-תאי; מחקרים עדכניים יותר (Farkas ואחרים) הראו זרחון פעיל של &beta;-קטנין, מה שמרמז על תגובה תאית אקטיבית ולא רק כיווץ פסיבי. אפשרות 0 שגויה - האפקט הפיך תוך שעות. אפשרות 2 מתארת מנגנון שונה לחלוטין (עיכוב Pgp). אפשרות 3 מתעלמת מהאפקט הישיר על ה-TJ שהוא הבסיס לכל הטכניקה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע רוב תרופות הכימותרפיה הסטנדרטיות מתקשות לחצות מחסום דם-מוח תקין, גם אם הן יעילות נגד הגידול במבחנה?</div>
+  <button class="opt" data-i="0">כי הן תמיד גדולות מדי, ללא קשר לליפופיליות שלהן</button>
+  <button class="opt" data-i="1">כי הכבד מפרק אותן לפני שהן מגיעות למוח</button>
+  <button class="opt" data-i="2">כי לרוב הן הידרופיליות ו/או בעלות משקל מולקולרי מעל 400-500 דלטון, ובנוסף רבות מהן הן סובסטרט למשאבת ה-Pgp שמוציאה אותן בחזרה מהאנדותל אל הלומן</button>
+  <button class="opt" data-i="3">כי אין להן קולטנים ספציפיים על פני האנדותל המוחי בכלל</button>
+  <div class="explain">התשובה הנכונה: (2). המעבר הפסיבי היעיל דורש שילוב של ליפופיליות מספקת (log P בין 0.5- ל-6.0) ומשקל מולקולרי נמוך; מעבר לכך, גם תרופות ליפופיליות "נתפסות" לעיתים על ידי Pgp ומוצאות החוצה. אפשרות 0 לא מדויקת - הגודל הוא רק חלק מהתמונה, ליפופיליות משחקת תפקיד מרכזי גם היא. אפשרות 1 מתארת מטבוליזם כבדי, לא קשור למחסום עצמו. אפשרות 3 שגויה - חלק מהתרופות (כמו הובלה מתווכת-קולטן) דווקא מנצלות קולטנים קיימים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע S-100&beta; נחשב מרקר היקפי טוב במיוחד לניטור פתיחת המחסום דם-מוח, בהשוואה לחלבונים אחרים?</div>
+  <button class="opt" data-i="0">הוא מרוכז כמעט אך ורק באסטרוציטים ותאי שוואן, בעל ריכוז פלזמה תקין נמוך/בלתי מדיד, וריכוזו בנוזל השדרה גבוה מבפלזמה בתקינה - כך שעלייה בדם משקפת ישירות דליפה דרך מחסום פתוח</button>
+  <button class="opt" data-i="1">הוא נמצא בריכוזים דומים בכל רקמות הגוף, כך שקל להשוות</button>
+  <button class="opt" data-i="2">הוא חלבון קטן מ-100 דלטון שיכול לחצות את המחסום בקלות גם כשהוא סגור</button>
+  <button class="opt" data-i="3">הוא מיוצר רק בתאי גידול, ולכן ספציפי לגידולי מוח בלבד</button>
+  <div class="explain">התשובה הנכונה: (0). S-100&beta; עונה בדיוק על הקריטריונים לרוב מרקר היקפי אידיאלי: ריכוז פלזמה נמוך/בלתי מדיד בתקין, ריכוז גבוה יותר ב-CSF, ועלייה עקבית בפלזמה כשהמחסום נפתח. אפשרות 1 הפוכה מהנכון - הריכוז ה"נורמלי הנמוך בפלזמה" הוא בדיוק מה שהופך אותו לרגיש. אפשרות 2 שגויה עובדתית - משקלו כ-10,000 דלטון, גדול בהרבה מסף ה-400-500 דלטון למעבר פסיבי. אפשרות 3 שגויה - הוא מיוצר פיזיולוגית באסטרוציטים ותאי שוואן תקינים, לא רק ברקמה גידולית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו הסבר סביר ביותר לפרכוס שפיתחה המטופלת לאחר ההליך?</div>
+  <button class="opt" data-i="0">מנת יתר של כימותרפיה בלבד, ללא קשר למחסום</button>
+  <button class="opt" data-i="1">זיהום חיידקי חריף שהתפתח תוך פחות מ-24 שעות</button>
+  <button class="opt" data-i="2">תגובה אלרגית קלאסית למניטול</button>
+  <button class="opt" data-i="3">חשיפה של רקמת המוח לחלבוני סרום (כמו אלבומין) שחדרו דרך המחסום הפתוח, מה שעלול להפעיל אסטרוציטים ולעורר פרכוסים - סיבוך מוכר של פתיחה אוסמוטית של המחסום (מדווח ב-4-8% מהמקרים)</button>
+  <div class="explain">התשובה הנכונה: (3). פתיחה אוסמוטית של המחסום מאפשרת גם לחלבוני סרום (לא רק לתרופה הרצויה) לחדור לרקמת המוח; חשיפה זו, במיוחד לאלבומין, יכולה להפעיל אסטרוציטים ולתרום לפרכוסים - זהו סיבוך מתועד היטב בספרות (4-8% מהמטופלים בסדרות שונות). אפשרות 0 לא מתאימה לתזמון (יממה בודדת) ואינה קשורה למנגנון שתואר. אפשרות 1 לא סבירה בפרק זמן כה קצר בלי סימני זיהום נוספים. אפשרות 2 אינה המנגנון המתואר בספרות עבור פרכוסים לאחר פתיחה אוסמוטית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. איזו אסטרטגיית מתן תרופה למוח מתאימה במיוחד למצב שבו רוצים לרכז ריכוז גבוה של תרופה ישירות במיטת הגידול תוך עקיפה מוחלטת של הצורך לחצות דרך אנדותל שלם, ומהי המגבלה העיקרית שלה?</div>
+  <button class="opt" data-i="0">עיכוב Pgp - מגבלתה היא רעילות מערכתית של מעכבי דור ראשון בלבד</button>
+  <button class="opt" data-i="1">מתן ישיר לגידול בעזרת לחץ קבוע דרך קטטר (Convection-enhanced delivery) - מגבלתה העיקרית היא נזק מהחדרת הקטטר, זליגה לאחור (backflow) ולחצים בין-רקמתיים שמונעים חלוקה אחידה של התרופה</button>
+  <button class="opt" data-i="2">שינוי ליפופיליות של התרופה - מגבלתה היא שהתרופה תמיד הופכת רעילה לכליות</button>
+  <button class="opt" data-i="3">הובלה מתווכת-קולטן - מגבלתה היא שהיא עובדת רק על חומרים בעלי משקל מולקולרי נמוך מ-100 דלטון</button>
+  <div class="explain">התשובה הנכונה: (1). Convection-enhanced delivery מזריקה את התרופה תחת לחץ ישירות לרקמת הגידול, ובכך עוקפת לחלוטין את הצורך במעבר דרך אנדותל שלם - אך תלויה בהצלחת מיקום הקטטר ובבעיות טכניות כמו זליגה לאחור ולחץ בין-רקמתי לא אחיד שמונע חלוקה שווה של התרופה. אפשרות 0 מתארת מגבלה חלקית בלבד ולא את המנגנון הנשאל. אפשרות 2 שגויה - הרעילות התלויה בשינוי ליפופיליות משתנה לפי התרופה, לא כלל גורף. אפשרות 3 שגויה מספרית - הובלה מתווכת-קולטן דווקא מיועדת למולקולות גדולות (כמו אינסולין, טרנספרין, ואפילו אנזימים כמו &beta;-galactosidase), לא קטנות מ-100 דלטון.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>המחסום דם-מוח הוא <b>יחידה נוירווסקולרית</b> (אנדותל + ממברנת בסיס + פריציטים + שלוחות רגל אסטרוציט + מיקרוגליה), לא רק שכבת תאים בודדת.</li>
+    <li>אנדותל מוחי ייחודי בשלושה מאפיינים: <b>אין פנסטרציות/וזיקולות פינוציטוזיס</b>, <b>Tight Junctions</b> (אוקלודין, קלאודין-5, ZO-1/2/3), ו<b>ריכוז מיטוכונדריה גבוה</b> להובלה פעילה.</li>
+    <li>ארבעה נתיבי מעבר: <b>דיפוזיה פשוטה</b> (ליפופילי, קטן מ-400-500 דלטון), <b>דיפוזיה מקלה</b> (נשא, GLUT-1), <b>הובלה פעילה</b> (נגד שיפוע, ATP), <b>הובלה מתווכת-קולטן</b> (מולקולות גדולות - אינסולין, טרנספרין).</li>
+    <li>גורמים כמו VEGF וציטוקינים דלקתיים (IL-1, TNF-&alpha;) <b>פותחים</b> את המחסום דרך זרחון TJ; סטרואידים ו-cAMP <b>סוגרים</b> אותו.</li>
+    <li>אסטרטגיות לעקיפת המחסום לטיפול תרופתי: שינוי ליפופיליות/פרו-דראג, עיכוב Pgp, <b>פתיחה אוסמוטית</b> (מניטול תוך-עורקי), Convection-enhanced delivery, ואפרי פוליימר (Gliadel), הובלה מתווכת-קולטן, ואולטרסאונד ממוקד.</li>
+    <li><b>S-100&beta;</b> הוא המרקר ההיקפי המועדף לניטור פתיחת המחסום - ריכוז פלזמה תקין נמוך מאוד, מקורו כמעט בלעדי באסטרוציטים.</li>
+    <li>"אפקט הכיור" בגידולי מוח: המחסום פתוח יותר במרכז הגידול אך שמור בשוליים - לכן תאי גידול פריפריים נחשפים לריכוזי תרופה נמוכים משמעותית, מה שתורם להישנות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
