@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 9: בצקת מוחית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 9: בצקת מוחית <span class="term" dir="ltr">Cerebral Edema</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Robert J. Weil, Edward H. Oldfield</div>
+
+<p>בצקת מוחית היא הצטברות עודפת של נוזל בתוך רקמת המוח - תוך-תאית או חוץ-תאית - והיא אחראית לחלק ניכר מהתחלואה והתמותה הנלוות לגידולי מוח, טראומה, שטפי דם וזיהומים. כדי להבין למה בצקת מתפתחת, ואיך לטפל בה, צריך קודם להבין את <b>מחסום הדם-מוח</b> (Blood-Brain Barrier, BBB) - המערכת שבתנאים תקינים מונעת בדיוק את ההצטברות הזאת. הפרק בעצם בנוי כשרשרת סיבתית אחת: תפקוד תקין של ה-BBB &#8592; מנגנוני כשל שונים של ה-BBB או של תאי המוח &#8592; ארבעה סוגים שונים של בצקת, שלכל אחד מהם גורמים, מיקום, וטיפול שונים לחלוטין.</p>
+
+<h2><span class="num">1</span> הרקע: מחסום הדם-מוח כמנגנון הגנה פעיל</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>למה בכלל יש בצקת?</b> כי בתנאים תקינים ה-BBB מווסת בקפדנות את זרימת המים, היונים והמולקולות בין הדם למוח - וכל בצקת היא בעצם כשל, זמני או קבוע, במנגנון הוויסות הזה.
+  </p>
+  <p>
+    <b>המרכיב המרכזי</b> של ה-BBB הוא תאי האנדותל המצפים את נימי המוח. בניגוד לנימים בשאר הגוף, יש ביניהם <b>צמתים הדוקים</b> (tight junctions) שאינם חדירים - כך שרוב המולקולות לא יכולות "לזלוג" בין התאים (transport פאראצלולרי), אלא חייבות לעבור דרכם באופן פעיל (טרנסצלולרי), תוך צריכת ATP.<br>
+    <b>שכבת חיזוק:</b> פריציטים עוטפים את התאים האנדותליאליים, וממברנת בסיס דקה מקיפה את המכלול. מעליה, <b>רגלי הקצה של האסטרוציטים</b> ("astrocytic foot processes") מכסות את ממברנת הבסיס כמעט לחלוטין ומגבילות עוד יותר גישה של מקרומולקולות או תאים למערכת העצבים המרכזית.<br>
+    <b>קנה מידה:</b> שטח הפנים הכולל של ה-BBB מוערך בכ-20 מ"ר לכל 1.3 ק"ג מוח - כך שאף נוירון אינו רחוק יותר מ-20-25 מיקרומטר מנים מוחי, מה שמאפשר בקרה הדוקה על הסביבה המיקרוסקופית של כל תא.
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Constituents_of_the_BBB_in_the_capillary.jpg?width=700" alt="Diagram showing the cellular constituents of the blood-brain barrier: endothelial cells, tight junctions, pericytes and astrocyte end-feet">
+<p class="media-cap">מרכיבי מחסום הדם-מוח: תאי אנדותל עם צמתים הדוקים, פריציטים, ממברנת בסיס ורגלי קצה אסטרוציטריות העוטפות את הנימית. מקור: Wikimedia Commons.</p>
+<p class="key-box">מולקולות קטנות ושומניות (כמו חמצן, פחמן דו-חמצני ואתנול) חוצות את ה-BBB בחופשיות דרך הממברנות. אבל מולקולות גדולות או הידרופיליות דורשות הובלה פעילה - וכשל בהובלה הזו, או פגיעה בצמתים ההדוקים עצמם, הוא בדיוק מה שפותח את הדלת לבצקת.</p>
+<p>ה-BBB גם שומר על הרכב ייחודי לנוזל הבין-תאי (interstitial fluid) של המוח - חלבון נמוך יותר, סידן ואשלגן נמוכים יותר, ומגנזיום גבוה יותר מהפלזמה - הרכב שמספק יכולת חיץ (buffering) משמעותית ומגן על תפקוד נוירוני מפני תנודות מטבוליות (כמו מאמץ גופני, ארוחה או צום). בקרים דומים קיימים גם בממשק CSF-מוח, למעט באזורים ה"פרוצים" מכוונה - האברים הפרי-חדריים (circumventricular organs) כמו ה-area postrema, שם האנדותל חדיר יותר במיוחד כדי לאפשר לנוירופפטידים מופרשים לפעול באופן מערכתי.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/e9sN9gOEdG4" title="2-Minute Neuroscience: Blood-Brain Barrier" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">2-Minute Neuroscience: מחסום הדם-מוח - מבנה, תפקוד וחריגים (Marc Dingman, YouTube).</p>
+
+<h2><span class="num">2</span> ארבעה סוגי בצקת מוחית: מיון וסיווג</h2>
+<p>רוב הסיווגים מחלקים בצקת מוחית לארבע קטגוריות. הן יכולות להתקיים בו-זמנית אצל אותו חולה, בהתאם למחלה הבסיסית ולשלב שלה, אך ההבחנה ביניהן קריטית כי הטיפול שונה לחלוטין בין קטגוריה לקטגוריה:</p>
+<div class="table-scroll">
+<table>
+<tr><th>מאפיין</th><th>ציטוטוקסית (Cytotoxic)</th><th>וזוגנית (Vasogenic)</th><th>אינטרסטיציאלית (Interstitial)</th><th>אוסמוטית (Osmotic)</th></tr>
+<tr><td><b>מנגנון</b></td><td>כשל אנרגטי במשאבת Na<sup>+</sup>,K<sup>+</sup>-ATPase &#8592; נפיחות תוך-תאית של כל האלמנטים (נוירונים, גליה, אנדותל)</td><td>עלייה בחדירות כלי הדם ברמת ה-BBB (או מחסום הגידול) &#8592; הצטברות אולטרה-פילטרט של פלזמה בחוץ-תאי</td><td>זרימת CSF טרנס-אפנדימלית לחלל החוץ-תאי הפרי-חדרי, עקב הידרוצפלוס</td><td>המוח היפר-אוסמולרי ביחס לפלזמה &#8592; מים זורמים במורד השיפוע האוסמוטי</td></tr>
+<tr><td><b>נוזל הבצקת</b></td><td>הצטברות תוך-תאית נטו של מים ונתרן</td><td>אולטרה-פילטרט של פלזמה</td><td>נוזל השדרה (CSF)</td><td>חוץ-תאי > תוך-תאי</td></tr>
+<tr><td><b>מיקום</b></td><td>חומר אפור ולבן</td><td>בעיקר חומר לבן</td><td>חומר לבן פרי-חדרי</td><td>חומר לבן</td></tr>
+<tr><td><b>נפח חוץ-תאי</b></td><td>יורד</td><td>עולה</td><td>עולה</td><td>עולה</td></tr>
+<tr><td><b>גורמים אופייניים</b></td><td>אנוקסיה, קטואצידוזיס סוכרתי, אנצפלופתיה כבדית, היפותרמיה, אוטם/איסכמיה, זיהום, מנינגיטיס, תסמונת Reye, טראומה, הרעלת מים</td><td>גידולי מוח (ראשוניים וגרורתיים), אבצס ואנצפליטיס, אוטם בשלבים מאוחרים, הרעלת עופרת, טראומה</td><td>הידרוצפלוס</td><td>המודיאליזה, משבר יתר לחץ דם, SIADH, הרעלת מים</td></tr>
+<tr><td><b>סטרואידים</b></td><td>לא יעילים</td><td>יעילים</td><td>לא יעילים</td><td>לא יעילים</td></tr>
+<tr><td><b>משתנים</b></td><td>יעילות חולפת</td><td>יעילות מעטה/לא יעילים</td><td>יעילות חולפת</td><td>לא יעילים</td></tr>
+<tr><td><b>טיפול עיקרי</b></td><td>תיקון הגורם הראשוני</td><td>תיקון הגורם (למשל כריתת גידול)</td><td>ניקוז CSF (שאנט / ventriculostomy)</td><td>תיקון הגורם הראשוני</td></tr>
+</table>
+</div>
+<p class="key-box">בצקת אינטרסטיציאלית ואוסמוטית שכיחות פחות בחולים נוירוכירורגיים, ולכן הפרק - וההמשך של הסיכום הזה - מתמקד בעיקר בבצקת <b>וזוגנית</b> ו<b>ציטוטוקסית</b>, שהן גם הנפוצות ביותר וגם המושפעות ביותר מהתערבות כירורגית ותרופתית.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6fwGa_YnRqA" title="Cerebral edema: Cytotoxic vs vasogenic" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">השוואה חזותית בין בצקת ציטוטוקסית לוזוגנית - מנגנון, מיקום והופעה בהדמיה.</p>
+
+<h2><span class="num">3</span> בצקת וזוגנית: כשל במחסום ותפקיד ה-VEGF</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שרשרת המנגנון:</b> גידול מוחי (ראשוני או גרורתי) &#8592; הנימים החדשים שהוא בונה חסרים צמתים הדוקים תקינים ("מחסום הגידול", brain-tumor barrier) &#8592; אולטרה-פילטרט של פלזמה זולג לחלל החוץ-תאי &#8592; בצקת שמתפשטת בעיקר בחומר הלבן, כי שם ההתנגדות המכנית לזרימת נוזל נמוכה יותר מאשר בחומר האפור הצפוף.
+  </p>
+</div>
+<p>מעבר לדליפה הפסיבית, גידולים רבים מפרישים באופן פעיל גורמים המגבירים חדירות כלי דם. המרכזי שבהם הוא <b>VEGF</b> (Vascular Endothelial Growth Factor) - חלבון שזוהה לראשונה ב-1983 (סנגר ודבוראק) כגורם המופרש מתאי גידול ומעורר צבירת מיימת (ascites) על ידי הגברת חדירות כלי דם קטנים; מאוחר יותר זוהתה גם פעילותו האנגיוגנית. VEGF גורם לחדירות נימית, שגשוג ונדידה של תאי אנדותל, ולבנייה של נימים חדשים החסרים צמתים הדוקים. גורמים נוספים - אנגיופויטין-1/2, VEGF, IL-3/4/8, TGF-α/β, פרוטאזות שונות ואונקוגנים כמו Ras מוטנטי - תורמים תרומה משלימה.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Glioblastoma_multiforme_-_MRT_T2_ax.jpg?width=700" alt="Axial T2-weighted MRI of glioblastoma multiforme showing surrounding vasogenic edema">
+<p class="media-cap">MRI צירי T2 של גליובלסטומה - האזור ההיפראינטנסי הנרחב סביב הגידול הוא בצקת וזוגנית האופיינית לגידולי מוח ממאירים. מקור: Wikimedia Commons.</p>
+<p><b>עדות קלינית ישירה</b> לתפקיד VEGF: טיפול בבבסיזומאב (bevacizumab), נוגדן אנטי-VEGF, בחולי גליובלסטומה מפחית באופן דרמטי הן את ההאדרה (חדירות) בהדמיה והן את הבצקת המוחית מסביב - הוכחה חזותית ישירה לקשר הסיבתי. גליומות בדרגה גבוהה, מנינגיומות וגרורות - הגידולים שגורמים בפועל לבצקת המשמעותית ביותר קלינית - מבטאים רמות RNA גבוהות במיוחד של VPF/VEGF, בעוד גידולי CNS שאינם קשורים לבצקת משמעותית אינם מבטאים רמות גבוהות מהמוח התקין.</p>
+
+<h2><span class="num">4</span> בצקת ציטוטוקסית: כשל אנרגטי ונפיחות תאית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שרשרת המנגנון:</b> איסכמיה, טראומה, אנוקסיה או זיהום &#8592; דלדול ATP &#8592; כשל משאבת Na<sup>+</sup>,K<sup>+</sup>-ATPase &#8592; נתרן מצטבר בתוך התא (נוירונים, אסטרוציטים, אנדותל) &#8592; מים עוקבים בהתאם לשיפוע האוסמוטי &#8592; התא מתנפח מבפנים, בניגוד לבצקת וזוגנית שבה הנוזל מצטבר בחוץ.
+  </p>
+</div>
+<p>מנגנון מקביל וחשוב במיוחד באיסכמיה מוחית הוא <b>עודף גלוטמט</b>: לאחר היפוקסיה, גלוטמט מציף קולטני AMPA ו-kainate, מה שגורם לזרם נתרן לתוך הנוירונים ומושך כלור ומים באופן פסיבי. במקביל, יתר-פעילות של נשאי גלוטמט אסטרוציטריים מגבירה כניסת נתרן לאסטרוציטים - ולכן גם הם מתנפחים. עודף סידן תוך-תאי, שנכנס בתמורה לפליטת נתרן, יכול להפעיל אפופטוזיס, קסקדות דלקתיות (c-fos, c-jun) ושחרור ציטוקינים ורדיקלים חופשיים הפוגעים בתאי הסביבה.</p>
+<p><b>אקווהפורין-4 (AQP4)</b>, תעלת מים המרוכזת ברגלי הקצה האסטרוציטריות, ממלא תפקיד מרכזי בכניסת מים לתוך האסטרוציטים. תעלת האשלגן <b>Kir4.1</b>, שממוקמת יחד עם AQP4, מווסתת את ריכוז האשלגן החוץ-תאי; זרם אשלגן דרכה מדפולריז אסטרוציטים ומגביר עוד יותר את ספיגת הנתרן והביקרבונט - מעלה את האוסמולריות התוך-תאית ומושך מים דרך AQP4. גילוי חשוב נוסף הוא תעלת <b>NCCa-ATP</b> (מווסתת על ידי הקולטן SUR1) שנפתחת עם דלדול ATP וגורמת לבצקת ציטוטוקסית לאחר איסכמיה - וניתן לחסום אותה במינון נמוך של גליבנקלמיד, מה שמציע כיוון טיפולי חדש.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Histopathology_of_cerebral_vascular_edema.jpg?width=700" alt="Histopathology slide showing cerebral vascular edema with perivascular fluid accumulation">
+<p class="media-cap">היסטופתולוגיה של בצקת מוחית - הצטברות נוזל סביב כלי הדם ובתוך רקמת המוח. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">5</span> הדמיה וסיווג בצקת מוחית</h2>
+<p>שלושת סוגי הבצקת העיקריים - ציטוטוקסית, אינטרסטיציאלית וזוגנית - ניתנים לאפיון במידה רבה באמצעות MRI:</p>
+<div class="table-scroll">
+<table>
+<tr><th>סוג בצקת</th><th>ממצא CT/MRI</th><th>ADC (diffusion)</th><th>מיקום טיפוסי</th></tr>
+<tr><td>וזוגנית</td><td>היפודנס ב-CT וב-T1; היפראינטנס ב-T2/FLAIR, מודגש יותר לאחר חומר ניגוד</td><td>עולה (עקב הרחבת החלל החוץ-תאי)</td><td>חומר לבן, חוסך חומר אפור</td></tr>
+<tr><td>ציטוטוקסית</td><td>אובדן גבול אפור-לבן תוך 12 שעות; היפראינטנס ב-T2 תוך 12-24 שעות; היפראינטנס מהיר ב-DWI (תוך דקות)</td><td>יורד (אוטמים חדים)</td><td>אפור ולבן</td></tr>
+<tr><td>אינטרסטיציאלית</td><td>היפודנס פרי-חדרי ב-CT; בהיר ב-FLAIR סביב חדרים כהים</td><td>עולה</td><td>חומר לבן פרי-חדרי</td></tr>
+</table>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/HirnmetastaseMR001.jpg?width=700" alt="MRI showing a brain metastasis with surrounding cerebral edema">
+<p class="media-cap">MRI המדגים גרורה מוחית עם בצקת וזוגנית נרחבת מסביב - ההיפראינטנסיות הענפה מעבר לגבול הנגע היא סימן ההיכר של בצקת וזוגנית. מקור: Wikimedia Commons.</p>
+<p class="key-box">ADC (מקדם דיפוזיה נראה לעין) הוא כלי ההבחנה המהיר ביותר: <b>ADC נמוך</b> = בצקת ציטוטוקסית (המים "כלואים" בתוך התאים ולא יכולים להתפזר), <b>ADC גבוה</b> = בצקת וזוגנית או אינטרסטיציאלית (מים חופשיים בחלל החוץ-תאי המורחב).</p>
+
+<h2><span class="num">6</span> טיפול בבצקת מוחית</h2>
+<p>רוב הטיפולים הקיימים הם עקיפים - הם מקלים על תוצאות הבצקת, בעוד הטיפול הספציפי ביותר הוא תמיד טיפול בגורם הראשוני (הסרת גידול, ניקוז CSF, טיפול באיסכמיה).</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>גלוקוקורטיקואידים (סטרואידים):</b> יעילים רק בבצקת <b>וזוגנית</b>, ולא בציטוטוקסית, אינטרסטיציאלית או אוסמוטית. מנגנון הפעולה העיקרי הוא <b>הפחתת חדירות כלי הדם</b> (ולא בהכרח הפחתת ייצור VEGF), דרך קולטן הגלוקוקורטיקואידים בתאי האנדותל. משמעות קלינית: סטרואידים לא יעילים כאשר ה-BBB אינו מתפקד כלל (כי אין על מה "לפעול").
+  </p>
+</div>
+<div class="mechanism">
+  <p class="chain">
+    <b>חומרים אוסמוטיים (מניטול, גליצרול, סליין היפרטוני, אוראה):</b> יוצרים שיפוע אוסמוטי בין הדם למוח, כך שמים חוץ-תאיים זורמים מהמוח לדם במורד השיפוע. הפעולה מוגבלת בזמן - ולכן שמורה בעיקר למצבי חירום עם אפקט מסה חד, כגשר לטיפול הגדרתי.
+  </p>
+  <p><b>אפקט "כיור הפוך":</b> שימוש ממושך במניטול או גליצרול עלול להוביל להצטברות המולקולות ברקמה עצמה - ואז הרקמה הופכת ל"כיור הפוך" שמושך מים במקום לדחוף אותם החוצה, מה שהופך את הבצקת לעמידה לטיפול אוסמוטי נוסף.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/F3gaDvKvF6s" title="Osmotic Diuretics (Mannitol) - Easy Explanation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מנגנון הפעולה של מניטול כמשתן אוסמוטי - יצירת שיפוע אוסמוטי וסיכון ה"כיור ההפוך" בשימוש ממושך.</p>
+<p>משתנים כמו <b>פורוסמיד</b> פועלים על ידי גרימת התייבשות מערכתית, אפקט מוגבל בזמן וביעילות. <b>אצטזולאמיד</b>, מעכב קרבוניק-אנהידראז, מפחית ייצור CSF ומועיל בעיקר בבצקת אינטרסטיציאלית - גם הוא ביעילות מתונה וקצרת טווח. בבצקת אינטרסטיציאלית עצמה (הידרוצפלוס), הטיפול ההגדרתי הוא ניקוז מכני של CSF - שאנט חדר-צפק (VP shunt) או ventriculostomy - כפי שנראה גם בטבלה בסעיף 2.</p>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">V-C-I-O</span> - ארבעת סוגי הבצקת</h3>
+  <p>
+    <b>V</b> - <span class="term" dir="ltr">Vasogenic</span> (וזוגנית: הצינור הפרוץ - מחסום פתוח, נוזל דולף החוצה, מגיב לסטרואידים)<br>
+    <b>C</b> - <span class="term" dir="ltr">Cytotoxic</span> (ציטוטוקסית: התא הנפוח - משאבה קרסה, מים נכנסים פנימה, לא מגיב לסטרואידים)<br>
+    <b>I</b> - <span class="term" dir="ltr">Interstitial</span> (אינטרסטיציאלית: הסכר שנשבר - CSF "מוצף" לרקמה מהידרוצפלוס, פותרים בניקוז)<br>
+    <b>O</b> - <span class="term" dir="ltr">Osmotic</span> (אוסמוטית: המשיכה ההפוכה - המוח "צמא" יותר מהדם, מים נשאבים פנימה)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני עיר עם חומה (ה-BBB) שמקיפה אותה. ב<b>וזוגנית</b> יש פרצה בחומה עצמה וגייסות (נוזל פלזמה) פורצים דרכה פנימה. ב<b>ציטוטוקסית</b> החומה שלמה, אבל כל בית בעיר (התא) מפסיק לשאוב מים החוצה כי המשאבה שלו התקלקלה - אז הוא מוצף מבפנים. ב<b>אינטרסטיציאלית</b> יש הצפה של מאגר המים העירוני (מערכת החדרים) שגולש לרחובות הסמוכים כי נסתם צינור הניקוז. וב<b>אוסמוטית</b> אין פרצה ואין הצפה פנימית - העיר עצמה פשוט "צמאה" יותר מהסביבה, ולכן שואבת מים אליה במורד השיפוע.</p>
+  <svg class="diagram" viewBox="0 0 620 300" xmlns="http://www.w3.org/2000/svg">
+    <title>ארבעת סוגי הבצקת המוחית - מנגנון ומיקום הנוזל</title>
+    <desc>תרשים המשווה בין ארבעה סוגי בצקת מוחית: וזוגנית, ציטוטוקסית, אינטרסטיציאלית ואוסמוטית</desc>
+    <rect x="20" y="20" width="270" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="155" y="45" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">Vasogenic — וזוגנית</text>
+    <text x="155" y="68" font-size="11.5" text-anchor="middle" fill="#1e3a8a">מחסום פרוץ &#8592; נוזל חוץ-תאי</text>
+    <text x="155" y="86" font-size="11.5" text-anchor="middle" fill="#1e3a8a">חומר לבן, מגיב לסטרואידים</text>
+    <circle cx="80" cy="112" r="10" fill="#93c5fd"/><circle cx="110" cy="118" r="8" fill="#93c5fd"/><circle cx="145" cy="110" r="9" fill="#93c5fd"/>
+
+    <rect x="330" y="20" width="270" height="120" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="465" y="45" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">Cytotoxic — ציטוטוקסית</text>
+    <text x="465" y="68" font-size="11.5" text-anchor="middle" fill="#7f1d1d">כשל Na/K-ATPase &#8592; נוזל תוך-תאי</text>
+    <text x="465" y="86" font-size="11.5" text-anchor="middle" fill="#7f1d1d">אפור+לבן, ADC נמוך</text>
+    <circle cx="440" cy="112" r="13" fill="#fca5a5"/><circle cx="475" cy="112" r="13" fill="#fca5a5"/><circle cx="510" cy="112" r="13" fill="#fca5a5"/>
+
+    <rect x="20" y="160" width="270" height="120" rx="8" fill="#fefce8" stroke="#a16207" stroke-width="2"/>
+    <text x="155" y="185" font-size="14" text-anchor="middle" fill="#713f12" font-weight="700">Interstitial — אינטרסטיציאלית</text>
+    <text x="155" y="208" font-size="11.5" text-anchor="middle" fill="#713f12">CSF פרי-חדרי &#8592; הידרוצפלוס</text>
+    <text x="155" y="226" font-size="11.5" text-anchor="middle" fill="#713f12">פותרים בניקוז CSF</text>
+    <path d="M60 250 Q155 235 250 250" stroke="#a16207" stroke-width="3" fill="none"/>
+
+    <rect x="330" y="160" width="270" height="120" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="465" y="185" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">Osmotic — אוסמוטית</text>
+    <text x="465" y="208" font-size="11.5" text-anchor="middle" fill="#4c1d95">שיפוע אוסמוטי הפוך</text>
+    <text x="465" y="226" font-size="11.5" text-anchor="middle" fill="#4c1d95">SIADH, המודיאליזה</text>
+    <path d="M400 260 L465 240 L530 260" stroke="#6d28d9" stroke-width="3" fill="none"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cerebral_edema" target="_blank">Cerebral Edema – Wikipedia</a>
+    <div class="desc">סקירה כללית של סוגי הבצקת המוחית, גורמים ועקרונות טיפול.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Blood%E2%80%93brain_barrier" target="_blank">Blood-Brain Barrier – Wikipedia</a>
+    <div class="desc">מבנה, תפקוד ומנגנוני הובלה של מחסום הדם-מוח.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Vascular_endothelial_growth_factor" target="_blank">VEGF – Wikipedia</a>
+    <div class="desc">רקע מולקולרי על VEGF, תפקידו באנגיוגנזה ובחדירות כלי דם בגידולי מוח.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Aquaporin_4" target="_blank">Aquaporin-4 – Wikipedia</a>
+    <div class="desc">תעלת המים האסטרוציטרית המרכזית ותפקידה בבצקת ציטוטוקסית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Mannitol" target="_blank">Mannitol – Wikipedia</a>
+    <div class="desc">פרמקולוגיה של הטיפול האוסמוטי הנפוץ ביותר בבצקת מוחית חדה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופלת בת 58 מגיעה עם כאב ראש והחמרה הדרגתית בחולשה בצד שמאל. MRI מדגים גוש מוחי מוגבר-ניגוד באונה הפרונטלית הימנית, מוקף באזור נרחב היפראינטנסי ב-T2/FLAIR הפוגע בעיקר בחומר הלבן וחוסך יחסית את החומר האפור. הצוות מתחיל דקסמתזון ומתכנן כריתה. יומיים לאחר מכן, מטופל אחר באותה מחלקה סובל משבץ איסכמי חד באמצע העורק המוחי האמצעי, ובבדיקת ADC מודגם אזור עם ADC נמוך משמעותית התואם לאזור האוטם.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה מסביר את החיסכון היחסי של החומר האפור בבצקת שסביב הגוש של המטופלת הראשונה, לעומת הפגיעה הדיפוזית בשני סוגי הרקמה שצפויה בבצקת ציטוטוקסית?</div>
+  <button class="opt" data-i="0">חומר אפור עמיד יותר לחלוטין לכל סוג של נוזל בצקתי</button>
+  <button class="opt" data-i="1">בבצקת וזוגנית הנוזל הוא אולטרה-פילטרט חוץ-תאי שזורם בקלות דרך מסלולי החומר הלבן (בעל התנגדות נמוכה יותר לזרימה), בעוד בצקת ציטוטוקסית פוגעת בכל תא בנפרד ולכן משפיעה על אפור ולבן כאחד</button>
+  <button class="opt" data-i="2">חומר אפור אינו מכיל תאי אנדותל כלל</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי, זו טעות בהדמיה</button>
+  <div class="explain">התשובה הנכונה: בצקת וזוגנית היא תופעה של זרימת נוזל חוץ-תאית - והיא מתפשטת דרך מסלולי חומר לבן שמציעים פחות התנגדות מכנית מהחומר האפור הצפוף בגופי תאים. בצקת ציטוטוקסית, לעומת זאת, היא כשל תוך-תאי שקורה בכל תא בנפרד (נוירונים באפור, גליה ואנדותל בשניהם) ולכן אינה "בוחרת" סוג רקמה. תשובות 0, 2 ו-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע דקסמתזון (סטרואיד) צפוי לעזור למטופלת הראשונה אך לא למטופל השני עם השבץ החד?</div>
+  <button class="opt" data-i="0">סטרואידים יעילים רק אצל נשים</button>
+  <button class="opt" data-i="1">סטרואידים מגבירים ייצור ATP בתאים איסכמיים</button>
+  <button class="opt" data-i="2">סטרואידים פועלים בעיקר על ידי הפחתת חדירות כלי הדם ברמת ה-BBB - יעיל בבצקת וזוגנית סביב גידול, אך לא רלוונטי לבצקת ציטוטוקסית שנובעת מכשל אנרגטי תוך-תאי ולא מפגיעה ראשונית בחדירות כלי הדם</button>
+  <button class="opt" data-i="3">סטרואידים אסורים לשימוש בבצקת מוחית מכל סוג</button>
+  <div class="explain">התשובה הנכונה: המנגנון העיקרי של גלוקוקורטיקואידים הוא הפחתת חדירות כלי הדם דרך קולטן הגלוקוקורטיקואידים באנדותל - יעיל כאשר הבעיה היא "פרצה" בכלי הדם (וזוגנית), אך לא כאשר הבעיה היא כשל אנרגטי תוך-תאי (ציטוטוקסית), שם אין "פרצה" לתקן. תשובות 0, 1 ו-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מה גורם ל-ADC הנמוך שנצפה באזור האוטם של המטופל השני?</div>
+  <button class="opt" data-i="0">עלייה כללית בכמות המים במוח</button>
+  <button class="opt" data-i="1">הרס מוחלט של כל תאי הרקמה באזור</button>
+  <button class="opt" data-i="2">ADC נמוך תמיד מייצג בצקת וזוגנית</button>
+  <button class="opt" data-i="3">מים עוברים מהחלל החוץ-תאי (שבו הם יכולים להתפזר בחופשיות) לחלל התוך-תאי (שם התנועה שלהם מוגבלת בתוך התא) - כך שהדיפוזיה האפקטיבית שלהם נחסמת ו-ADC יורד</button>
+  <div class="explain">התשובה הנכונה: בבצקת ציטוטוקסית מים "נכלאים" בתוך התאים בעקבות כשל המשאבה - ותנועתם החופשית (דיפוזיה) בתוך הרקמה מוגבלת יותר מאשר כשהם נמצאים בחלל החוץ-תאי הפתוח יחסית. זו בדיוק הסיבה ש-ADC נמוך הוא סמן רגיש לאוטם חד. תשובות 0, 1 ו-2 אינן מדויקות מבחינה פיזיולוגית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזו תעלה חדשה יחסית, המתוארת בפרק, מספקת יעד טיפולי פוטנציאלי לבצקת ציטוטוקסית לאחר איסכמיה, וכיצד ניתן לחסום אותה?</div>
+  <button class="opt" data-i="0">תעלת NCCa-ATP המווסתת על ידי הקולטן SUR1, הנפתחת עם דלדול ATP - וניתן לחסום אותה במינון נמוך של גליבנקלמיד</button>
+  <button class="opt" data-i="1">תעלת קלציום מסוג L, שנחסמת על ידי חוסמי בטא</button>
+  <button class="opt" data-i="2">קולטן NMDA, הנחסם על ידי סטרואידים</button>
+  <button class="opt" data-i="3">אקווהפורין-1 בלבד, הנחסם על ידי מניטול</button>
+  <div class="explain">התשובה הנכונה: Simard וחב' זיהו תעלת קטיון לא-סלקטיבית (NCCa-ATP), המווסתת על ידי הקולטן SUR1 ונפתחת בדלדול ATP - מנגנון חדש (ולא Na/K-ATPase או גלוטמט) שתורם לבצקת ציטוטוקסית לאחר איסכמיה. חסימתה במינון נמוך של גליבנקלמיד (תרופה סוכרתית קיימת) מציעה כיוון טיפולי חדש. שאר האפשרויות אינן מתוארות בפרק כמנגנון זה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. חולה עם הידרוצפלוס כרוני מציג בצקת פרי-חדרית ב-CT. מה הטיפול היעיל ביותר לפי הפרק, ולמה סטרואידים ומשתנים אינם הבחירה הראשונה?</div>
+  <button class="opt" data-i="0">דקסמתזון במינון גבוה לאורך זמן</button>
+  <button class="opt" data-i="1">מניטול IV חוזר כל 6 שעות</button>
+  <button class="opt" data-i="2">ניקוז מכני של CSF (שאנט חדר-צפק או ventriculostomy) - כי הבעיה היא זרימה עודפת מכנית של CSF לרקמה עקב לחץ הידרוסטטי, ולא בעיית חדירות כלי דם או כשל אנרגטי תאי</button>
+  <button class="opt" data-i="3">אצטזולאמיד כטיפול יחיד וקבוע לטווח ארוך</button>
+  <div class="explain">התשובה הנכונה: בצקת אינטרסטיציאלית נובעת מזרימה טרנס-אפנדימלית מכנית של CSF לרקמה הפרי-חדרית עקב הידרוצפלוס - כלומר בעיה הידראולית, לא בעיית BBB או אנרגיה תאית. לכן הטיפול ההגדרתי היחיד הוא ניקוז מכני (שאנט או ventriculostomy), בעוד סטרואידים ומשתנים כמו אצטזולאמיד נותנים לכל היותר הקלה חולפת וחלקית, כפי שמצוין בטבלה בסעיף 2.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מחסום הדם-מוח (BBB) - צמתים הדוקים בין תאי אנדותל, פריציטים ורגלי קצה אסטרוציטריות - מווסת באופן פעיל מה עובר בין הדם למוח; כל בצקת היא בעצם כשל, זמני או קבוע, במנגנון הזה.</li>
+    <li>ארבעה סוגי בצקת: <b>וזוגנית</b> (מחסום פרוץ, חוץ-תאית, בעיקר חומר לבן, מגיבה לסטרואידים), <b>ציטוטוקסית</b> (כשל Na/K-ATPase, תוך-תאית, אפור+לבן, לא מגיבה לסטרואידים), <b>אינטרסטיציאלית</b> (CSF פרי-חדרי מהידרוצפלוס, פותרים בניקוז) ו<b>אוסמוטית</b> (שיפוע אוסמוטי הפוך).</li>
+    <li><b>VEGF</b> הוא הגורם המרכזי בבצקת וזוגנית סביב גידולי מוח; בבסיזומאב (אנטי-VEGF) מפחית הן חדירות והן בצקת - הוכחה קלינית ישירה למנגנון.</li>
+    <li>בבצקת ציטוטוקסית, <b>אקווהפורין-4</b> ו-<b>Kir4.1</b> מתווכים כניסת מים לאסטרוציטים, ותעלת <b>NCCa-ATP</b> (SUR1) שנפתחת בדלדול ATP היא יעד טיפולי חדש שנחסם על ידי גליבנקלמיד.</li>
+    <li>ב-MRI, <b>ADC נמוך</b> = ציטוטוקסית (מים כלואים תוך-תאית), <b>ADC גבוה</b> = וזוגנית/אינטרסטיציאלית (מים חופשיים חוץ-תאית).</li>
+    <li>גלוקוקורטיקואידים יעילים <b>רק</b> בבצקת וזוגנית (מפחיתים חדירות כלי דם); חומרים אוסמוטיים (מניטול) יעילים באופן זמני בלבד ועלולים ליצור "כיור הפוך" בשימוש ממושך; בצקת אינטרסטיציאלית דורשת ניקוז CSF מכני.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
