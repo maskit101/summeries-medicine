@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אבחון: הפחתת טעויות ושיפור איכות</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>אבחון: הפחתת טעויות ושיפור איכות <span dir="ltr" class="term">(Diagnosis: Reducing Errors and Improving Quality)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 9 (Gordon Schiff), עמ' 95–99</div>
+
+<p>אבחון הוא ליבת העבודה הרפואית: המטופל בא עם השאלה "מה יש לי?", והרופאה אמורה לתת תשובה מדויקת ובזמן. אבל טעויות אבחון הן דווקא <span class="key">סוג טעות הרפואה השכיח ביותר</span> — מחלות פנימיות בסיסיות כמו אסתמה, תסחיף ריאתי <span dir="ltr" class="term">(pulmonary embolism)</span>, אי-ספיקת לב, שבץ, מפרצת קרועה, דיכאון וסרטן מאובחנות שגוי ב-20–50% מהמקרים — או שהאבחנה ניתנת כשהיא לא נכונה (חיובי כוזב), או שהיא מפוספסת/מתעכבת (שלילי כוזב). הערכה שמרנית: 40,000–80,000 מטופלים מתים מדי שנה בבתי חולים בארה"ב לבדה מטעויות אבחון. הפרק הזה לא עוסק בעובדות רפואיות של מחלה ספציפית, אלא ב<span class="key">"מדע האבחון"</span> עצמו — למה טעויות קורות, ואיך בונים מערכת שמפחיתה אותן.</p>
+
+<h2><span class="num">2</span> המנגנון — למה טעויות אבחון קורות</h2>
+<div class="mechanism">
+  <p class="chain">
+    ה-<span dir="ltr" class="term">National Academy of Medicine (NAM)</span> מגדירה טעות אבחון כך: כישלון <b>(א)</b> לקבוע הסבר מדויק ובזמן למצב הבריאותי של המטופל, <b>או</b> <b>(ב)</b> לתקשר את ההסבר הזה למטופל. שימו לב — זו הגדרה כפולה: <span class="key">גם אבחנה נכונה שיושבת בראש הרופא אבל לא הועברה למטופל נחשבת טעות אבחון</span>, לא רק אבחנה שגויה.
+  </p>
+</div>
+
+<p>כדי להבין למה זה קורה כל כך הרבה, צריך להסתכל בשתי רמות בו-זמנית: מה קורה <b>בראש של הקלינאי</b> (הטיות קוגניטיביות), ומה קורה <b>במערכת סביבו</b> (כשלי תהליך).</p>
+
+<h3>רמה 1: המוח — קיצורי דרך שבד"כ עוזרים, אבל מטעים</h3>
+<p>המוח האנושי משתמש ב"היוריסטיקות" — קיצורי דרך מחשבתיים לזיהוי דפוסים מהיר (מה שנקרא לעיתים חשיבת <span dir="ltr" class="term">System 1</span>: מהירה, אינטואיטיבית, יעילה). ברוב המקרים זה בדיוק מה שהופך רופא מנוסה למהיר ומדויק — הוא "מזהה" דלקת ריאות טיפוסית תוך שניות. הבעיה: אותם קיצורי דרך יוצרים <span class="key">הטיות שיטתיות וצפויות</span> שחוזרות על עצמן אצל כל בני האדם, לא רק אצל רופאים "רשלנים". הטבלה הבאה מרכזת את ההטיות הקוגניטיביות הנפוצות ביותר שגורמות לטעויות אבחון:</p>
+
+<table>
+  <thead><tr><th>הטיה</th><th>מה קורה בפועל</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">Premature closure</span> (סגירה מוקדמת)</td><td>מקבלים אבחנה לפני שהיא אומתה במלואה — "מספיק טוב" מרגיש כמו "נכון".</td></tr>
+    <tr><td><span dir="ltr" class="term">Anchoring</span> (עיגון)</td><td>נתפסים לפרט הראשון שבלט בהצגת המטופל, וקשה להתנתק ממנו גם כשמידע חדש סותר אותו.</td></tr>
+    <tr><td><span dir="ltr" class="term">Confirmation bias</span> (הטיית אישוש)</td><td>מחפשים באופן פעיל רק ראיות שתומכות באבחנה החשודה, ולא ראיות שיכולות להפריך אותה.</td></tr>
+    <tr><td><span dir="ltr" class="term">Search satisficing</span></td><td>מפסיקים לחפש עוד ממצאים/אבחנות ברגע שנמצא הסבר אחד שנראה "מספק".</td></tr>
+    <tr><td><span dir="ltr" class="term">Availability bias</span> (הטיית זמינות)</td><td>נותנים משקל יתר לאבחנות שקופצות לראש בקלות — למשל מקרה דרמטי שראו לאחרונה.</td></tr>
+    <tr><td><span dir="ltr" class="term">Base-rate neglect</span> (התעלמות משכיחות)</td><td>לא לוקחים בחשבון כמה נדירה/שכיחה המחלה באוכלוסייה — למשל לפרש תוצאת בדיקה חיובית כמעידה על מחלה, גם כשמדובר באוכלוסייה עם שכיחות נמוכה ובדיקה עם 5% תוצאות חיוביות-כוזבות.</td></tr>
+    <tr><td>חוסר ידע <span dir="ltr" class="term">(knowledge deficit)</span></td><td>פער ידע אצל המטפל — לרוב בלי מודעות לפער עצמו.</td></tr>
+    <tr><td><span dir="ltr" class="term">Framing bias</span> (הטיית מסגור)</td><td>השיפוט מושפע מהאופן שבו הבעיה הוצגה במילים — למשל איך המיון "מסגר" את התלונה בטלפון.</td></tr>
+    <tr><td>הטיה חברתית/דמוגרפית/סטריאוטיפית</td><td>אמונות אישיות או תרבותיות לגבי נשים, מיעוטים או קבוצות מטופלים אחרות מעוותות את ההערכה האבחנתית.</td></tr>
+  </tbody>
+</table>
+
+<h3>רמה 2: המערכת — כשלי תהליך שמצטרפים להטיות</h3>
+<p>מעבר להטיות שבראש, יש כשלי תהליך: זיכרון אנושי מוגבל, זמן פגישה מוגבל, עומס מידע (יותר ויותר עם ה-<span dir="ltr" class="term">EHR</span>), ותסמינים לא-ספציפיים שמטופלים רבים מגיעים איתם ושלא ניתן להם הסבר מדויק. איור ה-<span dir="ltr" class="term">Venn</span> המקורי בפרק (איור 9-1) ממחיש נקודה חשובה: יש שלושה מעגלים — <b>כשלי תהליך אבחוני</b> (למשל שאלת אנמנזה שלא נשאלה, ממצא בבדיקה גופנית שפוספס, בדיקת מעבדה שהוחלפה בטעות בין שני מטופלים, צילום שלא עבר מעקב), <b>אבחנה מפוספסת/מתעכבת/שגויה</b>, ו<b>תוצאה שלילית למטופל</b>. רוב כשלי התהליך <span class="key">לא</span> מובילים לאבחנה שגויה, ורוב האבחנות השגויות <span class="key">לא</span> גורמות נזק (למשל מחלה שחולפת מעצמה). אזור הדאגה האמיתי הוא <b>החיתוך המשולש</b> — שם כשל תהליך גורם לאבחנה שגויה, שגורמת בפועל לנזק למטופל.</p>
+
+<svg class="diagram" viewBox="0 0 620 320" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="240" cy="150" r="120" fill="#2563eb" opacity="0.25" stroke="#2563eb" stroke-width="2"/>
+  <circle cx="380" cy="150" r="120" fill="#b45309" opacity="0.25" stroke="#b45309" stroke-width="2"/>
+  <circle cx="310" cy="250" r="120" fill="#b91c1c" opacity="0.25" stroke="#b91c1c" stroke-width="2"/>
+  <text x="150" y="95" font-size="15" fill="#1f2937" font-weight="600">כשלי תהליך אבחוני</text>
+  <text x="440" y="95" font-size="15" fill="#1f2937" font-weight="600" text-anchor="end">אבחנה שגויה/מפוספסת/מתעכבת</text>
+  <text x="310" y="305" font-size="15" fill="#1f2937" font-weight="600" text-anchor="middle">תוצאה שלילית למטופל</text>
+  <text x="310" y="200" font-size="14" fill="#111827" font-weight="700" text-anchor="middle">אזור</text>
+  <text x="310" y="218" font-size="14" fill="#111827" font-weight="700" text-anchor="middle">הדאגה</text>
+  <text x="310" y="236" font-size="14" fill="#111827" font-weight="700" text-anchor="middle">האמיתי</text>
+</svg>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Swiss_cheese_model_of_accident_causation.png?width=700" alt="מודל גבינת האמנטל לכשלים בטיחותיים">
+  <figcaption class="media-cap">"מודל גבינת האמנטל" <span dir="ltr" class="term">(Swiss cheese model, James Reason)</span> — כל שכבת הגנה במערכת (בדיקה, נוהל, אדם) היא כמו פרוסת גבינה עם חורים אקראיים. תקלה בודדת בדרך כלל נבלמת בשכבה הבאה; נזק קורה רק כשהחורים "מתיישרים" בכל השכבות בבת אחת — בדיוק כמו החיתוך המשולש שתואר למעלה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Swiss_cheese_model_of_accident_causation.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6qPf7oSAAlg" title="NEJM Interview: Dr. Pat Croskerry on cognitive bias in medicine" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">ראיון של כתב העת <span dir="ltr" class="term">NEJM</span> עם ד"ר <span dir="ltr" class="term">Pat Croskerry</span>, מהחוקרים המובילים בתחום ההטיות הקוגניטיביות ברפואה — מסביר איך ומתי היוריסטיקות "תופסות" רופאים מנוסים דווקא.</p>
+
+<h2><span class="num">3</span> אבחון כתכונת מערכת — לא כישרון אישי</h2>
+<p>הפרק מציג שינוי פרדיגמה מרכזי: הגישה המסורתית ראתה אבחון כישרון אישי של "אבחן מבריק" שזוכר הכל וצריך לפנות אליו כשמתקשים. הגישה החדשה רואה אבחון כ<b>תוצר של רשת מתואמת</b> — צוות שכולל מעבדה, רדיולוגיה, מומחים, אחיות, עובדים סוציאליים, ובמיוחד <span class="key">המטופל עצמו כשותף פעיל</span> שמחזיק מידע מפתח, לא רק "נמען" לאבחנה. באותו אופן, אבחון וטיפול כבר לא נתפסים כשני שלבים נפרדים ("קודם אבחן, אחר כך אטפל") אלא כתהליך משולב שמתעדף בדיקה וטיפול לפי דחיפות קלינית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/fStBWT6fa3E" title="Improving Diagnosis in Health Care - National Academies report" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון על דו"ח ה-<span dir="ltr" class="term">National Academies</span> "<span dir="ltr" class="term">Improving Diagnosis in Health Care</span>" (2015) — הבסיס להמלצות שבטבלה הבאה.</p>
+
+<p>דו"ח ה-<span dir="ltr" class="term">NAM</span> "<span dir="ltr" class="term">Improving Diagnosis in Health Care</span>" מציג 8 המלצות שהן הבסיס לכל הפרק:</p>
+<table>
+  <thead><tr><th>#</th><th>המלצה</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>לקדם עבודת צוות אפקטיבית יותר בתהליך האבחוני בין אנשי צוות, מטופלים ומשפחותיהם.</td></tr>
+    <tr><td>2</td><td>לשפר הכשרה מקצועית בתהליך האבחוני — חשיבה קלינית, עבודת צוות, תקשורת, שימוש נכון בבדיקות.</td></tr>
+    <tr><td>3</td><td>לוודא שטכנולוגיית מידע רפואי תומכת במטופלים ובצוות הרפואי בתהליך האבחוני — לא מפריעה לו.</td></tr>
+    <tr><td>4</td><td>לפתח דרכים לזהות וללמוד מטעויות אבחון ומ"כמעט-פספוסים", כולל משוב שיטתי על ביצועי אבחון.</td></tr>
+    <tr><td>5</td><td>לבנות מערכת עבודה ותרבות שתומכות בתהליך האבחוני ובשיפורו.</td></tr>
+    <tr><td>6</td><td>לפתח סביבת דיווח ומערכת אחריות משפטית שמאפשרת למידה מטעויות אבחון, לא מסתירה אותן.</td></tr>
+    <tr><td>7</td><td>לעצב מודל תשלום ומתן שירות שתומך בתהליך האבחוני (לא רק בטיפול).</td></tr>
+    <tr><td>8</td><td>להקצות מימון ייעודי למחקר בנושא תהליך האבחון וטעויות אבחון.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> "אבחנות שאסור לפספס" ודגלים אדומים</h2>
+<p>גם כשיש חוסר ודאות (מצב תקין וצפוי ברפואה!), יש קבוצת אבחנות שדורשות ערנות מיוחדת — כאלה ש<b>(1)</b> מתקדמות מהר, <b>(2)</b> דורשות טיפול ספציפי שתלוי באבחנה נכונה, או <b>(3)</b> יש להן השלכות בריאות הציבור/הדבקה. דוגמאות נבחרות (מתוך טבלה מלאה בפרק):</p>
+<table>
+  <thead><tr><th>זיהומים/דלקת</th><th>לב/איסכמיה/דימום</th><th>מטבולי/המטולוגי/סביבתי</th></tr></thead>
+  <tbody>
+    <tr><td>מורסה אפידורלית בעמוד השדרה</td><td>ניתוק אבי העורקים <span dir="ltr" class="term">(aortic dissection)</span></td><td>קטואצידוזיס סוכרתי</td></tr>
+    <tr><td>פאשיטיס נמקית</td><td>טמפונדה פריקרדיאלית</td><td>מיקסדמה/רעלת בלוטת התריס</td></tr>
+    <tr><td>דלקת קרום המוח</td><td>תסחיף ריאתי</td><td>מחסור ב-B12</td></tr>
+    <tr><td>אנדוקרדיטיס</td><td>איסכמיה מזנטרית חריפה</td><td>הרעלת פחמן חד-חמצני</td></tr>
+    <tr><td><span dir="ltr" class="term">COVID-19</span></td><td>פיצוץ/קריעה של הוושט או המעי</td><td>גמילה מאלכוהול/בנזודיאזפינים</td></tr>
+  </tbody>
+</table>
+
+<p>מושג משלים הוא ה"<b>דגלים אדומים</b>" — מקורו בהנחיות לכאבי גב, אך יושם על תלונות רבות נוספות (כאב ראש, עין אדומה, מפרק נפוח, כאב בטן/חזה). דגלים אדומים קלאסיים לכאב גב: חום, ירידה במשקל, היסטוריה של ממאירות או שימוש בסמים תוך-ורידי, וסימנים נוירולוגיים — כל אלה אמורים "להדליק נורה" לאבחנות רציניות יותר, גם אם הראיות המדעיות לגבי הרגישות/הסגוליות המדויקת שלהם עדיין מוגבלות.</p>
+
+<h2><span class="num">5</span> אבחון של טעויות אבחון — מוקשים אופייניים</h2>
+<p>הפרק מגדיר סוגי "מוקשים" גנריים שחוזרים על עצמם בהרבה תחומי רפואה שונים:</p>
+<table>
+  <thead><tr><th>סוג המוקש</th><th>דוגמה מהפרק</th></tr></thead>
+  <tbody>
+    <tr><td>מחלה A מבולבלת עם מחלה B</td><td>ניתוק אבי העורקים מאובחן בטעות כאוטם שריר הלב; הפרעה ביפולרית מאובחנת בטעות כדיכאון</td></tr>
+    <tr><td>פרשנות שגויה של תוצאת בדיקה</td><td>גוש נמוש בשד עם ממוגרפיה תקינה — הרופא "מרגיע" שהסרטן נשלל, בלי לזכור שממוגרפיה יכולה לפספס גוש נמוש (שלילי כוזב)</td></tr>
+    <tr><td>אי-זיהוי הצגה לא-טיפוסית</td><td>יתר-פעילות בלוטת התריס "אפאתית" בקשישים; אלח דם בקשיש שמגיע ללא חום או אפילו עם היפותרמיה</td></tr>
+    <tr><td>אי-הערכת דחיפות נכונה</td><td>תסמונת תא <span dir="ltr" class="term">(compartment syndrome)</span>, טמפונדה, פנאומוטורקס במתח</td></tr>
+    <tr><td>תסמינים לסירוגין מטעים</td><td>הפרעות קצב פרוקסיזמליות שנעלמות בבדיקה; "מרווח צלול" בהמטומה אפידורלית טראומטית</td></tr>
+    <tr><td>בלבול עקב טיפול אמפירי</td><td>סטרואידים/מעכבי משאבת פרוטונים/אנטיביוטיקה/משככי כאב שניתנו "כניסיון" מסווים אבחנה רצינית</td></tr>
+    <tr><td>ייחוס תסמין חדש למחלה כרונית קיימת</td><td>סימני מפרק זיהומי מיוחסים בטעות לדלקת מפרקים שגרונית כרונית; שינוי הכרתי מיוחס לדמנציה במקום לזיהום/תרופה</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">משפט מפתח מהפרק: כל מסה/גוש נמוש בבדיקה גופנית שממוגרפיה שלו יצאה תקינה — עדיין דורש הערכה זהירה, עד ביופסיה פולשנית אם צריך. תוצאת הדמיה תקינה <span class="key">לא</span> שוללת ממצא קליני חשוד.</div>
+
+<h2><span class="num">6</span> איך משפרים אבחון בפועל</h2>
+<h3>תרבות בטיחות אבחונית</h3>
+<p>בדיוק כמו שאבחון מיקרוביולוגי דורש מצע גידול תקין כדי שהחיידק "יצמח" ויזוהה, גם אבחון קליני טוב דורש "תרבות" ארגונית בריאה. מחקרים על "ארגונים אמינים במיוחד" מחוץ לרפואה זיהו חמישה מאפיינים שמתואמים עם תוצאות בטוחות ואמינות יותר:</p>
+<table>
+  <thead><tr><th>מאפיין</th><th>המשמעות בפועל</th></tr></thead>
+  <tbody>
+    <tr><td>תקשורת פתוחה על טעויות</td><td>צוות מוכן לדווח על טעויות כי לא מרגיש שהן ישמשו נגדו</td></tr>
+    <tr><td>פתיחות ועידוד</td><td>אפשר וראוי לדבר בקול על בעיות בבית החולים/מרפאה</td></tr>
+    <tr><td>תרבות למידה</td><td>יש מנגנון שבאמת לומד משגיאות ומשפר בעקבותיהן</td></tr>
+    <tr><td>מחויבות הנהלה</td><td>מנהיגות שמעדיפה בטיחות על מהירות ייצור/"השורה התחתונה", ומספקת כוח אדם ומשאבים מספיקים</td></tr>
+    <tr><td>אחריותיות ושקיפות</td><td>מעקב שיטתי אחרי אירועי בטיחות ודאגות שעלו</td></tr>
+  </tbody>
+</table>
+<p>בפועל, זה מתורגם ל: <b>הפיכת ההודאה בטעות אבחון לבטוחה</b> עבור קלינאים; זיהוי יזום ואחריות לתהליכי עבודה שנוטים לטעויות (במיוחד תוצאות בדיקות, הפניות ומעקב אחרי מטופלים); הנהלה שהופכת שיפור אבחון לעדיפות עליונה; ואמון הדדי שנזהר מ"הטיית הרטרוספקציה" — לשפוט בדיעבד החלטה שבזמן אמת נראתה סבירה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/iUbfRzxNy20" title="Brian Goldman TED Talk: Doctors make mistakes. Can we talk about that?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאת <span dir="ltr" class="term">TED</span> של ד"ר <span dir="ltr" class="term">Brian Goldman</span>, רופא חדר מיון, על תרבות ההכחשה והבושה ברפואה שמונעת מרופאים לדבר בפתיחות על הטעויות שלהם — ומדוע שינוי התרבות הזו הוא תנאי לשיפור אבחון.</p>
+
+<h3>טכנולוגיית מידע ועתיד האבחון</h3>
+<p>קלינאים כיום מבלים יותר זמן באינטראקציה עם המחשב מאשר עם המטופל — ומגמה זו רק מתחזקת, במיוחד עם התרחבות הרפואה מרחוק <span dir="ltr" class="term">(telemedicine)</span>, שבה אפילו חלקים מהבדיקה הגופנית "עברו" למסך. בעוד רבים מתלוננים שהמחשב "מפריע" לאבחון טוב — מסיח דעת מהקשבה איכותית למטופל ומטביע רופאים בתיעוד מועתק-ומודבק בעל ערך מפוקפק — הפתרון אינו לוותר על הטכנולוגיה אלא <span class="key">לרתום אותה נכון</span>: תיעוד רפואי אלקטרוני היה מתוכנן היסטורית סביב הזמנת תרופות, חיוב ותיעוד הגנתי מפני תביעות, ולא סביב תמיכה בתהליך האבחוני עצמו. הפרק קורא לעיצוב מחדש רדיקלי של מערכות המידע כך שיחסכו זמן לקלינאי במקום לבזבז אותו, ויתמכו במפורש בתהליך האבחוני.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>הסיפור הדמיוני: "הבלש העצלן"</h3>
+  <p>דמיינו בלש שמגיע לזירת פשע. הוא רואה <b>רמז ראשון בולט</b> (עיגון) ומיד "נועל" עליו כחשוד. משם הוא <b>מחפש רק ראיות שמאששות</b> את החשד שלו (הטיית אישוש) ומתעלם מרמזים שסותרים. ברגע שיש לו "תיאוריה שעובדת" הוא <b>סוגר את התיק</b> בלי לבדוק עוד אפשרויות (סגירה מוקדמת). הוא נזכר במקרה דרמטי דומה שפתר לאחרונה ומניח שזה אותו הדבר (הטיית זמינות) — ושוכח כמה נדיר פשע כזה בשכונה הזו בכלל (התעלמות משכיחות). ולבסוף, האופן שבו התיק "הוצג" לו בהתחלה על ידי המתלונן צובע את כל החקירה שלו (הטיית מסגור). בלש טוב — כמו קלינאי טוב — עוצר, ומכריח את עצמו לשאול: <b>"מה עוד זה יכול להיות?"</b></p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="110" r="55" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="120" y="105" font-size="34" text-anchor="middle">🔍</text>
+    <text x="120" y="130" font-size="12" text-anchor="middle" fill="#111827">רמז 1 (עיגון)</text>
+    <circle cx="300" cy="60" r="26" fill="#fffbeb" stroke="#b45309" stroke-width="1.5" opacity="0.5"/>
+    <text x="300" y="65" font-size="11" text-anchor="middle" fill="#9ca3af">רמז 2</text>
+    <circle cx="330" cy="150" r="26" fill="#fffbeb" stroke="#b45309" stroke-width="1.5" opacity="0.5"/>
+    <text x="330" y="155" font-size="11" text-anchor="middle" fill="#9ca3af">רמז 3</text>
+    <circle cx="400" cy="90" r="26" fill="#fffbeb" stroke="#b45309" stroke-width="1.5" opacity="0.5"/>
+    <text x="400" y="95" font-size="11" text-anchor="middle" fill="#9ca3af">רמז 4</text>
+    <line x1="175" y1="105" x2="270" y2="70" stroke="#d1d5db" stroke-width="2" stroke-dasharray="4"/>
+    <text x="230" y="90" font-size="11" fill="#b91c1c">מתעלם</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK338596/" target="_blank">Improving Diagnosis in Health Care — NCBI Bookshelf</a>
+    <div class="desc">הטקסט המלא של דו"ח ה-NAM שעליו מבוסס הפרק — כולל פירוט מלא של שמונה ההמלצות והרקע המחקרי מאחוריהן.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Swiss_cheese_model_of_accident_causation.png" target="_blank">Swiss cheese model — Wikimedia Commons</a>
+    <div class="desc">קובץ המקור של איור מודל גבינת האמנטל שהוטמע למעלה, ברישיון פתוח.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5093937/" target="_blank">Cognitive biases associated with medical decisions: a systematic review — NCBI/PMC</a>
+    <div class="desc">סקירה שיטתית שמכמתת עד כמה הטיות קוגניטיביות (עיגון, זמינות, ביטחון-יתר) קשורות סטטיסטית לאי-דיוק אבחוני.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 62 עם יתר לחץ דם כרוני מגיע לחדר מיון עם כאב חזה קורע-פתאומי שמקרין לגב. א.ק.ג מראה שינויים לא-ספציפיים במקטע <span dir="ltr" class="term">ST</span>, וטרופונין קלות מוגבר. הצוות "נועל" על אבחנת אוטם שריר לב חריף <span dir="ltr" class="term">(ACS)</span> ומתחיל טיפול אנטי-קרישתי לפי הפרוטוקול הרגיל. רק כעבור שעה, כשאחות שמה לב שלחץ הדם בזרוע ימין נמוך משמעותית מבזרוע שמאל והדופק בכף רגל ימין נחלש, מועלה החשד לניתוק אבי העורקים <span dir="ltr" class="term">(aortic dissection)</span> — אבחנה שדורשת ניתוח דחוף ושבה מתן נוגדי קרישה עלול להיות הרסני.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. לפי ההגדרה של ה-NAM, איזה מהמצבים הבאים נחשב "טעות אבחון"?</div>
+  <button class="opt" data-i="0">רופא מאבחן נכון דלקת ריאות ומתחיל אנטיביוטיקה מתאימה מיד</button>
+  <button class="opt" data-i="1">רופא מגיע לאבחנה הנכונה בראשו אך לא מתעד/מסביר אותה למטופל</button>
+  <button class="opt" data-i="2">רופא מזמין בדיקת דם שיוצאת בטווח התקין</button>
+  <button class="opt" data-i="3">רופא ממתין לתוצאות הדמיה לפני קבלת החלטה טיפולית</button>
+  <div class="explain">ההגדרה של ה-NAM כוללת שני חלקים: כישלון לקבוע הסבר מדויק ובזמן, <b>או</b> כישלון לתקשר אותו למטופל. גם אבחנה נכונה שלא הועברה למטופל נחשבת טעות אבחון. שאר האפשרויות מתארות תפקוד תקין של התהליך האבחוני.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. אישה עם גוש נמוש בשד עוברת ממוגרפיה שיוצאת תקינה, והרופא מרגיע אותה ש"נשלל סרטן". איזה סוג מוקש אבחוני זה?</div>
+  <button class="opt" data-i="0">הטיית זמינות</button>
+  <button class="opt" data-i="1">סגירה מוקדמת בלבד, ללא קשר לבדיקה</button>
+  <button class="opt" data-i="2">פרשנות שגויה של תוצאת בדיקה / אי-הכרה במגבלות הבדיקה</button>
+  <button class="opt" data-i="3">הטיית מסגור</button>
+  <div class="explain">זו הדוגמה הקלאסית מהפרק לכשל בזיהוי מגבלות הבדיקה: ממוגרפיה יכולה לתת תוצאה שלילית כוזבת גם כשיש גוש ממשי. גוש נמוש בבדיקה גופנית דורש הערכה נוספת (למשל ביופסיה) גם עם הדמיה תקינה — לא ניתן "לשלול" רק על סמך בדיקה אחת שיש לה רגישות לא-מושלמת.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו ההבדל המרכזי בין "עיגון" (anchoring) ל"הטיית אישוש" (confirmation bias)?</div>
+  <button class="opt" data-i="0">עיגון הוא ההיצמדות לפרט/רושם ראשוני; אישוש הוא החיפוש הפעיל אחרי ראיות שתומכות בו בלבד</button>
+  <button class="opt" data-i="1">אין הבדל, אלה שני שמות לאותה תופעה</button>
+  <button class="opt" data-i="2">עיגון קורה רק במיון, אישוש קורה רק במרפאה</button>
+  <button class="opt" data-i="3">עיגון קשור לבדיקות דימות בלבד</button>
+  <div class="explain">ההטיות קשורות זו לזו אך שונות: עיגון הוא ה"נעילה" הראשונית על רושם/אבחנה, ואילו הטיית אישוש היא מה שקורה אחר כך — חיפוש סלקטיבי של מידע שמחזק את מה שכבר "עוגנו" עליו, תוך התעלמות ממידע סותר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. איזה מהבאים <b>אינו</b> נחשב "דגל אדום" קלאסי לכאב גב שמחייב חשד למחלה רצינית יותר?</div>
+  <button class="opt" data-i="0">חום</button>
+  <button class="opt" data-i="1">כאב שמוקל במנוחה ומחמיר בפעילות</button>
+  <button class="opt" data-i="2">היסטוריה של ממאירות</button>
+  <button class="opt" data-i="3">סימנים נוירולוגיים חדשים</button>
+  <div class="explain">חום, ירידה במשקל, היסטוריה של ממאירות/שימוש בסמים תוך-ורידי וסימנים נוירולוגיים הם דגלים אדומים קלאסיים לכאב גב. כאב מכני שמוקל במנוחה ומחמיר בפעילות הוא דווקא הדפוס ה"שגרתי" השכיח, ולא בפני עצמו סימן אזהרה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. באותה וינייטה של כאב חזה — איזה ממצא בבדיקה הגופנית היה אמור להעלות חשד לניתוק אבי העורקים ולא רק אוטם שריר לב?</div>
+  <button class="opt" data-i="0">טרופונין מעט מוגבר</button>
+  <button class="opt" data-i="1">שינויים לא-ספציפיים ב-ST</button>
+  <button class="opt" data-i="2">פער בלחץ הדם/דופק בין הזרועות/הגפיים</button>
+  <button class="opt" data-i="3">כאב חזה בכלל</button>
+  <div class="explain">פער משמעותי בלחץ הדם או בדופק בין צדי הגוף (או בין גפה עליונה לתחתונה) הוא סימן אופייני לניתוק אבי העורקים שמעיד על מעורבות של עורקים יוצאים מקשת האבי העורקים. טרופונין מעט מוגבר ושינויי ST לא-ספציפיים יכולים להופיע גם בניתוק (כשהוא פוגע בעורקים הכליליים) ולכן אינם מבדילים בעצמם.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">6. איזה מהבאים הוא אחד מחמשת המאפיינים של "תרבות בטיחות" שתואמים אבחון אמין יותר, לפי הפרק?</div>
+  <button class="opt" data-i="0">דגש על מהירות ותפוקה מעל הכל</button>
+  <button class="opt" data-i="1">הימנעות מדיווח על טעויות כדי לא "לפגוע" במורל הצוות</button>
+  <button class="opt" data-i="2">שיפוט מחמיר בדיעבד של החלטות קליניות</button>
+  <button class="opt" data-i="3">מנהיגות שמעדיפה בטיחות על פני מהירות/"השורה התחתונה" ומספקת משאבים מתאימים</button>
+  <div class="explain">חמשת המאפיינים כוללים תקשורת פתוחה על טעויות, פתיחות לדבר על בעיות, תרבות למידה, מחויבות הנהלה לבטיחות מעל מהירות ייצור, ואחריותיות/שקיפות. מחויבות הנהלה לבטיחות (ולא למהירות) היא בדיוק אחד מהם — שאר האפשרויות הן הדוגמאות ה"הפוכות" שהפרק מזהיר מפניהן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>טעות אבחון = כישלון לקבוע הסבר מדויק/בזמן, <b>או</b> כישלון לתקשר אותו למטופל (הגדרת NAM).</li>
+    <li>המנגנון: הטיות קוגניטיביות (עיגון, סגירה מוקדמת, אישוש, זמינות, התעלמות משכיחות, מסגור ועוד) + כשלי מערכת (זיכרון, זמן, עומס מידע) — הנזק קורה רק כשכל השכבות "מתיישרות" יחד (מודל גבינת האמנטל).</li>
+    <li>אבחון הוא תכונה של צוות/מערכת, לא כישרון בודד — המטופל שותף פעיל בתהליך, לא נמען פסיבי.</li>
+    <li>יש "אבחנות שאסור לפספס" (למשל ניתוק אבי עורקים, תסחיף ריאתי, מנינגיטיס) ודגלים אדומים שדורשים ערנות מיוחדת.</li>
+    <li>שיפור דורש: תרבות בטיחות שמאפשרת דיווח פתוח על טעויות בלי ענישה, טכנולוגיית מידע שתומכת (לא מפריעה) באבחון, והכשרה מתמשכת בחשיבה קלינית ובזיהוי הטיות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
