@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 10: פיזיולוגיה של נוזל השדרה והלחץ התוך-גולגולתי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 10: פיזיולוגיה של נוזל השדרה והלחץ התוך-גולגולתי <span class="term" dir="ltr">Physiology of the Cerebrospinal Fluid and Intracranial Pressure</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Anthony Marmarou, Andrew Beaumont</div>
+
+<p>הפרק עוסק בשאלה אחת מרכזית: איך הגולגולת - קופסה קשיחה שאי אפשר להרחיב - מצליחה לשמור על לחץ תוך-גולגולתי (ICP - <span class="term" dir="ltr">Intracranial Pressure</span>) יציב, על אף שכל הזמן זורמים לתוכה נוזלים (דם, CSF), ומה קורה כשמנגנון הפיצוי הזה נכשל. זהו פרק הבסיס הפיזיולוגי שעליו נשענת כל החשיבה הקלינית בטראומה, גידולים, הידרוצפלוס ודימומים - בלעדיו אי אפשר להבין למה בכלל מנטרים ICP ומה בעצם עושה מניטול או היפרוונטילציה.</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: דוקטרינת מונרו-קלי</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שלב 1 - הקופסה קשיחה:</b> הגולגולת בבוגר היא תיבת עצם סגורה שאינה יכולה להתרחב. תוכנה - מוח, דם וCSF - כמעט בלתי-דחיס (incompressible).<br>
+    <b>שלב 2 - נפח כולל קבוע:</b> מכאן נובעת המשוואה המרכזית של הפרק: נפח המוח (VBRAIN) + נפח הדם (VBLOOD) + נפח ה-CSF (VCSF) + כל מסה חריגה (VOTHER, כמו גידול או המטומה) = קבוע. אם משהו אחד גדל, חייב להיות פיצוי הדדי (reciprocal) בשניים האחרים.<br>
+    <b>שלב 3 - מכאן נגזר ה-ICP:</b> כל עוד הפיצוי ההדדי מספיק (למשל CSF "נדחס החוצה" לתעלת השדרה, או דם ורידי מתנקז מהר יותר), ה-ICP נשאר תקין. כשמאגרי הפיצוי מתרוקנים - "spatial decompensation" - כל תוספת נפח קטנה גורמת לעלייה תלולה בלחץ.
+  </p>
+</div>
+<p class="key-box">זו בדיוק הסיבה שגידול מוחי גדל לאט-לאט לרוב "שקט" קלינית הרבה זמן (יש זמן לפיצוי הדדי הדרגתי), בעוד דימום פתאומי קטן יחסית עלול לגרום לעלייה חדה ומסכנת חיים ב-ICP - אין זמן לגיוס מנגנוני הפיצוי.</p>
+
+<svg class="diagram" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+  <title>דוקטרינת מונרו-קלי</title>
+  <desc>תרשים סכמטי המראה שגולגולת קשיחה מכילה שלושה מרכיבים שסכומם קבוע - מוח, דם, CSF - ותוספת של מרכיב רביעי חריג (VOTHER) מחייבת פיצוי הדדי</desc>
+  <rect x="30" y="30" width="640" height="170" rx="14" fill="#f8fafc" stroke="#1f2937" stroke-width="4"/>
+  <text x="350" y="20" font-size="14" text-anchor="middle" fill="#1f2937" font-weight="700">הגולגולת - קופסה קשיחה, נפח כולל קבוע</text>
+  <rect x="55" y="55" width="230" height="120" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="170" y="100" font-size="15" text-anchor="middle" fill="#1e3a8a" font-weight="700">VBRAIN</text>
+  <text x="170" y="120" font-size="12" text-anchor="middle" fill="#1e3a8a">מוח - כ-80-87%</text>
+  <rect x="300" y="55" width="150" height="120" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="375" y="100" font-size="15" text-anchor="middle" fill="#7f1d1d" font-weight="700">VBLOOD</text>
+  <text x="375" y="120" font-size="12" text-anchor="middle" fill="#7f1d1d">דם - כ-4%</text>
+  <rect x="465" y="55" width="150" height="120" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="540" y="100" font-size="15" text-anchor="middle" fill="#14532d" font-weight="700">VCSF</text>
+  <text x="540" y="120" font-size="12" text-anchor="middle" fill="#14532d">CSF - כ-9%</text>
+  <text x="350" y="225" font-size="15" text-anchor="middle" fill="#4c1d95" font-weight="700">+ VOTHER (גידול / המטומה / בצקת) = תוספת שדורשת פיצוי הדדי מהשלושה</text>
+  <path d="M 350 200 L 350 215" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrow10)"/>
+  <defs><marker id="arrow10" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6d28d9"/></marker></defs>
+</svg>
+
+<h2><span class="num">2</span> ייצור, זרימה וספיגה של נוזל השדרה (CSF)</h2>
+<p>כ-87% מהנפח התוך-גולגולתי (כ-1500 מ"ל בבוגר) הוא מוח, כ-9% הוא CSF תוך-חדרי/ציסטרנלי/תת-עכבישי, וכ-4% הוא דם. נפח ה-CSF הכולל אצל אדם משתנה מאוד (ממוצע 164.5 מ"ל, טווח 62-267 מ"ל), ונפח החדרים לבדו נע בין 7.5 ל-70.5 מ"ל.</p>
+<p><b>מקור הייצור:</b> מקלעת הכורואיד <span class="term" dir="ltr">choroid plexus</span> - קפלים של הפיה מטר (pia mater) עם כלי דם צפופים, שמוקפים בתאי אפנדימה כוריאודליים עם ריבוי מיקרווילי המגדילים שטח פנים. ממוקמת בגגות החדר השלישי והרביעי ובדפנות החדרים הצדדיים. מקור נוסף - האפנדימה החדרית עצמה, שתורמת אולי 50-100% מהייצור.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray708.svg?width=700" alt="Diagram of the ventricular system of the brain, lateral and anterior views">
+<p class="media-cap">מערכת החדרים (Gray's Anatomy, איור קלאסי) - שני החדרים הצדדיים, החדר השלישי והרביעי, שבהם יושבת מקלעת הכורואיד ומייצרת CSF. מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Choroid_plexus.jpg?width=700" alt="Choroid plexus tissue">
+<p class="media-cap">מקלעת הכורואיד - רקמת המקור העיקרית של CSF, עם כלי דם עטופים באפיתל כוריאודלי מיוחד. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/yWR3nML_R8Q" title="Cerebrospinal Fluid (CSF) explained in 3 Minutes" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר המסכם את ייצור, הרכב וזרימת ה-CSF - נקודת מוצא טובה לפני שנכנסים לפרטי הפיזיולוגיה של הפרק.</p>
+
+<p><b>למה CSF הוא לא סתם "מסנן פלזמה"?</b> אם CSF היה אולטרה-פילטרט (ultrafiltrate) פשוט של פלזמה, הרכב האלקטרוליטים שלו היה זהה לפלזמה מתוקננת ללחץ. בפועל (טבלה למטה) הוא שונה באופן שיטתי - יותר נתרן, כלוריד ומגנזיום; פחות אשלגן, סידן וחלבון. זה מוכיח שיש הפרשה פעילה (secretion) התלויה באנרגיה (ATP, אנהידראז פחמתי) בנוסף לסינון הפסיבי - לא רק "לחץ הידרוסטטי דוחף נוזל דרך חורים".</p>
+
+<div class="table-scroll">
+<table>
+<tr><th>מרכיב</th><th>פלזמה</th><th>CSF מותני</th><th>הערה</th></tr>
+<tr><td>נתרן (Na<sup>+</sup>)</td><td>150</td><td>147</td><td>דומה, מעט נמוך יותר</td></tr>
+<tr><td>אשלגן (K<sup>+</sup>)</td><td>4.63</td><td>2.86</td><td>נמוך משמעותית מפלזמה</td></tr>
+<tr><td>מגנזיום (Mg<sup>2+</sup>)</td><td>1.61</td><td>2.23</td><td>גבוה מפלזמה - תורם לכושר "חוצץ" (buffer)</td></tr>
+<tr><td>סידן (Ca<sup>2+</sup>)</td><td>4.7</td><td>2.28</td><td>נמוך משמעותית מפלזמה</td></tr>
+<tr><td>כלוריד (Cl<sup>-</sup>)</td><td>99</td><td>113</td><td>גבוה מפלזמה</td></tr>
+<tr><td>אוסמולליות</td><td>289.0</td><td>289.0</td><td>זהה - אבל ההרכב הפנימי שונה = הפרשה פעילה, לא סינון בלבד</td></tr>
+</table>
+</div>
+<p class="figcap">מבוסס על טבלה 10-1 בפרק (Fremont-Smith et al. 1931; Hunter &amp; Smith 1960; Bradley &amp; Semple 1962).</p>
+
+<p><b>קצב ייצור:</b> כ-0.35-0.48 מ"ל/דקה (כ-500-700 מ"ל ליממה, כלומר ה-CSF "מתחלף" כ-3-4 פעמים ביממה). קצב הייצור נשאר יחסית קבוע ואינו תלוי משמעותית ב-ICP עצמו - עובדה חשובה כי היא אומרת שגוף לא "מווסת" ייצור בתגובה ללחץ, אלא מתמודד בעיקר דרך ויסות ספיגה ודרך שינויי נפח דם/מוח.</p>
+
+<p><b>מסלול הזרימה והספיגה:</b> מקלעת הכורואיד &#8592; חדרים צדדיים &#8592; פורמן מונרו &#8592; חדר שלישי &#8592; אקוודוקט סילביוס &#8592; חדר רביעי &#8592; ציסטרנה מגנה ומרחב תת-עכבישי &#8592; גרנולציות עכבישיות (arachnoid granulations/villi) הבולטות לתוך הסינוסים הוורידיים הדוראליים, שם CSF נספג בחזרה לדם. הגרנולציות הן מעין שסתום חד-כיווני - מאפשרות זרימה מ-CSF לדם ורידי אך לא בכיוון ההפוך; הספיגה נפסקת כמעט לגמרי כשלחץ ה-CSF יורד מתחת ל-5 מ"מ כספית.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/CSF_circulation.png?width=700" alt="Diagram of cerebrospinal fluid circulation pathway from choroid plexus through ventricles to arachnoid granulations">
+<p class="media-cap">מסלול זרימת ה-CSF: מהמקלעת הכורואידלית, דרך מערכת החדרים והציסטרנות, ועד לספיגה בגרנולציות העכבישיות אל תוך הסינוסים הוורידיים. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">3</span> המודל האלקטרו-הידראולי: איך שומרים על ICP יציב</h2>
+<p>מרמארו (מחבר הפרק) תיאר את דינמיקת ה-CSF כמעגל חשמלי מקביל: מקור זרם קבוע (=ייצור CSF, I<sub>f</sub>), אלמנט קיבולי (=מרחב אגירה, C - ה"קומפליאנס"), נגד (=התנגדות לספיגה בגרנולציות, R<sub>o</sub>), ולחץ יציאה (=לחץ הסינוס הדוראלי, P<sub>d</sub>). המשוואה המרכזית של מצב יציב (steady state):</p>
+<div class="key-box">ICP = (I<sub>f</sub> &times; R<sub>o</sub>) + P<sub>d</sub></div>
+<p>כלומר ה-ICP במצב יציב תלוי בשלושה גורמים בלבד: קצב ייצור CSF, התנגדות לספיגה, ולחץ הסינוס הוורידי. מחקרים מראים שתרומת המכפלה I<sub>f</sub>&times;R<sub>o</sub> היא רק כ-10% מה-ICP הכולל - הרוב (כ-90%) מוסבר על ידי לחץ הסינוס הדוראלי עצמו. המשמעות הקלינית: עלייה קטנה בלחץ הסינוס הוורידי (למשל חסימת סינוס ורידי) יכולה להעלות ICP משמעותית בלי שום שינוי בהתנגדות לספיגה או בקצב הייצור.</p>
+
+<svg class="diagram" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מודל אלקטרו-הידראולי של דינמיקת ה-ICP</title>
+  <desc>תרשים המדמה את מערכת ה-CSF כמעגל חשמלי: מקור זרם (ייצור), קיבול (אגירה), נגד (ספיגה), ולחץ יציאה (סינוס דוראלי)</desc>
+  <rect x="20" y="70" width="110" height="70" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="75" y="100" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">I formation</text>
+  <text x="75" y="118" font-size="10.5" text-anchor="middle" fill="#1e3a8a">ייצור CSF (קבוע)</text>
+  <path d="M 130 105 L 190 105" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow10b)"/>
+  <rect x="195" y="70" width="110" height="70" rx="8" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+  <text x="250" y="100" font-size="12" text-anchor="middle" fill="#713f12" font-weight="700">C (אגירה)</text>
+  <text x="250" y="118" font-size="10.5" text-anchor="middle" fill="#713f12">קומפליאנס</text>
+  <path d="M 305 105 L 365 105" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow10b)"/>
+  <rect x="370" y="70" width="110" height="70" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="425" y="100" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">R<tspan baseline-shift="sub" font-size="9">o</tspan> (ספיגה)</text>
+  <text x="425" y="118" font-size="10.5" text-anchor="middle" fill="#7f1d1d">גרנולציות</text>
+  <path d="M 480 105 L 540 105" stroke="#1f2937" stroke-width="2.5" marker-end="url(#arrow10b)"/>
+  <rect x="545" y="70" width="110" height="70" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="600" y="100" font-size="12" text-anchor="middle" fill="#14532d" font-weight="700">P<tspan baseline-shift="sub" font-size="9">d</tspan></text>
+  <text x="600" y="118" font-size="10.5" text-anchor="middle" fill="#14532d">לחץ סינוס דוראלי</text>
+  <text x="340" y="30" font-size="13.5" text-anchor="middle" fill="#1f2937" font-weight="700">ICP = (I formation &times; R</text>
+  <text x="340" y="180" font-size="13" text-anchor="middle" fill="#4b5563">כ-90% מה-ICP מוסבר ע"י P&#8203;d (לחץ הסינוס) ולא ע"י הזרם או ההתנגדות</text>
+  <defs><marker id="arrow10b" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f2937"/></marker></defs>
+</svg>
+
+<h2><span class="num">4</span> צורת גל ה-ICP וגלי לונדברג</h2>
+<p>ה-ICP אינו קבוע לחלוטין - יש עליו רכיבים פועמים (pulsatile) מקצב הלב ומהנשימה. בתדירות גבוהה יותר רואים 3 גלים קבועים: גל ההלמה <span class="term" dir="ltr">percussion wave (W1)</span> מפעימות עורקים גדולים, הגל הגאותי <span class="term" dir="ltr">tidal wave (W2)</span> המשקף את האלסטנס של המוח, וגל הדיקרוט <span class="term" dir="ltr">dicrotic wave (W3)</span>.</p>
+<p>מעבר לרכיבים הפיזיולוגיים, לונדברג (Lundberg) תיאר שלושה דפוסי גל פתולוגיים:</p>
+<ul>
+<li><b>גלי A (גלי פלטו):</b> עליות ICP מתמשכות של דקות שחוזרות לבסיס חדש וגבוה יותר. נחשבים לתגובה מפצה ל-CPP נמוך (רוזנר) - וזוליטציה &#8592; עלייה ב-ICP &#8592; תגובת Cushing איסכמית &#8592; חזרה. סימן חשוב לדקומפנסציה.</li>
+<li><b>גלי B:</b> עליות קצרות (10-20 מ"מ כספית) בתדירות 0.5-2 הרץ, קשורים לוזומוטוריות משנית לתנודות בפחמן דו-חמצני.</li>
+<li><b>גלי C:</b> תנודות סינוסואידליות מהירות (כ-10 שניות), תואמות לתנודות Traube-Hering-Mayer בלחץ העורקי.</li>
+</ul>
+
+<h2><span class="num">5</span> עקומת לחץ-נפח, קומפליאנס ו-PVI</h2>
+<div class="mechanism">
+<p class="chain">
+<b>שלב 1:</b> כשמוסיפים נפח (VOTHER) למרחב התוך-גולגולתי, ה-ICP לא עולה באופן ליניארי, אלא בעקומה סיגמואידית.<br>
+<b>שלב 2:</b> בתחילת העקומה ("פיצוי מרחבי" - spatial compensation) מנגנוני הפיצוי (דחיסת CSF ודם ורידי החוצה) עדיין יעילים - הוספת נפח משנה את ה-ICP מעט. זה תחום ה-<b>קומפליאנס הגבוה</b>.<br>
+<b>שלב 3:</b> ברגע שמאגרי הפיצוי מתרוקנים, נכנסים ל"דקומפנסציה מרחבית" (spatial decompensation) - העקומה מתלהטת בחדות, וכל תוספת נפח קטנה מעלה את ה-ICP דרמטית.<br>
+<b>שלב 4:</b> מעל כ-50 מ"מ כספית, כש-ICP מתקרב ללחץ העורקי הממוצע, העקומה שוב משתטחת - ומכאן שהיא בעצם סיגמואידית ולא היפרבולית טהורה.
+</p>
+</div>
+<p><b>מדד PVI</b> (Pressure-Volume Index) - הנפח (במ"ל) הדרוש כדי להעלות את ה-ICP פי 10. בבוגר תקין: 25-30 מ"ל. תינוקות: מתחת ל-10 מ"ל (מגיע לערך הבוגר בגיל כ-14). ערכים מתחת ל-13 מ"ל נחשבים חריגים בבירור - קומפליאנס נמוך משמעותית, כלומר כל תוספת נפח קטנה (למשל דימום קטן) עלולה לגרום לזינוק חד ב-ICP.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/f_4o43XqmNc" title="The Monro-Kellie Doctrine - Intracranial Volume and Pressure" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר חזותי על דוקטרינת מונרו-קלי ועל עקומת הלחץ-נפח - כולל ההבדל בין פיצוי מרחבי לדקומפנסציה.</p>
+
+<h2><span class="num">6</span> תסמינים, סימנים ותסמונות הרניאציה</h2>
+<p>התסמינים הקלאסיים של ICP מוגבר: כאב ראש, הקאות (במיוחד ללא בחילה נלווית - סימן חשוד לפתולוגיה תוך-גולגולתית), ופפילדמה <span class="term" dir="ltr">papilledema</span> (בצקת דיסקוס הראייה - ספציפית מאוד אך תלוית-בודק ברגישותה).</p>
+
+<p><b>למה עולה ICP גורם להרניאציה?</b> ICP מועבר דרך CSF לאזורים שונים במוח באופן לא אחיד - נוצרים גרדיאנטים לחץ בין תאים שונים בגולגולת (הטנטוריום, הפלקס), שדוחפים רקמת מוח דרך פתחים אנטומיים קבועים:</p>
+
+<div class="table-scroll">
+<table>
+<tr><th>תסמונת</th><th>מנגנון</th><th>סימנים קליניים</th></tr>
+<tr><td><b>הרניאציה מרכזית</b> <span class="term" dir="ltr">central</span></td><td>דחיפה כלפי מטה של ההמיספרות וגרעיני הבסיס, דרך החריץ הטנטוריאלי</td><td>דעיכה מדורגת ראש-זנב: תחילה בלבול/הכרה, נשימת Cheyne-Stokes, אישונים קטנים לא-ריאקטיביים, ואז אישונים באמצע קבועים, יציבה דקורטיקלית ולבסוף דצרברטית</td></tr>
+<tr><td><b>הרניאציה אונקלית</b> <span class="term" dir="ltr">uncal</span></td><td>האנקוס והגירוס ההיפוקמפלי נדחפים מדיאלית לחריץ הטנטוריאלי, לוחצים על עצב III</td><td>אישון מורחב וחד-צדדי (לרוב ראשון!), עם/בלי שינוי הכרה מוקדם; יציבה דצרברטית ניגודית לעיתים</td></tr>
+<tr><td><b>הרניאציה תת-פלקסית</b> <span class="term" dir="ltr">subfalcine</span></td><td>הגירוס הצינגולטי נדחף מתחת לפלקס צרברי</td><td>לרוב אסימפטומטית עד שנלחץ העורק המוחי הקדמי - חולשת רגל ניגודית</td></tr>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/zFyVG5flJPQ" title="Cushing Reflex - Cushing Triad - Intracranial Hypertension" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על תגובת קושינג (Cushing) - יתר לחץ דם, ברדיקרדיה ונשימה לא סדירה - כסימן מאוחר וחמור המבשר הרניאציה קרובה.</p>
+
+<p class="key-box">תגובת <span class="term" dir="ltr">Cushing</span> (יתר ל"ד + ברדיקרדיה) נובעת מאיסכמיה גזעית/מרכזית - עלייה ב-ICP מורידה CPP, מפעילה מרכזי וזומוטוריים בגזע המוח שמעלים ל"ד סיסטמי כדי לשמר זילוח מוחי, מה שבתורו מפעיל את הברורצפטורים ומוריד קצב לב דרך הוואגוס. זהו סימן <b>מאוחר</b> - מבשר הרניאציה קרובה, לא סימן מוקדם.</p>
+
+<h2><span class="num">7</span> ניטור ICP</h2>
+<p>ה"תקן זהב" הוא ונטריקולוסטומיה עם מתמר לחץ - מדויקת, מאפשרת גם ניקוז טיפולי של CSF. חלופות: ברגית תת-עכבישית, קטטר תת-דוראלי, מתמר אפידוראלי, ומיקרוטרנסדיוסר סיבי-אופטי (מדויק אך אינו ניתן לכיול מחדש). הסף המקובל כיום להתחלת טיפול הוא <b>20 מ"מ כספית</b> (מבוסס על ניתוח לוגיסטי-רגרסיה על 428 חולים). קריטריוני ניטור אחרי טראומה: GCS 3-8 עם CT חריג, או שני קריטריונים נוספים (גיל&gt;40, פוסטורינג מוטורי, ל"ד סיסטולי&lt;90) גם אם CT תקין.</p>
+
+<h2><span class="num">8</span> טיפול - לפי מסגרת ה-VCSF/VBLOOD/VBRAIN/VOTHER</h2>
+<p>המשוואה של מונרו-קלי היא לא רק מודל תיאורטי - היא ממש מכוונת טיפול: כל מרכיב נפח אפשר "לתקוף" בדרך שונה.</p>
+
+<div class="table-scroll">
+<table>
+<tr><th>מרכיב</th><th>התערבות</th><th>מנגנון / הערה</th></tr>
+<tr><td rowspan="2"><b>V<sub>CSF</sub></b></td><td>ניקוז חיצוני (ונטריקולוסטומיה)</td><td>הסרה ישירה של נפח CSF - גם קו ראשון לטיפול וגם כלי אבחוני</td></tr>
+<tr><td>אצטזולאמיד <span class="term" dir="ltr">Acetazolamide</span></td><td>מעכב אנהידראז פחמתי בייצור CSF - מפחית ייצור ב-16-66%; אסור בטראומת ראש סגורה (מרחיב כלי דם מוחיים)</td></tr>
+<tr><td rowspan="2"><b>V<sub>BLOOD</sub></b></td><td>היפרוונטילציה מתונה (PaCO2 32-35)</td><td>וזוקונסטריקציה עקב ירידת CO2 - מורידה CBV ולכן ICP; היפרוונטילציה אגרסיבית מדי (PaCO2&lt;25) עלולה לגרום איסכמיה</td></tr>
+<tr><td>הרמת ראש המיטה ל-30&deg;</td><td>משפרת ניקוז ורידי מהראש ללא פגיעה ב-CPP</td></tr>
+<tr><td rowspan="2"><b>V<sub>BRAIN</sub></b></td><td>מניטול <span class="term" dir="ltr">Mannitol</span> 20%, 0.25-1 ג/ק"ג</td><td>סוכן אוסמוטי - שואב מים חופשיים מהמוח לתוך כלי הדם; גם מוריד צמיגות דם. סיכון: התייבשות, הפרעה אלקטרוליטית, כשל כלייתי (אוסמולליות&gt;320)</td></tr>
+<tr><td>ברביטורטים (למשל פנטוברביטל)</td><td>מורידים קצב מטבולי מוחי (CMRO2) &#8592; מורידים CBF &#8592; מורידים CBV ו-ICP; שמורים למקרים עמידים - לא משפרים תוצא בפועל במחקרים</td></tr>
+<tr><td><b>V<sub>OTHER</sub></b></td><td>פינוי כירורגי / דקומפרסיה</td><td>הטיפול היעיל ביותר כשיש מסה מוגדרת (גידול/המטומה) - כל שאר הטיפולים הם תומכים בלבד</td></tr>
+</table>
+</div>
+
+<p class="key-box">מניטול ופורוסמיד עובדים בסינרגיה - מניטול מושך נוזל מהמוח לדם, ופורוסמיד עוזר לסלק את הנוזל דרך הכליה; אך שילוב זה מגביר סיכון להתייבשות ואיבוד אשלגן.</p>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">B-B-C-O</span> - ארבעה תאים בקופסה קשיחה אחת</h3>
+  <p>
+    <b>B</b> - <span class="term" dir="ltr">Brain</span> (מוח, כ-87%)<br>
+    <b>B</b> - <span class="term" dir="ltr">Blood</span> (דם, כ-4%)<br>
+    <b>C</b> - <span class="term" dir="ltr">CSF</span> (נוזל שדרה, כ-9%)<br>
+    <b>O</b> - <span class="term" dir="ltr">Other</span> (גידול/המטומה/בצקת - החדר החריג)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני מעלית ישנה עם שלושה נוסעים קבועים שממלאים אותה בדיוק במשקל המותר (מוח, דם, CSF). אם נכנס נוסע רביעי בלתי צפוי (הגידול/ההמטומה), חייבים שלושה מהנוסעים המקוריים "לדחוס את עצמם" כדי לפנות מקום - אחרת המעלית (=הלחץ התוך-גולגולתי) "תתפוצץ". וכשאין יותר מקום לדחוס - כל ק"ג נוסף מרגיש הרבה יותר כבד.</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>המעלית הקשיחה - דימוי לדוקטרינת מונרו-קלי</title>
+    <desc>איור קליל של מעלית עם שלושה נוסעים ונוסע רביעי בלתי צפוי שדורש דחיסה של האחרים</desc>
+    <rect x="150" y="20" width="200" height="180" rx="10" fill="#f8fafc" stroke="#1f2937" stroke-width="4"/>
+    <circle cx="200" cy="80" r="22" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="200" y="85" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">מוח</text>
+    <circle cx="255" cy="80" r="18" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="255" y="85" font-size="10" text-anchor="middle" fill="#7f1d1d" font-weight="700">דם</text>
+    <circle cx="300" cy="80" r="16" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="300" y="84" font-size="9" text-anchor="middle" fill="#14532d" font-weight="700">CSF</text>
+    <circle cx="250" cy="150" r="26" fill="#f5f3ff" stroke="#6d28d9" stroke-width="3" stroke-dasharray="4,3"/>
+    <text x="250" y="155" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">נוסע חדש!</text>
+    <text x="250" y="210" font-size="12.5" text-anchor="middle" fill="#4b5563">כשאין יותר מקום לדחוס - כל ק"ג נוסף כבד הרבה יותר</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Monro%E2%80%93Kellie_doctrine" target="_blank">Monro-Kellie Doctrine – Wikipedia</a>
+    <div class="desc">רקע היסטורי ותיאור המשוואה הבסיסית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cerebrospinal_fluid" target="_blank">Cerebrospinal Fluid – Wikipedia</a>
+    <div class="desc">סקירה כללית על הרכב, ייצור וספיגה של CSF.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:1317_CFS_Circulation.jpg" target="_blank">1317 CFS Circulation.jpg – Wikimedia Commons</a>
+    <div class="desc">תרשים חלופי נוסף המראה את התפלגות ה-CSF במוח.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cushing_reflex" target="_blank">Cushing Reflex – Wikipedia</a>
+    <div class="desc">הרחבה על מנגנון תגובת קושינג וחשיבותה הקלינית.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=ag4Uxe0a6Y0" target="_blank">Brain herniation syndromes – YouTube</a>
+    <div class="desc">סרטון נוסף המפרט את תסמונות ההרניאציה השונות והביטוי הקליני שלהן.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34 מובא לאחר תאונת דרכים עם חבלת ראש קשה, GCS בהגעה 7. CT ראש מדגים המטומה סובדוראלית עם אפקט מסה קל. מוצב מוניטור ICP תוך-חדרי; הקריאה ההתחלתית היא 14 מ"מ כספית. במהלך 3 השעות הבאות, ה-ICP מתחיל לעלות בהדרגה ל-28 מ"מ כספית, ומתגלה אישון ימני מורחב וכמעט לא-ריאקטיבי, ללא שינוי משמעותי נוסף בהכרה באותו רגע. בבדיקה: לחץ דם עולה מ-120/80 ל-160/70, קצב לב יורד מ-88 ל-52.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה הכי מסביר את הזוג לחץ-דם/קצב-לב שנצפה (עלייה בל"ד, ירידה בדופק)?</div>
+  <button class="opt" data-i="0">איבוד דם משמעותי מהפגיעה הראשונית</button>
+  <button class="opt" data-i="1">כאב חריף מהפציעות הנלוות</button>
+  <button class="opt" data-i="2">תגובת Cushing - איסכמיה גזעית/מרכזית משנית ל-ICP עולה, שמפעילה מרכזים וזומוטוריים המעלים ל"ד סיסטמי, ומכאן הפעלה ברורצפטורית וגאלית שמורידה דופק</button>
+  <button class="opt" data-i="3">תרופות הרגעה שניתנו קודם לכן</button>
+  <div class="explain">התשובה הנכונה: זהו תיאור קלאסי של תגובת Cushing - יתר ל"ד וברדיקרדיה - הנובעת מאיסכמיה גזעית משנית ל-ICP עולה. הירידה ב-CPP (עקב ICP עולה) גורמת לתגובה וזומוטורית שמעלה ל"ד סיסטמי כדי לשמר זילוח מוחי, מה שמפעיל ברורצפטורים ומוריד דופק דרך הוואגוס. איבוד דם (0) היה גורם לטכיקרדיה והיפוטנסיה - ההפך הגמור. כאב (1) עלול להעלות דופק, לא להוריד. הרגעה (3) הייתה מורידה ל"ד, לא מעלה אותו.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. מה ההסבר הסביר ביותר לאישון הימני המורחב וחוסר הריאקטיביות, בהתחשב בכך שהוא הופיע ללא שינוי הכרתי דרמטי בו-זמנית?</div>
+  <button class="opt" data-i="0">הרניאציה מרכזית, כי היא תמיד מקדימה שינוי אישונים לשינוי הכרה</button>
+  <button class="opt" data-i="1">חבלה ישירה לעצב הפנים</button>
+  <button class="opt" data-i="2">שבץ בעורק הבזילרי</button>
+  <button class="opt" data-i="3">הרניאציה אונקלית - האנקוס נדחף מדיאלית ולוחץ על עצב III, ובניגוד להרניאציה מרכזית, אישון מורחב חד-צדדי יכול להופיע כאן כסימן הראשון עוד לפני ירידה משמעותית בהכרה</button>
+  <div class="explain">התשובה הנכונה: זהו ה"סימן המסחרי" של הרניאציה אונקלית - אישון מורחב וכמעט לא-ריאקטיבי חד-צדדי שיכול להופיע גם כשרמת ההכרה עדיין סבירה, בניגוד להרניאציה מרכזית שבה השינוי ההכרתי (דיאנצפלי) קודם בדרך כלל לשינויי אישונים. עצב הפנים (1) לא קשור לגודל אישון. שבץ בזילרי (2) היה נותן תמונה קלינית שונה לגמרי (לרוב דו-צדדית וקשורה לגזע המוח, לא לחד-צדדיות אישונית מבודדת).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. הצוות שוקל להתחיל בוונטילציה עם היפרוונטילציה אגרסיבית (PaCO2 &lt; 25 מ"מ כספית) כדי להוריד את ה-ICP במהירות. מה הבעיה העיקרית בגישה הזו לפי הפרק?</div>
+  <button class="opt" data-i="0">היפרוונטילציה כלל לא משפיעה על ICP</button>
+  <button class="opt" data-i="1">היפוקפניה קיצונית עלולה לגרום לוזוקונסטריקציה מוגזמת עד כדי איסכמיה מוחית - מחקר אקראי הראה תוצאים גרועים יותר ב-PaCO2 של 25 לעומת בקרה; לכן ההמלצה היא היפוונטילציה מתונה בלבד (32-35)</button>
+  <button class="opt" data-i="2">היפרוונטילציה מעלה CBV ולכן מחמירה ICP</button>
+  <button class="opt" data-i="3">היפרוונטילציה גורמת רק לעלייה בקצב ייצור CSF</button>
+  <div class="explain">התשובה הנכונה: היפוקפניה גורמת לוזוקונסטריקציה של כלי דם פיאליים (מורידה CBV, מורידה ICP) - אבל ברמות קיצוניות (PaCO2&lt;25) יכולה לגרום לוזוקונסטריקציה כה חזקה שגורמת לאיסכמיה בפועל, ומחקר אקראי (Muizelaar) הראה תוצא גרוע יותר בקבוצה זו. לכן ברירת המחדל היא היפוונטילציה מתונה (32-35). תשובה 0 שגויה - היפוונטילציה כן משפיעה. תשובה 2 הפוכה מהמנגנון האמיתי. תשובה 3 אינה נכונה - ההשפעה העיקרית היא על CBV, לא על ייצור CSF.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מדוע מניטול (mannitol) יעיל להורדת ICP, ומה הסיכון העיקרי במינון גבוה וממושך?</div>
+  <button class="opt" data-i="0">הוא סוכן אוסמוטי שיוצר גרדיאנט אוסמוטי ושואב מים חופשיים מהמוח לתוך כלי הדם; במינון גבוה/ממושך הסיכון העיקרי הוא כשל כלייתי כשהאוסמולליות עולה מעל 320 mOsm/kg</button>
+  <button class="opt" data-i="1">הוא מגביר את ייצור ה-CSF וכך "שוטף" את המוח</button>
+  <button class="opt" data-i="2">הוא חוסם קולטני קלציום בכלי הדם המוחיים</button>
+  <button class="opt" data-i="3">הוא מונע לחלוטין מעבר נוזל דרך מחסום הדם-מוח</button>
+  <div class="explain">התשובה הנכונה: מניטול מעלה אוסמולליות הפלזמה, יוצר גרדיאנט שמושך מים מהמוח לכלי הדם - וכך מקטין VBRAIN ומוריד ICP; יש לו גם השפעה ריאולוגית (מוריד צמיגות דם). בשימוש ממושך/במינון גבוה, אוסמולליות מעל 320 יכולה לפגוע בטובולי הכליה ולגרום כשל כלייתי, ולכן יש לעקוב אחר אוסמולליות סרום. תשובות 1, 2 ו-3 אינן תואמות את המנגנון האמיתי המתואר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מה ההבדל העיקרי בין מדד ה-PVI (Pressure-Volume Index) התקין בבוגר (25-30 מ"ל) לבין ערך נמוך פתולוגי (למשל 10 מ"ל)?</div>
+  <button class="opt" data-i="0">PVI גבוה יותר משמעו שהמטופל צעיר יותר בהכרח</button>
+  <button class="opt" data-i="1">אין שום קשר בין PVI לקומפליאנס</button>
+  <button class="opt" data-i="2">PVI נמוך משמעו קומפליאנס נמוך - כל תוספת נפח קטנה (כמו דימום קטן) גורמת לעלייה הרבה יותר תלולה ב-ICP; PVI מחושב כשיפוע הישר בגרף ICP לוגריתמי מול נפח</button>
+  <button class="opt" data-i="3">PVI נמדד רק בבדיקות הדמיה, לא בבדיקה פולשנית</button>
+  <div class="explain">התשובה הנכונה: PVI הוא הנפח (מ"ל) הדרוש להעלות את ה-ICP פי 10, ומחושב מהשיפוע של גרף log(ICP) מול נפח. PVI נמוך = קומפליאנס נמוך = "המעלית מלאה" - כל נפח קטן נוסף מעלה לחץ בצורה תלולה. תשובה 0 שגויה חלקית - גם תינוקות (PVI&lt;10) וגם מבוגרים במצב פתולוגי יכולים להיות בעלי PVI נמוך, אך לא מאותה סיבה. תשובה 1 סותרת את ההגדרה. תשובה 3 שגויה - PVI נמדד קלינית בבולוס נוזל/משיכה עם מדידת תגובת לחץ, לא בהדמיה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>דוקטרינת מונרו-קלי:</b> VBRAIN + VBLOOD + VCSF (+ VOTHER) = קבוע, בגולגולת קשיחה - כל תוספת נפח מחייבת פיצוי הדדי.</li>
+    <li>CSF מיוצר במקלעת הכורואיד (וגם באפנדימה) בקצב קבוע (0.35-0.48 מ"ל/דקה, ~500-700 מ"ל/יום), אינו תלוי ב-ICP; נספג בגרנולציות עכבישיות לתוך הסינוסים הדוראליים, ונפסק כמעט לחלוטין מתחת ל-5 מ"מ כספית.</li>
+    <li>הרכב CSF שונה שיטתית מפלזמה (יותר Na/Cl/Mg, פחות K/Ca) - מוכיח הפרשה פעילה, לא רק סינון פסיבי.</li>
+    <li>במצב יציב: <b>ICP = (I<sub>f</sub> &times; R<sub>o</sub>) + P<sub>d</sub></b> - כ-90% מהלחץ מוסבר ע"י לחץ הסינוס הוורידי (P<sub>d</sub>), רק כ-10% ע"י ייצור/התנגדות.</li>
+    <li>עקומת לחץ-נפח סיגמואידית: פיצוי מרחבי (קומפליאנס גבוה) &#8592; דקומפנסציה מרחבית (קומפליאנס נמוך, PVI&lt;13 חריג).</li>
+    <li>הרניאציה מרכזית = דעיכה ראש-זנב הדרגתית; הרניאציה אונקלית = אישון מורחב חד-צדדי מוקדם (לחץ על עצב III); תגובת Cushing (יל"ד+ברדיקרדיה) = סימן מאוחר המבשר הרניאציה.</li>
+    <li>סף טיפול מקובל: ICP&gt;20 מ"מ כספית. טיפול לפי מרכיב: VCSF (ניקוז, אצטזולאמיד), VBLOOD (היפרוונטילציה מתונה, הרמת ראש), VBRAIN (מניטול, ברביטורטים, היפותרמיה), VOTHER (פינוי כירורגי - הכי יעיל כשיש מסה מוגדרת).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
