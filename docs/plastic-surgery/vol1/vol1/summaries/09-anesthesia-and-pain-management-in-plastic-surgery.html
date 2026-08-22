@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 9: הרדמה וניהול כאב בכירורגיה פלסטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .steps{background:#fef2f2; border:1px solid #fca5a5; border-radius:6px; padding:14px 20px; margin:14px 0}
+  .steps h3{margin-top:0; color:#991b1b}
+  .steps ol{margin:6px 0 0; padding-inline-start:22px}
+  .steps li{margin:6px 0}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 9: הרדמה וניהול כאב בכירורגיה פלסטית <span class="term" dir="ltr">Anesthesia and Pain Management in Plastic Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Paul N. Afrooz ו-Franklyn P. Cladis</div>
+
+<p>כאב בתר-ניתוחי הוא לא רק "אי-נוחות" — הוא תוצאה פיזיולוגית עם השלכות אמיתיות על החלמה, סיבוכים ושביעות רצון. בכירורגיה פלסטית יש דגש מיוחד על נושא הזה: הרבה מהניתוחים הם אלקטיביים ואמבולטוריים, כך שהמטופל/ת חוזר/ת הביתה תוך שעות מהניתוח בלי צוות רפואי צמוד — מה שהופך תכנון כאב <b>מולטימודלי, מראש, ולא רק "אופיואיד ועוד אופיואיד"</b> לקריטי. הפרק הזה עובר על הפיזיולוגיה של כאב, כל קבוצות התרופות המרכזיות (לא-אופיואידיות, אופיואידים, קטמין/גבאפנטינואידים, מקומיות), ואת הבלוקים האזוריים והנוירואקסיאליים המשמשים בכירורגיה פלסטית.</p>
+
+<h2><span class="num">1</span> מנגנון: למה כאב לא-מטופל הוא בעיה רפואית אמיתית</h2>
+<div class="mechanism">
+  <p class="chain">
+    כאב מוגדר כ"חוויה חושית ורגשית לא-נעימה עקב נזק רקמתי בפועל או פוטנציאלי" — כלומר זו חוויה <b>סובייקטיבית ומדווחת-עצמית</b>, לא ניתן למדוד אותה אובייקטיבית כמו לחץ דם. יש שני סוגים עיקריים:
+  </p>
+  <p>
+    <b>כאב פיזיולוגי/נוציספטיבי (<span class="term" dir="ltr">nociceptive</span>):</b> חריף, משמש כאזעקה מגנה — הוא "שימושי" כי הוא גורם לנו להימנע מהחמרת הנזק ומקדם החלמה.<br>
+    <b>כאב פתולוגי/כרוני (<span class="term" dir="ltr">e.g., neuropathic</span>):</b> נמשך מעבר לתקופת ההחלמה הצפויה — הוא כבר לא מגן על שום דבר, הוא "תקול" (<span class="term" dir="ltr">maladaptive</span>).
+  </p>
+</div>
+
+<p><b class="key">כאב לא-מטופל לא נשאר "רק כאב"</b> — הוא מפעיל שרשרת של תגובות מערכתיות אמיתיות. מתח כירורגי (<span class="term" dir="ltr">surgical stress</span>) גורם לשחרור מתווכים הומורליים וקורטיזול, שיחד גורמים להיפרגליקמיה, קטבוליזם, ופגיעה בתפקוד החיסוני ובריפוי פצעים — ולכן כאב לא-מטופל הוא לא רק עניין של נוחות אלא גורם סיכון ממשי לזיהום פצע וסיבוכי החלמה, נקודה קריטית במיוחד בכירורגיה פלסטית שמבוססת על שרידות רקמה ופלאפים.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מערכת</th><th>מה קורה כשכאב לא מטופל</th></tr></thead>
+  <tbody>
+    <tr><td>קרדיווסקולרי</td><td>עלייה בדופק, בהתנגדות ההיקפית ובלחץ הדם &#8592; עומס על הלב, איסכמיה</td></tr>
+    <tr><td>ריאתי</td><td>"שיתוק" (<span class="term" dir="ltr">splinting</span>) של שרירי נשימה &#8592; ירידה בנפח הריאתי, אטלקטזיס, זיהום ריאתי</td></tr>
+    <tr><td>גסטרואינטסטינלי</td><td>ירידה בתנועתיות המעי, איליאוס, בחילות</td></tr>
+    <tr><td>קרישה</td><td>עלייה בהצטברות טסיות ובסטזיס ורידי &#8592; סיכון מוגבר לפקקת (DVT)</td></tr>
+    <tr><td>חיסוני</td><td>פגיעה בתפקוד החיסוני, סיכון מוגבר לזיהום</td></tr>
+    <tr><td>כללי</td><td>החלמה מאוחרת, אשפוז ממושך, עלויות בריאות גבוהות יותר, שביעות רצון נמוכה</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">מבוסס על טבלה 9.1 בפרק (Joshi &amp; Ogunnaike, 2005)</p>
+
+<p>בגלל שהאטיולוגיה של כאב היא <b>רב-גורמית</b> (יש נוציספטורים פריפריים באתר הפציעה, עצבים פריפריים שמעבירים את האות, ומרכזים ספינליים וסופרה-ספינליים שמעבדים אותו), הפתרון היעיל ביותר הוא לא להסתמך על תרופה אחת אלא לפגוע בכמה נקודות בשרשרת בו-זמנית — זה הבסיס לעיקרון ה<b>אנלגזיה המולטימודלית</b> (<span class="term" dir="ltr">multimodal analgesia</span>) שהפרק כולו בנוי סביבו.</p>
+
+<svg class="diagram" viewBox="0 0 880 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הכאב ונקודות ההתערבות המולטימודליות</title>
+  <rect x="700" y="20" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="48" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">פציעה כירורגית</text>
+  <text x="775" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">נוציספטורים פריפריים</text>
+
+  <rect x="480" y="20" width="170" height="70" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+  <text x="565" y="48" font-size="12.5" text-anchor="middle" fill="#7c2d12" font-weight="700">עצבים פריפריים</text>
+  <text x="565" y="65" font-size="11.5" text-anchor="middle" fill="#7c2d12">מוליכים את האות מעלה</text>
+
+  <rect x="270" y="20" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="355" y="48" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">חוט השדרה</text>
+  <text x="355" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">קרן אחורית — עיבוד/הגברה</text>
+
+  <rect x="30" y="20" width="200" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="130" y="48" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">מוח</text>
+  <text x="130" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">תפיסת כאב — קליפה/תלמוס</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,55 480,49 480,61" fill="#374151"/>
+  <line x1="480" y1="55" x2="440" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="230,55 270,49 270,61" fill="#374151"/>
+  <line x1="270" y1="55" x2="230" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="700" y="130" width="150" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="775" y="153" font-size="11.5" text-anchor="middle" fill="#065f46" font-weight="700">מקומיים (חדירה)</text>
+  <text x="775" y="170" font-size="11.5" text-anchor="middle" fill="#065f46">NSAIDs / פראצטמול</text>
+  <text x="775" y="187" font-size="11.5" text-anchor="middle" fill="#065f46">TA טומסצנטי</text>
+  <text x="775" y="204" font-size="11.5" text-anchor="middle" fill="#065f46">בופיוואקאין ליפוזומלי</text>
+
+  <rect x="480" y="130" width="170" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="565" y="153" font-size="11.5" text-anchor="middle" fill="#065f46" font-weight="700">בלוקים היקפיים</text>
+  <text x="565" y="170" font-size="11.5" text-anchor="middle" fill="#065f46">TAP block</text>
+  <text x="565" y="187" font-size="11.5" text-anchor="middle" fill="#065f46">בלוקים עצביים ממוקדים</text>
+
+  <rect x="270" y="130" width="170" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="355" y="153" font-size="11.5" text-anchor="middle" fill="#065f46" font-weight="700">נוירואקסיאלי</text>
+  <text x="355" y="170" font-size="11.5" text-anchor="middle" fill="#065f46">פרוואטרברל / אפידורל / ספינל</text>
+  <text x="355" y="187" font-size="11.5" text-anchor="middle" fill="#065f46">קטמין (NMDA)</text>
+
+  <rect x="30" y="130" width="200" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="130" y="153" font-size="11.5" text-anchor="middle" fill="#065f46" font-weight="700">סיסטמי</text>
+  <text x="130" y="170" font-size="11.5" text-anchor="middle" fill="#065f46">אופיואידים IV/PO</text>
+  <text x="130" y="187" font-size="11.5" text-anchor="middle" fill="#065f46">גבאפנטינואידים, קטמין</text>
+
+  <line x1="775" y1="90" x2="775" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4"/>
+  <line x1="565" y1="90" x2="565" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4"/>
+  <line x1="355" y1="90" x2="355" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4"/>
+  <line x1="130" y1="90" x2="130" y2="130" stroke="#9ca3af" stroke-width="2" stroke-dasharray="4"/>
+
+  <rect x="30" y="250" width="820" height="40" rx="6" fill="#fffbeb" stroke="#b45309"/>
+  <text x="440" y="275" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">אנלגזיה מולטימודלית = תקיפת כמה נקודות בשרשרת בו-זמנית, כדי להימנע מהסתמכות על סוכן יחיד (ובעיקר על אופיואידים)</text>
+</svg>
+<p class="figcap">שרשרת הולכת הכאב מהפריפריה למוח, ומתחתיה: היכן כל קבוצת תרופות/טכניקה פועלת</p>
+
+<h2><span class="num">2</span> אנלגזיה לא-אופיואידית: פראצטמול, NSAIDs וקוקסיבים</h2>
+<p>לפרוצדורות שלא כוללות מניפולציה ניכרת בשרירים גדולים או אוסטאוטומיות, אפשר לרוב "לצאת" רק עם תרופות לא-אופיואידיות. אלו קו ראשון, לא "תוספת" לאופיואידים:</p>
+
+<h3>פראצטמול (<span class="term" dir="ltr">acetaminophen / paracetamol</span>)</h3>
+<p>התרופה הכי נפוצה לכאב חריף, כי היא נסבלת היטב. מנגנון הפעולה המדויק עדיין לא ברור לגמרי — משוער שהיא פועלת דרך עיכוב COX-1/COX-2 מטבולי (פרוקסידאזה) מרכזי והיקפי, שמעלה את סף הכאב. <b class="key">בניגוד לאופיואידים — אין דיכוי נשימתי, אין הרגעה, אין השפעה על תנועתיות המעי</b>, וההשפעה על טסיות דם וקרישה זניחה במטופלים בלי הפרעת קרישה קודמת. תופעת הלוואי המשמעותית ביותר היא <b>הפטוטוקסיות</b> במינון גבוה, שימוש כרוני, או שילוב עם אלכוהול/תרופות הפטוטוקסיות אחרות. המינון היומי המרבי למבוגר ללא מחלת כבד/כליה: <b>4 גרם ליום</b>.</p>
+
+<h3>NSAIDs וקוקסיבים (מעכבי COX-2 סלקטיביים)</h3>
+<p>NSAIDs פועלים דרך <b>עיכוב האנזימים COX-1 ו-COX-2</b>, ובכך מעכבים סינתזה של טרומבוקסנים ופרוסטגלנדינים — בעלי אפקט משכך כאבים, נוגד דלקת ומוריד חום. הם יעילים מאוד עם <span class="term" dir="ltr">NNT</span> (מספר חולים שצריך לטפל בהם כדי שאחד ירוויח הטבה) נמוך — אבל <b>מעכבים תפקוד טסיות</b> ומעלים סיכון לדימום/המטומה, מה שמגביל שימוש שגרתי בכירורגיה פלסטית (חשש מהמטומה סביב פלאפ/שתל). קוקסיבים (כמו celecoxib) פותחו כדי לצמצם את הסיכון הזה — הם בעלי סלקטיביות גבוהה יותר ל-COX-2 (ראו טבלת סלקטיביות), כמעט ללא השפעה על טסיות, אך נושאים סיכון קרדיווסקולרי/תרומבואמבולי בשימוש כרוני, ולכן נמנעים ממטופלים עם מחלת לב איסכמית.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תרופה</th><th>מינון (מבוגר)</th><th>מינון יומי מרבי</th><th>הערות מרכזיות</th></tr></thead>
+  <tbody>
+    <tr><td>פראצטמול (Tylenol®)</td><td>PO/IV, כל 4-6 שעות</td><td>4000 מ"ג</td><td>ללא השפעה על טסיות; הפטוטוקסיות במינון יתר</td></tr>
+    <tr><td>איבופרופן (Motrin®, Advil®)</td><td>PO/IV, כל 6-8 שעות</td><td>3200 מ"ג</td><td>פגיעה כלייתית אפשרית, מעכב טסיות</td></tr>
+    <tr><td>קטורולק (Toradol®)</td><td>IV/IM, עומס 15-30, אחזקה 15 כל 6 שעות</td><td>120 מ"ג, עד 5 ימים</td><td>סיכון לכיב/דימום GI, להפסיק אחרי 5 ימים</td></tr>
+    <tr><td>צלקוקסיב (Celebrex®)</td><td>100-200 מ"ג PO פעמיים ביום</td><td>400 מ"ג</td><td>מעכב COX-2 סלקטיבי; זהירות באלרגיה לסולפא; סיכון לב באירוע כרוני</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p class="key-box">פראצטמול, NSAIDs וקוקסיבים הם <b>אדיטיביים</b> כשמשלבים אותם — כלומר את יכולה לתת גם פראצטמול וגם NSAID/קוקסיב באותו זמן, וההשפעה מצטברת, לא חופפת. זה הבסיס לכל "שלד" הפרוטוקול המולטימודלי.</p>
+
+<h2><span class="num">3</span> אופיואידים: מנגנון, סיכונים, ו-PCA</h2>
+<p>אופיואידים פועלים בעיקר על קולטני אופיואידים בחוט השדרה, המדולה והקורטקס — משנים את האות העולה ואת התפיסה של כאב. אותם קולטנים אחראים גם לתופעות הלוואי: <b>עצירות, הרגעה, גרד</b>. הם יעילים ואמינים, אבל עם "מחיר" — התמכרות, מקרי מוות מנטילת יתר, סיכון מוגבר לתאונות דרכים במינון עולה, וסיכון ל<b>סבילות והיפראלגזיה מושרית-אופיואידים</b> (<span class="term" dir="ltr">opioid-induced hyperalgesia</span>) אפילו אחרי חשיפה קצרה — כלומר האופיואיד עצמו, באירוניה, יכול "לאמן" את מערכת העצבים להיות רגישה יותר לכאב לאורך זמן.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תרופה</th><th>משך פעולה</th><th>הערה קריטית</th></tr></thead>
+  <tbody>
+    <tr><td>מורפין</td><td>3-4 שעות</td><td>"תקן הזהב", זול, משחרר היסטמין — זהירות באסתמה</td></tr>
+    <tr><td>הידרומורפון (Dilaudid®)</td><td>3-4 שעות</td><td>ללא שחרור היסטמין — משמש כשמורפין גורם לתופעות לוואי</td></tr>
+    <tr><td>פנטניל (Sublimaze®)</td><td>0.5-1 שעות</td><td>מהיר מאוד; יכול לגרום לנוקשות דופן החזה/סגירת גלוטיס במינון גבוה</td></tr>
+    <tr><td>קודאין</td><td>3-4 שעות PO</td><td>"פרו-תרופה" חייבת המרה ע"י CYP2D6 למורפין — לא מומלץ יותר, אסור בילדים אחרי כריתת שקדים</td></tr>
+    <tr><td>אוקסיקודון (Percocet®, Oxycontin®)</td><td>3-4 שעות PO</td><td>פוטנציאל שימוש לרעה גבוה בשחרור מושהה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><b>PCA</b> (<span class="term" dir="ltr">Patient-Controlled Analgesia</span>) — משאבה שהמטופל/ת מפעיל/ה בעצמו/ה במינון קטן וקבוע עם "נעילה" (<span class="term" dir="ltr">lockout</span>) בין מנות — משפרת אנלגזיה ושביעות רצון תוך הפחתת החשיפה הכוללת לתרופה, ומפחיתה עומס על הצוות הסיעודי. אבחנה חשובה: <b class="key">אינפוזיה בזאלית רציפה (בלי לחיצת המטופל) נדירה ולא מומלצת במבוגרים</b> — כי היא מבטלת את יתרון הבטיחות של PCA (המטופל שמישהו כבר נרדם לא יכול "ללחוץ יותר").</p>
+
+<h2><span class="num">4</span> אוכלוסיות בסיכון מיוחד לתופעות לוואי של אופיואידים</h2>
+<p><b>דום נשימה חסימתי בשינה (<span class="term" dir="ltr">OSA – Obstructive Sleep Apnea</span>)</b> ו<b>השמנה</b>: OSA משפיע על 9-24% מהמבוגרים בגיל העמידה. רקמה רכה עודפת בלוע וגרון גורמת לחסימת דרכי אוויר עליונות במהלך שינה. אופיואידים מחריפים את הבעיה במספר מנגנונים: הם מפחיתים באופן תלוי-מינון את הטונוס של שריר הגניוגלוסוס (הלשון) שמסייע לשמור את דרכי האוויר פתוחות, ההשפעה המרדימה שלהם תורמת לסגירת דרכי האוויר, והם מעלים את סף ההתעוררות הנחוץ להתאוששות מאפיזודת דום נשימה. בנוסף, לאחר ניתוח נפחי הריאה יורדים אצל מטופלי OSA, מה שמעלה עוד יותר את הנטייה לחסימה.</p>
+
+<div class="media-img" style="border:none; padding:0">
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Airway_obstruction.png?width=650" alt="חסימת דרכי אוויר עליונות ב-OSA">
+</div>
+<p class="media-cap">חסימת דרכי אוויר עליונות — הבסיס לבעיה שאופיואידים מחריפים ב-OSA. מקור: Wikimedia Commons.</p>
+
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מעגל הקסמים: OSA ואופיואידים</title>
+  <rect x="660" y="30" width="170" height="65" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="745" y="55" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">השמנה / OSA</text>
+  <text x="745" y="72" font-size="11" text-anchor="middle" fill="#7f1d1d">רקמה רכה עודפת בלוע</text>
+
+  <rect x="450" y="30" width="180" height="65" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+  <text x="540" y="55" font-size="12" text-anchor="middle" fill="#7c2d12" font-weight="700">אופיואיד בתר-ניתוחי</text>
+  <text x="540" y="72" font-size="11" text-anchor="middle" fill="#7c2d12">&#8595; טונוס גניוגלוסוס, &#8593; הרגעה</text>
+
+  <rect x="240" y="30" width="180" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="330" y="55" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">רגישות מוגברת לאופיואיד</text>
+  <text x="330" y="72" font-size="11" text-anchor="middle" fill="#1e3a8a">מינון-תלויה</text>
+
+  <rect x="20" y="30" width="190" height="65" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="55" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">דום נשימה/היפוקסמיה</text>
+  <text x="115" y="72" font-size="11" text-anchor="middle" fill="#4c1d95">בתר-ניתוחי, לפעמים בלתי-מזוהה במחלקה</text>
+
+  <polygon points="620,62 660,56 660,68" fill="#374151"/>
+  <line x1="660" y1="62" x2="620" y2="62" stroke="#374151" stroke-width="2"/>
+  <polygon points="410,62 450,56 450,68" fill="#374151"/>
+  <line x1="450" y1="62" x2="410" y2="62" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,62 240,56 240,68" fill="#374151"/>
+  <line x1="240" y1="62" x2="200" y2="62" stroke="#374151" stroke-width="2"/>
+
+  <rect x="200" y="140" width="460" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="165" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">מניעה: הערכת OSA טרום-ניתוחית, הפחתת מינון אופיואידים,</text>
+  <text x="430" y="182" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">ניטור אוקסימטריה מתמשך, PAP מוקדם, שינה בישיבה/הטיה</text>
+  <polygon points="430,140 424,120 436,120" fill="#b45309"/>
+  <line x1="430" y1="140" x2="430" y2="120" stroke="#b45309" stroke-width="2"/>
+</svg>
+<p class="figcap">מעגל הסיכון: השמנה/OSA &#8592; רגישות יתר לאופיואידים &#8592; דום נשימה/היפוקסמיה בתר-ניתוחית</p>
+
+<p><b>קשישים:</b> שינויים בפרמקוקינטיקה/דינמיקה (נפח פלזמה, הרכב משקל גוף) עלולים להעצים תופעות לוואי. תפקוד קוגניטיבי לקוי בתר-ניתוחי (17% מהמטופלים ב-3 חודשים) קשור בעיקר להרדמה עצמה ולא במישרין למינון האופיואיד — אבל תופעות לוואי משולבות מעלות סיכון לנפילות.</p>
+<p><b>משתמשי אופיואידים כרוניים</b> (מעל 6 חודשים): פיתחו סבילות, חווים יותר כאב בתר-ניתוחי ומחלימים ממנו לאט יותר ממטופלים "נאיביים" לאופיואידים. יש להמשיך את המינון הכרוני הבסיסי ולהוסיף מעליו, בזהירות מתופעות לוואי תלויות-מינון. מטופלים על מתדון או בופרנורפין (טיפול תחזוקה) דורשים תיאום מפורש עם הרופא המרשם והרדמה — הפסקת בופרנורפין פתאומית יכולה להגביר רגישות לאופיואידים בצורה בלתי צפויה.</p>
+
+<h2><span class="num">5</span> קטמין וגבאפנטינואידים — אדג'ובנטים ל"חיסכון" באופיואידים</h2>
+<h3>קטמין</h3>
+<p>קטמין הוא אנטגוניסט לא-תחרותי לקולטן ה-<span class="term" dir="ltr">NMDA</span> (N-methyl-D-aspartate). קולטן זה מופעל בגירויי כאב עוצמתיים וממושכים, ומעורב הן בהיפראלגזיה מיידית והן בשינויים ארוכי-טווח בתפיסת כאב שעלולים להוביל לכאב כרוני לאחר ניתוח (<span class="term" dir="ltr">CPSP</span>). במינון תת-הרדמתי (0.5 מ"ג/ק"ג בולוס או 0.1 מ"ג/ק"ג/שעה), קטמין משפר אנלגזיה ומפחית צריכת אופיואידים — ובנוסף שומר על נשימה עצמונית ויציבות המודינמית (אפקט סימפתומימטי קל), תכונה חשובה כשרוצים למנוע צורך בוואזופרסורים בניתוחי פלאפ (וואזופרסורים עלולים לפגוע בזלוף הפלאפ). <b class="key">במינון הרדמתי גבוה (1-5 מ"ג/ק"ג) יש סיכון לתופעות פסיכיאטריות (דיספוריה, הזיות) — אך במינון תת-הרדמתי הן נדירות ונסבלות היטב.</b></p>
+
+<h3>גבאפנטינואידים (גבאפנטין, פרגבלין)</h3>
+<p>אנלוגים אלקילים של GABA, אך <b>לא</b> פועלים דרך קולטני GABA-A/GABA-B — הם נקשרים לתעלות סידן מסוג מתוח-מתח בנוירונים קורטיקליים ובקרן האחורית, ומפחיתים שחרור של גלוטמט, נוראפינפרין וחומר P. הם יעילים במצבי כאב נוירופתי (תסמונת כאב אזורי מורכב, נוירלגיה פוסט-הרפטית) ומפחיתים גם כאב וגם צריכת אופיואידים בתר-ניתוחית — במחיר של סדציה, סחרחורת וכאבי ראש כתופעות לוואי שכיחות.</p>
+
+<h2><span class="num">6</span> הרדמה מקומית: הזרקה, ליפוזומלית וטוקסיות (LAST)</h2>
+<p>שיפור טכניקות ההזרקה איפשר "גישת ער לגמרי" (<span class="term" dir="ltr">wide-awake</span> — בלי הרגעה כלל) בניתוחי יד, ניתוחים קוסמטיים, שחזור לאחר סרטן עור בפנים, ותיקון שפה שסועה במבוגרים. הטריק המרכזי להזרקה כמעט-בלי-כאב: לחדור את העור עם מחט 27G, ואז לעבור לקנולה קהה 30G להזרקת אזורים גדולים — כמעט ללא כאב וללא שטפי דם, כי אין קצה חד שפוגע כל הזמן ברקמה.</p>
+<div class="key-box">טיפים מרכזיים למזעור כאב הזרקה: לבפר לידוקאין+אדרנלין עם ביקרבונט נתרן 8.4%, לחמם את התמיסה, להסיח את דעת המטופל/ת (לחץ/צביטה עדינה ליד נקודת ההזרקה), להשתמש במחטים דקות (27-30G), להזריק לאט מאוד עם 1 ס"מ של תמיסה גלויה/מוחשת לפני קצה המחט.</div>
+
+<p><b>בופיוואקאין ליפוזומלי (<span class="term" dir="ltr">Exparel</span>):</b> מנגנון "שחרור מושהה" — 3% מהתרופה חופשית מיד להשפעה מיידית, והשאר "כלוא" בתוך שלפוחיות ליפוזומליות שנפתחות בהדרגה, ומאריכות את משך ההרדמה המקומית משמעותית. עדיין אין אישור FDA למתן אפידורלי או לבלוק עצבי היקפי.</p>
+
+<div class="steps">
+  <h3>טוקסיות מערכתית מהרדמה מקומית (<span dir="ltr">LAST – Local Anesthetic Systemic Toxicity</span>) — מה עושים</h3>
+  <p>סימנים: אי-שקט, נמנום, סחרחורת, טעם מתכתי, טינטון, דיבור מטושטש, נימול סביב הפה — ובמינון גבוה יותר: רעד, עוויתות, דיכוי נשימתי, דום לב.</p>
+  <ol>
+    <li>הפסקת עירוי הרדמה מקומית</li>
+    <li>הבטחת דרכי אוויר וחמצון</li>
+    <li>קריאה לעזרה</li>
+    <li>הכנה לדיכוי פרכוסים עם בנזודיאזפינים</li>
+    <li>טיפול בהפרעות קצב לפי פרוטוקול ACLS — <b>אך ללא לידוקאין</b> (הוא עצמו הרדמה מקומית!)</li>
+    <li>מתן Intralipid 20% במינון 1.5 מ"ל/ק"ג (אפשר לחזור עד 10 מ"ל/ק"ג) ואז עירוי 0.25 מ"ל/ק"ג/שעה אם ההשפעה הלבבית נמשכת</li>
+    <li>פרכוסים מבודדים: בנזודיאזפינים או פרופופול (פרופופול <b>לא</b> תחליף לליפיד בדום לב)</li>
+  </ol>
+</div>
+
+<h2><span class="num">7</span> הרדמה טומסצנטית (<span class="term" dir="ltr">Tumescent Analgesia, TA</span>)</h2>
+<p>מתן תמיסה מדוללת מאוד של הרדמה מקומית, בנפח גדול, לתת-העור — נפוץ בעיקר בליפוסקשן אבל משמש גם בהרחקת מסות תת-עוריות, מתיחת בטן, הגדלה/הקטנת שד, שאיבת דליות ורידיות ועוד. האדרנלין המדולל בתמיסה גורם לכיווץ כלי דם ומצמצם משמעותית איבוד דם. ה"טריק" המאפשר מינון לידוקאין גבוה בהרבה מהמקובל (35-55 מ"ג/ק"ג לעומת 7 מ"ג/ק"ג ה"רגיל") הוא <b>הספיגה האיטית</b> מרקמת השומן הדלה-בכלי-דם — אבל בדיוק בגלל זה, <b class="key">רמת השיא בדם מגיעה רק אחרי 10-14 שעות</b>, כך שתסמיני טוקסיות עלולים להופיע הרבה אחרי סיום הניתוח ואחרי שהמטופל/ת כבר שוחרר/ה הביתה — ולכן נדרש ניטור ממושך במינונים גבוהים.</p>
+
+<h2><span class="num">8</span> בלוקים אזוריים ונוירואקסיאליים</h2>
+<p>אלו טכניקות שמעניקות אנלגזיה ממושכת עם פחות תלות באופיואידים, פחות תופעות לוואי, שהייה קצרה יותר בבית החולים ושביעות רצון גבוהה יותר. יש הבדל עקרוני: <b>בלוקים אזוריים</b> (פרוואטרברל, TAP) חוסמים עצבים היקפיים <i>מחוץ</i> למערכת העצבים המרכזית; <b>טכניקות נוירואקסיאליות</b> (אפידורל, ספינל) פועלות ישירות על חוט השדרה/הנוירואקסיס.</p>
+
+<h3>בלוק פרוואטרברל (<span class="term" dir="ltr">PVB – Paravertebral Block</span>)</h3>
+<p>הזרקת הרדמה מקומית למרווח הפרוואטרברלי — מרווח משולש בין הפלאורה הפריאטלית (קדמי), עמוד השדרה (מדיאלי) והרצועה הקוסטוטרנסוורסית העליונה (אחורי), בדיוק במקום שבו שורש העצב מתפצל לענפים דורסליים וונטרליים ביציאתו מהנוירופורמן. חוסם ספציפית עצבים בין-צלעיים בצד אחד — <b>אנלגזיה חד-צדדית</b> ברמות דרמטומליות ספציפיות, בלי לגעת במערכת העצבים המרכזית (ולכן פחות תת-לחץ דם, אצירת שתן וברדיקרדיה בהשוואה לאפידורל). הסיכון העיקרי: <b class="key">פנאומוטורקס, בגלל קרבת הריאה למרווח הפרוואטרברלי (פחות מ-1% אך זו הסיבה המרכזית לשימוש מוגבל בו בניתוחי יום)</b>. הדרכה באולטרסאונד מפחיתה סיכון זה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/f-qpZPjZ_Tc" title="Thoracic Paravertebral Block – Anatomy and Approaches" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנטומיה וגישות לבלוק פרוואטרברל תוראקלי — הדגמת המרווח והטכניקה.</p>
+
+<h3>בלוק TAP (<span class="term" dir="ltr">Transversus Abdominis Plane</span>)</h3>
+<p>הזרקת הרדמה ארוכת-טווח למישור הפאשיאלי בין השריר הרוחבי-בטני (<span class="term" dir="ltr">transversus abdominis</span>) לשריר האלכסוני הפנימי — מישור עני-כלי-דם יחסית, מה שמסביר את הפינוי האיטי ואת משך האנלגזיה הממושך. חוסם את הענפים הטרמינליים של העצבים הבין-צלעיים (T10-L1) שמעצבבים את דופן הבטן. משמש כתוסף לניתוחי בטן תחתונה (למשל מתיחת בטן, שחזור שד עם רקמה בטנית) — <b>אינו מכסה כאב ויסצרלי</b> ולכן תמיד בשילוב עם מודליות נוספת. מבוצע תחת אולטרסאונד דרך המשולש של פטיט (גבול קוסטלי מלמעלה, כסל התחתון, אלכסוני חיצוני מלפנים, לטיסימוס דורסי מאחור).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/OqedcP9OPvc" title="TAP Block Explained – Ultrasound-Guided Anatomy" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת אנטומיה, סונו-אנטומיה וטכניקת ביצוע בלוק TAP באולטרסאונד.</p>
+
+<h3>אפידורל וספינל</h3>
+<p><b>ספינל:</b> חסימה נוירואקסיאלית של שורשי עצב ספינליים במרווח הסאב-ארכנואידי — תחילת פעולה מהירה ועמוקה, בדרך כלל לניתוחים קצרים בגפיים תחתונות/אגן. <b>אפידורל:</b> חוסם שורשי עצב <i>מחוץ</i> למרווח הסאב-ארכנואידי — ניתן להשאיר קטטר לעירוי מתמשך לאורך הנוירואקסיס, ולכן שימושי במיוחד לניתוחי גפיים תחתונות עם עבודה מיקרווסקולרית (הסימפטקטומיה המלווה משפרת זלוף לגפה).</p>
+
+<div class="media-img" style="border:none; padding:0">
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Epiduraldiagram.png?width=650" alt="אנטומיית אפידורל וספינל">
+</div>
+<p class="media-cap">מיקום המחט ומתן התרופה בהרדמה אפידורלית לעומת ספינלית. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/rM1aQC-HAX0" title="Epidural Spinal Anesthesia Animation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה המראה את ההבדל בין מתן אפידורלי לספינלי.</p>
+
+<p>סיבוכי אפידורל כוללים כאבי ראש ספינליים, פרסתזיות חולפות, אבצס/המטומה אפידורליים, ותת-לחץ דם (עד 33% שכיחות, בעיקר עקב בלוק סימפתטי אפרנטי שגורם לירידת התנגדות וסקולרית היקפית). הנשימה נשמרת יחסית (העצבוב הסרעפתי נשמר) אך מטופלים עם מחלת ריאה (אסתמה, COPD) עלולים להתקשות בנשיפה אקטיבית עקב חסימת שרירי הבין-צלעיים והבטן.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>טכניקה</th><th>מבוצע ע"י</th><th>סיכון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>פרוואטרברל</td><td>מרדים</td><td>פנאומוטורקס (&lt;1%)</td></tr>
+    <tr><td>TAP</td><td>מרדים או מנתח</td><td>המטומה, הזרקה תוך-צפקית (נדיר)</td></tr>
+    <tr><td>אפידורל</td><td>מרדים</td><td>תת-לחץ דם, כאב ראש ספינלי, המטומה/אבצס אפידורלי</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"פנק"ר</span> — שכבות ההגנה מפני כאב לפני שפונים לאופיואיד</h3>
+  <p>
+    <b>פ</b> – <span class="term" dir="ltr">Paracetamol</span> (פראצטמול) — קו ראשון, כמעט תמיד בטוח.<br>
+    <b>נ</b> – NSAIDs / קוקסיבים — נוגד דלקת, זהירות מדימום/פלאפ.<br>
+    <b>ק</b> – קטמין וגבאפנטינואידים — "מרסנים" את מערכת העצבים המרכזית מבפנים.<br>
+    <b>ר</b> – רגיונלי/נוירואקסיאלי — חוסם את האות לפני שהוא בכלל מגיע.
+  </p>
+  <p><i>רק אחרי ארבע השכבות האלה — פונים לאופיואיד כ"מציל" נקודתי, לא כבסיס.</i></p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שאת "מְפַנֶּקֶת" מטופלת לפני שהיא בכלל מרגישה כאב: קודם עוטפים אותה בשמיכה רכה (פראצטמול), אז מדליקים תנור קטן שמצנן את הדלקת (NSAID), אז שמים אטמי אוזניים שמנתקים אותה מהרעש (קטמין/גבאפנטין), ולבסוף סוגרים את הדלת לגמרי (בלוק רגיונלי) — כשמגיעים לזה, בקושי צריך עוד שמיכה חמה בדמות אופיואיד.</p>
+  <svg class="diagram" viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg">
+    <title>ארבע שכבות ההגנה מפני כאב</title>
+    <rect x="20" y="30" width="110" height="110" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="75" y="90" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">פ</text>
+    <text x="75" y="160" font-size="11.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">פראצטמול</text>
+
+    <rect x="145" y="30" width="110" height="110" rx="10" fill="#fed7aa" stroke="#c2410c"/>
+    <text x="200" y="90" font-size="13" text-anchor="middle" fill="#7c2d12" font-weight="700">נ</text>
+    <text x="200" y="160" font-size="11.5" text-anchor="middle" fill="#7c2d12" font-weight="700">NSAID/קוקסיב</text>
+
+    <rect x="270" y="30" width="110" height="110" rx="10" fill="#ddd6fe" stroke="#6d28d9"/>
+    <text x="325" y="90" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">ק</text>
+    <text x="325" y="160" font-size="11.5" text-anchor="middle" fill="#4c1d95" font-weight="700">קטמין/גבאפנטין</text>
+
+    <rect x="395" y="30" width="110" height="110" rx="10" fill="#bbf7d0" stroke="#047857"/>
+    <text x="450" y="90" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">ר</text>
+    <text x="450" y="160" font-size="11.5" text-anchor="middle" fill="#065f46" font-weight="700">רגיונלי</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://nysora.com/pain-management/ultrasound-guided-transversus-abdominis-plane-tap-block/" target="_blank">NYSORA – Ultrasound-Guided TAP Block</a>
+    <div class="desc">מדריך מקיף עם תרשימי אנטומיה וסונוגרפיה של בלוק ה-TAP, כולל טכניקה שלב-אחר-שלב.</div>
+  </li>
+  <li>
+    <a href="https://www.nysora.com/techniques/neuraxial-and-perineuraxial-techniques/thoracic-lumbar-paravertebral-block/" target="_blank">NYSORA – Thoracic and Lumbar Paravertebral Block</a>
+    <div class="desc">תרשימי אנטומיה מפורטים של המרווח הפרוואטרברלי וטכניקות שונות לביצוע הבלוק.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=6E3ynIn6Ud4" target="_blank">How To: Ultrasound Guided TAP Block – YouTube</a>
+    <div class="desc">הדגמה נוספת של סריקה וטכניקה לבלוק TAP באולטרסאונד.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Airway_obstruction.png" target="_blank">Airway Obstruction – Wikimedia Commons</a>
+    <div class="desc">התמונה שהוטמעה למעלה בסעיף OSA, בקישור ישיר למקור.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Epiduraldiagram.png" target="_blank">Epidural Diagram – Wikimedia Commons</a>
+    <div class="desc">התמונה שהוטמעה למעלה בסעיף אפידורל/ספינל, בקישור ישיר למקור.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 54, BMI 34, עם דום נשימה חסימתי בשינה לא-מטופל (לא משתמשת ב-CPAP), מגיעה לשחזור שד עם פלאפ DIEP חופשי לאחר כריתת שד. בתכנון האנלגזיה הבתר-ניתוחית, הצוות שוקל שילוב בין PCA למורפין, NSAID, בלוק TAP, ופראצטמול IV. בלילה שלאחר הניתוח, האחות מדווחת על נשימה שטחית וסטורציה יורדת בזמן שהמטופלת ישנה, בעוד שבערנות הסטורציה תקינה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו ההבדל המרכזי בין כאב פיזיולוגי (נוציספטיבי) לכאב פתולוגי (כרוני) כפי שהוגדר בפרק?</div>
+  <button class="opt" data-i="0">כאב פיזיולוגי תמיד חזק יותר מכאב פתולוגי</button>
+  <button class="opt" data-i="1">כאב פיזיולוגי משמש תפקיד מגן/אזעקה חריף, בעוד כאב פתולוגי נמשך מעבר לתקופת ההחלמה ואינו מגן עוד</button>
+  <button class="opt" data-i="2">כאב פתולוגי מופיע רק אצל מטופלים עם OSA</button>
+  <button class="opt" data-i="3">אין הבדל קליני משמעותי בין השניים</button>
+  <div class="explain">התשובה הנכונה: כאב פיזיולוגי/נוציספטיבי חריף ומשרת תפקיד מגן (מונע החמרת נזק ומקדם ריפוי), בעוד כאב כרוני/נוירופתי נמשך אחרי שהריפוי כבר אמור היה להסתיים והוא "תקול" (maladaptive) ולא מגן על דבר. תשובה 1 לא נכונה — עוצמה אינה הקריטריון המבחין. תשובה 3 לא קשורה להגדרה. תשובה 4 סותרת את הפרק שמדגיש הבדל מהותי בין הסוגים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע יש להעדיף שילוב של כמה קבוצות תרופות (אנלגזיה מולטימודלית) על פני הסתמכות על אופיואיד בלבד?</div>
+  <button class="opt" data-i="0">כי אופיואידים אסורים לשימוש בכירורגיה פלסטית</button>
+  <button class="opt" data-i="1">כי NSAIDs תמיד יעילים יותר מאופיואידים בכל סוגי הכאב</button>
+  <button class="opt" data-i="2">כי האטיולוגיה של כאב היא רב-גורמית (נוציספטורים היקפיים, עצבים היקפיים, אתרים ספינליים וסופרה-ספינליים) — תקיפת כמה נקודות בו-זמנית יעילה יותר ומפחיתה תופעות לוואי מסוכן יחיד</button>
+  <button class="opt" data-i="3">כי ביטוח בריאות דורש זאת</button>
+  <div class="explain">התשובה הנכונה: מכיוון שכאב נוצר ומועבר במספר נקודות שונות במסלול (פריפריה, עצב היקפי, חוט שדרה, מוח), אסטרטגיה מולטי-ממוקדת מספקת שיכוך כאבים יעיל יותר תוך מזעור תופעות הלוואי של הסתמכות על סוכן בודד (בעיקר אופיואיד). תשובה 1 לא נכונה — אופיואידים עדיין בשימוש, רק לא כבסיס בלעדי. תשובה 2 לא מדויקת — לכל סוג כאב יש התאמה שונה. תשובה 4 לא רלוונטית לפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע יש להיזהר במיוחד עם מינון אופיואידים במטופלת עם OSA לא מטופל, כפי שתואר בווינייטה?</div>
+  <button class="opt" data-i="0">אופיואידים מפחיתים תלוי-מינון את טונוס הגניוגלוסוס ומעלים את סף ההתעוררות מאפיזודת דום נשימה, כך שמטופלי OSA רגישים יותר לדיכוי נשימתי — ואפיזודות עלולות שלא להיות מזוהות במחלקה הרגילה</button>
+  <button class="opt" data-i="1">כי אופיואידים גורמים לירידה בלחץ הדם בלבד, ללא קשר לנשימה</button>
+  <button class="opt" data-i="2">כי אופיואידים גורמים לעלייה בנפחי הריאה שגורמת לחסימת נתיב אוויר</button>
+  <button class="opt" data-i="3">OSA אינו קשור כלל לרגישות לאופיואידים לפי הפרק</button>
+  <div class="explain">התשובה הנכונה: אופיואידים משפיעים במספר מנגנונים על מטופלי OSA — הפחתת טונוס שריר הגניוגלוסוס (שתומך בדרכי אוויר פתוחות), אפקט מרדים שתורם לסגירת דרכי אוויר, והעלאת סף ההתעוררות מאפיזודת דום נשימה. בנוסף נפחי הריאה בתר-ניתוחיים דווקא <b>יורדים</b> (לא עולים) אצל מטופלי OSA — מה שמגביר עוד יותר את הנטייה לחסימה. תשובה 2 חלקית ולא שלמה. תשובה 3 מנוגדת ישירות לפרק שמדגיש קשר ברור.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מה היתרון הקליני המרכזי של בלוק TAP בניתוח כמו שחזור שד עם רקמה מהבטן (DIEP), ומהי מגבלתו?</div>
+  <button class="opt" data-i="0">הוא מחליף לחלוטין את הצורך בכל אנלגזיה נוספת, כולל לכאב ויסצרלי</button>
+  <button class="opt" data-i="1">הוא מבוצע רק על ידי כירורג ואסור על מרדים</button>
+  <button class="opt" data-i="2">הוא נושא סיכון גבוה לפנאומוטורקס בגלל קרבתו לריאה</button>
+  <button class="opt" data-i="3">הוא נותן אנלגזיה ממושכת לדופן הבטן (חוסם ענפים טרמינליים של עצבים בין-צלעיים T10-L1) ומפחית צריכת אופיואידים, אך אינו מכסה כאב ויסצרלי ולכן משמש כתוסף בלבד</button>
+  <div class="explain">התשובה הנכונה: בלוק TAP חוסם את הרכיב התחושתי האפרנטי של הענפים הטרמינליים של עצבים בין-צלעיים המעצבבים את דופן הבטן, ומספק אנלגזיה ממושכת בזכות המישור העני-כלי-דם שמאט את פינוי התרופה — אך אינו נותן מענה לכאב ויסצרלי (מאיברים פנימיים), ולכן תמיד משולב עם מודליות נוספת. תשובה 1 שגויה כי מדובר בתוסף בלבד. תשובה 2 שגויה — TAP מבוצע ע"י מרדים <i>או</i> מנתח. תשובה 3 מתארת את הסיכון של בלוק פרוואטרברל, לא TAP.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופל מפתח אי-שקט, טעם מתכתי בפה וטינטון תוך כדי עירוי הרדמה טומסצנטית בליפוסקשן נרחב. מהו הצעד <b>הראשון</b> שיש לנקוט?</div>
+  <button class="opt" data-i="0">מתן מיידי של 20% Intralipid במינון 10 מ"ל/ק"ג</button>
+  <button class="opt" data-i="1">הפסקת עירוי הרדמה מקומית מיידית, ולוודא דרכי אוויר וחמצון</button>
+  <button class="opt" data-i="2">מתן לידוקאין IV לטיפול בהפרעת קצב אפשרית</button>
+  <button class="opt" data-i="3">המתנה של 10-14 שעות עד לרמת שיא בדם ואז החלטה על טיפול</button>
+  <div class="explain">התשובה הנכונה: הצעד הראשון בניהול טוקסיות מערכתית מהרדמה מקומית (LAST) הוא להפסיק את עירוי הסוכן המזיק, ואז מיידית להבטיח דרכי אוויר וחמצון, ורק אח"כ להמשיך לשלבים הבאים (קריאה לעזרה, בנזודיאזפינים, אינטרליפיד). תשובה 1 היא שלב מאוחר יותר בפרוטוקול. תשובה 3 שגויה — לידוקאין אסור לשימוש לטיפול בהפרעות קצב הנגרמות מטוקסיות הרדמה מקומית (הוא עצמו הרדמה מקומית). תשובה 4 מסוכנת — יש לפעול מיד עם הופעת סימנים, לא להמתין.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו ההבדל העיקרי בין בלוק פרוואטרברל לאפידורל מבחינת ההשפעה על מערכת העצבים המרכזית והסיכונים הנלווים?</div>
+  <button class="opt" data-i="0">שניהם זהים לחלוטין מבחינת סיכונים ומנגנון</button>
+  <button class="opt" data-i="1">אפידורל נחשב בטוח יותר ולכן משמש תמיד כברירת מחדל בניתוחי יום</button>
+  <button class="opt" data-i="2">פרוואטרברל חוסם עצבים ספציפיים בצד אחד מחוץ למערכת העצבים המרכזית (פחות תת-לחץ דם/אצירת שתן), בעוד אפידורל פועל ישירות על הנוירואקסיס ונושא סיכון גבוה יותר לתופעות אלו, אך פרוואטרברל נושא סיכון ייחודי לפנאומוטורקס</button>
+  <button class="opt" data-i="3">רק אפידורל יכול לשמש לניתוחי שד</button>
+  <div class="explain">התשובה הנכונה: פרוואטרברל חוסם שורש עצב באזור ספציפי חד-צדדי מחוץ למערכת העצבים המרכזית, ולכן פחות תת-לחץ דם, אצירת שתן וברדיקרדיה בהשוואה לאפידורל — אך בגלל הקרבה לריאה יש סיכון ייחודי (אם נדיר) לפנאומוטורקס. אפידורל פועל ישירות על הנוירואקסיס עם סיכון גבוה יותר לתופעות קרדיווסקולריות ואורוגניטליות. תשובה 2 הפוכה מהעובדות (פרוואטרברל, לא אפידורל, מועדף לניתוחי יום בזכות פחות תופעות לוואי סיסטמיות). תשובה 4 שגויה — פרוואטרברל משמש רבות בניתוחי שד.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כאב לא-מטופל אינו רק אי-נוחות — הוא מפעיל תגובת סטרס מערכתית (קורטיזול, ציטוקינים) שפוגעת בריפוי פצעים ומעלה סיבוכים קרדיווסקולריים, ריאתיים וזיהומיים.</li>
+    <li><b>אנלגזיה מולטימודלית</b> = תקיפת כמה נקודות בשרשרת הכאב בו-זמנית (פריפריה &#8592; עצב &#8592; חוט שדרה &#8592; מוח), כדי להפחית הסתמכות על אופיואיד בלבד.</li>
+    <li>פראצטמול, NSAIDs וקוקסיבים הם קו ראשון ואדיטיביים זה לזה; NSAIDs מעכבים טסיות (סיכון להמטומה), קוקסיבים כמעט לא אך נושאים סיכון קרדיווסקולרי כרוני.</li>
+    <li>אופיואידים יעילים אך נושאים סיכון להתמכרות, דיכוי נשימתי והיפראלגזיה מושרית — PCA (בלי אינפוזיה בזאלית שגרתית) משפר בטיחות.</li>
+    <li><b>OSA/השמנה</b> מעלים רגישות לאופיואידים (דרך טונוס גניוגלוסוס וסף התעוררות) — נדרשת הפחתת מינון וניטור ממושך.</li>
+    <li>קטמין תת-הרדמתי (NMDA antagonist) וגבאפנטינואידים מפחיתים כאב וצריכת אופיואידים כאדג'ובנטים.</li>
+    <li>טוקסיות הרדמה מקומית (LAST): הפסקת עירוי &#8592; דרכי אוויר &#8592; עזרה &#8592; בנזודיאזפינים &#8592; ACLS בלי לידוקאין &#8592; אינטרליפיד.</li>
+    <li>הרדמה טומסצנטית מאפשרת מינון לידוקאין גבוה בזכות ספיגה איטית — אך שיא הרמה בדם רק אחרי 10-14 שעות, לאחר השחרור.</li>
+    <li>פרוואטרברל (סיכון: פנאומוטורקס), TAP (לא מכסה כאב ויסצרלי), אפידורל/ספינל (סיכון: תת-לחץ דם, כאב ראש ספינלי) — כל אחד עם פרופיל סיכון-תועלת שונה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

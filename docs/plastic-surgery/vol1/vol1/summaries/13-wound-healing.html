@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: ריפוי פצעים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 13: ריפוי פצעים <span class="term" dir="ltr">Wound Healing</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Chandan K. Sen, Sashwati Roy, Gayle Gordillo</div>
+
+<p>ריפוי פצעים הוא לא אירוע אחד אלא <b>מפל (cascade) מתמשך של תהליכים חופפים</b> שמתחילים בשניות מרגע הפציעה ונמשכים שנים. כל מנתח שנוגע בעור עם אזמל יוצר פצע – ולכן הבנת המנגנון הבסיסי הזה היא לא רק ידע תיאורטי אלא הבסיס לכל החלטה כירורגית: מתי לסגור פצע, מתי לחכות, איך להעריך אם רקמה תחזיק מעמד, ולמה פצעים מסוימים "נתקעים" ולא נסגרים לעולם.</p>
+
+<h2><span class="num">1</span> ארבעת השלבים החופפים – התמונה הגדולה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>המוסטזיס (<span class="term" dir="ltr">hemostasis</span>)</b> – שניות עד דקות: עצירת הדימום.<br>
+    &#8594; <b>דלקת (<span class="term" dir="ltr">inflammation</span>)</b> – שעות עד ימים: ניקוי הפצע מפתוגנים ורקמה מתה.<br>
+    &#8594; <b>שגשוג (<span class="term" dir="ltr">proliferation</span>)</b> – 2 ימים עד 3 שבועות: בניית רקמת גרנולציה, כלי דם חדשים, וסגירת הפצע.<br>
+    &#8594; <b>שיפוץ (<span class="term" dir="ltr">remodeling</span>)</b> – שבועות עד שנים: הבשלת הקולגן וחיזוק הצלקת.
+  </p>
+  <p>השלבים <b class="key">חופפים אחד לשני ולא רצף נקי</b> – למשל הדלקת עוד לא הסתיימה כשהשגשוג כבר מתחיל. אם שלב כלשהו "נתקע" (הכי שכיח: דלקת שלא מתפוגגת), הפצע כולו נתקע יחד איתו – זו בדיוק ההגדרה של פצע כרוני.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
+  <title>ארבעת שלבי ריפוי הפצע</title>
+  <rect x="700" y="30" width="140" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="55" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">המוסטזיס</text>
+  <text x="770" y="73" font-size="11" text-anchor="middle" fill="#7f1d1d">שניות-דקות</text>
+
+  <rect x="480" y="30" width="160" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="560" y="55" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">דלקת</text>
+  <text x="560" y="73" font-size="11" text-anchor="middle" fill="#78350f">שעות-ימים</text>
+
+  <rect x="250" y="30" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="335" y="55" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שגשוג</text>
+  <text x="335" y="73" font-size="11" text-anchor="middle" fill="#1e3a8a">2 ימים-3 שבועות</text>
+
+  <rect x="20" y="30" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="105" y="55" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">שיפוץ</text>
+  <text x="105" y="73" font-size="11" text-anchor="middle" fill="#065f46">שבועות-שנים</text>
+
+  <polygon points="660,60 700,54 700,66" fill="#374151"/>
+  <line x1="700" y1="60" x2="660" y2="60" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,60 480,54 480,66" fill="#374151"/>
+  <line x1="480" y1="60" x2="430" y2="60" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,60 250,54 250,66" fill="#374151"/>
+  <line x1="250" y1="60" x2="200" y2="60" stroke="#374151" stroke-width="2"/>
+</svg>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/YRtPJXRKwHM" title="Wound healing stages | steps of wound healing | Wound healing and injury" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר שממחיש חזותית את ארבעת שלבי ריפוי הפצע ברצף.</p>
+
+<h2><span class="num">2</span> המוסטזיס – למה ואיך נעצר הדימום</h2>
+<p>המטרה: לסתום את הפצע תוך שניות, לפני שיש זמן לאבד יותר מדי דם. זה קורה בשני מסלולים שמתלכדים ל"מפל קרישה" משותף:</p>
+<ul>
+  <li><b>מסלול חוץ (<span class="term" dir="ltr">extrinsic</span>)</b> – מתחיל את התהליך: פגיעה בכלי הדם חושפת גורם רקמה (<span class="term" dir="ltr">Tissue Factor, TF</span>), שיושב באופן קבוע על תאי הרקמה שסביב כלי הדם (תאי שריר חלק, פריציטים, פיברובלסטים אדוונטיציאליים). TF נפגש עם FVII בדם ויוצר קומפלקס TF-FVIIa שמפעיל FIX ו-FX – זהו ה"טריגר הראשוני" (initiation).</li>
+  <li><b>מסלול פנים (<span class="term" dir="ltr">intrinsic</span>)</b> – מבצע "הגברה" (amplification): FXI, FIX, FVIII יוצרים לולאת הגברה שמייצרת עוד ועוד תרומבין ("thrombin burst").</li>
+  <li><b>מסלול משותף</b> – FXa הופך פרותרומבין לתרומבין, שהופך פיברינוגן מסיס לפיברין בלתי-מסיס. הפיברין מצטלב (cross-link) בעזרת FXIIIa ולוכד טסיות דם – זהו קריש הדם.</li>
+</ul>
+<p>קריש הדם הוא הרבה יותר מ"פקק מכני": הוא <b>המטריצה הזמנית הראשונה</b> של הפצע – עשיר בציטוקינים וגורמי גדילה (PDGF, TGF-β, VEGF) שמגייסים תאי דלקת ותאי גזע לאתר הפגיעה, ובכך <b class="key">התרומבין הוא בעצם הגשר בין שלב ההמוסטזיס לשלב הדלקת</b> – הוא מגרה תאי אנדותל לשחרר IL-6/IL-8/CCL2 שמושכים מונוציטים לאתר.</p>
+
+<h2><span class="num">3</span> דלקת – ניקוי הפצע וגיוס תאי חיסון</h2>
+<p>הדלקת מתבטאת קלינית בארבעת הסימנים הקלאסיים שתיאר צלסוס: <b>אודם (rubor)</b>, <b>נפיחות (tumor)</b>, <b>חום מקומי (calor)</b> ו<b>כאב (dolor)</b> – כולם תוצאה ישירה של הרחבת כלי דם והגברת חדירות הנימים (<span class="term" dir="ltr">diapedesis</span>) שמאפשרת לתאי דלקת "לזחול" מהדם אל הרקמה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תא</th><th>מתי מגיע/פעיל</th><th>תפקיד עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>נויטרופילים</b></td><td>שעות ראשונות, נעלמים תוך ימים בודדים</td><td>פאגוציטוזה של חיידקים (respiratory burst, MPO), שחרור פרוטאזות; NETs (רשתות כרומטין) ללכידת חיידקים</td></tr>
+    <tr><td><b>מקרופאגים</b></td><td>שיא ב-3-5 ימים, נשארים הכי הרבה זמן</td><td>פאגוציטוזה של דבריס ונויטרופילים מתים; מקור עיקרי לגורמי גדילה (TGF-β, PDGF, VEGF, bFGF) שמניעים את שלב השגשוג</td></tr>
+    <tr><td><b>תאי פיטום (מאסט)</b></td><td>מתנקזים תוך שעות, חוזרים אחרי 48 שעות</td><td>שחרור מתווכים דלקתיים; עודף/חוסר גורם לצלקות בעייתיות (קלואיד/היפרטרופיות)</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>מקרופאגים M1 מול M2</b> – זו לא אוכלוסייה קבועה אלא <b>ספקטרום פלסטי</b>: בשלב הראשוני המקרופאגים הם <span class="term" dir="ltr">M1</span> (פרו-דלקתיים, "תוקפניים"), ולאחר שהם עוסקים בפאגוציטוזה של נויטרופילים מתים (תהליך שנקרא <span class="term" dir="ltr">efferocytosis</span>) הם עוברים "מיתוג מחדש" ל-<span class="term" dir="ltr">M2</span> (אנטי-דלקתיים, "מרפאים"). <b class="key">זהו המנגנון המרכזי של יישוב הדלקת (resolution of inflammation)</b> – וזה בדיוק המנגנון שנפגם בסוכרת: רמות גלוקוז גבוהות גורמות לגליקוזילציה של קולטני phosphatidyl serine על המקרופאגים, מה שחוסם את יכולתם לזהות תאים אפופטוטיים ולבצע efferocytosis. התוצאה: המקרופאגים "נתקעים" במצב M1, ממשיכים להפריש TNF-α/IL-1/IL-6, והדלקת לא מתפוגגת לעולם – זה ההסבר המנגנוני לכך שפצעים סוכרתיים נתקעים כרונית בשלב הדלקתי.</p>
+
+<h2><span class="num">4</span> שלב השגשוג – רקמת גרנולציה ואנגיוגנזה</h2>
+<p>מתחיל כ-2 ימים אחרי הפציעה, נמשך עד 3 שבועות. המקרופאגים מפרקים את קריש הפיברין, ופיברובלסטים ותאי אנדותל "פולשים" לתוך החלל שהתפנה. רקמת הגרנולציה שנוצרת <b>אדומה-ורודה</b> (בגלל לולאות נימים חדשים), <b>רכה, לחה וגרגירית</b> למגע – ומשמשת כ"מצע" לתיקון הרקמה. בהתחלה נבנית מקולגן מסוג III (חלש, נבנה מהר), ובהמשך מוחלף בקולגן מסוג I החזק (זה שרואים בצלקת הבשלה).</p>
+<p><b>אנגיוגנזה (יצירת כלי דם חדשים)</b> – הרצף: היפוקסיה מקומית ↑ VEGF &#8594; VEGF נקשר לקולטן VEGFR-2 על תאי אנדותל &#8594; הפעלה, ריבוי (proliferation) והגירה כיוונית של תאי אנדותל &#8594; יצירת "נבטים" (sprouting) שהופכים לצינורית עם לומן &#8594; פריציטים "מתלבשים" סביב הצינורית ומייצבים אותה (Tie-2, PDGF). <b class="key">בלי פריציטים הצינורית הצעירה נשארת לא-יציבה</b> – זו אחת הסיבות שרקמה איסכמית לא מצליחה לבנות רשת כלי דם פונקציונלית גם אם יש בה הרבה VEGF.</p>
+<svg class="diagram" viewBox="0 0 800 190" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת האנגיוגנזה</title>
+  <rect x="640" y="20" width="140" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="710" y="43" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">היפוקסיה</text>
+  <text x="710" y="60" font-size="11" text-anchor="middle" fill="#7f1d1d">ברקמת הפצע</text>
+
+  <rect x="460" y="20" width="150" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="535" y="43" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">שחרור VEGF</text>
+  <text x="535" y="60" font-size="11" text-anchor="middle" fill="#78350f">קישור ל-VEGFR-2</text>
+
+  <rect x="270" y="20" width="160" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="43" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">ריבוי + הגירה</text>
+  <text x="350" y="60" font-size="11" text-anchor="middle" fill="#1e3a8a">של תאי אנדותל</text>
+
+  <rect x="80" y="20" width="160" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="160" y="43" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">צינורית + לומן</text>
+  <text x="160" y="60" font-size="11" text-anchor="middle" fill="#065f46">ייצוב ע"י פריציטים</text>
+
+  <polygon points="600,47 640,42 640,53" fill="#374151"/>
+  <line x1="640" y1="47" x2="600" y2="47" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,47 460,42 460,53" fill="#374151"/>
+  <line x1="460" y1="47" x2="420" y2="47" stroke="#374151" stroke-width="2"/>
+  <polygon points="230,47 270,42 270,53" fill="#374151"/>
+  <line x1="270" y1="47" x2="230" y2="47" stroke="#374151" stroke-width="2"/>
+
+  <rect x="80" y="115" width="620" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="390" y="138" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">בלי מספיק O2 – גם עם הרבה VEGF, הצינורית לא מבשילה ("pocket of extreme hypoxia")</text>
+  <text x="390" y="155" font-size="11" text-anchor="middle" fill="#4c1d95">קולגן לא יכול להיווצר בלי הידרוקסילציה תלוית-חמצן</text>
+  <polygon points="160,115 154,97 166,97" fill="#6d28d9"/>
+  <line x1="160" y1="115" x2="160" y2="97" stroke="#6d28d9" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">5</span> סגירת הפצע – כיווץ מול אפיתליזציה</h2>
+<p>אלה שני מנגנונים <b>נפרדים ומקבילים</b> שביחד סוגרים פצע שמחלים בכוונה שנייה (ראו סעיף 6):</p>
+<table>
+  <thead><tr><th>מנגנון</th><th>מי מבצע</th><th>איך זה עובד</th></tr></thead>
+  <tbody>
+    <tr><td><b>כיווץ הפצע (<span class="term" dir="ltr">wound contraction</span>)</b></td><td>מיופיברובלסטים</td><td>פיברובלסטים בשולי הפצע עוברים "טרנספורמציה" לתאים מכווצים דמויי-שריר חלק: קודם ל-protomyofibroblast (סיבי אקטין ראשוניים), ואז ל-myofibroblast בוגר שמבטא α-smooth-muscle actin (תלוי ב-TGF-β1 וסביבה מוגבלת מכנית). התוצאה: "כוח חוט-ארנק" (purse-string) שמקרב את שולי הפצע. תרומה גדולה יותר במכרסמים עורניים-רופפים מאשר באדם.</td></tr>
+    <tr><td><b>אפיתליזציה מחדש (<span class="term" dir="ltr">re-epithelialization</span>)</b></td><td>קרטינוציטים</td><td>שלושה שלבים חופפים: (1) <b>הגירה</b> – ניתוק קשרי תא-תא ותא-מצע, קרטינוציטים "זוחלים" על המטריצה הזמנית; (2) <b>ריבוי</b> – קרטינוציטים סמוכים לשוליים (לא בתוכם) עוברים מיטוזה; (3) <b>התמיינות</b> – בניית שכבות מחדש. <b class="key">הגירה, ולא ריבוי או התמיינות, היא צוואר הבקבוק העיקרי</b> בפצעים כרוניים שלא נסגרים.</td></tr>
+  </tbody>
+</table>
+<p>סביבה לחה (ולא יבשה) מאיצה אפיתליזציה, ואנזים MMP-1 (קולגנאז) מסייע בכך שהוא מחליש את הקשר בין קולגן לאינטגרינים ומאפשר לתאים לזחול.</p>
+
+<h2><span class="num">6</span> שלוש טכניקות טיפול בפצע ושלוש קטגוריות פצעים פתוחים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג כוונה</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td><b>כוונה ראשונה (<span class="term" dir="ltr">primary intention</span>)</b></td><td>כל הרקמות, כולל העור, נסגרות בתפרים מיד בתום הניתוח</td></tr>
+    <tr><td><b>כוונה שנייה (<span class="term" dir="ltr">secondary intention</span>)</b></td><td>הפצע נשאר פתוח ונסגר "לבד" – כיווץ + אפיתליזציה כמתואר למעלה</td></tr>
+    <tr><td><b>כוונה שלישית (<span class="term" dir="ltr">tertiary intention</span>)</b></td><td>הפצע נשאר פתוח מספר ימים, ונסגר רק אם נמצא נקי (זיהום/דבריס נשלטו)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>פצעים פתוחים מסווגים לפי מנגנון הפציעה: <b>קרעים (lacerations)</b> – קצוות משוננים, זיהום שכיח; <b>פצעי דקירה (puncture)</b> – מסוכנים במיוחד בסוכרתיים עם נוירופתיה שלא מרגישים את הפציעה; <b>שפשופים (abrasions)</b> – הסרת שכבה שטחית, נוטים לזיהום; <b>קריעה (avulsion)</b> ו<b>קטיעה (amputation)</b> – דימום משמעותי.</p>
+<p>בכוונה ראשונה, הפצע "נסגר" מבחינת פיברין תוך 24-48 שעות, אך <b class="key">חוזק המתיחה (tensile strength) מגיע רק ל-10% בשבוע 2, 30% בשבוע 4 ו-80% בשבוע 6</b> – ולעולם לא מגיע ל-100% מעור שלם. זו הסיבה שיש להיזהר ממאמץ מוקדם על צלקות טריות.</p>
+
+<h2><span class="num">7</span> פצעים כרוניים – מתי ריפוי "נתקע"</h2>
+<p>פצע נחשב כרוני אם לא הגליד תוך 4 שבועות. שלוש קטגוריות עיקריות: <b>כיבים ורידיים/עורקיים</b>, <b>כיבים סוכרתיים</b>, <b>כיבי לחץ (decubitus)</b>. שני גורמים מרכזיים מסבירים כרוניות:</p>
+<h3>א. זיהום וביופילם</h3>
+<p>ההבחנה הקריטית: <b>קולוניזציה</b> (חיידקים נוכחים בלי תגובת מארח בולטת) מול <b>זיהום פעיל</b> (ריבוי חיידקים מכריע את המערכת החיסונית). מעל 10⁵ חיידקים לגרם רקמה מהווים איום, אך הסף הזה משתנה לפי מצב המארח וזן החיידק.</p>
+<p><b class="key">ביופילם הוא לא "עוד זיהום" אלא צורת חיים חיידקית שונה מהותית</b>: חיידקים בביופילם מתאגדים למבנה רב-תאי עטוף במטריצה חוץ-תאית (<span class="term" dir="ltr">EPS – extracellular polymeric substances</span>) שמהווה מעל 90% מהמסה היבשה של הביופילם. המטריצה הזו היא מחסום פיזי כמעט בלתי חדיר לאנטיביוטיקה ולתאי חיסון – ולכן חיידקים בביופילם עמידים לטיפול אנטיביוטי סטנדרטי בהרבה מהצורה החופשית (planktonic) שלהם, גם ללא מוטציית עמידות קלאסית. כ-60% מהפצעים הכרוניים באדם מכילים ביופילם, אך הוא <b>לא ניתן לזיהוי אמין בתרבית רגילה</b> (רק מיקרוסקופ אלקטרונים סורק, שאינו זמין קלינית) – כך שהאבחנה נשארת קלינית בעיקרה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין</th><th>חיידקים חופשיים (<span dir="ltr">planktonic</span>)</th><th>ביופילם</th></tr></thead>
+  <tbody>
+    <tr><td>עמידות לאנטיביוטיקה</td><td>נמוכה יחסית</td><td>גבוהה מאוד</td></tr>
+    <tr><td>זיהוי בתרבית</td><td>קל</td><td>לרוב שלילי כוזב</td></tr>
+    <tr><td>תגובת מארח</td><td>מעוררת דלקת גלויה</td><td>"מדכאת" תגובה חיסונית גלויה – חסרים סימני זיהום קלאסיים</td></tr>
+    <tr><td>טיפול</td><td>אנטיביוטיקה מספיקה בד"כ</td><td>דיברידמנט חוזר (שבועי) + אנטיביוטיקה משולבת; חוזר תוך 7 ימים מדיברידמנט בודד</td></tr>
+  </tbody>
+</table>
+</div>
+<p>חיידקים שכיחים בכיבי רגליים ורידיים כרוניים (לפי שכיחות): <span class="term" dir="ltr">Staphylococcus aureus</span>, <span class="term" dir="ltr">Enterococcus faecalis</span>, <span class="term" dir="ltr">Pseudomonas aeruginosa</span>, סטפילוקוקים קואגולאז-שליליים, <span class="term" dir="ltr">Proteus</span> spp., וחיידקים אנאירוביים (במיוחד ברקמה איסכמית עם חמצן נמוך).</p>
+
+<h3>ב. "סגירה חזותית" מול "סגירה תפקודית" – התובנה החדשה</h3>
+<p>זו אחת הנקודות המרכזיות והחדשניות בפרק: פצע יכול להיראות סגור לחלוטין ויזואלית, ועדיין להיות <b>"פתוח תפקודית"</b> – כלומר מחסום העור עדיין לא תקין. המנגנון: זיהום ביופילם משרה עלייה במיקרוארנא ספציפיים (<span class="term" dir="ltr">miR-146a, miR-106b</span>) שמשתיקים את חלבוני הצומת ההדוק (<span class="term" dir="ltr">tight junction</span>) <span class="term" dir="ltr">ZO-1</span> ו-<span class="term" dir="ltr">ZO-2</span>. התוצאה: "דליפה" מוגברת של מים מבעד לעור (<span class="term" dir="ltr">TEWL – transepidermal water loss</span> גבוה), שדרכה בדיוק כמו שמים "בורחים" – חיידקים יכולים "להיכנס". <b class="key">זה מסביר קלינית שיעורי הישנות גבוהים בפצעים כרוניים (40-79% בכיבי לחץ, 24-57% בכיבים ורידיים, מעל 60% בכיבים סוכרתיים)</b> למרות שנראו סגורים בבדיקה חזותית רגילה.</p>
+
+<h2><span class="num">8</span> איסכמיה והיפוקסיה של הפצע</h2>
+<p>שלושה גורמים מרכזיים תורמים להיפוקסיה ברקמת הפצע:</p>
+<ol>
+  <li><b>מחלת כלי דם היקפית</b> שחונקת אספקת חמצן (למשל PAD – <span class="term" dir="ltr">peripheral arterial disease</span>)</li>
+  <li><b>ביקוש חמצן מוגבר</b> של הרקמה המחלימה (מצב היפר-מטבולי)</li>
+  <li><b>ייצור מיני חמצן פעילים (ROS)</b> על ידי NADPH oxidase לצורך respiratory burst וסיגנל רדוקס</li>
+</ol>
+<p>הפרדוקס המרכזי: חמצן נדרש הן לחיטוי (הרג חיידקים) והן לבנייה (הידרוקסילציה של קולגן על ידי prolyl/lysyl hydroxylase תלוית-O2) – <b class="key">בלי חמצן, קולגן לא יכול "להבשיל" ולצאת אל מחוץ לתא, כלי דם חדשים נשארים שבריריים ונשברים, וגם אין די O2 להרוג חיידקים</b>. זו ההקבלה הקלינית לצפדינה (scurvy – מחסור ויטמין C): בלי ויטמין C אין הידרוקסילציה תקינה של קולגן, כלי דם נשארים חלשים, ופצעים לא מחלימים.</p>
+<p>מדידת חמצן לא-פולשנית: <b>ankle-brachial index (ABI)</b> לחשד ל-PAD, <b>toe-brachial index (TBI)</b> ו-<b>transcutaneous oxygen measurement (TcOM, סף ≥30 mmHg)</b> להערכת זלוף אמיתי ברמת הפצע.</p>
+
+<h2><span class="num">9</span> טיפול קליני – השוואת שני כיבים כרוניים נפוצים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th></th><th>כיב סוכרתי ברגל (<span dir="ltr">DFU</span>)</th><th>כיב ורידי ברגל (<span dir="ltr">VLU</span>)</th></tr></thead>
+  <tbody>
+    <tr><td><b>מנגנון שורש</b></td><td>שילוב איסכמיה + נוירופתיה (תחושה נפגעת, לא מרגישים פציעה) + עיוות כף רגל (Charcot)</td><td>אי-ספיקה ורידית – זרימת דם רטרוגרדית, לחץ ורידי מוגבר, דליפת פיברין סביב נימים שחוסמת דיפוזיית חמצן</td></tr>
+    <tr><td><b>מיקום/מראה אופייני</b></td><td>אזורי לחץ (ראשי מטטרסלים), לרוב עם יבלת מקדימה</td><td>סביב הקרסול המדיאלי, עם המוסידרין ו-lipodermatosclerosis</td></tr>
+    <tr><td><b>בדיקה מפתח</b></td><td>HbA1c, בדיקה וסקולרית (ABI/TBI/TcOM), בדיקת עצם חשופה (80% סיכוי לאוסטאומיאליטיס!)</td><td>Duplex ultrasound עם מבחן Valsalva לבדיקת רפלוקס ורידי</td></tr>
+    <tr><td><b>עיקרון טיפול #1</b></td><td>פריקת לחץ (off-loading) – total contact casting / הימנעות ממשקל</td><td>לחיצה (compression) קבועה – "לתמיד", אלא אם ABI &lt;0.7 (מסוכן!)</td></tr>
+    <tr><td><b>טיפול כירורגי אפשרי</b></td><td>דיברידמנט שבועי, הארכת גיד אכילס, רה-וסקולריזציה, HBOT</td><td>ניתוח לתיקון אי-ספיקת מסתם (רק במחלה שטחית), דיברידמנט שבועי</td></tr>
+    <tr><td><b>סיבוך מרכזי</b></td><td>קטיעה (80% מהקטיעות בסוכרתיים קדמו להן כיב) – פרוגנוזה גרועה יותר מסרטנים רבים</td><td>הישנות (~50% תוך 10 שנים), טרומבוזה ורידית עמוקה</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>עקרון קליני משותף וקריטי:</b> אלקטיבי דיברידמנט אסור לבצע לפני שווידאו זלוף מספק – בלי חמצן, דיברידמנט רק חושף רקמה נוספת לסיכון בלי יכולת החלמה. וגם: תרבית מרקמה נקרוטית שהוסרה <b>אינה אינפורמטיבית</b> – יש לבצע ביופסיית רקמה מהמצע עצמו לאחר דיברידמנט.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/X11FF6i_t4Q" title="Managing Diabetic Foot Ulcers - Debridement and Classifying Ulcers" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה קלינית של דיברידמנט וסיווג כיבים סוכרתיים (וידאו חינוכי).</p>
+
+<h2><span class="num">10</span> טיפולים מתקדמים בריפוי פצעים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>טיפול</th><th>עקרון פעולה</th><th>שימוש עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>גורמי גדילה</b> – Becaplermin/Regranex® (rhPDGF)</td><td>מפעיל פיברובלסטים וקרטינוציטים; תלוי ב-ROS לפעילות ביולוגית</td><td>כיבים סוכרתיים; אזהרת FDA לגבי סיכון ממאירות מרוחקת בשימוש &gt;3 שפופרות</td></tr>
+    <tr><td><b>מטריצה חוץ-תאית (ECM)</b> – AlloDerm®, OASIS®, MatriStem®</td><td>שלד קולגן + גורמי גדילה (TGF-β, VEGF, FGF) שמעודדים גרנולציה ואפיתליזציה</td><td>DFU, VLU, כיבי לחץ</td></tr>
+    <tr><td><b>עור מהונדס</b> – Apligraf® (דו-שכבתי), Dermagraft® (פיברובלסטים אנושיים), Integra™</td><td>שלד + שחרור גורמי גדילה לתמיכה בגדילת תאים</td><td>Apligraf/Dermagraft מאושרי FDA ל-DFU/VLU; Integra לכוויות ופצעים מורכבים</td></tr>
+    <tr><td><b>חמצן היפרברי (HBOT)</b></td><td>100% חמצן ב-2-3 אטמוספרות, 60-120 דק', מרווה את הפלזמה בחמצן מומס</td><td>15 אינדיקציות מאושרות CMS; כל 4 מטופלי DFU שמטופלים מונע קטיעה מז'ורית אחת</td></tr>
+    <tr><td><b>חמצן טופיקלי (TO)</b></td><td>100% O2 מקומי מעל אטמוספרה אחת, 90 דק'/יום; מעלה VEGF (בשונה מ-HBOT)</td><td>פצעים עקשניים, בבית המטופל</td></tr>
+    <tr><td><b>NPWT – טיפול בלחץ שלילי</b></td><td>ואקום מכני: כיווץ, מיקרו-מתיחה תאית, הסרת נוזל/בצקת, סביבה לחה יציבה</td><td>DFU, VLU; אסור מעל אנסטומוזה וסקולרית (סיכון דימום)</td></tr>
+    <tr><td><b>אלקטרוצבטיקה (ES/WED)</b></td><td>שדה חשמלי מלאכותי שמחקה את הפוטנציאל הטרנס-אפיתליאלי הטבעי; משפר הגירת קרטינוציטים ומפרק ביופילם (חיישני קוורום)</td><td>חבישה אלחוטית עם מיקרו-סוללות כסף-אבץ (Procellera™)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">11</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">H-I-P-R</span> לארבעת שלבי הריפוי</h3>
+  <p>
+    <b>H</b> – <span class="term" dir="ltr">Hemostasis</span> – עוצרים דימום.<br>
+    <b>I</b> – <span class="term" dir="ltr">Inflammation</span> – מנקים.<br>
+    <b>P</b> – <span class="term" dir="ltr">Proliferation</span> – בונים מחדש.<br>
+    <b>R</b> – <span class="term" dir="ltr">Remodeling</span> – מחזקים לאורך זמן.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני אתר בנייה שנפרץ קיר בו: קודם כל שולחים <b>אטם חירום</b> (המוסטזיס) לעצור את הנזק המיידי. אז מגיע <b>צוות ניקיון</b> (דלקת) שמפנה הריסות ופולשים לא רצויים. אחר כך מגיע <b>צוות בנייה</b> (שגשוג) שמקים פיגומים וממלא את החלל ברקמה חדשה ובכבישים חדשים (כלי דם). ולבסוף, <b>צוות גימור</b> (שיפוץ) שמחליף את החומרים הזמניים והחלשים (קולגן III) בחומרים חזקים לטווח ארוך (קולגן I) – תהליך שיכול להימשך שנים.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>אתר הבנייה של ריפוי הפצע</title>
+    <rect x="0" y="140" width="500" height="10" fill="#a3a3a3"/>
+    <line x1="440" y1="150" x2="440" y2="40" stroke="#b91c1c" stroke-width="4"/>
+    <line x1="330" y1="150" x2="330" y2="30" stroke="#b45309" stroke-width="4"/>
+    <line x1="180" y1="150" x2="180" y2="30" stroke="#2563eb" stroke-width="4"/>
+    <line x1="60" y1="150" x2="60" y2="40" stroke="#047857" stroke-width="4"/>
+    <path d="M440,40 Q250,10 60,40" stroke="#374151" stroke-width="3" fill="none"/>
+    <circle cx="250" cy="120" r="14" fill="#fbbf24" stroke="#78350f"/>
+    <text x="440" y="170" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">אטם חירום</text>
+    <text x="330" y="170" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">ניקיון</text>
+    <text x="180" y="170" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">בנייה</text>
+    <text x="60" y="170" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">גימור</text>
+  </svg>
+</div>
+
+<h2><span class="num">12</span> סרטונים ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=Q3cVCiraAgw" target="_blank">Wound Healing – Stages of Healing and Pathology (YouTube)</a>
+    <div class="desc">סרטון חינוכי נוסף שסוקר את שלבי הריפוי לצד דוגמאות פתולוגיות (ריפוי מופרע, צלקות).</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK470443/" target="_blank">Wound Healing Phases – StatPearls (NCBI Bookshelf)</a>
+    <div class="desc">סקירה עדכנית ונגישה בחינם של פיזיולוגיית שלבי הריפוי, כולל התייחסות לפצעים כרוניים.</div>
+  </li>
+  <li>
+    <a href="https://www.niddk.nih.gov/health-information/professionals/diabetes-discoveries-practice/diabetes-peripheral-arterial-disease-and-foot-ulcers" target="_blank">Diabetes, Peripheral Arterial Disease, and Foot Ulcers – NIDDK</a>
+    <div class="desc">מקור ממשלתי (NIH/NIDDK) על הקשר בין מחלת כלי דם היקפית לכיבים סוכרתיים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">13</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 62 עם סוכרת סוג 2 לא מאוזנת (HbA1c 9.2%) מגיע עם פצע בכף רגל שמאל, מתחת לראש המטטרסל הראשון, קיים כבר 5 שבועות. הפצע נראה ורוד-אפור עם רקמת גרנולציה שבירה, ללא ריח או הפרשה מוגלתית בולטת, אך גם לא מראה סימני החלמה בשבועיים האחרונים. בבדיקה: תחושת מגע (מונופילמנט) נעדרת בכף הרגל, דפקים פריפריים מוחשים אך חלשים. ABI = 1.3 (גבוה מהצפוי). הפצע נראה "סגור למחצה" בשוליו אך המרכז לח ולא מתקדם.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע ABI של 1.3 במטופל זה אינו מרגיע מבחינת זלוף?</div>
+  <button class="opt" data-i="0">ABI מעל 1.0 תמיד מעיד על זרימת דם תקינה לחלוטין</button>
+  <button class="opt" data-i="1">ABI לא רלוונטי כלל להערכת כיב סוכרתי</button>
+  <button class="opt" data-i="2">ערכי ABI יכולים להיות מוגבהים באופן כוזב עקב טרשת עורקים נוקשים (calcification) בסוכרתיים – לכן חובה למדוד גם עם עקומות דופק (waveforms) או TBI/TcOM</button>
+  <button class="opt" data-i="3">ABI גבוה מעיד תמיד על אי-ספיקה ורידית ולא עורקית</button>
+  <div class="explain">התשובה הנכונה: בסוכרתיים כלי הדם עוברים לעיתים קרובות הסתיידות (calcification) שהופכת אותם לפחות דחיסים במדידת חוסם עורקים, מה שמעלה באופן מלאכותי את ה-ABI. הפרק מדגיש במפורש שיש למדוד ABI *עם* עקומות דופק, ואם יש ספק – להשתמש ב-toe-brachial index או transcutaneous oxygen measurement שאינם מושפעים מהסתיידות באותה מידה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. הפצע נראה "סגור למחצה" בשוליו אך לא מתקדם. איזה מנגנון מוסבר בפרק עשוי להסביר פצע שנראה קרוב לסגירה ויזואלית אך לא מחלים בפועל?</div>
+  <button class="opt" data-i="0">חוסר בוויטמין D בלבד</button>
+  <button class="opt" data-i="1">זיהום ביופילם סמוי שמשרה miR-146a ו-miR-106b, המשתיקים חלבוני צומת הדוק (ZO-1, ZO-2) ומעלים TEWL – "סגירה תפקודית" כושלת גם כשנראה סגור חזותית</button>
+  <button class="opt" data-i="2">עודף קולגן מסוג I בלבד</button>
+  <button class="opt" data-i="3">עודף נויטרופילים בשלב מוקדם מדי</button>
+  <div class="explain">התשובה הנכונה: זהו בדיוק המנגנון שהפרק מציג כתובנה מרכזית וחדשה – ביופילם יכול לגרום לפצע להיראות סגור ויזואלית בעוד שמחסום העור עדיין פגום ("leaky skin") עקב השתקת miRNA-תלויה של חלבוני tight junction. זה מסביר שיעורי הישנות גבוהים. שאר האפשרויות אינן מנגנון שתואר בפרק כגורם ל"סגירה תפקודית" כושלת.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע דיברידמנט אלקטיבי לא צריך להתבצע לפני שווידאו זלוף מספק לפצע?</div>
+  <button class="opt" data-i="0">חמצן נדרש הן להרג חיידקים (respiratory burst) והן להבשלת קולגן (הידרוקסילציה תלוית-O2) – בלי זלוף, הסרת רקמה רק חושפת רקמה נוספת בלי יכולת החלמה</button>
+  <button class="opt" data-i="1">דיברידמנט תמיד גורם לזיהום, לכן יש להימנע ממנו לחלוטין</button>
+  <button class="opt" data-i="2">אין קשר בין זלוף לדיברידמנט</button>
+  <button class="opt" data-i="3">דיברידמנט מיועד רק לפצעים נגועים בביופילם</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שחמצן חיוני לשתי פונקציות קריטיות בו-זמנית – חיטוי (הרג חיידקים דרך respiratory burst) ובנייה (הידרוקסילציה של קולגן חדש). ברקמה שאינה מזולפת כראוי, גם אחרי דיברידמנט הרקמה החדשה שנחשפת לא תוכל להחלים, ולכן יש להעריך זלוף (דפקים, ABI/TBI/TcOM) לפני דיברידמנט אלקטיבי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. איזה שינוי בתפקוד מקרופאגים מוביל לדלקת כרונית בפצעים סוכרתיים?</div>
+  <button class="opt" data-i="0">עודף במספר המקרופאגים בלבד, ללא שינוי בתפקוד</button>
+  <button class="opt" data-i="1">מקרופאגים סוכרתיים מפרישים פחות TNF-α מהרגיל</button>
+  <button class="opt" data-i="2">מקרופאגים סוכרתיים עוברים ישירות לפנוטיפ M2 מוקדם מדי</button>
+  <button class="opt" data-i="3">גליקוזילציה של קולטני phosphatidyl serine על המקרופאגים חוסמת זיהוי תאים אפופטוטיים (efferocytosis לקוי), מה שמונע את המעבר מפנוטיפ M1 (פרו-דלקתי) ל-M2 (אנטי-דלקתי) ומנציח ייצור ציטוקינים דלקתיים</button>
+  <div class="explain">התשובה הנכונה: רמות גלוקוז גבוהות גורמות לגליקוזילציה של קולטנים על פני המקרופאג שאמורים לזהות תאים אפופטוטיים (בעיקר נויטרופילים מתים). כשהזיהוי הזה נפגם, ה-efferocytosis (פאגוציטוזה של תאים אפופטוטיים) נכשל, המקרופאגים לא עוברים את המעבר הטבעי מ-M1 ל-M2, וממשיכים לייצר TNF-α, IL-1 ו-IL-6 – מה שמנציח את שלב הדלקת ומונע התקדמות לשלב השגשוג.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו ההבדל העיקרי בין חיידקים בביופילם לחיידקים בצורתם החופשית (planktonic) שהופך את הטיפול בהם לקשה יותר?</div>
+  <button class="opt" data-i="0">חיידקי ביופילם תמיד גורמים לחום גבוה ולתסמינים סיסטמיים בולטים</button>
+  <button class="opt" data-i="1">חיידקי ביופילם גדלים מהר יותר מחיידקים חופשיים</button>
+  <button class="opt" data-i="2">חיידקי ביופילם עטופים במטריצה חוץ-תאית (EPS) שמהווה מעל 90% מהמסה, יוצרת מחסום פיזי לאנטיביוטיקה ולתאי חיסון, וקשה לזהותם בתרבית סטנדרטית</button>
+  <button class="opt" data-i="3">חיידקי ביופילם רגישים יותר לאנטיביוטיקה סיסטמית</button>
+  <div class="explain">התשובה הנכונה: ההבדל המהותי הוא אורח החיים הרב-תאי בתוך מטריצת EPS שמגינה על החיידקים פיזית מפני חדירת תרופות ותאי חיסון, וגם "מסתירה" אותם מתרבית מיקרוביולוגית רגילה (רוב הביופילמים לא מזוהים בתרבית סטנדרטית). בנוסף, ביופילם דווקא מדכא את התגובה החיסונית הגלויה של המארח, ולכן פצע נגוע בביופילם לרוב אינו מציג את הסימנים הקלאסיים של זיהום (חום, מוגלה) – מה שמקשה עוד יותר על האבחנה הקלינית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מטופלת עם כיב ורידי ברגל (VLU) מגיעה עם ABI = 0.5. מה המשמעות הטיפולית המיידית?</div>
+  <button class="opt" data-i="0">יש להתחיל מיד לחיצה (compression) מלאה כמו בכל VLU אחר</button>
+  <button class="opt" data-i="1">לחיצה אסורה במצב זה כי ABI &lt;0.7 מעיד על מחלת עורקים היקפית משמעותית נלווית – יש להעריך זלוף עורקי לפני כל שימוש בלחיצה, אחרת עלולה להיגרם נמק רקמתי</button>
+  <button class="opt" data-i="2">יש להסיר מיד את כל שולי הפצע בניתוח דחוף</button>
+  <button class="opt" data-i="3">ABI לא רלוונטי לטיפול בכיבים ורידיים</button>
+  <div class="explain">התשובה הנכונה: כ-30% מהמטופלים עם VLU סובלים גם ממחלת עורקים היקפית נלווית, ולכן חובה להעריך זאת לפני התחלת לחיצה – טיפול הבחירה המרכזי ב-VLU. לחיצה במטופל עם זלוף עורקי לקוי (ABI &lt;0.7) עלולה לגרום לנמק רקמתי חמור. הפרק קובע במפורש שיש להשתמש ב-TBI &gt;0.6 או TcOM &gt;30 mmHg לאישור זלוף מספק לפני לחיצה כשה-ABI גבולי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">14</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ריפוי פצע = 4 שלבים חופפים: <b>המוסטזיס &#8592; דלקת &#8592; שגשוג &#8592; שיפוץ</b>. פצע כרוני = תקוע בשלב הדלקת.</li>
+    <li>המוסטזיס: מסלול חוץ (TF+FVII, טריגר) + מסלול פנים (FXI/IX/VIII, הגברה) &#8594; תרומבין &#8594; פיברין. תרומבין הוא הגשר בין המוסטזיס לדלקת.</li>
+    <li>דלקת: נויטרופילים (פאגוציטוזה, NETs) &#8592; מקרופאגים (M1&#8594;M2 = מפתח ליישוב הדלקת; בסוכרת ה-efferocytosis לקוי ותקועים ב-M1).</li>
+    <li>שגשוג: רקמת גרנולציה (קולגן III&#8594;I) + אנגיוגנזה (VEGF&#8594;VEGFR-2&#8594;פריציטים מייצבים).</li>
+    <li>סגירה: כיווץ (מיופיברובלסטים) + אפיתליזציה (הגירה=צוואר הבקבוק, ריבוי, התמיינות של קרטינוציטים).</li>
+    <li>3 טכניקות סגירה: כוונה ראשונה/שנייה/שלישית. חוזק תפרים: 10%/30%/80% ב-2/4/6 שבועות, לעולם לא 100%.</li>
+    <li>פצע כרוני: זיהום/ביופילם (EPS, עמיד לאנטיביוטיקה, לא מזוהה בתרבית) + היפוקסיה (3 גורמים: מחלת כלי דם, ביקוש מוגבר, ROS). "סגירה תפקודית" (TEWL, ZO-1/2) &#8800; סגירה חזותית.</li>
+    <li>DFU: נוירופתיה+איסכמיה+עיוות, off-loading. VLU: אי-ספיקה ורידית, compression (אלא אם ABI&lt;0.7).</li>
+    <li>טיפולים מתקדמים: גורמי גדילה (PDGF), ECM, עור מהונדס, HBOT/TO, NPWT, אלקטרוצבטיקה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
