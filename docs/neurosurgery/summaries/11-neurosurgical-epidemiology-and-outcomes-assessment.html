@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 11: אפידמיולוגיה נוירוכירורגית והערכת תוצאים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 11: אפידמיולוגיה נוירוכירורגית והערכת תוצאים <span class="term" dir="ltr">Neurosurgical Epidemiology and Outcomes Assessment</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Hugh Garton, Frederick G. Barker II, Stephen J. Haines</div>
+
+<p>הפרק הזה שונה בסוגו משאר פרקי הספר: הוא לא עוסק באיבר, מחלה או ניתוח ספציפיים, אלא ב<b>"ערכת הכלים"</b> שנוירוכירורג צריך כדי לקרוא מאמר בביקורתיות, לתכנן מחקר קליני, ולדעת כמה לסמוך על תוצאה שהוא רואה בספרות. הרעיון המרכזי שחוזר לאורך כל הפרק: כל מסקנה קלינית ("הטיפול הזה עוזר", "הבדיקה הזו מדויקת") חשופה לשני סוגי שגיאה שונים לגמרי באופיים - <b>שגיאה אקראית</b> (רעש שממוצע ומצטמצם עם יותר חולים) ו-<b>הטיה/הטיה שיטתית (Bias)</b> (עיוות שנובע מעיצוב המחקר עצמו, ולא נפתר עם יותר חולים - רק עם תכנון טוב יותר). כל הכלים בפרק - עיצובי מחקר, תכונות בדיקה אבחנתית, מהימנות ומטא-אנליזה - הם בעצם אסטרטגיות שונות להתמודד עם שני סוגי השגיאה האלה.</p>
+
+<h2><span class="num">1</span> שני סוגי שגיאה: רעש אקראי מול הטיה שיטתית</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל צריך להבחין בין שני סוגי שגיאה? כי הפתרון לכל אחת מהן שונה לחלוטין, וטעות נפוצה היא לנסות "לפתור" הטיה עם כלים סטטיסטיים -
+  </p>
+  <p>
+    <b>שגיאה אקראית (רעש):</b> נובעת מהשונות הטבעית בין נבדקים ובמדידה עצמה. היא פוגעת <b>באופן שווה</b> בקבוצת הניסוי ובקבוצת הביקורת, וניתן לכמת אותה ולצמצם אותה סטטיסטית - בעיקר על ידי <b>הגדלת גודל המדגם</b>.<br>
+    <b>הטיה (Bias):</b> נובעת מפגם מובנה, מכוון או לא-מכוון, בעיצוב הניסוי - והיא פוגעת <b>באופן שיטתי בקבוצה אחת דווקא</b>. אף מבחן סטטיסטי לא "יתריע" עליה, ושום הגדלה של המדגם לא תתקן אותה - היא נפתרת רק בתכנון מחדש של המחקר.
+  </p>
+  <p>
+    הדוגמה מהפרק: אם רוצים לקבוע את היקף הראש הממוצע של תינוקות בני יומם, ומודדים רק תינוקות שנולדו בשבוע אחד - יש <b>שגיאה אקראית</b> (מדגם קטן מדי, ניתן לתקן בהגדלת המדגם). אבל אם בוחרים למדוד רק תינוקות ב<span dir="ltr" class="term">NICU</span> (טיפול נמרץ ילודים) ומדווחים על התוצאה כאילו היא מייצגת את כלל התינוקות - זו <b>הטיה מובנית</b>: תינוקות בטיפול נמרץ שונים באופן שיטתי מהאוכלוסייה הכללית, ושום מבחן סטטיסטי וגם לא הגדלת המדגם לא יחשפו את זה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שגיאה אקראית מול הטיה שיטתית</title>
+  <desc>שתי שרשראות מקבילות המראות את מקור השגיאה, אופי ההשפעה, ואת הדרך היחידה לתקן אותה</desc>
+  <rect x="10" y="10" width="330" height="280" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="175" y="35" font-size="15" text-anchor="middle" fill="#1e3a8a" font-weight="700">שגיאה אקראית (Noise)</text>
+  <rect x="30" y="55" width="290" height="50" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="175" y="76" font-size="12" text-anchor="middle" fill="#1e3a8a">שונות טבעית בין נבדקים / במדידה</text>
+  <text x="175" y="93" font-size="10.5" text-anchor="middle" fill="#4b5563">(לא כוונת מכוון, "רעש")</text>
+  <line x1="175" y1="105" x2="175" y2="125" stroke="#2563eb" stroke-width="2" marker-end="url(#arr1)"/>
+  <rect x="30" y="128" width="290" height="45" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="175" y="155" font-size="12" text-anchor="middle" fill="#1e3a8a">פוגעת שווה בשתי הקבוצות</text>
+  <line x1="175" y1="173" x2="175" y2="193" stroke="#2563eb" stroke-width="2" marker-end="url(#arr1)"/>
+  <rect x="30" y="196" width="290" height="45" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="175" y="216" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">ניתנת לכימות סטטיסטי</text>
+  <text x="175" y="232" font-size="10.5" text-anchor="middle" fill="#1e3a8a">תיקון: הגדלת גודל המדגם</text>
+
+  <rect x="360" y="10" width="330" height="280" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="525" y="35" font-size="15" text-anchor="middle" fill="#7f1d1d" font-weight="700">הטיה (Bias)</text>
+  <rect x="380" y="55" width="290" height="50" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="525" y="76" font-size="12" text-anchor="middle" fill="#7f1d1d">פגם מובנה בעיצוב המחקר</text>
+  <text x="525" y="93" font-size="10.5" text-anchor="middle" fill="#4b5563">(דגימה, מדידה, ניתוח)</text>
+  <line x1="525" y1="105" x2="525" y2="125" stroke="#b91c1c" stroke-width="2" marker-end="url(#arr2)"/>
+  <rect x="380" y="128" width="290" height="45" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="525" y="155" font-size="12" text-anchor="middle" fill="#7f1d1d">פוגעת שיטתית בקבוצה אחת</text>
+  <line x1="525" y1="173" x2="525" y2="193" stroke="#b91c1c" stroke-width="2" marker-end="url(#arr2)"/>
+  <rect x="380" y="196" width="290" height="45" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="525" y="216" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">אינה ניתנת לכימות סטטיסטי</text>
+  <text x="525" y="232" font-size="10.5" text-anchor="middle" fill="#7f1d1d">תיקון: תכנון מחדש של המחקר בלבד</text>
+  <defs>
+    <marker id="arr1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker>
+    <marker id="arr2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b91c1c"/></marker>
+  </defs>
+  <text x="350" y="270" font-size="20" text-anchor="middle" fill="#6b7280" font-weight="700">≠</text>
+</svg>
+
+<p>מושגים נוספים שנשענים על אותה חלוקה: <b>שגיאה מסוג I (α)</b> - המסקנה השגויה שיש הבדל בין קבוצות כשבפועל אין (נקבעת שרירותית ב-5%). <b>שגיאה מסוג II (β)</b> - המסקנה השגויה שאין הבדל כשבפועל יש (שכיחה יותר, ולעיתים קרובות לא מדווחת). <b><span dir="ltr" class="term">Power</span> (עוצמה סטטיסטית)</b> = 1−β, כלומר ההסתברות לזהות הבדל אמיתי בהינתן גודל המדגם - וככל שהמדגם גדול יותר, העוצמה גבוהה יותר. כשמבצעים כמה מבחנים סטטיסטיים על אותם נתונים, ההסתברות למצוא "תוצאה חיובית מקרית" עולה (לדוגמה, 6 השוואות ב-P&lt;.05 נותנות כ-25% סיכוי לפחות לתוצאה שגויה אחת) - ולכן משתמשים בתיקון <span dir="ltr" class="term">Bonferroni</span> (חלוקת רף המובהקות במספר המבחנים).</p>
+
+<div class="key-box">שגיאה אקראית = "רעש" שמצטמצם עם עוד חולים. הטיה = פגם בתכנון שלא נפתר עם עוד חולים - רק עם עיצוב מחקר טוב יותר.</div>
+
+<h2><span class="num">2</span> שליטה במשתני בלבול (<span dir="ltr" class="term">Confounders</span>) - שש אסטרטגיות</h2>
+<p>משתנה מבלבל (<span dir="ltr" class="term">confounder</span>) הוא גורם שקשור גם לחשיפה וגם לתוצאה, ומעוות את הקשר האמיתי ביניהן (למשל: יתר לחץ דם כמבלבל בין עישון לשבץ). הפרק מפרט שש אסטרטגיות להתמודדות איתו:</p>
+<div class="table-scroll">
+<table>
+<tr><th>אסטרטגיה</th><th>איך זה עובד</th><th>מגבלה עיקרית</th></tr>
+<tr><td><b>הדרה (<span dir="ltr" class="term">Exclusion</span>)</b></td><td>מסירים מהמחקר את כל הנבדקים עם גורם הסיכון המתחרה</td><td>מפספסת אינטראקציות חשובות, מקטינה מדגם, פוגעת בהכללה</td></tr>
+<tr><td><b>סטנדרטיזציה</b></td><td>משווים שכיחות צפויה (לפי נתונים פורסמים, כמו גיל) לשכיחות בפועל</td><td>עובדת רק כשיש נתוני ייחוס זמינים; לא בוחנת אינטראקציה</td></tr>
+<tr><td><b>הצטברות/הבחנה לשכבות (<span dir="ltr" class="term">Stratification</span>)</b></td><td>מריצים "ניסוי מקביל" נפרד לכל שכבת סיכון</td><td>מגביל את מספר הגורמים שניתן לשלוט בהם בו-זמנית (מדגם קטן לכל שכבה)</td></tr>
+<tr><td><b>התאמה (<span dir="ltr" class="term">Matching</span>)</b></td><td>מתאימים כל נבדק בביקורת לנבדק מקביל בקבוצת המקרים</td><td>אותה מגבלה כמו הצטברות; קשה להתאים על כמה גורמים יחד</td></tr>
+<tr><td><b>מידול (<span dir="ltr" class="term">Modeling</span>)</b></td><td>רגרסיה מרובת-משתנים (למשל <span dir="ltr" class="term">logistic regression</span>) ששוקלת כמה גורמים בו-זמנית</td><td>מגבלות מדגם; עלולה "לתת פירוש יתר" (<span dir="ltr" class="term">overmodeling</span>) לנתונים</td></tr>
+<tr><td><b>אקראיות (<span dir="ltr" class="term">Randomization</span>)</b></td><td>הקצאה אקראית לקבוצות</td><td>יקרה; אך זו <b>היחידה</b> מבין השש שמאזנת גם משתני בלבול <u>לא ידועים</u></td></tr>
+</table>
+</div>
+<div class="key-box">חמש האסטרטגיות הראשונות מטפלות רק במשתני בלבול <b>שכבר זיהינו</b>. רק אקראיות מגנה גם מפני משתנים שאפילו לא חשבנו עליהם - ולכן היא "תקן הזהב" למחקר התערבותי.</div>
+
+<h2><span class="num">3</span> תכונות של בדיקה אבחנתית: רגישות, סגוליות וערכים מנבאים</h2>
+<p>כל בדיקה או ממצא קליני (בדיקה גופנית, בדיקת דם, הדמיה) אפשר לאפיין דרך טבלת 2&times;2 שמשווה תוצאת הבדיקה למחלה בפועל:</p>
+<div class="table-scroll">
+<table>
+<tr><th></th><th>מחלה קיימת</th><th>מחלה לא קיימת</th><th>ערכים מנבאים</th></tr>
+<tr><td><b>ממצא חיובי</b></td><td>A (חיובי אמיתי)</td><td>B (חיובי כוזב)</td><td><span dir="ltr" class="term">PPV</span> = a/(a+b)</td></tr>
+<tr><td><b>ממצא שלילי</b></td><td>C (שלילי כוזב)</td><td>D (שלילי אמיתי)</td><td><span dir="ltr" class="term">NPV</span> = d/(c+d)</td></tr>
+<tr><td></td><td><span dir="ltr" class="term">Sensitivity</span> = a/(a+c)</td><td><span dir="ltr" class="term">Specificity</span> = d/(b+d)</td><td>שכיחות = (a+c)/הכול</td></tr>
+</table>
+</div>
+<p><b>רגישות (<span dir="ltr" class="term">Sensitivity</span>)</b> - אחוז החולים <i>עם</i> המחלה שהבדיקה תפסה נכון. <b>סגוליות (<span dir="ltr" class="term">Specificity</span>)</b> - אחוז הבריאים שהבדיקה זיהתה נכון כשליליים. ההבדל החשוב מ<span dir="ltr" class="term">PPV</span>/<span dir="ltr" class="term">NPV</span>: רגישות וסגוליות מתארות ביצועים בתוך קבוצה שכבר יודעים אם יש לה את המחלה - ולכן הן <b>לא</b> עונות על השאלה הקלינית האמיתית ("יש לי ממצא חיובי - מה הסיכוי שיש לי את המחלה?"). לשאלה הזו עונים <span dir="ltr" class="term">PPV</span> ו-<span dir="ltr" class="term">NPV</span>, אבל הם תלויים חזק ב<b>שכיחות המחלה</b> באוכלוסייה הנבדקת.</p>
+
+<div class="mnemonic">
+<h3>SnNout ו-SpPin</h3>
+<p><b><span dir="ltr" class="term">SnNout</span></b>: כשהרגישות (<span dir="ltr" class="term">Sn</span>) גבוהה מאוד, ממצא <b>שלילי</b> נוטה <b>לשלול</b> (<span dir="ltr" class="term">out</span>) את המחלה - כי כמעט אין שליליים כוזבים. <b><span dir="ltr" class="term">SpPin</span></b>: כשהסגוליות (<span dir="ltr" class="term">Sp</span>) גבוהה מאוד, ממצא <b>חיובי</b> נוטה <b>לאשש</b> (<span dir="ltr" class="term">in</span>) את המחלה - כי כמעט אין חיוביים כוזבים. הפרק מזהיר: זה כלל אצבע שימושי, לא חוק מוחלט.</p>
+</div>
+
+<p>השפעת השכיחות על הערכים המנבאים (מתוך הפרק, רגישות וסגוליות זהות = 90% בשני המקרים):</p>
+<div class="table-scroll">
+<table>
+<tr><th>מחלה שכיחה (שכיחות 50%)</th><th>ממצא חיובי</th><th>ממצא שלילי</th></tr>
+<tr><td>מחלה קיימת</td><td>45</td><td>5</td></tr>
+<tr><td>מחלה לא קיימת</td><td>5</td><td>45</td></tr>
+<tr><td colspan="3"><b><span dir="ltr" class="term">PPV</span> = 90%, <span dir="ltr" class="term">NPV</span> = 90%</b></td></tr>
+</table>
+<table>
+<tr><th>מחלה נדירה (שכיחות 10%)</th><th>ממצא חיובי</th><th>ממצא שלילי</th></tr>
+<tr><td>מחלה קיימת</td><td>9</td><td>1</td></tr>
+<tr><td>מחלה לא קיימת</td><td>9</td><td>81</td></tr>
+<tr><td colspan="3"><b><span dir="ltr" class="term">PPV</span> = 50% בלבד (!), <span dir="ltr" class="term">NPV</span> = 99%</b></td></tr>
+</table>
+</div>
+<p>למה זה קורה? כשהמחלה נדירה, גם סגוליות "טובה" (90%) עדיין מייצרת הרבה חיוביים כוזבים <i>ביחס</i> למספר הקטן של חיוביים אמיתיים - ולכן <span dir="ltr" class="term">PPV</span> צונח. זו הסיבה שבדיקות סינון (<span dir="ltr" class="term">screening</span>) במחלות נדירות (למשל <span dir="ltr" class="term">MRI</span> סינון לאנוריזמות מוחיות במחלת כליות פוליציסטית) מייצרות הרבה תוצאות חיוביות כוזבות ובדיקות המשך מיותרות.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Roc_curve.svg?width=700" alt="עקומת ROC">
+<p class="media-cap">עקומת <span dir="ltr" class="term">ROC</span> (<span dir="ltr" class="term">Receiver Operating Characteristic</span>) - מתארת את הרגישות מול (1−סגוליות) בכל סף החלטה אפשרי לבדיקה; ככל שהעקומה קרובה יותר לפינה השמאלית-עליונה, הבדיקה מבחינה טוב יותר בין חולה לבריא. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Z5TtopYX1Gc" title="Sensitivity and Specificity Explained Clearly" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר ביוסטטיסטי ברור על רגישות וסגוליות, כולל דוגמאות מספריות (ערוץ MedCram).</p>
+
+<p><b><span dir="ltr" class="term">Likelihood Ratios</span> (יחסי סבירות, <span dir="ltr" class="term">LR</span>)</b> פותרים את בעיית התלות בשכיחות: <span dir="ltr" class="term">LR</span> מבטא פי כמה סביר יותר שממצא מסוים יופיע בחולה לעומת בריא. <span dir="ltr" class="term">LR</span> של 4 אומר שהממצא סביר פי 4 בחולה - ואפשר פשוט <b>לכפול</b> את הסיכויים (<span dir="ltr" class="term">odds</span>) הטרום-בדיקה ב-<span dir="ltr" class="term">LR</span> כדי לקבל את הסיכויים לאחר הבדיקה, בלי לחשב מחדש עבור כל שכיחות.</p>
+
+<h2><span class="num">4</span> גישה בייסיאנית לאבחנה: הסתברות טרום ואחר בדיקה</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה חשוב לחשוב על הסתברות "טרום-בדיקה"? כי כל בדיקה לא מתחילה מאפס - היא <b>מעדכנת</b> הסתברות שכבר קיימת מהאנמנזה.
+  </p>
+  <p>
+    <b>שלב 1:</b> אלמנטים ראשוניים מהאנמנזה (למשל: תינוק עם שאנט להידרוצפלוס, חודשים ספורים אחרי הניתוח, עם הקאות) נותנים <b>הסתברות טרום-בדיקה (<span dir="ltr" class="term">pretest probability</span>)</b> בסיסית - למשל, כ-30% מהילדים שמגיעים לנוירוכירורג בתוך 3 חודשים מהשתלת שאנט ראשונה יימצאו סובלים מכשל שאנט.<br>
+    <b>שלב 2:</b> כל ממצא נוסף בבדיקה הגופנית או בדיקת עזר (כמו <span dir="ltr" class="term">CT</span> או ניקור שאנט) <b>מעדכן</b> את ההסתברות הזו כלפי מעלה או מטה, לפי הרגישות/סגוליות/<span dir="ltr" class="term">LR</span> שלו.<br>
+    <b>שלב 3:</b> ההסתברות ה"אחר-בדיקה" (<span dir="ltr" class="term">posttest probability</span>) המצטברת היא זו שבסופו של דבר מנחה את ההחלטה הקלינית (לנתח? להדמות? לעקוב?).
+  </p>
+</div>
+<p><b>כללי החלטה קליניים (<span dir="ltr" class="term">Clinical Decision Rules</span>)</b> משלבים כמה סימנים/תסמינים לאלגוריתם אחד. דוגמה מהפרק: מחקר <span dir="ltr" class="term">NEXUS</span> (<span dir="ltr" class="term">National Emergency X-Radiography Utilization Study</span>) פיתח כלל שקובע אילו חולים לאחר טראומה קהה זקוקים לצילום עמוד שדרה צווארי - כלי שנועד לצמצם צילומים מיותרים בלי לפספס פציעות.</p>
+
+<h2><span class="num">5</span> מדידה קלינית: תוקף, מהימנות, והסכמה בין בודקים</h2>
+<p>כל סולם מדידה קליני (למשל <span dir="ltr" class="term">GCS</span>, <span dir="ltr" class="term">mRS</span>) צריך להיות <b>תקף</b> (<span dir="ltr" class="term">valid</span> - מודד באמת מה שהוא אמור), <b>מהימן</b> (<span dir="ltr" class="term">reliable</span> - נותן תוצאה עקבית) ו<b>רגיש לשינוי</b> (<span dir="ltr" class="term">responsive</span> - שינוי אמיתי במצב מתבטא בשינוי בציון).</p>
+<div class="table-scroll">
+<table>
+<tr><th>סוג תוקף</th><th>מה בודקים</th></tr>
+<tr><td><span dir="ltr" class="term">Face validity</span></td><td>האם הסולם נראה על פניו שמודד את מה שהוא אמור?</td></tr>
+<tr><td><span dir="ltr" class="term">Content validity</span></td><td>האם הוא מכסה את כל התחומים הרלוונטיים למחלה?</td></tr>
+<tr><td><span dir="ltr" class="term">Construct validity</span></td><td>האם ביצועי הסולם תואמים את מה שמצפים לפי הבנת הפתופיזיולוגיה?</td></tr>
+<tr><td><span dir="ltr" class="term">Criterion validity</span></td><td>האם הוא מתאים לסולם "תקן זהב" ארוך ומבוסס יותר?</td></tr>
+</table>
+</div>
+<p><b>מהימנות (<span dir="ltr" class="term">Reliability</span>)</b> נמדדת לרוב במקדם מתאם תוך-מחלקתי (<span dir="ltr" class="term">ICC</span>, <span dir="ltr" class="term">Intraclass Correlation Coefficient</span>), בין 0 (אין מהימנות) ל-1 (מהימנות מושלמת). נוסחה שימושית: השורש הריבועי של (1−<span dir="ltr" class="term">ICC</span>) נותן את אחוז סטיית התקן שמקורו בשגיאת מדידה. לדוגמה, <span dir="ltr" class="term">ICC</span> של 0.9 &rarr; שורש(1−0.9)=0.32, כלומר כ-<b>30%</b> מהשונות נובעת משגיאת מדידה גרידא, לא משוני אמיתי בין חולים.</p>
+
+<p><b>הסכמה קלינית (<span dir="ltr" class="term">Clinical Agreement</span>) וסטטיסטיקת <span dir="ltr" class="term">Kappa (&kappa;)</span>:</b> כשמדובר בסימן שנצפה על ידי שני בודקים, פשוט "אחוז ההסכמה" מטעה - כי חלק מההסכמה קורה <b>במקרה</b>. <span dir="ltr" class="term">Kappa</span> מתקן בדיוק לזה. דוגמה מספרית מהפרק:</p>
+<div class="table-scroll">
+<table>
+<tr><th></th><th>בודק 2: חיובי (70%)</th><th>בודק 2: שלילי (30%)</th></tr>
+<tr><td><b>בודק 1: חיובי (70%)</b></td><td>70%&times;70% = 49%</td><td>70%&times;30% = 21%</td></tr>
+<tr><td><b>בודק 1: שלילי (30%)</b></td><td>30%&times;70% = 21%</td><td>30%&times;30% = 9%</td></tr>
+</table>
+</div>
+<p>אם שני הבודקים מזהים את הממצא ב-70% מהמקרים כל אחד בנפרד, <b>הסכמה מקרית צפויה</b> = 49%+9% = <b>58%</b>. אם בפועל הם מסכימים ב-80% מהמקרים: <span dir="ltr" class="term">&kappa;</span> = (הסכמה בפועל − הסכמה מקרית) / (100% − הסכמה מקרית) = (80−58)/(100−58) = 22/42 &asymp; <b>0.52</b> (הסכמה בינונית, לפי הסולם המקובל: 0–0.2 קלה, 0.2–0.4 סבירה, 0.4–0.6 בינונית, 0.8–1.0 גבוהה).</p>
+<div class="key-box">אחוז הסכמה "גולמי" תמיד מנופח - חלק ממנו קורה במקרה בלבד. <span dir="ltr" class="term">Kappa</span> הוא ההסכמה <b>מעבר</b> למה שהיה קורה גם אם שני הבודקים ניחשו אקראית.</div>
+
+<h2><span class="num">6</span> עיצובי מחקר: מהתיאורי לניסוי מבוקר אקראי</h2>
+<p>עיצובי המחקר נבדלים בעיקר במידת ההגנה שהם מספקים מפני הטיה - ולא סתם "רשימת סוגים", אלא <b>סולם</b> שבו כל שלב פותר בעיה שהקודם לו לא פתר:</p>
+<div class="table-scroll">
+<table>
+<tr><th>קטגוריה</th><th>עיצוב</th><th>מגבלה עיקרית</th></tr>
+<tr><td rowspan="3"><b>תיאורי</b></td><td>דוח/סדרת מקרים</td><td>אין קבוצת ביקורת; טוב לזיהוי אירועים נדירים בלבד</td></tr>
+<tr><td>סקר חתך (<span dir="ltr" class="term">Cross-sectional</span>)</td><td>"תמונת מצב" רגעית - לא ניתן לקבוע סיבתיות</td></tr>
+<tr><td>קוהורט תיאורי</td><td>מתאר מהלך לאורך זמן, בלי השוואת טיפולים</td></tr>
+<tr><td rowspan="3"><b>אנליטי-תצפיתי</b></td><td><span dir="ltr" class="term">Case-Control</span></td><td>רגיש מאוד להטיה בבחירת קבוצת הביקורת; נותן <span dir="ltr" class="term">Odds Ratio</span> (לא <span dir="ltr" class="term">Relative Risk</span>) כי אין שכיחות אמיתית באוכלוסייה</td></tr>
+<tr><td><span dir="ltr" class="term">Cohort</span> - רטרוספקטיבי</td><td>חיפוש לא-אחיד אחר חשיפה/תוצאה בין הקבוצות (הטיית חשד אבחנתי)</td></tr>
+<tr><td><span dir="ltr" class="term">Cohort</span> - פרוספקטיבי</td><td>אבדן מעקב לאורך זמן; יקר</td></tr>
+<tr><td rowspan="2"><b>אנליטי-התערבותי</b></td><td>ניסוי מבוקר לא-אקראי</td><td>הטיית בחירה בהקצאה לפי שיקול דעת הרופא/החולה</td></tr>
+<tr><td><b><span dir="ltr" class="term">RCT</span></b></td><td>יקר; יכול להגביל את יכולת ההכללה</td></tr>
+<tr><td><b>הצטברות ראיות</b></td><td>מטא-אנליזה</td><td>מוגבל באיכות המחקרים המקוריים</td></tr>
+</table>
+</div>
+<p>למה דווקא <span dir="ltr" class="term">Case-Control</span> נותן יחס סיכויים (<span dir="ltr" class="term">Odds Ratio</span>) ולא סיכון יחסי (<span dir="ltr" class="term">Relative Risk</span>)? כי הבחירה של קבוצת הביקורת אינה אקראית מהאוכלוסייה הכללית - ולכן אין למחקר נתון אמיתי על שכיחות גורם הסיכון באוכלוסייה, רק על היחס בין המקרים לביקורות.</p>
+
+<p><b>ניתוח הישרדות (<span dir="ltr" class="term">Survival Analysis</span>):</b> כשהתוצאה הנמדדת היא "זמן עד אירוע" (הישנות גידול, שבץ, מוות) - למשל בקוהורט אונקולוגי - משתמשים בעקומות <span dir="ltr" class="term">Kaplan-Meier</span> (מתחשבות גם בזמן שכל נבדק היה חלק מהמעקב), משוות בין קבוצות עם מבחן <span dir="ltr" class="term">Log-rank</span>, ומודלות באופן רב-משתני עם מודל <span dir="ltr" class="term">Cox Proportional Hazards</span>.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kaplan-Meier_plot_of_AML_survival.svg?width=700" alt="עקומת שרידות Kaplan-Meier">
+<p class="media-cap">עקומת <span dir="ltr" class="term">Kaplan-Meier</span> אמיתית להשוואת הישרדות בין קבוצות חולי לוקמיה מיאלואידית חריפה - כל "מדרגה" מייצגת אירוע (מוות), והציר האופקי הוא זמן מעקב. מקור: Wikimedia Commons.</p>
+
+<p><b>מאגרי מידע גדולים:</b> <span dir="ltr" class="term">Case registries</span> (כמו <span dir="ltr" class="term">NSQIP</span>, <span dir="ltr" class="term">SEER</span>) אוספים נתונים עשירים על אבחנה/הליך ספציפי; <span dir="ltr" class="term">administrative databases</span> (כמו ה-<span dir="ltr" class="term">NIS</span> האמריקאי) מכסים כמעט כל אשפוז אך עם פירוט קליני דל (מבוססים על קידוד <span dir="ltr" class="term">ICD-9</span> שלא תמיד מדויק). הם מאפשרים מחקרי "דפוסי טיפול", מחקרי נפח-תוצאה (<span dir="ltr" class="term">volume-outcome</span> - האם מרכזים עתירי-נפח משיגים תוצאות טובות יותר), ומחקרי אי-שוויון בטיפול, אך סובלים מהיעדר מעקב ארוך-טווח ומקושי בהתאמת סיכון (<span dir="ltr" class="term">risk adjustment</span>) מדויקת.</p>
+
+<h3>הטיות נפוצות במחקר קליני (דוגמאות מהפרק)</h3>
+<div class="table-scroll">
+<table>
+<tr><th>הטיה</th><th>הסבר קצר</th></tr>
+<tr><td><b>הטיית חוסר-חשיפה (<span dir="ltr" class="term">Unmasking bias</span>)</b></td><td>גורם שגורם לתסמין מוביל לחיפוש אגרסיבי יותר אחר המחלה. דוגמה מהפרק: תרופה שגורמת לכאבי ראש &larr; מובילה ליותר בדיקות <span dir="ltr" class="term">MRI</span> &larr; "מגלה" יותר ציסטות ארכנואידיות - מסקנה שגויה שהתרופה "גורמת" לציסטות</td></tr>
+<tr><td><b>הטיית מסנן ההפניה (<span dir="ltr" class="term">Referral filter bias</span>)</b></td><td>חולים המופנים למרכזים שלישוניים אינם מייצגים את חומרת המחלה באוכלוסייה הכללית</td></tr>
+<tr><td><b>הטיית זיכרון (<span dir="ltr" class="term">Recall bias</span>)</b></td><td>חולים עם התוצאה נשאלים/נזכרים שוב ושוב, ולכן מדווחים על חשיפה בשכיחות גבוהה יותר מבריאים</td></tr>
+<tr><td><b>שכרון-נתונים (<span dir="ltr" class="term">Data dredging</span>)</b></td><td>בדיקת שאלות רבות בנתונים עד שנמצא משהו "מובהק סטטיסטית" - מוגן ע"י פרסום פרוטוקול מראש</td></tr>
+</table>
+</div>
+
+<h2><span class="num">7</span> הערכת טכנולוגיה כירורגית חדשה: ארבעה שלבים</h2>
+<p>בניגוד לתרופות (שעוברות תהליך מוסדר על ידי ה-<span dir="ltr" class="term">FDA</span>), הליכים כירורגיים חדשים אינם מפוקחים באותה קפדנות - אך העקרונות המדעיים זהים. הפרק מתאר תהליך של ארבעה שלבים, שהוא בעצם ה"מהלך הניתוחי" של הכנסת טכנולוגיה חדשה לעולם:</p>
+<div class="table-scroll">
+<table>
+<tr><th>שלב</th><th>מטרה</th><th>מאפיינים</th></tr>
+<tr><td><b>שלב I</b></td><td>ישימות (<span dir="ltr" class="term">Feasibility</span>)</td><td>יישום ראשוני על מטופלים שאין להם חלופה סבירה; ליטוש הטכניקה, זיהוי הסיכונים העיקריים</td></tr>
+<tr><td><b>שלב II</b></td><td>הערכת יעילות וסיכון</td><td>קבוצה גדולה יותר עם מחלה אחידה יחסית; קריטריוני הכללה/הדרה מוגדרים מראש, ניטור סיבוכים ספציפי</td></tr>
+<tr><td><b>שלב III</b></td><td>ניסוי מבוקר אקראי</td><td>הליך סטנדרטי, ניתן ללימוד למנתחים נוספים, קריטריונים ברורים ותוצא אובייקטיבי</td></tr>
+<tr><td><b>שלב IV</b></td><td>מעקב שוק (<span dir="ltr" class="term">Postmarketing</span>)</td><td>הרחבה לפרקטיקה כללית - כאן נכנסת חוסר-האחידות בכישורי המנתח, חומרת המחלה והיענות המטופל</td></tr>
+</table>
+</div>
+<div class="key-box">בשלב II - חובה שהתוצאות ייבחנו על ידי צד "לא מעורב" (לא המנתח, לא המטופל) כדי למנוע את ההטיה העצומה שנובעת מהרצון של שניהם שהניתוח "יצליח" במצב נואש.</div>
+<p><b>אתגרים ייחודיים לניסויים כירורגיים מבוקרים אקראיים:</b> אי-אפשר "לעוור" (<span dir="ltr" class="term">blind</span>) בדרך כלל לא את המנתח ולא את המטופל להקצאה; לכן משתמשים בהערכת תוצא על ידי גורם שאינו חלק מצוות הניתוח, ובתוצאים "קשים" (מוות, שבץ) שפחות פגיעים להטיית ציפייה. יש מחלוקת מתמשכת סביב ניתוחי דמה (<span dir="ltr" class="term">sham surgery</span>) כביקורת, וסביב עקומת הלמידה (<span dir="ltr" class="term">learning curve</span>) - מתי בדיוק בציר הזמן של אימוץ ההליך ראוי לבצע את הניסוי. חריג נדיר: כשההיסטוריה הטבעית של המחלה ידועה וקבועה, ואין טיפול קיים יעיל (למשל גליובלסטומה), הליך שמשיג הישרדות טובה משמעותית ב-<span dir="ltr" class="term">Phase II</span> עשוי שלא להצדיק המתנה לניסוי אקראי.</p>
+
+<h2><span class="num">8</span> מטא-אנליזה, סקירה שיטתית ודירוג ראיות מצטברות</h2>
+<p><b>מטא-אנליזה</b> משלבת מתמטית תוצאות מכמה מחקרים לאומדן אפקט טיפול יחיד. ארבעת השלבים: ניסוח שאלה ממוקדת &larr; איסוף נתונים (סקירה שיטתית של ספרות מפורסמת <b>ולא-מפורסמת</b>) &larr; הערכת איכות המחקרים &larr; שילוב סטטיסטי (שיטת אפקטים-קבועים או אפקטים-אקראיים).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Generic_forest_plot.png?width=700" alt="Forest plot של מטא-אנליזה">
+<p class="media-cap"><span dir="ltr" class="term">Forest plot</span> טיפוסי: כל שורה היא מחקר בודד (אומדן האפקט + רווח סמך), והמעוין (<span dir="ltr" class="term">diamond</span>) התחתון מייצג את האומדן המשולב של כל המחקרים יחד. מקור: Wikimedia Commons.</p>
+<p>למה חשוב לחפש גם ספרות <b>לא-מפורסמת</b>? כי מחקרים עם תוצאה שלילית נוטים להתפרסם פחות ("בעיית מגירת התיוקים") - תופעה שנקראת <b>הטיית פרסום</b>. רישום מוקדם של ניסויים ב-<span dir="ltr" class="term">clinicaltrials.gov</span> נועד למנוע את זה. חשוב גם: שילוב מחקרים לא-אקראיים במטא-אנליזה "מחליק פנימה" את כל ההטיות של המחקרים המקוריים ("<span dir="ltr" class="term">garbage in, garbage out</span>").</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/hUQTXR0lFDo" title="Evidence-Based Practice: A Pyramid of Evidence" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על פירמידת הראיות ומיקומה של מטא-אנליזה בראש ההיררכיה.</p>
+
+<p><b>דירוג ראיות מצטברות (לפי הפרק, מבוסס <span dir="ltr" class="term">Sackett</span>):</b></p>
+<div class="table-scroll">
+<table>
+<tr><th>רמה (מאמר בודד)</th><th>סוג הראיה</th></tr>
+<tr><td>1</td><td>ניסוי אקראי עם שגיאות מסוג I ו-II נמוכות (עוצמה גבוהה)</td></tr>
+<tr><td>2</td><td>ניסוי אקראי עם שגיאות גבוהות (עוצמה נמוכה)</td></tr>
+<tr><td>3</td><td>קוהורט/<span dir="ltr" class="term">case-control</span> לא-אקראיים, מקבילים בזמן</td></tr>
+<tr><td>4</td><td>קוהורט/<span dir="ltr" class="term">case-control</span> עם ביקורת היסטורית</td></tr>
+<tr><td>5</td><td>סדרת מקרים ללא ביקורת</td></tr>
+</table>
+<table>
+<tr><th>סיווג מצטבר</th><th>הגדרה</th></tr>
+<tr><td><b>I</b></td><td>&ge;1 ניסוי אקראי מעוצב היטב (רמה 1)</td></tr>
+<tr><td><b>II</b></td><td>&ge;1 מחקר קוהורט/<span dir="ltr" class="term">case-control</span> מעוצב היטב (רמה 2-3)</td></tr>
+<tr><td><b>III</b></td><td>חוות דעת מומחים, ביקורת היסטורית, דוחות מקרה (רמה 4-5)</td></tr>
+</table>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hierarchy_of_Evidence.png?width=700" alt="פירמידת היררכיית הראיות ברפואה">
+<p class="media-cap">היררכיית הראיות הרפואית - מסדרות מקרים ודוחות מקרה בבסיס, דרך מחקרי תצפית, ועד ניסויים אקראיים וסקירות שיטתיות/מטא-אנליזות בפסגה. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">9</span> קריאה ביקורתית מהירה של מאמר - האלגוריתם והטכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>"השוער במועדון" - אלגוריתם הקריאה המהירה (לפי איור 11-1 בפרק)</h3>
+<p>דמייני שוער בכניסה למועדון בלעדי (המאמר "נכנס" רק אם עובר שלושה שלבי בדיקה): <b>1. תעודת זהות</b> - האם ברור מה השאלה שהמאמר בכלל מנסה לענות עליה? אם לא ברור - "תודה, לא הערב" (לדלג הלאה). <b>2. קוד לבוש</b> - האם השיטה שנבחרה בכלל מתאימה לשאלה? אם לא - שוב דלגי. <b>3. התנהגות בפנים</b> - האם המחקר בוצע כראוי בפועל? רק אם עברו את כל שלושת השלבים - <b>"תיכנסי, תקראי את זה!"</b></p>
+</div>
+<svg class="diagram" viewBox="0 0 520 470" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם לסינון מהיר של מאמרים - "השוער במועדון"</title>
+  <desc>תרשים זרימה של שלוש שאלות סינון עוקבות לפני שמשקיעים זמן בקריאה מעמיקה של מאמר</desc>
+  <rect x="60" y="10" width="400" height="70" rx="8" fill="#eef2ff" stroke="#3730a3"/>
+  <text x="260" y="38" font-size="13" text-anchor="middle" fill="#3730a3" font-weight="700">מה השאלה שהמאמר מנסה לענות עליה?</text>
+  <text x="260" y="58" font-size="11" text-anchor="middle" fill="#4b5563">(מתוך התקציר / פתיח)</text>
+  <line x1="260" y1="80" x2="260" y2="105" stroke="#6b7280" stroke-width="2" marker-end="url(#arr3)"/>
+  <polygon points="260,105 340,140 260,175 180,140" fill="#fff" stroke="#6b7280"/>
+  <text x="260" y="145" font-size="12" text-anchor="middle" fill="#1f2937">ברורה?</text>
+  <text x="120" y="145" font-size="11" text-anchor="middle" fill="#b91c1c">לא</text>
+  <line x1="180" y1="140" x2="70" y2="140" stroke="#b91c1c" stroke-width="2" marker-end="url(#arr4)"/>
+  <rect x="10" y="115" width="90" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="55" y="145" font-size="11" text-anchor="middle" fill="#7f1d1d">דלגי הלאה</text>
+  <text x="270" y="195" font-size="11" text-anchor="middle" fill="#047857">כן</text>
+  <line x1="260" y1="175" x2="260" y2="215" stroke="#047857" stroke-width="2" marker-end="url(#arr3)"/>
+
+  <rect x="60" y="215" width="400" height="55" rx="8" fill="#eef2ff" stroke="#3730a3"/>
+  <text x="260" y="248" font-size="13" text-anchor="middle" fill="#3730a3" font-weight="700">האם השיטות שנבחרו מתאימות לשאלה?</text>
+  <line x1="260" y1="270" x2="260" y2="295" stroke="#6b7280" stroke-width="2" marker-end="url(#arr3)"/>
+  <polygon points="260,295 340,330 260,365 180,330" fill="#fff" stroke="#6b7280"/>
+  <text x="260" y="335" font-size="12" text-anchor="middle" fill="#1f2937">מתאימות?</text>
+  <text x="120" y="335" font-size="11" text-anchor="middle" fill="#b91c1c">לא</text>
+  <line x1="180" y1="330" x2="70" y2="330" stroke="#b91c1c" stroke-width="2" marker-end="url(#arr4)"/>
+  <rect x="10" y="305" width="90" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="55" y="335" font-size="11" text-anchor="middle" fill="#7f1d1d">דלגי הלאה</text>
+  <text x="270" y="383" font-size="11" text-anchor="middle" fill="#047857">כן</text>
+  <line x1="260" y1="365" x2="260" y2="405" stroke="#047857" stroke-width="2" marker-end="url(#arr3)"/>
+
+  <rect x="60" y="405" width="400" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="260" y="432" font-size="13" text-anchor="middle" fill="#047857" font-weight="700">האם המחקר בוצע כראוי? &rarr; כן: קראי את זה!</text>
+  <defs>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#6b7280"/></marker>
+    <marker id="arr4" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b91c1c"/></marker>
+  </defs>
+</svg>
+
+<div class="mnemonic">
+<h3>עוד טכניקות זכירה מהירות</h3>
+<p><b><span dir="ltr" class="term">SnNout</span> / <span dir="ltr" class="term">SpPin</span></b> - ראו סעיף 3 למעלה.<br>
+<b>סולם עיצובי המחקר</b>: "דוח &larr; חתך &larr; מקרה-ביקורת &larr; קוהורט &larr; אקראי &larr; מטא-אנליזה" - כל שלב "עולה מדרגה" בהגנה מפני הטיה, בדיוק כמו פירמידת הראיות למעלה.<br>
+<b>2 סוגי שגיאה</b>: <span dir="ltr" class="term">α</span> = "אני חושב שיש הבדל אבל אין" (חיובי כוזב), <span dir="ltr" class="term">β</span> = "אני חושב שאין הבדל אבל יש" (שלילי כוזב, הנפוץ יותר וגם הפחות-מדווח).</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/P-G2veeYC1Q" title="An Introduction to Evidence Based Medicine" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מבוא לרפואה מבוססת-ראיות - הגדרה, מדרג העיצובים, ואיך זה מתורגם להחלטה קלינית ליד מיטת החולה.</p>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>וינייטה</h3>
+<p>תינוקת בת 5 חודשים, שבועיים לאחר השתלת שאנט <span dir="ltr" class="term">ventriculoperitoneal</span> ראשון לטיפול בהידרוצפלוס מולד, מובאת בשל הקאות מוגברות ועצבנות מזה יומיים. בבדיקה: מרפס קדמי בולט (<span dir="ltr" class="term">bulging fontanelle</span>), רמת הכרה תקינה, ללא חום. הרופאה הבכירה נזכרת שבמחקר תצפיתי גדול, לרוב מרפס בולט אחרי שאנט ראשוני נמצא עם <b>רגישות 51%</b> ו<b>סגוליות 98%</b> לזיהוי כשל שאנט, ושכיחות כשל שאנט הכללית בתקופה זו נעה סביב <b>26-30%</b>.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. הצוות במיון החליט לבחון גם ילדים שאושפזו ב-<span dir="ltr" class="term">NICU</span> בלבד לצורך "מחקר פנימי מהיר" על שכיחות כשל שאנט בתינוקות, ולדווח על התוצאה כמייצגת את כלל תינוקות השאנט. מה הבעיה המרכזית בגישה הזו?</div>
+  <button class="opt" data-i="0">שגיאה אקראית בלבד - ניתן לתקן בקלות ע"י גיוס עוד תינוקות מאותה מחלקה</button>
+  <button class="opt" data-i="1">הטיה שיטתית (<span dir="ltr" class="term">bias</span>) - תינוקות ב-<span dir="ltr" class="term">NICU</span> שונים מטבעם מכלל אוכלוסיית תינוקות השאנט, ואף הגדלת מדגם לא תתקן את זה</button>
+  <button class="opt" data-i="2">אין שום בעיה מתודולוגית - זה מדגם נוח וסביר</button>
+  <button class="opt" data-i="3">הבעיה היא רק שגודל המדגם קטן מדי</button>
+  <div class="explain">התשובה הנכונה: זו בדיוק דוגמת ה-<span dir="ltr" class="term">NICU</span> מהפרק - בחירת מדגם שאינו מייצג את האוכלוסייה כולה יוצרת הטיה מובנית בעיצוב המחקר. בניגוד לשגיאה אקראית, הטיה כזו לא נפתרת בהגדלת המדגם (תשובות 0 ו-3 שגויות) ואינה "בסדר" סטטיסטית (תשובה 2 שגויה) - היא דורשת תכנון מדגם מחדש שמייצג נכון את כלל אוכלוסיית היעד.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. הסגוליות של מרפס בולט לכשל שאנט היא 98% - גבוהה מאוד. מה המשמעות הקלינית הנכונה של זה, לפי הכלל <span dir="ltr" class="term">SpPin</span>?</div>
+  <button class="opt" data-i="0">מרפס בולט שלילי שולל בבטחון כשל שאנט</button>
+  <button class="opt" data-i="1">סגוליות גבוהה אומרת שהבדיקה מזהה כמעט את כל מקרי הכשל בפועל</button>
+  <button class="opt" data-i="2">כשהסגוליות גבוהה, ממצא <b>חיובי</b> (מרפס בולט) נוטה לאשש (<span dir="ltr" class="term">rule in</span>) את האבחנה של כשל שאנט, כי כמעט אין חיוביים כוזבים</button>
+  <button class="opt" data-i="3">הסגוליות הגבוהה פוסלת את הצורך בכל בדיקת המשך</button>
+  <div class="explain">התשובה הנכונה: זהו בדיוק הכלל <span dir="ltr" class="term">SpPin</span> - סגוליות גבוהה משמעה מעט מאוד חיוביים כוזבים, ולכן ממצא <b>חיובי</b> "מאשש פנימה". תשובה 0 מתארת דווקא את <span dir="ltr" class="term">SnNout</span> (שמתייחס לרגישות גבוהה ושלילה שוללת) - וכאן הרגישות היא רק 51%, כך שממצא שלילי לא שולל בבטחון. תשובה 1 מבלבלת בין סגוליות לרגישות. תשובה 3 שגויה - ממצא חיובי מחזק חשד אך לא מייתר בירור נוסף.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. חברת מכשור רוצה להוכיח שמסתם שאנט חדש מפחית כשל לעומת מסתם סטנדרטי, ורוצה את ההגנה הטובה ביותר גם מפני משתני בלבול <b>לא ידועים</b> (כמו גורמים גנטיים לא-מתועדים). איזה עיצוב מחקר הכי מתאים, על אף העלות והזמן?</div>
+  <button class="opt" data-i="0">סדרת מקרים רטרוספקטיבית מבית חולים אחד</button>
+  <button class="opt" data-i="1">מחקר <span dir="ltr" class="term">case-control</span> עם ביקורת היסטורית</button>
+  <button class="opt" data-i="2">מחקר קוהורט תצפיתי בלבד</button>
+  <button class="opt" data-i="3">ניסוי מבוקר אקראי (<span dir="ltr" class="term">RCT</span>)</button>
+  <div class="explain">התשובה הנכונה: מבין כל אסטרטגיות הבקרה על משתני בלבול, <b>אקראיות</b> (המרכיב המרכזי של <span dir="ltr" class="term">RCT</span>) היא היחידה שמאזנת גם גורמים <b>לא ידועים</b> בין הקבוצות, ולא רק כאלה שזוהו מראש. תשובות 0-2 הן עיצובים תצפיתיים/לא-אקראיים שמוגנים רק מפני מבלבלים שכבר זוהו וטופלו בהתאמה/הצטברות/מידול.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. שני נוירוכירורגים בודקים 100 תינוקות לנוכחות מרפס בולט. כל אחד מזהה אותו ב-70% מהמקרים בנפרד, וההסכמה המקרית הצפויה (מהטבלה) היא 58%. בפועל הם מסכימים ב-80% מהמקרים. מהו ה-<span dir="ltr" class="term">Kappa</span> ומה המשמעות?</div>
+  <button class="opt" data-i="0">Kappa = 0.80 - הסכמה כמעט מושלמת</button>
+  <button class="opt" data-i="1">Kappa = (80−58)/(100−58) &asymp; 0.52 - הסכמה בינונית (<span dir="ltr" class="term">moderate</span>), אחרי הפחתת ההסכמה שקורית במקרה</button>
+  <button class="opt" data-i="2">Kappa = 58% - יש להשתמש ישירות באחוז ההסכמה המקרית</button>
+  <button class="opt" data-i="3">אי אפשר לחשב Kappa בלי לדעת את הרגישות והסגוליות</button>
+  <div class="explain">התשובה הנכונה: זהו בדיוק החישוב מהפרק. Kappa מפחית את ההסכמה שהייתה קורית בכל מקרה במקרה (58%) הן מהמונה והן מהמכנה, ומשאיר רק את ה"הסכמה האמיתית מעבר למקרה". 80% הסכמה גולמית (תשובה 0) נשמעת טוב אך <b>מטעה</b> כי היא לא מנוכה מהסכמה מקרית. תשובה 2 מבלבלת בין הסכמה מקרית ל-Kappa עצמו. תשובה 3 שגויה - Kappa מחושב מטבלת ההסכמה בין בודקים, לא מרגישות/סגוליות ביחס לתקן זהב.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">5. מנתח פיתח טכניקה אנדוסקופית חדשה לניקוז שאנט, עם תוצאות מצוינות ב-40 חולים ראשונים (שלב II, עם קריטריוני הכללה מוגדרים והערכת תוצא ע"י צוות חיצוני). המחלה אינה בעלת מהלך טבעי קטלני קבוע, וקיים טיפול חלופי סביר (שאנט קונבנציונלי). מהו הצעד המתודולוגי הבא הנכון לפני אימוץ רחב של הטכניקה?</div>
+  <button class="opt" data-i="0">מעבר לניסוי מבוקר אקראי (שלב III) מול הטיפול הסטנדרטי, לפני הרחבה לפרקטיקה כללית</button>
+  <button class="opt" data-i="1">מעבר ישיר לשלב IV (מעקב שוק) - התוצאות בשלב II מספיקות</button>
+  <button class="opt" data-i="2">חזרה לשלב I כי 40 חולים זה מדגם קטן מדי לכל שלב</button>
+  <button class="opt" data-i="3">אין צורך בהמשך מחקר כלל - תוצאות טובות בשלב II שוות ראיה רמה 1</button>
+  <div class="explain">התשובה הנכונה: כשקיים טיפול חלופי סביר וההיסטוריה הטבעית אינה קטלנית-קבועה (בניגוד לחריג של גליובלסטומה שתואר בפרק), יש לעבור לניסוי אקראי מבוקר (שלב III) לפני אימוץ רחב - זה ההליך הסטנדרטי. תשובה 1 מדלגת על שלב קריטי. תשובה 2 שגויה - 40 חולים עם קריטריונים מוגדרים ותצפית חיצונית הם בדיוק מאפייני שלב II שהושלם, לא כישלון של שלב I. תשובה 3 שגויה - שלב II ללא אקראיות והשוואה ישירה הוא לכל היותר רמת ראיה 3-4, לא רמה 1.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>שני סוגי שגיאה</b>: שגיאה אקראית (רעש, פוגעת שווה, נפתרת בהגדלת מדגם) מול הטיה (פגם בעיצוב, פוגעת שיטתית בקבוצה אחת, נפתרת רק בתכנון מחדש).</li>
+    <li><b>שישה אמצעים נגד משתני בלבול</b>: הדרה, סטנדרטיזציה, הצטברות לשכבות, התאמה, מידול, ואקראיות - <b>רק אקראיות</b> מגנה גם מפני מבלבלים לא-ידועים.</li>
+    <li><b>רגישות</b> = a/(a+c), <b>סגוליות</b> = d/(b+d); <b>SnNout</b> (רגישות גבוהה, שלילי שולל) ו-<b>SpPin</b> (סגוליות גבוהה, חיובי מאשש). <span dir="ltr" class="term">PPV</span>/<span dir="ltr" class="term">NPV</span> תלויים חזק בשכיחות המחלה.</li>
+    <li><b>Kappa</b> מודד הסכמה בין בודקים <b>מעבר</b> להסכמה שהייתה קורית במקרה - לא לבלבל עם אחוז הסכמה גולמי.</li>
+    <li><b>סולם עיצובי מחקר</b>: דוח מקרה &larr; חתך &larr; <span dir="ltr" class="term">case-control</span> (נותן <span dir="ltr" class="term">Odds Ratio</span>) &larr; קוהורט (נותן <span dir="ltr" class="term">Relative Risk</span>) &larr; <span dir="ltr" class="term">RCT</span> &larr; מטא-אנליזה - כל שלב מגן יותר מפני הטיה.</li>
+    <li><b>ארבעה שלבי הערכת הליך כירורגי חדש</b>: I-ישימות, II-יעילות/סיכון (עם הערכה חיצונית "לא מעורבת"), III-ניסוי אקראי, IV-מעקב שוק.</li>
+    <li><b>דירוג ראיות מצטברות</b>: I = ניסויים אקראיים מעוצבים היטב, II = קוהורט/<span dir="ltr" class="term">case-control</span> מעוצבים היטב, III = חוות דעת/ביקורת היסטורית/דוחות מקרה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
