@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 15: השתלת עור</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 15: השתלת עור <span class="term" dir="ltr">Skin Grafting</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Shawn Loder, Benjamin Levi, Audra Clark</div>
+
+<p>עור הוא לא "עטיפה" פסיבית אלא איבר תלת-שכבתי (טרילמינרי) עם תפקידי הגנה, ויסות חום, חישה וחסינות. כשפגם עורי גדול מדי מכדי להיסגר לבד (כוויות, פגיעות ניתוץ [<span class="term" dir="ltr">degloving</span>], כריתות אונקולוגיות) — <b>השתלת עור</b> (<span class="term" dir="ltr">skin grafting</span>) היא אבן היסוד של השחזור: העברת רקמה עורית מאזור עודף לאזור חסר, <b>ללא</b> חיבור כלי דם ישיר (זה מה שמבדיל שתל מפלאפ). הצלחת ההשתלה תלויה בשלושה גורמים שחוזרים לאורך כל הפרק: איכות מצע הפצע, בחירת עובי השתל הנכון למטרה הקלינית, וטכניקה נקייה שמונעת תזוזה/דימום/זיהום מתחת לשתל.</p>
+
+<h2><span class="num">1</span> איך שתל "נתפס" — שלושת שלבי הישרדות השתל</h2>
+<p>זהו הלב הפיזיולוגי של הפרק. שתל עור הוא רקמה אוטולוגית <b>בלי אספקת דם משלה</b> ברגע ההשתלה — לכן יש לו "חלון זמן" קריטי שבו הוא חייב לקבל חמצן וחומרי מזון בדרך אחרת, עד שכלי דם חדשים "יתפסו" אותו.</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>שלב 1 — עירוי פלזמה (<span class="term" dir="ltr">plasmatic/serum imbibition</span>), יום 0–2:</b> בימים הראשונים אין עדיין זרימת דם לשתל. השתל "שותה" חמצן וחומרי מזון בדיפוזיה פסיבית מנוזל הפלזמה שנמצא בין השתל למצע הפצע. זו הסיבה שקיבוע צמוד וללא נוזל עודף (ראו סעיף 6) קריטי כבר מהשעות הראשונות — כל מחסום נוזלי (דם, סרום) בין השתל למצע פשוט "חונק" את הדיפוזיה הזו.<br><br>
+    <b>שלב 2 — רה-וסקולריזציה (<span class="term" dir="ltr">revascularization</span>), משעה 24–48 ואילך:</b> כלי דם חדשים "תופסים" את השתל בשלושה מנגנונים שקורים במקביל: (א) <span class="term" dir="ltr">inosculation</span> — חיבור ישיר בין קצוות פתוחים של כלי דם במצע לכלי דם בשתל; (ב) <span class="term" dir="ltr">neovascularization</span> — נביטת כלי דם חדשים לגמרי מהמצע לתוך השתל; (ג) התרבות תאי אנדותל של המצע שמשתמשים בשלד הבזאלי (<span class="term" dir="ltr">basal lamina</span>) הישן של כלי הדם בשתל כ"פיגום", בעוד תאי האנדותל המקוריים של השתל עצמו מתנוונים. גורמי גדילה המושרים על ידי היפוקסיה (<span class="term" dir="ltr">hypoxia-induced growth factors</span>) מאיצים את התהליך — הרעב לחמצן של השתל הוא בעצמו הגורם שמזרז את חיבורו לזרימת הדם.<br><br>
+    <b>שלב 3 — הבשלה (<span class="term" dir="ltr">maturation</span>), חודשים עד שנים:</b> לאחר שהשתל "תפס" מבחינה וסקולרית, מתחיל שיפוץ ארוך טווח — פיברובלסטים מהרקמה הסובבת (וגם מהמחזור) חודרים לממשק שתל-מצע, מפרישים קולגן, ומפתחים סיבי <span class="term" dir="ltr">alpha smooth-muscle actin</span> שמפעילים כוח כיווץ על המטריצה החוץ-תאית (זה המנגנון של <b>כיווץ השתל</b>). כלי הדם הלא-בשלים שתמכו בשתל בשלב המוקדם נסוגים ונעלמים בהדרגה. תהליך זה יכול להימשך <b>מעל שנה</b>, ואף שנים בכוויות ובילדים.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <title>שלושת שלבי הישרדות השתל</title>
+  <rect x="640" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="730" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">1. עירוי פלזמה</text>
+  <text x="730" y="66" font-size="11.5" text-anchor="middle" fill="#1e3a8a">יום 0–2 · דיפוזיה פסיבית</text>
+  <text x="730" y="82" font-size="11.5" text-anchor="middle" fill="#1e3a8a">בלי זרימת דם עדיין</text>
+
+  <rect x="340" y="20" width="200" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="440" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">2. רה-וסקולריזציה</text>
+  <text x="440" y="63" font-size="11.5" text-anchor="middle" fill="#065f46">שעה 24–48+ · inosculation</text>
+  <text x="440" y="79" font-size="11.5" text-anchor="middle" fill="#065f46">+ neovascularization</text>
+
+  <rect x="40" y="20" width="200" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="140" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">3. הבשלה</text>
+  <text x="140" y="63" font-size="11.5" text-anchor="middle" fill="#4c1d95">חודשים–שנים</text>
+  <text x="140" y="79" font-size="11.5" text-anchor="middle" fill="#4c1d95">קולגן + כיווץ</text>
+
+  <polygon points="580,55 640,47 640,63" fill="#374151"/>
+  <line x1="640" y1="55" x2="580" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="280,55 340,47 340,63" fill="#374151"/>
+  <line x1="340" y1="55" x2="280" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="40" y="120" width="780" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="145" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">בכל שלב: נוזל/דם/תנועה בין השתל למצע = חוסם דיפוזיה, מונע חיבור כלי דם → "אובדן תפיסה" (graft loss)</text>
+  <text x="430" y="162" font-size="11.5" text-anchor="middle" fill="#78350f">לכן: קיבוע יציב + ניקוז נוזלים (מישוח / ניקוב) הם לא "טכניקה יפה" אלא תנאי הכרחי לשלב 1–2</text>
+</svg>
+<p class="key-box">שלב הרה-וסקולריזציה מוסבר בשלושה מנגנונים <b>שקורים יחד, לא כתחרות</b>: חיבור ישיר של כלי דם קיימים (<span class="term" dir="ltr">inosculation</span>), נביטת כלי דם חדשים מהמצע (<span class="term" dir="ltr">neovascularization</span>), והתרבות תאי אנדותל של המצע על גבי "פיגום" כלי הדם הישנים של השתל. מחקרים בבעלי חיים מראים שכל השלושה תורמים בפועל.</p>
+
+<h2><span class="num">2</span> אנטומיה של העור וההשלכה שלה על עובי השתל</h2>
+<p>העור בנוי משלוש שכבות: <b>אפידרמיס</b> (0.05–1.5 מ"מ, אפיתל מקורנן, בלי כלי דם משלו), <b>דרמיס</b> (השכבה המכנית העיקרית — קולגן ואלסטין, מתחלקת לשכבה פפילרית שטחית ורשתית עמוקה יותר, ובה נמצאים רוב התוספים העוריים: זקיקי שיער, בלוטות זיעה ושומן), ו<b>היפודרמיס</b> (רקמת שומן תת-עורית). ככל ששתל "לוקח" עומק גדול יותר מהדרמיס — כך הוא כולל יותר תוספים עוריים (זקיקי שיער, בלוטות), אבל גם משאיר פגם עמוק ומורכב יותר בגוף התורם.</p>
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>עומק שכבות העור וסוגי שתלים</title>
+  <rect x="150" y="20" width="380" height="30" fill="#fde8e0" stroke="#c2410c"/>
+  <text x="560" y="40" font-size="12.5" text-anchor="start" fill="#7c2d12" font-weight="700">אפידרמיס</text>
+
+  <rect x="150" y="50" width="380" height="60" fill="#fef3e2" stroke="#c2410c"/>
+  <rect x="150" y="110" width="380" height="110" fill="#fdf0d5" stroke="#c2410c"/>
+  <text x="560" y="80" font-size="12.5" text-anchor="start" fill="#7c2d12" font-weight="700">דרמיס פפילרי</text>
+  <text x="560" y="168" font-size="12.5" text-anchor="start" fill="#7c2d12" font-weight="700">דרמיס רשתי</text>
+  <text x="560" y="186" font-size="11" text-anchor="start" fill="#7c2d12">(זקיקי שיער, בלוטות)</text>
+
+  <rect x="150" y="220" width="380" height="55" fill="#fef9c3" stroke="#b45309"/>
+  <text x="560" y="252" font-size="12.5" text-anchor="start" fill="#78350f" font-weight="700">היפודרמיס (שומן)</text>
+
+  <line x1="150" y1="68" x2="530" y2="68" stroke="#2563eb" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="140" y="63" font-size="11.5" text-anchor="end" fill="#1e3a8a" font-weight="700">שתל דק</text>
+  <text x="140" y="76" font-size="10.5" text-anchor="end" fill="#1e3a8a">0.15–0.3 מ"מ</text>
+
+  <line x1="150" y1="100" x2="530" y2="100" stroke="#047857" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="140" y="95" font-size="11.5" text-anchor="end" fill="#065f46" font-weight="700">שתל בינוני</text>
+  <text x="140" y="108" font-size="10.5" text-anchor="end" fill="#065f46">0.3–0.45 מ"מ</text>
+
+  <line x1="150" y1="135" x2="530" y2="135" stroke="#b45309" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="140" y="130" font-size="11.5" text-anchor="end" fill="#78350f" font-weight="700">שתל עבה</text>
+  <text x="140" y="143" font-size="10.5" text-anchor="end" fill="#78350f">0.45–0.6 מ"מ</text>
+
+  <line x1="150" y1="220" x2="530" y2="220" stroke="#6d28d9" stroke-width="3"/>
+  <text x="140" y="215" font-size="11.5" text-anchor="end" fill="#4c1d95" font-weight="700">שתל מלא-עובי</text>
+  <text x="140" y="228" font-size="10.5" text-anchor="end" fill="#4c1d95">כל הדרמיס</text>
+</svg>
+<p class="figcap">כל הקווים המקווקווים מציינים את עומק החיתוך של סוגי השתל השונים בתוך הדרמיס — ככל שעמוק יותר, יותר תוספי עור נלקחים אך המחיר באתר התורם גבוה יותר (ראו טבלה בסעיף 3).</p>
+<p>נקודה קריטית: השתל <b>אינו</b> כולל את ה<span class="term" dir="ltr">dermal–epidermal junction</span> המלא ואת החיבורים המכניים המורכבים שמייצבים עור בריא מול כוחות גזירה (<span class="term" dir="ltr">shear</span>) — זו הסיבה ששתלים "לא יציבים" מכנית יחסית לעור טבעי, ולמה שתלים מלאי-עובי (שכוללים דרמיס מלא) עמידים יותר מאשר שתלים דקים.</p>
+
+<h2><span class="num">3</span> סוגי שתלי עור — טבלת השוואה</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג</th><th>עובי / שם אפונימי</th><th>מכיל תוספי עור?</th><th>כיווץ באתר הנמען</th><th>החלמת אתר תורם</th><th>שימושים עיקריים</th></tr></thead>
+  <tbody>
+    <tr><td><b>שתל דק</b> (<span class="term" dir="ltr">thin STSG</span>)</td><td>0.15–0.3 מ"מ — <span class="term" dir="ltr">Thiersch–Ollier</span></td><td>כמעט לא — לרוב לא יגדל שיער או יזיע</td><td>הרבה כיווץ</td><td>מהירה (~2 שבועות, ניתן לקצור שוב מאותו אזור)</td><td>כיסוי שטחים גדולים, כוויות נרחבות, מטופלים קשישים/ילדים (עור דק ממילא)</td></tr>
+    <tr><td><b>שתל בינוני</b> (<span class="term" dir="ltr">intermediate STSG</span>)</td><td>0.3–0.45 מ"מ — <span class="term" dir="ltr">Blair–Brown</span></td><td>חלקי</td><td>בינוני</td><td>בינונית</td><td>שימוש כללי, איזון בין כיסוי מהיר לתפקוד</td></tr>
+    <tr><td><b>שתל עבה</b> (<span class="term" dir="ltr">thick STSG</span>, "deep graft")</td><td>0.45–0.6 מ"מ</td><td>כן — לרוב יפתח שיער ובלוטות זיעה תוך חודשים</td><td>מעט</td><td>איטית יותר, צלקת ושינוי גוון בולטים יותר באתר התורם</td><td>אזורי חיכוך מכני / מעל מפרקים</td></tr>
+    <tr><td><b>שתל מלא-עובי</b> (<span class="term" dir="ltr">FTSG</span> — <span class="term" dir="ltr">Wolfe graft</span>)</td><td>אפידרמיס + כל הדרמיס</td><td>כן, מלא</td><td>הכי מעט — התוצאה הכי "טובה" תפקודית</td><td>לרוב סגירה ראשונית של אתר התורם (בלי אתר תורם פתוח)</td><td>פנים (אסתטי) וכף יד (תפקודי) — איפה שחשוב מרקם וצבע וגמישות</td></tr>
+    <tr><td><b>שתל מורכב</b> (<span class="term" dir="ltr">composite graft</span>)</td><td>אפידרמיס + דרמיס + שכבת שומן</td><td>כן</td><td>—</td><td>דומה לשתל מלא-עובי</td><td>שחזור קצה האף, האלה (<span class="term" dir="ltr">ala</span>) והקולומלה בשפה שסועה — צריך נפח, לא רק כיסוי</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">ככל שהשתל <b>עבה יותר</b> — פחות כיווץ ותפקוד טוב יותר באתר הנמען, אבל <b>יותר</b> תלות באספקת דם טובה מהמצע (כי יש יותר רקמה "לקבל תזונה" בדיפוזיה בשלב 1) ואתר תורם שמחלים לאט יותר. שתלי שומן (<span class="term" dir="ltr">composite grafts</span>) הכי רגישים לכשל כי רקמת שומן מועדת לאיסכמיה.</p>
+
+<h2><span class="num">4</span> טכניקת קצירה ומישוח (<span class="term" dir="ltr">meshing</span>)</h2>
+<p>קוצרים שתל דק/בינוני/עבה באמצעות <span class="term" dir="ltr">dermatome</span> חשמלי או פניאומטי בעל מגן מתכוונן לעובי ולרוחב, בזווית של כ-45° ובלחץ ומהירות אחידים. לעיתים מזריקים תמיסה טומסצנטית (אפינפרין/פנילפרין מדוללים) לאתר התורם כדי להקטין דימום וליצור משטח שטוח ומתוח שמקל על הקצירה.</p>
+<p><b>מישוח</b> (<span class="term" dir="ltr">meshing</span>) — ניקוב השתל בחריצים קטנים בדפוס קבוע — מאפשר להרחיב שתל דק עד <b>פי 9</b> משטחו המקורי, ומאפשר גם ניקוז נוזלים מתחת לשתל (חשוב לשלב עירוי הפלזמה!). הפער הפתוח בין רצועות המישוח מתמלא בהדרגה מקרטינוציטים שנודדים מקצוות הרצועות עצמן.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>יחס מישוח</th><th>הרחבת שטח</th><th>שימוש טיפוסי</th></tr></thead>
+  <tbody>
+    <tr><td>1:1 – 1:1.5</td><td>מינימלית</td><td>אזורים אסתטיים/תפקודיים — "cobblestoning" פחות בולט</td></tr>
+    <tr><td>1:2</td><td>כפול</td><td>ברירת מחדל נפוצה לרוב הכוויות</td></tr>
+    <tr><td>1:3 – 1:6</td><td>עד פי 6</td><td>שטחי כוויה נרחבים כשאתר תורם מוגבל</td></tr>
+    <tr><td>1:9</td><td>עד פי 9</td><td>מחסור חמור בעור תורם — מחיר: שבריריות רבה, זמן ריפוי ארוך יותר לפערים</td></tr>
+  </tbody>
+</table>
+</div>
+<p>ככל שיחס המישוח גדול יותר — כך לוקח יותר זמן לפערים הפתוחים להתמלא, והדפוס ה"רשתי" (<span class="term" dir="ltr">cobblestone</span>) נשאר גלוי יותר גם אחרי ריפוי מלא, וגם עולה הסיכון לצלקת היפרטרופית. <b class="key">לכן ברוב האזורים האסתטיים מעדיפים יחס מקסימלי של 1:1.5–1:2</b>. בשתלים שלא ממושחים, מקובל לנקב אותם ידנית במספר נקודות ("<span class="term" dir="ltr">pie-crusting</span>") כדי לאפשר ניקוז נוזלים בלי לוותר על מראה השתל השלם — חשוב במיוחד באזורים תפקודיים כמו כף היד.</p>
+
+<h2><span class="num">5</span> הכנת מצע הפצע וגורמים שקובעים "תפיסה" (<span class="term" dir="ltr">graft take</span>)</h2>
+<p>שתל יכול "לתפוס" רק על מצע שיש בו מספיק כלי דם קרוב לפני השטח לתמוך בדיפוזיה (שלב 1) ואז בנביחת כלי דם (שלב 2). לכן:</p>
+<ul>
+  <li><b>רקמה מוקרנת, איסכמית, צלקתית, עצם או גיד חשופים</b> — בדרך כלל <b>אינם</b> תומכים בתפיסת שתל, כי אין בהם מספיק כלי דם פעילים בפני השטח. חריג: פריאוסטאום או פריטנדון עם אספקת דם שמורה עדיין יכולים לתמוך בשתל.</li>
+  <li><b>זיהום פעיל</b> — פצע מזוהם לא יקבל שתל; יש להקטין את העומס החיידקי לפני ההשתלה.</li>
+  <li><b>פסולת/רקמה נמקית</b> — חוסמת פיזית את נביטת כלי הדם, ולכן יש לבצע דברידמנט (חיתוך חד, לייזר, סילון מים, אולטרסאונד) עד לרקמה מדממת לפני ההשתלה.</li>
+  <li><b>תזוזה/גזירה (<span class="term" dir="ltr">shear</span>)</b> — קורעת פיזית את כלי הדם הצעירים והשבירים שנוצרים בשלב 2, ולכן קיבוע יציב הוא לא רק נוחות אלא תנאי ביולוגי.</li>
+</ul>
+<p>אם יש חשיפה מקומית של גיד/עצם — ניתן להיעזר בטיפול ואקום (<span class="term" dir="ltr">VAC</span>) כדי לעודד רקמת גרנולציה שתכסה את השטח החשוף, או בתחליפי דרמיס (ראו סעיף 8), לפני שמנסים להשתיל עור ישירות.</p>
+
+<h2><span class="num">6</span> קיבוע השתל וחבישות</h2>
+<p>אי-יציבות של השתל היא הגורם המרכזי לכישלון תפיסה — לכן קיבוע טוב חייב למנוע גם תזוזה וגם הצטברות נוזל בין השתל למצע:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שיטת קיבוע</th><th>יתרון</th><th>חיסרון / התאמה</th></tr></thead>
+  <tbody>
+    <tr><td>תפרים נספגים</td><td>אין צורך בהסרה</td><td>שטחים קטנים, מטופלים שלא סובלים הסרת סיכות</td></tr>
+    <tr><td>סיכות (<span class="term" dir="ltr">staples</span>)</td><td>מהיר ויעיל</td><td>כואב בהסרה; לעיתים נשאר בשטחים גדולים</td></tr>
+    <tr><td>בולסטר (<span class="term" dir="ltr">bolster</span>)</td><td>לחץ אחיד על שתל בשקע/אזור קשה לחבישה</td><td>יש להיזהר שהתפרים המעגנים לא ימשכו מבנים סמוכים (למשל עפעף)</td></tr>
+    <tr><td>חבישת ואקום (<span class="term" dir="ltr">VAC</span>)</td><td>לחץ רציף + ניקוז נוזלים — מצוין בשטחים לא-אחידים / מעל מפרקים</td><td>דורש ציוד; ממשק לא-דביק (סיליקון/פרפין) חובה כדי למנוע נזק לשתל</td></tr>
+    <tr><td>דבק פיברין</td><td>מייצב מיידית, "מטריצה" זמנית מתחת לשתל</td><td>תוסף, לא תחליף לקיבוע מכני</td></tr>
+  </tbody>
+</table>
+</div>
+<p>החבישה נשארת בד"כ 3–8 ימים כדי לצמצם גזירה ולאפשר את שלבי 1–2 של הקליטה. לעיתים מוסיפים סד (<span class="term" dir="ltr">splint</span>) לאזורי מפרקים/סנטר כדי למנוע כיווץ פצע — יכול להישאר חודשים.</p>
+
+<h2><span class="num">7</span> סיבוכים וניהולם</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיבוך</th><th>מנגנון</th><th>מניעה / טיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>המטומה / סרומה</b></td><td>נוזל בין שתל למצע חוסם דיפוזיה (שלב 1) ומונע מגע ישיר לחיבור כלי דם (שלב 2)</td><td>המוסטזה קפדנית לפני השתלה; מישוח/ניקוב לניקוז; חבישה דוחסת/ואקום</td></tr>
+    <tr><td><b>זיהום</b></td><td>פצע מזוהם לא תומך בתפיסה; חיידקים כמו <span class="term" dir="ltr">Pseudomonas</span> עלולים לגרום זיהום לא-מוגלתי</td><td>דברידמנט לפני השתלה; חבישות אנטי-מיקרוביאליות (חנקת כסף, mafenide acetate); ניקוז מוקדם אם מתגלה זיהום</td></tr>
+    <tr><td><b>אי-יציבות (גזירה)</b></td><td>תנועה קורעת כלי דם צעירים ושבירים</td><td>קיבוע מכני טוב + טיפול עדין באתר לאחר הניתוח</td></tr>
+    <tr><td><b>גורמים נוספים</b></td><td>תת-תזונה, סטרואידים, וסקוליטיס, ממאירות, תרופות מדכאות חיסון — כולם פוגעים ביכולת יצירת כלי דם חדשים</td><td>אופטימיזציה של מצב המטופל לפני ניתוח אלקטיבי כשניתן</td></tr>
+  </tbody>
+</table>
+</div>
+<p>כלל אצבע לאיבוד דם: מצפים לאובדן של כ-100–200 מ"ל דם על כל 1% משטח גוף שעובר כריתה (<span class="term" dir="ltr">excision</span>) — רלוונטי לתכנון ניתוחי כוויות נרחבים.</p>
+
+<h2><span class="num">8</span> כשעור אוטולוגי לא מספיק — תחליפים וחומרי עזר</h2>
+<p>כשאין מספיק עור תורם זמין, או כשרוצים "לבנות" דרמיס לפני שתל דק סופי, קיימים מספר סוגי תחליפים:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מוצר</th><th>מקור</th><th>מכיל</th><th>שימוש</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Integra</span></td><td>קסנוגני (קולגן מגיד שור)</td><td>מטריצת דרמיס על גיליון סיליקון</td><td>מיישמים על מצע הפצע; מתווסקל תוך כ-3 שבועות ואז ניתן להשתיל עור דק מעליו</td></tr>
+    <tr><td><span class="term" dir="ltr">Alloderm</span></td><td>אלוגני (דרמיס אנושי אצילולרי מקדאבר)</td><td>דרמיס בלבד</td><td>זמין "מהמדף"; אפשר להשתיל עליו לאחר וסקולריזציה</td></tr>
+    <tr><td><span class="term" dir="ltr">NovoSorb</span> (BTM)</td><td>סינתטי</td><td>מטריצת פולימר</td><td>דומה ל-Integra מבחינת עיתוי (כ-3 שבועות עד מוכן להשתלה)</td></tr>
+    <tr><td><span class="term" dir="ltr">RECELL</span></td><td>אוטולוגי</td><td>תרסיס תאי אפידרמיס+דרמיס מביופסיה קטנה של המטופל עצמו</td><td>ניתן "לספריי" מיידי ליד המיטה (כ-30 דקות הכנה) — מרחיב את הכיסוי בלי אתר תורם גדול, יעיל גם מעל שתלים ממושחים</td></tr>
+    <tr><td><span class="term" dir="ltr">Epicel</span></td><td>אוטולוגי</td><td>אפידרמיס מתורבת (<span class="term" dir="ltr">CEA</span>) מהמטופל</td><td>מגדלים בתרבית מעבדה שבועות — לשימוש בכוויות ענקיות עם עור תורם מינימלי</td></tr>
+  </tbody>
+</table>
+</div>
+<p>גישות נוספות "מעבר לשתל הקלאסי" שמוזכרות בפרק: <b>מיקרוגרפטינג</b> (חלוקת שתל לריבועים זעירים של 0.8×0.8 מ"מ, הרחבה עד פי 100!), <b>pixel grafting</b> (0.3×0.3 מ"מ), עור אלוגני/קסנוגני (כולל עור דגי טילפיה!) כחבישה ביולוגית זמנית, ותרביות קרטינוציטים (Fig. 17.9 בפרק) — כולן פתרונות למחסור חמור בעור תורם כשהפצע גדול בהרבה מהזמינות.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">I-R-M</span> / "ע.ר.ה" של תפיסת שתל</h3>
+  <p>
+    <b>I</b> – <span class="term" dir="ltr">Imbibition</span> (עירוי) — השתל "שותה" פלזמה בדיפוזיה, בלי כלי דם עדיין.<br>
+    <b>R</b> – <span class="term" dir="ltr">Revascularization</span> (רה-וסקולריזציה) — חיבור/נביטה/פלישת כלי דם חדשים.<br>
+    <b>M</b> – <span class="term" dir="ltr">Maturation</span> (הבשלה) — קולגן, כיווץ, ונסיגת כלי הדם הזמניים — תהליך שנמשך שנה ומעלה.<br>
+    בעברית: <b>ע</b>ירוי &#8592; <b>ר</b>ה-וסקולריזציה &#8592; <b>ה</b>בשלה — יחד מאייתים "<b>ער"ה</b>" (כמו "ערה"/מודעת): השתל חייב להישאר "ער" מבחינה מטבולית לאורך כל שלושת השלבים כדי לשרוד.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני ייחור צמח (<span class="term" dir="ltr">cutting</span>) שנתלש מעציץ אחד ונשתל באדמה חדשה: קודם הוא רק <b>סופג לחות מהאדמה הסובבת</b> (עירוי פלזמה) — בלי שורשים משלו הוא לא יחזיק מעמד יותר מכמה ימים. אחר כך, אם התנאים טובים (אדמה נקייה, בלי "בוץ" עודף סביב השורש, בלי שמישהו מזיז את העציץ כל הזמן), הוא <b>מתחיל להשריש</b> — שורשים חדשים חודרים לאדמה ומתחברים למקורות המים (רה-וסקולריזציה). רק בשלב האחרון, אחרי חודשים, הצמח <b>מתבסס</b> לגמרי ומפסיק להיות תלוי בתמיכה חיצונית (הבשלה) — אך גם אז, הוא ימשיך "להתכווץ ולהתעצב" מול הסביבה במשך זמן רב.</p>
+  <svg class="diagram" viewBox="0 0 500 210" xmlns="http://www.w3.org/2000/svg">
+    <title>ייחור שמושרש באדמה - מטאפורה לתפיסת שתל</title>
+    <rect x="0" y="150" width="500" height="50" fill="#d6bc8a"/>
+    <ellipse cx="250" cy="150" rx="230" ry="10" fill="#c9a876"/>
+    <line x1="250" y1="150" x2="250" y2="90" stroke="#166534" stroke-width="5"/>
+    <ellipse cx="235" cy="95" rx="22" ry="10" fill="#22c55e"/>
+    <ellipse cx="270" cy="100" rx="20" ry="9" fill="#22c55e"/>
+    <ellipse cx="250" cy="80" rx="18" ry="9" fill="#22c55e"/>
+    <path d="M250,150 Q230,175 210,195" stroke="#78350f" stroke-width="3" fill="none"/>
+    <path d="M250,150 Q250,180 250,200" stroke="#78350f" stroke-width="3" fill="none"/>
+    <path d="M250,150 Q270,175 290,195" stroke="#78350f" stroke-width="3" fill="none"/>
+    <text x="250" y="35" font-size="13" text-anchor="middle" fill="#166534" font-weight="700">הצמח "מוזן" מלמעלה — כמו עירוי פלזמה</text>
+    <text x="250" y="55" font-size="12" text-anchor="middle" fill="#78350f">השורשים החדשים חודרים לאדמה — כמו רה-וסקולריזציה</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> וידאו ומקורות נוספים</h2>
+<div class="video-embed">
+  <iframe src="https://www.youtube.com/embed/DxYTj2Mi0ro" title="Split-Thickness Skin Graft Technique" allowfullscreen loading="lazy"></iframe>
+</div>
+<p class="video-cap">הדגמת טכניקת קצירת שתל דק (<span dir="ltr">split-thickness skin graft</span>) עם דרמטום — כולל בחירת אתר תורם, זווית הקצירה והכנת השתל.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK551561/" target="_blank">Split-Thickness Skin Grafts — StatPearls (NCBI)</a>
+    <div class="desc">פרק ייחוס מקיף ועדכני על אינדיקציות, טכניקה וסיבוכים של שתלי עור דקים.</div>
+  </li>
+  <li>
+    <a href="https://emedicine.medscape.com/article/876290-overview" target="_blank">Split-Thickness Skin Grafts — Medscape</a>
+    <div class="desc">סקירה קלינית מפורטת על בחירת שתל, בחירת אתר תורם וניהול לאחר ניתוח.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 38 עבר כריתה טנגנציאלית (<span dir="ltr">tangential excision</span>) של כוויית דרגה שלישית בירך הקדמית, ומיד לאחר מכן הושתל שתל עור דק (<span dir="ltr">thin STSG</span>) שנקצר מהירך הנגדית באמצעות דרמטום, מוּשח ביחס 1:1.5, ונקבע בסיכות. שלושה ימים לאחר הניתוח מבחין הצוות בבליטה רכה ותנודתית מתחת לחלק מהשתל, עם חלק מהשתל שנראה חיוור ולא צמוד למצע. אין חום, אין הפרשה מוגלתית, ואודם מינימלי בלבד.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה הממצא הכי סביר שגורם לחוסר ההצמדות של השתל בווינייטה, ומהו הקשר הפיזיולוגי?</div>
+  <button class="opt" data-i="0">זיהום פעיל שמעכב רה-וסקולריזציה</button>
+  <button class="opt" data-i="1">סרומה/המטומה מתחת לשתל שחוסמת את עירוי הפלזמה ומונעת מגע לחיבור כלי דם</button>
+  <button class="opt" data-i="2">כיווץ מוקדם מדי של השתל בשלב ההבשלה</button>
+  <button class="opt" data-i="3">דחייה חיסונית של השתל האוטולוגי</button>
+  <div class="explain">התשובה הנכונה: בליטה תנודתית ללא חום/מוגלה מתאימה לאיסוף נוזל (סרומה/המטומה) שיוצר מחסום בין השתל למצע — בדיוק המחסום שפוגע בשלב 1 (עירוי פלזמה) ומונע את שלב 2 (חיבור כלי דם). זיהום (תשובה 1) היה מלווה לרוב בחום/מוגלה/אודם משמעותי. כיווץ (תשובה 3) קורה בשלב ההבשלה, חודשים מאוחר יותר — לא יום 3. שתל אוטולוגי מהגוף עצמו (תשובה 4) לא עובר דחייה חיסונית כי הוא מהמטופל עצמו.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מה הטיפול המיידי הנכון ביותר במצב שתואר?</div>
+  <button class="opt" data-i="0">ניקוז הנוזל שמתחת לשתל (למשל ניקוב/שאיבה) ולוודא חבישה דוחסת מחודשת</button>
+  <button class="opt" data-i="1">להסיר את השתל מיידית ולתכנן שתל חדש בעוד שבוע</button>
+  <button class="opt" data-i="2">להתחיל אנטיביוטיקה IV רחבת טווח ולהמתין</button>
+  <button class="opt" data-i="3">אין צורך בהתערבות — זה חלק נורמלי משלב ההבשלה</button>
+  <div class="explain">התשובה הנכונה: כשמזהים סרומה/המטומה מוקדם, ניקוז הנוזל (למשל דרך הניקובים הקיימים או ניקוב עדין נוסף) והחזרת קיבוע/לחץ טוב יכולים "להציל" את השתל לפני שהאזור עובר נמק בלתי הפיך. הסרה מיידית (תשובה 1) קיצונית מדי ללא ניסיון הצלה קודם. אנטיביוטיקה (תשובה 2) לא מתאימה כי אין סימני זיהום. תשובה 4 מתעלמת מכך שנוזל שנצבר הוא בעיה מכנית שדורשת פעולה, לא תופעה תקינה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">3. אילו סוגי מצע פצע <b>אינם</b> תומכים בתפיסת שתל עור, וממה זה נובע?</div>
+  <button class="opt" data-i="0">רקמת גרנולציה בריאה — כי היא "רכה" מדי</button>
+  <button class="opt" data-i="1">עור בריא סמוך לפצע — כי יש בו יותר מדי כלי דם</button>
+  <button class="opt" data-i="2">רקמה מוקרנת, עצם או גיד חשופים ללא פריאוסטאום/פריטנדון — כי אין בהם מספיק כלי דם בפני השטח לתמוך בדיפוזיה ואז בנביטת כלי דם</button>
+  <button class="opt" data-i="3">רקמת שומן תת-עורית תקינה — כי היא לא מסוגלת לקלוט דיפוזיה כלל</button>
+  <button class="opt" data-i="4">כל התשובות נכונות באותה מידה</button>
+  <div class="explain">התשובה הנכונה: מצע פצע חייב לספק כמות מספקת של כלי דם קרובים לפני השטח כדי לתמוך בשלב 1 (דיפוזיה) ואז שלב 2 (חיבור כלי דם). רקמה מוקרנת, איסכמית, עצם או גיד חשופים חסרים בדרך כלל את הצפיפות הווסקולרית הזו — אלא אם כן פריאוסטאום/פריטנדון שלמים ועדיין מזינים דם. גרנולציה בריאה (תשובה 1) היא דווקא מצע טוב לשתל. עור בריא (תשובה 2) אינו רלוונטי כי לא צריך שתל שם. שומן תת-עורי בריא (תשובה 4) בהחלט יכול לתמוך בשתל.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע נבחר שתל דק (thin STSG) ולא שתל מלא-עובי (FTSG) לכיסוי כוויה נרחבת בירך?</div>
+  <button class="opt" data-i="0">שתל דק תמיד נראה טוב יותר אסתטית</button>
+  <button class="opt" data-i="1">שתל דק אינו דורש כלל אספקת דם ממצע הפצע</button>
+  <button class="opt" data-i="2">שתל מלא-עובי לא ניתן למישוח בשום מצב</button>
+  <button class="opt" data-i="3">שתל דק מאפשר כיסוי שטח גדול יותר (במיוחד לאחר מישוח), מחלים מהר יותר באתר התורם, וניתן לקצור שוב מאותו אזור בעוד כשבועיים — קריטי כשהצורך בכיסוי גדול מהעור התורם הזמין</button>
+  <div class="explain">התשובה הנכונה: בכוויות נרחבות העור התורם הזמין מוגבל ביחס לגודל הפצע, ולכן שתל דק (שניתן למישוח עד פי 9, ומחלים מהר מספיק לקצירה חוזרת) הוא הפתרון המעשי. שתל מלא-עובי (תשובה שגויה 4 בהיפוך) שמור לאזורים קטנים יחסית וקריטיים תפקודית/אסתטית כמו פנים וכף יד, בגלל שהוא לא ניתן להרחבה משמעותית ואתר התורם שלו נסגר בדרך כלל בתפר ראשוני ולא נכרת שוב באותה מהירות. שתל אף אחד לא "לא דורש אספקת דם" (תשובה 1) — כולם תלויים בוסקולריזציה מהמצע.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מה ההבדל העיקרי בין שלב ה-inosculation לשלב ה-neovascularization ברה-וסקולריזציה של שתל?</div>
+  <button class="opt" data-i="0">אין הבדל — אלו שני שמות לאותו תהליך בדיוק</button>
+  <button class="opt" data-i="1">Inosculation הוא חיבור ישיר בין קצוות פתוחים של כלי דם קיימים (במצע ובשתל), בעוד neovascularization היא נביטה של כלי דם חדשים לגמרי מהמצע לתוך השתל</button>
+  <button class="opt" data-i="2">Inosculation קורה רק בשתלים מלאי-עובי, neovascularization רק בשתלים דקים</button>
+  <button class="opt" data-i="3">Inosculation הוא תהליך שקורה רק בשלב ההבשלה, אחרי שנה</button>
+  <div class="explain">התשובה הנכונה: שני המנגנונים קורים יחד בשלב 2 (רה-וסקולריזציה) אך הם שונים במהותם — inosculation הוא "חיבור צנרת" בין כלי דם קיימים משני הצדדים, בעוד neovascularization היא צמיחה של כלי דם חדשים לגמרי. מנגנון שלישי (שלא מוזכר בתשובות) הוא התרבות תאי אנדותל של המצע על פיגום כלי הדם הישנים של השתל. שלושתם פועלים במקביל בכל סוגי השתלים, לא בבלעדיות לפי עובי (תשובה 3), ולא בשלב ההבשלה (תשובה 4) שמגיע אחרי שהווסקולריזציה כבר הושלמה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שתל עור = העברת רקמה עורית <b>בלי</b> חיבור כלי דם ישיר — לכן תלוי בשלושה שלבי הישרדות: <b>עירוי פלזמה</b> (יום 0–2) &#8592; <b>רה-וסקולריזציה</b> (משעה 24–48, 3 מנגנונים במקביל) &#8592; <b>הבשלה</b> (חודשים–שנים, כיווץ).</li>
+    <li>עובי השתל = פשרה: דק (Thiersch–Ollier, 0.15–0.3 מ"מ) מחלים מהר באתר התורם אך גורם ליותר כיווץ; עבה/מלא-עובי (Wolfe, כל הדרמיס) פחות כיווץ אך אתר תורם מורכב יותר — נבחר לפי הצורך (פנים/יד = מלא-עובי; כוויה נרחבת = דק וממושח).</li>
+    <li><b>מישוח</b> מרחיב שטח (עד פי 9) ומנקז נוזלים, אך פוגע בקוסמטיקה — ברוב האזורים האסתטיים לא עוברים יחס 1:1.5–1:2.</li>
+    <li>מצע פצע תומך בשתל רק אם יש בו מספיק כלי דם: <b>לא</b> רקמה מוקרנת/איסכמית/עצם-גיד חשופים ללא פריאוסטאום־פריטנדון, <b>לא</b> זיהום פעיל, <b>לא</b> פסולת נמקית.</li>
+    <li>סיבוכים מרכזיים: המטומה/סרומה (מונעים בהמוסטזה + ניקוז), זיהום, ואי-יציבות מכנית (גזירה) — כולם פוגעים בדיוק בשלבי הקליטה המוקדמים.</li>
+    <li>כשעור אוטולוגי לא מספיק: תחליפי דרמיס (Integra, Alloderm, NovoSorb), RECELL/Epicel (אוטולוגיים), מיקרו/פיקסל-גרפטינג להרחבה קיצונית, ועור קסנוגני/אלוגני כחבישה זמנית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
