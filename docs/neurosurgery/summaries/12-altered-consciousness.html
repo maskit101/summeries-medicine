@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 12: הפרעות הכרה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">עמוד נוירוכירורגיה</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">&#8592; רשימת כל הפרקים</a></div>
+
+<h1>פרק 12: הפרעות הכרה <span class="term" dir="ltr">Altered Consciousness</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 3 - Approach to the Patient | מאת Nicholas D. Schiff</div>
+
+<p>נוירוכירורג/ית שנקרא/ת להתייעצות דחופה כמעט תמיד ייתקל/תיתקל בשאלה הזו: "המטופל בהכרה?" - והתשובה כמעט אף פעם לא בינארית. הפרק הזה בונה מסגרת קלינית מדויקת להבדיל בין <b>קומה</b>, <b>מצב וגטטיבי</b> <span class="term" dir="ltr">vegetative state, VS</span>, <b>מצב הכרה מינימלי</b> <span class="term" dir="ltr">minimally conscious state, MCS</span> ו<b>אקינטית מוטיזם</b> <span class="term" dir="ltr">akinetic mutism</span> - לא כתוויות שרירותיות, אלא כשלבים על רצף התאוששות עם מנגנון פיזיולוגי ספציפי מאחורי כל אחד מהם, ועם השלכות פרוגנוסטיות שונות לחלוטין.</p>
+
+<h2><span class="num">1</span> ההיררכיה הנוירופסיכולוגית של ההכרה</h2>
+<p>לפני שמסבירים מה משתבש, צריך להגדיר מה בכלל "הכרה תקינה". שיף ופלוּם <span class="term" dir="ltr">Schiff and Plum</span> מגדירים אותה כמורכבת משישה רכיבים נוירופסיכולוגיים המאורגנים באופן <b>היררכי</b>: עוררות <span class="term" dir="ltr">arousal</span>, קשב <span class="term" dir="ltr">attention</span>, כוונה <span class="term" dir="ltr">intention</span>, זיכרון <span class="term" dir="ltr">memory</span>, מודעות <span class="term" dir="ltr">awareness</span>, ומצב רוח-רגש <span class="term" dir="ltr">mood-emotion</span>. הנקודה הקריטית: <b>רמת העוררות משפיעה על כל שאר הרכיבים</b> - בלי עוררות בסיסית, אין שום התנהגות אפשרית, לא משנה כמה שאר המערכות שלמות.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>רכיב</th><th>מה הוא כולל</th><th>מה קורה כשהוא נפגע לבד</th></tr></thead>
+<tbody>
+<tr><td><b>עוררות</b> <span class="term" dir="ltr">arousal</span></td><td>המצב הבסיסי של "ער מול ישן"; תלוי במערכת ההפעלה הרשתית העולה (RAS) ובגרעינים התלמיים</td><td>פגיעה מלאה = קומה; אין שום התנהגות אפשרית ללא עוררות</td></tr>
+<tr><td><b>קשב</b> <span class="term" dir="ltr">attention</span></td><td>יכולת למקד עיבוד במידע ספציפי</td><td>שרידים חלקיים נראים כמעט בכל תסמונות אקינטית מוטיזם</td></tr>
+<tr><td><b>כוונה</b> <span class="term" dir="ltr">intention</span></td><td>יזימת פעולה מכוונת מטרה</td><td>תנועות חסרות-כוונה בהיפרקינטית מוטיזם, פרכוסים חלקיים, דליריום</td></tr>
+<tr><td><b>זיכרון, מודעות, מצב רוח</b></td><td>רבדים "גבוהים" יותר, תלויים ברשתות קורטיקליות-תלמיות מבוזרות</td><td>נפגעים בדרגות שונות ב-MCS; הבידול העדין ביניהם קובע את "התקרה" הפונקציונלית</td></tr>
+</tbody>
+</table>
+</div>
+<p class="key-box">בגלל ההיררכיה הזו, קומה, VS, MCS ואקינטית מוטיזם הם לא "סוגים" שונים לגמרי של פגיעה, אלא בעצם דרגות שונות של כמה גבוה ברמות ה"מדרגות" הצליחה ההתאוששות להגיע.</p>
+
+<h2><span class="num">2</span> המנגנון: מערכת ההפעלה הרשתית העולה והתלמוס המרכזי</h2>
+<div class="mechanism">
+  <p class="chain">למה בכלל אפשר לאבד הכרה בלי לפגוע ישירות בקורטקס? כי העוררות לא מיוצרת בקורטקס עצמו - היא <b>מוזרמת</b> אליו משני מוקדים תת-קורטיקליים: (1) מערכת ההפעלה הרשתית העולה <span class="term" dir="ltr">ascending reticular activating system, ARAS</span> בגזע המוח, ו-(2) הגרעינים התוך-למינריים ואגפי האסוציאציה של התלמוס <span class="term" dir="ltr">intralaminar and association thalamic nuclei</span>, שמשמשים כ"תחנת ממסר" מרכזית שמפיצה את אות העוררות לכל הקורטקס במקביל. שרשרת ההיגיון: (א) ה-ARAS בגזע המוח מייצר את אות העוררות הגולמי; (ב) התלמוס המרכזי מגביר ומפזר אותו לכל אזורי הקורטקס בבת אחת; (ג) רק קורטקס "מוזרם" כך יכול לתמוך בהתנהגות מודעת כלשהי - בלי קלט הזה, אפילו קורטקס אנטומית שלם לחלוטין נשאר "כבוי".</p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Reticular_formation.svg?width=700" alt="Reticular formation in the brainstem">
+<p class="media-cap">מערכת הרשתית (Reticular formation) בגזע המוח - המקור לאות העוררות העולה (ARAS) שמופץ כלפי מעלה לתלמוס ולקורטקס. מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Thalamus.PNG?width=700" alt="Thalamus and its nuclei">
+<p class="media-cap">התלמוס וגרעיניו - הגרעינים התוך-למינריים ואגפי האסוציאציה משמשים "מגבר ומפיץ" של אות העוררות מגזע המוח לכל שטח הקורטקס. מקור: Wikimedia Commons.</p>
+<svg class="diagram" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מסלול העוררות: מגזע המוח לתלמוס לקורטקס</title>
+  <desc>תרשים המראה את זרימת אות העוררות מה-ARAS בגזע המוח, דרך התלמוס המרכזי, ועד לפיזור מקביל לכל הקורטקס</desc>
+  <rect x="30" y="100" width="150" height="70" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="105" y="130" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">גזע המוח</text>
+  <text x="105" y="148" font-size="11" text-anchor="middle" fill="#7f1d1d">ARAS - מקור העוררות</text>
+  <polygon points="185,135 210,128 210,142" fill="#6b7280"/>
+  <rect x="215" y="100" width="170" height="70" rx="8" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+  <text x="300" y="125" font-size="13" text-anchor="middle" fill="#713f12" font-weight="700">תלמוס מרכזי</text>
+  <text x="300" y="143" font-size="10.5" text-anchor="middle" fill="#713f12">גרעינים תוך-למינריים</text>
+  <text x="300" y="158" font-size="10.5" text-anchor="middle" fill="#713f12">"מגבר ומפיץ"</text>
+  <polygon points="390,135 415,128 415,142" fill="#6b7280"/>
+  <rect x="420" y="60" width="250" height="150" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="545" y="85" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קורטקס - כל האזורים</text>
+  <line x1="440" y1="100" x2="660" y2="100" stroke="#93c5fd" stroke-width="1"/>
+  <line x1="440" y1="130" x2="660" y2="130" stroke="#93c5fd" stroke-width="1"/>
+  <line x1="440" y1="160" x2="660" y2="160" stroke="#93c5fd" stroke-width="1"/>
+  <text x="545" y="192" font-size="10.5" text-anchor="middle" fill="#1e3a8a">כל אזור מקבל עוררות "בבת אחת" - לא מוקד יחיד</text>
+  <rect x="20" y="220" width="660" height="30" rx="6" fill="#f3f4f6"/>
+  <text x="350" y="240" font-size="11.5" text-anchor="middle" fill="#374151">פגיעה דו-צדדית בכל אחת מהתחנות (גזע/תלמוס) &#8592; קומה. פגיעה חד-צדדית קורטיקלית &#8592; לא גורמת לקומה</text>
+</svg>
+<div class="key-box">אובדן הכרה מלא (קומה) מחייב פגיעה <b>דו-צדדית</b> - או בשתי ההמיספרות בו-זמנית, או (ביעילות רבה עוד יותר) במבנה קטן יחסית אך משותף לשתי ההמיספרות: התלמוס המרכזי או ה-ARAS בקו האמצע. זו הסיבה שנגע חד-צדדי, אפילו גדול, כמעט לעולם לא גורם לקומה - בעוד נגע דו-צדדי קטן בתלמוס עלול.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/GK3aV_16_AU" title="Arousal and Reticular activating system" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: מערכת ההפעלה הרשתית העולה (ARAS) ותפקידה בעוררות ובהכרה.</p>
+
+<h2><span class="num">3</span> קומה: הגדרה קלינית ומהלך טבעי</h2>
+<p>קומה <span class="term" dir="ltr">coma</span> מוגדרת כהיעדר מוחלט של עוררות התנהגותית או של מאפייני שינה-ערות באלקטרואנצפלוגרם. מטופל בקומה נשאר חסר-תנועה, עיניים עצומות, ללא פתיחת עיניים ספונטנית וללא שינוי מצב גם עם גירוי נמרץ. חשוב להבחין: גם אם גירוי כואב מייצר העוויה (grimace) או תנועת נסיגה סטריאוטיפית - אלה רפלקסים ספינליים, לא תגובה מאורגנת עם לוקליזציה של מקור הגירוי.</p>
+<p>מבחינה הגדרתית, "קומה" דורשת שהמצב נמשך לפחות שעה (ולעיתים 6 שעות בהגדרות אופרציונליות מסוימות). קומה היא תמיד <b>מצב זמני</b> - אם אין סיבוך של מחלה סיסטמית או תרופות הרגעה, היא כמעט אף פעם לא נמשכת מעבר ל-10-14 יום; המטופל עובר במהלך הזמן הזה למצב VS או MCS.</p>
+<div class="key-box">קומה = היעדר עוררות (arousal) + היעדר מודעות (awareness) גם יחד. זה מה שמבדיל אותה מ-VS, שבה יש חזרה חלקית של עוררות בלי מודעות.</div>
+
+<h2><span class="num">4</span> מצב וגטטיבי (VS): דיסוציאציה בין עוררות למודעות</h2>
+<p>המצב הוגטטיבי הוגדר לראשונה ב-1972 על ידי ג'נט ופלום <span class="term" dir="ltr">Jennett and Plum</span>: דיסוציאציה בין חזרה לכאורה של עוררות התנהגותית (עם תקופות פקיחת עיניים) לבין היעדר מוחלט של עדות למודעות עצמית או סביבתית. הטרמינולוגיה ההיסטורית "מצב וגטטיבי מתמשך" <span class="term" dir="ltr">persistent vegetative state</span> (מעבר ל-30 יום) ננטשה כי היא נתפסה בטעות כמרמזת על קביעות - הפרוגנוזה בפועל תלויה במנגנון הפגיעה ובזמן שחלף, לא בתווית עצמה.</p>
+<div class="mechanism">
+  <p class="chain">מדוע דווקא VS ולא קומה נמשכת? מחקרי נתיחה שלאחר המוות ב-VS מראים דפוס עקבי של אובדן נרחב של נוירונים תלמיים - במיוחד בגרעינים התוך-למינריים המרכזיים ובגרעיני האסוציאציה הסמוכים. פגיעות דו-צדדיות המוגבלות לאזורים אלה בלבד יכולות לבדן לגרום לקומה. ההבדל בין VS לקומה נובע מכך שב-VS מתרחשת <b>התאוששות חלקית</b> של דפוס העוררות (ומכאן פקיחת העיניים המחזורית), אבל בלי החזרה של שאר הרכיבים הנוירופסיכולוגיים שנפגעו - כי הנתק בין הקורטקס-תלמוס נשאר נרחב.</p>
+</div>
+<p>שתי הסיבות השכיחות ביותר ל-VS הן פגיעת ראש טראומטית חמורה ודום לב. חשוב: אובדן נוירונים נרחב בקורטקס עצמו (לא רק בתלמוס) שכיח משמעותית אחרי דום לב (64%) לעומת פגיעה טראומטית (11%) - הבדל שמסביר חלק מהשוני בפרוגנוזה בין שני הגורמים (ראו סעיף 8).</p>
+<p>מחקרי הדמיה תפקודית (FDG-PET) הראו ירידה משמעותית ובת-שחזור בקצב חילוף החומרים המוחי במנוחה - בדרך כלל ל-30% עד 50% מהערכים התקינים - לעומת ירידה דומה הנצפית במוח בריא תחת הרדמה כירורגית עמוקה. כלומר, מבחינה מטבולית, מוח VS "נראה" קרוב יותר למוח מורדם מאשר למוח ער.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Pet_scan_of_a_normal_brain.jpg?width=700" alt="Normal brain FDG-PET scan showing typical metabolic activity">
+<p class="media-cap">סריקת FDG-PET תקינה של מוח בריא - בסיס ההשוואה להערכת הירידה החמורה בחילוף החומרים המוחי (30-50% מהתקין) שנצפית ב-VS. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">5</span> מצב הכרה מינימלי (MCS): הרף הראשון של התאוששות</h2>
+<p>MCS מוגדר אופרציונלית כרמת ההתאוששות ההתנהגותית הראשונה מעבר ל-VS: המטופל מראה בבדיקה מיטתית עדות ל<b>תגובות תלויות-הקשר</b> לגירויי סביבה, או התנהגות עצמית-יזומה, שמספקת עדות חד-משמעית אך <b>לא עקבית</b> למודעות עצמית או סביבתית. ההתאוששות מ-MCS "לרמה עליונה" מוגדרת כחזרת <b>תקשורת פונקציונלית</b> - היכולת לענות בעקביות ובדיוק על שאלות כן/לא פשוטות ותלויות-הקשר.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th colspan="2">קריטריוני קבוצת אספן לאבחון MCS <span class="term" dir="ltr">Aspen Working Group</span></th></tr></thead>
+<tbody>
+<tr><td colspan="2">עדות למודעות עצמית/סביבתית מוגבלת אך ניתנת לשחזור, בכל אחת מהצורות הבאות:</td></tr>
+<tr><td>1</td><td>ציות לפקודה פשוטה</td></tr>
+<tr><td>2</td><td>תגובת מחווה או מילולית "כן/לא" (ללא תלות בדיוק)</td></tr>
+<tr><td>3</td><td>מילול מובן (verbalization)</td></tr>
+<tr><td>4</td><td>התנהגות תכליתית תלוית-הקשר (חיוך/בכי מתאים, מענה תוכן לשוני, הושטת יד לכיוון נכון, אחיזת עצם בהתאמה לגודל/צורה, מעקב חזותי מתמשך)</td></tr>
+</tbody>
+</table>
+</div>
+<p>הסימנים המעבריים השכיחים ביותר מ-VS ל-MCS הם <b>מעקב חזותי</b> ו<b>פיקסציה חזותית</b> - לרוב הראשונים להופיע ולכן החשובים ביותר לחיפוש בבדיקות חוזרות.</p>
+<div class="mechanism">
+  <p class="chain">למרות שההבדל הקליני בין VS ל-MCS יכול להיות סמוי (לפעמים רק מעקב עיניים עקבי), ההבדל התפקודי הבסיסי עצום: מחקרי נתיחה מראים שב-MCS יש מוות תאי מוחי כללי נמוך יותר, ולעיתים <b>אין</b> אובדן משמעותי של נוירונים תלמיים או פגיעה אקסונלית מפושטת - דפוס שלא נראה כמעט אף פעם ב-VS. הדמיה תפקודית ב-MCS מראה לעיתים שימור נרחב של הפעלת רשתות קורטיקליות מבוזרות בתגובה לגירויים חושיים (כולל עיבוד סמנטי פסיבי של שפה מדוברת) - סוג של תגובה רשתית "אינטגרטיבית" שכמעט לעולם לא נראה ב-VS. זה מסביר מקרים נדירים אך מתועדים של התאוששות מאוחרת של דיבור אחרי שנים ב-MCS (לעולם לא ב-VS).</p>
+</div>
+
+<h2><span class="num">6</span> אקינטית מוטיזם: כשהמטופל "נראה ער" אך לא פועל</h2>
+<p>אקינטית מוטיזם <span class="term" dir="ltr">akinetic mutism</span> כולל מטופלים שעונים לקריטריוני MCS, וגם מטופלים שיכולים לתקשר תפקודית כשבודקים אותם פורמלית אך מפגינים הפחתה חמורה בהתנהגות ספונטנית או תגובות איטיות ביותר. מטופלים אלה עשויים להיראות ערניים מאוד - עיניים פתוחות לרווחה, מעקב חזותי מכוון אחר הבודק בחדר - אך ללא שום התנהגות נוספת.</p>
+<p>דפוסי הפגיעה השכיחים ביותר: נזק דו-צדדי לאזורים המדיאליים-קדמיים של הקורטקס (כולל הגירוס הצינגולטי הקדמי), פגיעה דו-צדדית לגרעין הקאודטי (או חד-צדדית בהמיספרה הדומיננטית), נגעים תלמיים מרכזיים דו-צדדיים, פגיעות נרחבות ב-basal forebrain, או נזק ל-mesencephalic reticular formation. <b>קרע של מפרצת בעורק המתקשר הקדמי</b> <span class="term" dir="ltr">anterior communicating artery aneurysm</span> הוא סיבה קלאסית ומוכרת היטב לאקינטית מוטיזם - רלוונטי ישירות לנוירוכירורגים כי זהו סיבוך אפשרי של תת-קרום עורקי מפרצת קדמית או של הניתוח עצמו.</p>
+<div class="key-box">"תסמונת האיטיות" (slow syndrome) היא תת-קבוצה של אקינטית מוטיזם המאופיינת בעיקר באובדן זיכרון חמור, האטה התנהגותית קיצונית, ומראה אפאתי-אבוליה - חשוב לזהות כי היא עלולה להתפרש בטעות כדיכאון קליני ולא כפגיעה מבנית.</div>
+
+<h2><span class="num">7</span> גישה מאורגנת לאבחון: שלוש קטגוריות מטופלים</h2>
+<p>כאשר תהליכים פסיכוגניים נשללים, שינוי בהכרה נובע תמיד מאחת משתי מנגנונים: (1) פגיעה תפקודית מפושטת בשתי ההמיספרות כתוצאה מפגיעה ישירה או הפרעות טוקסיות/מטבוליות (למשל אי-ספיקה קרדיו-פולמונרית, זיהום, הרעלה); או (2) פגיעה סלקטיבית באזורי גזע המוח העליון וה-basal forebrain הקו-אמצעיים המכילים גרעינים הקשורים לקלט עוררות עולה, לרוב בשילוב עם פגיעה בגרעיני התלמוס המרכזיים.</p>
+<p>הפרק מציע חלוקה מעשית לשלוש קבוצות מטופלים לצורך גיבוש פרוגנוזה:</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>קבוצה</th><th>מאפיין</th><th>איך מזהים</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td>פגיעה מבנית עוצמתית עם מנבאים קליניים ידועים למוות או VS פרמננטי</td><td>לרוב ניתן לזהות בבדיקה קלינית ובדימות בלבד (למשל אוטם מלא של ההמיספרה הדומיננטית עם הרניאציה מרכזית)</td></tr>
+<tr><td><b>2</b></td><td>דפוס התאוששות מוקדם ויציב, פרוגנוזה טובה יחסית בוודאות גבוהה</td><td>מוכר קלינית אך פחות מאופיין מדעית כי הוא פחות "בעייתי" קלינית</td></tr>
+<tr><td><b>3</b></td><td>עדות מעורבת (פגיעה מבנית משמעותית + חוסר סימנים שליליים חד-משמעיים) - "אזור אפור" פרוגנוסטי</td><td>הכי מאתגר: כאן נדרשת מעקב שיטתי, ניסיונות תרופתיים, והימנעות מהחלטת "חוסר תוחלת" מוקדמת מדי</td></tr>
+</tbody>
+</table>
+</div>
+<p>הצעד הראשון תמיד: קביעה מדויקת האם המטופל בקומה, VS או MCS - כי זה קובע אילו בדיקות (EEG, evoked potentials) לצפות שיתאימו לממצא הקליני. שינוי עדין (למשל חזרת מעקב חזותי לסירוגין אחרי שבועיים בקומה) בדרך כלל יתאם לשינוי אובייקטיבי ב-EEG, כמו הרחבת טווח התדרים ברקע.</p>
+<p>כאשר הרושם הקליני לא תואם פגיעה נוירונלית מוחלטת, יש לשקול הפרעות תפקודיות ברמת התא/הרשת (טוקסיות, זיהומיות, דלקתיות, אוטואימוניות) שמפחיתות יכולת ירי תקינה של נוירונים בלי להרוג אותם. אחד המנגנונים החשובים ביותר ברמת האוכלוסייה הוא רגישות סלקטיבית של מעגלי הקורטיקו-סטריאטו-פלידו-תלמו-קורטיקליים לירידה ברמות דופמין וברקע סינפטי - ולכן <b>ניסיון אמפירי בתרופה אגוניסטית לדופמין (למשל אמנטדין)</b> הוא צעד ראשוני סביר במטופל יציב רפואית, גם בלי אבחנה מדויקת של מנגנון.</p>
+
+<h2><span class="num">8</span> פרוגנוזה: תלוי-סיבה ותלוי-זמן</h2>
+<p>קומה היא מחלה חמורה מטבעה עם תמותה גבוהה מאוד: 40-50% מהמטופלים בקומה אחרי חבלת ראש ו-54-88% מהמטופלים בקומה אחרי דום לב נפטרים. אם אין מנבאים שליליים חזקים (כמו אובדן דו-צדדי של רפלקס אישונים וקרנית בזמן הפגיעה הראשוני), הפרוגנוזה הרבה פחות ודאית.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>גורם</th><th>VS מוגדר כפרמננטי מ-</th><th>הסבר מנגנוני להבדל</th></tr></thead>
+<tbody>
+<tr><td><b>דום לב / אנוקסיה</b></td><td>3 חודשים</td><td>מוות תאי מהיר ומפושט תוך כ-6 דקות של חוסר חמצן - "חתך חד" בתוצאות, פתולוגיה דומה למוות מוחי</td></tr>
+<tr><td><b>חבלת ראש טראומטית (VS)</b></td><td>12 חודשים</td><td>אובדן הנוירונים התלמי מגיע באיחור, כתוצאה מניוון טרנס-נוירונלי מושהה (לא פגיעה ראשונית מיידית) - ולכן חלון ההתאוששות ארוך יותר</td></tr>
+<tr><td><b>MCS</b></td><td>לא מוגדר במדויק - עדיין נחקר</td><td>קטגוריה חדשה יחסית; דיווחים על שיפור תפקודי גם אחרי 1-3 חודשים ב-MCS, ואף מתאם מוגבל בין זמן ב-MCS לתפקוד ב-2-5 שנים</td></tr>
+</tbody>
+</table>
+</div>
+<p class="key-box">כל המקרים המתועדים של החלמת תקשורת מאוחרת (אחרי חודשים-שנים) אירעו אצל מטופלים שהיו מסווגים כ-MCS - <b>אף פעם לא ב-VS</b>. זו הסיבה שהזיהוי המדויק בין VS ל-MCS (גם כשההבדל נראה "טכני") הוא קריטי מבחינה פרוגנוסטית ולא רק סמנטי.</p>
+
+<h2><span class="num">9</span> תפקיד ההדמיה המתקדמת: הזדמנויות ומגבלות</h2>
+<p>מחקר פורץ דרך של אוון ועמיתיו <span class="term" dir="ltr">Owen et al., 2006</span> השתמש ב-fMRI כדי להדגים עדות חד-משמעית לציות לפקודה במטופלת שעמדה בכל הקריטריונים ההתנהגותיים ל-VS וללא שום תגובה גלויה. כשהתבקשה לדמיין משחק טניס, דפוס ההפעלה שלה באזור המוטורי המשלים תאם לחלוטין את הדפוס שנצפה במתנדבים בריאים המדמיינים אותה פעולה - ובדומה, דמיון ניווט מרחבי בביתה הפעיל את הגירוס הפאראהיפוקמפלי והקורטקס הפריאטלי האחורי, בדיוק כמו במתנדבים בריאים.</p>
+<p>הממצא הזה - שכיום מכונה בספרות "דיסוציאציה קוגניטיבית-מוטורית" <span class="term" dir="ltr">cognitive motor dissociation</span> - מרמז שהדמיה תפקודית עשויה לזהות מטופלים עם "תודעה סמויה" (covert consciousness) שאובחנו קלינית כ-VS, אך יש לכך מגבלות משמעותיות: קבלת נתוני fMRI אמינים ממטופלים עם פגיעת ראש חמורה קשה טכנית (חומרה בגולגולת, תנועה בלתי-נשלטת), מאפייני האות עשויים להיות שונים ממתנדבים בריאים, וממצא בודד לא מלמד על שכיחות התופעה. חשוב גם לא לפרש-יתר: מטופלי MCS רבים מדגימים ציות ברור לפקודות דרך תנועה גלויה קטנה, אך עדיין אינם מסוגלים לתקשר בעקביות - ולכן בהיעדר יכולת תקשורת מוכחת, המסקנה הזהירה היא לפחות MCS, לא VS.</p>
+<p>מחקר נוסף תיעד שינויים מבניים מאוחרים (עלייה באניסוטרופיה שברירית ב-DTI) במוחו של מטופל MCS שהחלים דיבור שוטף אחרי 20 שנה במצב MCS - ממצא שמרמז על תהליך צמיחה אקסונלית איטי אך אמיתי, גם שנים רבות אחרי הפגיעה הראשונית.</p>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>דימוי: "מתג עמעום" (dimmer switch) במקום מתג הפעלה/כיבוי</h3>
+  <p>דמייני מנורה עם <b>מתג עמעום</b> ולא מתג רגיל של הפעלה/כיבוי. המנורה עצמה היא הקורטקס - היא לא נשברה, אבל היא לא מקבלת מספיק זרם. גזע המוח והתלמוס הם חוט החשמל והשנאי שמזרימים את הזרם. במצב <b>כבוי לגמרי</b> (קומה) - אין שום אור, לא משנה כמה "מנסים". במצב <b>הבהוב אקראי בלי דפוס</b> (VS) - יש הבזקי אור (עיניים נפתחות), אבל אין שליטה - זה לא מגיב למתג בכוונה. במצב <b>עמעום נמוך אך מגיב</b> (MCS) - כשלוחצים על המתג בצורה מסוימת, האור בהחלט משתנה, לפעמים, לא תמיד. ורק כש<b>האור חוזר במלואו ומגיב בעקביות</b> - זו חזרה לתקשורת תפקודית.</p>
+  <svg class="diagram" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <title>דימוי מתג העמעום: קומה, VS, MCS, התאוששות</title>
+    <desc>תרשים המדמה את ארבע רמות ההכרה כמצבי עמעום שונים של מנורה</desc>
+    <circle cx="90" cy="90" r="40" fill="#1f2937" stroke="#374151" stroke-width="3"/>
+    <text x="90" y="150" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">קומה</text>
+    <text x="90" y="167" font-size="10.5" text-anchor="middle" fill="#6b7280">כבוי לגמרי</text>
+    <circle cx="240" cy="90" r="40" fill="#fde68a" stroke="#b45309" stroke-width="3" opacity="0.35"/>
+    <text x="240" y="150" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">VS</text>
+    <text x="240" y="167" font-size="10.5" text-anchor="middle" fill="#6b7280">הבהוב אקראי, לא מגיב למתג</text>
+    <circle cx="390" cy="90" r="40" fill="#fde68a" stroke="#b45309" stroke-width="3" opacity="0.7"/>
+    <text x="390" y="150" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">MCS</text>
+    <text x="390" y="167" font-size="10.5" text-anchor="middle" fill="#6b7280">עמעום נמוך, מגיב לעיתים</text>
+    <circle cx="540" cy="90" r="40" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <text x="540" y="150" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">תקשורת</text>
+    <text x="540" y="167" font-size="10.5" text-anchor="middle" fill="#6b7280">אור מלא ועקבי</text>
+    <line x1="140" y1="90" x2="190" y2="90" stroke="#9ca3af" stroke-width="3"/>
+    <line x1="290" y1="90" x2="340" y2="90" stroke="#9ca3af" stroke-width="3"/>
+    <line x1="440" y1="90" x2="490" y2="90" stroke="#9ca3af" stroke-width="3"/>
+    <text x="310" y="205" font-size="11" text-anchor="middle" fill="#374151">ההתאוששות היא רצף מדורג, לא קפיצה בין קטגוריות נפרדות</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Vegetative_state" target="_blank">Vegetative State – Wikipedia</a>
+    <div class="desc">רקע מורחב על הגדרות, אבחנה מבדלת ופרוגנוזה של המצב הוגטטיבי.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Minimally_conscious_state" target="_blank">Minimally Conscious State – Wikipedia</a>
+    <div class="desc">קריטריוני אבחון מורחבים והבדלים מ-VS ומתסמונת "locked-in".</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Reticular_formation" target="_blank">Reticular Formation – Wikipedia</a>
+    <div class="desc">אנטומיה ותפקוד מפורט של מערכת ההפעלה הרשתית העולה.</div>
+  </li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TfLAeCfj5ks" title="Coma, Vegetative State and Minimally Conscious State" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: השוואה קלינית בין קומה, מצב וגטטיבי ומצב הכרה מינימלי.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/yeYe92q5Wj4" title="Glasgow Coma Scale Explained: How Neurosurgeons Assess Brain Injuries" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הערכה מיטתית של מטופל עם שינוי הכרה - הבסיס הקליני היומיומי להחלת המושגים שבפרק.</p>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 עבר החייאה ממושכת לאחר דום לב בבית, והגיע להכרה חלקית 10 ימים לאחר מכן: עיניו נפתחות מחזורית ללא כל תגובה עקבית לפקודות, נסיגה סטריאוטיפית מגירוי כואב, וללא סימן ללוקליזציה. שלושה שבועות לאחר האירוע, הצוות מבחין שהמטופל עוקב מדי פעם בעיניו אחר אנשי הצוות בחדר. ה-EEG מדגים הרחבה קלה בטווח התדרים ביחס לבדיקה קודמת.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה השם הנכון למצב שבו המטופל היה 10 ימים לאחר הדום לב (עיניים נפתחות מחזורית, ללא תגובה עקבית לפקודות)?</div>
+  <button class="opt" data-i="0">קומה - כי אין תקשורת</button>
+  <button class="opt" data-i="1">מצב וגטטיבי (VS) - עוררות חלקית (פקיחת עיניים מחזורית) בלי עדות למודעות</button>
+  <button class="opt" data-i="2">מצב הכרה מינימלי (MCS) - כי יש נסיגה מכאב</button>
+  <button class="opt" data-i="3">אקינטית מוטיזם</button>
+  <div class="explain">התשובה הנכונה: פקיחת עיניים מחזורית (עדות לחזרת דפוס עוררות) בלי שום עדות עקבית למודעות עצמית או סביבתית היא ההגדרה המדויקת של VS. קומה (0) שוללת כל פקיחת עיניים ספונטנית. MCS (2) דורש עדות ל<b>תגובה תלוית-הקשר</b>, ונסיגה מכאב היא רפלקס ספינלי סטריאוטיפי ולא עדות כזו. אקינטית מוטיזם (3) מחייב לפחות רמת MCS.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. שלושה שבועות לאחר האירוע מבחינים במעקב עיני מזדמן. מה המשמעות הקלינית, ומה עדיין חסר כדי לקבוע מעבר רשמי ל-MCS?</div>
+  <button class="opt" data-i="0">זהו סימן שאין לו שום משמעות פרוגנוסטית</button>
+  <button class="opt" data-i="1">זה כבר מספיק כדי לאבחן תקשורת תפקודית מלאה</button>
+  <button class="opt" data-i="2">מעקב חזותי הוא הסימן המעברי השכיח ביותר מ-VS ל-MCS, אך יש לוודא שהוא <b>עקבי ובר-שחזור</b> (לא אירוע בודד) לפני שקובעים מעבר רשמי</button>
+  <button class="opt" data-i="3">זה מוכיח שהמטופל היה תמיד ב-MCS ולא ב-VS</button>
+  <div class="explain">התשובה הנכונה: מעקב חזותי ופיקסציה הם אכן הסימנים המעבריים הראשונים והשכיחים ביותר בין VS ל-MCS, אבל קריטריוני האבחון דורשים ש<b>ההתנהגות תהיה ניתנת לשחזור באופן עקבי</b>, לא הופעה חד-פעמית שעלולה להיות מקרית. תשובה 0 שגויה - הסימן דווקא בעל משמעות פרוגנוסטית משמעותית. תשובה 1 שגויה - תקשורת תפקודית דורשת מענה עקבי ומדויק לשאלות כן/לא, רף גבוה בהרבה. תשובה 3 שגויה - האבחנה נקבעת לפי המצב הקליני בזמן אמת, לא רטרואקטיבית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע הפרוגנוזה של VS לאחר דום לב שונה (חלון זמן קצר יותר להגדרת "פרמננטי") מ-VS לאחר חבלת ראש טראומטית?</div>
+  <button class="opt" data-i="0">דום לב גורם למוות תאי מהיר ומפושט תוך דקות ספורות של חוסר חמצן, בעוד שבטראומה אובדן הנוירונים התלמי מתפתח באיחור עקב ניוון טרנס-נוירונלי מושהה</button>
+  <button class="opt" data-i="1">אין הבדל אמיתי בין השניים בספרות</button>
+  <button class="opt" data-i="2">כי טראומה תמיד פוגעת רק בקורטקס ולא בתלמוס</button>
+  <button class="opt" data-i="3">כי דום לב פוגע רק בגזע המוח</button>
+  <div class="explain">התשובה הנכונה: המנגנון הפתופיזיולוגי שונה מהותית - היפוקסיה גלובלית בדום לב הורגת נוירונים רגישים תוך דקות, ויוצרת "חתך חד" בתוצאות שדומה במידה מסוימת לפתולוגיה של מוות מוחי. בפגיעה טראומטית (פגיעה אקסונלית מפושטת), מוות הנוירונים התלמי הוא תוצאה מושהית של תהליך ניווני טרנס-נוירונלי - ולכן ההתאוששות האפשרית נמשכת זמן רב יותר, וההגדרה של VS פרמננטי נדחית ל-12 חודשים במקום 3. תשובות 2 ו-3 אינן מדויקות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אם באותו מטופל היה מתפתח מצב שבו הוא נראה ער וממוקד מבט, אך כמעט חסר כל התנהגות ספונטנית נוספת, ובבדיקת ההדמיה מתגלה שהוא פיתח מפרצת שקרעה בעורק המתקשר הקדמי - איזו תסמונת סביר שתתפתח?</div>
+  <button class="opt" data-i="0">תסמונת Locked-in</button>
+  <button class="opt" data-i="1">מוות מוחי</button>
+  <button class="opt" data-i="2">דליריום היפראקטיבי</button>
+  <button class="opt" data-i="3">אקינטית מוטיזם - קרע מפרצת בעורק המתקשר הקדמי הוא סיבה קלאסית, עם תמונה של עירנות למראית עין ללא יזימת התנהגות</button>
+  <div class="explain">התשובה הנכונה: קרע מפרצת בעורק המתקשר הקדמי הוא גורם קלאסי ומוכר לאקינטית מוטיזם, בגלל פגיעה דו-צדדית אפשרית באזורים הפרונטליים-מדיאליים (כולל הגירוס הצינגולטי הקדמי) הסמוכים לאזור המפרצת. Locked-in (0) הוא מצב שונה לחלוטין - מודעות מלאה עם שיתוק מוטורי כמעט מוחלט (פגיעה בגזע המוח הוונטרלי), לא פגיעה בהכרה עצמה. מוות מוחי (1) ודליריום היפראקטיבי (2) אינם תואמים את התיאור הקליני.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופלת שעונה לקריטריונים ההתנהגותיים המלאים של VS מדגימה ב-fMRI דפוס הפעלה תואם-בריאים כאשר מבקשים ממנה לדמיין משחק טניס. איך יש לפרש את הממצא, ומה מגבלת הפרשנות העיקרית?</div>
+  <button class="opt" data-i="0">זו הוכחה חד-משמעית שכל מטופלי VS הם למעשה בהכרה מלאה</button>
+  <button class="opt" data-i="1">זו עדות ל"דיסוציאציה קוגניטיבית-מוטורית" האפשרית - ציות מכוון לפקודה בלי יכולת תנועה גלויה - אך ממצא בודד לא מלמד על שכיחות התופעה או מהימנותה בכלל אוכלוסיית ה-VS</button>
+  <button class="opt" data-i="2">הממצא לא אמין בכלל וצריך להתעלם ממנו</button>
+  <button class="opt" data-i="3">זה מוכיח שהאבחנה הקלינית של VS תמיד שגויה</button>
+  <div class="explain">התשובה הנכונה: הממצא של אוון ועמיתיו הוא עדות מרשימה לכך שחלק ממטופלים המאובחנים קלינית כ-VS עשויים לשמר יכולת ציות מכוון לפקודה ברמת מוח, מה שכיום מכונה דיסוציאציה קוגניטיבית-מוטורית - אך יש לפרש בזהירות: קבלת אות אמין קשה טכנית, מאפייני אות עשויים להשתנות מאדם לאדם, וממצא במטופלת אחת אינו מלמד על השכיחות הכללית של התופעה. תשובות 0, 2 ו-3 מייצגות פרשנות-יתר בכיוונים מנוגדים - לא מה שהטקסט בפועל תומך בו.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הכרה תקינה בנויה מהיררכיה של רכיבים (עוררות, קשב, כוונה, זיכרון, מודעות, מצב רוח) - עוררות היא הבסיס שבלעדיו שום דבר אחר לא אפשרי.</li>
+    <li>העוררות מוזרמת לקורטקס משני מוקדים תת-קורטיקליים: ה-<b>ARAS</b> בגזע המוח והגרעינים <b>התוך-למינריים של התלמוס</b>. פגיעה דו-צדדית באחד מהם &#8592; קומה; פגיעה חד-צדדית קורטיקלית - לא.</li>
+    <li><b>קומה</b> = היעדר עוררות ומודעות גם יחד, זמני (עד 10-14 יום). <b>VS</b> = עוררות חוזרת חלקית (פקיחת עיניים) בלי עדות למודעות. <b>MCS</b> = עדות בלתי-עקבית אך ברורה למודעות (מעקב חזותי, ציות לפקודה לסירוגין).</li>
+    <li><b>אקינטית מוטיזם</b>: מטופל נראה ער וממוקד אך כמעט חסר יזימת התנהגות - קשור לפגיעה דו"צ בקורטקס פרונטלי-מדיאלי, קאודטוס, תלמוס מרכזי, או קרע מפרצת בעורק המתקשר הקדמי.</li>
+    <li>פרוגנוזה תלוית-מנגנון: VS פרמננטי אחרי דום לב = 3 חודשים (מוות תאי מהיר); אחרי טראומה = 12 חודשים (ניוון תלמי מושהה). כל החלמות התקשורת המאוחרות תועדו רק ב-MCS, אף פעם לא ב-VS.</li>
+    <li>fMRI (מחקר אוון) הראה "דיסוציאציה קוגניטיבית-מוטורית" - ציות מכוון לפקודה בלי תנועה גלויה אצל חלק ממטופלי VS - כלי מבטיח אך מוגבל טכנית וטרם ניתן ליישום שגרתי.</li>
+    <li>גישה קלינית: קבעו תחילה במדויק קומה/VS/MCS, מקמו את המטופל בזמן ביחס לפגיעה, זהו את הגורם, וסווגו לאחת משלוש קטגוריות פרוגנוסטיות לפני קביעת "חוסר תוחלת".</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
