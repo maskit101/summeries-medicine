@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>פערים גזעיים ואתניים בשירותי הבריאות</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>פערים גזעיים ואתניים בשירותי הבריאות <span dir="ltr" class="term">(Racial and Ethnic Disparities in Health Care)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 10 (Lenny López, Joseph R. Betancourt) | עמ' 100–107</div>
+
+<p>הפרק הזה, כמו פרק 7 (מימון בריאות עולמי), לא עוסק במחלה בודדת אלא ב"מחלה" של המערכת עצמה: למרות
+שיפור כללי בתוחלת החיים ובאיכות הטיפול בארה"ב, מיעוטים גזעיים/אתניים (שחורים, היספנים/לטינים,
+אינדיאנים-אמריקאים/ילידי אלסקה, אסייתים/ילידי האוקיינוס השקט) ממשיכים לקבל <strong>פחות טיפול ובאיכות
+נמוכה יותר</strong> מלבנים — גם כשמשתנים כמו ביטוח, שלב המחלה ומחלות רקע מבוקרים סטטיסטית. זהו נושא
+"בורדסי" קלאסי (ובעל חשיבות קלינית ישירה), ולכן הסיכום בנוי סביב שרשרת סיבתית של <strong>גורמי-שורש</strong>
+ואחריה סקירת <strong>התערבויות</strong> מבוססות-ראיות לצמצום הפער, בדיוק כפי שהפרק עצמו בנוי.</p>
+
+<h2><span class="num">2</span> המנגנון — למה נוצרים פערים גזעיים/אתניים בטיפול הרפואי</h2>
+<div class="mechanism">
+  <p class="chain">
+    שרשרת הסיבתיות המרכזית של הפרק: <strong>גזענות (אישית ומבנית) ← לחץ פסיכוסוציאלי כרוני
+    ← שינויים פיזיולוגיים מדידים ("אפקט הבלייה"/<span dir="ltr" class="term">weathering</span>)
+    + מורכבות מערכתית + הטיה לא-מודעת של הצוות הרפואי + חוסר אמון של המטופל
+    ← החלטות קליניות שונות בפועל ← פערים מדידים באיכות הטיפול ובתוצאים הבריאותיים</strong>.
+  </p>
+  <p>
+    <span class="key">גזענות מבנית (<span dir="ltr" class="term">structural racism</span>)</span> —
+    ההגדרה החשובה ביותר בפרק: זו לא "רופא גזען אחד", אלא <strong>מכלול הדרכים שבהן חברה מטמיעה
+    ומנציחה אפליה</strong> דרך מבנים סוציו-פוליטיים, משפטיים, כלכליים ובריאותיים שקובעים גישה
+    שונה למשאבים והזדמנויות — וזה יכול לפעול <strong>גם בהיעדר גורם בודד שמפלה במודע</strong>. דוגמה
+    היסטורית קונקרטית מהפרק: הפרדה מגורים (<span dir="ltr" class="term">residential segregation</span>)
+    יצרה השפעות שליליות בין-דוריות על גישה לתעסוקה, בנקאות, השכלה איכותית ובריאות.
+  </p>
+  <p>
+    <span class="key">"אפקט הבלייה" (<span dir="ltr" class="term">weathering effect</span>)</span> — זו
+    התשובה המנגנונית לשאלה "איך אפליה הופכת ללחץ דם גבוה?": לחץ פסיכוסוציאלי כרוני מפעיל יתר
+    (<span dir="ltr" class="term">hyperstimulation</span>) של מערכת ה<span dir="ltr" class="term">
+    sympathetic-adrenal-medullary</span> וציר ה<span dir="ltr" class="term">hypothalamic-pituitary-adrenal
+    (HPA)</span>, מה שגורם <strong>בפועל</strong> לדלקת כלי-דם, פגיעה בתפקוד האנדותל
+    (<span dir="ltr" class="term">endothelial dysfunction</span>) ודיסרגולציה נוירו-הורמונלית —
+    שלושתם יחד מאיצים מחלת לב וכלי דם. לצד זה, שינויים התנהגותיים כתגובה ללחץ (עישון מוגבר, ירידה
+    בפעילות גופנית ובשינה, היענות ירודה לטיפול) מוסיפים מסלול נוסף שמחריף את הסיכון. התוצאה המצטברת
+    נקראת <strong>"בלייה" (weathering)</strong> — הזדקנות ביולוגית מואצת ומוות מוקדם יחסית, גם כשמשווים
+    בין קבוצות באותה רמת השכלה והכנסה.
+  </p>
+  <p>
+    <span class="key">שימוש בגזע כ"פרוקסי" גנטי-קליני</span> — הראיות כיום ברורות: <strong>גזע הוא
+    קטגוריה חברתית ולא ביולוגית</strong>, ולכן התאמת נוסחאות/אלגוריתמים קליניים לפי גזע עלולה
+    ליצור פערים חדשים בעצמה (ראו דוגמת נפרולוגיה בסעיף 4).
+  </p>
+  <p>
+    <span class="key">גורמי מערכת הבריאות</span> — מורכבות ניווט המערכת (במיוחד עבור מי שהשפה
+    האנגלית אינה שפת-אם, השכלה בריאותית נמוכה, או חוסר היכרות עם המודל המערבי), וכן ריכוז חולים
+    מיעוטים במספר קטן יחסית של מוסדות (25% מבתי החולים בארה"ב מטפלים ב-90% ממטופלי מדיקר
+    השחורים) שנוטים להיות בעלי ציוני איכות נמוכים יותר.
+  </p>
+  <p>
+    <span class="key">גורמי ספק-שירות (Provider-level)</span> — שני מנגנונים פסיכולוגיים מרכזיים:
+    (1) <strong>אי-ודאות קלינית</strong> — כשה"סימנים" של מטופל קשים יותר לפענוח (למשל בגלל
+    הבדלי ביטוי תרבותי של תסמינים), הרופא (לרוב לבן) עלול להבין את המטופל הלבן טוב יותר ולכן
+    לקבל החלטה שונה — גם ללא כל דעה קדומה מודעת; (2) <strong>סטריאוטייפיזציה תת-מודעת</strong> —
+    כלי חשיבה טבעי לפישוט עומס מידע, שמופעל דווקא <strong>בסביבות לחוצות, מרובות-משימות ותחת
+    לחץ זמן</strong> — בדיוק המאפיינים של המפגש הקליני. בסקר של כמעט 16,000 רופאים, <strong>42%
+    הודו שהטיה (כולל גזעית) משפיעה על ההחלטה הקלינית שלהם</strong> — ורופאי מיון, שעובדים בתנאי
+    הלחץ והריבוי-משימות הקיצוניים ביותר, הובילו את הרשימה עם 62%.
+  </p>
+  <p>
+    <span class="key">גורמי מטופל</span> — <strong>חוסר אמון</strong> שנשען על היסטוריה מתועדת
+    (ניסוי טאסקיגי לעגבת שנמשך 1932–1972, אפליה, ניסויים רפואיים) פוגע בהיענות, בנכונות לעבור
+    הליכים פולשניים ובהשתתפות במחקר קליני — מה שבתורו "מזין" מחדש סטריאוטיפים בקרב הצוות הרפואי,
+    ויוצר מעגל שמנציח את עצמו.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="10" width="220" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="120" y="33" font-size="13.5" text-anchor="middle" fill="#1f2937">גזענות אישית ומבנית</text>
+  <text x="120" y="52" font-size="11" text-anchor="middle" fill="#4b5563">Racism / Structural racism</text>
+
+  <line x1="120" y1="65" x2="120" y2="100" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <rect x="10" y="100" width="200" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="110" y="123" font-size="12.5" text-anchor="middle" fill="#1f2937">לחץ פסיכוסוציאלי כרוני</text>
+  <text x="110" y="141" font-size="11" text-anchor="middle" fill="#4b5563">SAM + HPA axis</text>
+
+  <rect x="230" y="100" width="200" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="330" y="118" font-size="12" text-anchor="middle" fill="#1f2937">מורכבות מערכת הבריאות</text>
+  <text x="330" y="135" font-size="12" text-anchor="middle" fill="#1f2937">+ ריכוז במוסדות חלשים</text>
+
+  <rect x="450" y="100" width="210" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="555" y="118" font-size="12" text-anchor="middle" fill="#1f2937">הטיה לא-מודעת של ספק השירות</text>
+  <text x="555" y="135" font-size="11" text-anchor="middle" fill="#4b5563">אי-ודאות קלינית + סטריאוטייפ</text>
+
+  <rect x="680" y="100" width="200" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="780" y="123" font-size="12.5" text-anchor="middle" fill="#1f2937">חוסר אמון של המטופל</text>
+  <text x="780" y="141" font-size="11" text-anchor="middle" fill="#4b5563">מורשת היסטורית (טאסקיגי)</text>
+
+  <line x1="230" y1="65" x2="230" y2="100" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="330" y1="65" x2="330" y2="100" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="555" y1="65" x2="555" y2="100" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="780" y1="65" x2="780" y2="100" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <rect x="60" y="185" width="150" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="135" y="205" font-size="12" text-anchor="middle" fill="#1f2937">דלקת כלי-דם</text>
+  <text x="135" y="222" font-size="11" text-anchor="middle" fill="#4b5563">"בלייה" — Weathering</text>
+
+  <line x1="110" y1="155" x2="135" y2="185" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <rect x="330" y="185" width="440" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="550" y="212" font-size="13" text-anchor="middle" fill="#1f2937">החלטה קלינית שונה בפועל: הפניה, בדיקה, טיפול, תקשורת</text>
+
+  <line x1="330" y1="155" x2="450" y2="185" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="555" y1="155" x2="550" y2="185" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="780" y1="155" x2="660" y2="185" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <line x1="135" y1="235" x2="500" y2="270" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+  <line x1="550" y1="235" x2="500" y2="270" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow10)"/>
+
+  <rect x="280" y="270" width="440" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="500" y="293" font-size="13.5" text-anchor="middle" fill="#1f2937" font-weight="bold">פערים מדידים באיכות הטיפול ובתוצאים הבריאותיים</text>
+  <text x="500" y="312" font-size="11" text-anchor="middle" fill="#4b5563">תוחלת חיים, שיעורי הפניה, תסמינים לא-מטופלים</text>
+
+  <defs>
+    <marker id="arrow10" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="key-box">חשוב להבחין בין שלושה מושגים שנוטים להתבלבל במבחן: <strong>סטריאוטייפיזציה</strong>
+(שימוש תת-מודע בקטגוריות חברתיות לפישוט עיבוד מידע — כמעט אוניברסלי ולא בהכרח מודע),
+<strong>דעה קדומה (prejudice)</strong> (שיפוט מוקדם מודע שעלול להוביל להתנהגות מפלה), ו<strong>אפליה
+(discrimination)</strong> (התנהגות מפלה מודעת ומכוונת בפועל). רוב הפערים בטיפול נובעים מהראשון —
+לא מהשני או השלישי — ולכן ההתערבויות (סעיף 6) מתמקדות במודעות והכשרה, לא רק ב"ענישת" רופאים
+מפלים במודע.</div>
+
+<h2><span class="num">3</span> היקף התופעה — נתונים על תוחלת חיים ואיכות טיפול</h2>
+<p>תוחלת חיים היא מדד-העל של בריאות אוכלוסייה. למרות עלייה כללית בארה"ב מאז 1900, פערים לפי גזע,
+השכלה ומעמד סוציו-אקונומי נותרים עקביים לאורך כל תקופת המדידה:</p>
+<table>
+  <thead><tr><th>תקופה/מדד</th><th>ממצא</th></tr></thead>
+  <tbody>
+    <tr><td>הפער ההיסטורי הגדול ביותר (1975–2003)</td><td>6.3 שנים בקרב גברים, 4.5 שנים בקרב נשים (שחורים לעומת לבנים)</td></tr>
+    <tr><td>שינוי 1999–2013</td><td>הפער הצטמצם מ-5.9 ל-3.6 שנים (ירידה של 4.4 שנים אצל גברים, 3.0 שנים אצל נשים)</td></tr>
+    <tr><td>ברמת השכלה/הכנסה שווה</td><td>שחורים בעלי תואר אקדמי עדיין חיים פחות משנים מלבנים והיספנים בעלי תעודת בגרות בלבד</td></tr>
+    <tr><td>תרומת מחלות לפער</td><td>מחלות לב-וכלי-דם וסוכרת יחד מסבירות 35% מהפער בקרב גברים, 52% בקרב נשים</td></tr>
+    <tr><td>גורמים מסבירים ברמת מחוז (2010–2015)</td><td>גורמים סוציו-אקונומיים/גזע-אתניות + התנהגותיים-מטבוליים + גורמי מערכת בריאות הסבירו יחד 74% משונות תוחלת החיים בין מחוזות</td></tr>
+  </tbody>
+</table>
+<p class="key">שימו לב: רוב הקשר בין גזע/מעמד סוציו-אקונומי לתוחלת חיים <strong>עובר דרך גורמים
+התנהגותיים ומטבוליים</strong> (עישון, פעילות גופנית, השמנה, יתר לחץ דם, סוכרת) — כלומר אלה
+המסלולים ה"ביניים" הביולוגיים שדרכם הלחץ הפסיכוסוציאלי (סעיף 2) הופך לתחלואה בפועל.</p>
+
+<h3>פערים באיכות הטיפול (לא רק בתוחלת החיים)</h3>
+<p>הדו"ח השנתי <span dir="ltr" class="term">National Healthcare Quality and Disparities Report</span>
+(AHRQ, 2019) עוקב אחר כ-250 מדדי תהליך/תוצא/גישה. הממצא המרכזי: פערים מסוימים הצטמצמו בין 2000
+ל-2016–2018, אך רבים נותרו ואף החמירו, במיוחד באוכלוסיות עניות ולא-מבוטחות:</p>
+<table>
+  <thead><tr><th>קבוצה</th><th>אחוז המדדים שבהם קיבלו טיפול <strong>גרוע יותר</strong> מלבנים</th></tr></thead>
+  <tbody>
+    <tr><td>שחורים</td><td>כ-40% (82 מתוך 202 מדדים)</td></tr>
+    <tr><td>אינדיאנים-אמריקאים/ילידי אלסקה</td><td>כ-40% (47 מתוך 116 מדדים)</td></tr>
+    <tr><td>היספנים/לטינים</td><td>יותר משליש (61 מתוך 177 מדדים)</td></tr>
+    <tr><td>אסייתים / ילידי הוואי/האוקיינוס השקט</td><td>כ-30% גרוע יותר, אך גם כ-30% <strong>טוב יותר</strong> מלבנים</td></tr>
+  </tbody>
+</table>
+<p>ממצא נוסף שחשוב לזכור: מתוך המדדים שהראו פער בבסיס המדידה (שנת 2000), <strong>ביותר מ-90% מהם
+לא נראה שיפור עד היום</strong> — כלומר מודעות בלבד (סעיף 6) לא הספיקה כדי לצמצם את רוב הפערים.</p>
+
+<h2><span class="num">4</span> ביטוי קליני — דוגמאות קונקרטיות מהספרות</h2>
+<p>הפרק מפרט תחומי טיפול ספציפיים שבהם תועדו פערים באופן חוזר ועקבי לאורך עשורים, <strong>גם כאשר
+מבוקרים משתני ביטוח, הכנסה, גיל, מחלות רקע וחומרת התסמינים</strong>:</p>
+<ul>
+  <li><strong>דלקת ריאות ואי-ספיקת לב</strong> — שחורים מאושפזים מקבלים טיפול פחות אופטימלי מלבנים.</li>
+  <li><strong>מחלת כליות סופנית (ESRD)</strong> — שחורים מופנים בשיעור נמוך יותר לרשימת השתלה מלבנים
+  (הבדל מובהק סטטיסטית, p&lt;0.0001, במחקר שכלל 239 נשים שחורות, 280 נשים לבנות, 271 גברים שחורים
+  ו-271 גברים לבנים).</li>
+  <li><strong>נהלים קרדיאליים</strong> — שחורים מופנים פחות מלבנים לצנתור לב ולניתוח מעקפים.</li>
+  <li><strong>ניהול כאב</strong> — שחורים והיספנים/לטינים מקבלים פחות משככי כאבים מלבנים לשברים
+  בעצמות ארוכות ולכאב סרטני.</li>
+  <li><strong>ניתוח לסרטן ריאה</strong> — שחורים עוברים פחות ניתוח מרפא (curative surgery) מלבנים
+  לסרטן ריאה שאינו תאים קטנים (NSCLC).</li>
+</ul>
+
+<h3>תקשורת רופא-מטופל — הקישור לתוצאים</h3>
+<p>איכות התקשורת אינה עניין "רך" — היא מתווכת ישירות שביעות רצון, היענות לטיפול, ותוצאים
+בריאותיים (Fig 10-8 בהריסון). סקר של 6,722 אמריקאים בני 18+ בדק שלוש בעיות תקשורת נפוצות
+(קושי להבין את הרופא, תחושה שהרופא לא הקשיב, שאלות רפואיות שפחדו לשאול):</p>
+<table>
+  <thead><tr><th>קבוצה</th><th>אחוז שדיווח על בעיית תקשורת אחת ומעלה</th></tr></thead>
+  <tbody>
+    <tr><td>סה"כ (כל הנסקרים)</td><td>19%</td></tr>
+    <tr><td>לבנים</td><td>16%</td></tr>
+    <tr><td>שחורים</td><td>23%</td></tr>
+    <tr><td>היספנים/לטינים</td><td>33%</td></tr>
+    <tr><td>אסייתים-אמריקאים</td><td>27%</td></tr>
+  </tbody>
+</table>
+<p>מחסום שפה (גם מינימלי) ללא מתורגמן מקצועי מוביל לאי-הבנה של אבחנה/טיפול/מעקב, שימוש לא-נכון
+בתרופות, היעדר הסכמה מדעת אמיתית לפני ניתוח, ושיעורי אירועים חריגים גבוהים יותר — ולמרות זאת,
+הרבה מוסדות עדיין לא מספקים באופן שגרתי שירותי מתורגמן מקצועי, למרות דרישות רגולציה.</p>
+
+<h3>דוגמה מנגנונית: כשגזע "נכנס" לתוך נוסחה קלינית — נפרולוגיה</h3>
+<p>נוסחת ה-<span dir="ltr" class="term">CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration)</span>
+המקובלת להערכת קצב הסינון הגלומרולרי (<span dir="ltr" class="term">eGFR</span>) כללה עד לאחרונה
+"מקדם גזע שחור" שהעלה את ה-eGFR המחושב ב-15.9% לעומת מטופל לא-שחור באותו גיל/מין/קריאטינין —
+בהנחה שגושי שריר גדולים יותר משפיעים על ייצור קריאטינין. הבעיה: זו <strong>הכללה סטטיסטית ולא
+מדידה אישית</strong>, וגם אינה ישימה למטופלים רב-גזעיים או שגזעם אינו ידוע. בפועל, ה-eGFR
+המוגזם-כלפי-מעלה <strong>מעכב הפניה מוקדמת לנפרולוג</strong> ולטיפול במחלת כליות כרונית מתקדמת —
+בדיוק בקבוצה שכבר סובלת משיעורי אי-ספיקת כליות סופנית גבוהים יותר. הפתרון החלופי: אמידת eGFR
+מבוססת <span dir="ltr" class="term">cystatin C</span>, שאינה דורשת נתון גזע כלל ומדויקת יותר
+מנוסחת ה-CKD-EPI המקורית.</p>
+
+<h3>דוגמה נוספת: הטיה באלגוריתם בינה מלאכותית מסחרי</h3>
+<p>ניתוח של אלגוריתם חיזוי-סיכון מסחרי, המשפיע על מיליוני מטופלים, גילה הטיה גזעית: האלגוריתם השתמש
+בנתוני <strong>עלות רפואית היסטורית</strong> כפרוקסי לחומרת מחלה. מכיוון ששחורים קיבלו היסטורית
+פחות גישה לטיפול (ולכן פחות הוצאה כספית) ביחס לחומרת מחלתם בפועל, האלגוריתם "למד" בטעות לתת להם
+ציוני סיכון נמוכים יותר — ולכן פחות שירותים קליניים נוספים, למרות שהיו חולים יותר בממוצע מהמטופלים
+הלבנים. ההטיה תוקנה כשהוחלף המדד לעלות בהערכת חומרת-מחלה ישירה. <span class="key">מסקנה חשובה
+למבחן: למידת מכונה אינה "אובייקטיבית מטבעה" — היא משקפת (ואף מעצימה) את ההטיות שכבר קיימות
+בנתוני העבר שעליהם אומנה.</span></p>
+
+<h2><span class="num">5</span> "אבחנה" — כיצד מזהים ומודדים פערים בפועל</h2>
+<p>אחד הממצאים המרכזיים בדו"ח <span dir="ltr" class="term">Unequal Treatment</span> (Institute of
+Medicine, 2002) היה שהמערכות המתאימות למעקב ומדידה של פערים <strong>עצמן חסרות</strong>. עד אמצע
+שנות ה-80 מדיקר אפילו לא אספה נתוני גזע/אתניות מעבר לקטגוריות "לבן"/"שחור"/"אחר". מצב האיסוף
+היום:</p>
+<table>
+  <thead><tr><th>נתון</th><th>אחוז בתי חולים שאספו (סקר 2015, 1,083 בתי"ח)</th></tr></thead>
+  <tbody>
+    <tr><td>גזע</td><td>98%</td></tr>
+    <tr><td>אתניות</td><td>95%</td></tr>
+    <tr><td>שפת אם</td><td>94%</td></tr>
+    <tr><td>גזע <strong>לצורך בקרת פערים בפועל</strong> (לא רק תיעוד גולמי)</td><td>45%</td></tr>
+    <tr><td>אתניות לצורך בקרת פערים</td><td>40%</td></tr>
+    <tr><td>שפה לצורך בקרת פערים</td><td>38%</td></tr>
+  </tbody>
+</table>
+<p class="key">כלומר הפער העיקרי אינו באיסוף הגולמי אלא ב<strong>שימוש בנתונים</strong> לצורך ניתוח
+ופעולה בפועל.</p>
+
+<h3>איסוף נתוני SDOH (Social Determinants of Health)</h3>
+<p>ב-2014 המליץ ה-IOM (כיום National Academy of Medicine) על שאלון קליני קצר בן 25 סעיפים,
+הנאסף בדיווח-עצמי לפני/במהלך המפגש הרפואי ומספק "סימן חיוני פסיכו-סוציאלי", בתחומים: גזע ואתניות,
+השכלה, לחץ פיננסי, מתח נפשי, דיכאון, פעילות גופנית, עישון, אלכוהול, בידוד/קשר חברתי, אלימות בין
+בני-זוג, כתובת מגורים ואינדקס הכנסה חציוני לפי גיאוקוד. איסוף בפועל נמצא כאורך כ-5 דקות ומקובל
+הן על מטופלים והן על צוות רפואי.</p>
+
+<h3>שלושה מקורות נתונים לאומיים לניטור פערים (מוזכרים במפורש בפרק)</h3>
+<ul class="resource-list">
+  <li><a href="https://www.ahrq.gov/research/findings/nhqrdr/index.html" target="_blank">AHRQ — National Healthcare Quality and Disparities Report</a>
+  <div class="desc">דו"ח שנתי (מאז 2003) העוקב אחר מדדי גישה, תיאום טיפול, אורח חיים בריא, בטיחות ואיכות טיפול לפי גזע/אתניות/הכנסה ועוד גורמי SDOH.</div></li>
+  <li><a href="https://www.atsdr.cdc.gov/place-health/php/svi/index.html" target="_blank">CDC/ATSDR — Social Vulnerability Index (SVI)</a>
+  <div class="desc">מיפוי, לפי כל אזור מפקד אוכלוסין בארה"ב, של 16 גורמים חברתיים ב-4 קטגוריות (מעמד סוציו-אקונומי, הרכב משק בית ומוגבלות, סטטוס מיעוט ושפה, דיור ותחבורה) — מתעדכן כל שנתיים.</div></li>
+  <li><a href="https://www.nationalacademies.org/our-work/unequal-treatment-revisited-the-current-state-of-racial-and-ethnic-disparities-in-healthcare" target="_blank">National Academies — Unequal Treatment Revisited</a>
+  <div class="desc">עדכון 2023–2024 לדו"ח היסוד "Unequal Treatment" (2002) שעליו מבוסס רוב הפרק — בוחן מה השתנה ומה לא בעשרים השנים שחלפו.</div></li>
+</ul>
+
+<h2><span class="num">6</span> "טיפול" — ההתערבויות המומלצות לצמצום הפערים</h2>
+<p>דו"ח <span dir="ltr" class="term">Unequal Treatment</span> מארגן את ההמלצות לפי הרמה שבה
+מתערבים — בדיוק כמו שהמנגנון בסעיף 2 פועל בכמה רמות במקביל (מערכת/ספק/מטופל). זה לא רשימת "טיפים"
+נפרדים אלא תגובה ישירה לכל אחד מגורמי-השורש שתוארו למעלה:</p>
+<table>
+  <thead><tr><th>רמת התערבות</th><th>פעולות מרכזיות</th><th>מגיבה לאיזה גורם-שורש (סעיף 2)</th></tr></thead>
+  <tbody>
+    <tr><td><strong>מערכת הבריאות</strong></td><td>איסוף/דיווח/מעקב שיטתי אחר נתוני גזע-אתניות-שפה לצורך בקרת פערים בפועל (לא רק תיעוד); הרחבת ביטוח וגישה (ACA — ירידת שיעור לא-מבוטחים מ-16.3% ל-8.8% בין 2010–2016); אימוץ הנחיות מבוססות-ראיות אחידות לכל המטופלים; שירותי תרגום מקצועיים; הגדלת נציגות מיעוטים בכוח האדם הרפואי</td><td>מורכבות המערכת + ריכוז במוסדות חלשים</td></tr>
+    <tr><td><strong>ספק השירות (רופא/צוות)</strong></td><td>חינוך בין-תרבותי (cross-cultural education) בהכשרת כל אנשי המקצוע הרפואי; הוראה מפורשת (בהנחיית LCME) על האופן שבו גזע/אתניות/תרבות עלולים להשפיע תת-מודעות על תקשורת והחלטה קלינית</td><td>אי-ודאות קלינית + סטריאוטייפיזציה תת-מודעת</td></tr>
+    <tr><td><strong>המטופל</strong></td><td>חינוך והכוונה בניווט המערכת (הפניות, הכנה להליכים, מעקב אחר תוצאות בדיקה); חיזוק מעורבות המטופל בקבלת החלטות טיפוליות</td><td>קושי בניווט המערכת + חוסר העצמה</td></tr>
+    <tr><td><strong>כלליות (מדיניות/מחקר)</strong></td><td>הגברת מודעות בקרב הציבור והצוות הרפואי (המודעות בקרב רופאים עלתה משמעותית מ-2002; 42% מ-16,000 רופאים כבר מודים בהשפעת הטיה על ההחלטה הקלינית); מחקר נוסף — בעיקר על קבוצות שאינן שחורים-מול-לבנים, ועל התערבויות שנבדקו בפועל ולא רק על תיעוד הבעיה</td><td>כלל הגורמים — שכבת-על</td></tr>
+  </tbody>
+</table>
+<div class="key-box">שימו לב לפער בין מודעות לשינוי בפועל: המודעות הציבורית והמקצועית עלתה משמעותית
+מאז 2002, אך (כאמור בסעיף 3) ביותר מ-90% מהמדדים שהראו פער מלכתחילה — לא נראה שיפור מדיד עד היום.
+מודעות היא <strong>תנאי הכרחי אך לא מספיק</strong> לצמצום פערים.</div>
+
+<h3>נציגות מיעוטים בכוח האדם הרפואי — נתונים</h3>
+<p>נתוני 2018 (AAMC): מתוך הרופאים הפעילים — 56.2% הזדהו כלבנים, 5.8% היספנים, 5.0% שחורים/אפרו-אמריקאים,
+ו-0.3% אינדיאנים-אמריקאים/ילידי אלסקה בלבד — כאשר קבוצות המיעוט מהוות יחד כ-30% מאוכלוסיית ארה"ב
+(צפויה כמעט להכפיל את עצמה עד 2050). בסגל האקדמי המצב אף חמור יותר: רק 3.6% שחורים ו-5.5%
+היספנים/לטינים, לעומת 63.9% לבנים — וסגל מיעוטים נוטה יותר להישאר בדרגות זוטרות (מרצה/פרופ' חבר)
+בעוד לבנים מהווים את רוב הפרופסורים המלאים.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr" class="term">RACE</span> — ארבע רמות ההתערבות</h3>
+  <p><strong>R</strong>eporting data (איסוף ודיווח נתונים ברמת המערכת), <strong>A</strong>wareness
+  and cross-cultural training (מודעות והכשרה בין-תרבותית של הצוות), <strong>C</strong>overage
+  and access (הרחבת ביטוח וגישה), <strong>E</strong>mpowerment of patients (העצמת המטופל בניווט
+  ובקבלת החלטות) — ארבע הרמות בדיוק לפי טבלת סעיף 6.</p>
+  <h3>סיפור דמיוני — "שלושה זכוכיות מגדלת עמומות"</h3>
+  <p>דמיינו רופא שמסתכל על אותו מטופל בדיוק דרך <strong>שלוש זכוכיות מגדלת עמומות בו-זמנית</strong>:
+  זכוכית אחת מעוותת על ידי <strong>אי-ודאות</strong> (הוא לא בטוח לפרש נכון את הסימנים של מטופל שלא
+  מכיר), זכוכית שנייה מכוסה ב<strong>סטריאוטיפים תת-מודעים</strong> שנצברו במשך שנות עבודה (במיוחד
+  כשהוא לחוץ וממהר), וזכוכית שלישית מטושטשת מ<strong>חוסר אמון</strong> שהמטופל עצמו מביא איתו
+  מניסיון חיים קודם. <strong>שום זכוכית בודדת אינה "גזענות מכוונת"</strong> — אבל שלושתן יחד מעקמות
+  את התמונה הקלינית מספיק כדי לשנות איזו החלטת טיפול מתקבלת בסוף.</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="120" cy="90" r="55" fill="none" stroke="#2563eb" stroke-width="6" opacity="0.55"/>
+    <line x1="160" y1="130" x2="185" y2="155" stroke="#2563eb" stroke-width="6"/>
+    <text x="120" y="95" font-size="12" text-anchor="middle" fill="#1f2937">אי-ודאות</text>
+
+    <circle cx="250" cy="90" r="55" fill="none" stroke="#b45309" stroke-width="6" opacity="0.55"/>
+    <line x1="290" y1="130" x2="315" y2="155" stroke="#b45309" stroke-width="6"/>
+    <text x="250" y="95" font-size="12" text-anchor="middle" fill="#1f2937">סטריאוטיפ</text>
+
+    <circle cx="380" cy="90" r="55" fill="none" stroke="#6d28d9" stroke-width="6" opacity="0.55"/>
+    <line x1="420" y1="130" x2="445" y2="155" stroke="#6d28d9" stroke-width="6"/>
+    <text x="380" y="95" font-size="12" text-anchor="middle" fill="#1f2937">חוסר אמון</text>
+
+    <text x="250" y="200" font-size="13" text-anchor="middle" fill="#4b5563" font-weight="bold">שלוש עדשות עמומות → החלטה קלינית מעוקמת</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Pujlg0xebnI"
+  title="Unequal Treatment at 20: Accelerating Progress toward Health Care Equity" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מושב הבוקר מכנס ה-National Academies (2023) לציון 20 שנה לדו"ח היסוד
+"Unequal Treatment" שעליו מבוסס רוב הפרק — סוקר מה השתנה ומה נותר פתוח מאז 2002.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/pFPx2kdYPpo"
+  title="Ending Unequal Treatment: A Conceptual Framework for Recommendations" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מצגת רשמית של National Academies על המסגרת המושגית לגיבוש המלצות חדשות לצמצום
+פערים גזעיים/אתניים בטיפול הרפואי — עדכון ישיר לארבע רמות ההתערבות בסעיף 6.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/nqNsEhS75oQ"
+  title="Addressing health disparities and ending unequal treatment – APHA TV" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">ראיון של Ameriva Public Health Association (APHA TV) על יישום ההמלצות
+בשטח בעקבות דו"ח National Academies העדכני.</p>
+
+<ul class="resource-list">
+  <li>
+    <a href="https://nap.nationalacademies.org/catalog/12875/unequal-treatment-confronting-racial-and-ethnic-disparities-in-health-care" target="_blank">National Academies Press — Unequal Treatment (2002), טקסט מלא חינם</a>
+    <div class="desc">דו"ח היסוד המלא שעליו מבוסס רוב הפרק — שימושי לחזרה מעמיקה על סעיפי הרקע וההמלצות.</div>
+  </li>
+  <li>
+    <a href="https://www.nimhd.nih.gov/resources/nimhd-research-framework" target="_blank">NIMHD Research Framework</a>
+    <div class="desc">המסגרת המושגית (תחומי השפעה × רמות השפעה × ציר-חיים) שהפרק מתייחס אליה כהרחבה למודל ה-biopsychosocial הקלאסי.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול (Active Recall)</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, אפרו-אמריקאי, מגיע למיון לאחר תאונת אופנוע עם שבר פתוח בעצם השוק (טיביה).
+  הוא מדרג את הכאב 9/10 ומבקש בפירוש משכך כאבים חזק. הרופא התורן, שעובד במשמרת עמוסה ותחת
+  לחץ זמן ניכר, רושם לו פרצטמול בלבד "לפי הצורך" ומעביר אותו להמתנה לצילום. מטופל לבן בן 36
+  שהגיע כעבור שעה עם שבר דומה בחומרתו קיבל מורפין תוך-ורידי במיידי. לא נרשמה כל אבחנה של
+  שימוש לרעה בסמים או התנהגות חשודה אצל אף אחד מהמטופלים.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו ההסבר הסביר ביותר, לפי המנגנון שתואר בפרק, לפער בטיפול בכאב בווינייטה?</div>
+  <button class="opt" data-i="0">דעה קדומה מודעת (prejudice) של הרופא כלפי מטופלים שחורים</button>
+  <button class="opt" data-i="1">סטריאוטייפיזציה תת-מודעת, המופעלת ביתר שאת דווקא בתנאי עומס ולחץ זמן קליני — בדומה לממצא שרופאי מיון מובילים בשיעור ההודאה על השפעת הטיה על החלטתם הקלינית (62%)</button>
+  <button class="opt" data-i="2">הבדל אמיתי ברמת חומרת השבר בין שני המטופלים</button>
+  <button class="opt" data-i="3">מחסור פיזי במלאי מורפין באותה משמרת</button>
+  <div class="explain">נכון: תשובה 2 (אינדקס 1). הפרק מדגיש שרוב הפערים בהחלטה הקלינית נובעים מסטריאוטייפיזציה
+  תת-מודעת ולא מדעה קדומה מודעת — וזו מופעלת ביתר עוצמה דווקא בסביבת עומס/לחץ זמן/ריבוי-משימות,
+  בדיוק המאפיינים של חדר מיון עמוס. הווינייטה לא מספקת מידע שתומך בהבדל חומרה אמיתי או במחסור
+  במלאי, ואילו "דעה קדומה מודעת" (תשובה 1) היא הגדרה שונה מהמנגנון השכיח והתת-מודע שהפרק מתאר.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו "אפקט הבלייה" (weathering effect), ומה המנגנון הביולוגי הישיר שגורם לו להאיץ מחלת לב וכלי דם?</div>
+  <button class="opt" data-i="0">הצטברות זיהומים חוזרים במהלך החיים שפוגעים במסתמי הלב</button>
+  <button class="opt" data-i="1">חשיפה מצטברת לקרינת שמש שפוגעת בעור וגורמת להזדקנות מוקדמת</button>
+  <button class="opt" data-i="2">הפעלת יתר כרונית של מערכת ה-sympathetic-adrenal-medullary וציר ה-HPA כתגובה ללחץ פסיכוסוציאלי מתמשך, הגורמת לדלקת כלי-דם, פגיעה בתפקוד האנדותל ודיסרגולציה נוירו-הורמונלית</button>
+  <button class="opt" data-i="3">מחסור תזונתי כרוני בברזל שגורם לאנמיה ולעומס יתר על שריר הלב</button>
+  <div class="explain">נכון: תשובה 3 (אינדקס 2). זהו המנגנון הפיזיולוגי המפורש שתואר בפרק: לחץ פסיכוסוציאלי כרוני
+  (הנובע, בין היתר, מחשיפה מתמשכת לגזענות) מפעיל יתר-גירוי של שתי מערכות לחץ מרכזיות בגוף, מה
+  שמוביל לדלקת כלי-דם ולפגיעה אנדותליאלית — מסלול ביולוגי ישיר ומדיד, לא רק "לחץ נפשי כללי".
+  שאר האפשרויות אינן קשורות למנגנון שתואר בטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מדוע נוסחת ה-CKD-EPI המסורתית (הכוללת "מקדם גזע שחור") נחשבת כיום בעייתית, ומה הפתרון החלופי שמוצע בפרק?</div>
+  <button class="opt" data-i="0">היא יקרה מדי לביצוע שגרתי; הפתרון הוא ביטוח ייעודי לבדיקה</button>
+  <button class="opt" data-i="1">היא דורשת ציוד מעבדה שאינו זמין בבתי חולים קטנים; הפתרון הוא הפניה למרכז רפואי גדול</button>
+  <button class="opt" data-i="2">היא מדויקת מדי ולכן מייצרת עומס אבחוני מיותר; הפתרון הוא להפסיק להשתמש בה כלל</button>
+  <button class="opt" data-i="3">המקדם מעלה את ה-eGFR המחושב ב-15.9% למטופלים שחורים באופן גורף (הכללה סטטיסטית ולא מדידה אישית), מה שעלול לעכב הפניה מוקדמת לנפרולוג; הפתרון החלופי הוא אמידת eGFR מבוססת cystatin C, שאינה דורשת נתון גזע</button>
+  <div class="explain">נכון: תשובה 4 (אינדקס 3). זו דוגמה מרכזית בפרק לאופן שבו שימוש בגזע כמשתנה "ביולוגי" בנוסחה
+  קלינית — למרות שגזע הוא קטגוריה חברתית ולא ביולוגית — יכול ליצור פער חדש (עיכוב הפניה לנפרולוג)
+  בדיוק בקבוצה שכבר בסיכון גבוה יותר למחלת כליות סופנית. cystatin C נמצא מדויק לפחות באותה מידה
+  בלי להזדקק למשתנה גזע כלל.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזו מבין ההתערבויות הבאות פועלת בעיקר ברמת "מערכת הבריאות" (ולא ברמת ספק השירות או המטופל), לפי טבלת סעיף 6?</div>
+  <button class="opt" data-i="0">הרחבת ביטוח בריאות וגישה לטיפול (למשל השפעת ה-ACA על שיעור הלא-מבוטחים)</button>
+  <button class="opt" data-i="1">הכשרה בין-תרבותית (cross-cultural education) לצוות הרפואי המטפל</button>
+  <button class="opt" data-i="2">חינוך המטופל לניווט מערכת ההפניות וההליכים</button>
+  <button class="opt" data-i="3">הוראה מפורשת על השפעת גזע/תרבות על תקשורת קלינית, לפי הנחיית LCME</button>
+  <div class="explain">נכון: תשובה 1 (אינדקס 0). הרחבת ביטוח/גישה היא התערבות מבנית-מערכתית (ה-ACA הוריד את שיעור
+  הלא-מבוטחים מ-16.3% ל-8.8% בין 2010–2016, כאשר הרחבת מדיקייד הסבירה כ-60% מהאפקט). תשובות 2 ו-4
+  שייכות לרמת "ספק השירות" (הכשרת הצוות), ותשובה 3 שייכת לרמת "המטופל" (העצמה וחינוך).</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע, למרות עלייה משמעותית במודעות הציבורית והמקצועית לפערים גזעיים/אתניים מאז שנת 2002, רוב המדדים עדיין לא הראו שיפור מדיד?</div>
+  <button class="opt" data-i="0">כי מעולם לא היו פערים אמיתיים מלכתחילה, רק תפיסה שגויה</button>
+  <button class="opt" data-i="1">כי המדדים שנבחרו למעקב השתנו כל שנה ולכן אי אפשר להשוות</button>
+  <button class="opt" data-i="2">כי מודעות היא תנאי הכרחי אך לא מספיק — היא לא מטפלת בעצמה בגורמי השורש המבניים (מורכבות מערכתית, תמריצים כלכליים, הרגלי הפניה מושרשים) הדורשים התערבות פעילה בפועל, לא רק הכשרה</button>
+  <button class="opt" data-i="3">כי כל הפערים תוקנו כבר עד 2010 והדו"ח מ-2019 סתם מיושן</button>
+  <div class="explain">נכון: תשובה 3 (אינדקס 2). כפי שהודגש בסעיפים 3 ו-6, הפרק מבחין במפורש בין עלייה במודעות (שכן
+  קרתה — מ-69% שחשבו ב-2002 שהמערכת "כמעט אף פעם" לא מתייחסת באפליה, ועד 42% מתוך 16,000 רופאים
+  שהודו ב-2020-ים שהטיה משפיעה עליהם) לבין שינוי מדיד בפועל (שברוב המדדים לא קרה). זה ממחיש שצמצום
+  פער דורש התערבות מבנית פעילה (סעיף 6), לא רק מודעות פסיבית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מיעוטים גזעיים/אתניים בארה"ב מקבלים פחות טיפול ובאיכות נמוכה יותר מלבנים — גם כשמבוקרים ביטוח, הכנסה ושלב מחלה.</li>
+    <li>המנגנון: גזענות אישית ומבנית ← לחץ פסיכוסוציאלי כרוני ← "אפקט הבלייה" (הפעלת יתר של SAM/HPA axis → דלקת כלי-דם, פגיעה אנדותליאלית) + מורכבות מערכתית + הטיה תת-מודעת של הצוות (אי-ודאות קלינית + סטריאוטייפיזציה, מוחרפת תחת לחץ זמן) + חוסר אמון מטופל (מורשת טאסקיגי).</li>
+    <li>הבחינו: סטריאוטייפיזציה (תת-מודעת, שכיחה) ≠ דעה קדומה (מודעת) ≠ אפליה (התנהגות מכוונת) — רוב הפערים נובעים מהראשונה.</li>
+    <li>דוגמאות מנגנוניות: מקדם גזע בנוסחת CKD-EPI (מעכב הפניה לנפרולוג) והטיה באלגוריתם AI מסחרי (עלות היסטורית כפרוקסי-שגוי לחומרת מחלה).</li>
+    <li>"אבחנה"/מעקב: NHQDR (AHRQ), CDC SVI, שאלון SDOH בן 25 סעיפים — הפער העיקרי הוא בשימוש בנתונים, לא רק באיסופם (98% אוספים גזע, רק 45% משתמשים בו לבקרת פערים).</li>
+    <li>התערבויות בארבע רמות: מערכת (איסוף נתונים, ביטוח, הנחיות אחידות, מתורגמנים), ספק (חינוך בין-תרבותי), מטופל (העצמה וניווט), כלליות (מודעות ומחקר).</li>
+    <li>מודעות עלתה משמעותית מאז 2002, אך ביותר מ-90% מהמדדים עם פער בבסיס — עדיין לא נראה שיפור מדיד: מודעות הכרחית אך לא מספיקה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
