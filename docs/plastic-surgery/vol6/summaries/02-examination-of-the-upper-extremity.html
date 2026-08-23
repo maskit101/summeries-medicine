@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 2: בדיקה גופנית של הגפה העליונה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 2: בדיקה גופנית של הגפה העליונה <span class="term" dir="ltr">Examination of the Upper Extremity</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: יד וגפה עליונה | מאת Ryosuke Kakinoki</div>
+
+<p>הפרק בונה "פרוטוקול" שיטתי לבדיקת הגפה העליונה: היסטוריה מדוקדקת, השוואה תמידית לצד הבריא, ובדיקה מהצוואר ועד קצות האצבעות — גם כשהתלונה נראית ממוקדת לכף היד בלבד, כי כף היד "תלויה" על שרשרת ביו-מכנית שמתחילה בכתף. עיקרון מרכזי החוזר לאורך הפרק: <b>כמעט כל בדיקה מבוססת על עיקרון של בידוד</b> — נטרול שרירים "עוזרים" (compensators) כדי לבדוק שריר בודד באמת.</p>
+
+<h2><span class="num">1</span> אנמנזה: מה חובה לתעד</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>קטגוריה</th><th>מה לתעד</th></tr></thead>
+  <tbody>
+    <tr><td>דמוגרפיה</td><td>שם, גיל, עיסוק, יד דומיננטית, תחביבים, פציעות/מחלות קודמות (גם אם נראות לא קשורות)</td></tr>
+    <tr><td>תלונה נוכחית</td><td>מיקום, עוצמה, משך, תדירות, הקרנה, תסמינים נלווים (כאב, נימול, חולשה, נקיעה, קור, גמלוניות, קליק/נקישה)</td></tr>
+    <tr><td>טראומה (ספציפי)</td><td>זמן הפציעה והמרווח עד ההגעה (קריטי להצלחת replantation!), סביבת הפציעה (נקייה/מלוכלכת — מנבאת זיהום), מנגנון הפציעה (תנוחת האצבעות בזמן חתך גיד מסייעת לאתר את גדם הגיד), טיפול קודם</td></tr>
+    <tr><td>לא-טראומה (ספציפי)</td><td>זמן תחילת התסמינים והתקדמותם, השפעה על חיי היומיום, האם התסמינים מוגבלים לאזור אחד, קשר לזמן ביום (למשל כאב שמחמיר בבוקר)</td></tr>
+    <tr><td>היסטוריה רפואית/משפחתית</td><td>סוכרת, מחלות לב/ריאה/כליה, מחלה ראומטולוגית, נטייה לדימום/בעיות הרדמה, היסטוריה משפחתית (מחלות תורשתיות)</td></tr>
+    <tr><td>אלרגיות</td><td>אלרגיה למאכלי ים לרוב מקבילה לאלרגיה לחומרי ניגוד המכילים יוד</td></tr>
+    <tr><td>היסטוריה חברתית</td><td>עישון, אלכוהול, שימוש בסמים, הפטיטיס/HIV, תחביבים וספורט (משפיעים ישירות על בחירת הטיפול)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">2</span> בדיקה גופנית — עקרון-על ושלב ההסתכלות</h2>
+<p>גם כשהתלונה ממוקדת לכף היד, הבדיקה מתחילה בצוואר ובכתף — כי כף היד תלויה על עצמות האמה, המחוברות למרפק, המיוצב על ידי ההומרוס וכתף הכתף; בנוסף, נימול בכף היד יכול לנבוע מבעיה צווארית. הבדיקה כוללת שבעה מרכיבים: הסתכלות, מישוש, מדידת טווחי תנועה, הערכת שרירים-וגידים, הערכת יציבות, הערכה עצבית, הערכה וסקולרית.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>ממצא בהסתכלות</th><th>משמעות קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>חיוורון + כיווץ הגפה הדיסטלית</td><td>אי-ספיקה עורקית (arterial inflow insufficiency)</td></tr>
+    <tr><td>סגול/אדום כהה + נפיחות</td><td>אי-ספיקה ורידית (venous outflow insufficiency)</td></tr>
+    <tr><td>המטומה סגולה/כחולה &#8594; ירוקה &#8594; צהובה</td><td>ניתן להעריך את זמן הפציעה לפי צבע ההמטומה</td></tr>
+    <tr><td>סיבוב לא-תקין (malrotation) של אצבע</td><td>בהרמת האצבעות, הציר האורכי של אצבע תקינה מתכנס לכיוון פקעת הסקפואיד; אצבע מסובבת סוטה מנקודה זו</td></tr>
+    <tr><td>ניוון שרירי (atrophy)</td><td>ניוון בחלק דיסטלי מרמז על מחלה נוירוגנית; ניוון בחלק פרוקסימלי מרמז על מחלה שרירית; יש למדוד היקף זרוע ואמה בהשוואה לצד הבריא</td></tr>
+    <tr><td>שינויים טרופיים (שיעור מוגבר, הזעה חריגה)</td><td>מרמזים על תסמונת כאב אזורית מורכבת (CRPS)</td></tr>
+    <tr><td>קמטי עור ברורים מעל מפרק ש"לא ניתן להזיז"</td><td>סימן לתנועה בפועל — יש לחשוד בהעמדת פנים (malingering) או מצב פסיכיאטרי</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">3</span> הערכת שרירים וגידים — עקרון הבידוד (Extrinsic Muscles)</h2>
+<p>העיקרון החוזר: לנטרל את פעולת השרירים ה"עוזרים" (compensators) כדי לבדוק שריר יחיד בבידוד אמיתי. לדוגמה, ה-EPL (extensor pollicis longus) יכול לפצות על אדוקציה לקויה של האגודל גם כשה-adductor pollicis משותק (שיתוק עצב אולנרי) — ולכן חובה לייצב את מפרק ה-MCP של האגודל בבדיקה כדי לבודד באמת את פעולת ה-EPL.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שריר/גיד</th><th>בדיקה (Test)</th><th>מנגנון הבידוד</th></tr></thead>
+  <tbody>
+    <tr><td>Flexor Digitorum Profundus (FDP)</td><td>Flexor profundus test</td><td>מייצבים MCP+PIP בהרחבה מלאה, מבקשים לכופף DIP בלבד</td></tr>
+    <tr><td>Flexor Digitorum Superficialis (FDS)</td><td>Flexor sublimis test</td><td>מייצבים את שאר האצבעות בהרחבה מלאה — ל-FDS יש בטן שריר עצמאית לכל אצבע, ולכן ניתן לבודד</td></tr>
+    <tr><td>Flexor Pollicis Longus (FPL)</td><td>כיפוף מפרק ה-IP של האגודל</td><td>—</td></tr>
+    <tr><td>EPB + APL (De Quervain)</td><td>Finkelstein test / Eichoff test</td><td>לחץ/סטייה אולנרית מעוררים כאב בתא הגידים הראשון</td></tr>
+    <tr><td>Extensor Carpi Radialis Longus/Brevis</td><td>הרחבת שורש כף היד</td><td>אגרוף מסלק את תרומת ה-EDC להארכת שורש כף היד</td></tr>
+    <tr><td>Extensor Pollicis Longus (EPL)</td><td>הרמת האגודל בלבד מעל שולחן</td><td>יש לייצב MCP כדי לנטרל פיצוי EPB</td></tr>
+    <tr><td>Extensor Indicis Proprius (EIP)</td><td>הארכת אצבע מורה כשהשאר סגורות באגרוף</td><td>EIP מבודד מפעולת ה-EDC של האצבעות האחרות</td></tr>
+    <tr><td>Extensor Digiti Minimi (EDM)</td><td>הארכת אצבע קטנה כששאר סגורות באגרוף</td><td>—</td></tr>
+    <tr><td>Extensor Carpi Ulnaris (ECU)</td><td>אגרוף + הרמה וסטייה אולנרית</td><td>ECU לבדו אינו יכול להאריך שורש כף יד דורסלית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">"מבחן החליבה" (Milking test): לוחצים על צומת שריר-גיד באמצע האמה — אם הגידים תקינים ונטולי הידבקויות, האצבעות והאגודל יתכופפו. שימושי במיוחד להבחנה בין שיתוק עצבי לקרע גיד.</p>
+
+<h2><span class="num">4</span> שרירים תוך-ידיים (Intrinsic Muscles) ומבחני מתיחות</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבחן</th><th>מטרה</th><th>ממצא חיובי</th></tr></thead>
+  <tbody>
+    <tr><td>Intrinsic tightness test (Bunnell)</td><td>הערכת קונטרקטורה של השרירים הבין-עצמיים</td><td>PIP נכפף בקלות רבה יותר כש-MCP כפוף מאשר כש-MCP מורחב</td></tr>
+    <tr><td>Lumbrical-plus test</td><td>מתיחות של השריר הלומבריקלי</td><td>PIP/DIP נוטים להתרחב באופן פרדוקסלי כשהמטופל מנסה לכופף אצבע (בעיקר לאחר תיקון גיד FDP עם שתל ארוך מדי)</td></tr>
+    <tr><td>Pitres–Testut sign</td><td>פעולת שרירים בין-עצמיים 2/3 דורסליים</td><td>אי-יכולת לבצע היפר-אקסטנציה + סטייה של האצבע הארוכה בשיתוק עצב אולנרי</td></tr>
+    <tr><td>"Crossed fingers" sign</td><td>פעולת השריר הבין-עצמי הפלמרי הראשון + הדורסלי השני</td><td>אי-יכולת להצליב אצבעות</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">5</span> הערכת יציבות מפרקים</h2>
+<p class="key-box">עיקרון קריטי לזכירה: הרצועות הצדדיות (collateral) של מפרק ה-MCP נמתחות בכיפוף — לכן בודקים יציבות רוחבית של MCP <b>בכיפוף מלא</b>. הרצועות הצדדיות של מפרק ה-PIP נמתחות בהרחבה — לכן בודקים יציבות PIP <b>בתנוחה ניטרלית/מורחבת</b>. זהו ההפך המדויק בין שני המפרקים.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבחן</th><th>מה מעריך</th></tr></thead>
+  <tbody>
+    <tr><td>Scaphoid shift test (Watson)</td><td>קרע/רפיון הרצועה הסקפולונטית — "clunk" בעת סטייה רדיאלית-אולנרית עם לחץ על פקעת הסקפואיד</td></tr>
+    <tr><td>Finger extension test</td><td>סאבלוקסציה טרום-דינמית של הסקפואיד — כאב דורסלי בעת הארכת אצבעות כש-MCP וwrist כפופים</td></tr>
+    <tr><td>Triquetrolunate ballottement / Lunotriquetral shuck</td><td>יציבות הרצועה הלונוטריקוטרלית — תזוזה פלמרית + כאב</td></tr>
+    <tr><td>Distal radioulnar joint (DRUJ) instability test</td><td>שכבה עמוקה של TFCC: הרצועה הדורסלית נמתחת בסופינציה, הפלמרית בפרונציה</td></tr>
+    <tr><td>Ulnocarpal abutment test</td><td>פגיעת TFCC / תסמונת חבטה אולנרית — קליק בסטייה אולנרית + פרונציה/סופינציה</td></tr>
+    <tr><td>Ulnar fovea sign</td><td>קרע TFCC בפוסה האולנרית — רגישות ממוקדת חוזרת ונשנית</td></tr>
+    <tr><td>Midcarpal instability test</td><td>כאב מידקרפלי בסטייה + קליק (חשד ל-DISI)</td></tr>
+    <tr><td>ECU synergy test</td><td>דלקת גיד ECU — קשה להבחין קלינית מ-TFCC</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">6</span> הערכה עצבית: סימני תפקוד מוטורי ועצב אולנרי</h2>
+<p>כשההערכה המוטורית לא תואמת את ההערכה החושית, יש לחשוד בחיבור עצבי חריג — הדוגמה הקלאסית היא <b>חיבור מרטין-גרובר</b> (עצב מדיאני &#8594; ענף מוטורי אולנרי): במטופלים עם cubital tunnel syndrome עם חיבור זה, ייתכן שיתוק חושי אולנרי ללא שיתוק מוטורי.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סימן/מבחן</th><th>מה מעריך</th><th>ממצא חיובי</th></tr></thead>
+  <tbody>
+    <tr><td>Tinel's sign</td><td>התחדשות עצב</td><td>נקישה מעל עצב פגוע &#8594; עקצוץ מוקרן דיסטלית; מתקדם כ-1 מ"מ/יום</td></tr>
+    <tr><td>Phalen's test / Reverse Phalen's</td><td>תסמונת התעלה הקרפלית</td><td>כיפוף/הארכת שורש כף יד מקסימלית 2 דק' &#8594; פרסתזיה מדיאנית</td></tr>
+    <tr><td>Froment's test</td><td>עצב אולנרי (adductor pollicis)</td><td>המטופל מכופף IP האגודל ע"י FPL כדי "לפצות" (Jeanne's sign)</td></tr>
+    <tr><td>Wartenberg's sign</td><td>עצב אולנרי (interosseous פלמרי 3)</td><td>אצבע קטנה סוטה החוצה וללא יכולת אדוקציה</td></tr>
+    <tr><td>Duchenne's sign</td><td>שיתוק אולנרי נמוך</td><td>Claw finger — היפר-אקסטנציה MCP + כיפוף PIP/DIP באצבע טבעת/קטנה</td></tr>
+    <tr><td>André–Thomas sign</td><td>—</td><td>ניסיון להאריך אצבעות ע"י כיפוף שורש כף יד דווקא מחמיר את ה-claw</td></tr>
+    <tr><td>Bouvier maneuver</td><td>אבחנה בין שיתוק גבוה לנמוך</td><td>תיקון היפר-אקסטנציה MCP מפחית כיפוף PIP/DIP</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="mechanism">
+<span class="chain">מנגנון: למה שיתוק אולנרי דיסטלי (נמוך) גורם ל-claw חמור יותר משיתוק פרוקסימלי (גבוה)?</span>
+<p>ב-שיתוק דיסטלי, גידי ה-FDP (מעצבבים ע"י העצב המדיאני חלקית, לא מושפעים) ממשיכים לכופף את הטבעת והקטנה — אבל השרירים הבין-עצמיים המשותקים כבר לא "מאזנים" ומעצימים את ההיפר-אקסטנציה של ה-MCP והכיפוף של PIP/DIP. בשיתוק פרוקסימלי (מעל המרפק), ה-FDP עצמו כבר לא פעיל — ולכן פחות כוח כיפוף זמין ליצירת ה-claw.</p>
+</div>
+
+<h2><span class="num">7</span> בדיקות תחושה (Sensory Testing)</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>בדיקה</th><th>קולטן עיקרי</th><th>מה מעריכה</th><th>ערך תקין</th></tr></thead>
+  <tbody>
+    <tr><td>Static 2PD</td><td>Merkel cell (מסתגל לאט)</td><td>צפיפות קולטנים</td><td>6 מ"מ בקצה אצבע</td></tr>
+    <tr><td>Moving 2PD</td><td>Meissner corpuscle (מסתגל מהר)</td><td>צפיפות קולטנים; הכי טוב להערכת חתכי עצב</td><td>3 מ"מ בקצה אצבע</td></tr>
+    <tr><td>Semmes-Weinstein monofilament</td><td>Merkel cell</td><td>סף לחץ</td><td>ירוק/כחול = תקין</td></tr>
+    <tr><td>מזלג כוונון 250cps</td><td>Pacinian corpuscle</td><td>סף רטט</td><td>—</td></tr>
+    <tr><td>מזלג כוונון 30cps</td><td>Meissner corpuscle</td><td>סף רטט</td><td>—</td></tr>
+    <tr><td>מבחן קור-חום</td><td>קצות עצב חופשיים</td><td>תחושת טמפרטורה</td><td>—</td></tr>
+    <tr><td>Moberg pick-up test</td><td>—</td><td>הערכה גלובלית מוטורית+חושית (עיניים פתוחות/עצומות)</td><td>—</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">טעות נפוצה במבחן Semmes-Weinstein: המטופל אמור לזהות את <b>לחץ הכיפוף</b> של הפילמנט, לא את המגע הראשוני — יש להסביר זאת בבירור לפני הבדיקה כדי למנוע תוצאה שגויה.</p>
+
+<h2><span class="num">8</span> הערכה וסקולרית — מבחן Allen ונגזרותיו</h2>
+<p>מבחן אלן (Allen's test) חיוני לפני נטילת דש אמה רדיאלי או אולנרי — מוודא חיבור מעגלי תקין בין העורק הרדיאלי לאולנרי בכף היד. אם אין חיבור תקין, הרמת דש דגלי (pedicled) עלולה לפגוע באספקת הדם לכף היד.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבחן</th><th>שיטה</th><th>זמן תקין</th></tr></thead>
+  <tbody>
+    <tr><td>Allen's test (כף יד)</td><td>לוחצים שני עורקים, מרוקנים דם באגרופים חוזרים, משחררים עורק אחד</td><td>2-5 שניות</td></tr>
+    <tr><td>Digital Allen's test (אצבע)</td><td>אותו עיקרון בבסיס האצבע — בודק חיבור עורקי אצבע פלמריים לפני הרמת דש אי-אצבעי</td><td>≤3 שניות</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">9</span> האמה — הממברנה הבין-עצמית (IOM) וחלוקת עומס</h2>
+<p>80% מהעומס הצירי המופעל על שורש כף היד מועבר לרדיוס, ו-20% לאולנה (יחס 60:40 במפרקים radiocapitellar:ulnohumeral). לאחר כריתת ראש הרדיוס, <b>90%</b> מהעומס עובר דרך ה-IOM — הרצועה המרכזית (Central Band) לבדה נושאת 71% מהנוקשות המכנית הכוללת של האמה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אזור ב-IOM</th><th>רצועות</th><th>תפקיד</th></tr></thead>
+  <tbody>
+    <tr><td>חלק ממברני דיסטלי</td><td>Dorsal Oblique Band (DOB)</td><td>מייצב DRUJ, מגביל תזוזה פלמרית של האולנה בסופינציה</td></tr>
+    <tr><td>חלק ליגמנטרי אמצעי</td><td>Central Band (CB) — הרצועה החזקה ביותר</td><td>נושאת 71% מהנוקשות המכנית של האמה</td></tr>
+    <tr><td>חלק ממברני פרוקסימלי</td><td>Proximal Oblique Cord (POC)</td><td>מייצב את המפרק הרדיו-אולנרי הפרוקסימלי</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">10</span> המרפק — נקודות ציון וסיווג יציבות</h2>
+<p>קו הוטר (Hüter's line) — האפיקונדיל המדיאלי, הלטרלי וקצה האולקרנון נמצאים על קו ישר במרפק מורחב, ויוצרים משולש שווה-צלעות (משולש הוטר) במרפק כפוף. חריגה מהתבנית הזו מרמזת על שבר, אי-איחוד, נקע או הפרעת גדילה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבחן</th><th>תנוחה</th><th>מה מעריך</th></tr></thead>
+  <tbody>
+    <tr><td>יציבות ואלגוס</td><td>המרפק כפוף מעט (15°), הומרוס בסיבוב חיצוני מלא</td><td>הרצועה הצדדית המדיאלית (MCL) — יציב עיקרי מפני ואלגוס</td></tr>
+    <tr><td>יציבות ורוס</td><td>המרפק כפוף מעט (15°), הומרוס בסיבוב פנימי מלא</td><td>המפרק העצמי-סחוסי מייצב יותר מה-LCL, במיוחד בכיפוף</td></tr>
+    <tr><td>Pivot shift test</td><td>שכיבה על גב, כתף+מרפק ב-90°, אמה סופינציה מלאה, הארכה הדרגתית עם ואלגוס+לחץ צירי</td><td>אי-ספיקת הרצועה האולנרית הצדדית הלטרלית (PLRI) — נקע קדמי פתאומי של ראש הרדיוס</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">למה בודקים יציבות המרפק בכיפוף 15° דווקא? תנוחה זו משחררת את הקפסולה הקדמית ומשחררת את האולקרנון מהפוסה — כך גורמים אחרים המייצבים את המפרק (מתח קפסולרי) מנוטרלים, ומה שנשאר לבדוק הוא באמת יציבות הרצועות בלבד.</p>
+
+<h2><span class="num">11</span> תסמונת מוצא בית החזה (Thoracic Outlet Syndrome, TOS)</h2>
+<p>לחץ על מבנים נוירווסקולריים באזור שמעל צלע 1 ומאחורי עצם הבריח. 90% מהמקרים הם מסוג נוירוגני (לחץ על מקלעת הזרוע), כאשר 85-90% מתוכם מסוג תחתון/משולב (עצבי C8-T1). הסוג הווסקולרי מתחלק לוורידי (70-80%, כולל תסמונת פאג'ט-שרטר עם פקקת) ועורקי (20-30%, בדרך כלל עקב צלע צווארית או שריר סקלנוס חריג).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבחן</th><th>תנוחה</th><th>חלל נבדק</th></tr></thead>
+  <tbody>
+    <tr><td>Adson test</td><td>נשימה עמוקה, סנטר למעלה, סיבוב צוואר לכיוון הזרוע הפגועה</td><td>חלל בין-סקלני (interscalene)</td></tr>
+    <tr><td>Costoclavicular compression test</td><td>נשימה עמוקה + לחיצת הכתף כלפי מטה</td><td>חלל קוסטו-קלביקולרי</td></tr>
+    <tr><td>Wright test</td><td>אבדוקציה 90° + סיבוב חיצוני</td><td>חלל תת-פקטורליס מינור וקוסטו-קלביקולרי</td></tr>
+    <tr><td>Roos extended arm stress test</td><td>אבדוקציה+רוטציה חיצונית 90°, פתיחה/סגירה חוזרת של האגרופים 3 דק'</td><td>כללי (מעורר תסמינים)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">חשוב: כל המבחנים הפרובוקטיביים ל-TOS יכולים להיות חיוביים גם באדם בריא לחלוטין — לכן יש לבצע אותם דו-צדדית ולהשוות תמיד לצד הבריא.</p>
+
+<h2><span class="num">12</span> בדיקת הגפה העליונה בילדים</h2>
+<p>תקשורת עם ילדים צעירים לרוב קשה או בלתי אפשרית; רקמת שומן תת-עורית עבה מקשה על זיהוי דפורמציה או נפיחות, וילדים נוטים לתאר כאב כ"בכל מקום". תצפית על משחק חופשי (עם צעצועים מתאימים לגיל) חושפת מידע רב על תפקוד ומיומנות. יש לבדוק גם רפלקסים פרימיטיביים (מורו, טוני-צווארי, רפלקס שפתיים, אחיזה כפית) להערכת תפקוד נוירומוסקולרי בילודים.</p>
+
+<h2><span class="num">13</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">I-P-M-S-N-V</span> — שבעת מרכיבי הבדיקה הגופנית</h3>
+  <p>
+    <b>I</b> – <span class="term" dir="ltr">Inspection</span> (הסתכלות)<br>
+    <b>P</b> – <span class="term" dir="ltr">Palpation</span> (מישוש)<br>
+    <b>M</b> – <span class="term" dir="ltr">Motion</span> (טווחי תנועה)<br>
+    <b>M</b> – <span class="term" dir="ltr">Musculotendinous</span> (שרירים-גידים)<br>
+    <b>S</b> – <span class="term" dir="ltr">Stability</span> (יציבות)<br>
+    <b>N</b> – <span class="term" dir="ltr">Nerve</span> (עצב)<br>
+    <b>V</b> – <span class="term" dir="ltr">Vascular</span> (וסקולרי)
+  </p>
+  <h3>סיפור דמיוני: "בלש בזירת פשע"</h3>
+  <p>דמייני שאת בלשית הבודקת "זירת פשע" בכף יד: קודם כל <b>מסתכלת</b> על הזירה (צבע, עיוות), אז <b>ממששת</b> (חיפוש עדויות תת-עוריות), בודקת מה <b>זז</b> (טווח תנועה), מי "<b>עשה</b> את זה" (שרירים-גידים אחראים), האם המבנה <b>יציב</b> (רצועות), מה ה"<b>חיווט</b>" (עצבים), ולבסוף מה מזרים "<b>דלק</b>" למקום (כלי דם). סדר קבוע, בלי לדלג על שלב — בדיוק כמו שהפרק מדגיש שיש לבנות פרוטוקול אישי קבוע כדי לא לפספס חלק.</p>
+  <svg class="diagram" viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg">
+    <title>שרשרת שבעת מרכיבי הבדיקה</title>
+    <g font-size="13" text-anchor="middle" fill="#1f2937">
+      <text x="60" y="30">הסתכלות</text>
+      <text x="160" y="30">מישוש</text>
+      <text x="260" y="30">תנועה</text>
+      <text x="360" y="30">שרירים</text>
+      <text x="460" y="30">יציבות</text>
+      <text x="60" y="110">עצב</text>
+      <text x="160" y="110">וסקולרי</text>
+    </g>
+    <line x1="90" y1="20" x2="130" y2="20" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="130,20 120,15 120,25" fill="#2563eb"/>
+    <line x1="190" y1="20" x2="230" y2="20" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="230,20 220,15 220,25" fill="#2563eb"/>
+    <line x1="290" y1="20" x2="330" y2="20" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="330,20 320,15 320,25" fill="#2563eb"/>
+    <line x1="390" y1="20" x2="430" y2="20" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="430,20 420,15 420,25" fill="#2563eb"/>
+    <path d="M460,35 C460,70 60,70 60,100" fill="none" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="60,100 65,90 55,90" fill="#2563eb"/>
+    <line x1="90" y1="100" x2="130" y2="100" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="130,100 120,95 120,105" fill="#2563eb"/>
+  </svg>
+</div>
+
+<h2><span class="num">14</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/17336855/" target="_blank">Kleinman WB — Stability of the distal radioulnar joint (PubMed)</a>
+    <div class="desc">סקירה מקיפה של אנטומיה וביומכניקה של הצד האולנרי של שורש כף היד, כולל TFCC.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/17660081/" target="_blank">Tay et al. — The "ulnar fovea sign" for defining ulnar wrist pain (PubMed)</a>
+    <div class="desc">המאמר המקורי שהגדיר את רגישות/סגוליות מבחן ה-ulnar fovea sign.</div>
+  </li>
+</ul>
+
+<h2><span class="num">15</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, נגר במקצועו, מתלונן על חולשה בהחזקת חפצים ואי-נוחות בכף היד השמאלית לאחר חבלה. בבדיקה: אינו מצליח להצמיד את האגודל לצד האצבע המורה ללא כיפוף מפרק ה-IP של האגודל, והאצבע הקטנה נוטה מעט הצידה כשהוא מנסה לצמד את כל האצבעות יחד.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. אילו שני ממצאים בווינייטה, ביחד, מצביעים באופן ספציפי על שיתוק עצב אולנרי?</div>
+  <button class="opt" data-i="0">חולשה כללית באחיזה + נגרות כמקצוע</button>
+  <button class="opt" data-i="1">כאב בכף היד + חבלה קודמת</button>
+  <button class="opt" data-i="2">Jeanne's sign (כיפוף IP האגודל בניסיון אדוקציה, המעיד על Froment's test חיובי) יחד עם Wartenberg's sign (סטיית האצבע הקטנה) — שני סימנים קלאסיים לשיתוק מוטורי של העצב האולנרי</button>
+  <button class="opt" data-i="3">אין קשר בין שני הממצאים</button>
+  <div class="explain">התשובה הנכונה (3): כיפוף מפרק ה-IP של האגודל בניסיון לבצע אדוקציה/פינצטה הוא Jeanne's sign, המעיד על Froment's test חיובי — כשל ב-adductor pollicis, המפוצה ע"י FPL. סטיית האצבע הקטנה בניסיון אדוקציה כללית היא Wartenberg's sign — כשל בשריר הבין-עצמי הפלמרי השלישי. שני הסימנים יחד מצביעים באופן ספציפי וקלאסי על שיתוק מוטורי של העצב האולנרי. תשובות 1, 2, 4 אינן ספציפיות מספיק או שגויות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע בודקים יציבות רוחבית של מפרק ה-MCP בכיפוף מלא, אך יציבות PIP בתנוחה ניטרלית?</div>
+  <button class="opt" data-i="0">זו בחירה שרירותית ללא בסיס ביומכני</button>
+  <button class="opt" data-i="1">הרצועות הצדדיות של MCP נמתחות (tighten) בכיפוף, בעוד רצועות ה-PIP נמתחות בהרחבה — כל מפרק נבדק בתנוחה שבה הרצועות שלו מתוחות ביותר, כדי לחשוף חוסר יציבות אמיתי</button>
+  <button class="opt" data-i="2">כי מפרק ה-PIP קשה יותר למישוש בכיפוף</button>
+  <button class="opt" data-i="3">שני המפרקים נבדקים תמיד באותה תנוחה</button>
+  <div class="explain">התשובה הנכונה (2): העיקרון הביומכני הוא לבדוק כל מפרק בתנוחה בה הרצועות המייצבות שלו נמתחות (taut) במלואן — כך חוסר יציבות אמיתי (רפיון/קרע) יתגלה בבירור. ב-MCP, הרצועות הצדדיות נמתחות בכיפוף; ב-PIP, דווקא בהרחבה/ניטרלי. תשובות 1, 3, 4 שגויות — יש הבדל ביומכני מכוון וברור בין המפרקים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע במבחן Allen יש חשיבות מיוחדת לפני הרמת דש דגלי (pedicled) מהאמה?</div>
+  <button class="opt" data-i="0">כדי לוודא חיבור מעגלי תקין בין העורק הרדיאלי לאולנרי בכף היד — אם אין חיבור תקין, נטילת הדש (הכוללת הקרבת אחד העורקים) עלולה לפגוע קשות באספקת הדם לכף היד</button>
+  <button class="opt" data-i="1">כדי למדוד לחץ דם בזרוע</button>
+  <button class="opt" data-i="2">כדי לבדוק תפקוד עצב מדיאני בלבד</button>
+  <button class="opt" data-i="3">אין חשיבות מיוחדת לפני הרמת דש</button>
+  <div class="explain">התשובה הנכונה (1): דש דגלי מהאמה (רדיאלי/אולנרי) מקריב את אחד משני העורקים המזינים את כף היד. מבחן Allen מוודא שקיים חיבור מעגלי (arch) תקין בין העורק הרדיאלי לאולנרי — כך שגם לאחר הקרבת עורק אחד, כף היד תמשיך להיות מוזנת דרך העורק השני. אם אין חיבור תקין, הרמת הדש עלולה לגרום לאיסכמיה של כף היד. תשובות 2-4 אינן נכונות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מה ייחודי בבדיקת ה-FDS (Flexor Digitorum Superficialis) לעומת בדיקת ה-FDP, מבחינת עקרון הבידוד?</div>
+  <button class="opt" data-i="0">FDS ו-FDP נבדקים באותה שיטה בדיוק</button>
+  <button class="opt" data-i="1">FDS לא ניתן לבדיקה כלל</button>
+  <button class="opt" data-i="2">FDP הוא זה שיש לו בטן שריר עצמאית לכל אצבע</button>
+  <button class="opt" data-i="3">מכיוון שלכל גיד FDS יש בטן שריר עצמאית משלו, ניתן לבודד את פעולתו ע"י ייצוב שאר האצבעות בהרחבה מלאה; לעומת זאת, FDP חולק מקור משותף, כך שקיבוע DIP באצבע אחת בהרחבה עלול למנוע תנועה של כל ה-FDP-ים יחד</button>
+  <button class="opt" data-i="4">אין הבדל מהותי בין שני הגידים</button>
+  <div class="explain">התשובה הנכונה: "מכיוון שלכל גיד FDS יש בטן שריר עצמאית משלו..." — לכל גיד FDS יש בטן שריר נפרדת ועצמאית, ולכן ניתן לבודד אותו בקלות ע"י קיבוע שאר האצבעות בהרחבה מלאה ובקשה לכופף רק את האצבע הנבדקת. ה-FDP, לעומת זאת, חולק מקור שרירי משותף לכל ארבע האצבעות — ולכן קיבוע ה-DIP של אצבע אחת בהרחבה מלאה עלול לחסום תנועה של כל שאר גידי ה-FDP בו-זמנית, מה שהופך את בדיקתו לפחות "נקייה" עקרונית. האפשרות "אין הבדל מהותי" (האחרונה) שגויה — יש הבדל מהותי וברור בין שני הגידים כמתואר.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. באיזו תנוחה יש לבדוק יציבות ואלגוס של המרפק, ומדוע התנוחה חשובה?</div>
+  <button class="opt" data-i="0">מרפק מורחב לחלוטין, הומרוס בסיבוב פנימי — כדי לבודד את התפקיד של ה-LCL</button>
+  <button class="opt" data-i="1">כל תנוחה מתאימה, אין השפעה על התוצאה</button>
+  <button class="opt" data-i="2">מרפק כפוף כ-15°, הומרוס בסיבוב חיצוני מלא — כיפוף קל משחרר את הקפסולה הקדמית ומשחרר את האולקרנון מהפוסה, כך שגורמים מייצבים אחרים מנוטרלים והבדיקה מבודדת את תרומת הרצועה הצדדית המדיאלית (MCL) בלבד</button>
+  <button class="opt" data-i="3">מרפק כפוף ב-90° בלבד, ללא קשר לסיבוב ההומרוס</button>
+  <div class="explain">התשובה הנכונה (3): כיפוף קל של כ-15° משחרר את הקפסולה הקדמית ומשחרר את האולקרנון מהפוסה — כך שהמפרק העצמי-סחוסי והקפסולה כבר לא "מסתירים" חוסר יציבות רצועתי. סיבוב חיצוני מלא של ההומרוס ממקד את הבדיקה בתפקוד ה-MCL כמייצב העיקרי מפני ואלגוס. תשובות 1, 2, 4 אינן תואמות את הפרוטוקול המדויק שמתואר בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">16</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>בדיקת הגפה העליונה תמיד מתחילה בהיסטוריה מפורטת, ותמיד כוללת השוואה לצד הבריא — כלל-על שחוזר בכל שלב.</li>
+    <li>שבעת מרכיבי הבדיקה (I-P-M-M-S-N-V): הסתכלות, מישוש, טווח תנועה, שרירים-גידים, יציבות, עצב, וסקולרי — תמיד מהצוואר ועד קצות האצבעות, גם בתלונה ממוקדת ליד.</li>
+    <li>עקרון הבידוד הוא הליבה הביומכנית של כל בדיקת שריר/גיד: יש לנטרל שרירים "עוזרים" (למשל EPB בבדיקת EPL) כדי לקבל תוצאה אמינה.</li>
+    <li>יציבות MCP נבדקת בכיפוף מלא, יציבות PIP בהרחבה/ניטרלי — הרצועות הצדדיות מתוחות בתנוחות הפוכות בין שני המפרקים.</li>
+    <li>Froment's/Jeanne's/Wartenberg's/Duchenne's — מקבץ סימנים קלאסי לשיתוק מוטורי של העצב האולנרי, כל אחד ממנו נובע ממנגנון פיצוי שרירי ספציפי.</li>
+    <li>מבחני TOS (Adson, Wright, Roos, Costoclavicular) חייבים תמיד השוואה דו-צדדית — הם יכולים להיות חיוביים גם באדם בריא.</li>
+    <li>מבחן Allen (וגרסתו הדיגיטלית) הכרחי לפני נטילת דש דגלי מהאמה או מהאצבע כדי למנוע איסכמיה של כף היד/האצבע.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
