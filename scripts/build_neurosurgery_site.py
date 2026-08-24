@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-בונה מחדש את docs/neurosurgery/index.html, docs/neurosurgery/summaries.html,
-ומעדכן את הריבוע של נוירוכירורגיה ב-docs/index.html (עמוד הבית הראשי),
-לפי neurosurgery_state.json ו-docs/neurosurgery/flashcards_all.json.
+בונה מחדש את כל 4 הכרכים של נוירוכירורגיה (docs/neurosurgery/volN/summaries.html + index.html),
+את עמוד-העל docs/neurosurgery/index.html (אריחי כרכים), ומעדכן את הריבוע של נוירוכירורגיה
+ב-docs/index.html (עמוד הבית הראשי), לפי neurosurgery_volN_state.json ו-docs/neurosurgery/volN/flashcards_all.json.
 
-הרץ את הסקריפט הזה בכל פעם שסטטוס פרק משתנה ב-neurosurgery_state.json
-(אחרי שנוצרו סיכום/כרטיסיות/PPTX חדשים לפרק).
+מבנה רב-כרכי (בדיוק כמו כירורגיה פלסטית): כל כרך מתקדם באופן עצמאי, עם state.json,
+summaries/, flashcards_all.json נפרדים משלו תחת docs/neurosurgery/volN/.
+
+הרץ את הסקריפט הזה בכל פעם שסטטוס פרק משתנה באחד מקבצי neurosurgery_volN_state.json
+(אחרי שנוצרו סיכום/כרטיסיות/PPTX חדשים לפרק כלשהו בכרך כלשהו).
 
 שימוש: python3 scripts/build_neurosurgery_site.py
 (הרץ מתוך שורש הריפו, או מכל מקום - הנתיבים יחסיים למיקום הסקריפט)
@@ -15,9 +18,15 @@ import json, re, os
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.dirname(SCRIPT_DIR)  # repo root
-STATE_PATH = os.path.join(BASE, "neurosurgery_state.json")
-NS_DIR = os.path.join(BASE, "docs", "neurosurgery")
+NS_ROOT = os.path.join(BASE, "docs", "neurosurgery")
 ROOT_INDEX_PATH = os.path.join(BASE, "docs", "index.html")
+
+VOLUMES = [
+    {"n": 1, "state": "neurosurgery_vol1_state.json", "dir": "vol1", "label": "כרך 1"},
+    {"n": 2, "state": "neurosurgery_vol2_state.json", "dir": "vol2", "label": "כרך 2"},
+    {"n": 3, "state": "neurosurgery_vol3_state.json", "dir": "vol3", "label": "כרך 3"},
+    {"n": 4, "state": "neurosurgery_vol4_state.json", "dir": "vol4", "label": "כרך 4"},
+]
 
 
 def slug(n, title_en):
@@ -26,17 +35,21 @@ def slug(n, title_en):
     return f"{n:02d}-{s}"
 
 
-def main():
-    with open(STATE_PATH, encoding="utf-8") as f:
+def build_volume(vol):
+    state_path = os.path.join(BASE, vol["state"])
+    vol_dir = os.path.join(NS_ROOT, vol["dir"])
+    os.makedirs(os.path.join(vol_dir, "summaries"), exist_ok=True)
+
+    with open(state_path, encoding="utf-8") as f:
         state = json.load(f)
     chapters = state["chapters"]
-    book = state["book"]
+    book = state.get("title_he", state.get("book", vol["label"]))
 
     done = [c for c in chapters if c["status"] == "done"]
     pending = [c for c in chapters if c["status"] != "done"]
     pct = round(100 * len(done) / len(chapters)) if chapters else 0
 
-    fc_path = os.path.join(NS_DIR, "flashcards_all.json")
+    fc_path = os.path.join(vol_dir, "flashcards_all.json")
     if os.path.exists(fc_path):
         with open(fc_path, encoding="utf-8") as f:
             fc = json.load(f)
@@ -44,7 +57,7 @@ def main():
     else:
         num_cards = 0
 
-    # ---------- summaries.html ----------
+    # ---------- volN/summaries.html ----------
     sidebar_items = []
     for c in chapters:
         n = c["n"]; title_he = c.get("title_he", c["title_en"])
@@ -80,7 +93,7 @@ def main():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>סיכומי נוירוכירורגיה - Youmans</title>
+<title>סיכומי נוירוכירורגיה - {vol["label"]} - Youmans</title>
 <style>
   :root{{color-scheme:light}}
   *{{box-sizing:border-box}}
@@ -153,13 +166,14 @@ def main():
   <nav class="sidebar" id="sidebar">
     <button class="sidebar-toggle" id="sidebarToggle" title="קפל/הרחב תפריט פרקים" aria-label="קפל/הרחב תפריט פרקים">&#9776;</button>
     <div class="sidebar-inner">
-      <h2>Youmans Neurological Surgery</h2>
+      <h2>Youmans Neurological Surgery — {vol["label"]}</h2>
       <div class="progress-wrap"><div class="progress-bar"></div></div>
       <div class="progress-text">{len(done)} / {len(chapters)} פרקים הושלמו ({pct}%)</div>
       <div class="top-links">
-        <a class="home" href="../index.html">&#8962; כל הנושאים (עמוד הבית)</a>
-        <a class="home" href="index.html">&#8592; עמוד נוירוכירורגיה</a>
-        <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
+        <a class="home" href="../../index.html">&#8962; כל הנושאים (עמוד הבית)</a>
+        <a class="home" href="../index.html">&#8592; נוירוכירורגיה: כל הכרכים</a>
+        <a class="home" href="index.html">{vol["label"]}</a>
+        <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות של {vol["label"]} (מאגר מאוחד)</a>
       </div>
       <ul class="ch-list" id="chList">
         {''.join(sidebar_items)}
@@ -174,7 +188,7 @@ def main():
     </div>
     <iframe id="contentFrame" class="content-frame"></iframe>
     <div class="empty-wrap" id="emptyWrap">
-      <h1>סיכומי נוירוכירורגיה</h1>
+      <h1>סיכומי נוירוכירורגיה — {vol["label"]}</h1>
       <div class="sub">{book} &middot; סיכום + כרטיסיות תרגול לכל פרק, בעברית</div>
 
       <div class="stat-cards">
@@ -186,10 +200,10 @@ def main():
       <div class="latest">
         <h3>הפרקים האחרונים שנוספו</h3>
         <div id="latestList"></div>
-        <a href="flashcards.html" style="margin-top:6px">🗂️ כל הכרטיסיות של כל הפרקים — מאגר מאוחד אחד</a>
+        <a href="flashcards.html" style="margin-top:6px">🗂️ כל הכרטיסיות של {vol["label"]} — מאגר מאוחד אחד</a>
       </div>
 
-      <p style="color:#6b7280; font-size:14px">כל בוקר מתווסף כאן סיכום וחבילת כרטיסיות לפרק הבא בספר, לפי הסדר. השתמשי בתפריט הצד או בכפתורי "הבא/הקודם" כדי לעבור בין הפרקים שכבר הושלמו — התפריט נשאר גלוי כל הזמן. רשימת הפרקים תתעדכן כשיועלו עוד פרקים מהספר.</p>
+      <p style="color:#6b7280; font-size:14px">כל בוקר מתווסף כאן סיכום וחבילת כרטיסיות לפרק הבא ב{vol["label"]}, לפי הסדר. השתמשי בתפריט הצד או בכפתורי "הבא/הקודם" כדי לעבור בין הפרקים שכבר הושלמו — התפריט נשאר גלוי כל הזמן. רשימת הפרקים תתעדכן כשיועלו עוד פרקים מהספר.</p>
     </div>
   </main>
 </div>
@@ -253,7 +267,7 @@ document.querySelectorAll('.ch-btn').forEach(function(btn){{
 
 var sidebarEl = document.getElementById('sidebar');
 var sidebarToggle = document.getElementById('sidebarToggle');
-var COLLAPSE_KEY = 'ns_sidebar_collapsed';
+var COLLAPSE_KEY = 'ns_sidebar_collapsed_{vol["dir"]}';
 
 function setSidebarCollapsed(v){{
   sidebarEl.classList.toggle('collapsed', v);
@@ -274,16 +288,16 @@ sidebarToggle.addEventListener('click', function(){{
 </body>
 </html>
 '''
-    with open(os.path.join(NS_DIR, "summaries.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(vol_dir, "summaries.html"), "w", encoding="utf-8") as f:
         f.write(summaries_html)
 
-    # ---------- neurosurgery/index.html (2-tile hub) ----------
+    # ---------- volN/index.html (2-tile mini hub) ----------
     index_html = f'''<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>נוירוכירורגיה - Youmans</title>
+<title>נוירוכירורגיה — {vol["label"]} - Youmans</title>
 <style>
   :root{{color-scheme:light}}
   *{{box-sizing:border-box}}
@@ -307,44 +321,120 @@ sidebarToggle.addEventListener('click', function(){{
 </style>
 </head>
 <body>
-<div class="topnav"><a href="../index.html">&#8592; כל הנושאים</a></div>
+<div class="topnav"><a href="../index.html">&#8592; נוירוכירורגיה: כל הכרכים</a></div>
 <header>
-  <h1>🧠 נוירוכירורגיה</h1>
+  <h1>🧠 נוירוכירורגיה — {vol["label"]}</h1>
   <div class="sub">{book}</div>
 </header>
 <div class="grid">
   <a class="tile summaries" href="summaries.html">
     <span class="icon">📄</span>
     <h2>סיכומים</h2>
-    <p>סיכום מעמיק לכל פרק בספר, עם שאלון תרגול — בחירה מתפריט צד לפי פרק</p>
+    <p>סיכום מעמיק לכל פרק ב{vol["label"]}, עם שאלון תרגול — בחירה מתפריט צד לפי פרק</p>
     <div class="stat"><b>{len(done)}/{len(chapters)}</b> פרקים</div>
   </a>
   <a class="tile flashcards" href="flashcards.html">
     <span class="icon">🗂️</span>
     <h2>כרטיסיות</h2>
-    <p>בנק כרטיסיות תרגול מאוחד לכל הפרקים, עם סינון, שאלון וסטטיסטיקות</p>
+    <p>בנק כרטיסיות תרגול מאוחד לכל פרקי {vol["label"]}, עם סינון, שאלון וסטטיסטיקות</p>
     <div class="stat"><b>{num_cards}</b> כרטיסיות</div>
   </a>
 </div>
 </body>
 </html>
 '''
-    with open(os.path.join(NS_DIR, "index.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(vol_dir, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_html)
+
+    return {"n": vol["n"], "label": vol["label"], "book": book, "done": len(done),
+            "total": len(chapters), "cards": num_cards, "dir": vol["dir"]}
+
+
+def build_hub(vol_stats):
+    total_done = sum(v["done"] for v in vol_stats)
+    total_ch = sum(v["total"] for v in vol_stats)
+    total_cards = sum(v["cards"] for v in vol_stats)
+
+    tiles = []
+    palette = ["#1c7293", "#6d28d9", "#b45309", "#047857"]
+    for i, v in enumerate(vol_stats):
+        color = palette[i % len(palette)]
+        tiles.append(f'''
+  <a class="tile" style="background:linear-gradient(155deg, {color}, #0c1b2a)" href="{v['dir']}/index.html">
+    <span class="icon">📘</span>
+    <h2>{v['label']}</h2>
+    <p>{v['book']}</p>
+    <div class="stat"><b>{v['done']}/{v['total']}</b> פרקים &middot; <b>{v['cards']}</b> כרטיסיות</div>
+  </a>''')
+
+    hub_html = f'''<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>נוירוכירורגיה - Youmans (4 כרכים)</title>
+<style>
+  :root{{color-scheme:light}}
+  *{{box-sizing:border-box}}
+  body{{font-family:'Segoe UI','Arial Hebrew',sans-serif; margin:0; min-height:100vh; background:#0c1b2a; color:#f1f5f9}}
+  .topnav{{padding:18px 24px 0}}
+  .topnav a{{color:#7dd3fc; font-size:13.5px; text-decoration:none; font-weight:600}}
+  .topnav a:hover{{text-decoration:underline}}
+  header{{padding:36px 24px 8px; text-align:center}}
+  header h1{{font-size:28px; margin:0 0 8px}}
+  header .sub{{color:#93c5fd; font-size:14.5px}}
+  .grid{{max-width:900px; margin:32px auto 60px; padding:0 24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px}}
+  .tile{{display:block; text-decoration:none; color:inherit; border-radius:16px; padding:30px 26px; box-shadow:0 8px 24px rgba(0,0,0,.25); transition:transform .15s, box-shadow .15s}}
+  .tile:hover{{transform:translateY(-4px); box-shadow:0 14px 32px rgba(0,0,0,.35)}}
+  .tile .icon{{font-size:36px; margin-bottom:14px; display:block}}
+  .tile h2{{font-size:20px; margin:0 0 8px}}
+  .tile p{{font-size:13.5px; color:rgba(255,255,255,.85); margin:0 0 16px; line-height:1.5}}
+  .tile .stat{{background:rgba(255,255,255,.16); border-radius:8px; padding:6px 12px; font-size:12.5px; font-weight:600; display:inline-block}}
+  .tile .stat b{{font-size:15px}}
+</style>
+</head>
+<body>
+<div class="topnav"><a href="../index.html">&#8592; כל הנושאים</a></div>
+<header>
+  <h1>🧠 נוירוכירורגיה</h1>
+  <div class="sub">Youmans Neurological Surgery, 6th Edition &middot; {total_done}/{total_ch} פרקים &middot; {total_cards} כרטיסיות בסה"כ, ב-4 כרכים</div>
+</header>
+<div class="grid">{''.join(tiles)}
+</div>
+</body>
+</html>
+'''
+    with open(os.path.join(NS_ROOT, "index.html"), "w", encoding="utf-8") as f:
+        f.write(hub_html)
+
+    return total_done, total_ch, total_cards
+
+
+def main():
+    vol_stats = []
+    for vol in VOLUMES:
+        stats = build_volume(vol)
+        vol_stats.append(stats)
+        print(f"  {vol['label']}: {stats['done']}/{stats['total']} chapters, {stats['cards']} cards")
+
+    total_done, total_ch, total_cards = build_hub(vol_stats)
 
     # ---------- update the neuro tile stats on the root docs/index.html ----------
     if os.path.exists(ROOT_INDEX_PATH):
         with open(ROOT_INDEX_PATH, encoding="utf-8") as f:
             root_html = f.read()
-        root_html = re.sub(
+        new_root_html = re.sub(
             r'(<a class="tile neuro"[^>]*>.*?<div class="stat"><b>)\d+/\d+(</b>פרקים</div>\s*<div class="stat"><b>)\d+(</b>כרטיסיות</div>)',
-            rf'\g<1>{len(done)}/{len(chapters)}\g<2>{num_cards}\g<3>',
+            rf'\g<1>{total_done}/{total_ch}\g<2>{total_cards}\g<3>',
             root_html, flags=re.S
         )
-        with open(ROOT_INDEX_PATH, "w", encoding="utf-8") as f:
-            f.write(root_html)
+        if new_root_html != root_html:
+            with open(ROOT_INDEX_PATH, "w", encoding="utf-8") as f:
+                f.write(new_root_html)
+        else:
+            print("  NOTE: root docs/index.html neuro tile pattern not matched — check manually.")
 
-    print(f"Built neurosurgery site — {len(done)}/{len(chapters)} chapters done, {num_cards} cards.")
+    print(f"Built neurosurgery multi-volume site — {total_done}/{total_ch} chapters, {total_cards} cards across 4 volumes.")
 
 
 if __name__ == "__main__":

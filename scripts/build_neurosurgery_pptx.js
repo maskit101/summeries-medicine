@@ -1,21 +1,23 @@
 // -*- coding: utf-8 -*-
-// בונה PPTX לפרק נוירוכירורגיה בודד מתוך neurosurgery_state.json + docs/neurosurgery/flashcards_all.json.
-// שימוש:  node scripts/build_neurosurgery_pptx.js <chapter_n>
+// בונה PPTX לפרק נוירוכירורגיה בודד מתוך neurosurgery_volN_state.json + docs/neurosurgery/volN/flashcards_all.json.
+// שימוש:  node scripts/build_neurosurgery_pptx.js <volume_n> <chapter_n>
 // דורש: npm install pptxgenjs (בתיקייה שממנה מריצים, או צריך node_modules נגיש)
-// הפלט נשמר ל-docs/neurosurgery/summaries/<NN>-<slug>.pptx
+// הפלט נשמר ל-docs/neurosurgery/volN/summaries/<NN>-<slug>.pptx
 
 const pptxgen = require("pptxgenjs");
 const fs = require("fs");
 const path = require("path");
 
-const chapterN = parseInt(process.argv[2], 10);
-if (!chapterN) {
-  console.error("Usage: node build_neurosurgery_pptx.js <chapter_n>");
+const volN = parseInt(process.argv[2], 10);
+const chapterN = parseInt(process.argv[3], 10);
+if (!volN || !chapterN) {
+  console.error("Usage: node build_neurosurgery_pptx.js <volume_n> <chapter_n>");
   process.exit(1);
 }
 
 const REPO = path.join(__dirname, "..");
-const state = JSON.parse(fs.readFileSync(path.join(REPO, "neurosurgery_state.json"), "utf8"));
+const VOL_DIR = path.join(REPO, "docs/neurosurgery", "vol" + volN);
+const state = JSON.parse(fs.readFileSync(path.join(REPO, `neurosurgery_vol${volN}_state.json`), "utf8"));
 const chapter = state.chapters.find(c => c.n === chapterN);
 if (!chapter) { console.error("Chapter not found in state:", chapterN); process.exit(1); }
 
@@ -24,7 +26,7 @@ function slug(n, titleEn) {
   return String(n).padStart(2, "0") + "-" + s;
 }
 
-const data = JSON.parse(fs.readFileSync(path.join(REPO, "docs/neurosurgery/flashcards_all.json"), "utf8"));
+const data = JSON.parse(fs.readFileSync(path.join(VOL_DIR, "flashcards_all.json"), "utf8"));
 const cards = data.cards.filter(c => c.id.startsWith(chapterN + "_"));
 if (cards.length === 0) { console.error("No cards found with id prefix", chapterN + "_"); process.exit(1); }
 
@@ -54,7 +56,7 @@ function letterBadge(slide, x, y, letter, color) {
   slide.background = { color: NAVY };
   slide.addShape("ellipse", { x: 6.08, y: 0.7, w: 1.18, h: 1.18, fill: { type: "none" }, line: { color: TEAL, width: 3 } });
   slide.addShape("ellipse", { x: 6.33, y: 0.95, w: 0.68, h: 0.68, fill: { color: TEAL }, line: { type: "none" } });
-  slide.addText("נוירוכירורגיה", { x: 1, y: 2.3, w: 11.33, h: 1.0, align: "center", fontSize: 44, bold: true, color: WHITE, fontFace: "Calibri", rtlMode: true });
+  slide.addText("נוירוכירורגיה — כרך " + volN, { x: 1, y: 2.3, w: 11.33, h: 1.0, align: "center", fontSize: 40, bold: true, color: WHITE, fontFace: "Calibri", rtlMode: true });
   slide.addText(`פרק ${chapterN}: ${chapter.title_he || chapter.title_en}`, { x: 1, y: 3.3, w: 11.33, h: 0.7, align: "center", fontSize: 24, color: "93C5FD", fontFace: "Calibri", rtlMode: true });
   slide.addText(chapter.title_en + "  ·  Youmans Neurological Surgery", { x: 1, y: 4.0, w: 11.33, h: 0.5, align: "center", fontSize: 15, italic: true, color: "7DD3FC", fontFace: "Calibri" });
   slide.addText(`${cards.length} כרטיסיות תרגול · שאלה ואז תשובה מלאה בכל כרטיסייה · לסטטיסטיקה חיה השתמשי באפליקציית ה-HTML`, { x: 1, y: 6.5, w: 11.33, h: 0.6, align: "center", fontSize: 12.5, color: "64748B", fontFace: "Calibri", rtlMode: true });
@@ -136,5 +138,5 @@ cards.forEach((card, idx) => {
 }
 
 const outName = slug(chapterN, chapter.title_en) + ".pptx";
-const outPath = path.join(REPO, "docs/neurosurgery/summaries", outName);
+const outPath = path.join(VOL_DIR, "summaries", outName);
 pres.writeFile({ fileName: outPath }).then(() => console.log("Wrote", outPath));
