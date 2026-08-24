@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 3: לימפדמה - מבוא ונקודת המבט של העורכים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 3: לימפדמה - מבוא ונקודת המבט של העורכים <span class="term" dir="ltr">Lymphedema: Introduction and Editors' Perspective</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | פרק פתיחה לחלק העוסק בלימפדמה (Section I, Ch. 3.1), מאת Joon Pio Hong ו-David H. Song</div>
+
+<p>זהו פרק פתיחה קצר (כ-3 עמודים בלבד) שאינו עוסק בטכניקה כירורגית ספציפית, אלא משמש כ<b>מבוא רעיוני</b> לכל תת-הפרקים שבאים אחריו על לימפדמה (<span class="term" dir="ltr">Lymphedema</span>). העורכים בונים כאן את המסגרת המושגית: מה זו לימפדמה, למה היא קורית ברמת המנגנון, איך התפיסה הטיפולית התפתחה היסטורית משיטת "כריתה בלבד" לשתי אסטרטגיות מקבילות, ומה בדיוק יפורט בפרקים הבאים. הבנת המבוא הזה היא המפתח להבנת כל שאר פרקי הלימפדמה בכרך.</p>
+
+<h2><span class="num">1</span> הגדרה, סיווג וגורמים</h2>
+<p>לימפדמה היא <b>מחלה כרונית ומתישה</b> (<span class="term" dir="ltr">chronic, debilitating disease</span>) הנובעת מהפרעה בזרימת הלימפה. הפרק מחלק אותה לשני סוגים עיקריים לפי מקור הבעיה:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג</th><th>הגדרה</th><th>גורמים</th></tr></thead>
+  <tbody>
+    <tr><td><b>לימפדמה ראשונית</b><br><span class="term" dir="ltr">Primary lymphedema</span></td><td>נובעת מ<b>הפרעה מולדת</b> במבנה או בהתפתחות המערכת הלימפטית עצמה</td><td>מומים מולדים של כלי הלימפה / בלוטות הלימפה</td></tr>
+    <tr><td><b>לימפדמה שניונית</b><br><span class="term" dir="ltr">Secondary lymphedema</span></td><td>נובעת מ<b>גורם חיצוני</b> שפוגע במערכת לימפטית שהייתה תקינה</td><td>זיהומים, טראומה/פציעה, כריתת בלוטות לימפה עקב סרטן, הקרנות</td></tr>
+  </tbody>
+</table>
+</div>
+<p>גורמי סיכון נוספים המוזכרים במפורש בפרק: <b>השמנה</b> (<span class="term" dir="ltr">obesity</span>). ללא קשר לסוג, המטופלים חווים תלת-אד קלאסי: <b>נפיחות, כאב וזיהומים חוזרים</b>, עם פגיעה משמעותית באיכות החיים.</p>
+
+<h2><span class="num">2</span> מנגנון פתופיזיולוגי – למה בצקת לימפטית הופכת למחלה מערכתית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>תפקוד תקין:</b> המערכת הלימפטית היא רשת כלים ייעודית שמווסתת <b>הומאוסטזיס של נוזלים</b> ואת <b>ההגנה החיסונית</b>. תפקידה המרכזי הוא לנקז מהמרחבים הבין-תאיים עודפי מים, מולקולות גדולות, שומנים, אנטיגנים, תאי חיסון וחלקיקים. חלק ניכר מחלבוני הפלזמה חוצה מדי יום את דופן הנימים ואינו חוזר ישירות למחזור הדם - הוא <b>חוזר דווקא דרך המערכת הלימפטית</b>, לא דרך הוורידים.
+  </p>
+  <p>
+    כשיש <b>אי-ספיקה של הזרימה הלימפטית</b> (<span class="term" dir="ltr">lymphatic transport insufficiency</span>), מתפתחת שרשרת אירועים: הניקוז הלקוי גורם לעלייה בלחץ בתוך המערכת הלימפטית, מה שמוביל להצטברות חריגה של נוזל במרחב הבין-תאי. הצטברות הנוזל הזו <b>אינה פסיבית בלבד</b> - היא בפועל <b class="key">מעוררת שגשוג תאי ותהליך דלקתי</b> ברקמה שמסביב. דלקת כרונית של המבנים הלימפטיים והרקמה הסובבת גורמת בהמשך ל<b>פיברוזיס</b> (הצטלקות) תת-עורי ושל כלי הלימפה עצמם - וזהו כבר <b>נזק מבני בלתי-הפיך</b>.
+  </p>
+  <p class="key-box">מכיוון שהמערכת הלימפטית אחראית גם על הגנה חיסונית ולא רק על ניקוז נוזלים, הפגיעה המבנית המתמשכת בה גורמת גם לירידה בהגנות החיסוניות התקינות. לכן הפרק מגדיר לימפדמה לא רק כ"בצקת", אלא כ<b>מצב של חסינות לקויה יחד עם תהליך מתמשך של ניוון ודלקת כרונית</b> של המבנים הלימפטיים והרקמה שמסביב.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת המנגנון הפתופיזיולוגי בלימפדמה</title>
+  <rect x="670" y="75" width="170" height="60" rx="8" fill="#f3f4f6" stroke="#4b5563"/>
+  <text x="755" y="100" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">ניקוז לימפטי לקוי</text>
+  <text x="755" y="118" font-size="12" text-anchor="middle" fill="#1f2937">אי-ספיקת זרימה</text>
+
+  <rect x="460" y="75" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="545" y="100" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עלייה בלחץ + הצטברות</text>
+  <text x="545" y="118" font-size="12" text-anchor="middle" fill="#1e3a8a">נוזל בין-תאי חריגה</text>
+
+  <rect x="250" y="75" width="170" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="335" y="100" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">שגשוג תאי</text>
+  <text x="335" y="118" font-size="12" text-anchor="middle" fill="#78350f">+ דלקת כרונית</text>
+
+  <rect x="40" y="75" width="170" height="60" rx="8" fill="#fef2f2" stroke="#991b1b"/>
+  <text x="125" y="97" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פיברוזיס</text>
+  <text x="125" y="113" font-size="12" text-anchor="middle" fill="#7f1d1d">נזק בלתי-הפיך</text>
+  <text x="125" y="128" font-size="11" text-anchor="middle" fill="#7f1d1d">+ חסינות פגועה</text>
+
+  <line x1="670" y1="105" x2="640" y2="105" stroke="#374151" stroke-width="2"/>
+  <polygon points="640,105 670,99 670,111" fill="#374151"/>
+
+  <line x1="460" y1="105" x2="430" y2="105" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,105 460,99 460,111" fill="#374151"/>
+
+  <line x1="250" y1="105" x2="220" y2="105" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,105 250,99 250,111" fill="#374151"/>
+</svg>
+<p class="figcap">שרשרת סיבתית מימין לשמאל (כיוון קריאה): מניקוז לקוי, דרך עלייה בלחץ והצטברות נוזל, ועד לדלקת כרונית שמובילה לפיברוזיס בלתי-הפיך ופגיעה חיסונית.</p>
+
+<h2><span class="num">3</span> רקע היסטורי - ממדע עתיק להבנה מודרנית</h2>
+<p>הפרק פותח בנקודה ציורית: התיאור המוקדם ביותר הידוע של לימפדמה מיוחס לתבליט מצרי בן כ-3500 שנה, המתאר את <b>הנסיכה Ati</b> - "שקים של בשר תלויים מזרועותיה וירכיה, ורק מפרקי כפות ידיה וקרסוליה נראים" (לפי תיאורו של Cornelius Stetter בספרו <i>The Secret Medicine of the Pharaohs</i>). מאז <b>היפוקרטס</b> ועד היום, הבנת המערכת הלימפטית לקחה מאות שנים - אך מציאת פתרון טיפולי לקחה זמן רב אף יותר.</p>
+<p>הגישות המוקדמות ביותר התמקדו אך ורק ב<b>הקטנת נטל המחלה באמצעות כריתות אגרסיביות</b>. דבולקינג (<span class="term" dir="ltr">debulking</span> - הקטנת נפח הרקמה) היה במשך עשורים <b>שיטת הטיפול היחידה</b>, וממשיך להיות עמוד תווך באסטרטגיה הטיפולית הכוללת גם היום - אך כפי שיתואר בסעיף 5, הוא כיום רק אחת משתי אסטרטגיות מקבילות ולא הפתרון היחיד.</p>
+<p class="key-box">גם היום, למרות נתיבי טיפול שמרניים מבוססים וגישות כירורגיות חדשות מבוססות-ראיות, <b>הרבה אנשי מקצוע רפואיים עדיין מוטעים או חסרים את המינוח והכלים האבחוניים</b> הדרושים לאבחון נכון והפניה למנתחים מתאימים - כך שחינוך מטופלים ואנשי מקצוע כאחד נותר אתגר מרכזי.</p>
+
+<h2><span class="num">4</span> היקף עולמי</h2>
+<p>העורכים ממסגרים את הפרק במונחים של תקווה מבוססת-נתונים: מחלה שנחשבה פעם <b>חסרת מרפא</b> היא כיום <b>ניתנת לטיפול</b> באופן משמעותי, ומעניקה תקווה ל<b>-200 מיליון החולים בלימפדמה ברחבי העולם</b>. זהו ההיקף שמניע את שאר פרקי הכרך.</p>
+
+<h2><span class="num">5</span> שתי אסטרטגיות כירורגיות מקבילות</h2>
+<p>הפרק מציג את ההיסטוריה המודרנית של הטיפול הכירורגי כהתפתחות משיטה בודדת (כריתה) לשתי גישות עקרוניות שונות לחלוטין - האחת <b>מקטינה את המאגר</b> של הנוזל, והשנייה <b>משקמת את הזרימה</b> עצמה:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אסטרטגיה</th><th>עיקרון</th><th>למי מתאימה</th><th>שיטות עיקריות</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>הקטנה / דבולקינג</b><br><span class="term" dir="ltr">Reductive / debulking</span></td>
+      <td>הסרת ה"מאגר" של נוזל הלימפה - כריתה ישירה או שאיבת שומן</td>
+      <td>מטופלים עם רכיב פיברוטי דומיננטי כבר קיים ומערכת לימפטית תפקודית מינימלית</td>
+      <td><b>שאיבת שומן</b> (<span class="term" dir="ltr">liposuction</span>) - Håkan Brorson; <b>כריתה ישירה</b> - נוהל Charles או Sistrunk</td>
+    </tr>
+    <tr>
+      <td><b>פיזיולוגית / משקמת</b><br><span class="term" dir="ltr">Physiologic</span></td>
+      <td>שיקום פעיל של הזרימה הלימפטית עצמה, לא רק הסרת נוזל קיים</td>
+      <td>מטופלים עם כלי לימפה תפקודיים שניתן "לגייס" מחדש</td>
+      <td><b>בייפס לימפטי</b> (<span class="term" dir="ltr">lymphovenous bypass</span>) ו/או אנסטומוזה בלוטה-ורידית; <b>השתלת בלוטות לימפה מוסקולריות</b> (<span class="term" dir="ltr">VLNT</span>)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p><b>שאיבת שומן</b>: בניגוד לאמונה הרווחת בעבר שדבולקינג בשאיבת שומן גורם לשיעורי הישנות גבוהים, <b class="key">Håkan Brorson הוביל את השימוש בשאיבת שומן לטיפול בלימפדמה</b> ופרסם מחקרי תוצאות ארוכות-טווח מצוינים המפריכים תפיסה זו.</p>
+<p><b>כריתה ישירה</b> (נוהלי <span class="term" dir="ltr">Charles</span> או <span class="term" dir="ltr">Sistrunk</span>) מתוארת לטיפול בלימפדמה בשלב סופני של הגפה העליונה, התחתונה או איברי המין - שיטה שעדיין בשימוש היום, לרוב כ<b>מוצא אחרון</b> (כפי שהראה ד"ר Hung-Chi Chen), ויכולה להשיג תוצאות יציבות לטווח ארוך. שיטה זו יכולה גם להיות משולבת עם דבולקינג חלקי או שאיבת שומן.</p>
+<p>בגישה הפיזיולוגית, <b class="key">מיקרוכירורגיה-על</b> (<span class="term" dir="ltr">supermicrosurgery</span> - כלים בקוטר של פחות מ-0.8 מ"מ בדרך כלל) היא מה שאפשרה בפועל את הטיפול בכלי לימפה דיסטליים בעלי לחץ גבוה, וכך אפשרה ליצור גרדיאנט לחץ נוח בין הווריד לכלי הלימפה בבייפס לימפטי-ורידי. השימוש בהדמיה למיפוי כלי לימפה תפקודיים (נושא הפרק הבא בכרך) שיפר משמעותית את הדיוק והתוצאות.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מי</th><th>תרומה</th><th>הקשר</th></tr></thead>
+  <tbody>
+    <tr><td>Julian H. Jacobson</td><td>מנתח כלי דם אמריקאי; החל לעבוד על הבנת המערכת הלימפטית בשנות ה-60, ופיתח טכניקות מיקרו-וסקולריות לאנסטומוזה לימפטית-ורידית</td><td>שנות ה-60</td></tr>
+    <tr><td>Bernard O'Brien</td><td>מנתח פלסטי וחלוץ כירורגיה מיקרו-וסקולרית במלבורן; פרסם על אותו נושא בשנות ה-70, וניסה השתלת בלוטות לימפה במודל כלבי בשנות ה-80 יחד עם המתמחה שלו Hung Chi Chen</td><td>שנות ה-70–80</td></tr>
+    <tr><td>Isao Koshima</td><td>חלוץ הבייפס הלימפטי-ורידי ומיקרוכירורגיה-על; הראה תוצאות אמינות שהפכו את הטכניקה לאחת הגישות המרכזיות בכירורגיה הפיזיולוגית</td><td>שנות ה-2000</td></tr>
+    <tr><td>Håkan Brorson</td><td>חלוץ שאיבת השומן לטיפול בלימפדמה, עם מחקרי תוצאות ארוכות-טווח</td><td>מודרני</td></tr>
+    <tr><td>Corrine Becker &#8592; David Chang</td><td>Becker פרצה את תחום השתלת בלוטות הלימפה המוסקולריות (VLNT); Chang קידם את התחום הלאה</td><td>מודרני</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>השתלת בלוטות לימפה מוסקולריות</b> (<span class="term" dir="ltr">Vascularized Lymph Node Transplantation, VLNT</span>) היא טכניקה מיקרוכירורגית שבה בלוטות לימפה לא-חיוניות, יחד עם רקמה רכה, נקצרות מאזור בריא בגוף ומושתלות באזור הלימפדמטי. המטרה: לשקם את מחזור הלימפה באמצעות <b>לימפאנגיוגנזה</b> (<span class="term" dir="ltr">lymphangiogenesis</span> - יצירת כלי לימפה חדשים) וחיבור ספונטני מחדש של כלי לימפה שנקטעו.</p>
+
+<h2><span class="num">6</span> מבט קדימה - מה מחכה בהמשך פרקי הלימפדמה בכרך</h2>
+<p>בהיותו פרק פתיחה, סעיף זה הוא בעצם "תוכן עניינים" רעיוני. הפרק מציין במפורש שההמשך יכלול <b>גישות כירורגיות ללימפדמה</b> וכן את <b>שיטות ההדמיה העדכניות ביותר</b>. בהתאם למבנה הכרך, אלה הנושאים שיפורטו בפרקים הבאים:</p>
+<ul>
+  <li><b>שיטות הדמיה</b> לאבחון ולתכנון טיפול בלימפדמה (מיפוי כלי לימפה תפקודיים לפני ניתוח)</li>
+  <li><b>בייפס לימפטי-ורידי</b> (<span class="term" dir="ltr">lymphaticovenular bypass</span>) - הרחבה טכנית של הגישה הפיזיולוגית שהוצגה כאן</li>
+  <li><b>השתלת בלוטות לימפה מוסקולריות</b> (<span class="term" dir="ltr">VLNT</span>) - הרחבה טכנית של הגישה השנייה</li>
+  <li><b>אסטרטגיות דבולקינג</b> - הן בשאיבת שומן והן בכריתה ישירה, בפירוט טכני מלא</li>
+</ul>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">R-P</span> - שתי האסטרטגיות הכירורגיות בלימפדמה</h3>
+  <p>
+    <b>R</b> – <span class="term" dir="ltr">Reductive</span> (מקטין) - מקטינים את <b>מאגר הנוזל</b> באמצעות כריתה או שאיבת שומן.<br>
+    <b>P</b> – <span class="term" dir="ltr">Physiologic</span> (משקם) - משקמים את <b>הזרימה עצמה</b> באמצעות בייפס או השתלת בלוטות.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני נהר (מערכת הלימפה) שנחסם ומציף כפר שלם. יש שתי דרכים להתמודד: אפשר לבנות <b>סכר</b> שמנקז ומקטין את מאגר המים העצום שכבר הצטבר (זו הגישה ה-<span class="term" dir="ltr">Reductive</span> - שאיבה/כריתה) - אבל זה לא פותר את החסימה עצמה. לחלופין, אפשר לחפור <b>תעלת מעקף</b> חדשה סביב החסימה כדי שהמים יזרמו שוב באופן טבעי (זו הגישה ה-<span class="term" dir="ltr">Physiologic</span> - בייפס/השתלת בלוטות שמחדשות זרימה). לעיתים צריך את שתיהן יחד.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>שני נתיבי הטיפול בלימפדמה - סכר מול תעלת מעקף</title>
+    <rect x="0" y="150" width="500" height="14" fill="#93c5fd"/>
+    <text x="250" y="146" font-size="11" text-anchor="middle" fill="#1e3a8a">הנהר הלימפטי (זרימה תקינה)</text>
+
+    <rect x="220" y="60" width="30" height="90" fill="#6b7280"/>
+    <text x="235" y="55" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">חסימה</text>
+
+    <path d="M60,150 L60,100 Q60,80 90,80 L190,80" stroke="#b45309" stroke-width="4" fill="none"/>
+    <rect x="40" y="90" width="40" height="20" rx="4" fill="#fffbeb" stroke="#b45309"/>
+    <text x="60" y="104" font-size="10" text-anchor="middle" fill="#78350f" font-weight="700">סכר</text>
+    <text x="60" y="175" font-size="11" text-anchor="middle" fill="#78350f" font-weight="700">Reductive</text>
+
+    <path d="M290,80 Q380,50 440,100 Q440,120 400,150" stroke="#047857" stroke-width="4" fill="none" stroke-dasharray="6 4"/>
+    <text x="430" y="175" font-size="11" text-anchor="middle" fill="#047857" font-weight="700">Physiologic</text>
+    <text x="430" y="188" font-size="10" text-anchor="middle" fill="#047857">תעלת מעקף חדשה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Lymphedema" target="_blank">Lymphedema – Wikipedia</a>
+    <div class="desc">סקירה כללית של המחלה, סיווג ראשוני/שניוני, וגישות טיפול שמרניות וכירורגיות.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Lymphatic_system" target="_blank">Lymphatic system – Wikipedia</a>
+    <div class="desc">רקע אנטומי ופיזיולוגי על המערכת הלימפטית התקינה - הבסיס להבנת מה בדיוק משתבש בלימפדמה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Microsurgery" target="_blank">Microsurgery – Wikipedia</a>
+    <div class="desc">רקע כללי על מיקרוכירורגיה, הבסיס הטכני שאפשר את התפתחות הבייפס הלימפטי-ורידי וה-VLNT המתוארים בפרק.</div>
+  </li>
+</ul>
+<p class="figcap">הערה: מאחר שזהו פרק מבוא קצר ולא נמצאו במסגרת עבודה זו סרטוני YouTube שאומתו כרלוונטיים ומדויקים לתוכן הספציפי של הפרק, לא הוטמעו כאן סרטונים - כדי לא לקשר למקור שלא אומת בפועל.</p>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58, שנה וחצי לאחר כריתת שדיים ובלוטות לימפה בבית השחי בעקבות סרטן שד וכן טיפול בהקרנות, מגיעה עם נפיחות מתקדמת של הזרוע, תחושת כובד, ואפיזודות חוזרות של צלוליטיס (זיהום עורי). בבדיקה - עור מעובה ומוקשה בחלק הדיסטלי של הזרוע, ללא סימני פיברוזיס נרחב עדיין. מוערכת ל<b>גישה טיפולית פיזיולוגית</b> (בייפס לימפטי-ורידי) מכיוון שעדיין יש לה כלי לימפה תפקודיים הניתנים לזיהוי בהדמיה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו ההבדל המהותי בין לימפדמה ראשונית לשניונית?</div>
+  <button class="opt" data-i="0">ראשונית תמיד קלה יותר, שניונית תמיד חמורה יותר</button>
+  <button class="opt" data-i="1">ראשונית נובעת ממום מולד במערכת הלימפטית עצמה; שניונית נובעת מגורם חיצוני שפוגע במערכת שהייתה תקינה (טראומה, זיהום, כריתת בלוטות, הקרנות)</button>
+  <button class="opt" data-i="2">ראשונית מופיעה רק בגפה העליונה, שניונית רק בגפה התחתונה</button>
+  <button class="opt" data-i="3">אין הבדל קליני משמעותי בין השתיים</button>
+  <div class="explain">התשובה הנכונה: לימפדמה ראשונית מוגדרת בפרק כתוצאה ממומים מולדים של המערכת הלימפטית, בעוד ששניונית נובעת מגורמים חיצוניים (זיהומים, טראומה, כריתת בלוטות לימפה עקב סרטן, הקרנות) שפוגעים במערכת שתפקדה כרגיל. תשובות 1, 3 ו-4 מציגות הבחנות שלא הוזכרו כלל בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע לימפדמה מוגדרת בפרק לא רק כ"בצקת" אלא גם כמצב של "חסינות לקויה"?</div>
+  <button class="opt" data-i="0">כי כל חולי הלימפדמה סובלים ממחלת חיסון עצמי נלווית</button>
+  <button class="opt" data-i="1">כי הטיפול בלימפדמה כולל תמיד דיכוי חיסוני תרופתי</button>
+  <button class="opt" data-i="2">כי המערכת הלימפטית אחראית גם על ההגנה החיסונית, והפגיעה המבנית המתמשכת (דלקת כרונית ופיברוזיס) פוגעת בהגנות התקינות</button>
+  <button class="opt" data-i="3">כי הזיהומים החוזרים בלימפדמה נגרמים תמיד מווירוסים ולא מחיידקים</button>
+  <div class="explain">התשובה הנכונה: מכיוון שהמערכת הלימפטית משמשת גם כרשת הגנה חיסונית, הנזק המבני המתמשך (דלקת כרונית שמובילה לפיברוזיס) פוגע גם בהגנות החיסוניות התקינות - ולא רק בניקוז הנוזלים. לכן הפרק מגדיר לימפדמה כמצב משולב של בצקת, ניוון ודלקת כרונית וחסינות לקויה. תשובות 1, 2 ו-4 אינן נתמכות בטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה פרופיל מטופל מתאים בעיקר לגישה הכירורגית ה"פיזיולוגית" (בייפס לימפטי-ורידי או VLNT) על פני דבולקינג?</div>
+  <button class="opt" data-i="0">מטופל עם כלי לימפה תפקודיים שניתן לזהות ולנצל, ללא רכיב פיברוטי דומיננטי מתקדם</button>
+  <button class="opt" data-i="1">מטופל עם רכיב פיברוטי דומיננטי כבר קיים ומערכת לימפטית תפקודית מינימלית</button>
+  <button class="opt" data-i="2">מטופל בשלב סופני עם עור עבה ומוקשה בלבד, ללא כל כלי לימפה תפקודי</button>
+  <button class="opt" data-i="3">אין הבדל - שתי הגישות מתאימות תמיד לאותו מטופל באותה מידה</button>
+  <div class="explain">התשובה הנכונה: הגישה הפיזיולוגית (בייפס/VLNT) מיועדת למטופלים שעדיין יש להם כלי לימפה תפקודיים שניתן "לגייס" מחדש לצורך שיקום זרימה. לעומת זאת, דבולקינג (תשובה 2) מתאים למי שכבר יש לו רכיב פיברוטי דומיננטי ומערכת לימפטית תפקודית מינימלית - שם אין עוד מה "לשקם", רק מה להקטין. תשובה 3 מתארת מקרה קיצוני שמתאים לכריתה ישירה כמוצא אחרון, לא לגישה פיזיולוגית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מהו התפקיד של "מיקרוכירורגיה-על" (supermicrosurgery) בהתפתחות הבייפס הלימפטי-ורידי, לפי הפרק?</div>
+  <button class="opt" data-i="0">היא מיותרת - בייפס לימפטי-ורידי מבוצע תמיד בכלים גדולים מ-2 מ"מ</button>
+  <button class="opt" data-i="1">שיפורים בטכניקה ובציוד אפשרו עבודה בכלים של פחות מ-0.8 מ"מ, מה שאיפשר למנתחים לתמרן כלי לימפה דיסטליים בעלי לחץ גבוה וליצור גרדיאנט לחץ נוח מול הווריד</button>
+  <button class="opt" data-i="2">היא רלוונטית רק להשתלת בלוטות לימפה (VLNT), לא לבייפס</button>
+  <button class="opt" data-i="3">היא טכניקה שפותחה במאה ה-19 ואינה בשימוש כיום</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש ששיפורים בטכניקות המיקרוכירורגיות ובציוד אפשרו ביצוע "מיקרוכירורגיה-על" (כלים בדרך כלל קטנים מ-0.8 מ"מ), מה שהקנה למנתחים את היכולת לתמרן כלי לימפה דיסטליים בעלי לחץ גבוה - ולכן ליצור גרדיאנט לחץ נוח בין הווריד לכלי הלימפה. ד"ר Isao Koshima הוא זה שהראה תוצאות אמינות בטכניקה זו. תשובות 1, 3 ו-4 סותרות עובדתית את הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו העיקרון המכני שעליו מבוססת השתלת בלוטות לימפה מוסקולריות (VLNT)?</div>
+  <button class="opt" data-i="0">הזרקת חומר סינתטי המחליף לחלוטין את תפקוד הבלוטות שנכרתו</button>
+  <button class="opt" data-i="1">כריתת רקמה עודפת בלבד, ללא שום השתלה</button>
+  <button class="opt" data-i="2">קציר בלוטות לימפה לא-חיוניות ורקמה רכה מאזור בריא בגוף, והשתלתן באזור הלימפדמטי במטרה לשקם את מחזור הלימפה דרך לימפאנגיוגנזה וחיבור ספונטני מחדש של כלי לימפה שנקטעו</button>
+  <button class="opt" data-i="3">השתלת עצמות מהאגן כדי לתמוך מכנית בגפה הנפוחה</button>
+  <div class="explain">התשובה הנכונה: VLNT היא טכניקה מיקרוכירורגית שבה בלוטות לימפה לא-חיוניות (עם רקמה רכה נלווית) נקצרות מאזור אחר בגוף ומושתלות באזור הלימפדמטי, מתוך כוונה לשקם את מחזור הלימפה באמצעות לימפאנגיוגנזה (יצירת כלי לימפה חדשים) וחיבור ספונטני מחדש (spontaneous reconnection) של כלי הלימפה שנקטעו. תשובות 1, 2 ו-4 אינן מתארות את המנגנון האמיתי שתואר בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>לימפדמה</b> - מחלה כרונית ומתישה; <b>ראשונית</b> = מום מולד במערכת הלימפטית, <b>שניונית</b> = פגיעה חיצונית (זיהום, טראומה, כריתת בלוטות, הקרנות).</li>
+    <li><b>מנגנון:</b> ניקוז לימפטי לקוי &#8592; עלייה בלחץ והצטברות נוזל בין-תאי &#8592; שגשוג תאי ודלקת כרונית &#8592; פיברוזיס ונזק בלתי-הפיך &#8592; חסינות פגועה (המערכת הלימפטית משרתת גם הגנה חיסונית).</li>
+    <li>רקע היסטורי: התיאור הידוע הראשון - תבליט מצרי בן 3500 שנה (הנסיכה Ati); הגישה המסורתית היחידה הייתה כריתה אגרסיבית (דבולקינג).</li>
+    <li><b>שתי אסטרטגיות כירורגיות מקבילות</b>: <b>הקטנה/דבולקינג</b> (שאיבת שומן - Brorson; כריתה ישירה - נוהלי Charles/Sistrunk) לעומת <b>פיזיולוגית</b> (בייפס לימפטי-ורידי; VLNT), המבוססת על מיקרוכירורגיה-על (Koshima) ו-VLNT (Becker, Chang).</li>
+    <li>היקף עולמי: כ-200 מיליון חולים; אתגר מרכזי הוא חינוך רפואי ואבחון מוקדם - הפרקים הבאים בכרך יעסקו בהדמיה, בייפס, VLNT ודבולקינג בפירוט טכני.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

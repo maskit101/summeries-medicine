@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 3: שחזור אסתטי של האף</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 3: שחזור אסתטי של האף <span class="term" dir="ltr">Aesthetic Nasal Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head &amp; Neck, Pediatric | מאת Frederick J. Menick</div>
+
+<p>שחזור האף הוא ליבת ההיסטוריה של הכירורגיה הפלסטית - התחום כולו נולד מניסיונות מוקדמים לשחזר פנים, ובעיקר אף. מטרות השחזור: <b>מראה תקין</b> ו<b>נשימה חופשית</b>. אבל "למלא את החור" אינו מספיק - הפרק מציג את המעבר מגישה מסורתית ("איך אני סוגר את הפגם?") לגישה מודרנית ("איך אני משחזר את היחידה התקינה?") שמבוססת על עקרון תת-היחידות (subunit principle) של Burget ו-Menick.</p>
+
+<h2><span class="num">1</span> שלוש השכבות שצריך לשחזר - Cover, Lining, Support</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>כיסוי (Cover):</b> העור החיצוני - חייב להיות דק, גמיש, וסקולרי, תואם בצבע ומרקם לעור הפנים הסובב.<br>
+    <b>ריפוד פנימי (Lining):</b> הרירית הפנימית - חייבת להיות דקה וגמישה, בלי לחסום את נתיב האוויר או לעוות את הצורה החיצונית בגלל עובי מיותר.<br>
+    <b>תמיכה (Support):</b> שכבת סחוס/עצם קשיחה - תומכת, מעצבת ומחזקת את הרקמות הרכות נגד כוח הכבידה, מתח וכיווץ צלקת, ומונעת קריסה.
+  </p>
+  <p><b class="key">הנקודה הקריטית:</b> חייבים להחליף בדיוק את מה שחסר, בממד ובצורה מדויקים - לא "רקמה נוספת לביטחון". פגם שמכוסה בעודף רקמה "דוחק" את גבולות היחידה החוצה; פגם שמכוסה בחוסר "מושך" מבנים שכנים פנימה. שני המצבים מעוותים את הסימטריה.</p>
+</div>
+<svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+  <title>שלוש השכבות בשחזור האף</title>
+  <rect x="150" y="20" width="200" height="40" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="250" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">כיסוי (Cover) - עור חיצוני</text>
+
+  <rect x="150" y="75" width="200" height="40" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="250" y="100" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">תמיכה (Support) - סחוס/עצם</text>
+
+  <rect x="150" y="130" width="200" height="40" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="250" y="155" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">ריפוד פנימי (Lining) - רירית</text>
+</svg>
+<p class="figcap">שלוש השכבות חייבות להיות מדויקות בממד ובצורה - חוסר באחת פוגם בתוצאה גם אם השתיים האחרות מושלמות.</p>
+
+<h2><span class="num">2</span> "עשרת הדיברות" של Gillies ו-Millard</h2>
+<p>עקרונות-על שממשיכים להנחות כל שחזור פנים, כולל האף:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>עיקרון</th><th>משמעות מעשית</th></tr></thead>
+  <tbody>
+    <tr><td>אבחון לפני טיפול</td><td>הבנת האנטומיה החסרה לפני תכנון הניתוח</td></tr>
+    <tr><td>החזר את הנורמלי למקום הנורמלי</td><td>לפני הכל - להחזיר רקמות קיימות שהוזזו למיקומן התקין</td></tr>
+    <tr><td>"שאל מפיטר כדי לשלם לפול, אם פיטר יכול להרשות לעצמו"</td><td>העברת רקמה מותרת, אך רק אם אתר התורם לא ייפגע קשות</td></tr>
+    <tr><td>אבדות חייבות להיות מוחלפות באותו הסוג (kind)</td><td>עור לעור, סחוס לסחוס - לא כל תחליף מתאים</td></tr>
+    <tr><td>לעולם אל תזרוק שום דבר, אלא אם בטוח שלא תזדקק לו</td><td>עודפי רקמה יכולים לשמש כ-hinge flap, נפח תת-עורי וכו'</td></tr>
+    <tr><td>כאשר יש ספק - אל תעשה</td><td>עדיף לדחות פעולה לא-הכרחית מאשר לסכן את התוצאה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">3</span> עקרון תת-היחידות (Subunit Principle) - המהפכה של Burget &amp; Menick</h2>
+<p>הגישה המסורתית "מילאה את החור" לפי צורת הפגם עצמו. אבל הפגם הפתוח <b>אינו</b> משקף את מה שבאמת חסר - בצקת, מתח, כיווץ צלקת וגרביטציה מעוותים את מידותיו. הגישה המודרנית מבוססת על <b>חלוקת האף ליחידות ותת-יחידות</b> (קצה, גב, קולומלה, כנפיים מזווגות, דפנות צד, תת-משולש רך) לפי איכות עור, קו גבול, ותצורה תלת-ממדית.</p>
+<div class="mechanism">
+  <p class="chain">כלל תת-היחידה: אם פגם בתת-יחידה קמורה (כמו קצה האף או כנף האף) גדול מ-<b>50%</b> משטח תת-היחידה - יש להשליך את הרקמה הנורמלית שנותרה ולשחזר את <b>כל</b> תת-היחידה כיחידה שלמה, במקום "לטלא את החור" בלבד.</p>
+  <p><b>למה זה עובד:</b> מיופיברובלסטים במצע הצלקת מתחת לפלאפ מתכווצים ומרימים את הרקמה המועברת מעל רמת העור השכן - תופעת ה"פין-קושן" (pin cushioning). כאשר משחזרים תת-יחידה קמורה <b>שלמה</b>, אפקט זה דווקא "עוטף" את הפלאפ סביב מסגרת הסחוס שמתחתיו ומדגיש את הקימור הרצוי - במקום לעוות אותו. הצלקות ההיקפיות ממוקמות בקווי המפגש הטבעיים בין תת-יחידות, שם הן כמעט בלתי-נראות.</p>
+</div>
+<p class="key-box">המחיר: הפגם עלול לגדול, ייתכן שיידרש יותר סחוס תומך, וריבוי שלבים - אך כאשר מיושם נכון, התוצאה משתפרת משמעותית כי הקווים והקימור נכונים והצלקות פחות בולטות.</p>
+
+<h2><span class="num">4</span> סיווג פגמים וברירת השיטה</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג פגם</th><th>הגדרה</th><th>גישה טיפולית אופיינית</th></tr></thead>
+  <tbody>
+    <tr><td><b>קטן</b></td><td>עד כ-1.5 ס"מ</td><td>פלאפ מקומי או שתל עור</td></tr>
+    <tr><td><b>שטחי</b></td><td>עור + מעט רקמת תת-עור, רקמה וסקולרית שמורה בעומק</td><td>שתל עור, פלאפ, או החלמה שניונית</td></tr>
+    <tr><td><b>ממוקם באזור בעייתי</b></td><td>קרוב ל-0.5-1 ס"מ משפת הנחיר</td><td>פלאפ אזורי נדרש, גם אם הפגם עצמו קטן - פלאפים מקומיים יעוותו את קצה/שפת הנחיר</td></tr>
+    <tr><td><b>גדול</b></td><td>מעל 1.5 ס"מ</td><td>שתל עור או פלאפ אזורי (לחי/מצח)</td></tr>
+    <tr><td><b>עמוק</b></td><td>נדרש שחזור סחוס ו/או ריפוד פנימי</td><td>לא ניתן שתל עור על סחוס חשוף - נדרש פלאפ וסקולרי</td></tr>
+    <tr><td><b>מורכב (Composite)</b></td><td>חוצה אל הלחי ו/או השפה, מערב מספר יחידות</td><td>עדיף פלאפים/שתלים נפרדים לכל יחידה, לא פלאפ אחד "מקצר דרך"</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">5</span> פלאפ המצח הפרה-מדיאני (Paramedian Forehead Flap) - השיטה המובילה</h2>
+<p>המצח הוא ה"בחירה הראשונה" לפגמים גדולים/עמוקים - צבע ומרקם דומים לאף, כלי דם אמינים (עורק סופרה-טרוכלארי), גודל ונגישות טובים, ואתר תורם סלחני. הפלאפ מבוסס על ספק דם אקסיאלי חד-צדדי מהעורק הסופרה-טרוכלארי, עם נקודת סיבוב קרוב לקנטוס המדיאלי.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>טכניקה</th><th>מתי מתאימה</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td><b>פלאפ דו-שלבי (Two-stage)</b></td><td>פגם קטן, יחידה/תת-יחידה אחת או שתיים סמוכות, ריפוד פנימי שלם, סיכון איסכמי נמוך</td><td>פחות ניתוחים, פשוט יחסית</td><td>דילול נרחב באלמנטור הראשוני פוגע באספקת הדם המיושרירית; לא ניתן לתקן עיצוב עדין של קצה/כנף האף לפני חלוקת הפדיקל</td></tr>
+    <tr><td><b>פלאפ תלת-שלבי בעובי מלא (Three-stage full-thickness)</b></td><td>פגם גדול/עמוק, נדרש דילול נרחב, מעשנים, סיכון וסקולרי בפדיקל</td><td>שימור מקסימלי של אספקת הדם בכל שלב; חשיפה מלאה לעיצוב סחוס ורקמה רכה לפני חלוקת הפדיקל; פחות תיקונים מאוחרים</td><td>ניתוח נוסף אחד (ביניים) נדרש</td></tr>
+  </tbody>
+</table>
+</div>
+<p>בשלב הביניים (רק בטכניקה התלת-שלבית), כ-4 שבועות לאחר ההעברה, המצח כבר "התעכל" (delay פיזיולוגי) - מרימים את עור המצח בעובי דק (2-3 מ"מ שומן) מעל כל ההשתלה, וכעת יש חשיפה מלאה לפיסול הרקמה הרכה והשתלי הסחוס, לפני שמחלקים את הפדיקל בשלב האחרון.</p>
+
+<h2><span class="num">6</span> סיבוכים וטיפול</h2>
+<p>סיבוכים נדירים יחסית בזכות עשירות כלי הדם בפנים, אך הסיכון עולה עם רקמה מוצלקת, ניתוחים חוזרים, שתלים אלופלסטיים קודמים או זיהום קודם. <b>העיקרון המרכזי: אם קורה סיבוך, כמעט תמיד ניתן "להציל" את השחזור</b> - הפריוריטה היא לטפל בסיבוך כדי לשמר את החומר הבנייה, גם אם זה דוחה שלב מתוכנן.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיבוך</th><th>גורם אופייני</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>נמק בפלאפ המצח</td><td>מתח בתפירה, פדיקל קטן מדי, פגיעה בכלי הדם, דילול אגרסיבי מדי</td><td>דבוברידמנט מוקדם של רקמה נמקית + כיסוי מיידי בפלאפ וסקולרי שני</td></tr>
+    <tr><td>נמק ריפוד פנימי (lining)</td><td>פגיעה חמורה, במיוחד סביב הכספית</td><td>דבוברידמנט + שתל עור על שכבת הריפוד + השבת פלאפ המצח מאוחר יותר</td></tr>
+    <tr><td>זיהום סחוס כרוני</td><td>אודם מקומי והפרשה מוגלתית שבועות לאחר הניתוח; לא מגיב לאנטיביוטיקה בלבד</td><td>הרמת פלאפ מוגבלת ודבוברידמנט של הסחוס הנגוע; שתלי סחוס דחויים 6-8 שבועות לאחר מכן</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">C-L-S</span> - שלוש השכבות שחייבות להישחזר</h3>
+  <p>
+    <b>C</b> - <span class="term" dir="ltr">Cover</span> (כיסוי) - העור החיצוני, דק וגמיש.<br>
+    <b>L</b> - <span class="term" dir="ltr">Lining</span> (ריפוד) - הרירית הפנימית, לא חוסמת נשימה.<br>
+    <b>S</b> - <span class="term" dir="ltr">Support</span> (תמיכה) - הסחוס/עצם, מונע קריסה.
+  </p>
+  <h3>סיפור דמיוני: בית עם שלוש שכבות</h3>
+  <p>דמייני בית: <b>הטיח החיצוני</b> (Cover) הוא מה שרואים מבחוץ - צריך שיתאים לצבע הבית השכן. <b>שלד הברזל הפנימי</b> (Support) הוא מה שמונע מהבית לקרוס תחת משקלו - בלעדיו הקירות נופלים פנימה. <b>הצנרת הפנימית</b> (Lining) חייבת לזרום בחופשיות - אם היא סתומה מדי או עבה מדי, שום דבר לא עובד כמו שצריך, גם אם הטיח החיצוני נראה מושלם. רק כששלושתם בונים יחד - הבית (האף) עומד יציב ונראה נורמלי.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>שלוש שכבות שחזור האף - משל הבית</title>
+    <rect x="180" y="40" width="140" height="100" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <polygon points="170,40 250,10 330,40" fill="#fca5a5" stroke="#7f1d1d" stroke-width="2"/>
+    <text x="250" y="30" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">Cover</text>
+    <line x1="200" y1="60" x2="200" y2="135" stroke="#374151" stroke-width="4"/>
+    <line x1="250" y1="60" x2="250" y2="135" stroke="#374151" stroke-width="4"/>
+    <line x1="300" y1="60" x2="300" y2="135" stroke="#374151" stroke-width="4"/>
+    <text x="250" y="175" font-size="11" text-anchor="middle" fill="#78350f" font-weight="700">Support = שלד</text>
+    <circle cx="220" cy="100" r="4" fill="#2563eb"/>
+    <circle cx="280" cy="100" r="4" fill="#2563eb"/>
+    <line x1="220" y1="100" x2="280" y2="100" stroke="#2563eb" stroke-width="3"/>
+    <text x="250" y="155" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">Lining = צנרת</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Forehead_flap" target="_blank">Forehead flap – Wikipedia</a>
+    <div class="desc">רקע כללי על פלאפ המצח הפרה-מדיאני, כלי הדם המספקים אותו והשימוש בו בשחזור האף.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Rhinoplasty" target="_blank">Rhinoplasty – Wikipedia</a>
+    <div class="desc">רקע אנטומי כללי על מבנה האף ותת-היחידות (קצה, גב, כנפיים, קולומלה, דפנות צד).</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Harold_Gillies" target="_blank">Harold Gillies – Wikipedia</a>
+    <div class="desc">ביוגרפיה של Harold Gillies, אחד מאבות הכירורגיה הפלסטית המודרנית ומחבר "עשרת הדיברות" יחד עם Millard.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 68 מגיע לאחר כריתת קרצינומה תאי בסיס (BCC) מכנף האף הימנית, עם פגם עגול בקוטר 1.8 ס"מ המהווה כ-70% משטח תת-יחידת הכנף, ללא חשיפת סחוס. הרקמה שנותרה בתת-יחידה נראית בריאה. הצוות שוקל בין תיקון "פאץ'" ממוקד לבין הרחבת הפגם והשלכת הרקמה הנורמלית הנותרת.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי הסיבה המנגנונית לכך שהגישה המסורתית ("מילוי החור" לפי צורת הפגם) נכשלת לעיתים קרובות בהשגת תוצאה אסתטית?</div>
+  <button class="opt" data-i="0">כי היא תמיד דורשת יותר ניתוחים מהגישה המודרנית</button>
+  <button class="opt" data-i="1">כי היא משתמשת רק בשתלי עור ולעולם לא בפלאפים</button>
+  <button class="opt" data-i="2">כי הפגם הפתוח אינו משקף את מה שבאמת חסר - בצקת, מתח, כיווץ צלקת וגרביטציה מעוותים את מידותיו, כך שמילוי "לפי הפגם" משחזר צורה שגויה</button>
+  <button class="opt" data-i="3">כי היא אסורה לשימוש חוקית בארה"ב</button>
+  <div class="explain">התשובה הנכונה (3): הפרק מדגיש שהפגם "האמיתי" נסתר על ידי עיוותים זמניים (בצקת, מתח) וקבועים (כיווץ צלקת, גרביטציה). הגישה המודרנית משתמשת בצד הנגדי התקין (contralateral normal) או מודל אידיאלי כתבנית, במקום למדוד את הפגם עצמו. תשובות 1, 2 ו-4 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. לפי הוינייטה (פגם של 70% מתת-יחידת הכנף), מהי ההמלצה הנכונה לפי עקרון תת-היחידות, ומדוע?</div>
+  <button class="opt" data-i="0">להשליך את ה-30% הנותרים מהרקמה התקינה ולשחזר את כל תת-יחידת הכנף כיחידה שלמה, כי הפגם עולה על סף ה-50%</button>
+  <button class="opt" data-i="1">לתקן רק את הפגם המדויק כדי לשמר כמה שיותר רקמה מקורית, ללא קשר לגודלו</button>
+  <button class="opt" data-i="2">אין הבדל בגישה בין פגם של 30% ל-70% מתת-יחידה</button>
+  <button class="opt" data-i="3">לעולם לא להרחיב פגם - זה אסור בכל מקרה</button>
+  <div class="explain">התשובה הנכונה (1): עקרון תת-היחידות קובע שכאשר פגם בתת-יחידה קמורה (כמו הכנף) עולה על 50% משטחה, יש להשליך את הרקמה הנורמלית הנותרת ולשחזר את כל תת-היחידה כיחידה שלמה - כי אחרת אפקט ה"פין-קושן" מיצר טלאי בולט במקום צורה חלקה. תשובות 2-4 סותרות את העיקרון המרכזי של הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. מדוע אפקט ה'פין-קושן' (pin cushioning) הופך ליתרון דווקא כששוחזרת תת-יחידה קמורה שלמה, ולא רק חלק ממנה?</div>
+  <button class="opt" data-i="0">כי פין-קושן קורה רק בשתלי עור, לא בפלאפים</button>
+  <button class="opt" data-i="1">כי כיווץ מיופיברובלסטים מתחת לפלאפ 'עוטף' אותו סביב מסגרת הסחוס התומכת ומדגיש את הקימור הרצוי, במקום ליצור בליטה מקומית מעוותת בתוך יחידה שטוחה יותר</button>
+  <button class="opt" data-i="2">כי פין-קושן מפחית את הצורך בשתלי סחוס לחלוטין</button>
+  <button class="opt" data-i="3">כי פין-קושן משפר רק את צבע העור, לא את הצורה</button>
+  <div class="explain">התשובה הנכונה (2): כאשר משחזרים תת-יחידה קמורה שלמה, כיווץ המיופיברובלסטים מתחת לפלאפ מרים אותו באופן שמתלבש היטב סביב מסגרת הסחוס התומכת - ומדגיש את הקימור התלת-ממדי הרצוי במקום ליצור עיוות מקומי. זו הסיבה שהעיקרון מוגבל בעיקר לתת-יחידות קמורות (קצה, כנף) ופחות רלוונטי לדפנות צד/גב שטוחים. תשובות 1, 3 ו-4 אינן נכונות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו היתרון המרכזי של פלאפ המצח התלת-שלבי בעובי מלא (three-stage full-thickness) על פני הפלאפ הדו-שלבי המסורתי?</div>
+  <button class="opt" data-i="0">הוא דורש פחות ניתוחים בסך הכל</button>
+  <button class="opt" data-i="1">הוא לעולם לא משמש למעשנים</button>
+  <button class="opt" data-i="2">הוא אינו דורש כלל שתלי סחוס לתמיכה</button>
+  <button class="opt" data-i="3">הוא משמר אספקת דם מקסימלית בכל שלב (ללא דילול ראשוני), ומאפשר חשיפה מלאה לפיסול רקמה רכה ושתלי סחוס לפני חלוקת הפדיקל, מה שמשפר תוצאה אסתטית ומפחית תיקונים מאוחרים</button>
+  <div class="explain">התשובה הנכונה (4): בטכניקה הדו-שלבית, דילול הפלאפ בשלב הראשון פוגע באספקת הדם המיושרירית וגם לא מאפשר תיקון עדין של הקצה/כנף לפני חלוקת הפדיקל. הטכניקה התלת-שלבית מוסיפה ניתוח ביניים שבו מרימים את הפלאפ בעובי מלא (שימור מקסימלי של אספקת הדם), ומקבלים חשיפה מלאה לעיצוב לפני החלוקה הסופית. תשובות 1-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. לפי הפרק, מהי הגישה הנכונה לטיפול בסיבוך (כגון נמק חלקי בפלאפ המצח) לאחר שחזור אף?</div>
+  <button class="opt" data-i="0">המתנה פסיבית עם כיסוי אנטיביוטי בלבד, ללא התערבות</button>
+  <button class="opt" data-i="1">דבוברידמנט מוקדם של רקמה נמקית וכיסוי מיידי עם פלאפ וסקולרי שני - כמעט תמיד ניתן להציל את השחזור אם מטפלים באופן אקטיבי</button>
+  <button class="opt" data-i="2">נטישת השחזור כולו והתחלה מחדש בפגם אחר</button>
+  <button class="opt" data-i="3">המתנה של 6 חודשים לפני כל פעולה נוספת</button>
+  <div class="explain">התשובה הנכונה (2): הפרק מדגיש במפורש ש'המתנה פסיבית לפתרון אובדן רקמה או זיהום, עם או בלי כיסוי אנטיביוטי, נדירה שמצליחה'. הגישה הנכונה היא התערבות אקטיבית מוקדמת - דבוברידמנט וכיסוי מיידי - כדי לשמר כמה שיותר מחומרי הבנייה ולאפשר המשך השחזור, גם אם זה דוחה שלב מתוכנן. תשובות 1, 3 ו-4 סותרות את העיקרון המרכזי שהפרק מציג.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שחזור האף מבוסס על שלוש שכבות: <b>כיסוי (Cover)</b>, <b>ריפוד פנימי (Lining)</b>, <b>תמיכה (Support)</b> - כל אחת חייבת להיות מוחלפת בממד ובצורה מדויקים.</li>
+    <li>עקרון "עשרת הדיברות" של Gillies/Millard: החזר את הנורמלי למקומו לפני הכל; לעולם אל תזרוק רקמה שעדיין תזדקק לה; כשיש ספק - אל תעשה.</li>
+    <li><b>עקרון תת-היחידות</b> (Burget &amp; Menick): פגם מעל 50% מתת-יחידה קמורה (כמו קצה/כנף) - השלך את השארית ושחזר את כל תת-היחידה. פין-קושן הופך ליתרון ולא לחיסרון.</li>
+    <li>סיווג פגמים (קטן/גדול/שטחי/עמוק/מורכב/ממוקם באזור בעייתי) מכוון לבחירת שיטה: החלמה שניונית → שתל עור → פלאפ מקומי → פלאפ מצח.</li>
+    <li>פלאפ המצח הפרה-מדיאני (מבוסס עורק סופרה-טרוכלארי) הוא הבחירה הראשונה לפגמים גדולים/עמוקים. הגרסה <b>התלת-שלבית בעובי מלא</b> משמרת אספקת דם מקסימלית ומאפשרת פיסול מדויק לפני חלוקת הפדיקל.</li>
+    <li>סיבוכים נדירים בזכות עשירות כלי הדם בפנים; אך כשמופיעים - טיפול אקטיבי ומוקדם (דבוברידמנט + כיסוי מחדש) עדיף תמיד על המתנה פסיבית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

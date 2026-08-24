@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 16: הנדסת רקמות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 16: הנדסת רקמות <span class="term" dir="ltr">Tissue Engineering</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | פרק 18 במקור, מאת Ramin Shayan ו-Karl-Anton Harms</div>
+
+<p>הנדסת רקמות היא, לפי הפרק, "פרבולה" (משל) לכל התמחות הכירורגיה הפלסטית: תחום שהבטיח המון ("איברים על המדף"), התרסק כלכלית סביב שנת 2000 בצורה שמזכירה בדיוק את קריסת בועת ההייטק, ורק בעשור האחרון מתחיל לספק מוצרים אמיתיים בקנה מידה צנוע וממוקד יותר. ההבנה <b>למה</b> זה קרה - לא רק מה קרה - היא הליבה של הפרק, ורלוונטית לכל כירורג ששוקל היום השקעה במחקר תרגומי (translational research).</p>
+
+<h2><span class="num">1</span> למה כירורגיה פלסטית ולא כירורגיה כללית? - הרקע לחיפוש אחר "המדף"</h2>
+<p>כירורגיה פלסטית כבר עוסקת ב"הנדסת רקמות" בצורתה הפרימיטיבית ביותר מאז ומתמיד: לוקחים רקמה בריאה ממקום אחד בגוף ומעבירים אותה למקום שבו יש פגם. הבעיה: זה תמיד כרוך ב<b>עלות לאתר התורם</b> (donor site) - "<span class="term" dir="ltr">robbing Peter to pay Paul</span>" (שודדים את פיטר כדי לשלם לפול), כפי שהפרק מתאר במקרה של אצבע שנבנתה מבוהן לאחר קטיעת ארבע אצבעות: המטופל מרוויח אצבע פונקציונלית, אך משלם במחיר של בוהן חסרה - "גורם מרתיע משמעותי עבור מטופלים רבים".</p>
+<p>החלום של הנדסת רקמות היה לפתור בדיוק את זה: ליצור תחליף רקמה <b>בלי</b> לגזול משהו מהגוף עצמו. רוברט לנגר (<span class="term" dir="ltr">Robert Langer</span>) ויוסף ואקנטי (<span class="term" dir="ltr">Joseph Vacanti</span>) ניסחו ב-1993 את ההגדרה הקלאסית של התחום:</p>
+<div class="mechanism">
+  <p class="chain"><i>"A new interdisciplinary field, tissue engineering, applies principles of biology and engineering to develop functional biological substitutes to restore, maintain or improve function in damaged tissue and diseased organs."</i><br>
+  <b>בעברית:</b> תחום בין-תחומי חדש שמיישם עקרונות ביולוגיה והנדסה כדי לפתח תחליפים ביולוגיים תפקודיים - לשחזור, שימור או שיפור של תפקוד ברקמה פגועה או באיבר חולה.</p>
+</div>
+
+<h2><span class="num">2</span> "שלושת הלבנים" של הנדסת רקמה - המנגנון הבסיסי</h2>
+<p>כל מבנה מהונדס בנוי משלושה מרכיבים שחייבים לעבוד יחד - וההבנה <b>למה</b> כל אחד נחוץ היא מה שמסביר את רוב ההצלחות והכישלונות בפרק:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>1. פיגום (<span class="term" dir="ltr">scaffold</span>):</b> נותן לתאים ארכיטקטורה תלת-ממדית לגדול לתוכה - בלעדיו התאים מתפזרים ללא צורה מוגדרת, בדיוק כמו טיח בלי תבנית.<br>
+    <b>2. תאים (<span class="term" dir="ltr">cells</span>):</b> "חדרי המנוע" (engine rooms) שמייצרים בפועל את הרקמה - הם אלה שמפרישים חלבוני מטריצה חדשים, מתרבים ומתמיינים.<br>
+    <b>3. גורמי גדילה / ביוראקטור (<span class="term" dir="ltr">growth factors / bioreactor</span>):</b> האותות הביוכימיים (וגם המכניים - לחץ, זרימה) שאומרים לתאים <i>מתי</i> ו<i>לאיזה כיוון</i> להתמיין ולגדול.
+  </p>
+  <p><b class="key">הנקודה הקריטית שהפרק חוזר אליה שוב ושוב:</b> פיגום שמתעלם מהאינטראקציה התאית, מהמיקרו-סביבה ומניהול תזונה/פסולת - "מצליח" רק חלקית ברמה המקרוסקופית, אך נכשל קלינית. הסיבה הפיזיולוגית: ללא נקבוביות מספקת וללא כלי דם חודרים, תאים במרכז הפיגום פשוט <b>לא מקבלים חמצן וחומרי מזון</b> ולא יכולים לפנות פסולת מטבולית - עקרון דיפוזיה בסיסי שמגביל כל רקמה חיה למרחק של שברירי מילימטרים מכלי דם. זו הסיבה שווסקולריזציה (וניקוז לימפטי משלים) היא לא "תוספת נחמדה" אלא תנאי הישרדות.</p>
+</div>
+<svg class="diagram" viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שלושת מרכיבי הנדסת הרקמה</title>
+  <circle cx="100" cy="60" r="48" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="100" y="55" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">פיגום</text>
+  <text x="100" y="72" font-size="11" text-anchor="middle" fill="#1e3a8a">Scaffold</text>
+
+  <circle cx="250" cy="60" r="48" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="250" y="55" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">תאים</text>
+  <text x="250" y="72" font-size="11" text-anchor="middle" fill="#065f46">Cells</text>
+
+  <circle cx="400" cy="60" r="48" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="400" y="50" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">גורמי גדילה /</text>
+  <text x="400" y="65" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">ביוראקטור</text>
+  <text x="400" y="80" font-size="10" text-anchor="middle" fill="#78350f">Growth Factors</text>
+
+  <line x1="100" y1="108" x2="200" y2="185" stroke="#374151" stroke-width="2"/>
+  <line x1="250" y1="108" x2="250" y2="185" stroke="#374151" stroke-width="2"/>
+  <line x1="400" y1="108" x2="300" y2="185" stroke="#374151" stroke-width="2"/>
+
+  <rect x="140" y="185" width="220" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="250" y="212" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">רקמה מהונדסת</text>
+  <text x="250" y="230" font-size="11" text-anchor="middle" fill="#4c1d95">Engineered Tissue</text>
+</svg>
+<p class="figcap">שלושת המרכיבים חייבים להתכנס יחד - חוסר באחד מהם פוגם בתוצאה הסופית.</p>
+
+<p>מכאן נגזרות התכונות שמגדירות פיגום "טוב" (טבלה 18.1 בפרק):</p>
+<table>
+  <thead><tr><th>תכונה נדרשת</th><th>הרציונל - למה זה חשוב בפועל</th></tr></thead>
+  <tbody>
+    <tr><td><b>ביו-תאימות</b> <span class="term" dir="ltr">(biocompatible)</span></td><td>ליצור תגובה חיסונית סבירה מצד המאכסן - לא לעורר דחייה או דלקת כרונית הרסנית.</td></tr>
+    <tr><td><b>ביו-דגרדביליות</b> <span class="term" dir="ltr">(biodegradable)</span></td><td>קצב הספיגה חייב להתאים לקצב יצירת הרקמה החדשה: מהר מדי - הרקמה קורסת לפני שהתגבשה; לאט מדי - הפיגום עצמו נשאר גוף זר כרוני.</td></tr>
+    <tr><td><b>מרקם/שטח פנים</b></td><td>טופוגרפיה וכימיה של פני השטח שמאפשרות לתאים "להיאחז" ולשרוד עליהן.</td></tr>
+    <tr><td><b>נקבוביות</b> <span class="term" dir="ltr">(porosity)</span></td><td>נקבים בקוטר מספק מאפשרים חדירת תאים <b>וכלי דם</b> לתוך הפיגום - זו בדיוק הנקודה שמסבירה למה פיגומים "אטומים מדי" נכשלים במרכזם.</td></tr>
+    <tr><td><b>שלמות מבנית</b></td><td>עמידות מספקת בכוחות פיזיים כדי לשמר את שלמות התאים שבתוכו.</td></tr>
+    <tr><td><b>גמישות מכנית</b></td><td>אלסטיות שמאפשרת לעמוד בעיוות (תנועה, לחץ) לאורך זמן בלי להישבר מבנית.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">3</span> שלוש האבולוציות של כירורגיה פלסטית - מפלאפים אקראיים להנדסת רקמות</h2>
+<p>הפרק ממסגר את הנדסת הרקמות כ"אבולוציה שלישית" בשרשרת התקדמות ברורה, כאשר כל שלב פתר את המגבלה של קודמו:</p>
+<svg class="diagram" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <title>שלוש האבולוציות של כירורגיה פלסטית</title>
+  <rect x="650" y="20" width="210" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="755" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">אבולוציה 1</text>
+  <text x="755" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">פלאפים אקראיים ופדיקל</text>
+  <text x="755" y="79" font-size="11" text-anchor="middle" fill="#7f1d1d">Gillies / McIndoe, מלה"ע 1-2</text>
+  <text x="755" y="95" font-size="11" text-anchor="middle" fill="#7f1d1d">חודשים רבים באשפוז</text>
+
+  <polygon points="620,50 660,44 660,56" fill="#374151"/>
+  <line x1="660" y1="50" x2="620" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="350" y="20" width="250" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="475" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">אבולוציה 2</text>
+  <text x="475" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">מיקרוכירורגיה</text>
+  <text x="475" y="79" font-size="11" text-anchor="middle" fill="#1e3a8a">Murray 1954, Taylor 1971 (אנגיוזום)</text>
+  <text x="475" y="95" font-size="11" text-anchor="middle" fill="#1e3a8a">שיקום תוך שעות במקום חודשים</text>
+
+  <polygon points="300,50 350,44 350,56" fill="#374151"/>
+  <line x1="350" y1="50" x2="300" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="30" y="20" width="250" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="155" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אבולוציה 3</text>
+  <text x="155" y="63" font-size="12" text-anchor="middle" fill="#065f46">הנדסת רקמות</text>
+  <text x="155" y="79" font-size="11" text-anchor="middle" fill="#065f46">Langer &amp; Vacanti, 1993</text>
+  <text x="155" y="95" font-size="11" text-anchor="middle" fill="#065f46">"מעבר לניתוח עצמו" - בלי אתר תורם</text>
+
+  <rect x="60" y="140" width="780" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="450" y="165" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">כל שלב פתר את המגבלה המרכזית של הקודם: זמן אשפוז ← עלות אתר תורם ← (עדיין) חוסר יכולת ייצור המוני</text>
+  <text x="450" y="183" font-size="11" text-anchor="middle" fill="#78350f">דוגמה: שחזור לסת - מפרוצדורת פדיקל של 6-8 חודשים לניתוח מיקרוכירורגי חופשי של 6-8 שעות</text>
+</svg>
+
+<table>
+  <thead><tr><th>אבן דרך</th><th>מי / מתי</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>"מועדון החזירים הקטנים" <span class="term" dir="ltr">(Guinea Pig Club)</span></td><td>Gillies ו-McIndoe, מלחמות עולם 1-2</td><td>פלאפים אקראיים ופדיקל אפשרו שחזור פנים/גפיים, אך דרשו 6+ חודשי אשפוז וסדרת ניתוחים</td></tr>
+    <tr><td>השתלת כליה ראשונה</td><td>Joseph Murray, 1954 (פרס נובל 1990)</td><td>הוכחת היתכנות של השתלת רקמה חיה בין בני אדם</td></tr>
+    <tr><td>קונספט האנגיוזום <span class="term" dir="ltr">(angiosome)</span></td><td>G. Ian Taylor, 1971 - פלאפ מפשעתי חופשי ראשון</td><td>מיפוי מדויק של אספקת הדם לגוף - הבסיס למיקרוכירורגיה מודרנית</td></tr>
+    <tr><td>מיקרוכירורגיה לימפטית</td><td>Bernard O'Brien, 1976</td><td>שחזור פיזיולוגי, לא רק מבני, של מערכת הניקוז</td></tr>
+    <tr><td>השתלת יד מורכבת ופנים</td><td>1998 (יד), 2005 (פנים חלקי), 2010 (פנים מלא, ספרד)</td><td>השתלת רקמה מורכבת <span class="term" dir="ltr">(CTA)</span> - הגבול הבא של זהות ותפקוד אנושי</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> עליית "הנדסת רקמות Mark-I" וקריסתה - שיעור בבועות</h2>
+<p>הפרק מדגיש: מדובר לא בכישלון מדעי בלבד אלא ב<b>"סערה מושלמת"</b> של גורמים מדעיים, רגולטוריים ועסקיים שהצטרפו יחד:</p>
+<ul>
+  <li><b>1960s</b> - הידרוג'לים ראשונים (עדשות מגע, בדיקת תרופות)</li>
+  <li><b>1970s</b> - מבנה "דמוי-אלמוג" מקולגן שנוצר בכיווץ פיברובלסטים (Bell &amp; Ivarsson) - הבסיס המכני שחסר להידרוג'לים</li>
+  <li><b>סוף שנות ה-70/80</b> - טכנולוגיית הדפסת דיו מותאמת להדפסת שכבת תאים דו-ממדית</li>
+  <li><b>1985</b> - המונח <span class="term" dir="ltr">"tissue engineering"</span> נטבע ע"י Y.C. Fung</li>
+  <li><b>1987-1992</b> - "בועת הביוטק הראשונה", מרכזה MIT/הרווארד, כ-90% מהחברות אקדמיות וכ-90% מההשקעה פרטית - ללא תשתית רגולציה מבוססת</li>
+</ul>
+<p>חלוקת הפטנטים בתחום (1980-2001, N=567): <b>ארה"ב 71%</b>, אירופה 18%, יפן 6%, אחר 5%.</p>
+
+<div class="mechanism">
+  <p class="chain">שרשרת הסיבות לקריסה (למה בדיוק זה קרה, לא רק "זה נכשל"):</p>
+  <p>תאים חיים הם <b>קשים ויקרים לתפעול מסחרי</b> (איסוף, שימור, הובלה בתנאים מדויקים) ← זה יוצר בעיות רגולטוריות ואתיות מורכבות ← <b>שיעור נמוך של אישורי FDA</b> ← אימוץ נמוך של רופאים ומבטחים (חברות ביטוח סירבו לממן טכנולוגיה לא-מוכחת) ← ביקוש נמוך + עלות גבוהה לעומת הטיפול הקונבנציונלי ← <b>חוסר יכולת תחרותית</b> ← פשיטות רגל של חברות רבות ← המשקיעים מאבדים סבלנות ומפסיקים לממן ← <b>קריסת השוק ב-2000</b>.</p>
+</div>
+
+<p class="key-box">המספרים: שווי השוק צנח ב-<b>90%</b> - מ-2.5 מיליארד דולר (2000) ל-300 מיליון דולר (2002). 89 חברות ב-15 מדינות, ו-2,600 משרות מו"פ, נמחקו. תחום העור והסחוס לבדו היווה מעל 50% מהתחום (800+ משרות) - ובכל זאת התעשייה כולה לא הפיקה <b>אף מוצר רווחי אחד</b>, למרות 4.5 מיליארד דולר שהושקעו במו"פ. מתוך 20 מוצרים שהיו בניסויי FDA - 6 ננטשו, ורק 4 אושרו בסופו של דבר, ואף אחד מהם לא הצליח מסחרית.</p>
+
+<p>הדימוי המושלם לפער בין ההייפ למציאות הוא <b>"עכבר Vacanti"</b> - עכבר עירום (immunocompromised) עם תבנית אוזן שנוצרה מתאי סחוס בקר, שהושתלה מתחת לעור גבו (1997). התמונה הפכה מפורסמת עולמית והוצגה כסמל להבטחת התחום - אך בפועל, המבנה <b>"נכנס בשקט לתוך כדור אמורפי של רקמת צלקת"</b>. זה בדיוק ההבדל בין הצלחה ויזואלית-מקרוסקופית זמנית לבין הצלחה תפקודית ארוכת-טווח.</p>
+
+<h2><span class="num">5</span> <span dir="ltr">TERM</span> - הנדסת רקמות מול רפואה רגנרטיבית</h2>
+<p>אחרי הקריסה, השדה התפצל לשני כיוונים משלימים שיחד מכונים <b><span class="term" dir="ltr">TERM</span></b> (<span class="term" dir="ltr">Tissue Engineering and Regenerative Medicine</span>):</p>
+<table>
+  <thead><tr><th></th><th>הנדסת רקמות <span class="term" dir="ltr">(Tissue Engineering)</span></th><th>רפואה רגנרטיבית <span class="term" dir="ltr">(Regenerative Medicine)</span></th></tr></thead>
+  <tbody>
+    <tr><td><b>הגדרה</b></td><td>יישום שמבקש ליצור רכיבי רקמה תפקודיים ואיברים שלמים</td><td>שיקום ורגנרציה של רכיבי רקמה פגועה</td></tr>
+    <tr><td><b>מנגנון פעולה</b></td><td>הרכבה/מסירה פיזית של רכיבים מבניים (פיגום ± תאים ± גורמים ביו-אקטיביים)</td><td>עידוד תהליכים רגנרטיביים <b>קיימים</b> מראש, לרוב באמצעות ויסות מערכתי</td></tr>
+    <tr><td><b>תחום מקצועי היסטורי</b></td><td>כירורג + מהנדס חומרים</td><td>רופא + ביולוג תאי</td></tr>
+    <tr><td><b>דוגמה</b></td><td>הדפסה תלת-ממדית של פיגום עור, השתלת דרמיס מהונדס</td><td>הזרקת תאי גזע, נוגדנים מנטרלים, טיפול גנטי</td></tr>
+  </tbody>
+</table>
+<p>ההבחנה ההיסטורית בין השניים כבר מיטשטשת: כלי עריכה גנטית כמו <span class="term" dir="ltr">CRISPR</span> מאפשרים לשלוט בהתנהגות תאים (מחיקה או הוספה של תפקוד) בשני הכיוונים, ותאי גזע מושרים (<span class="term" dir="ltr">iPS - induced pluripotent stem cells</span>) חוצים בין שני התחומים. הפרק מדגיש שהצלחה עתידית דורשת שילוב של <b>"מהות מדעית" (biomaterial + נאווסקולריזציה + ניקוז פסולת + ביולוגיה מולקולרית) יחד עם "מהות עסקית"</b> (מימון, רגולציה, ניהול תהליך ייצור, כיוון קליני) - חוסר באחד מהם היה בדיוק מה שהפיל את Mark-I.</p>
+
+<h2><span class="num">6</span> מקרה בוחן: הנדסת עור - התחום הבשל ביותר</h2>
+<p>העור הוא הרקמה הכי שכיחה לשחזור בכירורגיה פלסטית, ולכן התחום המפותח ביותר בהנדסת רקמות (שוק תיקון רקמות רכות: 16.5 מיליארד דולר ב-2017, צפי ל-25 מיליארד ב-2025).</p>
+<p>תחליפי עור מתחלקים לשני סוגים עיקריים, וההבחנה ביניהם חושפת עיקרון מנגנוני חשוב: <b>תחליפים אפידרמליים בלבד</b> (למשל גיליונות קרטינוציטים מתורבתים - <span class="term" dir="ltr">CEA</span>, או ריסוס תאים בשיטת <span class="term" dir="ltr">RECELL</span>) הראו הבטחה בתרביות, אך התרגום הקליני שלהם הוגבל בגלל <b>שבירות מבנית</b> - כי אין להם שכבה דרמלית שתיתן להם חוזק. זה ממחיש למה נדרשת שכבה דרמלית (עם קולגן) - היא זו שנותנת לעור את החוזק המכני שהאפידרמיס לבדו לא יכול לספק.</p>
+
+<table>
+  <thead><tr><th>מוצר</th><th>חומר בסיס</th><th>מקור תאים</th><th>מנגנון / ייחודיות</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Integra</span></td><td>קולגן בקר + כונדרואיטין סולפט-6 מכריש (Yannas &amp; Burke)</td><td>אקלולרי</td><td>הראשון שאושר ל-FDA (1996); אינטגרציה בארבעה שלבים: ספיגת נוזלים → הגירת פיברובלסטים → נאווסקולריזציה → שיפוץ/הבשלה</td></tr>
+    <tr><td><span class="term" dir="ltr">Matriderm / Pelnac</span></td><td>קולגן (הרכבי קו-פולימר שונים)</td><td>אקלולרי</td><td>עקרון דומה ל-Integra</td></tr>
+    <tr><td><span class="term" dir="ltr">Alloderm / Glyaderm</span></td><td>אלוגרפט קולגן-אלסטין אנושי מודלל-תאים</td><td>אקלולרי (מגיב אנושי)</td><td>תהליך דה-צלולריזציה משמר את מסגרת ה-<span class="term" dir="ltr">ECM</span> הטבעית; Glyaderm דורש הכנה ניתוחית תלת-שלבית של ערוגת הפצע</td></tr>
+    <tr><td><span class="term" dir="ltr">Hyalomatrix</span></td><td>חומצה היאלורונית מאסטרפת</td><td>פיברובלסטים אוטולוגיים של המטופל</td><td>ה-<span class="term" dir="ltr">GAG</span> השכיח ביותר ב-ECM טבעי; תומך בחדירת כלי דם ותאים</td></tr>
+    <tr><td><b><span class="term" dir="ltr">Novosorb BTM</span></b> (PolyNovo, אוסטרליה)</td><td>פוליאוריתן סינתטי דו-שכבתי</td><td>אקלולרי</td><td>"סופר-מקרו-נקבוביות" (נקבים &gt;180 מיקרון) → תגובה דלקתית <b>מוגברת</b> לעומת קולגן, שדווקא מניעה יותר חדירת תאים ווסקולריזציה; תוצרי הפירוק (חומצה לקטית) יוצרים סביבה לא-נוחה לחיידקים</td></tr>
+    <tr><td><span class="term" dir="ltr">Denovoskin</span> (ציריך)</td><td>הידרוג'ל קולגן בקר</td><td>פיברובלסטים + קרטינוציטים אוטולוגיים</td><td>גיליון עור מוכן תוך 3-4 שבועות; שימש במקרה חמלה ב-2021 בכוויה של 95% משטח גוף</td></tr>
+    <tr><td><span class="term" dir="ltr">PermaDerm</span> (סינסינטי)</td><td>תת-שכבת קולגן-GAG</td><td>פיברובלסטים + קרטינוציטים אוטולוגיים</td><td>שחזור מלא (דרמיס+אפידרמיס) בגרפט אחד; נתקל במכשולים רגולטוריים (סווג כ"ביולוגי/תרופה" ולא כמכשיר רפואי) ומשפטיים - עדיין לא אושר ע"י FDA (נכון ל-2022)</td></tr>
+  </tbody>
+</table>
+<p class="key-box">בעיה נשנית בדור הראשון של פיגומי דרמיס: <b>זיהום שגורם לאובדן הפיגום ולעיכוב סגירת הפצע</b>. בנוסף, עלות חומרי הגלם והייצור הותירה את הפיגומים הפולימריים נגישים בעיקר במדינות עשירות - בעוד רוב הכוויות ותמותת הכוויות מתרחשות דווקא במדינות בעלות הכנסה נמוכה-בינונית.</p>
+
+<h2><span class="num">7</span> הנדסת מערכת הלימפה - תחום מתפתח בפיגור</h2>
+<p>מערכת הלימפה אחראית להומאוסטזיס נוזלים, ניקוז נוזל בין-תאי, מעקב חיסוני וספיגת שומנים. הנדסתה מפגרת מאחורי הנדסת כלי הדם, בעיקר בגלל הבנה חלקית יותר של הביולוגיה ההתפתחותית הלימפטית - רק בעשרים השנים האחרונות זוהו הסמנים התאיים המרכזיים של תאי אנדותל לימפטי (<span class="term" dir="ltr">LECs</span>).</p>
+<p>נקודה מנגנונית מפתיעה: קבוצת Swartz הראתה שבהתחדשות עור, <b>ערוצי זרימה בין-תאיים נוצרים לפני ארגון תאי האנדותל הלימפטי</b> - בניגוד לכלי דם, שבהם זרימה מתחילה רק אחרי שרשת כלי הדם כבר קיימת. כלומר, בלימפה - הזרימה "מובילה" את היווצרות הכלי, לא ההפך. בהתאם, Marino ועמיתיו (2014) הראו שיצירת נימים לימפטיים מהונדסים דרשה נוכחות פיברובלסטים - ולא קרתה כלל רק עם תוספת גורם הגדילה <span class="term" dir="ltr">VEGF-C</span>, מה שמדגיש את חשיבות האיתות הפראקריני בין תאי סטרומה לתאי אנדותל.</p>
+<p>גישות עיקריות: פיגומי מאקרו-כלי (למשל תאי LEC על פיגומי <span class="term" dir="ltr">PGA</span> מתפרקים, שנוצרו לצינוריות דמויות-כלי לימפה), פיגומי מיקרו-כלי (ערוצים בהידרוג'לי קולגן/פיברין), "בלוטות לימפה מלאכותיות" (תאי סטרומה בפיגום קולגן שהושתלו מתחת לקפסולת הכליה בעכברים ופיתחו מבנה לימפואידי מאורגן שיכול לעורר תגובה חיסונית), וגישות ללא-פיגום (תאי LEC שגדלו על שכבת פיברובלסטים מארגנים את עצמם באופן ספונטני לרשתות נימים לימפטיים תלת-ממדיים יציבים).</p>
+
+<h2><span class="num">8</span> משלוח תרפויטי מדויק: טיפול אנטי-פיברוטי בצלקת היפרטרופית</h2>
+<p>צלקת היפרטרופית (<span class="term" dir="ltr">HTS - hypertrophic scarring</span>) מופיעה ב-30-70% מניצולי כוויות. הנדסת רקמות בקנה מידה זעיר מתמקדת כאן לא ביצירת רקמה חדשה אלא ב<b>מסירה ממוקדת של תרופות</b> שמכוונות למסלולים המולקולריים שגורמים לפיברוזיס:</p>
+<table>
+  <thead><tr><th>טיפול</th><th>מנגנון פעולה</th><th>אפקט קליני</th></tr></thead>
+  <tbody>
+    <tr><td>קורטיקוסטרואיד תוך-נגעי (טריאמצינולון)</td><td>דיכוי תהליך הדלקת/פיברוזיס באזור הצלקת</td><td>↓ גובה, גרד וכאב; ↑ גמישות הצלקת</td></tr>
+    <tr><td>נפופאם <span class="term" dir="ltr">(Nefopam)</span></td><td>חוסם את מסלול <span class="term" dir="ltr">Wnt/β-catenin</span>, מוריד רמות β-קטנין תחת גירוי <span class="term" dir="ltr">TGF-β</span></td><td>↓ פעילות פיברובלסטים פרו-פיברוטיים בכ-50% (ניסוי 14 יום)</td></tr>
+    <tr><td>נוגדנים מנטרלי <span class="term" dir="ltr">Flightless I (Flii)</span></td><td>חוסמים חלבון שחוזר-עיצוב אקטין המבוטא ביתר בפיברוזיס, ומווסתים את מסלול <span class="term" dir="ltr">TGF-β1</span></td><td>↓ פעילות מיופיברובלסט, ↑ שיקוע קולגן מאורגן</td></tr>
+    <tr><td>נוגדנים מנטרלי <span class="term" dir="ltr">TGF-β</span> ישירות</td><td>חסימת הציטוקין הפרו-פיברוטי המרכזי</td><td>נרמול ארכיטקטורת הדרמיס באתר הפצע</td></tr>
+    <tr><td>מיקרו-מחטים (200-900 מיקרון) טעונות סטרואיד/בלאומיצין</td><td>יצירת ערוץ זמני מהעור אל החלל התוך-עורי למסירה מדויקת וכמעט ללא כאב</td><td>↓ ביטוי <span class="term" dir="ltr">TGF-β1</span> וקולגן I, ↓ גובה הצלקת</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">9</span> הנדסת רקמות Mark-II - חזרה למציאות וסולם השחזור</h2>
+<p>מ-2003 ואילך חל פנייה מחודשת (<span class="term" dir="ltr">re-invention</span>) לכיוון מדעי המולקולה, טכנולוגיית פיגום/ספרואיד, ביו-הדפסה תלת-ממדית ובדיקות תרופות/מכשור - במקום החלום המקורי של "איבר שלם על המדף". התחום התפצל לשניים: (1) תמיכה/שיפור יצירת רקמה חדשה תוך רתימת תהליכי החלמה טבעיים, ו-(2) מסירת תרפויטיקה בקנה מידה זעיר - רפואה רגנרטיבית.</p>
+<p>חמשת תחומי הרקמה שבהם ממוקדים כירורגים פלסטיים: <b>עור</b> (מחסום ראשון), <b>שלד</b> (תמיכה קרניופציאלית וגפיים), <b>עצב ושריר</b> (העברות תפקודיות), <b>כלי דם ולימפה</b> (כולל תגובה חיסונית), ו<b>מסלולים גדולים</b> (עיכול, נשימה, שתן-מין).</p>
+<p>הפרק ממחיש את מיקומה ה"דמיוני" של הנדסת רקמות ב<b>סולם השחזור</b> (<span class="term" dir="ltr">reconstructive ladder</span>) - מהפשוט למורכב: החלמה שניונית → החלמה ראשונית → סגירה ראשונית מושהית → שתלי עור (<span class="term" dir="ltr">SSG/FTSG</span>) → הרחבת רקמה → העברת רקמה מקומית → פלאפ מקומי/פדיקל → העברת רקמה חופשית מיקרוכירורגית → <b>ומעליהם - הנדסת רקמות</b>, כה"מדרגה" הבאה שעדיין לא מומשה במלואה.</p>
+<p>שוק הנדסת הרקמות העולמי מוערך ב-14 מיליארד דולר (2018), עם תחזית לצמיחה ל-55.2 מיליארד דולר עד 2025 (קצב צמיחה שנתי מתמיד של 18.7%). האתגרים העתידיים לכירורגים פלסטיים: מימון יקר יותר ויותר, שימור מיומנויות מדעיות בתוך ההתמחות, הימנעות מ"מחקר זול" תחת לחץ פרסום, והמתח בין הגנה על קניין רוחני (מעכבת פרסום) לבין תרבות "פרסם או תיעלם" האקדמית.</p>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">C-S-G</span> - שלושת מרכיבי הבנייה</h3>
+  <p>
+    <b>C</b> - <span class="term" dir="ltr">Cells</span> (תאים) - הפועלים שבונים בפועל.<br>
+    <b>S</b> - <span class="term" dir="ltr">Scaffold</span> (פיגום) - התבנית שנותנת להם צורה.<br>
+    <b>G</b> - <span class="term" dir="ltr">Growth factors</span> (גורמי גדילה) / ביוראקטור - האספקה שאומרת להם מתי ולאן לגדול.
+  </p>
+  <h3>סיפור דמיוני: אתר הבנייה</h3>
+  <p>דמייני אתר בנייה של רקמה חדשה: <b>הפועלים</b> (התאים) מגיעים לעבודה, אבל בלי <b>פיגום ברזל</b> (הסקפולד) הם פשוט מסתובבים בלי כיוון ומתפזרים. ברגע שהפיגום עולה - הם מתחילים לבנות לאורכו. אבל גם עם פיגום ותאים, שום דבר לא זז בלי <b>מנוף שמזין אותם בחומרי גלם ואנרגיה</b> (גורמי הגדילה/הביוראקטור) - בלי המנוף, הפועלים עומדים ליד הפיגום בלי לדעת מה לבנות ומתי. רק כששלושתם פועלים יחד - עולה מבנה חדש ויציב: הרקמה המהונדסת.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>אתר הבנייה של הרקמה</title>
+    <line x1="20" y1="180" x2="480" y2="180" stroke="#a3a3a3" stroke-width="4"/>
+    <rect x="80" y="70" width="90" height="100" fill="#e5e7eb" stroke="#6b7280"/>
+    <line x1="65" y1="40" x2="65" y2="180" stroke="#2563eb" stroke-width="3"/>
+    <line x1="185" y1="40" x2="185" y2="180" stroke="#2563eb" stroke-width="3"/>
+    <line x1="65" y1="60" x2="185" y2="60" stroke="#2563eb" stroke-width="3"/>
+    <line x1="65" y1="100" x2="185" y2="100" stroke="#2563eb" stroke-width="3"/>
+    <line x1="65" y1="140" x2="185" y2="140" stroke="#2563eb" stroke-width="3"/>
+    <text x="125" y="30" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">פיגום</text>
+
+    <circle cx="230" cy="160" r="9" fill="#047857"/>
+    <line x1="230" y1="169" x2="230" y2="190" stroke="#047857" stroke-width="3"/>
+    <circle cx="255" cy="155" r="9" fill="#047857"/>
+    <line x1="255" y1="164" x2="255" y2="190" stroke="#047857" stroke-width="3"/>
+    <text x="242" y="120" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">תאים</text>
+
+    <line x1="400" y1="180" x2="400" y2="50" stroke="#78350f" stroke-width="4"/>
+    <line x1="400" y1="50" x2="330" y2="50" stroke="#78350f" stroke-width="4"/>
+    <line x1="330" y1="50" x2="330" y2="90" stroke="#78350f" stroke-width="2" stroke-dasharray="4,3"/>
+    <text x="400" y="35" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">מנוף = גורמי גדילה</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Vacanti_mouse" target="_blank">Vacanti mouse – Wikipedia</a>
+    <div class="desc">הסבר וייצוג ויזואלי של "עכבר Vacanti" (1997) - הסמל ההיסטורי לפער בין ההייפ למציאות בהנדסת רקמות.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Joseph_P._Vacanti" target="_blank">Joseph P. Vacanti – Wikipedia</a>
+    <div class="desc">ביוגרפיה של אחד מאבות התחום, שותפו של Robert Langer בהגדרת "הנדסת רקמות" ב-1993.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Robert_Samuel_Langer" target="_blank">Robert Langer – Wikipedia</a>
+    <div class="desc">ביוגרפיה מלאה של רוברט לנגר, "אבי" תחומי מסירת תרופות מבוקרת והנדסת רקמות, החוקר המצוטט ביותר בתולדות ההנדסה.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10239675/" target="_blank">Integra Dermal Regeneration Template: From Design to Clinical Use (PMC)</a>
+    <div class="desc">סקירה מדעית מלאה על העיצוב, המנגנון (ארבעת שלבי האינטגרציה) והשימושים הקליניים של Integra.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11615573/" target="_blank">Novosorb BTM - history, production and application (PMC)</a>
+    <div class="desc">סקירה על התפתחות ה-Biodegradable Temporizing Matrix הסינתטי, כולל נתוני ה"סופר-מקרו-נקבוביות" שמסבירים את יתרון הווסקולריזציה שלו.</div>
+  </li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 34 מגיע עם כוויה עמוקה (deep partial to full-thickness) המכסה כ-40% משטח הגוף, ללא מספיק אתרי תורם עוריים זמינים לשתל עור מפוצל מיידי. הצוות הפלסטי מחליט להשתמש תחילה בתחליף עורי דו-שכבתי מפוליאוריתן סינתטי (Novosorb BTM) לכיסוי זמני וליצירת "נאו-דרמיס", ומתכנן שתל עור מפוצל בשלב מאוחר יותר. כעבור כשלושה שבועות נצפית רקמת גרנולציה עשירה בכלי דם חדשים מתחת לממברנה הסינתטית, ללא סימני זיהום קליני.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הסיבה המנגנונית לכך ש"הנדסת רקמות" נחשבה בעבר לפתרון עדיף על פני העברת רקמה עצמית (autologous)?</div>
+  <button class="opt" data-i="0">היא זולה יותר מכל ניתוח שחזור אחר</button>
+  <button class="opt" data-i="1">היא נמנעת מהצורך "לגזול" רקמה מאתר תורם בריא בגוף המטופל</button>
+  <button class="opt" data-i="2">היא לא דורשת אישור FDA</button>
+  <button class="opt" data-i="3">היא מתאימה רק למקרים כרוניים ולא לטראומה חריפה</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר את העברת הרקמה העצמית כ"שודדים את פיטר כדי לשלם לפול" - כלומר תמיד יש עלות לאתר התורם (למשל בוהן חסרה לאחר בניית אצבע). חלום הנדסת הרקמות היה ליצור תחליף רקמה "מהמדף" בלי לשלם את המחיר הזה. תשובה 1 שגויה - התחום למעשה יקר ביותר להפעלה מסחרית. תשובה 3 שגויה - דווקא ההפך, אישורי FDA היו נדירים וזה חלק מהסיבה לקריסה. תשובה 4 לא מוזכרת בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי הסיבה הפיזיולוגית לכך שנקבוביות (porosity) בקוטר מספק היא תכונה קריטית של פיגום הנדסי, ולא רק פרט טכני?</div>
+  <button class="opt" data-i="0">נקבוביות גבוהה יותר משמעה שהפיגום קל יותר לייצור</button>
+  <button class="opt" data-i="1">היא נדרשת רק לצורך אסתטיקה של המבנה הסופי</button>
+  <button class="opt" data-i="2">בלי נקבים בקוטר מתאים, כלי דם ותאים לא יכולים לחדור למרכז הפיגום, וללא אספקת חמצן/חומרי מזון תאים במרכזו ימותו</button>
+  <button class="opt" data-i="3">נקבוביות קובעת אך ורק את קצב ההתפרקות הביולוגית</button>
+  <div class="explain">התשובה הנכונה: תאים חיים תלויים בקרבה לכלי דם לצורך אספקת חמצן וחומרי מזון ופינוי פסולת מטבולית - עיקרון דיפוזיה בסיסי. פיגום עם נקבים קטנים מדי או לא מקושרים מונע חדירת כלי דם ותאים למרכזו, מה שגורם לתאים באזור זה למות מהיפוקסיה. זו הסיבה שהוזכרה גם ביתרון של Novosorb BTM: "סופר-מקרו-נקבוביות" (מעל 180 מיקרון) הביאה לווסקולריזציה משמעותית יותר מהחלופה הקולגנית. תשובות 1, 2 ו-4 מתעלמות מהמנגנון הביולוגי המרכזי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע הפיגום הסינתטי Novosorb BTM הראה נאווסקולריזציה עדיפה על פני Integra הקולגני, על אף שגרם לתגובה דלקתית חזקה יותר?</div>
+  <button class="opt" data-i="0">התגובה הדלקתית המוגברת עצמה, בשילוב הנקבוביות הגדולה, דחפה חדירת תאים וכלי דם רבים יותר לתוך הפיגום</button>
+  <button class="opt" data-i="1">Novosorb BTM מכיל תאי אנדותל חיים מראש</button>
+  <button class="opt" data-i="2">Integra כלל לא מיועד לווסקולריזציה</button>
+  <button class="opt" data-i="3">התגובה הדלקתית אינה קשורה כלל לווסקולריזציה בפיגומים</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר ממצא כמעט פרדוקסלי - תגובה דלקתית מוגברת לפוליאוריתן הסינתטי דחפה חדירת תאים וווסקולריזציה גדולה יותר מהחלופה הקולגנית, וקוטר כלי הדם הממוצע בנאו-דרמיס שנוצר היה גדול יותר משמעותית ב-BTM. שני הפיגומים אקלולריים (תשובה 1 שגויה), Integra כן נועד לתמוך בווסקולריזציה (תשובה 2 שגויה), ודלקת ווסקולריזציה קשורות זו לזו ישירות בהקשר הזה (תשובה 3 שגויה).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. איזה גורם, לפי הפרק, נחשב לגורם המרכזי היחיד שהוביל לקריסת "הנדסת רקמות Mark-I" סביב שנת 2000?</div>
+  <button class="opt" data-i="0">גילוי שהמדע הבסיסי היה שגוי לחלוטין</button>
+  <button class="opt" data-i="1">שילוב של קושי מסחרי אמיתי בטיפול בתאים חיים, מורכבות רגולטורית, ואימוץ נמוך של רופאים ומבטחים - "סערה מושלמת" ולא סיבה בודדת</button>
+  <button class="opt" data-i="2">איסור גורף על שימוש בתאי גזע</button>
+  <button class="opt" data-i="3">מלחמת עולם שהפסיקה את המימון</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שזו הייתה "סערה מושלמת" (perfect storm) - שרשרת של גורמים מדעיים, רגולטוריים ועסקיים שהצטרפו יחד (קושי בתפעול מסחרי של תאים חיים ← מורכבות רגולטורית/אתית ← שיעור נמוך של אישורי FDA ← אימוץ נמוך של רופאים ומבטחים ← עלות גבוהה מדי לעומת טיפול קונבנציונלי). המדע הבסיסי (תשובה 1) לא היה "שגוי" אלא פשוט לא בשל דיו ליישום מסחרי. תשובות 3-4 אינן מוזכרות בפרק כלל.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">5. מהו ההבדל המהותי בין "הנדסת רקמות" ל"רפואה רגנרטיבית" כפי שהפרק מגדיר תחת המטרייה המשותפת <span dir="ltr">TERM</span>?</div>
+  <button class="opt" data-i="0">אין הבדל מהותי, אלו מילים נרדפות לחלוטין</button>
+  <button class="opt" data-i="1">רפואה רגנרטיבית עוסקת אך ורק בסרטן</button>
+  <button class="opt" data-i="2">הנדסת רקמות תמיד זולה יותר מרפואה רגנרטיבית</button>
+  <button class="opt" data-i="3">הנדסת רקמות מתמקדת בהרכבה/מסירה פיזית של רכיבים מבניים (פיגום, תאים), בעוד רפואה רגנרטיבית מעודדת תהליכי החלמה טבעיים קיימים, לרוב באופן מערכתי</button>
+  <div class="explain">התשובה הנכונה: הנדסת רקמות ממוקדת בהרכבה הפיזית של מרכיבי מבנה (עם או בלי תאים, לעיתים משופרים בגורמים ביו-אקטיביים), ולרוב פועלת מקומית; רפואה רגנרטיבית פועלת דרך ויסות (לרוב מערכתי) של תהליכים רגנרטיביים שכבר קיימים בגוף. שתיהן יחד מכונות TERM, וההבחנה ההיסטורית ביניהן הולכת ומיטשטשת בזכות כלים כמו CRISPR ותאי iPS. תשובות 1-3 אינן נתמכות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. בהתייחס לוינייטה: מדוע התפתחות רקמת הגרנולציה עשירת כלי הדם מתחת ל-Novosorb BTM (כפי שתואר במטופל) נחשבת תוצאה צפויה וחיובית, ולא סימן לבעיה?</div>
+  <button class="opt" data-i="0">מכיוון שרקמת גרנולציה תמיד מעידה על זיהום פעיל שיש לטפל בו באנטיביוטיקה</button>
+  <button class="opt" data-i="1">מכיוון ש-Novosorb BTM אמור להישאר בגוף לצמיתות ולא להתפרק</button>
+  <button class="opt" data-i="2">מכיוון שהנקבוביות הגדולה של הפיגום נועדה ליצור בדיוק תגובה דלקתית-וסקולרית זו, שמכינה "נאו-דרמיס" עשיר בכלי דם לקראת שתל העור השני</button>
+  <button class="opt" data-i="3">מכיוון שרקמת גרנולציה מונעת כל אפשרות לשתל עור עתידי</button>
+  <div class="explain">התשובה הנכונה: המנגנון המתואר בפרק הוא שהנקבוביות הגדולה ("סופר-מקרו-נקבוביות") של BTM מעודדת במכוון תגובה דלקתית וחדירת כלי דם משמעותית יותר מקולגן, וזו בדיוק המטרה - יצירת נאו-דרמיס עשיר בכלי דם שעליו יתקבל שתל עור מפוצל בהמשך בהצלחה רבה יותר, ללא סימני זיהום כפי שצוין. תשובה 1 מבלבלת בין גרנולציה תקינה לזיהום; תשובה 2 סותרת את התכונה הביו-דגרדבילית הנדרשת מפיגום; תשובה 4 הפוכה מהמטרה הקלינית בפועל.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הנדסת רקמות שואפת ליצור תחליף רקמה תפקודי <b>בלי</b> עלות אתר תורם ("לא לגזול מפיטר כדי לשלם לפול") - הגדרת Langer &amp; Vacanti, 1993.</li>
+    <li>שלושת מרכיבי היסוד: <b>פיגום</b> (מבנה תלת-ממדי), <b>תאים</b> (מייצרי הרקמה), <b>גורמי גדילה/ביוראקטור</b> (אותות שמכוונים אותם). ללא נקבוביות מספקת לחדירת כלי דם - תאים במרכז הפיגום מתים מחוסר חמצן.</li>
+    <li>"הנדסת רקמות Mark-I" קרסה סביב שנת 2000 (ירידה של 90% בשווי השוק) בגלל שילוב של קושי מסחרי בטיפול בתאים חיים, מורכבות רגולטורית, ואימוץ נמוך - "סערה מושלמת", לא סיבה בודדת. "עכבר Vacanti" (1997) הוא הסמל לפער בין ההייפ למציאות.</li>
+    <li><span dir="ltr">TERM</span> = הנדסת רקמות (הרכבה מבנית פיזית) + רפואה רגנרטיבית (עידוד תהליכים קיימים, לרוב מערכתי) - שני כיוונים משלימים שהתעצבו מהקריסה.</li>
+    <li>הנדסת עור היא התחום הבשל ביותר: תחליפים דרמליים (Integra, Alloderm, Novosorb BTM ועוד) מספקים "נאו-דרמיס" לשתל עור, אך "איבר על המדף" אמיתי עדיין לא מומש.</li>
+    <li>הנדסת לימפה מפגרת בגלל הבנה חלקית של הביולוגיה ההתפתחותית - בניגוד לכלי דם, ערוצי זרימה נוצרים <b>לפני</b> ארגון תאי האנדותל הלימפטי.</li>
+    <li>הנדסת רקמות "Mark-II" (מ-2003) חוזרת למציאות ממוקדת: תמיכה בהחלמה טבעית + מסירה תרפויטית זעירה, בשוק שצפוי לצמוח מ-14 ל-55.2 מיליארד דולר עד 2025.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
