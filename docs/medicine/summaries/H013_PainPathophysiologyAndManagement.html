@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כאב: פתופיזיולוגיה וטיפול</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:14.5px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid var(--line); margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>כאב: פתופיזיולוגיה וטיפול <span dir="ltr" class="term">(Pain: Pathophysiology and Management)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 13, עמ' 132–140</div>
+
+<p>כאב הוא הסימפטום השכיח ביותר שמביא חולה לרופא, מפני שהוא מתפרש באופן אוניברסלי כאות למחלה. תפקידה של מערכת החישה לכאב (<span dir="ltr" class="term">nociception</span>) הוא להגן על הגוף ולשמור על הומאוסטזיס, על ידי זיהוי, מיקום וזיהוי של תהליכים שגורמים או עלולים לגרום לנזק רקמתי. מכיוון שכל מחלה יוצרת דפוס נזק רקמתי אופייני משלה, האיכות, מהלך הזמן והמיקום של הכאב הם רמז אבחנתי חשוב - ולכן הבנת המנגנון היא לא רק תיאורטית אלא כלי אבחנתי.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    גירוי מזיק (מכני/תרמי/כימי) מפעיל את קצות העצב של <span dir="ltr" class="term">nociceptors</span> ראשוניים (סיבי <span dir="ltr" class="term">Aδ</span> ו-<span dir="ltr" class="term">C</span>) בתהליך שנקרא <b>טרנסדוקציה</b> - הפיכת הגירוי הפיזי לאות חשמלי. תעלת <span dir="ltr" class="term">TrpV1</span> (קולטן הוואנילואיד) על קצה העצב היא דוגמה מרכזית: היא נפתחת גם מחום, גם מסביבה חומצית וגם מקפסאיצין (החומר החריף בפלפל חריף) - ולכן אותו קולטן מסביר גם למה כוויה כואבת וגם למה רקמה דלקתית (שהופכת חומצית) כואבת יותר.</p>
+  <p class="chain">כשרקמה נפגעת או דלקתית, היא משחררת קוקטייל של מתווכים דלקתיים: <span dir="ltr" class="term">bradykinin (BK)</span>, פרוסטגלנדינים, היסטמין, סרוטונין (מטסיות דם), ATP ו-<span dir="ltr" class="term">H⁺/K⁺</span> חוץ-תאיים. מתווכים אלה נקשרים לקולטנים על קצה הנוצירצפטור ומפעילים העברת אות תוך-תאית שמעלה את מספר תעלות היונים המוחדרות לממברנה - התוצאה היא <b>ירידת סף ההפעלה ועלייה בתדירות היריות</b> לכל עוצמת גירוי. תופעה זו נקראת <b>רגישות היקפית (peripheral sensitization)</b>, והיא ההסבר המנגנוני ל<span class="key">היפראלגזיה</span> (תגובת כאב מוגזמת לגירוי שכן כואב, כמו דקירת מחט שגורמת לכאב עז) ול<span class="key">אלודיניה</span> (כאב מגירוי שבדרך כלל אינו כואב כלל, כמו מגע קל) - הדוגמה הקלינית: עור שרוף משמש נגרם מהם כאב עז ממקלחת פושרת בלבד.</p>
+  <p class="chain">איברים פנימיים (ויסצרה) תקינים רגישים הרבה פחות לגירוי מכני/תרמי מאשר העור, ורבים מהנוצירצפטורים שלהם נחשבים "שקטים" (<span dir="ltr" class="term">silent nociceptors</span>) - כלומר אינם מגיבים כלל בתנאים תקינים. אך בנוכחות דלקת, אותם נוצירצפטורים שקטים "מתעוררים" והופכים רגישים לגירוי מכני - זה ההסבר ל<span class="key">מדוע איבר פנימי דלוק (כמו מפרק או מעי חלול) הופך פתאום לרגיש עד כדי כאב בלתי נסבל, בעוד שבמצב תקין אותו איבר "שותק" גם כשהוא נמתח</span>.</p>
+  <p class="chain">האקסון של הנוצירצפטור נכנס לחוט השדרה דרך השורש האחורי ומסתיים בקרן האחורית. שם משתחרר <b>גלוטמט</b> (עירור מהיר) וגם <span dir="ltr" class="term">substance P</span> ו-<span dir="ltr" class="term">CGRP</span> (עירור איטי וממושך יותר), שמעוררים נוירון מסדר שני. מכיוון שנוירונים רבים בקרן האחורית מקבלים קלט <b>הן</b> מהעור <b>והן</b> מאיברים פנימיים/רקמות עמוקות מאותו מקטע חוט שדרה (קונברגנציה), המוח - שאין לו דרך לדעת מהיכן באמת הגיע האות - "מייחס" בטעות כאב מאיבר פנימי לאזור העור המקביל. זהו ההסבר המדויק ל<span class="key">כאב מוקרן (referred pain)</span>: לדוגמה, עצבוב הסרעפת המרכזית וגם עור הכתף מגיעים משורשי עמוד שדרה צוואריים C3-C4, ולכן גירוי בסרעפת (כמו דם/דלקת מתחת לסרעפת) חשוב שנרגיש ככאב בכתף.</p>
+  <p class="chain">מנוירוני הקרן האחורית, רוב האקסונים חוצים מיד לצד הנגדי ועולים כ<b>מסלול הספינותלמי</b> (<span dir="ltr" class="term">spinothalamic tract</span>) עד לתלמוס, ומשם מתפצלים לקליפת המוח הסומטוסנסורית (שממפה מיקום/עוצמה/איכות של הכאב) וגם לקורטקס הצינגולטי והאינסולרי (שאחראים על הרכיב הרגשי-הסבל של הכאב - זה ההסבר לכך שפחד הוא בן-לוויה קבוע של כאב).</p>
+  <p class="chain">לבסוף, קיים מעגל <b>מודולציה יורד</b> (מקורטקס פרונטלי והיפותלמוס, דרך המוח האמצעי <span dir="ltr" class="term">(PAG)</span> והמדולה <span dir="ltr" class="term">(RVM)</span>, בחזרה לקרן האחורית) שיכול <b>לדכא או להגביר</b> את האות לפני שהוא בכלל מגיע למוח המודע. מעגל זה עשיר בקולטנים אופיואידיים ובאופיואידים אנדוגניים (אנקפלינים, אנדורפינים) - זהו ההסבר המנגנוני המדויק לאפקט הפלצבו (ציפייה מפעילה את המעגל המדכא), לאפקט הנוצבו (ציפייה שלילית מפעילה מעגל מקביל שמגביר כאב), ולכך שתרופות אופיואידיות פועלות גם ישירות במוח ולא רק "חוסמות" את הכאב בהיקף.</p>
+</div>
+<svg class="diagram" viewBox="0 0 950 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="48" font-size="13" text-anchor="middle" fill="#1f2937">גירוי מזיק</text>
+  <text x="85" y="66" font-size="11" text-anchor="middle" fill="#4b5563">מכני/תרמי/כימי</text>
+  <line x1="160" y1="55" x2="200" y2="55" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="200" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="280" y="48" font-size="13" text-anchor="middle" fill="#1f2937">נוצירצפטור (Aδ/C)</text>
+  <text x="280" y="66" font-size="11" text-anchor="middle" fill="#4b5563">טרנסדוקציה - TrpV1</text>
+  <line x1="360" y1="55" x2="400" y2="55" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="400" y="20" width="180" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="490" y="42" font-size="12.5" text-anchor="middle" fill="#1f2937">מתווכי דלקת</text>
+  <text x="490" y="60" font-size="11" text-anchor="middle" fill="#4b5563">BK, PG, היסטמין,</text>
+  <text x="490" y="76" font-size="11" text-anchor="middle" fill="#4b5563">5-HT, ATP, H⁺/K⁺</text>
+  <line x1="490" y1="90" x2="490" y2="120" stroke="#b45309" stroke-width="2" marker-end="url(#arrow2)"/>
+
+  <rect x="400" y="120" width="180" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="490" y="145" font-size="12.5" text-anchor="middle" fill="#1f2937">רגישות היקפית</text>
+  <text x="490" y="163" font-size="11" text-anchor="middle" fill="#4b5563">↓סף, היפראלגזיה/אלודיניה</text>
+  <line x1="580" y1="150" x2="620" y2="150" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <rect x="620" y="115" width="160" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="700" y="140" font-size="12.5" text-anchor="middle" fill="#1f2937">קרן אחורית</text>
+  <text x="700" y="158" font-size="11" text-anchor="middle" fill="#4b5563">קונברגנציה → כאב מוקרן</text>
+  <line x1="700" y1="115" x2="700" y2="90" stroke="#6d28d9" stroke-width="2" marker-end="url(#arrow4)"/>
+
+  <rect x="620" y="20" width="160" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="700" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">מסלול ספינותלמי</text>
+  <text x="700" y="63" font-size="11" text-anchor="middle" fill="#4b5563">חוצה → תלמוס → קורטקס</text>
+  <line x1="780" y1="50" x2="820" y2="50" stroke="#047857" stroke-width="2" marker-end="url(#arrow5)"/>
+
+  <rect x="800" y="20" width="140" height="220" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="870" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">תפיסת כאב</text>
+  <text x="870" y="65" font-size="11" text-anchor="middle" fill="#4b5563">חושי (SS cortex) +</text>
+  <text x="870" y="80" font-size="11" text-anchor="middle" fill="#4b5563">רגשי (cingulate/insula)</text>
+  <line x1="870" y1="90" x2="870" y2="115" stroke="#2563eb" stroke-width="2" marker-end="url(#arrow6)"/>
+  <text x="870" y="135" font-size="11" text-anchor="middle" fill="#4b5563">מודולציה יורדת</text>
+  <text x="870" y="150" font-size="10.5" text-anchor="middle" fill="#4b5563">היפותלמוס→PAG→RVM</text>
+  <text x="870" y="167" font-size="10.5" text-anchor="middle" fill="#4b5563">(אופיואידים, פלצבו)</text>
+  <line x1="820" y1="150" x2="700" y2="150" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow7)"/>
+  <text x="870" y="200" font-size="26" text-anchor="middle">🧠</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b45309"/></marker>
+    <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b91c1c"/></marker>
+    <marker id="arrow4" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#6d28d9"/></marker>
+    <marker id="arrow5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#047857"/></marker>
+    <marker id="arrow6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker>
+    <marker id="arrow7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker>
+  </defs>
+</svg>
+
+<div class="key-box">כאב עצבי (<span dir="ltr" class="term">neuropathic</span>) הוא מנגנון <b>נפרד</b> מהתיאור לעיל: נזק לעצב היקפי (למשל נוירופתיה סוכרתית) או למרכזי (שבץ, פגיעת חוט שדרה) גורם לצפיפות מוגברת של תעלות נתרן בסיב הפגוע ולפעילות ספונטנית - כאב יכול להופיע <b>ללא כל גירוי</b>, באיכות שורפת/עוקצנית/הלם חשמלי אופיינית, ולעיתים גם נוירוני הקרן האחורית שאיבדו קלט תקין הופכים ספונטנית פעילים בעצמם.</div>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה</h2>
+<p>עצב היקפי מכיל שלושה סוגי אקסונים: אפרנטים חושיים ראשוניים, נוירוני מוטוריקה, וסימפתטיים פוסט-גנגליוניים. גופי התא של האפרנטים החושיים יושבים ב<span dir="ltr" class="term">גנגליון השורש האחורי (dorsal root ganglion)</span> שבחורי החוליות, ולכל תא יש שני ענפים - אחד להיקף, אחד לחוט השדרה. שלושה סוגי סיבים חושיים: <span dir="ltr" class="term">Aβ</span> - קוטר גדול, ממוילנים, מגיבים למגע קל ואינם גורמים לכאב במצב תקין; <span dir="ltr" class="term">Aδ</span> - קוטר קטן וממוילנים חלקית, אחראים לכאב חד ומהיר; <span dir="ltr" class="term">C</span> - לא ממוילנים, אחראים לכאב עמום/שורף ואיטי יותר. רוב הנוצירצפטורים שייכים לקבוצות Aδ ו-C, וכל אחד יכול להגיב למספר סוגי גירוי מזיק (פוליmodal) - חום, קור עז, לחץ עז, סביבה חומצית וחומרים גירוי כימיים.</p>
+<p>מסלול הספינותלמי - הנתיב העולה העיקרי לכאב - שוכן בחומר הלבן האנטרולטרלי של חוט השדרה, <b>חוצה מיד</b> לצד הנגדי בגובה הכניסה (בניגוד למסלול העמודה האחורית של תחושת מגע/פרופריוצפציה, שעולה בצד זהה וחוצה רק בגובה המדולה - הבדל שימושי לזיהוי גובה נגע נוירולוגי), עולה דרך שולי המדולה, הפונס והמזנצפלון הלטרליים ומגיע לתלמוס, שממנו יש הסתעפות עצומה לאזורי קורטקס שונים.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>כאב חריף מלווה בתגובת עוררות והתנהגות סטרס אופיינית: עלייה בלחץ דם, דופק, קוטר האישון ורמת קורטיזול בפלזמה, וכן כיווץ שרירים מקומי (למשל כיפוף גפה, נוקשות דופן הבטן - "הגנה" בבדיקה). כאב מתואר לרוב במונחים של תהליך הרסני (דוקר, שורף, מפותל, קורע, לוחץ) ומלווה בתגובה גופנית/רגשית (מפחיד, מבחיל) - יש לכאב מרכיב תחושתי <b>וגם</b> מרכיב רגשי בו-זמנית.</p>
+<p>בכאב עצבי (נוירופתי) האיכות אופיינית - שורפת, עוקצנית, "הלם חשמלי" - ולעיתים ספונטנית לחלוטין או מתעוררת ממגע קל בלבד (אלודיניה). בבדיקה בולט לרוב חסר תחושתי שחופף בדיוק לאזור הכאב, ו<span dir="ltr" class="term">היפרפתיה</span> - תגובת כאב מוגזמת לגירוי חוזר קל.</p>
+<p>ב<b>תסמונת כאב אזורי מורכב (Complex Regional Pain Syndrome, CRPS)</b> - כאב ספונטני שמתפתח לאחר עיכוב של שעות עד שבועות מפציעה (שבר, טראומת רקמה רכה, אוטם שריר הלב, שבץ), מלווה בנפיחות, שינויי צבע וטמפרטורת עור, איבוד עצם periarticular, שינויים ארתריטיים במפרקים דיסטליים ורגישות עור ומפרקים מוגברת - בהשוואה לצד הבריא.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Complex_regional_pain_syndrome.jpg?width=520" alt="יד עם תסמונת כאב אזורי מורכב - נפיחות ושינוי צבע עור">
+  <figcaption class="media-cap">יד עם CRPS - ניתן לראות נפיחות ושינוי צבע/גוון העור בהשוואה ליד הבריאה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Complex_regional_pain_syndrome.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p>כאשר CRPS מופיעה <b>לאחר פגיעת עצב מזוהה</b> - נקראת <span class="key">CRPS type II</span> (נוירלגיה פוסט-טראומטית, ובמקרים קשים - קוזלגיה). כאשר תמונה זהה מופיעה <b>ללא</b> פגיעת עצב מזוהה - נקראת <span class="key">CRPS type I</span> (דיסטרופיה סימפתטית רפלקטורית). ב-CRPS יש לעיתים גם רכיב "כאב מוחזק סימפתטית" (<span dir="ltr" class="term">sympathetically maintained pain</span>): נוצירצפטורים פגועים רוכשים רגישות אדרנרגית וניתן להפעילם על ידי פעילות הסימפתטי - ולכן חסימה סימפתטית מוקדמת יכולה להקל משמעותית על הכאב (ראו אבחנה).</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p>האבחנה קלינית ברובה, ומבוססת על שילוב היסטוריה, איכות הכאב, ובדיקה גופנית. שאלון סטנדרטי כמו <span dir="ltr" class="term">Beck Depression Inventory</span> מומלץ לסקירה בכאב כרוני, כי דיכאון הוא ההפרעה הרגשית הנפוצה ביותר בחולי כאב כרוני - מחלה שכיחה, ניתנת לטיפול ועלולה להיות קטלנית אם לא מטופלת.</p>
+<h3>אבחנה מבדלת - סוגי כאב</h3>
+<table>
+  <thead><tr><th>מאפיין</th><th>כאב נוציצפטיבי (רקמתי)</th><th>כאב עצבי (נוירופתי)</th><th>CRPS</th></tr></thead>
+  <tbody>
+    <tr><td>איכות</td><td>עמום/חד, תואם את עוצמת הגירוי</td><td>שורף, עוקצני, הלם חשמלי</td><td>שורף, ספונטני</td></tr>
+    <tr><td>זמן הופעה</td><td>מיידי עם הגירוי</td><td>מיד או מאוחר לאחר נזק עצבי</td><td>שהות של שעות-שבועות אחרי פציעה</td></tr>
+    <tr><td>בדיקה גופנית</td><td>רגישות מקומית תואמת נזק</td><td>חסר תחושתי חופף לאזור הכאב, אלודיניה</td><td>נפיחות, שינוי צבע/טמפ' עור, רגישות מפרקים</td></tr>
+    <tr><td>תגובה לחסימה סימפתטית</td><td>לרוב אין השפעה</td><td>משתנה</td><td>הקלה תומכת באבחנה (מוקדם במהלך המחלה)</td></tr>
+  </tbody>
+</table>
+<p>אבחנה נוספת חשובה: <b>כאב מיופציאלי כרוני</b> - במישוש עמוק מתגלות "נקודות טריגר" (רצועות/גושים קשיחים בשריר), והקלה בכאב לאחר הזרקת חומר הרדמה מקומי לנקודות אלה תומכת באבחנה.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>כאב חריף - קו ראשון: NSAIDs, אצטמינופן, אספירין</h3>
+<p>עקרון הטיפול: לטפל בגורם תוך התחלת אנלגזיה מיידית, מכיוון שטיפול בגורם הבסיסי לא תמיד מקל על הכאב מיד. תרופות אלה מעכבות <span dir="ltr" class="term">ציקלואוקסיגנז (COX)</span> - <span dir="ltr" class="term">COX-1</span> קונסטיטוטיבי (אחראי בין השאר על הגנת רירית הקיבה) ו-<span dir="ltr" class="term">COX-2</span> שמושרה במצב דלקתי.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון</th><th>שימוש עיקרי</th><th>קונטרא-אינדיקציה/סיכון</th></tr></thead>
+  <tbody>
+    <tr><td>אספירין</td><td>עיכוב COX בלתי הפיך (גם באירוזי טסיות)</td><td>כאב קל-בינוני, ראש, שרירים-שלד</td><td>דימום GI, אצטילציה בלתי הפיכה של COX בטסיות → סיכון דימום</td></tr>
+    <tr><td>אצטמינופן <span dir="ltr" class="term">(Tylenol)</span></td><td>מנגנון לא ברור לגמרי, ללא פעילות אנטי-דלקתית משמעותית</td><td>כאב קל-בינוני, בטוח יחסית ל-GI</td><td>רעילות כבד במינון גבוה</td></tr>
+    <tr><td>איבופרופן/נפרוקסן</td><td>עיכוב COX לא-סלקטיבי</td><td>כאב שרירי-שלד, ראש</td><td>גירוי קיבה, נפרוטוקסיות, ↑ל"ד</td></tr>
+    <tr><td>קטורולק (פרנטרלי)</td><td>עיכוב COX חזק, מהיר תחילת פעולה</td><td>כאב חריף חמור פוסט-ניתוחי</td><td>דימום, נפרוטוקסיות; לא לשימוש ממושך</td></tr>
+    <tr><td>צלקוקסיב <span dir="ltr" class="term">(Celebrex)</span> - COX-2 סלקטיבי</td><td>עיכוב סלקטיבי של COX-2</td><td>פוסט-ניתוחי (לא פוגע בקרישה)</td><td>סיכון קרדיווסקולרי מוגבר (אוטם, שבץ); אסור מיד לאחר CABG</td></tr>
+  </tbody>
+</table>
+
+<h3>אופיואידים</h3>
+<p>האנלגטיקה החזקה והרחבה ביותר בטווח היעילות. פועלים ב-CNS דרך <span dir="ltr" class="term">קולטן μ</span>: מפעילים נוירונים מעכבי-כאב ומדכאים ישירות נוירוני העברת כאב. תופעות לוואי שכיחות (הפיכות): בחילה, גרד, סדציה, עצירות; דיכוי נשימתי נדיר במינון סטנדרטי אך מסכן חיים - ניתן להפוך במהירות עם <span dir="ltr" class="term">נלוקסון</span>.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מאפיין עיקרי</th><th>הערה קלינית חשובה</th></tr></thead>
+  <tbody>
+    <tr><td>מורפין</td><td>סטנדרט השוואה, IV מהיר ביותר</td><td>יש תכשירים בשחרור מושהה לכאב כרוני</td></tr>
+    <tr><td>הידרומורפון</td><td>קצר-פעולה יותר ממורפין</td><td>שימושי כשרוצים בולוס קטן ב-PCA</td></tr>
+    <tr><td>מפרידין <span dir="ltr" class="term">(Meperidine)</span></td><td>מטבוליט <span dir="ltr" class="term">normeperidine</span> רעיל</td><td>מינון גבוה (מעל 1 גר'/יום) → עוררות יתר ופרכוסים שאינם הפיכים בנלוקסון; מצטבר באי-ספיקת כליות - שימוש שגרתי לא מומלץ</td></tr>
+    <tr><td>מתדון</td><td>זמן מחצית חיים ארוך</td><td>סדציה/דיכוי נשימתי עלולים להימשך אחרי שהאפקט האנלגטי חלף; לא להתחיל מעל 40 מ"ג/יום, להעלות מינון לא יותר מכל 3 ימים</td></tr>
+    <tr><td>פנטניל</td><td>פלסטר טרנסדרמלי ל-72 שעות</td><td>רמות פלזמה יציבות; לא לתחילת טיפול באופיואיד-נאיביים</td></tr>
+    <tr><td>טרמדול/טפנטדול</td><td>פעולה משולבת אופיואידית + עיכוב ספיגת נוראפינפרין</td><td>חלופה ל"אופיואיד טהור", יעילה גם בכאב שלא הגיב לתרופות לא-אופיואידיות</td></tr>
+  </tbody>
+</table>
+<p>שילוב בנזודיאזפינים עם אופיואידים <span class="key">מגביר משמעותית את הסיכון לדיכוי נשימתי</span> ויש להימנע ממנו, במיוחד באשפוז יום/מרפאה.</p>
+
+<div class="surgery">
+  <h4>מתן אופיואידים מתקדם - PCA ומתן ספינלי</h4>
+  <p><b>אנלגזיה נשלטת ע"י המטופל (<span dir="ltr" class="term">PCA</span>)</b> - משאבה עם מיקרו-מעבד שמעבירה מנת יסוד רציפה (אופציונלי) ומנות בולוס נוספות בלחיצת כפתור, עד למינון הרשום. לפני חיבור המטופל ל-PCA יש לתת <b>מנת עמסה</b> (loading dose) כדי להשיג שליטה בכאב מלכתחילה - המכשיר עצמו מיועד לתחזוקה, לא לפריצת כאב חד. מנות בולוס טיפוסיות: מורפין 1 מ"ג, הידרומורפון 0.2 מ"ג, פנטניל 10 מק"ג, עם תקופת נעילה (בד"כ 10 דק') כדי למנוע מנת יתר.</p>
+  <h4>מתן ספינלי/אפידורלי</h4>
+  <p>הזרקת אופיואידים ישירות למרחב הספינלי/אפידורלי משיגה אנלגזיה מקומית במינון נמוך משמעותית מאשר IV (למשל מורפין תוך-תיקלי 0.1-0.3 מ"ג לעומת 5-10 מ"ג IV) - כך ממזערים תופעות לוואי סיסטמיות כמו סדציה ודיכוי נשימה. שיטה זו נפוצה בלידה, בכאב פוסט-ניתוחי, ובמערכות תוך-תיקליות מושתלות לכאב סרטני עמיד.</p>
+  <p class="src-note">אנטגוניסטים אופיואידים היקפיים - <span dir="ltr" class="term">אלוימופן (Entereg)</span> ו-<span dir="ltr" class="term">מתילנלטרקסון (Rellistor)</span> - חוסמים קולטני μ היקפיים בלבד (לא חוצים למוח) ומשמשים להיפוך עצירות/איליאוס משני לאופיואידים בלי לבטל את האפקט האנלגטי המרכזי.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/uaXtpN0iy8g" title="PCA Pump Explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה קצרה של עקרון עבודת משאבת ה-PCA - מנת יסוד, בולוס בלחיצת כפתור וזמן נעילה. מקור: YouTube.</p>
+
+<h3>כאב כרוני - גישה רב-תחומית</h3>
+<p>עיקרון מנחה: להעריך גורמים סומטיים <b>וגם</b> רגשיים <b>יחד</b> מההתחלה, לא ברצף - כך המטופל לא חש שמערערים על אמינות תלונתו. מטרות תפקודיות ריאליות (שינה טובה, חזרה לעבודה) מנחות את הטיפול.</p>
+<table>
+  <thead><tr><th>קבוצה</th><th>דוגמאות</th><th>מנגנון/יתרון</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td>נוגדי דיכאון טריציקליים <span dir="ltr" class="term">(TCA)</span></td><td>נורטריפטילין, דזיפרמין</td><td>אפקט אנלגטי במינון נמוך ובתחילת פעולה מהירה יותר מהאפקט האנטי-דיכאוני</td><td>יעיל בעיקר בכאב נוירופתי (נוירופתיה סוכרתית, נוירלגיה פוסט-הרפטית); תופעות לוואי אנטיכולינרגיות/קרדיאליות מגבילות בקשישים</td></tr>
+    <tr><td>SNRI</td><td>ונלפקסין, דולוקסטין</td><td>שומרים חלק ניכר מהאפקט האנלגטי של TCA</td><td>פרופיל תופעות לוואי נוח יותר - חלופה טובה למי שלא סובל TCA</td></tr>
+    <tr><td>אנטיקונבולסנטים</td><td>גבפנטין, פרגבלין</td><td>ליגנדים לתת-יחידת α2δ של תעלת סידן</td><td>קו ראשון לכאב נוירופתי בעל איכות "יורה/הלם חשמלי" (למשל נוירלגיה טריגמינלית); פרופיל תופעות לוואי נוח</td></tr>
+    <tr><td>לידוקאין טופיקלי (מדבקה 5%)</td><td>Lidoderm</td><td>חסימת תעלת נתרן מקומית</td><td>יעיל בעיקר כשיש אלודיניה בולטת (נוירלגיה פוסט-הרפטית), כמעט ללא ספיגה סיסטמית</td></tr>
+    <tr><td>קנבינואידים</td><td>-</td><td>עדות לאפקט צנוע בלבד</td><td>עשויים לעזור יותר בבחילה/אי-נוחות (במיוחד בכימותרפיה) מאשר באנלגזיה ישירה</td></tr>
+  </tbody>
+</table>
+<p><b>אופיואידים לכאב כרוני לא-ממאיר</b> נותרו שנויים במחלוקת - יעילים אך יש סיכון לסבילות, תלות פיזית ואף <span dir="ltr" class="term">היפראלגזיה מושרית אופיואידים</span> (הטיפול עצמו מחמיר את הכאב לאורך זמן). לפני התחלה יש להעריך סיכון לשימוש לרעה, לקבל הסכמה מדעת, ולעקוב לאורך הטיפול (בדיקות שתן, בדיקת מאגר מרשמים <span dir="ltr" class="term">PDMP</span>) - עקרונות אלה מסוכמים ברשימת הביקורת של ה-<span dir="ltr" class="term">CDC</span> למרשם אופיואידים לכאב כרוני.</p>
+<p>לכאב עמיד לטיפול תרופתי - <b>הליכים פולשניים ממוקדי-הדמיה</b>: הזרקת סטרואידים אפידורלית לכאב רדיקולרי חריף, טיפול בתדר רדיו למפרקי הפאסט בכאב גב/צוואר כרוני, ובמקרים חמורים - השתלת אלקטרודות לגירוי חוט שדרה או מערכות מתן תוך-תיקליות. הליכים אלה שמורים למי שלא הגיב לטיפול תרופתי שמרני, ומחייבים הפניה למרפאת כאב רב-תחומית לפני ביצוע.</p>
+<p>ב-CRPS - <b>חסימה סימפתטית מוקדמת</b> (בשלב האקוטי) עשויה להקל משמעותית על הכאב ותומכת באבחנה, אך ביעילותה משתנה ולא ברורה ככל שהמצב הופך כרוני.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: "יד המתווכים ההיקפיים"</h3>
+  <p>דמייני יד עם 5 אצבעות, וכל אצבע היא מתווך דלקתי אחר שמרגיש את הנוצירצפטור: <b>אגודל</b> = פרוסטגלנדינים (<span dir="ltr" class="term">PG</span>), <b>אצבע מורה</b> = ברדיקינין (<span dir="ltr" class="term">BK</span>), <b>אמה</b> = היסטמין, <b>קמיצה</b> = סרוטונין (<span dir="ltr" class="term">5-HT</span> מטסיות), <b>זרת</b> = תוצרי נזק תאי (<span dir="ltr" class="term">ATP, H⁺, K⁺</span>). כשה"יד" הזו "תופסת" את הנוצירצפטור - הוא נעשה רגיש הרבה יותר, ואפילו לחיצה קלה (אצבע נוספת שנוגעת) מספיקה כדי לגרום כאב עז - זו האלודיניה.</p>
+  <h3>סיפור דמיוני: "השוער בשער חוט השדרה"</h3>
+  <p>דמייני שער כניסה לטירה (חוט השדרה) עם שוער (הקרן האחורית). כשהמלך (המוח/היפותלמוס) שולח פקודה "תעצור אותם!" - השוער סוגר את השער ומונע ממסרים כאובים לעבור הלאה (זו המודולציה היורדת - למשל אצל ספורטאי בקרב שלא מרגיש שבר). כשהמלך "מוסח דעת" או מבטיח הקלה (פלצבו) - הוא שולח את אותה פקודת סגירה, גם בלי כל תרופה אמיתית. אבל אם השוער נרדם או נעדר (כמו בפגיעת עצב) - אפילו נוסע תמים (מגע קל) עובר את השער וגורם למהומה (אלודיניה).</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="60" width="80" height="100" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="60" y="115" font-size="30" text-anchor="middle">👑</text>
+    <text x="60" y="180" font-size="11" text-anchor="middle" fill="#4b5563">המלך (מוח)</text>
+    <line x1="100" y1="110" x2="220" y2="110" stroke="#6d28d9" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrowg)"/>
+    <text x="160" y="100" font-size="10.5" text-anchor="middle" fill="#4b5563">"תעצור!"</text>
+    <rect x="220" y="40" width="60" height="140" fill="#fffbeb" stroke="#b45309"/>
+    <text x="250" y="115" font-size="30" text-anchor="middle">🛡️</text>
+    <text x="250" y="195" font-size="11" text-anchor="middle" fill="#4b5563">השוער (קרן אחורית)</text>
+    <line x1="380" y1="110" x2="290" y2="110" stroke="#b91c1c" stroke-width="2" marker-end="url(#arrowg2)"/>
+    <text x="340" y="100" font-size="10.5" text-anchor="middle" fill="#4b5563">אות כאב</text>
+    <text x="420" y="118" font-size="30" text-anchor="middle">⚡</text>
+    <text x="420" y="150" font-size="11" text-anchor="middle" fill="#4b5563">גירוי מהיקף</text>
+    <defs>
+      <marker id="arrowg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#6d28d9"/></marker>
+      <marker id="arrowg2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#b91c1c"/></marker>
+    </defs>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/1506_Referred_Pain_Chart.jpg?width=560" alt="מפת כאב מוקרן מאיברים פנימיים">
+  <figcaption class="media-cap">מפת כאב מוקרן - ממחישה כיצד גירוי באיברים פנימיים שונים "מוקרן" לאזורי עור מרוחקים, בעקבות קונברגנציה בקרן האחורית. מקור: <a href="https://commons.wikimedia.org/wiki/File:1506_Referred_Pain_Chart.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/fUKlpuz2VTs" title="Nociceptors - An Introduction to Pain" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר מצויר על סוגי הנוצירצפטורים (Aδ/C), טרנסדוקציה ותפקידם במסלול הכאב. מקור: YouTube - ערוץ Armando Hasudungan.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lEQyLR6UBW0" title="Pain Transduction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קצר וממוקד על שלב הטרנסדוקציה - איך גירוי פיזי הופך לאות עצבי בקצה הנוצירצפטור. מקור: YouTube.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK554435/" target="_blank">WHO Analgesic Ladder - StatPearls (NCBI Bookshelf)</a>
+    <div class="desc">תיאור מפורט של "סולם האנלגזיה" של ארגון הבריאות העולמי - שלוש דרגות טיפול לפי עוצמת כאב, במקור לכאב סרטני וכיום בשימוש רחב יותר.</div>
+  </li>
+  <li>
+    <a href="https://www.cdc.gov/opioids/healthcare-professionals/prescribing/guideline/index.html" target="_blank">CDC Clinical Practice Guideline for Prescribing Opioids</a>
+    <div class="desc">ההנחיות המעודכנות של המרכז לבקרת מחלות למרשם אופיואידים לכאב כרוני - כולל רשימת הביקורת שהוזכרה בפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Physiology_of_pain:_Nursing" target="_blank">Physiology of Pain - Osmosis</a>
+    <div class="desc">סיכום ויזואלי נוסף על ארבעת שלבי עיבוד הכאב: טרנסדוקציה, טרנסמיסיה, תפיסה ומודולציה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 45 סבלה משבר בעצם הרדיוס הדיסטלי ועברה גיבוס למשך 6 שבועות. שבוע לאחר הסרת הגיבוס, החלה לחוש כאב שורף ועז ביד ובאמה, החורג מגבול אזור השבר, המחמיר במגע קל בבגד (אלודיניה). בבדיקה: כף היד נפוחה, בגוון סגלגל-אדמדם וחמה יותר בהשוואה ליד הנגדית, עם רגישות מפרקית מוגברת. צילום רנטגן מראה איבוד עצם periarticular מפוזר. הכאב הוקל משמעותית לאחר חסימת עצב סימפתטי אזורית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי האבחנה הסבירה ביותר במקרה שתואר?</div>
+  <button class="opt" data-i="0">נוירלגיה טריגמינלית</button>
+  <button class="opt" data-i="1">כאב מיופציאלי</button>
+  <button class="opt" data-i="2">CRPS type I</button>
+  <button class="opt" data-i="3">CRPS type II</button>
+  <div class="explain">נכון: <b>CRPS type I</b> (דיסטרופיה סימפתטית רפלקטורית) - תמונה קלינית קלאסית (כאב שורף, נפיחות, שינויי צבע/חום, אלודיניה, איבוד עצם periarticular) שהופיעה <b>ללא</b> פגיעת עצב מזוהה (רק שבר עצם). CRPS type II מחייב פגיעת עצב מוכחת - כאן לא תוארה כזו. נוירלגיה טריגמינלית היא כאב פנים בעצב החמישי, ולא קשורה לגפה. כאב מיופציאלי לא מסביר את שינויי הצבע/הטמפרטורה/העצם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע חסימת העצב הסימפתטי הקלה על הכאב במקרה זה?</div>
+  <button class="opt" data-i="0">מפני שהיא חוסמת ישירות את קולטני ה-μ במוח</button>
+  <button class="opt" data-i="1">מפני שהנוצירצפטורים הפגועים רכשו רגישות אדרנרגית וניתן להפעילם ע"י פעילות סימפתטית</button>
+  <button class="opt" data-i="2">מפני שהיא מפחיתה ישירות רמת פרוסטגלנדינים</button>
+  <button class="opt" data-i="3">מפני שהיא מתקנת את איבוד העצם ה-periarticular</button>
+  <div class="explain">נכון: זהו "כאב מוחזק סימפתטית" - נוצירצפטורים פגועים מפתחים רגישות לנוראפינפרין, כך שפעילות עצבית סימפתטית "מפעילה" אותם ישירות וגורמת לכאב, גם ללא גירוי חיצוני. חסימת הסימפתטי מסירה את מקור ההפעלה הזה. קולטני μ קשורים לאופיואידים ולא לחסימה סימפתטית. פרוסטגלנדינים קשורים לרגישות היקפית "רגילה" ולא למנגנון האדרנרגי הספציפי כאן. איבוד העצם הוא ממצא, לא סיבה לכאב.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע נוצר כאב מוקרן (referred pain) לכתף בגירוי של הסרעפת המרכזית?</div>
+  <button class="opt" data-i="0">כי אפרנטים מהסרעפת ומעור הכתף מתכנסים על אותם נוירונים בקטעי חוט השדרה הצוואריים C3-C4</button>
+  <button class="opt" data-i="1">כי הכתף עשירה בנוצירצפטורים "שקטים"</button>
+  <button class="opt" data-i="2">כי מתדון מצטבר ברקמת הכתף</button>
+  <button class="opt" data-i="3">כי מסלול העמודה האחורית עובר דרך הכתף</button>
+  <div class="explain">נכון: קונברגנציה - אפרנטים מהסרעפת המרכזית ומעור הכתף חולקים אותם קטעי חוט שדרה (C3-C4), כך שהמוח, שאינו יכול להבחין מהיכן הגיע האות, "מייחס" אותו לאזור העור התואם. נוצירצפטורים שקטים רלוונטיים לרגישות ויסצרלית אך לא מסבירים את מיקום ההקרנה. מתדון היא תרופה ולא קשורה. מסלול העמודה האחורית מוביל מגע/פרופריוצפציה, לא כאב מוקרן.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופל עם אי-ספיקת כליות מקבל מפרידין במינון גבוה לכאב חריף ומפתח עוררות יתר ופרכוסים. מה ההסבר הסביר ביותר?</div>
+  <button class="opt" data-i="0">מנת יתר קלאסית של אופיואיד, יגיב לנלוקסון</button>
+  <button class="opt" data-i="1">תסמונת סרוטונינרגית מהאינטראקציה עם NSAID</button>
+  <button class="opt" data-i="2">היפראלגזיה מושרית אופיואידים</button>
+  <button class="opt" data-i="3">הצטברות נורמפרידין - מטבוליט רעיל של מפרידין שאינו הפיך בנלוקסון, ומצטבר במיוחד באי-ספיקת כליות</button>
+  <div class="explain">נכון: נורמפרידין הוא מטבוליט של מפרידין שגורם לעוררות יתר ופרכוסים במינון גבוה (מעל כ-1 גר'/יום), ורעילותו <b>אינה</b> הפיכה בנלוקסון (בניגוד לתופעות לוואי אופיואידיות "רגילות"). באי-ספיקת כליות ההצטברות מחמירה, ולכן שימוש שגרתי במפרידין אינו מומלץ. מנת יתר קלאסית הייתה מגיבה לנלוקסון. אין כאן תיאור של NSAID או תסמונת סרוטונינרגית. היפראלגזיה מושרית אופיואידים מתפתחת עם שימוש כרוני, לא כתופעה חריפה עם פרכוסים.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. איזו קבוצת תרופות מהווה כיום קו ראשון עדיף לכאב נוירופתי בעל איכות "יורה/הלם חשמלי" (כמו נוירלגיה טריגמינלית), בזכות פרופיל תופעות לוואי נוח?</div>
+  <button class="opt" data-i="0">NSAIDs</button>
+  <button class="opt" data-i="1">אנטיקונבולסנטים חדשים - גבפנטין/פרגבלין</button>
+  <button class="opt" data-i="2">אופיואידים ארוכי-טווח</button>
+  <button class="opt" data-i="3">COX-2 סלקטיביים</button>
+  <div class="explain">נכון: גבפנטין ופרגבלין (ליגנדים ל-α2δ) יעילים לכאבים נוירופתיים בעלי איכות "יורה", ובזכות פרופיל תופעות לוואי נוח יחסית (בהשוואה לפניטואין/קרבמזפין הישנים יותר) הפכו לקו ראשון. NSAIDs ו-COX-2 יעילים בעיקר לכאב דלקתי/שרירי-שלד, לא נוירופתי. אופיואידים ארוכי טווח שמורים לקו שני-שלישי בכאב כרוני, לא ראשון.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופל בטיפול PCA לכאב פוסט-ניתוחי לא מקבל הקלה מספקת בלחיצות חוזרות על הכפתור. מהי הפעולה הראשונה הנכונה?</div>
+  <button class="opt" data-i="0">להוסיף בנזודיאזפין להרגעה</button>
+  <button class="opt" data-i="1">לעבור ישר למתדון לטווח ארוך</button>
+  <button class="opt" data-i="2">לוודא שניתנה מנת עמסה (loading dose) מספקת ולשקול הערכה מחדש של תוכנית המינון</button>
+  <button class="opt" data-i="3">להפסיק את ה-PCA ולעבור לאספירין בלבד</button>
+  <div class="explain">נכון: השגיאה השכיחה ביותר בניהול כאב חמור באופיואידים היא מינון לא מספק - PCA נועד <b>לתחזק</b> שליטה בכאב שכבר הושגה עם מנת עמסה, לא ליצור אותה מאפס. יש להעריך אם ניתנה עמסה מתאימה ולכייל את התוכנית. בנזודיאזפינים מגבירים סיכון דיכוי נשימתי ואינם פותרים חוסר שליטה בכאב. מעבר למתדון (ארוך-טווח, קשה לכיול) אינו מתאים לכאב חריף פוסט-ניתוחי. אספירין בלבד לא יספיק לכאב חריף בעוצמה שדורשת PCA.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>נוצירצפטורים (Aδ/C) מתמירים גירוי מזיק לאות עצבי (טרנסדוקציה); מתווכי דלקת (BK, PG, היסטמין, 5-HT, ATP/H⁺/K⁺) גורמים לרגישות היקפית - סף כאב נמוך יותר (היפראלגזיה, אלודיניה).</li>
+    <li>קונברגנציה בקרן האחורית של אפרנטים מהעור ומאיברים פנימיים מאותו מקטע חוט שדרה → כאב מוקרן. מסלול ספינותלמי חוצה מיד → תלמוס → קורטקס סומטוסנסורי (מיקום/עוצמה) ו-cingulate/insular (רכיב רגשי).</li>
+    <li>מודולציה יורדת (היפותלמוס→PAG→RVM, עשירה בקולטני μ) יכולה לדכא (פלצבו, אופיואידים) או להגביר (נוצבו) כאב עוד לפני שהגיע למודעות.</li>
+    <li>כאב עצבי (נוירופתי) - מנגנון נפרד: תעלות נתרן מוגברות בעצב פגוע → פעילות ספונטנית, איכות שורפת/עוקצנית, אלודיניה, חסר תחושתי חופף.</li>
+    <li>CRPS type I (ללא פגיעת עצב מזוהה) לעומת type II (עם פגיעת עצב) - כאב שורף + נפיחות + שינויי עור/טמפ' + איבוד עצם; הקלה מחסימה סימפתטית מוקדמת תומכת באבחנה.</li>
+    <li>כאב חריף: NSAIDs/אצטמינופן קו ראשון לכאב קל-בינוני; אופיואידים (μ-אגוניסטים) לכאב חמור, PCA עם מנת עמסה + בולוס + נעילה; זהירות ממפרידין (נורמפרידין רעיל) ומשילוב בנזודיאזפינים.</li>
+    <li>כאב כרוני: גישה רב-תחומית (סומטי+רגשי יחד); TCA/SNRI ואנטיקונבולסנטים (גבפנטין/פרגבלין) קו ראשון לנוירופתי; אופיואידים כרוניים - במחלוקת, דורשים הערכת סיכון ומעקב לפי הנחיות CDC; הליכים פולשניים (גירוי חוט שדרה, הזרקות אפידורליות) שמורים למקרים עמידים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
