@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>סוגיות אתיות ברפואה קלינית (Ethical Issues in Clinical Medicine)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:28px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid var(--line); margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>סוגיות אתיות ברפואה קלינית <span dir="ltr" class="term">(Ethical Issues in Clinical Medicine)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 11, עמ' 108–112 | Christine Grady, Bernard Lo</div>
+
+<p>כל רופאה נתקלת מדי יום בשאלות שאין להן תשובה "טכנית" אחת: האם לספר למטופל אבחנה קשה כפי שהיא?
+מתי מותר לשבור סודיות? מי מחליט כשהמטופל לא מסוגל? איך מקצים משאבים מוגבלים בצדק? הפרק הזה לא
+עוסק במחלה אחת אלא במסגרת חשיבה - עקרונות, כלים וגישות - שמלווה כל החלטה קלינית, מהשגרתית ביותר
+ועד המורכבת ביותר.</p>
+
+<h2><span class="num">2</span> המסגרת האתית - למה בכלל צריך עקרונות</h2>
+<div class="mechanism">
+  <p class="chain">
+    השאלה "מה נכון לעשות?" חוזרת על עצמה בכל תחום ברפואה, ובלי מסגרת משותפת כל רופא היה מחליט
+    לפי תחושת בטן אישית - מה שמוביל לחוסר עקביות בין מטופלים דומים ולפגיעה באמון הציבור במקצוע.
+    לכן פותחו <b>ארבעה עקרונות-על</b> שמשמשים כ"שפה משותפת" לניתוח דילמה: <b>כבוד לאוטונומיה</b>
+    (respect for autonomy) - המטופל, לא הרופא, הוא זה שקובע מה טוב עבורו, כל עוד הוא מבין את
+    המצב; <b>עשיית טוב</b> (<span dir="ltr" class="term">beneficence</span>) - חובת הרופא לפעול
+    לטובת המטופל ולקדם את רווחתו; <b>אי-הזקה</b> (<span dir="ltr" class="term">non-maleficence</span>,
+    "primum non nocere") - איסור לגרום נזק מיותר או לא-פרופורציונלי; ו<b>צדק</b>
+    (<span dir="ltr" class="term">justice</span>) - הבטחת הוגנות בחלוקת טיפול ומשאבים, ואיסור
+    אפליה על בסיס גזע, דת, מגדר או נכות.
+  </p>
+  <p>
+    העקרונות האלה <b>מתנגשים לעיתים קרובות זה בזה</b> - וזה בדיוק מה שהופך דילמה אתית לדילמה:
+    מטופל מסרב לטיפול מציל חיים (אוטונומיה) בזמן שהרופא בטוח שהטיפול יעזור לו (beneficence) -
+    איזה עיקרון גובר? התשובה של הריסון: <b>ברוב המצבים כיום, אוטונומיה של מטופל בעל יכולת
+    החלטה גוברת</b> על שיפוט הרופא לגבי "מה טוב בשבילו", גם אם הרופא חושב אחרת - אך זה לא
+    מוחלט (ראו סעיף 5 להלן על גבולות האוטונומיה).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="190" height="80" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="115" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">אוטונומיה</text>
+  <text x="115" y="75" text-anchor="middle" font-size="12" fill="#4b5563">המטופל מחליט</text>
+
+  <rect x="240" y="20" width="190" height="80" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="335" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">עשיית טוב</text>
+  <text x="335" y="75" text-anchor="middle" font-size="12" fill="#4b5563">Beneficence</text>
+
+  <rect x="460" y="20" width="190" height="80" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="555" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">אי-הזקה</text>
+  <text x="555" y="75" text-anchor="middle" font-size="12" fill="#4b5563">Non-maleficence</text>
+
+  <rect x="680" y="20" width="190" height="80" rx="10" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="775" y="55" text-anchor="middle" font-size="15" font-weight="700" fill="#1f2937">צדק</text>
+  <text x="775" y="75" text-anchor="middle" font-size="12" fill="#4b5563">Justice</text>
+
+  <line x1="115" y1="100" x2="450" y2="170" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="335" y1="100" x2="450" y2="170" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="555" y1="100" x2="450" y2="170" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="775" y1="100" x2="450" y2="170" stroke="#9ca3af" stroke-width="2"/>
+
+  <rect x="320" y="170" width="260" height="50" rx="10" fill="#111827"/>
+  <text x="450" y="201" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">ההחלטה הקלינית</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/u6WXDTfnxAw"
+  title="Medical Ethics - The Four Principles" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר שמסביר את ארבעת העקרונות ואת המתח ביניהם, עם דוגמאות קליניות.</p>
+
+<h2><span class="num">3</span> יישום קליני: הסכמה מדעת, כשירות וסודיות</h2>
+
+<h3>הסכמה מדעת (<span dir="ltr" class="term">informed consent</span>) ושיתוף בהחלטה</h3>
+<p>
+  הסכמה מדעת היא <b>הרבה מעבר לחתימה על טופס</b>. היא תהליך: הרופא מסביר בשפה מובנת (לא ז'רגון)
+  את האבחנה, האפשרויות הטיפוליות, הסיכונים והתועלות של כל אחת מהן, ואת מה שקורה אם לא מטפלים
+  בכלל - ומוודא שהמטופל <b>הבין</b> ולא רק שמע. מטופל בעל יכולת החלטה רשאי לסרב אפילו לטיפול
+  מציל-חיים, ולבחור בין חלופות סבירות. במצב חירום, כשאי אפשר להשיג הסכמה (המטופל מחוסר הכרה)
+  ועיכוב הטיפול יסכן חיים - <b>מותר לטפל ללא הסכמה</b>, בהנחה שאדם סביר היה רוצה טיפול מציל חיים
+  אלא אם הביע אחרת מראש (למשל בהנחיה מקדימה).
+</p>
+<div class="key-box">כבוד לאוטונומיה <b>אינו</b> מזכה את המטופל בזכות לדרוש כל טיפול שהוא רוצה -
+  רופא אינו מחויב לספק התערבות שאין לה רציונל פיזיולוגי, שכבר נכשלה, או שסותרת עדות-מבוססת
+  ושיקול דעת קליני טוב.</div>
+
+<h3>כשירות לקבל החלטות (<span dir="ltr" class="term">decision-making capacity</span>)</h3>
+<p>
+  חוסר הכרה, דמנציה מתקדמת, דליריום ומצבים רפואיים נוספים עלולים לפגוע ביכולת קבלת החלטות.
+  <b>לרוב הרופא המטפל</b> (ולא בית משפט) קובע בפועל אם מטופל כשיר להחליט החלטה קלינית ספציפית -
+  בתי משפט מוסמכים לקבוע "אי-כשירות משפטית" (competence) אך זה נדיר בפרקטיקה היומיומית. מטופל
+  <b>בעל</b> יכולת החלטה מסוגל: (1) לבטא בחירה ברורה, (2) להבין את מצבו הרפואי, (3) להעריך את
+  משמעות המידע עבורו באופן אישי, ו-(4) לנמק את הבחירה על סמך המידע. חוסר הסכמה עם המלצת הרופא
+  <b>אינו</b> בפני עצמו הוכחה לחוסר כשירות - יש לבדוק זאת, לא להניח זאת.
+</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6hC_ndWNuGM"
+  title="Demystifying Decision-Making Capacity" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על ההבדל בין כשירות קלינית (capacity) לכשירות משפטית (competence), ואיך בפועל מעריכים אותה בזמן אמת.</p>
+
+<p>
+  כשמטופל <b>חסר</b> יכולת החלטה, הרופא פונה לגורם מחליט מטעמו (<span dir="ltr" class="term">surrogate</span>):
+  ראשית מיופה כוח שהוגדר מראש בהנחיה מקדימה, ואם אין כזה - בני משפחה לפי סדר עדיפויות שקבוע
+  בחוק המדינה. גורם מחליט אמור להסתמך על ערכי המטופל ורצונו הידוע, אך <b>לעיתים טובתו הנוכחית
+  של המטופל יכולה לגבור</b> על העדפה קודמת - למשל כשההתערבות צפויה להועיל משמעותית, כשההצהרה
+  הקודמת לא מתאימה בדיוק למצב, או כשהמטופל השאיר לגורם המחליט שיקול דעת.
+</p>
+
+<h3>שמירה על סודיות</h3>
+<p>
+  סודיות מעודדת מטופלים לפנות לטיפול ולדבר בגילוי לב. עם זאת, היא <b>ניתנת לביטול</b> כאשר הסיכון
+  לצד שלישי הוא <b>רציני וסביר להתרחש</b>, אין דרך פחות פוגענית למנוע אותו, וההשפעה השלילית של
+  הפרת הסודיות ממוזערת ומקובלת חברתית. לכן החוק מחייב דיווח חובה במצבים כמו שחפת פעילה, מחלות
+  מין, התעללות בקטין/קשיש, ואלימות במשפחה - במקרים אלו הסיכון לציבור/לקורבן עולה על הפרטיות.
+</p>
+
+<h2><span class="num">5</span> הבחנה בין מושגים שקל להתבלבל ביניהם</h2>
+<p>סוגיות אתיות רבות מתערבבות זו בזו בזיכרון - הטבלה הבאה מבדילה בין המושגים הקרובים ביותר:</p>
+<table>
+  <thead><tr><th>מושג</th><th>מי קובע בפועל</th><th>ההבדל המרכזי</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">Capacity</span> (כשירות קלינית)</td><td>הרופא המטפל, בכל רגע נתון, ביחס להחלטה ספציפית</td><td>הערכה קלינית דינמית - יכולה להשתנות עם הזמן (למשל דליריום חולף)</td></tr>
+    <tr><td><span dir="ltr" class="term">Competence</span> (כשירות משפטית)</td><td>בית משפט</td><td>קביעה משפטית גורפת וקבועה יותר, לא רק ביחס להחלטה אחת</td></tr>
+    <tr><td>הסכמה מדעת (<span dir="ltr" class="term">informed consent</span>)</td><td>המטופל, לאחר גילוי מלא</td><td>תהליך הבנה ובחירה - לא רק חתימה על טופס</td></tr>
+    <tr><td>הנחיה מקדימה / ייפוי כוח לטיפול</td><td>המטופל, מראש, בעודו כשיר</td><td>קובעת מי יחליט/מה הרצון כשהמטופל כבר לא כשיר</td></tr>
+    <tr><td>סירוב מודע לטיפול</td><td>המטופל הכשיר</td><td>אינו הוכחה לחוסר כשירות - יש לבדוק את הסיבה, לא להניח</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr" class="term">CURVES</span> - להערכת יכולת החלטה (נפוץ ברפואה דחופה)</h3>
+  <p>
+    <b><span dir="ltr" class="term">C</span></b>hoose and communicate - לבחור ולתקשר בחירה עקבית ·
+    <b><span dir="ltr" class="term">U</span></b>nderstand - להבין את המידע הרלוונטי ·
+    <b><span dir="ltr" class="term">R</span></b>eason - לנמק על סמך המידע ·
+    <b><span dir="ltr" class="term">V</span></b>alue - לקשר את הבחירה לערכי המטופל ·
+    <b><span dir="ltr" class="term">E</span></b>mergency - האם מדובר במצב חירום שמצדיק טיפול ללא המתנה להסכמה ·
+    <b><span dir="ltr" class="term">S</span></b>urrogate - אם אין כשירות, מי הגורם המחליט הבא בתור.
+  </p>
+  <h3>ראשי תיבות: <span dir="ltr" class="term">PARQ</span> - מרכיבי הסכמה מדעת</h3>
+  <p>
+    <b><span dir="ltr" class="term">P</span></b>rocedure (מה בדיוק עומד לקרות) ·
+    <b><span dir="ltr" class="term">A</span></b>lternatives (מה החלופות, כולל אי-טיפול) ·
+    <b><span dir="ltr" class="term">R</span></b>isks and benefits (סיכונים ותועלות) ·
+    <b><span dir="ltr" class="term">Q</span></b>uestions answered (שכל שאלה של המטופל נענתה).
+  </p>
+  <h3>סיפור דמיוני לארבעת העקרונות</h3>
+  <p>
+    דמייני חדר משפט קטן שנפתח בכל החלטה רפואית: המטופלת עולה לדוכן העדים ומדברת בקול רם וברור -
+    זו ה<b>אוטונומיה</b> שלה. לצידה עומד "עורך דין הגנה" שמנסה כל הזמן לעזור לה ולקדם את טובתה -
+    זו ה<b>עשיית הטוב</b>. מול שניהם יושב שופט קפדן שחוזר וממלמל "קודם כל - אל תזיק!" - זו
+    ה<b>אי-הזקה</b>. ומעל כל האולם תלויים מאזני צדק ענקיים, שמוודאים שכל מטופל אחר שממתין בתור
+    מקבל בדיוק אותו יחס הוגן - זהו ה<b>צדק</b>.
+  </p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="480" height="200" rx="10" fill="#ecfdf5"/>
+    <circle cx="120" cy="110" r="34" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="120" y="115" text-anchor="middle" font-size="12" font-weight="700">מטופלת</text>
+    <circle cx="220" cy="70" r="26" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="220" y="75" text-anchor="middle" font-size="11" font-weight="700">רופא</text>
+    <circle cx="330" cy="110" r="30" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+    <text x="330" y="115" text-anchor="middle" font-size="11" font-weight="700">שופט</text>
+    <path d="M420 40 L470 40 L445 20 Z" fill="none" stroke="#047857" stroke-width="2"/>
+    <line x1="445" y1="20" x2="445" y2="70" stroke="#047857" stroke-width="2"/>
+    <line x1="420" y1="40" x2="470" y2="40" stroke="#047857" stroke-width="2"/>
+    <text x="445" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">מאזני צדק</text>
+  </svg>
+</div>
+
+<h2><span class="num">6</span> כשיש דילמה: איך פותרים אותה בפועל</h2>
+<p>
+  כשעקרונות מתנגשים, הריסון מציע <b>ארבעה מקורות הכוונה</b> שמשלימים זה את זה: (1) <b>עקרונות
+  אתיים</b> (המתוארים למעלה); (2) <b>אתיקת מידות</b> (<span dir="ltr" class="term">virtue ethics</span>) -
+  התמקדות באופי הרופא (חמלה, יושרה, ענווה, אמינות) ולא רק בכללים; (3) <b>שבועות וקודים
+  מקצועיים</b> שרופאים מתחייבים אליהם; (4) <b>ערכים אישיים</b>, תרבותיים ודתיים - שהם חשובים
+  אך <b>לבדם אינם מספיקים</b>, כי לרופא יש חובות תפקיד (כמו סודיות והסכמה מדעת) שחורגות מעבר
+  למוסר האישי שלו.
+</p>
+<p>
+  כשהמקורות האלה נראים סותרים, הצעד המעשי הוא: לנסח את הדאגה בקול, לדון ולהקשיב לדעות הצוות
+  המטפל, ולהיעזר במשאבים זמינים - עבודה סוציאלית, טיפול פליאטיבי, ובמיוחד <b>ייעוץ אתי או
+  ועדת אתיקה בית-חולית</b>, שיכולים לסייע להבהיר את הסוגיה ולזהות אסטרטגיות פתרון, כולל שיפור
+  תקשורת והתמודדות עם רגשות חזקים או סותרים.
+</p>
+
+<h3>הקצאת משאבים מוגבלים (למשל בזמן מגפה)</h3>
+<p>
+  כשמשאב (מיטת טיפול נמרץ, מכשיר הנשמה) מוגבל, <b>"כל הקודם זוכה" אינו הוגן</b> - כי זה מפלה
+  לרעה מטופלים שנתקלים במחסומי גישה לטיפול. מדיניות הקצאה הוגנת צריכה להיות שקופה, אחראית,
+  מגיבה לצרכי הציבור, ומידתית להיצע מול הביקוש - <b>בלי</b> להתחשב בגזע, מגדר, נכות, מעמד
+  ביטוחי או רכוש. הפתרון המומלץ: קביעת קריטריונים מבוססי-ראיות מראש על ידי ועדת טריאז' או
+  קובעי מדיניות (לא החלטה אד-הוק של רופא בודד ליד מיטת החולה), כדי לצמצם מצוקה מוסרית ולשמור
+  על עקביות.
+</p>
+
+<h3>התנגדות מצפונית (<span dir="ltr" class="term">conscientious objection</span>) - וגבולותיה</h3>
+<p>
+  רופא רשאי לסרב באופן אישי לספק טיפול הסותר את ערכיו (למשל אמצעי מניעה מסוימים, סיוע רפואי
+  במוות) - אך המוסד הרפואי חייב לדאוג שהמטופל עדיין יקבל את הטיפול הדרוש (למשל דרך הפניה לאיש
+  צוות אחר), ולהודיע למטופל מראש על ההגבלה. <b>אסור</b> לסרב לטפל או להפלות מטופל בגלל גזע,
+  מוצא, נכות או אבחנה - זה בלתי חוקי ומפר את חובת הרופא לכבד את המטופל.
+</p>
+
+<h3>תגובה לטעויות רפואיות</h3>
+<p>
+  רוב הטעויות נובעות מכשל מערכתי, לא מרשלנות אישית. גישת "<b>תרבות צודקת</b>"
+  (<span dir="ltr" class="term">just culture</span>) מעודדת דיווח פתוח וכן על טעויות כבסיס
+  ללמידה, ומעבירה את הדגש מהאשמת היחיד לשיפור עיצוב המערכת. פנייה זו משפרת בטיחות מטופלים
+  יותר מגישה עונשית - אך משמעת מקצועית עדיין מתאימה במקרים של חוסר-כשירות חמור, התנהגות
+  פזיזה, או פגיעה בגבולות. חשיפת הטעות, התנצלות, ופיצוי הולם משקפים כבוד למטופל.
+</p>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tuskegee_study.jpg?width=700" alt="מחקר טסקיגי - Tuskegee Study">
+  <figcaption class="media-cap">תצלום מתוך מחקר טסקיגי לעגבת (Tuskegee Syphilis Study, 1932–1972) - מחקר שבו נמנע טיפול במתכוון מגברים אפרו-אמריקאים חולי עגבת במשך עשרות שנים ללא הסכמתם המודעת. החשיפה הציבורית שלו ב-1972 הובילה להקמת הוועדה הלאומית שכתבה את "דוח בלמונט" (Belmont Report, 1979) - מסמך היסוד שממנו נגזרו עקרונות ההסכמה מדעת וועדות האתיקה (IRB) הנהוגים כיום. מקור: <a href="https://commons.wikimedia.org/wiki/File:Tuskegee_study.jpg" target="_blank">Wikimedia Commons</a> (נחלת הכלל).</figcaption>
+</figure>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html" target="_blank">The Belmont Report (HHS.gov)</a>
+    <div class="desc">הטקסט המלא של דוח בלמונט - שלושת העקרונות של אתיקת מחקר קליני (כבוד לאדם, עשיית טוב, צדק) שמוזכרים בפרק בהקשר של מחקר קליני.</div>
+  </li>
+  <li>
+    <a href="https://code-medical-ethics.ama-assn.org/ethics-opinions/informed-consent" target="_blank">AMA Code of Medical Ethics - Informed Consent</a>
+    <div class="desc">הנחיות ה-AMA המפורטות למרכיבי הסכמה מדעת בפרקטיקה קלינית.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=u6WXDTfnxAw" target="_blank">Medical Ethics - The Four Principles (YouTube)</a>
+    <div class="desc">אותו הסרטון שמוטמע למעלה - לצפייה ישירה ביוטיוב אם ההטמעה לא נטענת.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=6hC_ndWNuGM" target="_blank">Demystifying Decision-Making Capacity (YouTube)</a>
+    <div class="desc">אותו הסרטון שמוטמע למעלה - לצפייה ישירה ביוטיוב אם ההטמעה לא נטענת.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>
+    גבר בן 74 מובא למיון עם בלבול חדש, חום 38.6°C ולחץ דם 88/54. בבדיקה - הוא לא זוכר את התאריך
+    ולא מבין שהוא במיון. הצוות מזהה אורוספסיס וממליץ על אשפוז, נוזלים ואנטיביוטיקה IV דחופה.
+    בתו, שמונתה כמיופת כוח בהנחיה מקדימה שהחולה חתם עליה לפני שנתיים, מגיעה ומספרת שאביה "תמיד
+    אמר שהוא לא רוצה שום צינורות ואשפוזים - רק לתת לו למות בשקט". הצוות הרפואי מעריך שטיפול
+    אנטיביוטי דחוף צפוי להציל את חייו ולהחזיר אותו למצבו התפקודי הרגיל תוך ימים ספורים, ושהבלבול
+    הנוכחי נובע מהזיהום עצמו (דליריום) ועשוי לחלוף לגמרי עם הטיפול.
+  </p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע אין להסתמך רק על ה"הנחיה המקדימה" הכללית של הבת כדי לוותר על טיפול מציל חיים במקרה זה?</div>
+  <button class="opt" data-i="0">כי הנחיות מקדימות אינן תקפות מבחינה משפטית בישראל</button>
+  <button class="opt" data-i="1">כי הבלבול הנוכחי הוא ככל הנראה דליריום חולף עקב הזיהום - מצב הפיך שיכול לחלוף עם טיפול, ויש לשקול אם ההצהרה הכללית ("בלי צינורות ואשפוזים") אכן מתייחסת למצב הפיך וניתן-לריפוי כמו זה</button>
+  <button class="opt" data-i="2">כי בת אינה יכולה לשמש כמיופת כוח, רק בן זוג</button>
+  <button class="opt" data-i="3">כי יש להתעלם מהנחיות מקדימות כאשר הרופא חושב אחרת</button>
+  <div class="explain">התשובה הנכונה: 2. הצהרות מוקדמות צריכות להתאים למצב הקליני בפועל. כשליקוי הכרתי הוא זמני והפיך (כמו דליריום מזיהום), ויש סיכוי טוב לחזרה מלאה לתפקוד, השיקול הרפואי לגבי טובת המטופל הנוכחית עשוי להצדיק להעריך מחדש אם ההנחיה הכללית אכן חלה על מצב חירום הפיך זה - ולא רק לפעול לפיה אוטומטית. תשובה 1 שגויה: הנחיות מקדימות תקפות משפטית. תשובה 3 שגויה: בני משפחה, כולל ילדים בגירים, יכולים לשמש כגורם מחליט אם לא מונה מיופה כוח ספציפי אחר או לפי סדר עדיפויות חוקי. תשובה 4 שגויה: אין להתעלם מהנחיה מקדימה סתם כי הרופא חושב אחרת - זו בדיוק הפרה של האוטונומיה שהעיקרון נועד להגן עליה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מי קובע בפועל, ברוב המקרים היומיומיים, שמטופל חסר יכולת קבלת החלטות (capacity)?</div>
+  <button class="opt" data-i="0">אך ורק בית משפט</button>
+  <button class="opt" data-i="1">ועדת אתיקה בית-חולית בלבד</button>
+  <button class="opt" data-i="2">הרופא המטפל, תוך שימוש בכלי הערכה זמינים ושיפוט קליני, ולעיתים בייעוץ פסיכיאטרי/אתי</button>
+  <button class="opt" data-i="3">בת המשפחה הבכירה ביותר</button>
+  <div class="explain">התשובה הנכונה: 3 (אינדקס 2). בפועל, רופאים קובעים שגרתית חוסר יכולת החלטה ביחס להחלטה קלינית ספציפית, ומארגנים גורם מחליט מוסמך - בלי מעורבות בית משפט. בית משפט מוסמך לקבוע "אי-כשירות משפטית" (competence) אך זה נדיר ושמור למקרים מורכבים/שנויים במחלוקת. תשובות 1,2,4 שגויות כי הן מייחסות את הסמכות לגורם הלא-נכון לרוב המצבים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. באיזה מהמצבים הבאים הפרת סודיות רפואית מוצדקת אתית וחוקית?</div>
+  <button class="opt" data-i="0">מטופל עם שחפת ריאתית פעילה, שיש לדווח למשרד הבריאות למניעת הדבקה נוספת</button>
+  <button class="opt" data-i="1">מטופל שסיפר לרופא שהוא מעשן סיגריות</button>
+  <button class="opt" data-i="2">מטופל שביקש מהרופא חוות דעת שנייה מרופא אחר</button>
+  <button class="opt" data-i="3">מטופל שלא הגיע לתור מעקב</button>
+  <div class="explain">התשובה הנכונה: 1 (אינדקס 0). שחפת פעילה מהווה סיכון הדבקה רציני וסביר לציבור, ולכן החוק מחייב דיווח - זהו בדיוק הסטנדרט של "סיכון רציני וסביר לצד שלישי" שמצדיק חריגה מסודיות. תשובות 2-4 שגויות: אף אחת מהן אינה מהווה סיכון ישיר וממשי לצד שלישי שמצדיק הפרת סודיות - מדובר במידע רגיל שנשאר חסוי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. בזמן מגפה עם מחסור חמור במכשירי הנשמה, איזו שיטת הקצאה נחשבת הכי פחות הוגנת?</div>
+  <button class="opt" data-i="0">קריטריונים קליניים מבוססי-ראיות שנקבעו מראש על ידי ועדת טריאז'</button>
+  <button class="opt" data-i="1">מדיניות שקופה ומידתית להיצע מול הביקוש, ללא התחשבות בגזע או ביטוח</button>
+  <button class="opt" data-i="2">הקצאה לפי הסיכוי הרפואי לתועלת משמעותית מהטיפול</button>
+  <button class="opt" data-i="3">"כל הקודם זוכה" (מי שהגיע ראשון מקבל את המכשיר)</button>
+  <div class="explain">התשובה הנכונה: 4 (אינדקס 3). "כל הקודם זוכה" נחשב לא הוגן כי הוא מפלה לרעה מטופלים שנתקלים במחסומי גישה לטיפול (מרחק, שפה, מעמד סוציו-אקונומי) - מי שמגיע ראשון הוא לא בהכרח מי שזקוק ביותר או ירוויח הכי הרבה. תשובות 1-3 מתארות עקרונות הקצאה הוגנים שהריסון ממליץ עליהם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. רופאה מתבקשת לרשום תרופה ממריצה קוגניטיבית למטופל בריא כדי "לעזור לו במבחן". היא חוששת שזה לא מוצדק רפואית. מה הצעד הבא הנכון ביותר?</div>
+  <button class="opt" data-i="0">לרשום את התרופה מיד כדי לשמור על שביעות רצון המטופל</button>
+  <button class="opt" data-i="1">לברר עם המטופל את הסיבות לבקשה, ולשקול גם את ההשפעה על מטופלים אחרים, ערכים חברתיים ואמון הציבור לפני החלטה</button>
+  <button class="opt" data-i="2">לסרב מיד בלי הסבר</button>
+  <button class="opt" data-i="3">להפנות את המטופל למחלקת שיווק של החברה המייצרת</button>
+  <div class="explain">התשובה הנכונה: 2 (אינדקס 1). כשמטופל מבקש "שער" לשירות שהרופא חש אי-נוחות ממנו, הריסון ממליץ לעבוד יחד עם המטופל להבין את הסיבות (חלקן עשויות להיות לגיטימיות), ולשקול גם השפעות רחבות יותר על מטופלים אחרים ואמון הציבור - ורק אז להחליט. אם המילוי דורש הטעיה או פוגע בחובות המקצועיות, יש לסרב ולהסביר מדוע. תשובה 1 שגויה כי זו הטעיה שפוגעת באמינות. תשובה 3 שגויה - אין הסבר. תשובה 4 אינה רלוונטית לדילמה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ארבעה עקרונות-על מנחים כל החלטה קלינית: <b>אוטונומיה, עשיית טוב, אי-הזקה, צדק</b> - וברוב המצבים כיום אוטונומיה של מטופל כשיר גוברת על שיקול הרופא.</li>
+    <li>הסכמה מדעת = תהליך הבנה ובחירה (לא רק חתימה); מרכיביה: <span dir="ltr" class="term">PARQ</span> - נוהל, חלופות, סיכונים/תועלות, שאלות שנענו.</li>
+    <li><span dir="ltr" class="term">Capacity</span> (כשירות קלינית) נקבעת על ידי הרופא ביחס להחלטה ספציפית; <span dir="ltr" class="term">competence</span> (כשירות משפטית) נקבעת רק על ידי בית משפט. סירוב טיפול לבדו אינו הוכחה לחוסר כשירות.</li>
+    <li>סודיות ניתנת להפרה רק כשסיכון לצד שלישי רציני וסביר (למשל שחפת פעילה, התעללות, אלימות במשפחה) - לא במצבים רגילים.</li>
+    <li>כשעקרונות מתנגשים - נעזרים בגישות משלימות: עקרונות אתיים, אתיקת מידות, קודים מקצועיים, וייעוץ/ועדת אתיקה.</li>
+    <li>הקצאת משאבים מוגבלים חייבת להיות שקופה ומבוססת קריטריונים קליניים - לא "כל הקודם זוכה", ולא לפי גזע/ביטוח/מעמד.</li>
+    <li>התנגדות מצפונית מותרת לרופא אישית, אך המוסד חייב להבטיח שהמטופל עדיין יקבל טיפול (למשל דרך הפניה) - אסור לסרב לטפל בגלל זהות המטופל.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
