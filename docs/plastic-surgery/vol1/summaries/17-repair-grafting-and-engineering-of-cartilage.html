@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 17: תיקון, השתלה והנדסת סחוס</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 17: תיקון, השתלה והנדסת סחוס <span class="term" dir="ltr">Repair, Grafting, and Engineering of Cartilage</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Wei Liu, Guangdong Zhou, Yilin Cao</div>
+
+<p>סחוס הוא רקמת החיבור הכי "נדיבה" לכירורג הפלסטי: היא שורדת השתלה בקלות יחסית, אפשר לעצב אותה כמעט לכל צורה, והיא הבסיס לשחזור אוזן, אף וניתוחים רבים נוספים. הפרק סוקר שלושה נושאים שבנויים זה על גבי זה: (1) מקורות ההשתלה העצמית הקלאסיים (אפרכסת, מחיצת האף, צלע), (2) השתלת פריכונדריום (הקרום סביב הסחוס), ו-(3) הנדסת סחוס – טכנולוגיה שמנסה "לגדל" סחוס במעבדה כדי לפתור את הבעיה הכי גדולה של השתלה עצמית: כמות מוגבלת ותחלואה במקום התרומה.</p>
+
+<h2><span class="num">1</span> למה סחוס "נוח" להשתלה – המנגנון הבסיסי</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>סחוס הוא רקמה <span class="term" dir="ltr">avascular</span> (חסרת כלי דם) עם קצב חילוף חומרים נמוך</b> ← הוא ניזון על ידי דיפוזיה של נוזל רקמה מהסביבה, לא מזרימת דם ישירה ← לכן הפעילות הגליקוליטית שלו קרובה לתנאים אנאירוביים ← <b class="key">כשמעבירים אותו למקום חדש, אין לו "תלות" בחיבור כלי דם מיידי כדי לשרוד</b> (בשונה מפלאפ עורי, למשל, שימות אם לא יקבל אספקת דם תוך שעות) ← מכאן שסחוס שרד היסטורית כהשתלה עוד לפני שהובנו עקרונות המיקרוכירורגיה (תיעוד ראשון: Sushruta Samhita בהודו, כ-600 לפנה"ס).
+  </p>
+  <p>בנוסף, סחוס נחשב <b>"מועדף חיסונית"</b> (<span class="term" dir="ltr">immunologically privileged</span>) – המטריצה החוץ-תאית העשירה (קולגן מסוג II, פרוטאוגליקנים) "מסתירה" את התאים (כונדרוציטים) ממערכת החיסון, כך שגם השתלה אלוגנית (מתורם אחר) עשויה לשרוד חלקית, אך בפועל <b>השתלה עצמית (אוטולוגית) נשארת שיטת הבחירה</b> כי היא לא נדחית ולא עוברת שינוי מטפלסטי (היא לא "הופכת" לרקמה אחרת) גם כשעוברת למיקום שונה בגוף.</p>
+</div>
+<svg class="diagram" viewBox="0 0 820 190" xmlns="http://www.w3.org/2000/svg">
+  <title>למה סחוס שורד השתלה</title>
+  <rect x="650" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="725" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">רקמה אווסקולרית</text>
+  <text x="725" y="63" font-size="11.5" text-anchor="middle" fill="#7f1d1d">ללא כלי דם פנימיים</text>
+
+  <rect x="450" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="530" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">תזונה בדיפוזיה</text>
+  <text x="530" y="63" font-size="11.5" text-anchor="middle" fill="#1e3a8a">מנוזל רקמה סובב</text>
+
+  <rect x="240" y="20" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">לא תלוי בחיבור דם מיידי</text>
+  <text x="325" y="63" font-size="11.5" text-anchor="middle" fill="#065f46">שורד גם בהשתלה חופשית</text>
+
+  <rect x="20" y="20" width="180" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="110" y="45" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">מטריצה "מסתירה" מחיסון</text>
+  <text x="110" y="63" font-size="11.5" text-anchor="middle" fill="#4c1d95">מיוחסת חיסונית</text>
+
+  <polygon points="610,50 650,44 650,56" fill="#374151"/>
+  <line x1="650" y1="50" x2="610" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="410,50 450,44 450,56" fill="#374151"/>
+  <line x1="450" y1="50" x2="410" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,50 240,44 240,56" fill="#374151"/>
+  <line x1="240" y1="50" x2="200" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="220" y="120" width="380" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="410" y="145" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">תוצאה קלינית: השתלת סחוס עצמית = בטוחה, לא נדחית, לא משתנה</text>
+  <text x="410" y="163" font-size="11.5" text-anchor="middle" fill="#78350f">ולכן היא "אבן הבניין" הראשונה בשחזור אוזן/אף</text>
+  <polygon points="410,120 404,100 416,100" fill="#b45309"/>
+  <line x1="410" y1="120" x2="410" y2="100" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">2</span> שלושת סוגי הסחוס והפריכונדריום</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג סחוס</th><th>הרכב ומאפיין מכני</th><th>איפה נמצא</th></tr></thead>
+  <tbody>
+    <tr><td><b>סחוס היאליני</b> (<span class="term" dir="ltr">hyaline cartilage</span>)</td><td>עשיר בגליקוזאמינוגליקנים, נוקשה, סופג עומס לחיצה</td><td>סחוס קוסטלי (צלעי), מפרקי, קנה הנשימה, אף</td></tr>
+    <tr><td><b>פיברוסחוס</b> (<span class="term" dir="ltr">fibrocartilage</span>)</td><td>סיבי קולגן עבים (כולל קולגן I, לא רק II) בסידור שרשראות – חוזק מתיחה גבוה</td><td>מניסקוס, דיסקים בין-חולייתיים, מפרקים סימפיזיאליים</td></tr>
+    <tr><td><b>סחוס אלסטי</b> (<span class="term" dir="ltr">elastic cartilage</span>)</td><td>רשת סיבים אלסטיים לצד קולגן – גמישות קיצונית, סובל כיפוף חוזר בלי שבירה</td><td>אפרכסת האוזן, גרון, אפיגלוטיס</td></tr>
+  </tbody>
+</table>
+</div>
+<p>כל שלושת הסוגים (למעט הסחוס המפרקי) עטופים ב<b>פריכונדריום</b> (<span class="term" dir="ltr">perichondrium</span>) – קרום חיבור צפוף בעל <b>שתי שכבות</b>: שכבה סיבית חיצונית (קולגן ופיברובלסטים) ושכבה כונדרוגנית פנימית שנשארת חלקית לא-מובחנת ומכילה תאי גזע מזנכימליים ותאי אב כונדרוגניים. <b class="key">שכבה זו היא הבסיס לכך שהפריכונדריום עצמו, גם בלי סחוס, יכול לעורר יצירת סחוס חדש (ניאו-כונדרוגנזה) בתנאים מסוימים</b> — עקרון שחוזר שוב ושוב בפרק.</p>
+
+<h2><span class="num">3</span> מקורות ההשתלה העצמית: אפרכסת, אף וצלע</h2>
+<p>שלושת מקורות התרומה העיקריים להשתלת סחוס עצמית הם סחוס אפרכסתי (אוזן), סחוס אפי (מחיצה/כנפיים) וסחוס קוסטלי (צלע). הבחירה תלויה בכמות הרקמה הדרושה ובסוג הפגם:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מקור</th><th>כמות זמינה</th><th>שימוש טיפוסי</th><th>נקודת מפתח טכנית</th></tr></thead>
+  <tbody>
+    <tr><td><b>קונכה אפרכסתית</b> (<span class="term" dir="ltr">conchal cartilage</span>)</td><td>מוגבלת, אך נלקחת בקלות תחת הרדמה מקומית בלי עיוות תורם משמעותי</td><td>מסגרת לשחזור אוזן/תיקון עיוות, שתל שכבה בודדת לאף/עפעף/פטמה, שתל מרוכב עורי-סחוסי לאף</td><td>יש להשאיר לפחות 5 מ"מ מה-<span class="term" dir="ltr">helical crus</span> ו-2 מ"מ שוליים חיצוניים כדי למנוע קריסת הקונכה</td></tr>
+    <tr><td><b>סחוס מחיצת האף</b> (<span class="term" dir="ltr">septal cartilage</span>)</td><td>מוגבלת</td><td>שתל כונדרו-רירי לעפעף, הגדלת גב האף, תמיכת קצה האף (<span class="term" dir="ltr">septal extension graft</span>)</td><td>חובה לשמר <b>רצועת "L" (L-strut)</b> כדי למנוע קריסת האף</td></tr>
+    <tr><td><b>סחוס קוסטלי</b> (<span class="term" dir="ltr">costal cartilage</span>, צלעות 6–8 בד"כ)</td><td>הכי גדולה, אפשר לעצב לכל צורה</td><td>מסגרת מלאה לשחזור אוזן (מיקרוטיה), הגדלת גב אף/סנטר, הרחבת מחיצה, שחזור פטמה</td><td>סיכון לפנאומוטורקס וכאב/עיוות דופן החזה – רגישה יותר לתחלואה במקום התרומה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>סחוס מרוכב אפרכסתי (Composite Graft) לשחזור אף</h3>
+<p>כשלוקחים חתיכת אפרכסת הכוללת גם עור וגם סחוס (שתל מרוכב) לשחזור פגם באף, הבעיה המרכזית היא כיצד לסגור את מקום התרומה באוזן בלי לעוות אותה. Singh & Bartlett תיארו <b>5 טכניקות</b> לפי גודל הפגם הנדרש:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>טכניקה</th><th>גודל השתל</th><th>עיקרון הסגירה</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>&lt;1 ס"מ</td><td>סגירה ראשונית, "אוזן הכלב" מוברח קדימה לקו השיער</td></tr>
+    <tr><td>2</td><td>1–1.5 ס"מ (בסיס סחוסי)</td><td>סגירה עם הוצאת טריז מלא מהחריץ המשולש כדי למנוע התעקמות</td></tr>
+    <tr><td>3</td><td>גובה קטן, רוחב גדול</td><td>קצה "אוזן הכלב" מוברח מעלה ומטה, בלי לפגוע בגודל האוזן</td></tr>
+    <tr><td>4</td><td>1–1.2 ס"מ מבסיס ההליקס</td><td>קידום קצה ההליקס קדימה + תפר סקפומסטואידי למניעת בליטת יתר</td></tr>
+    <tr><td>5</td><td>&gt;1.5 ס"מ</td><td>גזרת עור בצורת V + דוגמת סחוס "חצי כוכב" בקודקוד ה-V, כדי למנוע עיוות וקערוריות</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">כשצריך שתל גדול במיוחד – עדיף שתל מרוכב <b>עם עירוי מיקרו-וסקולרי</b> (למשל פלאפ שוליים הליקאלי מבוסס כלי הרקה השטחיים) במקום שתל חופשי, כי שתל חופשי גדול מדי מסתכן ב"רעב" זמני (חוסר אספקת דם מיידית) שפוגע בהישרדותו.</p>
+
+<h2><span class="num">4</span> הוצאת סחוס קוסטלי – סיבוכים והשיטה המשופרת</h2>
+<p>סחוס קוסטלי הוא מקור התרומה הכי "נדיב" בכמות, אך גם בעל התחלואה הגבוהה ביותר: כאב וקליקים בדופן החזה (שיא בשבוע הראשון, דועך תוך כ-3 חודשים), צלקת ועיוות דופן החזה, וכל הזמן קיים סיכון לפנאומוטורקס תוך-ניתוחי. שיטת Nagata לשחזור אוזן מלא (המצריכה 4 סחוסי צלע בשלב הראשון) חשופה במיוחד לבעיה הזו בגלל כמות הרקמה הנדרשת.</p>
+<p><b>הפתרון של Kawanabe ו-Nagata:</b> שיטה משופרת שבה מוציאים את הסחוס <b>יחד עם הפריכונדריום שלם</b> (לא פותחים אותו), מגלפים ממנו את המסגרת, ואת שאריות הסחוס חותכים לקוביות קטנות ו<b>מחזירים אותן לתוך "כיס" הפריכונדריום הריק</b> במקום התרומה. התוצאה: הפריכונדריום השמור מגן מפני פגיעה בפלאורה (קרום הריאה) <b>וגם</b> מעודד רגנרציה של סחוס חדש (בזכות תאי הגזע הכונדרוגניים שבו) – כך שבמעקב אחרי 270 מקרים, שיעור הזיהום והפנאומוטורקס ירד לפחות מ-1%, ולא נצפו כלל עיוותי דופן חזה. מעקב היסטולוגי הראה שהסחוס שה"התחדש" במקום התרומה עבר משלב מעורב (סחוס היאליני + פיברוסחוס) בגיל 6 חודשים, להומוגני היאליני דמוי-סחוס טבעי בגיל 12 חודשים — מספיק בשל כדי לאפשר קצירה חוזרת בעתיד.</p>
+
+<h2><span class="num">5</span> השתלת פריכונדריום עצמאית (בלי סחוס)</h2>
+<p>כבר ב-1959 Lester דיווח שפריכונדריום מושתל <b>לבדו</b> (בלי הסחוס שמתחתיו) יכול ליצור סחוס חדש ("ניאו-סחוס"). זה נשמע מבטיח, אך בפועל השימוש הקליני נשאר מוגבל (בעיקר תיקון סחוס מפרק ברך מנוון), כי התוצאה תלויה בגורמים לא-צפויים: טכניקת ההוצאה, חמצון מיטת הקולט, ונוכחות תאי אב כונדרוגניים במקום ההשתלה. יישום קליני נוסף וחשוב הוא <b>שתל פריכונדרו-עורי</b> (<span class="term" dir="ltr">perichondrocutaneous graft</span>) לשחזור אף — כאן משתמשים בפריכונדריום בעיקר בגלל הדקות והגמישות שלו (לא בגלל יכולת הרגנרציה), כדי לכסות ולהחליק את קווי המתאר של שתלי סחוס מתחתיו.</p>
+<p class="key-box">חשוב להבחין: <b>אין עדיין הוכחה קלינית מוצקה</b> שפריכונדריום מושתל מסוגל לייצר כמות משמעותית של רקמת סחוס חדשה בבני אדם — רוב הראיות מגיעות ממחקרים בבעלי חיים (ארנבים).</p>
+
+<h2><span class="num">6</span> הנדסת סחוס (Cartilage Engineering) – העיקרון והדוגמה ההיסטורית</h2>
+<div class="mechanism">
+  <p class="chain">
+    בעיה: השתלה עצמית מוגבלת בכמות וגורמת תחלואה במקום התרומה ← <b>הנדסת רקמות</b> (<span class="term" dir="ltr">tissue engineering</span>) מנסה לפתור זאת על ידי שילוב שלושה מרכיבים: <b>(1) תאי זרע</b> (כונדרוציטים או תאי גזע) ← <b>(2) פיגום</b> (<span class="term" dir="ltr">scaffold</span> - מבנה תלת-ממדי שנותן צורה זמנית) ← <b>(3) סביבת יצירת רקמה</b> (חממה/גוף) שבה התאים גדלים, מייצרים מטריצה, והפיגום מתפרק בהדרגה ← בסוף נשארת רקמת סחוס חדשה בצורת הפיגום המקורי.
+  </p>
+</div>
+<p><b>הניסוי המכונן (Cao, Vacanti, 1997):</b> כונדרוציטים מסחוס עגל הושתלו על פיגום מרשת PGA (חומצה פוליגליקולית) שעוצב בצורת אוזן אנושית (מתבנית גבס של אוזן ילד בת 3), הוזרעו בתרבית, ולאחר שבוע הושתלו מתחת לעור עכבר עירום (חסר מערכת חיסון) עם תמיכת "סטנט" חיצוני לשמירת הצורה. אחרי 12 שבועות נוצרה רקמת סחוס בצורת אוזן כמעט זהה לאוזן אנושית — זו הדגמת ה"פרוטו-קונספט" המפורסמת שהראתה שהנדסת רקמות יכולה לשמש בפועל לכירורגיה פלסטית.</p>
+
+<h2><span class="num">7</span> מ-CAD/CAM ועד יישום קליני: אוזן ספציפית למטופל</h2>
+<p>הצעד הבא היה להפוך את השיטה למותאמת-אישית: סורקים את האוזן הבריאה של המטופל בטומוגרפיה ממוחשבת (CT), מייצרים תמונת ראי דיגיטלית (<span class="term" dir="ltr">CAD</span>), ומדפיסים ממנה תבנית שלילית בתלת-ממד (<span class="term" dir="ltr">CAM</span>) – כך מתקבל פיגום שהוא בדיוק "תמונת מראה" של האוזן התקינה של אותו מטופל (התאמה של מעל 97% בהשוואה סטטיסטית תלת-ממדית). התאים (כונדרוציטים ממיקרוטיה של אותו מטופל) מוזרעים על הפיגום, מודגרים כ-12 שבועות, ואז מושתלים בגוף המטופל עצמו במקום בעכבר.</p>
+<p>בפרוטוקול הקליני שתואר על ידי Zhou et al. (2018): לאחר הרחבת רקמה (<span class="term" dir="ltr">tissue expansion</span>) של העור מעל אזור המיקרוטיה, מוציאים את המרחיב, מכינים פלאפ פאשיאלי נוירווסקולרי מאחורי האוזן, מכניסים את מסגרת הסחוס המהונדסת בין הפלאפ לעור המורחב, ומכסים בשתל עור. במעקב 30 חודשים לאחר הניתוח – האוזן ששוחזרה פיתחה מאפיינים אנטומיים ברורים (הליקס, אנטי-הליקס, קונכה) בסימטריה גבוהה לצד הבריא, וה-MRI הראה מבנה "סנדוויץ'" בשל של סחוס אמיתי סביב ליבת הפיגום שהתכלה בהדרגה.</p>
+<p class="key-box">היתרון המרכזי של הנדסה <b>in vitro</b> (במעבדה, לפני ההשתלה בגוף) על פני הנדסה <b>in vivo</b> (שימוש בגוף עצמו כ"בית חרושת" לסחוס, בשתי פעולות נפרדות): מונע ניתוח כפול מיותר, ומאפשר להכין "גיבויים" מהונדסים נוספים בו-זמנית בלי לגרום סבל נוסף למטופל אם השלב הראשון נכשל.</p>
+
+<h2><span class="num">8</span> יישומים נוספים: סחוס להזרקה, שחזור מפרקים, וכיוונים עתידיים</h2>
+<p>מעבר לשחזור אוזן, הנדסת סחוס נוסתה גם ל<b>רינופלסטיקה</b> (סחוס מהונדס בצורה נוזקת/הזרקתית להגדלת גב האף או תיקון עיוות אוכף), ל<b>שחזור מפרקים</b> (מפרק הלסת התחתונה - TMJ, מפרקי אצבעות) על ידי הנדסת סחוס לצד עצם, ול<b>תיקון פגמים חיצוניים</b> (סנטר, אזור רקתי-מצחי שקוע).</p>
+<p>שני אתגרים מרכזיים שהפרק מציין ככיוונים עתידיים:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אתגר</th><th>למה זו בעיה</th><th>כיוון פתרון</th></tr></thead>
+  <tbody>
+    <tr><td>חוזק מכני חלש יחסית של סחוס מהונדס <span class="term" dir="ltr">in vitro</span></td><td>סחוס שגדל בצלחת תרבית לא נחשף לעומסים מכניים כמו בגוף, ולכן מכיל פחות קולגן IX ופירידינולין (מרכיבי חוזק)</td><td>עומס מכני דינמי בביו-ריאקטור במהלך הגידול (מוכח שמעלה את מודול Young ותכולת החלבונים המחזקים)</td></tr>
+    <tr><td>מקורות תאים מוגבלים (כונדרוציטים מאפרכסת/אף/צלע)</td><td>כמות התאים שניתן להפיק מכל מקור מוגבלת</td><td>תאי גזע מזנכימליים ממח עצם (BMSCs) או מרקמת שומן (ASCs) – יכולת התמיינות כונדרוגנית עם גורמי גדילה מתאימים</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-C-A</span> למקורות השתלת סחוס עצמית</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Septum</span> (מחיצת האף) – כמות קטנה, זכרו את ה-L-strut.<br>
+    <b>C</b> – <span class="term" dir="ltr">Concha</span> (קונכת האוזן) – כמות בינונית, סיכון נמוך, שימור 5 מ"מ הליקל קרוס.<br>
+    <b>A</b> – <span class="term" dir="ltr">rib (costal Arch)</span> – כמות גדולה, סיכון גבוה (פנאומוטורקס!), שימור פריכונדריום מפחית סיבוכים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "חנות סחוס" עם שלוש מדפים: מדף קטן ויקר (מחיצת האף – תמיד לשמור "משקוף" ה-L כדי שהחנות לא תקרוס), מדף בינוני ונוח לגישה (קונכת האוזן – קל לקחת ממנו בלי להרוס את התצוגה), ומדף ענק במחסן האחורי (הצלעות – יש שם המון סחורה, אבל צריך להיזהר לא "לפוצץ" את קיר המחסן, כלומר הריאה, בדרך לשם). כשגומרים לקחת מהמדף הגדול, משאירים את הקופסה (הפריכונדריום) במקום כדי שהחנות תוכל "לצמוח מחדש" סחורה חדשה.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>שלושת מדפי הסחוס</title>
+    <rect x="20" y="40" width="130" height="110" rx="6" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="85" y="100" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מחיצת אף</text>
+    <text x="85" y="120" font-size="11" text-anchor="middle" fill="#4c1d95">מדף קטן</text>
+    <rect x="185" y="25" width="130" height="140" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="250" y="95" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קונכת אוזן</text>
+    <text x="250" y="115" font-size="11" text-anchor="middle" fill="#1e3a8a">מדף בינוני</text>
+    <rect x="350" y="10" width="130" height="160" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="415" y="90" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">צלעות</text>
+    <text x="415" y="110" font-size="11" text-anchor="middle" fill="#7f1d1d">מדף ענק</text>
+    <text x="415" y="130" font-size="10.5" text-anchor="middle" fill="#7f1d1d">(זהירות מהקיר!)</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>ילד בן 8 עם מיקרוטיה חד-צדדית (אוזן ימין קטנה ומעוותת, ללא תעלת שמיעה חיצונית תקינה) מגיע לייעוץ לשחזור אוזן. ההורים שואלים מדוע לא ניתן להשתמש בסחוס מהאוזן השנייה (התקינה) לצורך השחזור, ומדוע צריך לחכות עד גיל מסוים לפני הניתוח. הצוות דן גם באפשרות עתידית של הנדסת סחוס מותאמת אישית כתחליף לקצירת סחוס מהצלעות.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע שתל סחוס חופשי שורד היטב גם ללא חיבור מיידי לכלי דם, בשונה למשל מפלאפ עורי?</div>
+  <button class="opt" data-i="0">כי סחוס מכיל תאי גזע שמייצרים כלי דם חדשים תוך שעות</button>
+  <button class="opt" data-i="1">כי סחוס הוא רקמה אווסקולרית שניזונה מדיפוזיה של נוזל רקמה, ולכן לא תלוי בזרימת דם ישירה כדי לשרוד</button>
+  <button class="opt" data-i="2">כי סחוס תמיד מושתל יחד עם עורק מזין קטן</button>
+  <button class="opt" data-i="3">כי המערכת החיסונית תוקפת פלאפים עוריים אך לא סחוס</button>
+  <div class="explain">התשובה הנכונה (2): סחוס הוא רקמה חסרת כלי דם פנימיים מלכתחילה, וניזון בדרך כלל מדיפוזיה של נוזל רקמה מהסביבה — לכן פעילותו המטבולית קרובה לתנאים אנאירוביים, וזו הסיבה שהוא שורד השתלה חופשית טוב בהרבה מרקמות שתלויות בזרימת דם ישירה. תשובה 1 הפוכה — לתאי הגזע בפריכונדריום תפקיד ברגנרציה של סחוס, לא ביצירת כלי דם מהירה. תשובות 3–4 אינן נכונות עובדתית לפי הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי חשיבות שימור ה"רצועת L" (L-strut) בעת קצירת סחוס ממחיצת האף?</div>
+  <button class="opt" data-i="0">היא היחידה שמכילה כלי דם מזינים למחיצה</button>
+  <button class="opt" data-i="1">היא מונעת זיהום של חלל האף</button>
+  <button class="opt" data-i="2">היא נותנת תמיכה מבנית לאף ומונעת קריסה (דפורמציית אוכף)</button>
+  <button class="opt" data-i="3">היא המקור העיקרי לתאי גזע כונדרוגניים באף</button>
+  <div class="explain">התשובה הנכונה (3): הפרק מדגיש במפורש שיש לשמר את רצועת ה-L (הגובלת בגב האף ובקצה הקאודלי) כדי לתת תמיכה מבנית ולמנוע קריסת האף – כמות הסחוס הנדרשת לשימור עשויה להשתנות בהתאם לעובי ולחוזק המחיצה והמבנים הסמוכים. תשובות 1, 2 ו-4 אינן הסיבה שניתנה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו החידוש המרכזי בשיטת קצירת הסחוס הקוסטלי של Kawanabe ו-Nagata, ומה יתרונו?</div>
+  <button class="opt" data-i="0">הוצאת הסחוס עם הפריכונדריום שלם, והחזרת שאריות הסחוס החתוכות לתוך כיס הפריכונדריום — מפחית זיהום ופנאומוטורקס ומאפשר רגנרציה של סחוס חדש</button>
+  <button class="opt" data-i="1">שימוש בסחוס אוזן במקום סחוס צלע לכל שלבי השחזור</button>
+  <button class="opt" data-i="2">ביצוע כל הניתוח בשלב אחד בלבד ללא הרחבת רקמה</button>
+  <button class="opt" data-i="3">החלפת הפריכונדריום בקרום סינתטי לפני החזרת הסחוס</button>
+  <div class="explain">התשובה הנכונה (1): השיטה משמרת את הפריכונדריום שלם במקום התרומה (לא פותחים אותו), ומחזירה לתוכו את שאריות הסחוס החתוכות לקוביות קטנות. במעקב 270 מקרים זה הוריד זיהום ופנאומוטורקס לפחות מ-1% ומנע לגמרי עיוותי דופן חזה, ותוך 12 חודשים נוצר במקום התרומה סחוס היאליני חדש שבשל מספיק לקצירה חוזרת. תשובות 2–4 אינן מתארות את השיטה כפי שתוארה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהם שלושת המרכיבים הבסיסיים הנדרשים בכל תהליך הנדסת רקמת סחוס?</div>
+  <button class="opt" data-i="0">אנטיביוטיקה, עירוי דם, ותרופות מדכאות חיסון</button>
+  <button class="opt" data-i="1">רק תאי גזע וגורמי גדילה, ללא צורך בפיגום</button>
+  <button class="opt" data-i="2">הדמיית CT, מדפסת תלת-ממד, וחומר ניגוד</button>
+  <button class="opt" data-i="3">תאי זרע (כונדרוציטים/תאי גזע), פיגום תלת-ממדי, וסביבת יצירת רקמה שבה מתרחשת גדילה והתפרקות הדרגתית של הפיגום</button>
+  <div class="explain">התשובה הנכונה (4): תהליך הנדסת רקמה, לפי Stock & Vacanti שמצוטטים בפרק, כולל תמיד שלושה מרכיבים: תאי זרע שמייצרים את המטריצה, פיגום שנותן מבנה תלת-ממדי זמני, וסביבה (מעבדתית או בגוף) שבה מתבצעת הגדילה וההתפרקות ההדרגתית של הפיגום עד שנותרת רקמה בשלה. תשובות 1–3 אינן מרכיבי הליבה של תהליך ההנדסה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו היתרון המרכזי של הנדסת סחוס "in vitro" (בתרבית, לפני ההשתלה) לעומת הנדסה "in vivo" (בגוף המטופל עצמו)?</div>
+  <button class="opt" data-i="0">היא תמיד מייצרת סחוס חזק יותר מבחינה מכנית</button>
+  <button class="opt" data-i="1">היא נמנעת משני שלבי ניתוח נפרדים ומאפשרת הכנת "גיבויים" מהונדסים במקביל בלי סבל נוסף למטופל</button>
+  <button class="opt" data-i="2">היא אינה דורשת שימוש בתאי המטופל עצמו</button>
+  <button class="opt" data-i="3">היא זולה יותר מכל שיטה אחרת</button>
+  <div class="explain">התשובה הנכונה (2): הפרק מציין שהנדסה in vivo (שימוש בגוף כ"ביו-ריאקטור" ואז עיצוב מחדש) מצריכה לפחות שני שלבים ניתוחיים, וחושפת את המטופל לסבל מיותר אם השלב הראשון נכשל. הנדסה in vitro נמנעת מכך ומאפשרת הכנת גיבויים נוספים בו-זמנית. תשובה 1 שגויה — למעשה סחוס מהונדס in vitro חלש יותר מכני בהשוואה ל-in vivo, וזה בדיוק אחד האתגרים העתידיים שהפרק מציין. תשובות 3–4 אינן נתמכות בטקסט.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>סחוס שורד השתלה בקלות כי הוא <b>אווסקולרי</b> וניזון בדיפוזיה — לא תלוי בחיבור כלי דם מיידי, ובנוסף "מועדף חיסונית".</li>
+    <li>שלושה סוגי סחוס: היאליני (נוקשה), פיברוסחוס (חוזק מתיחה), אלסטי (גמישות – באוזן).</li>
+    <li>מקורות השתלה עצמית: <b>קונכת אוזן</b> (כמות בינונית, סיכון נמוך), <b>מחיצת אף</b> (שמרו L-strut), <b>צלע</b> (כמות גדולה, סיכון לפנאומוטורקס).</li>
+    <li>שיטת Kawanabe-Nagata: שימור הפריכונדריום והחזרת שאריות סחוס אליו — מפחיתה סיבוכים ומאפשרת רגנרציה עתידית.</li>
+    <li>הנדסת סחוס = תאי זרע + פיגום + סביבה. הישג מכונן: אוזן אנושית מהונדסת בעכבר עירום (Cao & Vacanti, 1997); התקדמות: פיגום מותאם-אישית ב-CAD/CAM ויישום קליני ראשון (Zhou et al., 2018).</li>
+    <li>אתגרים עתידיים: חיזוק מכני של סחוס מהונדס (עומס דינמי בביו-ריאקטור), הרחבת מקורות תאים (תאי גזע ממח עצם/שומן).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
