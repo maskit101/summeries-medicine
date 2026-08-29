@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: הרדמה מקומית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .surgery{background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .media-img{width:100%; max-width:420px; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px auto; display:block; background:#fff}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 6: הרדמה מקומית <span class="term" dir="ltr">Local Anesthesia</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: אסתטיקה (5th ed.) | Section I – Aesthetic Anesthesia Techniques | מאת Malcolm D. Paul</div>
+
+<p>הרדמה מקומית היא הכלי הפרמקולוגי הבסיסי ביותר בארגז הכלים של המנתח הפלסטי - היא מה שמאפשר לבצע פרוצדורות אסתטיות (מהזרקת חומצה היאלורונית ועד פייסליפט מלא) בהכרה מלאה, ללא הסיכונים של הרדמה כללית. הפרק עוסק במנגנון הפעולה של חומרי ההרדמה המקומיים, בסיווגם, במינונים הבטוחים, ברעילות המערכתית שלהם (<span class="term" dir="ltr">LAST</span>) ובטכניקת ה"טומסנט" (<span class="term" dir="ltr">tumescent</span>) שהפכה את שאיבת השומן ופרוצדורות פנים רבות לניתוחי משרד בטוחים.</p>
+
+<h2><span class="num">1</span> מנגנון הפעולה - חסימת תעלות נתרן וחסימה דיפרנציאלית</h2>
+<div class="mechanism">
+  <p class="chain">
+    כדי שעצב "ידווח" על כאב למוח, הממברנה שלו חייבת <b>לעבור דה-פולריזציה</b> - תהליך שמונע כמעט לחלוטין ע"י זרימת יוני נתרן (<span class="term" dir="ltr">Na+</span>) פנימה לתא דרך תעלות נתרן תלויות-מתח. חומר ההרדמה המקומי (שמיוצר כמלח חומצי מסיס-במים) חייב קודם <b>לעבור לצורתו הלא-מיוננת (בסיס חופשי)</b> כדי לחצות את הממברנה השומנית של העצב - שיעור המולקולות שנמצא בצורה זו נקבע ע"י <b class="key">ה-pKa של התרופה מול ה-pH של הרקמה</b> (ולכן ברקמה דלקתית/חומצית, כמו אבצס, ההרדמה המקומית פחות יעילה - יש פחות בסיס חופשי שיכול לחדור).<br><br>
+    ברגע שהמולקולה נמצאת בתוך התא, היא חוזרת להתמיין (בגלל ה-pH התוך-תאי) ובצורתה המיוננת נקשרת <b>מהצד הפנימי (הציטופלזמי) של תעלת הנתרן</b> ותוקעת אותה במצב "לא-פעיל" - כלומר <b>חוסמת פיזית את זרם הנתרן</b>, לא רק "מאטה" אותו. התוצאה: אין דה-פולריזציה, אין פוטנציאל פעולה שמתפשט, ולכן אין העברת מידע - <b class="key">אובדן תחושה באזור שהעצב מעצבב</b>.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת המנגנון של הרדמה מקומית</title>
+  <rect x="710" y="20" width="160" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="790" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חדירה לעצב</text>
+  <text x="790" y="63" font-size="11" text-anchor="middle" fill="#7f1d1d">צורה לא-מיוננת חוצה ממברנה</text>
+
+  <rect x="480" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="560" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קשירה לתעלת Na+</text>
+  <text x="560" y="63" font-size="11" text-anchor="middle" fill="#1e3a8a">מהצד הציטופלזמי (הפנימי)</text>
+
+  <rect x="250" y="20" width="160" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="330" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">חסימת זרם Na+</text>
+  <text x="330" y="63" font-size="11" text-anchor="middle" fill="#065f46">אין דה-פולריזציה</text>
+
+  <rect x="20" y="20" width="160" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">אובדן תחושה</text>
+  <text x="100" y="63" font-size="11" text-anchor="middle" fill="#4c1d95">אין הולכת דחף לאורך העצב</text>
+
+  <polygon points="670,50 710,44 710,56" fill="#374151"/>
+  <line x1="710" y1="50" x2="670" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,50 480,44 480,56" fill="#374151"/>
+  <line x1="480" y1="50" x2="440" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,50 250,44 250,56" fill="#374151"/>
+  <line x1="250" y1="50" x2="210" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="150" y="120" width="600" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="450" y="148" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">חסימה דיפרנציאלית: סיבי C דקים ולא-מיאלינים (כאב, טמפ') נחסמים ראשונים</text>
+  <text x="450" y="168" font-size="12" text-anchor="middle" fill="#78350f">ואחריהם A-delta (כאב חד), ורק לבסוף A-beta/A-alpha (מגע, תחושה עמוקה, מוטורי)</text>
+  <polygon points="450,120 444,100 456,100" fill="#b45309"/>
+  <line x1="450" y1="120" x2="450" y2="100" stroke="#b45309" stroke-width="2"/>
+</svg>
+<p><b class="key">חסימה דיפרנציאלית</b> (<span class="term" dir="ltr">differential nerve fiber blockade</span>) היא הסיבה הקלינית לכך שמטופל תחת הרדמה מקומית מדווח לעיתים על "תחושת לחץ" גם כשהוא לא מרגיש כאב - סיבי הכאב הדקים (C ו-A-delta) נחסמים בריכוזים נמוכים יותר ומהר יותר מסיבי המגע/הפרופריוצפציה העבים (A-beta) והסיבים המוטוריים (A-alpha), פשוט כי לסיב דק יש פחות "אורך תעלות" שצריך לחסום כדי לעצור את ההולכה (ולסיבים לא-מיאלינים כמו C אין את יתרון ה"קפיצה" בין nodes of Ranvier שיש לסיבים מיאלינים).</p>
+
+<h2><span class="num">2</span> פרמקוקינטיקה - אסטרים מול אמידים</h2>
+<p>שני המחלקות של חומרי ההרדמה המקומיים - <b>אמינו-אסטרים</b> (<span class="term" dir="ltr">amino esters</span>) ו<b>אמינו-אמידים</b> (<span class="term" dir="ltr">amino amides</span>) - נבדלות במבנה הכימי שלהן (הקשר בין החלק הליפופילי הארומטי לחלק ההידרופילי האמיני): אסטר (<span class="term" dir="ltr">-CO-O-</span>) לעומת אמיד (<span class="term" dir="ltr">-NH-CO-</span>). בכירורגיה פלסטית, <b class="key">האמידים (בעיקר לידוקאין ובופיוואקאין) הם הנפוצים ביותר בשימוש</b>.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Lidocaine.svg" alt="מבנה כימי של לידוקאין">
+</figure>
+<p class="media-cap">מבנה כימי של לידוקאין - אמינו-אמיד קלאסי (קשר <span dir="ltr">-NH-CO-</span> בין הטבעת הארומטית לשרשרת האמינית). מקור: <a href="https://commons.wikimedia.org/wiki/File:Lidocaine.svg" target="_blank">Wikimedia Commons</a>.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין</th><th>אמינו-אסטרים <span dir="ltr">(esters)</span></th><th>אמינו-אמידים <span dir="ltr">(amides)</span></th></tr></thead>
+  <tbody>
+    <tr><td>דוגמאות</td><td>פרוקאין, כלורופרוקאין, טטרקאין, קוקאין, בנזוקאין</td><td>לידוקאין, מפיווקאין, בופיוואקאין, רופיוואקאין, לבובופיוואקאין, פריאלוקאין, אטידוקאין</td></tr>
+    <tr><td>מטבוליזם</td><td>הידרוליזה מהירה ע"י <b>פסאודוכולינאסטראז</b> בפלזמה</td><td>פירוק איטי יותר בכבד ע"י אנזימי <span class="term" dir="ltr">cytochrome P450</span> (<span class="term" dir="ltr">N-dealkylation</span>)</td></tr>
+    <tr><td>מטבוליט אחראי לאלרגיה</td><td><b><span class="term" dir="ltr">PABA</span></b> (חומצה פארא-אמינובנזואית) - קשור לרוב מקרי האלרגיה האמיתית להרדמה מקומית</td><td>לרוב אינם גורמים אלרגיה אמיתית; "אלרגיה לאמיד" חשודה לעיתים היא בעצם רגישות ל<b>מתילפרבן</b> (חומר משמר דמוי-PABA בבקבוקוני מנה מרובה)</td></tr>
+    <tr><td>יציבות/שכיחות שימוש כיום</td><td>פחות יציבים בתמיסה, פחות בשימוש היום</td><td>יציבים יותר, הבחירה הרווחת בכירורגיה פלסטית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">טריק לזיהוי אסטר מול אמיד לפי השם: לתרופות אמיד יש <b>שני האותיות "i"</b> בשם (למשל <span dir="ltr">lidocaine</span>, <span dir="ltr">bupivacaine</span> - "i" אחד בגוף השם ועוד "i" לפני ה-"caine"), בעוד שלתרופות אסטר יש רק <b>"i" אחד</b> (למשל <span dir="ltr">procaine</span>, <span dir="ltr">tetracaine</span>).</p>
+
+<p>שלושה מאפיינים פרמקוקינטיים נקבעים ע"י תכונות כימיות שונות של המולקולה:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תכונה קלינית</th><th>נקבעת ע"י</th><th>המשמעות בפועל</th></tr></thead>
+  <tbody>
+    <tr><td><b>מהירות התחלת פעולה</b> (<span class="term" dir="ltr">onset</span>)</td><td><span class="term" dir="ltr">pKa</span> של התרופה - ככל שקרוב יותר ל-pH הפיזיולוגי (7.4), יש יותר בסיס חופשי לא-מיונן זמין לחדירה מהירה</td><td>כלורופרוקאין (<span dir="ltr">pKa≈8.7</span> אך בכל זאת מהיר בזכות ריכוז גבוה) ולידוקאין (<span dir="ltr">pKa≈7.9</span>) - התחלה מהירה; בופיוואקאין וטטרקאין - איטיים יותר</td></tr>
+    <tr><td><b>עוצמה</b> (<span class="term" dir="ltr">potency</span>)</td><td>מסיסות בשומן (<span class="term" dir="ltr">lipid solubility</span>)</td><td>ככל שהמולקולה ליפופילית יותר, היא חודרת ביתר קלות לממברנת השומן העצבית ופועלת בריכוז נמוך יותר - זו הסיבה שבופיוואקאין עוצמתי (וגם רעיל יותר ללב, ראו סעיף 4)</td></tr>
+    <tr><td><b>משך פעולה</b> (<span class="term" dir="ltr">duration</span>)</td><td>קשירה לחלבון (<span class="term" dir="ltr">protein binding</span>, בעיקר ל-alpha-1-acid glycoprotein)</td><td>קשירה חזקה יותר = שחרור איטי יותר מהתעלה = פעולה ממושכת יותר (בופיוואקאין/רופיוואקאין נקשרים חזק וארוכים בהרבה מלידוקאין)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/8LU4IwdDbx8" title="Local Anesthesia animation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה קצרה שממחישה חזותית איך חומר ההרדמה המקומי חוסם את תעלת הנתרן ומונע הולכת דחף עצבי.</p>
+
+<h2><span class="num">3</span> תרופות נפוצות ומינונים מרביים</h2>
+<p>הטבלה המרכזית בפרק (טבלה 6.1) מסכמת את התחלת הפעולה, המינון המרבי (עם ובלי אדרנלין) ומשך הפעולה (עם ובלי אדרנלין) של חומרי ההרדמה המקומיים הנפוצים. <b class="key">הוספת אדרנלין (אפינפרין) מעלה את המינון המרבי המותר ומאריכה את משך הפעולה</b> - כי הכיווץ המקומי של כלי הדם מאט את הספיגה הסיסטמית של התרופה, ומשאיר אותה זמן רב יותר במקום הפעולה הרצוי.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תרופה</th><th>התחלת פעולה</th><th>מינון מרבי (עם אדרנלין)</th><th>משך פעולה (עם אדרנלין)</th></tr></thead>
+  <tbody>
+    <tr><td>לידוקאין <span dir="ltr">(Lidocaine)</span></td><td>מהירה</td><td>4.5 מ"ג/ק"ג (7 מ"ג/ק"ג)</td><td>120 דק' (240 דק')</td></tr>
+    <tr><td>מפיווקאין <span dir="ltr">(Mepivacaine)</span></td><td>מהירה</td><td>5 מ"ג/ק"ג (7 מ"ג/ק"ג)</td><td>180 דק' (360 דק')</td></tr>
+    <tr><td>בופיוואקאין <span dir="ltr">(Bupivacaine)</span></td><td>איטית</td><td>2.5 מ"ג/ק"ג (3 מ"ג/ק"ג)</td><td>4 שעות (8 שעות)</td></tr>
+    <tr><td>רופיוואקאין <span dir="ltr">(Ropivacaine)</span></td><td>בינונית</td><td>2-3 מ"ג/ק"ג</td><td>3 שעות (6 שעות)</td></tr>
+    <tr><td>לבובופיוואקאין <span dir="ltr">(Levobupivacaine)</span></td><td>בינונית</td><td>2.0 מ"ג/ק"ג או 400 מ"ג/24 שעות</td><td>4-6 שעות (8-12 שעות)</td></tr>
+    <tr><td>פרוקאין <span dir="ltr">(Procaine)</span></td><td>איטית</td><td>8 מ"ג/ק"ג (10 מ"ג/ק"ג)</td><td>45 דק' (90 דק')</td></tr>
+    <tr><td>כלורופרוקאין <span dir="ltr">(Chloroprocaine)</span></td><td>מהירה</td><td>10 מ"ג/ק"ג (15 מ"ג/ק"ג)</td><td>30 דק' (90 דק')</td></tr>
+    <tr><td>אטידוקאין <span dir="ltr">(Etidocaine)</span></td><td>מהירה</td><td>2.5 מ"ג/ק"ג (4 מ"ג/ק"ג)</td><td>4 שעות (8 שעות)</td></tr>
+    <tr><td>פריאלוקאין <span dir="ltr">(Prilocaine)</span></td><td>בינונית</td><td>5 מ"ג/ק"ג (7.5 מ"ג/ק"ג)</td><td>90 דק' (360 דק')</td></tr>
+    <tr><td>טטרקאין <span dir="ltr">(Tetracaine)</span></td><td>איטית</td><td>1.5 מ"ג/ק"ג (2.5 מ"ג/ק"ג)</td><td>3 שעות (10 שעות)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>הפרק מדגיש רשימת שיקולים לקביעת המינון בפועל: משקל המטופל, האם הוסף אדרנלין, אופן המתן (מזרק בודד מול משאבת עירוי בטכניקת הטומסנט), חומציות הרקמה המוזרקת, תרופות/תוספים שמתחרים על המטבוליזם של ההרדמה המקומית, וכמובן - <b class="key">קצב הספיגה לזרם הדם הוא הגורם המכריע ביותר לרעילות סיסטמית</b>, ומושפע מהוסקולריות המקומית ומידת הקישור לרקמה.</p>
+
+<h2><span class="num">4</span> רעילות סיסטמית של הרדמה מקומית (<span class="term" dir="ltr">LAST</span>)</h2>
+<p><span class="term" dir="ltr">LAST – Local Anesthetic Systemic Toxicity</span> מתפתחת כאשר ריכוז חומר ההרדמה בדם עולה מעבר לסף הבטוח - בין אם מהזרקה תוך-ורידית בשוגג, ובין אם ממתן מינון מצטבר גבוה מדי. תעלות הנתרן שהחומר חוסם באזור ההזרקה אינן "מקומיות" מבחינה כימית - כשריכוזו בדם עולה, אותו מנגנון חסימה בדיוק פוגע גם בתעלות נתרן במוח ובלב.</p>
+<div class="mechanism">
+  <p class="chain">ב<b>מערכת העצבים המרכזית</b>: בריכוזים נמוכים-בינוניים, ההרדמה חוסמת קודם כל <b>נוירונים מעכבים</b> (<span class="term" dir="ltr">inhibitory</span>) - ולכן שלב ראשוני נראה כ"עוררות" (חוסר שקט, רעד, פרכוסים), ורק בריכוזים גבוהים יותר נחסמים גם נוירונים מעוררים - ואז מגיעה דיכוי CNS גורף (ישנוניות ועד תרדמת ודום נשימה). ב<b>לב</b>: חסימת תעלות Na+ בתאי שריר הלב מאטה הולכה חשמלית וגורמת להפרעות קצב ולירידה בכיווץ הלב - ועד דום לב.<br><br>
+  <b class="key">בופיוואקאין מסוכן במיוחד ללב</b>: בזכות המסיסות הגבוהה שלו בשומן, הוא נקשר לתעלת הנתרן הלבבית בקינטיקה של "כניסה מהירה - יציאה איטית" (<span class="term" dir="ltr">fast-in, slow-out</span>) - כך שבניגוד ללידוקאין (שמשתחרר בין פעימה לפעימה), הוא "נתקע" על התעלה ומצטבר, ולכן עלול לגרום דום לב <b>ללא סימני אזהרה מוקדמים ב-CNS</b> ולהיות עמיד לטיפול החייאה סטנדרטי.</p>
+</div>
+
+<h3>סימני רעילות ללידוקאין (תיבה 6.1)</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שלב</th><th>סימנים וסימפטומים</th></tr></thead>
+  <tbody>
+    <tr><td><b>תסמינים נוירולוגיים מוקדמים</b></td><td>נימול סביב הפה ו/או בלשון, טעם מתכתי, סחרחורת, בלבול, הפרעות ראייה ושמיעה (קושי במיקוד, טינטון), דיסאוריינטציה, ישנוניות</td></tr>
+    <tr><td><b>תסמינים נשימתיים ולבביים קשים</b></td><td>יתר לחץ דם נמוך (היפוטנשן), הפרעת קצב, ברדיקרדיה, דום לב, דום נשימה</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">הופעת התסמינים המוקדמים (טעם מתכתי, נימול סביב הפה, טינטון) היא "אות האזהרה" הכי חשוב לזהות - <b>בשלב הזה יש להפסיק מיד את ההזרקה</b>, לפני שהריכוז ממשיך לעלות לכיוון הרעילות הלבבית.</p>
+
+<h2><span class="num">5</span> טיפול חירום ברעילות (אלגוריתם 6.1)</h2>
+<p>הצעד הראשון תמיד: <b>להפסיק את הזרקת ההרדמה המקומית</b>, לבקש עזרה (קריאת חירום), לאבטח נתיב אוויר ולתת חמצן, ולפתוח וריד. הטיפול הספציפי מדורג לפי חומרת התמונה הקלינית:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מצב קליני</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>פרכוסים</td><td>בנזודיאזפינים (נוגד פרכוסים) + אמולסיית שומן</td></tr>
+    <tr><td>דיכוי לבבי קל / הפרעת קצב</td><td>תיקון היפוטנשן (אפדרין/אדרנלין), טיפול באנטי-אריתמיה (אטרופין וכו') + אמולסיית שומן</td></tr>
+    <tr><td>דום לב</td><td><span class="term" dir="ltr">CPR</span> + <span class="term" dir="ltr">ACLS</span> (אדרנלין) + אמולסיית שומן, ואם נכשל - שקילת מעקף לב-ריאה (<span class="term" dir="ltr">cardiopulmonary bypass</span>)</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>אמולסיית שומן תוך-ורידית</b> (<span class="term" dir="ltr">intralipid / lipid emulsion</span>) היא הטיפול המרכזי והייחודי לרעילות הרדמה מקומית: בולוס של <b>1.5 מ"ל/ק"ג תוך-ורידי במשך דקה אחת</b>, ניתן לחזור עליו פעם-פעמיים במקרה של קריסה קרדיווסקולרית מתמשכת, ולאחר מכן <b>עירוי מתמשך של 0.25-0.5 מ"ל/ק"ג/דקה</b> (כ-18 מ"ל/דקה) הנמשך לפחות 10 דקות אחרי השגת יציבות המודינמית (מגבלת עליון מומלצת: כ-10 מ"ל/ק"ג אמולסיית שומן ב-30 הדקות הראשונות). המנגנון המדויק אינו ידוע במלואו (כפי שהפרק עצמו מציין), אך שתי ההשערות המובילות הן:</p>
+<ul>
+  <li><b>"מלכודת השומן" (<span class="term" dir="ltr">lipid sink</span>):</b> האמולסיה יוצרת פאזה שומנית בפלזמה שסופחת אליה את מולקולות ההרדמה הליפופיליות ומרחיקה אותן מרקמת הלב והמוח.</li>
+  <li><b>אפקט מטבולי/אינוטרופי ישיר:</b> האמולסיה מספקת חומצות שומן כדלק חלופי לשריר הלב הפגוע, ויש לה גם השפעה ישירה על ערוצי סידן בתא הלב.</li>
+</ul>
+<p>לאחר ייצוב מחזורי - מעקב צמוד עד להתעוררות מלאה, עם שקילת אשפוז ב<span class="term" dir="ltr">ICU</span> להמשך מעקב.</p>
+<svg class="diagram" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הטיפול ברעילות הרדמה מקומית</title>
+  <rect x="710" y="20" width="160" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="790" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">הפסקת הזרקה</text>
+  <text x="790" y="63" font-size="11" text-anchor="middle" fill="#7f1d1d">חמצן + נתיב אוויר + וריד</text>
+
+  <rect x="480" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="560" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">בולוס שומן</text>
+  <text x="560" y="63" font-size="11" text-anchor="middle" fill="#1e3a8a">1.5 מ"ל/ק"ג תוך-ורידי</text>
+
+  <rect x="250" y="20" width="160" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="330" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">עירוי מתמשך</text>
+  <text x="330" y="63" font-size="11" text-anchor="middle" fill="#065f46">0.25-0.5 מ"ל/ק"ג/דקה</text>
+
+  <rect x="20" y="20" width="160" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">ייצוב + מעקב</text>
+  <text x="100" y="63" font-size="11" text-anchor="middle" fill="#4c1d95">שקילת ICU</text>
+
+  <polygon points="670,50 710,44 710,56" fill="#374151"/>
+  <line x1="710" y1="50" x2="670" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,50 480,44 480,56" fill="#374151"/>
+  <line x1="480" y1="50" x2="440" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,50 250,44 250,56" fill="#374151"/>
+  <line x1="250" y1="50" x2="210" y2="50" stroke="#374151" stroke-width="2"/>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6dnfkEsySKU" title="LAST (Local Anesthetic Systemic Toxicity): A practical update for clinicians" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה קלינית מעודכנת על זיהוי וטיפול ב-LAST, כולל פרוטוקול אמולסיית השומן.</p>
+
+<h2><span class="num">6</span> רמות הרדמה ושילוב עם תרופות נוספות</h2>
+<p>הפרק מגדיר ארבע רמות הרדמה, קריטריון שנועד לשמור על בטיחות המטופל בפרוצדורות משרדיות:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>רמה</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td><b>רמה 1</b></td><td>הרדמה מקומית עם סדציה/אנקסיוליזה מינימלית - המטופל בהכרה מלאה ומגיב לפקודות מילוליות</td></tr>
+    <tr><td><b>רמה 2</b></td><td>סדציה בינונית - ההכרה מופחתת, אך המטופל עדיין מגיב לפקודות מילוליות</td></tr>
+    <tr><td><b>רמה 3</b></td><td>סדציה עמוקה - המטופל מגיב לגירוי כואב חוזר, אך קשה לעורר אותו</td></tr>
+    <tr><td><b>רמה 4</b></td><td>הרדמה כללית - אובדן הכרה מלא, אין תגובה אפילו לגירוי כואב, נדרשת תמיכה נשימתית</td></tr>
+  </tbody>
+</table>
+</div>
+<p>גישת <b><span class="term" dir="ltr">WALANT</span></b> (הרדמה מקומית ער לגמרי, שפותחה במקור ע"י <span class="term" dir="ltr">Lalonde</span>) מציעה לבצע פרוצדורות שלמות תחת רמה 1 בלבד, בלי שום תרופה נוספת - עם דגשים טכניים שמפחיתים כאב הזרקה: חיץ ביקרבונט נתרן להרדמה, מחטים דקות (27-30G), הזרקה איטית לרקמת השומן מתחת לדרמיס (לא לתוך הדרמיס עצמו), התקדמות רק לרקמה שכבר מורדמת, והזרקה תמיד מפרוקסימלית לדיסטלית ביחס לעצב.</p>
+<p>בפועל, רוב המנתחים המבצעים ניתוחי פנים אסתטיים משלבים רמה 1 עם <b>אופיואיד + בנזודיאזפין</b> (למשל לוראזפאם/דיאזפאם) לאנלגזיה ואנקסיוליזה - תוך הקפדה שהמינון לא "יגלוש" לרמה 2 (שעלולה לחייב מתקן מוסמך וציוד נוסף). התפתחות עדכנית שהפרק מציין היא שימוש ב<b><span class="term" dir="ltr">DSUVIA</span></b> (סופנטניל תת-לשוני) - אופיואיד שמספק אנלגזיה עמוקה תוך 20-30 דקות, נמשך 3-4 שעות, ואינו גורם דיכוי נשימתי במינון המומלץ, כך שמאפשר לבצע פרוצדורות ארוכות תחת רמה 1 בלבד.</p>
+
+<h2><span class="num">7</span> טכניקת הטומסנט (<span class="term" dir="ltr">Tumescent Technique</span>)</h2>
+<p>טכניקת הטומסנט, שפותחה ופורסמה ע"י <span class="term" dir="ltr">Jeffrey Klein</span> ב-1987, שינתה מהותית את שאיבת השומן והפכה אותה מניתוח בית חולים תחת הרדמה כללית לפרוצדורת משרד. הרעיון: מזריקים נפח גדול של תמיסה מדוללת מאוד של הרדמה מקומית + אדרנלין לרקמת השומן לפני הניתוח, עד שהרקמה הופכת "נפוחה" (<span class="term" dir="ltr">tumescent</span>) ומוצקה - מה שמקל על הפרדת השומן, מפחית משמעותית איבוד דם (בזכות כיווץ כלי הדם), ומספק הרדמה ממושכת.</p>
+<p>הפרוטוקול שמתואר בפרק (לפייסליפט/פרוצדורות פנים):</p>
+<ul>
+  <li>500 סמ"ק לקטייטד רינגר (במנות של 250 סמ"ק - לחלק את שאר המרכיבים בחצי)</li>
+  <li>30 סמ"ק לידוקאין 1% ללא אדרנלין</li>
+  <li>1 סמ"ק אדרנלין (דילול סופי של 1:500,000)</li>
+  <li>1 גרם חומצה טרנקסמית (<span class="term" dir="ltr">tranexamic acid</span>) לשיפור ההמוסטזיס בזכות תכונתה האנטי-פיברינוליטית</li>
+</ul>
+<p class="key-box">נקודה קלינית חשובה שהפרק מדגיש: התמיסה מוזרקת <b>לפני</b> ההכנה והכיסוי הסטרילי של המטופל - כי לאדרנלין לוקח כ<b>-26 דקות</b> להשיג את מלוא האפקט המכווץ (<b>לא 7 דקות, כפי שנהוג לחשוב</b>) - ולכן הזרקה מוקדמת "קונה" זמן הכנה שממילא נדרש, בלי לעכב את הניתוח.</p>
+<p>בזמן ההזרקה יש לעקוב אחר הדופק ולחץ הדם - טכיקרדיה או עלייה מהירה בלחץ הדם מרמזת על ספיגת אדרנלין מהירה מדי, ומצריכה עצירה זמנית של ההזרקה עד לחזרה לערכים תקינים.</p>
+
+<h2><span class="num">8</span> בטיחות בניתוח משרדי (הנחיות <span class="term" dir="ltr">ASPS</span>)</h2>
+<p>ה-<span class="term" dir="ltr">American Society of Plastic Surgeons</span> קבע קווים מנחים למיון מטופלים ולניהול פרוצדורות במתקן משרדי:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיווג <span dir="ltr">ASA</span></th><th>תיאור</th><th>המלצה למתקן משרדי</th></tr></thead>
+  <tbody>
+    <tr><td>ASA 1</td><td>בריא לחלוטין</td><td>מועמד אידיאלי</td></tr>
+    <tr><td>ASA 2</td><td>מחלה מערכתית קלה ומאוזנת, ללא מגבלה תפקודית</td><td>מועמד אידיאלי</td></tr>
+    <tr><td>ASA 3</td><td>מחלה קשה במערכת אחת עם מגבלה תפקודית מסוימת</td><td>מועמד סביר, מומלצת טכניקת הרדמה מקומית+סדציה בלבד</td></tr>
+    <tr><td>ASA 4</td><td>מחלה מערכתית קשה שמהווה איום מתמיד על החיים</td><td>רק עם הרדמה מקומית וסדציה (לא הרדמה כללית במתקן משרדי)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>הנחיות פרוצדורליות נוספות: ציוד לניטור וחימום המטופל למניעת היפותרמיה; אם דימום צפוי מעל 500 מ"ל - יש לבצע רק במתקן עם גישה לדם ומוצריו; <b>שאיבת שומן מוגבלת לפחות מ-5 ליטר</b> ליפואספיראט (ולהימנע משאיבה נרחבת בשילוב פרוצדורות נוספות במתקן משרדי); משך ניתוח לא יעלה על 6 שעות (אחרת לשקול מעקב באשפוז); ודירוג סיכון לפקקת ורידים עמוקה (<span class="term" dir="ltr">DVT</span>) שקובע את רמת המניעה הנדרשת (מגן פניאומטי, טיפול תרופתי מונע).</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>הטריק: כמות ה-"<span dir="ltr">i</span>" בשם התרופה</h3>
+  <p>כפי שהוזכר בסעיף 2 - <b>שני "i" = אמיד, "i" אחד = אסטר</b>. זו הדרך המהירה ביותר לזהות מיד איזו קבוצת מטבוליזם (ואיזה סיכון אלרגי) שייכת לתרופה, בלי לשנן רשימה.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שתי דמויות: <b>"אמידה"</b> - אישה עם משקפיים עגולים (שתי עדשות = שתי "i"), רגועה ואיטית, שעובדת רק במעבדה הגדולה של הכבד (בעזרת צוות אנזימי <span dir="ltr">P450</span>) ולוקחת לה זמן לסיים את המשמרת (מטבוליזם איטי, פעולה ארוכה). לעומתה <b>"אסטרה"</b> - בלשית עם מונוקל (עדשה אחת = "i" אחד), שעובדת מהר מאוד, ישר בזרם הדם (פלזמה), בעזרת שותף מקומי בשם פסאודוכולינאסטראז - אבל לפעמים משאירה מאחוריה "טביעת אצבע" (PABA) שגורמת לתגובה אלרגית.</p>
+  <svg class="diagram" viewBox="0 0 500 210" xmlns="http://www.w3.org/2000/svg">
+    <title>אמידה מול אסטרה</title>
+    <circle cx="130" cy="80" r="55" fill="#ecfdf5" stroke="#047857" stroke-width="3"/>
+    <circle cx="105" cy="70" r="10" fill="#fff" stroke="#047857" stroke-width="2"/>
+    <circle cx="105" cy="70" r="3" fill="#047857"/>
+    <circle cx="150" cy="70" r="10" fill="#fff" stroke="#047857" stroke-width="2"/>
+    <circle cx="150" cy="70" r="3" fill="#047857"/>
+    <path d="M110,105 Q130,118 150,105" stroke="#047857" stroke-width="3" fill="none"/>
+    <text x="130" y="160" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">אמידה - שני "i"</text>
+    <text x="130" y="178" font-size="11" text-anchor="middle" fill="#065f46">כבד, איטי, יציב</text>
+
+    <circle cx="370" cy="80" r="55" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/>
+    <circle cx="370" cy="70" r="12" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="370" cy="70" r="4" fill="#2563eb"/>
+    <line x1="358" y1="70" x2="345" y2="65" stroke="#2563eb" stroke-width="2"/>
+    <path d="M350,108 Q370,120 390,108" stroke="#2563eb" stroke-width="3" fill="none"/>
+    <text x="370" y="160" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">אסטרה - "i" אחד</text>
+    <text x="370" y="178" font-size="11" text-anchor="middle" fill="#1e3a8a">פלזמה, מהיר, אלרגני</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.osmosis.org/learn/Local_anesthetics" target="_blank">Local anesthetics – Osmosis</a>
+    <div class="desc">סיכום לימודי מקיף (טקסט+איורים) על מנגנון הפעולה, הסיווג לאסטרים/אמידים ותופעות הלוואי של הרדמה מקומית.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK499964/" target="_blank">Local Anesthetic Systemic Toxicity – StatPearls (NCBI)</a>
+    <div class="desc">פרק ייחוס מפורט על אבחון וטיפול ב-LAST, כולל פרוטוקול אמולסיית השומן המלא של ASRA.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Lidocaine.svg" target="_blank">Lidocaine.svg – Wikimedia Commons</a>
+    <div class="desc">קובץ המבנה הכימי של לידוקאין המוטמע בסעיף 2 לעיל, במקור.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52 מגיעה לניתוח פייסליפט ומתיחת צוואר תחת הרדמה מקומית עם סדציה קלה (רמה 1-2). המנתח מזריק תמיסת טומסנט (לקטייטד רינגר + לידוקאין 1% + אדרנלין 1:500,000) לרקמת הצוואר לפני ההכנה הסטרילית, ובהמשך משלים חסימה של העצבים הגדולים באוזן עם לידוקאין 1% + אדרנלין. כ-15 דקות לאחר תחילת ההזרקות, המטופלת מדווחת על טעם מתכתי בפה ותחושת נימול סביב השפתיים, ומעט מבולבלת. הדופק והלחץ תקינים בשלב זה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הפעולה הראשונה והחשובה ביותר שיש לבצע ברגע שהמטופלת מדווחת על טעם מתכתי ונימול סביב הפה?</div>
+  <button class="opt" data-i="0">להמשיך את ההזרקה בקצב איטי יותר ולהמתין לראות אם התסמינים חולפים</button>
+  <button class="opt" data-i="1">להפסיק מיד את הזרקת ההרדמה המקומית ולהתחיל הערכה/ניטור לקראת רעילות סיסטמית אפשרית</button>
+  <button class="opt" data-i="2">לתת מיד אמולסיית שומן תוך-ורידית ללא צורך בהערכה נוספת</button>
+  <button class="opt" data-i="3">להתעלם - זו תופעה שכיחה וחסרת משמעות קלינית</button>
+  <div class="explain">התשובה הנכונה: טעם מתכתי ונימול סביב הפה הם הסימנים הנוירולוגיים המוקדמים הקלאסיים של רעילות לידוקאין (תיבה 6.1) - ברגע שהם מופיעים, הצעד הראשון המחייב הוא הפסקת ההזרקה מיד כדי למנוע המשך עלייה בריכוז הדם. תשובה 1 (המשך הזרקה) מסוכנת ועלולה להוביל להחמרה לקראת רעילות לבבית. תשובה 3 (אמולסיית שומן מיידית) היא טיפול לשלב מתקדם יותר (פרכוסים/דיכוי לבבי) ולא הצעד הראשון בתסמינים מוקדמים בלבד. תשובה 4 מתעלמת מסימן אזהרה חשוב.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע התמיסה הטומסנטית מוזרקת <b>לפני</b> הכנת וכיסוי המטופלת, ולא בסמוך ממש לתחילת הניתוח?</div>
+  <button class="opt" data-i="0">כי חובה חוקית להזריק הרדמה מקומית לפני שהמטופל נכנס לחדר הניתוח</button>
+  <button class="opt" data-i="1">כי לידוקאין דורש 60 דקות לפני שהוא מתחיל לפעול כלל</button>
+  <button class="opt" data-i="2">כי לאדרנלין לוקח כ-26 דקות (ולא 7 כפי שנהוג לחשוב) להשיג את מלוא האפקט המכווץ, וזמן ההכנה משמש למטרה זו</button>
+  <button class="opt" data-i="3">כדי לאפשר לצוות לבדוק אלרגיה לפני שמתחילים בהכנה</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין נקודה קלינית ספציפית וחשובה - למלוא האפקט של האדרנלין (כיווץ כלי דם מקסימלי) לוקח כ-26 דקות, בניגוד לתפיסה הרווחת של 7 דקות. הזרקה מוקדמת (לפני ההכנה הסטרילית) "מנצלת" את זמן ההכנה שממילא נדרש כדי להשיג את מלוא ההשפעה בלי לעכב את תחילת הניתוח בפועל. תשובות 1, 2 ו-4 אינן נכונות עובדתית ואינן מוזכרות בפרק כסיבה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע בופיוואקאין נחשב לתרופה המסוכנת ביותר מבחינה קרדיוטוקסית מבין חומרי ההרדמה המקומיים הנפוצים?</div>
+  <button class="opt" data-i="0">קינטיקת "כניסה מהירה-יציאה איטית" מתעלת הנתרן הלבבית גורמת להצטברות והפרעת קצב שעמידה יחסית לטיפול, לעיתים ללא סימני אזהרה מוקדמים ב-CNS</button>
+  <button class="opt" data-i="1">בופיוואקאין אינו נקשר כלל לתעלות נתרן בלב</button>
+  <button class="opt" data-i="2">בופיוואקאין מטבולזם בפלזמה ולכן פועל מהר מדי על הלב</button>
+  <button class="opt" data-i="3">בופיוואקאין תמיד ניתן רק תוך-ורידי ולכן מגיע ישירות ללב</button>
+  <div class="explain">התשובה הנכונה: המסיסות הגבוהה של בופיוואקאין בשומן גורמת לו להיקשר לתעלת הנתרן הלבבית בקינטיקה איטית (נשאר "תקוע" בין פעימה לפעימה) - כך שהוא עלול לגרום דום לב חמור ועמיד לטיפול, לפעמים בלי אזהרה נוירולוגית מקדימה. תשובה 2 הפוכה מהעובדות (הוא נקשר, וחזק במיוחד). תשובה 3 שגויה - בופיוואקאין הוא אמיד ומטבולזם בכבד, לא בפלזמה. תשובה 4 אינה נכונה - בופיוואקאין ניתן להזרקה מקומית/אזורית רגילה, לא רק תוך-ורידית, והבעיה היא ספיגה סיסטמית מקרית ולא מתן מכוון תוך-ורידי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מטופל בן 60 עם היסטוריה של מחלת לב איסכמית מתוכנן לבלפרופלסטי במתקן משרדי תחת הרדמה מקומית. אילו שני שיקולים בטיחותיים מיוחדים רלוונטיים כאן לפי הפרק?</div>
+  <button class="opt" data-i="0">אין צורך בשיקולים מיוחדים כי בלפרופלסטי הוא ניתוח קטן וקצר</button>
+  <button class="opt" data-i="1">יש לנטר קפדנית דופק ולחץ דם בזמן הזרקת אדרנלין (סיכון לאיסכמיה סימפטומטית), ולוודא סיווג ASA מתאים למתקן משרדי</button>
+  <button class="opt" data-i="2">יש להימנע לחלוטין מכל שימוש בהרדמה מקומית במטופלים עם מחלת לב</button>
+  <button class="opt" data-i="3">יש לתת למטופל הרדמה כללית בלבד ולוותר על הרדמה מקומית</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שמחלת לב איסכמית קיימת מראש עלולה להיעשות סימפטומטית כתוצאה מספיגה מהירה של אדרנלין (בין אם מרקמות רכות או מהזרקה תוך-וסקולרית בשוגג) - ולכן יש לנטר דופק ולחץ דם בזמן ההזרקה ולעצור אם יש עלייה חדה. כמו כן, סיווג ASA (סעיף 8) קובע האם המתקן המשרדי מתאים כלל למטופל. תשובות 1, 3 ו-4 מוגזמות/שגויות - הרדמה מקומית עדיין אפשרית ומועדפת גם במטופלים כאלה, בכפוף לניטור ולזהירות מתאימים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע הרדמה מקומית פחות יעילה כשמזריקים אותה לתוך רקמה מודלקת (למשל אבצס)?</div>
+  <button class="opt" data-i="0">כי חיידקים מפרקים את חומר ההרדמה באופן ישיר</button>
+  <button class="opt" data-i="1">כי תעלות הנתרן ברקמה מודלקת חסינות לחלוטין לחסימה</button>
+  <button class="opt" data-i="2">ה-pH החומצי ברקמה הדלקתית מסיט את שיווי המשקל הכימי כך שפחות מהתרופה נמצאת בצורתה הלא-מיוננת (הבסיס החופשי) שיכולה לחצות את ממברנת העצב</button>
+  <button class="opt" data-i="3">אין באמת ירידה ביעילות - זו תפיסה מוטעית נפוצה</button>
+  <div class="explain">התשובה הנכונה: שיעור המולקולות בצורה הלא-מיוננת (שחייבת לחצות את ממברנת העצב) נקבע ע"י יחס ה-pKa של התרופה מול ה-pH של הרקמה. ברקמה חומצית (כמו אבצס מודלק), פחות מהתרופה נמצאת בצורה הלא-מיוננת, כך שפחות מולקולות חודרות לעצב ופחות תעלות נתרן נחסמות בפועל - ולכן ההרדמה פחות יעילה קלינית. תשובות 1, 2 ו-4 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">6. מהו התפקיד המרכזי של אמולסיית השומן (<span dir="ltr">lipid emulsion</span>) בטיפול ב-LAST, ומה חשוב לזכור לגבי מנגנון פעולתה?</div>
+  <button class="opt" data-i="0">היא פועלת אך ורק כמקור נוזלים להחייאה, בדומה לתמיסת קריסטלואיד רגילה</button>
+  <button class="opt" data-i="1">היא ניתנת רק לאחר שכל הטיפולים האחרים נכשלו לחלוטין, ולעולם לא כחלק מהפרוטוקול הראשוני</button>
+  <button class="opt" data-i="2">היא מנטרלת כימית את חומר ההרדמה המקומי והופכת אותו לתרכובת לא-פעילה</button>
+  <button class="opt" data-i="3">היא כנראה פועלת כ"מלכודת שומן" שסופחת את חומר ההרדמה הליפופילי מהרקמה, ואולי גם מספקת תמיכה מטבולית/אינוטרופית ללב - אך המנגנון המדויק אינו מובן במלואו</button>
+  <div class="explain">התשובה הנכונה: הפרק עצמו מציין במפורש שהאמולסיה יעילה אך "המנגנון הבסיסי אינו מובן היטב" - ההשערות המובילות הן "מלכודת שומן" (lipid sink) שסופחת את התרופה הליפופילית מרקמת המטרה, ותרומה מטבולית/אינוטרופית ישירה ללב. היא ניתנת מוקדם בפרוטוקול (כבר משלב פרכוסים/דיכוי קל, לא רק כמוצא אחרון בדום לב) - כך שתשובה 2 שגויה. אין נטרול כימי (תשובה 3) - התרופה לא הופכת ללא-פעילה, היא רק מורחקת מרקמת המטרה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מנגנון:</b> הרדמה מקומית חוסמת תעלות נתרן תלויות-מתח מהצד הפנימי של הממברנה העצבית, ומונעת דה-פולריזציה והולכת דחף כאב. חסימה דיפרנציאלית: סיבי C/A-delta (כאב) נחסמים לפני A-beta/A-alpha (מגע, מוטורי).</li>
+    <li><b>סיווג:</b> אסטרים (מטבוליזם פלזמטי ע"י פסאודוכולינאסטראז, מטבוליט PABA אלרגני) מול אמידים (מטבוליזם כבדי, פחות אלרגניים, הנפוצים בפלסטיקה - לידוקאין, בופיוואקאין). טריק: שני "i" = אמיד, "i" אחד = אסטר.</li>
+    <li><b>מינון:</b> תלוי במשקל, נוכחות אדרנלין (שמעלה מינון מרבי ומאריך משך פעולה), ואופן המתן. לידוקאין: 4.5 מ"ג/ק"ג (7 עם אדרנלין).</li>
+    <li><b>LAST:</b> תסמינים מוקדמים (טעם מתכתי, נימול פה, טינטון) &#8592; הפסקת הזרקה מיידית. חמור: פרכוסים, הפרעות קצב, דום לב. בופיוואקאין קרדיוטוקסי במיוחד. טיפול: אמולסיית שומן (בולוס 1.5 מ"ל/ק"ג + עירוי) + CPR/ACLS.</li>
+    <li><b>טומסנט:</b> נפח גדול של לידוקאין מדולל+אדרנלין+לקטייטד רינגר, מוזרק לפני ההכנה כי לאדרנלין לוקח כ-26 דקות (לא 7) למלוא האפקט.</li>
+    <li><b>בטיחות משרדית:</b> סיווג ASA קובע התאמה למתקן משרדי; מגבלות על שאיבת שומן (&lt;5 ליטר), משך ניתוח (&lt;6 שעות) ומניעת DVT.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
