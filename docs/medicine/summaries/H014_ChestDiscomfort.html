@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אי-נוחות בחזה (Chest Discomfort) - גישה אבחנתית</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>אי-נוחות בחזה <span dir="ltr" class="term">(Chest Discomfort)</span> - גישה אבחנתית</h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 - פרק 14 (עמ' 141-148) | מטרת הפרק: איך לגשת בצורה שיטתית לתלונה השכיחה ביותר בחדר מיון, ולזהות מהר את המיעוט המסוכן מתוך הרוב השפיר</div>
+
+<p>אי-נוחות בחזה היא אחת משלוש הסיבות השכיחות ביותר לפניה לחדר מיון בארה"ב (6-7 מיליון ביקורים בשנה), ולמעלה מ-60% מהמטופלים מאושפזים לבירור נוסף. למרות זאת, <span class="key">פחות מ-15% מהמטופלים המוערכים מאובחנים בסופו של דבר עם תסמונת כלילית חריפה <span dir="ltr" class="term">(Acute Coronary Syndrome, ACS)</span></span>, והאבחנה השכיחה ביותר היא דווקא ממערכת העיכול (כ-42%). האתגר המרכזי הוא לא "לפספס" את המיעוט המסוכן - בעיקר איסכמיה שריר-לבבית, אך גם תסמונת אב-עורקית חריפה, תסחיף ריאתי, ותמט ריאה מתוח - מבלי להציף כל מטופל בבירור מיותר.</p>
+
+<h2><span class="num">2</span> המנגנון - למה כואב בחזה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>איסכמיה שריר-לבבית (הסיבה המסוכנת השכיחה ביותר):</b> הכאב נובע מ<b>חוסר איזון בין הצריכה לאספקה של חמצן בשריר הלב</b>. צריכת החמצן עולה כשקצב הלב, מתח דופן החדר (wall stress) והתכווצות עולים (למשל במאמץ) - ואילו האספקה נקבעת ע"י זרימת הדם הכלילי ותכולת החמצן בדם העורקי. כשההיצע לא מספיק את הביקוש למשך זמן מספיק (כ-20 דקות ומעלה) - נגרם נזק תאי בלתי הפיך = אוטם.
+  </p>
+  <p class="chain">
+    ברוב המקרים הסיבה הבסיסית היא <b>פלאק טרשתי (atheromatous plaque)</b> שחוסם עורק כלילי. אנגינה יציבה נובעת מהיצרות הדרגתית שמגבילה זרימה רק כשהביקוש עולה (מאמץ) - ולכן חולפת במנוחה. אנגינה הופכת <b>לא יציבה</b> כאשר <b>קרע או שחיקה (rupture / erosion)</b> של הפלאק חושפים את תוכנו הפרו-קרישתי לזרם הדם, ומפעילים קסקדת קרישה שיוצרת פקקת תוך-כלילית (thrombosis) - זהו הרגע שבו מחלה כלילית "יציבה" הופכת לתסמונת כלילית חריפה.
+  </p>
+  <p class="chain">
+    <b>עומק הפקקת קובע את הסיווג הקליני:</b> פקקת <b>חלקית</b> חוסמת → איסכמיה ללא עלייה משמעותית ב-ST → אם אין נזק שריר לבבי נמדד = <span dir="ltr" class="term">Unstable Angina</span>, ואם יש עדות לנמק (עלייה בטרופונין) = <span dir="ltr" class="term">NSTEMI</span>. פקקת <b>חוסמת לחלוטין ובפתאומיות</b> → איסכמיה טרנס-מורלית (פוגעת בכל עובי הדופן) → הסתמנות ב-ECG כעליית מקטע ST ונמק = <span dir="ltr" class="term">STEMI</span>.
+  </p>
+  <p class="chain">
+    <b>חשוב להבחין:</b> המונח "תסמונת כלילית חריפה" שמור בדרך כלל לאיסכמיה שנגרמת ע"י פקקת טרשתית (זהו <b>אוטם מסוג 1</b>). לעומת זאת, איסכמיה יכולה להיגרם גם ללא פקקת חדשה - למשל בעליית ביקוש קיצונית (סטרס פסיכולוגי, חום, טכיקרדיה) או ירידה באספקה (אנמיה, היפוקסיה, יתר לחץ דם נמוך) על רקע היצרות כלילית קבועה - זהו <b>אוטם מסוג 2</b>, ומופרד אבחנתית מדלקת שריר לב (מיוקרדיטיס) שגם היא גורמת לעליית סמנים ביולוגיים אך אינה "אוטם" במובן האיסכמי.
+  </p>
+  <p class="chain">
+    <b>מנגנון ההקרנה (referred pain):</b> איסכמיה מעוררת קולטנים כימוסנסיטיביים ומכנורצפטורים המשחררים אדנוזין, ברדיקינין וחומרים נוספים המפעילים סיבים אפרנטיים סימפתטיים ווגליים. סיבים אלה מתכנסים בחוט השדרה (5 השורשים הטורקליים העליונים) יחד עם סיבים סומטיים - ההתכנסות הזו (convergence) היא הבסיס לכך שהמוח "מפרש" כאב פנימי כאילו הגיע מהעור/שרירים בצוואר, לסת, כתפיים וזרועות.
+  </p>
+  <p class="chain">
+    <b>סיבות קרדיו-ריאתיות נוספות:</b> בפריקרדיטיס, רוב הפריקרד עצמו אינו חש כאב - הכאב נובע מ<b>דלקת נלווית של הפלאורה</b> הצמודה, ולכן הוא בעל אופי פלאוריטי (מחמיר בנשימה, שיעול, שינוי תנוחה) ומוקל בישיבה והטיה קדימה. בדיסקציה של האב-העורקים, קרע בטוניקה האינטימה מאפשר לדם בלחץ גבוה "לחפור" מנהרה בין האינטימה למדיה, ויוצר לומן שקרי (false lumen) - הפרדת שכבות הדופן עצמה, ולא חסימה, היא מקור הכאב הקורע/פתאומי. בתסחיף ריאתי, הכאב נובע מהיתלכדות פלאורלית ליד אוטם ריאתי, מתיחה של עורק הריאה, ולעיתים ממתח דופן חדר ימין.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 920 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="190" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="105" y="48" font-size="14" text-anchor="middle" fill="#1f2937">פלאק טרשתי יציב</text>
+  <text x="105" y="68" font-size="13" text-anchor="middle" fill="#4b5563">אנגינה יציבה (במאמץ)</text>
+
+  <path d="M200 55 L250 55" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="255" y="20" width="200" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="355" y="42" font-size="14" text-anchor="middle" fill="#1f2937">קרע / שחיקה של הפלאק</text>
+  <text x="355" y="62" font-size="13" text-anchor="middle" fill="#4b5563">חשיפת תוכן פרו-קרישתי</text>
+  <text x="355" y="80" font-size="13" text-anchor="middle" fill="#4b5563">→ פקקת תוך-כלילית</text>
+
+  <path d="M355 90 L355 130" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="480" y="115" font-size="13" text-anchor="middle" fill="#4b5563">עד כמה חוסמת הפקקת?</text>
+
+  <path d="M330 135 L180 175" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="20" y="180" width="220" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="130" y="203" font-size="13" text-anchor="middle" fill="#1f2937">חלקית, ללא נמק</text>
+  <text x="130" y="222" font-size="14" text-anchor="middle" font-weight="bold" fill="#b91c1c">Unstable Angina</text>
+  <text x="130" y="240" font-size="12" text-anchor="middle" fill="#4b5563">ללא עלית ST, טרופונין תקין</text>
+
+  <path d="M380 135 L470 175" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="360" y="180" width="220" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="470" y="203" font-size="13" text-anchor="middle" fill="#1f2937">חלקית, עם נמק</text>
+  <text x="470" y="222" font-size="14" text-anchor="middle" font-weight="bold" fill="#b91c1c">NSTEMI</text>
+  <text x="470" y="240" font-size="12" text-anchor="middle" fill="#4b5563">ללא עלית ST, טרופונין עולה</text>
+
+  <path d="M420 135 L760 175" stroke="#1f2937" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="670" y="180" width="230" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="785" y="203" font-size="13" text-anchor="middle" fill="#1f2937">חוסמת לחלוטין</text>
+  <text x="785" y="222" font-size="14" text-anchor="middle" font-weight="bold" fill="#b91c1c">STEMI</text>
+  <text x="785" y="240" font-size="12" text-anchor="middle" fill="#4b5563">עליית ST, נמק טרנס-מורלי</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#1f2937"/>
+    </marker>
+  </defs>
+</svg>
+
+<h2><span class="num">3</span> אפידמיולוגיה ופתולוגיה - התפלגות הגורמים</h2>
+<p>מתוך המטופלים הפונים עם אי-נוחות חזה לא-טראומטית: כ-42% ממקור גסטרואינטסטינלי (רפלוקס, ספזם ושט, כיב פפטי, מחלת דרכי מרה), 31% מחלה כלילית איסכמית, 28% תסמונת דופן החזה (קוסטוכונדריטיס וכו'), ורק כ-1-4% כל אחד מהגורמים המסוכנים יותר (פריקרדיטיס, פלאוריטיס, תסחיף ריאתי, סרטן ריאה, מפרצת/דיסקציה אב-עורקים, אבעבועות רוח-שחין <span dir="ltr" class="term">(Herpes zoster)</span>). מבנית, רוב הפריקרד אינו עצבי-כאב (כאמור לעיל), ואילו הפלאורה עשירה בעצבוב כאב וחולקת אספקה עצבית עם הסרעפת דרך העצב הפרני (משורשים צוואריים C3-C5) - זו הסיבה שדלקת פלאורלית/פריקרדיאלית לעיתים מקרינה לכתף ולצוואר, ומעורבות הפלאורה הסרעפתית הצדית עלולה להקרין לבטן העליונה.</p>
+
+<h2><span class="num">4</span> ביטוי קליני - איך שואלים ובודקים</h2>
+<p>איכות הכאב לבדה <b>אינה מספיקה לאבחנה</b>, אך יש לה ערך משמעותי: לחץ/כבדות/מעיכה (squeezing, pressure) אופייניים לאיסכמיה; כאב "קורע" פתאומי מיידי בעוצמתו המרבית מחשיד לדיסקציית אב-עורקים, תסחיף ריאתי או תמט ריאה ספונטני; כאב פלאוריטי חד מחשיד למעורבות פלאורלית (פריקרדיטיס, PE, ריאה). <span class="key">כאב שנמשך רק שניות בודדות כמעט לעולם אינו איסכמי</span>, וכאב קבוע בעוצמתו לאורך שעות-ימים ללא ממצא נלווה (ECG/טרופונין/אי-יציבות) גם הוא רחוק מלהיות איסכמי.</p>
+<p>מיקום רטרוסטרנלי עם הקרנה לצוואר/לסת/כתפיים/זרועות (במיוחד <b>שתי הזרועות</b> - קשר חזק ביותר לאוטם) אופייני לאיסכמיה. הקרנה לגב, במיוחד בין השכמות, מחשידה לתסמונת אב-עורקים חריפה. הקרנה לרכס הטרפזיוס (trapezius ridge) אופיינית לכאב פריקרדיאלי ולא לאנגינה. מטופלים הלוחצים אגרוף קפוץ על החזה בתיאור הכאב (<b><span dir="ltr" class="term">Levine's sign</span></b>) - סימן קליני קלאסי, לא ספציפי אך תומך במקור איסכמי.</p>
+<p>גורמים מחמירים/מקילים חשובים לאבחנה מבדלת: מנוחה מקילה על אנגינה (אך לב לב לתופעת "warm-up angina" שבה חלק מהמטופלים חווים הקלה תוך כדי המשך המאמץ); ישיבה והטיה קדימה מקילה על פריקרדיטיס; שכיבה מחמירה רפלוקס וגם פריקרדיטיס; אכילה מחמירה מחלת כיס מרה/דלקת לבלב ומקלה/מחמירה כיב פפטי בהתאם לתזמון; ניטרוגליצרין מקל תוך דקות הן על אנגינה והן (פחות ספציפית) על ספזם ושט - עיכוב של מעל 10 דקות בהקלה מרמז שהתסמינים אינם איסכמיים, או שמדובר באיסכמיה חמורה (כמו אוטם פעיל).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6Z3N2aEDSLU" title="Approach to chest pain: Clinical sciences - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis - גישה שיטתית (ABCDE) לחולה עם כאב חזה, כולל האבחנות המסכנות חיים שיש לשלול ראשונות. מקור: <span dir="ltr" class="term">osmosis.org</span> (Elsevier).</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>אלקטרוקרדיוגרפיה (ECG)</h3>
+<p>יש לבצע ECG תוך <b>10 דקות</b> מההגעה - המטרה העיקרית לזהות עליית ST המחייבת התערבות מיידית. שקיעת ST וגלי T היפוכיים סימטריים בעומק ≥0.2mV מעידים על איסכמיה ללא STEMI ומנבאים סיכון גבוה. <span class="key">הרגישות של ה-ECG במנוחה לאיסכמיה נמוכה (עד כ-20% בלבד במחקרים מסוימים)</span> - ECG תקין אינו שולל איסכמיה, ולכן מבוצע חוזר כל 30-60 דקות בחשד ל-ACS. ב-STEMI, מעורבות מפושטת של לידים שלא תואמת טריטוריה כלילית ספציפית, בשילוב שקיעת מקטע PR, מסייעים להבדיל פריקרדיטיס מאוטם אמיתי.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/ST_elevation_myocardial_infarction_ECG.jpg?width=700" alt="ECG עם עליית מקטע ST באוטם שריר לב">
+  <figcaption class="media-cap">ECG המדגים עליית מקטע ST - הממצא הדחוף ביותר לזיהוי, המחייב פנייה מיידית לצנתור/פתיחת העורק החסום. מקור: <a href="https://commons.wikimedia.org/wiki/File:ST_elevation_myocardial_infarction_ECG.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>סמנים ביולוגיים - טרופונין</h3>
+<p><span dir="ltr" class="term">Cardiac troponin</span> הוא הסמן המועדף לאבחון אוטם - חלבון שמשתחרר מקרדיומיוציטים פגועים בלבד (ספציפי ללב, בשונה מ-CK-MB). בזכות מבחני "high-sensitivity" ניתן לזהות ריכוזים נמוכים מאוד ולבצע פרוטוקולי "rule-out" מהירים (מדידה בהגעה וחזרה אחרי 1-3 שעות ב-hs-troponin, או 3-6 שעות בבדיקה קונבנציונלית). האבחנה של אוטם דורשת <b>דפוס עולה ו/או יורד</b> עם לפחות ערך אחד מעל האחוזון ה-99, יחד עם עדות קלינית לאיסכמיה - עלייה כרונית קבועה (למשל באי-ספיקת כליות סופנית) <b>אינה</b> אוטם. מטופלים המגיעים מעל 2-3 שעות מתחילת התסמינים עם טרופונין מתחת לסף הזיהוי (hs-assay) - ניתן לרוב לשלול אוטם בערך ניבוי שלילי מעל 99%.</p>
+
+<h3>אבחנה מבדלת - מיפוי לפי מאפיינים</h3>
+<table>
+  <thead><tr><th>מצב</th><th>אופי הכאב</th><th>מיקום/הקרנה אופיינית</th><th>ממצא מבדיל עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>אנגינה יציבה</td><td>לחץ, כבדות, 2-10 דק'</td><td>רטרוסטרנלי → זרוע/לסת</td><td>מוקל במנוחה/ניטרו תוך דקות</td></tr>
+    <tr><td>אוטם שריר לב</td><td>דומה, ≥30 דק', עז יותר</td><td>רטרוסטרנלי, שתי זרועות</td><td>אינו מוקל במנוחה; טרופונין עולה/יורד</td></tr>
+    <tr><td>פריקרדיטיס</td><td>פלאוריטי, חד</td><td>רטרוסטרנלי → כתף שמאל/רכס טרפזיוס</td><td>מוקל בישיבה+הטיה קדימה; שפשוף פריקרדיאלי; ST מפושט + שקיעת PR</td></tr>
+    <tr><td>דיסקציית אב-עורקים</td><td>קורע/כמו סכין, שיא מיידי</td><td>קדמי → גב, בין השכמות</td><td>יתר ל"ד, אובדן דפקים היקפיים, אוושת אי-ספיקה אאורטלית</td></tr>
+    <tr><td>תסחיף ריאתי</td><td>פלאוריטי (קטן) / כבדות (מסיבי)</td><td>לרוב צדדי, בצד התסחיף</td><td>קוצר נשימה, טכיקרדיה, טכיפניאה, ± תת ל"ד</td></tr>
+    <tr><td>רפלוקס ושט</td><td>צריבה</td><td>רטרוסטרנלי, אפיגסטרי</td><td>מחמיר בשכיבה אחרי אוכל; מוקל באנטצידים</td></tr>
+    <tr><td>קוסטוכונדריטיס</td><td>כאוב, ממוקם</td><td>סטרנלי</td><td>נשחזר בלחיצה מקומית על המפרק</td></tr>
+  </tbody>
+</table>
+
+<h3>כלי החלטה משולבים (decision-aids)</h3>
+<p>ניקוד <b><span dir="ltr" class="term">HEART score</span></b> (היסטוריה, ECG, גיל, גורמי סיכון, טרופונין) ו-<b><span dir="ltr" class="term">EDACS</span></b> משלבים מספר משתנים קליניים כדי לזהות מטופלים בסיכון נמוך המתאימים לשחרור מהיר עם או בלי בדיקה נוספת. חשוב: <span class="key">ביצועיהם הדיאגנוסטיים העצמאיים חלשים יחסית (AUC של 0.55-0.65 בלבד)</span> - הערך האמיתי שלהם הוא בשילוב עם ECG וטרופונין סדרתי, שאז מאפשרים לזהות הסתברות נמוכה מאוד (&lt;1%) לתסמונת כלילית עם ערך ניבוי שלילי מעל 99%. יש להבדיל אותם מציוני TIMI/GRACE, שמיועדים לשכבת סיכון פרוגנוסטי במטופלים עם אבחנת ACS <b>כבר קיימת</b> - לא לצורך אבחנה ראשונית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/67tUtS3y_GA" title="Coronary Artery Disease - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Ninja Nerd - הרצאה מקיפה על מחלה כלילית איסכמית: אנגינה יציבה, לא-יציבה, NSTEMI ו-STEMI, כולל דוגמאות ECG וטיפול. מקור: ערוץ Ninja Nerd ב-YouTube.</p>
+
+<h2><span class="num">6</span> טיפול - הגישה הראשונית</h2>
+<p>הטיפול בפרק זה הוא <b>טיפול הערכה וטריאז'</b> ולא טיפול במחלה ספציפית (הטיפול המלא ב-ACS, פריקרדיטיס, PE ודיסקציה מפורט בפרקים הייעודיים). העקרונות המנחים:</p>
+<table>
+  <thead><tr><th>שלב</th><th>מה עושים</th><th>למה</th></tr></thead>
+  <tbody>
+    <tr><td>הערכה מיידית</td><td>הערכת יציבות המודינמית + ECG תוך 10 דק'</td><td>לזהות STEMI המחייב פתיחת עורק דחופה (PCI)</td></tr>
+    <tr><td>סמנים ביולוגיים</td><td>טרופונין בהגעה + חזרה תוך 1-6 שעות (בהתאם לסוג הבדיקה)</td><td>לאתר/לשלול נזק שריר לב מתגבש</td></tr>
+    <tr><td>תרופתי ראשוני (בחשד לאיסכמיה)</td><td>אספירין (אלא אם קונטרא-אינדיקציה), ניטרוגליצרין תת-לשוני</td><td>אספירין - מעכב אגרגציית טסיות בפקקת הכלילית; ניטרו - מרחיב ורידים/עורקים ומקטין ביקוש חמצן</td></tr>
+    <tr><td>הדמיית חזה</td><td>צילום חזה שגרתי; CT-אנגיוגרפיה כלילית לסיכון בינוני-נמוך</td><td>לזהות פנאומוטורקס/בצקת ריאות; CT יעיל בערך ניבוי שלילי גבוה לשלילת מחלה כלילית משמעותית</td></tr>
+    <tr><td>הדמיית מאמץ/פרפוזיה</td><td>הדמיית פרפוזיה גרעינית או אקו-לב במאמץ, כאשר יש עוד חשד לאחר שלילת סיבות מיידיות</td><td>עדיפה על ECG מאמץ בביצועים אבחנתיים</td></tr>
+    <tr><td>שחרור/אשפוז</td><td>לפי שילוב HEART/EDACS + טרופונין סדרתי + ECG</td><td>לזהות בבטחה מי בסיכון נמוך מספיק לשחרור ללא בדיקה נוספת</td></tr>
+  </tbody>
+</table>
+<div class="key-box">בכל אחת מהאבחנות המסכנות חיים - <span dir="ltr" class="term">ACS</span>, תסמונת אב-עורקים חריפה, תסחיף ריאתי, פנאומוטורקס מתוח, פריקרדיטיס עם טמפונדה, וקרע ושט (Boerhaave) - המטופלים עלולים להתדרדר במהירות למרות מראה ראשוני תקין יחסית. לכן ההערכה הראשונית תמיד מכוונת קודם כל לשלילה/אישור אקטיבי שלהן, לפני שממשיכים לבירור הגורמים השפירים יותר.</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - <span dir="ltr" class="term">ATTEMPT</span></h3>
+  <p>שבעת הגורמים ה"בל יפוסחו" לכאב חזה חריף - כאלה שחייבים "לנסות" (attempt) לשלול אצל כל מטופל לפני שממשיכים הלאה:<br>
+  <b>A</b>ortic dissection (דיסקציית אב-עורקים) · <b>T</b>amponade (טמפונדה פריקרדיאלית) · <b>T</b>ension pneumothorax (תמט ריאה מתוח) · <b>E</b>sophageal rupture (קרע ושט - Boerhaave) · <b>M</b>yocardial infarction (אוטם שריר לב) · <b>P</b>ulmonary embolism (תסחיף ריאתי) · <b>T</b>rauma (טראומה חזית שהוחמצה)</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חדר מיון בשעה 3 בלילה: הרופאה התורנית "מנסה" (ATTEMPT) לתפוס שבעה חשודים בו-זמנית לפני שהם בורחים החוצה מהחדר - אחד קורע את הקיר (Aortic dissection), אחד לוחץ ומחניק את הלב מבחוץ בבלון (Tamponade), אחד מנפח את הריאה עד שהיא דוחפת הצידה את שאר החדר (Tension pneumothorax), אחד פוצץ צינור (Esophageal rupture), אחד חוסם צינור דלק ללב (MI), אחד שולח כדור-פקק דרך הצינורות לריאה (PE), ואחד פשוט נכנס בדלת בכוח (Trauma). כל עוד היא לא תופסת את כולם - אסור לה להתפנות לחשוד השפיר (הרפלוקס שיושב רגוע בפינה).</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="260" cy="100" r="55" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="260" y="95" font-size="13" text-anchor="middle" fill="#047857" font-weight="bold">רופאה תופסת</text>
+    <text x="260" y="113" font-size="13" text-anchor="middle" fill="#047857" font-weight="bold">7 חשודים</text>
+    <g font-size="12" fill="#1f2937">
+      <text x="60" y="30" text-anchor="middle">A - דיסקציה</text>
+      <text x="450" y="30" text-anchor="middle">T - טמפונדה</text>
+      <text x="30" y="100" text-anchor="middle">T - פנאומו'</text>
+      <text x="490" y="100" text-anchor="middle">E - ושט</text>
+      <text x="60" y="175" text-anchor="middle">M - אוטם</text>
+      <text x="450" y="175" text-anchor="middle">P - תסחיף</text>
+      <text x="260" y="190" text-anchor="middle">T - טראומה</text>
+    </g>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Coronary_arteries.svg" target="_blank">Wikimedia Commons - Coronary Arteries.svg</a>
+    <div class="desc">איור אנטומי ברור של עורקי הלב הכליליים (LAD, LCX, RCA) - שימושי להבנת אילו טריטוריות ECG תואמות לאילו עורקים.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/cases/aortic-dissection-stanford-type-a-ultrasound-and-cta" target="_blank">Radiopaedia - Aortic dissection, Stanford type A (CTA)</a>
+    <div class="desc">מקרה עם תמונות CT-אנגיוגרפיה אמיתיות המדגימות "flap" בין הלומן האמיתי לשקרי בדיסקציה מסוג A.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=o6dyBEbIFoo" target="_blank">Osmosis - Aortic Dissection</a>
+    <div class="desc">סרטון קצר על מנגנון, גורמי סיכון וסיווג סטנפורד/דבייקי של דיסקציית אב-עורקים.</div>
+  </li>
+  <li>
+    <a href="https://litfl.com/pericarditis-ecg-library/" target="_blank">LITFL - Pericarditis ECG Changes</a>
+    <div class="desc">ספריית דוגמאות ECG להבחנה בין פריקרדיטיס לאוטם - שקיעת PR מפושטת מול עליית ST טריטוריאלית.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58, מעשן כבד עם היסטוריה של יתר לחץ דם, מגיע לחדר מיון עם לחץ רטרוסטרנלי שהחל לפני 40 דקות בזמן מנוחה, מקרין לשתי הזרועות ולסת, מלווה בהזעה קרה ובחילה. הכאב לא הוקל במנוחה. בבדיקה: חיוור, מיוזע, לחץ דם 150/95, דופק 102. <span dir="ltr" class="term">ECG</span> שבוצע תוך 6 דקות מההגעה מדגים עליית מקטע ST של 3 מ"מ בלידים V2-V4. טרופונין ראשוני עדיין בגבול התקין.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי האבחנה הסבירה ביותר, ומה השלב הבא המתחייב?</div>
+  <button class="opt" data-i="0">NSTEMI - יש להמתין לטרופונין החוזר לפני החלטה</button>
+  <button class="opt" data-i="1">אנגינה יציבה - שחרור עם מעקב מרפאתי</button>
+  <button class="opt" data-i="2">STEMI - הפניה דחופה לצנתור/פתיחת העורק (PCI)</button>
+  <button class="opt" data-i="3">פריקרדיטיס - טיפול ב-NSAID ומעקב</button>
+  <div class="explain">נכון: תשובה 3 (אינדקס 2). עליית ST טריטוריאלית (V2-V4 = דופן קדמית) בשילוב תמונה קלינית קלאסית מגדירה STEMI - יש לפעול מיידית לפתיחת העורק ללא המתנה לתוצאת טרופונין (טרופונין עשוי עדיין להיות תקין מוקדם מדי במהלך). תשובה 0 שגויה - אבחנת STEMI נקבעת ע"פ ה-ECG ולא ממתינה לביו-מרקר. תשובה 1 שגויה - הכאב לא הוקל במנוחה ויש שינויי ECG, לא תואם אנגינה יציבה. תשובה 3 שגויה - עליית ST כאן ממוקדת לטריטוריה כלילית אחת (לא מפושטת) וללא שקיעת PR - לא תואם פריקרדיטיס.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. אילו מבין הבאים מהווה "אוטם מסוג 2" (Type 2 MI) ולא "מסוג 1"?</div>
+  <button class="opt" data-i="0">קרע פלאק טרשתי עם פקקת חוסמת חדשה</button>
+  <button class="opt" data-i="1">עלייה בטרופונין על רקע היצרות כלילית קבועה, בזמן אלח-דם עם טכיקרדיה קשה</button>
+  <button class="opt" data-i="2">חסימה מלאה של LAD בקטטריזציה</button>
+  <button class="opt" data-i="3">שקיעת ST חדשה עם דימות פקקת בצנתור</button>
+  <div class="explain">נכון: תשובה ב' (אינדקס 1). אוטם מסוג 2 נגרם מחוסר איזון בין ביקוש לאספקת חמצן ללא פקקת טרשתית חדשה - למשל טכיקרדיה קיצונית על רקע אלח-דם עם היצרות כלילית קבועה קיימת. שאר האפשרויות (0, 2, 3) כולן כוללות פקקת/חסימה כלילית טרשתית אקוטית - זהו אוטם מסוג 1 (הגדרה קלאסית של ACS).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופלת מציגה כאב חזה פלאוריטי המוקל בישיבה והטיה קדימה, עם שפשוף פריקרדיאלי בהאזנה. מה ההסבר המנגנוני לכאב?</div>
+  <button class="opt" data-i="0">דלקת נלווית של הפלאורה הצמודה לפריקרד, מכיוון שהפריקרד עצמו כמעט חסר עצבוב כאב</button>
+  <button class="opt" data-i="1">חסימה כלילית חריפה בעורק הכלילי הימני</button>
+  <button class="opt" data-i="2">מתיחה ישירה של עורק הריאה ע"י תסחיף</button>
+  <button class="opt" data-i="3">קרע בטוניקה האינטימה של האב-העורקים</button>
+  <div class="explain">נכון: תשובה א' (אינדקס 0). רוב שטח הפריקרד אינו רגיש לכאב - הכאב בפריקרדיטיס מיוחס לדלקת פלאורלית נלווית, ולכן הוא בעל אופי פלאוריטי ומוקל בהטיה קדימה (שמפחיתה מגע בין השכבות המודלקות). תשובה 1 מתארת מנגנון איסכמי - לא מסביר את אופי הכאב הפלאוריטי וההקלה בתנוחה. תשובות 2 ו-3 מתארות תסחיף ריאתי ודיסקציה בהתאמה - לא תואמות את השפשוף הפריקרדיאלי הקלאסי המתואר.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו התפקיד העיקרי של ניקוד HEART/EDACS בהערכת כאב חזה בחדר מיון?</div>
+  <button class="opt" data-i="0">קביעת האבחנה הסופית באופן עצמאי, ללא צורך בבדיקות נוספות</button>
+  <button class="opt" data-i="1">שכבת סיכון פרוגנוסטי במטופלים שכבר אובחנו עם ACS</button>
+  <button class="opt" data-i="2">החלפת ה-ECG כבדיקת הסקר הראשונה</button>
+  <button class="opt" data-i="3">בשילוב עם ECG וטרופונין סדרתי, זיהוי מטופלים בסיכון נמוך מספיק לשחרור בטוח</button>
+  <div class="explain">נכון: תשובה ד' (אינדקס 3). ניקודים אלה חלשים כביצוע עצמאי (AUC 0.55-0.65) ולכן אינם קובעים אבחנה לבד (תשובה 0 שגויה) - ערכם בשילוב עם טרופונין סדרתי וECG לזיהוי סיכון נמוך במיוחד (&lt;1%) לצורך שחרור בטוח. תשובה 1 מתארת דווקא את TIMI/GRACE (שכן משמשים לפרוגנוזה לאחר אבחנה קיימת), לא HEART/EDACS. תשובה 2 שגויה - ECG הוא חלק מהניקוד עצמו, לא מוחלף על ידו.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>אי-נוחות בחזה = תלונה שכיחה מאוד (6-7 מיליון ביקורי ED/שנה בארה"ב), אך רוב הגורמים שפירים (GI ~42%, שרירי-שלד ~28%) - המטרה היא לזהות במהירות את המיעוט המסכן חיים.</li>
+    <li>איסכמיה: חוסר איזון ביקוש/אספקת חמצן ← קרע/שחיקת פלאק ← פקקת חלקית (Unstable Angina / NSTEMI) או חוסמת מלאה (STEMI); אוטם סוג 1 = פקקת טרשתית, סוג 2 = חוסר איזון ללא פקקת חדשה.</li>
+    <li>מנגנון ההקרנה: התכנסות סיבים אפרנטיים ויסצרליים וסומטיים בחוט השדרה → כאב "מורגש" בזרוע/צוואר/לסת.</li>
+    <li>שבעת האבחנות שאסור לפספס (ATTEMPT): דיסקציה, טמפונדה, פנאומוטורקס מתוח, קרע ושט, אוטם, תסחיף ריאתי, טראומה.</li>
+    <li>אבחנה: ECG תוך 10 דק' (רגישות נמוכה לבדה!), טרופונין סדרתי (hs-troponin - דפוס עולה/יורד עם חציה של אחוזון 99), HEART/EDACS בשילוב עם השניים לשכבת סיכון.</li>
+    <li>טיפול ראשוני בחשד לאיסכמיה: אספירין + ניטרוגליצרין, ולSTEMI - צנתור דחוף ללא המתנה לטרופונין.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
