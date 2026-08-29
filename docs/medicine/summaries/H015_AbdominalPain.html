@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כאב בטן - Abdominal Pain (Harrison's, פרק 15)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .src-tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:6px}
+</style>
+</head>
+<body>
+
+<h1>כאב בטן <span class="term" dir="ltr">Abdominal Pain</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 &mdash; פרק 15 (עמ' 108&ndash;111), חלק Cardinal Manifestations and Presentation of Diseases</div>
+
+<p>כאב בטן הוא אחת התלונות השכיחות ביותר בחדר מיון ובמרפאה, וגם אחת המטעות ביותר: כאב עז יכול לנבוע ממצב שפיר לחלוטין, וכאב עמום וקל יכול להיות הסימן הראשון לאסון תוך-בטני. <span class="key">חומרת הכאב אינה מנבאת את חומרת המחלה הבסיסית</span> - זו אמירת המפתח של הפרק, והיא הסיבה שגישה שיטתית (לא "רושם ראשוני") היא מה שמציל חיים. המטרה הקלינית אינה "לתייג" כאב בטן כ"בטן חריפה/כירורגית" (מונח שהריסון עצמו פוסל כמטעה), אלא להחליט: האם המצב דורש התערבות דחופה, או שניתן לעקוב ולברר בזהירות?</p>
+
+<h2><span class="num">2</span> המנגנון - שלושה סוגי כאב שצריך להבדיל ביניהם</h2>
+<div class="mechanism">
+  <p class="chain">
+    כאב בטן אינו תחושה אחידה - הוא נובע משלושה מסלולים עצביים שונים, וההבדל ביניהם הוא בדיוק מה שמאפשר לקלינאי "לתרגם" את איכות הכאב למיקום האנטומי של הבעיה:
+  </p>
+  <p><b>1. כאב קרבי (<span dir="ltr" class="term">visceral pain</span>)</b> - נובע ממתיחה, עווית, איסכמיה או דלקת של איבר חלול (מעי, כיס מרה, שופכן) או של הקפסולה שלו (כבד, טחול, כליה). האיברים הפנימיים מעוצבבים ע"י סיבים אוטונומיים (סימפתטיים) שנכנסים לחוט השדרה בו-זמנית בכמה רמות ובשני הצדדים - ולכן הכאב <span class="key">מפוזר, קשה למיקום מדויק, וממוקם קרוב לקו האמצע</span> (אפיגסטרי/סביב הטבור/על-הערווה, בהתאם לאיבר המקורי בהתפתחות העוברית). זהו הכאב ה"קוליקי" (עוויתי-מתגבר-ונחלש) האופייני לחסימת מעי.</p>
+  <p><b>2. כאב פריאטלי/סומטי (<span dir="ltr" class="term">parietal/somatic peritoneal pain</span>)</b> - נובע מגירוי הצפק הפריאטלי (<span dir="ltr" class="term">parietal peritoneum</span>), המעוצבב ע"י אותם עצבים סומטיים המעצבבים את דופן הבטן עצמה. בגלל זה הכאב <span class="key">חד, קבוע, ומדויק במיקומו</span> - ממש מעל האזור המודלק - ומוחמר בתנועה, שיעול או לחיצה (סימנים ל"גירוי צפקי").</p>
+  <p><b>3. כאב מקרין (<span dir="ltr" class="term">referred pain</span>)</b> - עצבים קרביים ועצבים סומטיים מ"אזור רחוק" נכנסים לעיתים לאותו קטע בחוט השדרה ומתכנסים על אותם נוירונים מסדר שני בקרן האחורית. המוח "מפרש" את האות כאילו הגיע מהעור/השריר של אותו דרמטום, ולכן הכאב מורגש הרחק מהאיבר החולה - למשל גירוי של הצפק התת-סרעפתי (מדיאפרגמה, כבד, טחול) יכול לגרום לכאב בכתף (עצב פרני, C3&ndash;C5), וכאב מכיס מרה יכול להיות מורגש בקצה השכמה הימנית.</p>
+  <p><b>מתי הדלקת "כימית/סטרילית" ומתי היא הופכת לחיידקית?</b> כשנוזל גירוי (מיץ קיבה חומצי, מרה, מיץ לבלב פעיל אנזימטית) דולף לחלל הצפק - זו לרוב <span class="key">דלקת כימית סטרילית ראשונית</span>, ועוצמת הכאב תלויה ב-pH ובכמות/מהירות הדליפה (מיץ קיבה חומצי וסטרילי כואב הרבה יותר ומהר מצואה נקייה זהה בכמות; מיץ לבלב עם אנזימים פעילים כואב יותר ממרה סטרילית ללא אנזימים; דם ושתן כמעט ואינם מגרים בכלל אלא אם כמותם גדולה ופתאומית). <span class="key">רק לאחר שעות עד ימים</span>, כשחיידקי מעי (בעיקר גראם-שליליים אירוביים כמו <span dir="ltr" class="term">E. coli</span>, וכן אנאירוביים כמו <span dir="ltr" class="term">Bacteroides fragilis</span>) מזהמים את הנוזל שדלף, הדלקת הופכת לחיידקית (זיהומית) - וזו הסיבה שבזיהום חיידקי ראשוני (כמו מחלת רקמת האגן) הכאב דווקא מתחיל <span class="key">קל</span> ומחמיר בהדרגה ככל שהחיידקים מתרבים ומשחררים יותר מתווכי דלקת.</p>
+  <p><b>למה יש חום ולויקוציטוזיס?</b> כל גירוי של הצפק - כימי או זיהומי - מפעיל מקרופאגים פריטונאליים המשחררים ציטוקינים דלקתיים (<span dir="ltr" class="term">IL-1, IL-6, TNF-&alpha;</span>). ציטוקינים אלו פועלים על מרכז הוויסות בהיפותלמוס וגורמים לחום, ומגייסים נויטרופילים ממאגר השוליים בכלי הדם ומלשד העצם - ולכן <span class="key">לויקוציטוזיס יכול להופיע גם בדלקת סטרילית לחלוטין, לפני שיש כלל זיהום חיידקי</span>. כשמצטרף זיהום חיידקי, אנדוטוקסין (LPS, ממעטפת חיידקים גראם-שליליים) מגביר משמעותית את שחרור הציטוקינים - ולכן דלקת חיידקית נוטה להיות חמורה ומהירה יותר, אך הריסון מדגיש: <span class="key">ספירת לויקוציטים תקינה אינה שוללת ניקוב, וספירה מעל 20,000 אינה מאבחנת ניקוב</span> - היא יכולה להופיע גם בדלקת לבלב, כוליציסטיטיס חריפה, מחלת רקמת אגן או אוטם מעי.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="100" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">דליפת נוזל לחלל הצפק</text>
+  <text x="100" y="65" text-anchor="middle" font-size="12" fill="#4b5563">חומצה / מרה / מיץ לבלב</text>
+  <text x="100" y="80" text-anchor="middle" font-size="12" fill="#4b5563">(עוצמה תלויה ב-pH וקצב)</text>
+
+  <path d="M195 55 H255" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="260" y="20" width="180" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="350" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">גירוי צפק פריאטלי</text>
+  <text x="350" y="65" text-anchor="middle" font-size="12" fill="#4b5563">כאב חד וממוקם</text>
+  <text x="350" y="80" text-anchor="middle" font-size="12" fill="#4b5563">+ עווית שרירי דופן</text>
+
+  <path d="M445 55 H505" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="510" y="20" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="600" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">מקרופאגים פריטונאליים</text>
+  <text x="600" y="65" text-anchor="middle" font-size="12" fill="#4b5563">IL-1 / IL-6 / TNF-&alpha;</text>
+
+  <path d="M695 55 H755" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="760" y="20" width="130" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="825" y="45" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">חום +</text>
+  <text x="825" y="63" text-anchor="middle" font-size="14" font-weight="700" fill="#1f2937">לויקוציטוזיס</text>
+
+  <path d="M100 90 V150" stroke="#6b7280" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrowg)"/>
+  <text x="100" y="170" text-anchor="middle" font-size="12" fill="#6b7280">שעות עד ימים...</text>
+
+  <rect x="10" y="190" width="300" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="160" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">זיהום חיידקי משני</text>
+  <text x="160" y="235" text-anchor="middle" font-size="12" fill="#4b5563" dir="ltr">E. coli, Bacteroides fragilis...</text>
+
+  <path d="M315 220 H375" stroke="#6d28d9" stroke-width="3" marker-end="url(#arrowp)"/>
+  <rect x="380" y="190" width="220" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="490" y="215" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2937">אנדוטוקסין (LPS)</text>
+  <text x="490" y="235" text-anchor="middle" font-size="12" fill="#4b5563">מגביר ציטוקינים בחדות</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2563eb"/></marker>
+    <marker id="arrowg" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7280"/></marker>
+    <marker id="arrowp" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6d28d9"/></marker>
+  </defs>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/PiIjoheciAs" title="Abdominal Pain - Visceral, Parietal and Referred" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר ממוקד על ההבדל בין כאב קרבי, פריאטלי ומקרין ומיקומם האופייני בבטן.</p>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה - למה המיקום "מספר סיפור"</h2>
+<p>הצפק (<span dir="ltr" class="term">peritoneum</span>) הוא קרום סרוזי עם שתי שכבות: <b>צפק קרבי</b> (<span dir="ltr" class="term">visceral peritoneum</span>) העוטף את האיברים עצמם ומעוצבב ע"י מערכת העצבים האוטונומית בלבד (ולכן אינו רגיש למגע/חיתוך ישיר - זו הסיבה שניתן לבצע ניתוחי בטן פתוחים תחת הרדמה מקומית חלקית בעבר), ו<b>צפק פריאטלי</b> (<span dir="ltr" class="term">parietal peritoneum</span>) המצפה את דופן הבטן מבפנים ומעוצבב ע"י אותם עצבים סומטיים (בין-צלעיים תחתונים ומותניים) המעצבבים את השריר והעור מעליו. עוצמת הכאב הפריאטלי תלויה גם בקצב ההתפתחות של התהליך ובמסך המגן של איברים סמוכים (אומנטום, לולאות מעי) - זו הסיבה שניקוב תוספתן רטרוצקאלי, המכוסה ע"י המעי העיוור, יכול לגרום לעווית שרירים מינימלית או נעדרת, ולמה בחולים מדוכאי-חיסון, קשישים, או במצב הכרה ירוד, כאב וסימני גירוי צפקי עלולים להיעדר לחלוטין למרות אסון תוך-בטני של ממש.</p>
+<p>הבנת המרחק ההתפתחותי-עוברי של האיברים מסבירה גם את מיקום הכאב הקרבי: מבנים שמקורם ב<span dir="ltr" class="term">foregut</span> (קיבה, תריסריון פרוקסימלי, כבד, לבלב) מקרינים לאפיגסטריום; מבנים מה<span dir="ltr" class="term">midgut</span> (מעי דק, קולון עולה) מקרינים לאזור הטבור; ומבנים מה<span dir="ltr" class="term">hindgut</span> (קולון יורד, פי הטבעת) מקרינים לאזור העל-ערווה - זה בדיוק ההסבר לכך שכאב תוספתן מוקדם (עדיין קרבי, לפני גירוי צפקי מקומי) מורגש סביב הטבור ולא ב-RLQ.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>המפתח לאבחנה הוא <b>אנמנזה מוקפדת</b> - הריסון מציג רשימת מרכיבים קבועה שכדאי לעבור עליה בכל מטופל (טבלה 15-1 במקור): גיל, זמן ואופן הופעת הכאב, אופי הכאב, משך התסמינים, מיקום והקרנה, תסמינים נלווים (בחילה/הקאה/אנורקסיה, שינויים בהרגלי מעיים), והיסטוריה מחזורית באישה. <span class="key">הרצף הכרונולוגי של האירועים חשוב יותר מהמיקום הבודד של הכאב.</span></p>
+<p>בבדיקה הגופנית - חולה עם דלקת צפק שוכב בדרך כלל <b>ללא תזוזה</b> (הזזה מכאיבה), בניגוד לחולה עם כאב קוליקי (חסימת מעי/שופכן) ש"מתפתל" בחוסר מנוחה בזמן ההתקף. <b>עווית שרירים טונית (Guarding)</b> ממוקמת ישירות מעל האזור המודלק, ועוצמתה תלויה בשלמות המערכת העצבית, מיקום התהליך וקצב התפתחותו.</p>
+<p><b>רגישות בחזרה (<span dir="ltr" class="term">rebound tenderness</span>)</b> - הריסון ממליץ במפורש <b>לא</b> להפעיל אותה בשחרור פתאומי אגרסיבי של יד לוחצת עמוק (זה אכזרי ומיותר, ועלול לגרום להיבהלות ועווית מגן "שקרית" גם ללא רגישות אמיתית) - אותו מידע ניתן לקבל בעדינות רבה יותר ע"י הקשה עדינה על הבטן (רגישות בחזרה "בקנה מידה זעיר"), או ע"י בקשה מהמטופל לשעול.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TXbd54TkqaQ" title="Rebound Tenderness Exam" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת בדיקת רגישות בחזרה (Blumberg's sign) - שימו לב שהריסון ממליץ על גרסה עדינה יותר (הקשה/שיעול) על פני שחרור אגרסיבי.</p>
+
+<h2><span class="num">5</span> אבחנה - הכל מתחיל במיקום</h2>
+<p>הגורמים השכיחים ביותר לאשפוז עם כאב בטן: כאב בטן לא-ספציפי, אפנדיציטיס חריפה, כאב ממקור אורולוגי, וחסימת מעי. הריסון מציג טבלת אבחנה מבדלת מפורטת לפי מיקום (טבלה 15-3 במקור) - זהו כלי החשיבה המרכזי:</p>
+<table>
+  <thead><tr><th>אזור</th><th>אבחנות שכיחות</th></tr></thead>
+  <tbody>
+    <tr><td><b>RUQ</b> (עליון ימני)</td><td>כוליציסטיטיס, כולנגיטיס, פנקראטיטיס, דלקת ריאות/אמפיאמה, פלאוריטיס, מורסה תת-סרעפתית, הפטיטיס, תסמונת <span dir="ltr" class="term">Budd-Chiari</span></td></tr>
+    <tr><td><b>אפיגסטרי</b></td><td>כיב פפטי, גסטריטיס, GERD, פנקראטיטיס, אוטם שריר הלב, פריקרדיטיס, קרע אנוריזמה של אבי העורקים, אזופגיטיס</td></tr>
+    <tr><td><b>LUQ</b> (עליון שמאלי)</td><td>אוטם/קרע/מורסה בטחול, גסטריטיס, כיב קיבה, פנקראטיטיס, מורסה תת-סרעפתית</td></tr>
+    <tr><td><b>RLQ</b> (תחתון ימני)</td><td>אפנדיציטיס, סלפינגיטיס, בקע מפשעתי, הריון חוץ-רחמי, אבנים בשופכן, מחלת מעי דלקתית, לימפדניטיס מזנטרית, טיפליטיס</td></tr>
+    <tr><td><b>סביב הטבור</b></td><td>אפנדיציטיס מוקדמת (כאב קרבי לפני שהתפתח גירוי צפקי), גסטרואנטריטיס, חסימת מעי, קרע אנוריזמה</td></tr>
+    <tr><td><b>LLQ</b> (תחתון שמאלי)</td><td>דיברטיקוליטיס, סלפינגיטיס, בקע מפשעתי, הריון חוץ-רחמי, אבנים בשופכן, תסמונת מעי רגיז, מחלת מעי דלקתית</td></tr>
+    <tr><td><b>כאב מפוזר</b></td><td>גסטרואנטריטיס, איסכמיה מזנטרית, חסימת מעי, תסמונת מעי רגיז, פריטוניטיס, סוכרת, מלריה, קדחת ים תיכונית משפחתית, מחלות מטבוליות/פסיכיאטריות</td></tr>
+  </tbody>
+</table>
+
+<h3>סימן אבחנתי חשוב: כאב "לא פרופורציוני לממצאים"</h3>
+<p>תפיסה שגויה נפוצה היא שכאב מהפרעה כלי-דם תוך-בטנית (כמו חסימת עורק המזנטריום העליון) הוא תמיד פתאומי וקטסטרופלי. במציאות, שלב מוקדם של איסכמיה גורם ל<b>היפרפריסטלטיקה</b> (המעי "נלחם" לדחוף דם דרך כלי דם חסום חלקית) - ולכן הכאב יכול להיות קל-בינוני ומתמשך במשך 2&ndash;3 ימים לפני שמופיע קריסה וסקולרית או סימני גירוי צפקי. <span class="key">היעדר רגישות ונוקשות בנוכחות כאב מפוזר ומתמשך בחולה בסיכון וסקולרי הוא בדיוק הסימן האופייני לחסימת עורק המזנטריום העליון</span> - "כאב לא פרופורציוני לממצאים בבדיקה".</p>
+
+<h3>אבחנה מבדלת - מטבולי, אימונוסופרסיה, נוירוגני</h3>
+<table>
+  <thead><tr><th>קטגוריה</th><th>דוגמאות</th><th>רמז מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>מטבולי</td><td>קטואצידוזיס סוכרתי, אורמיה, פורפיריה, קדחת ים-תיכונית משפחתית, הרעלת עופרת</td><td>כאב ורגישות "נודדים" במיקום ובעוצמה; אינם נפתרים גם אחרי תיקון החריגה המטבולית - אם לא נפתר, יש לחשוד בבעיה אורגנית נלווית</td></tr>
+    <tr><td>נוירוגני</td><td>הרפס זוסטר, לחץ על שורש עצב, טאבס דורסלית</td><td>כאב שורפני (קאוזלגי) לאורך דרמטום, לא קשור לאוכל/מתיחת בטן/נשימה, ללא נוקשות שרירים</td></tr>
+    <tr><td>תפקודי</td><td>תסמונת מעי רגיז (IBS)</td><td>אבחנת שלילה + קריטריונים קליניים; רגישות/עווית לא עקביים; ללא בחילה/הקאה בולטת</td></tr>
+    <tr><td>אימונוסופרסיה</td><td>טיפליטיס (Neutropenic enterocolitis), כוליציסטיטיס אקלקולוטית, מורסת טחול</td><td>תגובה דלקתית "רגילה" עלולה להיעדר; חיידקים/פטריות/וירוסים לא שגרתיים (CMV, מיקובקטריות, פטריות)</td></tr>
+  </tbody>
+</table>
+<p><b>הבדל חשוב:</b> כאב מקרין מהחזה (אוטם שריר הלב, דלקת ריאות בסיסית, תסחיף ריאתי) מלווה לרוב ב"הגבלת נשימה" (splinting) בולטת יותר מכפי שרואים בכאב תוך-בטני, והלחיצה על אזור הכאב המוקרן <i>אינה</i> מחמירה אותו (ולעיתים אף מקלה) - בניגוד לכאב פריאטלי אמיתי שתמיד מוחמר בלחיצה.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/1506_Referred_Pain_Chart.jpg?width=700" alt="מפת כאב מוקרן מאיברים פנימיים">
+  <p class="media-cap">מפת כאב מוקרן: כל איבר "שולח" כאב לאזור עור מסוים בגלל התכנסות עצבית משותפת בחוט השדרה. מקור: <a href="https://commons.wikimedia.org/wiki/File:1506_Referred_Pain_Chart.jpg" target="_blank">Wikimedia Commons - OpenStax (רישיון CC BY 3.0)</a></p>
+</figure>
+
+<h2><span class="num">6</span> גישה טיפולית ראשונית</h2>
+<p>הריסון מדגיש שרוב מצבי הבטן החריפה <b>אינם</b> דורשים נטישת גישה שיטתית - למעט חריג בודד: <span class="key">דימום תוך-בטני מתשלש (למשל קרע אנוריזמה אבי-עורקית)</span>, שבו יש להזניק את החולה לחדר ניתוח באופן מיידי, לפתוח גישה ורידית לעירוי נוזלים/דם, ולהתחיל ניתוח - ללא בדיקות הדמיה "מיותרות" שעלולות לעלות בחיי החולה. חוץ ממקרה זה, יש זמן לבירור מסודר.</p>
+<div class="key-box">אין לעכב מתן משככי כאבים (אופיואידים) עד לקבלת אבחנה סופית - זהו מיתוס ותיק. מתן אנלגזיה נאותה כמעט ואינו "מטשטש" את הממצאים הקליניים המשמעותיים, ומאפשר בדיקה חוזרת מדויקת ואנושית יותר.</div>
+<p>עקרונות מפתח נוספים: תשאול מיני מחזורי מדויק בכל אישה בגיל הפוריות (הריון משנה את מיקום האיברים והממצאים התקינים בבדיקות מעבדה, כמו לויקוציטוזיס קל); בדיקה רקטלית ואגנית חובה בכל חולה עם כאב בטן, שכן פריטוניטיס אגנית עלולה להיות "שקטה" לגמרי בבדיקת הבטן; והשמעת קולות מעי היא <span class="key">אחד המרכיבים הפחות אמינים</span> בבדיקה - חסימת מעי מחוננקת או ניקוב תוספתן יכולים להתרחש עם קולות מעי תקינים לגמרי.</p>
+<p>כשהאבחנה אינה ברורה מיד, <b>מעקב ובדיקה חוזרת לאורך שעות</b> (עם תשאול ובדיקה חוזרים) הם כלי אבחנתי לגיטימי ולעיתים מדויק יותר מהדמיה חד-פעמית - בתנאי שהחולה יציב.</p>
+
+<div class="surgery">
+  <h4>מתי פונים לניתוח דחוף</h4>
+  <p>למעט המקרה הקיצוני של דימום מתשלש, ההחלטה על ניתוח מבוססת על שילוב של: החמרה קלינית, סימני גירוי צפקי מתפשטים, אי-יציבות המודינמית, וממצאי הדמיה (חופש אוויר תת-סרעפתי בניקוב, למשל).</p>
+  <h4>הכנה טרם ניתוח</h4>
+  <p>גישה ורידית להחייאת נוזלים, צום (לקראת הרדמה כללית), לעיתים זונדה לקיבה (במקרה חסימה) ואנטיביוטיקה רחבת טווח אם יש חשד לזיהום/ניקוב תוך-בטני.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>העיכוב הגדול ביותר בדימום תוך-בטני מסיבי אינו הניתוח עצמו אלא זמן שמתבזבז בבדיקות הדמיה "לאישוש" האבחנה בזמן שהחולה ממשיך לדמם - הריסון מדגיש: <span class="key">אין התוויות נגד מוחלטות לניתוח כשיש דימום תוך-בטני מסיבי</span>.</p>
+  <h4>החלמה ומעקב</h4>
+  <p>מעקב אחר סימני חום, טכיקרדיה, ירידה בתפוקת שתן וסימני זיהום פצע/דלף - כל אלו יכולים לרמז על סיבוך תוך-בטני שהתפתח לאחר הניתוח.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/_PDOXlVGeuY" title="An Approach to Acute Abdominal Pain" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה כללית של הגישה השיטתית לכאב בטן חריף - אנמנזה, בדיקה, ומיון בין דחוף לניתן-למעקב.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - <span dir="ltr">OPQRST</span> לתשאול כאב (תואם בדיוק לטבלה 15-1 בהריסון)</h3>
+  <p>
+  <b>O</b>nset - מתי ואיך התחיל הכאב &middot;
+  <b>P</b>rovocation/Palliation - מה מחמיר/מקל (תנועה? אוכל? שכיבה?) &middot;
+  <b>Q</b>uality - איכות הכאב (חד/עמום/קוליקי) &middot;
+  <b>R</b>adiation/Region - מיקום והקרנה &middot;
+  <b>S</b>everity + Symptoms - עוצמה ותסמינים נלווים (בחילה, שינויי מעיים, היסטוריה מחזורית) &middot;
+  <b>T</b>ime course - משך והתקדמות התסמינים.
+  </p>
+  <h3>סיפור דמיוני - "הפעמון, האזעקה והשכן"</h3>
+  <p>דמייני בניין דירות: כשמישהו <b>דופק ישירות על דלת הדירה שלך</b> (=<b>כאב פריאטלי</b>) - את יודעת בדיוק איזו דירה ומי דופק, זה חד וממוקד. כשה<b>אזעקה הכללית של הבניין</b> מצלצלת (=<b>כאב קרבי</b>) - כל הבניין שומע רעש עמום, אבל אי אפשר לדעת איזו דירה בדיוק הפעילה אותה. וכשהשכן שלך מתלונן על כאב ראש כי "יש מסיבה רועשת אצל השכן שלו למעלה" (=<b>כאב מוקרן</b>) - הכאב "עבר דירה" לגמרי, כי חוט החשמל (העצב) של שתי הדירות מתחבר לאותו לוח חשמל ראשי (עמוד השדרה).</p>
+  <svg class="diagram" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+    <rect x="20" y="20" width="150" height="170" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+    <rect x="45" y="150" width="30" height="40" fill="#b45309"/>
+    <circle cx="70" cy="170" r="3" fill="#fff"/>
+    <text x="95" y="60" font-size="13" fill="#1f2937">דופק ישירות</text>
+    <text x="95" y="78" font-size="13" fill="#1f2937">= פריאטלי</text>
+
+    <rect x="185" y="20" width="150" height="170" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+    <circle cx="260" cy="45" r="14" fill="#fde68a" stroke="#b45309"/>
+    <text x="260" y="50" text-anchor="middle" font-size="14">!</text>
+    <text x="260" y="80" text-anchor="middle" font-size="13" fill="#1f2937">אזעקה כללית</text>
+    <text x="260" y="98" text-anchor="middle" font-size="13" fill="#1f2937">= קרבי (מפוזר)</text>
+
+    <rect x="350" y="20" width="150" height="170" rx="6" fill="#f8fafc" stroke="#94a3b8"/>
+    <path d="M425 40 L440 20 L455 40" stroke="#6d28d9" stroke-width="3" fill="none"/>
+    <text x="425" y="80" text-anchor="middle" font-size="13" fill="#1f2937">"רעש למעלה"</text>
+    <text x="425" y="98" text-anchor="middle" font-size="13" fill="#1f2937">= מוקרן</text>
+    <path d="M170 105 H185 M335 105 H350" stroke="#6b7280" stroke-width="2" stroke-dasharray="3 3"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK560843/" target="_blank">StatPearls - Autonomic Nervous System Visceral Afferent Fibers and Pain</a>
+    <div class="desc">פרק ייחוס מפורט על המסלולים העצביים של כאב קרבי ומוקרן, כולל תרשימי דרמטומים.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Approach_to_upper_abdominal_pain:_Clinical_sciences" target="_blank">Osmosis - Approach to Upper Abdominal Pain</a>
+    <div class="desc">אלגוריתם קליני לגישה לכאב בטן עליון, כולל אבחנה מבדלת מובנית.</div>
+  </li>
+  <li>
+    <a href="https://geekymedics.com/abdominal-examination/" target="_blank">Geeky Medics - Abdominal Examination OSCE Guide</a>
+    <div class="desc">מדריך מלא (טקסט + וידאו) לבדיקה גופנית שיטתית של הבטן, כולל כל הסימנים המוזכרים כאן.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Acute_abdomen" target="_blank">Wikipedia - Acute Abdomen</a>
+    <div class="desc">סיכום תמציתי עם טבלת גורמים לפי מיקום ומנגנון, טוב כחזרה מהירה נוספת.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 42, ללא מחלות רקע ידועות, נוטל איבופרופן כרוני עקב כאבי גב, מגיע למיון עם כאב בטן שהחל <b>פתאום לפני כ-3 שעות</b> באזור האפיגסטרי, "כמו סכין", והתפשט בהדרגה לכל הבטן. הוא שוכב ללא תזוזה במיטה ומעדיף לא לזוז. בבדיקה: חום 37.8&deg;C, דופק 108, לחץ דם 128/82. הבטן <b>קשה כלוח (board-like rigidity)</b> עם עווית שרירים מפושטת, רגישות עזה בהקשה עדינה בכל הרביעים. קולות מעי חלשים. ספירת דם: לויקוציטים 13,900 (עם סטייה שמאלה קלה). צילום חזה בעמידה מדגים <b>אוויר חופשי מתחת לסרעפת</b>.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו ההסבר הפתופיזיולוגי הסביר ביותר לכך שהכאב במקרה הזה חד ומדויק (ולא עמום ומפוזר) כבר בשלב הראשוני?</div>
+  <button class="opt" data-i="0">מדובר בכאב קרבי טיפוסי מכיב פפטי</button>
+  <button class="opt" data-i="1">תוכן קיבה חומצי דלף וגירה ישירות את הצפק הפריאטלי, המעוצבב ע"י עצבים סומטיים</button>
+  <button class="opt" data-i="2">הכאב מוקרן מהלב בגלל התכנסות דרמטומלית</button>
+  <button class="opt" data-i="3">זהו כאב נוירוגני מלחץ על שורש עצב</button>
+  <div class="explain">נכון: <b>1</b>. כאב פריאטלי חד וממוקם נובע מגירוי ישיר של הצפק הפריאטלי (עצבוב סומטי) - כאן ע"י תוכן קיבה חומצי שדלף מניקוב. מסיח 0 שגוי כי כאב קרבי מכיב לפני ניקוב היה עמום ואפיגסטרי בלבד; מסיח 2 שגוי כי אין ממצאים קרדיאליים; מסיח 3 שגוי כי כאב נוירוגני אינו מלווה בנוקשות בטנית או בהיסטוריה כזו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע החום והלויקוציטוזיס הקלים-בינוניים אינם מוכיחים שכבר יש זיהום חיידקי פעיל בחלל הצפק?</div>
+  <button class="opt" data-i="0">כי חום ולויקוציטוזיס תמיד מופיעים רק שעות רבות אחרי כל ניקוב</button>
+  <button class="opt" data-i="1">כי ספירת הדם במקרה הזה תקינה לגמרי</button>
+  <button class="opt" data-i="2">כי גם דלקת כימית-סטרילית (ללא חיידקים כלל) מפעילה מקרופאגים המשחררים ציטוקינים (IL-1, IL-6, TNF-&alpha;) שגורמים לחום וללויקוציטוזיס</button>
+  <button class="opt" data-i="3">כי איבופרופן גורם ללויקוציטוזיס תרופתי</button>
+  <div class="explain">נכון: <b>2</b>. התגובה הדלקתית המערכתית (חום, גיוס נויטרופילים) מופעלת ע"י ציטוקינים משוחררים ממקרופאגים פריטונאליים בתגובה לכל גירוי - כימי או זיהומי - ולכן אינה כלי אבחנתי מהימן לבדו להבחנה בין דלקת סטרילית לחיידקית. מסיח 1 שגוי - הספירה כאן כן מוגברת (13,900). מסיח 3 אינו מנגנון מוכר.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהי הפעולה הראשונה והדחופה ביותר כעת, לפי עקרונות הריסון?</div>
+  <button class="opt" data-i="0">להמתין למיפוי CT מלא לפני כל החלטה, כדי לא "לפספס" אבחנה נדירה</button>
+  <button class="opt" data-i="1">לשלול הריון ולבצע בדיקה גינקולוגית תחילה</button>
+  <button class="opt" data-i="2">להימנע ממתן אנלגזיה עד לקבלת החלטה כירורגית סופית, כדי לא לטשטש ממצאים</button>
+  <button class="opt" data-i="3">להתחיל גישה ורידית, אנלגזיה נאותה, ולערב כירורגיה לניתוח דחוף - הממצאים (ריגידיות, אוויר חופשי) מתאימים לניקוב תוך-בטני</button>
+  <div class="explain">נכון: <b>3</b>. שילוב של רגישות פריטונאלית מפושטת + חופש אוויר תת-סרעפתי מחייב טיפול כירורגי דחוף; אין להשהות אנלגזיה (מיתוס), ואין צורך בבירור הדמייתי נוסף ממושך שרק מעכב טיפול. מסיח 1 לא רלוונטי לגבר. מסיח 2 סותר במפורש את עקרון הריסון בנוגע לאנלגזיה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מטופלת בת 71 עם פרפור פרוזדורים לא מטופל באנטי-קרישה מתלוננת על כאב בטן מפוזר, מתמשך ובינוני-עוצמה מזה יומיים, ללא רגישות משמעותית או נוקשות בבדיקה. מה מחשיד ביותר?</div>
+  <button class="opt" data-i="0">איסכמיה מזנטרית מוקדמת - "כאב לא פרופורציוני לממצאים" בחולת סיכון וסקולרי</button>
+  <button class="opt" data-i="1">תסמונת מעי רגיז שהחלה בפתאומיות בגיל מבוגר</button>
+  <button class="opt" data-i="2">אפנדיציטיס טיפוסית</button>
+  <button class="opt" data-i="3">כאב פריאטלי מכוליציסטיטיס</button>
+  <div class="explain">נכון: <b>0</b>. שילוב של גורם סיכון וסקולרי (פרפור פרוזדורים ללא נוגד קרישה = מקור פוטנציאלי לתסחיף), כאב מפוזר ומתמשך, והיעדר בולט של רגישות/נוקשות פיזית ("לא פרופורציוני") הוא התיאור הקלאסי לחסימת עורק המזנטריום העליון בשלב המוקדם (היפרפריסטלטי, לפני קריסה וסקולרית). IBS (1) לא מתחיל בפתאומיות כזו בגיל 71. אפנדיציטיס (2) ונוקשות מקומית מ-RUQ (3) אינם תואמים כאב מפוזר ללא ממצאים.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע רגישות רקטלית/אגנית עשויה להיות הממצא היחיד המכוון לאבחנה כירורגית מסוימת?</div>
+  <button class="opt" data-i="0">כי בדיקה רקטלית תמיד מדויקת יותר מבדיקת בטן</button>
+  <button class="opt" data-i="1">כי פריטוניטיס אגנית (למשל מאפנדיציטיס רטרוצקאלית מנוקבת או דיברטיקוליטיס עמוקה באגן) יכולה להיות "שקטה" לחלוטין בבדיקת הבטן הרגילה, כי איברי האגן מכוסים ומרוחקים מדופן הבטן הקדמית</button>
+  <button class="opt" data-i="2">כי כל כאב בטן מקורו באגן</button>
+  <button class="opt" data-i="3">כי הבדיקה הרקטלית מחליפה את הצורך בהדמיה</button>
+  <div class="explain">נכון: <b>1</b>. תהליך דלקתי עמוק באגן עלול לא ליצור גירוי מספיק של הצפק הפריאטלי הקדמי כדי לגרום לרגישות/נוקשות "רגילה" בבדיקת בטן, ולכן בדיקה רקטלית/אגנית היא חובה ולא אופציה בכל מטופל עם כאב בטן, כפי שהריסון מדגיש.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה:</b> כאב בטן - תלונה שכיחה אך מטעה; חומרתו אינה מנבאת חומרת המחלה. אין להשתמש במונח "בטן חריפה/כירורגית".</li>
+    <li><b>3 סוגי כאב:</b> קרבי (מפוזר, קו אמצע, קוליקי - עצבוב אוטונומי) &larr; פריאטלי (חד, ממוקם, מוחמר בתנועה - עצבוב סומטי) &larr; מוקרן (הרחק מהאיבר, בגלל התכנסות עצבית בחוט השדרה).</li>
+    <li><b>מנגנון דלקת:</b> נוזל גירוי (חומצה/מרה/מיץ לבלב) &rarr; דלקת כימית סטרילית ראשונית (עוצמה תלויה ב-pH/כמות/קצב) &rarr; מקרופאגים משחררים IL-1/IL-6/TNF-&alpha; &rarr; חום+לויקוציטוזיס (גם ללא חיידקים!) &rarr; רק לאחר שעות-ימים זיהום חיידקי משני (E. coli, B. fragilis) עם אנדוטוקסין שמגביר את התגובה.</li>
+    <li><b>אבחנה:</b> אנמנזה (OPQRST) + מיקום (טבלת RUQ/LLQ וכו') + בדיקה עדינה (הקשה במקום שחרור אגרסיבי) + בדיקה רקטלית/אגנית תמיד. "כאב לא פרופורציוני לממצאים" = דגל אדום לאיסכמיה מזנטרית.</li>
+    <li><b>טיפול:</b> דימום תוך-בטני מסיבי בלבד = לניתוח מיידי ללא עיכוב הדמייתי. בכל שאר המקרים - גישה שיטתית, אנלגזיה לא מעוכבת, מעקב ובדיקה חוזרת לגיטימיים כשהחולה יציב.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
