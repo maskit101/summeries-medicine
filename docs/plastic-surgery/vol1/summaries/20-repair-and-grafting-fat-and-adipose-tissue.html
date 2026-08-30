@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 20: השתלת שומן ותיקון רקמת שומן</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .surgery{background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 20: השתלת שומן ותיקון רקמת שומן <span class="term" dir="ltr">Repair and Grafting Fat and Adipose Tissue</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | פרק 22 במקור (J. Peter Rubin)</div>
+
+<p>השתלת שומן אוטולוגית (<span class="term" dir="ltr">autologous fat grafting</span>) היא טכניקה שהפכה מתוספת אסתטית שולית לכלי מרכזי בכירורגיה פלסטית משחזרת ואסתטית כאחד: החל משיקום פנים אחרי טראומה וסרטן, דרך שחזור שד אחרי כריתה, ועד החלקת פגמים לאחר קרינה. הרעיון הבסיסי פשוט – לוקחים שומן מאזור עודף בגוף (למשל בטן) ומזריקים אותו לאזור החסר – אבל <b>ההצלחה תלויה כמעט לגמרי בטכניקה</b>: איך שואבים, איך מעבדים, ואיך מזריקים. פרק זה הוא הבסיס למובן העמוק של "למה שומן מסוים שורד ושומן אחר נספג ונעלם".</p>
+
+<h2><span class="num">1</span> המנגנון – למה השתלת שומן בכלל "תופסת"</h2>
+<div class="mechanism">
+  <p class="chain">
+    שתל שומן הוא, בזמן ההשתלה, רקמה חיה <b>לגמרי ללא אספקת דם עצמאית</b> – בניגוד לפלאפ, אין לו כלי דם מזין שמחובר. ההישרדות של כל "חלקיק" שומן שמוזרק תלויה בתהליך דו-שלבי:
+  </p>
+  <p>
+    <b>שלב 1 – ימים 1–3, הישרדות בדיפוזיה (<span class="term" dir="ltr">plasmatic imbibition</span>):</b> אדיפוציטים בפריפריה של כל חלקיק שומן, הקרובים לרקמה המארחת, "שותים" חמצן וחומרי הזנה בדיפוזיה פשוטה מהנוזל הבין-תאי הסובב, בדיוק כמו שקורה בהשתלת עור בשלבים הראשונים. זהו חלון זמן קריטי וקצר.<br>
+    <b>שלב 2 – מיום 4 בערך ואילך, אנגיוגנזה (<span class="term" dir="ltr">revascularization</span>):</b> נבטים של נימי דם חדשים מהרקמה המארחת פולשים לתוך חלקיק השומן ומחדשים לו אספקת דם אמיתית. תאי הגזע השומניים (<span class="term" dir="ltr">ASCs – adipose-derived stem cells</span>) שנמצאים בשומן המושתל תורמים לתהליך הזה בעצמם, בהפרשת גורמים אנגיוגניים (כגון VEGF) בדרך פרקרינית – זו הסיבה שגרפטים "עשירים בתאים" (למשל מועשרים ב-SVF) נוטים להראות שרידות טובה יותר.
+  </p>
+  <p>
+    <b>הבעיה: מרחק דיפוזיה מוגבל.</b> דיפוזיה יעילה רק עד מרחק של כ-1.5–2 מ"מ מפני השטח של החלקיק. אדיפוציט שנמצא <i>עמוק מדי בתוך חלקיק גדול מדי</i> לא מקבל מספיק חמצן/הזנה בזמן, עובר מוות תאי היפוקסי – ומכאן ה<b class="key">אזור המרכזי הנקרוטי</b> שנוצר בהשתלות של גושי שומן גדולים מדי. אזור זה מתבטא קלינית כ<b>נמק שומני</b> (<span class="term" dir="ltr">fat necrosis</span>), שיכול להתקדם ל<b>ציסטת שמן</b> (<span class="term" dir="ltr">oil cyst</span> – שומן מת שהתנזל והתכמס בכמוסה), או ל<b>הסתיידות ניוונית</b> (<span class="term" dir="ltr">dystrophic calcification</span> – משקעי סידן שמצטברים כשמקרופאגים "מנקים" רקמת שומן מתה).
+  </p>
+  <p>
+    <b class="key">זו בדיוק הסיבה שכל עקרונות טכניקת קולמן (Coleman) קיימים:</b> חלקיקי שומן <i>קטנים</i> המושתלים ב<i>מנות קטנות רבות</i>, במעברים חוזרים, במישורי רקמה מרובים – מגדילים את יחס שטח-הפנים לנפח, כך שכל תא נמצא קרוב מספיק לרקמה המארחת כדי לשרוד את חלון הדיפוזיה עד שהאנגיוגנזה "תופסת פיקוד". השתלת גוש שומן גדול אחד ("בגודל אגוז מלך") מתה יותר מהר משתלת אותה כמות מפוזרת בהרבה חלקיקים קטנים, בגלל יחס שטח-נפח נמוך יותר.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון הישרדות שתל שומן</title>
+  <rect x="20" y="30" width="180" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="110" y="58" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שאיבה עדינה</text>
+  <text x="110" y="76" font-size="12" text-anchor="middle" fill="#4c1d95">מזעור טראומה מכנית</text>
+  <text x="110" y="92" font-size="11" text-anchor="middle" fill="#4c1d95">שימור שלמות התא</text>
+
+  <rect x="240" y="30" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="330" y="58" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עידון (צנטריפוגה)</text>
+  <text x="330" y="76" font-size="12" text-anchor="middle" fill="#1e3a8a">הסרת דם/שמן/נוזל</text>
+  <text x="330" y="92" font-size="11" text-anchor="middle" fill="#1e3a8a">ריכוז שומן חי</text>
+
+  <rect x="460" y="30" width="200" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="560" y="58" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">הזרקה: מנות קטנות</text>
+  <text x="560" y="76" font-size="12" text-anchor="middle" fill="#065f46">מעברים רבים, ריבוי מישורים</text>
+  <text x="560" y="92" font-size="11" text-anchor="middle" fill="#065f46">שטח פנים מקסימלי</text>
+
+  <rect x="700" y="30" width="180" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="790" y="52" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">ימים 1–3</text>
+  <text x="790" y="70" font-size="12" text-anchor="middle" fill="#78350f">דיפוזיה (imbibition)</text>
+  <text x="790" y="88" font-size="11" text-anchor="middle" fill="#78350f">עד ~1.5-2 מ"מ</text>
+
+  <polygon points="200,65 240,59 240,71" fill="#374151"/>
+  <line x1="200" y1="65" x2="240" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,65 460,59 460,71" fill="#374151"/>
+  <line x1="420" y1="65" x2="460" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="660,65 700,59 700,71" fill="#374151"/>
+  <line x1="660" y1="65" x2="700" y2="65" stroke="#374151" stroke-width="2"/>
+
+  <line x1="790" y1="100" x2="790" y2="130" stroke="#374151" stroke-width="2"/>
+  <polygon points="790,140 784,124 796,124" fill="#374151"/>
+
+  <rect x="620" y="150" width="260" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="750" y="173" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">יום 4+ : אנגיוגנזה</text>
+  <text x="750" y="191" font-size="11" text-anchor="middle" fill="#065f46">ASCs מפרישים VEGF → כלי דם חדשים</text>
+
+  <line x1="620" y1="180" x2="360" y2="180" stroke="#374151" stroke-width="2"/>
+  <polygon points="350,180 366,174 366,186" fill="#374151"/>
+
+  <rect x="20" y="150" width="330" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="185" y="172" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">אם החלקיק גדול מדי / הזרקה בגוש אחד</text>
+  <text x="185" y="192" font-size="12" text-anchor="middle" fill="#7f1d1d">אזור מרכזי לא מגיע לדם בזמן</text>
+  <text x="185" y="212" font-size="12" text-anchor="middle" fill="#7f1d1d">→ נמק שומני → ציסטת שמן / הסתיידות</text>
+</svg>
+
+<p>שתי תיאוריות היסטוריות מנסות להסביר את מקור "השומן שנשאר" בטווח הארוך: <b>תיאוריית ההחלפה המארחת</b> (<span class="term" dir="ltr">host replacement</span>) – רוב האדיפוציטים הבשלים מתים ומוחלפים בהדרגה בתאי שומן חדשים שמתמיינים מ-ASCs/פרה-אדיפוציטים במקום; מול <b>תיאוריית שרידות התא</b> (<span class="term" dir="ltr">cell survival theory</span>, פיר, שנות ה-50) – חלק ממשי מהאדיפוציטים הבוגרים שהושתלו שורד ישירות אם הטיפול בהם היה עדין. פיר הראה כי שתלי שומן מאבדים כ-45% ממשקלם ונפחם בשנה הראשונה, אך התאים ששרדו שמרו על נפחם התקין – כלומר האובדן הוא בעיקר <b>במספר</b> התאים ששרדו, לא בהתכווצות של השורדים.</p>
+
+<h2><span class="num">2</span> ביולוגיה של רקמת השומן ותאי הגזע השומניים (ASCs)</h2>
+<p>רקמת השומן הלבנה (<span class="term" dir="ltr">white adipose tissue</span> – בניגוד לשומן החום שפעיל בעיקר בילודים לצורך תרמוגנזה) מורכבת מאדיפוציטים גדולים עמוסי שומן, מוקפים ברקמה סטרומלית-וסקולרית (פיברובלסטים, תאי חיסון, פריציטים, תאי אנדותל). מעבר לתפקידה כמאגר אנרגיה, רקמת השומן היא איבר <b>אנדוקריני פעיל</b> – מפרישה אדיפוקינים (לפטין, אדיפונקטין) וציטוקינים דלקתיים (TNF-α, IL-6, IL-8) המעורבים בוויסות תיאבון, תנגודת לאינסולין וקרישה.</p>
+<p>בתוך השבר הסטרומלי-וסקולרי (<span class="term" dir="ltr">SVF – stromal vascular fraction</span>) – התוצר המתקבל מעיכול קולגנאזי אנזימטי של שומן שאוב – נמצאים <b>תאי הגזע השומניים (ASCs)</b>, בעלי יכולת התחדשות עצמית והתמיינות רב-שושלתית (עצם, סחוס, שריר, ועוד). כאשר תאי SVF מונחים בתרבית, ה-ASCs נדבקים למשטח הצלחת תוך 6–8 שעות, בעוד רוב התאים ההמטופואטיים (כ-7–15% מה-SVF) נשטפים משום שאינם נדבקים. אפיון בזרימה (<span class="term" dir="ltr">flow cytometry</span>) מזהה תת-אוכלוסיות: תאי אנדותל בוגרים (CD31+/CD34−), תאי גזע אנדותליאליים (CD31+/CD34+), תאי גזע שומניים "אמיתיים" (CD31−/CD34+), ופריציטים (CD146+/CD90+/CD31−/CD34−).</p>
+<p class="key-box">בידוד לא-אנזימטי (למשל באמצעות אולטרסאונד בלבד) עדיין לא מוכיח יעילות שווה לעיכול קולגנאזי – ולכן עדיין נדרש עיכול אנזימטי לבידוד קליני משמעותי של ASCs.</p>
+
+<h2><span class="num">3</span> בטיחות אונקולוגית – השאלה שכל סטודנטית נשאלת עליה</h2>
+<p>עד 1987 האגודה האמריקאית לכירורגיה פלסטית (ASPS) <b>אסרה</b> השתלת שומן לשד, מחשש שהיא תפריע למעקב אונקולוגי (נמק שומני והסתיידויות שנראים בממוגרפיה ועלולים "להסוות" גידול) ושתאי הגזע השומניים יזרזו תהליכים סרטניים. ב-2007 הוקמה ועדת המשימה של ASPS לבחון מחדש את הנושא.</p>
+<p>ארבע דאגות עיקריות: (1) הפרעה למעקב אונקולוגי הדמייתי, (2) שחרור גורמי גדילה שעלולים להזין גידול, (3) טרנספורמציה ממאירה של תאי גזע, (4) הגברת נדידה וגרורתיות של תאי סרטן. <b>מחקרי מעבדה בסיסיים</b> (קו-תרביות של ASCs עם תאי סרטן שד) הראו לעיתים אפקט מעודד-גידול; אך <b>מחקרים קליניים</b> (מטא-אנליזות של אלפי חולות) לא הראו עלייה משמעותית בשיעורי הישנות מקומית/אזורית/מרוחקת בין קבוצות שעברו השתלת שומן לביקורת. הפער בין המעבדה לקליניקה מוסבר בין היתר בכך שקווי תאי סרטן שד מונצחים (כמו MDA-MB-231) הם ייצוג לא-מושלם של גידול ראשוני אמיתי.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>ממצא</th><th>מקור</th><th>מסקנה</th></tr></thead>
+  <tbody>
+    <tr><td>שיעור ביופסיה לא עלה משמעותית בקבוצת השתלת שומן (17.6% מול 7.8%, p=0.14)</td><td>קוהורט מותאם, שחזור שד אחרי כריתה</td><td>אין הפרעה משמעותית למעקב</td></tr>
+    <tr><td>נמק שומני – הסיבוך השכיח ביותר (4.4%), ביופסיה נדרשה ב-2.7%</td><td>סקירה שיטתית 2015, 35 מחקרים, 3624 חולות</td><td>אין הבדל בשיעור אירועים אונקולוגיים לעומת ביקורת (p=0.10)</td></tr>
+    <tr><td>שיעור הישנות אזורית 2.2%–4.4% ב-24.6 חודשי מעקב</td><td>מספר סקירות שיטתיות</td><td>דומה לשיעור הישנות ללא השתלת שומן (5.2–10.6%)</td></tr>
+  </tbody>
+</table></div>
+<p><b class="key">מסקנת הפרק: הבטיחות האונקולוגית של השתלת שומן לשד נתמכת היטב בספרות הקלינית</b>, אף שהעיתוי האופטימלי ביחס לטיפול משמר-שד עדיין לא ידוע במלואו.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/409_Adipose_Tissue.jpg?width=700" alt="היסטולוגיה של רקמת שומן לבנה">
+  <p class="media-cap">חתך היסטולוגי של רקמת שומן לבנה – אדיפוציטים גדולים עם גרעין דחוס בפריפריה. מקור: <a href="https://commons.wikimedia.org/wiki/File:409_Adipose_Tissue.jpg" target="_blank">Wikimedia Commons (CNX Anatomy & Physiology)</a>.</p>
+</figure>
+
+<h2><span class="num">4</span> אינדיקציות ובחירת מטופלת</h2>
+<p>אינדיקציות משחזרות: מומים מולדים (מיקרוזומיה המיפציאלית, תסמונת Treacher Collins), פגמים פוסט-טראומטיים, פגמים יאטרוגניים אחרי ניתוחים קוסמטיים קודמים (עפעף עליון שקוע, קו לסת אחורי שטוח), רקמה קרינתית נוקשה (השתלת שומן מרככת ומשפרת מרקם, ככל הנראה דרך דיכוי מסלולי TGF-β), ושיפור התאמת פרוטזה בקטועי גפיים. אינדיקציה נפוצה נוספת: שחזור שד לאחר כריתה (בין אם לצד שחזור בשתל/פלאפ ובין אם כטיפול עצמאי).</p>
+<p>בבחירת מטופלת יש להעריך: יכולת לעמוד בהרדמה הנדרשת, ציפיות ריאליות (לרוב נדרשים <b>מספר סבבי</b> השתלה), ומאגרי שומן זמינים – <b>מטופלת רזה מדי</b> היא התווית-נגד היחסית העיקרית, בפרט להשתלות נפח גדול (שד/גוף). ירידה במשקל לאחר ההשתלה עלולה לגרום לאובדן נפח משמעותי של האזור המושתל.</p>
+
+<h2><span class="num">5</span> טכניקת הניתוח – שיטת קולמן (Coleman)</h2>
+<p>מאז שכולל קולמן (Sydney Coleman) גיבש בשנות ה-90 את טכניקת "השתלת השומן המבנית" (<span class="term" dir="ltr">structural fat grafting</span>), עקרונות היסוד לא השתנו: שאיבה עדינה שמשמרת ארכיטקטורת רקמה, עידון בצנטריפוגה להסרת מרכיבים לא-חיים, והשתלה במנות קטנות רבות המגדילות שטח-פנים ומבטיחות אספקת דם מהירה.</p>
+<div class="surgery">
+  <h4>1. שאיבה (Harvesting)</h4>
+  <p>אזורי תרומה נפוצים: בטן, "אזור האהבה" (love handle), ירך אחורית/צדדית, גב; בגברים רזים – הירך המדיאלית. מזריקים תמיסת הרדמה מקומית (לידוקאין 0.2% עם אפינפרין 1:200,000) ביחס <b>1:1 לנפח השומן המתוכנן להישאב</b> ("סופר-רטוב", <span class="term" dir="ltr">superwet technique</span>), ממתינים כ-10 דקות. השאיבה עצמה נעשית בקנולת "ידית-דלי" (bucket-handle) בקוטר שמתאים דרך קנולת הזרקה 17-gauge, בלחץ שלילי מינימלי (למשל משאבת מזרק 10 מ"ל, נמשכת רק מעט אחורה) – כדי לא לטראמטה את השומן.</p>
+  <h4>2. עידון (Refinement)</h4>
+  <p>הלחסיף (lipoaspirate) מועבר למזרקי 10 מ"ל ומוצנטרפג (3000 סל"ד / 1200×g, 3 דקות) בצנטריפוגה סטרילית. התוצאה: שלוש שכבות – <b>שכבה מימית</b> (הרדמה מקומית + דם, בתחתית – מוסרת), <b>שכבת שומן חי</b> (באמצע – נשמרת), ו<b>שכבת שמן</b> (למעלה, מתאי שומן שנקרעו – מוסרת/נספגת בגזה). לחלופין, לנפחים קטנים – סינון על גזה סטרילית לא-דביקה (Telfa rolling) נותן שיעורי שרידות אף גבוהים יותר, אך פחות יעיל בזמן. אין הסכמה בספרות איזו שיטת עיבוד עדיפה באופן מוחלט.</p>
+  <h4>3. השתלה (Placement)</h4>
+  <p>מזריקים בקנולות עם קצה קהה (17-gauge לרוב), דרך חתכי "דקירה" קטנים. השומן מונח <b>תוך כדי משיכת הקנולה החוצה</b>, במנות זעירות, במעברים חוזרים ובמישורי רקמה שונים (תת-עורי, תוך-שרירי, על-פריוסטאלי) בהתאם לאפקט הרצוי. <b class="key">אין "לעצב" (mold) את השומן לאחר ההנחה</b> – זה עלול להזיז/לפגוע בשתל ולגרום לנמק בלתי-צפוי; יש לבנות את הנפח בהדרגה במנות קטנות מההתחלה.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>שתי סכנות מרכזיות: (1) <b>אמבוליזם שומני תוך-וסקולרי</b> – הזרקה בלחץ גבוה מדי או תוך כלי דם עלולה לגרום לחסימת כלי דם (כולל בעין, בסיכון לעיוורון בהזרקות פנים); לכן משתמשים בקנולות קהות (לא מחטים חדות) ותנועה מתמדת. (2) <b>עומס-יתר תת-עורי</b> – הזרקת נפח גדול מדי מתחת לעור דק (למשל עפעף תחתון) גורמת לגושים נראים לעין ולקושי בהסרתם מאוחר יותר.</p>
+  <h4>החלמה</h4>
+  <p>אין צורך בחבישה שגרתית; מקלחת מותרת אחרי 48 שעות. הרמת האזור המושתל מעל גובה הלב ל-72 שעות, הימנעות מלחץ ישיר על האזור לשבוע, הימנעות מעיסוי עמוק לחודש. תפרים בפנים מוסרים ב-4–5 ימים. אנטיביוטיקה טרום-ניתוחית מספיקה לרוב המטופלות; מטופלות בסיכון גבוה לזיהום יכולות לקבל 3–5 ימי אנטיביוטיקה לאחר הניתוח.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/85Cv6zsJQCo" title="Fat Grafting in Breast Reconstruction – PRMA Plastic Surgery" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה קלינית קצרה של עקרון השתלת שומן לשחזור שד – שאיבה מאזור תורם, עיבוד, והזרקה במנות קטנות. מקור: ערוץ PRMA Plastic Surgery ב-YouTube.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Liposuction%20Cannula%20Set.jpg?width=700" alt="ערכת קנולות לשאיבת שומן">
+  <p class="media-cap">ערכת קנולות קהות בקטרים שונים המשמשות לשאיבה ולהשתלה של שומן. מקור: <a href="https://commons.wikimedia.org/wiki/File:Liposuction_Cannula_Set.jpg" target="_blank">Wikimedia Commons</a>.</p>
+</figure>
+
+<h3>השוואת שיטות עיבוד השומן</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>שיטה</th><th>עקרון</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td>צנטריפוגה (קולמן)</td><td>הפרדה לפי צפיפות (3000 סל"ד, 3 דק')</td><td>סטנדרטית, שחזורית, יעילה לנפחים גדולים</td><td>עלולה לפגוע מכנית בתאים אם לא נעשית נכון</td></tr>
+    <tr><td>סינון בגזה (Telfa rolling)</td><td>ספיגת נוזל עודף דרך גזה סטרילית</td><td>שיעורי שרידות גבוהים יותר בנפחים קטנים</td><td>לא יעיל לנפחים גדולים, איטי</td></tr>
+    <tr><td>שקיעה/דקנטציה (decantation)</td><td>הפרדת שכבות לפי כובד סגולי בעמידה</td><td>פשוט, מתאים לנפחים גדולים</td><td>פחות מדויק בהסרת רכיבים לא-חיים</td></tr>
+    <tr><td>שטיפה בתמיסה פיזיולוגית</td><td>שטיפת דם/הרדמה מקומית מהשומן</td><td>מסירה זיהומים/רכיבים לא-רצויים</td><td>חשיפה ממושכת יותר לאוויר – עלולה לפגוע בשרידות</td></tr>
+  </tbody>
+</table></div>
+<p>ועדת המשימה של ASPS (2009) המליצה: שאיבה בקנולה קהה 3–4 מ"מ עם לחץ שלילי מינימלי; הזרקה בקנולה קהה 2–2.5 מ"מ במנות זעירות במישורים מרובים. אוזוסוי ועמיתיו הראו כי קנולות הזרקה בקוטר 2.5 מ"מ שומרות על שרידות אדיפוציטים גבוהה יותר מקנולות דקות יותר (1.6–2 מ"מ) – מכיוון שהאדיפוציטים רגישים במיוחד ל<b>לחץ גזירה</b> (<span class="term" dir="ltr">shear stress</span>), הפרופורציוני לקצב הזרימה בזמן ההזרקה.</p>
+
+<h2><span class="num">6</span> תוצאות, פרוגנוזה וסיבוכים</h2>
+<p>השתלת שומן נחשבת בטוחה יחסית עם תחלואה סב-ניתוחית נמוכה. <b>הסיכון המרכזי הוא ספיגה בלתי-צפויה של השתל</b> – מחקר שבחן שברי קרניופציאליים טראומטיים הראה שיעור שימור ממוצע של כ-63% ב-9 חודשים, עם פיזור רחב בין מטופלות (יש "מגיבות טובות" ו"מגיבות חלשות").</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>סיבוך</th><th>מנגנון</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>נמק שומני (fat necrosis)</td><td>אזור מרכזי בחלקיק שומן גדול מדי לא מקבל דיפוזיה/אנגיוגנזה בזמן</td><td>לרוב חולף, מעקב הדמייתי; לעיתים ביופסיה לשלילת ממאירות</td></tr>
+    <tr><td>ציסטת שמן (oil cyst)</td><td>שומן מת מתנזל ומתכמס בכמוסה פיברוטית</td><td>שאיבה מונחית אולטרסאונד לאבחון ולטיפול בו-זמנית</td></tr>
+    <tr><td>הסתיידות (calcification)</td><td>מקרופאגים "מנקים" שומן מת ומעוררים משקעי סידן ניווניים</td><td>לרוב שפירה; עלולה לחקות מיקרו-הסתיידויות ממאירות בממוגרפיה – מצריכה עין רדיולוגית מנוסה</td></tr>
+    <tr><td>אי-סדירות קונטור / גושים נראים</td><td>נפח עודף שהוזרק בגוש אחד מתחת לעור דק</td><td>שאיבה, כריתה ישירה, או דאוקסיכולט (Kybella) שלא מאושר רשמית לאינדיקציה זו</td></tr>
+    <tr><td>אמבוליזם שומני</td><td>הזרקה תוך-וסקולרית בטעות</td><td>מניעה: קנולות קהות, תנועה מתמדת, לחץ נמוך – סיבוך נדיר אך חמור</td></tr>
+  </tbody>
+</table></div>
+<p>סיבוכים נדירים נוספים: תגובה אלרגית להרדמה המקומית, שינוי צבע קבוע מקרע כלי דם, דימום סב-ניתוחי, קריש דם באזור הטיפול/התרומה, זיהום, וצלקת. עודף תיקון (<span class="term" dir="ltr">overcorrection</span>) הוא סיכון מובנה כי לא ניתן לחזות מראש בדיוק כמה נפח ייספג.</p>
+
+<h2><span class="num">7</span> הליכים משניים</h2>
+<p>מכיוון שההזרקה הראשונית תמיד מלווה בבצקת סב-ניתוחית ובספיגה בלתי-צפויה, <b class="key">שיפור מדורג בכמה סבבים עדיף על ניסיון להשיג תיקון מושלם בפעולה אחת</b> – עדיף "לתת-תקן" (under-correct) ולחזור לחדר ניתוח לשלב שני, מאשר להשתיל יותר מדי מראש. ככל שאיכות הרקמה משתפרת בין הליכים (בעיקר ברקמה קרינתית נוקשה), האזור נעשה קליט יותר לנפחים גדולים יותר בסבב הבא.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/iLCWF2Cb0DY" title="Fat Grafting and Phase 2 of Breast Reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">דיון קליני על שלב שני בשחזור שד עם השתלת שומן – מתי נדרש סבב נוסף וכיצד מתכננים אותו. מקור: ערוץ Midwest Breast (Dr. Kocak / Dr. Tiwari) ב-YouTube.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/0sUs0glDlxY" title="Advances in breast reconstruction: the role of autologous fat grafting" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה על ההתקדמות בשימוש בהשתלת שומן אוטולוגית בשחזור שד לאחר כריתה, כולל התייחסות לבטיחות אונקולוגית. מקור: YouTube (הרצאה מוסדית).</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"3-3-3" של קולמן</span></h3>
+  <p>
+    <b>שאיבה עדינה</b> – קנולה קהה, לחץ שלילי מינימלי (סופר-רטוב 1:1).<br>
+    <b>עידון בצנטריפוגה</b> – 3000 סל"ד, 3 דקות, 3 שכבות (מימית / שומן / שמן).<br>
+    <b>הזרקה במנות קטנות</b> – מנות זעירות, מעברים חוזרים, מישורים מרובים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני זורעת שדה שרוצה שכל זרע ינבוט: אם היא שופכת את כל השקית שלה בערימה אחת גדולה, הזרעים באמצע הערימה לא מקבלים מספיק אור שמש ומים ונרקבים (בדיוק כמו האזור המרכזי הנקרוטי בחלקיק שומן גדול מדי). אבל אם היא מפזרת את אותה כמות זרעים בזריעה עדינה, זרע-זרע, בשורות רבות – לכל זרע יש "מקום משלו" לינוק אור ומים, ורוב הזרעים נובטים. זו בדיוק הסיבה שקולמן מזריק שומן במנות זעירות במקום בגוש אחד.</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <title>ערימת זרעים מול זריעה מפוזרת</title>
+    <circle cx="120" cy="110" r="55" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <circle cx="120" cy="110" r="20" fill="#7f1d1d"/>
+    <text x="120" y="185" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">ערימה אחת = נמק במרכז</text>
+
+    <g>
+      <circle cx="330" cy="70" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="370" cy="90" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="410" cy="70" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="350" cy="130" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="390" cy="150" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="430" cy="120" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+      <circle cx="300" cy="120" r="14" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+    </g>
+    <text x="375" y="185" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">מנות קטנות = כולם שורדים</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/18766062/" target="_blank">Pu LL et al., Coleman technique comparative study – PubMed</a>
+    <div class="desc">המחקר ההיסטולוגי שהראה שיעור שרידות גבוה ופעילות אנזימטית תקינה כמעט בשומן שעובד בשיטת קולמן.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Adipose_tissue" target="_blank">Category:Adipose tissue – Wikimedia Commons</a>
+    <div class="desc">אוסף תמונות היסטולוגיה נוספות של רקמת שומן לבנה וחומה.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/26080608/" target="_blank">Adipose-Derived Stromal Vascular Fraction Cells: Update on Clinical Utility and Efficacy – PubMed</a>
+    <div class="desc">סקירה מעודכנת על שימושים קליניים של SVF ותאי גזע שומניים מעבר להשתלת שומן קלאסית.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 54, שלוש שנים לאחר כריתת רבע שד (quadrantectomy) שמאלי וטיפול קרינתי בגין קרצינומה חודרנית. מתלוננת על שקע נראה בשד השמאלי ורקמה נוקשה ומכווצת באזור המוקרן. בבדיקה: אזור שקוע וקשיח יחסית לרקמה הסובבת, ללא גוש חשוד חדש, ממוגרפיה עדכנית תקינה. היא מעוניינת בשיפור מראה וטקסטורה מבלי לעבור פלאפ מיקרוכירורגי מורכב. הוחלט על השתלת שומן אוטולוגית משולבת בשחרור צלקת (scar release), עם תכנון לסבב נוסף בהמשך במידת הצורך.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע חלקיק שומן גדול ("בגודל אגוז מלך") מאבד נפח מהר יותר מאשר אותה כמות שומן שפוזרה למספר חלקיקים קטנים?</div>
+  <button class="opt" data-i="0">חלקיקים גדולים מכילים פחות תאי גזע שומניים</button>
+  <button class="opt" data-i="1">ליחס שטח-פנים לנפח נמוך יש השפעה ישירה על יכולת הדיפוזיה להזין את התאים באזור המרכזי לפני שמתפתחת אספקת דם חדשה</button>
+  <button class="opt" data-i="2">חלקיקים גדולים תמיד מוזרקים בלחץ גבוה יותר וסובלים מלחץ גזירה</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי בין הגדלים – זהו מיתוס היסטורי שנסתר</button>
+  <div class="explain">התשובה הנכונה: ההישרדות בימים הראשונים תלויה בדיפוזיה פשוטה ממרחק מוגבל (כ-1.5–2 מ"מ) עד שמתפתחת אנגיוגנזה. בחלקיק גדול, האזור המרכזי רחוק מדי מפני השטח וסובל מהיפוקסיה ומוות תאי לפני שכלי דם חדשים מגיעים אליו – זה בדיוק מה שהראה פיר (Peer) בעבודתו הקלאסית. תשובה 1 לא נכונה (הרכב תאי הגזע לא תלוי בגודל החלקיק עצמו). תשובה 3 מתארת גורם אחר (לחץ זרימה בזמן ההזרקה) שאינו קשור ישירות לגודל החלקיק לאחר ההנחה. תשובה 4 סותרת ישירות את הממצאים ההיסטוריים והמנגנוניים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופלת בת 45 עברה השתלת שומן לשד שנה קודם לכן. בממוגרפיה מעקב מתגלה מסה קטנה עגולה, שקופה-רדיולוגית (radiolucent) עם קפסולה דקה, אופיינית לציסטת שמן. מהו המנגנון הביולוגי שמסביר ממצא זה?</div>
+  <button class="opt" data-i="0">גרורה של הגידול הראשוני שהתפשטה לאזור ההשתלה</button>
+  <button class="opt" data-i="1">תגובה אלרגית מושהית לחומר ההרדמה המקומית שנותר בשומן</button>
+  <button class="opt" data-i="2">אדיפוציטים שעברו נמק מרכזי (מרוחקים מדי מאספקת דם בזמן ההשתלה) התנזלו ותוצרתם הוקפה על ידי רקמה פיברוטית</button>
+  <button class="opt" data-i="3">זיהום חיידקי כרוני שיצר אבצס מוגלתי מכמוס</button>
+  <div class="explain">התשובה הנכונה: ציסטת שמן היא תוצר ישיר של נמק שומני – אדיפוציטים שלא שרדו את חלון הדיפוזיה לפני האנגיוגנזה, השומן התוך-תאי שלהם השתחרר והתנזל, והרקמה הסובבת "כימסה" אותו בקפסולה פיברוטית. זהו תהליך שפיר וצפוי, לא גרורתי (תשובה 1), לא אלרגי (תשובה 2) ולא זיהומי מוגלתי (תשובה 4) – חשוב להבחין בזה כי ההבדל קריטי מבחינת החרדה האונקולוגית של המטופלת.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. לפי הספרות הקלינית שנסקרה בפרק, מה ניתן לומר על הבטיחות האונקולוגית של השתלת שומן לשד אחרי טיפול לסרטן שד?</div>
+  <button class="opt" data-i="0">מטא-אנליזות של מחקרים קליניים לא הראו הבדל משמעותי בשיעורי הישנות בין קבוצות עם/בלי השתלת שומן, למרות שמחקרי מעבדה בסיסיים מראים אינטראקציה בין ASCs לתאי סרטן</button>
+  <button class="opt" data-i="1">כל המחקרים, כולל מחקרי מעבדה וקליניים כאחד, מראים סיכון מוגבר עקבי</button>
+  <button class="opt" data-i="2">הנושא לא נחקר כלל מעולם ונותר עמום לגמרי</button>
+  <button class="opt" data-i="3">ה-FDA אסר לחלוטין השתלת שומן לשד עד היום</button>
+  <div class="explain">התשובה הנכונה: יש פער מעניין בין מחקרי מעבדה (in vitro/in vivo במודלים מן החי) המראים שתאי גזע שומניים יכולים ליצור סביבה תומכת-גידול, לבין מחקרים קליניים גדולים (כולל מטא-אנליזות עם אלפי חולות) שלא הראו עלייה משמעותית בשיעור הישנות. תשובה 2 ו-3 סותרות עובדתית את הנתונים בפרק (האיסור המוחלט של ASPS בוטל כבר ב-1987-2007). תשובה 4 שגויה – ההליך בשימוש קליני נרחב, לא אסור.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהי הסיבה העיקרית שוועדת המשימה ASPS (2009) המליצה על קנולת הזרקה בקוטר 2–2.5 מ"מ ולא קנולה דקה יותר (1.6 מ"מ)?</div>
+  <button class="opt" data-i="0">קנולות דקות יקרות יותר לייצור</button>
+  <button class="opt" data-i="1">קנולות דקות גורמות תמיד לזיהום</button>
+  <button class="opt" data-i="2">קנולות עבות מאפשרות מעקב הדמייתי טוב יותר של מיקום ההזרקה</button>
+  <button class="opt" data-i="3">אדיפוציטים רגישים ללחץ גזירה (shear stress) שעולה ככל שקוטר הקנולה קטן יותר עבור אותו קצב זרימה, ולכן קנולה רחבה יותר שומרת על שרידות תאית טובה יותר</button>
+  <div class="explain">התשובה הנכונה: המחקר (אוזוסוי ועמיתיו) הראה ששרידות אדיפוציטים גבוהה משמעותית עם קנולות 2.5 מ"מ לעומת קנולות דקות יותר, בגלל לחץ הגזירה המוגבר שחווה השומן כשהוא נדחס דרך פתח צר יותר. תשובות 1–3 אינן המנגנון שתואר בפרק כלל.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מתמחה מזריקה שומן בגוש גדול יחסית מתחת לעור דק בעפעף תחתון, ולאחר ההנחה מבחינה באי-סדירות בקונטור. מהי הפעולה הנכונה?</div>
+  <button class="opt" data-i="0">לעסות ("למדל") את האזור באגרסיביות עד שהגוש מתפזר באופן שווה</button>
+  <button class="opt" data-i="1">להזריק נוזל הרדמה נוסף כדי "לדלל" את השומן במקום</button>
+  <button class="opt" data-i="2">לתקן את אי-הסדירות בפועל בזמן ההשתלה עצמה (לפני עזיבת חדר הניתוח), ובעתיד למנוע זאת ע"י הנחת מנות קטנות יותר מלכתחילה במקום גושים גדולים</button>
+  <button class="opt" data-i="3">להמתין שישה חודשים ולבדוק אם זה נעלם מעצמו בלי כל התערבות</button>
+  <div class="explain">התשובה הנכונה: לפי הפרק, יש לתקן אי-סדירות שנצפית <b>בזמן ההנחה עצמה</b> – פני השטח חייבים להיות חלקים לפני עזיבת חדר הניתוח, וזו הפעם היחידה שבה "עיצוב" (molding) בכלל מומלץ. אבל העיקרון המונע הוא בניית הנפח מראש במנות קטנות ולא בגושים גדולים – זו הדרך למנוע את הבעיה מלכתחילה, בפרט באזור עם עור דק כמו עפעף תחתון. תשובה 1 (עיסוי אגרסיבי אחרי ההנחה) עלולה לגרום לנמק/הזזה של השתל ומוזהרת נגדה בפירוש בפרק. תשובות 2 ו-4 אינן פתרונות מבוססים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שתל שומן חסר אספקת דם עצמאית – שורד בהתחלה בדיפוזיה (imbibition, ימים 1–3) ואז באנגיוגנזה (מיום 4+, בסיוע גורמים אנגיוגניים מ-ASCs).</li>
+    <li>חלקיק גדול מדי → אזור מרכזי לא מקבל דיפוזיה בזמן → נמק שומני → ציסטת שמן / הסתיידות ניוונית. לכן: מנות קטנות, מעברים רבים, מישורים מרובים (עקרון קולמן).</li>
+    <li>טכניקת קולמן: שאיבה עדינה (קנולה קהה, לחץ שלילי מינימלי) → צנטריפוגה (3000 סל"ד, 3 דק') להפרדת שכבה מימית/שומן/שמן → הזרקה במנות זעירות תוך משיכת הקנולה.</li>
+    <li>אין הסכמה מוחלטת על שיטת עיבוד "הכי טובה" (צנטריפוגה מול גזה מול דקנטציה) – הספרות מראה תוצאות דומות בין שיטות.</li>
+    <li>ASCs (תאי גזע שומניים) הם המרכיב הביו-אקטיבי המרכזי ב-SVF, תורמים לאנגיוגנזה, ונחקרים רבות בהקשר לבטיחות אונקולוגית בשד – מחקרי מעבדה מראים אינטראקציה עם תאי סרטן, אך מחקרים קליניים לא מראים עלייה בהישנות.</li>
+    <li>סיבוכים עיקריים: נמק שומני, ציסטת שמן, הסתיידות, אי-סדירות קונטור, עודף תיקון, ונדיר אך חמור – אמבוליזם שומני תוך-וסקולרי.</li>
+    <li>עדיף "לתת-תקן" ולתכנן סבב שני מאשר לנסות להשיג הכל בהליך אחד.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

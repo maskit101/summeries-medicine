@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: תכנון כירורגי ממוחשב - מבוא</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 6: תכנון כירורגי ממוחשב - מבוא <span class="term" dir="ltr">Computerized Surgical Planning: Introduction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head &amp; Neck, Pediatric | פרק 6.1 (מבוא לחלק), מאת Richard A. Hopper</div>
+
+<p>זהו פרק מבוא קצר (לא פרק אנטומיה/פתולוגיה קלאסי) שפותח את שני הפרקים הבאים בספר – תכנון כירורגי ממוחשב בניתוחי לסת (<span class="term" dir="ltr">orthognathic surgery</span>) ובשחזור ראש-צוואר. המטרה שלו היא להניח את התשתית המושגית: מהו <b>תכנון כירורגי וירטואלי</b> (<span class="term" dir="ltr">Virtual Surgical Planning, VSP</span>), למה כירורגיה קרניופציאלית אימצה אותו במהירות, ואיפה נמצאים גבולות הגזרה בין מה שהמחשב יכול לתכנן לבין מה שהמנתח חייב עדיין לשפוט בעצמו.</p>
+
+<h2><span class="num">1</span> מה זה VSP, ולמה זה בדיוק "פורץ דרך" בכירורגיה קרניופציאלית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>המצב הישן:</b> המנתח חייב "לחשוב בתלת-ממד" תוך כדי הניתוח עצמו – לגלף את התכנון בפועל, על השולחן, בזמן אמת, בלי הזדמנות לתכנן ולתקן מראש.<br>
+    <b>המצב עם VSP:</b> אותה חשיבה תלת-ממדית עוברת לשלב <b>לפני</b> הניתוח – על מסך מחשב, לרוב כחלק מצוות (מנתח + מהנדס/טכנאי VSP). המנתח בונה, בוחן ומתקן את התכנון הווירטואלי שוב ושוב, לפני שנוגעים בחולה בכלל.
+  </p>
+  <p>המעבר הזה חשוב כי הוא הופך טעות תכנון מ"תיקון אלתור על השולחן" ל"תיקון קליק על המסך" – אבל הוא גם דורש מהמנתח <b class="key">מיומנות חדשה</b>: לדמיין ולצפות אתגרים קליניים אמיתיים בזמן שהוא מביט במסך דו-ממדי שבו, טכנית, "הכול אפשרי" (אפשר להזיז עצם וירטואלית לכל כיוון). ה-VSP <b>לא</b> פוטר את המנתח מלחשוב על מגבלות העור, השרירים ומערכת כלי הדם-עצבים בפועל.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מ"אלתור על השולחן" ל-VSP</title>
+  <rect x="700" y="20" width="140" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">בעיה קלינית</text>
+  <text x="770" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">מבנה מורכב בתלת-ממד</text>
+
+  <rect x="470" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">הדמיה (CT/CBCT)</text>
+  <text x="550" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">+ עיבוד תמונה תלת-ממדי</text>
+
+  <rect x="240" y="20" width="160" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="320" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">תכנון + סימולציה</text>
+  <text x="320" y="63" font-size="12" text-anchor="middle" fill="#065f46">אוסטאוטומיות וירטואליות</text>
+
+  <rect x="20" y="20" width="160" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מדריכי חיתוך + שתלים</text>
+  <text x="100" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">מודפסים/מיוצרים בהתאמה אישית</text>
+
+  <polygon points="660,50 700,44 700,56" fill="#374151"/>
+  <line x1="700" y1="50" x2="660" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,50 470,44 470,56" fill="#374151"/>
+  <line x1="470" y1="50" x2="430" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,50 240,44 240,56" fill="#374151"/>
+  <line x1="240" y1="50" x2="200" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="130" width="820" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="158" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">בכל שלב: המהנדס יכול להזיז "עצם וירטואלית" לכל מקום – אך המנתח חייב תמיד לחשוב על עור, שריר וכלי דם/עצבים אמיתיים</text>
+  <text x="430" y="178" font-size="12" text-anchor="middle" fill="#78350f">(דוגמה מהפרק: מדריך אוסטאוטומיה "אלגנטי" שנאלץ לחתוך לחתיכות כדי להיכנס דרך החתך בפועל)</text>
+  <polygon points="430,130 424,110 436,110" fill="#b45309"/>
+  <line x1="430" y1="130" x2="430" y2="110" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<p class="key-box">התכנון הווירטואלי (VSP) <b>אינו</b> תחליף לשיפוט כירורגי – הוא כלי שמעצים תכנון קדם-ניתוחי מדויק, אך "ציות עיוור" לתכנית וירטואלית בלי חשיבה קלינית ביקורתית עלול להוביל לתוצאות לא רצויות.</p>
+
+<h2><span class="num">2</span> אבולוציה: מדגם מודפס ועד סימולציה מלאה על מסך</h2>
+<p>הפרק מתאר במפורש שלושה שלבים היסטוריים-טכנולוגיים של VSP, ומה כל אחד מהם אפשר בפועל:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שלב</th><th>מה עשו בפועל</th><th>מגבלה עיקרית</th></tr></thead>
+  <tbody>
+    <tr><td><b>1. דגמים מודפסים בלבד</b></td><td>מדפיסים מודל תלת-ממדי פיזי מבוסס CT, המנתח "מתאמן" על הניתוח על הדגם, ומכופף מראש מכשירי דיסטרקציה או פלטות פיזית ביד</td><td>עדיין ידני, תלוי במיומנות כיפוף/עיצוב ידנית של המנתח על הדגם</td></tr>
+    <tr><td><b>2. סימולציה על מסך (VSP מודרני)</b></td><td>כל הסימולציה הכירורגית (אוסטאוטומיות, מיקום שתלים) נעשית על תוכנה; הפלטות/מדריכי החיתוך <b>מגיעות מוכנות</b> כעבור כשבוע, מותאמות אישית לחולה</td><td>דורש צוות/מהנדס VSP, זמן הכנה מראש, ותלות בדיוק ה"תרגום" בין וירטואלי לפיזי</td></tr>
+    <tr><td><b>3. עתיד: מציאות מעורבת (AR) + נווט תוך-ניתוחי</b></td><td>ניווט סטראוטקטי תוך-ניתוחי, ניתוח תמונה טרום/אחרי הניתוח להערכת דיוק, ומחקר על משקפי מציאות רבודה שמציגות את התכנית הווירטואלית "משוקעת" בשדה הניתוח בזמן אמת</td><td>עדיין בשלבי מחקר/בטא בעיקר בנוירוכירורגיה; טרם משלב את מארג הרקמה הרכה (עור/שריר) במלואו</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>נקודה חשובה: הפרק מדגיש ש-VSP עדיין <b>אינו כולל את רקמת הרקמה הרכה</b> (עור, שריר, מערכת נוירווסקולרית) במודל הווירטואלי המלא – הטכנולוגיה הנוכחית מתמקדת בעיקר בשלד. שילוב "מארג הרקמה הרכה" (<span class="term" dir="ltr">soft-tissue matrix</span>) לתוך התכנון הווירטואלי הוא אחד מיעדי הפיתוח המרכזיים לעתיד, יחד עם שילוב סורקי משטח תלת-ממדיים (<span class="term" dir="ltr">3D surface scanners</span>) עם CT/CBCT ל"מודל אנטומי וירטואלי שלם".</p>
+
+<h2><span class="num">3</span> מרכיבי זרימת העבודה (Workflow) של VSP</h2>
+<p>הפרק מפרט שרשרת שלמה שכל מרכיב בה עתיד להתמזג לרצף אחד רציף:</p>
+<table>
+  <thead><tr><th>שלב</th><th>מה קורה בו</th></tr></thead>
+  <tbody>
+    <tr><td><b>הדמיה (<span class="term" dir="ltr">imaging</span>)</b></td><td>סריקת CT או CBCT (<span class="term" dir="ltr">cone-beam CT</span>) של החולה, לעיתים בשילוב סריקת משטח תלת-ממדית (למשל סורק תוך-פומי)</td></tr>
+    <tr><td><b>עיבוד תמונה (<span class="term" dir="ltr">image processing</span>)</b></td><td>בניית מודל תלת-ממדי דיגיטלי מהסריקה הגולמית</td></tr>
+    <tr><td><b>תכנון (<span class="term" dir="ltr">planning</span>)</b></td><td>המנתח (עם/בלי מהנדס VSP) מסמן אוסטאוטומיות, תזוזות, מיקום שתלים על המודל הווירטואלי</td></tr>
+    <tr><td><b>סימולציה (<span class="term" dir="ltr">simulation</span>)</b></td><td>הרצה וירטואלית של הניתוח המתוכנן לפני שמגיעים לחדר ניתוח</td></tr>
+    <tr><td><b>מדריכים/ניווט וירטואליים (<span class="term" dir="ltr">virtual guides/navigation</span>)</b></td><td>הפקת מדריכי חיתוך ופלטות מודפסים, ולעיתים שילוב ניווט סטראוטקטי תוך-ניתוחי (<span class="term" dir="ltr">intra-operative stereotactic navigation</span>) שמראה בזמן אמת היכן כלי הניתוח ביחס לתכנית</td></tr>
+    <tr><td><b>הערכת תוצאה (<span class="term" dir="ltr">outcome assessment</span>)</b></td><td>ניתוח תמונה טרום/אחרי הניתוח (<span class="term" dir="ltr">pre- and post-image analysis</span>) כדי לבדוק כמה התוצאה בפועל תואמת את התכנית הווירטואלית</td></tr>
+  </tbody>
+</table>
+<p>הפרק מדגיש שהיום השלבים האלה עדיין נעשים בחלקם בנפרד, אך המגמה היא <b class="key">שילוב כל השלבים לרצף טכנולוגי אחד רציף</b> – מהדמיה ראשונית ועד הערכת תוצאה, ללא "תפרים" בין התוכנות והצוותים השונים.</p>
+
+<h2><span class="num">4</span> יישומים אמיתיים שמוזכרים בספר (הקשר בין פרקים)</h2>
+<p>הפרק הזה הוא מבוא, והוא מפנה במפורש לפרקים אחרים בכרך שממחישים כמה VSP כבר חדר לפרקטיקה בפועל:</p>
+<ul>
+  <li><b>פרק 5 (Billig &amp; Antonyshyn)</b> – תכנון וייצור שתלים קרניו-אורביטליים (<span class="term" dir="ltr">cranio-orbital implants</span>) בתוך המרכז הרפואי עצמו ("in-house VSP").</li>
+  <li><b>פרק 34 (Heuer et al.)</b> – שימוש ב-VSP לתכנון ובטיחות הפרדת <b>תאומים דבוקי-גולגולת</b> (<span class="term" dir="ltr">craniopagus twins</span>) – מקרה קיצון שבו דיוק תלת-ממדי מוקדם הוא קריטי להישרדות.</li>
+  <li><b>שני הפרקים הבאים (6.2, 6.3)</b> – VSP בניתוחי לסת אורתוגנתיים ובשחזור ראש-צוואר, שני התחומים המרכזיים שבהם VSP הפך כבר לסטנדרט טיפול נפוץ.</li>
+</ul>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/hvyZ3GdlO9w" title="Virtual Surgical Planning for Orthognathic Surgery &amp; Maxillofacial Trauma" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מבוא ל-VSP בניתוחי לסת אורתוגנתיים וטראומה מקסילופציאלית (Dr. Shahid Aziz) – מדגימה בפועל את זרימת העבודה שתוארה בטבלה שלמעלה: הדמיה, תכנון וירטואלי, סימולציה, ומדריכי חיתוך מודפסים.</p>
+
+<h2><span class="num">5</span> עלות, רגולציה וארגון השירות</h2>
+<p>הפרק מתייחס בקצרה אך בצורה ממוקדת לשאלות מעשיות שכל מחלקה שמאמצת VSP נתקלת בהן:</p>
+<div class="mechanism">
+  <p class="chain">
+    מחקרים כבר הראו הצדקה לעלות הנוספת של VSP בניתוחים מסוימים דרך <b>עלייה בבטיחות או ביעילות</b> (פחות זמן ניתוח, פחות תיקונים) – אך עדיין נדרש מחקר כמותי נוסף ככל שמתפתחים יישומים חדשים.<br>
+    בארה"ב, כרגע עלות ה-VSP משולבת בדרך כלל בחיוב הניתוח עצמו. אם המודל הזה ישתנה (הפרדת חיוב), מרכזים רפואיים יצטרכו לשקול לבצע חלק מרכיבי ה-VSP <b>בתוך הבית (in-house)</b> כדי לצמצם עלות, ובעתיד ייתכן ש-VSP "בבית" יתמקד רק בתכנון, כאשר <b>הייצור בפועל</b> (הדפסה/ייצור שתלים) יישאר מוצא-פנים לשותפים תעשייתיים תוך עמידה בדרישות רגולציה של מכשור רפואי (<span class="term" dir="ltr">medical device compliance</span>).
+  </p>
+</div>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">I-P-S-V-O</span> של זרימת העבודה של VSP</h3>
+  <p>
+    <b>I</b> – <span class="term" dir="ltr">Imaging</span> (הדמיה: CT/CBCT).<br>
+    <b>P</b> – <span class="term" dir="ltr">Processing</span> (עיבוד תמונה תלת-ממדי).<br>
+    <b>S</b> – <span class="term" dir="ltr">Simulation</span> (תכנון + סימולציה וירטואלית).<br>
+    <b>V</b> – <span class="term" dir="ltr">Virtual guides</span> (מדריכי חיתוך/ניווט תוך-ניתוחי).<br>
+    <b>O</b> – <span class="term" dir="ltr">Outcome assessment</span> (הערכת תוצאה בהשוואה לתכנית).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני טייס שמתכנן טיסה: קודם הוא מצלם את מסלול הטיסה מלמעלה (הדמיה), מסמן אותו על מפה דיגיטלית (עיבוד), טס עליו כמה פעמים בסימולטור לפני שהוא ממריא בפועל (סימולציה), מקבל הנחיות ניווט מדויקות בזמן הטיסה עצמה (מדריכים/ניווט), ובסוף בודק כמה הטיסה בפועל תאמה את התכנית שהוגשה (הערכת תוצאה). המנתח ב-VSP הוא אותו טייס – רק שהוא "טס" בתוך גולגולת החולה, ובכל שלב עדיין הוא זה שקורא את מזג האוויר האמיתי (הרקמות הרכות) שהמפה לא תמיד מראה.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>הטייס והמסלול הווירטואלי</title>
+    <rect x="0" y="140" width="500" height="10" fill="#a3a3a3"/>
+    <line x1="60" y1="150" x2="60" y2="40" stroke="#2563eb" stroke-width="4"/>
+    <line x1="250" y1="150" x2="250" y2="30" stroke="#047857" stroke-width="4"/>
+    <line x1="440" y1="150" x2="440" y2="40" stroke="#6d28d9" stroke-width="4"/>
+    <path d="M60,40 Q250,10 440,40" stroke="#374151" stroke-width="3" fill="none"/>
+    <circle cx="250" cy="120" r="14" fill="#fbbf24" stroke="#78350f"/>
+    <text x="60" y="170" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">הדמיה + עיבוד</text>
+    <text x="250" y="170" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">תכנון + סימולציה</text>
+    <text x="440" y="170" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">מדריכים + הערכה</text>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9692897/" target="_blank">Point-of-Care Virtual Surgical Planning and 3D Printing in Oral and Cranio-Maxillofacial Surgery – PMC</a>
+    <div class="desc">סקירה עדכנית (NCBI/PMC) על VSP והדפסת מדריכי חיתוך "בבית" (in-house) בכירורגיה קרניו-מקסילופציאלית – מרחיבה בדיוק את הנושא בסעיף 5.</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6881390/" target="_blank">Craniosynostosis surgery: workflow based on VSP, navigation and 3D printed guides – PMC</a>
+    <div class="desc">דוגמה מפורטת לזרימת עבודה מלאה של VSP (הדמיה עד הערכת תוצאה) בניתוחי קרניוסינוסטוזיס בילדים – רלוונטי ישירות לכרך זה (פדיאטרי).</div>
+  </li>
+  <li>
+    <a href="https://www.aofoundation.org/cmf/clinical-library-and-tools/educational-videos" target="_blank">AO CMF – Educational Videos</a>
+    <div class="desc">ספריית סרטוני הדרכה מקצועית של איגוד AO CMF (קרניו-מקסילופציאלי) בנושאי תכנון וניתוח קרניופציאלי, כולל VSP.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/3D_printing" target="_blank">3D Printing – Wikipedia</a>
+    <div class="desc">רקע כללי על טכנולוגיית ההדפסה התלת-ממדית שעליה מבוססים מדריכי החיתוך והשתלים המותאמים אישית שתוארו בפרק.</div>
+  </li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>ילדה בת 6 עם קרניוסינוסטוזיס מורכב (סגירה מוקדמת של מספר תפרי גולגולת) מתוכננת לניתוח שחזור קרניופציאלי. הצוות מבצע CT ראש, בונה מודל תלת-ממדי דיגיטלי, ומתכנן על המסך את קווי האוסטאוטומיה ואת המיקום הרצוי של כל מקטע עצם לאחר השחרור. שבוע לפני הניתוח מגיעים מדריכי חיתוך מודפסים בהתאמה אישית. במהלך הניתוח, המנתחת הבכירה מגלה שאחד ממדריכי החיתוך אינו מתאים בדיוק מכיוון שהעור והפריוסטאום מגבילים את הגישה כפי שתוכננה וירטואלית.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה ההבדל המרכזי בין תכנון כירורגי "מסורתי" (טרום-VSP) ל-VSP, לפי הפרק?</div>
+  <button class="opt" data-i="0">ב-VSP המנתח כלל לא צריך לחשוב בתלת-ממד</button>
+  <button class="opt" data-i="1">ב-VSP החשיבה התלת-ממדית עוברת לשלב שלפני הניתוח, על מסך מחשב, ולא מתבצעת "בזמן אמת" על השולחן</button>
+  <button class="opt" data-i="2">VSP מייתר את הצורך בהדמיית CT לפני הניתוח</button>
+  <button class="opt" data-i="3">VSP מתאים רק לניתוחי רקמה רכה ולא לניתוחי שלד</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שהחשיבה התלת-ממדית עדיין נדרשת ב-VSP, אך היא מועברת לשלב התכנון המקדים על מסך מחשב, לעיתים כחלק מצוות, במקום להתבצע כאלתור על השולחן. תשובה 1 שגויה כי המנתח עדיין חייב חשיבה תלת-ממדית. תשובה 3 הפוכה – VSP מבוסס בדיוק על הדמיית CT/CBCT. תשובה 4 שגויה כי כיום VSP מתמקד בעיקר בשלד, לא ברקמה רכה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי המגבלה המרכזית שהפרק מציין לגבי המודל הווירטואלי הנוכחי ב-VSP?</div>
+  <button class="opt" data-i="0">הוא לא יכול לכלול נתוני CT בכלל</button>
+  <button class="opt" data-i="1">הוא זמין רק במרכזים אקדמיים גדולים</button>
+  <button class="opt" data-i="2">הוא לא כולל באופן מלא את מארג הרקמה הרכה (עור, שריר, מערכת נוירווסקולרית)</button>
+  <button class="opt" data-i="3">הוא לא יכול לשמש לתכנון אוסטאוטומיות</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שכיום המהנדס יכול להזיז "עצם וירטואלית" בכל כיוון, אבל המנתח חייב תמיד לחשוב על מגבלות העור, השריר ומערכת כלי הדם-עצבים, כי אלו עדיין לא משולבים במלואם במודל הווירטואלי. שילוב "מארג הרקמה הרכה" מוזכר כיעד עתידי. שאר התשובות סותרות עובדות מפורשות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה שלב מתאר בדיוק את "ניווט סטראוטקטי תוך-ניתוחי" (intra-operative stereotactic navigation) בזרימת העבודה של VSP?</div>
+  <button class="opt" data-i="0">טכנולוגיה נלווית שמראה בזמן אמת בחדר הניתוח היכן כלי הניתוח ביחס לתכנית הווירטואלית</button>
+  <button class="opt" data-i="1">שלב עיבוד התמונה הראשוני שבו בונים מודל תלת-ממדי מה-CT</button>
+  <button class="opt" data-i="2">שיטת חיוב שמפרידה בין עלות התכנון לעלות הניתוח</button>
+  <button class="opt" data-i="3">תהליך אישור רגולטורי של מכשור רפואי מותאם אישית</button>
+  <div class="explain">התשובה הנכונה: ניווט סטראוטקטי תוך-ניתוחי הוא טכנולוגיה נלווית (adjuvant) שמשמשת בזמן הניתוח עצמו כדי להראות למנתח את מיקום כלי הניתוח ביחס לתכנית שתוכננה מראש, ומשפרת את הדיוק וההערכה של ביצוע התכנית. תשובה 1 מתארת עיבוד תמונה, תשובות 2-3 קשורות לעלות ורגולציה שמוזכרות בהקשר נפרד בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. לפי הפרק, מהו המודל הנוכחי המקובל בארה"ב לחיוב עלות ה-VSP, ומה עלול לקרות אם המודל הזה ישתנה?</div>
+  <button class="opt" data-i="0">VSP תמיד מחויב בנפרד לגמרי מהניתוח, ולכן לא צפוי שינוי</button>
+  <button class="opt" data-i="1">VSP אף פעם לא ניתן לחיוב, ולכן מבוצע רק במחקר</button>
+  <button class="opt" data-i="2">עלות VSP משולמת רק על ידי חברות הביטוח הפרטיות בלבד</button>
+  <button class="opt" data-i="3">כיום עלות VSP בדרך כלל משולבת בחיוב הניתוח; אם זה ישתנה, מרכזים ייאלצו לשקול ביצוע VSP "בבית" (in-house)</button>
+  <div class="explain">התשובה הנכונה: הפרק קובע במפורש שבארה"ב המצב הנוכחי הוא ש"עלות VSP בנויה לתוך חיוב הניתוח", אך אם החיובים יופרדו, מרכזים יצטרכו לתכנן לבצע חלק ממרכיבי ה-VSP בעצמם ("in-house"), כאשר ייתכן שבעתיד רק הייצור בפועל יימסר למיקור-חוץ לשותפים תעשייתיים. שאר התשובות אינן תואמות את הכתוב בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. באיזה שני פרקים אחרים בכרך זה, לפי ההפניות בפרק המבוא, מודגם יישום מעשי של VSP?</div>
+  <button class="opt" data-i="0">פרק 1 (עקרונות כלליים) ופרק 2 (חדשנות)</button>
+  <button class="opt" data-i="1">פרק 10 (כוויות) ופרק 15 (רקמה רכה)</button>
+  <button class="opt" data-i="2">פרק 5 (שתלים קרניו-אורביטליים) ופרק 34 (הפרדת תאומים דבוקי-גולגולת)</button>
+  <button class="opt" data-i="3">רק פרקי ה-6.2 וה-6.3 הבאים בלבד, ללא פרקים נוספים</button>
+  <div class="explain">התשובה הנכונה: הפרק מפנה במפורש לפרק 5 (Billig ו-Antonyshyn – תכנון וייצור שתלים קרניו-אורביטליים "בבית") ולפרק 34 (Heuer ואחרים – שימוש ב-VSP בהפרדת תאומים דבוקי-גולגולת), כדוגמאות ליישומים חדשניים של VSP מעבר לשני הפרקים הבאים על אורתוגנתיה ושחזור ראש-צוואר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהי הגישה הביקורתית שהפרק מציג כלפי "ציות עיוור" לתכנית VSP וירטואלית?</div>
+  <button class="opt" data-i="0">אין בעיה בציות מלא לתכנית הווירטואלית, כי היא תמיד מדויקת יותר משיקול דעת אנושי</button>
+  <button class="opt" data-i="1">VSP מגביר דיוק ויעילות, אך עדיין דורש שיפוט כירורגי וחשיבה ביקורתית – ציות עיוור לתכנית בלי שיקול דעת עלול להוביל לתוצאה לא רצויה</button>
+  <button class="opt" data-i="2">VSP מיועד להחליף לחלוטין את הצורך בניסיון כירורגי</button>
+  <button class="opt" data-i="3">הפרק לא מתייחס כלל לסיכוני "ציות עיוור" לתכנית וירטואלית</button>
+  <div class="explain">התשובה הנכונה: הפרק קובע במפורש שלמרות ש-VSP יכול להגביר דיוק ויעילות, הוא עדיין מצריך שיפוט כירורגי וחשיבה ביקורתית כדי להבטיח שהמטרה הקלינית הסופית תושג, ושציות עיוור לתכנית וירטואלית בלי שימוש במיומנויות כירורגיות בסיסיות עלול להוביל לתוצאות לא רצויות. תשובות 0 ו-2 הפוכות לרוח הפרק, ותשובה 3 מתעלמת מהאזהרה המפורשת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>VSP (Virtual Surgical Planning)</b> מעביר את החשיבה התלת-ממדית מ"אלתור על השולחן" לתכנון מוקדם על מסך מחשב, לרוב כעבודת צוות.</li>
+    <li>אבולוציה: דגמים מודפסים בלבד &#8592; סימולציה מלאה על מסך עם מדריכי חיתוך/פלטות מותאמות אישית &#8592; (עתיד) מציאות מעורבת (AR) וניווט תוך-ניתוחי בזמן אמת.</li>
+    <li>זרימת עבודה מלאה: <b>הדמיה &#8592; עיבוד תמונה &#8592; תכנון &#8592; סימולציה &#8592; מדריכים/ניווט &#8592; הערכת תוצאה</b> (ראשי תיבות I-P-S-V-O).</li>
+    <li>מגבלה מרכזית כיום: המודל הווירטואלי עדיין לא כולל באופן מלא את <b>מארג הרקמה הרכה</b> – עור, שריר, כלי דם ועצבים – ולכן המנתח חייב תמיד שיקול דעת קליני, לא רק ביצוע התכנית.</li>
+    <li>עלות VSP כיום בדרך כלל משולבת בחיוב הניתוח בארה"ב; שינוי במודל החיוב עלול לדרוש ביצוע VSP "בבית" (in-house).</li>
+    <li>יישומים מוזכרים בכרך: שתלים קרניו-אורביטליים (פרק 5), הפרדת תאומים דבוקי-גולגולת (פרק 34), ניתוחי לסת אורתוגנתיים ושחזור ראש-צוואר (הפרקים הבאים).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

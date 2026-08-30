@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: מסטופקסיה אחרי ירידה מסיבית במשקל</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .surgery{background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 6: מסטופקסיה אחרי ירידה מסיבית במשקל <span class="term" dir="ltr">Mastopexy after Massive Weight Loss</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | Section I: Aesthetic Breast Surgery, מאת Francesco M. Egro ו-J. Peter Rubin</div>
+
+<p>שיעורי ההשמנה בארה"ב עלו מ-30.5% ל-41.9%, ורבים מהמטופלים מגיעים לירידה משמעותית במשקל (דיאטה, ספורט, וניתוחים בריאטריים). אך <b>ירידה מסיבית במשקל (<span class="term" dir="ltr">massive weight loss, MWL</span>) – מוגדרת כירידה של מעל 50 פאונד (כ-23 ק"ג)</b> – משאירה חותם אסתטי כבד: השד, שאיבד נפח פרנכימלי ואלסטיות עורית, קורס לצורה שונה לחלוטין מפטוזיס (<span class="term" dir="ltr">ptosis</span>) "רגיל". הפרק מלמד איך לזהות את הדפורמציה הייחודית הזו, איך לדרג אותה, ואיזו טכניקה כירורגית (<span class="term" dir="ltr">dermal suspension, parenchymal reshaping, selective autoaugmentation</span>) פותרת אותה בצורה בטוחה ומהימנה.</p>
+
+<h2><span class="num">2</span> המנגנון - למה השד אחרי MWL שונה לגמרי משד עם פטוזיס רגיל</h2>
+<div class="mechanism">
+  <p class="chain">
+    בפטוזיס "קלאסי" (לא-MWL) הבעיה היא בעיקר <b>עודף עור</b> על גבי שד עם נפח פרנכימלי סביר – הפתרון הוא בעיקר להסיר עור ולמתוח.<br><br>
+    ב-MWL השרשרת שונה לגמרי: <b>ירידה מסיבית ומהירה בשומן ובנפח הפרנכימלי</b> (השד "מתרוקן") ← הרקמה שנשארת מאבדת את התמיכה הפנימית שלה ← במקביל, מתיחת העור הכרונית (מהנפח שהיה קודם) והירידה המהירה במשקל גורמות ל<b>אובדן אלסטיות ורידונדנטיות (עודפיות) עורית קשה</b> - העור "לא מתכווץ בחזרה" ← השילוב של רקמה ריקה + עור רפוי גורם ל<b>שטיחות (flattening) ואובדן מלאות הקוטב העליון</b> - אין נפח שיחזיק את העור מלמעלה, אז הפטמה "נגררת" כלפי מטה ופנימה ← <b>מדיאליזציה של קומפלקס הפטמה-עטרה (NAC)</b> - כי מה שנשאר מהרקמה נוטה להישאר יותר מדיאלית, בעוד שהעור הרפוי מאפשר לפטמה "לזלוג" פנימה מקו המרידיאן האמיתי של השד ← ובמקביל, השומן העודף שלא נעלם לגמרי מצטבר כ<b>גליל עור ושומן לטרלי (lateral breast/chest roll)</b> שנמשך מהגבול הלטרלי של השד אל דופן החזה, ולעיתים נוצר גליל רציף אחד.
+  </p>
+  <p>כתוצאה מכך, מסטופקסיה "רגילה" (שמסתמכת בעיקר על העור למתיחה ותמיכה) פשוט <b class="key">נכשלת</b> בחולה כזה - כי אין מספיק פרנכימה איכותית לתמוך בעצמה, והעור מתוח מדי ולא אלסטי כדי לשמש כתומך לטווח ארוך. לכן נדרשת גישה שונה מהותית: <b>שימוש ברקמה עצמה (לא בעור) לתמיכה, ושימוש ברקמה "העודפת" מהגליל הלטרלי כדי להגדיל מחדש את נפח השד (אוטו-אוגמנטציה)</b>.</p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הדפורמציה אחרי ירידה מסיבית במשקל</title>
+  <rect x="700" y="20" width="170" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="785" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">ירידה מסיבית בשומן</text>
+  <text x="785" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">ובנפח הפרנכימלי</text>
+
+  <rect x="470" y="20" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="555" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">אובדן אלסטיות ועודף עור</text>
+  <text x="555" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">העור לא מתכווץ בחזרה</text>
+
+  <rect x="240" y="20" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">שטיחות + אובדן</text>
+  <text x="325" y="63" font-size="12" text-anchor="middle" fill="#065f46">מלאות קוטב עליון</text>
+
+  <rect x="10" y="20" width="170" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="95" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מדיאליזציה של ה-NAC</text>
+  <text x="95" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">גרר כלפי מטה-פנימה</text>
+
+  <polygon points="660,50 700,44 700,56" fill="#374151"/>
+  <line x1="700" y1="50" x2="660" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,50 470,44 470,56" fill="#374151"/>
+  <line x1="470" y1="50" x2="430" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,50 240,44 240,56" fill="#374151"/>
+  <line x1="240" y1="50" x2="200" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="140" y="150" width="620" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="450" y="180" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">בו-זמנית: שומן עודף שלא נעלם לגמרי מצטבר כגליל עור-שומן לטרלי</text>
+  <text x="450" y="200" font-size="12" text-anchor="middle" fill="#78350f">(Lateral breast/chest roll) - לעיתים גליל רציף אחד לאורך דופן החזה</text>
+  <text x="450" y="218" font-size="12" text-anchor="middle" fill="#78350f">← זהו הרקמה שתשמש "מצע" לאוטו-אוגמנטציה בניתוח</text>
+  <polygon points="450,150 444,130 456,130" fill="#b45309"/>
+  <line x1="450" y1="150" x2="450" y2="130" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">3</span> חמשת המאפיינים הקליניים ופיזיולוגיית כלי הדם</h2>
+<p>הפרק מגדיר <b>חמישה מאפיינים אופייניים</b> לשד אחרי MWL, שביחד יוצרים תמונה שונה לחלוטין מפטוזיס רגיל:</p>
+<table>
+  <thead><tr><th>#</th><th>מאפיין</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><b>פטוזיס דרגה 3</b> (הפטמה מתחת ל-IMF, בנקודה הכי תלויה של השד)</td></tr>
+    <tr><td>2</td><td>אובדן נפח א-סימטרי, עם דפלציה, שטיחות ואובדן מלאות הקוטב העליון</td></tr>
+    <tr><td>3</td><td>מדיאליזציה של ה-NAC</td></tr>
+    <tr><td>4</td><td>שילוב של אובדן אלסטיות עורית ועודפיות עור</td></tr>
+    <tr><td>5</td><td>גליל עור-שומן לטרלי בולט, מהגבול הלטרלי של השד לדופן החזה, לעיתים גליל רציף אחד</td></tr>
+  </tbody>
+</table>
+
+<p><b>אנטומיה וסקולרית - קריטית להצלחת הטכניקה:</b> השד מקבל אספקת דם עשירה מכמה עורקים: <span class="term" dir="ltr">internal mammary artery</span> (עורק בית החזה הפנימי), <span class="term" dir="ltr">lateral thoracic artery</span>, <span class="term" dir="ltr">thoracoacromial artery</span>, <span class="term" dir="ltr">intercostal arteries</span> ו-<span class="term" dir="ltr">thoracodorsal artery</span>. הפדיקל המרכזי (<span class="term" dir="ltr">central pedicle</span>) בטכניקה המתוארת נשען על <b>ענפים של עורק בית החזה הפנימי מהחללים הבין-צלעיים החמישי או השישי</b>, שמחדירים את שריר החזה הגדול (<span class="term" dir="ltr">pectoralis major</span>) מדיאלית לקו המרידיאן של השד - ולכן <b class="key">הפדיקל חייב להישאר רחב ולא להיחתך מתחתיו</b>, אחרת ה-NAC והפרנכימה יאבדו את אספקת הדם. עור השד מקבל אספקה מהמקלעת התת-עורית (<span class="term" dir="ltr">subdermal plexus</span>), שמוזנת מכלי דם מחוררים (<span class="term" dir="ltr">perforators</span>) עמוקים יותר - ולכן פלאפי העור המורמים חייבים להיות <b>עבים מספיק (כ-1 ס"מ)</b> כדי לא לפגוע במקלעת הזו. הגליל הלטרלי עצמו מוזן מהעורק הלטרלי-תוראצי ומעורקים בין-צלעיים לטרליים שמקורם בבסיס הפרוקסימלי של ההרחבה הלטרלית - זה קובע כמה רחוק אפשר "למתוח" את הפלאפ הלטרלי בלי לסכן את אספקת הדם שלו.</p>
+
+<h2><span class="num">4</span> דירוג הדפורמציה - סולם פיטסבורג (Pittsburgh Rating Scale)</h2>
+<p>סולמות פטוזיס קלאסיים (כמו <b>סיווג Regnault</b>) לא מתייחסים למאפיינים הייחודיים של שד אחרי MWL (דפלציה, מדיאליזציה, גליל לטרלי). לכן פותח <b>סולם פיטסבורג</b> (Song, Rubin ואחרים, 2005) - כלי מאומת (validated) שמדרג את חומרת הדפורמציה ומכוון לטיפול המתאים:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>דרגה</th><th>ממצא</th><th>המלצת טיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>0</b></td><td>שד תקין</td><td>אין צורך בניתוח</td></tr>
+    <tr><td><b>1</b></td><td>פטוזיס דרגה 1-2, או מקרומסטיה קשה</td><td>מסטופקסיה קלאסית, רדוקציה, או אוגמנטציה</td></tr>
+    <tr><td><b>2</b></td><td>פטוזיס דרגה III, או אובדן נפח מתון, או שד מכווץ (constricted)</td><td>מסטופקסיה קלאסית +/- אוגמנטציה</td></tr>
+    <tr><td><b>3</b></td><td>גליל עור/שומן לטרלי-חזי חמור ו/או אובדן נפח חמור עם עור רדונדנטי ושד שטוח + מדיאליזציה של NAC</td><td>טכניקת <b>reshaping פרנכימלי עם דרמל סאספנשן</b>, עם שקילת אוטו-אוגמנטציה</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">דרגה 3 בסולם פיטסבורג היא הקבוצה שהפרק מתמקד בה: אלו החולות שמסטופקסיה קלאסית תיכשל אצלן, ושדורשות את הטכניקה המורכבת של דרמל סאספנשן + reshaping + אוטו-אוגמנטציה.</p>
+
+<h2><span class="num">5</span> בחירת מטופלת וקונטרא-אינדיקציות</h2>
+<p>מטופלת עם <b>פטוזיס דרגה 3</b>, אובדן נפח עם שטיחות ואובדן מלאות עליונה, עור לא-אלסטי ורדונדנטי, מדיאליזציה של NAC, וגליל עור-שומן לטרלי - היא המועמדת האידיאלית לטכניקה המורכבת.</p>
+<table>
+  <thead><tr><th>סוג</th><th>גורם</th><th>למה זה משנה</th></tr></thead>
+  <tbody>
+    <tr><td><b>קונטרא-אינדיקציה מוחלטת</b></td><td>עישון פעיל</td><td>הפעולה הוואזוקונסטריקטיבית של הניקוטין פוגעת בפרפוזיה של פלאפי העור - הטכניקה נשענת על דיסקציה נרחבת של פלאפים, ולכן כל גורם שפוגע באספקת הדם מסכן אובדן רקמה</td></tr>
+    <tr><td rowspan="4"><b>קונטרא-אינדיקציות יחסיות</b></td><td>צלקות שד קודמות באזור התת-מינציה המתוכננת</td><td>עלולות לפגוע בפרפוזיית פלאפי העור</td></tr>
+    <tr><td>נפח פרנכימלי או גליל לטרלי לא מספיקים</td><td>מובילה למוביליזציה לא מספקת ולתוצאה תת-אופטימלית</td></tr>
+    <tr><td>BMI מעל 35</td><td>סיכון גבוה יותר לסיבוכי החלמה</td></tr>
+    <tr><td>מחלה פיברוציסטית מפושטת / אינטרטריגו פעיל</td><td>פתולוגיה נלווית שמסכנת את איכות הרקמה או שהיא מוקד זיהומי</td></tr>
+  </tbody>
+</table>
+
+<h3>הכנה טרום-ניתוחית - נקודות קריטיות</h3>
+<p>המטופלת צריכה להגיע ל<b>משקל יעד יציב</b> (BMI אידיאלי מתחת ל-30) ולפחות <b>3 חודשי יציבות במשקל</b> - בדרך כלל מושג כ-12-18 חודשים אחרי ניתוח בריאטרי. אם המשקל עדיין לא יציב - מחזירים את המטופלת ליועץ הירידה במשקל לפני שממשיכים. יש להפסיק שימוש בטבק לפחות <b>חודש לפני ואחרי</b> הניתוח, עם בדיקת שתן לקוטינין (<span class="term" dir="ltr">cotinine urine test</span>) לאימות. יש להפסיק נוגדי קרישה/אנטי-טסיתיים למניעת דימום. ממוגרפיה נדרשת לפי הנחיות האגודה האמריקאית לסרטן (ACS). מדידות סטנדרטיות כוללות: <span class="term" dir="ltr">sternal notch-to-nipple</span>, <span class="term" dir="ltr">nipple-to-IMF</span>, ורוחב השד.</p>
+
+<h2><span class="num">6</span> הטכניקה הכירורגית - Dermal Suspension, Parenchymal Reshaping, Selective Autoaugmentation</h2>
+<p>יעדי הניתוח: <b>ניצול מקסימלי</b> של כל רקמת השד וגם רקמה עצמית סמוכה (הגליל הלטרלי); עיצוב מעטפת העור <b>בלי להסתמך עליה לתמיכה</b>; מיקום מחדש נכון של ה-NAC; שחזור מלאות ובליטה של הקוטב העליון; והפחתה/סילוק הגליל הלטרלי.</p>
+
+<h3>סימונים טרום-ניתוחיים</h3>
+<p>מסמנים <b>דוגמת Wise מותאמת</b> כשהמטופלת עומדת זקוף. מסמנים את ה-IMF ואת קו המרידיאן החדש של השד. מטרנספוזים את הפטמה החדשה על קו המרידיאן, תוך שימוש ב-IMF כנקודת ייחוס - זה מתקן את המדיאליזציה. הגבול העליון של ה-NAC מסומן 2 ס"מ קרנית לפטמה החדשה, ומשמש נקודת מוצא לדוגמת <span class="term" dir="ltr">keyhole</span> עם זרועות אנכיות של 5 ס"מ. הרחבה לטרלית נמשכת מהזרועות האנכיות ומה-IMF כדי לכלול את הגליל העור-שומן הלטרלי - לעיתים מעבר לקו בית השחי האחורי (<span class="term" dir="ltr">posterior axillary line</span>), תלוי בכמות הרקמה שצריך לגייס לאוטו-אוגמנטציה.</p>
+
+<div class="surgery">
+  <h4>הכנה לפני הניתוח</h4>
+  <p>שני השדיים חשופים לחלוטין בהכנה סטרילית; הזרועות מקובעות על משטחי זרוע; שולחן הניתוחים נבדק מראש שיוכל להושיב את המטופלת בבטחה במהלך הניתוח (כדי להעריך תוצאה סימטרית תוך-ניתוחית).</p>
+  <h4>מהלך הניתוח - שלבים עיקריים</h4>
+  <p>
+  1. מסמנים את היקף העטרה החדשה עם <span class="term" dir="ltr">cookie cutter</span> בקוטר 42 מ"מ סביב הפטמה - הפרפוזיה ל-NAC תתבסס על פדיקל מרכזי.<br>
+  2. דה-אפיתליזציה של כל האזור בתוך דוגמת ה-Wise.<br>
+  3. חתך בחלק הקרניאלי של הדוגמה; יצירת פלאפים אדיפוקוטניים מדיאליים ולטרליים בעובי כ-1 ס"מ, לאורך קפסולת השד, עם דיסקציה שממשיכה עד לגובה עצם הבריח מעל פאשיית ה-<span class="term" dir="ltr">pectoralis major</span>.<br>
+  4. ההרחבה הדרמלית המרכזית (הדרמל השד המרכזי המדה-אפיתל) מושעית (<span class="term" dir="ltr">suspended</span>) לפריאוסטאום של צלע נבחרת (בדרך כלל <b>הצלע השנייה</b>) לאורך קו המרידיאן, בעזרת תפרי מזרן פרמננטיים קלועים 0 - ניתן להתאים גובה צלע כדי לשנות מיקום פטמה.<br>
+  5. הפלאפים המדיאלי והלטרלי מושעים לפריאוסטאום באופן דומה, ואז מבוצעת <b>פליקציה</b> (קיפול/תפירה יחד) עם תפר קלוע נספג רץ 2-0 - קודם לטרלי לגבול המרכזי, אחר כך מדיאלי, ולבסוף פליקציה של הקוטב התחתון (מקצרת את המרחק פטמה-IMF ומגדילה פרוג'קציה).<br>
+  6. הפלאפ הלטרלי עשוי להידרש לחיבור לפאשיית דופן החזה הלטרלית לשיפור הקונטור הלטרלי.<br>
+  7. הפלאפים העוריים-אדיפוזיים "עוטפים מחדש" (redrape) את השד המעוצב. אם ה-IMF לא מוגדר מספיק - ניתן לתפור את שכבת ה-<span class="term" dir="ltr">superficial fascial system</span> הבטנית לפריאוסטאום של הצלע החמישית כדי לשחזר את המיקום הרצוי.<br>
+  8. סגירה בשכבות: תפר מזרן חצי-קבור בנקודת "שלוש הנקודות" (three-point) לאורך ה-IMF למניעת פתיחת פצע; שחרור דרמיס פריאראולרי במקרה של מתיחות פטמה; ניקוזים בשני השדיים; תפרים דרמליים עמוקים ותוך-דרמליים; גזה ובנדאז' לחיץ אלסטי.
+  </p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>הפדיקל המרכזי חייב להישאר <b>רחב</b> ולא להיחתך מתחתיו - זה מונע איסכמיה ל-NAC ולפרנכימה. הפלאפ הלטרלי בפרט תלוי בפרפורטורים של העורק הלטרלי-תוראצי ובין-צלעיים - יש לשמר כמה שיותר מהם, <b>לא להאריך את ההרחבה הלטרלית מעבר לקו בית השחי האחורי</b>, ולהעריך תוך-ניתוחית פרפוזיה ודימום עורקי ער (brisk arterial bleeding). זו הסיבה העיקרית שבגללה עישון פעיל הוא קונטרא-אינדיקציה מוחלטת - כל גורם ואזוקונסטריקטיבי מגדיל דרמטית סיכון לנמק פלאפ חלקי.</p>
+  <h4>החלמה</h4>
+  <p>לרוב שחרור באותו יום (מעקב לילה אם יש שילוב עם ניתוח נוסף); בנדאז' לחיץ 5 ימים ואז חזייה ספורטיבית ללא תיל 4-6 שבועות; הסרת תפר הבולסטר לאחר 7 ימים; ניקוזים מוסרים אחרי יומיים אם הפלט מתחת ל-30 סמ"ק ליום, יומיים רצופים; הימנעות מהרמת משאות מעל 10 פאונד למשך 3 שבועות. תסמינים מחשידים לסיבוך: הפרשה מוגברת מהניקוז, אודם/חום מתקדם, כאב פתאומי חד, או אזור עור שהופך כהה/קר (חשד לנמק פלאפ) - מצריכים פנייה מיידית לצוות המנתח.</p>
+</div>
+
+<h2><span class="num">7</span> תוצאות וסיבוכים - הנתונים מהרגיסטרי</h2>
+<p>ניתוח פרוספקטיבי של רגיסטרי המחברים כלל 91 מטופלות (182 שדיים) שעברו את הטכניקה, לבד או בשילוב פרוצדורות נוספות לעיצוב הגוף. <b class="key">הטכניקה הוכחה כבטוחה ומהימנה מאוד</b>:</p>
+<table>
+  <thead><tr><th>סיבוך</th><th>מספר מקרים (מתוך 182 שדיים)</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>פתיחת פצע (<span class="term" dir="ltr">wound dehiscence</span>)</td><td>3</td><td>טיפול מקומי בפצע</td></tr>
+    <tr><td>סרומה</td><td>3</td><td>שאיבה במחט (needle aspiration) - החלמה מלאה בכל המקרים</td></tr>
+    <tr><td>נמק פלאפ עורי</td><td>2</td><td>טיפול מקומי בפצע</td></tr>
+    <tr><td>אובדן NAC / אובדן פלאפ / נמק שומן</td><td>0</td><td>-</td></tr>
+    <tr><td>ניתוחים חוזרים בגין עיצוב השד</td><td>0</td><td>-</td></tr>
+  </tbody>
+</table>
+<p>שיעור הסיבוכים הנמוך, ובמיוחד <b>העדר אובדן NAC ונמק שומן</b>, מיוחסים לפרפוזיה האופטימלית שמספק הפדיקל המרכזי הרחב.</p>
+
+<h2><span class="num">8</span> טיפים לאופטימיזציה אסתטית ושיקולים מיוחדים</h2>
+<p>המחברים מציינים כמה נקודות מפתח שנלמדו לאורך שנות ניסיון: (1) הגליל הלטרלי ניתן להסרה מלאה ע"י הרחבת דוגמת Wise ככל האפשר לטרלית (בלי לעבור את קו בית השחי האחורי); (2) דה-אפיתליזציה וניצול מלא של הפלאפ הלטרלי משפרים משמעותית נפח וצורה; (3) פלאפי השד צריכים להיות עבים (1 ס"מ ומעלה) כדי למזער אובדן רקמה וסיבוכי החלמה - <b>במיוחד בנקודת ה-T ההפוך</b> (<span class="term" dir="ltr">inverted-T point</span>), נקודת הצטלבות התפרים שהכי נוטה לפתיחה; (4) פליקציה מועילה במיוחד בחלקים הלטרלי והתחתון של השד; (5) מתיחות פטמה נפתרת ע"י חתך ושחרור הדרמיס הפריאראולרי.</p>
+
+<h3>שילוב עם פרוצדורות נוספות</h3>
+<p>ב-MWL הדפורמציות מתפרסות בד"כ על יותר מאזור גוף אחד, ולכן שילובים עם פרוצדורות עיצוב גוף נוספים שכיחים. <b>הסדר קריטי</b>: כשמשלבים עם בטנופלסטיקה - יש להשלים קודם את הבטן, כי ה-IMF נודד כלפי מטה עם בטנופלסטיקה/פנצקולקטומי (ובטנופלסטיקת <span class="term" dir="ltr">fleur-de-lis</span> גם מסובבת אותו מדיאלית) - הסימונים למסטופקסיה מותאמים על השולחן <i>אחרי</i> הפרוצדורה הבטנית. שילוב עם <span class="term" dir="ltr">upper body lift</span> - מבוצע בטוח, כשמשלימים קודם את חלק הגב (בישיבה על הבטן), סוגרים, ואז הופכים לגב תחתון לביצוע עיצוב השד - כך שהחתך הלטרלי של המסטופקסיה מתמזג עם קו החתך של ה-upper body lift ללא "אוזני כלב" (dog-ears). שילוב עם <span class="term" dir="ltr">brachioplasty</span> אפשרי גם כן, עם מיזוג החתך הקאודלי של הברכיופלסטיקה עם החתך הלטרלי.</p>
+
+<h3>פרוצדורות משניות</h3>
+<p>אם דוגמת ה-Wise לא הורחבה מספיק לטרלית, עלולים להיווצר "אוזני כלב" - ניתן לתקן במרפאה בהרדמה מקומית. סיכון נלווה לתיקון נוסף הוא <b>הצטלקות היפרטרופית או קלואידית</b>, שמנוהלת בהזרקות סטרואידים, עיסוי, לייזר, או תיקון כירורגי. הזרקת שומן (<span class="term" dir="ltr">fat grafting</span>) יכולה לתקן פגמי קונטור מינוריים או להוסיף נפח - אך יש לזכור שבמטופלות MWL כמות השומן הזמינה לשאיבה (ליפואספירט) מוגבלת יותר.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"5 D's + PLAN"</span> לזכירת 5 המאפיינים הקליניים</h3>
+  <p>
+    <b>P</b> – <span class="term" dir="ltr">Ptosis</span> grade 3<br>
+    <b>L</b> – <span class="term" dir="ltr">Loss</span> of volume, flattening, loss of upper pole fullness<br>
+    <b>A</b> – <span class="term" dir="ltr">Areola</span> medialization (NAC medialization)<br>
+    <b>N</b> – <span class="term" dir="ltr">iNelastic</span> and redundant skin<br>
+    <b>+ Roll</b> – lateral breast/chest skin and fat roll
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בלון מים גדול שהתרוקן לאט (השד אחרי ירידה במשקל). המעטפת שלו (העור) כבר לא חוזרת למידתה המקורית - היא רפויה ותלויה. מה שנשאר מהמים (הפרנכימה) שוקע כלפי מטה-פנימה וגורר איתו את הפקק (הפטמה) עמוק ופנימה - זו המדיאליזציה. ומסביב לבלון, יש "טבעת מים" נוספת שנשפכה החוצה לצד (הגליל הלטרלי) - וזה בדיוק המים שהמנתח "אוסף בחזרה" ומזריק פנימה כדי לנפח מחדש את הבלון מבפנים (אוטו-אוגמנטציה), במקום לסמוך על המעטפת הרפויה שתחזיק הכל.</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>בלון המים המתרוקן</title>
+    <ellipse cx="220" cy="130" rx="90" ry="70" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <ellipse cx="200" cy="150" rx="45" ry="35" fill="#93c5fd" stroke="#1e40af" stroke-width="2"/>
+    <circle cx="185" cy="165" r="8" fill="#1e3a8a"/>
+    <text x="220" y="30" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">מעטפת עור רפויה (בלון מתרוקן)</text>
+    <path d="M300,120 Q360,100 380,140 Q390,170 350,175" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="400" y="145" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">גליל</text>
+    <text x="400" y="160" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">לטרלי</text>
+    <path d="M330,150 Q280,150 240,155" stroke="#047857" stroke-width="3" fill="none" marker-end="url(#arrow)"/>
+    <text x="290" y="190" font-size="12" text-anchor="middle" fill="#047857" font-weight="700">אוטו-אוגמנטציה</text>
+    <defs>
+      <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L8,3 L0,6 Z" fill="#047857"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים למידע והעמקה</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2884754/" target="_blank">A Classification of Contour Deformities after Massive Weight Loss – PMC</a>
+    <div class="desc">המאמר המקורי (Song, Rubin ואחרים) שמציג את סולם פיטסבורג במלואו, כולל תמונות של הדרגות השונות.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK567792/" target="_blank">Breast Ptosis – StatPearls, NCBI Bookshelf</a>
+    <div class="desc">סקירה מקיפה על סיווג Regnault הקלאסי לפטוזיס, לשם השוואה מול סולם פיטסבורג הספציפי ל-MWL.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/19546668/" target="_blank">Mastopexy techniques after massive weight loss: an algorithmic approach and review of the literature – PubMed</a>
+    <div class="desc">סקירת ספרות משלימה על גישות אלגוריתמיות שונות למסטופקסיה אחרי MWL, כולל טכניקות חלופיות לזו שבפרק.</div>
+  </li>
+</ul>
+<p class="figcap">הערה: לא הוטמעו תמונות קליניות או סרטוני וידאו חיצוניים בסיכום זה, מכיוון שלא ניתן היה לאמת בוודאות זמינות/מהימנות קישורים ספציפיים בזמן הכנתו. האיורים הסכמטיים שלמעלה מיועדים להמחיש את העקרונות המרכזיים.</p>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 46, שירדה 160 פאונד (כ-73 ק"ג) לאחר מעקף קיבה (<span class="term" dir="ltr">gastric bypass</span>), פונה למרפאה כירורגית פלסטית להערכת השדיים. במשקלה היציב הנוכחי (BMI 27, יציב 14 חודשים) היא מדווחת על שדיים "ריקים ותלויים" שמפריעים לה תפקודית ואסתטית. בבדיקה: הפטמות ממוקמות מתחת ל-IMF ומהוות את הנקודה הכי תלויה של השד (תואם פטוזיס דרגה 3), עם שטיחות בולטת בקוטב העליון, מדיאליזציה ברורה של ה-NAC ביחס לקו המרידיאן, עור רפוי ולא-אלסטי, וגליל עור-שומן בולט הנמשך מהגבול הלטרלי של כל שד אל דופן החזה. היא אינה מעשנת. ללא צלקות שד קודמות, ללא מחלת שד ידועה. ממוגרפיה תקינה לפי גיל.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הגדרת "ירידה מסיבית במשקל" (MWL) לפי הפרק, ומה ההבדל העיקרי בין הדפורמציה שהיא יוצרת לבין פטוזיס "קלאסי"?</div>
+  <button class="opt" data-i="0">ירידה של מעל 20 פאונד; ההבדל הוא רק בכמות העור העודף</button>
+  <button class="opt" data-i="1">ירידה של מעל 50 פאונד; בניגוד לפטוזיס קלאסי (בעיקר עודף עור), כאן יש גם אובדן נפח פרנכימלי משמעותי, מדיאליזציה של NAC וגליל עור-שומן לטרלי</button>
+  <button class="opt" data-i="2">ירידה של מעל 100 פאונד; ההבדל היחיד הוא במידת הפטוזיס</button>
+  <button class="opt" data-i="3">ירידה של מעל 50 פאונד; אין הבדל משמעותי בגישה הכירורגית בין השניים</button>
+  <div class="explain">התשובה הנכונה: MWL מוגדרת כירידה של מעל 50 פאונד. ההבדל המהותי הוא שבפטוזיס קלאסי הבעיה היא בעיקר עודף עור על גבי פרנכימה תקינה יחסית, בעוד שב-MWL יש גם אובדן משמעותי בנפח הפרנכימלי עצמו, מדיאליזציה של ה-NAC, וגליל עור-שומן לטרלי - ולכן מסטופקסיה קלאסית (המסתמכת על העור לתמיכה) נכשלת ונדרשת גישה שונה מהותית. תשובות 1, 3 מציגות סף שגוי. תשובה 4 מתעלמת מהצורך בגישה כירורגית שונה לגמרי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופלת מדורגת כדרגה 3 בסולם פיטסבורג. מהו הטיפול המומלץ לפי הפרק, ולמה מסטופקסיה קלאסית פחות מתאימה כאן?</div>
+  <button class="opt" data-i="0">מסטופקסיה קלאסית בלבד, כי היא הפתרון הסטנדרטי לכל דרגות הפטוזיס</button>
+  <button class="opt" data-i="1">מעקב בלבד ללא ניתוח, כי דרגה 3 עדיין נחשבת קלה</button>
+  <button class="opt" data-i="2">טכניקת reshaping פרנכימלי עם דרמל סאספנשן ושקילת אוטו-אוגמנטציה, כי המסטופקסיה הקלאסית מסתמכת על העור לתמיכה - עור שכבר לא אלסטי ולא אמין ב-MWL</button>
+  <button class="opt" data-i="3">רדוקציית שד בלבד, ללא צורך בטכניקת דרמל סאספנשן</button>
+  <div class="explain">התשובה הנכונה: דרגה 3 בסולם פיטסבורג (גליל לטרלי חמור ו/או אובדן נפח חמור עם עור רדונדנטי ו-NAC ממוקם מדיאלית) דורשת את טכניקת דרמל סאספנשן + reshaping פרנכימלי + שקילת אוטו-אוגמנטציה, כי הבעיה כאן היא לא רק עודף עור אלא גם רקמה שאיבדה את התמיכה הפנימית שלה ועור שלא אמין לתמיכה ארוכת-טווח. תשובה 1 מציגה גישה שמיועדת לדרגות 1-2 בלבד. תשובה 2 שגויה כי דרגה 3 היא הדרגה החמורה ביותר בסולם ומצריכה התערבות. תשובה 4 מתעלמת מהצורך בדרמל סאספנשן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי הקונטרא-אינדיקציה המוחלטת היחידה לביצוע הטכניקה, ומה המנגנון שבגללו היא מסוכנת כל כך?</div>
+  <button class="opt" data-i="0">עישון פעיל - הפעולה הוואזוקונסטריקטיבית של הניקוטין פוגעת בפרפוזיה של פלאפי העור, שהטכניקה נשענת על דיסקציה נרחבת שלהם</button>
+  <button class="opt" data-i="1">גיל מעל 50 שנה</button>
+  <button class="opt" data-i="2">BMI מעל 25</button>
+  <button class="opt" data-i="3">היסטוריה של ניתוח בריאטרי</button>
+  <div class="explain">התשובה הנכונה: עישון פעיל הוא הקונטרא-אינדיקציה המוחלטת היחידה, כי הניקוטין גורם לוואזוקונסטריקציה שפוגעת בפרפוזיה של פלאפי העור - הטכניקה מסתמכת על דיסקציה נרחבת של פלאפים עוריים, ולכן כל פגיעה בזרימת הדם מגדילה משמעותית סיכון לנמק פלאפ. גיל (תשובה 1) אינו קונטרא-אינדיקציה שהוזכרה. BMI מעל 35 (לא 25, תשובה 2) הוא קונטרא-אינדיקציה יחסית בלבד. ניתוח בריאטרי קודם (תשובה 3) הוא בדיוק ההקשר הקליני של החולות המדוברות, לא קונטרא-אינדיקציה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע הפדיקל המרכזי (central pedicle) בטכניקה חייב להישאר רחב וללא חיתוך תת-מינציה?</div>
+  <button class="opt" data-i="0">כדי לאפשר גישה נוחה יותר לניקוז</button>
+  <button class="opt" data-i="1">כדי לשפר את סימטריית השד בלבד, ללא קשר לפרפוזיה</button>
+  <button class="opt" data-i="2">כי כך נקבע גובה הצלע שאליה מתבצעת ההשעיה</button>
+  <button class="opt" data-i="3">כי הוא נשען על ענפי עורק בית החזה הפנימי מהחללים הבין-צלעיים 5-6, שמחדירים את שריר ה-pectoralis major מדיאלית למרידיאן - חיתוך תת-מינציה עלול לגרום לאיסכמיה של ה-NAC והפרנכימה</button>
+  <div class="explain">התשובה הנכונה: הפדיקל המרכזי מוזן מענפים של עורק בית החזה הפנימי היוצאים מהחללים הבין-צלעיים החמישי או השישי ומחדירים את שריר החזה הגדול מדיאלית לקו המרידיאן - לכן חיתוך תת-מינציה מתחתיו עלול לפגוע באספקת הדם הזו ולגרום לאיסכמיה של קומפלקס הפטמה-עטרה ושל הפרנכימה עצמה. תשובות 1-3 אינן קשורות למנגנון הפרפוזיה שמתואר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. איזה סדר נכון בשילוב מסטופקסיה עם בטנופלסטיקה (abdominoplasty) באותה מטופלת, ולמה?</div>
+  <button class="opt" data-i="0">קודם מסטופקסיה, כי ה-IMF לא מושפע מבטנופלסטיקה</button>
+  <button class="opt" data-i="1">אין חשיבות לסדר, שתי הפרוצדורות עצמאיות לחלוטין</button>
+  <button class="opt" data-i="2">קודם בטנופלסטיקה, כי ה-IMF נודד כלפי מטה (ואצל fleur-de-lis גם מסתובב מדיאלית) עם הפרוצדורה הבטנית - לכן סימוני המסטופקסיה מתאימים אחרי</button>
+  <button class="opt" data-i="3">יש לבצע את שתי הפרוצדורות בשני ניתוחים נפרדים לגמרי, לעולם לא באותו מפגש</button>
+  <div class="explain">התשובה הנכונה: יש להשלים קודם את הפרוצדורה הבטנית, כי ה-IMF נודד כלפי מטה עם בטנופלסטיקה/פנצקולקטומי, ובבטנופלסטיקת fleur-de-lis הוא גם מסתובב מדיאלית - ולכן סימוני המסטופקסיה עלולים להזדקק להתאמה על השולחן ולרוב יזוזו סופרית ו/או לטרלית לאחר הפרוצדורה הבטנית. תשובה 1 שגויה עובדתית - ה-IMF כן מושפע. תשובה 2 מתעלמת מהתלות ההדדית שהפרק מדגיש במפורש. תשובה 4 שגויה - הפרק מתאר שילוב באותו מפגש ניתוחי כאפשרות לגיטימית ובטוחה כשמתוכננת נכון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מה ההבדל בין ניקוז המתמשך בהפרשה גבוהה לבין סרומה שמתפתחת אחרי הניתוח, ואיך מטפלים בכל אחד לפי הפרק?</div>
+  <button class="opt" data-i="0">שניהם מטופלים באותו אופן - ניתוח חוזר מיידי</button>
+  <button class="opt" data-i="1">ניקוזים מוסרים כאשר הפלט יורד מתחת ל-30 סמ"ק ליום למשך יומיים רצופים; סרומה (שכיחה יותר לטרלית) מטופלת בהצלחה בשאיבת מחט - בסדרת המחברים כל המקרים הגיעו לרזולוציה מלאה כך</button>
+  <button class="opt" data-i="2">שניהם דורשים אנטיביוטיקה IV ואשפוז ממושך</button>
+  <button class="opt" data-i="3">ניקוזים מוסרים מיד לאחר הניתוח; סרומה תמיד דורשת ניתוח חוזר</button>
+  <div class="explain">התשובה הנכונה: הניקוזים נשארים כ-2 ימים ומוסרים כשהפלט היומי יורד מתחת ל-30 סמ"ק במשך יומיים רצופים. סרומות (שהופיעו ב-3 מתוך 182 שדיים בסדרת המחברים, בעיקר בהיבט הלטרלי של השד) טופלו בהצלחה מלאה בשאיבת מחט בלבד, ללא צורך בניתוח חוזר. תשובות 1, 3, 4 אינן תואמות את הפרוטוקול שמתואר בפרק - לא צוין צורך באנטיביוטיקה שגרתית או בניתוח חוזר לסרומה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>MWL</b> = ירידה מעל 50 פאונד; יוצרת שד עם 5 מאפיינים: פטוזיס דרגה 3, אובדן נפח/שטיחות, מדיאליזציית NAC, עור לא-אלסטי ורדונדנטי, גליל עור-שומן לטרלי.</li>
+    <li>מנגנון: אובדן נפח פרנכימלי + אובדן אלסטיות עורית → אין תמיכה פנימית ואין תמיכה עורית אמינה → מסטופקסיה קלאסית נכשלת.</li>
+    <li>אבחנה/דירוג: <b>סולם פיטסבורג</b> (0-3) - דרגה 3 מחייבת reshaping פרנכימלי + דרמל סאספנשן + שקילת אוטו-אוגמנטציה; סולם Regnault הקלאסי לא מתאים כי אינו מתייחס למאפייני MWL.</li>
+    <li>קונטרא-אינדיקציה מוחלטת: <b>עישון פעיל</b> (ואזוקונסטריקציה מסכנת פלאפים).</li>
+    <li>טכניקה: דוגמת Wise מורחבת הכוללת את הגליל הלטרלי, דה-אפיתליזציה, פדיקל מרכזי, פליקציה והשעיה לפריאוסטאום צלעי (בד"כ צלע 2), אוטו-אוגמנטציה מהרקמה הלטרלית.</li>
+    <li>תוצאות: בטוחה מאוד (91 מטופלות/182 שדיים) - סיבוכים נדירים (דהיסנס, סרומה, נמק פלאפ מוגבל), 0 אובדן NAC/פלאפ, 0 ניתוחים חוזרים בגין עיצוב השד.</li>
+    <li>שילוב עם פרוצדורות נוספות: סדר קריטי - בטנופלסטיקה קודם, upper body lift בישיבה על הבטן לפני מעבר לגב, ברכיופלסטיקה עם מיזוג חתכים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
