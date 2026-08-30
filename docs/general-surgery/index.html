@@ -30,15 +30,15 @@
   <h1>🩺 כירורגיה כללית — מרכז הלמידה</h1>
   <div class="subtitle">סיכומים וכרטיסיות תרגול לפי Sabiston / Schwartz's Principles of Surgery — מתעדכן אוטומטית כל יום ב-02:00.</div>
 
-  <div class="progress-bar"><div class="progress-fill" style="width:1.4%">1 / 74</div></div>
-  <p style="color:var(--sub); font-size:14px">פרק ראשון שהופק: <b>אפנדיציטיס חריפה</b> (פרק 51). המשך הפרקים יתווסף אוטומטית בסדר הספר, החל מפרק 1.</p>
+  <div class="progress-bar"><div class="progress-fill" style="width:0%">...</div></div>
+  <p style="color:var(--sub); font-size:14px">פרק חדש מתווסף אוטומטית כל יום. לחצי על שם הפרק בטבלה למטה כדי לפתוח את הסיכום שלו.</p>
 
   <div class="cta">
     <a href="flashcards/study.html">🗂️ פתחי את אפליקציית הכרטיסיות
       <span class="sub">שאלון אינטראקטיבי עם סטטיסטיקה, סינון ובחירת שפה</span>
     </a>
     <a href="summaries/appendicitis.html">📄 סיכום: אפנדיציטיס חריפה
-      <span class="sub">הסיכום הראשון שהופק — מנגנון, אבחנה, טיפול, שאלות תרגול</span>
+      <span class="sub">הדגמה הראשונה שהופקה — מנגנון, אבחנה, טיפול, שאלות תרגול</span>
     </a>
   </div>
 
@@ -59,10 +59,13 @@ fetch('progress/topics.json').then(function(r){return r.json();}).then(function(
   data.topics.forEach(function(t){
     var tr = document.createElement('tr');
     var title = t.title_he || t.title_en;
+    var titleHtml = (t.status === 'done' && t.summary_file)
+      ? '<a href="'+t.summary_file+'" style="color:inherit;text-decoration:underline">'+title+'</a>'
+      : title;
     var statusHtml = t.status === 'done'
       ? '<span class="done">✔ הופק ('+(t.date_done||'')+')</span>'
       : '<span class="pending">ממתין</span>';
-    tr.innerHTML = '<td>'+t.ch+'</td><td>'+title+' <span style="color:#9ca3af;font-size:12.5px">('+t.title_en+')</span></td><td>'+statusHtml+'</td>';
+    tr.innerHTML = '<td>'+t.ch+'</td><td>'+titleHtml+' <span style="color:#9ca3af;font-size:12.5px">('+t.title_en+')</span></td><td>'+statusHtml+'</td>';
     tbody.appendChild(tr);
   });
   var done = data.topics.filter(function(t){return t.status==='done';}).length;
