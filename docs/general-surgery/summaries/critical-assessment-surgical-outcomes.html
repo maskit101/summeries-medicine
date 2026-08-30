@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!-- מקור: ה-PDF שהועלה של Ch 8 (Critical Assessment of Surgical Outcomes and Health Services Research) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). פרק מתודולוגי (לא מחלה בודדת) - הסיכום התמקד בהיררכיית סוגי המחקר, הערכת תוקף (bias/confounding/chance), ומערכות דירוג ראיות (USPMTF/GRADE) כליבת הפרק הכי נבחנת; תמונות (Wikimedia Commons) וסרטוני YouTube (Osmosis) הושלמו מחיפוש אמיתי (WebSearch). -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הערכה ביקורתית של תוצאות כירורגיות ומחקר שירותי בריאות (Critical Assessment of Surgical Outcomes)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>הערכה ביקורתית של תוצאות כירורגיות <span class="term" dir="ltr">(Critical Assessment of Surgical Outcomes and Health Services Research)</span></h1>
+<div class="subtitle">איך שופטים אם מחקר כירורגי "אמין מספיק" כדי לשנות את הפרקטיקה הקלינית — כלים לקריאה ביקורתית של הספרות. פרק 8 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p><b>הערכה ביקורתית</b> <span class="term" dir="ltr">(critical appraisal)</span> היא תהליך שיטתי של בדיקת ראיות מחקריות כדי לשפוט את <b>תוקפן</b> <span class="term" dir="ltr">(validity)</span>, ערכן, והרלוונטיות שלהן להקשר קליני ספציפי. זה לא נושא "תיאורטי" — כל פעם שמנתחת שוקלת האם לאמץ טכניקה חדשה, פרוטוקול חדש, או תרופה חדשה, היא בעצם עושה הערכה ביקורתית כזו, ולעיתים קרובות בלי לשים לב שזה מה שהיא עושה.</p>
+
+<h2><span class="num">2</span> המנגנון — למה בכלל צריך "היררכיה" של סוגי מחקר</h2>
+<div class="mechanism">
+  <p class="chain">
+    השאלה המרכזית בכל מחקר קליני היא: <b>האם ההבדל שראינו בתוצאות נובע באמת מההתערבות שבדקנו, או שהוא נובע ממשהו אחר לגמרי?</b> יש שלושה "חשודים" שיכולים ליצור הבדל מדומה בין קבוצות שאינו אמיתי: <b>מקריות</b> <span class="term" dir="ltr">(chance)</span> — אקראיות בלתי-צפויה; <b>הטיה</b> <span class="term" dir="ltr">(bias)</span> — שגיאה שיטתית באיך שנבחרו או נמדדו הנבדקים; ו<b>גורם מבלבל</b> <span class="term" dir="ltr">(confounding)</span> — הבדל אמיתי בין הקבוצות (חוץ מההתערבות עצמה) שמשפיע גם על התוצאה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">קחו לדוגמה השוואת תמותה בין כריתת מעי גס פתוחה לעומת לפרוסקופית</span>: אם פשוט משווים תמותה בין שתי הקבוצות בלי מחשבה נוספת, אפשר להגיע למסקנה שגויה — כי ניתוח פתוח מבוצע בשכיחות גבוהה יותר <b>כפרוצדורת חירום</b> בחולים עם ניקוב מעי וקריטיים יותר מלכתחילה. כאן <b>חומרת המחלה</b> היא גורם מבלבל: היא משפיעה גם על איזו שיטת ניתוח נבחרת וגם על התמותה עצמה, ללא קשר לשיטה. אם לא נתקן לזה, ניראה "יתרון" מדומה לניתוח הלפרוסקופי שלמעשה משקף רק שהחולים שקיבלו אותו היו פחות חולים מלכתחילה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>למה דווקא רנדומיזציה פותרת את זה?</b> כאשר מקצים נבדקים <b>אקראית</b> לקבוצת טיפול או ביקורת (כמו הטלת מטבע), כל גורם מבלבל אפשרי — <b>גם כאלה שהחוקרים לא מודעים אליהם ולא מדדו אותם</b> — מתפזר בסבירות שווה בין הקבוצות. זו בדיוק הסיבה ש<b>ניסוי מבוקר אקראי</b> <span class="term" dir="ltr">(randomized controlled trial, RCT)</span> נחשב "תקן הזהב": הוא לא "יותר מדויק" באופן מיסטי, אלא פשוט הדרך היחידה לנטרל גם גורמים מבלבלים <b>שלא ידועים</b> לחוקר, ולא רק את אלה שהוא חשב להתאים אליהם בעיצוב המחקר. שיטות אחרות (הגבלת קריטריוני כניסה, matching, רגרסיה סטטיסטית) יכולות לתקן רק לגורמים מבלבלים <b>ידועים ומדודים</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>אבל גם RCT לא חסין</b> — הוא פותר confounding אבל לא בהכרח bias (למשל אם המעקב אחר הקבוצות לא זהה) ולא מקריות (אם המדגם קטן מדי, תיתכן מסקנה שגויה מקרית). זו הסיבה שקריטריוני <b>Bradford Hill</b> (1965) לקשר סיבתי דורשים שלושה תנאים במקביל: (1) הגורם קודם בזמן לתוצאה, (2) יש קשר סטטיסטי בין הגורם לתוצאה, ו-(3) אין הסבר סביר אחר לתוצאה מלבד הגורם המוצע — וכל אחד מהשלושה יכול "להישבר" בגלל מקריות, הטיה, או confounding בהתאמה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>איך גורם מבלבל (confounder) יוצר קשר מדומה, ואיך רנדומיזציה מנטרלת אותו</title>
+  <text x="430" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">ללא רנדומיזציה: הגורם המבלבל "מזהם" את ההשוואה</text>
+  <rect x="30" y="45" width="170" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="115" y="68" font-size="12.5" text-anchor="middle" fill="#1f2937">חומרת מחלה גבוהה</text>
+  <text x="115" y="86" font-size="11" text-anchor="middle" fill="#4b5563">(confounder)</text>
+  <polygon points="205,72 225,66 225,79" fill="#b91c1c"/>
+  <rect x="230" y="45" width="170" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="315" y="72" font-size="12.5" text-anchor="middle" fill="#1f2937">נבחר ניתוח פתוח</text>
+  <polygon points="405,72 425,66 425,79" fill="#b45309"/>
+  <rect x="430" y="45" width="170" height="55" rx="8" fill="#f3f4f6" stroke="#4b5563"/>
+  <text x="515" y="72" font-size="12.5" text-anchor="middle" fill="#1f2937">תמותה גבוהה יותר</text>
+  <path d="M 115 100 C 115 150, 480 150, 480 100" stroke="#b91c1c" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+  <polygon points="480,100 472,113 488,113" fill="#b91c1c"/>
+  <text x="300" y="140" font-size="11" text-anchor="middle" fill="#b91c1c">אותו גורם משפיע גם על בחירת השיטה וגם על התמותה ← "קשר" מדומה בין שיטה לתמותה</text>
+
+  <line x1="20" y1="175" x2="840" y2="175" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="430" y="200" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">עם רנדומיזציה: הגורם המבלבל מתפזר שווה בשתי הקבוצות</text>
+  <rect x="60" y="220" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="135" y="243" font-size="12" text-anchor="middle" fill="#1f2937">קבוצת ניתוח</text>
+  <text x="135" y="260" font-size="11" text-anchor="middle" fill="#1f2937">פתוח (הטלת מטבע)</text>
+  <rect x="250" y="220" width="150" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="325" y="243" font-size="12" text-anchor="middle" fill="#1f2937">קבוצת ניתוח</text>
+  <text x="325" y="260" font-size="11" text-anchor="middle" fill="#1f2937">לפרוסקופי (הטלת מטבע)</text>
+  <text x="230" y="292" font-size="11.5" text-anchor="middle" fill="#4b5563">חומרת מחלה (וכל גורם מבלבל אחר, ידוע ולא-ידוע) מתפזרת בסבירות שווה — ההבדל שנותר בתוצאה משקף רק את ההתערבות</text>
+  <rect x="470" y="220" width="330" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="635" y="243" font-size="12" text-anchor="middle" fill="#1f2937">קשר סיבתי אמין — RCT = "תקן הזהב"</text>
+  <text x="635" y="260" font-size="10.5" text-anchor="middle" fill="#4b5563">מנטרל גם confounders לא-ידועים, לא רק ידועים</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/mWfjbmRZowM" title="Randomized control trial (RCT) explained - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קצר על עקרון ה-RCT — הקצאה אקראית לקבוצות ולמה זה "תקן הזהב" לביסוס קשר סיבתי. מקור: <a href="https://www.youtube.com/watch?v=mWfjbmRZowM" target="_blank">YouTube - Osmosis</a></p>
+
+<h2><span class="num">3</span> מפת סוגי המחקרים — מי מתאים למה</h2>
+<p>סוגי המחקר הקליני מתחלקים לשני ענפים גדולים: <b>ניסויים</b> <span class="term" dir="ltr">(experimental)</span>, שבהם החוקר <b>מתערב</b> ומקצה את החשיפה/הטיפול, ו<b>מחקרי תצפית</b> <span class="term" dir="ltr">(observational)</span>, שבהם החוקר רק <b>צופה</b> בחשיפה שכבר קרתה באופן טבעי בלי להתערב.</p>
+<ul>
+  <li><b>ניסוי מבוקר (RCT)</b> — הקצאה אקראית לקבוצת ניסוי/ביקורת. הפוטנציאל הגבוה ביותר לביסוס סיבתיות, אך יקר, איטי, ולא תמיד ישים (אי אפשר "לרנדם" למשל את ההחלטה לעשן).</li>
+  <li><b>מחקר עוקבה</b> <span class="term" dir="ltr">(cohort study)</span> — משווים קבוצה חשופה לגורם מסוים מול קבוצה לא-חשופה, <b>קדימה</b> (פרוספקטיבי, מתוכנן מראש) או <b>אחורה</b> (רטרוספקטיבי, על נתונים קיימים). שכיח מאוד במחקר כירורגי דרך מאגרי נתונים גדולים.</li>
+  <li><b>מחקר מקרה-ביקורת</b> <span class="term" dir="ltr">(case-control study)</span> — מתחילים <b>מהתוצאה</b>: מזהים קבוצת חולים עם תוצאה מסוימת ("מקרים") ומשווים אותם לקבוצה בלי התוצאה ("ביקורות") מבחינת שכיחות חשיפות בעבר. מצוין לתוצאות נדירות.</li>
+  <li><b>מחקר חתך</b> <span class="term" dir="ltr">(cross-sectional study)</span> — מודדים חשיפה ותוצאה <b>באותה נקודת זמן</b>. מהיר וזול, אך לא יכול לקבוע מה קדם למה.</li>
+  <li><b>סדרת מקרים / דיווח מקרה</b> <span class="term" dir="ltr">(case series / report)</span> — תיאור מפורט של חולה אחד או קבוצה, <b>ללא קבוצת ביקורת כלל</b>. מייצר השערות אך לא יכול לבסס שום קשר סיבתי.</li>
+</ul>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Evidence-based_Medicine_(EBM).png?width=650" alt="תרשים המחשה לעקרונות רפואה מבוססת-ראיות וסוגי מחקר">
+  <figcaption class="media-cap">המחשה לעקרונות רפואה מבוססת-ראיות (evidence-based medicine) — שילוב הראיה הטובה ביותר הזמינה עם ניסיון קליני והעדפות המטופל. מקור: <a href="https://commons.wikimedia.org/wiki/File:Evidence-based_Medicine_(EBM).png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>חוזקות וחולשות — טבלת השוואה (טבלה 8.2 בפרק)</h3>
+<table>
+  <thead><tr><th>עיצוב מחקר</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>RCT</td><td>ביסוס קשר סיבתי; אפשר להשוות כמה התערבויות</td><td>יקר, איטי, לא תמיד ישים, generalizability נמוכה (קריטריוני כניסה מצומצמים)</td></tr>
+    <tr><td>עוקבה (cohort)</td><td>generalizability גבוהה; אפשר לחקור חשיפות נדירות ותוצאות מרובות בו-זמנית</td><td>פוטנציאל מוגבל לביסוס סיבתיות; selection bias; פרוספקטיבי יכול לקחת שנים</td></tr>
+    <tr><td>מקרה-ביקורת</td><td>זול יחסית; מתאים לתוצאות נדירות; מייצר השערות</td><td>selection bias, recall bias; פוטנציאל מוגבל מאוד לסיבתיות; רק תוצאה אחת בכל פעם</td></tr>
+    <tr><td>חתך (cross-sectional)</td><td>מהיר וזול; טוב לתיאור שכיחות מחלה</td><td>sample bias, survival bias; כמעט לא מבסס סיבתיות</td></tr>
+    <tr><td>סדרת מקרים</td><td>תיאור מעמיק מאוד; זול; מייצר השערות</td><td>selection bias; לא ניתן להכליל; אין יכולת קשר סיבתי כלל</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">הכלל המנחה לזכור: ככל שהמחקר "קרוב יותר" לניסוי אמיתי עם רנדומיזציה — כך גדל הפוטנציאל לביסוס סיבתיות, אבל גם עולים העלות והזמן. מחקרי תצפית (עוקבה, מקרה-ביקורת, חתך) זולים ומהירים יותר, אך משאירים פתח ל-confounding שלא ניתן לנטרל לגמרי.</div>
+
+<h2><span class="num">4</span> ניסוח שאלת המחקר — לפני שקוראים תוצאה, בודקים את השאלה עצמה</h2>
+<p>לפני שסומכים בכלל על תוצאות מחקר, שני כלים עוזרים לבדוק האם השאלה שהמחקר שואל היא בכלל שאלה טובה:</p>
+<h3>FINER</h3>
+<p><span class="term" dir="ltr">Feasible</span> (בר-ביצוע ובעל עוצמה סטטיסטית מספקת), <span class="term" dir="ltr">Interesting</span> (מעניין לקהילה הכירורגית), <span class="term" dir="ltr">Novel</span> (חדשני), <span class="term" dir="ltr">Ethical</span> (עומד בסטנדרטים אתיים), <span class="term" dir="ltr">Relevant</span> (משנה בפועל פרקטיקה/מדיניות).</p>
+<h3>PICOT (טבלה 8.1 בפרק)</h3>
+<table>
+  <thead><tr><th>אות</th><th>מרכיב</th><th>מה בודקים</th></tr></thead>
+  <tbody>
+    <tr><td>P</td><td>אוכלוסייה/בעיה <span class="term" dir="ltr">(Population)</span></td><td>האם מדגם/בעיית המחקר דומים למטופלים שאני מטפלת בהם בפועל?</td></tr>
+    <tr><td>I</td><td>התערבות <span class="term" dir="ltr">(Intervention)</span></td><td>האם ההתערבות באמת חדשה/משפרת לעומת התקן הקיים?</td></tr>
+    <tr><td>C</td><td>השוואה <span class="term" dir="ltr">(Comparator)</span></td><td>האם קבוצת ההשוואה תקפה ומייצגת טיפול רגיל?</td></tr>
+    <tr><td>O</td><td>תוצאה <span class="term" dir="ltr">(Outcome)</span></td><td>האם מדדי התוצאה תקפים ואמינים?</td></tr>
+    <tr><td>T</td><td>זמן <span class="term" dir="ltr">(Time)</span></td><td>האם משך הטיפול והמעקב תואם למה שחשוב באמת למטופלים?</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/P-G2veeYC1Q" title="An Introduction to Evidence Based Medicine" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מבוא לתהליך הרפואה מבוססת-הראיות — ניסוח שאלה קלינית, איתור והערכת ראיות, ויישום בפרקטיקה. מקור: <a href="https://www.youtube.com/watch?v=P-G2veeYC1Q" target="_blank">YouTube</a></p>
+
+<h2><span class="num">5</span> הערכת תוקף המחקר — "אבחנה" של איכות הראיה</h2>
+<p>שני סוגי תוקף חייבים להיבדק בנפרד, ואי אפשר לדלג על אחד מהם: <b>תוקף פנימי</b> <span class="term" dir="ltr">(internal validity)</span> — האם ההבדל שנמצא בתוך המחקר באמת נובע מההתערבות; ו<b>תוקף חיצוני</b> <span class="term" dir="ltr">(external validity / generalizability)</span> — האם אפשר להחיל את המסקנה על המטופלת שלפניי.</p>
+
+<h3>תוקף פנימי — שלושת האיומים: הטיה, גורם מבלבל, מקריות</h3>
+<table>
+  <thead><tr><th>איום</th><th>מקור</th><th>דוגמה מהפרק</th><th>איך מתמודדים</th></tr></thead>
+  <tbody>
+    <tr><td><b>הטיית בחירה</b> <span class="term" dir="ltr">(selection bias)</span></td><td>שגיאה בבחירת הנבדקים — סוג שגוי של נבדקים או מדגם לא-מייצג</td><td>מתנדבים בשכר עשויים להיות ממושמעים יותר בטיפול ולדווח תוצאות טובות יותר מהמצב האמיתי</td><td>קריטריוני כניסה ברורים; רנדומיזציה מפחיתה אך לא תמיד מבטלת</td></tr>
+    <tr><td><b>הטיית מדידה</b> <span class="term" dir="ltr">(measurement bias)</span></td><td>שגיאה באיך נאספים נתוני חשיפה/תוצאה</td><td>"הטיית זיכרון" (recall bias) בשאלון רטרוספקטיבי; "הטיית איתור" (ascertainment bias) כשהתוצאה עצמה משפיעה כמה מחפשים אחר חשיפה</td><td>עיוורון (blinding), עיצוב פרוספקטיבי</td></tr>
+    <tr><td><b>גורם מבלבל</b> <span class="term" dir="ltr">(confounding)</span></td><td>הבדל אמיתי בין הקבוצות שאינו ההתערבות עצמה, אך משפיע גם על הבחירה וגם על התוצאה</td><td>חומרת מחלה בהשוואת ניתוח פתוח מול לפרוסקופי (ראו סעיף 2)</td><td>רנדומיזציה (הכי חזק) / הגבלה / matching / רגרסיה רב-משתנית / stratification / propensity score / instrumental variable</td></tr>
+  </tbody>
+</table>
+
+<p><b>איך בפועל מתקנים confounding כשאי אפשר לרנדם (מחקרי תצפית)?</b> <b>רגרסיה לוגיסטית</b> (לתוצאה בינארית) או <b>לינארית</b> (לתוצאה רציפה) — כלל אצבע: לפחות 10 מקרי-תוצאה לכל משתנה שמכניסים למודל (לוגיסטית) או 10-15 (לינארית), אחרת המודל "מתאים יתר על המידה" (overfitting) ותוצאותיו לא אמינות. <b>ציון נטייה</b> <span class="term" dir="ltr">(propensity score)</span> — ציון מסכם המבטא את ההסתברות לקבל את הטיפול בהתבסס על כל הגורמים המבלבלים הידועים, ומשמש כדי "לזווג" בין חולים דומים. <b>משתנה אינסטרומנטלי</b> <span class="term" dir="ltr">(instrumental variable)</span> — גורם שלישי שקשור לחשיפה אך לא משפיע ישירות על התוצאה (למשל: מרחק גיאוגרפי מבית חולים שמבצע צנתור, כדי לחקור את השפעת הצנתור על תמותה מאוטם שריר הלב, בלי ה"בלבול" של חומרת מחלת הלב עצמה).</p>
+
+<div class="key-box">הבחנה שכמעט תמיד עולה במבחן: <b>רק גורמים מבלבלים ידועים ומדודים</b> אפשר לתקן בניתוח סטטיסטי (רגרסיה/matching/propensity score) — לעומת רנדומיזציה, שמנטרלת גם גורמים מבלבלים <b>שלא ידועים לחוקר בכלל</b>.</div>
+
+<h3>מקריות — בדיקת השערות, שגיאות סוג I ו-II</h3>
+<p>ה<b>השערת האפס</b> <span class="term" dir="ltr">(null hypothesis)</span> קובעת שאין הבדל אמיתי בין הקבוצות. שתי דרכים "לטעות" בקשר אליה:</p>
+<ul>
+  <li><b>שגיאת סוג I (α)</b> — דוחים בטעות את השערת האפס: "מוצאים" הבדל שלא באמת קיים. ה<b>ערך-p</b> מבטא את ההסתברות שההבדל שנצפה נובע ממקריות בלבד; הסף המקובל הוא <span class="term" dir="ltr">p&lt;0.05</span> (כלומר 5 מתוך 100 בדיקות עלולות "להיראות" משמעותיות סטטיסטית רק במקרה). כשעורכים הרבה השוואות בו-זמנית (תתי-קבוצות מרובות), עולה הסיכון לשגיאת סוג I באופן מצטבר — <b>תיקון בונפרוני</b> <span class="term" dir="ltr">(Bonferroni correction)</span> מצמצם את סף המובהקות בהתאם למספר ההשוואות כדי לפצות על כך.</li>
+  <li><b>שגיאת סוג II (β)</b> — מקבלים בטעות את השערת האפס: המחקר "מפספס" הבדל אמיתי שקיים, בדרך כלל כי גודל המדגם קטן מדי (<b>עוצמה סטטיסטית</b> <span class="term" dir="ltr">(statistical power)</span> לא מספקת). <b>חשוב לזכור</b>: ברגע שהמחקר הסתיים, אי אפשר "לתקן" בדיעבד עוצמה סטטיסטית לא-מספקת — לכן צריך לחשב מראש (power calculation) את גודל המדגם הדרוש. הכלל: "היעדר ראיה להשפעה אינו בהכרח ראיה להיעדר השפעה".</li>
+</ul>
+<p><b>רווח בר-סמך</b> <span class="term" dir="ltr">(confidence interval, CI)</span> — טווח ערכים שסביר שמכיל את הממוצע האמיתי באוכלוסייה. רווח בר-סמך של 95% אומר: אם היינו חוזרים על המחקר אינסוף פעמים, הטווח שחושב היה מכיל את ההבדל האמיתי ב-95% מהפעמים. גודל מדגם גדול יותר → רווח צר יותר → הערכה מדויקת יותר.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/gQlXtGTgnOE" title="Case-control study explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של עיצוב מחקר מקרה-ביקורת — התחלה מהתוצאה וחיפוש חשיפות בעבר, לעומת עוקבה שמתחילה מהחשיפה. מקור: <a href="https://www.youtube.com/watch?v=gQlXtGTgnOE" target="_blank">YouTube</a></p>
+
+<h3>תוקף חיצוני — מתי אפשר להחיל את המחקר על המטופלת שלי</h3>
+<p>גם מחקר עם תוקף פנימי מושלם עלול להיות <b>לא-רלוונטי</b> אם האוכלוסייה, ההתערבות, או מדדי התוצאה שונים מהמצב הקליני שלפנינו. הבחנה מרכזית: <b>יעילות מוכחת</b> <span class="term" dir="ltr">(efficacy)</span> — כמה טוב ההתערבות עובדת בתנאי מחקר מבוקרים — לעומת <b>יעילות בפועל</b> <span class="term" dir="ltr">(effectiveness)</span> — האם יש לה אותה השפעה כשמיישמים אותה בעולם האמיתי, הפחות-מבוקר.</p>
+<table>
+  <thead><tr><th>ניסוי (דוגמה מהפרק)</th><th>בעיית תוקף חיצוני</th><th>המשמעות הקלינית</th></tr></thead>
+  <tbody>
+    <tr><td>מחקר VA לבקע מפשעתי (לפרוסקופי מול פתוח)</td><td>גויסו חיילים משוחררים, מבוגרים יותר מהאוכלוסייה הכללית; תוצאות תלויות גם בניסיון המנתח (הבדל פי 2 בהישנות בין מנתחים עם מעל/מתחת ל-250 ניתוחים)</td><td>המסקנה "ניתוח פתוח עדיף" ישימה בעיקר לחולים מבוגרים ולמנתחים עם ניסיון מוגבל בלפרוסקופיה</td></tr>
+    <tr><td>מחקר ACAS (כריתת עורק צוואר אסימפטומטית)</td><td>נבדקים צעירים ובריאים משמעותית מהחולה הממוצעת שעוברת את הניתוח בפועל</td><td>שיעור התמותה הנמוך שנמדד לא בהכרח ישקף את הסיכון האמיתי באוכלוסייה הכללית</td></tr>
+    <tr><td>מחקר CREST (סטנטינג מול כריתת עורק צוואר)</td><td>אין הבדל בתוצאה המשולבת, אך יש הבדל בין תוצאות בודדות (סטנט → יותר שבץ; CEA → יותר אוטם שריר הלב)</td><td>הבחירה בין הטיפולים דורשת שיקול-דעת ערכי לגבי איזה סיבוך "גרוע פחות" לחולה הספציפי</td></tr>
+  </tbody>
+</table>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Hierarchy_of_Evidence.png?width=600" alt="פירמידת היררכיית הראיות במחקר רפואי">
+  <figcaption class="media-cap">היררכיית הראיות (hierarchy of evidence) — מטא-אנליזות וסקירות שיטתיות של RCT בבסיס הפירמידה מבחינת עוצמת הראיה, מקרה-ביקורת/סדרות מקרים/דעת מומחה בקצה החלש. מקור: <a href="https://commons.wikimedia.org/wiki/File:Hierarchy_of_Evidence.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">6</span> מערכות דירוג ראיות ויישום בפרקטיקה</h2>
+<p>מכיוון שאין "בדיקה אחת" שמסכמת את איכות הראיה, פותחו מערכות דירוג פורמליות שמאפשרות לתקן/דרג ראיות בצורה שיטתית ולא רק אינטואיטיבית.</p>
+<h3>USPMTF — 3 רמות</h3>
+<p>ה<span class="term" dir="ltr">U.S. Preventive Medicine Task Force</span> מדרגת ודאות ראיה ל<b>גבוהה, בינונית, נמוכה</b>. חולשה מוקדמת של המערכת (שתוקנה ב-2012): גרסה ראשונית פשוט זיהתה את <b>עיצוב</b> המחקר — כך ש-RCT כפול-סמיות עם 20,000 נבדקים היה מקבל את אותו ציון כמו RCT לא-מסונוור עם 50 נבדקים בלבד, למרות פער עצום באיכות בפועל.</p>
+<h3>GRADE — לוקח בחשבון גם איכות, לא רק עיצוב (טבלה 8.3)</h3>
+<table>
+  <thead><tr><th>איכות ראיה</th><th>משמעות</th><th>עוצמת המלצה</th></tr></thead>
+  <tbody>
+    <tr><td>גבוהה</td><td>ביטחון גבוה שהאפקט האמיתי קרוב להערכה; מחקר נוסף לא צפוי לשנות זאת</td><td>חזקה</td></tr>
+    <tr><td>בינונית</td><td>ביטחון בינוני; ייתכן שהאפקט האמיתי שונה משמעותית</td><td>מותנית</td></tr>
+    <tr><td>נמוכה</td><td>ביטחון מוגבל; האפקט האמיתי עשוי להיות שונה מהותית</td><td>מותנית</td></tr>
+    <tr><td>נמוכה מאוד</td><td>כמעט ואין ביטחון בהערכה</td><td>מותנית</td></tr>
+  </tbody>
+</table>
+<p><b>גורמים שמורידים דירוג</b>: מגבלות עיצוב/ביצוע (סיכון להטיה), חוסר מידע על תוצאות חשובות, "עקיפות" הראיה, חוסר דיוק/עקביות בין מחקרים, הטיית פרסום, ממצאים לא-ניתנים-להכללה. <b>גורמים שמעלים דירוג</b>: אפקט בעוצמה גדולה, קשר מנה-תגובה, עקביות ממצאים בין מחקרים מרובים, רנדומיזציה או תיקון תקף לגורמים מבלבלים.</p>
+
+<h3>יישום בפועל — מודל חמשת ה-A's</h3>
+<p>מסגרת מעשית ליישום ראיות בפרקטיקה יומיומית: <b>Ask</b> (לשאול שאלה קלינית ממוקדת) → <b>Acquire</b> (לאתר את הראיה הטובה ביותר הזמינה) → <b>Appraise</b> (להעריך אותה ביקורתית — כל מה שתואר בסעיף 5) → <b>Apply</b> (ליישם על המטופלת הספציפית) → <b>Assess</b> (להעריך את תהליכי הטיפול והתוצאות בפועל, ולחזור לשלב 1).</p>
+
+<h3>כלים נוספים לסינתזה של ראיות</h3>
+<p><b>מטא-אנליזה</b> <span class="term" dir="ltr">(meta-analysis)</span> — משלבת סטטיסטית תוצאות ממספר מחקרים על אותו נושא לאומדן מאוחד (pooled estimate) מדויק וחזק יותר; חולשה עיקרית: תלויה לגמרי באיכות המחקרים המקוריים ("garbage in, garbage out"), ורגישה ל<b>הטרוגניות</b> מוגזמת בין המחקרים ול<b>הטיית פרסום</b> (מחקרים עם תוצאה "משמעותית" נוטים להתפרסם יותר מאלה עם תוצאה שלילית). <b>סקירה שיטתית</b> <span class="term" dir="ltr">(systematic review)</span> — חיפוש שיטתי ומתועד של כל הספרות הרלוונטית (למשל Cochrane Library, MEDLINE, EMBASE) לפי קריטריונים מוגדרים מראש. <b>ניתוח עלות-תועלת</b> <span class="term" dir="ltr">(cost-effectiveness analysis)</span> — משווה עלות מול תועלת קלינית בין התערבויות; היחס נקרא <b>ICER</b> (יחס עלות-תועלת מצטברת); מדד התועלת הנפוץ הוא <span class="term" dir="ltr">QALY</span> (שנת חיים מתוקננת-איכות), וטיפול נחשב בדרך כלל "משתלם" אם עלותו נמוכה מ-100,000$ ל-QALY (לדוגמה: מעקף כלילי לעומת צנתור טיפולי חושב כ-30,000$ ל-QALY בלבד — כלומר משתלם). <b>מחקר איכותני</b> <span class="term" dir="ltr">(qualitative research)</span> — נתונים לא-מספריים (ראיונות, קבוצות מיקוד) לחקר עמדות/חוויות; שיטות: פנומנולוגיה, ניתוח תוכן, תיאוריה מעוגנת (grounded theory), אתנוגרפיה — לעיתים בשילוב עם מחקר כמותי ("מתודולוגיה מעורבת").</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Generic_forest_plot.png?width=550" alt="תרשים יער (forest plot) המציג תוצאות ממספר מחקרים ואומדן מאוחד">
+  <figcaption class="media-cap">תרשים יער (forest plot) — הדרך המקובלת להציג תוצאות של מטא-אנליזה: כל שורה מייצגת מחקר בודד (עם רווח בר-סמך משלו), והיהלום בתחתית מייצג את האומדן המאוחד. מקור: <a href="https://commons.wikimedia.org/wiki/File:Generic_forest_plot.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<p>בכירורגיה בפרט, חלק ניכר מהראיות הרטרוספקטיביות מגיע ממאגרי נתונים לאומיים גדולים — למשל <span class="term" dir="ltr">NSQIP</span> (National Surgical Quality Improvement Program), <span class="term" dir="ltr">SEER</span> (Surveillance, Epidemiology, and End Results), נתוני תביעות Medicare, ומאגרי איגודים מקצועיים (Society of Vascular Surgery VQI, Society of Thoracic Surgeons). מאגרים אלה מאפשרים מדגמים ענקיים בעלות נמוכה יחסית, אך יורשים את כל חולשות המחקר הרטרוספקטיבי (הטיית בחירה, confounding לא-נשלט).</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות מוכרים — FINER ו-PICOT</h3>
+  <p><span class="term" dir="ltr">FINER</span> (Feasible, Interesting, Novel, Ethical, Relevant) לבדיקת <b>איכות השאלה</b> לפני שמתחילים; <span class="term" dir="ltr">PICOT</span> (Population, Intervention, Comparator, Outcome, Time) לפירוק <b>מבנה השאלה</b> לרכיבים שאפשר להעריך אחד-אחד.</p>
+  <h3>סיפור דמיוני — "בלש שלוש חשודים"</h3>
+  <p>דמיינו בלשית שחוקרת "מי אשם" בהבדל שנצפה בין שתי קבוצות מטופלים. יש לה תמיד <b>שלושה חשודים</b> לחקור לפני שהיא סוגרת תיק: <b>מר מקריות</b> (Chance) — אולי זה סתם צירוף מקרים; <b>גברת הטיה</b> (Bias) — אולי מישהו בחר/מדד לא נכון; ו<b>ד"ר מבלבל</b> (Confounder) — אולי יש עד סמוי שמשפיע על שני הצדדים בו-זמנית. רק כשהיא מוציאה את כל השלושה מהחשד (למשל בעזרת רנדומיזציה, שמנטרלת את ד"ר מבלבל אוטומטית) היא יכולה להכריז: "ההתערבות אשמה!" (קשר סיבתי).</p>
+  <svg class="diagram" viewBox="0 0 500 230" xmlns="http://www.w3.org/2000/svg">
+    <title>מטאפורת שלושת החשודים - מקריות, הטיה, גורם מבלבל</title>
+    <circle cx="100" cy="70" r="45" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="100" y="65" font-size="12" text-anchor="middle" fill="#1f2937">מר</text>
+    <text x="100" y="82" font-size="12" text-anchor="middle" fill="#1f2937">מקריות</text>
+    <circle cx="250" cy="70" r="45" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+    <text x="250" y="65" font-size="12" text-anchor="middle" fill="#1f2937">גברת</text>
+    <text x="250" y="82" font-size="12" text-anchor="middle" fill="#1f2937">הטיה</text>
+    <circle cx="400" cy="70" r="45" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="400" y="65" font-size="12" text-anchor="middle" fill="#1f2937">ד"ר</text>
+    <text x="400" y="82" font-size="12" text-anchor="middle" fill="#1f2937">מבלבל</text>
+    <text x="250" y="145" font-size="12.5" text-anchor="middle" fill="#4b5563">שלושת החשודים שצריך "לזכות" לפני שמכריזים על קשר סיבתי</text>
+    <rect x="150" y="175" width="200" height="40" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="250" y="200" font-size="12.5" text-anchor="middle" fill="#047857" font-weight="700">רנדומיזציה = מנטרלת את ד"ר מבלבל</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:MEDRS_Pyramid_of_evidence_2.png" target="_blank">MEDRS Pyramid of evidence — Wikimedia Commons</a>
+    <div class="desc">גרסה נוספת של פירמידת היררכיית הראיות, לצורך השוואה.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Clinical_Reasoning:_Study_designs" target="_blank">Study designs — Osmosis</a>
+    <div class="desc">סקירה קצרה של סוגי עיצובי המחקר הקליני העיקריים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מנתחת כלי דם קוראת מחקר עוקבה רטרוספקטיבי חדש שמדווח כי שיטת ניתוח חדשה לתיקון מפרצת אבי העורקים הבטנית קשורה בשיעור תמותה נמוך משמעותית לעומת השיטה המסורתית (p=0.03). המחקר בוצע במרכז רפואי אקדמי יחיד, וכלל בעיקר חולים צעירים יחסית וללא מחלות רקע קשות. המנתחת שוקלת האם לאמץ את השיטה החדשה במחלקתה, שם רוב החולים מבוגרים יותר עם תחלואה נלווית משמעותית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי הדאגה המרכזית ביחס לתוקף הפנימי (internal validity) של המחקר הרטרוספקטיבי בווינייטה?</div>
+  <button class="opt" data-i="0">הערך-p אינו מובהק סטטיסטית</button>
+  <button class="opt" data-i="1">גודל המדגם גדול מדי</button>
+  <button class="opt" data-i="2">בהיעדר רנדומיזציה, ייתכן שגורם מבלבל (למשל בריאות בסיסית טובה יותר של החולים שנבחרו לשיטה החדשה) מסביר את ההבדל בתמותה, ולא השיטה עצמה</button>
+  <button class="opt" data-i="3">המחקר בוצע במרכז אקדמי יחיד ולכן אין לו כלל תוקף</button>
+  <div class="explain">נכון: מחקר עוקבה רטרוספקטיבי ללא רנדומיזציה חשוף ל-confounding — ייתכן שהחולים שנבחרו לשיטה החדשה היו פשוט בריאים יותר מלכתחילה (כמו בדוגמת ניתוח פתוח מול לפרוסקופי בסעיף 2), מה שיוצר "יתרון" מדומה. p=0.03 דווקא כן מובהק סטטיסטית (א' שגוי). גודל מדגם גדול הוא יתרון לא חיסרון (ב' שגוי). מרכז יחיד הוא בעיית תוקף חיצוני (generalizability), לא פסילה מוחלטת של המחקר (ד' שגוי מדי).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע דווקא רנדומיזציה (ולא רק "התאמה" סטטיסטית של גורמים ידועים) נחשבת הכלי החזק ביותר נגד confounding?</div>
+  <button class="opt" data-i="0">כי רנדומיזציה מבטלת אוטומטית גם הטיית מדידה וגם מקריות</button>
+  <button class="opt" data-i="1">כי רנדומיזציה מפזרת בסבירות שווה בין הקבוצות גם גורמים מבלבלים ידועים וגם גורמים מבלבלים שהחוקר כלל לא מודע אליהם, בעוד שרגרסיה/matching יכולים לתקן רק לגורמים ידועים ומדודים</button>
+  <button class="opt" data-i="2">כי היא מוזילה משמעותית את עלות המחקר</button>
+  <button class="opt" data-i="3">כי היא מקצרת את משך המעקב הנדרש אחר המטופלים</button>
+  <div class="explain">נכון: זהו בדיוק היתרון הייחודי של רנדומיזציה שמודגש בפרק — היא היחידה שמנטרלת גם confounders לא-ידועים. רגרסיה, matching, ו-propensity score כולם מוגבלים לגורמים שהחוקר חשב עליהם ומדד. תשובה א' מוגזמת - רנדומיזציה לא פותרת הטיית מדידה או מקריות. תשובות ג' ו-ד' הפוכות מהמציאות - RCT יקר וארוך יותר, לא פחות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מחקר קטן נכשל למצוא הבדל מובהק סטטיסטית בין שתי טכניקות ניתוח, אך לא בוצע חישוב עוצמה סטטיסטית (power calculation) מראש. מהי הפרשנות הזהירה והנכונה ביותר?</div>
+  <button class="opt" data-i="0">ייתכן שהמחקר לקה בשגיאת סוג II (חוסר עוצמה סטטיסטית לזהות הבדל אמיתי שקיים) - "היעדר ראיה להשפעה אינו בהכרח ראיה להיעדר השפעה"</button>
+  <button class="opt" data-i="1">אפשר להסיק בביטחון ששתי הטכניקות שוות ערך לחלוטין</button>
+  <button class="opt" data-i="2">התוצאה מוכיחה שגיאת סוג I (החוקרים "מצאו" הבדל מדומה)</button>
+  <button class="opt" data-i="3">אין שום דרך לפרש תוצאה כזו</button>
+  <div class="explain">נכון: ללא power calculation מראש וללא הבדל מובהק, יש חשד סביר לשגיאת סוג II - שהמדגם פשוט קטן מדי מכדי לזהות הבדל אמיתי שקיים. אי אפשר לתקן זאת בדיעבד, ולכן הפרק מדגיש את הכלל "היעדר ראיה להשפעה אינו בהכרח ראיה להיעדר השפעה". תשובה ב' שגויה - זו בדיוק המסקנה השגויה שיש להיזהר ממנה. תשובה ג' הפוכה - שגיאת סוג I היא "מציאת" הבדל מדומה, לא "פספוס" הבדל אמיתי. תשובה ד' שגויה - כן אפשר וצריך לפרש (post hoc power analysis יכול לעזור).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. חוקרים רוצים לבחון האם צנתור לב מפחית תמותה לאחר אוטם שריר הלב, אך חוששים מ-confounding (חולים חמורים יותר עשויים לקבל פחות צנתורים). הם משתמשים במרחק הגיאוגרפי של המטופל מבית חולים המבצע צנתורים כ"גורם שלישי" לחיזוי הסתברות קבלת הטיפול. כיצד נקראת שיטה זו?</div>
+  <button class="opt" data-i="0">ניתוח רגרסיה לוגיסטית סטנדרטי</button>
+  <button class="opt" data-i="1">ציון נטייה (propensity score)</button>
+  <button class="opt" data-i="2">התאמה (matching)</button>
+  <button class="opt" data-i="3">ניתוח משתנה אינסטרומנטלי (instrumental variable analysis) - המרחק הגיאוגרפי משמש כ"פרוקסי" שקשור לחשיפה (קבלת צנתור) אך לא משפיע ישירות על התמותה</button>
+  <div class="explain">נכון: זו בדיוק הדוגמה מהפרק - שימוש במרחק גיאוגרפי כמשתנה אינסטרומנטלי כדי "לפסאודו-רנדם" בין רמות טיפול שונות, מבלי להזדקק לרנדומיזציה אמיתית. רגרסיה לוגיסטית (א') ו-matching (ג') מתקנים ישירות לגורמים מבלבלים ידועים, לא באמצעות גורם שלישי חיצוני. ציון נטייה (ב') הוא סיכום של גורמים מבלבלים ידועים לצורך stratification/matching - שונה מהותית משימוש בגורם חיצוני בלתי-תלוי כמו מרחק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו ההבדל המרכזי בין "יעילות מוכחת" (efficacy) ל"יעילות בפועל" (effectiveness), וכיצד הוא בא לידי ביטוי במחקר ה-VA לבקע מפשעתי?</div>
+  <button class="opt" data-i="0">אין הבדל מהותי - שני המונחים זהים</button>
+  <button class="opt" data-i="1">Effectiveness נמדד רק במחקרי מעבדה, ו-efficacy רק במחקרים קליניים</button>
+  <button class="opt" data-i="2">Efficacy מתאר כמה טוב הטיפול עובד בתנאי מחקר מבוקרים; effectiveness מתאר האם אותה השפעה נשמרת ביישום בעולם האמיתי - במחקר ה-VA, התוצאות (עדיפות לניתוח פתוח) עשויות לשקף בעיקר את אוכלוסיית המחקר הספציפית (חיילים מבוגרים) ואת ניסיון המנתחים, ולא בהכרח להיות generalizable לאוכלוסייה כירורגית כללית וצעירה יותר</button>
+  <button class="opt" data-i="3">Efficacy רלוונטי רק למחקרי תרופות, לא לניתוחים</button>
+  <div class="explain">נכון: זו ההבחנה המדויקת מהפרק. תוקף חיצוני נמוך במחקר ה-VA (אוכלוסיית חיילים מבוגרים, תלות בניסיון המנתח - הבדל פי 2 בהישנות בין מנתחים מנוסים לפחות-מנוסים) פירושו שהמסקנה "ניתוח פתוח עדיף" לא בהכרח generalizable לכל אוכלוסיית המטופלים. שאר התשובות שגויות עובדתית - ההבחנה efficacy/effectiveness רלוונטית לכל סוגי ההתערבויות, כולל ניתוחיות, ולא תלויה בסוג מיקום המחקר בצורה הבינארית שתואר.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: מסגרת שיטתית להעריך אמינות ורלוונטיות של מחקר כירורגי לפני יישומו בפרקטיקה קלינית.</li>
+    <li><b>שלושת האיומים על תוקף פנימי</b>: מקריות (chance), הטיה (bias - בחירה/מדידה), גורם מבלבל (confounding). רנדומיזציה היא היחידה שמנטרלת גם confounders לא-ידועים.</li>
+    <li><b>היררכיית עיצוב המחקר</b>: RCT (הכי חזק לסיבתיות) &gt; עוקבה &gt; מקרה-ביקורת &gt; חתך &gt; סדרת מקרים (הכי חלש) — מטא-אנליזה/סקירה שיטתית של RCTs בראש הפירמידה.</li>
+    <li><b>הערכת שאלת המחקר</b>: FINER (איכות השאלה) ו-PICOT (מבנה השאלה).</li>
+    <li><b>מקריות</b>: שגיאת סוג I (α, "מצאתי" הבדל מדומה, p&lt;0.05) מול שגיאת סוג II (β, "פספסתי" הבדל אמיתי, בעיית עוצמה סטטיסטית).</li>
+    <li><b>מערכות דירוג</b>: USPMTF (3 רמות) ו-GRADE (4 רמות, מתחשב באיכות מעבר לעיצוב בלבד).</li>
+    <li><b>תוקף חיצוני</b>: efficacy (בתנאי מחקר) מול effectiveness (בעולם האמיתי) - חובה לבדוק האם אוכלוסיית/תנאי המחקר דומים למטופל שלפניי.</li>
+    <li><b>יישום מעשי</b>: מודל 5 ה-A's - Ask, Acquire, Appraise, Apply, Assess.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

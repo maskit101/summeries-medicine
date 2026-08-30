@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!-- מקור: ה-PDF שהועלה של Ch 9 (Safety in the Surgical Environment) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). פרק מערכתי/ניהולי (לא מחלה בודדת) - הסיכום התמקד במודל "גבינה שוויצרית" לגרימת תקלות, במבנים ארגוניים לבטיחות (PSO/MMI/QMMI), וברשימת התיוג הבטיחותית הכירורגית (WHO Surgical Safety Checklist) כליבת הפרק הכי נבחנת; תמונות (Wikimedia Commons) וסרטוני YouTube (TED - Atul Gawande, WHO) הושלמו מחיפוש אמיתי (WebSearch). -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>בטיחות בסביבה הכירורגית (Safety in the Surgical Environment)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>בטיחות בסביבה הכירורגית <span class="term" dir="ltr">(Safety in the Surgical Environment)</span></h1>
+<div class="subtitle">איך מערכות בריאות בונות תרבות בטיחות, מבנים ארגוניים ורשימות תיוג שמונעים טעויות קטלניות בניתוח. פרק 9 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>הניתוח נועד לשפר בריאות, אך הוא גם אחד המקומות המסוכנים ביותר במערכת האשפוז: הדוח הפורץ דרך <b>To Err Is Human</b> (המכון לרפואה, 1999) העריך כי בארה"ב <b>מיליון בני אדם</b> נפגעים ו-<b>98,000</b> מתים מדי שנה כתוצאה מטעויות רפואיות, וכאשר התמקדו במטופלים כירורגיים - <b>48%-66%</b> מכלל האירועים החריגים בבתי חולים לא-פסיכיאטריים היו קשורים לטיפול כירורגי. אירועים חריגים התרחשו ב-<b>3%</b> מהניתוחים, עם שיעור תמותה של <b>5.6%</b> מבין המקרים הללו (כלומר 12.2% מכלל מקרי המוות בבית החולים) - ו<b class="key">54% מהאירועים החריגים הכירורגיים הוגדרו כניתנים למניעה</b>. זו הנקודה המרכזית של הפרק כולו: רוב הנזק בניתוח אינו "גזירת גורל" אלא תוצאה של פערים במערכת שאפשר לזהות ולסגור מראש.</p>
+
+<h2><span class="num">2</span> המנגנון - למה טעויות קורות במערכת מורכבת</h2>
+<div class="mechanism">
+  <p class="chain">
+    כדי להבין למה מערכת בריאות "טובה" עדיין מייצרת טעויות חמורות, צריך לנטוש את התמונה של "טעות = רשלנות של איש צוות בודד". המודל המקובל להסבר תאונות במערכות מורכבות (תעופה, אנרגיה גרעינית, ורפואה) הוא <b>מודל הגבינה השוויצרית</b> <span class="term" dir="ltr">(Swiss cheese model, ג'יימס ריזון)</span>: כל שלב בתהליך הכירורגי (קבלה, הערכה טרום-ניתוחית, הרדמה, הניתוח עצמו, החלמה) מוגן ע"י "שכבת הגנה" - פרוטוקול, בדיקה כפולה, רשימת תיוג. אבל לכל שכבה כזו יש "חורים" - פערים אפשריים שנובעים משילוב של <b>תנאים סמויים</b> <span class="term" dir="ltr">(latent conditions)</span> כמו עומס עבודה, תקשורת לקויה בין מקצועות, עייפות, או תכנון גרוע של תהליך, יחד עם <b>כשל פעיל</b> <span class="term" dir="ltr">(active failure)</span> - הטעות הנקודתית של איש הצוות ברגע האמת. כשהחורים בכמה שכבות "מסתדרים בקו אחד" באותו רגע - הטעות עוברת דרך כל ההגנות ומגיעה בפועל לפגוע בחולה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">דוגמה קונקרטית מהפרק: ניתוח באתר שגוי (wrong-site surgery)</span>. הפרוטוקול האוניברסלי <span class="term" dir="ltr">(Universal Protocol)</span> של הוועדה המשותפת לאקרדיטציה <span class="term" dir="ltr">(The Joint Commission, TJC)</span> בנוי משלוש שכבות הגנה נפרדות: (1) <b>אימות טרום-ניתוחי</b> - בדיקת תיק רפואי, הסכמה חתומה, הערכת סיעוד והרדמה; (2) <b>סימון אתר הניתוח</b> על גוף המטופל; (3) <b>Time-Out</b> - אימות סופי מיד לפני החתך. אם שכבה אחת נכשלת בשקט (למשל: תיק רפואי לא עודכן) אבל שכבה אחרת תופסת את הטעות (למשל: הצוות עוצר ב-Time-Out ומזהה אי-התאמה), הטעות נבלמת. רק כאשר <b>כל שלוש</b> השכבות נכשלות בו-זמנית - האימות הרשלני, חוסר סימון, וTime-Out שבוצע "מהשפה ולחוץ" בלי תשומת לב אמיתית - מתרחש ניתוח באתר שגוי בפועל.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>למה תרבות "נטולת אשמה" קריטית למניעה?</b> אם צוות מפחד לדווח על תקלה כמעט-קרתה <span class="term" dir="ltr">(near miss)</span> מחשש לענישה, התנאים הסמויים שיצרו אותה לעולם לא מזוהים ולא מתוקנים - והם ימשיכו "לחכות" לרגע שבו יתלכדו עם כשל פעיל נוסף ויגרמו לנזק אמיתי. לכן ארגונים אפקטיביים בונים מערכת דיווח <b>חסויה ונטולת-אשמה</b> (למשל מערכת דיווח אינטרנטית חסויה), כדי שהחורים בגבינה יתגלו וייסגרו <b>לפני</b> שהם מסתדרים בקו אחד.
+  </p>
+</div>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Swiss_cheese_model_of_accident_causation.png?width=680" alt="מודל הגבינה השוויצרית לגרימת תאונות - שכבות הגנה עם חורים שמסתדרים בקו אחד">
+  <figcaption class="media-cap">מודל הגבינה השוויצרית (Reason, 2000): כל שכבה מייצגת הגנה (פרוטוקול/בדיקה) עם "חורים" משתנים. תאונה קורית רק כשהחורים בכל השכבות מסתדרים בקו אחד בו-זמנית. מקור: <a href="https://commons.wikimedia.org/wiki/File:Swiss_cheese_model_of_accident_causation.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הכשל בניתוח באתר שגוי - שלוש שכבות הגנה של הפרוטוקול האוניברסלי</title>
+  <text x="450" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">מתי ניתוח "באתר שגוי" קורה בפועל - כשל בכל שלוש שכבות ההגנה יחד</text>
+
+  <rect x="30" y="50" width="250" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="155" y="75" font-size="13" text-anchor="middle" fill="#1f2937">1. אימות טרום-ניתוחי</text>
+  <text x="155" y="95" font-size="11" text-anchor="middle" fill="#4b5563">תיק רפואי, הסכמה, הערכת צוות</text>
+  <text x="155" y="112" font-size="10.5" font-weight="700" text-anchor="middle" fill="#b91c1c">חור: תיק לא עודכן / הסכמה חסרה</text>
+
+  <polygon points="285,85 310,79 310,92" fill="#4b5563"/>
+
+  <rect x="315" y="50" width="250" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="440" y="75" font-size="13" text-anchor="middle" fill="#1f2937">2. סימון אתר הניתוח</text>
+  <text x="440" y="95" font-size="11" text-anchor="middle" fill="#4b5563">סימון פיזי על גוף המטופל</text>
+  <text x="440" y="112" font-size="10.5" font-weight="700" text-anchor="middle" fill="#b91c1c">חור: לא סומן / סימון לא ברור בצדדיות</text>
+
+  <polygon points="570,85 595,79 595,92" fill="#4b5563"/>
+
+  <rect x="600" y="50" width="270" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="735" y="75" font-size="13" text-anchor="middle" fill="#1f2937">3. Time-Out לפני החתך</text>
+  <text x="735" y="95" font-size="11" text-anchor="middle" fill="#4b5563">אימות סופי בקול רם ע"י כל הצוות</text>
+  <text x="735" y="112" font-size="10.5" font-weight="700" text-anchor="middle" fill="#b91c1c">חור: בוצע "מהשפה ולחוץ", בלי עצירה אמיתית</text>
+
+  <line x1="20" y1="150" x2="880" y2="150" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="450" y="175" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">אם רק שכבה אחת נכשלת - שכבה אחרת עדיין תופסת את הטעות (תוצאה: "כמעט-קרה", בלי נזק)</text>
+  <text x="450" y="200" font-size="13" text-anchor="middle" fill="#b91c1c" font-weight="700">אם שלוש השכבות נכשלות באותו רגע - הטעות "עוברת" את כל ההגנות</text>
+
+  <rect x="330" y="215" width="240" height="35" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="450" y="238" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">ניתוח באתר/מטופל/הליך שגוי</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/L3QkaS249Bc" title="Atul Gawande: How do we heal medicine? - TED" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">ד"ר אטול גאוואנדה מסביר איך רשימת תיוג פשוטה, שאולה מתעשיית התעופה, הפחיתה תמותה כירורגית ב-47% במחקר רב-לאומי של ה-WHO. מקור: <a href="https://www.youtube.com/watch?v=L3QkaS249Bc" target="_blank">TED / YouTube</a></p>
+
+<h2><span class="num">3</span> מבנים ארגוניים לבטיחות - מי אחראי על מה בפועל</h2>
+<p>מודל הגבינה השוויצרית מסביר <b>למה</b> טעויות קורות; אבל כדי לסגור את החורים באופן שיטתי, בית חולים צריך מבנה ארגוני קבוע שאוסף דיווחים, מנתח אותם, ומתרגם אותם לתיקון תהליכים. בבית החולים האוניברסיטאי Vanderbilt (הדוגמה המרכזית בפרק) המבנה בנוי כך:</p>
+<ul>
+  <li><b>מנהיגות משולשת</b> <span class="term" dir="ltr">(tripartite leadership)</span> - יו"ר המחלקה הכירורגית, יו"ר ההרדמה, ואחות ראשית לשירותים פרי-ניתוחיים - יוצרים שקיפות והכרעה הוגנת על משאבים מוגבלים (זמן חדר ניתוח, מיטות).</li>
+  <li><b>קצין בטיחות מחלקתי</b> <span class="term" dir="ltr">(Patient Safety Officer, PSO)</span> - נקודת הכניסה המרכזית לכל דיווח: מערכת דיווח אינטרנטית חסויה, דיווח ישיר בעל-פה/מייל, וסמנים ביוכימיים/סריקת תיקים אוטומטית.</li>
+  <li><b>ועדת תחלואה-תמותה-שיפור</b> <span class="term" dir="ltr">(Morbidity, Mortality, Improvement, MMI)</span> - כל מחלקה כירורגית מקיימת ישיבה שבועית-דו-שבועית; מקרים שמעידים על בעיה מערכתית (לא רק טעות אישית) מועברים לוועדה רב-תחומית.</li>
+  <li><b>ועדת QMMI</b> <span class="term" dir="ltr">(Quality, Morbidity, Mortality Improvement)</span> - מטפלת בבעיות <b>מערכתיות</b> (פרוטוקולים, ציוד, תהליכים) בשיתוף כירורגיה והרדמה.</li>
+  <li><b>ועדת ביקורת עמיתים</b> <span class="term" dir="ltr">(Peer Review Committee)</span> - מטפלת בבעיות ברמת <b>הביצוע האישי</b> (ידע, שיקול דעת) של קלינאי ספציפי; עבודתה חסויה ומוגנת מחשיפה משפטית כדי לעודד דיווח כן.</li>
+</ul>
+<div class="key-box">ההבחנה שחשוב לזכור: כל דיווח על אירוע בטיחות מנותב לפי <b>סוג הבעיה</b> - בעיית <b>מערכת</b> (פרוטוקול/ציוד/תהליך) → QMMI; בעיית <b>ביצוע אישי</b> (ידע/שיקול דעת של קלינאי) → Peer Review. שני המסלולים נפרדים בכוונה כדי לא "להעניש" בעיות מערכתיות כאילו הן כשל אישי, ולהפך.</div>
+<p>מעבר לבטיחות המטופל, פותח גם <b>מסלול מקביל לצוות</b> - מערכת דיווח עמיתים <span class="term" dir="ltr">(Co-Worker Reporting System)</span> לזיהוי התנהגות לא-מקצועית חוזרת. מחקרים שהתפרסמו מהמוסד (Cooper וחב', JAMA Surg 2019) מצאו כי מטופלים שמנותחים ע"י מנתחים עם דיווחי עמיתים רבים על התנהגות לא-מקצועית ב-36 החודשים שקדמו לניתוח, נמצאים ב<b>סיכון גבוה יותר לסיבוכים כירורגיים ורפואיים</b> - כלומר, אקלים צוות רעיל הוא בעצמו גורם סיכון קליני מדיד, לא רק "בעיה של יחסי אנוש".</p>
+
+<h2><span class="num">4</span> איך זה נראה במספרים - היקף הבעיה</h2>
+<p>המקור האמין ביותר למדידת בטיחות כירורגית בארה"ב הוא <span class="term" dir="ltr">National Surgical Quality Improvement Program (NSQIP)</span> - מאגר נתונים רב-מוסדי שאוסף תוצאות מנותחות ע"י צוות סיעודי ייעודי. מנתוני NSQIP 2012-2013 (Freundlich וחב') נמצאו <b>9255 מקרי מוות מתוך 1.2 מיליון מטופלים תוך 30 יום (0.77%)</b>, כאשר הגורמים העיקריים היו <b>דימום, כשל נשימתי, הלם ספטי, וכשל כלייתי</b>. באמצעות טבלת תוחלת חיים של ה-CDC, המחקר גם חישב "שנות חיים אבודות" - וכאן דווקא <b>אינטובציה בלתי מתוכננת, דימום, והלם ספטי</b> אחראים לכי הגדול ביותר של שנות חיים אבודות (לא בהכרח הסיבוכים "השכיחים ביותר" הם גם "החמורים ביותר").</p>
+<p>בהיקף עולמי, ה<span class="term" dir="ltr">African Surgical Outcomes Study</span> (2018, Biccard וחב') על 247 בתי חולים ב-25 מדינות אפריקאיות מצא תמותה של 7 ימים בשיעור <b>2.1%</b> (פי כמה מהמדווח באירופה/צפון אמריקה) - כאשר 57% מהמטופלים עברו ניתוח חירום ו-11% נשאו HIV; זיהום היה הסיבוך השכיח ביותר (10.2%), ו-9.7% מהמטופלים שפיתחו זיהום לאחר הניתוח מתו. לעומת זאת, מחקר קליני מבוקר יותר בבית חולים כפרי בקניה מדד תמותה נמוכה משמעותית (1.5%) - הבדל שממחיש עד כמה <b>תשתית, עומס חירום, ותחלואה נלווית</b> (ולא רק "איכות הרפואה") קובעים את התוצאה הכירורגית באוכלוסיות שונות.</p>
+<p><span class="key">נקודה חשובה: מיומנות המנתח היא בעצמה משתנה מדיד</span> - מחקר על 20 מנתחים בריאטריים (Birkmeyer וחב', Fig 9.1 בפרק) מצא קורלציה חזקה בין <b>דירוג עמיתים לכישורים טכניים</b> (1-5, לפי סרטוני ניתוח "עיוורים") לבין שיעור סיבוכים מתוקנן-סיכון (p&lt;0.001) - כלומר חלק מהסיכון הכירורגי אינו תלוי במחלה או במערכת אלא בטכניקה האישית של המנתחת, וגם זה ניתן למדידה ולשיפור.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Surgeons_in_the_operating_room.jpg?width=680" alt="צוות מנתחים בחדר ניתוח">
+  <figcaption class="media-cap">הסביבה שבה כל המערכות שתוארו למעלה נדרשות לפעול בזמן אמת - צוות רב-מקצועי (מנתח, מרדים, סיעוד) תחת לחץ זמן ומורכבות גבוהה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Surgeons_in_the_operating_room.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">5</span> האם התערבויות בטיחות באמת עובדות? - הראיות מהשטח</h2>
+<p>בניגוד לאבחנה של מחלה בודדת, כאן "לזהות את הבעיה" אומר לבדוק בביקורתיות האם התערבויות בטיחות (בעיקר רשימות תיוג) באמת משפרות תוצאות - כי לא כל המחקרים הראו תוצאה זהה:</p>
+<table>
+  <thead><tr><th>מחקר</th><th>עיצוב</th><th>תוצאה</th><th>הסתייגות חשובה</th></tr></thead>
+  <tbody>
+    <tr><td><b>Haynes וחב' 2009</b> (8 בתי חולים, &gt;3700 מטופלים, גלובלי)</td><td>לפני/אחרי, רב-מרכזי</td><td>סיבוכים: 11%→7%; תמותה לאחר ניתוח: 1.5%→0.8%</td><td>המחקר שיצר את הבסיס לאימוץ העולמי של רשימת ה-WHO</td></tr>
+    <tr><td><b>de Vries וחב' 2010</b> (הולנד, 6 מול 5 בתי חולים ביקורת)</td><td>לפני/אחרי עם קבוצת ביקורת</td><td>סיבוכים: 27.3→16.7 ל-100; תמותה: 1.5%→0.8%; בקבוצת הביקורת - ללא שינוי</td><td>קבוצת הביקורת חיזקה שהשיפור לא נבע רק ממגמת זמן כללית</td></tr>
+    <tr><td><b>Neily וחב' 2010</b> (74 בתי חולים VA - אימון צוות)</td><td>לפני/אחרי עם קבוצת השוואה</td><td>שיפור 18% בתמותה מתוקננת-סיכון, מול ירידה של 7% בלבד ב-34 מוסדות ללא אימון</td><td>השיפור החל רק ברבעון השני אחרי האימון - "לוקח זמן" עד שהתרבות משתנה בפועל</td></tr>
+    <tr><td><b>Urbach וחב' 2014</b> (אונטריו, קנדה, 101 בתי חולים)</td><td>לפני/אחרי, מנהלי בלבד</td><td>תמותה: 0.71%→0.65% - <b>לא מובהק סטטיסטית</b>; ללא שינוי מובהק בסיבוכים</td><td class="key">מגבלות קריטיות: חלון מדידה קצר (3 חודשים בלבד) שלא הספיק לאימוץ מלא, ואוכלוסייה בעלת חומרה נמוכה (60.8% ניתוחי יום, 20% עיניים, 28.7% אורתופדיה)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">המסקנה הזהירה מהשוואת המחקרים: רשימת תיוג <b>לא "קסם"</b> שעובד אוטומטית - האפקטיביות תלויה בעומק האימוץ (לא רק "לסמן וי" אלא עצירה אמיתית של הצוות), במשך הזמן שניתן לתרבות להשתנות, ובחומרת האוכלוסייה הנחקרת. מחקר שלילי (כמו Urbach) לא בהכרח סותר את התועלת - הוא עשוי פשוט לשקף יישום חלקי או חלון מדידה קצר מדי.</div>
+
+<p><b>מדידת "ניתוח באתר שגוי" בפועל</b>: הערכות בספרות נעות בין <span class="term" dir="ltr">1:112,994</span> ל-<span class="term" dir="ltr">1:5,000</span> ניתוחים. ב-Vanderbilt, לאחר הטמעת <b>Time-Out אלקטרוני</b> (מסך גדול בחדר הניתוח שמציג ברצף את שאלות ה-Time-Out לכל הצוות - ראו סרטון בסעיף 6) על <b>243,939 ניתוחים</b> בין 2010-2015, <b>לא זוהה אף ניתוח באתר שגוי אחד</b> - לעומת 2 מקרים ב-253,838 ניתוחים בשש השנים הקודמות. ניתוח בייסיאני של הנתונים מצא הסתברות של 84% ששיעור הטעויות אכן ירד לאחר ההטמעה.</p>
+
+<h2><span class="num">6</span> ההתערבות - רשימת התיוג הבטיחותית הכירורגית</h2>
+<p>הכלי המרכזי ביותר בפרק הוא <b>רשימת התיוג הבטיחותית הכירורגית של ה-WHO</b> <span class="term" dir="ltr">(WHO Surgical Safety Checklist)</span>, שמיישמת בפועל את <b>הפרוטוקול האוניברסלי</b> של TJC למניעת ניתוח באתר/מטופל/הליך שגוי. הרשימה בנויה משלושה שלבים קבועים - כל שלב נועד "לתפוס" קטגוריה אחרת של חורים אפשריים במודל הגבינה השוויצרית:</p>
+<table>
+  <thead><tr><th>שלב</th><th>מתי</th><th>מה בודקים (עיקרי)</th></tr></thead>
+  <tbody>
+    <tr><td><b>Sign In</b></td><td>לפני השראת הרדמה</td><td>זהות/אתר/הליך/הסכמה מאומתים; סימון אתר בוצע; פולס-אוקסימטר פועל; אלרגיות ידועות; סיכון לשאיפת קיבה והציוד המתאים זמין; אם צפוי איבוד דם ≥500 מ"ל (7 מ"ל/ק"ג בילדים) - גישה ורידית ונוזלים מוכנים</td></tr>
+    <tr><td><b>Time-Out</b></td><td>ממש לפני החתך בעור</td><td>הצגת כל חברי הצוות בשם ותפקיד; אימות קולי של זהות/אתר/הליך; סקירת שלבים קריטיים וזמן ניתוח צפוי (מנתח), דאגות ספציפיות למטופל (הרדמה), סטריליות וזמינות ציוד (סיעוד); אימות מתן אנטיביוטיקה מונעת ≤60 דקות לפני החתך; זמינות הדמיה נדרשת בחדר</td></tr>
+    <tr><td><b>Sign Out</b></td><td>לפני שהמטופל עוזב את חדר הניתוח</td><td>שם ההליך שתועד; ספירת מכשירים/גזה/מחטים הושלמה; תיוג נכון של דגימה פתולוגית; בעיות ציוד; סקירת דגשי החלמה והמשך טיפול</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/CIFhLUiT8H0" title="WHO Safe Surgery Saves Lives Checklist - demonstration" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה מצולמת של השימוש בפועל ברשימת התיוג הבטיחותית של ה-WHO במהלך ניתוח (תיקון בקע). מקור: <a href="https://www.youtube.com/watch?v=CIFhLUiT8H0" target="_blank">YouTube</a></p>
+
+<div class="surgery">
+  <h4>איך Time-Out "טוב" נראה בפועל (לא רק פורמלי)</h4>
+  <p>ה-Time-Out חייב להיות <b>אחיד ועקבי בכל אזורי הפרוצדורות בבית החולים</b>, ולהתבצע מיד לפני החתך. הוא נפתח ע"י חבר צוות מיועד, וכולל <b>השהיה אמיתית של כל פעילות אחרת</b> - כדי שתשומת הלב של כולם תהיה ממוקדת באימות בלבד. כל חבר צוות חדש חייב להיות מוצג. בסוף ה-Time-Out יש <b>הזמנה פתוחה</b> לכל אחד מהצוות "לדבר" בכל שלב בניתוח אם הוא מזהה סיכון - זהו בדיוק העיקרון שאומץ מתעשיית התעופה תחת השם <span class="term" dir="ltr">Crew Resource Management</span>: היררכיה לא אמורה למנוע מאף אחד מהצוות (כולל הזוטרים ביותר) להתריע.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>המחקר מדגיש שרשימת תיוג היא <b>לא חסינה</b> אם היא מבוצעת "מהשפה ולחוץ" - "מבקרי סתר" (secret shoppers) שהוערכה איתם ההקפדה על ה-Time-Out ב-Vanderbilt מצאו שהביצוע יעיל אך <b>לא תמיד מושלם</b>. גם לאחר יישום Time-Out אלקטרוני ואפס מקרי "ניתוח שגוי" ב-5 שנים, זוהו מאז 2015 <b>שני מקרים נוספים</b> בנסיבות ייחודיות שרשימת תיוג רגילה לא הייתה תופסת - תזכורת שאין "פתרון קסם" יחיד, אלא שכבות הגנה משלימות.</p>
+  <h4>מעבר לרשימת התיוג - ניטור תהליכים אלקטרוני</h4>
+  <p>מערכות רשומה רפואית אלקטרונית <span class="term" dir="ltr">(EMR)</span> מאפשרות "רשת ביטחון" נוספת: ב-Vanderbilt, מטופלים העונים לקריטריוני סיכון לדום נשימה בשינה מפעילים אוטומטית הפניה להערכת נשימה לאחר הניתוח; מטופלים סוכרתיים מנוטרים אוטומטית לבדיקות סוכר סדירות ומקבלים תזכורת אם הפרוטוקול לא בוצע - התערבות שהצטרפה לירידה בזיהומי פצע ניתוחי בקרב סוכרתיים. בדארטמות', חיבור פשוט של פולס-אוקסימטר שמעביר התראות ריווי חמצן ישירות לתחנת האחות (במקום ניטור ידני בלבד) הפחית משמעותית העברות דחופות לטיפול נמרץ.</p>
+</div>
+
+<p>לצד רשימת התיוג, הפרק מתאר גם <span class="term" dir="ltr">ERAS (Enhanced Recovery After Surgery)</span> - צרור פרוטוקולים מבוססי-ראיות (שליטה בכאב רב-מודלית ללא אופיואידים בלבד, מניעת בחילה, שמירה על נורמותרמיה &gt;36°C, הימנעות מגילוח, שליטה בגלוקוז &lt;180 מ"ג/ד"ל, מתן נוזלים מכוון-מטרה) שתוצאתם המשולבת היא <b>פחות סיבוכים וקיצור אשפוז</b> - כלומר עוד דרך "שיטתית" (ולא תלוית-זיכרון אישי) לשפר בטיחות סביב הניתוח.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/IdgXe1qva5Y" title="WHO Surgical Safety Checklist Training" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הדרכה מעשי כיצד לבצע נכון את שלושת שלבי רשימת התיוג (Sign In / Time-Out / Sign Out) בבית חולים. מקור: <a href="https://www.youtube.com/watch?v=IdgXe1qva5Y" target="_blank">YouTube</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - שלבי הרשימה עצמה</h3>
+  <p>אין צורך "להמציא" ראשי תיבות - שמות שלושת השלבים <span class="term" dir="ltr">Sign In → Time-Out → Sign Out</span> הם עצמם המבנה לזכירה: <b>לפני ההרדמה (Sign In)</b>, <b>לפני החתך (Time-Out)</b>, <b>לפני היציאה מהחדר (Sign Out)</b> - שלוש נקודות עצירה קבועות בציר הזמן של הניתוח, כל אחת "תופסת" סוג אחר של טעות אפשרית (זהות/הכנה ← תקשורת צוות/אימות סופי ← ספירה/תיעוד).</p>
+  <h3>סיפור דמיוני - "גבינה עם שלושה חורים שלא מסתדרים"</h3>
+  <p>דמיינו פרוסות גבינה שוויצרית מונחות זו מול זו, וחץ "טעות" שמנסה לעבור דרכן. כל פרוסה מסתובבת קצת בכל ניתוח - לפעמים החור בפרוסה הראשונה (אימות טרום-ניתוחי) גדול, לפעמים בשנייה (סימון). אבל כל עוד <b>לפחות פרוסה אחת</b> חוסמת את הדרך - ה"טעות" נעצרת ולא מגיעה למטופל. ה-Time-Out הוא הפרוסה ה<b>אחרונה</b> לפני שהחץ מגיע - ולכן היא הכי "יקרה" מבחינת מניעת נזק, וגם הכי מפתה "לדלג עליה מהר" כשלוחצים בזמן, בדיוק הרגע שהופך אותה לחור גדול.</p>
+  <svg class="diagram" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+    <title>מטאפורת פרוסות הגבינה - חורים לא מסתדרים = הטעות נעצרת</title>
+    <rect x="40" y="40" width="70" height="140" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="75" cy="80" r="12" fill="#fff"/>
+    <circle cx="75" cy="140" r="9" fill="#fff"/>
+    <text x="75" y="200" font-size="11" text-anchor="middle" fill="#1f2937">Sign In</text>
+
+    <rect x="150" y="40" width="70" height="140" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+    <circle cx="185" cy="110" r="13" fill="#fff"/>
+    <circle cx="185" cy="60" r="8" fill="#fff"/>
+    <text x="185" y="200" font-size="11" text-anchor="middle" fill="#1f2937">סימון אתר</text>
+
+    <rect x="260" y="40" width="70" height="140" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <circle cx="295" cy="150" r="11" fill="#fff"/>
+    <circle cx="295" cy="70" r="7" fill="#fff"/>
+    <text x="295" y="200" font-size="11" text-anchor="middle" fill="#1f2937">Time-Out</text>
+
+    <line x1="15" y1="110" x2="345" y2="110" stroke="#b91c1c" stroke-width="3" stroke-dasharray="8,5"/>
+    <polygon points="345,110 330,102 330,118" fill="#b91c1c"/>
+    <text x="180" y="98" font-size="11" text-anchor="middle" fill="#b91c1c" font-weight="700">חץ "טעות" - נבלם כי לא כל החורים מסתדרים באותו קו</text>
+
+    <rect x="380" y="80" width="120" height="60" rx="8" fill="#f3f4f6" stroke="#4b5563"/>
+    <text x="440" y="105" font-size="11.5" text-anchor="middle" fill="#1f2937" font-weight="700">מטופל</text>
+    <text x="440" y="123" font-size="10.5" text-anchor="middle" fill="#047857" font-weight="700">מוגן</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.hqsc.govt.nz/resources/resource-library/video-surgical-safety-checklist-full-length-10min-58sec/" target="_blank">Surgical Safety Checklist - full-length demonstration (Health Quality & Safety Commission, ניו זילנד)</a>
+    <div class="desc">סרטון מלא (כ-11 דקות) שמדגים את שלושת שלבי רשימת התיוג ברצף אחד, כולל דיאלוג מלא בין חברי הצוות.</div>
+  </li>
+  <li>
+    <a href="https://www.ariadnelabs.org/safe-surgery-safe-systems/surgical-safety/who-surgical-safety-checklist/" target="_blank">WHO Surgical Safety Checklist - Ariadne Labs</a>
+    <div class="desc">דף המשאב הרשמי של המרכז שפיתח את הרשימה בשיתוף ה-WHO, כולל קבצי PDF להורדה והנחיות יישום.</div>
+  </li>
+  <li>
+    <a href="https://www.nejm.org/doi/full/10.1056/NEJMsa0810119" target="_blank">Haynes AB et al. A Surgical Safety Checklist to Reduce Morbidity and Mortality in a Global Population. NEJM 2009</a>
+    <div class="desc">המאמר המקורי שביסס את היעילות של רשימת התיוג במחקר על 8 בתי חולים ב-8 ערים ברחבי העולם.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 58 מגיע לניתוח אלקטיבי לתיקון בקע מפשעתי ימני. הצוות מתחיל את ה-Time-Out לפני החתך: המנתחת עסוקה בשיחה עם הרופא הכלכל שנכנס לחדר, האחות המחזרת מקריאה את השאלות מהר, ואף אחד לא באמת עוצר לבדוק את סימון האתר על גוף המטופל. מרדים חדש בצוות, שהצטרף רק באותו בוקר, לא מוצג בשמו. הצוות ממשיך לניתוח. רק לאחר החתך מבחין הסייען הכירורגי שהסימון על גוף המטופל מצביע דווקא על <b>הצד השמאלי</b>. מתברר שהתיק הרפואי תואם לצד ימין, אך טופס ההסכמה שנחתם יום קודם התייחס בטעות לבקע השמאלי הישן של המטופל (שכבר תוקן לפני שנתיים).</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. לפי מודל הגבינה השוויצרית, מה בדיוק השתבש במקרה זה?</div>
+  <button class="opt" data-i="0">שום דבר לא באמת השתבש - זו טעות מקרית בלתי נמנעת</button>
+  <button class="opt" data-i="1">כשל בו-זמני בכמה שכבות הגנה: אימות טרום-ניתוחי לקוי (טופס הסכמה לא עודכן), וה-Time-Out עצמו בוצע באופן שטחי ולא באמת "עצר" את הצוות לבדוק את הסימון - שתי שכבות שהיו אמורות לתפוס זו את זו נכשלו יחד</button>
+  <button class="opt" data-i="2">הבעיה היחידה היא שהמרדים החדש לא הוצג בשמו</button>
+  <button class="opt" data-i="3">הבעיה היא שהמטופל עבר בעבר ניתוח בקע בצד השני</button>
+  <div class="explain">נכון: זהו בדיוק העיקרון המרכזי של מודל הגבינה השוויצרית - טעות בודדת (טופס הסכמה שגוי) כמעט תמיד נתפסת ע"י שכבת הגנה נוספת (Time-Out קפדני), אך כאן שתי השכבות נכשלו בו-זמנית (הטופס לא עודכן, וה-Time-Out בוצע "מהשפה ולחוץ" בלי לעצור באמת ולבדוק את הסימון על הגוף). תשובה א' שגויה - זו לא "מזל רע" אלא כשל מערכתי הניתן לזיהוי. תשובה ג' חלקית בלבד - אי-הצגת המרדים היא סימן נוסף לביצוע רשלני של ה-Time-Out, לא הגורם הבלעדי. תשובה ד' שגויה - ההיסטוריה הכירורגית הקודמת היא רקע, לא הגורם לטעות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע דיווח "נטול-אשמה" (blame-free) על אירועים כמעט-קרו (near miss) קריטי למניעת אירועים עתידיים כמו זה שתואר בווינייטה?</div>
+  <button class="opt" data-i="0">כי החוק מחייב זאת ללא קשר לתועלת קלינית</button>
+  <button class="opt" data-i="1">כי דיווח נטול-אשמה מבטל לחלוטין את הצורך ברשימות תיוג</button>
+  <button class="opt" data-i="2">כי אם צוות חושש מענישה, תנאים סמויים (כמו נוהג של Time-Out שטחי) לעולם לא מדווחים ולא מתוקנים - והם ימשיכו "לחכות" לרגע שבו יתלכדו עם כשל נוסף ויגרמו לנזק אמיתי במקום "כמעט-קרה" בלבד</button>
+  <button class="opt" data-i="3">כי דיווח נטול-אשמה נדרש רק לבעיות ביצוע אישיות, לא לבעיות מערכת</button>
+  <div class="explain">נכון: זו בדיוק הלוגיקה שהפרק מדגיש - "כמעט-קרה" הוא הזדמנות לזהות ולסגור חור בגבינה לפני שהוא מסתדר בקו עם חורים אחרים ויוצר נזק אמיתי. תשובה א' שגויה - הרציונל הוא קליני-בטיחותי, לא רק רגולטורי. תשובה ב' שגויה ומוגזמת - דיווח משלים רשימות תיוג, לא מחליף אותן. תשובה ד' הפוכה - להיפך, בעיות מערכת (לא אישיות) הן בדיוק מה שהמסלול הנטול-אשמה (QMMI) נועד לטפל בו.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מחקר של Urbach וחב' (אונטריו, 2014) לא מצא הבדל מובהק סטטיסטית בתמותה לאחר הטמעת רשימת תיוג כירורגית, בניגוד למחקרי Haynes ו-de Vries. מה הפרשנות הזהירה והנכונה ביותר?</div>
+  <button class="opt" data-i="0">התוצאה השלילית עשויה לנבוע ממגבלות מתודולוגיות - חלון מדידה קצר מדי (3 חודשים בלבד, שלא הספיק לאימוץ מלא) ואוכלוסיית מחקר בעלת חומרה נמוכה יחסית (רוב ניתוחי יום/עיניים/אורתופדיה) - ולא בהכרח מוכיחה שרשימות תיוג חסרות ערך</button>
+  <button class="opt" data-i="1">התוצאה מוכיחה חד-משמעית שרשימות תיוג אינן יעילות בפועל</button>
+  <button class="opt" data-i="2">התוצאה סותרת לחלוטין את מחקרי Haynes ו-de Vries ולכן יש להתעלם מכולם</button>
+  <button class="opt" data-i="3">ההבדל בין המחקרים נובע רק מכך שהמחקר הקנדי היה גדול מדי מבחינת מספר בתי החולים</button>
+  <div class="explain">נכון: הפרק מדגיש בפירוש את מגבלות מחקר Urbach - חלון זמן קצר (3 חודשים לפני/אחרי) שאינו מספיק להטמעה תרבותית אמיתית, ואוכלוסייה בעלת חומרה נמוכה (60.8% ניתוחי יום) שממילא נמצאת בסיכון בסיס נמוך לסיבוכים - כך שקשה "לראות" שיפור סטטיסטי גם אם קיים. תשובה ב' מוגזמת ושגויה - מחקר שלילי בודד לא "מוכיח" חוסר יעילות, בפרט עם מגבלות כאלה. תשובה ג' שגויה - אין צורך "להתעלם" ממחקרים; יש לשקול את כולם יחד עם מגבלותיהם. תשובה ד' שגויה עובדתית - גודל המדגם (101 בתי חולים, מעל 100,000 פרוצדורות) הוא יתרון סטטיסטי, לא בעיה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. באיזה שלב ברשימת התיוג הבטיחותית של ה-WHO מאומתת בקול רם זהות המטופל, אתר הניתוח וההליך - ממש לפני החתך בעור?</div>
+  <button class="opt" data-i="0">Sign In - לפני השראת ההרדמה</button>
+  <button class="opt" data-i="1">Sign Out - לפני היציאה מחדר הניתוח</button>
+  <button class="opt" data-i="2">בביקור המרפאה הטרום-ניתוחי, שבועות לפני הניתוח</button>
+  <button class="opt" data-i="3">Time-Out - השלב שמתבצע מיד לפני החתך בעור, בו כל הצוות (לא רק אחות ומרדים) עוצר ומאמת בקול רם זהות/אתר/הליך, לצד סקירת שלבים קריטיים וזמינות אנטיביוטיקה מונעת</button>
+  <div class="explain">נכון: Time-Out הוא בהגדרה השלב שמתבצע ממש לפני החתך ומערב את כל חברי הצוות (לא רק שניים כמו ב-Sign In). Sign In (א') מתבצע מוקדם יותר - לפני ההרדמה, ומערב בעיקר אחות ומרדים. Sign Out (ב') מתבצע בסוף הניתוח ומתמקד בספירת מכשירים ותיעוד, לא באימות אתר. ביקור מרפאה טרום-ניתוחי (ג') הוא חלק מ"אימות טרום-ניתוחי" הכללי, לא חלק פורמלי מרשימת התיוג בחדר הניתוח עצמו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע נחשב מאגר הנתונים NSQIP למקור אמין במיוחד להערכת תמותה ותחלואה כירורגית בהשוואה לנתונים מנהליים (administrative/billing data)?</div>
+  <button class="opt" data-i="0">כי הוא מסתמך אך ורק על דיווח עצמי של המנתחים בלי כל בקרת איכות</button>
+  <button class="opt" data-i="1">כי הנתונים נאספים פרוספקטיבית ע"י צוות סיעודי ייעודי ומאומן, עם תוכנית הצלבת נתונים (cross-validation) שמבטיחה עקביות בין מרכזים - בניגוד לנתוני חיוב מנהליים שנועדו במקור למטרות תשלום ולא למדידת איכות קלינית</button>
+  <button class="opt" data-i="2">כי הוא כולל את כל מקרי הטראומה והחירום, מה שמבטיח כיסוי מלא של כל האוכלוסייה</button>
+  <button class="opt" data-i="3">כי הוא היחיד מבין השניים שמפרסם נתונים בציבור</button>
+  <div class="explain">נכון: היתרון המרכזי של NSQIP המודגש בפרק הוא איסוף פרוספקטיבי ע"י אנשי צוות ייעודיים עם תוכנית הצלבת נתונים - זה מה שהופך אותו לאמין יותר מנתוני חיוב מנהליים, שכפי שמודגם בדוגמת ה-CLABSI (ירידה חדה ב"קידוד" מיד לאחר הפסקת תגמול, בלי שינוי מקביל בנתוני תוצאות אמיתיים) עלולים לשקף שינויי דיווח ולא שינוי קליני אמיתי. תשובה א' שגויה - יש בקרת איכות משמעותית (הצלבת נתונים). תשובה ג' שגויה עובדתית - טראומה וכ-10% ממקרי החירום דווקא <b>אינם</b> כלולים ב-NSQIP. תשובה ד' לא הנקודה המרכזית - גם Hospital Compare (מבוסס נתונים מנהליים) מפרסם בציבור.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: תחום שעוסק במניעה שיטתית של אירועים חריגים בכירורגיה - לא רק "זהירות אישית" אלא מבנה ארגוני ורשימות תיוג.</li>
+    <li><b>המנגנון</b>: מודל הגבינה השוויצרית - טעות מגיעה לחולה רק כשחורים בכמה שכבות הגנה (אימות/סימון/Time-Out) מסתדרים בקו אחד באותו רגע. תרבות דיווח נטולת-אשמה חיונית לזיהוי חורים לפני שהם מתלכדים.</li>
+    <li><b>מבנה ארגוני</b>: PSO מקבל דיווחים → בעיית מערכת ל-QMMI, בעיית ביצוע אישי ל-Peer Review.</li>
+    <li><b>מדידה</b>: NSQIP (פרוספקטיבי, מהימן) - תמותה כירורגית כ-1% תוך 30 יום בארה"ב; ניתוח באתר שגוי נדיר יחסית (1:5,000-1:113,000) אך ניתן למניעה כמעט מלאה עם Time-Out קפדני.</li>
+    <li><b>ההתערבות המרכזית</b>: רשימת התיוג הבטיחותית של WHO - Sign In (לפני הרדמה) → Time-Out (לפני חתך) → Sign Out (לפני יציאה מהחדר); הוכחה כמפחיתה סיבוכים ותמותה במחקרים גדולים (Haynes, de Vries), אך תלויה באיכות היישום בפועל, לא רק בקיומה הפורמלי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

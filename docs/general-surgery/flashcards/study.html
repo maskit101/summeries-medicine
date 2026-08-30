@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כרטיסיות תרגול — כירורגיה כללית</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb; --bg:#f8fafc;
+    --blue:#2563eb; --blue-bg:#eff6ff; --green:#047857; --green-bg:#ecfdf5;
+    --red:#b91c1c; --red-bg:#fef2f2; --amber:#b45309; --amber-bg:#fffbeb;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Arial',sans-serif; background:var(--bg); color:var(--ink); margin:0; padding:0;}
+  [dir="rtl"] body{direction:rtl}
+  .wrap{max-width:820px; margin:0 auto; padding:20px 16px 80px}
+  header{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px}
+  h1{font-size:24px; margin:0}
+  .lang-toggle,.reset-btn{border:1px solid var(--line); background:#fff; border-radius:8px; padding:8px 14px; cursor:pointer; font-size:14px; font-weight:600; color:var(--ink)}
+  .lang-toggle:hover,.reset-btn:hover{background:#f3f4f6}
+
+  .stats{background:#fff; border:1px solid var(--line); border-radius:12px; padding:16px 18px; margin-bottom:16px}
+  .stats-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr)); gap:10px; margin-bottom:10px}
+  .stat{text-align:center}
+  .stat .n{font-size:22px; font-weight:700}
+  .stat .l{font-size:12px; color:var(--sub)}
+  .cat-breakdown{font-size:13px; color:var(--sub); border-top:1px solid var(--line); padding-top:8px; margin-top:4px}
+  .cat-breakdown span{display:inline-block; margin:2px 8px 2px 0}
+
+  .filters{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:16px; display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+  .filters select, .filters input[type="text"]{border:1px solid var(--line); border-radius:6px; padding:7px 10px; font-size:14px; font-family:inherit}
+  .filters label{display:flex; align-items:center; gap:5px; font-size:13.5px; color:var(--sub)}
+
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px; box-shadow:0 1px 3px rgba(0,0,0,.04)}
+  .badge{display:inline-block; font-size:12px; font-weight:700; padding:3px 10px; border-radius:20px; color:#fff; margin-inline-end:6px}
+  .badge.diff{background:#6b7280}
+  .progress-line{font-size:13px; color:var(--sub); margin-bottom:10px}
+  .question{font-size:18px; font-weight:600; margin:14px 0 16px; line-height:1.6}
+  .opt{display:block; width:100%; text-align:right; padding:12px 14px; margin:8px 0; border:1.5px solid var(--line);
+    border-radius:8px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .opt:hover{background:#f8fafc}
+  .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:700}
+  .opt.wrong{background:var(--red-bg); border-color:var(--red)}
+  .opt[disabled]{cursor:default}
+
+  .answer-section{display:none; margin-top:18px; border-top:1px solid var(--line); padding-top:16px}
+  .answer-section.show{display:block}
+  .block{border-radius:8px; padding:12px 16px; margin:10px 0; font-size:14.5px}
+  .block h4{margin:0 0 6px; font-size:14px}
+  .block.answer{background:var(--blue-bg)}
+  .block.def{background:#f5f3ff}
+  .block.story{background:var(--amber-bg)}
+  .block.why{background:var(--green-bg)}
+  .block.mnemonic{background:#fff7ed; border:1px dashed #ea580c}
+  .block.explain{background:#f3f4f6}
+  .answer-line{display:flex; gap:8px; align-items:flex-start; margin:5px 0}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:12px 0}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+
+  .key-terms{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+  .key-terms span{background:#eef2ff; color:#3730a3; font-size:12.5px; padding:3px 9px; border-radius:20px}
+
+  .controls{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap}
+  .controls button{border:1px solid var(--line); background:#fff; border-radius:8px; padding:10px 16px; cursor:pointer; font-size:14px; font-weight:600}
+  .controls button.primary{background:var(--blue); color:#fff; border-color:var(--blue)}
+  .controls button.known{background:var(--green); color:#fff; border-color:var(--green)}
+  .controls button.review{background:var(--amber); color:#fff; border-color:var(--amber)}
+
+  .loader{background:#fff; border:1px dashed var(--line); border-radius:12px; padding:40px; text-align:center; color:var(--sub)}
+  .loader input{margin-top:10px}
+  #dropzone.drag{background:var(--blue-bg); border-color:var(--blue)}
+  footer{text-align:center; color:var(--sub); font-size:12.5px; margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🩺 כרטיסיות תרגול — כירורגיה כללית</h1>
+    <div style="display:flex; gap:8px">
+      <button class="lang-toggle" id="langBtn">EN</button>
+      <button class="reset-btn" id="resetBtn">איפוס סטטיסטיקה</button>
+    </div>
+  </header>
+
+  <div class="stats" id="statsPanel"></div>
+
+  <div class="filters" id="filtersPanel" style="display:none">
+    <select id="fTopic"></select>
+    <select id="fDifficulty">
+      <option value="">כל הרמות</option>
+      <option value="low">קל</option>
+      <option value="medium">בינוני</option>
+      <option value="high">גבוה</option>
+    </select>
+    <select id="fType">
+      <option value="">כל הסוגים</option>
+      <option value="qa">שאלה-תשובה</option>
+      <option value="cloze">השלמת מילה</option>
+      <option value="vignette">וינייטה קלינית</option>
+      <option value="mcq">רב-ברירה</option>
+    </select>
+    <input type="text" id="fSearch" placeholder="חיפוש חופשי...">
+    <label><input type="checkbox" id="fReviewOnly"> רק לחזרה</label>
+    <label><input type="checkbox" id="fUnratedOnly"> רק לא מדורג</label>
+    <label><input type="checkbox" id="fRandom" checked> סדר אקראי</label>
+  </div>
+
+  <div id="loaderZone" class="loader">
+    <div>טוען כרטיסיות...</div>
+  </div>
+
+  <div id="cardZone" style="display:none"></div>
+
+  <footer>נבנה עבור מסכת "כירורגיה כללית" — הקובץ מצטבר עם כל נושא חדש שנוסף. שמרי אותו ליד cards.json.</footer>
+</div>
+
+<script>
+(function(){
+  var LANG_KEY = 'surg_flash_lang';
+  var STATS_KEY = 'surg_flash_stats_v1'; // {cardId: {rating:'known'|'review'|null, quizAnswered:bool, quizCorrect:bool}}
+  var lang = localStorage.getItem(LANG_KEY) || 'he';
+  var allCards = [];
+  var stats = {};
+  try { stats = JSON.parse(localStorage.getItem(STATS_KEY) || '{}'); } catch(e){ stats = {}; }
+  var deck = []; // filtered + ordered working set
+  var idx = 0;
+  var answered = false;
+
+  var PALETTE = ['#028090','#B85042','#6D2E46','#2C5F2D','#21295C','#F96167','#84B59F','#990011','#1C7293','#69A297'];
+  function colorFor(str){
+    var h = 0;
+    for (var i=0;i<str.length;i++){ h = (h*31 + str.charCodeAt(i)) >>> 0; }
+    return PALETTE[h % PALETTE.length];
+  }
+
+  function saveStats(){ localStorage.setItem(STATS_KEY, JSON.stringify(stats)); }
+  function getStat(id){
+    if (!stats[id]) stats[id] = {rating:null, quizAnswered:false, quizCorrect:null};
+    return stats[id];
+  }
+
+  function t(he, en){ return lang === 'he' ? he : en; }
+
+  function loadCards(cards){
+    allCards = cards;
+    document.getElementById('loaderZone').style.display = 'none';
+    document.getElementById('cardZone').style.display = 'block';
+    document.getElementById('filtersPanel').style.display = 'flex';
+    populateTopicFilter();
+    applyFilters();
+    renderStats();
+  }
+
+  function populateTopicFilter(){
+    var sel = document.getElementById('fTopic');
+    var topics = {};
+    allCards.forEach(function(c){ topics[c.topic + '|||' + c.topic_en] = true; });
+    sel.innerHTML = '<option value="">' + t('כל הנושאים','All topics') + '</option>';
+    Object.keys(topics).forEach(function(k){
+      var parts = k.split('|||');
+      var opt = document.createElement('option');
+      opt.value = parts[0];
+      opt.textContent = lang === 'he' ? parts[0] : parts[1];
+      sel.appendChild(opt);
+    });
+  }
+
+  function applyFilters(){
+    var topic = document.getElementById('fTopic').value;
+    var diff = document.getElementById('fDifficulty').value;
+    var type = document.getElementById('fType').value;
+    var search = document.getElementById('fSearch').value.trim().toLowerCase();
+    var reviewOnly = document.getElementById('fReviewOnly').checked;
+    var unratedOnly = document.getElementById('fUnratedOnly').checked;
+    var randomOrder = document.getElementById('fRandom').checked;
+
+    deck = allCards.filter(function(c){
+      if (topic && c.topic !== topic) return false;
+      if (diff && c.difficulty !== diff) return false;
+      if (type && c.type !== type) return false;
+      var st = getStat(c.id);
+      if (reviewOnly && st.rating !== 'review') return false;
+      if (unratedOnly && st.rating !== null) return false;
+      if (search){
+        var hay = (c.he.question + ' ' + c.en.question + ' ' + (c.key_terms||[]).join(' ') + ' ' + (c.he.key_terms||[]).join(' ')).toLowerCase();
+        if (hay.indexOf(search) === -1) return false;
+      }
+      return true;
+    });
+    if (randomOrder){
+      for (var i = deck.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i+1));
+        var tmp = deck[i]; deck[i] = deck[j]; deck[j] = tmp;
+      }
+    }
+    idx = 0;
+    renderCard();
+  }
+
+  function renderStats(){
+    var total = allCards.length;
+    var known=0, review=0, unrated=0, answeredCt=0, correctCt=0;
+    var catTotals = {}, catCorrect = {};
+    allCards.forEach(function(c){
+      var st = getStat(c.id);
+      if (st.rating === 'known') known++;
+      else if (st.rating === 'review') review++;
+      else unrated++;
+      if (st.quizAnswered){
+        answeredCt++;
+        if (st.quizCorrect) correctCt++;
+        var cat = lang === 'he' ? c.topic_category : c.topic_category_en;
+        catTotals[cat] = (catTotals[cat]||0) + 1;
+        catCorrect[cat] = (catCorrect[cat]||0) + (st.quizCorrect ? 1 : 0);
+      }
+    });
+    var acc = answeredCt ? Math.round(100*correctCt/answeredCt) : 0;
+    var html = '<div class="stats-grid">' +
+      '<div class="stat"><div class="n">'+total+'</div><div class="l">'+t('סה״כ כרטיסים','Total cards')+'</div></div>' +
+      '<div class="stat"><div class="n" style="color:#047857">'+known+'</div><div class="l">'+t('ידוע','Known')+'</div></div>' +
+      '<div class="stat"><div class="n" style="color:#b45309">'+review+'</div><div class="l">'+t('לחזרה','Review')+'</div></div>' +
+      '<div class="stat"><div class="n">'+unrated+'</div><div class="l">'+t('לא מדורג','Unrated')+'</div></div>' +
+      '<div class="stat"><div class="n">'+answeredCt+'</div><div class="l">'+t('נענו','Answered')+'</div></div>' +
+      '<div class="stat"><div class="n" style="color:#2563eb">'+acc+'%</div><div class="l">'+t('דיוק','Accuracy')+'</div></div>' +
+      '</div>';
+    var catKeys = Object.keys(catTotals);
+    if (catKeys.length){
+      html += '<div class="cat-breakdown">' + t('דיוק לפי נושא-משנה: ','Accuracy by sub-topic: ');
+      catKeys.forEach(function(k){
+        var pct = Math.round(100*catCorrect[k]/catTotals[k]);
+        html += '<span><b style="color:'+colorFor(k)+'">'+k+'</b>: '+pct+'% ('+catTotals[k]+')</span>';
+      });
+      html += '</div>';
+    }
+    document.getElementById('statsPanel').innerHTML = html;
+  }
+
+  function renderCard(){
+    var zone = document.getElementById('cardZone');
+    if (!deck.length){
+      zone.innerHTML = '<div class="loader">'+t('אין כרטיסים התואמים את הסינון הנוכחי.','No cards match the current filters.')+'</div>';
+      return;
+    }
+    if (idx >= deck.length) idx = 0;
+    var c = deck[idx];
+    var L = c[lang];
+    var cat = lang === 'he' ? c.topic_category : c.topic_category_en;
+    var topicLabel = lang === 'he' ? c.topic : c.topic_en;
+    var diffLabel = {low:t('קל','Low'), medium:t('בינוני','Medium'), high:t('גבוה','High')}[c.difficulty];
+    answered = false;
+
+    var optsHtml = L.options.map(function(opt, i){
+      return '<button class="opt" data-i="'+i+'">'+ String.fromCharCode(65+i) + '. ' + opt + '</button>';
+    }).join('');
+
+    zone.innerHTML =
+      '<div class="card">' +
+        '<span class="badge" style="background:'+colorFor(cat)+'">'+cat+'</span>' +
+        '<span class="badge diff">'+diffLabel+'</span>' +
+        '<div class="progress-line">'+topicLabel+' · '+t('כרטיס','Card')+' '+(idx+1)+' / '+deck.length+'</div>' +
+        '<div class="question">'+L.question+'</div>' +
+        '<div class="opts">'+optsHtml+'</div>' +
+        '<div class="answer-section" id="answerSection">' +
+          '<div class="block answer"><h4>✅ '+t('תשובה','Answer')+'</h4>' +
+            L.answer_lines.map(function(a){ return '<div class="answer-line"><span>'+(a.icon||'•')+'</span><span style="color:'+(a.c?('#'+a.c):'inherit')+'">'+a.t+'</span></div>'; }).join('') +
+          '</div>' +
+          (L.term_definition ? '<div class="block def"><h4>📖 '+L.term_definition.term+'</h4><div>'+L.term_definition.text+'</div></div>' : '') +
+          (L.story ? '<div class="block story"><h4>💭 '+t('סיפור לזכירה','Story to remember')+'</h4><div>'+L.story+'</div></div>' : '') +
+          (c.mnemonic ? '<div class="block mnemonic"><h4>🔤 '+t('ראשי תיבות','Mnemonic')+': '+c.mnemonic.text+' ('+(c.mnemonic.source==='known'?t('ידוע','well-known'):t('מקורי','original'))+')</h4>' + (c.mnemonic.breakdown ? c.mnemonic.breakdown[lang].map(function(x){return '<div>'+x+'</div>';}).join('') : '') + '</div>' : '') +
+          (L.why_question ? '<div class="block why"><h4>❓ '+t('שאלי את עצמך','Ask yourself')+': '+L.why_question.q+'</h4><div>'+L.why_question.a+'</div></div>' : '') +
+          '<div class="block explain"><h4>💡 '+t('הסבר','Explanation')+'</h4><div>'+L.explanation+'</div></div>' +
+          (c.video_link ? '<div class="video-embed"><iframe src="https://www.youtube.com/embed/'+extractYouTubeId(c.video_link.url)+'" allowfullscreen loading="lazy"></iframe></div><div style="font-size:12.5px;color:var(--sub);margin-bottom:8px"><a href="'+c.video_link.url+'" target="_blank">'+c.video_link.title+'</a></div>' : '') +
+          '<div class="key-terms">' + (L.key_terms||[]).map(function(k){return '<span>'+k+'</span>';}).join('') + '</div>' +
+          '<div class="controls">' +
+            '<button class="known" id="btnKnown">👍 '+t('ידעתי','Got it')+'</button>' +
+            '<button class="review" id="btnReview">🔁 '+t('לחזרה','Review again')+'</button>' +
+            '<button id="btnBack">↩ '+t('חזרה לשאלה','Back to question')+'</button>' +
+            '<button class="primary" id="btnNext">'+t('הבא ➜','Next ➜')+'</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    zone.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){ handleAnswer(c, L, parseInt(btn.getAttribute('data-i'),10)); });
+    });
+    var backBtn = document.getElementById('btnBack');
+    if (backBtn) backBtn.addEventListener('click', function(){
+      document.getElementById('answerSection').classList.remove('show');
+      zone.querySelectorAll('.opt').forEach(function(b){ b.style.display='block'; });
+    });
+    var nextBtn = document.getElementById('btnNext');
+    if (nextBtn) nextBtn.addEventListener('click', function(){ idx = (idx+1) % deck.length; renderCard(); });
+    var knownBtn = document.getElementById('btnKnown');
+    if (knownBtn) knownBtn.addEventListener('click', function(){ getStat(c.id).rating='known'; saveStats(); renderStats(); knownBtn.style.outline='3px solid #047857'; });
+    var reviewBtn = document.getElementById('btnReview');
+    if (reviewBtn) reviewBtn.addEventListener('click', function(){ getStat(c.id).rating='review'; saveStats(); renderStats(); reviewBtn.style.outline='3px solid #b45309'; });
+  }
+
+  function extractYouTubeId(url){
+    var m = url.match(/(?:v=|\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+    return m ? m[1] : '';
+  }
+
+  function handleAnswer(c, L, i){
+    if (answered) return;
+    answered = true;
+    var st = getStat(c.id);
+    if (!st.quizAnswered){
+      st.quizAnswered = true;
+      st.quizCorrect = (i === c.correct_index);
+      saveStats();
+      renderStats();
+    }
+    var opts = document.querySelectorAll('.opt');
+    opts.forEach(function(b){ b.disabled = true; });
+    if (i === c.correct_index){
+      opts[i].classList.add('correct');
+    } else {
+      opts[i].classList.add('wrong');
+      opts[c.correct_index].classList.add('correct');
+    }
+    document.getElementById('answerSection').classList.add('show');
+  }
+
+  // Controls wiring
+  document.getElementById('langBtn').addEventListener('click', function(){
+    lang = (lang === 'he') ? 'en' : 'he';
+    localStorage.setItem(LANG_KEY, lang);
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+    document.getElementById('langBtn').textContent = lang === 'he' ? 'EN' : 'עברית';
+    populateTopicFilter();
+    renderStats();
+    renderCard();
+  });
+  document.getElementById('resetBtn').addEventListener('click', function(){
+    if (confirm(t('לאפס את כל הסטטיסטיקה?','Reset all statistics?'))){
+      stats = {}; saveStats(); renderStats(); renderCard();
+    }
+  });
+  ['fTopic','fDifficulty','fType','fReviewOnly','fUnratedOnly','fRandom'].forEach(function(id){
+    document.getElementById(id).addEventListener('change', applyFilters);
+  });
+  document.getElementById('fSearch').addEventListener('input', applyFilters);
+
+  // Loading: try fetch, fallback to file picker / drag-drop
+  fetch('cards.json').then(function(r){
+    if (!r.ok) throw new Error('not ok');
+    return r.json();
+  }).then(function(data){
+    loadCards(data.cards || []);
+  }).catch(function(){
+    var lz = document.getElementById('loaderZone');
+    lz.innerHTML =
+      '<div id="dropzone">' +
+      '<div>לא ניתן היה לטעון את cards.json אוטומטית (חלק מהדפדפנים חוסמים fetch של קובץ מקומי).</div>' +
+      '<div>גררי את קובץ cards.json הנה, או בחרי אותו:</div>' +
+      '<input type="file" id="fileInput" accept="application/json">' +
+      '</div>';
+    var dz = document.getElementById('dropzone');
+    dz.addEventListener('dragover', function(e){ e.preventDefault(); dz.classList.add('drag'); });
+    dz.addEventListener('dragleave', function(){ dz.classList.remove('drag'); });
+    dz.addEventListener('drop', function(e){
+      e.preventDefault(); dz.classList.remove('drag');
+      var file = e.dataTransfer.files[0];
+      if (file) readFile(file);
+    });
+    document.getElementById('fileInput').addEventListener('change', function(e){
+      if (e.target.files[0]) readFile(e.target.files[0]);
+    });
+    function readFile(file){
+      var reader = new FileReader();
+      reader.onload = function(ev){
+        try {
+          var data = JSON.parse(ev.target.result);
+          loadCards(data.cards || []);
+        } catch(err){ alert('קובץ לא תקין: ' + err.message); }
+      };
+      reader.readAsText(file);
+    }
+  });
+
+  document.getElementById('langBtn').textContent = lang === 'he' ? 'EN' : 'עברית';
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!-- מקור: ה-PDF שהועלה של Ch 5 - Metabolism in Surgical Patients (Sabiston/Schwartz's Principles of Surgery) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext); תמונות (Wikimedia Commons) וסרטוני YouTube (Ninja Nerd, Medicosis Perfectionalis) הושלמו מחיפוש אמיתי. הפרק המקורי כולל גם חלק ביוכימי-בסיסי מקיף על ביואנרגטיקה תאית (TCA cycle, גליקוליזה, זרחון חמצוני) - הסיכום הזה מתמקד בחלק ה"מטבוליזם הכירורגי" הקליני: התגובה המטבולית לפציעה/ניתוח, הערכה ותמיכה תזונתית, ותסמונת ההזנה-מחדש, שהם הליבה הכי קריטית-קלינית ונבחנת של הפרק. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מטבוליזם בחולה הכירורגי</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>מטבוליזם בחולה הכירורגי <span class="term" dir="ltr">(Metabolism in Surgical Patients)</span></h1>
+<div class="subtitle">התגובה המטבולית לפציעה וניתוח, הערכה ותמיכה תזונתית, ותסמונת ההזנה-מחדש — פרק 5 בספר Sabiston/Schwartz's Principles of Surgery (Metabolism in Surgical Patients)</div>
+
+<p>כל ניתוח, פציעה או מחלה קשה מפעילים בגוף <b>תגובה מטבולית סטריאוטיפית</b> — לא משנה מה הגורם המדויק. הבנת התגובה הזו קריטית לכירורג: היא מסבירה למה חולה בתר-ניתוחי מפתח חום והיפרגליקמיה בלי זיהום, למה שריריו נמסים גם כשהוא "אוכל טוב", ולמה האכלה אגרסיבית מדי של חולה שלא אכל זמן רב עלולה להרוג אותו (תסמונת ההזנה-מחדש). המיומנות של הערכה ותמיכה תזונתית נכונה משפיעה ישירות על החלמה, זיהומים וסיבוכים לאחר ניתוח.</p>
+
+<h2><span class="num">2</span> המנגנון — למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל פציעה (פצע, שבר, וגם <b>הניתוח עצמו</b>) מפעילה בו-זמנית שני צירים שמתלכדים לתגובה אחת: <b>ציר נוירואנדוקריני</b> — קולטני כאב וירידת נפח/לחץ דם מפעילים את הסימפתטיקה ואת ציר ההיפותלמוס-יותרת המוח-אדרנל, ומשחררים <span class="term" dir="ltr">קטכולאמינים (catecholamines)</span>, <span class="term" dir="ltr">קורטיזול (cortisol)</span> ו<span class="term" dir="ltr">גלוקגון (glucagon)</span> — ו<b>ציר דלקתי</b> — רקמה פגועה משחררת תוכן תוך-תאי שמזוהה כ"סיגנל סכנה" (<span class="term" dir="ltr">DAMPs — damage-associated molecular patterns</span>) על ידי קולטני <span class="term" dir="ltr">Toll-like (TLRs)</span> על תאי חיסון מולדים, שמגיבים בשחרור ציטוקינים דלקתיים כמו <span class="term" dir="ltr">TNF-α, IL-1, IL-6</span>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    לפי המודל הקלאסי של קת'ברטסון (<span class="term" dir="ltr">Cuthbertson, 1930</span>), התגובה הזו מתקדמת בשני שלבים עוקבים: <b>שלב ה"שפל" (<span class="term" dir="ltr">Ebb phase</span>)</b> מתחיל תוך שעות ונמשך כ-24–48 שעות — הגוף "חוסך" באנרגיה: ירידה בצריכת חמצן, ירידת חום גוף, ירידת תפוקת לב, והפניית האנרגיה הזמינה לתגובה החיסונית המיידית. לאחר מכן מגיע <b>שלב ה"גאות" (<span class="term" dir="ltr">Flow phase</span>)</b>, שיכול להימשך ימים עד שבועות: הוצאה אנרגטית עולה בחדות (היפרמטבוליזם), ופירוק רקמות מואץ (קטבוליזם) — מצב שאם הפגיעה חמורה מספיק, <b>אינו מגיב לאספקת חומרים מזינים נאותה בלבד</b> (זו בדיוק הסיבה שאי אפשר "פשוט להאכיל" חולה קטבולי קשה בחזרה לאיזון).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">למה השריר נהרס דווקא, ולא שומן או גליקוגן בלבד?</span> בניגוד לשומן (מאוחסן כטריגליצרידים) ולגלוקוז (מאוחסן כגליקוגן), <b>לגוף אין מנגנון לאחסון ארוך-טווח של חומצות אמינו חופשיות</b> — לכן כשקורטיזול, גלוקגון וקטכולאמינים דורשים "חומר גלם" לגלוקונאוגנזה (יצירת גלוקוז חדש) ולייצור חלבוני שלב חריף בכבד, הגוף פשוט משחרר חומצות אמינו מפירוק חלבוני מבנה בשריר השלד. גם בתחילת צום פשוט (ללא פציעה) מתפרקים כ-75 גרם חלבון שריר ליום באדם ממוצע — אבל בתגובת דחק לאחר ניתוח, קצב זה עולה משמעותית ואינו נבלם על ידי האכלה, כי הציטוקינים הדלקתיים "עוקפים" את איתות האינסולין הרגיל שהיה אמור לעצור פירוק חלבון (זהו הבסיס ל<b>תנגודת אנבולית (anabolic resistance)</b> — כשל של גירויים אנבוליים תקינים לגרום לבניית חלבון תאי, שדורש אספקת חלבון מוגברת של 1.2–2.0 גרם/ק"ג/יום כדי להתגבר עליו).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">למה יש היפרגליקמיה בדחק כירורגי, גם בלי סוכרת וגם בלי זיהום?</span> קטכולאמינים וקורטיזול יחד מעלים גלוקונאוגנזה וגליקוגנוליזה בכבד, ובמקביל משרים <b>תנגודת היקפית לאינסולין</b> בשריר וברקמת שומן — כך שגלוקוז מצטבר בדם למרות שיש מספיק (ולעיתים אף עודף) אינסולין במחזור. זו לא "סוכרת" במובן הרגיל, אלא תופעה זמנית וצפויה של תגובת הדחק עצמה — <b>"היפרגליקמיה של דחק" (stress hyperglycemia)</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">מתי הדלקת נשארת "סטרילית" ומתי היא מייצגת זיהום פעיל?</span> חשוב להבחין: ה-<span class="term" dir="ltr">DAMPs</span> וה-<span class="term" dir="ltr">TLRs</span> שתוארו למעלה מפעילים תגובה דלקתית סיסטמית (חום, לויקוציטוזיס, טכיקרדיה — הידועה כ"<span class="term" dir="ltr">systemic inflammatory response syndrome, SIRS</span>" או "תגובת השלב החריף") <b>גם ללא כל זיהום חיידקי</b> — רק בתגובה לטראומת רקמה סטרילית (כמו ניתוח אלקטיבי תקין). לכן חום ולויקוציטוזיס בימים הראשונים אחרי ניתוח גדול אינם בהכרח סימן לזיהום — אלא אם מצטרפים ממצאים נוספים (הידרדרות קלינית, מוקד זיהומי ברור) שמחשידים שחיידקים אכן הצטרפו לתמונה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    לבסוף, מכיוון שהמערכת החיסונית כוללת גם ויסות עצמי אנטי-דלקתי, פגיעה חמורה מספיק עלולה לגרום ל<b>פיצוי-יתר</b>: תגובה אנטי-דלקתית מפצה חזקה מדי, המכונה "<span class="term" dir="ltr">Compensatory Antiinflammatory Response Syndrome (CARS)</span>", שמובילה לדיכוי חיסוני. אצל חולים ששורדים שהות ממושכת בטיפול נמרץ, מצב זה יכול להפוך לכרוני ולהיקרא "<span class="term" dir="ltr">Persistent Inflammation, Immunosuppression, and Catabolism Syndrome (PICS)</span>" — המופיע ב-30%–50% מהחולים ששורדים שהות ארוכה בטיפול נמרץ עם כשל איברים, ועמיד יחסית לתמיכה תזונתית בלבד.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון התגובה המטבולית לפציעה — משפל לגאות</title>
+  <rect x="360" y="10" width="180" height="45" rx="8" fill="#f3f4f6" stroke="#374151"/>
+  <text x="450" y="37" font-size="13" font-weight="700" text-anchor="middle" fill="#1f2937">פציעה / ניתוח</text>
+
+  <polygon points="430,55 415,72 445,72" fill="#374151"/>
+
+  <rect x="150" y="80" width="220" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="260" y="102" font-size="11.5" text-anchor="middle" fill="#1f2937">ציר נוירואנדוקריני</text>
+  <text x="260" y="118" font-size="10" text-anchor="middle" fill="#4b5563">קטכולאמינים+קורטיזול+גלוקגון</text>
+
+  <rect x="530" y="80" width="220" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="640" y="102" font-size="11.5" text-anchor="middle" fill="#1f2937">ציר דלקתי</text>
+  <text x="640" y="118" font-size="10" text-anchor="middle" fill="#4b5563">DAMPs→TLR→ציטוקינים (TNF-α,IL-6)</text>
+
+  <polygon points="290,135 320,150 350,135" fill="#2563eb"/>
+  <polygon points="600,135 630,150 660,135" fill="#b91c1c"/>
+
+  <rect x="270" y="155" width="360" height="45" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="450" y="182" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1f2937">שלב "שפל" (Ebb) — 0–48 שעות: ↓חילוף חומרים, ↓חום, ↓CO</text>
+
+  <polygon points="450,200 435,217 465,217" fill="#b45309"/>
+
+  <rect x="230" y="220" width="440" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="450" y="247" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1f2937">שלב "גאות" (Flow) — ימים-שבועות: היפרמטבוליזם, קטבוליזם שרירי, תנגודת לאינסולין</text>
+</svg>
+<p class="key-box">אם הפגיעה קלה-בינונית, שני השלבים חולפים ומאפשרים החלמה. אם הפגיעה חמורה/ממושכת (ספסיס קשה, כוויות נרחבות, שהות ארוכה בטיפול נמרץ) — התגובה עלולה "להיתקע" במצב <span class="term" dir="ltr">CARS</span> כרוני ולהוביל לתנגודת אנבולית מתמשכת שאינה מגיבה להאכלה בלבד.</p>
+
+<h2><span class="num">3</span> פיזיולוגיה — ממצב "מוזן" למצב "צם", ולאן הולך החנקן</h2>
+<p>במצב "מוזן" (fed state) אינסולין הוא ההורמון השולט: הוא מכניס גלוקוז וחומצות אמינו לתאים, מעודד סינתזת גליקוגן ומדכא פירוק שומן וחלבון — מצב אנבולי. לאחר כ-24 שעות צום, מלאי הגליקוגן בכבד מתרוקן, וההורמונים הקטבוליים (גלוקגון, קטכולאמינים, קורטיזול) הופכים דומיננטיים: הכבד עובר ל<span class="term" dir="ltr">גלוקונאוגנזה (gluconeogenesis)</span> מלקטט, גליצרול וחומצות אמינו (בעיקר אלנין, המובל מהשריר בתהליך הנקרא <span class="term" dir="ltr">מחזור גלוקוז-אלנין</span>), ורקמת השומן משחררת חומצות שומן חופשיות שהופכות בכבד לגופי קטון — דלק חלופי למוח וללב שמפחית, אך לא מבטל, את התלות בפירוק חלבון שריר.</p>
+<p><b>ההבדל הקריטי בין "צום פשוט" לבין "קטבוליזם של דחק כירורגי"</b>: בצום פשוט (ללא פציעה) הגוף "חכם" — הוא מאט את קצב פירוק החלבון ככל שהצום נמשך, כדי לשמר מסת שריר. בתגובת דחק (ניתוח, טראומה, ספסיס) הציטוקינים הדלקתיים ממשיכים לדחוף פירוק חלבון בקצב גבוה <b>גם אם המטופל מקבל תזונה נאותה</b> — זו בדיוק הסיבה שקטבוליזם של דחק לא ניתן "לתקן" רק על ידי הזנה, ומצריך גם טיפול בגורם הבסיסי (זיהום, דימום וכו').</p>
+<p>חומצות אמינו שמפורקות משחררות אמוניה רעילה, שהגוף חייב להמיר לאוריאה מסיסת-מים לצורך הפרשה בשתן. השריר "ארוז" את האמוניה הרעילה כגלוטמין ואלנין להובלה בטוחה בדם לכבד, שם עובר <span class="term" dir="ltr">מחזור האוריאה (urea cycle)</span> — סדרת תגובות מיטוכונדריאליות וציטוזוליות ההופכות אמוניה לאוריאה. חולים עם כשל כבד נמצאים בסיכון להצטברות אמוניה ורעלים אחרים (<span class="term" dir="ltr">אנצפלופתיה כבדית</span>) ולכן יש להיזהר במתן חלבון גבוה לחולי כבד.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Urea-Cycle_scheme_2006-01.svg?width=600" alt="מחזור האוריאה">
+  <figcaption class="media-cap">מחזור האוריאה <span class="term" dir="ltr">(urea cycle)</span> — הדרך שבה הכבד הופך אמוניה רעילה (תוצר פירוק חלבון) לאוריאה מסיסת-מים המופרשת בשתן. מקור: <a href="https://commons.wikimedia.org/wiki/File:Urea-Cycle_scheme_2006-01.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/YpV96faQOZc" title="Metabolism | Gluconeogenesis - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">גלוקונאוגנזה — כיצד הכבד יוצר גלוקוז חדש מאלנין, לקטט וגליצרול במצב צום (Ninja Nerd). רלוונטי להבנת המעבר ממצב מוזן לצם שמתואר למעלה. מקור: <a href="https://www.youtube.com/watch?v=YpV96faQOZc" target="_blank">YouTube - Ninja Nerd</a></p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>חולים כירורגיים יכולים להימצא לאורך כל הספקטרום התזונתי — מתת-תזונה קיצונית ועד השמנה — ושני הקצוות קשורים לעלייה בתחלואה ותמותה ניתוחית. <b>נקודה חשובה למבחן</b>: גם חולה שמן יכול להיות תת-מוזן (מה שנקרא "השמנה סרקופנית" — עודף שומן לצד גירעון מסת שריר), בגלל תנגודת הורמונלית ומסת גוף רזה נמוכה — כך שמראה חיצוני "שמן" לא שולל תת-תזונה.</p>
+<p>ילדים עם תת-תזונה חריפה מציגים בצקת שוקעת, עיניים שקועות ועור/שיער עם דהיית פיגמנטציה (<span class="term" dir="ltr">קוושיורקור</span>); תת-תזונה כרונית גורמת לעצירת גדילה. במבוגרים, ציר הזמן (ירידה מהירה מול איטית) מסייע להבחין בין גורם חד (ניתוח, מחלה חריפה) לגורם כרוני (סרטן, תסמונת ספיגה לקויה) — לעיתים בלי הבדל פנוטיפי ברור אחר.</p>
+<table>
+  <thead><tr><th>מצב</th><th>מנגנון עיקרי</th><th>ממצא קליני מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">קוושיורקור (Kwashiorkor)</span></td><td>גירעון חלבוני חד, לרוב עם קלוריות סה"כ שמורות יחסית</td><td>בצקת תזונתית (היפואלבומינמיה→לחץ אונקוטי נמוך), דהיית פיגמנטציה בעור/שיער</td></tr>
+    <tr><td><span class="term" dir="ltr">מרסמוס (Marasmus)</span></td><td>גירעון קלורי-חלבוני כולל וכרוני</td><td>ניוון/קכקסיה כללית, ללא בצקת בולטת, "עור ועצם"</td></tr>
+    <tr><td>מרסמוס-קוושיורקור מעורב</td><td>שילוב שני המנגנונים</td><td>סימנים משני הסוגים גם יחד</td></tr>
+    <tr><td>השמנה סרקופנית</td><td>עודף שומן + גירעון מסת שריר/חלבון</td><td>BMI תקין/גבוה אך מסת שריר נמוכה בהדמיה — לא נראה "תת-תזונתי" חיצונית</td></tr>
+  </tbody>
+</table>
+<p>מבחינה אנתרופומטרית: משקל יומי בטיפול נמרץ מאפשר מעקב אחר מגמות (עלייה מוקדמת בטיפול נמרץ קשורה לרוב לעודף נוזלים ומנבאת תמותה גבוהה יותר, לא "שיפור תזונתי"). <b>מסת גוף רזה (lean body mass)</b> שאובדת בתגובה הקטבולית לניתוח/מחלה קשה קשורה לתמותה גבוהה יותר, תלות ממושכת במכשיר הנשמה, ואשפוז ארוך יותר בטיפול נמרץ — ולכן מעקב אחריה (לא רק אחרי משקל/BMI גולמי, שאינו מבדיל שומן משריר) חשוב קלינית.</p>
+
+<h2><span class="num">5</span> אבחנה — הערכה תזונתית</h2>
+<p>ההערכה כוללת היסטוריה (סיבות לאכילה ירודה, ספיגה לקויה, ניתוחי מעי קודמים, שימוש באלכוהול/סמים), וסיווג לפי תת-סוג (גירעון חלבוני / מיקרו-נוטריאנטים / קלורי כללי), לפי גורם (רעב / מחלה / פציעה), ולפי חדות (חריף/כרוני).</p>
+<h3>ציוני סיכון תזונתי</h3>
+<p>רוב כלי ההערכה (כמו <span class="term" dir="ltr">MUST</span>, <span class="term" dir="ltr">Mini Nutritional Assessment</span>, <span class="term" dir="ltr">PONS</span>) בודקים רק את המצב התזונתי הנוכחי. לעומתם, <b><span class="term" dir="ltr">NUTRIC</span></b> ו-<span class="term" dir="ltr">NRS-2002</span> הם הכלים היחידים שמשלבים גם את <b>חומרת המחלה עצמה</b> — הגיוני קלינית, כי חולה קריטי עם דלקת פעילה זקוק להתערבות תזונתית שונה מחולה תת-תזונתי אך יציב.</p>
+<table>
+  <thead><tr><th>משתנה ב-NUTRIC</th><th>קריטריון לניקוד גבוה</th></tr></thead>
+  <tbody>
+    <tr><td>גיל</td><td>≥75: 2 נק'</td></tr>
+    <tr><td><span class="term" dir="ltr">APACHE II</span></td><td>≥28: 3 נק'</td></tr>
+    <tr><td><span class="term" dir="ltr">SOFA</span></td><td>≥10: 2 נק'</td></tr>
+    <tr><td>מספר מחלות רקע</td><td>≥2: 1 נק'</td></tr>
+    <tr><td>ימים מאשפוז ועד קבלה לטיפול נמרץ</td><td>≥1 יום: 1 נק'</td></tr>
+  </tbody>
+</table>
+<p>ציון NUTRIC של 5 ומעלה (או 6+ אם כולל IL-6) מסמן סיכון גבוה לתת-תזונה המצריך תוכנית תזונתית פעילה. <b>כל חולה בטיפול נמרץ, וכל חולה בחשד לתת-תזונה, צריך להיבדק לפחות בהערכה כללית</b> — ואם עולה חשד, יש להשלים גם ציון סיכון תזונתי ייעודי.</p>
+
+<h3>מרקרים בדם — ולמה הם מטעים</h3>
+<p><b>אלבומין ופרה-אלבומין אינם מדדים אמינים למצב תזונתי בזמן דלקת פעילה</b> — לא בגלל שהם "נשברים", אלא ממנגנון כפול ומוסבר: (1) בזמן דחק דלקתי, הכבד מפנה משאבי חומצות אמינו מייצור חלבוני תעבורה (אלבומין, טרנספרין) לייצור חלבוני שלב חריף (כמו <span class="term" dir="ltr">CRP</span>); (2) דלקת מגבירה חדירות נימי הדם ("דליפת נימים"), כך שאלבומין דולף מהמחזור לחלל הבין-תאי, מה שמוריד את הריכוז התוך-כלי בלי קשר לכמות הכוללת בגוף. משמעות מעשית: אלבומין נמוך בתר-ניתוחי לא בהכרח משקף תת-תזונה — אלא עוצמת התגובה הדלקתית. עם זאת, אלבומין ופרה-אלבומין <b>טרום-ניתוחיים</b> (לפני שהתפתחה דלקת חריפה) עדיין מתואמים היטב עם תוצאות ניתוח וניתן להשתמש בהם כמנבאי סיכון (לא כמדד תזונתי ישיר):</p>
+<table>
+  <thead><tr><th>אלבומין (g/dL)</th><th>תמותה תוך 30 יום</th><th>תחלואה תוך 30 יום</th></tr></thead>
+  <tbody>
+    <tr><td>&gt;4.5</td><td>≤1%</td><td>≤10%</td></tr>
+    <tr><td>3.5</td><td>5%</td><td>25%</td></tr>
+    <tr><td>3.0</td><td>9%</td><td>35%</td></tr>
+    <tr><td>2.5</td><td>15%</td><td>45%</td></tr>
+    <tr><td>&lt;2.1</td><td>≈30%</td><td>65%</td></tr>
+  </tbody>
+</table>
+
+<h3>הדמיה להערכת מסת שריר</h3>
+<table>
+  <thead><tr><th>שיטה</th><th>מה מודדים</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">DXA (Dual-energy X-ray)</span></td><td>מסת שומן, שריר, צפיפות עצם — בעזרת שני עוצמות קרינה</td><td>"תקן זהב" לדיוק</td><td>רגיש לפרוטוקול/ציוד נלווה (זונדה, תותבות) — פוגע בשחזוריות</td></tr>
+    <tr><td>אולטרסאונד</td><td>שטח חתך שריר הירך <span class="term" dir="ltr">(rectus femoris)</span></td><td>ליד המיטה, ללא קרינה, מדידת שריר בודד</td><td>תלוי-מפעיל, דורש פרוטוקול מתוקנן</td></tr>
+    <tr><td><span class="term" dir="ltr">CT</span></td><td>שטח חתך שריר הפסואס בגובה חוליית L3 (הערכת מסת שריר כללית)</td><td>גם מודד "איכות" שריר (יחידות Hounsfield)</td><td>עלות וקרינה — רק אם CT כבר בוצע מסיבה אחרת</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> טיפול — תמיכה תזונתית</h2>
+<p>ברגע שהוגדר סיכון תזונתי, יש לקבוע כמות קלוריות וחלבון. <span class="term" dir="ltr">קלורימטריה עקיפה (indirect calorimetry)</span> היא תקן הזהב למדידת הוצאה אנרגטית במנוחה (<span class="term" dir="ltr">REE</span>), אך יש שונות של עד 13%-23% בין מדידות — לכן בהיעדר קלורימטר, נעזרים במשוואת <span class="term" dir="ltr">Harris-Benedict</span> עם מקדם דחק/פעילות:</p>
+<table>
+  <thead><tr><th>תרחיש</th><th>מקדם הוצאה אנרגטית</th></tr></thead>
+  <tbody>
+    <tr><td>מנוחה במיטה</td><td>1.2</td></tr>
+    <tr><td>ניתוח קל</td><td>1.2</td></tr>
+    <tr><td>טראומה שלדית</td><td>1.35</td></tr>
+    <tr><td>קכקסיה סרטנית</td><td>1.3–1.5</td></tr>
+    <tr><td>ספסיס קשה</td><td>1.6</td></tr>
+    <tr><td>כוויה קשה</td><td>2.1</td></tr>
+  </tbody>
+</table>
+<p><b>תת-האכלה מתחת ל-70% מה-REE האמיתי מעלה תמותה — אבל גם עודף-האכלה מעלה תמותה, ימי הנשמה ומשך אשפוז</b> — לכן המטרה היא איזון, לא מקסימום. צרכי חלבון משתנים לפי מצב קליני: חולה כוויות זקוק ל-1.5–2.5 גר'/ק"ג/יום; בטן פתוחה קריטית — כ-15–30 גר' חלבון נוסף לכל ליטר נוזל צפקי שאבד; חולה קריטי כללי — 1.2–2.0 גר'/ק"ג/יום כדי להתגבר על תנגודת אנבולית (ראו סעיף 2); לעומת זאת כשל כלייתי דורש חלבון נמוך יותר וריכוז גבוה כדי למנוע עומס נוזלים והצטברות אוריאה.</p>
+
+<h3>תזונה אנטרלית מול פרנטרלית</h3>
+<table>
+  <thead><tr><th></th><th><span class="term" dir="ltr">תזונה אנטרלית (EN)</span></th><th><span class="term" dir="ltr">תזונה פרנטרלית (PN)</span></th></tr></thead>
+  <tbody>
+    <tr><td>מנגנון</td><td>דרך מערכת העיכול (זונדה/גסטרוסטום)</td><td>ישירות לווריד מרכזי, עוקפת את המעי</td></tr>
+    <tr><td>יתרון עיקרי</td><td>שומרת על שלמות רירית המעי ומחסום החיסון שלה, פחות זיהומים, זולה יותר</td><td>אפשרות היחידה כשהמעי לא זמין/לא תפקודי</td></tr>
+    <tr><td>מתי מתחילים</td><td>עד 24 שעות אחרי ניתוח בהיעדר אי-רציפות מעית — מקטין תמותה לעומת נוזלים תוך-ורידיים בלבד</td><td>מוקדם רק אם EN לא אפשרית/מספקת בחולה בסיכון גבוה; בחולה בסיכון נמוך — ניתן להמתין עד 7 ימים</td></tr>
+    <tr><td>מתי עוצרים/נזהרים</td><td>אי-יציבות המודינמית/עלייה במינון ווזופרסורים — סיכון לאיסכמיה מעית</td><td>סיכון לזיהום קטטר, כשל כבד ממושך, עלות גבוהה</td></tr>
+  </tbody>
+</table>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Diagram_showing_the_position_of_a_nasogastric_tube_CRUK_340.svg?width=500" alt="זונדה קיבתית (nasogastric tube)">
+  <figcaption class="media-cap">מיקום זונדה קיבתית <span class="term" dir="ltr">(nasogastric tube)</span> — נתיב הזנה אנטרלית נפוץ, מהאף דרך הוושט אל הקיבה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Diagram_showing_the_position_of_a_nasogastric_tube_CRUK_340.svg" target="_blank">Wikimedia Commons / Cancer Research UK</a></figcaption>
+</figure>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tpn_3bag.jpg?width=450" alt="שקית תזונה פרנטרלית (TPN)">
+  <figcaption class="media-cap">שקית תזונה פרנטרלית ביתית <span class="term" dir="ltr">(Total Parenteral Nutrition, TPN)</span> עם שלושה תאים נפרדים (גלוקוז, חומצות אמינו, שומנים) שמעורבבים לפני העירוי. מקור: <a href="https://commons.wikimedia.org/wiki/File:Tpn_3bag.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/5jFxVds1UEI" title="Enteral vs. Parenteral Nutrition - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">השוואה מקיפה בין תזונה אנטרלית לפרנטרלית — מנגנון, אינדיקציות וסיבוכים (Ninja Nerd). מקור: <a href="https://www.youtube.com/watch?v=5jFxVds1UEI" target="_blank">YouTube - Ninja Nerd</a></p>
+
+<h3>עקרונות ERAS (החלמה משופרת אחרי ניתוח)</h3>
+<p>פרוטוקולי <span class="term" dir="ltr">Enhanced Recovery After Surgery (ERAS)</span> כוללים "טעינת פחמימות" בנוזלים צלולים עד שעתיים לפני ניתוח (בניגוד לצום ממושך מיותר), והתחלת דיאטה רגילה מספר שעות אחרי ניתוח במקום להמתין לסימני תנועת מעי — גישות שהוכחו כמקצרות אשפוז ומשפרות תוצאות.</p>
+<table>
+  <thead><tr><th>סוג מזון</th><th>זמן צום מומלץ לפני הרדמה</th></tr></thead>
+  <tbody>
+    <tr><td>מוצק</td><td>עד 6 שעות לפני</td></tr>
+    <tr><td>נוזלים צלולים (כולל שייקים עם פחמימות/חלבון)</td><td>עד שעתיים לפני</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>תסמונת ההזנה-מחדש <span class="term" dir="ltr">(Refeeding Syndrome)</span> — מנגנון</h4>
+  <p>בצום ממושך, הגוף מדלדל מאגרים תוך-תאיים של זרחן, אשלגן ומגנזיום — <b>גם אם ריכוזם בדם עדיין נראה תקין</b>, כי הגוף שומר על ריכוז הסרום היציב על חשבון המאגר התוך-תאי. כאשר מתחילים הזנה (אנטרלית או פרנטרלית) לאחר צום כזה, עליית הגלוקוז גורמת ל<b>גל אינסולין</b> חד, שדוחף גלוקוז, זרחן, אשלגן ומגנזיום פנימה לתאים בבת אחת (לצורך ייצור <span class="term" dir="ltr">ATP</span> וגליקוגן) — התוצאה: <b>צניחה חדה של הזרחן, האשלגן והמגנזיום בדם</b> ממש כשהיו אמורים "להשתפר". צניחת הזרחן (הסימן המובהק ביותר) פוגעת ישירות בייצור ATP וב-2,3-דיפוספוגליצרט בכדוריות הדם, ועלולה לגרום להפרעות קצב לב, אי-ספיקת נשימה ואף דום לב. מחסור בתיאמין (ויטמין B1) שנחשף בדיוק באותו שלב (השתן מתחיל "לשטוף" ויטמינים מסיסי-מים) מוסיף סיכון לאנצפלופתיה (וורניקה).</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>יש <b>לבדוק ולתקן חוסרים אלקטרוליטיים לפני התחלת הזנה</b> בחולה בסיכון (צום ממושך, קכקסיה, אלכוהוליזם), ולתת תיאמין וויטמיני B במינון גבוה מראש. את ההזנה יש להתחיל <b>בהדרגתיות</b> — כ-10 קק"ל/ק"ג/יום, עם העלאה איטית על פני 4–7 ימים, תוך מעקב יומיומי אחר זרחן, אשלגן, מגנזיום וסידן.</p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון תסמונת ההזנה-מחדש</title>
+  <rect x="10" y="70" width="170" height="60" rx="8" fill="#f3f4f6" stroke="#374151"/>
+  <text x="95" y="95" font-size="11.5" text-anchor="middle" fill="#1f2937">צום ממושך</text>
+  <text x="95" y="112" font-size="10" text-anchor="middle" fill="#4b5563">מאגר תוך-תאי דל P/K/Mg</text>
+
+  <polygon points="185,100 205,92 205,108" fill="#374151"/>
+  <rect x="210" y="70" width="170" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="295" y="95" font-size="11.5" text-anchor="middle" fill="#1f2937">התחלת הזנה</text>
+  <text x="295" y="112" font-size="10" text-anchor="middle" fill="#4b5563">↑גלוקוז בדם</text>
+
+  <polygon points="385,100 405,92 405,108" fill="#b45309"/>
+  <rect x="410" y="70" width="170" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="495" y="95" font-size="11.5" text-anchor="middle" fill="#1f2937">גל אינסולין</text>
+  <text x="495" y="112" font-size="10" text-anchor="middle" fill="#4b5563">דוחף P/K/Mg/גלוקוז לתאים</text>
+
+  <polygon points="585,100 605,92 605,108" fill="#b91c1c"/>
+  <rect x="610" y="70" width="170" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="695" y="90" font-size="11" font-weight="700" text-anchor="middle" fill="#b91c1c">היפופוספטמיה קשה</text>
+  <text x="695" y="106" font-size="10" text-anchor="middle" fill="#4b5563">+↓K, ↓Mg, מחסור תיאמין</text>
+
+  <polygon points="695,130 680,150 710,150" fill="#b91c1c"/>
+  <rect x="600" y="152" width="200" height="40" rx="8" fill="#111827"/>
+  <text x="700" y="177" font-size="11.5" font-weight="700" text-anchor="middle" fill="#fff">הפרעות קצב, כשל נשימתי</text>
+</svg>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — תסמונת ההזנה-מחדש (מוכר וידוע)</h3>
+  <p><b>"Please Feed Patient Minimally"</b> — תזכורת קלינית ישירה (התחילו בהאכלה מינימלית!), וגם ראשי תיבות לאלקטרוליטים המרכזיים שצונחים:<br>
+    <b>P</b> — <span class="term" dir="ltr">Phosphate</span> (זרחן — הסימן המובהק ביותר)<br>
+    <b>F</b> — <span class="term" dir="ltr">Fluid shifts</span> (הסטת נוזלים, עלולה לגרום בצקת/עומס נוזלים)<br>
+    <b>P</b> — <span class="term" dir="ltr">Potassium</span> (אשלגן)<br>
+    <b>M</b> — <span class="term" dir="ltr">Magnesium</span> (מגנזיום)<br>
+    זכרו להוסיף בנפרד: גם <b>תיאמין</b> חייב השלמה מונעת — הוא לא באות במפורש בראשי התיבות, אבל קריטי לא פחות.
+  </p>
+  <h3>סיפור דמיוני — "הגוף כמו חוף ים בשפל וגאות"</h3>
+  <p>דמיינו את הגוף כחוף ים. ברגע הפגיעה, <b>הים נסוג החוצה (שפל = Ebb)</b> — הגלים נעצרים, הכל שקט ואיטי, כי הגוף "חוסך כוחות" לכ-48 השעות הראשונות. ואז, בלי אזהרה, <b>גל ענק חוזר וסוחף פנימה בעוצמה (גאות = Flow)</b> — מפרק כל מה שבדרכו (שרירי השלד) כדי לספק "חומרי בנייה" לתיקון הנזק, לאורך ימים ואף שבועות. בדיוק כמו שאי אפשר לעצור גאות באמצעות "האכלת" הים בעוד מים — כך גם קטבוליזם של דחק כירורגי לא נעצר רק על ידי האכלה, אלא דורש גם ריפוי הגורם הבסיסי.</p>
+  <svg class="diagram" viewBox="0 0 560 200" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: חוף בשפל ובגאות</title>
+    <rect x="0" y="0" width="560" height="200" fill="#f0f9ff"/>
+    <circle cx="500" cy="35" r="20" fill="#fde68a"/>
+    <rect x="0" y="120" width="230" height="80" fill="#fde68a" opacity="0.5"/>
+    <path d="M0,130 Q60,120 120,130 T230,130" fill="none" stroke="#2563eb" stroke-width="3"/>
+    <text x="115" y="160" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">שפל (Ebb)</text>
+    <text x="115" y="178" font-size="10.5" text-anchor="middle" fill="#4b5563">0–48 שעות: חיסכון באנרגיה</text>
+
+    <rect x="290" y="60" width="270" height="140" fill="#bfdbfe" opacity="0.6"/>
+    <path d="M290,75 Q350,50 410,75 T560,75" fill="none" stroke="#1d4ed8" stroke-width="4"/>
+    <polygon points="470,55 460,80 480,80" fill="#1d4ed8"/>
+    <text x="425" y="160" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">גאות (Flow)</text>
+    <text x="425" y="178" font-size="10.5" text-anchor="middle" fill="#4b5563">ימים-שבועות: קטבוליזם, היפרמטבוליזם</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Urea-Cycle_scheme_2006-01.svg" target="_blank">מחזור האוריאה — Wikimedia Commons</a>
+    <div class="desc">תרשים מפורט של תגובות מחזור האוריאה — רלוונטי לסעיף הפיזיולוגיה על הובלת חנקן מהשריר לכבד.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Diagram_showing_the_position_of_a_nasogastric_tube_CRUK_340.svg" target="_blank">זונדה קיבתית — Cancer Research UK / Wikimedia Commons</a>
+    <div class="desc">איור פשוט של מיקום זונדה קיבתית — נתיב הזנה אנטרלית שכיח.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Tpn_3bag.jpg" target="_blank">שקית TPN תלת-תאית — Wikimedia Commons</a>
+    <div class="desc">תמונה אמיתית של שקית תזונה פרנטרלית ביתית.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=Uq4mxgJNf9Y" target="_blank">Refeeding syndrome (TPN syndrome) — Medicosis Perfectionalis</a>
+    <div class="desc">הסבר מפורט על מנגנון, תסמינים וטיפול בתסמונת ההזנה-מחדש.</div>
+  </li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Uq4mxgJNf9Y" title="Refeeding syndrome (TPN syndrome) - Medicosis Perfectionalis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">תסמונת ההזנה-מחדש — פתופיזיולוגיה, תסמינים וטיפול (Medicosis Perfectionalis). מקור: <a href="https://www.youtube.com/watch?v=Uq4mxgJNf9Y" target="_blank">YouTube - Medicosis Perfectionalis</a></p>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 68 עם היסטוריה של שימוש כרוני באלכוהול, שאכל מעט מאוד בשבועיים שקדמו לאשפוזו עם דיברטיקוליטיס מנוקבת, עובר כריתת מעי דחופה. אלבומין טרום-ניתוחי: 2.4 g/dL. ביום הראשון אחרי הניתוח מתחילים לו תזונה פרנטרלית מלאה (<span class="term" dir="ltr">TPN</span>) ישר ליעד הקלורי המלא. ביום השני מופיעה חולשת שרירים, בלבול, והפרעת קצב פרוזדורית חדשה. בדיקות: זרחן 1.1 mg/dL, אשלגן 2.9 mEq/L, מגנזיום 1.2 mg/dL.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו ההסבר הפתופיזיולוגי הישיר ביותר לממצאים ביום השני?</div>
+  <button class="opt" data-i="0">אלח דם (ספסיס) חדש שפרץ מאתר הניתוח</button>
+  <button class="opt" data-i="1">תסמונת ההזנה-מחדש — התחלת הזנה קלורית מלאה בחולה שצם ממושך גרמה לגל אינסולין שדחף זרחן, אשלגן ומגנזיום לתוך התאים</button>
+  <button class="opt" data-i="2">תגובת דחק כירורגית רגילה (שלב ה-Flow) שאינה קשורה להזנה</button>
+  <button class="opt" data-i="3">רעילות ישירה של תמיסת החלבון בעירוי הוורידי</button>
+  <div class="explain">נכון: היסטוריית תת-תזונה ממושכת + התחלת הזנה קלורית מלאה בבת אחת + הצניחה החדה בזרחן-אשלגן-מגנזיום ביחד עם הפרעת קצב הם התמונה הקלאסית של תסמונת ההזנה-מחדש. אין נתונים לחום/זיהום ברור (אופציה א'). שלב ה-Flow (אופציה ג') כן מתרחש בחולה זה אך אינו מסביר את הצניחה החדה דווקא בזרחן/אשלגן/מגנזיום בזמן שמתחילים הזנה. אין בסיס ל"רעילות ישירה" (אופציה ד').</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה היה צריך לעשות אחרת לפני התחלת ה-TPN בחולה זה?</div>
+  <button class="opt" data-i="0">להימנע לגמרי מהזנה פרנטרלית ולעבור ישירות לתזונה אנטרלית</button>
+  <button class="opt" data-i="1">להתחיל ביעד הקלורי המלא אך להוסיף אינסולין מניעתי</button>
+  <button class="opt" data-i="2">לבדוק ולתקן זרחן/אשלגן/מגנזיום מראש, לתת תיאמין וויטמיני B, ולהתחיל הזנה בהדרגה (כ-10 קק"ל/ק"ג/יום) עם העלאה איטית על פני ימים</button>
+  <button class="opt" data-i="3">להמתין שבוע שלם לפני כל הזנה כדי לאפשר לגוף "להתאושש" מהצום</button>
+  <div class="explain">נכון: בחולה בסיכון גבוה לתסמונת הזנה-מחדש (צום ממושך, שימוש כרוני באלכוהול) יש לבדוק ולתקן חוסרים אלקטרוליטיים ולתת תיאמין וויטמינים לפני תחילת ההזנה, ולהתחיל בקצב איטי ומתגבר. אופציה א' לא פותרת את הבעיה (גם EN יכול לגרום לתסמונת). אופציה ב' לא מתייחסת לגורם האמיתי (חוסרים תוך-תאיים). אופציה ד' מיותרת ואף מזיקה — עיכוב הזנה ממושך מדי גם הוא מזיק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. אלבומין טרום-ניתוחי של 2.4 g/dL אצל חולה זה — כיצד נכון לפרש אותו?</div>
+  <button class="opt" data-i="0">הוא חסר משמעות קלינית לחלוטין ואין להתייחס אליו</button>
+  <button class="opt" data-i="1">הוא מדד מדויק למצב התזונתי הנוכחי בזמן קבלתו לאשפוז</button>
+  <button class="opt" data-i="2">יש לתת לו עירוי אלבומין כדי לתקן את הערך ולשפר תוצאות</button>
+  <button class="opt" data-i="3">הוא מנבא סיכון לתחלואה ותמותה ניתוחית גבוהות (כ-45% תחלואה, כ-15% תמותה לפי ערכים דומים בטבלה), גם אם אינו משקף במדויק את "כמות" התת-תזונה</button>
+  <div class="explain">נכון: אלבומין טרום-ניתוחי נמוך מתואם חזק עם תוצאות ניתוח גרועות יותר (כפי שמוצג בטבלת גיבס), גם אם אינו מדד ישיר ומדויק לחומרת התת-תזונה (בגלל דליפת נימים והפניית סינתזה לחלבוני שלב חריף). מחקרים קליניים הראו שמתן אלבומין כתיקון ישיר (אופציה ג') אינו משפר תוצאות קליניות — הקשר אינו סיבתי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. באיזה שלב מהתגובה המטבולית לפציעה (Ebb/Flow) נמצא חולה זה ביום השני אחרי הניתוח, ומה מאפיין אותו?</div>
+  <button class="opt" data-i="0">שלב ה-Flow — היפרמטבוליזם וקטבוליזם שרירי מואץ שאינו נעצר רק על ידי הזנה</button>
+  <button class="opt" data-i="1">שלב ה-Ebb — ירידת חום גוף וירידת תפוקת לב, כפי שמצופה תוך השעות הראשונות בלבד</button>
+  <button class="opt" data-i="2">שלב CARS בלבד, ללא מרכיב קטבולי כלשהו</button>
+  <button class="opt" data-i="3">מצב "צום פשוט" רגיל, זהה למי שלא עבר ניתוח כלל</button>
+  <div class="explain">נכון: שלב ה-Ebb נמשך כ-24–48 שעות בלבד; ביום השני לאחר ניתוח גדול (וכריתת מעי בפרט) החולה כבר בשלב ה-Flow ההיפרמטבולי-קטבולי. בניגוד לצום פשוט (אופציה ד'), קטבוליזם זה נדחף על ידי ציטוקינים ואינו נעצר רק מהזנה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מה ההבדל המהותי בין ציון NUTRIC לבין כלי הערכה תזונתית "רגילים" כמו MUST?</div>
+  <button class="opt" data-i="0">NUTRIC מבוסס אך ורק על משקל וגובה המטופל</button>
+  <button class="opt" data-i="1">NUTRIC משלב את חומרת המחלה הקריטית (APACHE II, SOFA, ימי אשפוז) יחד עם גורמי סיכון תזונתיים, ולא רק את המצב התזונתי הנוכחי</button>
+  <button class="opt" data-i="2">NUTRIC מיועד אך ורק לילדים</button>
+  <button class="opt" data-i="3">אין שום הבדל מהותי בין הכלים</button>
+  <div class="explain">נכון: NUTRIC (וגם NRS-2002) ייחודיים בכך שהם מביאים בחשבון את חומרת המחלה הקריטית עצמה, לא רק מדדי תזונה גולמיים — מה שהופך אותם רלוונטיים במיוחד לחולים כמו זה בווינייטה, שבהם המחלה החריפה (לא רק ההיסטוריה התזונתית) קובעת את דחיפות ההתערבות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. בהמשך האשפוז, ברגע שתפקוד המעי חוזר והחולה יציב המודינמית — מה סדר העדיפויות הנכון בבחירת תמיכה תזונתית?</div>
+  <button class="opt" data-i="0">להמשיך ב-TPN בלבד לצמיתות מכיוון שכבר הותחל</button>
+  <button class="opt" data-i="1">לעבור לתזונה אנטרלית רק אם התזונה הפרנטרלית נכשלת קלינית</button>
+  <button class="opt" data-i="2">להעדיף מעבר לתזונה אנטרלית כאשר המעי תפקודי ואין אי-יציבות המודינמית, כדי לשמר את שלמות רירית המעי ולהפחית סיכון זיהומי</button>
+  <button class="opt" data-i="3">לשלב את שתי השיטות תמיד יחד כברירת מחדל, ללא קשר למצב הקליני</button>
+  <div class="explain">נכון: העיקרון המנחה הוא "אם המעי עובד — להשתמש בו": תזונה אנטרלית מועדפת על פרנטרלית כשהיא אפשרית וללא התוויות נגד, כי היא שומרת על מחסום המעי ומפחיתה סיבוכים זיהומיים, וזולה יותר. TPN שמורה למצבים שבהם EN אינה אפשרית או אינה מספקת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: התגובה המטבולית לפציעה/ניתוח — שינויים הורמונליים ודלקתיים סטריאוטיפיים שמובילים לקטבוליזם, גם ללא זיהום.</li>
+    <li><b>המנגנון</b>: פציעה → ציר נוירואנדוקריני (קטכולאמינים+קורטיזול+גלוקגון) + ציר דלקתי (DAMPs→TLR→ציטוקינים) → שלב Ebb (0–48ש', חיסכון אנרגיה) → שלב Flow (ימים-שבועות, היפרמטבוליזם+קטבוליזם שרירי+תנגודת אנבולית) → איזון SIRS/CARS; חוסר איזון ממושך = PICS.</li>
+    <li><b>הערכה</b>: היסטוריה+בדיקה, ציוני NUTRIC/NRS-2002 (מביאים בחשבון חומרת מחלה), אלבומין/פרה-אלבומין לא אמינים תזונתית בזמן דלקת (אך מנבאי סיכון טרום-ניתוחיים), הדמיה (DXA/CT L3/אולטרסאונד) למסת שריר.</li>
+    <li><b>טיפול</b>: Harris-Benedict עם מקדם דחק, לא לתת-להאכיל ולא לעודף-האכיל, להעדיף EN על PN כשאפשר, ERAS (טעינת פחמימות, הזנה מוקדמת).</li>
+    <li><b>תסמונת הזנה-מחדש</b>: בחולה בסיכון — לתקן אלקטרוליטים+תיאמין מראש, להתחיל הזנה לאט (≈10 קק"ל/ק"ג/יום), לעקוב אחר זרחן/אשלגן/מגנזיום ("Please Feed Patient Minimally").</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

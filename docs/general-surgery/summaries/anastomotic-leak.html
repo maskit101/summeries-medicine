@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!-- הערת מקור: ריצה אוטומטית - קובץ ה-PDF של פרק 12 (Surgical Complications) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). הפרק המקורי רחב-היקף מאוד וכולל עשרות סוגי סיבוכים (פצע, נשימתי, לבבי, כלייתי, אנדוקריני, נוירולוגי, אף-אוזן-גרון ועוד) - הסיכום התמקד בדליפה אנסטומוטית (Anastomotic Leak) כתת-הנושא העשיר ביותר מבחינת מנגנון פתופיזיולוגי וקריטי-קלינית בתוך פרק הסיבוכים הכירורגיים הרחב. תמונות (Wikimedia Commons) וסרטוני YouTube (SAGES - Society of American Gastrointestinal and Endoscopic Surgeons) הושלמו מחיפוש אמיתי. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>דליפה אנסטומוטית (Anastomotic Leak)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>דליפה אנסטומוטית <span class="term" dir="ltr">(Anastomotic Leak)</span></h1>
+<div class="subtitle">הסיבוך הכירורגי-בטני המסוכן ביותר לאחר ניתוחי מעי — פרק 12 בספר Sabiston/Schwartz's Principles of Surgery: Surgical Complications</div>
+
+<p>דליפה אנסטומוטית היא פירוק (מלא או חלקי) של קו החיבור בין שני קטעי מעי שנתפרו/נהדקו יחד בניתוח, כך שתוכן המעי (חיידקים, אנזימים עיכוליים, צואה) דולף לחלל הצפק או לרקמות סמוכות. זהו אחד הסיבוכים הבטניים המפחידים ביותר בכירורגיה כללית — לא בגלל שכיחות גבוהה (כ-5% מהאנסטומוזות בממוצע, עד כ-75% מהמקרים קשורים לקולקטומיה), אלא בגלל שהוא מכפיל ומשלש את שיעור התמותה כשהאבחון מתעכב. האתגר המרכזי: התסמינים המוקדמים לרוב <b>עמומים ולא ספציפיים</b> — בדיוק כמו החלמה תקינה ואיטית — ולכן דורשים חשד קליני גבוה.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    אנסטומוזה בריאה שרודפת אחר ריפוי תקין דורשת שלושה תנאים בו-זמנית: <b>אספקת דם טובה</b> (מעי ורוד, פריסטלטי, עם מזנטריום פועם), <b>היעדר מתח</b> <span class="term" dir="ltr">(tension)</span> על קו התפר (מוביליזציה נכונה של המעי), ו<b>אטימות מכנית</b> — תפר/הידוק שסוגר לגמרי את הלומן בלי פערים. <b>כשגורם אחד מהשלושה נפגע</b> — למשל תת-לחץ דם, הלם, מחלת כלי דם מזנטריאלית, אנמיה קשה, או אובדן דם תוך-ניתוחי — נוצרת <b>היפופרפוזיה מקומית</b> של קו התפר.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מנגנון החמצן קריטי כאן</b>: ריפוי פצע תלוי בלחץ חלקי חמצן <span class="term" dir="ltr">(PO₂)</span> ברקמה — הוא נדרש לתפקוד תקין של פיברובלסטים שבונים קולגן בוגר וחזק. <b>כשה-PO₂ ברקמה יורד מתחת ל-35 מ"מ כספית</b>, נפגעת יצירת סיבי קולגן בוגרים (למרות שהיפוקסיה קלה דווקא <b>מגרה</b> אנגיוגנזה - יצירת כלי דם חדשים). <b>כשה-PO₂ יורד עוד יותר, מתחת ל-10 מ"מ כספית</b>, נפגעים גם האנגיוגנזה עצמה, גורמי הגדילה ואפיתליזציה הרירית — כלומר קו התפר פשוט לא מגיע לחוזק המתיחה <span class="term" dir="ltr">(tensile strength)</span> הדרוש כדי לעמוד בלחץ התוך-לומינלי.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">בנוסף למנגנון האיסכמי, יש "מכה שנייה" ביולוגית: המיקרוביום המעי עצמו</span>. מחקר עדכני מראה שבהיעדר חיידקים מסוימים, דליפות כמעט ולא קורות — כלומר החיידקים אינם רק "סיבוך משני" אלא <b>שחקן פעיל בפירוק קו התפר</b>. חיידקים כמו <span class="term" dir="ltr">Enterococcus faecalis</span> מייצרים <b>קולגנאז חיידקי</b> ומפעילים אנזים בשם <span class="term" dir="ltr">MMP9</span> <span class="term" dir="ltr">(matrix metalloproteinase 9)</span> — אנזים שמפרק פיזית את סיבי הקולגן הטריים שהגוף בדיוק בנה בקו התפר, עוד לפני שהצלקת "התבשלה" והתחזקה. כלומר: <b>איסכמיה מספקת פחות "חומרי בניין וחמצן" לבניית קולגן, וחיידקים "מכרסמים" את מה שכבר נבנה</b> — שילוב שגורם לקו התפר לא לעמוד בלחץ הפנימי, להיפער, ולאפשר לתוכן המעי (חיידקים, אנזימי עיכול) לדלוף לחלל הצפק הסטרילי בדרך כלל.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מתח מכני</b> (tension) על קו התפר פועל במקביל, גם ללא קשר לאיסכמיה — מוביליזציה לא מספקת של המעי גורמת למתיחה פיזית שיכולה לקרוע תפרים גם בקו תפר עם אספקת דם תקינה. <b>לאחר הדליפה</b> — תוכן המעי (חיידקים גראם-שליליים אירוביים ואנאירובים, בדומה לפלורה הקולונית התקינה) גורם ל<b>פריטוניטיס</b>, שמתחילה כתגובה דלקתית כימית-מקומית ומתקדמת לזיהום חיידקי מפושט ותסמונת תגובה דלקתית סיסטמית <span class="term" dir="ltr">(SIRS)</span> ואף אלח דם (sepsis) אם לא מטופלת מהר.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון הדליפה האנסטומוטית</title>
+  <rect x="10" y="20" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="95" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">3 תנאים לריפוי</text>
+  <text x="95" y="64" font-size="11" text-anchor="middle" fill="#4b5563">דם / ללא מתח / אטימות</text>
+
+  <polygon points="190,55 210,48 210,62" fill="#2563eb"/>
+  <rect x="215" y="20" width="170" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="300" y="42" font-size="12" text-anchor="middle" fill="#1f2937">גורם אחד נפגע</text>
+  <text x="300" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">הלם / אנמיה / מתח מכני</text>
+  <text x="300" y="72" font-size="10.5" text-anchor="middle" fill="#4b5563">→ PO₂ &lt;35, ואז &lt;10 מ"מכ'</text>
+
+  <polygon points="395,55 415,48 415,62" fill="#b45309"/>
+  <rect x="420" y="20" width="170" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="505" y="42" font-size="12" text-anchor="middle" fill="#1f2937">↓ קולגן בוגר</text>
+  <text x="505" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">איסכמיה מקומית</text>
+  <text x="505" y="72" font-size="10.5" text-anchor="middle" fill="#4b5563">(פחות "חומרי בניין")</text>
+
+  <polygon points="600,55 620,48 620,62" fill="#b91c1c"/>
+  <rect x="625" y="20" width="185" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="717" y="42" font-size="12" text-anchor="middle" fill="#1f2937">חיידקים "מכרסמים"</text>
+  <text x="717" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">E. faecalis → קולגנאז + MMP9</text>
+  <text x="717" y="72" font-size="10.5" text-anchor="middle" fill="#4b5563">מפרק קולגן טרי בקו התפר</text>
+
+  <polygon points="717,90 710,110 724,110" fill="#b91c1c"/>
+  <rect x="612" y="115" width="210" height="55" rx="8" fill="#7f1d1d" stroke="#7f1d1d"/>
+  <text x="717" y="148" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">דליפה (Leak) — פתיחת קו התפר</text>
+
+  <polygon points="717,175 710,195 724,195" fill="#7f1d1d"/>
+  <rect x="612" y="200" width="210" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="717" y="227" font-size="12" text-anchor="middle" fill="#1f2937">פריטוניטיס → SIRS → אלח דם</text>
+
+  <rect x="10" y="130" width="330" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="175" y="155" font-size="12.5" text-anchor="middle" fill="#1f2937">מתח מכני (Tension) על קו התפר</text>
+  <text x="175" y="172" font-size="11" text-anchor="middle" fill="#4b5563">מוביליזציה לא מספקת — פועל במקביל, גם ללא איסכמיה</text>
+</svg>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה — למה המיקום קובע סיכון</h2>
+<p>לא כל האנסטומוזות מסוכנות באותה מידה. אנסטומוזות של <b>מעי דק</b> (אנטרואנטרוסטומיה, אילאוקוליות, אילאורקטליות) נחשבות <b>"סיכון נמוך"</b>, בעוד אנסטומוזות <b>וושט, פנקראטיקואנטריות וקולורקטליות</b> נמצאות בסיכון מוגבר לדליפה — הבדל שנובע בחלקו מאספקת דם שונה ובחלקו מהסביבה החיידקית (עומס חיידקי גבוה יותר בקולון מאשר במעי דק).</p>
+<p><b>מיקום ביחס לרפלקציה הצפקית</b> <span class="term" dir="ltr">(peritoneal reflection)</span> — הקו האנטומי שמעליו איברי הבטן מכוסים בצפק (peritoneum) ומתחתיו (באגן) הרקמה היא רטרופריטונאלית/חוץ-צפקית — הוא גורם סיכון עצמאי: אנסטומוזה <b>מעל</b> הרפלקציה נהנית מ"רשת ביטחון" טבעית — אומנטום ולולאות מעי סמוכות יכולים "לעטוף" ולתחום דליפה קטנה. אנסטומוזה <b>מתחת</b> לרפלקציה (למשל אנסטומוזה קולורקטלית נמוכה) חשופה יותר ברקמה האגנית הפתוחה, כך שהסיכון לדליפה עולה ל-8%–20% (לעומת 1%–9% לאנסטומוזה רקטלית גבוהה יותר), והדליפה עצמה נוטה להתפשט יותר ברקמה במקום להיתחם.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Manual_anastomosis_of_sigma_colon.JPG?width=650" alt="ביצוע אנסטומוזה ידנית של הסיגמואיד">
+  <figcaption class="media-cap">אנסטומוזה ידנית (hand-sewn) של הסיגמואיד — הצלחה תלויה בשלושת התנאים: אספקת דם, היעדר מתח, ואטימות התפר. מקור: <a href="https://commons.wikimedia.org/wiki/File:Manual_anastomosis_of_sigma_colon.JPG" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<table>
+  <thead><tr><th>קטגוריה</th><th>גורמים מוכחים (Definitive)</th><th>גורמים משוערים/מוטמעים (Implicated)</th></tr></thead>
+  <tbody>
+    <tr><td>טכני</td><td>אספקת דם, מתח על קו התפר, אטימות מכנית, מיקום במעי (פנקראטיקואנטרי, קולורקטלי, מתחת לרפלקציה)</td><td>הכנת מעי מכנית, נקזים, סוג הידוק/סטפלר</td></tr>
+    <tr><td>חולה</td><td>—</td><td>תת-תזונה, אלבומין נמוך, ירידת משקל &gt;10%, סוכרת, השמנה, עישון, גיל מבוגר, אנמיה/דימום קשה, כשל חיסוני</td></tr>
+    <tr><td>מחלה/ניתוח</td><td>—</td><td>ניתוח דחוף, הלם וקרישיות לא תקינה, סרטן מתקדם, עירוי דם, בווסיזומאב, סטרואידים, טיפול נאו-אדג'ובנטי, קרינה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p><b>העיתוי משתנה לפי מיקום האנסטומוזה</b> — דליפה גסטרוג'חנלית אחרי ניתוח מעקף קיבה (gastric bypass) נוטה להופיע <b>מוקדם, לרוב תוך 24 שעות</b>, בעוד דליפה ממעי דק או קולון מופיעה בטיפוסי <b>מאוחר יותר, בין יום 5 ל-7</b> לאחר הניתוח — לרוב אחרי שהמטופל כבר "נראה בסדר" והתחיל לאכול, מה שהופך את האבחון למאתגר.</p>
+<p>תמונה קלינית <b>מוקדמת וחריפה</b> (כשתוכן המעי מתפזר בחלל הצפק החופשי): חום, טכיקרדיה, כאב בטן מוגבר והולך, לויקוציטוזיס, ירידה בתפוקת שתן, וקוצר נשימה (סימני SIRS/אלח דם עם אי-ספיקת איברים מרובה). תמונה <b>מאוחרת וסמויה</b> (כשהדליפה "מוכלת" ע"י אומנטום/מעי סמוך): כאב בטן עמום, איליאוס ממושך, עיכוב בחזרת תפקוד המעי — קל להחמיץ כי זה נראה כמו החלמה איטית "רגילה". דליפה עשויה גם להתגלות כדליפת תוכן מעי מנקז תוך-בטני, או כ<b>פיסטולה אנטרוקוטנאית</b> <span class="term" dir="ltr">(enterocutaneous fistula, ECF)</span> — תוכן מעי שמתנקז החוצה דרך פצע הניתוח.</p>
+<div class="key-box">חשד גבוה לדליפה אנסטומוטית מחייב בירור אקטיבי, גם כשהתסמינים "עמומים" — עיכוב באבחון ובטיפול הוא הגורם המרכזי לתמותה מוגברת בסיבוך הזה.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/GOMx4wGmZSM" title="Colorectal anastomotic leaks: What bugs you? - SAGES" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מקצועית (SAGES 2016, ד"ר John Alverdy) על התפקיד של המיקרוביום המעי (כולל קולגנאז חיידקי) בגרימת דליפות אנסטומוטיות — מרחיבה בדיוק את המנגנון הביולוגי שתואר לעיל. מקור: <a href="https://www.youtube.com/watch?v=GOMx4wGmZSM" target="_blank">YouTube - SAGES</a></p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p>מעבדה (ספירת דם, <span class="term" dir="ltr">CRP</span>, פרוקלציטונין) עשויה להיות מוגברת אך <b>אינה ספציפית</b> — עלולה לעלות גם בסיבוכים אחרים. הכלי המרכזי הוא <b>הדמיה</b>.</p>
+<h3>אבחנה מבדלת — מדוע קל להחמיץ</h3>
+<table>
+  <thead><tr><th>מצב</th><th>עיתוי טיפוסי</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>דליפה אנסטומוטית</td><td>יום 5–7 (מעי דק/קולון); &lt;24 שעות (גסטרוג'חנלי)</td><td>CT: נוזל פריאנסטומוטי + אוויר חופשי/סטרנדינג; החמרה מתקדמת בחום/כאב</td></tr>
+    <tr><td>איליאוס פוסט-ניתוחי רגיל</td><td>ימים 1–3, משתפר בהדרגה</td><td>ללא חום/לויקוציטוזיס מתקדם; ללא ממצא בהדמיה</td></tr>
+    <tr><td>זיהום פצע ניתוחי שטחי</td><td>ימים 4–7</td><td>מוגבל לרקמה תת-עורית; ללא סימני פריטוניטיס</td></tr>
+    <tr><td>תרומבואמבוליזם ורידי (VTE)</td><td>כל עת לאחר הניתוח</td><td>קוצר נשימה/כאב רגל ללא כאב בטן מתקדם; D-dimer, CT אנגיו ריאתי</td></tr>
+  </tbody>
+</table>
+<p><b>CT בטן/אגן עם חומר ניגוד תוך-ורידי, ולעיתים פומי/רקטלי</b>, היא ההדמיה הנפוצה ביותר. ממצאים אופייניים: <b>סטרנדינג</b> של השומן סביב האנסטומוזה, עיבוי/בצקת של דופן המעי, <b>כמות נוזל גדולה (מעל 300 מ"ל)</b> סביב האנסטומוזה, ו<b>אוויר חופשי</b> — כאשר עד 100% מהמקרים המאושרים מציגים אחד משלושה: אוויר חוץ-לומינלי (כ-92%), נוזל חוץ-לומינלי (כ-88%), או דליפת חומר ניגוד (כ-32%), כאשר ברוב המקרים (כ-81%) יש גם אוויר וגם נוזל יחד. <b>מחקרי ניגוד פלואורוסקופיים במסיסות מים</b> <span class="term" dir="ltr">(water-soluble contrast studies)</span> שימושיים במיוחד לאנסטומוזות פרוקסימליות של מערכת העיכול או קולורקטליות דיסטליות. חשוב לזכור: <b>אוויר חופשי מועט יכול להימשך עד 9 ימים, ואוויר "כלוא" (loculated) עד 26 יום — גם ללא דליפה אמיתית</b>, כך שממצא בודד של אוויר בהדמיה מוקדמת אינו אבחנתי לבדו וצריך פענוח בהקשר הקליני. דגימה/ניקוז בהכוונת רדיולוגיה פולשנית (IR) יכולים לאשר את האבחנה ולעיתים גם לטפל בו-זמנית.</p>
+<div class="link-card" style="text-decoration:none">
+  <span class="ico">🩻</span>
+  <div>
+    <div class="t"><a href="https://radiopaedia.org/articles/colonic-anastomotic-leak?lang=gb" target="_blank">Colonic anastomotic leak — Radiopaedia</a></div>
+    <div class="d">מאמר ייחוס רדיולוגי עם דוגמאות CT אמיתיות ומתויגות של דליפה אנסטומוטית קולונית — מומלץ לצפות לפני מבחן הדמיה.</div>
+  </div>
+</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>הטיפול <b>מדורג לפי חומרת המצב הקליני</b>, לא אחיד לכולם — מדליפה א-סימפטומטית שהתגלתה במקרה בהדמיה ועד לפרוטומיה דחופה. חשוב: <b>כל חשד לדליפה מחייב כיסוי אנטיביוטי אמפירי רחב</b> נגד אירובים גראם-שליליים ואנאירובים כאחד — אותה עקרון כמו בפריטוניטיס משנית מכל סיבה אחרת.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון פעולה</th><th>כיסוי חיידקי</th><th>איך עוזר לבעיה הספציפית</th><th>קונטרא-אינדיקציה</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="term" dir="ltr">Piperacillin-tazobactam</span> (Zosyn)</td>
+      <td>פניצילין רחב טווח + מעכב בטא-לקטמאז</td>
+      <td>גראם-שלילי (כולל <span class="term" dir="ltr">Pseudomonas</span>) + אנאירובים + אנטרוקוק</td>
+      <td>תרופה בודדת שמכסה את כל טווח הפלורה הקולונית שדולפת לחלל הצפק — כולל אנטרוקוקוס, שהמחקר מקשר ישירות למנגנון פירוק קו התפר</td>
+      <td>אלרגיה לפניצילינים</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Ceftriaxone</span> + <span class="term" dir="ltr">Metronidazole</span></td>
+      <td>צפלוספורין דור 3 חוסם דופן תא + ניטרואימידזול פוגע ב-DNA אנאירובי</td>
+      <td>גראם-שלילי אירובי + אנאירובים (<span class="term" dir="ltr">B. fragilis</span>)</td>
+      <td>חלופה סבירה כשאין צורך בכיסוי פסאודומונס/אנטרוקוק רחב</td>
+      <td>אלרגיה לצפלוספורינים; להימנע מאלכוהול עם מטרונידזול</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>מדרג הטיפול לפי חומרה</h4>
+  <p><b>דליפה א-סימפטומטית</b> שהתגלתה במקרה בהדמיה — לרוב ללא צורך בהתערבות, מעקב קליני צמוד בלבד. <b>אבצס מוגבל ללא רעילות סיסטמית</b> — ניקוז (לרוב מלעורי בהכוונת CT/IR) + אנטיביוטיקה רחבת טווח + מנוחת מעי (bowel rest). <b>דליפה מוכלת עם סימני אלח דם</b> — אותו עיקרון, אך בליווי מעקב הדוק יותר וסף נמוך יותר למעבר לניתוח. <b>היעדר שיפור קליני, הידרדרות, אלח דם לא נשלט, או פריטוניטיס מפושטת</b> — ניתוח דחוף.</p>
+  <h4>הכנה לניתוח חוזר</h4>
+  <p>ייצוב המודינמי, אנטיביוטיקה IV מיידית, והכנה לניתוח פתוח (לפרוטומיה) — ברוב המקרים החריפים הגישה הלפרוסקופית פחות מתאימה לחלל בטן מזוהם ודלקתי.</p>
+  <h4>מהלך הניתוח — שלבים עיקריים</h4>
+  <p>שטיפה נרחבת של חלל הצפק (lavage), זיהוי מקור הדליפה, והחלטה קריטית: לנסות <b>לתקן/לחזק</b> את קו התפר הקיים, או <b>לפרק את האנסטומוזה לגמרי</b> ולבצע הטיה זמנית של זרם הצואה (סטומה מגנה — קולוסטומיה או אילאוסטומיה).</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>ברקמה בצקתית, דלקתית ונגועה בזיהום (בדיוק המצב אחרי דליפה), <b>ניסיון לתפור מחדש את אותה אנסטומוזה חשוף לכישלון חוזר</b> — משום שאותם מנגנונים (איסכמיה + עומס חיידקי) עדיין פעילים ואף הוחמרו. לכן, כשיש פריטוניטיס מפושטת או רקמה לא בריאה, <b>עדיפה הטיה מלאה של זרם הצואה</b> (קולוסטומיה/אילאוסטומיה) על פני ניסיון תיקון "אופטימי" באותו מושב ניתוחי.</p>
+  <h4>החלמה</h4>
+  <p>לאחר בקרת מקור הזיהום (source control) — מעקב אחר חזרת תפקוד מעי, ירידת חום ולויקוציטוזיס, ותמיכה תזונתית (לעיתים תזונה פרנטרלית זמנית). <b>תסמין מחשיד להישנות/סיבוך נוסף</b>: חום חוזר, כאב מתגבר, או דליפה מתמשכת מהנקז — מחייבים הדמיה חוזרת.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/DoUM1RiGxIY" title="GI Anastomosis - Tips and Tricks of Avoiding and Management of Anastomotic Leaks" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מקצועית (SAGES) על עקרונות מניעת דליפה וניהול מדורג כשהיא מתרחשת, כולל דיון בהחלטה בין ניקוז לניתוח חוזר. מקור: <a href="https://www.youtube.com/watch?v=DoUM1RiGxIY" target="_blank">YouTube - SAGES</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — BTAO (מקורי, לזכירת שלושת התנאים לריפוי + התוצאה)</h3>
+  <p>
+    <b>B</b>lood supply — אספקת דם תקינה<br>
+    <b>T</b>ension-free — ללא מתח על קו התפר<br>
+    <b>A</b>irtight/watertight — אטימות מכנית מלאה<br>
+    <b>O</b>xygen — חמצן רקמתי מספיק (מעל 35, ובעיקר מעל 10 מ"מ כספית) לבניית קולגן<br>
+    כשאחד מהם נפגע → קו התפר לא מגיע לחוזק מתיחה מספיק → פתוח לפירוק ע"י חיידקים (E. faecalis, MMP9)
+  </p>
+  <h3>סיפור דמיוני — "הגשר התלוי הרעוע"</h3>
+  <p>דמיינו את קו התפר כ<b>גשר תלוי</b> חדש שנבנה בין שני חלקי מעי. הגשר בטוח רק אם: יש לו אספקת חומרי בניין סדירה (אספקת הדם), אין עליו עומס משקל עודף (ללא מתח), והוא אטום לגמרי בלי סדקים (אטימות). עכשיו דמיינו <b>חיידקים קטנים שמכרסמים את חבלי הגשר</b> (הקולגנאז החיידקי) בזמן שהוא עוד לא התייצב לגמרי. אם בו-זמנית יש גם מחסור בחומרי בניין (איסכמיה) וגם כרסום חבלים (חיידקים) — <b>הגשר קורס</b>, וכל מה שעליו (תוכן המעי) נופל לתהום שמתחתיו (חלל הצפק).</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: הגשר התלוי הרעוע</title>
+    <rect x="30" y="40" width="18" height="140" fill="#78716c"/>
+    <rect x="452" y="40" width="18" height="140" fill="#78716c"/>
+    <path d="M48 60 Q250 20 452 60" stroke="#92400e" stroke-width="4" fill="none"/>
+    <path d="M120 66 L120 130" stroke="#b45309" stroke-width="3" stroke-dasharray="4,4"/>
+    <path d="M250 55 L250 130" stroke="#b91c1c" stroke-width="3" stroke-dasharray="2,6"/>
+    <path d="M380 66 L380 130" stroke="#b45309" stroke-width="3" stroke-dasharray="4,4"/>
+    <rect x="60" y="128" width="380" height="16" rx="4" fill="#fde68a" stroke="#b45309"/>
+    <text x="250" y="140" font-size="11" text-anchor="middle" fill="#1f2937">קו התפר (הגשר)</text>
+    <text x="250" y="170" font-size="11" text-anchor="middle" fill="#b91c1c">חבל מכורסם = פגיעה חיידקית/איסכמית בקולגן</text>
+    <text x="250" y="200" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">קריסה → דליפה לחלל הצפק</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/9H5JuQAYdHY" title="Clinical Challenges in Colorectal Surgery: Management of Anastomotic Leaks" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה קלינית מבוססת-מקרים על הערכה וניהול דליפות אנסטומוטיות בכירורגיה קולורקטלית — טובה לחיזוק האלגוריתם הטיפולי המדורג שתואר בסעיף הטיפול. מקור: <a href="https://www.youtube.com/watch?v=9H5JuQAYdHY" target="_blank">YouTube</a></p>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Anastomosi_intestinali.png" target="_blank">איור סוגי אנסטומוזות מעי (Anastomosi intestinali) — Wikimedia Commons</a>
+    <div class="desc">איור סכמטי המשווה בין סוגי חיבור מעי שונים (end-to-end, side-to-side וכו') — טוב להתמצאות לפני קריאת הפרק הכירורגי.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/articles/colonic-anastomotic-leak?lang=gb" target="_blank">Colonic anastomotic leak — Radiopaedia</a>
+    <div class="desc">מאמר ייחוס רדיולוגי מלא עם קישורים למקרים אמיתיים ותמונות CT מתויגות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 68 עבר לפני 6 ימים כריתת סיגמואיד עם אנסטומוזה קולורקטלית נמוכה (מתחת לרפלקציה הצפקית) בגלל סרטן. בימים הראשונים ההחלמה נראתה תקינה, אך מיום 5 הוא מדווח על כאב בטן הולך ומחמיר, ותפקוד המעי שלו טרם חזר (ללא גזים/יציאות). בבדיקה: חום 38.6°C, דופק 108, רגישות מפושטת בבטן התחתונה עם הגנה קלה. מעבדה: לויקוציטים 17,500, CRP עולה משמעותית לעומת יום 3. בוצע CT בטן/אגן עם ניגוד IV שהדגים נוזל פריאנסטומוטי בנפח כ-400 מ"ל עם בועות אוויר חוץ-לומיניות וסטרנדינג של השומן הסובב, ללא אוויר תת-סרעפתי חופשי מסיבי.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו התפקיד הביולוגי המרכזי שמייחס אותו מחקר עדכני לחיידק Enterococcus faecalis בגרימת דליפה אנסטומוטית?</div>
+  <button class="opt" data-i="0">ייצור אנדוטוקסין שגורם להלם ספטי ישיר</button>
+  <button class="opt" data-i="1">חסימה מכנית של לומן האנסטומוזה</button>
+  <button class="opt" data-i="2">ייצור קולגנאז חיידקי והפעלת MMP9, שמפרקים את הקולגן הטרי בקו התפר</button>
+  <button class="opt" data-i="3">גרימת תגובה אלרגית מקומית לחומרי התפר</button>
+  <div class="explain">נכון: E. faecalis מייצר קולגנאז חיידקי ומפעיל MMP9 — אנזים שמפרק פיזית את הקולגן החדש שנבנה בקו התפר, עוד לפני שהוא התחזק מספיק. זהו מנגנון ביולוגי-אנזימטי ישיר, לא רק "זיהום כללי". אנדוטוקסין (1) רלוונטי לתמונת אלח הדם לאחר הדליפה אך אינו הגורם לפירוק קו התפר עצמו. חסימה מכנית (2) ותגובה אלרגית (4) אינם מנגנון מוכר בספרות לגבי חיידק זה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע אנסטומוזה קולורקטלית מתחת לרפלקציה הצפקית נמצאת בסיכון גבוה יותר לדליפה (8%–20%) בהשוואה לאנסטומוזה מעל הרפלקציה (1%–9%)?</div>
+  <button class="opt" data-i="0">כי החיידקים בקולון הרחוק שונים לגמרי מאלו בקולון הפרוקסימלי</button>
+  <button class="opt" data-i="1">כי מתחת לרפלקציה הרקמה חוץ-צפקית וחשופה, ואין אומנטום/מעי סמוך שיכולים לתחום דליפה קטנה כפי שקורה מעל הרפלקציה</button>
+  <button class="opt" data-i="2">כי מתחת לרפלקציה תמיד משתמשים בסטפלר ולא בתפר ידני</button>
+  <button class="opt" data-i="3">כי הלחץ התוך-בטני גבוה יותר באגן מאשר בבטן העליונה</button>
+  <div class="explain">נכון: מעל הרפלקציה, איברי הבטן מכוסים בצפק — אומנטום ולולאות מעי סמוכות יכולים "לעטוף" ולתחום דליפה קטנה לפני שהיא מתפשטת. מתחת לרפלקציה (באגן) הרקמה רטרופריטונאלית/חוץ-צפקית וחסרת "רשת הביטחון" הזו, כך שדליפה מתפשטת בקלות ברקמה הרכה. הבדל חיידקי (1) אינו הגורם המרכזי המתואר. בחירת טכניקה (3) והבדל בלחץ תוך-בטני (4) אינם ההסבר הפיזיולוגי המקובל.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע דליפה אחרי מעקף קיבה (gastric bypass) בדרך כלל מופיעה מוקדם (תוך 24 שעות), בעוד דליפה קולונית מופיעה בטיפוסי ביום 5–7?</div>
+  <button class="opt" data-i="0">זהו הבדל אמפירי-קליני שתועד לפי מיקום האנסטומוזה ומהירות התפתחות הסיבוך בכל אזור — לא נובע מהבדל בקצב הריפוי הביולוגי עצמו</button>
+  <button class="opt" data-i="1">אנסטומוזה גסטרוג'חנלית לעולם לא מבוצעת עם סטפלר</button>
+  <button class="opt" data-i="2">חולים אחרי מעקף קיבה תמיד מקבלים פחות אנטיביוטיקה מונעת</button>
+  <button class="opt" data-i="3">קולון תמיד מנוקז בעוד קיבה לעולם לא מנוקזת</button>
+  <div class="explain">נכון: ההבדל בעיתוי הוא ממצא קליני-סטטיסטי שתועד בספרות לפי מיקום האנסטומוזה — דליפות גסטרוג'חנליות נוטות להתגלות מוקדם ודליפות מעי דק/קולון בד"כ מאוחר יותר (יום 5–7), ללא הסבר מבוסס בהכרח על הבדל בקצב הריפוי הביולוגי הבסיסי. שאר האופציות (2–4) הן טענות שגויות שאינן משקפות את הספרות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. איזה שילוב ממצאי CT הכי תומך באבחנה של דליפה אנסטומוטית אמיתית (ולא רק ממצא נורמלי לאחר ניתוח)?</div>
+  <button class="opt" data-i="0">אוויר תת-דיאפרגמטי קטן ביום הראשון לאחר לפרוסקופיה, ללא ממצא נוסף</button>
+  <button class="opt" data-i="1">לויקוציטים תקינים ו-CRP יורד בהדרגה מיום 3</button>
+  <button class="opt" data-i="2">כמות נוזל פריאנסטומוטי קטנה מ-50 מ"ל ללא סטרנדינג</button>
+  <button class="opt" data-i="3">נוזל פריאנסטומוטי בנפח מעל 300 מ"ל, בשילוב עם אוויר חוץ-לומינלי וסטרנדינג של השומן הסובב</button>
+  <div class="explain">נכון: השילוב של נוזל גדול (&gt;300 מ"ל) יחד עם אוויר חוץ-לומינלי וסטרנדינג הוא הפרופיל האופייני לדליפה אמיתית — עד 81% מהדליפות המאושרות מציגות גם אוויר וגם נוזל יחד. אוויר תת-דיאפרגמטי מועט לבדו (1) יכול להימשך תקין עד 9 ימים אחרי ניתוח ואינו אבחנתי. מעבדה משתפרת (2) וממצא הדמיה מינימלי (3) דווקא תומכים בהחלמה תקינה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בהמשך לווינייטה — מהו הצעד הבא הנכון ביותר בניהול המטופל, בהתחשב בכך שאין עדיין פריטוניטיס מפושטת או חוסר יציבות המודינמית?</div>
+  <button class="opt" data-i="0">מעקב קליני בלבד ללא התערבות נוספת</button>
+  <button class="opt" data-i="1">חזרה מיידית לחדר ניתוח לפירוק האנסטומוזה וביצוע קולוסטומיה, בלי לנסות טיפול פחות פולשני קודם</button>
+  <button class="opt" data-i="2">ניקוז מלעורי (או ניתוח לפי הצורך) בהכוונת CT/IR של אוסף הנוזל, כיסוי אנטיביוטי רחב-טווח (למשל Piperacillin-tazobactam), ומנוחת מעי, עם מעקב הדוק אחר יציבות קלינית</button>
+  <button class="opt" data-i="3">התחלת אנטיביוטיקה פומית בלבד ושחרור לבית עם מעקב מרפאתי</button>
+  <div class="explain">נכון: מטופל עם דליפה מוכלת (נוזל מוגדר בהדמיה) שאינו טוקסי ואינו לא-יציב מנוהל בקו ראשון בגישה מדורגת — ניקוז מלעורי + אנטיביוטיקה רחבת טווח + מנוחת מעי, עם מעקב צמוד ומעבר לניתוח רק אם אין שיפור. מעקב בלבד (1) אינו מספק כשיש כבר סימני זיהום פעיל. ניתוח מיידי ואגרסיבי (2) שמור למקרים עם פריטוניטיס מפושטת/חוסר יציבות/הידרדרות, לא כקו ראשון כאן. אנטיביוטיקה פומית ושחרור (4) אינם מתאימים כלל למצב זה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: פירוק קו החיבור בין קטעי מעי לאחר ניתוח, עם דליפת תוכן מעי לחלל הצפק — סיבוך בטני קריטי בכ-5% מהאנסטומוזות.</li>
+    <li><b>המנגנון</b>: הפרעה באחד משלושת תנאי הריפוי (דם/מתח/אטימות) → PO₂ ברקמה יורד מתחת ל-35 ואז 10 מ"מכ' → ↓קולגן בוגר, ובמקביל חיידקים (E. faecalis) מייצרים קולגנאז ומפעילים MMP9 שמפרק את הקולגן הטרי → קו התפר נפער → פריטוניטיס → SIRS/אלח דם.</li>
+    <li><b>סיכון</b>: אנסטומוזות ושט/פנקראטיקואנטרי/קולורקטלי (במיוחד מתחת לרפלקציה הצפקית) בסיכון גבוה יותר מאנסטומוזות מעי דק.</li>
+    <li><b>קליני</b>: עיתוי משתנה לפי מיקום (גסטרוג'חנלי &lt;24 שעות; מעי דק/קולון יום 5–7); ביטוי חריף (SIRS) או סמוי (איליאוס ממושך, ECF).</li>
+    <li><b>אבחנה</b>: CT בטן/אגן עם ניגוד — נוזל &gt;300 מ"ל + אוויר חוץ-לומינלי + סטרנדינג; זכרו שאוויר מועט לבדו יכול להיות תקין עד 9 ימים.</li>
+    <li><b>טיפול</b>: מדורג לפי חומרה — א-סימפטומטי (מעקב) ← אבצס מוגבל (ניקוז + אנטיביוטיקה רחבת טווח + מנוחת מעי) ← פריטוניטיס מפושטת/הידרדרות (לפרוטומיה, לרוב עם הטיית זרם צואה זמנית).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<!-- מקור: פרק 3 המלא (Ch 003 - The Inflammatory Response.pdf) היה נגיש בריצה זו והיווה את המקור הראשי (חולצו הטקסט המלא וכל תתי-הפרקים: תאי המערכת החיסונית, חסינות מולדת, מערכת המשלים, חסינות נרכשת, SIRS/CARS, גנומיקה, MOF, PICS). קריטריוני Sepsis-3/qSOFA/מגדר ה-septic shock אינם מפורטים בפרק עצמו (הפרק מתמקד ב-SIRS של Bone 1992 ובאימונולוגיה) והושלמו מחיפוש אמיתי באינטרנט (PubMed/Annals of Emergency Medicine, הסכמה הבינלאומית השלישית לספסיס 2016) כדי להשלים פער ברור וחשוב למבחן. תמונות (Wikimedia Commons) וסרטוני YouTube (Ninja Nerd) הושלמו מחיפוש אמיתי. פרק זה עוסק בפיזיולוגיה/אימונולוגיה בסיסית ולא במחלה ניתוחית בודדת - הסעיפים "אבחנה"/"טיפול" בתבנית הרגילה הותאמו לתוכן המקביל (ספקטרום SIRS→ספסיס→הלם ספטי→MOF, וטיפול תומך/בקרת מקור זיהום כירורגית) בדיוק כפי שנעשה בסיכומי פרקים 1-2. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>התגובה הדלקתית (The Inflammatory Response)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>התגובה הדלקתית <span class="term" dir="ltr">(The Inflammatory Response)</span></h1>
+<div class="subtitle">פרק 3 בספר Sabiston/Schwartz's Principles of Surgery — היסוד הביולוגי ל-SIRS, ספסיס, כשל רב-איברי ומחלה קריטית כרונית שבהם נתקל כל מנתח</div>
+
+<p>התגובה הדלקתית מופעלת בעקבות פלישת מיקרואורגניזמים עם פגיעה ישירה ברקמה, או בתגובה ללחץ סיסטמי כמו היפותרמיה או תת-לחץ דם. מסלולים תאיים רבים פועלים בו-זמנית בניסיון להגביל נזק ולעודד החלמה — אך כשהתגובה חורגת מהיקף מקומי, היא עלולה להפוך <b>לבלתי-מבוקרת ולא-הולמת</b>, עם תוצאה קטסטרופלית. מנתחים חיים בעולם של דלקת חריפה וכרונית: הבנת האיזון בין הפעלה, ריסון והעצמה של התגובה הדלקתית קריטית להבנת מטופל עם תגובה מקומית לניתוח, <span class="key">תסמונת תגובה דלקתית סיסטמית (SIRS)</span>, כשל רב-מערכתי, ומחלה קריטית כרונית.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל תגובה דלקתית מתחילה באיתור <b>סכנה</b>. תאים ורקמות נושאים קולטני זיהוי דפוס <span class="term" dir="ltr">(pattern recognition receptors, PRR)</span> — ביניהם משפחת <span class="term" dir="ltr">Toll-like receptors (TLR)</span> ומשפחת <span class="term" dir="ltr">NOD-like receptors (NLR)</span> — שמזהים שני סוגי אותות: <b>PAMPs</b> <span class="term" dir="ltr">(pathogen-associated molecular patterns)</span>, מבנים ייחודיים לפתוגנים (כמו ליפופוליסכריד/LPS על דופן חיידקים גראם-שליליים, המזוהה ספציפית ע"י TLR4), ו-<b>DAMPs</b> <span class="term" dir="ltr">(danger-associated molecular patterns)</span>, הידועים גם כ"אלרמינים" — מולקולות תוך-תאיות (כמו <span class="term" dir="ltr">HMGB1</span> וחלבוני הלם חום) שדולפות מתאים פגועים/נמקיים גם ללא כל חיידק בסביבה. <b>זו הנקודה החשובה ביותר להבין</b>: מודל "עצמי מול לא-עצמי" הישן לא הסביר למה הגוף לא תוקף עובר מתפתח, אבל כן מגיב לפגיעה סטרילית (טראומה, כוויה, ניתוח) — ולכן הוחלף בהשערת הסכנה של <span class="term" dir="ltr">Matzinger</span>: המערכת החיסונית מגיבה ל<b>אות נזק תאי</b>, לא בהכרח לנוכחות זר. זו הסיבה המנגנונית לכך ש-<b>SIRS יכול להתפתח לגמרי בלי זיהום</b> — הטריגר הוא שחרור DAMPs מרקמה פגועה, בדיוק כמו שהוא PAMPs מחיידק פולש.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    זיהוי PAMP/DAMP ע"י TLR או ע"י ה<span class="key">אינפלמסום</span> <span class="term" dir="ltr">(inflammasome)</span> — מבנה תוך-תאי שנבנה ממשפחת NLR (המוכר ביותר: <span class="term" dir="ltr">NLRP3</span>) יחד עם caspase-1 — <b>גורם</b> לשחרור מהיר של ציטוקינים "היפר-אקוטיים": <span class="term" dir="ltr">TNF-α</span> ו-<span class="term" dir="ltr">IL-1β</span> עולים תוך 30 דקות עד שעתיים מהאירוע המעורר, אך זמן מחצית חייהם קצר מאוד (14–18 דקות ל-TNF-α, כ-10 דקות ל-IL-1) — ולכן אינם טובים לניבוי חומרת הפגיעה. בעקבותיהם משתחררים ציטוקינים "סאב-אקוטיים" — <span class="term" dir="ltr">IL-6</span> ו-<span class="term" dir="ltr">IL-8</span> — עם שיא בין שעה ל-4 שעות וריכוז מתמשך יותר; <b>IL-6 נחשב היום הפרוגנוסטיקטור המדויק ביותר</b> אצל מטופלי טראומה עם SIRS/ספסיס/MODS, כי רמותיו הגבוהות והמתמשכות מתואמות ישירות עם פרוגנוזה גרועה. ציטוקינים אלה, יחד עם מערכת המשלים <span class="term" dir="ltr">(complement)</span>, מפעילים תגובה מקומית שכוללת הרחבת כלי דם (היסטמין, ברדיקינין), עלייה בחדירות נימית, וגיוס נויטרופילים ומקרופאגים לאזור — כל זה <b>מיטיב</b> כשהוא נשאר ממוקד.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    הבעיה מתחילה כשעוצמת האירוע (או פגיעויות נלוות — כוויות נרחבות, גיל מבוגר, תת-תזונה, שימוש כרוני בסטרואידים) <b>עולה על יכולת ההכלה המקומית</b>. אז אותם מנגנונים שהיו מיטיבים מקומית — קרישה, הרחבת כלי דם, שחרור חומרים ציטוטוקסיים — הופכים למזיקים כשהם מתרחשים <b>סיסטמית</b>: התנגדות כלי דם היקפית יורדת, קיבולת ורידית עולה, אינדקס לב עולה (בתגובה לירידת ה-afterload), דליפה מהנימים גורמת לבצקת ריאתית, וחומרים ציטוטוקסיים פוגעים בנוירונים היקפיים ומרכזיים (מנגנון בסיס לדליריום ומיופתיה בטיפול נמרץ). זו <span class="key">תסמונת התגובה הדלקתית הסיסטמית (SIRS)</span>. במקביל ולא ברצף אחריה — תפיסה זו השתנתה משמעותית בעשור האחרון (ראו סעיף גנומיקה) — מתפתחת <span class="key">תסמונת התגובה האנטי-דלקתית המפצה (CARS)</span>, המושתתת על עלייה ב-IL-10 וב-IL-6 וירידה בביטוי <span class="term" dir="ltr">HLA-DR</span> על מונוציטים, הפוגעת ביכולתם להציג אנטיגן לתאי T עוזרים — ומשאירה את המטופל <b>פגיע לזיהום משני</b> בדיוק בזמן שהוא הכי חולה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>חום ולויקוציטוזיס אינם "מהחיידקים" ישירות</b> — הם תוצאה של אותם ציטוקינים (TNF-α, IL-1, IL-6) הפועלים על ההיפותלמוס (פירוגנים) ועל מוח העצם, ולכן יכולים להופיע גם ב-SIRS <b>סטרילי</b> לגמרי (טראומה, כוויה, דלקת לבלב, ניתוח גדול) בלי כל זיהום. IL-6 גם מפעיל את הכבד לייצר חלבוני שלב חריף <span class="term" dir="ltr">(acute-phase reactants)</span> — <span class="term" dir="ltr">CRP</span>, חלבוני משלים, פיברינוגן, פריטין — כאשר CRP מתחיל לעלות כ-8 שעות אחרי הפגיעה ומגיע לשיא תוך 48 שעות. אם ה"שרשרת" ממשיכה ללא בקרה — עומס דלקתי מתמשך פוגע ישירות באיברים (משלים, קרישה, רדיקלים חופשיים) ומוביל לכשל רב-איברי <span class="term" dir="ltr">(multiple organ failure, MOF)</span>; ניצולים מתפצלים לשני מסלולים — <b>שיקום הומאוסטזיס חיסוני תוך 14 יום</b>, או כניסה למצב של <b>מחלה קריטית כרונית</b> המאופיינת בדלקת מתמשכת, דיכוי חיסוני וקטבוליזם — תסמונת <span class="term" dir="ltr">PICS</span> (ראו סעיף 5).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון התגובה הדלקתית: מפגיעה ל-SIRS/CARS ועד MOF/PICS</title>
+  <rect x="10" y="15" width="150" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="42" font-size="12" text-anchor="middle" fill="#1f2937">פגיעה / פתוגן</text>
+  <text x="85" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">טראומה, זיהום, ניתוח</text>
+
+  <polygon points="165,47 185,40 185,54" fill="#2563eb"/>
+  <rect x="190" y="15" width="160" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="270" y="38" font-size="11.5" text-anchor="middle" fill="#1f2937">DAMP / PAMP</text>
+  <text x="270" y="54" font-size="10" text-anchor="middle" fill="#4b5563">מזוהים ע"י TLR/NLR</text>
+  <text x="270" y="68" font-size="10" text-anchor="middle" fill="#4b5563">(אינפלמסום)</text>
+
+  <polygon points="355,47 375,40 375,54" fill="#2563eb"/>
+  <rect x="380" y="15" width="170" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="465" y="38" font-size="11.5" text-anchor="middle" fill="#1f2937">ציטוקינים + משלים</text>
+  <text x="465" y="54" font-size="10" text-anchor="middle" fill="#4b5563">TNF/IL-1 (מהיר)</text>
+  <text x="465" y="68" font-size="10" text-anchor="middle" fill="#4b5563">IL-6/IL-8 (מושהה)</text>
+
+  <polygon points="555,47 575,40 575,54" fill="#b45309"/>
+  <rect x="580" y="15" width="160" height="65" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="660" y="38" font-size="11.5" text-anchor="middle" fill="#1f2937">תגובה מקומית</text>
+  <text x="660" y="54" font-size="10" text-anchor="middle" fill="#4b5563">הרחבת כלי דם, גיוס</text>
+  <text x="660" y="68" font-size="10" text-anchor="middle" fill="#4b5563">נויטרופילים — מיטיבה</text>
+
+  <polygon points="660,80 653,100 667,100" fill="#b91c1c"/>
+  <text x="660" y="115" font-size="10.5" text-anchor="middle" fill="#4b5563">עומס &gt; יכולת הכלה</text>
+
+  <rect x="480" y="125" width="180" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="570" y="150" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">SIRS (סיסטמי)</text>
+  <text x="570" y="167" font-size="10" text-anchor="middle" fill="#4b5563">↓התנגדות כלי דם, בצקת</text>
+
+  <rect x="690" y="125" width="180" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="780" y="150" font-size="13" font-weight="700" text-anchor="middle" fill="#6d28d9">CARS (מקביל, לא רצף!)</text>
+  <text x="780" y="167" font-size="10" text-anchor="middle" fill="#4b5563">↓HLA-DR, ↑IL-10, לימפופניה</text>
+
+  <polygon points="660,190 653,210 667,210" fill="#b91c1c"/>
+  <rect x="480" y="215" width="390" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="675" y="248" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">כשל רב-איברי (MOF)</text>
+
+  <polygon points="570,275 555,295 585,295" fill="#047857"/>
+  <polygon points="780,275 765,295 795,295" fill="#6d28d9"/>
+  <rect x="450" y="298" width="220" height="28" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="560" y="317" font-size="11" text-anchor="middle" fill="#1f2937">שיקום הומאוסטזיס (14 יום)</text>
+  <rect x="680" y="298" width="220" height="28" rx="6" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="790" y="317" font-size="11" text-anchor="middle" fill="#1f2937">מחלה כרונית — PICS</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LArxUakFsFs" title="Immunology | Inflammation: Vascular Events: Part 1 - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">האירועים הווסקולריים של הדלקת — הרחבת כלי דם, עלייה בחדירות נימית, והקשר למתווכים כמו היסטמין וברדיקינין (Ninja Nerd). מקור: <a href="https://www.youtube.com/watch?v=LArxUakFsFs" target="_blank">YouTube - Ninja Nerd</a></p>
+
+<h2><span class="num">3</span> תאי המערכת החיסונית, ציטוקינים ומערכת המשלים</h2>
+<p><b>נויטרופיל</b> <span class="term" dir="ltr">(neutrophil)</span> — לויקוציט פולימורפונוקלארי (PMN), התא הראשון המגויס בדרך כלל לפגיעה/זיהום. זמן מחצית חיים קצר (כ-8 שעות במחזור הדם, מתארך בתגובה לאותות דלקתיים); ייצורו במח העצם מווסת ע"י <span class="term" dir="ltr">G-CSF</span>, בהשפעת <span class="term" dir="ltr">IL-17</span> (מתאי T) ו-<span class="term" dir="ltr">IL-23</span> (ממקרופאגים). הנויטרופיל עובר תהליך מסודר בן חמישה שלבים כדי לצאת מזרם הדם אל הרקמה: <b>קשירה זמנית → גלגול על דופן כלי הדם → הידבקות הדוקה → זחילה → מעבר טרנס-אנדותליאלי</b> — כל שלב מתווך ע"י מולקולות אחרות (סלקטינים לגלגול, אינטגרינים ו-ICAM להידבקות הדוקה). בתוך הרקמה, גרגירי הנויטרופיל (אזורופיליים, ספציפיים, וגלטינאזה) משחררים אנזימים פרוטאוליטיים שממיסים פתוגנים, והוא יכול לפרוש "מלכודת חוץ-תאית" <span class="term" dir="ltr">(neutrophil extracellular trap, NET)</span> — רשת סיבים שאליה נדבקים היסטונים וחלבונים, הלוכדת פתוגנים חוץ-תאיים.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/NeutrophilerAktion.svg?width=650" alt="שלבי גיוס הנויטרופיל: גלגול, הידבקות, מעבר טרנס-אנדותליאלי">
+  <figcaption class="media-cap">גיוס הנויטרופיל מזרם הדם לרקמה — קשירה, גלגול, הידבקות הדוקה ומעבר טרנס-אנדותליאלי (דיאפדזה) לאתר הדלקת. מקור: <a href="https://commons.wikimedia.org/wiki/File:NeutrophilerAktion.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<p><b>מקרופאג</b> <span class="term" dir="ltr">(macrophage)</span> — מתמיין ממונוציטים בתגובה לזיהום/פגיעה; נושא מגוון רחב של PRR, מבצע פגוציטוזה ופירוק ליזוזומלי של פתוגנים, ומפריש ציטוקינים דלקתיים (IL-1β, TNF-α). מציג אנטיגנים ולכן משמש גם כתא מציג אנטיגן (APC). מפגין פלסטיות: <b>M1</b> — פרו-דלקתי, שולט בזיהום ויראלי/חיידקי, וריכוזים גבוהים שלו מתואמים עם תמותה במודלים של ספסיס; <b>M2</b> — חיוני לשיקום רקמה וריפוי פצעים, מבטא IL-10. תאי קופפר בכבד ומיקרוגליה במוח הם למעשה מקרופאגים רקמתיים.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Process_of_Phagocytosis.svg?width=550" alt="תהליך הפגוציטוזה">
+  <figcaption class="media-cap">שלבי הפגוציטוזה — זיהוי הפתוגן, בליעה ליצירת פאגוזום, מיזוג עם ליזוזום ופירוק. מקור: <a href="https://commons.wikimedia.org/wiki/File:Process_of_Phagocytosis.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<p><b>תא דנדריטי</b> <span class="term" dir="ltr">(dendritic cell)</span> — מגשר בין החסינות המולדת לנרכשת כתא מציג האנטיגן המקצועי המרכזי. בולע פתוגן, מעבד אותו ומציג שברי חלבון על <span class="term" dir="ltr">MHC class I</span> (לתאי T ציטוטוקסיים CD8+) או <span class="term" dir="ltr">MHC class II</span> (לתאי T עוזרים CD4+, בלבד על APCs), ונודד לקשריות הלימפה. מפעיל תאי T גם דרך ליגנדים (CD80/CD86) וציטוקינים (IL-12). מעניין: אותה מכונה בדיוק המשמשת להפעלת תגובה חיסונית פעילה נגד פתוגן, משמשת גם להצגת אנטיגנים עצמיים ולהשראת <b>תאי T ויסותיים</b> (Treg) לצורך סבילות חיסונית — כשל בנתיב הזה גורם לאוטואימוניות.</p>
+
+<h3>תאי T ו-B</h3>
+<p>הפעלת תא T דורשת שלושה שלבים: הצגת קומפלקס אנטיגן-MHC לתא T נאיבי, קו-סטימולציה (בעיקר CD28 מול CD80/CD86), וסביבת ציטוקינים מתאימה. תת-הסוגים העיקריים של תאי T עוזרים (CD4+): <b>Th1</b> — נלחם בפתוגנים תוך-תאיים דרך IFN-γ; <b>Th2</b> — מפנה פתוגנים חוץ-תאיים ומתווך תגובה אלרגית (IL-4, IL-5, IL-13); <b>Th17</b> — מגיב לפתוגנים חוץ-תאיים ופטריות, מעורב במחלות אוטואימוניות (IL-17); <b>Treg</b> — חיוני לסבילות עצמית (IL-10, TGF-β). תאי T ציטוטוקסיים (CD8+) הורגים תאים נגועים בנגיף. <b>נקודה חשובה למנתחים</b>: התגובה החיסונית התלויה בתאי T <b>מדוכאת</b> בעקבות הרדמה כללית, לחץ ניתוחי, עירוי דם, היפותרמיה, היפרגליקמיה וכאב פוסט-ניתוחי — ומחקר בחולות סרטן שד פולשני הראה עלייה בתאי Treg 72 שעות לאחר ניתוח שהתאמה לגודל גידול גדול יותר, חיוביות ל-HER2 והישרדות חופשית ממחלה קצרה יותר — כלומר לדיכוי החיסוני הפוסט-ניתוחי עשויה להיות השלכה קלינית ממשית באונקולוגיה כירורגית.</p>
+<p><b>תאי B</b> מייצרים נוגדנים ומשמשים גם כ-APC. תאי B באזור השולי בטחול (marginal zone) מייצרים IgM מהר ובאופן בלתי-תלוי בתאי T כקו הגנה ראשון נגד פולשים בדם; תאי B פוליקולריים תלויי-T עוברים "החלפת מחלקה" (class switching) מ-IgM ל-IgG/IgA/IgE; תאי B זיכרון מאפשרים תגובה חיסונית מהירה וחזקה בחשיפה חוזרת לאותו אנטיגן.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/qkIfYwnaYqc" title="Immunology | Immune System: Overview - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה כללית של מערכת החיסון — חסינות מולדת ונרכשת, התאים המרכזיים ואופן שיתוף הפעולה ביניהם (Ninja Nerd). מקור: <a href="https://www.youtube.com/watch?v=qkIfYwnaYqc" target="_blank">YouTube - Ninja Nerd</a></p>
+
+<h3>מערכת המשלים <span class="term" dir="ltr">(complement system)</span></h3>
+<p>למעלה מ-30 חלבוני משלים פועלים בשלושה מסלולי הפעלה — <b>קלאסי</b> (קומפלקס אנטיגן-נוגדן IgM/IgG נקשר ל-C1q), <b>לקטין</b> (לקטין קושר-מנוז נקשר לפני החיידק), ו<b>אלטרנטיבי</b> (הידרוליזה ספונטנית בסיסית של C3) — וכולם מתכנסים לאותה תוצאה: יצירת <b>קומפלקס תוקף הממברנה</b> <span class="term" dir="ltr">(membrane attack complex, MAC / C5b-9)</span>, שמחורר את הממברנה של התא המטרה וגורם ליזה ישירה. מעבר להרג ישיר, חלבוני משלים משמשים כמכמתי כימוטקסיס לתאי חיסון נוספים, מסייעים לפגוציטוזה (אופסוניזציה), ומורידים את סף ההפעלה של תאי B ו-T. נזק תאי מסיבי (כמו בספסיס או טראומה) יכול להציף את חלבוני הבקרה שמונעים תקיפה עצמית — תרומה נוספת למצב הקרישתי-דלקתי הסיסטמי. התרופה <span class="term" dir="ltr">Eculizumab</span> (נוגדן אנטי-C5) מאושרת למחלות משלים ספציפיות ונחקרת כטיפול פוטנציאלי בספסיס.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Complement_pathway.svg?width=650" alt="שלושת מסלולי הפעלת מערכת המשלים">
+  <figcaption class="media-cap">שלושת מסלולי הפעלת מערכת המשלים (קלאסי, לקטין, אלטרנטיבי) המתכנסים ליצירת קומפלקס תוקף הממברנה (MAC). מקור: <a href="https://commons.wikimedia.org/wiki/File:Complement_pathway.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>ציטוקינים מרכזיים</h3>
+<table>
+  <thead><tr><th>ציטוקין</th><th>קינטיקה</th><th>מקור עיקרי</th><th>תפקיד מרכזי</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">TNF-α</span></td><td>היפר-אקוטי (30 דק'–2 שע', מחצית חיים 14–18 דק')</td><td>מקרופאגים, תאי T</td><td>פירוגן; מעלה ביטוי מולקולות הידבקות; מצב פרו-קרישתי</td></tr>
+    <tr><td><span class="term" dir="ltr">IL-1β</span></td><td>היפר-אקוטי (מחצית חיים ~10 דק')</td><td>מקרופאגים</td><td>פירוגן; מפעיל את תגובת השלב החריף</td></tr>
+    <tr><td><span class="term" dir="ltr">IL-6</span></td><td>סאב-אקוטי (שיא 1–4 שע', מתמשך)</td><td>מקרופאגים, תאי אנדותל</td><td>הפרוגנוסטיקטור המדויק ביותר ב-SIRS/ספסיס/MODS; מפעיל תגובת שלב חריף בכבד (CRP)</td></tr>
+    <tr><td><span class="term" dir="ltr">IL-8</span></td><td>סאב-אקוטי</td><td>מקרופאגים, תאי אנדותל</td><td>כימוטקסיס לנויטרופילים</td></tr>
+    <tr><td><span class="term" dir="ltr">IL-10</span></td><td>אנטי-דלקתי, מאוחר</td><td>מונוציטים, Th2, NK</td><td>מדכא TNF-α/IL-1/IL-6/IFN-γ — מרכזי ב-CARS; בספסיס פוליmicrobial תפקידו עלול דווקא להזיק (לא רק להגן)</td></tr>
+    <tr><td><span class="term" dir="ltr">TGF-β</span></td><td>אנטי-דלקתי</td><td>תאי T, מקרופאגים, טסיות</td><td>מקדם Treg; מעורב בריפוי רקמה ואנגיוגנזה; תפקיד פרדוקסלי בסרטן (מדכא גידול מוקדם, מקדם מאוחר)</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> ביטוי קליני — SIRS</h2>
+<p><span class="term" dir="ltr">SIRS</span> מוגדר קלינית ע"פ קריטריוני <span class="term" dir="ltr">Bone (1992)</span> — <b>לפחות 2 מתוך 4</b> הקריטריונים הבאים:</p>
+<table>
+  <thead><tr><th>קריטריון</th><th>ערך סף</th><th>המנגנון מאחורי הממצא</th></tr></thead>
+  <tbody>
+    <tr><td>חום</td><td>&gt;38.0°C או &lt;36.0°C</td><td>ציטוקינים פירוגניים (TNF-α, IL-1, IL-6) פועלים על מרכז הוויסות בהיפותלמוס</td></tr>
+    <tr><td>דופק</td><td>&gt;90 פעימות/דקה</td><td>קטכולאמינים וירידה בהתנגדות כלי הדם ההיקפית מפעילים מנגנון פיצוי טכיקרדי</td></tr>
+    <tr><td>קצב נשימה</td><td>&gt;20 נשימות/דקה</td><td>גירוי ישיר של מרכז הנשימה ע"י ציטוקינים ותוצרי חמצת מטבולית מוקדמת</td></tr>
+    <tr><td>ספירת לויקוציטים</td><td>&gt;12,000, &lt;4,000, או &gt;10% צורות לא-בשלות (band)</td><td>G-CSF/IL-17 מגייסים נויטרופילים ממח העצם; בעומס קיצוני — דלדול המאגר ולויקופניה</td></tr>
+  </tbody>
+</table>
+<div class="key-box">SIRS אינו שם נרדף לזיהום — הוא יכול להתפתח מטראומה, כוויות, דלקת לבלב, או אפילו מהניתוח עצמו, ללא כל חיידק בתמונה.</div>
+
+<h2><span class="num">5</span> אבחנה — ספקטרום SIRS→ספסיס→הלם ספטי→MOF</h2>
+<p>ההבחנה הקלינית הקריטית היא בין תגובה דלקתית סיסטמית ללא זיהום לבין ספסיס, כי הטיפול (ובעיקר הצורך באנטיביוטיקה ובקרת מקור) שונה לחלוטין. ההגדרות המקובלות כיום (הסכמה בינלאומית שלישית, <span class="term" dir="ltr">Sepsis-3</span>, 2016) מחליפות את ההסתמכות הבלעדית על SIRS:</p>
+<table>
+  <thead><tr><th>מצב</th><th>הגדרה</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>SIRS ללא זיהום</td><td>≥2 מקריטריוני Bone, ללא מקור זיהומי מוכח</td><td>לרוב טראומה/כוויה/ניתוח/דלקת לבלב — DAMPs בלבד</td></tr>
+    <tr><td>ספסיס <span class="term" dir="ltr">(sepsis)</span></td><td>כשל איברים מסכן חיים הנובע מתגובה מווסתת-לא-נכון של הגוף לזיהום — עלייה בציון <span class="term" dir="ltr">SOFA</span> ב-2 נקודות או יותר</td><td>מקור זיהומי מוכח/חשוד + עדות לתפקוד לקוי של איבר</td></tr>
+    <tr><td>הלם ספטי <span class="term" dir="ltr">(septic shock)</span></td><td>תת-קבוצה של ספסיס עם הפרעות מחזוריות/תאיות/מטבוליות עמוקות במיוחד</td><td>צורך בכלי-דם לשמירה על לחץ עורקי ממוצע ≥65 מ"מ כספית <b>וגם</b> רמת לקטט &gt;2 ממול/ל' למרות מתן נוזלים הולם</td></tr>
+    <tr><td>כשל רב-איברי <span class="term" dir="ltr">(MOF/MODS)</span></td><td>כשל מתקדם ומתמשך של שני איברים או יותר</td><td>ניקוד לפי SOFA/Denver/Marshall MODS; פרוגנוזה תלוית מספר האיברים הכושלים</td></tr>
+  </tbody>
+</table>
+<p><b>כלי מיון מהיר</b> — <span class="term" dir="ltr">qSOFA</span> (מחוץ לטיפול נמרץ): ≥2 מתוך שלושה — קצב נשימה ≥22, שינוי במצב ההכרה, לחץ דם סיסטולי ≤100 — מזהה מטופלים בסיכון גבוה לתוצאה גרועה, אך <b>אינו</b> תחליף לאבחנת ספסיס עצמה ולא תחליף ל-SIRS; הוא כלי דגל אדום לזירוז בירור.</p>
+<p>מכיוון שאין בדיקה יחידה שמבדילה בוודאות בין דלקת סיסטמית זיהומית לסטרילית, מתפתחים כלים משלימים: <span class="term" dir="ltr">CRP</span> ו<span class="term" dir="ltr">procalcitonin</span> נתמכים קלינית אך אינם ספציפיים מספיק לבד; מיקרו-מערכים גנטיים חדשים (<span class="term" dir="ltr">Sepsis MetaScore</span>, יחס <span class="term" dir="ltr">FAIM3:PLAC8</span>, <span class="term" dir="ltr">Septicyte Lab</span>) מנסים להבדיל תבניות ביטוי גנים של דלקת זיהומית מול לא-זיהומית — עדיין דורשים אימות נוסף. לכימות כשל רב-איברי בטראומה — ציון <span class="term" dir="ltr">Denver Postinjury MOF</span>, <span class="term" dir="ltr">SOFA</span>, ו-<span class="term" dir="ltr">Marshall MODS</span> הם השיטות המקובלות.</p>
+
+<h3>גנומיקה — "הסערה הגנומית"</h3>
+<p>מחקר גנומי רחב-היקף (קונסורציום Glue Grant) הראה שבטראומה קהה חמורה, <b>80% מהגנום הלויקוציטרי</b> משנה את רמת הביטוי שלו תוך 28 הימים הראשונים לאחר הפגיעה — תופעה שכונתה "הסערה הגנומית". גנים הקשורים לחסינות מולדת (TLR, NOD) עולים בביטוי, וגנים הקשורים להצגת אנטיגן והפעלת תאי T יורדים — <b>בו-זמנית, לא ברצף</b>. זהו הממצא שהפריך את ההנחה הישנה ש-SIRS מקדים את CARS: שני התהליכים מתחילים כמעט מיד לאחר הפגיעה. במטופלים עם החלמה לא-מסובכת, ביטוי הגנים חוזר לבסיס תוך 7–14 יום; במטופלים עם מהלך מסובך יותר — לא חוזר לבסיס אפילו אחרי 28 יום, ודרגת השינוי הראשונית גדולה יותר.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/yTIZpzoaIT0" title="Immunology | Inflammation: Cellular Events: Part 2 - Ninja Nerd" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">האירועים התאיים של הדלקת — גיוס נויטרופילים ומקרופאגים, ותפקידם בשלב החריף (Ninja Nerd). מקור: <a href="https://www.youtube.com/watch?v=yTIZpzoaIT0" target="_blank">YouTube - Ninja Nerd</a></p>
+
+<h3>PICS — תסמונת דלקת מתמשכת, דיכוי חיסוני וקטבוליזם</h3>
+<p>ניצולים מ-MOF שאינם משיבים הומאוסטזיס חיסוני תוך 14 יום נכנסים למחלה קריטית כרונית המונעת ע"י <span class="term" dir="ltr">PICS (Persistent Inflammation, Immunosuppression, and Catabolism Syndrome)</span>: דלקת נמוכת-דרגה מתמשכת (IL-6, נויטרופיליה של תאים לא-בשלים חסרי-תפקוד מלא), דיכוי חיסוני (לימפופניה, תאי Treg, קיטוב Th2, תאי <span class="term" dir="ltr">MDSC — myeloid-derived suppressor cells</span> שמונעים התפתחות תאי חיסון אפקטוריים), וקטבוליזם שרירי חמור — פירוק מיטוכונדריאלי ופרוטאוליזה בשריר השלד עלולים לגרום לאובדן של עד <b>30% ממסת השריר הרזה תוך שבועות בודדים</b>. פגיעה כלייתית חריפה שכיחה ומעצימה את המעגל (תאי הצינורית הכלייתית רגישים במיוחד ללחץ חמצוני ומשחררים DAMPs נוספים). שחרור לבית אבות/מוסד סיעודי הוא אחד המנבאים החזקים ביותר לתמותה בקבוצה זו.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>עשרות שנות מחקר בטיפולים אימונומודולטוריים ממוקדים לספסיס — נוגדני אנטי-TNF, IL-1Ra רקומביננטי, חלבון C מופעל רקומביננטי, אנטי-IL-10, אנטי-TLR4 — <b>לא הראו שיפור עקבי בתמותה</b>, ולכן הטיפול המבוסס כיום הוא בעיקרו <b>תומך ופרוטוקולרי</b>, לא אימונולוגי ממוקד:</p>
+<table>
+  <thead><tr><th>התערבות</th><th>למה זה עוזר</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td>זיהוי מוקדם + אנטיביוטיקה אמפירית (אם זיהום)</td><td>מקצר את משך החשיפה ל-PAMPs ואת עוצמת ה"סערה" הציטוקינית</td><td>אבחנה שגויה של ספסיס (חסר) קשורה לעלייה בתמותה</td></tr>
+    <tr><td><b>בקרת מקור כירורגית</b> <span class="term" dir="ltr">(source control)</span></td><td>מסירה פיזית את מקור ה-PAMPs/DAMPs — ניקוז אבצס, דברידמנט רקמה נמקית, הסרת קטטר נגוע</td><td>ראו תת-סעיף ייעודי למטה — זו הפעולה שבה למנתח יש ההשפעה הישירה הגדולה ביותר</td></tr>
+    <tr><td>נוזלים + חומרי כלי-דם (בהלם ספטי)</td><td>שמירה על MAP≥65 ופרפוזיה של איברים</td><td>עודף נוזלים קריסטלואידים דווקא קשור לעלייה בשכיחות MOF</td></tr>
+    <tr><td>חבילות טיפול פרוטוקולריות (Surviving Sepsis Campaign, ABCDEF)</td><td>מקטינות שונות בין-מטפלים ומזרזות זיהוי/טיפול</td><td>עלייה בהיענות לפרוטוקול מתואמת עם ירידה בתמותה</td></tr>
+    <tr><td>תזונה — חלבון ≥1.5–2.0 גר'/ק"ג/יום</td><td>מנסה לאזן את הקטבוליזם המתמשך המאפיין SIRS/PICS</td><td>מטופלים ספטיים מנצלים חומרים מזינים בצורה לקויה גם עם רמות תקינות בדם</td></tr>
+  </tbody>
+</table>
+<p>טיפולים ניסיוניים מכוונים לתקן את הדיכוי החיסוני של CARS/PICS: <span class="term" dir="ltr">IFN-γ</span> משפר במבחנה הצגת אנטיגן ע"י מונוציטים (הופך את ירידת HLA-DR), ו-<span class="term" dir="ltr">GM-CSF</span> נחקר לאותה מטרה — אך אלה עדיין לא סטנדרט טיפולי מבוסס.</p>
+
+<div class="surgery">
+  <h4>הרלוונטיות הכירורגית — בקרת מקור הזיהום</h4>
+  <p>בניגוד לרוב תחומי הטיפול בספסיס (שבהם ההתערבות היא תרופתית/תומכת), <b>בקרת מקור</b> היא הפעולה הכירורגית הישירה שמשנה את מהלך המחלה — ניקוז אבצס תוך-בטני, דברידמנט של רקמה נמקית/פאשיטיס נקרוטית, הסרת קטטר וסקולרי נגוע, או כריתת איבר חלול מנוקב.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>עיכוב בבקרת מקור הוא אחד מגורמי הסיכון החזקים והניתנים-לשינוי ביותר לתמותה — כל שעה של דחייה מרגע האבחנה מגדילה את הסיכון, מכיוון שהמקור ממשיך "להזין" DAMPs/PAMPs לזרם הדם ומחזק את הסערה הציטוקינית. עם זאת, יש לאזן בין מהירות ליציבות המודינמית של המטופל — לעיתים נדרשת ייצוב ראשוני (נוזלים, חומרי כלי-דם) לפני שהמטופל בטוח מספיק להרדמה וניתוח.</p>
+  <h4>החלמה</h4>
+  <p>גם לאחר בקרת מקור מוצלחת, יש לצפות שהתגובה הדלקתית (חום, לויקוציטוזיס) תימשך ימים ספורים בזמן שהגוף "מפנה" את עומס הציטוקינים — לכן שיפור קליני (ירידת לקטט, יציבות המודינמית, ירידה בצורך בכלי-דם) חשוב יותר מנרמול מיידי של קריטריוני SIRS. חוסר שיפור תוך 48–72 שעות מחשיד למקור זיהומי נוסף שלא טופל.</p>
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — קריטריוני SIRS (מקורי, בעברית)</h3>
+  <p>לזכירת ארבעת קריטריוני Bone: <b>ח.ד.נ.ל</b> — <b>ח</b>ום חורג (מעל 38 או מתחת ל-36), <b>ד</b>ופק דוהר (מעל 90), <b>נ</b>שימה נחפזת (מעל 20), <b>ל</b>ויקוציטים לא-הגיוניים (מעל 12,000, מתחת ל-4,000, או מעל 10% תאים לא-בשלים). צריך <b>שניים מארבעה</b> כדי לעמוד בהגדרה.</p>
+  <h3>סיפור דמיוני — "מערכת אזעקת האש של הבניין"</h3>
+  <p>דמיינו את הגוף כבניין עם מערכת אזעקת אש. <b>גלאי עשן</b> (קולטני PRR — TLR/NLR) מזהים אש אמיתית (PAMP — חיידק פולש) <b>או</b> קצר חשמלי בלי אש בפועל (DAMP — רקמה פגועה מטראומה). ברגע שהגלאי מופעל, <b>פעמון האזעקה מצלצל</b> (ציטוקינים — TNF/IL-1 מצלצלים ראשונים ומהר, IL-6/IL-8 ממשיכים לצלצל זמן רב יותר) ו<b>כבאים</b> (נויטרופילים, מקרופאגים) ממהרים לזירה. כשהאש קטנה ומקומית — הכבאים מכבים אותה ומסתלקים, הכל בסדר. אבל אם האזעקה <b>מצלצלת בכל הבניין</b> (SIRS) והכבאים מתפזרים בכל הקומות בלי מיקוד — הם עלולים להציף במים (בצקת) גם קומות שלא בערו. במקביל, <b>סוללת האזעקה מתחילה להתרוקן</b> (CARS — דיכוי חיסוני, לא בהמשך אלא באותו זמן!) — מה שמסוכן כי בניין עם אזעקה מותשת לא יזהה שריפה שנייה. אם זה נמשך יותר מדי, <b>קומות שלמות קורסות</b> (MOF), ולפעמים צוות השיפוצים נשאר תקוע בבניין שנים (PICS) בלי לסיים את התיקון.</p>
+  <svg class="diagram" viewBox="0 0 500 230" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: מערכת אזעקת האש של הבניין</title>
+    <rect x="30" y="20" width="440" height="150" rx="6" fill="#f8fafc" stroke="#9ca3af"/>
+    <line x1="30" y1="70" x2="470" y2="70" stroke="#d1d5db"/>
+    <line x1="30" y1="120" x2="470" y2="120" stroke="#d1d5db"/>
+    <text x="60" y="45" font-size="18">🔥</text>
+    <text x="95" y="45" font-size="10.5" fill="#1f2937">אש/פגיעה (PAMP/DAMP)</text>
+    <text x="60" y="95" font-size="18">🚨</text>
+    <text x="95" y="95" font-size="10.5" fill="#1f2937">אזעקה מצלצלת בכל הבניין = SIRS</text>
+    <text x="60" y="145" font-size="18">🧯</text>
+    <text x="95" y="145" font-size="10.5" fill="#1f2937">כבאים (נויטרופיל/מקרופאג) מוצפים</text>
+    <text x="330" y="45" font-size="18">🔋</text>
+    <text x="355" y="45" font-size="10" fill="#4b5563">סוללה מתרוקנת = CARS (מקביל!)</text>
+    <text x="330" y="95" font-size="18">🏚️</text>
+    <text x="355" y="95" font-size="10" fill="#4b5563">קומות קורסות = MOF</text>
+    <text x="330" y="145" font-size="18">🛠️</text>
+    <text x="355" y="145" font-size="10" fill="#4b5563">שיפוץ שלא נגמר = PICS</text>
+    <text x="250" y="200" font-size="11" text-anchor="middle" fill="#4b5563">אזעקה מקומית = מיטיבה. אזעקה בכל הבניין + סוללה חלשה = מסוכן.</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ninjanerd.org/topic/innate-immunity-and-inflammatory-response" target="_blank">Innate Immunity and Inflammatory Response — Ninja Nerd (סדרת הרצאות מלאה)</a>
+    <div class="desc">סדרה בת ארבעה חלקים המכסה אירועים וסקולריים, תאיים, חלבוני משלים, וקולטני TLR/אינטרפרון — כיסוי מקיף מעבר לסיכום זה.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/26903338/" target="_blank">The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3) — PubMed</a>
+    <div class="desc">המאמר המקורי המגדיר ספסיס והלם ספטי לפי הקריטריונים העדכניים (2016) — מומלץ לקריאה לפני מבחן על ניהול חולה קריטי.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK547669/" target="_blank">Systemic Inflammatory Response Syndrome — StatPearls (NCBI Bookshelf)</a>
+    <div class="desc">סיכום קליני תמציתי של SIRS, כולל אבחנה מבדלת וגישה טיפולית — טוב לחזרה מהירה.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Complement_system" target="_blank">קטגוריית מערכת המשלים — Wikimedia Commons</a>
+    <div class="desc">אוסף איורים נוספים של מסלולי המשלים בפורמטים ושפות שונות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 45 עבר לפני 6 ימים כריתת מעי גס חלקית דחופה עקב חסימת מעי עם פרפורציה. ביום הניתוח וביום שלמחרת היה עם חום 38.3°C, דופק 105, וספירת לויקוציטים 14,000 — פורש כתגובה צפויה לניתוח עצמו. כעת, ביום השישי, הוא מפתח חום 39.1°C, דופק 118, לחץ דם 88/54 (לעומת 128/76 בבוקר), קצב נשימה 26, ובלבול קל. לקטט בדם: 3.8 ממול/ל'. בבדיקת הבטן — רגישות מקומית ברביע שמאלי תחתון ליד קו התפרים. CT בטן מדגים אוסף נוזל מוגבל (4x3 ס"מ) סמוך לאנסטומוזה, עם בועיות אוויר בתוכו, ללא נוזל חופשי נרחב.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. ביום הניתוח עצמו (יום 0), למטופל היו חום, טכיקרדיה ולויקוציטוזיס ללא כל זיהום מוכח. מהו ההסבר המנגנוני הנכון ביותר?</div>
+  <button class="opt" data-i="0">בהכרח היה לו זיהום סמוי שלא אותר עדיין</button>
+  <button class="opt" data-i="1">הטראומה הניתוחית עצמה שחררה DAMPs שהפעילו PRR וציטוקינים פירוגניים — SIRS סטרילי לגמרי אפשרי</button>
+  <button class="opt" data-i="2">חום ולויקוציטוזיס לאחר ניתוח הם תמיד תוצר לוואי של חומרי ההרדמה בלבד</button>
+  <button class="opt" data-i="3">מדובר בטעות מדידה — SIRS לא יכול להופיע בלי גורם חיצוני</button>
+  <div class="explain">נכון: לפי השערת הסכנה של Matzinger, שחרור DAMPs מרקמה פגועה (גם ללא שום חיידק) מספיק כדי להפעיל PRR ולגרום לשחרור TNF-α/IL-1/IL-6 — בדיוק אותם ציטוקינים שגורמים לחום וללויקוציטוזיס. זו הסיבה שתגובה דלקתית פוסט-ניתוחית מוקדמת היא צפויה ואינה מחייבת חיפוש זיהום מיידי. אופציות 1, 3 ו-4 אינן נכונות מנגנונית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. ביום השישי, מה משתנה ומצדיק חשד לספסיס/הלם ספטי ולא רק המשך SIRS פוסט-ניתוחי "רגיל"?</div>
+  <button class="opt" data-i="0">הופעת חום כלשהו — כל חום 6 ימים אחרי ניתוח הוא ספסיס</button>
+  <button class="opt" data-i="1">ספירת הלויקוציטים לבדה, ללא צורך בממצא נוסף</button>
+  <button class="opt" data-i="2">מקור זיהומי חשוד (אוסף פריאנסטומוטי עם אוויר) בשילוב עדות לתת-פרפוזיה — ירידת לחץ דם ולקטט 3.8, המצביעים על תפקוד איברים לקוי</button>
+  <button class="opt" data-i="3">גיל המטופל בלבד</button>
+  <div class="explain">נכון: ספסיס לפי Sepsis-3 מוגדר כתפקוד איברים לקוי (המשתקף כאן בירידת לחץ הדם ובעליית הלקטט — עדות לפרפוזיה רקמתית לקויה) על רקע זיהום חשוד/מוכח (האוסף הפריאנסטומוטי עם בועיות אוויר תואם דליפה תת-קלינית). חום בלבד (1) לא מספיק — SIRS יכול להיות סטרילי. ספירת לויקוציטים לבדה (2) היא רק קריטריון SIRS אחד מארבעה ואינה מעידה על תפקוד איברים. גיל (4) הוא גורם סיכון רקע, לא ממצא מאבחן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו הצעד הטיפולי בעל ההשפעה הישירה הגדולה ביותר על מהלך המחלה של מטופל זה, מעבר לתמיכה תומכת כללית?</div>
+  <button class="opt" data-i="0">בקרת מקור — ניקוז האוסף (בהכוונת CT או בניתוח) כדי להסיר פיזית את מקור ה-PAMPs/DAMPs המזין את הסערה הציטוקינית</button>
+  <button class="opt" data-i="1">מתן נוגדן אנטי-TNF להפחתת רמות TNF-α</button>
+  <button class="opt" data-i="2">מתן IL-1Ra רקומביננטי</button>
+  <button class="opt" data-i="3">המתנה בלבד — הגוף תמיד יתגבר על אוסף קטן ללא התערבות</button>
+  <div class="explain">נכון: בקרת מקור (ניקוז, ולעיתים חזרה לניתוח) היא ההתערבות שמנתחים שולטים בה ישירות ומוכחת כמשנה תוצאה — עיכוב בה מגדיל תמותה. נוגדני אנטי-TNF ו-IL-1Ra (2,3) נבדקו רבות בספסיס ולא הראו שיפור עקבי בתמותה, ולכן אינם סטנדרט טיפולי. המתנה בלבד (4) מסוכנת — אוסף עם בועיות אוויר (עדות לזיהום פעיל/דליפה) לרוב דורש ניקוז אקטיבי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו הממצא שהפריך את הפרדיגמה הישנה לפיה CARS מתפתח "בעקבות" SIRS באופן רציף וכפיצוי מאוחר?</div>
+  <button class="opt" data-i="0">גילוי שרמת ה-IL-6 תמיד גבוהה יותר מרמת ה-TNF-α</button>
+  <button class="opt" data-i="1">גילוי שקריטריוני SIRS של Bone אינם מדויקים מספיק</button>
+  <button class="opt" data-i="2">גילוי שמערכת המשלים אינה קשורה לספסיס כלל</button>
+  <button class="opt" data-i="3">מחקר גנומי (Glue Grant, Xiao וחב') שהראה ששינויי ביטוי גנים פרו- ואנטי-דלקתיים מתרחשים כמעט מיידית ובו-זמנית לאחר הפגיעה — לא בשני שלבים נפרדים ברצף</button>
+  <div class="explain">נכון: מחקר הביטוי הגנומי הרחב-היקף בטראומה קהה/כוויות הראה ש-80% מהגנום הלויקוציטרי משנה ביטוי תוך 28 יום, עם שינויים פרו- ואנטי-דלקתיים מתרחשים בו-זמנית — לא ברצף "קודם SIRS, אחר כך CARS" כפי שחשבו בעבר. אופציות 1-3 אינן הממצא שהוביל לשינוי הפרדיגמה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע TNF-α ו-IL-1 (למרות היותם מתווכים חזקים) אינם משמשים כמנבאי חומרה/פרוגנוזה טובים בפועל, בניגוד ל-IL-6?</div>
+  <button class="opt" data-i="0">כי אין להם כל השפעה ביולוגית משמעותית</button>
+  <button class="opt" data-i="1">זמן מחצית החיים שלהם קצר מאוד (10–18 דקות) ורמתם חולפת מהר, כך שמדידה בודדת בדם לא בהכרח משקפת את עומס המחלה הכולל — בניגוד ל-IL-6 שנשאר מוגבר ומתמשך</button>
+  <button class="opt" data-i="2">כי הם מיוצרים רק ע"י תאי B</button>
+  <button class="opt" data-i="3">כי הם קשורים אך ורק לזיהומים ויראליים</button>
+  <div class="explain">נכון: TNF-α ו-IL-1 הם מתווכים "היפר-אקוטיים" עם עלייה מהירה (תוך 30 דק'-2 שע') וירידה מהירה באותה מידה (מחצית חיים 10-18 דקות) — כך שרמתם בדגימת דם בודדת תלויה מאוד בתזמון ולא משקפת נאמנה את חומרת התהליך המצטברת. IL-6 עולה בהדרגה ונשאר מוגבר לאורך זמן, ולכן קורלציה טובה יותר עם פרוגנוזה. שאר האופציות שגויות עובדתית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: פרק היסוד האימונולוגי לכל דלקת כירורגית — מהתא הבודד ועד SIRS, ספסיס, כשל רב-איברי ומחלה קריטית כרונית.</li>
+    <li><b>המנגנון</b>: PAMP/DAMP → PRR (TLR/אינפלמסום) → ציטוקינים (TNF/IL-1 מהירים, IL-6/IL-8 מושהים ומתמשכים) + משלים → תגובה מקומית מיטיבה; כשעוצמתה עולה על יכולת ההכלה → SIRS (סיסטמי, מזיק) ו-CARS (דיכוי חיסוני) <b>במקביל, לא ברצף</b>.</li>
+    <li><b>SIRS</b> (Bone 1992): ≥2 מתוך חום/דופק/נשימה/לויקוציטים חריגים — <b>יכול להיות סטרילי לגמרי</b>, ללא זיהום.</li>
+    <li><b>אבחנה</b>: ספסיס = SIRS/זיהום + תפקוד איברים לקוי (SOFA↑2); הלם ספטי = צורך בכלי-דם ל-MAP≥65 + לקטט&gt;2 למרות נוזלים; qSOFA לזיהוי מהיר מחוץ ל-ICU.</li>
+    <li><b>טיפול</b>: תומך ופרוטוקולרי (נוזלים, אנטיביוטיקה אם זיהום, תזונה) — טיפולים אימונומודולטוריים ממוקדים נכשלו עקבית; <b>בקרת מקור כירורגית</b> היא ההתערבות עם ההשפעה הישירה הגדולה ביותר, ועיכוב בה מסוכן.</li>
+    <li><b>סיבוך ארוך-טווח</b>: ניצולי MOF שלא משיבים הומאוסטזיס תוך 14 יום → PICS — דלקת מתמשכת + דיכוי חיסוני + קטבוליזם שרירי חמור.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

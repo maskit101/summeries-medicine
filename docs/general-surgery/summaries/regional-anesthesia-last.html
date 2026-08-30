@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הרדמה אזורית וטוקסיות סיסטמית של חומרי הרדמה מקומיים (LAST)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>הרדמה אזורית: ספינלית ואפידורלית, וטוקסיות סיסטמית מחומרי הרדמה מקומיים <span class="term" dir="ltr">(Regional Anesthesia &amp; LAST)</span></h1>
+<div class="subtitle">פרק 14 בספר Sabiston/Schwartz's Principles of Surgery — "Anesthesiology Principles, Pain Management, and Conscious Sedation". הפרק המלא רחב-היקף מאוד (חומרי הרדמה כלליים, ניטור תוך-ניתוחי, הערכה טרום-ניתוחית, ניהול נתיב אוויר, סדציה מודעת, כאב כרוני) — הסיכום הזה מתמקד בהרדמה האזורית/נוירואקסיאלית ובסיבוך הדחוף והמנגנוני-עשיר ביותר שלה, טוקסיות סיסטמית מחומרי הרדמה מקומיים <span class="term" dir="ltr">(Local Anesthetic Systemic Toxicity, LAST)</span>, כליבת הפרק הכי קריטית-קלינית ונבחנת.</div>
+
+<p>הרדמה אזורית (ספינלית, אפידורלית וחסמי עצבים היקפיים) מאפשרת ניתוח באזור מוגבל בגוף תוך שמירה על הכרה (או עם סדציה קלה בלבד), ונמנעת ממניפולציה בנתיב האוויר ומתופעות הלוואי של הרדמה כללית. אך היא תלויה לחלוטין בחומר הרדמה מקומי בטוח ויעיל — ולכן מחייבת הבנה מדויקת של איך התרופה פועלת על העצב, ומה קורה כשהיא "בורחת" למחזור הדם.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    חומרי הרדמה מקומיים הם <b>בסיסים חלשים</b> עם <span class="term" dir="ltr">pKa</span> גבוה יחסית (7.6–8.9), כך שבתמיסה הם קיימים בשיווי משקל בין צורה לא-טעונה (unionized, ליפופילית) לצורה טעונה חיובית (cationic). <b>רק הצורה הלא-טעונה יכולה לחצות את קרום העצב הליפידי</b> ולהיכנס לאקסופלזמה. בתוך התא, ה-pH התוך-תאי מזיז שוב את שיווי המשקל, וחלק מהתרופה חוזר לצורתה הטעונה — וזו הצורה הפעילה שנקשרת <b>לאתר קישור בפנים תעלת הנתרן תלוית-המתח</b> <span class="term" dir="ltr">(voltage-gated Na⁺ channel)</span> בממברנת העצב.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    קשירת התרופה לתעלה <b>חוסמת את זרם הנתרן פנימה</b>, ובכך <b>מונעת דה-פולריזציה</b> של קרום העצב. בלי דה-פולריזציה מספקת אין פוטנציאל פעולה, ובלי פוטנציאל פעולה שמתקדם לאורך הסיב העצבי — אין העברת אות כאב (או כל אות עצבי אחר) למוח. זהו <b>use-dependent block</b>: התרופה נקשרת ביתר קלות לתעלות שנמצאות במצב פתוח/לא-פעיל (inactivated), ולכן סיבים שיורים בתדירות גבוהה (כמו סיבי כאב) נחסמים ביעילות רבה יותר מסיבים שקטים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">מכאן נובעת תופעה קלינית חשובה שכמעט תמיד נשאלת במבחן</span>: ברקמה דלקתית/מזוהמת ה-<span class="term" dir="ltr">pH</span> החוץ-תאי חומצי יותר. ב-pH נמוך, יחסית <b>יותר</b> מהתרופה נשארת בצורתה הטעונה (מיוננת) גם מחוץ לתא — והצורה הטעונה <b>אינה חודרת</b> את קרום העצב. התוצאה: חומרי הרדמה מקומיים <b>פחות יעילים</b> ברקמה מודלקת (למשל הזרקת חומר הרדמה סביב אבצס) — לא בגלל "עמידות" של העצב, אלא כי פחות תרופה בכלל מצליחה להיכנס אליו.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>חסימה דיפרנציאלית</b> <span class="term" dir="ltr">(differential blockade)</span>: לא כל סיבי העצב נחסמים באותו הזמן. סיבים דקים ולא-מיאלינים (C — כאב איטי, טמפרטורה, סימפטטי) וסיבי B הסימפטטיים המיאלינים-דקים נחסמים <b>ראשונים ובקלות היחסית הרבה ביותר</b> — לסיבים מיאלינים נדרשת חסימה של לפחות 2–3 צמתי רנבייה <span class="term" dir="ltr">(nodes of Ranvier)</span> רצופים כדי לעצור העברה, וככל שהסיב עבה יותר המרחק בין הצמתים גדול יותר, כך שנדרש קטע ארוך יותר של עצב חשוף לתרופה כדי לחסום אותו. לכן סיבי Aα המוטוריים העבים והמיאלינים ביותר נחסמים <b>אחרונים</b>. הסדר הקליני האופייני: <b>סימפטטי ← כאב/חום ← מגע/לחץ ← מוטורי ← פרופריוצפציה</b>.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון הפעולה של חומר הרדמה מקומי</title>
+  <rect x="8" y="20" width="165" height="72" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="90" y="48" font-size="12" text-anchor="middle" fill="#1f2937">בסיס חלש</text>
+  <text x="90" y="64" font-size="10.5" text-anchor="middle" fill="#4b5563">צורה לא-מיוננת</text>
+  <text x="90" y="78" font-size="10.5" text-anchor="middle" fill="#4b5563">חוצה קרום ליפידי</text>
+
+  <polygon points="176,56 196,49 196,63" fill="#2563eb"/>
+  <rect x="200" y="20" width="165" height="72" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="282" y="48" font-size="12" text-anchor="middle" fill="#1f2937">באקסופלזמה</text>
+  <text x="282" y="64" font-size="10.5" text-anchor="middle" fill="#4b5563">שיווי משקל מחדש</text>
+  <text x="282" y="78" font-size="10.5" text-anchor="middle" fill="#4b5563">צורה טעונה (+) פעילה</text>
+
+  <polygon points="368,56 388,49 388,63" fill="#2563eb"/>
+  <rect x="392" y="20" width="175" height="72" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="479" y="42" font-size="12" text-anchor="middle" fill="#1f2937">קישור לאתר תוך-תאי</text>
+  <text x="479" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">בתעלת Na⁺</text>
+  <text x="479" y="74" font-size="10.5" text-anchor="middle" fill="#4b5563">תלוית-מתח</text>
+
+  <polygon points="570,56 590,49 590,63" fill="#b45309"/>
+  <rect x="594" y="20" width="150" height="72" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="669" y="48" font-size="12" text-anchor="middle" fill="#1f2937">חסימת זרם Na⁺</text>
+  <text x="669" y="64" font-size="10.5" text-anchor="middle" fill="#4b5563">מניעת דה-פולריזציה</text>
+
+  <polygon points="746,56 766,49 766,63" fill="#b91c1c"/>
+  <rect x="770" y="20" width="122" height="72" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="831" y="48" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="700">אין פוטנציאל</text>
+  <text x="831" y="64" font-size="12" text-anchor="middle" fill="#1f2937" font-weight="700">פעולה = הרדמה</text>
+
+  <rect x="8" y="115" width="884" height="90" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="450" y="136" font-size="12.5" text-anchor="middle" font-weight="700" fill="#1f2937">סדר חסימה דיפרנציאלית (עדין ← גס)</text>
+  <text x="130" y="165" font-size="11.5" text-anchor="middle" fill="#1f2937">סימפטטי (B)</text>
+  <text x="130" y="180" font-size="10" text-anchor="middle" fill="#4b5563">ראשון להיחסם</text>
+  <polygon points="200,168 218,162 218,174" fill="#6d28d9"/>
+  <text x="290" y="165" font-size="11.5" text-anchor="middle" fill="#1f2937">כאב/חום (Aδ,C)</text>
+  <polygon points="365,168 383,162 383,174" fill="#6d28d9"/>
+  <text x="450" y="165" font-size="11.5" text-anchor="middle" fill="#1f2937">מגע/לחץ (Aβ)</text>
+  <polygon points="520,168 538,162 538,174" fill="#6d28d9"/>
+  <text x="610" y="165" font-size="11.5" text-anchor="middle" fill="#1f2937">מוטורי (Aα)</text>
+  <polygon points="670,168 688,162 688,174" fill="#6d28d9"/>
+  <text x="790" y="165" font-size="11.5" text-anchor="middle" fill="#1f2937">פרופריוצפציה</text>
+  <text x="790" y="180" font-size="10" text-anchor="middle" fill="#4b5563">אחרון להיחסם</text>
+</svg>
+
+<div class="key-box">להיפך בהחלמה: הבלוק הסימפטטי (הראשון להיחסם) גם <b>האחרון להתאושש</b>. לכן מטופל אחרי הרדמה ספינלית עלול להרגיש תנועה ותחושה תקינות ברגליים, אך עדיין לפתח <b>יתר-לחץ-דם אורתוסטטי</b> משמעותי בקימה — נקודה קריטית לבטיחות בהליכה הראשונה אחרי הניתוח.</div>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה — החלל הסאב-ארכנואידי מול האפידורלי</h2>
+<p>חוט השדרה מסתיים אצל רוב המבוגרים בגובה <span class="term" dir="ltr">L1–L2</span> (חרוט מדולרי, conus medullaris), אך שק הדורה ונוזל השדרה <span class="term" dir="ltr">(CSF)</span> ממשיכים עד בערך <span class="term" dir="ltr">S2</span>. זו הסיבה שהזרקה ספינלית מתבצעת מתחת ל-L2 (בדרך כלל L3–L4 או L4–L5) — כדי להימנע מפגיעה בחוט השדרה עצמו.</p>
+<p><b>הרדמה ספינלית (סאב-ארכנואידית)</b>: המחט חודרת דרך העור, הרצועה הבין-חולייתית, הרצועה הצהובה <span class="term" dir="ltr">(ligamentum flavum)</span>, החלל האפידורלי, הדורה והארכנואיד — <b>ישירות לתוך ה-CSF</b>. התרופה מתערבבת ב-CSF ופועלת ישירות על שורשי העצבים — מינון קטן מאוד מספיק, ההתחלה מהירה וצפויה.</p>
+<p><b>הרדמה אפידורלית</b>: המחט נעצרת <b>בחלל האפידורלי</b> (מזוהה בטכניקת "אובדן התנגדות" — loss of resistance — לאוויר או לתמיסת מלח, כשקצה המחט חוצה את הרצועה הצהובה) ואינה חודרת את הדורה. חלל זה מכיל שומן וורידים; התרופה חייבת <b>לחלחל</b> דרך הדורה כדי להגיע לשורשי העצבים ול-CSF — ולכן נדרש נפח גדול משמעותית, וההתחלה איטית יותר אך ניתנת לשליטה מדורגת (במיוחד עם קטטר).</p>
+<p><span class="key">חשוב</span>: גובה הבלוק הסימפטטי (סעיפים 2 למעלה) <b>עולה בדרך כלל 2–6 דרמטומים מעל</b> גובה הבלוק החושי הנמדד — כי סיבי B הסימפטטיים רגישים ביותר לתרופה. זו הסיבה שתת-לחץ-דם יכול להופיע גם כשהבלוק החושי הנמדד נראה מתון.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Epidural-anesthesia.png?width=600" alt="איור סכמטי של הרדמה אפידורלית לעומת ספינלית">
+  <figcaption class="media-cap">איור סכמטי: קצה המחט/קטטר האפידורלי נעצר בחלל שמעל הדורה (לא חודר אותה), בניגוד למחט הספינלית שממשיכה עד ה-CSF. מקור: <a href="https://commons.wikimedia.org/wiki/File:Epidural-anesthesia.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/rM1aQC-HAX0" title="Epidural Spinal Anesthesia - Animation by Dr. Cal Shipley, M.D." allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הנפשה תלת-ממדית המדגימה זו לצד זו את האנטומיה והביצוע הטכני של הרדמה ספינלית ואפידורלית. מקור: <a href="https://www.youtube.com/watch?v=rM1aQC-HAX0" target="_blank">YouTube - Dr. Cal Shipley, M.D.</a></p>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>המטופל מדווח על חום ועקצוץ שמתקדמים לחוסר תחושה באזור הדרמטומלי המתאים, ולאחריו כבדות והיחלשות של הרגליים. תת-לחץ-דם נגרם מ<b>סימפטקטומיה</b> — הרחבת כלי דם ורידיים (כלי הקיבולת העיקריים) שמפחיתה החזר ורידי ותפוקת לב; ברדיקרדיה מופיעה אם הבלוק עולה גבוה מספיק לחסום את הסיבים הקרדיו-אקסלרטוריים ב-<span class="term" dir="ltr">T1–T4</span>. אם הבלוק עולה עד לצוואר (עצב הפרניקוס, C3–C5) — מצב נדיר ומסוכן שנקרא <b>"total spinal"</b> — יש כשל נשימתי ואף דום לב, ומחייב תמיכה נשימתית והמודינמית מיידית.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Spinal_anaesthesia.jpg?width=600" alt="ביצוע הרדמה ספינלית">
+  <figcaption class="media-cap">ביצוע הרדמה ספינלית — המחט מוחדרת בקו האמצע מתחת לגובה L2, בין החוליות המותניות. מקור: <a href="https://commons.wikimedia.org/wiki/File:Spinal_anaesthesia.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<p><b>כאב ראש לאחר דקירת דורה</b> <span class="term" dir="ltr">(postdural puncture headache, PDPH)</span> — מנגנון: דליפת CSF דרך הפתח בדורה מורידה את הלחץ התוך-גולגלתי, מה שגורם למתיחה של מבנים רגישים לכאב (וורידים גשריים, קרומי המוח) כשהמטופל בישיבה/עמידה, ומקל בשכיבה. גורמי סיכון: גיל צעיר, מין נשי, ומחטים גדולות/חותכות (כמו Quincke) לעומת מחטי "עיפרון" (Whitacre/Sprotte) שדוחפות סיבים הצידה במקום לחתוך אותם.</p>
+
+<h2><span class="num">5</span> בחירת שיטה — ספינלי מול אפידורלי, וקונטרא-אינדיקציות</h2>
+<h3>השוואה</h3>
+<table>
+  <thead><tr><th>מאפיין</th><th>ספינלי (סאב-ארכנואידי)</th><th>אפידורלי</th></tr></thead>
+  <tbody>
+    <tr><td>מיקום הזרקה</td><td>לתוך ה-CSF (מתחת ל-L2)</td><td>חלל אפידורלי (לא חודר דורה)</td></tr>
+    <tr><td>מינון</td><td>קטן מאוד (מ"ג בודדים)</td><td>גדול משמעותית (מ"ל רבים)</td></tr>
+    <tr><td>התחלת פעולה</td><td>מהירה וצפויה</td><td>איטית יותר, מדורגת</td></tr>
+    <tr><td>קטטר להמשכיות</td><td>לא שגרתי (סיכון נוירולוגי בטכניקה ישנה)</td><td>שגרתי — מאפשר עירוי ממושך/אנלגזיה בתר-ניתוחית</td></tr>
+    <tr><td>כאב ראש אחרי הדקירה</td><td>שכיח יחסית</td><td>נדיר, אלא אם יש "דקירת דורה בשוגג" (עם קרע גדול יותר)</td></tr>
+    <tr><td>שימוש טיפוסי</td><td>אורולוגי, בטן תחתונה, גפיים תחתונות, ניתוחים קצרים-בינוניים</td><td>בטן/חזה/גפיים תחתונות בניתוחים ארוכים; אנלגזיית לידה; אנלגזיה בתר-ניתוחית ממושכת</td></tr>
+  </tbody>
+</table>
+<p>סקירת <span class="term" dir="ltr">Cochrane</span> הדגימה שהרדמה/אנלגזיה אפידורלית קשורה בירידה בתמותה ל-30 יום ובשיעור דלקת ריאות לעומת הרדמה כללית בלבד, ללא הבדל בשכיחות אוטם שריר הלב.</p>
+
+<h3>קונטרא-אינדיקציות מוחלטות לבלוק נוירואקסיאלי</h3>
+<p>אלח דם/בקטרמיה, זיהום באזור ההזרקה, היפוולמיה חמורה, <b>קואגולופתיה או נטילת נוגדי קרישה טיפוליים</b>, לחץ תוך-גולגלתי מוגבר, וסירוב המטופל.</p>
+<div class="key-box">בהתאם לעקרונות המקובלים (ASRA) — לפני בלוק נוירואקסיאלי או הוצאת קטטר, יש לשמור מרווח בטוח מנוגדי קרישה: לאחר <span class="term" dir="ltr">LMWH</span> במינון <b>מניעתי</b> — לפחות כ-12 שעות; לאחר מינון <b>טיפולי</b> — לפחות כ-24 שעות. יש להמתין לפחות שעתיים לפני חידוש LMWH לאחר הוצאת קטטר. <b>המטומה אפידורלית</b> היא סיבוך נדיר אך קטסטרופלי — יש לחשוד בה בכל מטופל עם כאב גב, חולשה/חוסר תחושה ברגליים, או הפרעה בשליטה על סוגרים לאחר בלוק נוירואקסיאלי בנוכחות נוגדי קרישה, ו-<span class="term" dir="ltr">MRI</span> דחוף הוא כלי האבחון.</div>
+
+<h2><span class="num">6</span> טיפול — חומרי ההרדמה, הביצוע, וטוקסיות סיסטמית (LAST)</h2>
+<h3>חומרי הרדמה מקומיים — סוגים ומינונים</h3>
+<p>שתי משפחות: <b>אמינו-אמידים</b> <span class="term" dir="ltr">(amides)</span> — ליבה עם שני "i" בשם (lIdocaIne, bupIvacaIne) — מפורקים בכבד, אלרגיה אמיתית נדירה מאוד; ו<b>אמינו-אסטרים</b> <span class="term" dir="ltr">(esters)</span> — פרוקאין, כלורופרוקאין, טטרקאין — מפורקים על ידי כולין-אסטראז בפלזמה למטבוליט <span class="term" dir="ltr">PABA</span>, שקשור לשיעור אלרגיה גבוה יותר.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>משפחה</th><th>התחלת פעולה</th><th>משך פעולה</th><th>מינון מרבי (ללא אדרנלין, בלוק עצב היקפי)</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Lidocaine</span></td><td>אמיד</td><td>10–20 דק'</td><td>60–180 דק'</td><td>5 מ"ג/ק"ג (עד 7–8 עם אדרנלין)</td></tr>
+    <tr><td><span class="term" dir="ltr">Mepivacaine</span></td><td>אמיד</td><td>10–20 דק'</td><td>60–180 דק'</td><td>5 מ"ג/ק"ג (עד 7–8 עם אדרנלין)</td></tr>
+    <tr><td><span class="term" dir="ltr">Bupivacaine</span></td><td>אמיד</td><td>15–30 דק'</td><td>180–360 דק'</td><td>3 מ"ג/ק"ג — <b>הכי קרדיוטוקסי</b></td></tr>
+    <tr><td><span class="term" dir="ltr">Ropivacaine</span></td><td>אמיד</td><td>15–30 דק'</td><td>180–360 דק'</td><td>3 מ"ג/ק"ג — פרופיל בטיחות קרדיאלי טוב יותר מבופיווקאין</td></tr>
+  </tbody>
+</table>
+<p>הוספת <b>אדרנלין</b> לתמיסה משרתת שתי מטרות: (1) גורמת לכיווץ כלי דם מקומי שמאט את הספיגה הסיסטמית — מאריך את משך הפעולה ומקטין את שיא הריכוז בדם (מוריד סיכון ל-LAST); (2) משמשת כ"מנת בדיקה" (test dose) — טכיקרדיה חדה תוך דקות מהזרקה מרמזת על הזרקה תוך-ורידית בשוגג, לפני שהוזרקה כל המנה המלאה.</p>
+
+<div class="surgery">
+  <h4>ביצוע הבלוק — עקרונות בטיחות</h4>
+  <p>לפני הזרקה — <b>שאיבה</b> (aspiration) לוודא שקצה המחט אינו בתוך כלי דם, הזרקה <b>הדרגתית ומקוטעת</b> (לא בולוס אחד גדול) עם עצירות לבדיקת תגובה, ושימוש במנת-בדיקה עם אדרנלין. בהרדמה אפידורלית — טכניקת "אובדן ההתנגדות" מזהה את החלל האפידורלי; קטטר מוחדר להמשכיות. בהרדמה ספינלית — מחט "עיפרון" (Whitacre/Sprotte) מועדפת על פני מחט חותכת (Quincke) כדי להקטין סיכון לכאב ראש.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>רוב מקרי ה-LAST נגרמים <b>מהזרקה תוך-ורידית בשוגג</b> או ספיגה סיסטמית מהירה מדי מרקמה עשירת כלי דם — לא ממנת-יתר "אמיתית". לכן ידיעת המינון המרבי הבטוח לפי משקל, שאיבה חוזרת, והזרקה הדרגתית הן ההגנה החשובה ביותר — יותר מכל טיפול לאחר האירוע.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/IQ2_3L1Xt4I" title="Local Anaesthetics - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת פרמקולוגיה של חומרי הרדמה מקומיים (Osmosis) — מנגנון חסימת תעלות הנתרן, סוגי תרופות, ותופעות לוואי. מקור: <a href="https://www.youtube.com/watch?v=IQ2_3L1Xt4I" target="_blank">YouTube - Osmosis</a></p>
+
+<h3>טוקסיות סיסטמית מחומרי הרדמה מקומיים <span class="term" dir="ltr">(LAST)</span></h3>
+<p>כשריכוז חומר ההרדמה בדם עולה מעבר לסף מסוים (הזרקה תוך-ורידית בשוגג, או ספיגה סיסטמית מהירה מרקמה מאוד וסקולרית), התרופה חוסמת תעלות נתרן <b>בכל רקמה נרגשת</b> — לא רק בעצב המטופל — ובראש ובראשונה במוח ובלב.</p>
+<table>
+  <thead><tr><th>שלב</th><th>מנגנון</th><th>סימנים</th></tr></thead>
+  <tbody>
+    <tr><td><b>מוקדם — אזהרה</b></td><td>חסימה ראשונית של נוירונים <b>מעכבים</b> בקורטקס — "משתחררת" פעילות מעוררת</td><td>עקצוץ סביב הפה/שפתיים, טעם מתכתי, סחרחורת, טינטון, הפרעות ראייה</td></tr>
+    <tr><td><b>עירור מרכזי (CNS excitation)</b></td><td>אובדן איזון בין נוירונים מעוררים למעכבים</td><td>דיבור מטושטש, בלבול, <b>פרכוס גנרליזבי</b></td></tr>
+    <tr><td><b>דיכוי מרכזי</b></td><td>חסימה מלאה יותר של תעלות Na⁺ במוח</td><td>חוסר הכרה, דיכוי נשימתי</td></tr>
+    <tr><td><b>קרדיווסקולרי — הכי מסוכן</b></td><td>חסימת תעלות Na⁺ בשריר הלב מאטה הולכה חשמלית; בופיווקאין נקשר "מהר-פנימה, לאט-החוצה" לתעלה ולכן קשה לפנות</td><td>הפרעות קצב חדריות, תת-לחץ-דם, <b>VF עמיד לטיפול</b>, דום לב</td></tr>
+  </tbody>
+</table>
+<p><span class="key">שימו לב</span>: בניגוד לאינטואיציה, שלבי ה-CNS <b>לא תמיד</b> מקדימים את הקרדיוטוקסיות — במיוחד עם בופיווקאין, קריסה קרדיווסקולרית יכולה להופיע פתאומית וללא אזהרה נוירולוגית ברורה.</p>
+
+<svg class="diagram" viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg">
+  <title>התקדמות LAST וטיפול</title>
+  <rect x="8" y="15" width="205" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="110" y="40" font-size="12" text-anchor="middle" fill="#1f2937">אזהרה מוקדמת</text>
+  <text x="110" y="56" font-size="10.5" text-anchor="middle" fill="#4b5563">עקצוץ פה, טעם מתכתי,</text>
+  <text x="110" y="70" font-size="10.5" text-anchor="middle" fill="#4b5563">טינטון</text>
+
+  <polygon points="216,50 236,43 236,57" fill="#b45309"/>
+  <rect x="240" y="15" width="205" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="342" y="40" font-size="12" text-anchor="middle" fill="#1f2937">עירור CNS</text>
+  <text x="342" y="56" font-size="10.5" text-anchor="middle" fill="#4b5563">בלבול, דיבור מטושטש,</text>
+  <text x="342" y="70" font-size="10.5" text-anchor="middle" fill="#4b5563">פרכוס</text>
+
+  <polygon points="448,50 468,43 468,57" fill="#b91c1c"/>
+  <rect x="472" y="15" width="205" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="574" y="40" font-size="12" text-anchor="middle" fill="#1f2937">קריסה קרדיווסקולרית</text>
+  <text x="574" y="56" font-size="10.5" text-anchor="middle" fill="#4b5563">הפרעות קצב, VF עמיד,</text>
+  <text x="574" y="70" font-size="10.5" text-anchor="middle" fill="#4b5563">דום לב</text>
+
+  <polygon points="681,50 701,43 701,57" fill="#6d28d9"/>
+  <rect x="705" y="15" width="187" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="798" y="36" font-size="11.5" text-anchor="middle" font-weight="700" fill="#1f2937">אמולסיה שומנית 20%</text>
+  <text x="798" y="52" font-size="10" text-anchor="middle" fill="#4b5563">בולוס 1.5 מ"ל/ק"ג</text>
+  <text x="798" y="66" font-size="10" text-anchor="middle" fill="#4b5563">+ עירוי 0.25 מ"ל/ק"ג/דק'</text>
+
+  <rect x="8" y="105" width="884" height="70" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+  <text x="450" y="128" font-size="12" text-anchor="middle" font-weight="700" fill="#1f2937">טיפול מיידי: הפסקת הזרקה → חמצן/נתיב אוויר → בנזודיאזפין לפרכוס → ACLS (מינוני אדרנלין נמוכים) + אמולסיה שומנית</text>
+  <text x="450" y="150" font-size="10.5" text-anchor="middle" fill="#4b5563">"מלכודת שומנית" (lipid sink) — השומן קושר את התרופה הליפופילית ומוציא אותה מפלזמה/שריר הלב, ותומך במטבוליזם החומצות השומניות של שריר הלב</text>
+</svg>
+
+<h4 style="margin-top:16px">טיפול ב-LAST</h4>
+<table>
+  <thead><tr><th>שלב טיפול</th><th>פעולה</th><th>למה</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>הפסקה מיידית של הזרקת חומר ההרדמה</td><td>למנוע המשך העמסה</td></tr>
+    <tr><td>2</td><td>חמצן 100% ואבטחת נתיב אוויר</td><td>היפוקסיה ואצידוזיס מחמירים קרדיוטוקסיות</td></tr>
+    <tr><td>3</td><td>בנזודיאזפין (למשל <span class="term" dir="ltr">Midazolam</span>) לעצירת פרכוס</td><td>פרכוס ממושך מחמיר חמצת וקטכולאמינים</td></tr>
+    <tr><td>4</td><td>אמולסיה שומנית <span class="term" dir="ltr">20% Intralipid</span> — בולוס 1.5 מ"ל/ק"ג (משקל רזה) ל-1 דקה, ואז עירוי 0.25 מ"ל/ק"ג/דק'; ניתן לחזור על הבולוס ולהכפיל קצב העירוי במקרים עמידים</td><td>"lipid sink" — שאיבת התרופה הליפופילית מהפלזמה ומרקמת הלב</td></tr>
+    <tr><td>5</td><td>ACLS סטנדרטי, עם מינוני אדרנלין נמוכים יותר מהרגיל (המלצת ASRA)</td><td>מינוני אדרנלין גבוהים עלולים להחמיר הפרעות קצב ולפגוע ביעילות אמולסיה השומנית</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/87Ab8lgpLuQ" title="Local Anesthetic Systemic Toxicity (LAST)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">זיהוי וניהול טוקסיות סיסטמית מחומרי הרדמה מקומיים (LAST) — סימנים קליניים ופרוטוקול הטיפול כולל אמולסיה שומנית. מקור: <a href="https://www.youtube.com/watch?v=87Ab8lgpLuQ" target="_blank">YouTube - EM Note</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>סדר החסימה הדיפרנציאלית — "הבניין שקורס מלמעלה למטה"</h3>
+  <p>דמיינו בניין בן 5 קומות שבו כל קומה מייצגת סוג סיב עצבי, מהעדין ביותר בקומה העליונה ועד העבה ביותר ביסוד: <b>קומה 5 (גג) = סימפטטי</b> — הכי חלש, קורס ראשון; <b>קומה 4 = כאב/חום</b>; <b>קומה 3 = מגע/לחץ</b>; <b>קומה 2 = מוטורי</b> — עבה וחזק; <b>קומה 1 (יסודות) = פרופריוצפציה</b> — הכי חזק, שורד אחרון. כשמזרימים "מים" (חומר ההרדמה) על הבניין, הקומה העליונה נשטפת ראשונה. וכשה"מים" מתנקזים (התאוששות), <b>היסודות מתייבשים ומתחזקים ראשונים</b> — כלומר המוטורי חוזר לפני הסימפטטי, שנשאר "רטוב" (חסום) הכי הרבה זמן.</p>
+  <h3>ראשי תיבות ל-LAST — "מה שהפה מרגיש קודם, הלב מרגיש אחר כך"</h3>
+  <p>סדר האזהרה הקלאסי (מקורי, לא ראשי תיבות רשמיים בספרות): <b>פה</b> (עקצוץ/טעם מתכתי) ← <b>אוזן</b> (טינטון) ← <b>ראש</b> (בלבול/פרכוס) ← <b>לב</b> (הפרעות קצב/קריסה). ברגע שמופיע סימן "פה/אוזן" — זהו החלון האחרון להפסיק את ההזרקה לפני שהדרך חופשית ללב.</p>
+  <svg class="diagram" viewBox="0 0 500 210" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: הבניין שקורס מלמעלה למטה</title>
+    <rect x="150" y="15" width="200" height="30" rx="4" fill="#fecaca" stroke="#b91c1c"/>
+    <text x="250" y="35" font-size="12" text-anchor="middle" fill="#1f2937">קומה 5: סימפטטי</text>
+    <rect x="150" y="48" width="200" height="30" rx="4" fill="#fed7aa" stroke="#b45309"/>
+    <text x="250" y="68" font-size="12" text-anchor="middle" fill="#1f2937">קומה 4: כאב/חום</text>
+    <rect x="150" y="81" width="200" height="30" rx="4" fill="#fef08a" stroke="#b45309"/>
+    <text x="250" y="101" font-size="12" text-anchor="middle" fill="#1f2937">קומה 3: מגע/לחץ</text>
+    <rect x="150" y="114" width="200" height="30" rx="4" fill="#bbf7d0" stroke="#047857"/>
+    <text x="250" y="134" font-size="12" text-anchor="middle" fill="#1f2937">קומה 2: מוטורי</text>
+    <rect x="150" y="147" width="200" height="30" rx="4" fill="#93c5fd" stroke="#2563eb"/>
+    <text x="250" y="167" font-size="12" text-anchor="middle" fill="#1f2937">יסוד: פרופריוצפציה</text>
+    <text x="250" y="195" font-size="11" text-anchor="middle" fill="#4b5563">חסימה: מלמעלה למטה | החלמה: מלמטה למעלה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Epidural-anesthesia.png" target="_blank">איור סכמטי של הרדמה אפידורלית — Wikimedia Commons</a>
+    <div class="desc">איור המראה את מיקום קצה המחט בחלל האפידורלי לעומת הדורה וה-CSF — טוב להשוואה ויזואלית מול ספינלי.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Spinal_Needles.JPG" target="_blank">מחטים ספינליות שונות — Wikimedia Commons</a>
+    <div class="desc">תמונה של סוגי מחטים ספינליות (כולל הבדלי קוטר וצורת קצה) — רלוונטי לדיון בסיכון לכאב ראש אחרי הדקירה.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Spinal_anaesthesia.jpg" target="_blank">ביצוע הרדמה ספינלית — Wikimedia Commons</a>
+    <div class="desc">תמונה נוספת (קישור ישיר גיבוי) של ביצוע ההרדמה הספינלית בפועל, מוטמעת גם בסעיף 4 למעלה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 68 עומד לעבור החלפת ברך ימנית מתוכננת, ומקבל הרדמה ספינלית עם בופיווקאין היפרברי. חמש דקות לאחר ההזרקה, הצוות מבחין בירידת לחץ דם מ-140/85 ל-92/58 מ"מ כספית, עם דופק 58 לדקה. המטופל ער, נושם באופן ספונטני, ומדווח שהוא "לא מרגיש את הרגליים" מהמפשעה ומטה. במקביל, באותו חדר ניתוח, מטופל אחר עובר בלוק מקלעת בית-השחי (axillary block) לניתוח יד; דקה לאחר תחילת ההזרקה הוא מדווח על עקצוץ סביב השפתיים וטעם מתכתי בפה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע רק הצורה הלא-מיוננת (uncharged) של חומר ההרדמה המקומי מסוגלת לחדור לתוך העצב, בעוד הצורה הטעונה היא זו שחוסמת בפועל את תעלת הנתרן?</div>
+  <button class="opt" data-i="0">הצורה הטעונה גדולה מדי פיזית מכדי לעבור דרך התעלה</button>
+  <button class="opt" data-i="1">שתי הצורות חודרות שווה בשווה, אין הבדל תפקודי ביניהן</button>
+  <button class="opt" data-i="2">קרום העצב ליפידי, ורק צורה לא-טעונה (ליפופילית) יכולה לחצות אותו; בתוך התא היא חוזרת לצורה הטעונה שנקשרת לאתר התוך-תאי בתעלה</button>
+  <button class="opt" data-i="3">הצורה הטעונה נכנסת דרך תעלות סידן במקום נתרן</button>
+  <div class="explain">נכון: קרום העצב עשוי שכבה ליפידית, כך שרק המולקולה הליפופילית (הלא-מיוננת) חוצה אותה. בתוך האקסופלזמה מתרחש שיווי משקל מחדש, וחלק חוזר לצורה הטעונה — זו הצורה שנקשרת פיזית לאתר התוך-תאי בתעלת Na⁺ ומבצעת את החסימה בפועל. זו גם הסיבה שרקמה חומצית/מודלקת "עמידה" יחסית לחומרי הרדמה מקומיים — פחות תרופה נשארת בצורה הלא-מיוננת שיכולה לחדור מלכתחילה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. יומיים לאחר הרדמה ספינלית תקינה, מטופלת מדווחת שהיא כבר מרגישה ומזיזה את הרגליים היטב, אך כשקמה לראשונה מהמיטה חשה סחרחורת עזה ולחץ הדם שלה יורד בחדות. ההסבר הפיזיולוגי הסביר ביותר הוא:</div>
+  <button class="opt" data-i="0">הבלוק הסימפטטי (סיבי B) חוסם ראשון ומתאושש אחרון, ולכן יכול להימשך גם אחרי שהתחושה והתנועה כבר חזרו לתקין</button>
+  <button class="opt" data-i="1">זהו סימן מובהק לזיהום בחלל האפידורלי</button>
+  <button class="opt" data-i="2">חומר ההרדמה חדר בטעות לחדרי המוח וגורם ליתר-לחץ-דם תוך-גולגלתי</button>
+  <button class="opt" data-i="3">זו תופעה נדירה שאינה קשורה כלל להרדמה הספינלית</button>
+  <div class="explain">נכון: סיבי B הסימפטטיים הם הרגישים ביותר לחומר ההרדמה — נחסמים ראשונים וגם נשארים חסומים הכי הרבה זמן, גם אחרי שהתחושה (סיבי Aδ/C) והתנועה (Aα) כבר חזרו. זו הסיבה הקלינית ליתר-לחץ-דם אורתוסטטי בקימה הראשונה, ומחייבת זהירות/ליווי בהליכה הראשונה. שאר האופציות אינן ההסבר הפיזיולוגי התואם לתמונה (אין סימני זיהום, ואין מנגנון כזה של חדירה למוח).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופל הזקוק להרדמה לניתוח דחוף מקבל טיפול נוגד קרישה טיפולי (לא מניעתי) ב-LMWH, כשהמנה האחרונה הייתה לפני כ-10 שעות. הבחירה הבטוחה ביותר מבין הבאות היא:</div>
+  <button class="opt" data-i="0">הרדמה ספינלית - בטוחה תמיד ללא קשר לזמן ממתן LMWH</button>
+  <button class="opt" data-i="1">הרדמה אפידורלית עם קטטר - עדיפה כי ניתן להוציא את הקטטר בהמשך</button>
+  <button class="opt" data-i="2">בלוק עצב מרכזי כלשהו, כל עוד מוסיפים אדרנלין לתמיסה</button>
+  <button class="opt" data-i="3">הימנעות מבלוק נוירואקסיאלי בשלב זה, ומעבר להרדמה כללית או להמתנה עד שחלף המרווח הבטוח (כ-24 שעות ממנה טיפולית)</button>
+  <div class="explain">נכון: קואגולופתיה/נוגדי קרישה טיפוליים הם קונטרא-אינדיקציה יחסית-חמורה לבלוק נוירואקסיאלי בגלל סיכון להמטומה אפידורלית קטסטרופלית; לאחר מינון טיפולי (בניגוד למניעתי) של LMWH נדרש מרווח ארוך יותר (כ-24 שעות) לפני שהחלל בטוח לחדירת מחט. תשובות 1–3 מתעלמות מהסיכון האמיתי; הוספת אדרנלין (3) אינה פותרת סיכון לדימום.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. בהמשך לוינייטה — המטופל שעבר בלוק מקלעת בית-השחי ומדווח על עקצוץ סביב השפתיים וטעם מתכתי. הצעד הבא הנכון ביותר הוא:</div>
+  <button class="opt" data-i="0">להמשיך את ההזרקה כרגיל - אלו תופעות לוואי שכיחות וחולפות מעצמן</button>
+  <button class="opt" data-i="1">להפסיק מיידית את ההזרקה, לספק חמצן ולנטר את המטופל בצמוד לאיתור התקדמות ל-CNS/קרדיווסקולרי</button>
+  <button class="opt" data-i="2">להזריק מיד אמולסיה שומנית 20% בלי לבדוק סימנים נוספים</button>
+  <button class="opt" data-i="3">להגדיל את קצב ההזרקה כדי לסיים את הבלוק לפני שמחמיר</button>
+  <div class="explain">נכון: עקצוץ פה וטעם מתכתי הם הסימנים המוקדמים ביותר של LAST — "חלון ההזדמנות" לעצור לפני שהמצב מתקדם לפרכוס או לקריסה קרדיווסקולרית. הפסקת ההזרקה, חמצן וניטור צמוד הם הצעד הראשון; אמולסיה שומנית (3) שמורה למקרים שמתקדמים לסימנים נוירולוגיים/קרדיאליים משמעותיים, לא כתגובה ראשונית אוטומטית. המשך/הגברת ההזרקה (1,4) מסוכן ועלול לגרום להתקדמות מהירה יותר.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע אמולסיה שומנית תוך-ורידית (Intralipid) יעילה כטיפול חירום ב-LAST הנגרם מבופיווקאין?</div>
+  <button class="opt" data-i="0">היא מנטרלת את ה-pH החומצי שגרם לחומר ההרדמה להיכנס לתאים</button>
+  <button class="opt" data-i="1">היא פועלת כאנטגוניסט ישיר על תעלת הנתרן ומעקרת את הקישור של חומר ההרדמה</button>
+  <button class="opt" data-i="2">היא פועלת כ"מלכודת שומנית" (lipid sink) שקושרת את התרופה הליפופילית ומוציאה אותה מהפלזמה ומרקמת הלב, ותומכת במטבוליזם החומצות השומניות של שריר הלב</button>
+  <button class="opt" data-i="3">היא מעלה את לחץ הדם ישירות דרך כיווץ כלי דם</button>
+  <div class="explain">נכון: בופיווקאין ליפופילי מאוד, ואמולסיה שומנית "שואבת" אותו מהפלזמה ומהתאים אל תוך פאזת השומן במחזור הדם (lipid sink), ובמקביל תומכת בחילוף החומרים האנרגטי של שריר הלב הפגוע. היא אינה אנטגוניסט ישיר לתעלת נתרן (2), אינה משפיעה על pH (1), ואינה כיווץ כלי דם ישיר (4) — אלה אינם המנגנון האמיתי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. מדוע נבחרות מחטים ספינליות מסוג "עיפרון" (Whitacre/Sprotte) על פני מחטים חותכות (Quincke) כדי להפחית סיכון לכאב ראש אחרי דקירת דורה?</div>
+  <button class="opt" data-i="0">הן דוחפות את סיבי הדורה הצידה במקום לחתוך אותם, כך שהפתח שנוצר קטן יותר ונסגר מהר יותר, ומקטין דליפת CSF</button>
+  <button class="opt" data-i="1">הן חדות יותר ולכן חודרות מהר יותר עם פחות כאב מיידי למטופל</button>
+  <button class="opt" data-i="2">הן מיועדות למינון גבוה יותר של חומר הרדמה</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי בין סוגי המחטים - זו רק העדפה היסטורית</button>
+  <div class="explain">נכון: מחטי "עיפרון" בעלות קצה מעוגל שדוחף (לא חותך) את סיבי הדורה, כך שהפתח הנוצר קטן וסוגר את עצמו מהר יותר — מקטין דליפת CSF ולכן מקטין סיכון לכאב ראש. מחטים חותכות (Quincke) יוצרות פתח "נקי" יותר שנשאר פתוח זמן רב יותר. תשובות 2 ו-3 אינן נכונות עובדתית; תשובה 1 אינה הסיבה הרפואית האמיתית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: הרדמה אזורית (ספינלית = הזרקה ישירה ל-CSF מתחת ל-L2; אפידורלית = חלל שמעל הדורה, נפח גדול יותר, קטטר להמשכיות) חוסמת עצבים באמצעות חומרי הרדמה מקומיים.</li>
+    <li><b>המנגנון</b>: צורה לא-מיוננת חוצה קרום עצב → צורה טעונה חוסמת תעלת Na⁺ תוך-תאית → אין דה-פולריזציה/פוטנציאל פעולה. חסימה דיפרנציאלית: סימפטטי ← כאב/חום ← מגע ← מוטורי ← פרופריוצפציה (ומתאוששת בסדר הפוך).</li>
+    <li><b>סיבוכים מרכזיים</b>: יתר-לחץ-דם/ברדיקרדיה מסימפטקטומיה, כאב ראש אחרי דקירת דורה, המטומה אפידורלית (בעיקר עם נוגדי קרישה — מרווח בטוח 12–24 שעות מ-LMWH לפי מינון), ו-LAST.</li>
+    <li><b>LAST</b>: עקצוץ פה/טעם מתכתי/טינטון ← עירור CNS/פרכוס ← דיכוי CNS ← קריסה קרדיווסקולרית (בופיווקאין הכי מסוכן). טיפול: הפסקת הזרקה, חמצן, בנזודיאזפין לפרכוס, ACLS ואמולסיה שומנית 20% (בולוס 1.5 מ"ל/ק"ג + עירוי 0.25 מ"ל/ק"ג/דק').</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<!-- מקור: ה-PDF שהועלה של Ch 13 (Surgery in the Geriatric Patient, Sabiston/Schwartz's Principles of Surgery) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). הפרק המקורי רחב-היקף מאוד (עומדים בבסיס: פריכות (Frailty) וירידה פיזיולוגית לפי מערכת, הערכה טרום-ניתוחית, וניהול תוך/תת-ניתוחי) - הסיכום התמקד בפריכות כמסגרת ההבנה הפיזיולוגית, ובדליריום לאחר ניתוח (Postoperative Delirium) כתת-הנושא העשיר ביותר מבחינת מנגנון, אבחנה מבדלת וטיפול, וכליבת הפרק הכי קליני-נבחנת. תמונות (Wikimedia Commons) וסרטוני YouTube הושלמו מחיפוש אמיתי. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כירורגיה בחולה הקשיש: פריכות ודליריום לאחר ניתוח</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>כירורגיה בחולה הקשיש <span class="term" dir="ltr">(Surgery in the Geriatric Patient)</span></h1>
+<div class="subtitle">פריכות <span class="term" dir="ltr">(Frailty)</span> ודליריום לאחר ניתוח <span class="term" dir="ltr">(Postoperative Delirium)</span> — פרק 13 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>אנשים מעל גיל 65 מהווים כ-15% מהאוכלוסייה בארה"ב אך עוברים כ-40% מהניתוחים. התובנה המרכזית של הפרק היא ש<b>גיל כרונולוגי לבדו אינו המנבא העיקרי לתוצאות ניתוח גרועות — אלא פריכות</b> <span class="term" dir="ltr">(frailty)</span>, כלומר "כמה בהצלחה המטופל הזדקן". בנוסף, בניגוד לכירורג המסורתי שמודד הצלחה ב-30 יום תמותה/סיבוכים, עבור המטופל הקשיש עצמו התוצאה החשובה באמת היא לרוב <b>שימור התפקוד והעצמאות הקוגניטיבית</b> — הרבה מטופלים מבוגרים יעדיפו למות מאשר לחיות עם פגיעה קוגניטיבית/תפקודית קשה.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>פריכות (Frailty)</b> מוגדרת כתסמונת ביולוגית של ירידה ברזרבה הפיזיולוגית ובעמידות לגורמי לחץ, כתוצאה מירידה מצטברת במספר מערכות פיזיולוגיות. שרשרת הסיבתיות הקלאסית (Fried & Walston): <b>דיסרגולציה נוירואנדוקרינית + דלקת כרונית (ציטוקינים כמו IL-6)</b> יחד עם <b>ירידה בתיאבון עם הגיל</b> ("anorexia of aging") <b>גורמות</b> למאזן אנרגטי שלילי ולתת-תזונה כרונית. תת-התזונה, יחד עם שינויים שריריים-שלדיים הקשורים להזדקנות, <b>גורמת</b> לאובדן מסת שריר — <span class="term" dir="ltr">sarcopenia</span> — ולירידה ביעילות המטבולית (ירידה ב-VO2max וב-Resting Metabolic Rate). <b>זה גורם</b> לירידה בכוח, במהירות ההליכה וברמת הפעילות, מה שמוביל לאי-יציבות, נפילות, ותלות — ומעגל זה מזין את עצמו (כל נפילה/אשפוז מחמירה עוד יותר את הקטבוליזם והניוון).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    התוצאה הקלינית של המעגל הזה היא <b>רזרבה פיזיולוגית מצומצמת בכל מערכת</b> — "שוליים קטנים לטעות". מטופל לא-פריך יכול לספוג פגיעה (ניתוח, זיהום, איבוד דם) ולחזור לשיווי משקל; מטופל פריך, עם רזרבה דחוסה מראש בלב, בריאות, כליות ומוח, <b>מתקשה להתאושש</b> מאותה פגיעה בדיוק בגלל שאין לו "מרווח בטיחות" — זו הסיבה שפריכות (ולא הגיל בפני עצמו) מנבאת סיבוכים, אשפוז ממושך, ומוות.
+  </p>
+  <p class="chain" style="margin-top:10px" id="delirium-mech">
+    <b>דליריום לאחר ניתוח</b> הוא הדוגמה הקלינית הבולטת ביותר לעיקרון הזה, במוח. המנגנון מתואר כאינטראקציה בין שני סוגי גורמים: <b>גורמי רקע ("מוח פגיע")</b> — גיל מתקדם, ליקוי קוגניטיבי/דמנציה קיימים מראש (הגורם הבודד החזק ביותר), ליקוי תפקודי, תת-תזונה, ליקוי חושי (ראייה/שמיעה), התמכרות לאלכוהול, ומחלה קשה — לעומת <b>גורמים מזרזים בתקופה שלאחר הניתוח</b> — זיהום, תרופות (בייחוד אנטיכולינרגיות ובנזודיאזפינים), היפוקסמיה, הפרעה מטבולית (נתרן, סידן, גלוקוז), כאב לא-מטופל כראוי, התייבשות, הפרעה בשנת, קטטרים ורסטריינטים, וסביבה לא-מוכרת. <b>מוח עם רזרבה קוגניטיבית דחוסה מראש (גורמי רקע) זקוק לפחות "מכות" נוספות (גורמים מזרזים) כדי להתמוטט למצב של דליריום</b> — זו הסיבה שמטופל דמנטי עלול לפתח דליריום מקטטר שתן בודד, בעוד מטופל צעיר ובריא "סופג" אותו קטטר בלי בעיה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מבחינה ביוכימית, שתי היפותזות עיקריות מסבירות את הדליריום עצמו: <b>(1) חוסר איזון כולינרגי</b> — ירידה בפעילות אצטילכולין (המערכת האחראית על קשב ותודעה) מסבירה למה תרופות אנטיכולינרגיות (כמו דיפנהידרמין/Benadryl שברשימת Beer's) מזרזות דליריום, ולמה מטופלים עם דמנציה (שכבר יש להם גירעון כולינרגי בסיסי) פגיעים יותר; <b>(2) נוירו-דלקת</b> — ציטוקינים פרו-דלקתיים המשתחררים בתגובה לטראומה הניתוחית (IL-1, IL-6, TNF-α) חוצים או משבשים את מחסום הדם-מוח ומפעילים תאי מיקרוגליה, מה שמפריע לתקשורת העצבית התקינה. שני המנגנונים האלה מסבירים גם למה מניעה (הפחתת גורמים מזרזים) יעילה בהרבה מטיפול תרופתי לאחר שהדליריום כבר התפתח.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מעגל הפריכות ומנגנון הדליריום</title>
+  <rect x="10" y="15" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="100" y="42" font-size="12" text-anchor="middle" fill="#1f2937">דלקת כרונית +</text>
+  <text x="100" y="58" font-size="12" text-anchor="middle" fill="#1f2937">אנורקסיה של הזדקנות</text>
+  <text x="100" y="74" font-size="10.5" text-anchor="middle" fill="#4b5563">(IL-6, דיסרגולציה נוירואנדוקרינית)</text>
+
+  <polygon points="195,50 215,43 215,57" fill="#2563eb"/>
+  <rect x="220" y="15" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="295" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">מאזן אנרגטי שלילי</text>
+  <text x="295" y="61" font-size="11" text-anchor="middle" fill="#4b5563">תת-תזונה כרונית</text>
+
+  <polygon points="375,50 395,43 395,57" fill="#2563eb"/>
+  <rect x="400" y="15" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="475" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">סרקופניה</text>
+  <text x="475" y="61" font-size="11" text-anchor="middle" fill="#4b5563">אובדן מסת שריר</text>
+
+  <polygon points="555,50 575,43 575,57" fill="#b45309"/>
+  <rect x="580" y="15" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="655" y="42" font-size="12.5" text-anchor="middle" fill="#1f2937">חולשה, נפילות,</text>
+  <text x="655" y="58" font-size="12.5" text-anchor="middle" fill="#1f2937">"פריכות" קלינית</text>
+
+  <polygon points="735,50 755,43 755,57" fill="#b91c1c"/>
+  <rect x="760" y="15" width="135" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="827" y="42" font-size="12" text-anchor="middle" fill="#1f2937">רזרבה פיזיולוגית</text>
+  <text x="827" y="58" font-size="12" text-anchor="middle" fill="#1f2937">מצומצמת בכל מערכת</text>
+
+  <polygon points="827,90 819,112 835,112" fill="#6d28d9"/>
+  <rect x="10" y="120" width="380" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="200" y="145" font-size="12.5" text-anchor="middle" fill="#1f2937">גורמי רקע: דמנציה, גיל, תת-תזונה,</text>
+  <text x="200" y="162" font-size="12.5" text-anchor="middle" fill="#1f2937">ליקוי חושי, מחלה קשה</text>
+  <text x="200" y="185" font-size="11" text-anchor="middle" fill="#4b5563">("מוח עם רזרבה קוגניטיבית דחוסה")</text>
+
+  <text x="415" y="165" font-size="20" text-anchor="middle" fill="#6d28d9">+</text>
+
+  <rect x="440" y="120" width="380" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="630" y="145" font-size="12.5" text-anchor="middle" fill="#1f2937">גורמים מזרזים לאחר ניתוח: זיהום,</text>
+  <text x="630" y="162" font-size="12.5" text-anchor="middle" fill="#1f2937">תרופות אנטיכולינרגיות/בנזו, כאב, קטטרים</text>
+  <text x="630" y="185" font-size="11" text-anchor="middle" fill="#4b5563">("מכות" נוספות למוח הפגיע)</text>
+
+  <polygon points="400,210 415,230 430,210" fill="#b91c1c"/>
+  <rect x="270" y="235" width="360" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="450" y="258" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">דליריום (Postoperative Delirium)</text>
+  <text x="450" y="276" font-size="11" text-anchor="middle" fill="#4b5563">חוסר איזון כולינרגי + נוירו-דלקת</text>
+</svg>
+
+<h2><span class="num">3</span> פיזיולוגיה של ההזדקנות לפי מערכות</h2>
+<p>לכל מערכת יש ירידה פיזיולוגית ספציפית שמסבירה למה מטופלים קשישים "נשברים" אחרת ממטופלים צעירים תחת אותו לחץ ניתוחי:</p>
+<table>
+  <thead><tr><th>מערכת</th><th>השינוי המרכזי עם הגיל</th><th>המשמעות הקלינית</th></tr></thead>
+  <tbody>
+    <tr><td>לב וכלי דם</td><td>ירידה בתגובתיות בטא-אדרנרגית; הלב "מסתמך" על preload (כולל "אטריאל קיק") ולא על עלייה בקצב הלב כדי לשמר תפוקה; דיספונקציה דיאסטולית (עד 50% מאי-ספיקת לב מעל גיל 80)</td><td>אפילו היפוולמיה קלה פוגעת משמעותית בתפקוד הלב; היפוקסמיה קלה יכולה לגרום לגודש ריאתי דרך הארכת ההרפיה הדיאסטולית</td></tr>
+    <tr><td>נשימה</td><td>ירידה באלסטיות הריאה, קריסת נתיבי אוויר קטנים, ירידה בכוח שרירי הנשימה עד 50%; ירידה ברפלקס השיעול ובתפקוד הבליעה</td><td>סיבוכים נשימתיים הם הסיבוך הבתר-ניתוחי השכיח ביותר בקשישים; סיכון מוגבר לשאיפה (אספירציה) ולדלקת ריאות</td></tr>
+    <tr><td>כליות</td><td>ירידה של כ-45% ב-GFR עד גיל 80, אך <b>קריאטינין בסרום עשוי להישאר תקין</b> כי מסת השריר (ומכאן ייצור הקריאטינין) יורדת גם היא באותו הזמן</td><td>יש לחשב פינוי קריאטינין (למשל Cockcroft-Gault) ולא להסתמך על ערך קריאטינין גולמי לצורך מינון תרופות; סיכון מוגבר להתייבשות ול-AKI בתר-ניתוחי</td></tr>
+    <tr><td>כבד</td><td>יכולת הסינתזה נשמרת, אך זרימת הדם הכבדית יורדת ב-35%-50% ומטבוליזם פאזה I (חמצון מיקרוזומלי) מואט</td><td>תרופות רבות (כולל וורפרין) פועלות במינון נמוך יותר; יש להתאים מינונים ולא להניח שתפקודי כבד תקינים = מטבוליזם תקין</td></tr>
+    <tr><td>מערכת חיסון</td><td>ירידה בייצור תאי T נאיביים (עקב אינוולוציה של התימוס), תגובה מוחלשת של מח העצם לזיהום</td><td>מטופל קשיש עם זיהום קשה עלול להציג <b>ספירת לויקוציטים תקינה</b> אך עם הסטה שמאלה בולטת בדיפרנציאל — היעדר לויקוציטוזיס אינו שולל זיהום חמור</td></tr>
+    <tr><td>הומאוסטזיס גלוקוז</td><td>ירידה בתפקוד תאי בטא ועלייה יחסית בתנגודת לאינסולין</td><td>תגובת ההיפרגליקמיה ללחץ הניתוחי מוגזמת יותר בקשישים; יעד מקובל בפריאופרטיבי הוא גלוקוז מתחת ל-180 מ"ג/ד"ל</td></tr>
+  </tbody>
+</table>
+<p><b>ביטוי לא-טיפוסי של מחלה</b> הוא עיקרון-על חשוב: אירוע לבבי (אוטם שריר הלב) יכול להתייצג ללא כאב בחזה כלל ב-40% מהקשישים — במקום זאת: קוצר נשימה, סינקופה, בלבול חריף, או שבץ. יש לשמור על סף חשד גבוה גם ללא הסימנים ה"קלאסיים".</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/bphcNzEJESk" title="Frailty in Old Age - Dr Bharti, Department of Geriatric Medicine, AIIMS" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה על פריכות בגיל מבוגר, המנגנון הקליני ומשמעותה בהערכת חולים קשישים — מאת ד"ר בהארטי, המחלקה לרפואה גריאטרית, AIIMS ניו דלהי. מקור: <a href="https://www.youtube.com/watch?v=bphcNzEJESk" target="_blank">YouTube</a></p>
+
+<h2><span class="num">4</span> ביטוי קליני והערכה טרום-ניתוחית</h2>
+<p>מכיוון שגיל כרונולוגי לבדו אינו מספיק, פותחו כלים סטנדרטיים למדידת "כמה הזדקן" המטופל בפועל:</p>
+<p><b>פנוטיפ הפריכות של Fried</b> — חמישה קריטריונים: (1) ירידה בלתי-מכוונת במשקל, (2) חולשת אחיזה (grip strength), (3) תחושת תשישות עצמית מדווחת, (4) האטה במהירות ההליכה, (5) הוצאה אנרגטית נמוכה. מטופל העונה על 3+ קריטריונים מוגדר "פריך".</p>
+<p><b>מבחן Timed Up and Go</b> — המטופל קם מכיסא ללא שימוש בידיות המשענת, הולך כ-3 מטרים, מסתובב וחוזר ויושב. יותר מ-15-20 שניות, או חוסר יכולת לקום ללא תמיכת הידיים, מעיד על סיכון גבוה לנפילות ולתוצאות בתר-ניתוחיות גרועות.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Elderly_man_walking_with_a_stick_and_one_hand_on_his_back.jpg?width=600" alt="קשיש הולך עם מקל הליכה">
+  <figcaption class="media-cap">ליקוי בניידות והליכה איטית הם מרכיב מרכזי בהגדרת הפריכות ומשפיעים ישירות על סיכון הנפילות והתוצאה הבתר-ניתוחית. מקור: <a href="https://commons.wikimedia.org/wiki/File:Elderly_man_walking_with_a_stick_and_one_hand_on_his_back.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p><b>סיווג ASA</b> (החברה האמריקאית לאנסתזיולוגיה) מדרג סיכון ניתוחי לפי מגבלה תפקודית ממחלות נלוות (I=בריא לחלוטין ועד V=גוסס ללא ניתוח); הוא חוזה תמותה בתר-ניתוחית בדיוק דומה בצעירים ובקשישים — עדות נוספת לכך שמחלה נלווית/פריכות, לא הגיל עצמו, קובעים סיכון.</p>
+<p><b>יכולת מאמץ ב-METs</b> (Metabolic Equivalents of Task) היא המנבא הרגיש ביותר לסיבוכים לבביים/ריאתיים בתר-ניתוחיים: 1 MET = צריכת חמצן במנוחה; <b class="key">חוסר יכולת לתפקד מעל 4 METs (למשל, לעלות קומת מדרגות ברצף) קשור לעלייה משמעותית בסיכון הלבבי הבתר-ניתוחי</b>.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/JYG3PquTPEM" title="ASA Physical Status Classification" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על סיווג ASA לסטטוס פיזי טרום-ניתוחי ושימושו בהערכת סיכון. מקור: <a href="https://www.youtube.com/watch?v=JYG3PquTPEM" target="_blank">YouTube</a></p>
+<p>הערכה טרום-ניתוחית מלאה לפי הנחיות ה-ACS NSQIP/AGS כוללת גם: הערכה קוגניטיבית (למשל <b>Mini-Cog</b> — משימת זכירת 3 מילים + ציור שעון; ציון 0-2 מרמז על חשד גבוה לליקוי קוגניטיבי), סינון לדיכאון (שאלון PHQ-2 בן שתי שאלות), סינון לשימוש באלכוהול, תיעוד נפילות קודמות, הערכת תזונה (BMI&lt;18.5, אלבומין&lt;3.0, או ירידת משקל בלתי-מכוונת מעל 10%-15% תוך חצי שנה מעידים על סיכון תזונתי גבוה), וסקירת תרופות לזיהוי פוליפרמציה ותרופות מרשימת <span class="term" dir="ltr">Beers</span>.</p>
+
+<h2><span class="num">5</span> אבחנה: דליריום לאחר ניתוח</h2>
+<p>דליריום מוגדר כהפרעה חריפה בהכרה ובקשב, המתפתחת על פני שעות-ימים בודדים ובעלת מהלך <b>משתנה</b> (מחמיר ומשתפר לסירוגין באותו יום). שכיחותו משתנה מאוד לפי סוג הניתוח: פחות מ-5% אחרי ניתוח קטרקט, עד 35% אחרי ניתוח כלי דם, ו-40%-60% אחרי תיקון שבר צוואר ירך — ומעל 50% בקשישים בטיפול נמרץ.</p>
+<h3>קריטריוני CAM (Confusion Assessment Method)</h3>
+<p>הכלי המקובל לאבחון דליריום ליד מיטת החולה. אבחנה חיובית מחייבת <b>(1) התחלה חריפה עם מהלך משתנה</b>, <b>ו-(2) הפרעת קשב</b>, בשילוב עם <b>(3) חשיבה בלתי-מאורגנת או (4) שינוי ברמת ההכרה</b>.</p>
+<h3>אבחנה מבדלת: דליריום מול דמנציה מול דיכאון</h3>
+<table>
+  <thead><tr><th>מאפיין</th><th>דליריום</th><th>דמנציה</th><th>דיכאון</th></tr></thead>
+  <tbody>
+    <tr><td>התחלה</td><td>חריפה, שעות-ימים</td><td>הדרגתית, חודשים-שנים</td><td>הדרגתית-תת-חריפה</td></tr>
+    <tr><td>מהלך יומי</td><td><b>משתנה/תנודתי</b> (עלול להחמיר בערב - "sundowning")</td><td>יציב יחסית לאורך היום</td><td>לרוב יציב, לעיתים גרוע יותר בבוקר</td></tr>
+    <tr><td>קשב</td><td><b>פגוע באופן בולט</b> — הליבה האבחנתית</td><td>נשמר יחסית בשלבים מוקדמים</td><td>עלול להיות פגוע קלות</td></tr>
+    <tr><td>רמת הכרה</td><td>משתנה - מעורפלת/ישנונית או חסרת מנוחה</td><td>תקינה</td><td>תקינה</td></tr>
+    <tr><td>הפיכות</td><td>לרוב הפיך עם טיפול בגורם הבסיסי</td><td>בלתי הפיך, פרוגרסיבי</td><td>הפיך עם טיפול מתאים</td></tr>
+  </tbody>
+</table>
+<p><b>חשוב לזכור</b>: דמנציה קיימת מראש היא <span class="key">גורם הסיכון הבודד החזק ביותר לדליריום לאחר ניתוח</span> — ולכן חובה לתעד סטטוס קוגניטיבי בסיסי (Mini-Cog) <b>לפני</b> הניתוח, אחרת קשה להבדיל בין דליריום חדש לבין דמנציה בסיסית לא-מתועדת.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/jG85Ryd8FO8" title="Postoperative Delirium (for Healthcare Providers)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קליני לצוות רפואי על דליריום לאחר ניתוח — הגדרה, גורמי סיכון וגישת ניהול. מקור: <a href="https://www.youtube.com/watch?v=jG85Ryd8FO8" target="_blank">YouTube</a></p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>תרופות שיש להימנע מהן בקשיש (רשימת Beers) — ומדוע</h3>
+<table>
+  <thead><tr><th>קבוצת תרופות</th><th>דוגמה</th><th>למה בעייתית בקשיש</th><th>קונטרא-אינדיקציה/חלופה</th></tr></thead>
+  <tbody>
+    <tr><td>בנזודיאזפינים</td><td>Diazepam, Lorazepam</td><td>מחמירות ליקוי קוגניטיבי בסיסי ומזרזות דליריום; קשורות לנפילות</td><td>הימנעות; לחרדה משמעותית - התייעצות פרטנית</td></tr>
+    <tr><td>אופיואיד ישן</td><td>Meperidine (Demerol)</td><td>מטבוליט (נורמפרידין) מצטבר בכליה הקשישה וגורם לרעילות נוירולוגית/דליריום</td><td>אופיואידים אחרים במינון מותאם, גישת חיסכון באופיואידים</td></tr>
+    <tr><td>אנטיהיסטמינים אנטיכולינרגיים</td><td>Diphenhydramine (Benadryl)</td><td>חוסמות אצטילכולין - מחריפות ישירות את חוסר האיזון הכולינרגי שגורם לדליריום</td><td>הימנעות מוחלטת בקשיש מבולבל/בסיכון</td></tr>
+    <tr><td>מרפי שרירים שלדיים</td><td>Cyclobenzaprine</td><td>השפעה אנטיכולינרגית ותחלואה נוירולוגית</td><td>הימנעות; טיפול לא-תרופתי בכאב שרירי</td></tr>
+  </tbody>
+</table>
+
+<h3>שיכוך כאב רב-מודאלי (Multimodality Pain Control)</h3>
+<p>עקרון ה-ERAS (Enhanced Recovery After Surgery) המותאם לקשיש: <b>חיסכון באופיואידים</b> (שילוב משככים לא-אופיואידיים, בלוקים אזוריים/אפידורל), <b>התחלה במינון נמוך והעלאה איטית</b> ("start low, go slow") בשל רגישות מוגברת, הימנעות עקבית מרשימת Beers, כלול <b>משטר מניעתי לעצירות</b> (משלשל קבוע כשנותנים אופיואיד כלשהו), והעדפת שיטות לא-תרופתיות (קור/חום מקומי, שינוי תנוחה) כתוספת.</p>
+
+<div class="surgery">
+  <h4>מניעת דליריום — הצעד היעיל ביותר (עדיף על טיפול לאחר האבחנה)</h4>
+  <p>חבילת התערבויות לא-תרופתיות: שמירה על התמצאות (שעון וזמן גלוי, בני משפחה ליד המיטה), החזרת אמצעי עזר חושיים (משקפיים, מכשירי שמיעה) בהקדם, עידוד ניידות מוקדמת, שמירה על מחזור שינה-ערות תקין (הימנעות ממתן תרופות/בדיקות בשעות שינה), מניעת התייבשות, והימנעות מקטטרים ומרסטריינטים כשאפשר.</p>
+  <h4>ניהול לאחר שדליריום כבר אובחן</h4>
+  <p>חיפוש שיטתי אחר גורם מזרז הפיך: זיהום, היפוקסמיה, הפרעה מטבולית, תרופה בלתי-מתאימה, כאב לא-מטופל. הסרת התקנים פולשניים בהקדם האפשרי. <b>תרופות אנטי-פסיכוטיות (הלופרידול במינון נמוך מאוד) שמורות אך ורק למטופלים שהתנהגותם מסכנת את עצמם או את הצוות</b> — אין ראיות עקביות לתועלת מניעתית של תרופות.</p>
+  <h4>מניעת אספירציה (שאיפה)</h4>
+  <p>סיכון האספירציה עולה כמעט אקספוננציאלית עם הגיל (פי 9-10 מעל גיל 80 לעומת גיל 20-29), בגלל ירידה בכוח השיעול ובתיאום הבליעה. אמצעי מניעה: הרמת ראש המיטה 30-45 מעלות, ישיבה זקופה בזמן האכילה ו-30-45 דקות אחריה, סקר בליעה (מבחן שתיית 3 אונקיות מים) לפני האכלה במטופל בסיכון, והסרת צינורות נזוגסטריים/צינורות הזנה בהקדם האפשרי כי הם עצמם משבשים את מנגנון הבליעה.</p>
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — PINCH ME (ידוע, לגורמים המזרזים דליריום)</h3>
+  <p>
+    <b>P</b>ain (כאב לא מטופל) <br>
+    <b>I</b>nfection (זיהום) <br>
+    <b>N</b>utrition / constipation (תת-תזונה/עצירות) <br>
+    <b>C</b>onstipation/Catheters (עצירות/קטטרים) <br>
+    <b>H</b>ydration (התייבשות/חוסר איזון נוזלים) <br>
+    <b>M</b>edications (תרופות - בנזו, אנטיכולינרגיות) <br>
+    <b>E</b>nvironment (סביבה לא-מוכרת, הפרעת שינה)
+  </p>
+  <h3>סיפור דמיוני — "הבית הישן עם היסודות הרעועים"</h3>
+  <p>דמיינו בית ישן (המטופל הקשיש) שהיסודות שלו נשחקו עם השנים (פריכות = ירידה ברזרבה בכל מערכת). בבית צעיר וחדש, סופה חזקה (הניתוח) עוברת בלי נזק. אבל בבית הישן, אפילו רוח מתונה (זיהום קל, תרופה "תמימה" אחת, קטטר בודד) שגורמת לקיר יחיד (המוח) להתמוטט — לא כי הרוח הייתה חזקה, אלא כי היסודות כבר היו רעועים מראש. זו בדיוק הסיבה שדליריום קורה ממה שנראה "טריגר קטן" - הפגיעות המצטברת כבר הייתה שם.</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: הבית הישן עם היסודות הרעועים</title>
+    <polygon points="150,60 250,10 350,60" fill="#d6d3d1" stroke="#78716c" stroke-width="2"/>
+    <rect x="160" y="60" width="180" height="100" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <rect x="230" y="110" width="40" height="50" fill="#78350f"/>
+    <line x1="160" y1="130" x2="180" y2="150" stroke="#b91c1c" stroke-width="2"/>
+    <line x1="180" y1="150" x2="170" y2="160" stroke="#b91c1c" stroke-width="2"/>
+    <text x="250" y="185" font-size="11" text-anchor="middle" fill="#4b5563">קיר סדוק = פריכות (רזרבה מצומצמת)</text>
+    <text x="80" y="100" font-size="20" text-anchor="middle" fill="#60a5fa">💨</text>
+    <text x="80" y="130" font-size="10" text-anchor="middle" fill="#4b5563">"רוח קלה" = טריגר קטן</text>
+    <text x="420" y="100" font-size="20" text-anchor="middle" fill="#b91c1c">🏚️</text>
+    <text x="420" y="130" font-size="10" text-anchor="middle" fill="#4b5563">קריסה = דליריום</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:202501_Sarcopenia.svg" target="_blank">Sarcopenia — איור סכמטי — Wikimedia Commons</a>
+    <div class="desc">המחשה של אובדן מסת שריר עם הגיל, המרכיב הפיזי המרכזי של תסמונת הפריכות.</div>
+  </li>
+  <li>
+    <a href="https://www.facs.org/quality-programs/geriatric-surgery" target="_blank">ACS Geriatric Surgery Verification Program — American College of Surgeons</a>
+    <div class="desc">התוכנית הרשמית של ה-ACS לתקנים מבוססי-ראיות בטיפול הכירורגי בקשיש, כולל רשימת הביקורת הטרום-ניתוחית (ACS NSQIP/AGS Best Practice Guidelines).</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Delirium:_Clinical_sciences" target="_blank">Delirium: Clinical Sciences — Osmosis</a>
+    <div class="desc">סקירה קלינית של דליריום - הגדרה, גורמים (כולל ראשי התיבות PINCH ME), ואבחנה מבדלת מדמנציה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 84 עם היסטוריה של דמנציה קלה (תלויה חלקית ב-ADLs) מגיעה עם שבר בצוואר הירך לאחר נפילה בבית, ועוברת תיקון כירורגי דחוף. טרום הניתוח תועד Mini-Cog של 3/5. ביום השני לאחר הניתוח, האחות מדווחת שהמטופלת "לא עצמה היום" — לסירוגין ישנונית ולא מגיבה, ואז לפתע חסרת מנוחה ומנסה למשוך את קו העירוי, עם קושי בולט להתמקד בשיחה. חום 37.9°C, סטורציה 94% על אוויר חדר, נתרן בסרום 131. קטטר שתן עדיין במקום מאז הניתוח.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו הממצא המרכזי שהופך את התמונה הקלינית של המטופלת לדליריום ולא להחמרה פשוטה של הדמנציה הבסיסית שלה?</div>
+  <button class="opt" data-i="0">גילה המתקדם</button>
+  <button class="opt" data-i="1">מהלך תנודתי (ישנונית ואז חסרת מנוחה) עם קושי בולט בקשב, שהתפתח באופן חריף על פני יום-יומיים</button>
+  <button class="opt" data-i="2">ההיסטוריה הקודמת של דמנציה קלה</button>
+  <button class="opt" data-i="3">השבר בצוואר הירך עצמו</button>
+  <div class="explain">נכון: הקריטריון המבדיל של CAM הוא התחלה חריפה עם מהלך <b>משתנה</b> ופגיעה בולטת בקשב - זה מה שמבדיל דליריום מדמנציה יציבה. גיל (1) הוא גורם רקע בלבד, לא קריטריון אבחנתי. דמנציה קודמת (3) היא גורם סיכון לדליריום, לא הדליריום עצמו. השבר (4) הוא הטריגר לניתוח, לא הממצא האבחנתי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. אילו משלושת הממצאים הבאים במקרה הזה הם "גורמים מזרזים" אפשריים לדליריום שיש לחפש ולטפל בהם באופן פעיל?</div>
+  <button class="opt" data-i="0">רק ההיסטוריה של דמנציה</button>
+  <button class="opt" data-i="1">רק הגיל המתקדם</button>
+  <button class="opt" data-i="2">היפוקסמיה קלה (94%), היפונתרמיה (131), וקטטר שתן שנשאר במקום</button>
+  <button class="opt" data-i="3">שום דבר - הדליריום בלתי נמנע במטופלת דמנטית לאחר ניתוח</button>
+  <div class="explain">נכון: אלה בדיוק הגורמים המזרזים (precipitating factors) הניתנים לתיקון - היפוקסמיה, הפרעה מטבולית (נתרן נמוך), והתקן פולשני (קטטר). דמנציה וגיל (1,2) הם גורמי רקע (predisposing) שאינם ניתנים לשינוי בשלב זה. תשובה 4 שגויה - אף שהסיכון גבוה, דליריום אינו "בלתי נמנע" וניתן ולעיתים חובה למנוע/לטפל בגורמים המזרזים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזו תרופה יש להימנע ממנה במיוחד בטיפול בכאב של מטופלת זו, בשל רגישותה המוגברת לגרימת דליריום?</div>
+  <button class="opt" data-i="0">Acetaminophen (Paracetamol) במינון מתוקנן</button>
+  <button class="opt" data-i="1">בלוק עצבי אזורי (regional nerve block)</button>
+  <button class="opt" data-i="2">Oxycodone במינון נמוך עם הערכה תכופה</button>
+  <button class="opt" data-i="3">Meperidine (Demerol)</button>
+  <div class="explain">נכון: Meperidine ברשימת Beers - המטבוליט שלו (נורמפרידין) מצטבר בכליה המזדקנת וגורם ישירות לרעילות נוירולוגית ולדליריום. Acetaminophen (1) ובלוק אזורי (2) הם בדיוק חלק מהגישה החוסכת-אופיואידים המומלצת. Oxycodone במינון נמוך ומבוקר (3) מקובל כשצריך אופיואיד, בניגוד ל-Meperidine שאסור כמעט לחלוטין בקשיש.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהו קו הפעולה הראשון והחשוב ביותר בניהול הדליריום החריף שהתפתח?</div>
+  <button class="opt" data-i="0">חיפוש שיטתי אחר גורמים מזרזים הפיכים (זיהום, היפוקסיה, מטבולי, תרופתי) וטיפול בהם, יחד עם אמצעים לא-תרופתיים (הסרת קטטר, ניידות, התמצאות)</button>
+  <button class="opt" data-i="1">מתן הלופרידול במינון קבוע לכל משך האשפוז</button>
+  <button class="opt" data-i="2">קשירת המטופלת (רסטריינטים) כדי למנוע פגיעה עצמית</button>
+  <button class="opt" data-i="3">הרגעה עמוקה עם בנזודיאזפין כדי "לשקוט" את חוסר השקט</button>
+  <div class="explain">נכון: הצעד הראשון הוא תמיד חיפוש וטיפול בגורם ההפיך, בשילוב אמצעים לא-תרופתיים. הלופרידול (2) שמור למקרים של סכנה ממשית בלבד ולא כטיפול שגרתי/ממושך. רסטריינטים (3) הם עצמם גורם מזרז לדליריום ויש להימנע מהם ככל האפשר. בנזודיאזפינים (4) מחמירים דליריום ואינם בשימוש (למעט דליריום בגמילה מאלכוהול/בנזו עצמם).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע חשוב היה לתעד ציון Mini-Cog (3/5) לפני הניתוח, ולא רק אחריו?</div>
+  <button class="opt" data-i="0">כדי לקבוע את מינון ההרדמה הכללית</button>
+  <button class="opt" data-i="1">כדי לקבוע סטטוס קוגניטיבי בסיסי - בלעדיו קשה להבחין בין דליריום חדש לבין דמנציה בסיסית לא-מתועדת, ודמנציה קיימת היא גורם הסיכון החזק ביותר לדליריום</button>
+  <button class="opt" data-i="2">כי המבחן קובע ישירות אם המטופלת כשירה מבחינה משפטית לחתום צוואה</button>
+  <button class="opt" data-i="3">כי ציון Mini-Cog נמוך הוא התווית נגד מוחלטת לכל ניתוח</button>
+  <div class="explain">נכון: תיעוד קוגניטיבי טרום-ניתוחי הוא הבסיס להשוואה - בלעדיו, שינוי בהכרה בתר-ניתוחי אינו ניתן לפרש נכון. דמנציה קיימת היא אכן גורם הסיכון הבודד החזק ביותר לדליריום ולכן ידיעתו מראש מכוונת מניעה אגרסיבית יותר. תשובה 3 מערבבת בין הערכה קוגניטיבית רפואית לכשירות משפטית (שני מושגים שונים). תשובה 4 שגויה - ציון נמוך הוא גורם סיכון שיש להתייחס אליו, לא התווית נגד מוחלטת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: כירורגיה בקשיש - הבנה שפריכות (Frailty), לא גיל כרונולוגי, קובעת סיכון ותוצאה; דליריום לאחר ניתוח הוא הביטוי הקליני-מוחי המרכזי.</li>
+    <li><b>המנגנון</b>: דלקת כרונית + אנורקסיה של הזדקנות → תת-תזונה → סרקופניה → רזרבה פיזיולוגית מצומצמת בכל מערכת. דליריום = גורמי רקע (דמנציה בסיסית!) + גורמים מזרזים בתר-ניתוחיים (זיהום, תרופות אנטיכולינרגיות, מטבולי) הפועלים דרך חוסר איזון כולינרגי ונוירו-דלקת.</li>
+    <li><b>אבחנה</b>: CAM - התחלה חריפה + מהלך תנודתי + הפרעת קשב, עם חשיבה בלתי-מאורגנת או שינוי הכרה. יש להבדיל מדמנציה (יציבה) ומדיכאון.</li>
+    <li><b>טיפול</b>: מניעה עדיפה על טיפול - חבילה לא-תרופתית (התמצאות, ניידות, הסרת קטטרים/רסטריינטים, שינה תקינה). הימנעות מרשימת Beers (בנזו, מפרידין, אנטיכולינרגיים). הלופרידול במינון נמוך שמור למקרי סכנה בלבד. חיפוש גורם מזרז הפיך הוא תמיד הצעד הראשון.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
