@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: נוירו-אופתלמולוגיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 1</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 13: נוירו-אופתלמולוגיה <span class="term" dir="ltr">Neuroophthalmology</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery | מאת Timothy J. Martin, James J. Corbett</div>
+
+<p>נוירו-אופתלמולוגיה היא תחום הגבול שבין נוירוכירורגיה, נוירולוגיה ורפואת עיניים: העין והעצבים שמניעים ומעצבבים אותה הם למעשה "חלון" שדרכו אפשר לבדוק בלי הדמיה בכלל את תפקוד המסלול הראייתי כולו, את גזע המוח ואת עצבי הגולגולת III, IV ו-VI. הפרק בנוי סביב חלוקה שימושית מאוד קלינית: <b>המערכת האפרנטית</b> (מהעין אל קליפת הראייה - מה שאנחנו "רואים") ו<b>המערכת האפרנטית של האישון + המערכת האפרנטית של תנועת העין</b> (מה שגורם לעין ולאישון לזוז ולהגיב). הבנת שתי המערכות הללו, ובעיקר <b>לוקליזציה</b> - איפה בדיוק לאורך המסלול נמצאת הבעיה - היא הכלי האבחנתי המרכזי שבו משתמש הבודק, עוד לפני שיש הדמיה בכלל.</p>
+
+<h2><span class="num">1</span> המערכת האפרנטית: מהעין אל קליפת הראייה</h2>
+<p>כל עצב ראייה <span class="term" dir="ltr">optic nerve</span> מכיל כ-1.2 מיליון אקסונים שמקורם בתאי הגנגליון של הרשתית, עוברים בעצב הראייה ובכיאזמה <span class="term" dir="ltr">optic chiasm</span>, ומתחברים בסינפסה בגופים הברכיים הצדדיים <span class="term" dir="ltr">lateral geniculate nucleus, LGN</span> בתלמוס. משם, אקסונים מסדר שני ממשיכים כ"קרינת ראייה" <span class="term" dir="ltr">optic radiation</span> - חלקם דרך האונה הפריאטלית וחלקם (בלולאת <b>מאייר</b>, <span class="term" dir="ltr">Meyer's loop</span>, שסובבת את הקרן הטמפורלית של החדר הצדדי) דרך האונה הטמפורלית - עד לקורטקס הראייה הראשוני באונה האוקסיפיטלית, משני צדי התלם הקלקרינילי.</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>למה בכלל אפשר "ללוקליזציה" לפי שדה הראייה?</b> שרשרת ההיגיון היא כזו:
+  </p>
+  <p>
+    <b>שלב 1 - לפני הכיאזמה (עצב ראייה):</b> הפגיעה משפיעה על עין אחת בלבד (חד-עינית) - כי הסיבים עדיין לא התערבבו בין העיניים.<br>
+    <b>שלב 2 - בכיאזמה עצמה:</b> הסיבים מהרשתית האף-תחתונה (Nasal hemiretina) של כל עין - שרואה את השדה הטמפורלי - חוצים צד. פגיעה במרכז הכיאזמה פוגעת רק בסיבים החוצים משתי העיניים ⇐ אובדן שדה טמפורלי בשתי העיניים (המיאנופיה ביטמפורלית).<br>
+    <b>שלב 3 - אחרי הכיאזמה (טרקט, LGN, קרינה, קורטקס):</b> מכאן והלאה כל סיב "שייך" לחצי שדה ראייה מסוים (לא לעין מסוימת) - ולכן כל פגיעה גורמת לפגם <b>הומונימי</b> (אותו צד בשתי העיניים). ככל שהפגיעה קרובה יותר לעצב הראייה (טרקט) - הפגם פחות "חופף" בין שתי העיניים (לא-קונגרואנטי); ככל שהיא קרובה יותר לקורטקס - הפגם חופף כמעט לחלוטין (קונגרואנטי).
+  </p>
+</div>
+<p>איור המסלול שלמטה ממחיש בדיוק את העיקרון הזה - כל אתר פגיעה (1-6) מיוצר יחד עם דפוס שדה הראייה הצפוי ממנו:</p>
+<svg class="diagram" viewBox="0 0 860 420" xmlns="http://www.w3.org/2000/svg">
+  <title>המסלול הראייתי האפרנטי ולוקליזציה של פגמים בשדה הראייה</title>
+  <desc>תרשים סכמטי עצמאי של המסלול מהעין לקורטקס, עם שישה אתרי פגיעה ממוספרים ותרשימי שדה ראייה תואמים לכל אתר</desc>
+  <!-- eyes -->
+  <ellipse cx="60" cy="150" rx="34" ry="24" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <text x="60" y="155" font-size="11" text-anchor="middle" fill="#78350f" font-weight="700">עין ימין</text>
+  <ellipse cx="60" cy="230" rx="34" ry="24" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <text x="60" y="235" font-size="11" text-anchor="middle" fill="#78350f" font-weight="700">עין שמאל</text>
+  <!-- optic nerves -->
+  <line x1="94" y1="150" x2="200" y2="180" stroke="#1f2937" stroke-width="5"/>
+  <line x1="94" y1="230" x2="200" y2="200" stroke="#1f2937" stroke-width="5"/>
+  <circle cx="150" cy="163" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="150" y="167" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">1</text>
+  <!-- chiasm -->
+  <path d="M200 180 L 260 190 L 200 200 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="228" y="215" font-size="10.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">כיאזמה</text>
+  <circle cx="228" cy="190" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="228" y="194" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">2</text>
+  <!-- tracts -->
+  <line x1="260" y1="188" x2="340" y2="140" stroke="#1f2937" stroke-width="5"/>
+  <line x1="260" y1="192" x2="340" y2="240" stroke="#1f2937" stroke-width="5"/>
+  <circle cx="300" cy="160" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="300" y="164" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">3</text>
+  <text x="300" y="130" font-size="10" text-anchor="middle" fill="#374151">טרקט אופטי</text>
+  <!-- LGN -->
+  <rect x="335" y="120" width="60" height="40" rx="6" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+  <text x="365" y="135" font-size="9.5" text-anchor="middle" fill="#831843" font-weight="700">גוף ברכי</text>
+  <text x="365" y="148" font-size="9.5" text-anchor="middle" fill="#831843" font-weight="700">צדדי (LGN)</text>
+  <circle cx="365" cy="112" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="365" y="116" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">4</text>
+  <rect x="335" y="220" width="60" height="40" rx="6" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+  <text x="365" y="235" font-size="9.5" text-anchor="middle" fill="#831843" font-weight="700">גוף ברכי</text>
+  <text x="365" y="248" font-size="9.5" text-anchor="middle" fill="#831843" font-weight="700">צדדי (LGN)</text>
+  <!-- radiations -->
+  <path d="M395 135 Q 470 90 560 110" fill="none" stroke="#15803d" stroke-width="5"/>
+  <text x="480" y="85" font-size="10" text-anchor="middle" fill="#14532d" font-weight="700">קרינה פריאטלית</text>
+  <circle cx="480" cy="102" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="480" y="106" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">5a</text>
+  <path d="M395 245 Q 460 300 560 290" fill="none" stroke="#a16207" stroke-width="5"/>
+  <text x="480" y="320" font-size="10" text-anchor="middle" fill="#713f12" font-weight="700">לולאת מאייר (טמפורלי)</text>
+  <circle cx="480" cy="303" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="480" y="307" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">5b</text>
+  <!-- occipital cortex -->
+  <rect x="560" y="90" width="90" height="220" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5"/>
+  <text x="605" y="205" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">קורטקס</text>
+  <text x="605" y="220" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">ראייה</text>
+  <text x="605" y="235" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">אוקסיפיטלי</text>
+  <circle cx="605" cy="165" r="13" fill="#fff" stroke="#b91c1c" stroke-width="2"/>
+  <text x="605" y="169" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">6</text>
+
+  <!-- legend table on the right -->
+  <rect x="665" y="20" width="180" height="380" rx="8" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="755" y="38" font-size="11.5" text-anchor="middle" fill="#1f2937" font-weight="700">דפוס שדה הראייה</text>
+  <text x="675" y="58" font-size="9.5" fill="#b91c1c" font-weight="700">1 עצב ראייה:</text>
+  <text x="680" y="71" font-size="9" fill="#374151">עיוורון מלא בעין אחת</text>
+  <text x="675" y="93" font-size="9.5" fill="#b91c1c" font-weight="700">2 כיאזמה (מרכז):</text>
+  <text x="680" y="106" font-size="9" fill="#374151">המיאנופיה ביטמפורלית</text>
+  <text x="675" y="128" font-size="9.5" fill="#b91c1c" font-weight="700">3 טרקט:</text>
+  <text x="680" y="141" font-size="9" fill="#374151">הומונימי לא-קונגרואנטי</text>
+  <text x="680" y="152" font-size="9" fill="#374151">+ RAPD קטן ניגודי</text>
+  <text x="675" y="174" font-size="9.5" fill="#b91c1c" font-weight="700">4 LGN:</text>
+  <text x="680" y="187" font-size="9" fill="#374151">הומונימי חלקית-קונגרואנטי</text>
+  <text x="675" y="209" font-size="9.5" fill="#b91c1c" font-weight="700">5a קרינה פריאטלית:</text>
+  <text x="680" y="222" font-size="9" fill="#374151">רביע תחתון הומונימי</text>
+  <text x="680" y="233" font-size="9" fill="#374151">("Pie on the floor")</text>
+  <text x="675" y="255" font-size="9.5" fill="#b91c1c" font-weight="700">5b לולאת מאייר:</text>
+  <text x="680" y="268" font-size="9" fill="#374151">רביע עליון הומונימי</text>
+  <text x="680" y="279" font-size="9" fill="#374151">("Pie in the sky")</text>
+  <text x="675" y="301" font-size="9.5" fill="#b91c1c" font-weight="700">6 קורטקס אוקסיפיטלי:</text>
+  <text x="680" y="314" font-size="9" fill="#374151">הומונימי קונגרואנטי מאוד,</text>
+  <text x="680" y="325" font-size="9" fill="#374151">לעיתים עם חסכון מקולרי</text>
+  <text x="675" y="350" font-size="8.5" fill="#6b7280">ככל שהפגיעה קרובה יותר לקורטקס -</text>
+  <text x="675" y="362" font-size="8.5" fill="#6b7280">הפגם חופף יותר (קונגרואנטי) בין העיניים,</text>
+  <text x="675" y="374" font-size="8.5" fill="#6b7280">ואין עוד RAPD או חיוורון דיסקה</text>
+  <text x="675" y="390" font-size="8.5" fill="#6b7280">(כי הנוירון מסדר-שני כבר עבר סינפסה ב-LGN)</text>
+</svg>
+<p class="figcap">מספרי האתרים (1-6) בתרשים תואמים בדיוק לטבלת הלוקליזציה בסעיף 3 למטה.</p>
+
+<h2><span class="num">2</span> הבדיקה הקלינית: חדות ראייה, שדה ראייה, ודיסקת הראייה</h2>
+<p>אנמנזה של <b>ציר הזמן</b> היא כלי אבחנתי ראשון במעלה: אובדן ראייה חולף של שניות בודדות אופייני לפפילדמה (Transient visual obscurations); אמאורוזיס פוגקס <span class="term" dir="ltr">amaurosis fugax</span> נמשך דקות; מיגרנה - 20-30 דקות; שינוי פתאומי מרמז לאירוע וסקולרי (למשל AION); ואילו ירידה הדרגתית ובלתי פוסקת מרמזת על מנגנון לוחצני (גידול, מפרצת).</p>
+<p>חדות הראייה <span class="term" dir="ltr">visual acuity</span> נמדדת בלוח סנלן <span class="term" dir="ltr">Snellen chart</span> בכל עין בנפרד, אך מהווה רק חלק קטן מהערכת הראייה - שדה הראייה התקין משתרע 60 מעלות לכיוון האף ו-90 מעלות לכיוון הרקה, בעוד שהאות "E" הגדולה בלוח (20/400) תופסת פחות מ-2 מעלות מתוך הפנורמה הזו. לכן חובה להעריך גם את <b>שדה הראייה</b> - מבדיקת קונפרונטציה פשוטה (השוואת שתי ידיים בשני רבעים משני צידי הקו האופקי/אנכי) ועד פרימטריה פורמלית (סטטית/קינטית).</p>
+<div class="mechanism">
+  <p class="chain"><b>RAPD - למה זה הכלי האובייקטיבי החשוב ביותר?</b> מפני שהוא לא תלוי בשיתוף פעולה סובייקטיבי של המטופל, אלא בודק ישירות את שלמות המסלול האפרנטי (התחושתי) של כל עין בנפרד, בלי קשר לגודל האישונים.</p>
+  <p><b>מנגנון בדיקת הפנס המתנדנד (Swinging Flashlight Test):</b> מעבירים אור בעוצמה קבועה בין העיניים במרווחים של כ-3 שניות. בעין בריאה, האור גורם לכיווץ אישון ישיר (Direct) - ובגלל הצלבת הסיבים בגרעין פרה-טקטלי (Pretectal nucleus) הדו-צדדית, גם לכיווץ קונסנסואלי בעין השנייה. אם עצב הראייה של עין אחת פגוע חלקית, האור שמגיע דרכה "נתפס" כחלש יותר על ידי המוח - כך שכשמעבירים את הפנס אליה, האישון <b>מתרחב</b> במקום להתכווץ (כי הגירוי האפרנטי חלש יותר מהתגובה הקונסנסואלית שכבר הייתה קיימת מהעין השנייה). זהו ה-RAPD, ודירוגו נע מ-+1 (אסימטריה קלה) עד +4 (העדר תגובה מוחלט).</p>
+  <p class="key">חשוב לזכור: RAPD לעולם לא גורם לאניסוקוריה (חוסר שוויון בגודל האישונים) - שני האישונים נשארים שווים בגודלם הבסיסי, כי הבעיה היא <b>אפרנטית</b> (בקליטה) ולא אפרנטית של האישון עצמו. אניסוקוריה אמיתית היא תמיד תוצאה של בעיה אפרנטית (סימפתטית/פאראסימפתטית) בעצבוב הקשתית - ראו סעיף 5.</p>
+</div>
+<p>בדיקת הדיסקה האופטית (עם אופתלמוסקופ) היא אבן הפינה לאבחון הפרעות אפרנטיות: בצקת/נפיחות דיסקה, חיוורון (אטרופיה) או חפירה (Cupping) - כל אחד מכוון לאבחנה שונה.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fundus_photograph_of_normal_right_eye.jpg?width=700" alt="Normal fundus photograph showing a healthy optic disc">
+<p class="media-cap">דיסקת ראייה תקינה בעין ימין - שוליים חדים, צבע ורדרד אחיד, ללא בצקת. משמשת קו בסיס להשוואה מול הממצאים הפתולוגיים בהמשך. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/B-vzl8kH5Gg" title="Relative Afferent Pupillary Defect (RAPD) - Swinging Flashlight Test Explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הדגמה והסבר של בדיקת ה-RAPD (Swinging Flashlight Test) ומשמעותה הקלינית.</p>
+
+<h2><span class="num">3</span> לוקליזציה לאורך המסלול: מהכיאזמה ועד הקורטקס</h2>
+<p>הכיאזמה <span class="term" dir="ltr">optic chiasm</span> ממוקמת כ-1 ס"מ מעל הסלה, ולכן גידולים תוך-סלריים (כמו מקרואדנומה יותרתית) צריכים להיות גדולים יחסית כדי ללחוץ עליה ולפגוע בראייה. פגיעה כיאזמלית כמעט אף פעם לא גורמת לבצקת דיסקה - אלא לאטרופיה אקסונלית רטרוגרדית שמתבטאת בהמשך כחיוורון דיסקה ואטרופיה "פרפרית" (Bow-tie atrophy). RAPD בפגיעה כיאזמלית יופיע בעין עם <b>אובדן שדה הראייה הגדול יותר</b> - לא בהכרח בעין עם חדות הראייה הגרועה יותר.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray773.png?width=600" alt="Gray's Anatomy illustration of the optic chiasm and optic tracts">
+<p class="media-cap">איור אנטומי (Gray's Anatomy, נחלת הכלל) של עצבי הראייה, הכיאזמה והטרקטים האופטיים במבט תחתון. מקור: Wikimedia Commons.</p>
+<p>מעבר לכיאזמה, פגיעות בטרקט האופטי, ב-LGN, בקרינה או בקורטקס גורמות תמיד לפגם <b>הומונימי</b> (אותו חצי שדה בשתי העיניים) - העיקרון החשוב: ככל שהפגיעה יותר אחורית (קרוב לקורטקס), הפגם יותר <b>קונגרואנטי</b> (חופף בצורתו בין שתי העיניים).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אתר הפגיעה</th><th>דפוס שדה הראייה</th><th>RAPD / אישונים</th><th>ממצא בדיסקה</th><th>הערה כירורגית</th></tr></thead>
+  <tbody>
+    <tr><td><b>1. עצב ראייה</b></td><td>אובדן חד-עיני (לא הומונימי)</td><td>RAPD בולט באותה עין</td><td>בצקת (חדה) או חיוורון (כרונית)</td><td>גליומה, מנינגיומה, נוירופתיה תורשתית/דלקתית</td></tr>
+    <tr><td><b>2. כיאזמה (מרכז)</b></td><td>המיאנופיה ביטמפורלית</td><td>RAPD קל בעין עם אובדן שדה גדול יותר</td><td>אטרופיה מאוחרת, "פרפרית" (bow-tie)</td><td>אדנומה יותרתית, קרניופרינגיומה, מנינגיומה</td></tr>
+    <tr><td><b>3. טרקט אופטי</b></td><td>הומונימי <b>לא-קונגרואנטי</b></td><td>RAPD קטן ניגודי (Wernicke pupil)</td><td>Bow-tie בעין הניגודית + חיוורון סגמנטלי בעין הצידית</td><td>לרוב גידול/מפרצת הלוחצים על הטרקט</td></tr>
+    <tr><td><b>4. LGN (תלמוס)</b></td><td>הומונימי חלקית-קונגרואנטי</td><td>תקין (הסינפסה כבר עברה)</td><td>ללא חיוורון קלאסי</td><td>נדיר; לחץ מאדנומה יותרתית גדולה</td></tr>
+    <tr><td><b>5a. קרינה פריאטלית</b></td><td>רביע <b>תחתון</b> הומונימי ("Pie on the floor")</td><td>תקין</td><td>ללא</td><td>שבץ/גידול פריאטלי; לעיתים לאחר פלידוטומיה</td></tr>
+    <tr><td><b>5b. לולאת מאייר (טמפורלי)</b></td><td>רביע <b>עליון</b> הומונימי ("Pie in the sky")</td><td>תקין</td><td>ללא</td><td>קלאסי אחרי כריתת אונה טמפורלית לאפילפסיה</td></tr>
+    <tr><td><b>6. קורטקס אוקסיפיטלי</b></td><td>הומונימי קונגרואנטי מאוד, לעיתים עם חסכון מקולרי (PCA)</td><td>תקין; אופתלמוסקופיה תקינה</td><td>ללא</td><td>אוטם/AVM אוקסיפיטלי; פגיעה דו-צדדית ⇐ עיוורון קורטיקלי</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">פגם הומונימי מלא (עיוורון בחצי שדה שלם, בלי חלקיות) הוא <b>לא-מלוקליז</b> - כלומר, בפני עצמו אינו מבדיל בין טרקט, קרינה או קורטקס, כי בכל אחד מהם עלולה להיפגע החתך השלם של הסיבים.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/cG5ZuK0_qtc" title="Visual Pathway and Lesions - Armando Hasudungan" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הדגמה מצוירת של המסלול הראייתי כולו ולוקליזציה של פגמים בשדה הראייה לפי אתר הפגיעה.</p>
+
+<h2><span class="num">4</span> פני חרום אפרנטיים: פפילדמה, AION ודלקת עצב הראייה</h2>
+<div class="mechanism">
+  <p class="chain"><b>פפילדמה</b> <span class="term" dir="ltr">papilledema</span> מוגדרת <b>אך ורק</b> כבצקת דיסקה דו-צדדית שמקורה בלחץ תוך-גולגולתי מוגבר. שרשרת הגורמים: לחץ תוך-גולגולתי עולה ⇐ מועבר דרך ה-CSF שמקיף את עצב הראייה (שהוא למעשה המשך של המוח, עטוף בקרומי המוח) ⇐ סטזיס של הזרימה האקסופלזמית באקסונים לפני ה-lamina cribrosa ⇐ נפיחות האקסונים והתרחבות הדיסקה. מכיוון שהתהליך תופס את שתי העיניים במידה דומה (הלחץ משותף), הבצקת כמעט תמיד <b>דו-צדדית וסימטרית יחסית</b>.</p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Papilledema.jpg?width=700" alt="Fundus photograph showing papilledema with blurred disc margins and elevation">
+<p class="media-cap">פפילדמה: דיסקה מוגבהת עם שוליים מטושטשים, גודש ורידי ולעיתים שטפי דם קטנים סביבה. השוו לדיסקה התקינה בסעיף 2. מקור: Wikimedia Commons.</p>
+<p>בשלב החריף של פפילדמה בדרך כלל <b>אין</b> ירידה בחדות הראייה מלבד הרחבת הכתם העיוור הפיזיולוגי; ירידה חדה בראייה המרכזית מחשידה לאבחנה חלופית (למשל דלקת עצב ראייה דו-צדדית או AION דו-צדדי). פפילדמה כרונית פוגעת בהדרגה בשדה הראייה ההיקפי, כשהראייה המרכזית נפגעת רק בשלב מאוחר מאוד - ולכן מעקב פריודי בשדות ראייה פורמליים ולא רק בחדות ראייה הוא חיוני. כשההדמיה תקינה, האבחנה המתאימה היא <b>יתר לחץ תוך-גולגולתי אידיופתי</b> <span class="term" dir="ltr">idiopathic intracranial hypertension, IIH</span> (פסאודוטומור צרברי) - הטיפוסי לנשים שמנות בגיל הפוריות; בגברים ובנשים רזות יש לחפש ביתר שאת סיבה מזוהה (פיסטולה עורקית-ורידית דוראלית, חסימת סינוס ורידי, דום נשימה בשינה).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין</th><th>פפילדמה (ICP↑)</th><th>AION</th><th>דלקת עצב ראייה (Optic Neuritis)</th></tr></thead>
+  <tbody>
+    <tr><td>לטרליות</td><td>דו-צדדית</td><td>חד-צדדית (בד"כ)</td><td>חד-צדדית (בד"כ)</td></tr>
+    <tr><td>גיל טיפוסי</td><td>כל גיל; IIH - נשים שמנות בגיל הפוריות</td><td>מעל גיל 45</td><td>15-45, נשים:גברים 5:1</td></tr>
+    <tr><td>כאב</td><td>כאב ראש אפשרי, לא כאב עיני</td><td>ללא כאב</td><td>כאב רטרובולברי המחמיר בתנועת עין</td></tr>
+    <tr><td>מהלך זמן</td><td>הדרגתי, היקפי תחילה</td><td>פתאומי</td><td>מתקדם על פני ימים</td></tr>
+    <tr><td>מנגנון</td><td>לחץ CSF מועבר לעצב הראייה</td><td>אוטם בעורקי ה-posterior ciliary</td><td>דה-מיילינציה (קשר ל-MS)</td></tr>
+    <tr><td>דגל אדום</td><td>יש לשלול גם יתר ל"ד ממאיר</td><td>בדיקת ESR/CRP - לשלול ענקי-תאים (Giant cell arteritis)!</td><td>MRI מוח - סיכון עתידי ל-MS</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="key-box">בכל AION מעל גיל 55 חובה לבדוק שקיעת דם (ESR) ו-CRP כדי לשלול <b>ענקית-תאים (Giant cell/temporal arteritis)</b> - מצב שאם לא מטופל מיידית בסטרואידים במינון גבוה, עלול לגרום לעיוורון דו-צדדי מהיר ובלתי הפיך בעין השנייה תוך שעות-ימים.</div>
+
+<h2><span class="num">5</span> מעגל האישון: רפלקס האור, RAPD ואניסוקוריה</h2>
+<p>גודל האישון נקבע משיווי המשקל בין עצבוב פאראסימפתטי חזק (דרך עצב III, לסוגר הקשתית) לעצבוב סימפתטי חלש בהרבה (למרחיב הקשתית) ומאפייני "קשיחות" הקשתית עצמה. שרשרת האישוב הסימפתטי כוללת שלושה נוירונים: מההיפותלמוס למרכז הציליוספינלי בעמוד השדרה (C8-T1) ⇒ דרך קודקוד הריאה לגנגליון הצווארי העליון ⇒ ומשם דרך מקלעת הצוואר הפנימית לקשתית עצמה.</p>
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מעגל רפלקס האור האישוני: זרוע אפרנטית וזרוע אפרנטית</title>
+  <desc>תרשים סכמטי של הזרוע האפרנטית (רשתית - עצב ראייה - גרעין פרה-טקטלי דו-צדדי) והזרוע האפרנטית (גרעין אדינגר-וסטפל - עצב III - סוגר הקשתית) המסביר RAPD</desc>
+  <ellipse cx="60" cy="150" rx="30" ry="22" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+  <text x="60" y="154" font-size="10.5" text-anchor="middle" fill="#78350f" font-weight="700">רשתית</text>
+  <path d="M90 150 L 190 150" stroke="#2563eb" stroke-width="5"/>
+  <text x="140" y="140" font-size="10" text-anchor="middle" fill="#1e3a8a" font-weight="700">עצב II (אפרנטי)</text>
+  <rect x="195" y="120" width="110" height="60" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="250" y="145" font-size="10" text-anchor="middle" fill="#1e3a8a" font-weight="700">גרעין פרה-טקטלי</text>
+  <text x="250" y="160" font-size="9" text-anchor="middle" fill="#1e3a8a">(מוח תיכון, דו-צדדי)</text>
+  <path d="M305 135 Q 380 90 460 130" fill="none" stroke="#15803d" stroke-width="4"/>
+  <text x="390" y="90" font-size="9.5" text-anchor="middle" fill="#14532d">לצד זהה (ישיר)</text>
+  <path d="M305 165 Q 380 210 460 170" fill="none" stroke="#15803d" stroke-width="4" stroke-dasharray="6,4"/>
+  <text x="390" y="230" font-size="9.5" text-anchor="middle" fill="#14532d">לצד נגדי (קונסנסואלי)</text>
+  <rect x="465" y="105" width="110" height="45" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="520" y="123" font-size="9.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">גרעין אדינגר-וסטפל</text>
+  <text x="520" y="137" font-size="9" text-anchor="middle" fill="#7f1d1d">(עצב III, אותו צד)</text>
+  <rect x="465" y="150" width="110" height="45" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="520" y="168" font-size="9.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">גרעין אדינגר-וסטפל</text>
+  <text x="520" y="182" font-size="9" text-anchor="middle" fill="#7f1d1d">(עצב III, צד נגדי)</text>
+  <path d="M575 127 L 630 150" stroke="#a16207" stroke-width="4"/>
+  <path d="M575 172 L 630 150" stroke="#a16207" stroke-width="4"/>
+  <text x="600" y="115" font-size="9.5" text-anchor="middle" fill="#713f12">עצב III (אפרנטי)</text>
+  <circle cx="650" cy="150" r="26" fill="#f3e8ff" stroke="#6d28d9" stroke-width="2.5"/>
+  <text x="650" y="147" font-size="9" text-anchor="middle" fill="#4c1d95" font-weight="700">סוגר</text>
+  <text x="650" y="159" font-size="9" text-anchor="middle" fill="#4c1d95" font-weight="700">הקשתית</text>
+  <rect x="20" y="235" width="660" height="55" rx="6" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="350" y="255" font-size="10.5" text-anchor="middle" fill="#1f2937" font-weight="700">RAPD = פגיעה בזרוע האפרנטית (עצב II) בעין אחת ⇐ אותה עין "משדרת" גירוי חלש יותר לגרעין הדו-צדדי</text>
+  <text x="350" y="272" font-size="10.5" text-anchor="middle" fill="#1f2937" font-weight="700">⇐ כשהאור עובר אליה היא מתרחבת יחסית, למרות שהזרוע האפרנטית (עצב III) לשני האישונים תקינה לגמרי</text>
+</svg>
+<p>לכן <b>אניסוקוריה</b> (אי-שוויון בגודל אישונים) לעולם אינה נגרמת מפגיעה אפרנטית (עיוורון) - היא תמיד תוצאה של בעיה אפרנטית: פאראסימפתטית (אישון גדול, מגיב גרוע לאור) או סימפתטית (אישון קטן - הורנר). הכלל הקליני המנחה: אם ההבדל בולט יותר <b>באור</b> - האישון החריג הוא <b>הגדול</b> (בעיה פאראסימפתטית); אם ההבדל בולט יותר <b>בחושך</b> - האישון החריג הוא <b>הקטן</b> (בעיה סימפתטית).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Horner_syndrome.jpg?width=600" alt="Photograph demonstrating Horner syndrome with right ptosis and miosis">
+<p class="media-cap">תסמונת הורנר: פטוזיס קל ומיוזיס בעין הימנית. מקור: Wikimedia Commons.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תסמונת</th><th>איזה אישון חריג</th><th>מתי ההבדל בולט</th><th>ממצא נלווה אופייני</th><th>מנגנון / משמעות</th></tr></thead>
+  <tbody>
+    <tr><td><b>תסמונת הורנר</b> <span class="term" dir="ltr">Horner's</span></td><td>הקטן (מיוזיס)</td><td>בחושך</td><td>פטוזיס קל (1-2 מ"מ), אנהידרוזיס אפשרי</td><td>הפרעה בשרשרת הסימפתטית התלת-נוירונלית; פוסט-גנגליונית לרוב שפירה, פרה-גנגליונית/מרכזית - עד 50% ממאירות</td></tr>
+    <tr><td><b>אישון אדי (Adie tonic pupil)</b></td><td>הגדול (מידריאזיס)</td><td>באור</td><td>דיסוציאציית אור-קרוב (מגיב טוב יותר להתמקדות קרובה מאשר לאור), רפלקסים גידיים ירודים</td><td>פגיעה בגנגליון הציליארי עם רגנרציה אברנטית של סיבים פאראסימפתטיים</td></tr>
+    <tr><td><b>שיתוק עצב III לוחצני</b></td><td>הגדול (מידריאזיס), קבוע ולא מגיב</td><td>באור</td><td>פטוזיס מלא, עין "למטה-החוצה" (down-and-out)</td><td>סיבי האישון עוברים <b>שטחית</b> בעצב - נפגעים ראשונים בלחיצה חיצונית (מפרצת PCOM!)</td></tr>
+    <tr><td><b>תסמונת מדזע גבי (Parinaud/dorsal midbrain)</b></td><td>שני האישונים - בינוניים, קבועים</td><td>דיסוציאציית אור-קרוב דו-צדדית</td><td>שיתוק מבט מעלה, ניסטגמוס התכנסות-נסיגה</td><td>נגע בפרטקטום/קומיסורה אחורית (פינאלומה, הידרוצפלוס לא-מתקשר)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">כלל קליני קריטי לנוירוכירורג: בשיתוק עצב III <b>איסכמי</b> (סוכרת/יל"ד) האישון <b>נשמר</b> בדרך כלל תקין (Pupil-sparing) כי הכלים הקטנים הפנימיים לרוב לא פוגעים בסיבים השטחיים; לעומת זאת בשיתוק <b>לוחצני</b> (מפרצת עורק מתקשר אחורי, בקע אונקלי) - הסיכוי לפגיעה באישון גבוה מאוד (עד 95%), כי הלחץ החיצוני פוגע קודם כול בסיבים הפאראסימפתטיים השטחיים. לכן שיתוק עצב III חדש עם אישון מעורב הוא <b>חירום נוירוכירורגי</b> עד שמוכח אחרת.</p>
+
+<h2><span class="num">6</span> שיתוק עצבי גולגולת של תנועת העין: VI, IV, III</h2>
+<p>שבעת השרירים החוץ-גלגלתיים בכל ארובה מונעים על ידי עצבים III (אוקולומוטורי), IV (טרוכלארי) ו-VI (אבדוצנס). טבלה מתוך מחקר Mayo Clinic על 4278 מקרי שיתוק (Richards et al.) מראה את התפלגות הגורמים לפי עצב:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גורם</th><th>עצב VI (%)</th><th>עצב IV (%)</th><th>עצב III (%)</th></tr></thead>
+  <tbody>
+    <tr><td>לא ידוע</td><td>26</td><td>32</td><td>23</td></tr>
+    <tr><td>גידול</td><td>22</td><td>5</td><td>12</td></tr>
+    <tr><td>טראומת ראש</td><td>15</td><td>29</td><td>14</td></tr>
+    <tr><td>מפרצת</td><td>3</td><td>1</td><td>16</td></tr>
+    <tr><td>וסקולרי (איסכמי)</td><td>13</td><td>18</td><td>20</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>עצב VI (אבדוצנס)</b> - מעצבב את הרקטוס הלטרלי; שיתוק גורם לאזוטרופיה (העין נודדת פנימה) שמחמירה במבט לצד הפגוע. מכיוון שהעצב עובר מהלך תת-עכבישי ארוך לאורך הקליווס, הוא רגיש במיוחד ל<b>לחץ תוך-גולגולתי מוגבר</b> ("false localizing sign") ולפגיעה בסינוס הקברנוזי ובתעלת דורלו (Dorello's canal) בפסגת העצם הפטרוזית (תסמונת גרדניגו).</p>
+<p><b>עצב IV (טרוכלארי)</b> - העצב הגולגולתי הארוך ביותר, היחיד שיוצא מהצד הגבי של גזע המוח ומצטלב לפני היציאה - ולכן פגיע במיוחד לטראומה. משתק את השריר האלכסוני העליון (Superior oblique), שתפקידו מובהק בעיקר בהטיה (Cyclotorsion) - ולכן פגיעתו גורמת לדיפלופיה עם תמונה "מוטה".</p>
+<p><b>עצב III (אוקולומוטורי)</b> - מעצבב את כל שרירי החוץ-גלגליים חוץ מהרקטוס הלטרלי (VI) והאלכסוני העליון (IV), וגם את המרים העפעף (Levator palpebrae) ואת סוגר הקשתית (דרך הגנגליון הציליארי). שיתוק מלא ⇐ פטוזיס מלא, עין "למטה-החוצה", ולעיתים אישון מורחב וקבוע - תלוי אם הפגיעה כללה את הסיבים הפאראסימפתטיים השטחיים (ראו סעיף 5).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/AJryQvA3DgY" title="Oculomotor, Trochlear, and Abducens Nerves" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: סקירת אנטומיה ותפקוד עצבים III, IV ו-VI ודפוסי השיתוק האופייניים לכל אחד.</p>
+<div class="mechanism">
+  <p class="chain">רגנרציה אברנטית (Aberrant regeneration) - סיבים מוטוריים שנפגעו וצומחים מחדש "בכתובת הלא נכונה" (למשל סיבים שהיו אמורים לעצבב שריר אחר מגיעים לסוגר הקשתית) - יוצרת תופעות כמו כיווץ אישון בניסיון הבטה לצד, או הרמת עפעף באדוקציה. תופעה זו <b>לעולם לא</b> מופיעה בנוירופתיה איסכמית (למשל סוכרתית) - רק כשנפגעו המיאלין והפרינוריום עצמם (מפרצת, גידול, טראומה), עובדה המסייעת קלינית להבחין בין מנגנון כלי-דם לבין מנגנון מבני/דחיסתי.</p>
+</div>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות לזכירת לוקליזציה של פגם בשדה הראייה: <span dir="ltr">"1-2-3 BAD"</span></h3>
+  <p>
+    <b>1</b> - עצב ראייה: פגם <b>חד-עיני</b><br>
+    <b>2</b> - כיאזמה: פגם <b>ביטמפורלי</b> (חוצה, כמו מפגש בצומת)<br>
+    <b>3</b> - טרקט: פגם הומונימי <b>לא-קונגרואנטי</b> (עדיין "לא מסודר")<br>
+    <b>B</b> - <span class="term" dir="ltr">Below</span> = קרינה פריאטלית (תת-פריאטלית, "למטה") ⇐ פגם ברביע <b>תחתון</b><br>
+    <b>A</b> - <span class="term" dir="ltr">Above</span> = לולאת מאייר הטמפורלית ("מעל", כי חושבים על "שמיים") ⇐ פגם ברביע <b>עליון</b><br>
+    <b>D</b> - <span class="term" dir="ltr">Direct hit</span> = קורטקס אוקסיפיטלי - הכי "ישיר" וקונגרואנטי, לעיתים עם חסכון מקולרי
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני קרן אור שיוצאת מפנס ומטיילת בתוך "מנהרת רכבת" מהעין ועד לתחנה הסופית (הקורטקס). בתחנה הראשונה (עצב הראייה) הרכבת עדיין נוסעת לבד - לכן תקלה שם משפיעה על מסלול בודד (עין אחת). בתחנת ההחלפה הגדולה (הכיאזמה) חלק מהנוסעים מחליפים רכבת לצד השני - זו נקודת ה"צומת" שבה תקלה פוגעת בדיוק בנוסעים המחליפים (השדות הטמפורליים). מכאן והלאה כל הרכבות נוסעות "בקבוצות" מאורגנות לפי חצי-שדה, וככל שמתקרבים לתחנה הסופית (הקורטקס) הקבוצות הופכות מסודרות וזהות יותר בין הרכבות - כך שתקלה בתחנה האחרונה פוגעת בצורה "תאומה" כמעט מושלמת בשני הצדדים.</p>
+  <svg class="diagram" viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg">
+    <title>מנהרת הרכבת של המסלול הראייתי - מטאפורה לזכירה</title>
+    <desc>איור קליל המדמה את המסלול הראייתי למסילת רכבת עם תחנת החלפה (הכיאזמה) ותחנה סופית (הקורטקס)</desc>
+    <rect x="20" y="80" width="580" height="20" rx="10" fill="#e5e7eb"/>
+    <circle cx="60" cy="90" r="22" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+    <text x="60" y="94" font-size="10" text-anchor="middle" fill="#78350f" font-weight="700">עין</text>
+    <circle cx="220" cy="90" r="26" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="220" y="86" font-size="9.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">תחנת</text>
+    <text x="220" y="98" font-size="9.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">החלפה</text>
+    <circle cx="400" cy="90" r="24" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="400" y="94" font-size="9.5" text-anchor="middle" fill="#14532d" font-weight="700">מסלול</text>
+    <circle cx="560" cy="90" r="26" fill="#ede9fe" stroke="#6d28d9" stroke-width="2.5"/>
+    <text x="560" y="86" font-size="9.5" text-anchor="middle" fill="#4c1d95" font-weight="700">תחנה</text>
+    <text x="560" y="98" font-size="9.5" text-anchor="middle" fill="#4c1d95" font-weight="700">סופית</text>
+    <text x="220" y="140" font-size="10" text-anchor="middle" fill="#374151">= הכיאזמה</text>
+    <text x="560" y="140" font-size="10" text-anchor="middle" fill="#374151">= הקורטקס האוקסיפיטלי</text>
+    <text x="310" y="160" font-size="9.5" text-anchor="middle" fill="#6b7280">ככל שמתקדמים ימינה - הפגם הופך יותר "מסודר" (קונגרואנטי)</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Visual_pathway_lesions" target="_blank">Visual Pathway Lesions – Wikipedia</a>
+    <div class="desc">סקירה מקיפה של דפוסי פגם בשדה הראייה לפי אתר הפגיעה, כולל תמונת סיכום של כל הדפוסים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Relative_afferent_pupillary_defect" target="_blank">Relative Afferent Pupillary Defect – Wikipedia</a>
+    <div class="desc">רקע מפורט על מנגנון ה-RAPD, דירוגו וחשיבותו האבחנתית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Horner%27s_syndrome" target="_blank">Horner's Syndrome – Wikipedia</a>
+    <div class="desc">אנטומיה של השרשרת הסימפתטית התלת-נוירונלית וגישות פרמקולוגיות לאבחון.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Papilledema" target="_blank">Papilledema – Wikipedia</a>
+    <div class="desc">מנגנון, אבחנה מבדלת וגישת בירור ליתר לחץ תוך-גולגולתי.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=cG5ZuK0_qtc" target="_blank">Visual Pathway and Lesions – Armando Hasudungan (YouTube)</a>
+    <div class="desc">הסבר מצויר של המסלול הראייתי ולוקליזציה של פגמים בשדה הראייה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 54, מגיעה למיון עם כאב ראש חד וחמור מהרגע הראשון ("הכאב הראש הכי חזק בחיי"), המלווה בהצטרפות פתאומית של כפל ראייה. בבדיקה: פטוזיס מלא בעין ימין, העין הימנית ממוקמת ב"מטה-החוצה", והאישון הימני מורחב (7 מ"מ) ואינו מגיב לאור. חדות הראייה ושדה הראייה בשתי העיניים תקינים. אין ממצאים נוירולוגיים נוספים. הצוות מזמין דחוף אנגיוגרפיה CT.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה הממצא הקליני החשוב ביותר שמחייב חשד למפרצת לוחצת (ולא לנוירופתיה איסכמית) בשיתוק עצב III?</div>
+  <button class="opt" data-i="0">חדות הראייה התקינה</button>
+  <button class="opt" data-i="1">היעדר ממצאים נוירולוגיים נוספים</button>
+  <button class="opt" data-i="2">מעורבות האישון (מורחב וקבוע) - כי הסיבים הפאראסימפתטיים עוברים שטחית בעצב ונפגעים ראשונים בלחץ חיצוני</button>
+  <button class="opt" data-i="3">גיל המטופלת</button>
+  <div class="explain">התשובה הנכונה: הכלל הקליני המרכזי הוא ש-95% משיתוקי עצב III הלוחצניים (למשל ממפרצת עורק מתקשר אחורי) פוגעים באישון, בעוד שרוב שיתוקי העצב האיסכמיים (סוכרת, יל"ד) שומרים על תפקוד תקין של האישון (Pupil sparing) - כי כלי הדם הפנימיים הקטנים בדרך כלל אינם פוגעים בסיבים הפאראסימפתטיים השטחיים. לכן אישון מעורב מחייב הדמיה וסקולרית דחופה לשלילת מפרצת.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. אילו ממצאים נוספים מצפים לראות בשיתוק עצב III מלא, מלבד האישון?</div>
+  <button class="opt" data-i="0">אזוטרופיה בלבד ללא פטוזיס</button>
+  <button class="opt" data-i="1">פטוזיס מלא ועין במנח "למטה-החוצה" (down-and-out), כתוצאה משימור פעילות השריר האלכסוני העליון (עצב IV) והרקטוס הלטרלי (עצב VI)</button>
+  <button class="opt" data-i="2">ניסטגמוס התכנסות-נסיגה</button>
+  <button class="opt" data-i="3">חוסר יכולת להטות את הראש</button>
+  <div class="explain">התשובה הנכונה: עצב III מעצבב את כל שרירי החוץ-גלגליים חוץ מהרקטוס הלטרלי (עצב VI) והאלכסוני העליון (עצב IV) - וכן את מרים העפעף. כשהעצב משותק לגמרי, פעולת שני השרירים ה"שרדים" (VI מושך פנימה-החוצה, IV מטה) נותרת ללא איזון מצד שרירי III, ולכן העין נודדת למטה-החוצה. ניסטגמוס התכנסות-נסיגה (תשובה 2) שייך לתסמונת המדזע הגבי, לא לשיתוק עצב III.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופלת עם גידול יותרתי גדול (מקרואדנומה) מתלוננת על "צמצום שדה ראייה". איזה דפוס שדה ראייה צפוי ביותר, ומדוע?</div>
+  <button class="opt" data-i="0">המיאנופיה ביטמפורלית - כי הגידול לוחץ על מרכז הכיאזמה, שם עוברים דווקא הסיבים המצטלבים מהרשתית האף-תחתונה (האחראים על השדה הטמפורלי)</button>
+  <button class="opt" data-i="1">עיוורון מלא בעין אחת בלבד</button>
+  <button class="opt" data-i="2">הומונימי לא-קונגרואנטי</button>
+  <button class="opt" data-i="3">רביע עליון הומונימי בלבד</button>
+  <div class="explain">התשובה הנכונה: הכיאזמה ממוקמת כ-1 ס"מ מעל הסלה, ולכן מקרואדנומה גדולה שגדלה כלפי מעלה לוחצת בדיוק על מרכז הכיאזמה - האזור שבו מצטלבים הסיבים מהרשתית האף-תחתונה של שתי העיניים (האחראים לתפיסת השדה הטמפורלי). הלחץ שם גורם לאובדן שדה טמפורלי דו-צדדי, קלאסית "המיאנופיה ביטמפורלית". תשובות 1, 2 ו-3 מתארות פגיעות באתרים אחרים לגמרי (עצב ראייה, טרקט, קרינה טמפורלית).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע RAPD אף פעם לא גורם לאניסוקוריה (הבדל בגודל האישונים)?</div>
+  <button class="opt" data-i="0">כי RAPD פוגע רק בעצב III</button>
+  <button class="opt" data-i="1">כי הקשתית מפצה אוטומטית על ההבדל</button>
+  <button class="opt" data-i="2">כי RAPD תמיד דו-צדדי וסימטרי</button>
+  <button class="opt" data-i="3">כי RAPD הוא תקלה בזרוע האפרנטית (עצב II) בלבד - הזרוע האפרנטית (עצב III) לשני האישונים תקינה ושווה, ולכן שני האישונים מגיעים לאותו גודל בסיס בכל רגע נתון</button>
+  <div class="explain">התשובה הנכונה: גודל האישון בכל רגע נקבע על ידי הזרוע האפרנטית - שמגיעה משני הגרעינים הפרה-טקטליים הדו-צדדיים ויוצאת דרך עצב III לכל עין. ב-RAPD הבעיה היא רק ב"קלט" (עצב II) - כמה אור "נתפס" כמגיע - אך מנגנון הכיווץ עצמו תקין ושווה משני הצדדים, כך שברגע נתון (בלי הבדל בתאורה בין העיניים) שני האישונים שווים. ההבדל מתגלה רק דינמית, כשמעבירים את האור בין העיניים (Swinging light test).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופל בן 68 עם דלקת עורקים ענקית-תאית (Giant cell arteritis) לא מטופלת סובל מ-AION בעין ימין. מהו הסיכון המרכזי שמחייב טיפול סטרואידלי מיידי, גם לפני ביופסיה?</div>
+  <button class="opt" data-i="0">התפתחות פפילדמה דו-צדדית</button>
+  <button class="opt" data-i="1">עיוורון מהיר, רציף או בו-זמני בעין השנייה גם כן, שעלול להיות בלתי הפיך</button>
+  <button class="opt" data-i="2">התפתחות שיתוק עצב III</button>
+  <button class="opt" data-i="3">אין סיכון נוסף - AION תמיד חד-צדדי וסופי</button>
+  <div class="explain">התשובה הנכונה: דלקת עורקים ענקית-תאית לא מטופלת יכולה לגרום לעיוורון דו-צדדי מהיר, רציף או בו-זמני, ולכן ברגע שיש חשד קליני (ESR/CRP מוגברים, כאב רקתי, קלאודיקציה בלעיסה) יש להתחיל טיפול סטרואידלי מיידי - הביופסיה מהעורק הרקתי יכולה וצריכה להתבצע בימים שלאחר מכן ועדיין תישאר אבחנתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופלת עברה כריתת אונה טמפורלית ימנית לטיפול באפילפסיה עמידה. איזה פגם בשדה הראייה סביר שתפתח, ומדוע?</div>
+  <button class="opt" data-i="0">המיאנופיה ביטמפורלית - מפגיעה בכיאזמה</button>
+  <button class="opt" data-i="1">רביע תחתון הומונימי משמאל - מפגיעה בקרינה הפריאטלית</button>
+  <button class="opt" data-i="2">רביע עליון הומונימי משמאל ("Pie in the sky") - מפגיעה בלולאת מאייר שסובבת את הקרן הטמפורלית של החדר הצדדי בדרכה לקורטקס</button>
+  <button class="opt" data-i="3">עיוורון מלא בעין ימין</button>
+  <div class="explain">התשובה הנכונה: הסיבים התחתונים של הקרינה האופטית (המייצגים את השדה העליון) עוברים דרך לולאת מאייר (Meyer's loop), שמקיפה בקשת רחבה את הקרן הטמפורלית של החדר הצדדי בדרכם לקורטקס האוקסיפיטלי התחתון. כריתה טמפורלית פוגעת בלולאה זו וגורמת לרביע עליון הומונימי בצד הנגדי לניתוח - זהו ממצא איטרוגני מוכר וצפוי, ולכן שדות ראייה נבדקים לרוב גם לפני ניתוחים כאלה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>המערכת האפרנטית (רשתית ← עצב ראייה ← כיאזמה ← טרקט ← LGN ← קרינה ← קורטקס) מאפשרת <b>לוקליזציה</b> לפי דפוס שדה הראייה: לפני הכיאזמה = חד-עיני; בכיאזמה = ביטמפורלי; אחרי הכיאזמה = הומונימי, וקונגרואנטיות עולה ככל שמתקרבים לקורטקס.</li>
+    <li><b>RAPD</b> (בדיקת הפנס המתנדנד) בודק את הזרוע האפרנטית בלבד - ולכן לעולם לא גורם לאניסוקוריה; RAPD בפגיעה כיאזמלית מופיע בעין עם אובדן שדה גדול יותר, לא בעין עם חדות ראייה גרועה יותר.</li>
+    <li><b>פפילדמה</b> = בצקת דיסקה דו-צדדית מלחץ תוך-גולגולתי מוגבר; בשלב החריף בדרך כלל אין ירידה בחדות ראייה מלבד הרחבת הכתם העיוור; יש לשלול IIH רק לאחר הדמיה תקינה.</li>
+    <li><b>AION</b> מעל גיל 55 מחייב בדיקת ESR/CRP לשלילת ענקית-תאים - חירום שדורש סטרואידים מיידיים למניעת עיוורון דו-צדדי.</li>
+    <li>אניסוקוריה: אישון גדול חריג ובולט <b>באור</b> = בעיה פאראסימפתטית (שיתוק III, אישון אדי); אישון קטן חריג ובולט <b>בחושך</b> = בעיה סימפתטית (הורנר).</li>
+    <li>שיתוק עצב III עם <b>מעורבות אישון</b> (מורחב, קבוע) = חירום נוירוכירורגי עד שנשללת מפרצת עורק מתקשר אחורי; שיתוק <b>איסכמי</b> בדרך כלל שומר על תפקוד האישון (Pupil sparing).</li>
+    <li>עצב IV הוא הארוך והדק ביותר מבין עצבי הגולגולת (הכי פגיע לטראומה); עצב VI רגיש ללחץ תוך-גולגולתי מוגבר (false localizing sign) בגלל מהלכו הארוך תת-עכבישי.</li>
+    <li>לולאת מאייר (טמפורלי) ⇐ רביע עליון הומונימי ("Pie in the sky"); קרינה פריאטלית ⇐ רביע תחתון הומונימי ("Pie on the floor").</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

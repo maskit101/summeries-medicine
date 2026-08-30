@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 323: אפידמיולוגיה של פגיעת מוח טראומטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 4</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 323: אפידמיולוגיה של פגיעת מוח טראומטית <span class="term" dir="ltr">Epidemiology of Traumatic Brain Injury</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 11 - Trauma | מאת Joost W. Schouten, Andrew I. R. Maas</div>
+
+<p>פגיעת מוח טראומטית <span class="term" dir="ltr">traumatic brain injury, TBI</span> היא בעיה בריאותית-חברתית-כלכלית קריטית ברחבי העולם, והגורם המוביל לתמותה ולנכות בקרב צעירים במדינות מפותחות. הפרק מכונה לעיתים "מגפה שקטה" - שקטה כי המטופלים עצמם, כתוצאה מטבע הפגיעה, אינם תמיד מסוגלים "להשמיע קול", וגם החברה בכללותה אינה מודעת מספיק להיקף הבעיה. הפרק סוקר את הידע האפידמיולוגי (החלקי, למרבה הצער) על TBI מנקודת מבט עולמית, ומדגיש את הפערים בידע ואת השינויים במגמות לאורך זמן.</p>
+
+<h2><span class="num">1</span> הגדרות בסיס: שכיחות, שכיחות מצטברת ותמותה</h2>
+<p>הבנת נתוני אפידמיולוגיה של TBI דורשת דיוק במונחים - בלעדיו קשה להשוות בין מחקרים:</p>
+<ul>
+<li><b>שכיחות (Incidence)</b> - מדד לסיכון לפתח TBI בפרק זמן מוגדר. עדיף לבטא אותה כפרופורציה עם מכנה (בדרך כלל 100,000 איש), ולא רק כמספר גולמי של מקרים חדשים. השכיחות תלויה מאוד בקריטריוני ההכללה (רק מטופלים מאושפזים, או גם ביקורים במיון).</li>
+<li><b>שכיחות מצטברת (Prevalence)</b> - הנפח הכולל של TBI (מקרים ישנים וחדשים) בנקודת זמן נתונה או בתקופה נתונה, כולל כל מי שחי עם השלכות TBI (נכויות, ליקויים, תלונות). מעט מאוד מחקרי אורך קיימים בתחום, מה שמקשה על אמידתה.</li>
+<li><b>שיעור תמותה (Mortality rate)</b> - מספר מקרי המוות (כללי או ספציפי לגורם) באוכלוסייה נתונה, ליחידת זמן, בדרך כלל מבוטא כמקרי מוות ל-1000 איש בשנה.</li>
+<li><b>שיעור קטלניות (Case fatality rate)</b> - מספר מקרי המוות מתוך כלל החולים באותה מחלה/פגיעה - כלומר, יחסי ולא אבסולוטי.</li>
+<li><b>שיעור תמותה סטנדרטי (Standardized mortality rate)</b> - משווה בין מספר מקרי המוות הצפויים לנצפים, ומתקנן להבדלים במאפייני בסיס (בעיקר גיל ומין) כדי לאפשר השוואה הוגנת בין מוסדות/תקופות שונות.</li>
+</ul>
+<div class="key-box">שיעורי תמותה וקטלניות מושפעים מאוד ממאפייני בסיס של האוכלוסייה (גיל, תחלואת רקע) ומהטיית הפניה (bias) - בתי חולים טרציאריים מטפלים בדרך כלל במקרים החמורים ביותר, ולכן השוואה גולמית בין מוסדות עלולה להטעות.</div>
+
+<h2><span class="num">2</span> פערים ומגבלות בידע האפידמיולוגי על TBI</h2>
+<div class="mechanism">
+  <p class="chain">למה כל כך קשה להשוות בין מחקרי אפידמיולוגיה של TBI? שרשרת הבעיות:</p>
+  <p>
+    <b>1. הגדרה לא אחידה של TBI:</b> המונח "חבלת ראש" (head injury) לעיתים משמש בטעות לתיאור TBI, אך הוא רחב יותר וכולל גם פגיעות בפנים ובקרקפת (כמו חתכים ושפשופים) בלי פגיעת מוח בפועל. הגדרה מוצעת: "נזק מוחי הנובע מכוחות חיצוניים - כתוצאה ממכה ישירה, תאוצה/האטה מהירה, חדירת גוף זר (למשל ירי) או גלי הדף מפיצוץ".<br>
+    <b>2. תת-דיווח:</b> רוב המטופלים עם TBI סובלים מפגיעה קלה ולעיתים קרובות אינם פונים לטיפול רפואי כלל; פגיעות ספורט מדווחות בחסר בגלל הרצון "לחזור לתחרות".<br>
+    <b>3. ניטור לא אחיד:</b> ניטור אפידמיולוגי סטנדרטי כמעט ואינו קיים ברוב חלקי העולם; רוב הנתונים מגיעים ממקורות מנהליים רטרוספקטיביים.<br>
+    <b>4. קידוד מנהלי לא מדויק:</b> קודי ICD 9/10 נועדו לשימוש מנהלי ואינם משקפים באמת את חומרת הפגיעה הקלינית.
+  </p>
+</div>
+<p>בארצות הברית, נתוני ה-CDC מבוססים על שלושה מקורות לאומיים שונים. באירופה, ניטור אחיד חסר - למעט פינלנד, שם קיים המרשם הלאומי הוותיק ביותר בעולם (משנת 1967).</p>
+
+<h2><span class="num">3</span> סיווג פגיעת מוח טראומטית</h2>
+<p>קיימות מספר גישות משלימות לסיווג TBI, שכל אחת משרתת מטרה שונה:</p>
+<ul>
+<li><b>סיווג מכניסטי</b> - סגור <span class="term" dir="ltr">closed</span>, חודר <span class="term" dir="ltr">penetrating</span>, מעיכה <span class="term" dir="ltr">crush</span>, והדף <span class="term" dir="ltr">blast</span> (זוהה לאחרונה כישות נפרדת, נגרם לרוב ממטענים חבלה מאולתרים).</li>
+<li><b>סיווג קליני לפי חומרה (GCS)</b> - חומרת הפגיעה מוערכת לפי מידת הירידה ברמת ההכרה, באמצעות סולם גלזגו לתרדמת <span class="term" dir="ltr">Glasgow Coma Scale, GCS</span>: סכום של שלושה רכיבים (עיניים, מוטורי, מילולי), טווח 3-15.</li>
+<li><b>סיווג לפי נזק מבני (Marshall CT classification)</b> - הוצע ב-1991, מתמקד בנוכחות/היעדר נגע תופס מקום, ומבדיל בין ארבע רמות של פגיעה מפושטת לפי לחץ תוך-גולגולתי (דחיסת ציסטרנות בסיסיות, היסט קו אמצע).</li>
+<li><b>סיווג מנהלי (ICD-9 / ICD-10)</b> - משמש בעיקר לצרכים מנהליים; ל-ICD-9 יש קודים לא בלעדיים זה לזה, מה שגורם לחוסר עקביות בקידוד.</li>
+<li><b>סיווג פרוגנוסטי</b> - סיווג מטופלים לפי תוצאה צפויה, המחושבת ממודלים פרוגנוסטיים מבוססי-נתונים (למשל CRASH, IMPACT).</li>
+</ul>
+<p>חומרת פגיעות חוץ-גולגולתיות (בקרוב 35% מהמטופלים עם TBI) מוערכת לפי <span class="term" dir="ltr">Abbreviated Injury Score (AIS)</span> או <span class="term" dir="ltr">Injury Severity Score (ISS)</span> - פגיעות אלה מעלות את הסיכון לנזק משני כתוצאה מהיפוקסיה, היפוטנסיה, חום, וקרישיות יתר/תת.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>חומרה קלינית (GCS)</th><th>נזק מבני מפושט (Marshall)</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td><b>קלה (Mild): GCS 14-15</b></td><td>Diffuse Injury I</td><td>ללא פתולוגיה נראית לעין בהדמיה</td></tr>
+    <tr><td><b>בינונית (Moderate): GCS 9-13</b></td><td>Diffuse Injury II</td><td>ציסטרנות קיימות, היסט קו אמצע 0-5 מ"מ, ללא נגע תופס-מקום מעל 25 סמ"ק</td></tr>
+    <tr><td><b>קשה (Severe): GCS 3-8</b></td><td>Diffuse Injury III (נפיחות)</td><td>ציסטרנות דחוסות/נעדרות, היסט 0-5 מ"מ, ללא נגע תופס-מקום מעל 25 סמ"ק</td></tr>
+    <tr><td>-</td><td>Diffuse Injury IV (היסט)</td><td>היסט קו אמצע מעל 5 מ"מ, ללא נגע תופס-מקום מעל 25 סמ"ק</td></tr>
+    <tr><td>-</td><td>נגע מפונה / לא-מפונה</td><td>נגע שפונה בניתוח, לעומת נגע בצפיפות גבוהה/מעורבת מעל 25 סמ"ק שלא פונה</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">טבלה מבוססת על טבלה 323-1 במקור (Marshall CT classification, 1991) - שילוב סיווג קליני ומבני, כפי שמתואר בפרק.</p>
+
+<h2><span class="num">4</span> מנגנון: משרשרת הכוח המכני ועד לפגיעה המשנית</h2>
+<div class="mechanism">
+  <p class="chain">איך בכלל כוח חיצוני הופך לנזק מוחי מתמשך? השרשרת המתוארת בפרק (וב"פרק ההמשך" על הבסיס הביומכני) עוברת דרך מספר שלבים ברורים:</p>
+  <p>
+    <b>שלב 1 - העמסה מכנית (loading):</b> הראש נחשף לעומס סטטי (איטי, כמו מעיכה בקריסת מבנה - נדיר) או, שכיח הרבה יותר, עומס דינמי (מהיר, פחות מ-50 אלפיות שנייה) - מסוג <b>אימפקט</b> (מכה ישירה לראש) או <b>אימפולסיבי</b> (הראש מואץ בעקיפין, למשל כשהגוף נבלם בפתאומיות ברכב בזמן שהראש ממשיך בתנועה, כמו בתסמונת "התינוק המנוער").<br>
+    <b>שלב 2 - עיוות רקמה (strain):</b> הכוח גורם לעיוות (מתיחה, לחיצה, גזירה) של העצם וכלי הדם והמוח. רקמות שונות סובלות עיוות שונה לפני שהן נפגעות - עצם נשברת כבר ב-1%-2% עיוות, ואילו רקמת מוח וכלי דם עמידים בהרבה יותר (10%-20% עיוות) לפני קריעה.<br>
+    <b>שלב 3 - פגיעה ראשונית (Primary injury):</b> הנזק המכני המיידי - שבר גולגולת, פגיעה מוקדית (חבלה/המטומה), או פגיעה אקסונלית מפושטת <span class="term" dir="ltr">diffuse axonal injury, DAI</span> כתוצאה מכוחות גזירה על סיבי החומר הלבן. שלב זה כבר קרה ברגע הפגיעה - <b>אין לו טיפול רטרואקטיבי, רק מניעה מראש</b>.<br>
+    <b>שלב 4 - גורמים מחריפים משניים:</b> פגיעות חוץ-גולגולתיות נלוות (בכ-35% מהמטופלים) מעלות סיכון להיפוקסיה, היפוטנסיה, חום, והפרעות קרישה - כל אלה "מזינים" את שרשרת הנזק הממשיך.<br>
+    <b>שלב 5 - פגיעה משנית (Secondary injury):</b> נפיחות מוחית (edema/swelling) ונזק איסכמי מתפתחים על פני שעות עד ימים - זהו בדיוק השלב שממוקד בו הטיפול הרפואי, כי בניגוד לפגיעה הראשונית, הוא ניתן להשפעה ולמניעה חלקית.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הפגיעה: מכוח מכני חיצוני ועד לתוצאה קלינית</title>
+  <desc>תרשים זרימה סכמטי המראה את המעבר מהעמסה מכנית, דרך פגיעה ראשונית, גורמים מחריפים משניים, פגיעה משנית ועד לתוצאה הקלינית</desc>
+  <rect x="20" y="30" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="95" y="58" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">כוח מכני חיצוני</text>
+  <text x="95" y="75" font-size="10.5" text-anchor="middle" fill="#1e3a8a">אימפקט / אימפולסיבי</text>
+  <text x="95" y="90" font-size="10" text-anchor="middle" fill="#1e3a8a">(עיוות: לחיצה/מתיחה/גזירה)</text>
+
+  <polygon points="170,65 195,58 195,72" fill="#6b7280"/>
+
+  <rect x="200" y="20" width="150" height="90" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="275" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגיעה ראשונית</text>
+  <text x="275" y="63" font-size="10" text-anchor="middle" fill="#7f1d1d">שבר גולגולת</text>
+  <text x="275" y="78" font-size="10" text-anchor="middle" fill="#7f1d1d">פגיעה מוקדית / DAI</text>
+  <text x="275" y="96" font-size="9.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">לא הפיכה - רק מניעה</text>
+
+  <polygon points="350,65 375,58 375,72" fill="#6b7280"/>
+
+  <rect x="380" y="120" width="180" height="90" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="470" y="145" font-size="12.5" text-anchor="middle" fill="#713f12" font-weight="700">גורמים מחריפים משניים</text>
+  <text x="470" y="163" font-size="10" text-anchor="middle" fill="#713f12">היפוקסיה, היפוטנסיה</text>
+  <text x="470" y="178" font-size="10" text-anchor="middle" fill="#713f12">חום, הפרעות קרישה</text>
+  <text x="470" y="195" font-size="9.5" text-anchor="middle" fill="#713f12">(במיוחד עם פגיעות חוץ-גולגולתיות)</text>
+
+  <polygon points="275,110 275,140 265,120" fill="#6b7280" transform="translate(105,0)"/>
+
+  <rect x="590" y="20" width="180" height="90" rx="8" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+  <text x="680" y="45" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">פגיעה משנית</text>
+  <text x="680" y="63" font-size="10" text-anchor="middle" fill="#78350f">נפיחות מוחית (edema)</text>
+  <text x="680" y="78" font-size="10" text-anchor="middle" fill="#78350f">נזק איסכמי</text>
+  <text x="680" y="96" font-size="9.5" text-anchor="middle" fill="#78350f" font-weight="700">שעות-ימים - ניתן להשפעה</text>
+
+  <polygon points="560,165 585,158 585,172" fill="#6b7280"/>
+  <path d="M 560 165 L 585 165" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <path d="M 585 165 L 680 165 L 680 112" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <polygon points="680,112 673,130 687,130" fill="#6b7280"/>
+
+  <rect x="380" y="230" width="390" height="55" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+  <text x="575" y="253" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">תוצאה קלינית: החלמה מלאה / נכות זמנית-קבועה / תמותה</text>
+  <text x="575" y="270" font-size="10" text-anchor="middle" fill="#374151">מוקד הטיפול הרפואי: מניעת הגורמים המחריפים ומזעור הפגיעה המשנית</text>
+
+  <path d="M 680 210 L 680 225" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <polygon points="680,225 673,213 687,213" fill="#6b7280"/>
+</svg>
+<p class="figcap">תרשים סכמטי עצמאי שממחיש את שרשרת הסיבתיות: כוח מכני &#8592; פגיעה ראשונית (בלתי הפיכה) &#8592; גורמים מחריפים (היפוקסיה/היפוטנסיה/חום/קרישה) &#8592; פגיעה משנית (ניתנת להשפעה) &#8592; תוצאה קלינית.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Susceptibility_weighted_imaging_(SWI)_in_diffuse_axonal_injury.jpg?width=700" alt="Susceptibility weighted MRI imaging showing diffuse axonal injury">
+<div class="media-cap">הדמיית MRI מסוג SWI (Susceptibility Weighted Imaging) המדגימה פגיעה אקסונלית מפושטת (Diffuse Axonal Injury) - הביטוי האופייני של פגיעה ראשונית ברמה המיקרוסקופית, כתוצאה מכוחות גזירה על סיבי חומר לבן. מקור: Wikimedia Commons.</div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Types_of_Intracranial_hematoma.jpg?width=700" alt="Diagram comparing types of intracranial hematoma - epidural, subdural, intracerebral">
+<div class="media-cap">סוגי המטומה תוך-גולגולתית - אפידורלית, סובדורלית ותוך-מוחית - דוגמאות לפגיעה מוקדית (focal injury) הנכללת בסיווג המבני (Marshall). מקור: Wikimedia Commons.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/e7Yl6urL7n0" title="Traumatic Brain Injury (TBI) - Medical-Surgical Nervous System" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">סרטון: סקירה כללית של פגיעת מוח טראומטית - סיווג, פתופיזיולוגיה וגישה קלינית (LevelUpRN).</div>
+
+<h2><span class="num">5</span> ההיקף העולמי: שכיחות ותמותה</h2>
+<p>TBI הוא בעיה בריאותית-חברתית-כלכלית מרכזית המשפיעה על כל החברות בעולם. מדי שנה, למעלה מ-10 מיליון אנשים ברחבי העולם סובלים מ-TBI חמור דיו כדי לגרום למוות או לאשפוז. בארצות הברית לבדה (נתוני 2003) היו כ-1,565,000 מקרי TBI, שהובילו ל-1,224,000 ביקורים במיון, 290,000 אשפוזים, ו-51,000 מקרי מוות. השכיחות המצטברת של TBI בארה"ב נאמדת בכ-5.3 מיליון איש. באיחוד האירופי (330 מיליון תושבים) מתרחשים כ-7,775,000 מקרי TBI חדשים בשנה. TBI אחראי לכ-9% מהתמותה העולמית הכללית.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אזור</th><th>שכיחות ל-100,000</th></tr></thead>
+  <tbody>
+    <tr><td>ארצות הברית</td><td>103 (הערכה מיטבית מנתוני CDC)</td></tr>
+    <tr><td>האיחוד האירופי</td><td>235 (טווח דיווח: 20-546, תלוי בקריטריוני הכללה)</td></tr>
+    <tr><td>גרמניה</td><td>340</td></tr>
+    <tr><td>איטליה</td><td>212-372</td></tr>
+    <tr><td>דנמרק</td><td>157-265</td></tr>
+    <tr><td>פינלנד</td><td>101</td></tr>
+    <tr><td>נורווגיה</td><td>83-229</td></tr>
+    <tr><td>שוודיה</td><td>354-546</td></tr>
+    <tr><td>ברזיל</td><td>360</td></tr>
+    <tr><td>סין</td><td>55-64</td></tr>
+    <tr><td>פקיסטן</td><td>50</td></tr>
+    <tr><td>דרום אפריקה</td><td>316</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">מבוסס על טבלה 323-2 במקור - שימו לב לשונות העצומה בין אזורים, הנובעת בעיקר מהגדרות ומקריטריוני הכללה שונים ולא רק מהבדל אמיתי בסיכון.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Road_traffic_accidents_world_map_-_Death_-_WHO2012.svg?width=800" alt="World map of road traffic accident death rates by country, WHO 2012 data">
+<div class="media-cap">מפת עולם של שיעורי תמותה מתאונות דרכים (נתוני ארגון הבריאות העולמי, 2012) - תאונות דרכים הן הגורם המוביל ל-TBI ברוב אזורי העולם, עם שונות אזורית ניכרת. מקור: Wikimedia Commons.</div>
+
+<p>שיעורי התמותה מ-TBI נעים בטווח רחב מאוד - מ-6.3 ועד 39.3 מקרי מוות ל-100,000 - כתלות בשיטת האיסוף (למשל, האם נכללים מקרי מוות טרום-אשפוזיים).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אזור</th><th>שיעור תמותה ל-100,000</th></tr></thead>
+  <tbody>
+    <tr><td>ארצות הברית</td><td>17.5-24.6 (1979-2003, במגמת ירידה)</td></tr>
+    <tr><td>האיחוד האירופי</td><td>15 (בבית חולים בלבד: 5.2; כולל טרום-אשפוזי: עד 24.4)</td></tr>
+    <tr><td>גרמניה</td><td>11.5</td></tr>
+    <tr><td>פינלנד</td><td>21.2</td></tr>
+    <tr><td>דנמרק / נורווגיה</td><td>11.5 / 10.4</td></tr>
+    <tr><td>שוודיה</td><td>9.5</td></tr>
+    <tr><td>ברזיל</td><td>26.2-39.3</td></tr>
+    <tr><td>סין</td><td>6.3 (עיר) - 9.7 (כפר)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>המגמה הכללית במדינות מערביות היא <b>ירידה</b> בתמותה לאורך זמן (למשל בארה"ב: מ-24.6 ל-17.5 ל-100,000 בין 1997 ל-2003) - תוצאה משולבת של מניעה (חגורות בטיחות, קסדות, הגבלת אלכוהול בנהיגה), שיפור מערכות רפואת חירום וטיפול נמרץ.</p>
+
+<h2><span class="num">6</span> גורמי סיכון ודמוגרפיה</h2>
+<p>TBI נחשב באופן מסורתי כפוגע בעיקר בגברים צעירים, ביחס גברים:נשים של כ-3:1. עם זאת, מחקרי קבוצת IMPACT הראו שהעודף הגברי מצטמצם בקבוצות גיל נמוכות וגבוהות יותר - <b>בילדים ובקשישים מעל גיל 65-70 אין הבדל מגדרי ברור בשכיחות</b>.</p>
+<p>קבוצות בסיכון מוגבר ל-TBI:</p>
+<ul>
+<li><b>אסירים במוסדות כליאה</b> - אחוז גבוה מדווח על היסטוריה של חבלת ראש.</li>
+<li><b>אנשי צבא</b> - עד 23% מחיילים בשירות פעיל שאינם בקרב דיווחו על TBI כלשהו במהלך שירותם; פגיעות הדף (blast injuries) שכיחות במיוחד בעימותים מודרניים (עיראק, אפגניסטן).</li>
+<li><b>ילדים צעירים</b> - שכיחות של 17 ל-100,000 לפגיעה מכוונת (inflicted injury), קבוצה פגיעה במיוחד.</li>
+<li><b>ספורטאים</b> - ה-CDC מעריך 1.6 עד 3.8 מיליון פגיעות TBI הקשורות לספורט בשנה בארה"ב (כולל כאלה שלא טופלו רפואית); דגש מיוחד על מניעה משנית, כי זעזועי מוח (concussions) חוזרים עלולים לגרום לנזק מצטבר עקב רגישות מוגברת של המוח לאחר פגיעה קודמת.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+  <title>עודף גברי ב-TBI לפי קבוצת גיל</title>
+  <desc>תרשים סכמטי המראה שהעודף הגברי בשכיחות TBI בולט בעיקר בגילי 20-60, ומצטמצם בילדים ובקשישים</desc>
+  <line x1="60" y1="180" x2="600" y2="180" stroke="#374151" stroke-width="2"/>
+  <line x1="60" y1="180" x2="60" y2="30" stroke="#374151" stroke-width="2"/>
+  <text x="330" y="205" font-size="12" text-anchor="middle" fill="#374151">גיל (שנים)</text>
+  <text x="30" y="105" font-size="11" text-anchor="middle" fill="#374151" transform="rotate(-90,30,105)">% מקרי TBI שהם גברים</text>
+  <path d="M 80 140 Q 150 60 300 55 Q 450 60 560 145" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <text x="80" y="160" font-size="10" text-anchor="middle" fill="#1e3a8a">ילדים</text>
+  <text x="300" y="45" font-size="10" text-anchor="middle" fill="#1e3a8a" font-weight="700">20-60: עודף גברי בולט (כ-3:1)</text>
+  <text x="560" y="165" font-size="10" text-anchor="middle" fill="#1e3a8a">קשישים 65+</text>
+  <rect x="20" y="20" width="600" height="1" fill="none"/>
+</svg>
+<p class="figcap">תרשים סכמטי (לא נתוני מקור מדויקים) הממחיש את המגמה המתוארת בפרק: עודף גברי מובהק בעיקר בגילי הביניים, ולא בקצוות הגיל.</p>
+
+<div class="mechanism">
+  <p class="chain">אוכלוסיית ה-TBI מזדקנת: בהשוואת גיל חציוני ואחוז מטופלים מעל גיל 50 על פני 20 שנה (1984-2004) נצפית עלייה עקבית.</p>
+</div>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מחקר</th><th>שנות המחקר</th><th>גיל חציוני</th><th>% מעל גיל 50</th></tr></thead>
+  <tbody>
+    <tr><td>Traumatic Coma Data Bank</td><td>1984-1987</td><td>25</td><td>15%</td></tr>
+    <tr><td>UK 4 Center study</td><td>1986-1988</td><td>29</td><td>27%</td></tr>
+    <tr><td>EBIC Core Data Survey</td><td>1995</td><td>38</td><td>33%</td></tr>
+    <tr><td>Austrian Severe TBI Study</td><td>1999-2004</td><td>48</td><td>45%</td></tr>
+  </tbody>
+</table>
+</div>
+<p>ההזדקנות נובעת משילוב גורמים: חוקי בטיחות בדרכים הפחיתו TBI כתוצאה מתאונות דרכים (הפוגעות בעיקר בצעירים), ואילו נפילות - הגורמות ל-TBI בעיקר בקשישים - נמצאות בעלייה מוחלטת ויחסית עם הזדקנות האוכלוסייה. בפינלנד תועדה עלייה בשכיחות נפילות מותאמת-דמוגרפיה של 6.1% בשנה. גורם מסבך נוסף בקשישים: שכיחות גבוהה של שימוש בנוגדי קרישה, המעלה סיכון לדימום תוך-גולגולתי - קשיש עם המטומה סובדורלית חדה שמתפתחת לאחר "אינטרוול צלול" בעודו תחת נוגד קרישה מתנהג פתופיזיולוגית בדומה לצעיר עם המטומה אפידורלית ולחץ משני.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lC3QEev6jfk" title="Glasgow Coma Scale (GCS) Explained" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">סרטון קצר: הסבר על מרכיבי סולם גלזגו לתרדמת (GCS) המשמש לסיווג חומרת ה-TBI.</div>
+
+<h2><span class="num">7</span> גורם הפגיעה: תאונות דרכים, נפילות ואלימות</h2>
+<p>הגורמים המרכזיים לפגיעת מוח הם תאונות דרכים, נפילות, ופציעות ירי - כולם משקפים התנהגות חברתית (פזיזות, אלימות, רשלנות).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גורם</th><th>אחוז מקרב מקרי TBI</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>תאונות דרכים <span class="term" dir="ltr">road traffic incidents</span></td><td>~60% (טווח מחקרי IMPACT: 53%-80%)</td><td>במדינות עם הכנסה גבוהה - בעיקר נהגים צעירים; במדינות מתפתחות - בעיקר הולכי רגל, רוכבי אופניים/אופנוע</td></tr>
+    <tr><td>נפילות <span class="term" dir="ltr">falls</span></td><td>20%-30% (IMPACT: 12%-30%)</td><td>במגמת עלייה, בעיקר בקרב קשישים ובאירופה הצפונית</td></tr>
+    <tr><td>אלימות בין-אישית <span class="term" dir="ltr">interpersonal violence</span></td><td>~10% (עלייה מדווחת לעומת מחקרים ישנים יותר)</td><td>נפוצה יותר בגברים צעירים; קשורה גם לאבטלה ולעוני</td></tr>
+    <tr><td>עבודה וספורט</td><td>~10%</td><td>קטגוריה משולבת בפרק</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">מבוסס על נתוני Hyder ועמיתיו ומחקר IMPACT כפי שמצוטטים בפרק.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Motorcycle_helmet.png?width=500" alt="Motorcycle safety helmet">
+<div class="media-cap">קסדת מגן לרוכבי אופנוע - הפרק מציין את חובת חבישת קסדה כאחד מאמצעי המניעה היעילים ביותר, לצד חגורות בטיחות והגבלת ריכוז אלכוהול בדם, בהפחתת התמותה מתאונות דרכים.</div>
+
+<p>הבחנה חשובה: המונח "תאונת דרכים" (road traffic accident) מוחלף בפרק במונח <span class="term" dir="ltr">road traffic incident</span> - כי "תאונה" (accident) מרמזת על אירוע אקראי ובלתי נמנע, בעוד שרוב פגיעות הדרכים ניתנות למניעה ולכן אינן "תאונה" במובן זה. באוסטרליה, יישום חוק בטיחות דרכים אחיד (הגבלות אלכוהול, חגורות, חוק ריסון ילדים, אכיפת מהירות, קסדות חובה) הביא לירידה של 47% בתמותה מתאונות דרכים בין 1970 ל-1995, למרות עלייה של 40% באוכלוסייה ו-120% במספר כלי הרכב הרשומים.</p>
+<div class="key-box">הנתונים מראים שההשפעה של מניעה על הפחתת נטל המחלה מ-TBI גדולה כנראה בהרבה מכל שיפור בתוצאות הטיפול הרפואי עצמו.</div>
+
+<p>פגיעות הדף <span class="term" dir="ltr">blast injuries</span> זוהו לאחרונה כישות נפרדת, שכיחות בעימותים מודרניים בעקבות שימוש במטעני חבלה מאולתרים. הפתופיזיולוגיה שלהן טרם אופיינה במלואה, אך מאפיינים בולטים בפגיעות קשות הם וזוספזם ונפיחות מוחית מוקדמת; טיפול אגרסיבי כולל קרניאקטומיה דה-קומפרסיבית מוקדמת נותן תוצאות מעודדות. אבחון TBI קל לאחר פגיעת הדף מורכב יותר, כי תסמינים עדינים וחולפים עלולים להיות מוסתרים או חופפים לתסמיני הפרעת דחק פוסט-טראומטית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/I4mc3ijlWMg" title="Osmosis - Traumatic Brain Injury" allowfullscreen loading="lazy"></iframe></div>
+<div class="video-cap">סרטון: סקירת Osmosis על פגיעת מוח טראומטית - סיווג, גורמים ומנגנוני פגיעה.</div>
+
+<h2><span class="num">8</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות מוכרים: <span dir="ltr">E-V-M (4-5-6)</span> - מרכיבי סולם גלזגו לתרדמת</h3>
+  <p>
+    <b>E</b> - <span class="term" dir="ltr">Eye opening</span> (פקיחת עיניים, מקסימום 4 נקודות: ספונטנית=4, לקול=3, לכאב=2, ללא=1)<br>
+    <b>V</b> - <span class="term" dir="ltr">Verbal response</span> (תגובה מילולית, מקסימום 5: מכוונת=5, מבולבלת=4, מילים לא הולמות=3, קולות לא מובנים=2, ללא=1)<br>
+    <b>M</b> - <span class="term" dir="ltr">Motor response</span> (תגובה מוטורית, מקסימום 6: מציית לפקודות=6, מקומם כאב=5, נסיגה מכאב=4, כיפוף לא תקין=3, פשיטה לא תקינה=2, ללא=1)<br>
+    סכום 3-15: <b>קלה 14-15, בינונית 9-13, קשה 3-8</b> - זהו בדיוק סף הסיווג הקליני שעליו מבוססת כמעט כל הספרות האפידמיולוגית בפרק.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שופט בתחרות שבודק שלושה דברים בלבד כדי לדרג מתמודד: האם הוא <b>פוקח עיניים</b> מרצונו (E), האם הוא <b>מדבר</b> בהיגיון (V), והאם הוא <b>מבצע</b> את מה שמבקשים ממנו (M). ציון מושלם (15) הוא מתמודד ערני לגמרי; ציון מינימלי (3) הוא מתמודד שלא מגיב לשום דבר. כל נקודה שיורדת מסמנת התדרדרות מדידה וברורה בהכרה - וזה בדיוק מה שהופך את ה-GCS לכלי אוניברסלי להשוואה בין מטופלים ומחקרים.</p>
+  <svg class="diagram" viewBox="0 0 620 180" xmlns="http://www.w3.org/2000/svg">
+    <title>שלושת מרכיבי GCS ומשקלם</title>
+    <desc>תרשים עמודות פשוט המראה את הניקוד המרבי של כל אחד משלושת מרכיבי סולם גלזגו לתרדמת</desc>
+    <rect x="60" y="100" width="120" height="50" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="120" y="128" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">E: עד 4</text>
+    <rect x="250" y="70" width="120" height="80" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="310" y="113" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">V: עד 5</text>
+    <rect x="440" y="40" width="120" height="110" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="500" y="98" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">M: עד 6</text>
+    <text x="310" y="20" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">סה"כ: 3-15 נקודות</text>
+    <line x1="40" y1="160" x2="590" y2="160" stroke="#9ca3af" stroke-width="1.5"/>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Traumatic_brain_injury" target="_blank">Traumatic Brain Injury – Wikipedia</a>
+    <div class="desc">רקע כללי, אפידמיולוגיה עולמית וסיווגים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Glasgow_Coma_Scale" target="_blank">Glasgow Coma Scale – Wikipedia</a>
+    <div class="desc">פירוט מלא של רכיבי הסולם וטבלאות ניקוד.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Primary_and_secondary_brain_injury" target="_blank">Primary and Secondary Brain Injury – Wikipedia</a>
+    <div class="desc">הרחבה על ההבחנה בין פגיעה ראשונית למשנית והמנגנונים הביוכימיים המעורבים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Diffuse_axonal_injury" target="_blank">Diffuse Axonal Injury – Wikipedia</a>
+    <div class="desc">מנגנון הפגיעה האקסונלית המפושטת, הדמיה ופרוגנוזה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 מובא למיון לאחר תאונת אופנוע ללא קסדה. בזירה תועדה איבוד הכרה קצר. בהגעה: פוקח עיניים לגירוי כאב (2), מדבר מילים לא הולמות (3), נסיגה מכאב (4) - כלומר GCS 9. בבדיקה מזוהה גם שבר בפיקת הברך (פגיעה חוץ-גולגולתית נלווית). ל-15 דקות בדרך למיון סבל מסטורציית חמצן נמוכה (88%) עד שטופל. הצוות הרפואי מציין בדוח שהמטרה המיידית היא מניעת החרפה נוספת, ולא "תיקון" הנזק המוחי שכבר אירע.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי חומרת ה-TBI של המטופל בווינייטה, וכיצד היא מחושבת?</div>
+  <button class="opt" data-i="0">GCS 15, פגיעה קלה - כי הוא מגיב לגירויים</button>
+  <button class="opt" data-i="1">GCS 3, פגיעה קשה ביותר - כי הוא לא פקח עיניים ספונטנית</button>
+  <button class="opt" data-i="2">GCS 9 (עיניים 2 + מילולי 3 + מוטורי 4), פגיעה בינונית (טווח 9-13)</button>
+  <button class="opt" data-i="3">אי אפשר לחשב GCS כי יש גם שבר בפיקת הברך</button>
+  <div class="explain">התשובה הנכונה: 2+3+4=9, בטווח הפגיעה הבינונית (GCS 9-13) כפי שמוגדר בפרק. תשובה 0 שגויה - פקיחה לכאב שווה 2 נקודות בלבד, לא ציון מקסימלי. תשובה 1 שגויה חישובית. תשובה 3 שגויה - GCS מחושב אך ורק מהתגובה הנוירולוגית ואינו מושפע מפגיעות אורתופדיות נלוות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מדוע הירידה בסטורציית החמצן (88%) בדרך למיון מהווה דאגה קלינית מיוחדת, מעבר לבעיה הנשימתית עצמה?</div>
+  <button class="opt" data-i="0">היפוקסיה היא גורם מחריף מרכזי בשרשרת הפגיעה המשנית, ועלולה להחמיר את הנזק המוחי מעבר לפגיעה הראשונית שכבר קרתה</button>
+  <button class="opt" data-i="1">סטורציה נמוכה תמיד מעידה על שבר בגולגולת</button>
+  <button class="opt" data-i="2">אין לכך שום השפעה על המוח, רק על הריאות</button>
+  <button class="opt" data-i="3">היפוקסיה משפיעה רק על מטופלים עם פגיעה קלה, לא בינונית-קשה</button>
+  <div class="explain">התשובה הנכונה: כפי שתואר במנגנון הפגיעה (סעיף 4), פגיעות חוץ-גולגולתיות והפרעות סיסטמיות כמו היפוקסיה מעלות משמעותית את הסיכון לפגיעה משנית - נפיחות מוחית ונזק איסכמי המתפתחים על פני שעות-ימים. תשובות 1, 2 ו-3 אינן נכונות עובדתית לפי הפרק - היפוקסיה רלוונטית לכל דרגות החומרה ואינה סימן ספציפי לשבר גולגולת.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מדוע לא ניתן "לתקן" את הפגיעה הראשונית שכבר אירעה במטופל, ומה המשמעות הטיפולית לכך?</div>
+  <button class="opt" data-i="0">אפשר לתקן אותה בניתוח דחוף תוך שעה מהפגיעה</button>
+  <button class="opt" data-i="1">תרופות נוגדות דלקת מתקנות פגיעה ראשונית באופן מלא</button>
+  <button class="opt" data-i="2">פגיעה ראשונית אינה קיימת כתופעה נפרדת מפגיעה משנית</button>
+  <button class="opt" data-i="3">הפגיעה הראשונית היא נזק מכני מיידי (שבר, פגיעה מוקדית, DAI) שכבר התרחש ברגע הפגיעה - ולכן המאמץ הטיפולי כולו מופנה למניעת גורמים שמחריפים את הפגיעה המשנית הניתנת להשפעה</button>
+  <div class="explain">התשובה הנכונה: זהו העיקרון המרכזי בסעיף המנגנון - הנזק המכני הראשוני (שבר, פגיעה מוקדית, DAI) הוא עובדה מוגמרת ברגע האירוע, ורק מניעה מראש (קסדות, חגורות, חוקי בטיחות) יכולה להשפיע עליו. הטיפול הרפואי לאחר האירוע מתמקד אך ורק במניעת גורמים מחריפים (היפוקסיה, היפוטנסיה) ובצמצום הפגיעה המשנית. תשובות 0, 1 ו-2 אינן נתמכות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מדוע קשה מאוד להשוות בין שיעורי שכיחות TBI שדווחו במדינות שונות (למשל 55-64 בסין מול 354-546 בשוודיה)?</div>
+  <button class="opt" data-i="0">כי TBI פשוט לא קיים במדינות מסוימות</button>
+  <button class="opt" data-i="1">כי ההבדלים נובעים בעיקר מהגדרות שונות של TBI, קריטריוני הכללה שונים (למשל רק מקרים נוירוכירורגיים מול כל הפניות למיון), ותת-דיווח - ולא בהכרח מהבדל אמיתי בסיכון</button>
+  <button class="opt" data-i="2">כי כל המדינות משתמשות באותה שיטת איסוף נתונים בדיוק</button>
+  <button class="opt" data-i="3">כי שכיחות TBI תלויה אך ורק בגזע האוכלוסייה</button>
+  <div class="explain">התשובה הנכונה: כפי שהודגש בסעיף הפערים (סעיף 2) ובדיון על טבלת השכיחות (סעיף 5), השונות הענקית בנתונים המדווחים נובעת בעיקר מהבדלים מתודולוגיים - הגדרת TBI, קריטריוני הכללה (מיון בלבד מול אשפוז בלבד מול הכל), ותת-דיווח שיטתי (בעיקר בפגיעות קלות). תשובות 0, 2 ו-3 אינן נתמכות ואף סותרות את הפרק במפורש.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע פרופיל הגיל של מטופלי TBI קשה עלה בהדרגה בין 1984 ל-2004 (טבלה 323-4)?</div>
+  <button class="opt" data-i="0">כי אנשים צעירים הפסיקו לחלוטין לנהוג ברכב</button>
+  <button class="opt" data-i="1">כי חוקי בטיחות בדרכים אינם משפיעים כלל על שכיחות TBI</button>
+  <button class="opt" data-i="2">שילוב של ירידה בתאונות דרכים (הפוגעות בעיקר בצעירים) הודות לחוקי בטיחות, יחד עם עלייה מוחלטת ויחסית בנפילות (הפוגעות בעיקר בקשישים) עם הזדקנות האוכלוסייה</button>
+  <button class="opt" data-i="3">כי הוגדר שינוי בקריטריוני האבחון של GCS</button>
+  <div class="explain">התשובה הנכונה: כפי שמתואר בסעיף 6, השילוב של הצלחת מניעה בתאונות דרכים (שפוגעות בעיקר בצעירים) עם עלייה בנפילות (שפוגעות בעיקר בקשישים, ומתרחשות בתדירות עולה ככל שהאוכלוסייה מזדקנת) מסביר את מגמת ההזדקנות של אוכלוסיית ה-TBI. תשובות 0, 1 ו-3 אינן נתמכות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. מטופל קשיש הנוטל נוגדי קרישה מפתח המטומה סובדורלית חדה לאחר "אינטרוול צלול". מדוע הפרק משווה מצב זה להמטומה אפידורלית בצעיר?</div>
+  <button class="opt" data-i="0">בשני המקרים קיים פרק זמן ראשוני ללא תסמינים ולאחריו הידרדרות מהירה עקב לחץ משני מצטבר - כלומר אותה דינמיקה פתופיזיולוגית של החמרה מושהית, גם אם סוג הדימום וגיל המטופל שונים</button>
+  <button class="opt" data-i="1">כי שני המצבים קורים אך ורק בגיל מבוגר</button>
+  <button class="opt" data-i="2">כי נוגדי קרישה גורמים תמיד להמטומה אפידורלית ולא סובדורלית</button>
+  <button class="opt" data-i="3">אין שום קשר בין שני המצבים לפי הפרק</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שמבחינה פתופיזיולוגית, "אינטרוול צלול" ואחריו הידרדרות מהירה כתוצאה מהצטברות דם והחמרת לחץ תוך-גולגולתי הוא מנגנון דומה בשני המצבים, גם אם אחד אופייני לקשישים על נוגדי קרישה (סובדורלי) והשני לצעירים (אפידורלי, לרוב עורקי). תשובות 1, 2 ו-3 אינן נכונות - הן מתעלמות מהדמיון הפתופיזיולוגי שהפרק מדגיש במפורש.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>TBI הוא הגורם המוביל לתמותה ונכות בצעירים במדינות מפותחות, ומכונה "מגפה שקטה" - מדי שנה למעלה מ-10 מיליון בני אדם בעולם נפגעים ברמה שגורמת למוות או אשפוז.</li>
+    <li>נתוני שכיחות ותמותה שונים מאוד בין מדינות (למשל 55-546 ל-100,000) - השונות נובעת בעיקר מהגדרות וקריטריוני הכללה שונים, לא רק מסיכון אמיתי שונה.</li>
+    <li>סיווג <b>GCS</b>: קלה 14-15, בינונית 9-13, קשה 3-8 (E4+V5+M6). סיווג מבני משלים לפי <b>Marshall CT classification</b> (Diffuse Injury I-IV, נגע מפונה/לא-מפונה).</li>
+    <li>שרשרת המנגנון: כוח מכני &#8592; <b>פגיעה ראשונית</b> (בלתי הפיכה - שבר, פגיעה מוקדית, DAI) &#8592; גורמים מחריפים (היפוקסיה, היפוטנסיה, חום, קרישיות) &#8592; <b>פגיעה משנית</b> (בצקת, איסכמיה - ניתנת להשפעה טיפולית).</li>
+    <li>גורמי הפגיעה המובילים: תאונות דרכים (~53-80%), נפילות (~12-30%, במגמת עלייה עם הזדקנות האוכלוסייה), אלימות בין-אישית (~7-10%).</li>
+    <li>עודף גברי (כ-3:1) בולט בעיקר בגילי 20-60; ילדים וקשישים ללא הבדל מגדרי ברור. אוכלוסיית ה-TBI הקשה מזדקנת עקב הצלחת מניעה בתאונות דרכים לעומת עלייה בנפילות.</li>
+    <li>ההשפעה של אמצעי מניעה (קסדות, חגורות, חוקי בטיחות) על הפחתת נטל המחלה גדולה בהרבה מכל שיפור בטיפול הרפואי לאחר האירוע.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
