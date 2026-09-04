@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: תכנון וירטואלי תלת-ממדי בכירורגיה אורתוגנתית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 7: תכנון וירטואלי תלת-ממדי בכירורגיה אורתוגנתית <span class="term" dir="ltr">Three-dimensional Virtual Planning in Orthognathic Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head &amp; Neck, Pediatric | פרק 6.2, מאת Pradip R. Shetye ו-Srinivas M. Susarla</div>
+
+<p>זהו פרק <b>טכניקה ועקרונות</b> ולא פרק "מחלה" – הוא עוסק בשאלה איך עוברים מ"יש לחולה עיוות שלד לסת-פנים" ל"בחדר ניתוח מבצעים בדיוק את התזוזה שתוכננה", באמצעות הדמיה תלת-ממדית ממוחשבת (<span class="term" dir="ltr">virtual surgical planning – VSP</span>) במקום התהליך המסורתי של דגמי גבס על מפרקן. הדגש בסיכום הזה הוא על <b>זרימת העבודה</b> (workflow), הרציונל מאחורי כל שלב, והשוואה מדויקת בין השיטה הישנה לחדשה – ופחות על סעיפים קליניים קלאסיים (בדיקה גופנית שגרתית, אבחנה מבדלת של מלוקלוזיה) שאינם ייחודיים לפרק הזה.</p>
+
+<h2><span class="num">1</span> למה בכלל צריך תכנון וירטואלי? – מקור הטעות המצטברת</h2>
+<div class="mechanism">
+  <p class="chain">
+    בתכנון המסורתי (<span class="term" dir="ltr">traditional/model surgery</span>), התהליך הוא שרשרת ארוכה של שלבים ידניים: <b>הטבעות שיניים</b> (impressions) → <b>יצירת דגמי גבס</b> → <b>רישום קשת פנים</b> (facebow registration) → <b>הרכבה על מפרקן</b> חצי-מתכוונן (semi-adjustable articulator) → <b>סימולציית תזוזה ידנית</b> על הדגמים → <b>בניית סד ניתוחי</b> (splint) מאקריליק.<br>
+    <b class="key">כל שלב בשרשרת הזו הוא מקור פוטנציאלי לטעות</b> - וכיוון שהשלבים מצטברים בזה אחר זה, הטעות "מתגלגלת" ומתעצמת עד לרגע הניתוח. לדוגמה: טעות ברישום קשת הפנים (בעייתית במיוחד בחולים עם עיוות עגבת/אוזן) מתורגמת לטעות בהרכבה על המפרקן, שמתורגמת לטעות בסד – והתוצאה יכולה להיות שינוי משמעותי בכיוון ובעוצמה של תזוזת הלסת שבפועל מתבצעת בניתוח, שונה מהמתוכנן.
+  </p>
+  <p>בתכנון הוירטואלי, לעומת זאת, כמעט כל התהליך קורה בתוך מרחב ספרתי אחד רציף: לאחר רכישת הנתונים (שהיא עדיין מקור הטעות העיקרי), <b>כל שלב נוסף מתבצע באותה תוכנה על אותו מודל תלת-ממדי</b> - ללא צורך "לתרגם" בין מדיה שונה (רנטגן שטוח → דגם פיזי → מפרקן → סד). המחקר בפרק (Fig. 6.2.3) מראה שברוב הפרוטוקולים הוירטואליים המודרניים <b>כמעט כל הטעות המצטברת מקורה בשלב רכישת הנתונים (טרום-דיגיטלי), ולא בחלק הממוחשב עצמו</b>.</p>
+</div>
+<p class="key-box">המסר המרכזי של הפרק: תכנון תלת-ממדי לא "מבטל" את הצורך בבדיקה קלינית קפדנית ובתקשורת בין המנתח למיישרן - הוא רק מייעל ומדייק את התרגום של התוכנית לחדר הניתוח.</p>
+
+<h2><span class="num">2</span> שרשרת התהליך: מרכישת נתונים ועד לניתוח</h2>
+<p>ניתן לחשוב על התהליך כולו כרצף בן חמישה שלבים - זו למעשה "מפת הדרכים" של כל שאר הפרק:</p>
+<svg class="diagram" viewBox="0 0 870 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת התכנון הוירטואלי התלת-ממדי</title>
+  <rect x="700" y="20" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">1. רכישת נתונים</text>
+  <text x="775" y="62" font-size="11" text-anchor="middle" fill="#7f1d1d">CT/CBCT + סריקה תוך-פית</text>
+  <text x="775" y="77" font-size="11" text-anchor="middle" fill="#7f1d1d">+ תצלום תלת-ממד + בדיקה קלינית</text>
+
+  <rect x="530" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="605" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">2. עיבוד ורישום</text>
+  <text x="605" y="62" font-size="11" text-anchor="middle" fill="#1e3a8a">ניקוי רעשים + סופרפוזיציה</text>
+  <text x="605" y="77" font-size="11" text-anchor="middle" fill="#1e3a8a">של כל מקורות הנתונים ל"חולה וירטואלי"</text>
+
+  <rect x="360" y="20" width="150" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="435" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">3. תכנון וירטואלי</text>
+  <text x="435" y="62" font-size="11" text-anchor="middle" fill="#065f46">אוסטאוטומיה + הזזת מקטעים</text>
+  <text x="435" y="77" font-size="11" text-anchor="middle" fill="#065f46">תיקון yaw/pitch/roll</text>
+
+  <rect x="190" y="20" width="150" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="265" y="45" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">4. ייצור מדריכים</text>
+  <text x="265" y="62" font-size="11" text-anchor="middle" fill="#4c1d95">מדריכי חיתוך/מיקום + סדים</text>
+  <text x="265" y="77" font-size="11" text-anchor="middle" fill="#4c1d95">הדפסה תלת-ממדית (CAD/CAM)</text>
+
+  <rect x="20" y="20" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="95" y="45" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">5. ביצוע בניתוח</text>
+  <text x="95" y="62" font-size="11" text-anchor="middle" fill="#78350f">העברת התוכנית לשדה הניתוחי</text>
+  <text x="95" y="77" font-size="11" text-anchor="middle" fill="#78350f">בעזרת הסדים/המדריכים</text>
+
+  <polygon points="680,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="680" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="510,55 530,49 530,61" fill="#374151"/>
+  <line x1="530" y1="55" x2="510" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="340,55 360,49 360,61" fill="#374151"/>
+  <line x1="360" y1="55" x2="340" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="170,55 190,49 190,61" fill="#374151"/>
+  <line x1="190" y1="55" x2="170" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="130" width="830" height="60" rx="8" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="435" y="155" font-size="12.5" text-anchor="middle" fill="#374151" font-weight="700">רוב הטעות המצטברת נמצאת כאן ← בשלב 1 (רכישת נתונים) בלבד</text>
+  <text x="435" y="173" font-size="11" text-anchor="middle" fill="#374151">שלבים 2-5 (המרחב הדיגיטלי) מדויקים מאוד ומכניסים כמעט אפס טעות נוספת</text>
+  <polygon points="775,130 769,110 781,110" fill="#6b7280"/>
+  <line x1="775" y1="130" x2="775" y2="112" stroke="#6b7280" stroke-width="2"/>
+</svg>
+<p class="figcap">שרשרת התהליך: קריאה מימין לשמאל (סדר כרונולוגי). שימו לב שכל הטעות מצטברת ברכישת הנתונים - לא בעיבוד הממוחשב.</p>
+
+<h2><span class="num">3</span> תכנון מסורתי מול תכנון וירטואלי - טבלת השוואה</h2>
+<table>
+  <thead><tr><th>היבט</th><th>תכנון מסורתי (Model Surgery)</th><th>תכנון וירטואלי (VSP)</th></tr></thead>
+  <tbody>
+    <tr><td>מקור הנתונים</td><td>רנטגן דו-ממדי (פנורמי, צפלוגרמות) + דגמי גבס</td><td>CT/CBCT תלת-ממדי + סריקה תוך-פית + תצלום תלת-ממד</td></tr>
+    <tr><td>רישום יחסי הלסתות</td><td>קשת פנים (facebow) + הרכבה על מפרקן</td><td>סופרפוזיציה דיגיטלית ישירה - <b>אין צורך בקשת פנים</b></td></tr>
+    <tr><td>דיוק בעיוותים א-סימטריים מורכבים</td><td>מוגבל - קשה "לראות" שינויים בציר השלישי (yaw/roll) בו-זמנית</td><td>שליטה מלאה בכל שלושת מישורי המרחב + סיבוב (pitch, roll, yaw) בזמן אמת</td></tr>
+    <tr><td>הדמיית תוצאה לרקמה רכה</td><td>לא זמינה או גסה מאוד</td><td>סימולציה של שינויי רקמה רכה לצורך שיחה עם המטופל</td></tr>
+    <tr><td>גמישות בסדר הניתוח (לסת עליונה/תחתונה קודם)</td><td>קשה מאוד לתכנן מנדיבולה-קודם</td><td>המנתח חופשי לבחור סדר לפי הצורך הקליני</td></tr>
+    <tr><td>דיוק (לפי סקירה שיטתית של 5 מחקרים אקראיים)</td><td>דומה ל-VSP בתזוזות סגיטליות בלבד</td><td><b>מדויק משמעותית יותר במיקום המקסילה הקדמית</b> ובחיזוי שינויי רקמה רכה; יותר סימטריה קורונרית</td></tr>
+    <tr><td>זמן (קליני + מעבדה)</td><td>ארוך יותר - תהליך רב-שלבי בעבודת מעבדה</td><td>חיסכון כולל בזמן</td></tr>
+    <tr><td>עלות (לאחר החזר השקעה בציוד)</td><td>נמוכה יותר בפרויקט בודד</td><td>דומה בטווח הארוך (לאחר "recoup" של עלות ההון)</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> הכנה אורתודנטית טרום-ניתוחית - שלושה שלבים</h2>
+<p>תכנון תלת-ממדי לא מייתר את הצורך בטיפול אורתודנטי מתואם. הטיפול מתחלק לשלושה שלבים (Algorithm 6.2.1 בפרק):</p>
+<table>
+  <thead><tr><th>שלב</th><th>מטרה עיקרית</th><th>משך משוער</th></tr></thead>
+  <tbody>
+    <tr><td><b>טרום-ניתוחי</b> (Pre-surgical)</td><td>דה-קומפנסציה של מלוקלוזיה - "להתאים את הפער השיני לפער השלדי" כדי שהתיקון הכירורגי ייתן את התוצאה האסתטית והתפקודית הטובה ביותר; תיאום רוחב קשתות</td><td>4-18 חודשים (תלוי חומרה)</td></tr>
+    <tr><td><b>ניתוחי</b> (סביב הניתוח)</td><td>רכישת נתונים תלת-ממדיים, תכנון וירטואלי, ייצור סדים, הניתוח עצמו</td><td>-</td></tr>
+    <tr><td><b>לאחר-ניתוחי</b> (Post-surgical)</td><td>גימור ופירוט הסגירה הסופית, הסרת המכשור, החזקה (retention), מעקב</td><td>6-12 חודשים</td></tr>
+  </tbody>
+</table>
+<p>נקודה חשובה: מלוקלוזיה שלדית (Class II/III) מלווה לעיתים ב<b>פיצוי שיני</b> טבעי - למשל ב-Class III השיניים העליונות נוטות ל<span class="term" dir="ltr">proclination</span> (הטיה קדימה) והתחתונות ל<span class="term" dir="ltr">retroclination</span>, ובכיוון ההפוך ב-Class II. אם לא מבטלים את הפיצוי הזה לפני הניתוח, השיניים "יסתירו" את הבעיה השלדית האמיתית ולא יאפשרו את מלוא התיקון הכירורגי. גישה חלופית עדכנית יותר היא <b>"ניתוח קודם" (surgery-first)</b>, המנצלת את העובדה שתזוזת שיניים אורתודנטית מואצת מיד לאחר הניתוח (עקב עלייה בפעילות התאית) - מתאימה בעיקר לעיוותים פשוטים במישור אחד, פחות לעיוותים תלת-ממדיים מורכבים.</p>
+
+<h2><span class="num">5</span> בניית ה"חולה הוירטואלי" - אילו נתונים נאספים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מקור נתונים</th><th>פורמט קובץ</th><th>מה הוא תורם</th></tr></thead>
+  <tbody>
+    <tr><td>CT רפואי (שכיבה) או CBCT (עמידה/ישיבה)</td><td><span class="term" dir="ltr">DICOM</span> (פרוסות &lt;1 מ"מ ב-CT, &lt;0.4 מ"מ ב-CBCT)</td><td>שלד קרניופציאלי תלת-ממדי (נתוני נפח, לא משטח)</td></tr>
+    <tr><td>סורק שיניים תוך-פי (או סריקת דגם גבס)</td><td><span class="term" dir="ltr">STL</span> (Stereolithography)</td><td>גיאומטריית משטח מדויקת של השיניים - הכרחית לסדים, כי ה-CT/CBCT לא מדויק מספיק לפרטי שיניים</td></tr>
+    <tr><td>תצלום פנים תלת-ממדי</td><td><span class="term" dir="ltr">OBJ</span> / <span class="term" dir="ltr">BMP</span></td><td>צבע וטקסטורת עור לצורך הדמיית תוצאה וחינוך המטופל (לא הכרחי לתכנון עצמו)</td></tr>
+    <tr><td>בדיקה קלינית + ראיון מטופל</td><td>-</td><td>נתונים דינמיים (חשיפת שיניים במנוחה/בחיוך, מסלול פתיחת פה, תלונות עיקריות) שלא נלכדים בהדמיה סטטית</td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>נקודה קריטית לזכור למבחן:</b> CBCT מבוצע בעמידה/ישיבה בתנוחת ראש טבעית - ולכן <b>לא דורש שלב נוסף</b> של כיוון מחדש של הראש במרחב הוירטואלי. CT רפואי סטנדרטי מבוצע בשכיבה על הגב, ולכן דורש שלב תיקון תנוחה נוסף (למשל בעזרת גירוסקופ, או רישום מול תצלום פנים תלת-ממדי בתנוחה טבעית) - אחרת הראש "ישתול" עקום במרחב הוירטואלי, מה שקריטי במיוחד בחולים עם א-סימטריה של הפנים.</p>
+<p>שיקול נוסף חשוב: יש להקפיד לצלם את המטופל ב<b>יחס תפוסה מרכזי</b> (<span class="term" dir="ltr">centric relation – CR</span>) ולא רק בהיפגשות מרבית (<span class="term" dir="ltr">maximal intercuspation – MIP</span>) אם קיים הפרש פונקציונלי משמעותי בין השניים - אחרת מיקום הלסת העליונה בפועל בניתוח עלול לסטות מהמתוכנן.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/hvyZ3GdlO9w" title="Virtual Surgical Planning for Orthognathic Surgery & Maxillofacial Trauma" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מקצועית (ד"ר Shahid Aziz) המדגימה את זרימת העבודה המלאה של תכנון וירטואלי בכירורגיה אורתוגנתית וטראומה מקסילופציאלית - מרכישת הנתונים ועד לתכנון הסימולציה.</p>
+
+<h2><span class="num">6</span> שלבי הסימולציה הכירורגית - ניתוח שתי לסתות</h2>
+<p>לאחר בניית החולה הוירטואלי, הסימולציה עצמה מתבצעת לפי סדר קבוע:</p>
+<ol>
+  <li><b>קביעת אמצע הפנים השלדי</b> (skeletal facial midline) - נקודת הייחוס לכל תזוזה נוספת.</li>
+  <li><b>תיקון א-סימטריית המקסילה</b>: תחילה מתואם קו האמצע השיני של המקסילה לקו האמצע השלדי (מישור רוחבי), ואז מתוקן ה-<span class="term" dir="ltr">occlusal cant</span> (הטיית מישור הסגירה - roll), ולבסוף מתוקן סיבוב הקשת (yaw).</li>
+  <li><b>הבאת המנדיבולה לסגירה</b> מול המקסילה המתוקנת, לפי הסגירה הסופית המתוכננת מראש.</li>
+  <li><b>תזוזת שתי הלסתות כיחידה אחת</b> למיקום הסופי הרצוי - כולל מידת ה<span class="term" dir="ltr">impaction</span> (הכנסה כלפי מעלה) של המקסילה ומידת הקידום של שתי הלסתות.</li>
+  <li><b>תיקון מישור הסגירה (pitch)</b> - זווית של כ-9° (טווח תקין 2°-17°) ביחס למישור פרנקפורט; סיבוב עם כיוון השעון "מציב" (steepens) את מישור הסגירה ומגדיל בליטת מקסילה תוך הקטנת בליטת מנדיבולה, וסיבוב נגד כיוון השעון עושה את ההפך.</li>
+</ol>
+<p>שלושת צירי הסיבוב הללו (<b>pitch, roll, yaw</b>) הם בדיוק כמו בתעופה: pitch = הטיית האף למעלה/מטה, roll = נטייה לצדדים (משפיע על ה-cant), yaw = סיבוב סביב הציר האנכי (משפיע על סיבוב הקשת). לאחר כל התזוזות, התוכנה בודקת חפיפות עצם (bony overlap - יש להסיר עצם) או פערים (bony gap - ייתכן שיידרש שתל עצם).</p>
+<p class="key-box">בניתוח דו-לסתי, יתרון מרכזי של VSP הוא שהמנתח <b>חופשי לבחור אם לבצע קודם את המקסילה או את המנדיבולה</b> - דבר שהיה קשה מאוד לביצוע בתכנון מסורתי. בניתוח לסת בודדת (single-jaw), לעומת זאת, VSP תורם פחות - פשוט מתקנים את הלסת החריגה למיקום הלסת התקינה.</p>
+
+<h2><span class="num">7</span> מדריכים, תבניות וסדים - מה מייצרים בפועל</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג עזר</th><th>תפקיד</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td><b>מדריך חיתוך</b> (Cutting guide)</td><td>מסמן בדיוק היכן לבצע את האוסטאוטומיה</td><td>יכול להיות נשען-שן (tooth-borne) או נשען-עצם (bone-borne)</td></tr>
+    <tr><td><b>מדריך מיקום</b> (Positioning guide)</td><td>ממקם מחדש את המקטע העצמי המנותק (למשל Le Fort I) למיקום הסופי המדויק, ללא תלות במנדיבולה</td><td>פותר בעיה של הפרש CR-MIP; דוגמה: מערכת <span class="term" dir="ltr">Orthognathic Positioning System – OPS</span></td></tr>
+    <tr><td><b>סד ביניים</b> (Intermediate splint)</td><td>ממקם את הלסת הראשונה שנותחה ביחס לשנייה שטרם נותחה</td><td>-</td></tr>
+    <tr><td><b>סד סופי</b> (Final splint)</td><td>קובע את הסגירה הדנטלית הסופית בין שתי הלסתות המנותחות</td><td>-</td></tr>
+    <tr><td><b>תבנית שתל עצם</b> (Bone graft template)</td><td>מתאימה בדיוק לפגם העצמי שיש למלא</td><td>חוסכת זמן ניתוח משמעותי</td></tr>
+  </tbody>
+</table>
+</div>
+<p>כאשר משתמשים במדריכי חיתוך ומיקום מותאמים אישית יחד עם פלטות כיפוף מראש (prebent plates), ניתן לעיתים לבצע <b>"ניתוח ללא סד" (splintless surgery)</b> - הפחתה נוספת בשלבי הביניים ובפוטנציאל הטעות.</p>
+
+<h2><span class="num">8</span> אינדיקציות עיקריות לתכנון וירטואלי</h2>
+<p>תכנון וירטואלי מועיל בכל מקרה, אך התועלת שלו גדלה ככל שהעיוות מורכב יותר ורב-מישורי יותר:</p>
+<ul>
+  <li><b>מלוקלוזיה שלדית Class II / Class III</b> - כולל מקרים המצריכים תיקום בשני מישורים (סגיטלי + אנכי).</li>
+  <li><b>א-סימטריה פציאלית</b> - כולל מיקרוזומיה קרניופציאלית (craniofacial microsomia), שם נדרשת תזוזה תלת-ממדית מלאה (AP, אנכי, רוחבי + pitch/roll/yaw) כדי לשחזר סימטריה.</li>
+  <li><b>תסמונות עם דפורמציה שלדית מורכבת</b>: Treacher Collins syndrome, קרניוסינוסטוזיס תסמונתי (למשל Apert - הדורש לעיתים אוסטאוטומיית Le Fort III מקטעית), היפרטלוריזם.</li>
+  <li><b>שסע (cleft) ומחלות מולדות אחרות</b> עם עיוות שלד מולד או התפתחותי הדורש תכנון מדויק סביב שיניים שטרם בקעו ועצבים (למשל העצב האלוואולרי התחתון).</li>
+  <li><b>מקרים עם צורך במיקום מדויק של שתל עצם</b> (למשל costochondral graft בשחזור ראש-צוואר המנדיבולה).</li>
+</ul>
+
+<h2><span class="num">9</span> ראיות לתמיכה בשימוש - מה מראים המחקרים</h2>
+<p>סקירה שיטתית עדכנית של חמישה ניסויים קליניים אקראיים שהשוותה תכנון מסורתי (TSP) לתכנון וירטואלי (VSP) מצאה:</p>
+<ul>
+  <li>דיוק <b>דומה</b> בין השיטות בתזוזות סגיטליות (קדימה-אחורה).</li>
+  <li>VSP <b>מדויק משמעותית יותר</b> במיקום המקסילה הקדמית, ומדויק יותר בחיזוי שינויי רקמה רכה.</li>
+  <li>חולים שטופלו ב-VSP הראו <b>סימטריה טובה יותר</b> במישור הקורונרי.</li>
+  <li>VSP חסך זמן כולל, ולאחר החזר עלות ההשקעה בציוד - פרופיל העלות דומה ל-TSP.</li>
+</ul>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">C-A-P-P-S</span> ("כובע" - הקסדה שבונים למטופל לפני הניתוח)</h3>
+  <p>
+    <b>C</b> – <span class="term" dir="ltr">Capture</span> - לכידת הנתונים (CT/CBCT + סריקה תוך-פית + תצלום).<br>
+    <b>A</b> – <span class="term" dir="ltr">Align</span> - יישור/רישום כל מקורות הנתונים לחולה וירטואלי אחד.<br>
+    <b>P</b> – <span class="term" dir="ltr">Plan</span> - תכנון/סימולציה של האוסטאוטומיות והתזוזות (כולל yaw/pitch/roll).<br>
+    <b>P</b> – <span class="term" dir="ltr">Print</span> - הדפסת מדריכים וסדים ב-CAD/CAM.<br>
+    <b>S</b> – <span class="term" dir="ltr">Surgery</span> - ביצוע בפועל בחדר ניתוח לפי המדריכים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "קפטן" (Captain) שבונה למטופל <b>כובע (CAP) מגן</b> לפני שהוא יוצא לקרב (הניתוח): קודם הוא <b>לוכד</b> מידות מדויקות של הראש (Capture), <b>מיישר</b> את כל החלקים זה עם זה על השולחן (Align), <b>מתכנן</b> על הנייר איך הכובע צריך להתאים בסוף (Plan), <b>מדפיס</b> את החלקים במדפסת תלת-ממד (Print), ורק אז יוצא איתם ל<b>ניתוח</b> (Surgery) - חמשת שלבי ה-CAPPS, בדיוק כמו שמרכיבים כובע לפני שיוצאים לדרך.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>בניית ה-CAPPS - חמישה שלבים</title>
+    <path d="M120,150 Q250,60 380,150 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <rect x="90" y="150" width="320" height="16" rx="4" fill="#93c5fd" stroke="#2563eb"/>
+    <circle cx="170" cy="110" r="16" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+    <text x="170" y="115" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">C</text>
+    <circle cx="215" cy="88" r="16" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+    <text x="215" y="93" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">A</text>
+    <circle cx="260" cy="78" r="16" fill="#bbf7d0" stroke="#047857" stroke-width="2"/>
+    <text x="260" y="83" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">P</text>
+    <circle cx="305" cy="88" r="16" fill="#ddd6fe" stroke="#6d28d9" stroke-width="2"/>
+    <text x="305" y="93" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">P</text>
+    <circle cx="350" cy="110" r="16" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="350" y="115" font-size="14" text-anchor="middle" fill="#78350f" font-weight="700">S</text>
+    <text x="250" y="190" font-size="12" text-anchor="middle" fill="#374151">Capture → Align → Plan → Print → Surgery</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=hvyZ3GdlO9w" target="_blank">Virtual Surgical Planning for Orthognathic Surgery &amp; Maxillofacial Trauma – YouTube</a>
+    <div class="desc">ההרצאה המוטמעת למעלה - הדגמה מלאה של זרימת העבודה הקלינית.</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6631689/" target="_blank">Cone Beam Computed Tomography in Oral and Maxillofacial Surgery: An Evidence-Based Review – PMC</a>
+    <div class="desc">סקירה מבוססת-ראיות על שימושי CBCT בכירורגיית פה-לסת-פנים, כולל השוואת מינון קרינה ורזולוציה מול CT רפואי.</div>
+  </li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>נערה בת 16 מגיעה עם א-סימטריה פציאלית בולטת: הסנטר סוטה ימינה, קיים הפרש בגובה האוזניים, וקיימת מלוקלוזיה Class III עם עלייה מסוימת של המקסילה בצד ימין. הצוות המטפל שוקל האם לבצע תכנון מסורתי (מפרקן + קשת פנים) או תכנון וירטואלי. בבדיקה הקלינית מתגלה כי מסלול פתיחת הפה של המטופלת סוטה שמאלה מסגירה הרגילה עד לפתיחה מקסימלית, וכי מתוכננת תזוזה של המקסילה הכוללת תיקון cant (הורדת צד אחד והרמת הצד השני).</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע דווקא במטופלת הזו, עם סטייה משמעותית של מסלול פתיחת הפה וצורך בתיקון cant מקסילרי, עדיף לשקול ניתוח מנדיבולה-קודם (mandible-first) על פני מקסילה-קודם?</div>
+  <button class="opt" data-i="0">כי ניתוח מנדיבולה-קודם תמיד מהיר יותר טכנית</button>
+  <button class="opt" data-i="1">כי אם המקסילה תנותח ראשונה, יהיה קשה לחזות במדויק את מסלול פתיחת הפה הסוטה בעת בניית סד הביניים, מה שעלול להוביל למיקום שגוי של המקסילה</button>
+  <button class="opt" data-i="2">כי חוקית אסור לבצע תיקון cant לפני ניתוח מנדיבולרי</button>
+  <button class="opt" data-i="3">כי מנדיבולה-קודם מבטל את הצורך בכל סד ניתוחי</button>
+  <div class="explain">התשובה הנכונה: כאשר מתוכנן תיקון cant מקסילרי (הורדת צד אחד והרמת הצד השני) ויש למטופלת מסלול פתיחה סוטה מבדיקה קלינית, קשה מאוד לסמלץ נכון את פתיחת המנדיבולה בזמן בניית סד הביניים אם המקסילה מנותחת ראשונה - מה שעלול להוביל למיקום שגוי של המקסילה. ביצוע המנדיבולה קודם פותר את הבעיה הזו ומייצר תוצאה צפויה יותר. תשובה 1 שגויה - משך הניתוח אינו הסיבה. תשובה 3 שגויה חוקית/עובדתית. תשובה 4 שגויה - עדיין נדרש סד, רק סדר הבנייה שלו שונה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו ההבדל העיקרי בין רכישת נתונים ב-CT רפואי לבין CBCT מבחינת תכנון וירטואלי?</div>
+  <button class="opt" data-i="0">CBCT לא ניתן להמרה לפורמט DICOM</button>
+  <button class="opt" data-i="1">CT רפואי תמיד מדויק יותר מ-CBCT ולכן מועדף לתכנון וירטואלי</button>
+  <button class="opt" data-i="2">CT רפואי מבוצע בשכיבה ולכן דורש שלב נוסף של כיוון מחדש של הראש בתנוחה טבעית, בעוד CBCT מבוצע בעמידה/ישיבה ותופס ישירות את התנוחה הטבעית</button>
+  <button class="opt" data-i="3">אין הבדל מהותי בין השניים מבחינת תהליך התכנון</button>
+  <div class="explain">התשובה הנכונה: CT רפואי-סטנדרטי מבוצע כשהמטופל שוכב על הגב, ולכן נדרש שלב נוסף (למשל בעזרת גירוסקופ או רישום מול תצלום פנים תלת-ממדי) כדי להעביר את תנוחת הראש הטבעית (NHP) למרחב הוירטואלי. CBCT מבוצע בעמידה/ישיבה, כך שניתן לתעד ישירות את התנוחה הטבעית בזמן הסריקה. תשובה 1 שגויה - שני הפורמטים נשמרים ב-DICOM. תשובה 2 הפוכה - הפרק אינו קובע ש-CT "מדויק יותר" באופן גורף; לכל שיטה שיקולים שונים (CBCT דורש פרוסות &lt;0.4 מ"מ, CT &lt;1 מ"מ). תשובה 4 מתעלמת מהבדל קליני משמעותי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע נדרשת סריקה תוך-פית (או סריקת דגם) בפורמט STL בנוסף ל-CT/CBCT, ולא ניתן להסתפק בנתוני ה-CT/CBCT לבד לבניית הסדים?</div>
+  <button class="opt" data-i="0">כי נתוני CT/CBCT הם נתוני נפח (מבוססי פרוסות) ולא נתוני משטח, ולכן אינם מדויקים מספיק כדי ללכוד את פרטי השיניים והסגירה הדרושים לסד מדויק</button>
+  <button class="opt" data-i="1">כי סריקת STL זולה משמעותית מ-CT ולכן משתמשים בה מטעמי חיסכון בלבד</button>
+  <button class="opt" data-i="2">כי CT/CBCT אינו יכול לתעד כלל את מיקום הלסתות</button>
+  <button class="opt" data-i="3">כי חוק בארה"ב אוסר שימוש ב-CT לבדו לתכנון סדים</button>
+  <div class="explain">התשובה הנכונה: CT/CBCT מספק נתוני נפח (volume data) המבוססים על שילוב פרוסות של כ-1 מ"מ או פחות, וברזולוציה כזו פרטי השיניים והסגירה אינם נלכדים בדיוק מספיק לייצור סד מתאים. סריקת משטח (STL) מיועדת (via 3D surface dental scanner) לוכדת את הגיאומטריה המדויקת של השיניים. תשובה 2 (עלות) אינה הסיבה שמצוינת בפרק. תשובה 3 ו-4 שגויות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו תפקידו הייחודי של "מדריך מיקום" (positioning guide) לעומת "מדריך חיתוך" (cutting guide)?</div>
+  <button class="opt" data-i="0">מדריך מיקום מסמן היכן לבצע את קו האוסטאוטומיה בלבד</button>
+  <button class="opt" data-i="1">מדריך מיקום משמש רק לתיקוני רקמה רכה, לא לעצם</button>
+  <button class="opt" data-i="2">אין הבדל - שני המונחים מתארים את אותו כלי</button>
+  <button class="opt" data-i="3">מדריך מיקום מאפשר למקם מחדש את מקטע העצם המנותק (למשל Le Fort I) למיקום הסופי המדויק, באופן בלתי-תלוי במנדיבולה - ובכך פותר בעיה של הפרש בין CR ל-MIP</button>
+  <div class="explain">התשובה הנכונה: מדריך חיתוך (cutting guide) מכוון היכן לבצע את קו החיתוך, ואילו מדריך מיקום (positioning guide) עוזר למקם מחדש את המקטע העצמי שנותק (למשל לאחר Le Fort I) למיקום הסופי הרצוי באופן עצמאי, ללא תלות בעמדת המנדיבולה - כך שנפתרת הבעיה שנוצרת כשיש הפרש בין centric relation (CR) לבין maximal intercuspation (MIP). דוגמה שמופיעה בפרק: מערכת Orthognathic Positioning System (OPS). תשובה 1 מתארת רק מדריך חיתוך. תשובה 2 שגויה - יש הבדל ברור בתפקיד. תשובה 2 (השנייה, על רקמה רכה) שגויה עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו הממצא המרכזי של הסקירה השיטתית של חמשת הניסויים האקראיים שהשוותה תכנון מסורתי (TSP) לתכנון וירטואלי (VSP)?</div>
+  <button class="opt" data-i="0">VSP פחות מדויק מ-TSP בכל סוגי התזוזות</button>
+  <button class="opt" data-i="1">שתי השיטות דומות בדיוק בתזוזות סגיטליות, אך VSP מדויק משמעותית יותר במיקום המקסילה הקדמית ובחיזוי שינויי רקמה רכה, עם סימטריה קורונרית טובה יותר וחיסכון בזמן</button>
+  <button class="opt" data-i="2">VSP יקר משמעותית יותר מ-TSP גם לאחר החזר עלות ההשקעה</button>
+  <button class="opt" data-i="3">אין הבדל בין השיטות בשום פרמטר שנבדק</button>
+  <div class="explain">התשובה הנכונה: הסקירה השיטתית מצאה דיוק דומה בתזוזות סגיטליות, אך VSP עדיף משמעותית במיקום המקסילה הקדמית, בחיזוי שינויי רקמה רכה, ובסימטריה קורונרית - וחסך זמן כולל, כאשר לאחר "recoup" של עלות ההשקעה בציוד פרופיל העלות דומה בין השיטות. תשובה 1 הפוכה מהממצאים. תשובה 3 שגויה - לאחר החזר ההשקעה העלויות דומות, לא ש-VSP יקר יותר תמיד. תשובה 4 מתעלמת מההבדלים שכן נמצאו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה מהבאים הוא ההסבר הנכון לתפקיד תיקון ה"pitch" (מישור הסגירה) בתכנון וירטואלי, ומה ההשפעה שלו?</div>
+  <button class="opt" data-i="0">Pitch מתאר תזוזה רוחבית של קו האמצע השיני בלבד, וללא השפעה על פרופיל הפנים</button>
+  <button class="opt" data-i="1">Pitch מתייחס אך ורק לתיקון א-סימטריה בין צד ימין לשמאל של הפנים</button>
+  <button class="opt" data-i="2">Pitch הוא זווית מישור הסגירה ביחס למישור פרנקפורט (כ-9°, טווח 2°-17°); סיבוב עם כיוון השעון מגדיל בליטת מקסילה ומקטין בליטת מנדיבולה, וההפך בסיבוב נגד כיוון השעון</button>
+  <button class="opt" data-i="3">תיקון Pitch מבוצע אך ורק בניתוחי לסת בודדת (single-jaw), לא בניתוחים דו-לסתיים</button>
+  <div class="explain">התשובה הנכונה: Pitch הוא הזווית של מישור הסגירה (occlusal plane) ביחס למישור פרנקפורט, כ-9° בממוצע (טווח תקין 2°-17°). סיבוב עם כיוון השעון "מציב" (steepens) את מישור הסגירה ומגדיל את בליטת המקסילה תוך הקטנת בליטת המנדיבולה (ולהפך בכיוון הנגדי) - השפעה משמעותית על בליטת הסנטר ומיקום ה-ANS. תשובה 1 מבלבלת עם yaw. תשובה 2 מבלבלת עם roll (ה-cant). תשובה 4 שגויה - תיקון pitch שייך לשלבי ניתוח דו-לסתי המתוארים בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>תכנון וירטואלי תלת-ממדי (VSP)</b> מחליף את שרשרת התהליך המסורתית (הטבעות → דגמי גבס → קשת פנים → מפרקן → סד) בתהליך דיגיטלי רציף אחד; מרבית הטעות המצטברת נמצאת ברכישת הנתונים, לא בעיבוד הדיגיטלי.</li>
+    <li>נתוני הבסיס: <b>CT/CBCT</b> (שלד, DICOM) + <b>סריקה תוך-פית</b> (שיניים, STL) + <b>תצלום תלת-ממד</b> (רקמה רכה, OBJ) + בדיקה קלינית. CBCT (עמידה) לא דורש תיקון תנוחת ראש, CT רפואי (שכיבה) כן.</li>
+    <li>הסימולציה מתקנת א-סימטריה מקסילרית ואז מביאה את המנדיבולה לסגירה, כולל תיקון <b>pitch (מישור סגירה), roll (cant), yaw (סיבוב קשת)</b>.</li>
+    <li>תוצרים: מדריכי חיתוך, מדריכי מיקום (עצמאיים מהמנדיבולה - פותרים הפרש CR-MIP), סדי ביניים וסופיים, תבניות שתל עצם - לעיתים מאפשרים "ניתוח ללא סד".</li>
+    <li>VSP חופשי מבחירת סדר ניתוח (מקסילה/מנדיבולה קודם) - יתרון גדול בניתוח דו-לסתי; פחות רלוונטי בניתוח לסת בודדת.</li>
+    <li>ראיות: VSP מדויק יותר ממודל מסורתי במיקום מקסילה קדמית ובחיזוי רקמה רכה, עם סימטריה טובה יותר וחיסכון בזמן; דיוק דומה בתזוזות סגיטליות.</li>
+    <li>אינדיקציות בולטות: Class II/III, א-סימטריה פציאלית, מיקרוזומיה קרניופציאלית, Treacher Collins, קרניוסינוסטוזיס תסמונתי (Apert), שסע.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

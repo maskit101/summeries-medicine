@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: מניעה וטיפול בסיבוכים לאחר הגדלת חזה ומסטופקסיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .surgery{background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 7: מניעה וטיפול בסיבוכים לאחר הגדלת חזה ומסטופקסיה <span class="term" dir="ltr">Prevention and Management of Complications Following Breast Augmentation and Mastopexy</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | Section I: Aesthetic Breast Surgery, פרק 7, מאת M. Bradley Calobrace ו-Chester J. Mays</div>
+
+<p>הגדלת חזה (<span class="term" dir="ltr">breast augmentation</span>) היא אחת הפרוצדורות האסתטיות הנפוצות ביותר בעולם, אך שיעור הניתוח החוזר (<span class="term" dir="ltr">reoperation</span>) מוערך ב-12% ועד 30-40%. הפרק הזה עוסק בכל הסיבוכים המרכזיים של הגדלת חזה, מסטופקסיה (הרמת חזה) והשילוב ביניהן (<span class="term" dir="ltr">augmentation mastopexy</span>) - איך מונעים אותם ואיך מטפלים בהם כשהם כבר קרו. זהו פרק "מעשי" בעיקרו: הבנת שרשרת הגורמים לכל סיבוך היא המפתח להחלטה הניתוחית הנכונה.</p>
+
+<h2><span class="num">1</span> עקרון-על: תכנון טרום-ניתוחי כבסיס למניעה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל סיבוך בפרק הזה חוזר לאותו רעיון מרכזי: <b>ההתאמה בין המשתל (<span class="term" dir="ltr">implant</span>) לבין מעטפת הרקמה הרכה (<span class="term" dir="ltr">soft tissue envelope</span>) של המטופלת קובעת את התוצאה יותר מכל דבר אחר.</b>
+    כאשר המשתל גדול/כבד/בולט מדי ביחס לעובי ולאיכות הרקמה שמכסה אותו - נוצרת אטרופיה של הפרנכימה, מתיחת עור, ולבסוף קמטים, מישוש המשתל, וירידת המשתל (<span class="term" dir="ltr">malposition</span>). כאשר הכיס (<span class="term" dir="ltr">pocket</span>) נחתך בצורה לא מדויקת (יותר מדי / פחות מדי דיסקציה) - המשתל נודד לכיוון הלא נכון. הבחירות המרכזיות שיש לקבוע מראש: סוג המשתל (סיליקון/סליין), משטח הקליפה (חלק/מחוספס), צורה (עגול/אנטומי), מיקום הכיס (תת-בלוטתי/תת-פאשיאלי/תת-שרירי/דואל-פליין), וגישת החתך (תת-שדי, פריאראולרי, בית-שחי, טבור), וכן מיקום קפל תת-השד (<span class="term" dir="ltr">inframammary fold - IMF</span>).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ההתאמה בין משתל לרקמה</title>
+  <rect x="700" y="20" width="160" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="780" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כיסוי רקמה לא מספיק</text>
+  <text x="780" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">משתל גדול/כבד מדי</text>
+
+  <rect x="470" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">אטרופיה של הפרנכימה</text>
+  <text x="550" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">מתיחת עור מתמשכת</text>
+
+  <rect x="240" y="20" width="160" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="320" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">קמטים (rippling)</text>
+  <text x="320" y="63" font-size="12" text-anchor="middle" fill="#065f46">מישוש המשתל</text>
+
+  <rect x="20" y="20" width="160" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מלפוזיציה/עיוות</text>
+  <text x="100" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">bottoming-out, double-bubble</text>
+
+  <polygon points="660,50 700,44 700,56" fill="#374151"/>
+  <line x1="700" y1="50" x2="660" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,50 470,44 470,56" fill="#374151"/>
+  <line x1="470" y1="50" x2="430" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,50 240,44 240,56" fill="#374151"/>
+  <line x1="240" y1="50" x2="200" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="240" y="120" width="620" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="550" y="148" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מניעה: הערכת "עובי צביטה" (pinch thickness) &#8805; 2 ס"מ, מיקום כיס נכון, גודל משתל מותאם</text>
+  <text x="550" y="166" font-size="12" text-anchor="middle" fill="#78350f">תכנון טרום-ניתוחי מדויק &#8592; מונע את כל השרשרת</text>
+  <polygon points="550,120 544,100 556,100" fill="#b45309"/>
+  <line x1="550" y1="120" x2="550" y2="100" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">2</span> סיבוכים מוקדמים של הגדלת חזה</h2>
+
+<h3>המטומה (<span class="term" dir="ltr">Hematoma</span>)</h3>
+<p>שכיחות של כ-1% אחרי הגדלת חזה ראשונית. <b>מנגנון:</b> דימום מכלי דם קטנים שלא הושג עליהם המוסטזיס (עצירת דימום) מלאה במהלך יצירת הכיס - במיוחד כשמבצעים דיסקציה "עיוורת" או קהה (<span class="term" dir="ltr">blind/blunt dissection</span>) בלי בקרה חזותית ישירה על שטיפת הדימום. הדם שמצטבר בכיס דוחק, גורם לכאב, נפיחות, שטפי דם וכאב חד במישוש או בתנועת יד. <b class="key">חשוב לזכור: אין לנהל המטומה משמעותית סביב משתל בצורה שמרנית (המתנה)</b> - כי דם שנשאר יכול להביא לריפוי ממושך, בעיות פצע, זיהום, ובסופו של דבר קפסולה (capsular contracture) עתידית. הטיפול: חזרה לחדר ניתוח לניקוז ההמטומה, השגת המוסטזיס, שטיפת הכיס והנחת נקז - בדרך כלל בלי צורך להחליף את המשתל עצמו. מניעה: המוסטזיס קפדני תוך-ניתוחי, והנחיית המטופלת להימנע מתרופות המפריעות לקרישה (כגון אספירין, NSAIDs) לפחות שבועיים לפני הניתוח.</p>
+
+<h3>זיהום (<span class="term" dir="ltr">Infection</span>)</h3>
+<p>שכיחות עד כ-2% בהגדלת חזה ראשונית. <b>מנגנון:</b> רקמת השד וצינורות החלב (<span class="term" dir="ltr">breast ducts</span>) מאכלסים באופן טבעי חיידקים (פלורה אנדוגנית) שיכולים "להיסחף" לתוך הכיס בזמן החדרת המשתל. חיידקים אלה נצמדים למשטח המשתל ויכולים ליצור ביופילם (<span class="term" dir="ltr">biofilm</span>) - שכבה מגנה שמסתירה אותם מהמערכת החיסונית ומאנטיביוטיקה. מניעה: ניקוי עור טרום-ניתוחי וחיטוי בכלורהקסידין (מכסה גם MRSA), אנטיביוטיקה פריאופרטיבית, השקיית הכיס באנטיביוטיקה, שימוש במשפך הכנסה (<span class="term" dir="ltr">insertion funnel</span>, כגון Keller funnel) או מגן פטמה (Tegaderm) לטכניקת "אל-מגע" (<span class="term" dir="ltr">no-touch technique</span>) שמפחיתה מגע יד-משתל וזיהום. טיפול: חקירה ניתוחית, תרביות, שטיפה ודברידמנט של הכיס עם נקז; ברוב המקרים מוציאים את המשתל ומחליפים אותו כעבור כ-6 חודשים. ניסיון "הצלה" (<span class="term" dir="ltr">salvage</span>) עם אנטיביוטיקה ממושכת אפשרי אם המטופלת יציבה קלינית והזיהום מוגבל, אך כישלון הצלה מחייב הוצאת המשתל.</p>
+
+<h3>שינויי תחושה בפטמה (<span class="term" dir="ltr">Sensation changes</span>)</h3>
+<p>היפואסתזיה (ירידת תחושה) או היפראסתזיה (עודף תחושה) נגרמות בעיקר מפגיעה בעצב הבין-צלעי הרביעי (<span class="term" dir="ltr">4th intercostal nerve</span> - העצבוב העיקרי) או מהענפים החופפים של העצב השלישי והחמישי, בדרך כלל עקב דיסקציה חדה ואגרסיבית בפינה הלטרלית של הכיס. אין הבדל משמעותי בין חתך פריאראולרי לתת-שדי בסיכון זה.</p>
+
+<h3>דיפלציה וקרע במשתל (<span class="term" dir="ltr">Deflation and Implant Rupture</span>)</h3>
+<p>משתלי סליין: קרע במעטפת מוביל לדליפה מיידית ומוחלטת של הסליין (חומר לא מזיק) לרקמה הסובבת. משתלי סיליקון: שיעור קרע נע בין 10% ל-25% ב-10 שנים, תלוי בדור המשתל - משתלי דור 5 (ג'ל מגובש/קוהסיבי יותר) פחות נוטים ל"בריחת" סיליקון מהקליפה. בדיקת הבחירה לאבחון קרע סיליקון היא <span class="term" dir="ltr">MRI</span> או אולטרסאונד בהפרדה גבוהה (על פי הנחיות ה-FDA).</p>
+
+<h2><span class="num">3</span> קונטרקטורה קפסולרית (<span class="term" dir="ltr">Capsular Contracture</span>) - הסיבוך השכיח ביותר</h2>
+<div class="mechanism">
+  <p class="chain">
+    כל משתל בגוף מעורר תגובת גוף זר (<span class="term" dir="ltr">foreign body reaction</span>) שיוצרת קפסולה סביבו - זה תקין ובלתי נמנע. קונטרקטורה קפסולרית קלינית משמעותית מתפתחת כאשר יש <b>יצירת צלקת מוגברת (עודף קולגן) עם התכווצות והתעבות הקפסולה</b>, שדוחקת את המשתל ומעוותת אותו.
+    שתי תיאוריות מרכזיות מסבירות <b>למה</b> זה קורה: (1) <b>תיאוריית הצלקת ההיפרטרופית</b> - מיופיברובלסטים (<span class="term" dir="ltr">myofibroblasts</span>, תאים בעלי יכולת התכווצות) מגורים בתוך הקפסולה ומייצרים סיבי קולגן שגורמים לכיווץ מתמשך; גירויים כמו דליפת ג'ל סיליקון, דם או סרומה (נוזל) בכיס יכולים להתחיל את התהליך. (2) <b>תיאוריית הזיהום התת-קליני</b> (התיאוריה המצוטטת ביותר כיום) - תהליך זיהומי כרוני סמוי, הממוקם צמוד לקליפת המשתל בתוך ביופילם מיקروסקופי שמגן על החיידקים מפני המערכת החיסונית התאית וההומורלית ומאנטיביוטיקה - כלומר <b>זו לא "זיהום קליני" רגיל אלא דלקת כרונית סאב-קלינית</b> שגורמת לגירוי מתמשך ולסטימולציה של יצירת קולגן.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון קונטרקטורה קפסולרית</title>
+  <rect x="700" y="20" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="780" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">ביופילם חיידקי תת-קליני</text>
+  <text x="780" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">על קליפת המשתל</text>
+  <text x="780" y="80" font-size="11" text-anchor="middle" fill="#7f1d1d">(מוגן ממערכת החיסון)</text>
+
+  <rect x="470" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">דלקת כרונית סאב-קלינית</text>
+  <text x="550" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">גירוי מתמשך של הקפסולה</text>
+
+  <rect x="240" y="20" width="160" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="320" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">מיופיברובלסטים פעילים</text>
+  <text x="320" y="63" font-size="12" text-anchor="middle" fill="#065f46">ייצור עודף קולגן</text>
+
+  <rect x="20" y="20" width="160" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">התעבות + כיווץ קפסולה</text>
+  <text x="100" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">נוקשות, עיוות, כאב</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,55 470,49 470,61" fill="#374151"/>
+  <line x1="470" y1="55" x2="430" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,55 240,49 240,61" fill="#374151"/>
+  <line x1="240" y1="55" x2="200" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="240" y="140" width="620" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="550" y="163" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">גורמים נוספים: דם/סרומה בכיס, חלקיקים זרים (אבקה, מוך), אי הקפדה על טכניקת "אל-מגע"</text>
+</svg>
+
+<h3>סיווג Baker לקונטרקטורה קפסולרית</h3>
+<p>מערכת הסיווג הקלינית שהוצעה על ידי Baker ב-1975 עדיין בשימוש נרחב היום:</p>
+<table>
+  <thead><tr><th>דרגה</th><th>ממצא במישוש ובמראה</th></tr></thead>
+  <tbody>
+    <tr><td><b>Baker I</b></td><td>השד רך; המשתל לא נמוש</td></tr>
+    <tr><td><b>Baker II</b></td><td>השד מוצק יותר; המשתל נמוש אך לא נראה</td></tr>
+    <tr><td><b>Baker III</b></td><td>השד מוקשח; המשתל נמוש <b>וגם נראה</b> (עיוות ניכר)</td></tr>
+    <tr><td><b>Baker IV</b></td><td>השד קשה, מעוות, <b>כואב</b>; המשתל נמוש ונראה</td></tr>
+  </tbody>
+</table>
+<p class="key-box">התערבות ניתוחית שמורה בעיקר לדרגות III ו-IV, שבהן יש עיוות אסתטי ניכר ולעיתים אי-נוחות וכאב. דרגות I-II מנוהלות לרוב שמרנית.</p>
+
+<h3>אמצעי מניעה מוכחים</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אמצעי</th><th>עיקרון</th></tr></thead>
+  <tbody>
+    <tr><td>טכניקת "אל-מגע" (<span class="term" dir="ltr">no-touch</span>)</td><td>מפחיתה מגע יד עם המשתל וזיהום</td></tr>
+    <tr><td>מגני פטמה (<span class="term" dir="ltr">nipple shields</span>)</td><td>חוסמים זליגת חיידקים מצינורות החלב</td></tr>
+    <tr><td>השקיית הכיס באנטיביוטיקה (במיוחד תמיסת בטדין)</td><td>הפחתת עומס חיידקי בכיס</td></tr>
+    <tr><td>משפך הכנסה (<span class="term" dir="ltr">insertion sleeve</span>, למשל Keller funnel)</td><td>מונע מגע ישיר של המשתל עם עור/פצע</td></tr>
+    <tr><td>כיס תת-שרירי (<span class="term" dir="ltr">submuscular</span>)</td><td>כיסוי רקמה נוסף, פחות מגע עם רקמת שד/צינורות</td></tr>
+    <tr><td>משתלים מחוספסים (<span class="term" dir="ltr">textured</span>)</td><td>נקשרו לשיעורים נמוכים יותר של קונטרקטורה - אך שימושם ירד עקב BIA-ALCL (ראו סעיף 5)</td></tr>
+    <tr><td>חתך תת-שדי (<span class="term" dir="ltr">inframammary</span>)</td><td>פחות מגע עם רקמת שד/צינורות חלב</td></tr>
+    <tr><td>משתלים קוהסיביים בעלי צורה (<span class="term" dir="ltr">cohesive shaped</span>)</td><td>יציבות משתל גבוהה יותר</td></tr>
+  </tbody>
+</table>
+</div>
+<p>טיפול לא-ניתוחי אפשרי בשלבים מוקדמים: עיסוי ותזוזה ידנית, נוגדי דלקת ו/או ויטמין E, אולטרסאונד חיצוני. תרופות אנטגוניסטיות לרצפטור לויקוטריאן (המשמשות לאסתמה) כמו <span class="term" dir="ltr">zafirlukast (Accolate)</span> ו-<span class="term" dir="ltr">montelukast (Singulair)</span> הראו יעילות מסוימת בהיפוך סימנים קליניים מוקדמים - אך יש להשתמש בזהירות עקב תופעות לוואי אפשריות, ויעילות פוחתת כשהקונטרקטורה כבר "מבוססת".</p>
+
+<h3>טיפול ניתוחי בקונטרקטורה</h3>
+<div class="surgery">
+  <h4>עיתוי</h4>
+  <p>עדיף לנתח לאחר שהקונטרקטורה התייצבה (3-6 חודשים) - ניתוח בזמן תהליך דלקתי פעיל קשה יותר טכנית ונושא סיכון גבוה יותר להישנות.</p>
+  <h4>שלבים עיקריים</h4>
+  <p>ההחלטה המרכזית: האם לשמר את הקפסולה או להסירה. <b>קפסולוטומיה</b> (חיתוך/שחרור הקפסולה בלי הסרתה) - שיעור הישנות גבוה יחסית. <b>כיס נאו-סאבפקטוראלי</b> (<span class="term" dir="ltr">neosubpectoral pocket</span>) - יצירת כיס חדש ולגמרי לגמרי, מבודד מהקפסולה המקורית (החשודה כמזוהמת). <b>קפסולקטומיה מלאה</b> - הסרת כל הקפסולה, השיטה הנפוצה ביותר, במיוחד כאשר חושדים בתיאוריית הזיהום. <b>קפסולקטומיה חלקית</b> - כאשר הסרה מלאה מסוכנת מדי (למשל הצמדות לדופן החזה).</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>שיקול נוסף: האם להניח מטריצה דרמלית אצלולרית (<span class="term" dir="ltr">ADM - Acellular Dermal Matrix</span>) בחלק התחתון של הכיס. ADM קושרה לשיעורי הישנות נמוכים מאוד, אך יש לה מחיר נוסף משמעותי, זמן ניתוח ארוך יותר, קושי טכני, וסיכון לסיבוכים נוספים (אי-קליטה של ה-ADM, סרומות, זיהומים).</p>
+  <h4>החלמה</h4>
+  <p>ניקוזים לרוב מונחים; מעקב אחר סימני הישנות (התקשות מחודשת). מומלץ המשך המעקב ארוך טווח.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/leetCvixMCA" title="Ways to Treat Capsular Contracture - Plastic Surgery Hot Topics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">דיון של מנתחים פלסטיים בכירים (Rohrich, Hidalgo, Weinstein) על אפשרויות הטיפול בקונטרקטורה קפסולרית - כולל השיקולים בין קפסולקטומיה, קפסולוטומיה והחלפת משתל.</p>
+
+<h2><span class="num">4</span> מלפוזיציה של המשתל (<span class="term" dir="ltr">Implant Malposition</span>)</h2>
+<p>הסיבוך השני בשכיחותו. המשתל יכול "לנדוד" לארבעה כיוונים, כל אחד עם מנגנון סיבתי שונה:</p>
+<table>
+  <thead><tr><th>כיוון</th><th>מנגנון עיקרי</th><th>מניעה/עיקרון תיקון</th></tr></thead>
+  <tbody>
+    <tr><td><b>לטרלי</b> (השכיח ביותר)</td><td>דיסקציה מוגזמת של הכיס הצדדי; דופן חזה א-סימטרית שמזיזה משתלים</td><td>משתל מחוספס, רשת סינתטית, הימנעות מדיסקציית יתר</td></tr>
+    <tr><td><b>תחתון</b> (double-bubble / stretch)</td><td>ניהול שגוי של הורדת ה-IMF - דיסקציה עמוקה מדי לא משחררת את המבנה הפאשיאלי המקורי של הקפל, והמשתל "יורד" מתחת לקפל הישן שנשאר שלם; או משתל גדול/כבד מדי לעומת יכולת הקוטב התחתון</td><td>דיסקציה שטחית נכונה בהורדת ה-IMF; בחירת גודל משתל מותאם</td></tr>
+    <tr><td><b>מדיאלי</b> (סימסטיה - <span class="term" dir="ltr">symmastia</span>)</td><td>דיסקציה מוגזמת של הכיס המדיאלי, שחרור-יתר של השריר הפקטורלי המדיאלי, או משתל רחב מדי</td><td>שימור ההיצמדויות המדיאליות של הפקטורליס, בחירת רוחב משתל נכון</td></tr>
+    <tr><td><b>עליון</b></td><td>מיד לאחר ניתוח - תת-דיסקציה של הקוטב התחתון; מאוחר יותר (חודשים-שנים) - קונטרקטורה קפסולרית מתפתחת</td><td>ניהול נכון של הקוטב התחתון וה-IMF</td></tr>
+  </tbody>
+</table>
+<p><b>תיקון:</b> שינויים בכיס עצמו (קפסולוראפיה בטכניקת "פופקורן" (<span class="term" dir="ltr">popcorn capsulorrhaphy</span> - שימוש במלקחיים ואלקטרוקאוטר לכיווץ תרמי של קפסולה דקה) או תפירה, פלאפים קפסולריים), או יצירת כיס נאו-סאבפקטוראלי/נאו-סאבגלנדולרי חדש עם השחלת הכיס הישן וסגירתו בתפרים. הנחת רשת/ADM יכולה לתמוך בתיקון הכיס ובמיקום המשתל.</p>
+
+<h2><span class="num">5</span> קמטים ורוטטים (<span class="term" dir="ltr">Wrinkling/Rippling</span>) ועיוות אנימציה</h2>
+<p><b>קמטים/רוטטים:</b> תלויים בעיקר בכיסוי הרקמה - ככל שהמשתל קרוב יותר לעור בלי כיסוי מספק (משתל מעל השריר, רקמה דקה, משתלי סליין, משתלי מחוספסים, ג'ל תת-מלא), כך גדל הסיכוי לקמטים נראים/נמושים. כיס תת-שרירי (<span class="term" dir="ltr">subpectoral</span>) - בין השריר הפקטורלי הגדול לדופן החזה - נותן את מירב הכיסוי, שיעורי קונטרקטורה נמוכים יותר, קו עליון טבעי ותמיכה טובה יותר. נדרש עובי צביטה עליון (<span class="term" dir="ltr">upper pole pinch thickness</span>) של לפחות 2 ס"מ להנחת משתל מעל השריר. טיפול: החלפה למיקום תת-שרירי, החלפת סוג המשתל (סליין&#8594;סיליקון, מחוספס&#8594;חלק, קוהסיבי יותר), השתלת שומן (<span class="term" dir="ltr">fat grafting</span>), או הנחת מטריצת רקמה רכה.</p>
+<p><b>עיוות אנימציה (<span class="term" dir="ltr">animation deformity</span>):</b> ייחודי למשתלים תת-שריריים - כאשר השריר הפקטורלי מתכווץ (בזמן פעילות גופנית/הרמת משקולות), המשתל "זז" איתו ויוצר עיוות נראה לעין. בכ-15% מהמטופלות בעלות משתל תת-שרירי דווח עיוות בינוני-חמור. הכיס התת-בלוטתי/תת-פאשיאלי מונע לגמרי את התופעה (יתרון), אך יש לשקול זאת מול היתרונות של המיקום התת-שרירי (כיסוי, קונטרקטורה). תיקון: המרה לכיס תת-בלוטתי/תת-פאשיאלי (אם יש כיסוי רקמה מספיק), או יצירת כיס נאו-סאבפקטוראלי עם הרחבת ה-dual plane (לעיתים עם ADM/רשת כהמשך קאודלי של השריר).</p>
+
+<h2><span class="num">6</span> לימפומה תאית גדולה אנפלסטית הקשורה למשתל (<span class="term" dir="ltr">BIA-ALCL</span>)</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b class="key">BIA-ALCL היא לא סרטן שד - היא לימפומה שאינה הודג'קין (Non-Hodgkin lymphoma), סרטן של מערכת החיסון, שמתפתחת בתוך הקפסולה סביב המשתל.</b> כמעט כל המקרים בהם ידוע היסטוריית המשתל היו קשורים למשתל <b>מחוספס</b> אחד לפחות (בעיקר מסוג "salt-loss texturing"). בשנת 2019 Allergan ביצעה ריקול עולמי של כל משתלי Biocell המחוספסים.
+    המנגנון המוצע: דלקת כרונית - כנראה תגובה חיסונית כרונית לחיידקים מסוימים על משטח המשתל, כשהמרקם המחוספס פועל כ"מגבר פסיבי" בזכות שטח פנים גדול יותר (יותר מקום להיצמדות חיידקים/ביופילם), ולא בהכרח כגורם ישיר.
+  </p>
+</div>
+<p><b>ביטוי קליני:</b> הופעה מאוחרת (בממוצע כ-8-9 שנים אחרי ההשתלה) של אחד מאלה: אסיפת נוזל פריפרוסתטי מאוחר (<span class="term" dir="ltr">late seroma</span>), מסה הצמודה לקפסולה, שחיקת גידול דרך העור, מעורבות בלוטות לימפה, או גילוי מקרי בזמן ניתוח רוויזיה.</p>
+<p><b>אבחנה:</b> בכל מטופלת עם סרומה מאוחרת (מוגדרת: שנה או יותר לאחר ניתוח המשתל) - יש לבצע שאיבת נוזל בהנחיית הדמיה ובדיקת הנוזל לתרבית, ציטומטריית זרימה (<span class="term" dir="ltr">flow cytometry</span>), אימונוהיסטוכימיה ל-<span class="term" dir="ltr">CD30</span> (סמן ייחודי לתאי הלימפומה), ובלוק תאים ציטולוגי. כל סרומה מאוחרת או קונטרקטורה קפסולרית שמלווה במסה - יש לשלול BIA-ALCL.</p>
+<p><b>טיפול:</b> גם אם אין ממצא זיהומי או ניאופלסטי (אידיופטי), התערבות ניתוחית מיועדת - קפסולקטומיה מלאה עם/בלי החלפת משתל. אם BIA-ALCL מאושר - נדרשת קפסולקטומיה <span class="term" dir="ltr">en bloc</span> (הוצאה בגוש שלם ללא פתיחת הקפסולה). דירוג שלב (<span class="term" dir="ltr">staging</span>) עם <span class="term" dir="ltr">PET-CT</span> הוא חובה, וקובע האם דרוש טיפול נוסף (כימותרפיה ו/או הקרנות).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/cdThm5MGVhU" title="BIA-ALCL Symptoms, Diagnosis, and Treatment - Mark Clemens MD, MD Anderson" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה של ד"ר Mark Clemens (MD Anderson Cancer Center) - אחד המחברים המצוטטים ביותר בפרק זה עצמו על BIA-ALCL - על תסמינים, אבחנה וטיפול.</p>
+
+<h2><span class="num">7</span> סיבוכים במסטופקסיה (<span class="term" dir="ltr">Mastopexy</span>)</h2>
+<h3>איסכמיה לפטמה-עטרה (NAC) - הסיבוך המדאיג ביותר</h3>
+<p>סיבוכים מוקדמים נדירים יחסית במסטופקסיה, אך איסכמיה לקומפלקס פטמה-עטרה (<span class="term" dir="ltr">nipple-areola complex - NAC</span>) או לפלאפי העור היא הדאגה המרכזית. <b>מנגנון:</b> לרוב לא מדובר בבעיה בפדיקל (עצמו) אלא <b>במתח מוגזם על סגירת העור</b> ונפח עודף מתחת לפלאפים שדוחס את כלי הדם המזינים. אם מזוהה בחדר הניתוח - יש להסיר את כל התפרים ולבדוק שיפור בזרימה (צבע, מילוי נימי - <span class="term" dir="ltr">capillary refill</span>, דימום ממקור דקירה). יש לוודא שהפדיקל חופשי ממתח ולא מפותל. ניתן להשתמש בניטרוגליצרין מקומי או DMSO (דימתיל סולפוקסיד) לשיפור החזר ורידי. אם הסגירה הדוקה מדי בגלל נפח עודף - יש לשקול כריתת נפח נוסף להפחתת מתח הסגירה. במקרי ספק - אפשר להשאיר את ה-NAC לא מחובר ולסגור בעיכוב. כמוצא אחרון - המרה ל<b>שתל פטמה חופשי</b> (<span class="term" dir="ltr">free nipple graft</span>) אם זרימת הפדיקל לא מספקת למרות המאמצים.</p>
+
+<h3>המטומה וסרומה במסטופקסיה</h3>
+<p>המטומות מופיעות בדרך כלל ב-24 השעות הראשונות, אך המטומה מאוחרת (יום 10-14) שכיחה גם היא - נגרמת כשקרישי הדם שנשארו על קצות כלי הדם המקוטרים מתחילים להתמוסס עם עליית רמת הפעילות. המטומה קטנה יכולה להיספג לבד; המטומה משמעותית מחייבת חקירה, ניקוז וניקוז חוזר. סרומות מנוהלות שמרנית עם שאיבות סדרתיות.</p>
+
+<h3>סיבוכים מאוחרים</h3>
+<p>צלקות ירודות, פטוזיס חוזר, "bottoming out" (ראו סעיף 8), א-סימטריה של ה-NAC או השד, עיוותי קונטור, נמק שומני (<span class="term" dir="ltr">fat necrosis</span>) - נגרם מאיסכמיה של הרקמה עקב הדיסקציה, מתח או תפרים; לרוב פשוט נצפה אם קטן, אך כריתה נדרשת אם משנה צורה/רכות או מפריע למעקב סרטן - ואובדן נפח קוטב עליון (הממצא המאוחר השכיח ביותר, בין אם פדיקל תחתון ובין אם עליון). <b>מלפוזיציה של ה-NAC</b> - נמוך/גבוה/לא-מרכזי מהמרידיאן. היחס האידיאלי בין קוטב עליון לתחתון (לפי ניתוח מורפומטרי) הוא <b class="key">45:55</b>. NAC נמוך ניתן לתקן בקלות יחסית (הרמה מחדש); <b>NAC גבוה מדי כמעט בלתי אפשרי לתקן</b> - לכן יש להימנע ממנו בכל מחיר בזמן הניתוח.</p>
+
+<h2><span class="num">8</span> מסטופקסיה משולבת בהגדלה (<span class="term" dir="ltr">Augmentation Mastopexy</span>) - שתי תבניות פטוזיס חוזר</h2>
+<p>ניתוח זה מאתגר יותר טכנית כי הוא כולל <b>הפחתה</b> של מעטפת העור <b>יחד עם</b> הגדלת נפח השד - שני כוחות מנוגדים שדורשים איזון עדין. הפרק מגדיר שתי תבניות עיקריות לפטוזיס חוזר, שחשוב מאוד להבדיל ביניהן כי הטיפול שונה:</p>
+
+<h3>פסאודופטוזיס / "Bottoming-out"</h3>
+<div class="mechanism">
+  <p class="chain">
+    ירידה (<span class="term" dir="ltr">descent</span>) של <b>המשתל עצמו</b> יחד עם מתיחת הקוטב התחתון, שגורמת לאובדן נפח קוטב עליון עם או בלי מלפוזיציה של ה-NAC. הכיס עצמו <b>רופף ומתוח</b>. שכיח יותר במטופלות עם אלסטיות עורית מוגזמת (למשל אחרי הריון/הנקה או ירידת משקל משמעותית), שלהן לרוב גם קפסולה דקה שמעניקה תמיכה מינימלית.
+  </p>
+</div>
+<p>גורמים (Box 7.2): מסטופקסיה לא מספקת/בלתי הולמת, קיצור לא מספיק של הרגל האנכית, בחירת משתל לא מתאימה (גדול מדי, חלק, פרופיל גבוה), דבולקינג (הפחתת רקמה) לא מספיק של הקוטב התחתון, וריפיון עור ורקמה רכה.</p>
+<p><b>תיקון:</b> מסטופקסיה רוויזיונית - הרמה מחודשת של ה-NAC והידוק הקוטב התחתון. יש לתכנן את מיקום ה-NAC ומידות הכריתה ולוודא אותם בשיטת <span class="term" dir="ltr">tailor-tacking</span> (הצמדה זמנית בתפרים לפני ביצוע החתך הסופי) לפני שמתחייבים. במקרה שהמשתל ירד גם מתחת לקו ה-IMF - יש "לשלב" מחדש את העור הבטני שהצטרף לקוטב התחתון בחזרה לבטן, ולבטל את הקפסולה מתחת למיקום ה-IMF הנכון (בעזרת קפסולוראפיה "פופקורן"/תפר, או יצירת כיס נאו-סאבפקטוראלי) כדי למנוע מהמשתל לרדת שוב.</p>
+
+<h3>עיוות מפל (<span class="term" dir="ltr">Waterfall / Snoopy Deformity</span>)</h3>
+<div class="mechanism">
+  <p class="chain">
+    כאן <b>המשתל יציב</b> בכיסו - התופעה היא ירידת <b>רקמת השד עצמה</b> "מעל" משתל יציב, ללא התארכות המרחק פטמה-קפל ולעיתים קרובות עם שימור נפח הקוטב העליון. זהו חוסר-הרמוניה בין יציבות המשתל ליציבות הרקמה הרכה מעליו - הכיס <b>יציב מדי או צר מדי</b> (למשל עקב קונטרקטורה קפסולרית מוקדמת, כגון דרגה 2), כך שהוא מגביל את התרחבות הקוטב התחתון ולא "תומך" ברקמה השדית שממשיכה לשקוע סביבו.
+  </p>
+</div>
+<p>גורמים (Box 7.3): מסטופקסיה לא מספקת, קונטרקטורה קפסולרית/קפסולה הדוקה, בחירת משתל (מחוספס, קוהסיבי מאוד), בחירת כיס (תת-שרירי, dual-plane לא מספק), וריפיון עור ורקמה רכה.</p>
+<p><b>ההבדל האבחנתי המרכזי</b> מ-bottoming-out: כאן <b>נשמר נפח הקוטב העליון</b> ואין התארכות מרחק פטמה-קפל - הבעיה היא ברקמה שמעל המשתל, לא במשתל שיורד.</p>
+<p><b>תיקון:</b> לרוב מסטופקסיה משנית פשוטה שמרימה את השד בחזרה על המשתל היציב. אם הקפסולה מגבילה מדי - קפסולוטומיה של הקוטב התחתון, קפסולקטומיה חלקית, או כיס נאו-סאבפקטוראלי לאפשר התרחבות טובה יותר של הקוטב התחתון. אם המשתל תת-שרירי והשריר מונע התרחבות - המרת dual-plane. אם יש כיסוי רקמה מספק - המרת כיס מתת-שרירי לתת-בלוטתי יכולה גם היא ליצור הרמוניה בין הרקמה למשתל.</p>
+
+<table>
+  <thead><tr><th>מאפיין</th><th>Bottoming-out (פסאודופטוזיס)</th><th>Waterfall (Snoopy)</th></tr></thead>
+  <tbody>
+    <tr><td>מצב הכיס</td><td>רופף, מתוח</td><td>יציב, לרוב הדוק/מוגבל (קונטרקטורה)</td></tr>
+    <tr><td>נפח קוטב עליון</td><td>אבוד</td><td>נשמר</td></tr>
+    <tr><td>מרחק פטמה-קפל (NAC-to-fold)</td><td>מתארך</td><td>לא משתנה</td></tr>
+    <tr><td>מיקום הבעיה</td><td>המשתל יורד עם הרקמה</td><td>הרקמה יורדת מעל משתל יציב</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"HISDCAM"</span> - סיבוכי הגדלת חזה לפי סדר הופעה</h3>
+  <p>
+    <b>H</b> – <span class="term" dir="ltr">Hematoma</span> (מוקדם, ~1%)<br>
+    <b>I</b> – <span class="term" dir="ltr">Infection</span> (מוקדם, ~2%)<br>
+    <b>S</b> – <span class="term" dir="ltr">Sensation changes</span> (מוקדם-בינוני)<br>
+    <b>D</b> – <span class="term" dir="ltr">Deflation/rupture</span> (מאוחר, תלוי-זמן)<br>
+    <b>C</b> – <span class="term" dir="ltr">Capsular contracture</span> (הכי שכיח, 15-30%)<br>
+    <b>A</b> – <span class="term" dir="ltr">Animation deformity / ALCL</span><br>
+    <b>M</b> – <span class="term" dir="ltr">Malposition</span> (השני בשכיחות)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "בית" קטן (השד) שבנוי סביב "רהיט" חדש (המשתל). אם ה"קירות" (הרקמה הרכה) דקים מדי ביחס לרהיט הכבד - הרהיט מתחיל "לנדוד" בבית: יורד (bottoming-out), נודד הצידה (מלפוזיציה לטרלית), או "נתקע בפינה" ודוחף את הקיר לקרוא לשכן (סימסטיה). אם מסביב לרהיט נוצר "קורי עכביש" (הקפסולה) שהופך עבה ומתהדק יתר על המידה - הבית כולו מתקשה (קונטרקטורה). וכשה"קורי עכביש" הזה מחוספס במיוחד ומזמין "אורח לא רצוי" (BIA-ALCL) - זה הסימן להסיר את כל הקורים יחד עם הרהיט.</p>
+  <svg class="diagram" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+    <title>הבית והרהיט</title>
+    <polygon points="60,120 260,40 460,120 460,200 60,200" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+    <rect x="220" y="130" width="80" height="60" rx="6" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="260" y="165" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">משתל</text>
+    <path d="M180,130 Q260,110 340,130" stroke="#6b7280" stroke-width="2" fill="none" stroke-dasharray="4,3"/>
+    <text x="260" y="30" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">קירות דקים = הרהיט נודד</text>
+    <text x="260" y="212" font-size="12" text-anchor="middle" fill="#78350f">קורי עכביש עבים סביב הרהיט = קונטרקטורה</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.plasticsurgery.org/patient-safety/breast-implant-safety/bia-alcl-summary" target="_blank">BIA-ALCL Summary – American Society of Plastic Surgeons (ASPS)</a>
+    <div class="desc">סיכום רשמי של ה-ASPS על BIA-ALCL - הגדרה, שכיחות, אבחנה וטיפול, מתעדכן באופן שוטף.</div>
+  </li>
+  <li>
+    <a href="https://www.mskcc.org/cancer-care/types/lymphoma/types/breast-implant-associated-anaplastic-large-cell-lymphoma" target="_blank">Memorial Sloan Kettering – BIA-ALCL</a>
+    <div class="desc">הסבר של מרכז סרטן מוביל על BIA-ALCL, כולל אבחנה, שלבים וטיפול.</div>
+  </li>
+  <li>
+    <a href="https://www.fda.gov/news-events/press-announcements/fda-takes-action-protect-patients-risk-certain-textured-breast-implants-requests-allergan" target="_blank">FDA – Recall of Textured Breast Implants (Allergan Biocell)</a>
+    <div class="desc">ההודעה הרשמית של ה-FDA על הריקול העולמי של משתלי Biocell המחוספסים ב-2019, המוזכר בפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=TXEdZlCFugY" target="_blank">Breast Surgery: Capsular Contracture Treatment Options – YouTube</a>
+    <div class="desc">סקירה נוספת של אפשרויות הטיפול בקונטרקטורה קפסולרית.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 34, שלוש שנים אחרי הגדלת חזה סאבגלנדולרית (משתלי סיליקון מחוספסים, 350 סמ"ק), מגיעה למרפאה עם תלונה על שד ימין שהפך "קשה ולא נוח" בחודשים האחרונים, וכן שינוי קל בצורתו. בבדיקה: שד ימין מוצק למישוש, המשתל נמוש בבירור אך אינו נראה מתחת לעור, ואין כאב משמעותי. שד שמאל רך לחלוטין, המשתל אינו נמוש. אין חום, אין אודם, אין הפרשה מהפצע. המטופלת מדווחת שהיא "פחות אוהבת" את הצורה מאשר בעבר.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי דרגת Baker המתאימה למצב שתואר בווינייטה?</div>
+  <button class="opt" data-i="0">Baker I</button>
+  <button class="opt" data-i="1">Baker II</button>
+  <button class="opt" data-i="2">Baker III</button>
+  <button class="opt" data-i="3">Baker IV</button>
+  <div class="explain">התשובה הנכונה: Baker II - השד מוצק/סולידי, המשתל נמוש אך <b>לא נראה</b>, ואין כאב. Baker I היה מתאים לשד רך לגמרי (כמו השד השמאלי במקרה זה). Baker III דורש שהמשתל יהיה גם נראה (עיוות חזותי), וזה לא מתואר. Baker IV דורש בנוסף כאב משמעותי, שגם הוא לא קיים כאן.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי התיאוריה הנחשבת כיום המוצג המצוטט ביותר להסבר האטיולוגיה של קונטרקטורה קפסולרית?</div>
+  <button class="opt" data-i="0">תגובה אלרגית לחומר הסיליקון בלבד, ללא מעורבות חיידקית</button>
+  <button class="opt" data-i="1">פגם גנטי בייצור קולגן אצל מטופלות רגישות</button>
+  <button class="opt" data-i="2">זיהום תת-קליני כרוני בביופילם מיקרוסקופי הצמוד לקליפת המשתל, המוגן מהמערכת החיסונית</button>
+  <button class="opt" data-i="3">דחיית שתל אימונולוגית חריפה מסוג IV</button>
+  <div class="explain">התשובה הנכונה: תיאוריית הזיהום (biofilm theory) - תהליך זיהומי תת-קליני כרוני צמוד לקליפת המשתל בתוך ביופילם שמגן על החיידקים מהמערכת החיסונית ומאנטיביוטיקה, ומעורר ייצור קולגן מוגזם דרך מיופיברובלסטים. תשובה 1 מתעלמת מהמנגנון החיידקי המוביל כיום. תשובה 2 (גנטי) לא מוזכרת בפרק כלל. תשובה 4 (דחייה חריפה) אינה תואמת את התהליך הכרוני-איטי המתואר.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופלת מגיעה עם המטומה קטנה יחסית סביב משתל, יומיים לאחר הגדלת חזה. מהי הגישה המומלצת?</div>
+  <button class="opt" data-i="0">חזרה לחדר ניתוח לחקירה, ניקוז, השגת המוסטזיס ושטיפה - גם אם ההמטומה לא ענקית, כי ניהול שמרני של המטומה סביב משתל אינו מומלץ</button>
+  <button class="opt" data-i="1">מעקב שמרני בלבד, כי המטומות תמיד נספגות מעצמן</button>
+  <button class="opt" data-i="2">הוצאה מיידית של המשתל ללא כוונה להחזירו</button>
+  <button class="opt" data-i="3">מתן אנטיביוטיקה פומית בלבד ומעקב</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שניהול לא-ניתוחי (שמרני) של המטומה סביב משתל "מיואש" (discouraged) - מכיוון שדם שנשאר עלול לגרום לריפוי ממושך, בעיות פצע, זיהום, ובסופו של דבר קונטרקטורה קפסולרית. תשובה 2 שגויה כי בדרך כלל אין צורך להוציא את המשתל עצמו בטיפול בהמטומה. תשובה 3 (אנטיביוטיקה בלבד) לא מטפלת בגורם המכני (הדם עצמו) שדורש ניקוז.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופלת מדווחת על אסיפת נוזל בשד ימין המופיעה 6 שנים לאחר הגדלת חזה עם משתלים מחוספסים. מהי הגישה האבחנתית הנכונה?</div>
+  <button class="opt" data-i="0">להתעלם, כי סרומה מאוחרת היא תופעה שכיחה וטבעית לחלוטין ואינה מצריכה בירור</button>
+  <button class="opt" data-i="1">להתחיל מיד כימותרפיה אמפירית מבלי לאשר אבחנה</button>
+  <button class="opt" data-i="2">לבצע רק אולטרסאונד ולעקוב אם הנוזל לא גדל</button>
+  <button class="opt" data-i="3">לבצע שאיבת נוזל בהנחיית הדמיה עם בדיקת תרבית, ציטומטריית זרימה, אימונוהיסטוכימיה ל-CD30 ובלוק תאים ציטולוגי, כדי לשלול BIA-ALCL</button>
+  <div class="explain">התשובה הנכונה: כל סרומה מאוחרת (שנה או יותר לאחר ניתוח) מחייבת בירור מלא לשלילת BIA-ALCL, כולל שאיבה בהנחיית הדמיה ובדיקת הנוזל ל-CD30 (הסמן האופייני ללימפומה זו), ציטומטריית זרימה ובלוק ציטולוגי. תשובה 1 מתעלמת מהעיקרון המרכזי של הפרק. תשובה 2 (רק מעקב אולטרסאונד) לא מספקת אבחנה פתולוגית. תשובה 3 (כימותרפיה בלי אבחנה) הפוכה לסדר הנכון - טיפול ניתן רק לאחר אישור פתולוגי ודירוג שלב.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופלת עברה מסטופקסיה משולבת בהגדלת חזה. שנתיים לאחר מכן היא חוזרת עם ירידה מחודשת של רקמת השד מעל המשתל, אך <b>ללא</b> התארכות מרחק פטמה-קפל ועם שימור נפח קוטב עליון. מה הסיבוך הסביר ביותר וטיפול הבחירה הראשוני?</div>
+  <button class="opt" data-i="0">Bottoming-out - טיפול בהחלפת משתל לגודל קטן יותר בלבד</button>
+  <button class="opt" data-i="1">עיוות מפל (Waterfall/Snoopy deformity) - טיפול במסטופקסיה משנית שמרימה את הרקמה בחזרה על המשתל היציב, ובדיקה אם יש קונטרקטורה מגבילה</button>
+  <button class="opt" data-i="2">זיהום מאוחר של המשתל - יש להוציא את המשתל מיידית</button>
+  <button class="opt" data-i="3">קרע במשתל - יש לבצע MRI דחוף</button>
+  <div class="explain">התשובה הנכונה: התיאור הקלאסי לעיוות מפל (Snoopy deformity) הוא שימור נפח קוטב עליון וללא התארכות מרחק פטמה-קפל - בניגוד ל-bottoming-out שבו יש דווקא ירידה של המשתל עצמו והתארכות המרחק. הטיפול הראשוני הוא מסטופקסיה משנית, ובמידת הצורך טיפול בקפסולה מגבילה (קפסולוטומיה/קפסולקטומיה חלקית) אם היא הגורם. תשובה 1 (bottoming-out) לא מתאימה כי שם דווקא נפגע נפח הקוטב העליון ומרחק פטמה-קפל מתארך - הפוך מהמתואר. תשובות 3-4 אינן מוזכרות כתואמות את התיאור הקליני הנתון.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה מבין הבאים הוא ההבדל העיקרי בין קונטרקטורה קפסולרית לבין עיוות אנימציה (animation deformity)?</div>
+  <button class="opt" data-i="0">קונטרקטורה מופיעה רק במשתלי סליין, עיוות אנימציה רק במשתלי סיליקון</button>
+  <button class="opt" data-i="1">שני המצבים זהים לחלוטין ומטופלים באותה שיטה</button>
+  <button class="opt" data-i="2">עיוות אנימציה מתרחש רק במשתלים במיקום תת-שרירי בזמן כיווץ השריר הפקטורלי, בעוד קונטרקטורה קפסולרית היא תהליך של עיבוי והתקשות הקפסולה שאינו תלוי בפעילות שרירית</button>
+  <button class="opt" data-i="3">שניהם נגרמים אך ורק מזיהום ביופילם</button>
+  <div class="explain">התשובה הנכונה: עיוות אנימציה הוא תופעה מכנית ייחודית למשתלים תת-שריריים - השריר הפקטורלי "מזיז" את המשתל בזמן כיווצו (פעילות גופנית). קונטרקטורה קפסולרית לעומת זאת היא תהליך פתולוגי של עיבוי וכיווץ הקפסולה עצמה, קבוע ולא תלוי בפעילות שרירית רגעית. תשובה 1 שגויה - שני המצבים אינם תלויי-סוג-מילוי משתל. תשובה 3 שגויה - עיוות אנימציה הוא מכני-אנטומי גרידא, לא זיהומי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ההתאמה בין המשתל למעטפת הרקמה הרכה קובעת את מרבית הסיבוכים - כיסוי לא מספק &#8592; אטרופיה, קמטים, מלפוזיציה.</li>
+    <li><b>המטומה</b> (~1%): המוסטזיס תוך-ניתוחי הוא המניעה; לעולם לא לנהל שמרנית - תמיד לנקז.</li>
+    <li><b>זיהום</b> (~2%): מקורו בפלורה אנדוגנית של השד; מניעה = טכניקת אל-מגע + אנטיביוטיקה; טיפול = ניקוז + לרוב הוצאת משתל והחזרה כעבור 6 חודשים.</li>
+    <li><b>קונטרקטורה קפסולרית</b> - הסיבוך השכיח ביותר (15-30%); תיאוריית הזיהום התת-קליני/ביופילם היא המוצגת המובילה; סווג לפי Baker I-IV; ניתוח שמור לדרגות III-IV, לרוב עם קפסולקטומיה מלאה.</li>
+    <li><b>מלפוזיציה</b> - השני בשכיחות; לטרלי הוא הכיוון השכיח; לכל כיוון (תחתון/לטרלי/מדיאלי-סימסטיה/עליון) מנגנון סיבתי שונה.</li>
+    <li><b>BIA-ALCL</b>: לימפומה (לא סרטן שד!), קשורה כמעט תמיד למשתל מחוספס; כל סרומה מאוחרת (&#8805;שנה) חייבת בירור עם CD30; אושר &#8592; קפסולקטומיה en bloc + PET-CT staging.</li>
+    <li>איסכמיה ל-NAC היא הסיבוך המדאיג ביותר במסטופקסיה - לרוב עקב מתח סגירה, לא בעיה בפדיקל עצמו.</li>
+    <li><b>Bottoming-out</b> (כיס רופף, המשתל יורד, אובדן קוטב עליון + התארכות מרחק פטמה-קפל) לעומת <b>Waterfall/Snoopy</b> (כיס יציב/מוגבל, הרקמה יורדת מעל משתל יציב, קוטב עליון נשמר) - הבחנה קריטית לבחירת הטיפול.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

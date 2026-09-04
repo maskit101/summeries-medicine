@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: אסטרטגיות דבלקינג - כריתה (אקסיזיה)</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 8: אסטרטגיות ופרוצדורות דבלקינג - כריתה <span class="term" dir="ltr">Debulking Strategies and Procedures: Excision</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | פרק 3.6, מאת Hung-Chi Chen ו-Yueh-Bih Tang</div>
+
+<p>כשלימפדמה (<span class="term" dir="ltr">lymphedema</span>) מגיעה לשלב מתקדם עם פיברוזיס בלתי הפיך של העור והרקמה התת-עורית, שיטות "פיזיולוגיות" עדינות כמו מעקף לימפטי-ורידי (<span class="term" dir="ltr">LVA</span>) או השתלת בלוטות לימפה (<span class="term" dir="ltr">LNF</span>) כבר לא יעילות - הרקמה קשה כמו עץ ואין בה עוד כלים לימפטיים תקינים לחבר אליהם. הפתרון היחיד שנשאר הוא <b>כריתה רדיקלית</b> (<span class="term" dir="ltr">excisional debulking</span>) של הרקמה החולה, ולאחריה כיסוי בשתל עור. פרק זה סוקר שלוש טכניקות כריתה: הליך <span class="term" dir="ltr">Chen-modified Charles</span> לגפה תחתונה מתקדמת, הליך <span class="term" dir="ltr">RPP</span> (שימור פרפורטורים) למקרים פחות קיצוניים, וכריתה ללימפדמה גניטלית.</p>
+
+<h2><span class="num">1</span> מנגנון: למה בשלב מתקדם אי אפשר "לתקן" - רק לכרות</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שלב מוקדם (Stage 0-II):</b> יש עדיין כלים לימפטיים תפקודיים חלקית → אפשר לבצע ניתוח "פיזיולוגי" (LVA - חיבור כלי לימפה לוריד; LNF - השתלת בלוטות לימפה בריאות) שמשקם זרימה, או ליפוסקשן שמסיר שומן היפרטרופי בלי לפגוע בעור.<br>
+    <b>שלב מתקדם (Stage III / IIIb-IVb):</b> דלקת כרונית חוזרת (בעיקר זיהומים חוזרים באצבעות הרגל) → גירוי דלקתי ממושך → <b>פיברובלסטים מופעלים באופן כרוני מייצרים קולגן בעודף</b> → הרקמה התת-עורית והעור עוברים פיברוזיס בלתי הפיך, נעשים "כמו עור בקר" (<span class="term" dir="ltr">leather-like skin</span>), עם "ריבוע" קצות האצבעות, היפרקרטוזיס ופיסטולות.
+  </p>
+  <p>בשלב הזה <b class="key">אין עוד כלי לימפה תקינים לבצע אליהם אנסטומוזה</b> (ה-LVA לא רלוונטי), והרקמה קשה מכדי שליפוסקשן (שמבוסס על שאיבת שומן נוזלי-למחצה) יוכל לפרק אותה - "הרקמה התת-עורית קשה כמו סלע, שלא ניתן להסירה בליפוסקשן". המשמעות הכירורגית: כדי לשבור את מעגל הזיהום החוזר וההחמרה, חייבים <b>לכרות פיזית</b> את הרקמה הפיברוטית עד לפאשיה, ואז לכסות את הפגם בשתל עור. זו הסיבה שכריתה (Charles/RPP) נחשבת "מוצא אחרון" בסולם הטיפולים - לא כי היא הכי טובה, אלא כי היא היחידה שעדיין עובדת כשהרקמה כבר לא ניתנת לתיקון.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ההתקדמות ללימפדמה בלתי הפיכה</title>
+  <rect x="700" y="20" width="140" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">זיהומים חוזרים</text>
+  <text x="770" y="63" font-size="11.5" text-anchor="middle" fill="#7f1d1d">(בעיקר אצבעות רגל)</text>
+
+  <rect x="480" y="20" width="160" height="60" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+  <text x="560" y="45" font-size="12.5" text-anchor="middle" fill="#7c2d12" font-weight="700">דלקת כרונית</text>
+  <text x="560" y="63" font-size="11.5" text-anchor="middle" fill="#7c2d12">הפעלת פיברובלסטים</text>
+
+  <rect x="260" y="20" width="160" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">פיברוזיס בלתי הפיך</text>
+  <text x="340" y="63" font-size="11.5" text-anchor="middle" fill="#1e3a8a">עור "כמו עור בקר"</text>
+
+  <rect x="20" y="20" width="180" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="110" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">כריתה + שתל עור</text>
+  <text x="110" y="63" font-size="11.5" text-anchor="middle" fill="#065f46">LVA/ליפוסקשן כבר לא עוזרים</text>
+
+  <polygon points="660,50 700,44 700,56" fill="#374151"/>
+  <line x1="700" y1="50" x2="660" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,50 480,44 480,56" fill="#374151"/>
+  <line x1="480" y1="50" x2="440" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,50 260,44 260,56" fill="#374151"/>
+  <line x1="260" y1="50" x2="220" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="180" y="130" width="500" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="158" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מטרת הכריתה: לשבור את המעגל הסגור</text>
+  <text x="430" y="178" font-size="12" text-anchor="middle" fill="#78350f">פחות רקמה תת-עורית = פחות מצע לחיידקים = פחות זיהומים חוזרים = פחות פיברוזיס נוסף</text>
+  <text x="430" y="196" font-size="12" text-anchor="middle" fill="#78350f">מבנה מעגלי, לא רק "לחתוך ולסיים"</text>
+  <polygon points="430,130 424,110 436,110" fill="#b45309"/>
+  <line x1="430" y1="130" x2="430" y2="110" stroke="#b45309" stroke-width="2"/>
+</svg>
+<p class="figcap">שרשרת סיבתית: זיהום חוזר &#8592; דלקת כרונית &#8592; פיברוזיס בלתי הפיך &#8592; כריתה היא הפתרון היחיד שנותר.</p>
+
+<h2><span class="num">2</span> סיווג חומרה ואלגוריתם טיפול</h2>
+<p><span class="term" dir="ltr">International Society of Lymphology (ISL)</span> מחלקת חומרת לימפדמה ל-3 שלבים; Karri וחבריו הציעו שיטת דירוג משנית עם 4 שלבים, שבה <b>לימפדמה מתקדמת</b> מוגדרת כפיברוזיס עורי בלתי הפיך (IIIb), ובצקת שאינה משאירה גומה (non-pitting) עם עור עבה כעור בקר, "קרפטות עור" (skin crypts) וכיבים, עם או בלי מעורבות אצבעות (שלבים IVa ו-IVb בהתאמה).</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>שלב ISL</th><th>מאפיינים</th><th>קו טיפול ראשון</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>ללא בצקת קלינית, פגיעה תת-קלינית בזרימה</td><td>מעקב (Observation)</td></tr>
+<tr><td>I</td><td>בצקת הפיכה, גומה (pitting), חולפת בהרמת גפה</td><td>CDT (טיפול דקונגסטיבי מורכב) ± LVA</td></tr>
+<tr><td>II</td><td>בצקת לא הפיכה ספונטנית, פיברוזיס מתחיל</td><td>CDT + LNF (השתלת בלוטות לימפה); אם פיברוזיס משמעותי - ליפוסקשן</td></tr>
+<tr><td>III (מתקדם)</td><td>פיברוזיס קשה (+++), אלפנטיאזיס, זיהומים חוזרים</td><td><b>LNF + הליך Charles מתוקן</b> (כריתה נרחבת)</td></tr>
+</tbody>
+</table>
+</div>
+<p class="key-box">גם בשלב III לא מוותרים על הרכיב הפיזיולוגי: הליך Charles/RPP <b>משולב</b> עם השתלת בלוטות לימפה (LNF) כדי לשפר ניקוז לימפטי ארוך טווח ולהפחית הישנות - הכריתה מטפלת ב"נזק שכבר נעשה", וה-LNF מטפל במנגנון הבסיסי.</p>
+
+<h2><span class="num">3</span> הליך Chen-modified Charles - העקרונות</h2>
+<p>ה-<span class="term" dir="ltr">Charles procedure</span> המקורי תואר לראשונה ב-1940 כטיפול להפחתת עומס לימפטי ולשליטה בזיהום. <b>המטרה הראשונה והחשובה ביותר בטיפול בלימפדמה מתקדמת היא שליטה או מיגור הזיהום</b> - במיוחד מניעת זיהום באצבעות הרגל, שהוא הגורם המרכזי לצלוליטיס חוזר בגפה התחתונה. הליך Charles המקורי סבל מסיבוכים (פירוק פצע, היפרקרטוזיס, כיב, החמרת לימפדמה בכף הרגל), ולכן חן פיתח גרסה משופרת עם 10 שינויים מרכזיים לעומת המקור.</p>
+
+<h3>אבחנת מטרה - מי מתאים לניתוח</h3>
+<p>מועמדים: לימפדמה ראשונית או שניונית מתקדמת בגפה התחתונה, עם התקשות (induration), פיברוזיס, עור עבה כעור בקר, "ריבוע" קצות האצבעות, היפרקרטוזיס ופיסטולות מרובות. אצבעות הרגל הן מקור הזיהום העיקרי (צפיפות אצבעות, זיהומי ציפורן, היפרקרטוזיס וורוקוטית, היגיינה לקויה) - <b class="key">אם האצבעות מעורבות ולא מטופלות, המטופל יסבול מזיהומים חוזרים גם אחרי ניתוח מוצלח ברגל</b>.</p>
+
+<h3>הכנה לפני הניתוח</h3>
+<p>נמדד היקף הגפה הפגועה ב-4 גבהים (כף רגל אמצעית, קרסול, אמצע שוק - 15 ס"מ מתחת לברך, אמצע ירך - 15 ס"מ מעל הברך). ניתנות אנטיביוטיקה לפי תרבית חיידקים שעה לפני הרדמה, וממשיכים 3 ימים אחרי הניתוח.</p>
+
+<h3>מהלך הניתוח - שלבי המפתח</h3>
+<p>הניתוח נעשה בהרדמה כללית, בתנוחת שכיבה על הגב, עם חוסם עורקים (tourniquet) על הירך הפרוקסימלית המנופח ל-375 מ"מ כספית אחרי הוצאת דם (exsanguination). קודם כל <b>קוצרים שתל עור בעובי חלקי</b> (STSG, 12/1000 אינץ') מכל היקף הגפה בכיוון פרוקסימלי-דיסטלי, בגיליונות ארוכים ככל האפשר כדי שניתן יהיה "לעטוף" בהם את הגפה בצורה מעגלית (מפחית הצטלקות היפרטרופית). לאחר מכן <b>מסירים את כל הרקמה הפיברוסקלרוטית</b> עד לפאשיה העמוקה (שגם היא מדוקקת לעוביה התקין), תוך שימור הווריד הצפני הקטן (lesser saphenous vein) וענפו השטחי. מקדחים סיכת K בת 3 מ"מ דרך הטיביה הדיסטלית לתלות את הגפה ולחשוף את פניה האחוריות. באצבעות - אם יש זיהומים חוזרים, היפרקרטוזיס וורוקוטית או אוסטאומיאליטיס מבצעים קטיעה; אחרת מסירים ציפורן ומיטת ציפורן וסוגרים בפלאפ C-V. הכריתה כולה, כולל שליטה בדימום, חייבת <b class="key">להסתיים תוך שעתיים של זמן איסכמיה מחוסם העורקים</b> - ולכן נדרש צוות של כמה מנתחים במקביל.</p>
+
+<h3>שני שלבים אפשריים</h3>
+<p>אפשר לבצע את הליך Charles וההשתלה של פלאפ בלוטות הלימפה (למשל פלאפ supraclavicular או gastroepiploic) <b>בשלב אחד או בשני שלבים נפרדים</b>. היתרון של שני שלבים: מבטיח את הישרדות הפלאפ כי אינו דורש לחץ קומפרסיה על ה-STSG. החיסרון: דורש שני ניתוחים.</p>
+
+<h2><span class="num">4</span> 10 השלבים המרכזיים בהליך Chen-modified Charles</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>#</th><th>עיקרון</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>עיצוב: הכריתה חייבת להשתרע מכף הרגל עד לפחות אמצע הירך; בירך הפרוקסימלית - ליפוסקשן וכריתת טריז</td></tr>
+<tr><td>2</td><td>עומק הכריתה - עד הפאשיה, מדוקק בצורה אחידה לפחות מ-1 מ"מ</td></tr>
+<tr><td>3</td><td>מזעור דימום - חוסם עורקים לפני קצירת השתל, גיליונות השתל עטופים בגזה רטובה</td></tr>
+<tr><td>4</td><td>STSG לרגל ולירך, אך FTSG (עובי מלא) לגב כף הרגל - פחות סיכון לכיב</td></tr>
+<tr><td>5</td><td>סידור גיליונות השתל בצורה מעגלית ולא אורכית - צלקת אורכית גורמת יותר בעיות סביב הקרסול/הברך</td></tr>
+<tr><td>6</td><td>חפיפה של 0.5-1 ס"מ בין גיליונות השתל - מונעת פערים כשהרקמה נפוחה יומיים-שלושה אחרי הניתוח</td></tr>
+<tr><td>7</td><td>סיכת K דרך הטיביה - תולה את הרגל, מונעת חשיפת השתל האחורי להזזה</td></tr>
+<tr><td>8</td><td>השלמת הכריתה תוך שעתיים, שחרור חוסם העורקים והשגת המוסטזיס, ואז חבישה רטובה</td></tr>
+<tr><td>9</td><td>FTSG מרקמות הטריז שנכרתו - לגב כף הרגל; STSG שנקצר בתחילת הניתוח - לרגל ולירך</td></tr>
+<tr><td>10</td><td>החלפת חבישה 24-72 שעות אחרי הניתוח (מוקדם יותר אם היה זיהום/כיב לפני הניתוח)</td></tr>
+</tbody>
+</table>
+</div>
+<p><b>אפשרויות נוספות:</b> שימוש ב-VAC (חבישת לחץ שלילי) על שתל מנוקב למניעת אובדן שתל; חמצן היפרברי כשמצע הרקמה מפגר באספקת דם (למשל מחלת עורקים היקפית); וכריתה חוזרת עם השתלה מחדש אם מתפתחים "קרפטות עור" או היפרקרטוזיס וורוקוטית בגב כף הרגל בהמשך המעקב.</p>
+
+<h2><span class="num">5</span> הליך RPP - כריתה רדיקלית עם שימור פרפורטורים</h2>
+<p><span class="term" dir="ltr">Radical reduction with Preservation of Perforators (RPP)</span> הוא אלטרנטיבה פחות רדיקלית מ-Charles, המבוססת על עקרונות <b>אנגיוזום</b> (angiosome) - שימור כלי הדם הפרפורטורים העיקריים תוך כריתת עודף העור והרקמה התת-עורית סביבם.</p>
+<h3>אינדיקציות</h3>
+<ul>
+<li>מטופלים בשלב IIIb שנכשלו בטיפול תרופתי/שמרני</li>
+<li>לימפדמה מתקדמת שצפויה לעבור הליך Charles מתוקן אך בסיכון גבוה יותר לסיבוכים</li>
+<li>כתוספת לשיטות טיפול אחרות (כמו פלאפי בלוטות לימפה)</li>
+</ul>
+<h3>עקרון הטכניקה</h3>
+<p>ממפים באמצעות דופלר יד את הפרפורטורים מעורקי ה-tibial הפוסטריורי וה-peroneal מעל רמת הקרשולים המדיאלי והלטרלי. באמצע השוק מזהים פרפורטור גדול אחד בצד המדיאלי ואחד בצד הלטרלי, ומשמרים סביבם "שרוול" (cuff) בקוטר 2 ס"מ של פאשיה ושומן. מסמנים אליפסת עור לכריתה, מרימים את דש העור באמצעות וו-עור, ומדללים את השומן התת-עורי בצורה טנגנציאלית עד שהדש נותר בעובי כ-5 מ"מ בלבד, תוך שימור מקלעת הוורידים התת-עורית (subdermal venous plexus). משמרים בקפידה את העצב הפרונאלי השטחי ואת העצב הסוראלי, בעזרת זכוכית מגדלת (loupes). האזורים סביב הקרשולים נשארים ללא נגיעה. חוסם העורקים משוחרר להמוסטזיס לפני סגירה, עם נקזי שאיבה.</p>
+
+<h3>תוצאות RPP</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>אזור מדידה</th><th>גפה תחתונה - צמצום היקפי</th><th>גפה עליונה - צמצום היקפי</th></tr></thead>
+<tbody>
+<tr><td>מעל הברך / מעל המרפק</td><td>51%</td><td>15.1%</td></tr>
+<tr><td>מתחת לברך / מתחת למרפק</td><td>66%</td><td>20.7%</td></tr>
+<tr><td>קרסול / שורש כף היד</td><td>44%</td><td>0.5% (לא מובהק)</td></tr>
+<tr><td>כף הרגל / כף היד</td><td>41%</td><td>3.6% (לא מובהק)</td></tr>
+</tbody>
+</table>
+</div>
+<p>סיבוכים בגפה תחתונה: צלוליטיס 18%, סרומה 6.7%, המטומה 6.7%, ללא פירוק פצע או נמק דש עור; חוסר תחושה ב-13.3% שלא חלף תוך שנה. בגפה עליונה - ללא פירוק פצע/נמק/צלוליטיס, וחוסר תחושה קל ב-36.3%. <b class="key">כל הפחתות הלימפדמה הושלמו בשלב ניתוחי אחד</b> - זהו יתרון מרכזי של RPP לעומת Charles (שלעיתים דורש שני שלבים).</p>
+
+<h2><span class="num">6</span> כריתה ללימפדמה גניטלית</h2>
+<p>הגורם השכיח ביותר ללימפדמה גניטלית (GL) בעולם הוא <b>פילריאזיס</b> (Filariasis - זיהום תולעת חוט), אך במדינות מפותחות גורמים שכיחים יותר הם טיפולי סרטן, hidradenitis suppurativa, או אי-ספיקת לב/כבד/כליות. מעורבות איברי המין החיצוניים מהווה כ-0.6% ממקרי הלימפדמה בעולם.</p>
+<p>טיפול CDT שמרני מוגבל בגניטליה בגלל הצורה והמיקום. לכן: שלב I ומצגות קלות של שלב II - טיפול שמרני; כישלון אחרי 3 חודשים - LVA; <b>שלב III כרוני ומתקדם - כריתה</b> להפחתת הפיברוזיס והפגיעה התפקודית.</p>
+<p>בטכניקה: מבצעים כריתה (circumcision-based) של כל העור והרקמה התת-עורית הפגועים עד לפאשיה, תוך שימור קפדני של האשכים וחבל הזרע. המחיצה השקית (scrotal septum) משומרת למראה אסתטי טוב, וה-tunica vaginalis מזוהה והופכת (inverted). כשאפשר, כלי לימפה תת-עוריים עדיין פתוחים מזוהים בעזרת הזרקת ICG (ירוק אינדוציאנין) ומשומרים. לפני סגירה, האשכים וחבלי הזרע נתפרים יחד כדי למנוע היווצרות שק אשכים דו-אונתי (bifid scrotum). כשלא ניתן לכסות לחלוטין בפלאפים מקומיים, שתלי עור מרושתים (meshed STSG) יכולים לחקות את קמטי השק (rugae) עם התרחבות הדרגתית בהשפעת הכובד. באיבר המין - שומרים על ה-dartos לצורך גמישות עתידית, וכיסוי בשתל עור בעובי מלא (unmeshed STSG) מומלץ למטופלים פעילים מינית. CDT פוסט-ניתוחי ניתן למשך 6 חודשים לפחות למניעת הישנות.</p>
+<p>בסדרה של 19 מטופלים עם GL: ל-18 (94.7%) הייתה החלמה מלאה ללא הישנות למעקב של 8 חודשים לפחות; מטופלים שסבלו לפני הניתוח מקושי במתן שתן (נדרשו ללחוץ על הפין הנפוח 30 דקות לפני שהשתן יכול לעבור) חוו מתן שתן חלק לחלוטין לאחר הניתוח.</p>
+
+<h2><span class="num">7</span> טבלת השוואה - שיטות דבלקינג בלימפדמה</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>שיטה</th><th>עקרון</th><th>מתי מתאימה</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+<tbody>
+<tr><td>LVA (מעקף לימפטי-ורידי)</td><td>אנסטומוזה מיקרוכירורגית בין כלי לימפה תפקודי לוריד</td><td>שלב I-II, כלי לימפה עדיין קיימים</td><td>פולשני מינימלית, "פיזיולוגי"</td><td>לא עובד כשאין כלים תפקודיים (שלב מתקדם)</td></tr>
+<tr><td>LNF (השתלת בלוטות לימפה)</td><td>השתלת רקמת בלוטות לימפה בריאה עם ניקוז ורידי-לימפטי ספונטני</td><td>שלב II-III, לרוב בשילוב עם כריתה בשלב מתקדם</td><td>אפקט "מגן" ארוך טווח, מפחית זיהומים חוזרים</td><td>לא מפחית נפח קיים לבד; דורש מיקרוכירורגיה</td></tr>
+<tr><td>ליפוסקשן (שאיבת שומן)</td><td>הסרת שומן היפרטרופי נוזלי-למחצה בלי לפגוע בעור</td><td>שלב II, שומן רך ללא פיברוזיס קשה</td><td>פולשני פחות, סיכון סיבוכים נמוך</td><td>לא עובד ברקמה פיברוטית קשה כמו סלע</td></tr>
+<tr><td>RPP (שימור פרפורטורים)</td><td>כריתת אליפסת עור+שומן תת-עורי סביב פרפורטורים משומרים</td><td>שלב IIIb, חלופה פחות רדיקלית מ-Charles</td><td>שלב ניתוחי אחד, תוצאה אסתטית טובה יותר</td><td>הפחתה חלקית יותר, פחות מתאים למקרים הקיצוניים ביותר</td></tr>
+<tr><td>Chen-modified Charles</td><td>כריתה מעגלית מלאה עד לפאשיה + שתל עור מסביב לכל הגפה</td><td>שלב III/IVa-IVb, כישלון כל שיטה אחרת, אלפנטיאזיס</td><td>ההפחתה הרדיקלית והיעילה ביותר, שולט בזיהומים</td><td>ניתוח ארוך/מורכב, דימום רב, צלקות נרחבות, סיבוכי שתל</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="num">8</span> סיבוכים ותוצאות</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>סיבוך (Chen-modified Charles)</th><th>שכיחות</th></tr></thead>
+<tbody>
+<tr><td>ריפוי מושהה</td><td>4%</td></tr>
+<tr><td>היפרקרטוזיס וורוקוטית / קרפטות עור המצריכות השתלה חוזרת בגב כף הרגל</td><td>14%</td></tr>
+<tr><td>צלוליטיס תוך שנתיים מהניתוח</td><td>11%</td></tr>
+<tr><td>כיב כרוני</td><td>3%</td></tr>
+<tr><td>זיהום אצבעות המצריך ניתוח נוסף</td><td>21%</td></tr>
+</tbody>
+</table>
+</div>
+<p><b>מגבלות הליך Charles:</b> שתל העור נטול בלוטות חלב וזיעה - המטופלים חייבים למרוח משחת לחות מדי יום כדי למנוע דלקת כרונית של השתל. מגבלה נוספת - מטופלים עם תחלואה נלווית קשה (אי-ספיקת כליות, מחלת לב, סרטן גרורתי). <b class="key">אם כל שיטות הדבלקינג נכשלות, האופציה האחרונה היא קטיעה</b> - למשל אם זיהום כרוני מערב את העצם (אוסטאומיאליטיס).</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"3-C-2h"</span> - עקרונות הליך Charles מתוקן</h3>
+  <p>
+    <b>C</b> – <span class="term" dir="ltr">Circumferential graft</span> - שתל עור מעגלי (לא אורכי), עם חפיפה 0.5-1 ס"מ.<br>
+    <b>C</b> – <span class="term" dir="ltr">Control infection</span> - המטרה העליונה: שליטה/מיגור זיהום, במיוחד באצבעות.<br>
+    <b>C</b> – <span class="term" dir="ltr">Complete excision to fascia</span> - כריתה מלאה עד הפאשיה, פחות מ-1 מ"מ שארית.<br>
+    <b>2h</b> – <span class="term" dir="ltr">2-hour tourniquet time</span> - יש להשלים את הכריתה תוך שעתיים בלבד של חוסם עורקים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "קליפת עץ" עבה שנוצרה סביב רגל אחרי שנים של דלקות (הפיברוזיס). אי אפשר "לרפא" קליפת עץ - צריך להסיר אותה כולה, כמו שקולפים בננה בתנועה מעגלית אחת, ואז לעטוף את הגזע החשוף ב"קליפה" חדשה ובריאה (שתל העור המעגלי). כל זה חייב לקרות לפני שהשעון של החוסם (2 שעות) נגמר - אחרת מתחיל נזק חדש.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>קילוף וכיסוי מחדש - דימוי הבננה</title>
+    <ellipse cx="250" cy="95" rx="90" ry="70" fill="#a3652b" stroke="#5c3315" stroke-width="3"/>
+    <ellipse cx="250" cy="95" rx="55" ry="42" fill="#fef3c7" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="250" y="100" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">רקמה בריאה</text>
+    <text x="250" y="30" font-size="12.5" text-anchor="middle" fill="#5c3315" font-weight="700">קליפה פיברוטית (מוסרת)</text>
+    <path d="M60,160 A190,20 0 0 0 440,160" stroke="#2563eb" stroke-width="4" fill="none" stroke-dasharray="10 6"/>
+    <text x="250" y="182" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">שתל עור עוטף מעגלי - תוך 2 שעות חוסם עורקים</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> סרטון וקישורי העמקה</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tGiHbNPRSKY" title="Charles Procedure of Lymphedema" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של הליך Charles ללימפדמה מאת ד"ר Junaid Ahmad, מנתח פלסטי - סקירת עקרונות הכריתה הרדיקלית וכיסוי בשתל עור.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.jvascsurg.org/article/S0741-5214(19)30021-7/fulltext" target="_blank">Limb Salvage for "Hopeless" Lymphedema: Reviving the Charles Procedure - Journal of Vascular Surgery</a>
+    <div class="desc">סקירה עדכנית של הליך Charles כאופציה ל"הצלת גפה" במקרים קיצוניים, כולל דיון בסיבוכים ותוצאות.</div>
+  </li>
+  <li>
+    <a href="https://www.jvscit.org/article/S2468-4287(23)00147-8/fulltext" target="_blank">How I do it: Radical debulking of lower extremity end-stage lymphedema - JVS Cases, Innovations and Techniques</a>
+    <div class="desc">תיאור טכני שלב-אחר-שלב של כריתה רדיקלית בלימפדמה בשלב סופי, עם דגשים פרקטיים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52 מגיעה עם לימפדמה שניונית ברגל שמאל מזה 15 שנה, לאחר ניתוח וקרינה לסרטן שד. בבדיקה: העור עבה, יבש, "עורי" למגע, עם ריבוע קצות האצבעות והיפרקרטוזיס וורוקוטית בגב כף הרגל. יש היסטוריה של 4 אשפוזים בשנה האחרונה עקב צלוליטיס חוזר. לימפוסינטיגרפיה מדגימה חוסר זרימה לימפטית כמעט מלא ברגל, ובבדיקה קלינית מדורגת כשלב III לפי ISL, עם פיברוזיס קשה (+++). ניסיון קודם עם CDT וליפוסקשן לא הביא לשיפור משמעותי.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע LVA (מעקף לימפטי-ורידי) אינו אופציה מתאימה למטופלת בוינייטה?</div>
+  <button class="opt" data-i="0">LVA מיועד רק ללימפדמה ראשונית ולא שניונית</button>
+  <button class="opt" data-i="1">LVA דורש הרדמה כללית שאסורה במטופלת אחרי סרטן שד</button>
+  <button class="opt" data-i="2">בשלב מתקדם עם פיברוזיס קשה כבר אין כלי לימפה תפקודיים לבצע אליהם אנסטומוזה</button>
+  <button class="opt" data-i="3">LVA יעיל רק בגפה עליונה, לא בגפה תחתונה</button>
+  <div class="explain">התשובה הנכונה: LVA מבוסס על חיבור מיקרוכירורגי של כלי לימפה תפקודי לוריד, ולכן דורש שיהיו כלי לימפה שרידים לחבר אליהם. בשלב מתקדם עם פיברוזיס כרוני, הכלים הלימפטיים עצמם נהרסים - ולכן, כפי שנכתב בפרק, רקמה כזו "אינה מתאימה למעקף לימפטי-ורידי מיקרוכירורגי". תשובה 1 שגויה - LVA משמש גם לשניונית. תשובה 2 לא מוזכרת בפרק כמגבלה. תשובה 4 שגויה - LVA מתואר לגפה תחתונה בפרק זה ובפרק הקודם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע ליפוסקשן (שאיבת שומן) גם הוא לא יעיל במטופלת זו?</div>
+  <button class="opt" data-i="0">ליפוסקשן אסור בשילוב עם היסטוריה של קרינה</button>
+  <button class="opt" data-i="1">הרקמה התת-עורית הפיברוטית קשה כמו סלע ואינה ניתנת להסרה בשאיבה נוזלית-למחצה</button>
+  <button class="opt" data-i="2">ליפוסקשן דורש חוסם עורקים שאסור באזור מוקרן</button>
+  <button class="opt" data-i="3">ליפוסקשן יעיל רק בשלב 0 של ISL</button>
+  <div class="explain">התשובה הנכונה: ליפוסקשן מבוסס על שאיבת שומן במצב נוזלי-למחצה, וזה עובד היטב בשלב II כשהעודף הוא בעיקר שומן היפרטרופי רך. אבל ברקמה פיברוטית קשה (כמו בוינייטה, פיברוזיס +++), הרקמה "קשה כמו סלע" ופיזית אינה ניתנת לשאיבה - נדרשת כריתה כירורגית ישירה. תשובות 1, 3-4 אינן הסיבה שמוזכרת בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה משתנה קריטי חייב להישמר בזמן הכריתה בהליך Chen-modified Charles כדי למזער סיבוכי דימום?</div>
+  <button class="opt" data-i="0">השלמת הכריתה ושליטת הדימום תוך שעתיים (2 שעות) של איסכמיה מחוסם עורקים</button>
+  <button class="opt" data-i="1">ביצוע הניתוח בהרדמה מקומית בלבד ללא חוסם עורקים</button>
+  <button class="opt" data-i="2">המתנה של 48 שעות בין קטיעת האצבעות לכריתת הרגל</button>
+  <button class="opt" data-i="3">שימוש בלייזר במקום אזמל לכל שלבי הכריתה</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שהליך הכריתה והשגת המוסטזיס טוב "צריך להסתיים תוך שעתיים של זמן איסכמיה מחוסם עורקים", ולכן דרוש צוות מנתחים כדי לעמוד בזמן. חריגה מהזמן הזה מעלה סיכון לנזק איסכמי ולדימום בלתי נשלט לאחר שחרור החוסם. תשובות 1, 2, 3 אינן נתמכות בפרק - הניתוח דורש הרדמה כללית וחוסם עורקים, לא מתואר פרוטוקול המתנה של 48 שעות, ולא מוזכר לייזר.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע נעשה שימוש בשתל עור בעובי מלא (FTSG) דווקא בגב כף הרגל, בעוד שברגל ובירך משתמשים בשתל עור בעובי חלקי (STSG)?</div>
+  <button class="opt" data-i="0">FTSG זול יותר לקצירה מ-STSG</button>
+  <button class="opt" data-i="1">אין מספיק עור זמין לקצירת STSG בגב כף הרגל</button>
+  <button class="opt" data-i="2">FTSG "נתפס" (takes) מהר יותר מ-STSG בכל מקום בגוף</button>
+  <button class="opt" data-i="3">FTSG עמיד יותר לחיכוך עם גרב הלחץ (compression garment) ומפחית סיכון לכיב עתידי בגב כף הרגל</button>
+  <div class="explain">התשובה הנכונה: הפרק מסביר במפורש ש"שתל עור בעובי מלא בגב כף הרגל מביא לשתל עמיד יותר עם פחות הצטלקות היפרטרופית ויכול למנוע חיכוך עתידי עם גרב הלחץ" - כלומר האזור הזה נתון לחיכוך מכני ממושך מהגרב, ו-FTSG עמיד יותר לכך מ-STSG. תשובות 1-3 אינן הנימוק שמופיע בפרק (ולמעשה STSG בדרך כלל "נתפס" יותר מהר מ-FTSG, לא ההפך).</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. איזו טכניקה מהוה חלופה פחות רדיקלית להליך Charles, המבוססת על שימור פרפורטורים עורקיים לפי עקרונות אנגיוזום?</div>
+  <button class="opt" data-i="0">LVA - מעקף לימפטי-ורידי</button>
+  <button class="opt" data-i="1">CDT - טיפול דקונגסטיבי מורכב</button>
+  <button class="opt" data-i="2">RPP - Radical reduction with Preservation of Perforators</button>
+  <button class="opt" data-i="3">LNF - השתלת בלוטות לימפה</button>
+  <div class="explain">התשובה הנכונה: RPP הוא הליך כריתה שממפה ומשמר פרפורטורים עורקיים עיקריים (מעורקי ה-tibial הפוסטריורי וה-peroneal ברגל) עם "שרוול" רקמה מוגן סביבם, וכורת את שאר העור והשומן התת-עורי - מבוסס על עקרונות אנגיוזום. הוא פחות רדיקלי מ-Charles (משיג הפחתה חלקית, לא כריתה מעגלית מלאה) אך מושג בשלב ניתוחי אחד. LVA ו-LNF (תשובות 1, 4) הן טכניקות פיזיולוגיות ולא כריתה, ו-CDT (תשובה 2) הוא טיפול שמרני לא-ניתוחי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהו התפקיד המרכזי של השתלת בלוטות לימפה (LNF) כאשר היא משולבת עם הליך Charles מתוקן?</div>
+  <button class="opt" data-i="0">היא מחליפה את הצורך בשתל עור לכיסוי הפגם</button>
+  <button class="opt" data-i="1">היא יוצרת חיבורים לימפטיים-ורידיים ספונטניים חדשים, מפחיתה עומס לימפטי ומשמשת "מגן" מפני הישנות זיהומים</button>
+  <button class="opt" data-i="2">היא מקצרת את זמן חוסם העורקים הנדרש לכריתה</button>
+  <button class="opt" data-i="3">היא מיועדת אך ורק לשיפור מראה אסתטי של אזור התורם</button>
+  <div class="explain">התשובה הנכונה: לפי הפרק, לאחר השתלת בלוטות הלימפה מתרחשת רגנרציה ספונטנית של כלים לימפטיים בין הבלוטות המושתלות לרקמה הלימפדמטית הסובבת, והלימפה מתנקזת למערכת הוורידית דרך החיבורים הלימפטיים-ורידיים בתוך פלאפ הבלוטות. בנוסף, הבלוטות מכילות מקרופאגים ולימפוציטים שתופסים והורסים פתוגנים - ולכן משמשות הגנה שמפחיתה זיהומים חוזרים. תשובות 1, 3, 4 אינן מתארות את המנגנון או התפקיד שמוזכרים בפרק.</div>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כריתה (excision) היא "מוצא אחרון" בסולם הטיפולים בלימפדמה - נדרשת כשהרקמה כבר עברה פיברוזיס בלתי הפיך (שלב III-IV ISL/Karri) ו-LVA/ליפוסקשן כבר לא יכולים לעבוד.</li>
+    <li>הליך <b>Chen-modified Charles</b>: כריתה מעגלית מלאה עד לפאשיה מכף הרגל עד אמצע הירך, כיסוי ב-STSG מעגלי (FTSG לגב כף הרגל), תוך 2 שעות חוסם עורקים; 10 שלבי מפתח לביצוע בטוח.</li>
+    <li>הליך <b>RPP</b>: כריתה פחות רדיקלית המשמרת פרפורטורים עורקיים לפי עקרונות אנגיוזום - חלופה בשלב ניתוחי אחד, עם הפחתה היקפית משמעותית (עד 66% מתחת לברך) אך פחות דרסטית מ-Charles.</li>
+    <li>לימפדמה גניטלית מתקדמת (שלב III) מטופלת בכריתה עם שימור אשכים/חבל הזרע ו-dartos, וכיסוי בפלאפים מקומיים או שתלי עור.</li>
+    <li>שילוב עם <b>השתלת בלוטות לימפה (LNF)</b> משפר תוצאות ומפחית זיהומים חוזרים - מטרת-העל היא תמיד שליטה/מיגור זיהום.</li>
+    <li>סיבוכי Charles: זיהום אצבעות חוזר (21%), היפרקרטוזיס וורוקוטית (14%), צלוליטיס (11%); אם כל שיטות הדבלקינג נכשלות - האופציה האחרונה היא קטיעה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

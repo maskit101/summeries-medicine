@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: שברים ופריקות של שורש כף היד והרדיוס הדיסטלי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .clinical-tip{background:#f0f9ff; border:1px dashed #0284c7; border-radius:6px; padding:10px 14px; margin:12px 0; font-size:15px}
+  .clinical-tip::before{content:"טיפ קליני: "; font-weight:700; color:#0369a1}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 8: שברים ופריקות של שורש כף היד והרדיוס הדיסטלי <span class="term" dir="ltr">Fractures and Dislocations of the Wrist and Distal Radius</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: יד וגפה עליונה | Steven C. Haase, Kevin C. Chung</div>
+
+<p>פציעות שורש כף היד שכיחות מאוד: כ-1.5 מיליון שברי יד ושורש כף יד קורים מדי שנה בארה"ב (1.5% מכלל הפניות למיון), ומתוכם כ-208,000 הם שברים קרפליים. שבר הרדיוס הדיסטלי הוא <b>השבר השכיח ביותר בגפה העליונה</b> (כ-643,000 בשנה), עם שיא דו-שלבי: גיל 5–14 (טראומה אנרגטית) וגיל 75–84 (שברים על רקע אוסטיאופורוזיס). ה-<span class="term" dir="ltr">scaphoid</span> הוא העצם הקרפלי השבור ביותר (60–80% משברי הקרפוס). חשוב להבין: פציעות שורש כף היד הן הגורם השכיח ביותר לתביעות רשלנות בכירורגיית יד (48% מהתביעות בסקירה בריטית) - כלומר טיפול "רשלני" בהן שכיח וחמור.</p>
+
+<h2><span class="num">1</span> אנטומיה ומנגנון - למה שורש כף היד כל כך פגיע</h2>
+<div class="mechanism">
+  <p class="chain">
+    שמונת עצמות הקרפוס מסודרות בשתי שורות: <b>שורה פרוקסימלית</b> (<span class="term" dir="ltr">scaphoid, lunate, triquetrum, pisiform</span>) ו<b>שורה דיסטלית</b> (<span class="term" dir="ltr">trapezium, trapezoid, capitate, hamate</span>). ה-<span class="term" dir="ltr">pisiform</span> אינו משתתף בתנועת שורש כף היד. חלוקה נוספת היא לעמודות: רדיאלית (scaphoid, trapezoid, trapezium), מרכזית (lunate, capitate), ואולנרית (triquetrum, hamate).
+  </p>
+  <p>
+    <b>אספקת הדם של ה-scaphoid היא נקודת התורפה המרכזית:</b> יש לו עורק דומיננטי יחיד שנכנס מהקוטב הדיסטלי שלו. משמעות הדבר: הקוטב הפרוקסימלי מקבל דם רק דרך זרימה תוך-מדולרית <b>רטרוגרדית</b> מהדיסטלי. לכן ככל ששבר קרוב יותר לקוטב הפרוקסימלי - כך גדל הסיכון ל<b>איחוי לקוי (non-union)</b> ול<b>נמק אווסקולרי (avascular necrosis, AVN)</b>, כי חלק מאספקת הדם "נכרתת" יחד עם קו השבר.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הפגיעות בפריקה פרי-לונטית (Mayfield)</title>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="48" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">נפילה על יד</text>
+  <text x="770" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">מושטת (FOOSH)</text>
+  <text x="770" y="80" font-size="11.5" text-anchor="middle" fill="#7f1d1d">היפר-אקסטנציה</text>
+
+  <rect x="480" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="570" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלב I: קרע</text>
+  <text x="570" y="62" font-size="11.5" text-anchor="middle" fill="#1e3a8a" dir="ltr">scapholunate lig.</text>
+  <text x="570" y="78" font-size="11" text-anchor="middle" fill="#1e3a8a">(סקפואיד "עוזב" את הלונאט)</text>
+
+  <rect x="260" y="20" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="350" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">שלב II-III: קרע</text>
+  <text x="350" y="62" font-size="11" text-anchor="middle" fill="#065f46">קפסולה (space of Poirier) +</text>
+  <text x="350" y="78" font-size="11" text-anchor="middle" fill="#065f46" dir="ltr">lunotriquetral lig.</text>
+
+  <rect x="20" y="20" width="200" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="120" y="45" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">שלב IV: פריקת לונאט</text>
+  <text x="120" y="62" font-size="11" text-anchor="middle" fill="#4c1d95">לתעלה הקרפלית - לחץ</text>
+  <text x="120" y="78" font-size="11" text-anchor="middle" fill="#4c1d95">על העצב המדיאני</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,55 480,49 480,61" fill="#374151"/>
+  <line x1="480" y1="55" x2="440" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,55 260,49 260,61" fill="#374151"/>
+  <line x1="260" y1="55" x2="220" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="120" width="820" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="145" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">הרצועה הרדיולונטית הקצרה חזקה מאוד - היא "מחזיקה" את הלונאט במקומו, ולכן שאר הקרפוס נפרק סביבו</text>
+  <text x="430" y="163" font-size="11.5" text-anchor="middle" fill="#78350f">(מכאן השם "פרי-לונאט" - הפגיעה מקיפה את הלונאט ולא כוללת אותו עד לשלב האחרון)</text>
+</svg>
+
+<p>ליגמנטים חוץ-קרפליים (דורסליים וולאריים) ותוך-קרפליים מחברים בין העצמות ומגדירים את דפוסי הפגיעה. חוזק ליגמנט <span class="term" dir="ltr">short radiolunate</span> מסביר מדוע פריקה מלאה של הלונאט עצמו נדירה יחסית - בדרך כלל שאר הקרפוס נפרק <i>סביב</i> הלונאט (<b>פריקה פרי-לונטית</b>).</p>
+
+<h3>Gilula arcs - זיהוי חוסר יציבות ברדיוגרפיה</h3>
+<p>ד"ר Gilula תיאר שלושה קווים קשתיים בצילום PA של שורש כף היד: (1) המשטח המפרקי הפרוקסימלי של השורה הפרוקסימלית, (2) המשטח המפרקי הדיסטלי של השורה הפרוקסימלית, (3) המשטח המפרקי הפרוקסימלי של השורה הדיסטלית. <b class="key">מרווח מפרקי מוגדל או סטייה של עצם קרפלית מהקווים האלה מעידים על חוסר יציבות</b> - זו הדרך המהירה ביותר "לתפוס" פגיעה ליגמנטרית בצילום רגיל.</p>
+
+<h3>סיווג חוסר היציבות הקרפלית</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>דפוס</th><th>הגדרה</th><th>דוגמה</th></tr></thead>
+<tbody>
+<tr><td><b>CID</b> <span class="term" dir="ltr">(Carpal Instability Dissociative)</span></td><td>הפרעה בתוך/בין עצמות באותה שורה</td><td>ניתוק סקפולונטי; אי-איחוי סקפואיד</td></tr>
+<tr><td><b>CIND</b> <span class="term" dir="ltr">(Non-Dissociative)</span></td><td>הפרעה במפרק הרדיוקרפלי/מידקרפלי, עם שורות שלמות</td><td>חוסר יציבות מידקרפלי</td></tr>
+<tr><td><b>CIC</b> <span class="term" dir="ltr">(Complex)</span></td><td>שילוב CID + CIND (בתוך ובין השורות)</td><td>פריקה פרי-לונטית עם היסחפות אולנרית</td></tr>
+<tr><td><b>CIA</b> <span class="term" dir="ltr">(Adaptive)</span></td><td>חוסר יציבות משני לבעיה פרוקסימלית/דיסטלית לשורש כף היד</td><td>מלאיחוי רדיוס דיסטלי</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>שני דפוסי עיוות אופייניים הנובעים מ-CID בשורה הפרוקסימלית: <b>DISI</b> <span class="term" dir="ltr">(Dorsal Intercalated Segment Instability)</span> - נלווה לרוב לקרע סקפולונטי או שבר סקפואיד מוזז; ו-<b>VISI</b> <span class="term" dir="ltr">(Volar Intercalated Segment Instability)</span> - נלווה לקרע לונוטריקוורלי. מונח נוסף חשוב: <b>humpback deformity</b> - כאשר טיפול מאוחר בשבר גוף הסקפואיד (waist) גורם למלאיחוי עם זווית חדה בין הקטבים, בגלל נטייתו הטבעית של הסקפואיד "להתכופף" (flex) תחת עומס.</p>
+
+<h2><span class="num">2</span> מנגנון פציעה</h2>
+<p>שני "אוכלוסיות" עיקריות: <b>קשישים אוסטיאופורוטיים</b> - נפילה מגובה עמידה (<span class="term" dir="ltr">fragility fracture</span>), בדרך כלל שבר חוץ-מפרקי עם זווית וולארית לאחור (Colles) - חשוב! מטופל עם שבר שביר אחד נמצא בסיכון לשבר שביר נוסף, ולכן מחייב סקר וטיפול באוסטיאופניה/אוסטיאופורוזיס. ו<b>אוכלוסייה צעירה</b> - טראומה אנרגטית (תאונות דרכים, ספורט) הגורמת לדפוסי שבר מורכבים יותר, עם עלייה בשכיחות שברים קרפליים נלווים, פגיעות ליגמנטריות ופגיעות ב-TFCC ככל שעולה עוצמת האנרגיה.</p>
+
+<h2><span class="num">3</span> סיווג שברי הרדיוס הדיסטלי - השמות האפונימיים</h2>
+<p>למרות שספרים רבים מייעצים לנטוש שמות אפונימיים, הם עדיין נושאים משמעות קלינית מדויקת לגבי כיוון ההעתקה וסוג הפגיעה:</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>שם</th><th>הגדרה</th></tr></thead>
+<tbody>
+<tr><td><b>Colles fracture</b></td><td>שבר חוץ-מפרקי עם העתקה <b>דורסלית</b> של השבר הדיסטלי - השכיח ביותר, טיפוסי לנפילה על יד מושטת בקשישים</td></tr>
+<tr><td><b>Smith fracture</b> ("Colles הפוך")</td><td>שבר חוץ-מפרקי עם העתקה <b>וולארית</b></td></tr>
+<tr><td><b>Barton fracture</b></td><td>שבר גזירה (shear) תוך-מפרקי של המפרק הרדיוקרפלי - יכול להיות דורסלי או וולארי</td></tr>
+<tr><td><b>Chauffeur fracture</b></td><td>שבר תוך-מפרקי המערב את ה-<span class="term" dir="ltr">radial styloid</span></td></tr>
+</tbody>
+</table>
+</div>
+<p>בנוסף לאפונימים הקלאסיים, בפרקטיקה נעזרים גם בסיווגי <b>AO</b> (A = חוץ-מפרקי, B = תוך-מפרקי חלקי, C = תוך-מפרקי מלא) ו-<b>Frykman</b> (מדרג I–VIII לפי מעורבות תוך-מפרקית רדיוקרפלית/רדיואולנרית ומעורבות הסטילואיד האולנרי) - סיווגים מקובלים בספרות המשלימים את השמות האפונימיים לצורך תיעוד ותכנון ניתוחי.</p>
+
+<h2><span class="num">4</span> אבחנה ובדיקה גופנית</h2>
+<p>בהיסטוריה חשוב לתעד את מנגנון הפגיעה, יד דומיננטית, עיסוק ותחביבים, וחובה לשאול על <b>נימול/עקצוץ</b> - חולים אלה נוטים לתסמונת התעלה הקרפלית החריפה שעשויה לחייב טיפול בזמן הניתוח. בבדיקה - השוואה ליד הבריאה, מישוש שיטתי (רגישות מתחת ל-Lister tubercle מרמזת על פגיעה סקפולונטית; רגישות ב"קופסת הטבק" מרמזת על שבר waist של הסקפואיד), והערכת חוזק אחיזה, צביטה ותחושה.</p>
+
+<h3>בדיקות פרובוקטיביות</h3>
+<ul>
+  <li><b>Watson scaphoid shift test</b> - לחץ על הפקעת הסקפואידית הדיסטלית תוך תנועה מאולנרי לרדיאלי; ב-scapholunate dissociation הסקפואיד "נדחק" דורסלית באופן כואב, ו"קליק" (clunk) בשחרור הלחץ מעיד על רדוקציה עצמית.</li>
+  <li><b>Kleinman shear test</b> - ייצוב הלונאט מדורסלית ולחץ דורסלי על הפיסיפורם, ליצירת כוח גזירה על המפרק הלונוטריקוורלי; משלימים עם "lunotriquetral ballottement test" (טלטול פיסיפורם-טריקוורלום קדימה-אחורה).</li>
+</ul>
+
+<h3>הדמיה</h3>
+<p>מינימום ארבעה צילומים: PA, אלכסוני, לטרלי, ו-PA בסטייה אולנרית (הכי רגיש לפגיעות סקפואיד). בצילום לטרלי מודדים <b>זווית סקפולונטית</b> (תקין 30°–60°, ממוצע 47°). ב<span class="term" dir="ltr">clenched fist view</span> העומס דוחף את הקפיטאט לתוך המפרק הסקפולונטי - חושף רפיון/קרע דינמי שלא נראה במנוחה.</p>
+<p>לגבי שבר הרדיוס הדיסטלי, שלושה מדדים מנחים טיפול: <b>גובה רדיאלי</b> (radial height, תקין 10–13 מ"מ), <b>הטיה רדיאלית</b> (radial inclination, תקין 21–25°), ו<b>נטייה וולארית</b> (volar tilt, טווח 2–20°, ממוצע 11°).</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>הדמיה</th><th>יתרון עיקרי</th></tr></thead>
+<tbody>
+<tr><td><b>CT</b></td><td>מבוסס קרני רנטגן - הכי טוב להערכת דפוסי שבר-פריקה מורכבים, קונגרואנטיות מפרקית, ואיחוי עצם לאורך זמן</td></tr>
+<tr><td><b>MRI</b></td><td>הכי טוב למבנים לא-עצמיים (רצועות), שברים סמויים (occult), בצקת עצם, ומידע על וסקולריות; NPV לפגיעה סקפולונטית 72–94% - <b>אף פעם לא שולל לחלוטין</b> פגיעה ליגמנטרית</td></tr>
+<tr><td><b>ארתרוסקופיה</b></td><td>ה"תקן זהב" לגילוי פגיעות תוך-מפרקיות, אך פולשנית יותר</td></tr>
+<tr><td>מיפוי עצם (bone scan)</td><td>שימוש מצטמצם עם התפתחות ה-MRI; עדיין מועיל לאיתור "אזורים חמים" לא ברורים, אך לא ספציפי</td></tr>
+</tbody>
+</table>
+</div>
+<div class="clinical-tip">CT מצטיין בפרטי שבר וגישור עצמי (bony bridging); MRI מצטיין בפגיעה רקמתית, שברים סמויים ובצקת עצם. שימוש עודף ב-MRI עלול לחשוף ממצאים "חיוביים-כוזבים" חסרי משמעות קלינית - יש להשתמש בו בשיקול דעת, לא אוטומטית.</div>
+
+<h2><span class="num">5</span> טיפול - שברי הסקפואיד</h2>
+<p>הסקפואיד מחולק לשלושה מקטעים: קוטב דיסטלי (tubercle), waist (גוף), וקוטב פרוקסימלי. שברי הקוטב הדיסטלי - בזכות אספקת הדם הדיסטלית - מתאחים באופן אמין תוך 6–8 שבועות קיבוע ולעיתים נדירות דורשים ניתוח. ככל שקו השבר קרוב יותר לפרוקסימלי, עולה הסיכון לאי-איחוי, גם ללא העתקה.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>אינדיקציות יחסיות לקיבוע ניתוחי (Box 8.1)</th></tr></thead>
+<tbody>
+<tr><td>שברים מוזזים</td></tr>
+<tr><td>שברי קוטב פרוקסימלי (ללא קשר להעתקה)</td></tr>
+<tr><td>שברים הקשורים לפגיעות פרי-לונטיות</td></tr>
+<tr><td>שברים פתוחים</td></tr>
+<tr><td>חולים עם פגיעות מרובות</td></tr>
+<tr><td>שברים שלא מתאחים לאחר ניסיון קיבוע (3–4 חודשים)</td></tr>
+</tbody>
+</table>
+</div>
+<p>הקיבוע הפנימי מתבצע בדרך כלל עם <b>בורג דחיסה חסר-ראש (headless compression screw)</b> המושחל לאורך הציר הארוך של העצם. הגישה הדורסלית מועדפת לשברי קוטב פרוקסימלי; שברי waist ניתן לתקן מגישה וולארית או דורסלית. אם קיים חשש לנמק אווסקולרי - שוקלים <b>שתל עצם וסקולרי</b>, למשל שתל מנוצל (pedicled) מהרדיוס הדיסטלי (על עורק ה-1,2-intercompartmental supraretinacular) או שתל חופשי מהקונדיל הפמורלי המדיאלי; גרסה מתקדמת ("medial femoral trochlea flap") יכולה להחליף קוטב פרוקסימלי שלם שאינו ניתן להצלה.</p>
+
+<div class="clinical-tip">מדידת אורך הבורג מתבססת על הגיידווייר: אם החוט נוגע בקורטקס הדיסטלי, מחסירים לפחות 2 מ"מ מהמדידה כדי שהבורג לא יחדור למפרק הסקפוטרפזיאלי. אורך טיפוסי: 22–24 מ"מ לגברים, 18–20 מ"מ לנשים.</div>
+
+<h3>אי-איחוי הסקפואיד (Scaphoid non-union)</h3>
+<p>שכיח יחסית, כי שברי סקפואיד עלולים "להיפספס" כנקע פשוט. סיבוך ארוך טווח: <b>SNAC wrist</b> <span class="term" dir="ltr">(Scaphoid Non-union Advanced Collapse)</span> - דלקת פרקים פוסט-טראומטית מתקדמת עקב הפרעה לביומכניקה של השורה הפרוקסימלית. תיקון deformity "humpback" נעשה בדרך כלל מגישה וולארית, עם שתל עצם מבני מהכסל או מהרדיוס הדיסטלי להשבת גובה הסקפואיד.</p>
+
+<h2><span class="num">6</span> טיפול - פגיעות ליגמנטריות ופריקות</h2>
+<h3>פגיעה ברצועה הסקפולונטית - הצורה השכיחה ביותר של חוסר יציבות קרפלי</h3>
+<p>קרעים חלקיים חריפים ללא חוסר יציבות גס - קיבוע 4–6 שבועות. קרעים מלאים חריפים - תיקון פתוח עם עוגני תפר (suture anchors), מוגן בנעיצת סקפולונטי + סקפוקפיטאט למשך 8 שבועות. תיקונים שמתעכבים מעבר לכמה שבועות קשים יותר כי שאריות הרצועה מתנוונות. בקרעים כרוניים - הטיפול תלוי במידת ההדדקות ובמצב הסחוס (ראו אלגוריתם), כולל אפשרויות של קפסולודזיס דורסלי, שחזור עם גרפט גיד (<b>three-ligament tenodesis</b> עם פס מגיד ה-<span class="term" dir="ltr">flexor carpi radialis</span>), ובמקרים מתקדמים - נהלים "מצילים" כמו <span class="term" dir="ltr">PRC (proximal row carpectomy)</span> או <span class="term" dir="ltr">scaphoidectomy + four-corner fusion</span>.</p>
+
+<h3>פגיעה ברצועה הלונוטריקוורלית</h3>
+<p>עדינה יותר מפגיעה סקפולונטית - דיאסטזיס אמיתי נדיר בצילום, לרוב VISI קל מרמז על הפגיעה. ללא קריסה (VISI) - קיבוע שמרני תחילה. כישלון טיפול שמרני או VISI סימפטומטי - תיקון רצועה, שחזור עם גיד ה-<span class="term" dir="ltr">extensor carpi ulnaris</span>, ארתרודזה, או אוסטאוטומיית קיצור אולנרי (מועילה גם ב-ulnocarpal abutment).</p>
+
+<h3>פריקה פרי-לונטית - חירום כירורגי יחסי</h3>
+<p>לרוב מאובחנת מיידית - חולים מגיעים עם פציעה משמעותית ולרוב עם נוירופתיה מדיאנית חריפה. יש לבצע רדוקציה מוקדם ככל האפשר להקלה על העצב ולשיקום היישור הקרפלי, בדרך כלל תחת סדציה, אנלגזיה ומתיחה (traction) עם יישור שורש כף היד לאקסטנציה. לתיקון סופי נדרשות בדרך כלל <b>שתי גישות (וולארית ודורסלית)</b>: וולארית - שחרור תעלה קרפלית מורחב וסגירת קרע הקפסולה הוולארית; דורסלית - וידוא יישור קרפלי מדויק, נעיצת הקרפוס, ותיקון הרצועה הסקפולונטית הדורסלית עם עוגני תפר, לעיתים מחוזק בקפסולודזיס. מעניין: למרות שהלונאט "מתפרק" מכל ההיצמדויות שלו בפציעה זו, נמק אווסקולרי שלו נדיר יחסית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/_Qw6_Fl-xpI" title="Perilunate and Lunate Dislocation - Dr. Nabil Ebraheim" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר מצויר של דפוס הפגיעה הפרי-לונטי ופריקת הלונאט, כולל שלבי Mayfield - ד"ר Nabil Ebraheim (ערוץ חינוכי אורתופדי מוכר).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Ga_qCmE8tQY" title="Scaphoid Fractures - Dr. Nabil Ebraheim" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה של שברי הסקפואיד, אספקת הדם הפגיעה וסיבוכים - ד"ר Nabil Ebraheim.</p>
+
+<h2><span class="num">7</span> טיפול - שברי הרדיוס הדיסטלי</h2>
+<p>רוב השברים סגורים; שברים שנכשלים בטיפול שמרני מתוקנים באופן אלקטיבי, רצוי תוך שבוע (לפני שקאלוס מקשה על רדוקציה מדויקת). <b>שבר פתוח</b> הוא חירום כירורגי בשל סיכון לזיהום עצם. חולים עם תסמינים מדיאניים שלא משתפרים לאחר רדוקציה זקוקים לשחרור תעלה קרפלית חריף.</p>
+<p>לפי הנחיות <span class="term" dir="ltr">AAOS</span>: שברים לא-מוזזים מתאחים היטב עם קיבוע בלבד. שברים מוזזים עוברים רדוקציה, ואז מוערכת היציבות. יש עדות מתונה לתמיכה בקיבוע ניתוחי כאשר לאחר הרדוקציה: <b>קיצור רדיאלי מעל 3 מ"מ, זווית דורסלית מעל 10°, ו/או "מדרגה" (step-off) תוך-מפרקית מעל 2 מ"מ.</b></p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>שיטת קיבוע</th><th>עקרון</th><th>הערות</th></tr></thead>
+<tbody>
+<tr><td><b>לוחית וולארית נעילה בזווית קבועה</b></td><td>הלוחית מונחת מתחת לשריר ה-pronator quadratus, שמגן על הגידים והעצבים העליונים; בורגי נעילה מספקים תמיכה תלת-ממדית מתחת למשטח המפרקי, יציבה גם בעצם אוסטיאופורוטית</td><td>שיטת הבחירה המודרנית - "מהפכה" בטיפול בשבר הרדיוס הדיסטלי; מאפשרת תנועה מוקדמת</td></tr>
+<tr><td>לוחית דורסלית</td><td>נחשבה פעם בטוחה יותר (רחוקה מהמבנים הנוירווסקולריים הוולאריים)</td><td>ננטשה יחסית עקב שיעור גבוה של קרע גיד ה-<span class="term" dir="ltr">EPL</span> וגידים אקסטנסוריים אחרים</td></tr>
+<tr><td>קיבוע חיצוני / K-wires מלעוריים</td><td>שיטות ותיקות - "ligamentotaxis"</td><td>הוחלפו במידה רבה בקיבוע פנימי, במיוחד בעידן הלוחיות הנועלות</td></tr>
+<tr><td>לוחית גישור (bridge plate)</td><td>לוחית ארוכה מהדיאפיזה הרדיאלית עד המסרק 2/3, פועלת כ"קיבוע חיצוני פנימי" (offload + distraction)</td><td>שימושית בשברים מרוסקים דיסטליים מאוד; שיעור סיבוכים כ-13% ב-24 חודשי מעקב</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>ניואנסים כירורגיים בגישה הוולארית - איפה קורות רוב הטעויות</h3>
+<ul>
+  <li>החתך חייב להיות <b>רדיאלית לגיד ה-FCR</b> כדי להגן על הענף העורי הפלמרי של העצב המדיאני (בדרך כלל ממוקם אולנרית ל-FCR, אך יש שונות אנטומית).</li>
+  <li>יש להרים את ה-pronator quadratus כדש מבוסס-אולנרית (ולא לחתוך באמצע) - מקל על כיסוי הלוחית בסוף הניתוח.</li>
+  <li>בורגי הנעילה הדיסטליים צריכים להיות <b>קצרים ב-2 מ"מ</b> ממדידת העומק, כדי למנוע פגיעה בגידים האקסטנסוריים; מספיק שיגיעו ל-75% מרוחב המטאפיזה ליציבות מספקת.</li>
+  <li>יש לבצע פלואורוסקופיה במספר מישורים בסיום, כולל תצוגה לטרלית "אופסט" בזווית 30° (=ההטיה הרדיאלית) לוודא שאף בורג דיסטלי לא חודר למפרק.</li>
+</ul>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/wtZikbuiyyA" title="Distal Radius Fractures: Open Reduction Internal Fixation - NYU Langone Orthopedics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון של NYU Langone Orthopedics המדגים ORIF של שבר רדיוס דיסטלי עם לוחית וולארית נעילה.</p>
+
+<h3>שברי הסטילואיד האולנרי</h3>
+<p>הרצועות הרדיואולנריות הדיסטליות (המתחברות ל-TFCC) מסבירות מדוע הסטילואיד האולנרי "נקרע" (avulsion) לעיתים קרובות כשהרדיוס הדיסטלי מוזז. גם ללא שבר סטילואיד, פגיעת TFCC יכולה לגרום לחוסר יציבות של המפרק הרדיואולנרי הדיסטלי (<b>DRUJ</b>). לכן <b class="key">בכל שבר רדיוס דיסטלי יש לבדוק את יציבות ה-DRUJ</b>. שבר סטילואיד ללא חוסר יציבות DRUJ - <b>אינו דורש קיבוע</b> (בדיוק כמו שבר avulsion וולארי ב-PIP - סמן לחומרת הפגיעה, לא בהכרח מטרת טיפול). כשיש חוסר יציבות - מקבעים עם תבנית "מתח" (tension-band) או "hook plate" ייעודית.</p>
+
+<h2><span class="num">8</span> סיבוכים</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>סיבוך</th><th>מנגנון / הערה</th></tr></thead>
+<tbody>
+<tr><td>אי-איחוי/נמק אווסקולרי של הסקפואיד</td><td>אספקת דם רטרוגרדית לקוטב הפרוקסימלי; מוביל ל-SNAC wrist</td></tr>
+<tr><td>קרע גיד <span class="term" dir="ltr">EPL</span></td><td>שכיח דווקא בשברים <b>לא-מוזזים</b>; קורה ב-Lister tubercle, אזור "watershed" של אספקת הדם התוך-גידית של הגיד. הפרעה נוספת לאספקה החוץ-גידית (מקאלוס, העתקה, בצקת) עלולה לגרום לקרע "שחיקתי" (attritional)</td></tr>
+<tr><td>תסמונת תעלה קרפלית חריפה</td><td>מבצקת/המטומה סביב הפגיעה - יש לחפש תסמינים מדיאניים באופן פעיל</td></tr>
+<tr><td>חוסר יציבות DRUJ</td><td>מ-avulsion של הסטילואיד האולנרי או פגיעת TFCC</td></tr>
+<tr><td>דלקת פרקים פוסט-טראומטית (SLAC/SNAC wrist)</td><td>תוצאה ארוכת טווח של חוסר יציבות סקפולונטי או אי-איחוי סקפואיד לא-מטופלים</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-C-L-U</span> לשלבי Mayfield של פריקה פרי-לונטית</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Scapholunate</span> ligament rupture (שלב I)<br>
+    <b>C</b> – <span class="term" dir="ltr">Capsule</span> tear דרך space of Poirier (שלב II)<br>
+    <b>L</b> – <span class="term" dir="ltr">Lunotriquetral</span> ligament rupture (שלב III)<br>
+    <b>U</b> – <span class="term" dir="ltr">Ultimate</span> lunate dislocation (שלב IV)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את הלונאט כמלך זקן היושב על כס מלכות יציב (הרדיוס), עם שני שומרי ראש: הסקפואיד מימין והטריקוורלום משמאל. בנפילה על יד מושטת, השומר הימני (<b>S</b>capholunate) בורח ראשון. אז שער הארמון קורס (<b>C</b>apsule, space of Poirier). לאחר מכן גם השומר השמאלי בורח (<b>L</b>unotriquetral). בסופו של דבר, בלי שני שומריו, המלך עצמו מתהפך ונופל מכסאו אל תוך המנהרה שמתחת לארמון (<b>U</b>ltimate lunate dislocation לתוך התעלה הקרפלית) - ולוחץ שם על העצב המדיאני שעובר במנהרה.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>המלך הלונאט על כסאו</title>
+    <rect x="40" y="150" width="420" height="14" rx="4" fill="#a3a3a3"/>
+    <text x="250" y="147" font-size="11" text-anchor="middle" fill="#6b7280">הרדיוס (הכס)</text>
+    <circle cx="250" cy="100" r="26" fill="#fbbf24" stroke="#78350f" stroke-width="2"/>
+    <text x="250" y="105" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">L</text>
+    <text x="250" y="70" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">המלך לונאט</text>
+    <circle cx="150" cy="105" r="17" fill="#93c5fd" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="150" y="110" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">S</text>
+    <text x="150" y="135" font-size="10.5" text-anchor="middle" fill="#1e3a8a">שומר 1 (בורח ראשון)</text>
+    <circle cx="350" cy="105" r="17" fill="#6ee7b7" stroke="#065f46" stroke-width="2"/>
+    <text x="350" y="110" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700">Tq</text>
+    <text x="350" y="135" font-size="10.5" text-anchor="middle" fill="#065f46">שומר 2 (בורח שלישי)</text>
+    <path d="M110,105 Q80,60 60,40" stroke="#1e3a8a" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+    <path d="M390,105 Q420,60 440,40" stroke="#065f46" stroke-width="2" fill="none" stroke-dasharray="4 3"/>
+    <text x="250" y="185" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">בלי השומרים - המלך נופל למנהרה (תעלה קרפלית) ולוחץ על העצב המדיאני</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.orthobullets.com/hand/6034/scaphoid-fracture" target="_blank">Scaphoid Fracture – Orthobullets</a>
+    <div class="desc">סיכום קליני מהיר על סיווג, אספקת דם וטיפול בשברי סקפואיד, כולל תרשימים.</div>
+  </li>
+  <li>
+    <a href="https://www.orthobullets.com/hand/6041/scapholunate-ligament-injury-and-disi" target="_blank">Scapholunate Ligament Injury &amp; DISI – Orthobullets</a>
+    <div class="desc">הרחבה על פגיעה סקפולונטית, בדיקת Watson, וטיפול לפי חומרה וכרוניות.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Colles%27_fracture" target="_blank">Colles' fracture – Wikipedia</a>
+    <div class="desc">רקע היסטורי ותיאור קליני של שבר Colles, כולל תמונות רדיוגרפיות.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=GnB4y21-tgI" target="_blank">Scaphoid Nonunion – Dr. Nabil Ebraheim</a>
+    <div class="desc">סרטון נוסף (לא מוטמע) המסביר את הפתופיזיולוגיה והטיפול באי-איחוי סקפואיד ו-SNAC wrist.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 מגיע לחדר מיון לאחר נפילה מאופניים על יד ימין מושטת. מתלונן על כאב בבסיס האגודל וברדיוס הדיסטלי. בבדיקה: רגישות ניכרת ב"קופסת הטבק האנטומית" (anatomic snuffbox), ותחושת נימול קל באצבעות 1-3. צילום רגיל בארבע תצוגות מדגים שבר בגוף (waist) הסקפואיד ללא העתקה ברורה, וכן שבר חוץ-מפרקי קל של הרדיוס הדיסטלי עם זווית דורסלית 6° וקיצור רדיאלי 2 מ"מ. בדיקת Watson כואבת אך ללא "clunk" ברור.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע חשוב לזהות שבר בקוטב הפרוקסימלי של הסקפואיד באופן שונה משבר בקוטב הדיסטלי?</div>
+  <button class="opt" data-i="0">אין הבדל קליני - שני האזורים מתאחים באותו קצב</button>
+  <button class="opt" data-i="1">הקוטב הדיסטלי מקבל דם רטרוגרדי ולכן בסיכון גבוה יותר</button>
+  <button class="opt" data-i="2">הקוטב הפרוקסימלי תלוי באספקת דם תוך-מדולרית רטרוגרדית מהעורק הדיסטלי, ולכן בסיכון גבוה יותר לאי-איחוי ונמק אווסקולרי</button>
+  <button class="opt" data-i="3">שברי קוטב פרוקסימלי לעולם אינם דורשים ניתוח</button>
+  <div class="explain">התשובה הנכונה: הסקפואיד מקבל עורק דומיננטי יחיד הנכנס בקוטב הדיסטלי; הקוטב הפרוקסימלי "ניזון" רק דרך זרימה תוך-מדולרית רטרוגרדית. שבר בקוטב הפרוקסימלי (או שבר waist קרוב אליו) עלול לנתק חלק מהאספקה הזו, ולכן נושא סיכון גבוה יותר לאי-איחוי ולנמק אווסקולרי. תשובה 2 הפוכה עובדתית. תשובה 4 שגויה - שברי קוטב פרוקסימלי הם דווקא אינדיקציה יחסית לקיבוע ניתוחי ללא קשר להעתקה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. באיזה שלב של Mayfield מתרחש קרע הרצועה הלונוטריקוורלית בפריקה הפרי-לונטית?</div>
+  <button class="opt" data-i="0">שלב I</button>
+  <button class="opt" data-i="1">שלב III</button>
+  <button class="opt" data-i="2">שלב II</button>
+  <button class="opt" data-i="3">שלב IV</button>
+  <div class="explain">התשובה הנכונה: לפי הרצף - שלב I הוא קרע סקפולונטי, שלב II הוא קרע קפסולרי דרך space of Poirier, שלב III הוא קרע הרצועה הלונוטריקוורלית, ושלב IV הוא פריקת הלונאט עצמו (אם הקרפוס המנותק "מתכווץ אחורה"). זכרו את ראשי התיבות S-C-L-U.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. חולה עם שבר סטילואיד אולנרי בעקבות שבר רדיוס דיסטלי - מתי נדרש קיבוע ניתוחי של הסטילואיד?</div>
+  <button class="opt" data-i="0">תמיד - כל שבר סטילואיד מחייב קיבוע</button>
+  <button class="opt" data-i="1">רק אם השבר תוך-מפרקי</button>
+  <button class="opt" data-i="2">רק אם החולה מעל גיל 60</button>
+  <button class="opt" data-i="3">רק אם קיימת חוסר יציבות של המפרק הרדיואולנרי הדיסטלי (DRUJ) בבדיקה</button>
+  <div class="explain">התשובה הנכונה: שבר הסטילואיד האולנרי הוא סמן לחומרת הפגיעה (בדומה ל-volar lip avulsion ב-PIP), אך אינו זקוק לקיבוע כשלעצמו - קיבוע נדרש רק כאשר בבדיקה מזוהה חוסר יציבות DRUJ, כי אז יציבות המפרק בסכנה גם ללא תמיכת הסטילואיד. מחקרים ביומכניקניים הראו שהצרור האלכסוני הדיסטלי של הממברנה הבין-עצמית יכול לשמר יציבות DRUJ גם ללא איחוי הסטילואיד, בתנאי שהרדיוס הדיסטלי עבר רדוקציה אנטומית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מדוע לוחיות וולאריות נעילות "החליפו" ברובן את הגישה הדורסלית בטיפול בשבר הרדיוס הדיסטלי?</div>
+  <button class="opt" data-i="0">הגישה הדורסלית נקשרה לשיעור גבוה של קרעי גידים אקסטנסוריים (במיוחד EPL), בעוד הלוחית הוולארית מוגנת מתחת ל-pronator quadratus</button>
+  <button class="opt" data-i="1">הגישה הוולארית זולה יותר ואינה דורשת פלואורוסקופיה</button>
+  <button class="opt" data-i="2">הגישה הדורסלית אינה מתאימה לשברים המוזזים דורסלית, שהם השכיחים ביותר</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי בין השתיים, זו רק העדפה אזורית</button>
+  <div class="explain">התשובה הנכונה: היסטורית חשבו שהגישה הדורסלית בטוחה יותר כי היא מתרחקת מהמבנים הנוירווסקולריים הוולאריים, וגם "הגיונית" יותר לשברים המוזזים דורסלית (Colles) - אך התברר שהחומרה הדורסלית פוגעת בגידים האקסטנסוריים העוברים ממש מעל, בעיקר EPL. הגישה הוולארית מאפשרת הנחת הלוחית מתחת לשריר ה-pronator quadratus שמגן על הגידים העליונים, ובורגי הנעילה מספקים יציבות תלת-ממדית גם בעצם מרוסקת/אוסטיאופורוטית. תשובות 2-4 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. באיזה מהמקרים הבאים יש אינדיקציה מוצקה ביותר לקיבוע ניתוחי (ORIF) של שבר סקפואיד?</div>
+  <button class="opt" data-i="0">שבר לא-מוזז בקוטב הדיסטלי (tubercle) בחולה בריא צעיר</button>
+  <button class="opt" data-i="1">שבר waist קל ללא העתקה, שבוע ראשון מהפציעה, ללא פגיעות נלוות</button>
+  <button class="opt" data-i="2">שבר סקפואיד מוזז המשולב עם פגיעה פרי-לונטית</button>
+  <button class="opt" data-i="3">שבר סקפואיד אסימפטומטי שנמצא באקראי בהדמיה לצורך אחר</button>
+  <div class="explain">התשובה הנכונה: לפי Box 8.1, שברים מוזזים, שברים בקוטב הפרוקסימלי, שברים הקשורים לפגיעות פרי-לונטיות, שברים פתוחים, פגיעות מרובות, ואי-איחוי לאחר ניסיון קיבוע - כולם אינדיקציות יחסיות לניתוח. שילוב שבר מוזז עם פגיעה פרי-לונטית (שהיא עצמה טראומה משמעותית ולרוב עם פגיעה ליגמנטרית נלווית) הוא המקרה החזק ביותר מבין האפשרויות. תשובה 1 (שבר דיסטלי לא-מוזז) הוא בדיוק המקרה שמתאחה היטב עם קיבוע חיצוני בלבד וכמעט אף פעם לא דורש ניתוח. תשובה 2 - שברי waist לא-מוזזים גם הם מטופלים בדרך כלל שמרנית. תשובה 4 - שבר אסימפטומטי לא ידוע כאי-איחוי סימפטומטי, ולא מהווה אינדיקציה אוטומטית לניתוח.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהו ה"תקן זהב" לאבחון פגיעות תוך-מפרקיות של שורש כף היד, ומדוע ה-MRI לבדו אינו מספיק לשלול פגיעה?</div>
+  <button class="opt" data-i="0">CT הוא התקן הזהב, כי הוא הרגיש ביותר לרצועות</button>
+  <button class="opt" data-i="1">ארתרוסקופיה היא התקן הזהב; ה-NPV של MRI לפגיעה סקפולונטית נע רק בין 72% ל-94%, כך שתוצאה תקינה אינה שוללת פגיעה לחלוטין</button>
+  <button class="opt" data-i="2">מיפוי עצם (bone scan) הוא התקן הזהב בזכות רגישותו הגבוהה מאוד</button>
+  <button class="opt" data-i="3">צילום רגיל בארבע תצוגות מספיק תמיד ואין צורך בהדמיה מתקדמת</button>
+  <div class="explain">התשובה הנכונה: הארתרוסקופיה האבחנתית, אף שהיא פולשנית יותר, נחשבת לתקן הזהב לגילוי פגיעות תוך-מפרקיות. סקירה שיטתית מצאה שהערך המנבא השלילי (NPV) של MRI לפגיעה סקפולונטית נע בין 72% ל-94% בלבד בהשוואה לממצאי ארתרוסקופיה - כלומר גם MRI "נקי" משאיר סיכוי משמעותי לפגיעה אמיתית שפוספסה. CT ומיפוי עצם אינם התקן הזהב לפגיעות ליגמנטריות/סחוסיות (CT מצטיין בעצם, מיפוי עצם לא ספציפי). צילום רגיל בלבד אינו מספיק לפגיעות ליגמנטריות עדינות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>אנטומיה:</b> 2 שורות קרפליות; אספקת דם רטרוגרדית לקוטב הפרוקסימלי של הסקפואיד = הסיכון המרכזי לאי-איחוי/AVN. Gilula arcs לזיהוי חוסר יציבות בצילום.</li>
+    <li><b>מיון חוסר יציבות:</b> CID (בתוך שורה), CIND (בין רדיוס-קרפוס או בין שורות), CIC (שילוב), CIA (משני לבעיה מחוץ לשורש). DISI ↔ פגיעה סקפולונטית, VISI ↔ פגיעה לונוטריקוורלית.</li>
+    <li><b>שלבי Mayfield (S-C-L-U):</b> קרע סקפולונטי → קרע קפסולה (space of Poirier) → קרע לונוטריקוורלי → פריקת לונאט עם לחץ על העצב המדיאני.</li>
+    <li><b>אפונימים לשבר רדיוס דיסטלי:</b> Colles (חוץ-מפרקי, דורסלי), Smith (חוץ-מפרקי, וולארי), Barton (תוך-מפרקי גזירה), Chauffeur (סטילואיד רדיאלי).</li>
+    <li><b>קריטריונים לניתוח ברדיוס דיסטלי:</b> קיצור רדיאלי >3 מ"מ, זווית דורסלית >10°, step-off תוך-מפרקי >2 מ"מ.</li>
+    <li><b>טיפול:</b> סקפואיד - בורג דחיסה חסר-ראש ± שתל עצם וסקולרי; רדיוס דיסטלי - לוחית וולארית נעילה (סטנדרט מודרני, עוקפת סיבוכי גיד של הגישה הדורסלית); פריקה פרי-לונטית - רדוקציה דחופה + תיקון דו-גישתי (וולארי+דורסלי); סטילואיד אולנרי - קיבוע רק אם DRUJ לא יציב.</li>
+    <li><b>סיבוכים מרכזיים:</b> SNAC wrist, קרע EPL (ב-Lister tubercle, שכיח דווקא בשברים לא-מוזזים), תסמונת תעלה קרפלית חריפה, חוסר יציבות DRUJ.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
