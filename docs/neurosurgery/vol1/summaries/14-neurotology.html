@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 14: נוירוטולוגיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 1</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 14: נוירוטולוגיה <span class="term" dir="ltr">Neurotology</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), כרך 1 | מאת P. Ashley Wackym, Christina L. Runge-Samuelson</div>
+
+<p>הפרק עוסק בשלושת העצבים הגולגולתיים שעוברים בעצם הרקה - השבלולי (cochlear), הווסטיבולרי (vestibular) והפציאלי (facial) - ובבדיקות שמאבחנות את תפקודם. הרעיון המארגן: <b>כל תלונה קלינית (ירידה בשמיעה, סחרחורת, חולשת פנים) ניתנת "לתרגם" למיקום אנטומי מדויק לאורך המסלול</b> - מהאוזן החיצונית, דרך התוף והשרשרת העצמית, האוזן הפנימית, ועד גזע המוח - על סמך <b>סוג</b> החסר ותוצאות בדיקות ממוקדות (טונים טהורים, קול, טימפנומטריה, קלוריים).</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: מוליכה מול חושית-עצבית</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל מבדילים בין ירידת שמיעה מוליכה (conductive) לחושית-עצבית (sensorineural)? כי המיקום האנטומי קובע לחלוטין את הטיפול:
+  </p>
+  <p>
+    <b>שלב 1 - האם קול (בגולגולת) עובר טוב יותר מאוויר?</b> אם כן - יש חסימה מכנית לפני האוזן הפנימית (מוליכה): אוזן חיצונית סתומה, נוזל באוזן התיכונה, שרשרת עצמית קטועה, אוטוסקלרוזיס.<br>
+    <b>שלב 2 - האם שני המוליכות (אוויר וגולגולת) ירודות באותה מידה?</b> אם כן - הבעיה בשבלול או בעצב השבלולי עצמו (חושית-עצבית): רעש, גיל, מניר, שוואנומה ווסטיבולרית.<br>
+    <b>שלב 3 - תרגום לטיפול:</b> חסר מוליך = לרוב ניתוחי (טימפנופלסטיקה, סטפדקטומיה); חסר חושי-עצבי = לרוב שיקומי (מכשירי שמיעה, שתל קוכליארי) או, אם יש גידול, ניתוחי-אונקולוגי.
+  </p>
+</div>
+<p class="key-box">בדיקות מזלג הכוונון (Weber, Rinne) הן למעשה "שאלת סינון" מהירה ליד המיטה שמכוונת איזו בדיקה מתקדמת (אודיוגרם, MRI) תידרש בהמשך - הן לא מחליפות אבחון מדויק, אלא ממקדות אותו.</p>
+
+<h2><span class="num">2</span> אנטומיה של האוזן הפנימית: הלבירינת הבוני והממברנוזי</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Anatomy_of_Human_Ear_with_Cochlear_Frequency_Mapping.svg?width=700" alt="Anatomy of human ear with cochlear frequency mapping">
+<p class="media-cap">אנטומיית האוזן החיצונית, התיכונה והפנימית, כולל מיפוי התדרים לאורך השבלול. מקור: Wikimedia Commons.</p>
+<p>הלבירינת הבוני <span class="term" dir="ltr">bony labyrinth</span> מלא בפרילימפה <span class="term" dir="ltr">perilymph</span> (דומה כימית ל-CSF), ובתוכו "שוחה" הלבירינת הממברנוזי <span class="term" dir="ltr">membranous labyrinth</span> המלא באנדולימפה <span class="term" dir="ltr">endolymph</span>. השבלול <span class="term" dir="ltr">cochlea</span> ממוקם קדמית, והלבירינת הווסטיבולרי (הכולל את התעלות החצי-עגולות) - אחורית, כשהם מופרדים על ידי העצבים הווסטיבולרי, השבלולי והפציאלי בתוך התעלה השמיעתית הפנימית <span class="term" dir="ltr">internal auditory canal, IAC</span>.</p>
+<p>השבלול הוא צינור חלול המתפתל 2.5 סיבובים סביב ציר בוני בשם <b>מודיולוס</b> <span class="term" dir="ltr">modiolus</span>, שבתוכו עוברים שלוחות העצב השבלולי לגרעין הספיראלי. חתך רוחבי בשבלול מגלה שלושה תאים: <b>סקלה וסטיבולי</b> (פרילימפה), <b>סקלה מדיה</b> (אנדולימפה, מכילה את איבר קורטי), ו<b>סקלה טימפני</b> (פרילימפה) - כשהסקלה מדיה תחומה על ידי קרום רייסנר מלמעלה וקרום הבזילר מלמטה.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Cochlea-crosssection.svg?width=700" alt="Cross section of the cochlea showing scala vestibuli, scala media, scala tympani">
+<p class="media-cap">חתך רוחבי בשבלול: שלושת התאים (סקלה וסטיבולי, סקלה מדיה, סקלה טימפני) ואיבר קורטי. מקור: Wikimedia Commons.</p>
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מיפוי תדרים לאורך קרום הבזילר</title>
+  <desc>תרשים סכמטי עצמאי: הבסיס הרחב-צר של הקרום, תדרים גבוהים בבסיס ותדרים נמוכים בקודקוד</desc>
+  <path d="M 60 260 Q 300 40 640 150" fill="none" stroke="#2563eb" stroke-width="6"/>
+  <circle cx="60" cy="260" r="10" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="60" y="285" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">בסיס (base)</text>
+  <text x="60" y="230" font-size="11" text-anchor="middle" fill="#1e3a8a">תדרים גבוהים</text>
+  <circle cx="640" cy="150" r="10" fill="#fff" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="600" y="120" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קודקוד (helicotrema)</text>
+  <text x="600" y="175" font-size="11" text-anchor="middle" fill="#1e3a8a">תדרים נמוכים</text>
+  <rect x="30" y="20" width="640" height="34" rx="6" fill="#f3f4f6"/>
+  <text x="350" y="43" font-size="13" text-anchor="middle" fill="#374151">קרום הבזילר רחב וגמיש בקודקוד → תדרים נמוכים; צר ונוקשה בבסיס → תדרים גבוהים</text>
+</svg>
+
+<h2><span class="num">3</span> פיזיולוגיית השמיעה: ממברנה עד קורטקס</h2>
+<p>גלי קול פוגעים בקרום התוף <span class="term" dir="ltr">tympanic membrane</span>, המניע את המליאוס <span class="term" dir="ltr">malleus</span>, האינקוס <span class="term" dir="ltr">incus</span> והסטייפס <span class="term" dir="ltr">stapes</span>. מנגנון הטרנספורמר של התוף - שטח הקרום גדול פי כ-17 מהלוחית של הסטייפס, והמניברום ארוך פי 1.3 מתהליך האינקוס - יוצר <b>הגברה</b> מספיקה כדי לפצות על אובדן האנרגיה במעבר מאוויר לנוזל האוזן הפנימית. תנודות הלוחית מעבירות גלי לחץ בפרילימפה, המפעילים את קרום הבזילר ואיבר קורטי; תאי השערה החיצוניים והפנימיים ממירים את התנודה המכנית לאות עצבי שעולה בעצב השבלולי לגרעיני הקוכליאה בצומת הפונטומדולרי, ומשם לקליפת השמיעה.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/WeQluId1hnQ" title="2-Minute Neuroscience: The Cochlea" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מנגנון פעולת השבלול בקיצור.</p>
+
+<h2><span class="num">4</span> אבחון: מזלג כוונון, אודיוגרם וטימפנומטריה</h2>
+<p>בדיקת <b>רינה</b> <span class="term" dir="ltr">Rinne test</span> משווה הולכה אווירית להולכה גולגולתית באותה אוזן; בחסר מוליך ההולכה הגולגולתית "מנצחת" (Rinne שלילי). בדיקת <b>וובר</b> <span class="term" dir="ltr">Weber test</span> מציבה מזלג כוונון על קו האמצע של הגולגולת: בחסר מוליך הצליל <b>מוצלט</b> (lateralizes) לאוזן החולה; בחסר חושי-עצבי הוא מוצלט לאוזן הבריאה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>בדיקה</th><th>עקרון</th><th>ממצא בחסר מוליך</th><th>ממצא בחסר חושי-עצבי</th></tr></thead>
+  <tbody>
+    <tr><td><b>רינה (Rinne)</b></td><td>השוואת AC ל-BC באותה אוזן</td><td>BC &gt; AC (רינה שלילי)</td><td>AC &gt; BC (רינה חיובי, כרגיל)</td></tr>
+    <tr><td><b>וובר (Weber)</b></td><td>מזלג על קו האמצע</td><td>מוצלט לאוזן הפגועה</td><td>מוצלט לאוזן הבריאה</td></tr>
+    <tr><td><b>אודיוגרם טונים טהורים</b></td><td>סף שמיעה לתדרים שונים, AC מול BC</td><td>פער AC-BC ("gap") עם BC תקין</td><td>AC ו-BC ירודים יחד, ללא פער</td></tr>
+    <tr><td><b>טימפנומטריה</b></td><td>קומפליאנס של קרום התוף מול לחץ</td><td>עקומה שטוחה/מוזזת (נוזל, נוקשות שרשרת)</td><td>עקומה תקינה (type A)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>בחסר חושי-עצבי חד-צדדי, בדיקות דיבור (SRT, זיהוי דיבור) ובדיקת <b>פליטות אוטואקוסטיות (OAE)</b> ותגובות גזע-מוח שמיעתיות (ABR) מסייעות להבחין בין מקור קוכליארי (שבלולי) למקור רטרוקוכליארי (עצב שמיעה/גזע המוח - כמו שוואנומה ווסטיבולרית).</p>
+
+<h2><span class="num">5</span> מערכת הווסטיבולום: תעלות חצי-עגולות ומבחני קלוריים</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Semicircular_Canals.png?width=700" alt="Semicircular canals of the vestibular system">
+<p class="media-cap">שלוש התעלות החצי-עגולות (אופקית, קדמית, אחורית) והאמפולות שלהן, איתן הוסטיבול. מקור: Wikimedia Commons.</p>
+<p>שלוש תעלות חצי-עגולות בכל אוזן (אופקית, עליונה/קדמית, אחורית) מזהות תאוצה זוויתית; האוטריקולוס והסקולוס מזהים תאוצה קווית וכוח כבידה. העצב הווסטיבולרי (עליון ותחתון) נושא את המידע לגרעיני הווסטיבולום בגזע המוח.</p>
+<div class="mechanism">
+  <p class="chain">למה עושים <b>בדיקת קלוריים</b> (bithermal caloric test)? הזרקת מים חמים/קרים לתעלת האוזן החיצונית משנה את הטמפרטורה של התעלה האופקית, יוצרת זרם קונבקציה באנדולימפה, ומעוררת (או מדכאת) פעילות עצבית - כל זאת <b>בלי לגרום לתאוצה אמיתית</b>. כך אפשר לבודד ולבדוק כל אוזן פנימית בנפרד, ולזהות <b>העדפה חד-צדדית</b> (unilateral weakness) המרמזת על פגיעה היקפית באותו צד - למשל שוואנומה ווסטיבולרית.</p>
+</div>
+<p class="key-box">הבדיקה הקלורית בודקת <b>אך ורק</b> את התעלה האופקית - תוצאה תקינה בה אינה שוללת פגיעה בתעלות אחרות או בעצב הווסטיבולרי העליון/תחתון בנפרד.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Ie2j7GpC4JU" title="Hearing and Balance - Crash Course Anatomy and Physiology" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: סקירת שמיעה ושיווי משקל.</p>
+
+<h2><span class="num">6</span> העצב הפציאלי: מהלך בעצם הרקה</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Cranial_nerve_VII.svg?width=700" alt="Facial nerve (cranial nerve VII) anatomy">
+<p class="media-cap">מהלך העצב הפציאלי (עצב גולגולתי VII) מגזע המוח, דרך התעלה השמיעתית הפנימית, וקטע הטימפני והמסטואידי ועד לפורמן הסטילומסטואידי. מקור: Wikimedia Commons.</p>
+<p>העצב הפציאלי עובר בתוך ה-IAC יחד עם העצב השמיעתי, ולאחר מכן דרך תעלת פאלופיוס בשלושה קטעים: <b>לבירינתי</b> (הצר ביותר - הכי פגיע לבצקת בשיתוק בל ובנוירומה של העצב), <b>טימפני</b> (עובר מעל החלון הסגלגל), ו<b>מסטואידי (אנכי)</b> - ויוצא מהגולגולת בפורמן הסטילומסטואידי.</p>
+<p class="key-box">הקטע הלבירינתי הוא הצר ביותר לאורך כל מהלך העצב - זו הסיבה שהוא אתר השכיח ביותר לחסימה/דחיסה בבצקת דלקתית (שיתוק בל) ולכן מטרת הדה-קומפרסיה הכירורגית כשמבצעים אותה.</p>
+
+<h2><span class="num">7</span> שוואנומה ווסטיבולרית: מפגש הנוירוטולוגיה עם הנוירוכירורגיה</h2>
+<p>שוואנומה ווסטיבולרית <span class="term" dir="ltr">vestibular schwannoma</span> (המכונה בעבר "נוירומה אקוסטית") מקורה בתאי שוואן של העצב הווסטיבולרי בתוך ה-IAC, וגדלה בהדרגה לכיוון הזווית הפונטוצרבלרית. הבחירה בגישה הכירורגית (טרנסלבירינתית, רטרוסיגמואידית, או פוסה תיכונה) תלויה בגודל הגידול, ברמת השמיעה השארית, ובמטרת הניתוח (שימור שמיעה מול הסרה מלאה) - החלטה משותפת של נוירוטולוג ונוירוכירורג.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גישה</th><th>יתרון עיקרי</th><th>מגבלה</th></tr></thead>
+  <tbody>
+    <tr><td><b>טרנסלבירינתית</b></td><td>חשיפה מצוינת של ה-IAC, סיכון נמוך לעצב הפציאלי</td><td>מקריבה שמיעה שיורית לחלוטין</td></tr>
+    <tr><td><b>רטרוסיגמואידית</b></td><td>מאפשרת שימור שמיעה בגידולים קטנים-בינוניים</td><td>גישה למוחון, סיכון למשיכת מוחון/כאבי ראש</td></tr>
+    <tr><td><b>פוסה תיכונה</b></td><td>הגישה הטובה ביותר לשימור שמיעה בגידולים תוך-תעלתיים קטנים</td><td>מוגבלת לגידולים קטנים בלבד, סיכון לעצב הפציאלי</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Trz5RG2nsgM" title="Translabyrinthine approach for vestibular schwannoma" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: הגישה הטרנסלבירינתית לשוואנומה ווסטיבולרית.</p>
+
+<div class="mnemonic">
+  <h3>טכניקת זכירה: "וובר בורח מהבעיה"</h3>
+  <p>ב-<b>Weber</b> הצליל <b>בורח</b> אל האוזן ה<b>בריאה</b> כשהבעיה חושית-עצבית. זכרו: קודם קבעו Rinne (מוליך/לא), ואז Weber רק מאשר לאיזה צד - "מוליך = נשאר בבית החולה, חושי-עצבי = בורח לבריא".</p>
+</div>
+
+<h2><span class="num">8</span> מקרה קליני</h2>
+<div class="case">
+  <h3>מטופלת בת 52 עם ירידה בשמיעה וטיניטוס באוזן ימין</h3>
+  <p>מטופלת מתלוננת על ירידה הדרגתית בשמיעה באוזן ימין במשך שנה, טיניטוס מתמשך, ואי-יציבות קלה בהליכה (לא סחרחורת אמיתית). בבדיקה: Rinne חיובי דו-צדדי, Weber מוצלט לאוזן שמאל (הבריאה). אודיוגרם מראה ירידה חושית-עצבית באוזן ימין בתדרים גבוהים, עם ציון הבחנת דיבור נמוך יחסית לחומרת סף השמיעה הטהור.</p>
+
+  <div class="quiz">
+    <div class="q">1. הממצא ש-Weber מוצלט לאוזן השמאלית (הבריאה) תואם לאיזה סוג חסר באוזן הימנית?</div>
+    <button class="opt" data-correct="false">חסר מוליך</button>
+    <button class="opt" data-correct="true">חסר חושי-עצבי</button>
+    <button class="opt" data-correct="false">חסר מעורב</button>
+    <button class="opt" data-correct="false">תפקוד תקין</button>
+    <div class="explain">ב-Weber, כאשר הבעיה חושית-עצבית, הצליל מוצלט לאוזן הבריאה - בדיוק כפי שקרה כאן.</div>
+  </div>
+  <div class="quiz">
+    <div class="q">2. ציון הבחנת דיבור נמוך יחסית לסף הטונים הטהורים מרמז בעיקר על מקור:</div>
+    <button class="opt" data-correct="false">קוכליארי (בשבלול עצמו)</button>
+    <button class="opt" data-correct="true">רטרוקוכליארי (עצב שמיעה/גזע מוח)</button>
+    <button class="opt" data-correct="false">מוליך (אוזן תיכונה)</button>
+    <button class="opt" data-correct="false">פסיכוגני</button>
+    <div class="explain">אי-התאמה בין סף השמיעה הטהור לבין יכולת הבחנת הדיבור מעלה חשד לפגיעה רטרוקוכליארית, כמו שוואנומה ווסטיבולרית, ומצדיקה MRI.</div>
+  </div>
+  <div class="quiz">
+    <div class="q">3. הבדיקה הבאה שתסייע להבחין בין מקור קוכליארי לרטרוקוכליארי היא:</div>
+    <button class="opt" data-correct="false">טימפנומטריה</button>
+    <button class="opt" data-correct="false">בדיקת רינה חוזרת</button>
+    <button class="opt" data-correct="true">ABR (תגובות גזע מוח שמיעתיות) / MRI עם גדוליניום</button>
+    <button class="opt" data-correct="false">בדיקת אוטוסקופיה</button>
+    <div class="explain">ABR עם עיכוב בין-אוזני ב-Wave V, או MRI עם חומר ניגוד, הם הבדיקות שמאששות או שוללות גידול על העצב השמיעתי-ווסטיבולרי.</div>
+  </div>
+  <div class="quiz">
+    <div class="q">4. אם אכן מאובחנת שוואנומה ווסטיבולרית קטנה תוך-תעלתית עם שמיעה שיורית טובה, איזו גישה כירורגית מועדפת לשימור השמיעה?</div>
+    <button class="opt" data-correct="false">טרנסלבירינתית</button>
+    <button class="opt" data-correct="true">פוסה תיכונה או רטרוסיגמואידית</button>
+    <button class="opt" data-correct="false">טרנס-קוכליארית</button>
+    <button class="opt" data-correct="false">גישה תת-פרונטלית</button>
+    <div class="explain">בגידולים קטנים תוך-תעלתיים עם שמיעה שיורית טובה, גישות פוסה תיכונה או רטרוסיגמואידית מאפשרות ניסיון לשמר שמיעה, בניגוד לגישה הטרנסלבירינתית שמקריבה אותה תמיד.</div>
+  </div>
+  <div class="quiz">
+    <div class="q">5. אי-היציבות בהליכה (ולא סחרחורת סיבובית) בנוכחות גידול איטי-גדילה כמו שוואנומה ווסטיבולרית מוסברת בעיקר על ידי:</div>
+    <button class="opt" data-correct="false">פגיעה חדה בעצב הקוכליארי</button>
+    <button class="opt" data-correct="true">פיצוי מרכזי הדרגתי (central compensation) לירידה איטית בקלט הווסטיבולרי</button>
+    <button class="opt" data-correct="false">לחץ תוך-גולגולתי מוגבר</button>
+    <button class="opt" data-correct="false">פגיעה בעצב הפציאלי</button>
+    <div class="explain">כאשר הירידה בקלט הווסטיבולרי איטית והדרגתית, המוח מצליח לפצות מרכזית לאורך זמן, ולכן במקום סחרחורת סיבובית חדה מופיעה בעיקר תחושת אי-יציבות עדינה.</div>
+  </div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">&#9733;</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>חסר מוליך = בעיה לפני האוזן הפנימית (Rinne שלילי, Weber לחולה); חסר חושי-עצבי = בעיה בשבלול/עצב (Rinne חיובי, Weber לבריא).</li>
+    <li>קרום הבזילר קידד תדרים לפי מיקום: בסיס = תדרים גבוהים, קודקוד = תדרים נמוכים.</li>
+    <li>בדיקת קלוריים בודקת אך ורק את התעלה החצי-עגולה האופקית, ומזהה חולשה חד-צדדית היקפית.</li>
+    <li>הקטע הלבירינתי של העצב הפציאלי הוא הצר והפגיע ביותר במהלכו.</li>
+    <li>אי-התאמה בין סף שמיעה טהור להבחנת דיבור מרמזת על מקור רטרוקוכליארי - יש לחפש שוואנומה ווסטיבולרית.</li>
+    <li>בחירת הגישה הכירורגית לשוואנומה ווסטיבולרית (טרנסלבירינתית/רטרוסיגמואידית/פוסה תיכונה) נקבעת לפי גודל הגידול ומצב השמיעה השיורית.</li>
+  </ul>
+</div>
+
+<div class="lightbox-overlay" id="lightbox"><button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('show')">&times;</button><div id="lightbox-content"></div></div>
+<script>
+document.querySelectorAll('.quiz').forEach(function(quiz){
+  var opts = quiz.querySelectorAll('.opt');
+  var explain = quiz.querySelector('.explain');
+  opts.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if(opt.disabled) return;
+      opts.forEach(function(o){ o.disabled = true; if(o.dataset.correct === 'true'){ o.classList.add('correct'); } });
+      if(opt.dataset.correct !== 'true'){ opt.classList.add('wrong'); }
+      explain.classList.add('show');
+    });
+  });
+});
+document.querySelectorAll('.media-img, svg.diagram').forEach(function(el){
+  el.addEventListener('click', function(){
+    var lb = document.getElementById('lightbox');
+    var content = document.getElementById('lightbox-content');
+    content.innerHTML = '';
+    if(el.tagName.toLowerCase() === 'img'){
+      var img = document.createElement('img'); img.src = el.src; content.appendChild(img);
+    } else {
+      content.appendChild(el.cloneNode(true));
+    }
+    lb.classList.add('show');
+  });
+});
+document.getElementById('lightbox').addEventListener('click', function(e){
+  if(e.target === this) this.classList.remove('show');
+});
+</script>
+</body>
+</html>
