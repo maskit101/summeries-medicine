@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 15: נוירואורולוגיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 1</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 15: נוירואורולוגיה <span class="term" dir="ltr">Neurourology</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Basic Principles, Functional &amp; Perioperative Neurosurgery | מאת Brett D. Lebed, Eric S. Rovner</div>
+
+<p>שלפוחית השתן היא איבר "מטומטם" מבחינה מבנית - שק שריר חלק - אבל ה<b>בקרה</b> עליה מתוחכמת ביותר: היא צריכה לדעת לעבור באופן הפיך בין שני מצבים הפוכים לחלוטין - <b>אגירה</b> (החזקת נפח גדל בלחץ נמוך, ללא דליפה) ו<b>השתנה</b> (התרוקנות מלאה ומתואמת בלחץ נשלט). המפתח להבנת כל הפרק הוא שהמעבר בין שני המצבים הללו הוא <b>מתג רפלקסיבי בגזע המוח</b> (מרכז ההשתנה הפונטיני), ולא תהליך שמתרחש רק בעמוד השדרה - ולכן נגע בכל רמה של מערכת העצבים (מוח, עמוד שדרה, עצבים היקפיים) יוצר תבנית קלינית שונה וניתנת לחיזוי לפי מיקום הנגע.</p>
+
+<h2><span class="num">1</span> עצבוב שלפוחית השתן: שלוש מערכות עצב אחת מטרה</h2>
+<div class="mechanism">
+  <p class="chain">שלוש מערכות עצביות שונות עובדות יחד סביב שלפוחית השתן, כל אחת עם "עבודה" הפוכה מהאחרת:</p>
+  <p>
+    <b>1. פאראסימפתטי (S2-4, עצב האגן - pelvic nerve):</b> נוירונים פרה-גנגליוניים בקרן הצדדית (intermediolateral) של החוט העצבי הסקרלי משחררים אצטילכולין על גנגליונים בדופן השלפוחית, אלו משחררים אצטילכולין שמפעיל קולטנים מוסקריניים (בעיקר M2/M3) על שריר הדטרוסור <span class="term" dir="ltr">detrusor</span> - וגורם ל<b>התכווצות</b> = השתנה.<br>
+    <b>2. סימפתטי (T11-L2, עצב ההיפוגסטרי - hypogastric nerve):</b> יוצא מהחוט התורקולומברי, עובר בגנגליוני השרשרת הסימפתטית לפלexuses האגניים. קולטני β-אדרנרגיים בגוף השלפוחית גורמים ל<b>הרפיה</b> של הדטרוסור, וקולטני α-אדרנרגיים בצוואר השלפוחית והטריגונום גורמים ל<b>כיווץ הצוואר</b> - יחד = אגירה.<br>
+    <b>3. סומטי/פודנדלי (S2-4, עצב הפודנדלי - pudendal nerve):</b> מעצבב את הסוגר החיצוני המפוסק (external urethral sphincter, striated) ואת רצפת האגן דרך גרעין Onuf בקרן הקדמית של החוט הסקרלי. זהו העצב היחיד בשליטה <b>רצונית</b> מהשלושה - ולכן ניתן "לעצור" השתנה במאמץ רצוני על ידי כיווץ הסוגר החיצוני.
+  </p>
+</div>
+<p class="key-box">שימו לב לניגוד המכוון: פאראסימפתטי = "כפתור לחיצה" להתכווצות/השתנה; סימפתטי = "מנעול" לאגירה; פודנדלי-סומטי = הסוגר היחיד שאפשר לשלוט בו במודע. כל שלושת המערכות פועלות בו-זמנית אך בתפקידים מנוגדים - וזה בדיוק מה שמאפשר החלפה חדה בין אגירה להשתנה.</p>
+
+<svg class="diagram" viewBox="0 0 820 480" xmlns="http://www.w3.org/2000/svg">
+<title>מעגל פונס-חוט שדרה-שלפוחית: עצבוב פאראסימפתטי, סימפתטי ופודנדלי</title>
+<desc>תרשים סכמטי המתאר את מרכז ההשתנה הפונטיני (PMC/Barrington), את שלושת מקטעי החוט הרלוונטיים (T11-L2 סימפתטי, S2-4 פאראסימפתטי וסומטי), ואת מסלולי העצבוב אל השלפוחית והסוגרים</desc>
+<rect x="300" y="15" width="220" height="60" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="410" y="40" font-size="15" text-anchor="middle" fill="#1e3a8a" font-weight="700">PONS</text>
+<text x="410" y="60" font-size="12.5" text-anchor="middle" fill="#1e3a8a">מרכז ההשתנה (PMC / Barrington)</text>
+
+<line x1="410" y1="75" x2="410" y2="120" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="440" y="100" font-size="11" fill="#374151">reticulospinal</text>
+
+<rect x="60" y="120" width="700" height="270" rx="8" fill="#f9fafb" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="90" y="140" font-size="13" fill="#111827" font-weight="700">חוט השדרה</text>
+
+<rect x="330" y="160" width="160" height="40" rx="6" fill="#fce7f3" stroke="#be185d" stroke-width="2"/>
+<text x="410" y="185" font-size="12.5" text-anchor="middle" fill="#831843" font-weight="700">T11-L2 (סימפתטי)</text>
+
+<rect x="330" y="300" width="160" height="60" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+<text x="410" y="323" font-size="12.5" text-anchor="middle" fill="#14532d" font-weight="700">S2-4</text>
+<text x="410" y="342" font-size="11.5" text-anchor="middle" fill="#14532d">פאראסימפתטי + Onuf (סומטי)</text>
+
+<line x1="410" y1="200" x2="410" y2="300" stroke="#9ca3af" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+<line x1="330" y1="180" x2="150" y2="180" stroke="#be185d" stroke-width="2" marker-end="url(#arrowP)"/>
+<text x="150" y="170" font-size="11" fill="#831843">היפוגסטרי (Hypogastric)</text>
+
+<line x1="330" y1="320" x2="150" y2="320" stroke="#15803d" stroke-width="2" marker-end="url(#arrowG)"/>
+<text x="150" y="308" font-size="11" fill="#14532d">אגן (Pelvic)</text>
+
+<line x1="490" y1="340" x2="700" y2="340" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowV)"/>
+<text x="700" y="328" font-size="11" fill="#5b21b6" text-anchor="end">פודנדלי (Pudendal)</text>
+
+<ellipse cx="130" cy="180" rx="26" ry="16" fill="#fdf2f8" stroke="#be185d" stroke-width="1.5"/>
+<text x="130" y="184" font-size="9.5" text-anchor="middle" fill="#831843">צוואר/α</text>
+
+<ellipse cx="120" cy="330" rx="30" ry="18" fill="#f0fdf4" stroke="#15803d" stroke-width="1.5"/>
+<text x="120" y="326" font-size="9" text-anchor="middle" fill="#14532d">דטרוסור</text>
+<text x="120" y="338" font-size="9" text-anchor="middle" fill="#14532d">(התכווצות)</text>
+
+<rect x="700" y="315" width="80" height="45" rx="6" fill="#f5f3ff" stroke="#7c3aed" stroke-width="1.5"/>
+<text x="740" y="333" font-size="9.5" text-anchor="middle" fill="#5b21b6">סוגר חיצוני</text>
+<text x="740" y="346" font-size="9.5" text-anchor="middle" fill="#5b21b6">(רצוני)</text>
+
+<circle cx="180" cy="255" r="34" fill="#fff" stroke="#374151" stroke-width="2"/>
+<text x="180" y="250" font-size="10" text-anchor="middle" fill="#111827" font-weight="700">שלפוחית</text>
+<text x="180" y="263" font-size="10" text-anchor="middle" fill="#111827" font-weight="700">השתן</text>
+
+<line x1="410" y1="360" x2="410" y2="400" stroke="#374151" stroke-width="2"/>
+<text x="480" y="405" font-size="11" fill="#374151">אפרנטי (Aδ/C) עולה בעמודות האחוריות אל הפונס</text>
+
+<defs>
+<marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#374151"/></marker>
+<marker id="arrowP" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#be185d"/></marker>
+<marker id="arrowG" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#15803d"/></marker>
+<marker id="arrowV" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7c3aed"/></marker>
+</defs>
+</svg>
+<p class="figcap">מעגל פונס-חוט שדרה-שלפוחית: מרכז ההשתנה הפונטיני (PMC/Barrington) שולט על מקטע T11-L2 (סימפתטי, ורוד) ומקטע S2-4 (פאראסימפתטי וסומטי-פודנדלי, ירוק/סגול). קלט אפרנטי מהשלפוחית עולה בעמודות האחוריות בחזרה לפונס.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Illu_bladder.jpg?width=700" alt="Labeled diagram of the human urinary bladder with frontal section">
+<p class="media-cap">חתך קדמי של שלפוחית השתן האנושית - טריגונום, צוואר השלפוחית ופתחי השופכנים. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tpyorRCi41o" title="Normal Bladder Innervation - Physiology Basics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: עצבוב תקין של שלפוחית השתן - פיזיולוגיה בסיסית.</p>
+
+<h2><span class="num">2</span> רפלקס האגירה וההשתנה: מרכז ההשתנה הפונטיני (PMC)</h2>
+<p>מרכז ההשתנה הפונטיני <span class="term" dir="ltr">Pontine Micturition Center (PMC)</span>, המכונה גם גרעין <span class="term" dir="ltr">Barrington's nucleus</span>, ממוקם בפורמציה הרשתית הפונטומזנצפלית ומתפקד כ"<b>מתג</b>" בין שני מצבי המערכת: בשלב האגירה הוא מדוכא (מאפשר לסימפתטי ולסוגר לשלוט), ובשלב ההשתנה הוא "נדלק" - מפעיל את הנוירונים הפאראסימפתטיים הסקרליים (כיווץ דטרוסור), ובו-זמנית מדכא את התגובה האלקטרומיוגרפית של הסוגר החיצוני (הרפיה של הסוגר) - כלומר <b>מתאם</b> בין כיווץ השלפוחית להרפיית הסוגר במקביל. בלי תיאום זה, כיווץ שלפוחית מול סוגר סגור יוצר <b>דיסינרגיה</b> (ראו טבלה בהמשך).</p>
+<div class="mechanism">
+  <p class="chain">שרשרת הרפלקס בהשתנה תקינה:</p>
+  <p>
+    <b>שלב 1:</b> מתיחת דופן השלפוחית מופעלת על ידי סיבים אפרנטיים מיאלינים (Aδ) ולא-מיאלינים (C) בעצב האגן.<br>
+    <b>שלב 2:</b> האות עולה בעמודות האחוריות של חוט השדרה אל הפונס - קלט ישיר ל-PMC.<br>
+    <b>שלב 3:</b> כאשר יש "אישור" קורטיקלי-פרונטלי לתחילת השתנה (רצוני), ה-PMC "נדלק" ושולח פלט יורד דרך המסלולים הרטיקולוספינליים אל המרכז הסקרלי.<br>
+    <b>שלב 4:</b> הפעלה בו-זמנית של הפאראסימפתטי (כיווץ דטרוסור) ודיכוי הסוגר החיצוני (העצבוב הסומטי בגרעין Onuf) - השתנה מתואמת ומלאה.
+  </p>
+</div>
+<p class="key-box">מכיוון שה-PMC נמצא <b>מעל</b> חוט השדרה, כל נגע ספינלי מעל המרכז הסקרלי (S2-4) - למשל פגיעת חוט שדרה - מנתק את התיאום בין הדטרוסור לסוגר, גם אם שני הרפלקסים הסגמנטליים עצמם (בגובה S2-4) עדיין שלמים. זהו הבסיס למושג <b>דיסינרגיה דטרוסור-סוגר</b> (Detrusor-Sphincter Dyssynergia), הטיפוסית לנגעים ספינליים מעל הקוֹנוּס.</p>
+
+<h2><span class="num">3</span> הערכה נוירואורולוגית</h2>
+<p>ההערכה כוללת <span class="term" dir="ltr">history</span> מכוון (דפוסי אגירה/השתנה, תרופות, מחלות רקע), בדיקה גופנית הכוללת בדיקה נוירולוגית ממוקדת של אזור האגן (טונוס סוגר, תחושה פרי-אנלית), ובדיקת <b>רפלקסים סקרליים</b> - בדיקה ישירה של שלמות המקטעים S2-5. טונוס סוגר שמור בהיעדר כיווץ רצוני מרמז על נגע <b>סופרה-סקרלי</b>, בעוד טונוס מוחלש מרמז על פגיעה סקרלית או עצבית היקפית.</p>
+<div class="table-scroll">
+<table>
+<tr><th>רפלקס</th><th>מקטע חוט שדרה</th><th>אפרנטי</th><th>אפרנטי (עצב)</th><th>שיטת בדיקה</th></tr>
+<tr><td>בולבוקברנוזוס <span class="term" dir="ltr">Bulbocavernosus</span></td><td>S2-4</td><td>עצב פודנדלי</td><td>עצב פודנדלי</td><td>לחיצה על העטרה/דגדגן תוך בדיקת כיווץ הסוגר האנאלי</td></tr>
+<tr><td>אנאלי <span class="term" dir="ltr">Anal</span></td><td>S2-5</td><td>עצב פודנדלי</td><td>עצב פודנדלי</td><td>גירוי עור פרי-אנלי תוך בדיקת כיווץ הסוגר</td></tr>
+<tr><td>קרמסטרי <span class="term" dir="ltr">Cremasteric</span></td><td>L1-2</td><td>עצב גניטופמורלי (ענף פמורלי)</td><td>עצב גניטופמורלי (ענף גניטלי)</td><td>גירוי עור המפשעה ובדיקת עליית האשך</td></tr>
+</table>
+</div>
+<p>ה<b>אורודינמיקה</b> (urodynamics) היא אבן היסוד האובייקטיבית: <span class="term" dir="ltr">cystometry</span> מודדת לחץ תוך-שלפוחיתי בזמן מילוי, <span class="term" dir="ltr">EMG</span> של הסוגר מזהה דיסינרגיה, ו-<span class="term" dir="ltr">videourodynamics</span> משלבת דימות פלואורוסקופי בזמן אמת עם לחצים - ומאפשרת לראות בו-זמנית את צורת השלפוחית, פתיחת הצוואר ותפקוד הסוגר.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Illu_urinary_system.svg?width=500" alt="Diagram of the human urinary system - kidneys, ureters, bladder, urethra">
+<p class="media-cap">מערכת השתן המלאה - כליות, שופכנים, שלפוחית ושופכה. הערכה נוירואורולוגית תמיד כוללת גם בדיקת דרכי שתן עליונות בהדמיה (למשל אולטרסאונד שנתי), כי אגירה בלחץ גבוה עלולה לפגוע בכליות. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/gd7ZC66-gyA" title="Cystometrogram explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הסבר על צילום ציסטומטרוגרם (cystometrogram) - איך קוראים עקומת לחץ-נפח.</p>
+
+<h2><span class="num">4</span> מחלות נוירואורולוגיות לפי רמת הנגע</h2>
+<p>העיקרון המארגן של פרק זה: <b>מיקום הנגע במערכת העצבים חוזה את דפוס ההפרעה</b>. נגע מעל הפונס (סופרה-פונטיני) פוגע רק בעכבה הרצונית אך לא בתיאום - ולכן יוצר תכיפות ודחיפות עם תיאום שמור. נגע ספינלי מעל המקטע הסקרלי (סופרה-סקרלי) מנתק בין ה-PMC לרפלקס הסקרלי - ולכן יוצר דיסינרגיה. נגע במקטע הסקרלי עצמו או בקאודה אקווינה (אינפרה-סקרלי) הורס את קשת הרפלקס עצמה - ולכן יוצר שלפוחית אריפלקסית וטונוס סוגר קבוע.</p>
+<div class="table-scroll">
+<table>
+<tr><th>רמת הנגע</th><th>דוגמאות</th><th>דפוס אורודינמי/קליני אופייני</th></tr>
+<tr><td>סופרה-פונטיני (מעל הפונס)</td><td>שבץ, גידול מוחי, פרקינסון, דמנציה</td><td>היפראקטיביות דטרוסור (detrusor overactivity), תחושה שמורה, תיאום דטרוסור-סוגר <b>שמור</b> (אין דיסינרגיה אמיתית) - תכיפות, דחיפות, בריחת שתן דחפית</td></tr>
+<tr><td>סופרה-סקרלי (פגיעת חוט שדרה מעל הקוֹנוּס, מעל/מתחת ל-T6)</td><td>פגיעת חוט שדרה טראומטית, טרשת נפוצה</td><td>היפראקטיביות דטרוסור + <b>דיסינרגיה דטרוסור-סוגר</b> (חלק/מפוסק), לחץ אגירה גבוה, סיכון לפגיעה בדרכי שתן עליונות; מעל T6 - גם דיסינרגיה של הסוגר החלק וסיכון לדיסרפלקסיה אוטונומית</td></tr>
+<tr><td>סקרלי / אינפרה-סקרלי (קאודה אקווינה, דיסק, מנינגומיאלוצלה)</td><td>פריצת דיסק תחתונה, קאודה אקווינה, ספינה ביפידה</td><td>דטרוסור <b>אריפלקסי</b> (acontractile), תחושה פגועה, טונוס סוגר <b>קבוע/מוחלש</b> (לא דיסינרגיה - חוסר עצבוב), אגירת שתן והצפה (overflow incontinence)</td></tr>
+</table>
+</div>
+
+<h3>פגיעת חוט שדרה: שוק ספינלי ודיסרפלקסיה אוטונומית</h3>
+<p>מיד לאחר פגיעת חוט שדרה חריפה מתפתח <span class="term" dir="ltr">spinal shock</span> - שיתוק רפה ודיכוי כל הפעילות הרפלקסיבית והאוטונומית מתחת לנגע, כולל שלפוחית אקונטרקטילית ואריפלקסית. שלב זה נמשך בדרך כלל 6-12 שבועות (ולעיתים עד שנה-שנתיים), ומצריך קתטריזציה (רציפה או לסירוגין) עד לחזרת הפעילות הרפלקסיבית.</p>
+<p class="key-box"><b>דיסרפלקסיה אוטונומית</b> (Autonomic Dysreflexia) היא סיבוך <b>מסכן חיים</b> בפגיעות חוט שדרה <b>מעל T6</b> (מעל יציאת השרשרת הסימפתטית). גירוי מתחת לנגע (בעיקר <b>מתיחת שלפוחית או רקטום</b> - למשל צנתר חסום!) גורם לפריקה סימפתטית מסיבית ובלתי-מבוקרת: כאב ראש פועם, יתר לחץ דם קשה, וברדיקרדיה רפלקסיבית (מתווכת ואגלית) עם הסמקה והזעה מעל רמת הנגע. הטיפול הדחוף ביותר: <b>הסרת הגורם המעורר</b> (לרוב שחרור צנתר חסום/ריקון שלפוחית) - זה קודם לכל טיפול תרופתי!</p>
+
+<h2><span class="num">5</span> עקרונות טיפול</h2>
+<p>הטיפול נבנה סביב שני יעדים: (1) <b>הגנה על דרכי השתן העליונות</b> (מניעת לחץ אגירה גבוה שיפגע בכליות) ו-(2) <b>שיפור איכות חיים</b> (יבשות, נוחות). לרוב מתחילים בשמרני ועולים בהדרגה:</p>
+<ul>
+<li><b>אנטיכולינרגיים</b> - קו ראשון בהיפראקטיביות דטרוסור: חוסמים קולטנים מוסקריניים פוסט-גנגליוניים, מורידים לחץ אגירה ומגדילים נפח פונקציונלי. תופעות לוואי קלאסיות: יובש בפה, עצירות, בלבול, טשטוש ראייה.</li>
+<li><b>בוטולינום טוקסין A</b> - הזרקה אנדוסקופית (100-300 יחידות) לתוך הדטרוסור בהיפראקטיביות עמידה לתרופות; משפר קיבולת ו-compliance ל-6-9 חודשים, אך מעלה סיכון לאצירת שתן ולעיתים מצריך CIC.</li>
+<li><b>נוירומודולציה סקרלית</b> (Sacral Neuromodulation) - אלקטרודות בפורמן S3/S4 לגירוי סיבים אפרנטיים; כ-60% הצלחה ב-5 שנים בדחיפות/תכיפות עמידה.</li>
+<li><b>אוגמנטציה של השלפוחית</b> (Augmentation Cystoplasty) - "טלאי" של מעי דק/גס/קיבה משולב על שלפוחית מבותרת, מבטל כיווצים מתואמים ומגדיל נפח - למקרים קשים ועמידים.</li>
+<li><b>קתטריזציה נקייה לסירוגין (CIC)</b> - שיטת הבחירה לריקון שלפוחית כשיש בעיית התרוקנות (למשל דטרוסור אריפלקסי או אחרי בוטוקס), עדיפה על קתטר קבוע מבחינת זיהומים ארוכי טווח.</li>
+<li><b>קתטר קבוע</b> - כשאין ברירה אחרת (מוגבלות ידנית, נפח נמוך) - אך קשור לסיכון מוגבר לזיהומים, אבנים וסרטן שלפוחית לטווח ארוך.</li>
+<li><b>ספינקטרוטומיה</b> - חיתוך הסוגר החיצוני בגברים עם דיסינרגיה קשה, כדי להפוך את דפוס ההשתנה ל"התרוקנות פסיבית" ללא לחץ גבוה (עם קונדום-קטטר).</li>
+<li><b>הטיית שתן</b> (Urinary Diversion) - למקרים קיצוניים (כישלון טיפולים אחרים, הרס שלפוחית) - יצירת מסלול חלופי לניקוז שתן.</li>
+</ul>
+
+<h2><span class="num">6</span> טכניקת זכירה: PANIC בדיסרפלקסיה אוטונומית</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">P-A-N-I-C</span> - סימני הדיסרפלקסיה האוטונומית</h3>
+  <p>
+    <b>P</b> - <span class="term" dir="ltr">Pounding headache</span> (כאב ראש פועם - הסימן השכיח והמוקדם ביותר)<br>
+    <b>A</b> - <span class="term" dir="ltr">Above the lesion: flushing/sweating</span> (הסמקה והזעה <b>מעל</b> רמת הנגע)<br>
+    <b>N</b> - <span class="term" dir="ltr">Nodus (T6) - lesion above T6</span> (מתרחש כמעט אך ורק בנגעים <b>מעל T6</b>)<br>
+    <b>I</b> - <span class="term" dir="ltr">Increased blood pressure</span> (יתר לחץ דם קשה ופתאומי)<br>
+    <b>C</b> - <span class="term" dir="ltr">Cause: bladder/bowel distention - remove it first!</span> (הגורם השכיח ביותר - מתיחת שלפוחית/רקטום - וההסרה שלו היא הטיפול הדחוף הראשון)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "אזעקת פאניקה" (PANIC) שמופעלת מתחת לרמת הנגע - צנתר חסום מותח את השלפוחית, ומערכת העצבים האוטונומית "לא יודעת" שהמוח לא מקבל את המידע (כי הנתיב חתוך), אז היא שולחת אות סימפתטי עצום שגדל ללא בקרה - עולה לחץ הדם בצורה מסוכנת, ומעל הנגע הגוף "מזיע ומסמיק" בניסיון (הפרדוקסלי) לפצות. הפתרון הכי מהיר: לכבות את האזעקה במקור - לשחרר את הצנתר, לא לתת קודם תרופה.</p>
+  <svg class="diagram" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <title>מעגל הדיסרפלקסיה האוטונומית</title>
+    <desc>תרשים המתאר את שרשרת הגורם-לתוצאה בדיסרפלקסיה אוטונומית</desc>
+    <rect x="20" y="20" width="180" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="110" y="42" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">גירוי מתחת לנגע</text>
+    <text x="110" y="58" font-size="11" text-anchor="middle" fill="#7f1d1d">(שלפוחית/רקטום מתוחים)</text>
+    <path d="M200,45 L250,45" stroke="#374151" stroke-width="2" marker-end="url(#a1)"/>
+    <rect x="255" y="20" width="180" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="345" y="42" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">פריקה סימפתטית</text>
+    <text x="345" y="58" font-size="11" text-anchor="middle" fill="#7f1d1d">מסיבית לא-מבוקרת</text>
+    <path d="M435,45 L485,45" stroke="#374151" stroke-width="2" marker-end="url(#a1)"/>
+    <rect x="420" y="90" width="180" height="50" rx="6" fill="#fee2e2" stroke="#991b1b" stroke-width="2"/>
+    <text x="510" y="112" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">יתר ל"ד + ברדיקרדיה</text>
+    <text x="510" y="128" font-size="11" text-anchor="middle" fill="#7f1d1d">כאב ראש, הסמקה מעל הנגע</text>
+    <rect x="20" y="150" width="580" height="50" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="310" y="172" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">טיפול ראשון: הסרת הגורם המעורר (שחרור צנתר חסום!) - לא תרופה</text>
+    <text x="310" y="190" font-size="11" text-anchor="middle" fill="#065f46">משם: ישיבה זקוף, בדיקת צנתר, ואם נמשך - טיפול תרופתי להורדת ל"ד</text>
+    <defs><marker id="a1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#374151"/></marker></defs>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Autonomic_dysreflexia" target="_blank">Autonomic Dysreflexia – Wikipedia</a>
+    <div class="desc">רקע קליני מפורט על גורמים, סימפטומים וטיפול חירום בדיסרפלקסיה אוטונומית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Neurogenic_bladder_dysfunction" target="_blank">Neurogenic Bladder Dysfunction – Wikipedia</a>
+    <div class="desc">סיווג הפרעות שלפוחית נוירוגניות לפי מיקום הנגע.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Urodynamic_testing" target="_blank">Urodynamic Testing – Wikipedia</a>
+    <div class="desc">עקרונות בדיקת אורודינמיקה, ציסטומטריה ו-EMG סוגר.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Detrusor_sphincter_dyssynergia" target="_blank">Detrusor Sphincter Dyssynergia – Wikipedia</a>
+    <div class="desc">מנגנון הדיסינרגיה בין הדטרוסור לסוגר בנגעים ספינליים סופרה-סקרליים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Intermittent_catheterisation" target="_blank">Clean Intermittent Catheterization – Wikipedia</a>
+    <div class="desc">עקרונות קתטריזציה נקייה לסירוגין (CIC) וההשוואה לקתטר קבוע.</div>
+  </li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 29 עם פגיעת חוט שדרה טראומטית מלאה בגובה <b>T4</b> לפני שנתיים, מטופל בקתטריזציה נקייה לסירוגין (CIC), מגיע למיון עם כאב ראש פועם עז שהופיע פתאום, הזעה והסמקה בפנים ובצוואר, ולחץ דם 210/130 (בסיס: 100/60). הדופק 48 לדקה. הוא מדווח שלא ביצע CIC כבר כ-9 שעות בגלל עומס בעבודה.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/M3H6MoejKQE" title="Spinal Cord Injury Education Series - Autonomic Dysreflexia" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: סדרת חינוך לפגיעות חוט שדרה - דיסרפלקסיה אוטונומית.</p>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה הסבירה ביותר, ומה מסביר את שילוב יתר לחץ הדם עם הברדיקרדיה?</div>
+  <button class="opt" data-i="0">שוק ספינלי - ירידת טונוס סימפתטי כללית</button>
+  <button class="opt" data-i="1">דיסרפלקסיה אוטונומית - פריקה סימפתטית מסיבית מתחת לנגע גורמת ליתר ל"ד, והברדיקרדיה היא רפלקס ואגלי מפצה (ברורצפטורים) בתגובה ליתר הלחץ</button>
+  <button class="opt" data-i="2">שבץ מוחי המורגי חדש - שאינו קשור לפגיעת חוט השדרה</button>
+  <button class="opt" data-i="3">היפוגליקמיה חריפה</button>
+  <div class="explain">התשובה הנכונה: זהו מקרה קלאסי של דיסרפלקסיה אוטונומית - נגע מעל T6 (כאן T4) עם גירוי מתחת לנגע (שלפוחית מלאה מאוד לאחר דילוג על CIC). הברדיקרדיה אינה סותרת את האבחנה אלא מחזקת אותה: היא רפלקס ואגלי (מתווך על ידי ברורצפטורים בקשת האבי העורקים/סינוס הצוואר) שמנסה "לפצות" על יתר לחץ הדם החמור - אך הרפלקס הזה עצמו לא מספיק כדי לתקן את הבעיה כי הפריקה הסימפתטית ממשיכה. שוק ספינלי (0) גורם לתת-לחץ דם, לא יתר. שבץ (2) והיפוגליקמיה (3) אינם מתאימים לתמונה הקלינית המלאה עם ההיסטוריה של דילוג על CIC.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי פעולת הטיפול הדחופה והראשונה שיש לבצע?</div>
+  <button class="opt" data-i="0">מתן חוסם בטא תוך ורידי מיידי</button>
+  <button class="opt" data-i="1">הרדמת המטופל והעברה מיידית לבדיקת CT ראש</button>
+  <button class="opt" data-i="2">הושבת המטופל בישיבה זקופה ובדיקה/שחרור מיידי של הגורם המעורר - במקרה הזה קתטור/ריקון השלפוחית המלאה</button>
+  <button class="opt" data-i="3">מתן נוזלים תוך ורידיים במהירות להעלאת לחץ הדם עוד יותר</button>
+  <div class="explain">התשובה הנכונה: הטיפול הדחוף הראשון בדיסרפלקסיה אוטונומית הוא תמיד <b>הסרת הגורם המעורר</b> - כאן ריקון השלפוחית המלאה (הכנסת/בדיקת קתטר). ישיבה זקופה (לניצול תת-לחץ דם אורתוסטטי מסייע) גם מומלצת. חוסמי בטא (0) אינם קו ראשון ועלולים להחמיר את הברדיקרדיה. CT ראש (1) אינו הצעד הדחוף ביותר בהעדר סימנים נוירולוגיים חדשים מרמזים על שבץ. נוזלים (3) יחמירו את יתר לחץ הדם ומיותרים לחלוטין כאן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע דווקא נגעים מעל T6 (ולא נגעים נמוכים יותר, כמו L1) חשופים לדיסרפלקסיה אוטונומית?</div>
+  <button class="opt" data-i="0">כי T6 הוא בערך גובה יציאת ה-splanchnic הסימפתטי הגדול (greater splanchnic), ומעליו הפריקה הסימפתטית "ננעלת" בבידוד מהבקרה המעכבת המרכזית שאמורה להגיע מהמוח דרך אותם מסלולים חתוכים</button>
+  <button class="opt" data-i="1">כי מתחת ל-T6 אין בכלל עצבוב סימפתטי לאיברי האגן</button>
+  <button class="opt" data-i="2">כי נגעים גבוהים תמיד פוגעים ישירות בגזע המוח</button>
+  <button class="opt" data-i="3">אין באמת הבדל, וזו טעות נפוצה בספרות</button>
+  <div class="explain">התשובה הנכונה: העצבוב הסימפתטי הספלנכני הגדול (המווסת נפח כלי דם משמעותי בבטן) יוצא בערך בגובה T6. בנגע מעל T6, האות המעכב היורד מהמוח (שהיה אמור לרסן את הפריקה הסימפתטית בתגובה למתיחת שלפוחית) לא יכול לעבור דרך הנגע - כך שהרפלקס הסימפתטי הסגמנטלי מתחת לנגע פועל ללא בקרה מרכזית וגורם לכיווץ כלי דם נרחב ויתר לחץ דם קשה. בנגעים נמוכים יותר (למשל L1) נשאר מספיק עצבוב סימפתטי תקין/מבוקר כדי שהתופעה תהיה נדירה או קלה בהרבה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו הטיפול המונע (פרופילקטי) התרופתי שהוזכר בפרק להפחתת אירועי דיסרפלקסיה חוזרים, למשל לפני פרוצדורה מגרה (כגון צילום אורודינמיקה)?</div>
+  <button class="opt" data-i="0">אנטיכולינרגי דרך הפה</button>
+  <button class="opt" data-i="1">בוטולינום טוקסין A תוך-שלפוחיתי</button>
+  <button class="opt" data-i="2">אנטיביוטיקה פרופילקטית</button>
+  <button class="opt" data-i="3">ניפדיפין או טרזוסין דרך הפה לפני הפרוצדורה</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין ניפדיפין (חוסם תעלות סידן) או טרזוסין (חוסם אלפא) פומיים כטיפול מונע לפני פרוצדורות מגרות בחולים בסיכון לדיסרפלקסיה, תוך מעקב קפדני. אנטיכולינרגי (0) מטפל בהיפראקטיביות דטרוסור אך לא מונע דיסרפלקסיה עצמה. בוטוקס (1) ואנטיביוטיקה (2) אינם קשורים למניעה החריפה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. אילו דפוסים אורודינמיים היינו מצפים למצוא בבדיקה עתידית של מטופל זה (נגע ספינלי מלא ב-T4, סופרה-סקרלי ומעל T6)?</div>
+  <button class="opt" data-i="0">דטרוסור אריפלקסי לחלוטין וטונוס סוגר מוחלש - תמונה סקרלית טהורה</button>
+  <button class="opt" data-i="1">תפקוד תקין לחלוטין ללא היפראקטיביות</button>
+  <button class="opt" data-i="2">היפראקטיביות דטרוסור, דיסינרגיה דטרוסור-סוגר מפוספסת (striated), וגם דיסינרגיה של הסוגר החלק (כי הנגע מעל T6)</button>
+  <button class="opt" data-i="3">היפראקטיביות דטרוסור בלבד עם תיאום דטרוסור-סוגר תקין, כמו בנגע סופרה-פונטיני</button>
+  <div class="explain">התשובה הנכונה: נגע ספינלי מלא מעל T6 (וגם מעל הקוֹנוּס) מייצר את התמונה הקלאסית של נגע סופרה-סקרלי: היפראקטיביות דטרוסור, דיסינרגיה של הסוגר המפוספס (striated sphincter dyssynergia), ובנוסף - כי הנגע גם מעל T6 - דיסינרגיה גם של הסוגר החלק (smooth sphincter dyssynergia). זה שונה מתמונה סקרלית טהורה (0, מתאימה לנגע קאודה אקווינה) ומתמונה סופרה-פונטינית עם תיאום שמור (3).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. שבועיים לאחר האירוע, בבדיקת מעקב מתגלה שהמטופל מבצע CIC בקביעות אך סובל מזיהומי דרכי שתן חוזרים. איזה שינוי טיפולי סביר ביותר יישקל תחילה כדי להפחית את הסיכון לדרכי שתן עליונות ולזיהומים, בהתאם לעקרונות הפרק?</div>
+  <button class="opt" data-i="0">מעבר מיידי לקתטר קבוע (Foley) קבוע לצמיתות</button>
+  <button class="opt" data-i="1">הערכת לחץ אגירה באורודינמיקה, ובמידת הצורך הוספת אנטיכולינרגי או שקילת בוטולינום טוקסין A להורדת לחץ האגירה ושיפור ה-compliance, תוך שמירה על CIC כשיטת ריקון</button>
+  <button class="opt" data-i="2">ניתוח הטיית שתן מיידי כקו ראשון</button>
+  <button class="opt" data-i="3">הפסקת כל טיפול והמתנה להחלמה ספונטנית</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש ש-CIC היא שיטת הריקון המועדפת (פחות זיהומים לטווח ארוך מקתטר קבוע - 0 שגוי), אך אם יש לחץ אגירה גבוה/היפראקטיביות שגורמים לזיהומים חוזרים ולסיכון לדרכי שתן עליונות, הצעד הבא ההגיוני הוא להעריך באורודינמיקה ולהוסיף טיפול תרופתי (אנטיכולינרגי) או בוטוקס להורדת הלחץ - לא לוותר על CIC. הטיית שתן (2) שמורה לכישלון טיפולים שמרניים. הפסקת טיפול (3) מסוכנת ואינה מבוססת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שלוש מערכות עצב שולטות בשלפוחית: <b>פאראסימפתטי (S2-4)</b> - כיווץ/השתנה; <b>סימפתטי (T11-L2)</b> - הרפיה/אגירה; <b>פודנדלי-סומטי (S2-4, Onuf)</b> - הסוגר החיצוני הרצוני היחיד.</li>
+    <li><b>מרכז ההשתנה הפונטיני (PMC/Barrington)</b> הוא "המתג" שמתאם בין כיווץ הדטרוסור להרפיית הסוגר; נגע ספינלי מעליו (אך מעל המקטע הסקרלי) מנתק את התיאום וגורם <b>לדיסינרגיה דטרוסור-סוגר</b>.</li>
+    <li>מיקום הנגע חוזה את הדפוס: <b>סופרה-פונטיני</b> - היפראקטיביות עם תיאום שמור; <b>סופרה-סקרלי</b> - היפראקטיביות + דיסינרגיה; <b>אינפרה-סקרלי/קאודה אקווינה</b> - דטרוסור אריפלקסי והצפה.</li>
+    <li><b>דיסרפלקסיה אוטונומית</b> - סיבוך מסכן חיים בנגעים מעל T6, המופעל לרוב על ידי מתיחת שלפוחית/רקטום (כמו צנתר חסום): כאב ראש, יתר לחץ דם, ברדיקרדיה, הסמקה מעל הנגע. הטיפול הראשון והדחוף - <b>הסרת הגורם המעורר</b>.</li>
+    <li>הרפלקסים הסקרליים (בולבוקברנוזוס, אנאלי) בודקים ישירות את שלמות S2-5; טונוס סוגר שמור בהיעדר כיווץ רצוני = נגע סופרה-סקרלי, מוחלש = נגע סקרלי/היקפי.</li>
+    <li>סולם הטיפול: <b>אנטיכולינרגי → בוטולינום טוקסין A → נוירומודולציה סקרלית / אוגמנטציה של השלפוחית</b>; ריקון - <b>CIC עדיף על קתטר קבוע</b> לטווח ארוך.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
