@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<!-- Ch 16 - Robotic Surgery. מקור: ה-PDF שהועלה של Ch 16 היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). הפרק המקורי כולל גם 4 טבלאות השוואה מפורטות (רובוטי מול לפרוסקופי/פתוח) לכל אחד מהניתוחים שנסקרו - הסיכום ריכז את הממצאים המרכזיים מהן בטקסט/טבלה קצרה במקום לשכפל את כל הנתונים הגולמיים. תמונות (Wikimedia Commons) וסרטוני YouTube (ערוץ da Vinci הרשמי, TED - Catherine Mohr) הושלמו מחיפוש אמיתי. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ניתוח רובוטי</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>ניתוח רובוטי <span dir="ltr" class="term" style="font-size:20px">(Robotic Surgery)</span></h1>
+<div class="subtitle">פרק 16 - עקרון ה-<span dir="ltr" class="term">master-slave</span>, מערכת <span dir="ltr" class="term">da Vinci</span>, הכנת חדר ניתוח וכלים רובוטיים, וסטטוס הראיות בניתוחי בטן נבחרים</div>
+
+<p>ניתוח רובוטי הוא התפתחות של הניתוח הזעיר-פולשני (<span dir="ltr" class="term">MIS</span>) שבה המנתחת אינה עומדת ליד המטופלת אלא יושבת בקונסולה מרוחקת ושולטת בזרועות רובוטיות שמחזיקות את המכשירים ואת המצלמה. מאז אישור מנהל המזון והתרופות האמריקאי (<span dir="ltr" class="term">FDA</span>) בשנת 2000 למערכת <span dir="ltr" class="term">da Vinci</span> (<span dir="ltr" class="term">Intuitive Surgical</span>) בוצעו ברחבי העולם למעלה מ-5 מיליון ניתוחים רובוטיים, וכיום זו הפלטפורמה השלטת בתחום הניתוח הזעיר-פולשני המתקדם למגוון רחב של ניתוחי בטן שפירים וממאירים.</p>
+
+<h2><span class="num">2</span> המנגנון - איך עקרון ה"אדון-עבד" (<span dir="ltr" class="term" style="font-size:15px">master-slave</span>) פותר את הבעיות של הלפרוסקופיה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כדי להבין למה בכלל פותחה מערכת רובוטית, צריך להתחיל משתי בעיות מובנות בלפרוסקופיה הקלאסית: (1) המכשירים הישרים שנכנסים דרך <span dir="ltr" class="term">trocar</span> בדופן הבטן נעים סביב נקודת ציר קבועה (<span class="term">fulcrum effect</span>) עם רק 4 דרגות חופש תנועה - כך שכיוון התנועה בקצה המכשיר הפוך לכיוון היד של המנתחת, ותנועות עדינות (כמו תפירה בזווית) קשות טכנית; ו-(2) המצלמה הלפרוסקופית הסטנדרטית מציגה תמונה דו-ממדית שדורשת מהמוח "ללמוד" עומק מרמזים עקיפים בלבד.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">עקרון ה"אדון-עבד" (<span dir="ltr" class="term">master-slave</span>)</span> פותר את שתי הבעיות בבת אחת: המנתחת (ה"אדון") אינה מוסטרלת ואינה עומדת ליד המטופלת כלל, אלא יושבת בקונסולה (<span dir="ltr" class="term">console</span>) מרחק קצר מהמיטה, מכניסה את הידיים לבקרי-יד (<span dir="ltr" class="term">manipulators</span>) ורגליה על דוושות, וכל תנועת יד-אצבע-כף רגל שלה מתורגמת בזמן אמת לתנועת הזרועות הרובוטיות ("העבד", <span dir="ltr" class="term">patient-side cart</span>) שמונחות ליד המטופלת בפועל. שלוש טכנולוגיות ביניים הן שהופכות את התרגום הזה ל"מדויק יותר מהיד עצמה": <span class="key">קנה מידה של תנועה (<span dir="ltr" class="term">motion scaling</span>)</span> - תנועת יד גדולה של המנתחת מתורגמת לתנועה עדינה וקטנה יותר בקצה המכשיר; <span class="key">מסנן רעד (<span dir="ltr" class="term">tremor filter</span>)</span> - התוכנה מזהה ומבטלת רעידות יד טבעיות זעירות לפני שהן מגיעות לזרוע; ו<span class="key">מכשירי <span dir="ltr" class="term">EndoWrist</span> בעלי 7 דרגות חופש</span> - "פרק כף יד" מכני בקצה המכשיר (בניגוד למכשיר לפרוסקופי הישר עם 4 דרגות חופש בלבד) שמאפשר סיבוב וכיפוף שמדמה את תנועת פרק כף היד האנושי, ולמעשה "עוקף" את בעיית ה-<span dir="ltr" class="term">fulcrum</span> מלכתחילה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    לצד זה, מצלמה תלת-ממדית (שתי עדשות נפרדות, בדומה לשתי עיניים אנושיות) עם הגדלה של עד פי 10 משחזרת את תחושת העומק שאבדה בלפרוסקופיה. שילוב של קנה-מידה + מסנן רעד + 7 דרגות חופש + ראייה תלת-ממדית הוא בדיוק מה שמאפשר, למשל, תפירה ידנית מדויקת של אנסטומוזה עמוקה באגן צר - תנועה שקשה מאוד לבצע לפרוסקופית.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="30" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="110" y="58" font-size="14" text-anchor="middle" fill="#1f2937" font-weight="700">המנתחת בקונסולה</text>
+  <text x="110" y="78" font-size="12" text-anchor="middle" fill="#4b5563">תנועת יד/אצבע/רגל</text>
+  <polygon points="200,65 225,58 225,72" fill="#2563eb"/>
+  <rect x="230" y="30" width="180" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="320" y="52" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">עיבוד תוכנה</text>
+  <text x="320" y="70" font-size="12" text-anchor="middle" fill="#4b5563">קנה-מידה + מסנן רעד</text>
+  <text x="320" y="86" font-size="12" text-anchor="middle" fill="#4b5563">(motion scaling, tremor filter)</text>
+  <polygon points="410,65 435,58 435,72" fill="#2563eb"/>
+  <rect x="440" y="30" width="200" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="540" y="52" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">זרוע רובוטית + EndoWrist</text>
+  <text x="540" y="70" font-size="12" text-anchor="middle" fill="#4b5563">7 דרגות חופש - עוקף fulcrum</text>
+  <polygon points="640,65 665,58 665,72" fill="#2563eb"/>
+  <rect x="670" y="30" width="200" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="770" y="52" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">תנועה מדויקת ברקמה</text>
+  <text x="770" y="70" font-size="12" text-anchor="middle" fill="#4b5563">ליד המטופלת בפועל</text>
+  <rect x="230" y="140" width="410" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-dasharray="4"/>
+  <text x="435" y="165" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">בו-זמנית: מצלמה תלת-ממדית (2 עדשות) עם הגדלה עד פי 10</text>
+  <text x="435" y="185" font-size="12" text-anchor="middle" fill="#4b5563">משוחזרת תחושת עומק שאבדה בלפרוסקופיה</text>
+  <text x="435" y="203" font-size="12" text-anchor="middle" fill="#4b5563">Firefly (ICG) ו-TilePro מוסיפים מידע ויזואלי נוסף על המסך</text>
+  <text x="450" y="245" font-size="14" text-anchor="middle" fill="#1f2937" font-weight="700">עקרון ה-master-slave: תנועת יד → תרגום מדויק ליד המיטה, ללא נוכחות פיזית שם</text>
+</svg>
+
+<h2><span class="num">3</span> מבנה המערכת, היסטוריה והתפתחות</h2>
+<p>מערכת <span dir="ltr" class="term">da Vinci</span> (וכל דור שלה - S, Si, Xi) בנויה משלושה חלקים: <b>קונסולת המנתחת</b> (<span dir="ltr" class="term">surgeon console</span>) - שם יושבת המנתחת ושולטת בכול; <b>עגלת הזרועות ליד המטופלת</b> (<span dir="ltr" class="term">patient-side cart</span>) - 3-4 זרועות שמחזיקות את המכשירים והמצלמה; ו<b>עגלת החזון</b> (<span dir="ltr" class="term">vision cart</span>) - מעבד את אות המצלמה ומציג אותו על כל המסכים בחדר.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Chirurgien_son_robot_da-vinci.JPG?width=700" alt="מנתחת ליד עגלת הזרועות של מערכת da Vinci בחדר ניתוח">
+  <p class="media-cap">עגלת הזרועות (patient-side cart) של מערכת da Vinci בחדר ניתוח - כאן נמצאת הזרוע הרובוטית בפועל, ליד גוף המטופלת; המנתחת עצמה יושבת בקונסולה מרוחקת ואינה מוסטרלת. מקור: Wikimedia Commons.</p>
+</figure>
+<p>הרעיון של ניתוח מרחוק (<span dir="ltr" class="term">teleoperation</span>) לא נולד ברפואה אלא במחקר רובוטיקה שמומן על ידי <span dir="ltr" class="term">NASA</span> ומשרד ההגנה האמריקאי (<span dir="ltr" class="term">DARPA</span>) כבר בשנות ה-70, במטרה מקורית לאפשר טיפול רפואי מרחוק בשדה קרב או בחלל. ב-1994 פותחה <span dir="ltr" class="term">AESOP</span> - הרובוט המסחרי הראשון שאושר ל-FDA, שאיפשר למנתחת לשלוט במצלמה הלפרוסקופית בעצמה בלי טכנאי-מצלמה נפרד, וזו התפתחה למערכת <span dir="ltr" class="term">Zeus</span>. השיא הסמלי של אותה תקופה היה <b>"מבצע לינדברג" (<span dir="ltr" class="term">Operation Lindbergh</span>)</b> ב-2001: המנתח פרופ' ז'אק מארסקו וצוותו הסירו כיס מרה (<span dir="ltr" class="term">cholecystectomy</span>) של מטופלת בשטרסבורג, צרפת, כשהמנתח עצמו ישב וניתח ממרחק דרך מערכת <span dir="ltr" class="term">Zeus</span> בניו יורק - כ-14,000 ק"מ משם, עם עיכוב תקשורת (<span dir="ltr" class="term">latency</span>) של כ-155 מילישניות בלבד על פני סיב אופטי ייעודי. מערכת <span dir="ltr" class="term">Zeus</span> הופסקה ב-2003 לאחר מיזוג בין החברה שפיתחה אותה (Computer Motion) לבין <span dir="ltr" class="term">Intuitive Surgical</span>, ומאז שלטת מערכת <span dir="ltr" class="term">da Vinci</span> בשוק - עם שלושה דורות עוקבים: מערכת S (2003), Si (2009), ו-Xi (2014, עם יכולת סיבוב עגלה של 180°). עד 2018 הותקנו למעלה מ-4,500 מערכות da Vinci ברחבי העולם.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/QksAVT0YMEo" title="da Vinci Surgery - How It Works" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון רשמי של Intuitive Surgical המדגים את שלושת חלקי המערכת (קונסולה, עגלת זרועות, עגלת חזון) ואת אופן התרגום של תנועת היד לתנועת המכשיר. מקור: YouTube, ערוץ da Vinci Surgery הרשמי.</p>
+
+<h2><span class="num">4</span> יתרונות טכנולוגיים על פני לפרוסקופיה</h2>
+<p>הפרק מפרט ארבעה יתרונות מרכזיים של הפלטפורמה הרובוטית ביחס ללפרוסקופיה הסטנדרטית:</p>
+<table>
+  <thead><tr><th>יתרון</th><th>איך זה עובד בפועל</th></tr></thead>
+  <tbody>
+    <tr><td>שדה ראייה משופר</td><td>מצלמה תלת-ממדית בהגדלה עד פי 10; <span dir="ltr" class="term">Firefly</span> - הדמיית פלואורסצנציה בקרוב-אינפרא-אדום (עם ירוק אינדוציאנין, ICG) לזיהוי זילוח דם/כלי דם/דרכי מרה בזמן אמת; <span dir="ltr" class="term">TilePro</span> - הצגת כמה מקורות תמונה במקביל על אותו מסך (למשל אולטרסאונד תוך-ניתוחי לצד התמונה החיה)</td></tr>
+    <tr><td>שליטה בארבע זרועות בו-זמנית</td><td>מנתחת אחת שולטת גם במצלמה וגם בשלושה מכשירים נוספים ללא צורך במסייע נפרד לכל זרוע</td></tr>
+    <tr><td>דיוק תנועה מוגבר</td><td>קנה-מידה של תנועה (motion scaling) + מסנן רעד (tremor filter)</td></tr>
+    <tr><td>מכשירים מפרקיים מתוחכמים</td><td>מכשירי EndoWrist עם 7 דרגות חופש (לעומת 4 בלפרוסקופיה) - מאפשרים תפירה, קשירה וחיתוך בזוויות שקשה להשיג בכלים ישרים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> הכנת חדר הניתוח והמכשור</h2>
+<p>הפרק מדגיש שהצלחה בניתוח רובוטי דורשת תכנון מראש, לא רק הפעלת המערכת: הבנת המערכת ותכונותיה, בניית חדר ניתוח יעיל ובטוח, לימוד השלבים הספציפיים של הגישה הרובוטית לניתוח המדובר, והיכרות עם הספרות הקיימת על התוצאות.</p>
+<h3>סידור חדר הניתוח - חמישה מרכיבים</h3>
+<p>המטופלת, המרדימה, המנתחת הראשית (בקונסולה), המסייעת ליד המיטה, ועגלת הזרועות הרובוטית - כולם צריכים סידור מתואם. המרדימה ממוקמת ליד ראש המטופלת עם גישה נוחה לנתיב האוויר. הבדל טכני משמעותי בין הדורות: <span class="key">במערכת Si</span> יש גמישות מועטה במיקום עגלת הזרועות - היא חייבת להיכנס בקו ישר עם הפורטים, לרוב מעל ראש המטופלת או בזווית קלה מהצד, כך שלכל סוג ניתוח (עליון מול תחתון, ימין מול שמאל) יש עמדת חנייה שונה שצריך לתכנן מראש; <span class="key">במערכת Xi</span>, לעומת זאת, יכולת סיבוב של 180° מאפשרת להכניס את העגלה מכל צד של המטופלת ולוותר על "חנייה מעל הראש" - וה"בום" המסתובב מאפשר להעביר את מיקום המצלמה בין הפורטים בלי צורך לעגן (<span dir="ltr" class="term">dock</span>) את הזרועות מחדש מאפס, מה שמקצר ניתוחים ארוכים ומרובי-רביעים (כמו ניתוחי מעי גס).</p>
+<h3>בחירת מכשירים</h3>
+<p>הבחירה נעשית מראש לפי הצורך בהחזקה/משיכה (<span dir="ltr" class="term">retraction</span>), נתיחה (<span dir="ltr" class="term">dissection</span>) והמסת דימום (<span dir="ltr" class="term">hemostasis</span>):</p>
+<table>
+  <thead><tr><th>מכשיר</th><th>שימוש עיקרי</th><th>נקודת זהירות</th></tr></thead>
+  <tbody>
+    <tr><td>מלקחיים Cadiere</td><td>המלקחיים הפחות טראומטיים; אחיזה/משיכה של קיבה, מעי דק ולבלב</td><td>ללא יכולת אנרגיה - אין לאחוז מעי דק זמן ממושך, סכנת ניקוב מאוחר מלחץ (<span class="term">pressure necrosis</span>)</td></tr>
+    <tr><td>ProGrasp / מלקחיים דו-קוטביים חלוניים</td><td>אחיזה חזקה יותר</td><td>כוח לחיצה גדול יותר - יש להשתמש בזהירות רבה על המעי</td></tr>
+    <tr><td>מלקחי Maryland</td><td>נתיחה ובידוד כלי דם, עם יכולת אנרגיה דו-קוטבית</td><td>-</td></tr>
+    <tr><td>סכין Harmonic (אולטרסאונד)</td><td>חיתוך + המסת דימום; המכשיר הלא-מפרקי היחיד מלבד המצלמה</td><td>-</td></tr>
+    <tr><td>Vessel Sealer Extension (Xi בלבד)</td><td>אחיזה + איטום + חיתוך של כלי דם - הרב-תכליתי ביותר מבין מכשירי האנרגיה</td><td>-</td></tr>
+    <tr><td>מהדקים (Staplers) EndoWrist</td><td>30/45/60 מ"מ, עם משוב תוך-ניתוחי (SmartClamp) על עובי הרקמה</td><td>-</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> סטטוס הראיות בניתוחי בטן נבחרים</h2>
+<p>הפרק סוקר ארבעה ניתוחים כדוגמאות מייצגות. המסקנה החוזרת בכולם: הרובוט <span class="key">לרוב שווה-ערך</span> ללפרוסקופיה בתוצאות המרכזיות (סיבוכים, תמותה, שהות אשפוז), <span class="key">מאריך את זמן הניתוח</span> ו<span class="key">מייקר את העלות</span> - כך שהיתרון, כשקיים, הוא לרוב ספציפי-לניתוח ולא גורף:</p>
+<table>
+  <thead><tr><th>ניתוח</th><th>ממצא מרכזי מהספרות</th></tr></thead>
+  <tbody>
+    <tr><td>תיקון בקע בטני עם רשת (<span dir="ltr" class="term">ventral hernia repair</span>)</td><td>גישה רטרו-שרירית (retromuscular) רובוטית מאפשרת סגירת פשיה ראשונית בשיעור גבוה יותר ושהות אשפוז קצרה יותר מלפרוסקופית, אך עם יותר סרומה (seroma) וזמן ניתוח ארוך יותר</td></tr>
+    <tr><td>כריתת מזורקטום מלאה לסרטן פי הטבעת (<span dir="ltr" class="term">rTME</span>)</td><td>מחקר ה-<span dir="ltr" class="term">ROLARR RCT</span> הרב-מוסדי (471 חולות) לא מצא הבדל מובהק בשיעורי המרה לניתוח פתוח, שולי כריתה, שהות אשפוז או סיבוכים לעומת לפרוסקופיה - למרות יתרון תיאורטי חזק בגישה לאגן צר</td></tr>
+    <tr><td>כריתת לבלב-תריסריון (<span dir="ltr" class="term">robotic pancreaticoduodenectomy</span>)</td><td>סקירה שיטתית הראתה שיעורי המרה לניתוח פתוח נמוכים יותר ותוצאות דומות בתמותה, אך נדרשות כ-80 פרוצדורות להגעה לעקומת למידה מיטבית - אחד ממדדי הלמידה הארוכים בכל הכירורגיה הרובוטית</td></tr>
+    <tr><td>כריתות כבד (<span dir="ltr" class="term">robotic liver resections</span>)</td><td>יתרון בולט ביותר בגידולים ב"מקטעים העליונים-אחוריים" (posterosuperior) שקשה להגיע אליהם לפרוסקופית - שהות אשפוז קצרה משמעותית בקבוצה הרובוטית, אך עם זמן ניתוח ארוך יותר ועלות גבוהה יותר</td></tr>
+  </tbody>
+</table>
+<div class="key-box">בכל ארבעת הניתוחים חוזרת אותה תבנית: <b>לא ניתוח פחות מסוכן</b> אלא ניתוח עם <b>יתרון ארגונומי/טכני לגישה קשה</b>, במחיר של זמן ותקציב.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Q4ZFud69hfc" title="Catherine Mohr: Surgery's past, present and robotic future - TED" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאת TED של המנתחת קתרין מור על התפתחות הניתוח הזעיר-פולשני ועתיד הרובוטיקה הכירורגית - נותנת פרספקטיבה היסטורית משלימה לפרק. מקור: YouTube / TED.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: "4 V" ליתרונות הרובוט על לפרוסקופיה</h3>
+  <p><b>V</b>ision (ראייה תלת-ממדית עם הגדלה) · <b>V</b>ersatility of arms (שליטה בארבע זרועות) · <b>V</b>ibration filtered (מסנן רעד + קנה-מידה) · <b>V</b>Wristed instruments (מכשירי EndoWrist עם 7 דרגות חופש).</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני מנתחת שיושבת בתא טייס (הקונסולה) הרחק מהמטוס עצמו (המטופלת), ומטיסה אותו "בשלט רחוק" מדויק להפליא: כל רעד קטן בידיה מסונן אוטומטית לפני שהוא מגיע לכנפיים (הזרועות), וההגה עצמו מתעקל בפרק "יד-רובוט" (EndoWrist) שיודע לפנות לכיוונים שהגה רגיל וישר לא יכול. בדיוק כמו טייס שרואה את הרחפן שלו על מסך תלת-ממדי מוגדל - לא עם עיניו החשופות - כך גם המנתחת "רואה" את חלל הבטן.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="70" width="140" height="60" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="100" y="95" font-size="13" text-anchor="middle" fill="#1f2937">תא הטייס</text>
+    <text x="100" y="113" font-size="11" text-anchor="middle" fill="#4b5563">(קונסולה מרוחקת)</text>
+    <path d="M170 100 Q 250 40 330 100" stroke="#b45309" stroke-width="2" fill="none" stroke-dasharray="5,4"/>
+    <text x="250" y="45" font-size="11" text-anchor="middle" fill="#b45309">שליטה מדויקת מרחוק</text>
+    <rect x="330" y="70" width="140" height="60" rx="10" fill="#ecfdf5" stroke="#047857"/>
+    <text x="400" y="95" font-size="13" text-anchor="middle" fill="#1f2937">הרחפן/מטוס</text>
+    <text x="400" y="113" font-size="11" text-anchor="middle" fill="#4b5563">(זרוע ליד המטופלת)</text>
+    <text x="250" y="165" font-size="12" text-anchor="middle" fill="#4b5563">רעד מסונן + מסך תלת-ממדי מוגדל = "טיסה" מדויקת בלי נוכחות פיזית</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:DaVinci-robotic-Si-surgical-platform-port-placement.jpg" target="_blank">Wikimedia Commons - סידור פורטים לניתוח רובוטי</a>
+    <div class="desc">תמונה שממחישה כמה קטנים חתכי הכניסה (הפורטים) בניתוח רובוטי, כולל מיקום היחסי של הזרועות סביב הבטן.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Cmglee_Cambridge_Science_Festival_2015_da_Vinci.jpg" target="_blank">Wikimedia Commons - תצוגת מערכת da Vinci בפסטיבל מדע בקיימברידג'</a>
+    <div class="desc">תמונה שמראה את מערכת da Vinci בתצוגה - נותנת פרספקטיבה של גודל וממדי הזרועות והקונסולה זו לצד זו.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=_573Yu7txrE" target="_blank">Da Vinci Robotic Surgery System - YouTube</a>
+    <div class="desc">סרטון הדגמה נוסף על מבנה המערכת ואופן השימוש בה בחדר ניתוח.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58, עם גידול ממאיר בפי הטבעת התחתון-אמצעי, מועמדת לכריתת מזורקטום מלאה (TME). המנתחת הראשית שוקלת בין גישה לפרוסקופית לגישה רובוטית. באגן שלה (אגן זכרי-דמוי, צר, עם גוש גידול נמוך וחוסם) צפויה קושי טכני משמעותי בגישה לפרוסקופית סטנדרטית. הצוות בוחר בגישה הרובוטית עם מערכת Xi, המאפשרת עגינת עגלה מהצד ללא "חנייה מעל הראש", וסיבוב בום לגישה מרובת-רביעים ללא צורך בעגינה מחדש מלאה. המנתחת יושבת בקונסולה, בעוד המסייעת ליד המיטה מבצעת החלפת מכשירים ומנתחת עם מלקחי Cadiere את הרקמה סביב המזורקטום.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו העיקרון המרכזי שמאפשר למכשיר EndoWrist "לעקוף" את בעיית ה-fulcrum שקיימת במכשיר לפרוסקופי ישר?</div>
+  <button class="opt" data-i="0">הגדלת המצלמה עד פי 10</button>
+  <button class="opt" data-i="1">מסנן הרעד (tremor filter) שמבטל תנועות יד לא רצוניות</button>
+  <button class="opt" data-i="2">פרק מכני בקצה המכשיר עם 7 דרגות חופש, בדומה לפרק כף יד אנושי</button>
+  <button class="opt" data-i="3">קנה-המידה (motion scaling) שמקטין את תנועת היד לפני שהיא מגיעה לזרוע</button>
+  <div class="explain">התשובה הנכונה היא 3 (אינדקס 2): ה-EndoWrist הוא המכשיר עם "פרק כף יד" מכני שמאפשר סיבוב וכיפוף בקצה - כלומר דרגות חופש נוספות מעבר ל-4 שיש למכשיר ישר סביב ה-fulcrum. הגדלת המצלמה (תשובה 1) משפרת ראייה אך לא פותרת בעיית תנועה. מסנן הרעד (תשובה 2) מבטל רעד יד אך לא מוסיף דרגות חופש. קנה-המידה (תשובה 4) משפר דיוק אך גם הוא לא מוסיף דרגות חופש בקצה המכשיר עצמו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה מבדיל בין דוקינג (עגינת) עגלת הזרועות במערכת Si לבין מערכת Xi?</div>
+  <button class="opt" data-i="0">מערכת Si מהירה יותר בעגינה כי היא קטנה יותר פיזית</button>
+  <button class="opt" data-i="1">מערכת Xi מאפשרת סיבוב עגלה של 180° ועגינה משני צידי המטופלת ללא "חנייה מעל הראש", בעוד Si דורשת מיקום קבוע בקו ישר עם הפורטים</button>
+  <button class="opt" data-i="2">מערכת Si היא זו שיודעת לבצע רה-דוקינג בלי לעצור את הניתוח</button>
+  <button class="opt" data-i="3">אין הבדל מעשי בין שתי המערכות בעגינה - ההבדל היחיד הוא במחיר</button>
+  <div class="explain">התשובה הנכונה היא 2 (אינדקס 1): הפרק מדגיש במפורש שמערכת Xi, בזכות יכולת סיבוב 180°, מאפשרת עגינה מכל צד ומוותרת על "חנייה מעל הראש", בעוד Si דורשת מיקום קבוע וישיר מול הפורטים. תשובה 1 שגויה - ההבדל אינו במהירות אלא בגמישות המיקום. תשובה 3 הפוכה מהעובדות - ה"בום" המסתובב של Xi הוא זה שמאפשר החלפת מיקום מצלמה בלי עגינה מחדש מלאה. תשובה 4 שגויה - ההבדל הוא פונקציונלי משמעותי בתכנון חדר הניתוח, לא רק מחירי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה הראה מחקר ה-ROLARR RCT (471 חולות) בהשוואת רובוטי מול לפרוסקופי לכריתת מזורקטום מלאה בסרטן פי הטבעת?</div>
+  <button class="opt" data-i="0">לא נמצא הבדל מובהק בשיעורי המרה לניתוח פתוח, שולי כריתה, שהות אשפוז או סיבוכים בין שתי הגישות</button>
+  <button class="opt" data-i="1">הגישה הרובוטית הפחיתה תמותה תוך 30 יום בצורה מובהקת סטטיסטית</button>
+  <button class="opt" data-i="2">הגישה הרובוטית קיצרה את זמן הניתוח באופן מובהק</button>
+  <button class="opt" data-i="3">המחקר הופסק מוקדם עקב עליית סיבוכים חמורים בזרוע הרובוטית</button>
+  <div class="explain">התשובה הנכונה היא 1 (אינדקס 0): ה-ROLARR RCT לא הראה הבדל מובהק בין הגישות במרבית התוצאים שנבדקו, על אף היתרון התיאורטי החזק של הרובוט באגן צר. תשובה 2 שגויה - לא נמצא הבדל מובהק בתמותה בין הקבוצות. תשובה 3 הפוכה - הניתוח הרובוטי דווקא נטה לקחת זמן ארוך יותר, לא קצר יותר. תשובה 4 שגויה עובדתית - המחקר הושלם ולא הופסק, וללא עדות לסיבוכים מוגברים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע יש להימנע מאחיזה ממושכת של מעי דק במלקחי Cadiere?</div>
+  <button class="opt" data-i="0">מלקחי Cadiere אינם מסוגלים כלל לאחוז רקמה רכה</button>
+  <button class="opt" data-i="1">Cadiere מיועדים אך ורק לאחיזת כלי דם גדולים</button>
+  <button class="opt" data-i="2">כי הם היחידים מבין המכשירים בעלי יכולת אנרגיה, ולכן מסוכנים למגע ממושך</button>
+  <button class="opt" data-i="3">הלחץ הממושך עלול לגרום לניקוב מאוחר מנמק לחץ (pressure necrosis) ברקמת המעי</button>
+  <div class="explain">התשובה הנכונה היא 4 (אינדקס 3): הפרק מזהיר במפורש שאחיזה ממושכת של מעי דק, גם במלקחי Cadiere ה"עדינים", עלולה לגרום לנזק לחץ שמתבטא כניקוב מאוחר. תשובה 1 שגויה - Cadiere הם דווקא המלקחיים הכי פחות טראומטיים לשימוש שגרתי באחיזה. תשובה 2 שגויה - הם משמשים למגוון רקמות (קיבה, מעי דק, לבלב), לא רק כלי דם. תשובה 3 הפוכה - Cadiere הם ללא יכולת אנרגיה כלל; מלקחי Maryland הם אלו עם יכולת דו-קוטבית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ניתוח רובוטי מבוסס על עקרון master-slave: המנתחת בקונסולה מרוחקת שולטת בזרועות ליד המטופלת, עם קנה-מידה, מסנן רעד, EndoWrist (7 דרגות חופש) וראייה תלת-ממדית מוגדלת.</li>
+    <li>היסטוריה: NASA/DARPA (שנות 70) → AESOP (1994) → Zeus → מבצע לינדברג (2001, כריתת כיס מרה טרנס-אטלנטית) → da Vinci (FDA 2000) → דורות S/Si/Xi.</li>
+    <li>מערכת בנויה משלושה חלקים: קונסולת מנתחת, עגלת זרועות ליד המטופלת, עגלת חזון. Xi (2014) מאפשרת סיבוב 180° וללא "חנייה מעל הראש", בניגוד ל-Si.</li>
+    <li>בניתוחי בטן נבחרים (בקע בטני, TME לרקטום, כריתת לבלב-תריסריון, כריתות כבד) - הרובוט בדרך כלל שווה-ערך בבטיחות ללפרוסקופיה, עם יתרון ספציפי בגישות קשות (אגן צר, מקטעי כבד אחוריים-עליונים), אך תמיד עם זמן ניתוח ארוך יותר ועלות גבוהה יותר.</li>
+    <li>אין עדיין הוכחה חד-משמעית מ-RCT לעליונות גורפת של הרובוט על הלפרוסקופיה - האימוץ תלוי בבחירת המנתחת ובניסיונה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

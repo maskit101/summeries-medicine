@@ -22,9 +22,13 @@
   .tile.summaries{background:linear-gradient(155deg, #6d28d9, #2e1065)}
   .tile.flashcards{background:linear-gradient(155deg, #028090, #013A40)}
   footer{max-width:720px; margin:0 auto 60px; padding:0 24px; color:#a5b4fc; font-size:12.5px; text-align:center; line-height:1.7}
+  .topnav{padding:18px 24px 0}
+  .topnav a{color:#c4b5fd; font-size:13.5px; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
+<div class="topnav"><a href="../index.html">&#8592; כל המקצועות</a></div>
 <header>
   <h1>🩺 כירורגיה כללית — מרכז הלמידה</h1>
   <div class="sub">Sabiston / Schwartz's Principles of Surgery &middot; מתעדכן אוטומטית כל יום ב-02:00</div>
@@ -45,15 +49,35 @@
 </div>
 <footer>כדי לפרסם את האתר הזה — פשוט העלי את כל תיקיית הפלט (index.html + summaries.html + summaries/ + flashcards/ + progress/) לאחסון סטטי לבחירתך (GitHub Pages, Netlify, Vercel, או כל שרת קבצים סטטי). כל הקבצים עצמאיים ולא דורשים שרת אחורי.</footer>
 
+<!-- עותק מוטמע של progress/topics.json - כדי שהמספר בעמוד יעבוד גם כשפותחים את הקובץ ישירות בדפדפן (file://),
+     שם fetch() לקובץ JSON מקומי נחסם בדפדפנים רבים (במיוחד Chrome). המקור האמיתי (יחיד) לנתונים הוא
+     progress/topics.json - כל ריצה יומית שמעדכנת אותו קובץ צריכה לעדכן גם את הבלוק המוטמע כאן בהתאם. -->
+<script id="topicsDataEmbedded" type="application/json">
+{"next_pending_chapter":16,"topics":[{"ch":1,"status":"done"},{"ch":2,"status":"done"},{"ch":3,"status":"done"},{"ch":4,"status":"done"},{"ch":5,"status":"done"},{"ch":6,"status":"done"},{"ch":7,"status":"done"},{"ch":8,"status":"done"},{"ch":9,"status":"done"},{"ch":10,"status":"done"},{"ch":11,"status":"done"},{"ch":12,"status":"done"},{"ch":13,"status":"done"},{"ch":14,"status":"done"},{"ch":15,"status":"done"},{"ch":16,"status":"pending"},{"ch":17,"status":"pending"},{"ch":18,"status":"pending"},{"ch":19,"status":"pending"},{"ch":20,"status":"pending"},{"ch":21,"status":"pending"},{"ch":22,"status":"pending"},{"ch":23,"status":"pending"},{"ch":24,"status":"pending"},{"ch":25,"status":"pending"},{"ch":26,"status":"pending"},{"ch":27,"status":"pending"},{"ch":28,"status":"pending"},{"ch":29,"status":"pending"},{"ch":30,"status":"pending"},{"ch":31,"status":"pending"},{"ch":32,"status":"pending"},{"ch":33,"status":"pending"},{"ch":34,"status":"pending"},{"ch":35,"status":"pending"},{"ch":36,"status":"pending"},{"ch":37,"status":"pending"},{"ch":38,"status":"pending"},{"ch":39,"status":"pending"},{"ch":40,"status":"pending"},{"ch":41,"status":"pending"},{"ch":42,"status":"pending"},{"ch":43,"status":"pending"},{"ch":44,"status":"pending"},{"ch":45,"status":"pending"},{"ch":46,"status":"pending"},{"ch":47,"status":"pending"},{"ch":48,"status":"pending"},{"ch":49,"status":"pending"},{"ch":50,"status":"pending"},{"ch":51,"status":"done"},{"ch":52,"status":"pending"},{"ch":53,"status":"pending"},{"ch":54,"status":"pending"},{"ch":55,"status":"pending"},{"ch":56,"status":"pending"},{"ch":57,"status":"pending"},{"ch":58,"status":"pending"},{"ch":59,"status":"pending"},{"ch":60,"status":"pending"},{"ch":61,"status":"pending"},{"ch":62,"status":"pending"},{"ch":63,"status":"pending"},{"ch":64,"status":"pending"},{"ch":65,"status":"pending"},{"ch":66,"status":"pending"},{"ch":67,"status":"pending"},{"ch":68,"status":"pending"},{"ch":69,"status":"pending"},{"ch":70,"status":"pending"},{"ch":71,"status":"pending"},{"ch":72,"status":"pending"},{"ch":73,"status":"pending"},{"ch":74,"status":"pending"}]}
+</script>
 <script>
-fetch('progress/topics.json').then(function(r){return r.json();}).then(function(data){
+function loadTopicsData(){
+  try{
+    var el = document.getElementById('topicsDataEmbedded');
+    if(el){ return Promise.resolve(JSON.parse(el.textContent)); }
+  }catch(e){}
+  return fetch('progress/topics.json').then(function(r){return r.json();});
+}
+
+loadTopicsData().then(function(data){
   var done = data.topics.filter(function(t){return t.status==='done';}).length;
   document.getElementById('statSummaries').textContent = done+'/'+data.topics.length;
-}).catch(function(){});
+}).catch(function(){
+  document.getElementById('statSummaries').textContent = 'שגיאת טעינה';
+});
 
+// cardsCountEmbedded מתעדכן ידנית בכל ריצה יומית שמוסיפה כרטיסיות ל-flashcards/cards.json (מספר בלבד, קל לעדכן).
+var CARDS_COUNT_EMBEDDED = 112;
 fetch('flashcards/cards.json').then(function(r){return r.json();}).then(function(data){
   document.getElementById('statCards').textContent = data.cards.length;
-}).catch(function(){});
+}).catch(function(){
+  document.getElementById('statCards').textContent = CARDS_COUNT_EMBEDDED;
+});
 </script>
 </body>
 </html>

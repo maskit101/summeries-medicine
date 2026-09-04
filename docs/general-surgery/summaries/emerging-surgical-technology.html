@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!-- Ch 15 - Emerging Technology in Surgery: Informatics, Electronics. מקור: ה-PDF שהועלה של Ch 15 היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). הפרק המקורי הוא סקירה רחבה של טכנולוגיה כירורגית מתקדמת (לא מחלה בודדת) - הסיכום כיסה את עיקרי הפרק: הדמיה מונחית וגישות זעיר-פולשניות/NOTES, פלואורסצנציה בקרוב-אינפרא-אדום (ICG), כלים אבחנתיים תוך-ניתוחיים, בינה מלאכותית, הדפסה תלת-מימדית/ביו-הדפסה, ותהליך החדשנות/סימולציה. רובוטיקה כירורגית תוארה בקצרה בלבד מכיוון שפרק 16 הקרוב מוקדש לה במלואו. תמונות (Wikimedia Commons) וסרטוני YouTube (TED-Ed, SAGES-affiliated therapeutic endoscopy educator, Behind the Knife/AI in surgery) הושלמו מחיפוש אמיתי. -->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>טכנולוגיות מתקדמות בכירורגיה</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid var(--line)}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:var(--sub); text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>טכנולוגיות מתקדמות בכירורגיה <span dir="ltr" class="term" style="font-size:20px">(Emerging Technology in Surgery)</span></h1>
+<div class="subtitle">פרק 15 - הדמיה מונחית, אנדוסקופיה מתקדמת ו-<span dir="ltr" class="term">NOTES</span>, פלואורסצנציה בקרוב-אינפרא-אדום, כלים אבחנתיים תוך-ניתוחיים, בינה מלאכותית, הדפסת תלת-מימד ותהליך החדשנות הכירורגית</div>
+
+<p>ב-30 השנים האחרונות עברה הכירורגיה מהפכה: מניתוח פתוח שדרש חתך גדול מספיק כדי שהמנתחת תכניס את ידיה ותראה את הרקמה במישרין, אל עולם של <span dir="ltr" class="term">image-guided surgery</span> - ניתוח שמתבצע דרך מסך, כשהמכשירים מוכנסים דרך חתכים זעירים או אפילו בלי חתך כלל (דרך פתחי גוף טבעיים). הפרק הזה סוקר את הטכנולוגיות שהובילו למהפכה הזו ואת מה שצפוי הלאה: שיפור ההדמיה והניווט התוך-ניתוחי, כלים חדשים לאבחון רקמה בזמן אמת, בינה מלאכותית, והדפסה תלת-מימדית של רקמות. <span dir="ltr" class="term">רובוטיקה כירורגית (Robotic Surgery)</span> מוזכרת כאן בקצרה בלבד - היא הנושא של פרק 16 הבא בתור.</p>
+
+<h2><span class="num">2</span> המנגנון - איך "רואים" את מה שהעין הרגילה לא רואה</h2>
+<div class="mechanism">
+  <p class="chain">
+    בניתוח פתוח, המנתחת נעזרת בראייה תלת-ממדית טבעית (שתי עיניים) ובמישוש ישיר של הרקמה כדי לבנות "מודל מנטלי" (mental model) של האנטומיה. בניתוח מונחה-הדמיה, שני הערוצים האלה נפגעים בו-זמנית: המצלמה (<span dir="ltr" class="term">endoscope</span>) הקלאסית היא <span class="key">חד-עינית (monocular)</span> - כלומר מציגה תמונה דו-ממדית על מסך, כך שתחושת העומק חייבת "להילמד" מרמזים עקיפים (גודל יחסי, הצללה, תנועה); ובמקביל, המרחק בין יד המנתחת לרקמה - דרך מכשיר ארוך שעובר דרך <span dir="ltr" class="term">trocar</span> בדופן הבטן ונע סביב נקודת ציר קבועה (<span class="term">fulcrum effect</span>) - כמעט מבטל את המשוב המישושי (<span dir="ltr" class="term">tactile feedback</span>). כדי לפצות על שני החסרים האלה, הפכה הטכנולוגיה ל"עיניים ואצבעות" חלופיות: מצלמות תלת-ממדיות (שתי עדשות = ראייה בינוקולרית), מסכים שמציגים כמה מקורות מידע במקביל (הדמיה קדם-ניתוחית, אולטרסאונד תוך-ניתוחי, מוניטורים פיזיולוגיים), ומערכות <span class="term">augmented reality</span> שמשכיבות מודל תלת-ממדי (מ-<span dir="ltr" class="term">CT/MRI</span> קדם-ניתוחי) ישירות על התמונה החיה כדי לסמן איפה בדיוק נמצא כלי דם או צינור מרה קריטי.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    דוגמה מרכזית ל"עין" נוספת שנוספה למנתחת היא <span class="key">פלואורסצנציה בקרוב-אינפרא-אדום עם ירוק אינדוציאנין <span dir="ltr" class="term">(Indocyanine Green, ICG)</span></span>: הצבע מוזרק לווריד, נקשר כמעט כולו לחלבוני הפלזמה (בעיקר אלבומין), ומאחר שהוא <span class="key">מפונה אך ורק על ידי הכבד להפרשה למרה (ולא דרך הכליות)</span>, תוך דקות הוא ממלא את מערכת המרה החוץ-כבדית. כשמאירים את השדה הניתוחי באור בתחום קרוב-האינפרא-אדום (סביב 800 ננומטר), מולקולות ה-ICG שנמצאות שם "בולעות" את האור ופולטות בחזרה פלואורסצנציה (סביב 830 ננומטר) שמצלמה ייעודית קולטת ומציגה כתמונה ירוקה-זוהרת בזמן אמת - ומראה למנתחת בדיוק היכן עובר צינור המרה, עוד לפני שהתחילה לחתוך בסביבת <span dir="ltr" class="term">Calot's triangle</span>. אותו עיקרון (חומר שמצטבר ברקמה מסוימת ופולט אות שמצלמה קולטת) עומד גם מאחורי שימוש ב-ICG להערכת <span class="term">אספקת דם לאנסטומוזה</span> - רקמה עם זילוח תקין תיצבע חזק ומהר, ואילו רקמה איסכמית תיצבע חלש או מאוחר, ומכאן שההדמיה הזו יכולה תיאורטית לסייע במניעת דליפה אנסטומוטית (ראו סיכום פרק 12).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="90" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="90" y="115" font-size="13" text-anchor="middle" fill="#1f2937">הזרקת ICG</text>
+  <text x="90" y="133" font-size="12" text-anchor="middle" fill="#4b5563">לווריד</text>
+  <polygon points="160,120 185,113 185,127" fill="#2563eb"/>
+  <rect x="190" y="90" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="265" y="112" font-size="13" text-anchor="middle" fill="#1f2937">קשירה לאלבומין</text>
+  <text x="265" y="130" font-size="12" text-anchor="middle" fill="#4b5563">בפלזמה</text>
+  <polygon points="340,120 365,113 365,127" fill="#2563eb"/>
+  <rect x="370" y="90" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="445" y="112" font-size="13" text-anchor="middle" fill="#1f2937">קליטה כבדית</text>
+  <text x="445" y="130" font-size="12" text-anchor="middle" fill="#4b5563">והפרשה למרה בלבד</text>
+  <polygon points="520,120 545,113 545,127" fill="#2563eb"/>
+  <rect x="550" y="90" width="150" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="625" y="112" font-size="13" text-anchor="middle" fill="#1f2937">הארה ב-NIR</text>
+  <text x="625" y="130" font-size="12" text-anchor="middle" fill="#4b5563">(~800nm)</text>
+  <polygon points="700,120 725,113 725,127" fill="#2563eb"/>
+  <rect x="730" y="90" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="805" y="112" font-size="13" text-anchor="middle" fill="#1f2937">פלואורסצנציה</text>
+  <text x="805" y="130" font-size="12" text-anchor="middle" fill="#4b5563">נקלטת במצלמה</text>
+  <text x="450" y="30" font-size="15" text-anchor="middle" fill="#1f2937" font-weight="700">שרשרת המנגנון: מהזרקה ועד תמונה ירוקה-זוהרת בזמן אמת</text>
+  <text x="450" y="190" font-size="13" text-anchor="middle" fill="#4b5563">תוצאה קלינית: הצינור המראתי/כלי הדם "מאיר" על המסך - נמנעת חתירה עיוורת בסביבת רקמה מודלקת</text>
+</svg>
+
+<h2><span class="num">3</span> מגישה פתוחה לגישה זעיר-פולשנית - ולגישה נטולת-חתך כלל</h2>
+<p>האבולוציה הטכנולוגית עברה כמה תחנות ברורות:</p>
+<table>
+  <thead><tr><th>פלטפורמה</th><th>גישה לגוף</th><th>ראייה</th><th>דרגות חופש של המכשיר</th><th>משוב מישושי</th></tr></thead>
+  <tbody>
+    <tr><td>ניתוח פתוח</td><td>חתך גדול</td><td>בינוקולרית ישירה</td><td>מלאה (כתף/מרפק/שורש כף יד)</td><td>מלא</td></tr>
+    <tr><td>לפרוסקופיה</td><td>חתכים זעירים + <span dir="ltr" class="term">trocar</span></td><td>מונוקולרית (או תלת-ממד עם 2 עדשות)</td><td>מוגבלת - ציר קבוע (<span class="term">fulcrum</span>)</td><td>מוחלש מאוד</td></tr>
+    <tr><td><span dir="ltr" class="term">NOTES</span> / אנדוסקופיה גמישה</td><td>ללא חתך - דרך פתח טבעי (פה/פי הטבעת/נרתיק)</td><td>מונוקולרית, שדה ראייה מוגבל</td><td>מוגבלת מאוד, אריכות המכשיר מקשה על תמרון</td><td>כמעט אפסי</td></tr>
+    <tr><td>רובוטיקה (פרק 16)</td><td>חתכים זעירים</td><td>תלת-ממדית (2 מערכות עדשה)</td><td>מכשירים "פרקיים" (<span class="term">wristed</span>) שמתגברים על ה-<span class="term">fulcrum</span></td><td>חלקי בלבד (כיום)</td></tr>
+  </tbody>
+</table>
+<p><span class="key">ניתוח דרך פתח טבעי בלי כל חתך (<span dir="ltr" class="term">Natural Orifice Transluminal Endoscopic Surgery, NOTES</span>)</span> הוא הקצה הקיצוני של המגמה הזו: אנדוסקופ גמיש מוחדר דרך הפה, פי הטבעת או הנרתיק, ובכוונה תחילה "מנוקבת" דופן איבר (למשל דופן הקיבה) כדי להגיע לחלל הבטן ולבצע את הניתוח משם - ובסיום סוגרים את חור הכניסה במהדקים או בתפרים. מכיוון שמדובר בניקוב יזום, <span class="key">כשל בריפוי הפתח עלול לגרום לדליפה, פריטוניטיס או דיספראוניה</span> - זה בדיוק המחיר של "בלי צלקת בכלל". יישום ממוקד וקליני יותר של אותו עיקרון הוא <span dir="ltr" class="term">Peroral Endoscopic Myotomy (POEM)</span> לטיפול באכלזיה: האנדוסקופ נכנס דרך הפה, נחתכת רירית הוושט, נוצר "מנהרה" תת-רירית, השריר העגול (<span dir="ltr" class="term">circular muscle</span>) של הוושט נחתך דרך המנהרה עד מתחת לסוגר התחתון, ולבסוף סוגרים את פתח הכניסה במהדקים - כלומר מבצעים ניתוח מיוטומיה קלאסי (כמו <span dir="ltr" class="term">Heller myotomy</span> הפתוח/לפרוסקופי) אך ללא אף חתך חיצוני.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/pkKE2zIspK0" title="Peroral Endoscopic Myotomy (POEM)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת POEM ביחידת אנדוסקופיה, בהנחיית ד"ר Mouen Khashab (מנהל אנדוסקופיה טיפולית) - רואים את יצירת המנהרה התת-רירית ואת חיתוך הסיבים העגולים של השריר. מקור: YouTube.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DaVinci-robotic-Si-surgical-platform-port-placement.jpg?width=700" alt="סידור פורטים לניתוח רובוטי">
+  <p class="media-cap">סידור טיפוסי של פורטים (חתכים זעירים) לפלטפורמה רובוטית - ממחיש כמה קטנים החתכים ביחס לניתוח פתוח, גם כשמדובר בפרוצדורה מורכבת. מקור: Wikimedia Commons.</p>
+</figure>
+
+<h2><span class="num">4</span> יישומים קליניים מוכרים כיום</h2>
+<p>כמה דוגמאות מוחשיות לאן ההתקדמות הזו כבר הגיעה בפועל (ולא נשארה תיאורטית):</p>
+<ul>
+  <li><b>כריתה טרנס-אנלית של המזורקטום (<span dir="ltr" class="term">taTME</span>)</b> - לגידולים בשליש התחתון של פי הטבעת, שם האגן הצר מקשה על גישה בטנית רגילה; הניתוח מתבצע "מלמטה למעלה" דרך פי הטבעת, אך דורש אימון ייעודי בגלל סיכון לפגיעה בשופכה בעקומת הלמידה הראשונית.</li>
+  <li><b>כריתת בלוטת התריס דרך הפה (<span dir="ltr" class="term">Transoral Endoscopic Thyroidectomy Vestibular Approach</span>)</b> - יתרון קוסמטי (אין צלקת בצוואר), תפקידה הקליני המדויק עדיין נחקר.</li>
+  <li><b>כריתה אנדוסקופית של הרירית / דיסקציה תת-רירית (<span dir="ltr" class="term">EMR/ESD</span>)</b> - לגידולים מוקדמים בוושט/קיבה/מעי גס שאינם דורשים כריתת בלוטות לימפה, כך שנחסך מהמטופלת ניתוח כריתת איבר שלם.</li>
+  <li><b>אולטרסאונד אנדוסקופי (<span dir="ltr" class="term">EUS</span>)</b> - משלב אנדוסקופ עם ראש אולטרסאונד בקצה, ומאפשר גם דגימת בלוטות לימפה סמוכות וגם התערבויות (ניקוז פסאודוציסטה של הלבלב, סטנט למעקף גידול חוסם) - בתחלואה ותמותה נמוכות משמעותית מגישה פתוחה.</li>
+  <li><b>פרוצדורות תוך-כליות/צנתור (endovascular)</b> - סטנטים מצופי תרופה, בלוני החלפה של מסתם אבי העורקים (<span dir="ltr" class="term">TAVR</span>-מסוג) ותיקון מפרצת אבי העורקים דרך צנתר - מאפשרים לטפל בחולות עם תחלואה נלווית קשה בלי החתך הגדול של ניתוח פתוח.</li>
+</ul>
+
+<h2><span class="num">5</span> כלים אבחנתיים תוך-ניתוחיים לזיהוי רקמה בזמן אמת</h2>
+<p>מגמה מקבילה היא לא רק "לראות יותר" אלא <span class="key">לדעת בדיוק איזו רקמה רואים</span> - כלומר לקבל תשובה מיידית "האם זו רקמה ממאירה, שפירה, או צלקת/דלקת שנראית דומה לגידול" - עוד בזמן הניתוח, ולא לחכות לפתולוגיה שתגיע יומיים אחר כך:</p>
+<table>
+  <thead><tr><th>כלי</th><th>מה מודדים (מנגנון)</th><th>שימוש קליני טיפוסי</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">מסת ספקטרומטריה תוך-ניתוחית (mass spectrometry / "iKnife")</span></td><td>מייננת את עשן החיתוך הכירורגי ומודדת את יחס המטען-למסה של המולקולות שבו, ומשווה את "טביעת האצבע" המולקולרית הזו למאגר נתונים של רקמה ממאירה מול שפירה</td><td>קביעה בזמן אמת האם שולי הכריתה עדיין מכילים תאים ממאירים, במיוחד ברקמה פיברוטית שקשה להבחין בעין (למשל אחרי הקרנות)</td></tr>
+    <tr><td><span dir="ltr" class="term">מיקרוסקופיה קונפוקלית בלייזר (confocal laser endomicroscopy)</span></td><td>לייזר סורק את הרקמה ברזולוציה מיקרוסקופית תוך כדי האנדוסקופיה עצמה</td><td>זיהוי דיספלזיה ב-<span dir="ltr" class="term">Barrett's esophagus</span> בלי לחכות לביופסיה רגילה</td></tr>
+    <tr><td><span dir="ltr" class="term">כרומואנדוסקופיה (chromoendoscopy)</span> / כרומואנדוסקופיה וירטואלית</td><td>צביעה בצבע (למשל אינדיגו קרמין) או סינון אופטי (<span dir="ltr" class="term">narrow band imaging</span>) שמדגישים ניגודיות במרקם רירית לא תקינה</td><td>הדגשת רקמה דיספלסטית לפני כריתה אנדוסקופית</td></tr>
+    <tr><td><span dir="ltr" class="term">טומוגרפיית קוהרנטיות אופטית (optical coherence tomography)</span></td><td>הדמיה חתך-רוחבית של הרקמה לפי החזרי אור (בדומה לעיקרון של אולטרסאונד, רק עם אור במקום גלי קול)</td><td>הערכת עומק פלישה של גידול מוקדמים בדרכי העיכול</td></tr>
+    <tr><td>פלואורסצנציית ICG (ראו סעיף 2)</td><td>הצטברות/זילוח דיפרנציאלי של הצבע ברקמה</td><td>מיפוי דרכי המרה, בדיקת זילוח דם באנסטומוזה, זיהוי שוליים בכריתת שד חסכונית</td></tr>
+  </tbody>
+</table>
+<div class="key-box">כל הכלים האלה עונים על אותה בעיה מנגנונית: לעין האנושית (או למצלמה הרגילה) אין דרך להבדיל רקמה ממאירה מרקמה שפירה/מודלקת רק לפי מראה חיצוני - לכן צריך "חוש" נוסף (מולקולרי, אופטי, או צבע פלואורסצנטי) שמוסיף מידע שהעין לא רואה.</div>
+
+<h2><span class="num">6</span> בינה מלאכותית, תהליך החדשנות, וסימולציה - איך טכנולוגיה חדשה בכלל מגיעה לחדר הניתוח</h2>
+<h3>בינה מלאכותית (<span dir="ltr" class="term">Artificial Intelligence, AI</span>) בכירורגיה</h3>
+<p><span class="term">למידת מכונה (machine learning)</span> היא תת-תחום שבו אלגוריתם "לומד" לזהות דפוסים בתוך מאגר נתונים גדול (ולא מתוכנת מראש עם כללים קבועים), ו<span class="term">רשתות נוירונים מלאכותיות (artificial neural networks)</span> הן משפחת אלגוריתמים שמעבדות מידע בשכבות, בדומה (מבחינה מושגית) למערכת עצבים ביולוגית. <span class="term">ראייה ממוחשבת (computer vision)</span> היא היישום הספציפי של למידת מכונה על תמונות/וידאו - האלגוריתם "מזהה" בפועל צבע, מרקם ומיקום בתוך הפריים, ומשתמש בכך לזיהוי דפוסים משמעותיים סטטיסטית בתוך זרם וידאו של הניתוח.</p>
+<table>
+  <thead><tr><th>שלב הטיפול</th><th>יישום אפשרי של AI</th></tr></thead>
+  <tbody>
+    <tr><td>טרום-ניתוחי</td><td>חישוב ציון סיכון מקיף מנתוני הרשומה הרפואית (<span dir="ltr" class="term">EMR</span>) והדמיה, לחיזוי סיבוכים</td></tr>
+    <tr><td>תוך-ניתוחי</td><td>זיהוי אירועים בזמן אמת מווידאו (למשל דימום) וניתוח חיזוי לתמיכה בהחלטה קלינית</td></tr>
+    <tr><td>לאחר הניתוח</td><td>חיזוי וזיהוי תחלואה/תמותה (<span dir="ltr" class="term">M&M</span>) מנתוני חיוניים ומעבדה</td></tr>
+  </tbody>
+</table>
+<p>שילוב הנתונים משלושת השלבים, ברמת מטופלת בודדת וברמת אוכלוסייה שלמה, הוא הרעיון שמאחורי המושג <span class="key">"תודעה כירורגית קולקטיבית" (collective surgical consciousness)</span> - חזון שבו כל הניסיון הכירורגי המצטבר (מיליוני ניתוחים מתועדים) הופך לכלי תמיכה בהחלטות עבור כל מנתחת בודדת.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ICmvb1kQUMk" title="Better Surgical Care through Artificial Intelligence" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון על השימושים המתפתחים של בינה מלאכותית וראייה ממוחשבת לשיפור הטיפול הכירורגי. מקור: YouTube.</p>
+
+<h3>הדפסה תלת-מימדית וביו-הדפסה</h3>
+<p>הדפסה תלת-מימדית (<span class="term">additive manufacturing</span>) בונה עצם מתוצרי-לוואי שכבה-אחר-שכבה לפי מודל דיגיטלי. ביישום הכירורגי, הטכנולוגיה משמשת כבר היום למידול פרוטזות בהתאמה אישית ולתכנון קדם-ניתוחי של שברים מורכבים, ובעתיד - ל<span class="key">ביו-הדפסה (bioprinting)</span>: הדפסה שבה "הדיו" הוא תאים חיים בתוך מטריצה תומכת, בניסיון ליצור רקמות (עור, סחוס, כלי דם, רקמת שומן לשחזור שד) שמבצעות בפועל תפקוד פיזיולוגי - חלופה עתידית פוטנציאלית להשתלה, עדיין ללא ניסויים קליניים שהוכיחו יעילות ובטיחות.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bioprinting.jpg?width=700" alt="מדפסת ביו-הדפסה תלת-ממדית">
+  <p class="media-cap">מדפסת ביו-הדפסה תלת-ממדית - "הדיו" מכיל תאים חיים בתוך מטריצה תומכת, ומודפס שכבה-אחר-שכבה ליצירת מבנה רקמתי. מקור: Wikimedia Commons.</p>
+</figure>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/uHbn7wLN_3k" title="How to 3D print human tissue - Taneka Jones" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">TED-Ed: הסבר קצר על עקרון הביו-הדפסה והפער העצום בין ביקוש להשתלת איברים להיצע האיברים הזמינים. מקור: YouTube.</p>
+
+<h3>תהליך החדשנות בכירורגיה - ולמה "חדש" לא תמיד "טוב"</h3>
+<p>הדרך מרעיון חדש למכשיר שנמצא בפועל בחדר ניתוח כוללת הערכת צורך, פיתוח קונספט, סבבים רבים של אבטיפוס, אישור רגולטורי, ולבסוף אימוץ קליני עם הכשרה מתאימה - תהליך שלוקח לרוב <span class="key">יותר מעשור, עם שיעור כישלון של מעל 90% תוך 10 שנים</span>. חשוב לזכור גם את הצד השני: "חדש" לא תמיד "טוב יותר" באופן אוטומטי, וטכנולוגיה חדשה עלולה לפגוע במטופלות לפני שהיא משתפרת. הדוגמה הקלאסית: כשכריתת כיס המרה הלפרוסקופית הוכנסה לראשונה בסוף שנות ה-80, נרשם <span class="key">שיעור גבוה משמעותית של פגיעות בצינור המרה בהשוואה לניתוח הפתוח</span> - לא בגלל שהשיטה החדשה גרועה מיסודה, אלא בגלל עקומת למידה: מנתחות מנוסות בניתוח פתוח נדרשו לפתע למיומנויות פסיכומוטוריות ותפיסה מרחבית שונות לגמרי (מסך דו-ממדי, אין מישוש), בלי הכשרה מספקת בזמן המעבר.</p>
+
+<h3>סימולציה - איך מכשירים את הצוות בלי לסכן מטופלות</h3>
+<p>בדיוק בגלל בעיית עקומת הלמידה שתוארה למעלה, פותחו תוכניות סימולציה (בובות אימון, מודלים וירטואליים <span dir="ltr" class="term">VR</span>, ומודלים היברידיים) שמאפשרות תרגול חוזר ומדוד לפני שהמנתחת פוגשת מטופלת אמיתית. תוכנית <span dir="ltr" class="term">Fundamentals of Laparoscopic Surgery (FLS)</span> היא דוגמה מוכרת - היא מודדת זמן ודיוק בביצוע משימות בסיסיות, ומאפשרת לקבוע "רף מיומנות" (<span class="term">proficiency level</span>) לפני מעבר לחדר ניתוח אמיתי, ובכך מקצרת את הפער שגרם לעודף פגיעות בצינור המרה בדוגמה שלמעלה.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tAr7xjKoM5A" title="Robotic Surgery Demonstration Using Da Vinci Surgical System" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת עבודה עם מערכת רובוטית - ממחישה את עקרון ה"קונסולה" (master) שמפעילה את הזרועות ליד המטופלת (slave), נושא שיורחב בפרק 16. מקור: YouTube.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Chirurgien_son_robot_da-vinci.JPG?width=700" alt="מנתח עם רובוט דה-וינצ'י בחדר ניתוח">
+  <p class="media-cap">מנתחת ליד עמדת המטופלת (patient-side cart) של מערכת רובוטית - ההכשרה הנדרשת למעבר לפלטפורמה כזו שונה לחלוטין מזו של ניתוח פתוח, ומצריכה תוכנית סימולציה ייעודית. מקור: Wikimedia Commons.</p>
+</figure>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>סיפור דמיוני - "חדר הבקרה של תחנת החלל"</h3>
+  <p>דמייני את חדר הניתוח העתידי כמו תחנת חלל: יש <b>מצלמת ניווט תלת-ממדית וחליפת רבייה מדומה (AR)</b> שמראה לצוות בדיוק איפה כל כלי דם "מסתתר"; יש <b>פנס ירוק קסום (ICG)</b> שכשמדליקים אותו, רק צינורות המרה וכלי הדם עם זרימת דם תקינה "זוהרים" ומתגלים; יש <b>סורק מולקולרי (mass-spec knife)</b> שמריח את העשן ומיד אומר "רקמה תקינה" או "רקמה חשודה"; יש <b>עמדת מפקד עם AI</b> שצופה בכל המסכים ומזהירה על סכנה לפני שהעין האנושית מספיקה לתפוס; ויש <b>מדפסת תלת-ממד</b> בפינה, שמייצרת חלקי חילוף מותאמים אישית. כל "עמדה" בתחנה הדמיונית הזו היא בדיוק אחת הטכנולוגיות שנלמדו בפרק.</p>
+  <svg class="diagram" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="500" height="200" rx="14" fill="#f8fafc" stroke="#e5e7eb"/>
+    <circle cx="90" cy="70" r="30" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="90" y="75" font-size="11" text-anchor="middle">מצלמת AR</text>
+    <circle cx="200" cy="70" r="30" fill="#ecfdf5" stroke="#047857"/>
+    <text x="200" y="75" font-size="11" text-anchor="middle">פנס ICG</text>
+    <circle cx="310" cy="70" r="30" fill="#fffbeb" stroke="#b45309"/>
+    <text x="310" y="75" font-size="11" text-anchor="middle">סורק מולקולרי</text>
+    <circle cx="420" cy="70" r="30" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="420" y="75" font-size="11" text-anchor="middle">עמדת AI</text>
+    <circle cx="200" cy="160" r="30" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="200" y="165" font-size="11" text-anchor="middle">מדפסת 3D</text>
+    <circle cx="310" cy="160" r="30" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="310" y="160" font-size="10" text-anchor="middle">רובוט</text>
+    <text x="310" y="172" font-size="9" text-anchor="middle">(פרק 16)</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/29389679/" target="_blank">Hashimoto DA et al. Artificial Intelligence in Surgery: Promises and Perils. Ann Surg. 2018 (PubMed)</a>
+    <div class="desc">מאמר הסקירה שעליו מתבססים חלקים גדולים מסעיף ה-AI בפרק - כולל תרשים "התודעה הכירורגית הקולקטיבית".</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Da_Vinci_Surgical_System" target="_blank">Wikimedia Commons - Category: Da Vinci Surgical System</a>
+    <div class="desc">אוסף תמונות נוסף של מערכות רובוטיות כירורגיות, לצפייה משלימה לפני פרק 16.</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7069080/" target="_blank">Extrahepatic cholangiography in near-infrared II window with ICG - PMC</a>
+    <div class="desc">הסבר מפורט על המנגנון הפיזיקלי-ביולוגי של הדמיית ICG לדרכי המרה, כולל תמונות השוואה בין אור רגיל לפלואורסצנציה.</div>
+  </li>
+  <li>
+    <a href="https://www.sages.org/video/poem-peroral-endoscopic-myotomy-current-method-beyond/" target="_blank">SAGES Video Library - POEM: Current Method & Beyond</a>
+    <div class="desc">סרטון מקצועי נוסף (ארגון ה-SAGES) שמרחיב על טכניקת ה-POEM ווריאציות שלה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 34 מגיעה עם קושי הולך ומחמיר בבליעה של מוצקים ונוזלים כאחד, לאורך שנתיים, וירידה מתונה במשקל. בדיקת מנומטריה בוושט מדגימה היעדר גל פריסטלטי תקין וכשל בהרפיה של הסוגר התחתון של הוושט - ממצאים תואמים <span class="key">אכלזיה (achalasia)</span>. לאחר דיון עם הצוות, מוחלט לבצע <span dir="ltr" class="term">POEM</span> במקום מיוטומיה לפרוסקופית קלאסית. הפרוצדורה מתבצעת בהצלחה: נוצרת מנהרה תת-רירית בוושט, מבוצעת מיוטומיה של השריר העגול, ופתח הכניסה נסגר במהדקים. בביקורת שבוע לאחר מכן המטופלת מדווחת על שיפור ניכר בבליעה, אך מציינת גם צרבת קלה חדשה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע נבחרה גישת POEM במקום ניתוח פתוח או לפרוסקופי קלאסי במקרה הזה?</div>
+  <button class="opt" data-i="0">כי POEM יעילה יותר סטטיסטית מ-Heller myotomy בטיפול באכלזיה</button>
+  <button class="opt" data-i="1">כי POEM נמנעת לחלוטין מהצורך לחתוך את השריר העגול של הוושט</button>
+  <button class="opt" data-i="2">כי POEM מבצעת אותה מיוטומיה עקרונית (חיתוך השריר העגול) אך ללא אף חתך חיצוני - דרך מנהרה תת-רירית שנוצרת מגישה פומית</button>
+  <button class="opt" data-i="3">כי POEM אינה דורשת מנומטריה מקדימה לאבחון</button>
+  <div class="explain">תשובה 3 נכונה: הנתונים המוקדמים מראים יעילות דומה (לא עדיפה) ל-Heller myotomy, כשהיתרון העיקרי הוא היעדר חתך חיצוני, לא עליונות טיפולית מוכחת. תשובה 1 שגויה - אין הוכחה ליעילות עודפת. תשובה 2 שגויה - להפך, המיוטומיה של השריר העגול היא בדיוק הפעולה המרכזית בפרוצדורה. תשובה 4 שגויה - מנומטריה נדרשת לאבחון אכלזיה בכל מקרה, ללא קשר לשיטת הטיפול שנבחרה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. הצרבת החדשה שהמטופלת מדווחת עליה לאחר POEM - מהו ההסבר הסביר ביותר?</div>
+  <button class="opt" data-i="0">סימן לכשל הניתוח וחזרת האכלזיה</button>
+  <button class="opt" data-i="1">POEM כשלעצמה (ללא תוספת של פרוצדורת נגד-רפלוקס) קשורה בשיעור גבוה יותר של ריפלוקס קיבתי-ושטי בהשוואה ל-Heller myotomy המשולבת עם ניתוח נגד-רפלוקס</button>
+  <button class="opt" data-i="2">תופעת לוואי של הרדמה כללית שחולפת מעצמה תוך יום</button>
+  <button class="opt" data-i="3">סימן לזיהום בפצע הניתוחי</button>
+  <div class="explain">תשובה 2 נכונה: לפי הפרק, ל-POEM יש שיעור ריפלוקס גבוה יותר בהשוואה ל-Heller myotomy כשהיא משולבת עם פרוצדורת נגד-רפלוקס (כי ב-POEM, בניגוד לניתוח הפתוח/לפרוסקופי, אין בדרך כלל שחזור זווית His נלווה). תשובה 1 שגויה - שיפור בבליעה מצביע על מיוטומיה מוצלחת, לא על כשל. תשובה 3 ו-4 שגויות - אין להן קשר סביר לממצא המתואר, ואין סימני זיהום פצע (אין כלל פצע חיצוני ב-POEM).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה קורה מבחינה ביוכימית שגורם ל-ICG "לזהור" תחת אור בקרוב-אינפרא-אדום דווקא בדרכי המרה, ולא למשל בדם עצמו לאורך כל מהלכו בגוף?</div>
+  <button class="opt" data-i="0">ה-ICG נקשר לחלבוני פלזמה ומפונה כמעט אך ורק דרך הכבד להפרשה למרה, כך שתוך זמן קצר הוא מצטבר בריכוז גבוה ספציפית במערכת המרה החוץ-כבדית</button>
+  <button class="opt" data-i="1">ה-ICG מיוצר על ידי תאי כבד בתגובה לחסימת מרה, ולכן מופיע רק כשיש חסימה</button>
+  <button class="opt" data-i="2">ה-ICG נקשר ספציפית לרצפטורים על דופן צינור המרה בלבד ואינו נכנס כלל לזרם הדם</button>
+  <button class="opt" data-i="3">ה-ICG מפורק על ידי אנזימי הלבלב לתוצר פלואורסצנטי רק בתוך התריסריון</button>
+  <div class="explain">תשובה 1 נכונה: ה-ICG מוזרק לווריד, נקשר לאלבומין בפלזמה, ומפונה כמעט אך ורק דרך פינוי כבדי-מראתי (לא כלייתי) - כך שריכוזו עולה ספציפית בדרכי המרה תוך דקות, בעוד שברוב שאר הדם ריכוזו כבר יורד. תשובה 2 שגויה - ה-ICG הוא צבע חיצוני שמוזרק, לא תוצר טבעי של הכבד. תשובה 3 שגויה - ה-ICG כן נמצא בזרם הדם (ולכן משמש גם להערכת זילוח רקמות, לא רק דרכי מרה). תשובה 4 שגויה - אין פירוק על ידי אנזימי לבלב; הפינוי הוא הפרשה כבדית-מראתית ישירה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו ההבדל העקרוני בין "ראייה ממוחשבת" (computer vision) לבין "רשת נוירונים מלאכותית" (artificial neural network) בהקשר של AI בכירורגיה?</div>
+  <button class="opt" data-i="0">הם שני שמות שונים לאותו הדבר בדיוק</button>
+  <button class="opt" data-i="1">ראייה ממוחשבת פועלת רק על הדמיית CT, ורשת נוירונים פועלת רק על נתוני מעבדה</button>
+  <button class="opt" data-i="2">רשת נוירונים מלאכותית היא סוג של חומרה (מצלמה מיוחדת), וראייה ממוחשבת היא תוכנה שמריצה אותה</button>
+  <button class="opt" data-i="3">ראייה ממוחשבת היא היישום הספציפי של אלגוריתמי למידת מכונה על תמונות/וידאו לזיהוי דפוסים חזותיים; רשת נוירונים מלאכותית היא משפחה רחבה יותר של אלגוריתמים לעיבוד נתונים (לאו דווקא חזותיים) בשכבות, שיכולה לשמש כ"מנוע" גם לראייה ממוחשבת וגם למשימות אחרות</button>
+  <div class="explain">תשובה 4 נכונה: ראייה ממוחשבת מתמקדת בניתוח תמונה/וידאו (למשל זיהוי דימום בזמן אמת בווידאו ניתוחי); רשתות נוירונים מלאכותיות הן מסגרת אלגוריתמית כללית שיכולה לשמש לכך, אך גם לחיזוי סיכון מנתוני EMR שאינם חזותיים כלל. תשובות 1-3 שגויות - הן מבלבלות בין רמת המושג (סוג בעיה) לרמת הכלי (סוג אלגוריתם/חומרה) בצורה לא מדויקת.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מה הלקח המרכזי מהעלייה בשיעור פגיעות בצינור המרה בתחילת עידן כריתת כיס המרה הלפרוסקופית, בהקשר של אימוץ טכנולוגיה חדשה?</div>
+  <button class="opt" data-i="0">הגישה הלפרוסקופית פגומה מיסודה ולכן ננטשה לטובת ניתוח פתוח</button>
+  <button class="opt" data-i="1">הפגיעות נגרמו אך ורק מתקלות ציוד טכניות בשלבים הראשונים</button>
+  <button class="opt" data-i="2">התוצאות בתחילת אימוץ טכנולוגיה חדשה משקפות לעיתים קרובות יותר את עקומת הלמידה של הצוות מאשר את ערך הטכניקה עצמה - ולכן הכשרה מובנית וסימולציה חשובות באותה מידה כמו הטכנולוגיה עצמה</button>
+  <button class="opt" data-i="3">מטופלות תמיד צריכות לסרב לניתוח בשיטה חדשה עד שיש עליה 10 שנות ניסיון</button>
+  <div class="explain">תשובה 3 נכונה (לפי מספור הכפתורים - אינדקס 2): הפרק מדגיש שהמנתחות המנוסות בניתוח פתוח נדרשו למיומנויות שונות לגמרי (מסך דו-ממדי, בלי מישוש), וההכשרה בזמן המעבר לא הייתה מספקת - זו הסיבה שסימולציה ומדידת מיומנות (כמו FLS) פותחו. תשובה 1 שגויה - הלפרוסקופיה הפכה לסטנדרט הטיפול ברוב הפרוצדורות האלקטיביות. תשובה 2 שגויה - מדובר בבעיה של מיומנות ותפיסה מרחבית, לא רק תקלות ציוד. תשובה 4 שגויה ולא מציאותית - המסקנה בפרק היא ניהול הסיכון דרך הכשרה, לא סירוב גורף לחידושים.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהו ההבדל העיקרי בין "כרומואנדוסקופיה" ל"מיקרוסקופיה קונפוקלית בלייזר", ולמה משתמשים בכל אחת?</div>
+  <button class="opt" data-i="0">שתיהן זהות לחלוטין - שני שמות לאותה בדיקה</button>
+  <button class="opt" data-i="1">כרומואנדוסקופיה משתמשת בצבע או בסינון אופטי כדי להדגיש ניגודיות במרקם הרירית ברמת השדה הניתוחי הרגיל; מיקרוסקופיה קונפוקלית סורקת בלייזר ברזולוציה תאית ממש, כמו ביופסיה "וירטואלית" בזמן אמת</button>
+  <button class="opt" data-i="2">כרומואנדוסקופיה משמשת רק לאבחון מחלות לב, ומיקרוסקופיה קונפוקלית רק למחלות עור</button>
+  <button class="opt" data-i="3">מיקרוסקופיה קונפוקלית היא טכניקה ותיקה שכבר אינה בשימוש, וכרומואנדוסקופיה החליפה אותה לגמרי</button>
+  <div class="explain">תשובה 2 נכונה: כרומואנדוסקופיה (בצבע פיזי או וירטואלי כמו narrow band imaging) עובדת ברמת הרזולוציה הרגילה של האנדוסקופ ומדגישה ניגודיות מרקמית; מיקרוסקופיה קונפוקלית בלייזר מספקת רזולוציה תאית - כלומר "מסתכלת" עמוק יותר לתוך הרקמה. שתי הטכניקות רלוונטיות בעיקר למעקב דיספלזיה בדרכי העיכול (למשל Barrett's esophagus), לא ללב או לעור. אף אחת מהן אינה מיושנת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>המגמה המרכזית ב-30 השנה האחרונות: מניתוח פתוח → לפרוסקופיה → אנדוסקופיה גמישה/NOTES (ללא חתך כלל) → רובוטיקה (פרק 16) - כל שלב "מקריב" מישוש וראייה טבעית, ומפצה בטכנולוגיה חדשה.</li>
+    <li>פלואורסצנציה ב-ICG: הצבע נקשר לאלבומין, מפונה אך ורק כבדית-מראתית, ופולט אור בקרוב-אינפרא-אדום שמצלמה ייעודית קולטת - משמש למיפוי דרכי מרה ולהערכת זילוח אנסטומוזה.</li>
+    <li>NOTES/POEM: גישה דרך פתח טבעי + ניקוב יזום של דופן איבר; POEM מבצעת מיוטומיה של השריר העגול בוושט לטיפול באכלזיה, ללא חתך חיצוני, אך בשיעור ריפלוקס גבוה יותר מ-Heller myotomy המשולבת עם ניתוח נגד-רפלוקס.</li>
+    <li>כלים אבחנתיים תוך-ניתוחיים (mass spectrometry, מיקרוסקופיה קונפוקלית, כרומואנדוסקופיה, OCT) פותרים את אותה בעיה: איך לדעת בזמן אמת מהו סוג הרקמה בלי לחכות לפתולוגיה.</li>
+    <li>AI בכירורגיה: למידת מכונה → רשתות נוירונים → ראייה ממוחשבת; יישומים בכל שלבי הטיפול (טרום/תוך/לאחר ניתוח) = "תודעה כירורגית קולקטיבית".</li>
+    <li>אימוץ טכנולוגיה חדשה הוא תהליך ארוך (לרוב מעל עשור, כישלון >90%) ומסוכן אם לא מלווה בהכשרה מתאימה - הדוגמה הקלאסית היא עלייה בפגיעות צינור מרה בתחילת עידן הלפרוסקופיה, שנפתרה חלקית בעזרת תוכניות סימולציה כמו FLS.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ניהול ראשוני של חולה טראומה (Primary Survey, Hemorrhagic Shock & Damage Control)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF שהועלה של Ch 17 (Management of Acute Trauma) היה נגיש בריצה זו והיווה מקור ראשי (חולץ עם pdftotext). הפרק המקורי רחב-היקף מאוד (מערכות טראומה, ניקוד פגיעות, טיפול טרום-בית-חולים, פגיעות ראש/עמוד שדרה/צוואר/חזה/בטן/אגן/גפיים בנפרד) - הסיכום התמקד בשלושת הליבות הכי קריטיות-קליניות ונבחנות: הסקר הראשוני (Primary Survey - ABCDE), הלם דימומי וסיווגו, ועקרונות ה-Damage Control Resuscitation (כולל TXA ו-MTP). תמונות (Wikimedia Commons) וסרטוני YouTube (Ninja Nerd, וסרטוני הדגמה כירורגית) הושלמו מחיפוש אמיתי. -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>ניהול ראשוני של חולה טראומה <span class="term" dir="ltr">(Management of Acute Trauma)</span></h1>
+<div class="subtitle">הסקר הראשוני (ABCDE), הלם דימומי, ועקרונות ה-Damage Control — פרק 17 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>טראומה היא אחת הסיבות המובילות לתמותה ולשנות חיים אבודות בעולם, וטיפול נכון תלוי-זמן: חלק מהפגיעות (חסימת נתיב אוויר, פנאומוטורקס לחצי, דימום מאסיבי) הורגות תוך דקות אם לא מזוהות ומטופלות מיד. לכן פותח פרוטוקול <span class="term" dir="ltr">ATLS (Advanced Trauma Life Support)</span> — גישה סטנדרטית וממוקדת שמזהה ומטפלת באיומי החיים לפי סדר קדימות קבוע (<b>ABCDE</b>), ולא לפי סדר "הגיוני" של איסוף היסטוריה מלאה קודם.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה, ולמה מטפלים בסדר הזה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>למה דווקא סדר ABCDE?</b> הסדר נקבע לפי <b>מהירות ההרג</b> של כל בעיה, לא לפי חשיבותה הרפואית הכללית: חסימת נתיב אוויר <span class="term" dir="ltr">(Airway)</span> הורגת תוך דקות ספורות מהיפוקסיה מוחלטת; בעיית נשימה <span class="term" dir="ltr">(Breathing)</span> כמו פנאומוטורקס לחצי הורגת תוך דקות מקריסה קרדיווסקולרית; ורק אז דימום <span class="term" dir="ltr">(Circulation)</span> — שלרוב הורג תוך דקות עד שעות, ולא באופן מיידי כמו החסימה. לכן מטפלים תמיד לפי הסדר הזה, ולא ממשיכים ל-B לפני שה-A מובטח, גם אם הבעיה ב-B "נראית" יותר דחופה למראית עין.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מנגנון הלם דימומי — שרשרת הפיצוי:</b> דימום <b>גורם</b> לירידה בנפח הדם התוך-כלי, ש<b>גורמת</b> לירידה בהחזר הוורידי ללב (venous return), ש<b>גורמת</b> לירידה ב-preload וב-stroke volume, ולכן לירידה בתפוקת הלב (cardiac output). הגוף <b>מפצה</b> מיידית דרך המערכת הסימפתטית: עלייה בקצב הלב וכיווץ כלי דם היקפיים (בעור, במעי, בשרירים) כדי לשמר זרימת דם למוח וללב. <span class="key">זו הסיבה שלחץ הדם נשמר תקין למרות איבוד דם משמעותי (עד כ-30% מנפח הדם) — "הלם מפוצה"</span> — ולכן <b>לחץ דם תקין אינו שולל דימום משמעותי</b>, וזו טעות קלינית שכיחה ומסוכנת. רק כשמנגנוני הפיצוי נכשלים (בד"כ מעל 30%-40% איבוד) מופיעה ירידה גלויה בלחץ הדם.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>"השלישייה הקטלנית" (lethal triad of death):</b> דימום מתמשך <b>גורם</b> להיפותרמיה (איבוד חום מדם ונוזלים, חשיפה בסביבת החייאה), חמצת מטבולית (מטבוליזם אנאירובי כתוצאה מהיפופרפוזיה של רקמות), וקואגולופתיה. שלוש הבעיות <b>מזינות זו את זו במעגל קסמים</b>: היפותרמיה וחמצת פוגעות ישירות בתפקוד האנזימטי של גורמי הקרישה ובתפקוד הטסיות → קואגולופתיה → דימום נמשך → מחמיר את ההיפותרמיה והחמצת. <b>זו הסיבה המדויקת</b> שבניתוח דחוף במטופל קשה נשברת הגישה המסורתית (תיקון מלא באותו ניתוח) לטובת <b>Damage Control</b>: ניתוח מקוצר שמטרתו רק לעצור דימום וזיהום, ולא תיקון מלא — כדי "לשבור" את המעגל לפני שהוא הופך בלתי הפיך.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מעגל הקסמים של השלישייה הקטלנית</title>
+  <rect x="360" y="10" width="180" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="450" y="43" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">דימום מסיבי</text>
+
+  <polygon points="440,68 450,88 460,68" fill="#b91c1c"/>
+  <rect x="60" y="100" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="150" y="125" font-size="12.5" text-anchor="middle" fill="#1f2937">היפותרמיה</text>
+  <text x="150" y="142" font-size="11" text-anchor="middle" fill="#4b5563">איבוד חום + נוזלים</text>
+
+  <rect x="360" y="100" width="180" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="450" y="125" font-size="12.5" text-anchor="middle" fill="#1f2937">חמצת מטבולית</text>
+  <text x="450" y="142" font-size="11" text-anchor="middle" fill="#4b5563">מטבוליזם אנאירובי</text>
+
+  <rect x="660" y="100" width="180" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="750" y="125" font-size="12.5" text-anchor="middle" fill="#1f2937">קואגולופתיה</text>
+  <text x="750" y="142" font-size="11" text-anchor="middle" fill="#4b5563">אנזימי קרישה/טסיות פגועים</text>
+
+  <polygon points="230,130 260,130 250,140" fill="#6b7280"/>
+  <line x1="240" y1="130" x2="360" y2="130" stroke="#6b7280" stroke-width="2"/>
+  <polygon points="530,130 560,130 550,140" fill="#6b7280"/>
+  <line x1="540" y1="130" x2="660" y2="130" stroke="#6b7280" stroke-width="2"/>
+
+  <polygon points="440,193 450,173 460,193" fill="#b91c1c"/>
+  <line x1="750" y1="160" x2="450" y2="185" stroke="#b91c1c" stroke-width="2" stroke-dasharray="4"/>
+  <text x="620" y="200" font-size="11" fill="#b91c1c">מזין בחזרה את הדימום</text>
+
+  <rect x="300" y="220" width="300" height="60" rx="10" fill="#111827"/>
+  <text x="450" y="245" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">Damage Control</text>
+  <text x="450" y="263" font-size="11.5" text-anchor="middle" fill="#e5e7eb">שובר את המעגל: ניתוח מקוצר בלבד</text>
+</svg>
+
+<h2><span class="num">3</span> פיזיולוגיה ואנטומיה — חמשת מוקדי הדימום המסכן חיים</h2>
+<p>כשמזהים סימני הלם, לפני שממשיכים לחפש "למה" ברמת המנגנון התאי, יש לזכור שבטראומה כמעט תמיד ההלם הוא <b>דימומי</b> עד שהוכח אחרת. יש <b>חמישה מוקדים אנטומיים</b> בלבד שדרכם יכול להתרחש איבוד דם מסכן חיים: <b>בית החזה, הבטן, הרטרופריטונאום, האגן, ושברי עצמות ארוכות</b> (וכמובן דימום חיצוני גלוי). הבדיקה הגופנית הראשונית (זיהוי דימום חיצוני ושברים) בשילוב צילום חזה, צילום אגן, ובדיקת <span class="term" dir="ltr">FAST</span> (ראו סעיף אבחנה) מכסים את חמשת המוקדים הללו במהירות.</p>
+<p>מנגנון <b>פנאומוטורקס לחצי</b> <span class="term" dir="ltr">(tension pneumothorax)</span>: פגיעה ריאתית יוצרת מנגנון "שסתום חד-כיווני" — אוויר נכנס לחלל הפלאורלי בשאיפה אך אינו יכול לצאת בנשיפה. הלחץ המצטבר <b>גורם</b> לקריסת הריאה הנפגעת, ואז <b>דוחף את המדיאסטינום לצד הנגדי</b> — מה שמעקם את הווריד הנבוב העליון והתחתון ופוגע בהחזר הוורידי ללב. התוצאה היא <b>קריסה קרדיווסקולרית</b>, לא רק בעיה נשימתית — ולכן זו <b>אבחנה קלינית</b> (לא מחכים לצילום חזה): סטיית קנה הנשימה, קולות נשימה חד-צדדיים נחלשים/נעדרים, וחוסר יציבות המודינמית. הטיפול הוא דקומפרסיה מיידית במחט עבה ולאחר מכן החדרת נקז חזה (tube thoracostomy).</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tension-pneumothorax.png?width=650" alt="פנאומוטורקס לחצי">
+  <figcaption class="media-cap">תרשים פנאומוטורקס לחצי — קריסת ריאה ודחיקת המדיאסטינום לצד הנגדי. מקור: <a href="https://commons.wikimedia.org/wiki/File:Tension-pneumothorax.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">4</span> ביטוי קליני — הסקר הראשוני (Primary Survey)</h2>
+<p><b>A — Airway (עם הגנה על עמוד השדרה הצווארי):</b> הערכת פתיחות נתיב האוויר תוך שמירה קפדנית על יישור עמוד השדרה הצווארי (מניחים פגיעה בעמוד השדרה עד שהוכח אחרת). הסטנדרט הגבוה ביותר הוא אינטובציה תת-קנית (endotracheal intubation), לרוב בטכניקת RSI (Rapid Sequence Intubation).</p>
+<p><b>B — Breathing:</b> הערכת תנועת בית החזה, האזנה לקולות נשימה, וסטורציה. בעיות מסכנות חיים בשלב זה: פנאומוטורקס לחצי, המוטורקס מסיבי, וחזה נד (flail chest) עם חבלת ריאה.</p>
+<p><b>C — Circulation:</b> הערכת סימני הלם (ראו טבלה בסעיף הבא) וגישה ורידית מהירה — שני עירויים היקפיים בקוטר גדול (large-bore), החדרה תוך-עצמית (intraosseous), או קטטר ורידי מרכזי. עצירת דימום חיצוני בלחץ ישיר, וקיבוע שברים.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Tourniquet.jpeg?width=550" alt="חוסם עורקים (Tourniquet)">
+  <figcaption class="media-cap">חוסם עורקים (Tourniquet) — כלי קו-ראשון למניעת התרוקנות דם מגפה פצועה בשטח ובבית החולים. מקור: <a href="https://commons.wikimedia.org/wiki/File:Tourniquet.jpeg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p><b>D — Disability:</b> הערכה נוירולוגית מהירה עם <span class="term" dir="ltr">Glasgow Coma Scale (GCS)</span> (פתיחת עיניים 1–4, תגובה מילולית 1–5, תגובה מוטורית 1–6, סה"כ 3–15) — הציון המוטורי לבדו נחשב המנבא הטוב ביותר לתוצא לאחר פגיעת ראש טראומטית.</p>
+<p><b>E — Exposure:</b> הפשטת המטופל לחלוטין לבדיקה מקיפה, עם מדידת חום גוף פנימי ומניעת היפותרמיה (שמיכות חמות, נוזלים מחוממים) — חלק קריטי במניעת "השלישייה הקטלנית".</p>
+<p>לאחר הסקר הראשוני והתייצבות ראשונית, מבצעים <b>סקר משני</b> — בדיקה מקיפה מכף רגל ועד ראש והיסטוריה מפורטת, לפי המנמוניקה <b>AMPLE</b> (ראו סעיף טכניקות זכירה).</p>
+
+<h2><span class="num">5</span> אבחנה — סיווג ההלם הדימומי והדמיה ממוקדת</h2>
+<p>סיווג <span class="term" dir="ltr">ATLS</span> לדרגות ההלם הדימומי מבוסס על אחוז נפח הדם שאבד ומספר פרמטרים פיזיולוגיים — <b>לא</b> על לחץ הדם בלבד, בדיוק בגלל מנגנון הפיצוי שתואר למעלה:</p>
+<table>
+  <thead><tr><th>פרמטר</th><th>Class I</th><th>Class II</th><th>Class III</th><th>Class IV</th></tr></thead>
+  <tbody>
+    <tr><td>איבוד נפח דם</td><td>&lt;15%</td><td>15%–30%</td><td>30%–40%</td><td>&gt;40%</td></tr>
+    <tr><td>דופק</td><td>תקין</td><td>תקין/↑</td><td>↑</td><td>↑↑</td></tr>
+    <tr><td>לחץ דם</td><td>תקין</td><td>תקין</td><td>תקין/↓</td><td>↓</td></tr>
+    <tr><td>לחץ פעימה (Pulse pressure)</td><td>תקין</td><td>↓</td><td>↓</td><td>↓</td></tr>
+    <tr><td>תפוקת שתן</td><td>תקין</td><td>תקין</td><td>↓</td><td>↓↓</td></tr>
+    <tr><td>מצב הכרה (GCS)</td><td>תקין</td><td>תקין</td><td>↓</td><td>↓</td></tr>
+    <tr><td>צורך בעירוי דם</td><td>מעקב</td><td>אפשרי</td><td>כן</td><td>פרוטוקול עירוי מסיבי (MTP)</td></tr>
+  </tbody>
+</table>
+<p><b>נקודה קריטית למבחן</b>: שימו לב ש<span class="key">לחץ הדם עצמו נשאר תקין עד Class III</span> (עד 30%-40% איבוד) — הפרמטר הראשון שמשתנה הוא <b>לחץ הפעימה</b> (ההפרש בין הסיסטולי לדיאסטולי, שקוטן בגלל כיווץ כלי דם היקפי מפצה), עוד לפני שהסיסטולי עצמו יורד.</p>
+<p><b>FAST</b> <span class="term" dir="ltr">(Focused Assessment with Sonography in Trauma)</span> — בדיקת אולטרסאונד מהירה וחוזרת בחדר ההלם, שבודקת נוזל חופשי (המניחים שהוא דם בהקשר טראומה) בשלושה מרחבים: הפטו-רנלי (כיס מוריסון), ספלנו-רנלי, ואגני. FAST חיובי במטופל לא-יציב המודינמית מהווה התוויה לניתוח מיידי (לפרוטומיה) ללא צורך בהמתנה ל-CT.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/bsKBhAkp3fI" title="FAST Exam: Focused Assessment with Sonography in Trauma" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת בדיקת ה-FAST צעד-אחר-צעד — ארבעת החלונות הנבדקים ומה נחשב ממצא חיובי. מקור: <a href="https://www.youtube.com/watch?v=bsKBhAkp3fI" target="_blank">YouTube</a></p>
+<p>ניקוד <span class="term" dir="ltr">ABC (Assessment of Blood Consumption)</span> — כלי מהיר בן 4 פרמטרים (מנגנון חודר, FAST חיובי, לחץ סיסטולי ≤90, דופק &gt;120) שכל תשובה חיובית מוסיפה נקודה; ציון ≥2 מנבא צורך בפרוטוקול עירוי מסיבי (MTP) ברגישות 75% וסגוליות 86%, ומאפשר להזמין מנות דם <b>לפני</b> שהתוצאות המעבדתיות חוזרות.</p>
+
+<h2><span class="num">6</span> טיפול — Damage Control Resuscitation וניתוח Damage Control</h2>
+<p>עם זיהוי הלם, ATLS ממליץ על עירוי ראשוני של 1 ליטר קריסטלואיד מחומם, אך <b>מעל 1.5 ליטר קריסטלואיד — הסיכון לתמותה עולה</b> (מדלל גורמי קרישה ומחמיר קואגולופתיה). מטופל שלא מגיב לעירוי הראשוני, או שמגיב באופן חולף בלבד, זקוק ל<b>עירוי מוצרי דם</b> ולא להמשך מתן נוזלים.</p>
+<table>
+  <thead><tr><th>עיקרון</th><th>מה זה אומר בפועל</th><th>למה זה פותר את הבעיה הספציפית</th><th>קונטרא/סייג</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Permissive hypotension (הלם מותר)</td>
+      <td>לא שואפים ללחץ דם "נורמלי" לפני עצירת הדימום בניתוח</td>
+      <td>לחץ דם גבוה מדי לפני השגת המוסטזיס עלול "לשטוף" קרישי דם שכבר נוצרו (popping the clot) ולהחמיר דימום</td>
+      <td>נמנעים מכך בפגיעת ראש (TBI) — שם נדרש לחץ פרפוזיה מוחי נאות</td>
+    </tr>
+    <tr>
+      <td>עירוי מאוזן (Balanced/1:1:1)</td>
+      <td>פלזמה : טסיות : תאי דם אדומים ביחס של 1:1:1</td>
+      <td>מקרב את הרכב העירוי לדם מלא, ומספק גורמי קרישה וטסיות יחד עם נשיאת חמצן — במקום לדלל אותם עם תאי דם אדומים בלבד</td>
+      <td>נדרש פרוטוקול עירוי מסיבי (MTP) מאורגן מראש בבנק הדם</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Tranexamic Acid (TXA)</span></td>
+      <td>נגזרת סינתטית של ליזין החוסמת אתרי קישור ליזין על פלסמינוגן</td>
+      <td>מעכבת פיברינוליזה (פירוק הקריש) — כך שקרישים שכבר נוצרו לא מתפרקים מהר מדי; ניתן ב-CRASH-2 תוך 8 שעות מהפציעה והפחית תמותה כללית (14.5% מול 16%) ותמותה מדימום (4.9% מול 5.7%)</td>
+      <td>אין תועלת מוכחת (ואף חשש להיפוך אפקט) אם ניתן מאוחר מדי לאחר הפציעה — ניתנת מוקדם ככל האפשר</td>
+    </tr>
+  </tbody>
+</table>
+<p><b>תרומבואלסטוגרפיה (TEG)</b> — בדיקה נקודתית (point-of-care) שמודדת בזמן אמת את קצב היווצרות הקריש, חוזקו, ואת פירוקו, ומאפשרת עירוי "מותאם אישית" (למשל פלזמה אם R-time מוארך, טסיות אם MA נמוך, TXA אם LY30 מוגבר) במקום עירוי גורף לפי פרוטוקול קבוע בלבד.</p>
+
+<div class="surgery">
+  <h4>מהלך הניתוח — Damage Control Laparotomy</h4>
+  <p><b>הכנה:</b> מזהים מראש מטופל בסיכון לקריסה פיזיולוגית תוך-ניתוחית (חמצת, קואגולופתיה, היפותרמיה, דימום מסיבי מתמשך) — במטופלים אלה בוחרים מראש באסטרטגיית Damage Control ולא בניסיון לתיקון מלא.</p>
+  <p><b>שלבי הניתוח:</b> (1) המוסטזיס מהיר — טמפונדה עם תחבושות (packing), קשירה או שאנט זמני של כלי דם פגועים; (2) שליטה מהירה בזיהום ממערכת העיכול — תפירה חד-שכבתית פשוטה או כריתה ללא אנסטומוזה (המעי נשאר "עוור" זמנית); (3) סגירת בטן זמנית ולא-הדוקה (temporary abdominal closure, לרוב עם VAC דבק-ואקום) כדי למנוע תסמונת התא הבטני (abdominal compartment syndrome).</p>
+  <p><b>נקודת הזהירות הקריטית:</b> המטרה אינה תיקון מלא באותו ניתוח — ניסיון "לסיים הכל" במטופל שכבר בקואגולופתיה/חמצת/היפותרמיה הוא הטעות המסוכנת ביותר, כי היא מאריכה את זמן הניתוח בדיוק כשהגוף הכי פחות מסוגל לעמוד בו.</p>
+  <p><b>החלמה:</b> המטופל עובר לטיפול נמרץ להמשך החייאה ותיקון הפיזיולוגיה (חימום, תיקון קרישה, איזון חומצה-בסיס), וחוזר לחדר ניתוח תוך 24–48 שעות לניתוח שני (definitive repair) לאחר התייצבות.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/HI_rHQ3hLnE" title="Damage Control Laparotomy and the Open Abdomen" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה גרפית של עקרונות ה-Damage Control Laparotomy והבטן הפתוחה. מקור: <a href="https://www.youtube.com/watch?v=HI_rHQ3hLnE" target="_blank">YouTube</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — AMPLE (ידוע ומקובל, ההיסטוריה בסקר המשני)</h3>
+  <p>
+    <b>A</b>llergies (אלרגיות)<br>
+    <b>M</b>edications (תרופות קבועות)<br>
+    <b>P</b>ast medical history (רקע רפואי)<br>
+    <b>L</b>ast meal (ארוחה אחרונה — חשוב לסיכון שאיפה בהרדמה)<br>
+    <b>E</b>vents surrounding the injury (נסיבות הפציעה — מנגנון, זמן)
+  </p>
+  <h3>ראשי תיבות — ABCDE (הסקר הראשוני עצמו)</h3>
+  <p><b>A</b>irway (עם הגנת צוואר) → <b>B</b>reathing → <b>C</b>irculation → <b>D</b>isability → <b>E</b>xposure — תמיד באותו סדר, תמיד חוזרים לתחילת הרצף אם מצב המטופל משתנה.</p>
+  <h3>סיפור דמיוני — "מעגל הקסמים הקפוא"</h3>
+  <p>דמיינו שלושה ילדים אוחזים ידיים במעגל ורצים מהר יותר ויותר: "קור" (היפותרמיה) דוחף את "חומצה" (חמצת), שדוחפת את "דם דליל" (קואגולופתיה), שדוחפת בחזרה את "קור" — המעגל מאיץ את עצמו ולא ניתן לעצור אותו מבפנים. הדרך היחידה לעצור את הריצה היא <b>לתפוס את אחד הילדים בכוח מבחוץ ולהוציא אותו מהמעגל</b> — בדיוק כמו שניתוח Damage Control "תופס" את הדימום ועוצר את המעגל מבחוץ, במקום לנסות "להשלים" את הניתוח בזמן שהמעגל עדיין רץ.</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: מעגל הקסמים הקפוא</title>
+    <circle cx="250" cy="100" r="80" fill="none" stroke="#9ca3af" stroke-width="3" stroke-dasharray="6"/>
+    <circle cx="250" cy="20" r="34" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="250" y="24" font-size="12" text-anchor="middle" fill="#1f2937">קור</text>
+    <circle cx="330" cy="150" r="34" fill="#fffbeb" stroke="#b45309"/>
+    <text x="330" y="154" font-size="12" text-anchor="middle" fill="#1f2937">חומצה</text>
+    <circle cx="170" cy="150" r="34" fill="#f5f3ff" stroke="#6d28d9"/>
+    <text x="170" y="154" font-size="11" text-anchor="middle" fill="#1f2937">דם דליל</text>
+    <text x="470" y="30" font-size="20" text-anchor="middle" fill="#b91c1c">✋</text>
+    <text x="250" y="200" font-size="11" text-anchor="middle" fill="#4b5563">Damage Control = תפיסה מבחוץ שעוצרת את הריצה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Labelled_chest_tube_drainage_system.png" target="_blank">מערכת נקז חזה מתויגת — Wikimedia Commons</a>
+    <div class="desc">תרשים מתויג של מערכת ניקוז חזה (chest tube) המשמשת לטיפול בפנאומוטורקס/המוטורקס לאחר דקומפרסיה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=UwqsUEWbKEU" target="_blank">Hypovolemic Shock — Ninja Nerd</a>
+    <div class="desc">הרצאה מקיפה על מנגנון ההלם ההיפוולמי/דימומי, כולל מנגנוני הפיצוי הסימפתטיים בפירוט.</div>
+  </li>
+  <li>
+    <a href="https://www.sages.org/video/damage-control-surgery-dcs/" target="_blank">Damage Control Surgery (DCS) — SAGES Video Library</a>
+    <div class="desc">הרצאה כירורגית מקצועית על עקרונות ה-Damage Control Surgery מספריית הווידאו של SAGES.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 27 מובא לחדר הלם לאחר תאונת דרכים בה נחבט בהגה. בהגעה: ער אך חרד, דופק 128, לחץ דם 118/98 (לחץ פעימה צר), קצב נשימה 24, סטורציה 96%. בבדיקה: בטן רגישה בכל האזורים ללא הגנה בולטת, ללא דימום חיצוני גלוי, גפיים ללא שברים נראים לעין. FAST מדגים נוזל חופשי במרחב ההפטו-רנלי. עם עירוי 1 ליטר קריסטלואיד מחומם — דופק יורד זמנית ל-110 ואז חוזר לעלות תוך דקות, ולחץ הדם נותר ללא שינוי משמעותי.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע לחץ הדם של המטופל בוינייטה עדיין כמעט תקין, למרות שה-FAST מדגים דימום תוך-בטני משמעותי?</div>
+  <button class="opt" data-i="0">כי הדימום קטן מדי כדי להשפיע על לחץ הדם</button>
+  <button class="opt" data-i="1">כי מנגנוני פיצוי סימפתטיים (טכיקרדיה וכיווץ כלי דם היקפי) שומרים על לחץ הדם עד לאיבוד של כ-30%-40% מנפח הדם</button>
+  <button class="opt" data-i="2">כי FAST חיובי אינו מעיד בהכרח על דימום פעיל</button>
+  <button class="opt" data-i="3">כי לחץ הדם נמדד באופן שגוי</button>
+  <div class="explain">נכון: זהו "הלם מפוצה" — הגוף שומר על לחץ דם תקין דרך טכיקרדיה וכיווץ כלי דם עד לאיבוד דם משמעותי. לחץ הפעימה הצר (118/98) כבר מרמז על הפיצוי הזה, גם לפני שהסיסטולי יורד. אופציה 1 שגויה כי הטכיקרדיה וה-FAST החיובי מרמזים על דימום ממשי. אופציה 3 שגויה — FAST חיובי בהקשר טראומה נחשב דם עד שהוכח אחרת. אופציה 4 אינה נתמכת בווינייטה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה המשמעות הקלינית של כך שהדופק חזר לעלות דקות ספורות לאחר עירוי 1 ליטר קריסטלואיד ("תגובה חולפת")?</div>
+  <button class="opt" data-i="0">המטופל הפסיק לדמם והתייצב לחלוטין</button>
+  <button class="opt" data-i="1">יש להמשיך במתן קריסטלואיד בלבד עד לייצוב מלא</button>
+  <button class="opt" data-i="2">קיים דימום פעיל ומתמשך, ויש להתחיל עירוי מוצרי דם ולשקול התערבות מיידית לעצירת הדימום</button>
+  <button class="opt" data-i="3">יש להמתין לתוצאות בדיקות דם לפני כל החלטה נוספת</button>
+  <div class="explain">נכון: תגובה חולפת בלבד ("transient responder") מעידה על דימום פעיל ומתמשך שממשיך לצרוך את הנפח שניתן. הטיפול הנכון הוא עירוי מוצרי דם (לא עוד קריסטלואיד — מעל 1.5L קריסטלואיד מעלה תמותה) ופנייה מהירה למקור הדימום. אופציה 1 שגויה — "תגובה חולפת" בהגדרה אינה התייצבות מלאה. אופציה 2 מחמירה את הבעיה (דילול קרישה). אופציה 4 מסוכנת — בהלם מסוג זה אין זמן להמתין.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו העיקרון הפיזיולוגי מאחורי "permissive hypotension" בהחייאת מטופל טראומה מדמם (ללא פגיעת ראש)?</div>
+  <button class="opt" data-i="0">לחץ דם גבוה מדי לפני השגת המוסטזיס עלול לשטוף קרישי דם שכבר נוצרו ולהחמיר את הדימום</button>
+  <button class="opt" data-i="1">לחץ דם נמוך מוריד את הצורך בעירוי מוצרי דם באופן מוחלט</button>
+  <button class="opt" data-i="2">לחץ דם גבוה מסוכן בגלל סיכון לבצקת ריאות בלבד</button>
+  <button class="opt" data-i="3">אין שום סיבה פיזיולוגית — זו רק שיטה לחיסכון בנוזלים</button>
+  <div class="explain">נכון: העלאת לחץ הדם לרמה "נורמלית" לפני שהושג המוסטזיס כירורגי עלולה לפרק קרישים שכבר נוצרו במקום הדימום ("popping the clot") ולגרום לדימום חוזר. לכן שואפים ללחץ דם נמוך-מבוקר עד לעצירת הדימום בפועל. אופציה 2 אינה מדויקת (עדיין ייתכן צורך בעירוי). אופציה 3 שגויה — יש סיכון בטיחות ריאתי אך זה לא ההיגיון המרכזי כאן. אופציה 4 מתעלמת מהמנגנון הפיזיולוגי המתועד.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע יש לתת חומצה טרנקסמית (TXA) מוקדם ככל האפשר לאחר הפציעה, ולא בכל שלב?</div>
+  <button class="opt" data-i="0">כי התרופה מתפרקת פיזית תוך שעות בודדות בטמפרטורת הגוף</button>
+  <button class="opt" data-i="1">כי אין שום הבדל בתועלת לפי זמן המתן, זו רק המלצה שמרנית</button>
+  <button class="opt" data-i="2">כי TXA מעלה סיכון לקרישי דם ורידיים אם ניתנת מאוחר</button>
+  <button class="opt" data-i="3">כי מעבר לחלון זמן מסוים לאחר הפציעה, התועלת של TXA בעצירת דימום פוחתת ואף עלולה להתהפך</button>
+  <button class="opt" data-i="4">כי הזמינות של התרופה מוגבלת רק לחדר המיון</button>
+  <div class="explain">נכון: הראיות (כולל CRASH-2) מראות שהתועלת של TXA בהפחתת תמותה מדימום תלויה מאוד בזמן המתן מהפציעה — ניתנת מוקדם ככל האפשר. אופציה 1 שגויה מבחינה פרמקוקינטית. אופציה 2 מתעלמת מהנתונים שהוצגו. אופציה 3 אינה נכונה לפי הנתונים בפרק (לא נמצא הבדל משמעותי באירועים טרומבואמבוליים). אופציה 5 אינה נכונה עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מה ההיגיון הפיזיולוגי המרכזי מאחורי בחירה בניתוח Damage Control (ניתוח מקוצר) על פני תיקון מלא באותו ניתוח, במטופל עם קואגולופתיה, חמצת והיפותרמיה?</div>
+  <button class="opt" data-i="0">ניתוח Damage Control זול יותר ודורש פחות ציוד</button>
+  <button class="opt" data-i="1">הארכת זמן הניתוח במטופל שכבר לכוד ב"שלישייה הקטלנית" מחמירה את מעגל הקסמים בין היפותרמיה-חמצת-קואגולופתיה, ולכן עוצרים רק את הדימום/הזיהום ודוחים תיקון מלא לניתוח שני לאחר התייצבות</button>
+  <button class="opt" data-i="2">ניתוח מקוצר תמיד עדיף מבחינת תוצאות אסתטיות</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי בתוצאות בין הגישות, זו רק העדפה מוסדית</button>
+  <div class="explain">נכון: זהו בדיוק ההיגיון של Damage Control כפי שתואר במנגנון — הארכת הניתוח בזמן שהגוף נמצא במעגל הקסמים הקטלני רק מחמירה את המצב. עוצרים רק דימום וזיהום, סוגרים זמנית, ומשלימים את התיקון לאחר החייאה מלאה. אופציות 1, 3, 4 אינן משקפות את הרציונל הפיזיולוגי האמיתי שתועד בספרות (כולל הנתונים של רוטונדו על שיפור הישרדות בקבוצת פגיעה וסקולרית משמעותית).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: הגישה המובנית (ATLS) לחולה טראומה — זיהוי וטיפול באיומי חיים לפי סדר קדימות קבוע.</li>
+    <li><b>הסקר הראשוני</b>: A (Airway + הגנת צוואר) → B (Breathing) → C (Circulation) → D (Disability/GCS) → E (Exposure), ואחריו סקר משני עם היסטוריית AMPLE.</li>
+    <li><b>הלם דימומי</b>: לחץ דם נשמר תקין עד ~30%-40% איבוד נפח דם (Class III) בזכות פיצוי סימפתטי — לחץ פעימה יורד ראשון; חמישה מוקדי דימום: חזה, בטן, רטרופריטונאום, אגן, עצמות ארוכות.</li>
+    <li><b>אבחנה</b>: FAST (נוזל חופשי ב-Morison, ספלנו-רנלי, אגן), ניקוד ABC למניעת עירוי מסיבי, GCS להערכה נוירולוגית.</li>
+    <li><b>טיפול</b>: Damage Control Resuscitation — permissive hypotension, עירוי מאוזן 1:1:1, TXA מוקדם; Damage Control Surgery — עצירת דימום/זיהום וסגירה זמנית בלבד במטופל בשלישייה הקטלנית (היפותרמיה-חמצת-קואגולופתיה), עם תיקון מלא בניתוח שני.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
