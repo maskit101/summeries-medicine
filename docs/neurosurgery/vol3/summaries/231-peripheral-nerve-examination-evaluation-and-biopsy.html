@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 231: בדיקת עצב היקפי, הערכה וביופסיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 3</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 231: בדיקת עצב היקפי, הערכה וביופסיה <span class="term" dir="ltr">Peripheral Nerve Examination, Evaluation, and Biopsy</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), כרך 3, חלק 8 - Peripheral Nerve | מאת Stephen M. Russell, Rajiv Midha</div>
+
+<p>הפרק הזה הוא, במידה רבה, "מדריך ההיגיון" של כירורגיית העצבים ההיקפיים: הוא לא מלמד אנטומיה חדשה, אלא מלמד <b>איך לחשוב</b> על בדיקה קלינית כתהליך של איתור מיקום (localization) וחומרה (severity) בו-זמנית. הרעיון המרכזי, שמנוסח כבר בפתיחה במובאה מדוקטור דיוויד קליין - "ההיסטוריה והבדיקה הגופנית נותנות את התמונה האבחנתית, בעוד שהדמיה ובדיקות אלקטרופיזיולוגיות רק צובעות את התמונה" - הוא שהבדיקה הקלינית השיטתית קודמת לכל בדיקת עזר, ולא משלימה אותה בדיעבד.</p>
+
+<h2><span class="num">1</span> ההיגיון המארגן: מסימפטום ל"איפה" ול"כמה חמור"</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל יש חשיבות לרצף הבדיקה (היסטוריה &#8592; בדיקה מהפרוקסימלי לדיסטלי &#8592; בדיקה ממוקדת)? כי כל שלב מצמצם את מרחב האבחנות האפשריות דרך <b>שרשרת היקש</b> שמובילה משאלה כללית ("מה קרה?") לתשובה אנטומית מדויקת ("איזה עצב, באיזו רמה, ובאיזו חומרה"):
+  </p>
+  <p>
+    <b>שלב 1 - איסוף היסטוריה ממוקדת:</b> מנגנון הפגיעה, קצב ההתקדמות, כאב (נוירופתי מול לא-נוירופתי), אובדן תחושה, וחולשה מוטורית - כל אחד מהם מצמצם את הדיפרנציאל.<br>
+    <b>שלב 2 - בדיקה כללית מפרוקסימלי לדיסטלי:</b> תמיד משווים לגפה הבריאה, ותמיד מוודאים תחילה שהעצבים הסמוכים תקינים - כדי לא לפספס פגיעה במקלעת כשהתמונה נראית כמו פגיעה בעצב בודד.<br>
+    <b>שלב 3 - בדיקה ממוקדת וכימות:</b> ברגע שיש חשד לעצב ספציפי, עוברים לבדיקת שרירים בודדים לפי סולם ה-BMRC (0-5), בדיקת תחושה לפי סולם ה-Sensibility (0-5) באזורים האוטונומיים, וסימני מיוחדים (טינל, פאלן) לאישוש.<br>
+    <b>שלב 4 - אישוש עם בדיקות עזר:</b> רק כעת - EMG/NCS והדמיה - "צובעים" את התמונה שכבר נבנתה קלינית, ולא מחליפים אותה.
+  </p>
+</div>
+<p class="key-box">משפט העוגן של הפרק הוא שיש להימנע מלבלבל "תנועה תחליפית" (substitution movement, כגון הרמת כתף בעזרת הסופרהספינטוס והפקטורליס למרות שיתוק דלתא מלא) עם החלמה אמיתית - ההבדל נבדק על ידי מישוש השריר הספציפי בזמן התנועה, לא רק תצפית על התנועה הגסה.</p>
+
+<h2><span class="num">2</span> היסטוריה: כאב, אובדן תחושה, חולשה וגורמי סיכון</h2>
+<p>ההיסטוריה בפרק בנויה סביב ארבעה צירים: <b>כאב</b> (נוירופתי לעומת לא-נוירופתי - כאב שאינו נוירופתי לרוב נובע מנוקשות מפרקית ופיברוזיס משריר לא מופעל; כאב נוירופתי כולל <span class="term" dir="ltr">CRPS</span> טיפוס I (דיסטרופיה סימפתטית רפלקסיבית, לרוב אחרי פגיעה קלה) וטיפוס II (קאוזלגיה, אחרי פגיעה משמעותית בעצב מעורב גדול), כאב אבולסיה מקרע שורש עצב מחוט השדרה, וכאב נוירומה בעקבות רגנרציה לתוך צלקת), <b>אובדן תחושה</b> (אנסתזיה, היפואסתזיה, היפראסתזיה, פרסתזיה, אלודיניה), <b>חולשה מוטורית</b> (מתוארת במונחי פעולות יומיומיות - קימה מכיסא, עליה במדרגות), ו<b>גורמי סיכון</b> (מאמץ חוזר תעסוקתי - למשל תסמונת התעלה הקרפלית אצל מפעילי פטישי אוויר, לכידת העצב הסופרה-סקפולרי אצל שחקני בייסבול/כדורעף, שיתוק פרונאלי אצל קוטפי תותים; ומחלות מערכתיות מקדימות - סוכרת, הריון, אי-ספיקת כליות, עמילואידוזיס, דלקת מפרקים שגרונית, תת-פעילות תריס).</p>
+<p>מאפיין קליני קלאסי: כאב לכידה מתייחס (referred) לאורך תפוצת העצב הדחוס - כאב וחוסר תחושה ליליים בכף היד ובאמה, אופייניים לתסמונת התעלה הקרפלית. כשעצב מעורב (motor-sensory) נפגע, מופיעות גם הפרעות תחושה בדיוק בטריטוריה התחושתית שלו - בניגוד ללכידת עצב "טהור-מוטורי" כמו הסופינטור, שם הכאב הוא כאב מפרקי עמוק ולא תחושתי.</p>
+
+<h2><span class="num">3</span> בדיקה גופנית כללית: השוואה, מבט, ואבחנות "בהצצה"</h2>
+<p>עקרון הזהב: <b>חשיפה מלאה של הגפה הפגועה והבריאה, והשוואה שיטתית</b>, החל מהפרוקסימלי לדיסטלי. בשלב ה<b>מבט (inspection)</b> מחפשים אטרופיה שרירית, צלקות, נפיחות, נשירת שיער, הזעה לא תקינה, אדמומיות, ותנוחת מפרקים לא תקינה. חלק מהממצאים כה קלאסיים שהם כמעט אבחנתיים בהצצה בלבד:</p>
+<ul>
+  <li><b>שיתוק Erb (מקלעת עליונה):</b> תנוחת "טיפ למלצר" (waiter's tip) - כתף מסובבת פנימה וצמודה לגוף, מרפק מיושר, אמה בפרונציה, כף יד כלפי מעלה.</li>
+  <li><b>שיתוק עצב רדיאלי ברמה הומרלית:</b> Wristdrop ו-Fingerdrop כשהזרועות מושטות קדימה.</li>
+  <li><b>כף יד טורפת אולנרית (Ulnar clawhand):</b> יתר-יישור במפרקי המטקרפופלנגיאלים עם כיפוף פסיבי במפרקים הבין-פלנגיאליים (אפקט טנודזיס), עם אטרופיה של השריר הבין-עצמי הגבי הראשון.</li>
+  <li><b>יד בנדיקטינית (Benedictine hand):</b> בפגיעת עצב מדיאני - חוסר יכולת לכופף אגודל ואצבע מורה לאגרוף מלא.</li>
+  <li><b>יד סימיאנית (Simian hand):</b> טורפנות בכל האצבעות כתוצאה מפגיעה משולבת בעצבים מדיאני ואולנרי (או בחבל התחתון/החוט המדיאלי).</li>
+  <li><b>שיתוק עצב בין-עצמי קדמי (AIN):</b> חוסר יכולת ליצור "O" בין קצה האגודל לאצבע המורה.</li>
+</ul>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ulnar%20claw%20hand.JPG?width=700" alt="Ulnar claw hand deformity photograph">
+<p class="media-cap">כף יד טורפת אולנרית (Ulnar claw hand) - יתר-יישור במפרקי המטקרפופלנגיאלים עם כיפוף באצבעות הרביעית והחמישית. מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Erb's%20Palsy%202.jpg?width=700" alt="Erb's palsy waiter's tip posture photograph">
+<p class="media-cap">תנוחת "טיפ למלצר" (waiter's tip) האופיינית לשיתוק Erb - פגיעה במקלעת הזרוע העליונה (שורשים C5-C6). מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">4</span> בדיקה אורתופדית - חלק נשכח אך חיוני</h2>
+<p>לפני ייחוס חולשה לעצב היקפי, יש לשלול גורם מכני-אורתופדי: מישוש עצמות ארוכות, בדיקת טווח תנועה פסיבי ואקטיבי, ומבחנים פרובוקטיביים כמו <b>מבחן הקופסה הריקה</b> (empty can test) לפגיעה במעטפת המסובבים, ו<b>מבחן פטריק</b> (Patrick test) לפתולוגיה של מפרק הירך. צילומי רנטגן שגרתיים נועדו לשלול פסאודוארתרוזיס, מומים מולדים (כגון דורבן על-קונדילרי הגורם ללכידת עצב מדיאני), או דורבנים ניווניים (לכידת עצב אולנרי בחריץ הרטרו-קונדילרי).</p>
+
+<h2><span class="num">5</span> בדיקה מוטורית: סולם ה-BMRC ועקרון ההשוואה</h2>
+<p>הבדיקה המוטורית היא המרכיב האובייקטיבי והבר-שחזור ביותר בבדיקה הנוירומוסקולרית. כוח נבדק לפי שיטת <span class="term" dir="ltr">British Medical Research Council</span> (BMRC), שריר-שריר, תוך השוואה תמידית לגפה הבריאה - כדי לזהות אפילו שיתוקים עדינים בחולים חזקים באופן כללי.</p>
+<div class="table-scroll">
+<table>
+<tr><th>דרגה (Grade)</th><th>תפקוד (Function)</th></tr>
+<tr><td>5</td><td>כוח מלא</td></tr>
+<tr><td>4</td><td>תנועה כנגד התנגדות</td></tr>
+<tr><td>3</td><td>תנועה כנגד כוח הכבידה בלבד</td></tr>
+<tr><td>2</td><td>תנועה עם ביטול כוח הכבידה</td></tr>
+<tr><td>1</td><td>כיווץ שריר ללא תנועה</td></tr>
+<tr><td>0</td><td>אין כיווץ שריר כלל</td></tr>
+</table>
+</div>
+<p>עקרונות מעשיים חשובים: (1) בשלב מוקדם ולא ברור בודקים <b>את כל השרירים</b>; ברגע שמזהים עצב חשוד, ממקדים לבדיקה סדרתית של שרירים שמעוצבבים על ידי אותו עצב ומאמתים תפקוד תקין בעצב סמוך. (2) שרירים חלשים צריך לבדוק גם עם וגם בלי סיוע כוח הכבידה (למשל, בדיקת אבדוקציה של הכתף בשכיבה מבטלת את כוח הכבידה על הסופרהספינטוס והדלתא). (3) יש לזהות <b>תנועות תחליפיות</b> (substitution movements) - למשל שיתוק דלתא מלא שבו המטופל עדיין מצליח להגיע ל-90 מעלות אבדוקציה בעזרת הסופרהספינטוס והפקטורליס בלבד; מישוש השריר בזמן התנועה הוא הדרך למנוע טעות אבחנתית כאן. (4) גם אטרופיה שרירית נמדדת עם סרט מדידה, ביחס לציון אנטומי קבוע.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LUehNRVykIM" title="Manual Muscle Testing - MRC Scale" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: בדיקת כוח שרירים ידנית לפי סולם ה-BMRC (0-5).</p>
+
+<h2><span class="num">6</span> בדיקת תחושה: אזורים אוטונומיים וסולם ה-Sensibility</h2>
+<p>הבדיקה התחושתית כוללת מגע קל, דקירה, אבחנה בשתי נקודות, תחושת רטט, תחושת חום, ופרופריוצפציה. עיקרון מפתח: יש לבחון את <b>האזורים האוטונומיים</b> (autonomous zones) - אזורי עור עם הכי פחות חפיפה עצבית מעצבים סמוכים. לדוגמה, האזור האוטונומי של העצב האולנרי הוא הצד הוולארי מעבר למפרק הבין-פלנגיאלי הדיסטלי של האצבע החמישית, ושל העצב המדיאני - הצד הוולארי מעבר למפרק הבין-פלנגיאלי הדיסטלי של האצבע המורה. לעומת זאת, "הקופסה האנטומית" (snuffbox) נחשבת לאזור התחושתי של העצב הרדיאלי, אך יש שם חפיפה משמעותית מעצבים תחושתיים אחרים - ולכן לעיתים אין כלל אובדן תחושה גם בפגיעת עצב רדיאלי מלאה. כלל אצבע חשוב: <b>אין להשתמש בהיעדר הפרעה תחושתית כהוכחה להיעדר פגיעה מוטורית מלאה בעצב.</b></p>
+<div class="table-scroll">
+<table>
+<tr><th>דרגה (Grade)</th><th>תיאור (Description)</th></tr>
+<tr><td>5</td><td>תגובה כמעט תקינה למגע ולדקירה</td></tr>
+<tr><td>4</td><td>תגובה תת-תקינה ממוקמת למגע ולדקירה; ללא תגובת-יתר</td></tr>
+<tr><td>3</td><td>תגובה תת-תקינה לא ממוקמת למגע ולדקירה; מעט תגובת-יתר</td></tr>
+<tr><td>2</td><td>מספיק להגנה איטית; מיקום שגוי עם תגובת-יתר</td></tr>
+<tr><td>1</td><td>היפואסתזיה ו/או פרסתזיה; כאב עמוק בלבד</td></tr>
+<tr><td>0</td><td>אין תגובה כלל</td></tr>
+</table>
+</div>
+<p class="key-box">בלכידת עצב (entrapment), אבחנה בשתי נקודות נעה (moving two-point discrimination) - שמשקפת צפיפות קולטנים - עלולה להיפגע לפני מודליות תחושה אחרות.</p>
+
+<h2><span class="num">7</span> רפלקסים ומבחנים מיוחדים: טינל, פאלן, וגידול נדן עצב</h2>
+<p><b>רפלקסים מיוטטיים (גידיים)</b> הם אינדיקטורים רגישים לפתולוגיה עצבית היקפית - למשל אובדן רפלקס הקרסול בפגיעת עצב סציאטי ברמת הישבן, גם כשאין ממצא אובייקטיבי נוסף. שלא כמו כוח ותחושה, רפלקסים גידיים שאבדו בדרך כלל אינם חוזרים גם לאחר החלמה תפקודית.</p>
+<p><b>סימן הופמן-טינל (Hoffman-Tinel):</b> תחושת הלם חשמלי או פרסתזיה לאורך תפוצת העצב בעת הקשה מעל המקטע הפגוע. סימן טינל שמתקדם לאורך העצב בקצב הרגנרציה הצפוי (כ-1 מ"מ ליום, כ-1 אינץ' לחודש) מעיד על רגנרציה מתמשכת - אך רק בכ-50% מהמקרים הוא מנבא גם החלמה תפקודית ממשית. סימן טינל שאינו מתקדם הוא ממצא שלילי חזק, המרמז על ניתוק עצבי מלא או רגנרציה ירודה.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Phalen%20maneuver.jpg?width=700" alt="Phalen maneuver test for carpal tunnel syndrome">
+<p class="media-cap">מבחן פאלן (Phalen test) - כיפוף פסיבי של שורש כף היד למשך דקה, הגורם לפרסתזיה בתפוצת העצב המדיאני; עוזר לאשש תסמונת התעלה הקרפלית. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/xdHngXbU8NQ" title="Tinel's Sign at the Wrist" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הדגמת סימן טינל (Tinel's sign) בשורש כף היד.</p>
+<p>בחשד לגידול נדן עצב (nerve sheath tumor), נבדקת ניידות הגידול <b>לרוחב (side-to-side)</b> ביחס לעצב - אך לא לאורך מסלולו; הקשה על הגידול הגורמת לסימן טינל חיובי מאשרת את עצב המקור.</p>
+
+<h2><span class="num">8</span> בדיקה אוטונומית</h2>
+<p>רוב ההפרעות הסימפתטיות מזוהות כבר במבט הראשוני (נפיחות, שינויי הזעה, שינויים דיסטרופיים). מבחן מיטתי פשוט: השריה של הידיים במים חמים (כ-40°C) למשך 20 דקות - בגפה עם דנרווציה סימפתטית לא יופיע קימוט עור (wrinkling) תקין, כתוצאה מוואזודילטציה יחסית או חסימת בלוטות זיעה. כמו כן נבדק סימן הורנר (Horner's syndrome) בפגיעת מקלעת הזרוע, ותגובת הזעה בכף היד באמצעות אופתלמוסקופ.</p>
+
+<h2><span class="num">9</span> לוקליזציה מתקדמת - כשהממצא הקלאסי לא מספיק</h2>
+<div class="mechanism">
+  <p class="chain">
+    footdrop חד-צדדי הוא דוגמה מצוינת לכך שממצא "קלאסי" יכול לנבוע ממספר רמות אנטומיות שונות, ורק בדיקה שיטתית מבדילה ביניהן:
+  </p>
+  <p>
+    <b>אפשרות 1 - נוירון מוטורי עליון</b> (מסלול פירמידלי) - מאופיין ברפלקסים מוגברים וטונוס מוגבר.<br>
+    <b>אפשרות 2 - נגע בחוט השדרה</b> הפוגע במאגר תאי L5.<br>
+    <b>אפשרות 3 - שורש עצב L5</b> - נבדק דרך שרירים המעוצבבים על ידי L5 שאינם חלק מהעצב הפרונאלי, כמו הגלוטאוס מדיוס והטיביאליס האחורי (אינברסיית קרסול).<br>
+    <b>אפשרות 4 - חבל לומבוסקראלי / חטיבה פרונאלית של הסציאטי / העצב הפרונאלי עצמו</b> - נבדק דרך בדיקת הראש הקצר של הביצפס פמוריס (מעוצבב על ידי החטיבה הפרונאלית מעל הברך) להבדיל לכידה בראש הפיבולה מנגע גבוה יותר.
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Brachial%20plexus%20color.svg?width=700" alt="Brachial plexus anatomy diagram color-coded by nerve roots">
+<p class="media-cap">אנטומיה של מקלעת הזרוע - עקרון דומה של לוקליזציה מדורגת חל גם על פגיעות במקלעת הזרוע ובמקלעת המותנית-קדשית. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">10</span> אישוש האבחנה: אלקטרודיאגנוסטיקה והדמיה</h2>
+<p>בדיקות הולכה עצבית ואלקטרומיוגרפיה (NCS/EMG) לא רק מאששות את האבחנה אלא גם מסייעות ללוקליזציה נוספת (inching studies) ולדירוג חומרת הפגיעה - חסמי הולכה, דנרווציה, ריאינרבציה, וירידה באמפליטודת ה-CMAP. בדיקות סדרתיות חשובות במיוחד לקבלת החלטות ניתוחיות: חולים ללא סימני ריאינרבציה תוך 3 חודשים הם לרוב מועמדים לניתוח. הדמיה (CT, MRI, נוירוגרפיה מגנטית) עונה על שאלות ספציפיות - CT מצוין להערכת המטומה רטרופריטונאלית, MRI מאפיין גידול נדן עצב. עיקרון חשוב: <b>האבחנה העבודה צריכה להיבחן מחדש כל הזמן</b> - גם תוך כדי ניתוח (תגובות עצביות תוך-ניתוחיות, חתך קפוא).</p>
+
+<h2><span class="num">11</span> ביופסיית עצב היקפי</h2>
+<p>ביופסיה מיועדת למקרים שבהם התוצאה עשויה לשנות טיפול ותוצא. האינדיקציה השכיחה ביותר היא <b>חלק מהערכת נוירופתיות היקפיות דיפוזיות</b> (פוקליות ולא-פוקליות) - בדיקה היסטולוגית של העצב הסוראלי משמשת לרוב לשלילת נוירופתיות דלקתיות, נוירופתיה עמילואידית, ולוקמיות/לימפומות פוקליות המערבות עצבים היקפיים (מצבים נדירים אך בעלי טיפול יעיל שלא ניתן להשתמש בו אמפירית עקב תופעות לוואי חמורות). אינדיקציה נוספת: כאשר לא ניתן להבדיל חולשה נוירוגנית ממיוגנית - לעיתים בשילוב ביופסיית שריר.</p>
+<p>העצב הסוראלי הוא עצב הבחירה לביופסיה כי הוא ממוקם באופן עקבי והחסר התחושתי לאחר הביופסיה מקובל בדרך כלל על המטופל. עצבים נוספים: העצב הפרונאלי השטחי דיסטלית לעיצבוב הפרונאוס לונגוס וברוויס, וענף אובטורטורי לשריר הגרסיליס כשחשודה נוירופתיה מוטורית טהורה.</p>
+<p>גורמי סיכון לממאירות בגידול נדן עצב המצריכים ביופסיה: נוירופיברומטוזיס, נוירופיברומות פלקסיפורמיות, גידולים גדולים (מעל 5 ס"מ), כאב, גידולים המתקדמים במהירות, וקליטה מטבולית גבוהה ב-FDG PET/CT. הבסיס לטכניקה: חתכים קפואים להערכת נוכחות וארגון אקסונים מיאלינים ומידת הפיברוזיס.</p>
+
+<div class="mnemonic">
+  <h3>טכניקת זכירה: "5 הידיים הקלאסיות"</h3>
+  <p>כדי לזכור את חמשת עיוותי כף היד הקלאסיים בפגיעות עצב היקפי, אפשר להיעזר במשפט: <b>"אולם בנדיקטיני מלצר מדמה קוף"</b> - <b>א</b>ולנרית טורפת (ulnar claw), <b>ב</b>נדיקטינית (median - Benedictine hand), <b>מ</b>לצר-טיפ (Erb's palsy - waiter's tip), <b>ד</b>רופ-יד (wristdrop - radial), <b>ק</b>וף/סימיאנית (simian hand - median+ulnar).</p>
+  <p style="font-size:14.5px; color:#4b5563">כל אחד מ-5 אלה מצביע על עצב או שילוב עצבים שונה, ולכן זיהוי הדפוס בהצצה בלבד מקצר משמעותית את תהליך האבחון.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/XTQp66Fcf34" title="An Overview of Nerve Conduction Studies and Electromyography" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: סקירה כללית של בדיקות הולכה עצבית (NCS) ואלקטרומיוגרפיה (EMG).</p>
+
+<h2><span class="num">12</span> מקורות להעשרה</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Nerve_conduction_study" target="_blank">Nerve Conduction Study – Wikipedia</a>
+    <div class="desc">עקרונות בדיקת ההולכה העצבית ושימושיה הקליניים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Tinel%27s_sign" target="_blank">Tinel's Sign – Wikipedia</a>
+    <div class="desc">רקע היסטורי ומשמעות קלינית של סימן טינל ברגנרציה עצבית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Ulnar_claw" target="_blank">Ulnar Claw – Wikipedia</a>
+    <div class="desc">מנגנון היווצרות כף היד הטורפת האולנרית (תנודזיס).</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Complex_regional_pain_syndrome" target="_blank">Complex Regional Pain Syndrome (CRPS) – Wikipedia</a>
+    <div class="desc">הבחנה בין CRPS טיפוס I לטיפוס II והקשר לפגיעת עצב היקפי.</div>
+  </li>
+</ul>
+
+<h2><span class="num">13</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34 מתייצג עם חולשה בכף יד ימין וחוסר תחושה, כחודשיים לאחר פריצה דרך חלון וחיתוך עמוק בזרוע. בבדיקה: אינו מסוגל ליישר את מפרקי כף היד (wristdrop) וכן את האצבעות, אך שימור מלא של פלקסיה ואקסטנציה במרפק. הרופאה בודקת גם את הרגישות באזור האוטונומי המתאים, ומבצעת בדיקת כוח BMRC לשרירי אמה. היא שוקלת האם מדובר בפגיעה ברמה ההומרלית של העצב הרדיאלי או ברמה גבוהה יותר.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. איזה עצב היקפי הכי סביר שנפגע, בהתבסס על התיאור הקליני?</div>
+  <button class="opt" data-i="0">עצב אולנרי - כי הוא אחראי על יתר-יישור מפרקי היד</button>
+  <button class="opt" data-i="1">עצב רדיאלי ברמה הומרלית - כי הוא גורם ל-wristdrop ו-fingerdrop קלאסיים, עם שימור מלא של תפקוד המרפק (הטריצפס, שמעוצבב פרוקסימלית יותר, אינו מעורב)</button>
+  <button class="opt" data-i="2">עצב מדיאני - כי הוא אחראי לתנועת האגודל בלבד</button>
+  <button class="opt" data-i="3">עצב סציאטי - כי הוא אחראי לתנועות כף היד</button>
+  <div class="explain">התשובה הנכונה: עצב רדיאלי (1). Wristdrop ו-fingerdrop קלאסיים כשהזרועות מושטות קדימה הם התמונה הקלינית האופיינית ביותר לפגיעת עצב רדיאלי ברמה הומרלית (למשל שבר בגוף הקנה של ההומרוס). שימור תפקוד הטריצפס (מיושר מרפק) תומך ברמת הפגיעה - כי הענף לטריצפס יוצא פרוקסימלית לרוב פגיעות מסוג זה. עצב אולנרי (0) גורם דווקא ליתר-יישור במפרקים המטקרפופלנגיאלים בכף יד טורפת, לא wristdrop. עצב מדיאני (2) ועצב סציאטי (3) אינם תואמים את התמונה הקלינית המתוארת.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה יהיה האזור האוטונומי (autonomous zone) הנכון לבדיקת תחושה לצורך אישוש פגיעת עצב רדיאלי, ולמה יש להיזהר בפרשנות התוצאה?</div>
+  <button class="opt" data-i="0">הצד הוולארי של האצבע החמישית - ותוצאה שלילית שוללת פגיעה בוודאות</button>
+  <button class="opt" data-i="1">כף כל היד - ותוצאה שלילית שוללת פגיעה בוודאות</button>
+  <button class="opt" data-i="2">הקופסה האנטומית (anatomic snuffbox) - אך יש שם חפיפה תחושתית משמעותית מהעצב העור-אמתי הלטרלי, כך שהיעדר חוסר תחושה אינו שולל פגיעה מוטורית מלאה בעצב הרדיאלי</button>
+  <button class="opt" data-i="3">הצד הוולארי של האצבע המורה - ותוצאה שלילית שוללת פגיעה בוודאות</button>
+  <div class="explain">התשובה הנכונה (2): הקופסה האנטומית נחשבת לאזור התחושתי המסורתי של העצב הרדיאלי, אך בגלל חפיפה מעצבים תחושתיים אחרים (כמו העצב העור-אמתי הלטרלי), חולים רבים עם פגיעת עצב רדיאלי מלאה כלל לא יפגינו חוסר תחושה שם. הפרק מדגיש כלל אצבע מרכזי: אין להשתמש בהיעדר הפרעה תחושתית כהוכחה להיעדר פגיעה מוטורית מלאה. תשובות 0 ו-3 מתארות אזורים אוטונומיים של עצבים אחרים (אולנרי ומדיאני, בהתאמה), ולא של הרדיאלי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. במהלך הבדיקה המוטורית, הרופאה שמה לב שהמטופל מצליח לבצע תנועה מסוימת חלקית למרות חשד לשיתוק שריר. מה עליה לעשות כדי להבדיל בין תנועה תחליפית (substitution movement) לבין החלמה אמיתית?</div>
+  <button class="opt" data-i="0">למשש את השריר הספציפי החשוד תוך כדי ביצוע התנועה, ולא להסתפק בתצפית חזותית על התנועה הגסה בלבד</button>
+  <button class="opt" data-i="1">לחזור על אותה תנועה 10 פעמים ברציפות</button>
+  <button class="opt" data-i="2">לבצע מיד MRI של האזור</button>
+  <button class="opt" data-i="3">אין דרך אמינה להבדיל בין השניים</button>
+  <div class="explain">התשובה הנכונה (0): הפרק מדגיש דוגמה קלאסית - מטופל עם שיתוק דלתא מלא עדיין יכול להגיע ל-90 מעלות אבדוקציה של הכתף בעזרת כיווץ חזק של הסופרהספינטוס וסיבוב השכמה (עם תרומה אפשרית מהפקטורליס והקורקוברכיאליס). מישוש ישיר של השריר החשוד (במקרה זה הדלתא) תוך כדי התנועה, יחד עם הסתכלות ממוקדת על מכניקת הכתף מלמעלה ומאחור, הם הדרך היחידה לזהות שהתנועה למעשה תחליפית ולא נובעת מהחלמה של השריר הפגוע.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. חולה עם footdrop חד-צדדי. אילו שני שרירים, לפי הפרק, יעזרו להבדיל בין נגע רדיקולרי/פלקסוס גבוה יותר לבין נגע פרונאלי דיסטלי (למשל לכידה בראש הפיבולה)?</div>
+  <button class="opt" data-i="0">הגסטרוקנמיוס והסולאוס בלבד</button>
+  <button class="opt" data-i="1">הקוואדריספס והאדוקטורים</button>
+  <button class="opt" data-i="2">הביצפס והטריצפס של הזרוע</button>
+  <button class="opt" data-i="3">הגלוטאוס מדיוס והטיביאליס האחורי (אינברסיית קרסול, מעוצבבים על ידי L5 אך לא על ידי העצב הפרונאלי) - ולחילופין, הראש הקצר של הביצפס פמוריס (מעוצבב על ידי החטיבה הפרונאלית מעל הברך) להבחנה מלכידה בראש הפיבולה</button>
+  <button class="opt" data-i="4">אין שריר שיכול לעזור בהבחנה זו</button>
+  <div class="explain">התשובה הנכונה (3): שרירי L5 שאינם חלק מהעצב הפרונאלי (הגלוטאוס מדיוס וטיביאליס האחורי) עוזרים להבדיל נגע רדיקולרי/פלקסוס לומבוסקראלי מנגע דיסטלי יותר של הסציאטי או הפרונאלי. הראש הקצר של הביצפס פמוריס, המעוצבב על ידי החטיבה הפרונאלית של הסציאטי כבר מעל הברך, עוזר להבדיל בין נגע ברמת החטיבה הפרונאלית לבין לכידה טיפוסית יותר בראש הפיבולה. שאר האפשרויות מתארות שרירים לא רלוונטיים ללוקליזציה של footdrop.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע ביופסיה של העצב הסוראלי (sural nerve) נחשבת לבחירה הראשונה בהערכת נוירופתיה היקפית דיפוזית בלתי מוסברת?</div>
+  <button class="opt" data-i="0">כי הוא העצב הכי גדול בגוף</button>
+  <button class="opt" data-i="1">כי הוא ממוקם באופן עקבי מבחינה אנטומית, קל לניתוח, והחסר התחושתי השיורי לאחר הביופסיה מקובל בדרך כלל על המטופלים</button>
+  <button class="opt" data-i="2">כי הוא עצב מוטורי טהור וקל לבודד ללא סיכון תחושתי</button>
+  <button class="opt" data-i="3">כי אין לו כל תפקוד קליני</button>
+  <div class="explain">התשובה הנכונה (1): הסוראלי הוא עצב תחושתי טהור, קבוע במיקומו האנטומי (לצד הווריד הסאפנוס הקטן), נגיש כירורגית, ואובדן התחושה השיורי (על גב כף הרגל הצדדית) הוא בדרך כלל תחום ומקובל על המטופלים. תשובה 2 שגויה - הוא עצב תחושתי טהור, לא מוטורי. תשובות 0 ו-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. אילו ממצאים בגידול נדן עצב (nerve sheath tumor) מעלים חשד לממאירות ומחייבים ביופסיה, לפי הפרק?</div>
+  <button class="opt" data-i="0">גיל המטופל מעל 18 בלבד</button>
+  <button class="opt" data-i="1">גודל קטן מ-1 ס"מ וללא כאב</button>
+  <button class="opt" data-i="2">נוירופיברומטוזיס, נוירופיברומות פלקסיפורמיות, גודל מעל 5 ס"מ, כאב, גדילה מהירה, וקליטה מטבולית גבוהה ב-FDG PET/CT</button>
+  <button class="opt" data-i="3">מיקום בגפה התחתונה בלבד</button>
+  <div class="explain">התשובה הנכונה (2): הפרק מפרט רשימה ספציפית של גורמי סיכון לממאירות בגידול נדן עצב - נוירופיברומטוזיס, נוירופיברומות פלקסיפורמיות, גידולים גדולים (מעל 5 ס"מ), כאב, גדילה מהירה, וקליטה מטבולית גבוהה ב-PET/CT. לעומת זאת, גידולי נדן עצב אקראיים בחולים ללא נוירופיברומטוזיס נדירים כממאירים ולרוב ניתן לאבחנם על סמך מאפייני MRI בלבד, ללא ביופסיה. תשובות 0, 1 ו-3 אינן הקריטריונים שהפרק מציין.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">14</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הבדיקה הקלינית (היסטוריה + בדיקה גופנית שיטתית מפרוקסימלי לדיסטלי, בהשוואה לגפה הבריאה) קודמת לוגית לבדיקות עזר - הדמיה ואלקטרודיאגנוסטיקה רק "צובעות" תמונה שכבר נבנתה קלינית.</li>
+    <li>חמישה עיוותי יד קלאסיים לזיהוי בהצצה: <b>waiter's tip</b> (Erb), <b>wristdrop/fingerdrop</b> (רדיאלי), <b>ulnar clawhand</b> (אולנרי), <b>Benedictine hand</b> (מדיאני), <b>simian hand</b> (מדיאני+אולנרי).</li>
+    <li>כוח מוטורי מדורג לפי סולם <b>BMRC 0-5</b> (5=מלא, 0=ללא כיווץ); תחושה מדורגת לפי <b>Sensibility Scale 0-5</b>; יש לבדוק תמיד באזורים <b>האוטונומיים</b> להימנע מחפיפה עצבית.</li>
+    <li>יש להיזהר <b>מתנועות תחליפיות</b> (substitution movements) - מישוש השריר החשוד תוך כדי התנועה מבדיל אותן מהחלמה אמיתית.</li>
+    <li><b>סימן הופמן-טינל</b> שמתקדם בקצב הרגנרציה (כ-1 מ"מ/יום) מרמז על רגנרציה מתמשכת, אך רק בכ-50% חוזה גם החלמה תפקודית.</li>
+    <li>העצב הסוראלי הוא עצב הבחירה לביופסיה בנוירופתיה היקפית דיפוזית בלתי מוסברת - נגיש, קבוע במיקומו, וחסר תחושתי שיורי מקובל.</li>
+    <li>ביופסיה מחויבת בגידול נדן עצב עם סימני אזהרה: נוירופיברומטוזיס, גודל מעל 5 ס"מ, כאב, גדילה מהירה, וקליטת PET גבוהה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
