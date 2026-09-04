@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: תכנון כירורגי ממוחשב בשחזור ראש-צוואר</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 8: תכנון כירורגי ממוחשב בשחזור ראש-צוואר <span class="term" dir="ltr">Computerized Surgical Planning in Head and Neck Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 6.3, מאת Maureen Beederman, Adam S. Jacobson, David L. Hirsch, Jamie P. Levine</div>
+
+<p>הפרק עוסק ב<b>תכנון כירורגי וירטואלי</b> (<span class="term" dir="ltr">Virtual Surgical Planning, VSP</span>) ובטכנולוגיית <b>CAD/CAM</b> (<span class="term" dir="ltr">Computer-Aided Design / Computer-Aided Manufacturing</span>) כפי שהן משמשות לשחזור עצם קרניומקסילופציאלית מורכבת: שחזור לסת תחתונה ולסת עליונה לאחר כריתת גידול, טראומה מקסילופציאלית מרובת קטעים, שחזור סינוס פרונטלי ושחזור מפרק הלסת (<span class="term" dir="ltr">TMJ</span>). הרעיון המרכזי: להעביר תכנון שהיה פעם "ניסוי וטעייה" תוך-ניתוחי, לתכנון מדויק שנעשה <b>מראש על גבי מודל תלת-ממדי של המטופל</b>, ואז לתרגם אותו לכלים פיזיים (מדריכי חיתוך, פלטות מותאמות אישית) שמבטיחים שהניתוח בפועל יתאים בדיוק לתכנון.</p>
+
+<h2><span class="num">1</span> למה בכלל צריך תכנון וירטואלי - הבעיה עם השיטה המסורתית</h2>
+<div class="mechanism">
+  <p class="chain">
+    לפני עידן ה-VSP, שחזור לסת תחתונה (למשל אחרי כריתת גידול) התבצע כך: המנתח האבלטיבי (הכורת) מסיים את כריתת הגידול, ורק <b>אז</b> המנתח המשחזר "מגלה" את הפגם ומנסה לעצב את עצם השוק (<span class="term" dir="ltr">fibula</span>) שתתאים אליו - תוך כדי הניתוח, בהערכה חזותית וב"ניחוש מושכל".<br>
+    זה יוצר שרשרת בעיות: (1) המנתח המשחזר צריך <b>לחכות</b> לסיום שלב הכריתה לפני שהוא יכול להתחיל לתכנן, מה שמאריך את זמן הניתוח; (2) העיצוב נעשה <b>חופשי-יד</b> (<span class="term" dir="ltr">freehand</span>) בלי כלי מדידה מדויקים, כך שהתוצאה תלויה מאוד בניסיון האישי של המנתח; (3) גם למנתחים מנוסים יש טווח שגיאה, כי מדובר בבעיה תלת-ממדית מורכבת (זוויות אוסטאוטומיה, אורך קטעים, יחס לחסימה - <span class="term" dir="ltr">occlusion</span>) שקשה "לראות" נכון בשטח בלי כלים.
+  </p>
+  <p>הפתרון: להעביר את כל שלב "החשיבה התלת-ממדית" <b class="key">לפני הניתוח</b>, על גבי מודל וירטואלי מדויק שנבנה מ-CT של המטופל עצמו, ולתרגם את התכנון הזה לכלים פיזיים (מדריכי חיתוך מודפסים בתלת-ממד) שהמנתח פשוט "מיישם" בחדר הניתוח בלי לחשב שום דבר בזמן אמת.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>מעבר מתכנון תוך-ניתוחי לתכנון וירטואלי מקדים</title>
+  <rect x="460" y="30" width="380" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="650" y="58" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">השיטה המסורתית</text>
+  <text x="650" y="78" font-size="12" text-anchor="middle" fill="#7f1d1d">כריתה &#8592; המתנה &#8592; עיצוב חופשי-יד תוך-ניתוחי</text>
+  <text x="650" y="96" font-size="12" text-anchor="middle" fill="#7f1d1d">תלוי בניסיון, זמן ניתוח ארוך, שגיאה משתנה</text>
+
+  <rect x="20" y="30" width="380" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="210" y="58" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">תכנון וירטואלי (VSP)</text>
+  <text x="210" y="78" font-size="12" text-anchor="middle" fill="#065f46">CT &#8592; מודל תלת-ממדי &#8592; תכנון מראש &#8592; מדריכי חיתוך</text>
+  <text x="210" y="96" font-size="12" text-anchor="middle" fill="#065f46">דיוק גבוה, זמן ניתוח קצר יותר, שחזורית</text>
+
+  <polygon points="420,70 450,64 450,76" fill="#374151"/>
+  <line x1="450" y1="70" x2="400" y2="70" stroke="#374151" stroke-width="2"/>
+
+  <rect x="60" y="150" width="740" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="175" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">התוצאה: דיוק תוך-ניתוחי מובטח (בתוך 1-5 מ"מ), פחות תלות בניסיון המנתח, זמן ניתוח קצר יותר</text>
+  <text x="430" y="195" font-size="12" text-anchor="middle" fill="#78350f">ותכנון "מסביב לשולחן" עם כל הצוות (כירורג אבלטיבי + משחזר + מהנדסים ביו-רפואיים)</text>
+</svg>
+
+<p class="key-box">שימו לב: מדובר לא רק ב"מודל פיזי מודפס" (זה כבר היה קיים כשלב ראשון בהתפתחות הטכנולוגיה - סטראוליתוגרפיה) אלא ב<b>שילוב</b> של הדמיה, תוכנת CAD, ותכנון-שיתופי מרחוק בין הצוות הכירורגי למהנדסים - שמייצר בסופו של דבר <b>מדריכי חיתוך אישיים ופלטות קיבוע מותאמות מראש</b>.</p>
+
+<h2><span class="num">2</span> ארבעת שלבי התהליך (Algorithm)</h2>
+<p>הפרק מגדיר תהליך אחיד בעל ארבעה שלבים, שחוזר על עצמו בכל היישומים שמתוארים בפרק (שחזור לסת, טראומה, סינוס פרונטלי, TMJ):</p>
+<table>
+  <thead><tr><th>שלב</th><th>מה קורה בו</th></tr></thead>
+  <tbody>
+    <tr><td><b>1. תכנון (<span class="term" dir="ltr">Planning</span>)</b></td><td>CT דק-חתך (<span class="term" dir="ltr">fine-cut</span>) של השלד הקרניופציאלי, ובמידת הצורך גם <span class="term" dir="ltr">CTA</span> (אנגיוגרפיה בהדמיית CT) של אתר התורם (למשל שוקה - להערכת מחלת עורקים היקפית, PVD, וכלי דם אברנטיים לפני שימוש בשוקה כפלאפ).</td></tr>
+    <tr><td><b>2. מידול (<span class="term" dir="ltr">Modeling</span>)</b></td><td>פגישת ווב (<span class="term" dir="ltr">web meeting</span>) בין הכירורג האבלטיבי, המנתח המשחזר, ומהנדסים ביו-רפואיים מחברת המודלים. יחד הם מסמנים על התמונה התלת-ממדית: גבולות הכריתה, מיקום השוקה ביחס ללסת, ותכנון תותבות שיניים אם רלוונטי. יוצרים מדריכי חיתוך (<span class="term" dir="ltr">cutting guides</span>) ופלטת קיבוע מותאמת.</td></tr>
+    <tr><td><b>3. ניתוחי (<span class="term" dir="ltr">Surgical</span>)</b></td><td>המדריכים המעוקרים מוצמדים לעצם עם ברגים, והמנתח מבצע את האוסטאוטומיות דרך החריצים במדריך - ללא צורך במדידה או בהערכה חזותית תוך-ניתוחית.</td></tr>
+    <tr><td><b>4. הערכה (<span class="term" dir="ltr">Evaluation</span>)</b></td><td>הדמיה פוסט-ניתוחית (רנטגן/CT) מושווית לתכנון המקורי, כדי להעריך דיוק ולשפר את התהליך לעתיד.</td></tr>
+  </tbody>
+</table>
+<p>נקודות מפתח נוספות שהפרק מדגיש: יש לשמור על <b>קטעי עצם באורך של לפחות 2 ס"מ</b> כדי לשמר אספקת דם תקינה; יש לשתף את <b>כל</b> הצוות (לא רק כירורגים) בפגישת התכנון; ובמקרים מורכבים (הזזה רב-קטעית) כדאי להכין <b>סדי ביניים</b> (<span class="term" dir="ltr">intermediary splints</span>) שמאשרים את המיקום הנכון בכל שלב.</p>
+
+<h2><span class="num">3</span> היישום המרכזי: שחזור לסת תחתונה בפלאפ שוק חופשי (Fibula Free Flap)</h2>
+<p>פלאפ השוק (<span class="term" dir="ltr">fibula free flap</span>), שתואר לראשונה על ידי Hidalgo ב-1989, הוא <b>ה"תקן זהב"</b> לשחזור לסת תחתונה כיום. היתרונות שלו: מקטע עצם ארוך (עד 25 ס"מ), תחלואת אתר תורם נמוכה יחסית, ובעיקר - יכולת עיצוב תלת-ממדית ייחודית (בזכות אספקת דם פריאוסטאלית אמינה, ניתן לבצע בו מספר אוסטאוטומיות מבלי לפגוע באספקת הדם).</p>
+
+<h3>איך VSP משנה את התהליך</h3>
+<div class="mechanism">
+  <p class="chain">
+    בשיטה הישנה: המנתח מחכה לסיום הכריתה, ואז "מגלה" בדיוק כמה עצם חסרה ובאיזו צורה, ומעצב את השוקה בזמן אמת עם הפלאפ מנותק (הרס זמן איסכמי) או תוך כדי איזון בין דיוק למהירות.<br>
+    ב-VSP: כבר בשלב התכנון, המהנדסים יוצרים <b>ייצוג וירטואלי</b> הן של הלסת החולה והן של השוקה התורמת. מבצעים <b>כריתה וירטואלית</b> של הלסת בגבולות שסומנו, ואז "משתילים" את השוקה הווירטואלית לפגם ומבצעים עליה <b>אוסטאוטומיות וירטואליות</b> במספר מישורים כדי שתתאים בדיוק לצורה החסרה, תוך יצירת <b>אוסטאוטומיות משלימות</b> (<span class="term" dir="ltr">complementary osteotomies</span>) שמבטיחות הצמדה מלאה בין קטעי העצם (<span class="term" dir="ltr">bony apposition</span>).<br>
+    את האוסטאוטומיות הווירטואליות הללו "מתרגמים" למדריכי חיתוך פיזיים - כך שכל מה שנשאר למנתח לעשות בחדר הניתוח הוא להצמיד את המדריך ולנסר לאורך החריצים.
+  </p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KaF4Lj0TVxQ" title="Virtual Surgical Planning (VSP) Jaw in a Day (JIAD) for mandibular reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של תהליך "Jaw in a Day" - שחזור לסת עם השתלת שתלים דנטליים באותו ניתוח, בעזרת VSP. הסרטון ממחיש את התהליך המתואר בפרק: תכנון וירטואלי מראש, מדריכי חיתוך, ופלטה מותאמת אישית. מקור: ערוץ TVASurg (YouTube).</p>
+
+<p>המדריכים מיוצרים בשיטת <b>סטראוליתוגרפיה</b> (<span class="term" dir="ltr">stereolithography</span> - הדפסת מודל תלת-ממדי מדויק ישירות מנתוני ה-CT). מדריך החיתוך של הלסת ("mandibular cutting guide") נצמד לעצם עם ברגים ומאפשר שחזור מדויק של זוויות האוסטאוטומיה שתוכננו. מדריך השוקה (fibula cutting guide) הוא <b>מדריך מקוצב</b> (linearized) עם חריצי חיתוך במרחקים ובזוויות המדויקות - כך שאין צורך במדידה תוך-ניתוחית כלל. חשוב: את עיצוב השוקה מעדיפים לבצע <b>כאשר הצֶקֶל (Pedicle) עדיין מחובר ומזרים דם</b> (לפני ניתוקה כפלאפ חופשי), כדי לצמצם זמן איסכמי.</p>
+
+<p><b>חורים חזויים (predictive holes):</b> חידוד טכני חשוב - המדריכים מתוכננים עם חורי ברגים שמתאימים בדיוק לחורים בפלטת הקיבוע הסופית. כך משתמשים באותם חורים גם לקיבוע המדריך וגם לקיבוע הפלטה, מה שמבטיח מיקום עצם מדויק ללא סטייה.</p>
+
+<h3>יישומים נוספים ברמת המנדיבולה</h3>
+<ul>
+  <li><b>שתלים אוסאואינטגרטיביים ראשוניים</b> (<span class="term" dir="ltr">primary endosseous implants</span>) - במקרים שפירים (ולעיתים גם אונקולוגיים נבחרים), מתכננים מראש את מיקום שתלי השן כך שיתאימו לחסימה (occlusion) העתידית, ולעיתים אף משתילים אותם ומרכיבים תותבת <b>באותו ניתוח</b>.</li>
+  <li><b>שימור עצב האלוואולרי התחתון</b> (<span class="term" dir="ltr">inferior alveolar nerve</span>) - מדריכי חיתוך אישיים מאפשרים "לחלץ" את העצב מהתעלה שלו במהלך כריתת הלסת, במקום לפגוע בו כפי שקורה לעיתים קרובות בשיטה המסורתית.</li>
+  <li><b>שחזור מבוסס עצם השכמה</b> (<span class="term" dir="ltr">subscapular system</span>) - כשעצם השוקה אינה אופציה (למשל בגלל מחלת כלי דם היקפית), ניתן לתכנן באותה שיטה מדריכי חיתוך לקצה השכמה (scapular tip) - חשוב במיוחד כי עצם השכמה דקה ושברירית יותר, כך שמדריך מדויק מפחית סיכון לשבר בלתי-מכוון.</li>
+</ul>
+
+<h2><span class="num">4</span> דיוק (Accuracy) - כמה זה באמת מדויק?</h2>
+<p>הפרק מדווח שהדיוק בפועל (השוואת CT פוסט-ניתוחי לתכנון המקורי) הוא בדרך כלל <b>1 עד 5 מ"מ</b>. מקור השגיאה העיקרי אינו התכנון הווירטואלי עצמו, אלא <b>כיפוף ידני</b> (hand bending) של פלטת הקיבוע התוך-ניתוחי - שלב "אנלוגי" שעדיין תלוי במיומנות אנושית. עם המעבר לפלטות מותאמות-אישית שמגיעות כבר מכופפות ומעוצבות מראש (<span class="term" dir="ltr">custom-modeled plates</span>), הדיוק השתפר משמעותית, ובנוסף נמצא שהשימוש בפלטות אלו מתקשר לפחות סיבוכים, אשפוז קצר יותר וזמן ניתוח מקוצר.</p>
+<div class="key-box">זו נקודה קריטית למבחן: <b>מקור השגיאה העיקרי הוא בשלב הפיזי/אנלוגי (כיפוף פלטה), לא בתכנון הדיגיטלי עצמו</b> - בדיוק כמו הרעיון שחוזר בפרק המקביל על תכנון אורתוגנתי (פרק 6.2 באותו כרך): ה"שרשרת" חלשה בדיוק בנקודת המעבר בין דיגיטלי לפיזי.</div>
+
+<h2><span class="num">5</span> טראומה מקסילופציאלית מרובת קטעים</h2>
+<p>טראומה פנים-פציאלית (<span class="term" dir="ltr">pan-facial trauma</span>) מציבה אתגר קלאסי: פירוק (<span class="term" dir="ltr">comminution</span>) של העצם, אובדן שיניים, ועיוות תלת-ממדי (רוחב, גובה, בליטה קדמית-אחורית) שקשה מאוד "לתקן בעין" - במיוחד כשאין לצד הפגוע נקודת ייחוס תקינה להשוואה.</p>
+<div class="mechanism">
+  <p class="chain">
+    התהליך: CT של השלד הפציאלי + הטבעות שיניים (או סריקה) &#8592; פגישת ווב שבה <b>"מצמצמים" וירטואלית</b> (virtual reduction) את השברים למיקום האידיאלי, כולל ניתוח נפחי (volumetric analysis) לבדיקת סימטריה &#8592; מייצרים <b>סדים חסימתיים</b> (occlusal splints) לקטעים נושאי-שיניים, ו<b>תבניות</b> (templates) לעצמות שאינן נושאות שיניים לשחזור רוחב ובליטה נכונים &#8592; מדריכים אלו מוצמדים תוך-ניתוחית לעצם עם ברגים, ומשמשים נקודת ייחוס להצמדה ותיקון מדורג של כל קטע ביחס לאזור הגולגולת הבריא.
+  </p>
+</div>
+<p>שימוש חשוב נוסף: כאשר תיקון ראשוני אינו אופטימלי (כפי שקורה לפעמים בטראומה חמורה בשלב האקוטי), VSP מאפשר <b>לתכנן מראש תיקון משני</b> (secondary correction) - כולל אוסטאוטומיות חוזרות, מיקום מחדש, או שימוש בשתלי עצם/מבנים מותאמים אישית.</p>
+<p>בנוסף, VSP ונווט (guidance/navigation technology) שימושיים במיוחד בהחזרת <b>שברי רצפת הארובה</b> (orbital floor) - אזור שקשה לחשוף אותו חזותית באופן מלא, כך שמערכת שמאמתת מיקום ביחס לתכנון המקורי מפצה על חוסר הראות הישירה.</p>
+
+<h2><span class="num">6</span> סינוס פרונטלי ומפרק הלסת (TMJ) / בסיס גולגולת</h2>
+<table>
+  <thead><tr><th>אזור</th><th>האתגר הייחודי</th><th>איך VSP פותר</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><b>סינוס פרונטלי</b><br>(10-15% מכלל שברי הפנים)</td>
+      <td>אזור "חבוי" אנטומית; גישה ישירה קדמית מסורתית דורשת לרוב קרניוטומיה גדולה בגלל הקרבה לדורה ולמוח, גם כשהבעיה עצמה קטנה יחסית. יש להעריך מעורבות של הדופן הקדמית מול האחורית ותעלת ה-nasofrontal duct.</td>
+      <td>מדריך חיתוך מותאם מאפשר גישה בטוחה ומהירה ישירות לתוך הסינוס דרך הדופן הקדמית, תוך מיצוי מרבי של שטח העצם הזמין ומזעור נזק נוסף - בלי לפתוח דיסקציה תוך-גולגולתית מלאה.</td>
+    </tr>
+    <tr>
+      <td><b>TMJ / בסיס גולגולת</b></td>
+      <td>שחזור מסורתי הוא <b>דו-שלבי</b>: קודם גישה למפרק (gap arthroplasty), CT פוסט-ניתוחי, ורק אז מייצרים תותבת מותאמת בניתוח שני. יש צפיפות גבוהה של מבנים חיוניים (עצבים, כלי דם גדולים, בסיס גולגולת אמצעי) שמעלה סיכון לפגיעה.</td>
+      <td>תכנון וירטואלי + ניווט תוך-ניתוחי (navigation) מאפשרים לבצע את הכל <b>בניתוח בודד ובטוח</b> - כולל שילוב עם פלאפ שוק חופשי מיקרו-וסקולרי לשחזור מלא של המפרק (משאירים כ-1 ס"מ בפוסה הגלנואידית לשמירת הדיסק המפרקי אם שלם).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> יתרונות ומגבלות - טבלת סיכום</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>היבט</th><th>יתרון</th><th>מגבלה / אתגר</th></tr></thead>
+  <tbody>
+    <tr><td>דיוק</td><td>1-5 מ"מ מהתכנון; אוסטאוטומיות "משלימות" מבטיחות הצמדה מלאה</td><td>מקור השגיאה העיקרי נותר כיפוף ידני של פלטות (אלא אם משתמשים בפלטות מותאמות-מראש)</td></tr>
+    <tr><td>עקומת למידה</td><td>קצרה יחסית - "המזל" של מנתח פחות מנוסה משתפר, כי הכלים "מדברים" בשבילו</td><td>עדיין דורש הבנה של המגבלות הביולוגיות (למשל לא לקצר קטעי עצם מתחת ל-2 ס"מ)</td></tr>
+    <tr><td>זמן ניתוח</td><td>מתקצר משמעותית - אין המתנה לכריתה ואין עיצוב חופשי-יד</td><td>דורש זמן הכנה מראש (CT, פגישת ווב, ייצור מדריכים) - לא מתאים לניתוח דחוף-דחוף ללא תכנון מוקדם</td></tr>
+    <tr><td>שיתוף פעולה</td><td>מחייב תיאום בין כירורג אבלטיבי, משחזר, ומהנדסים - משפר תקשורת צוותית</td><td>תלוי בזמינות חברת מידול/מהנדסים ובעלות הטכנולוגיה</td></tr>
+    <tr><td>שיקום דנטלי</td><td>מאפשר תכנון והשתלה מיידית של implants ואף תותבת באותו ניתוח ("Jaw in a Day")</td><td>עדיין נדרשת הערכה זהירה בחולים שצפויים לקבל הקרנות פוסט-ניתוחיות (אם כי מחקר עדכני מרגיע בעניין)</td></tr>
+    <tr><td>רקמה רכה</td><td>מצוין לתכנון עצם</td><td>הפרק מציין במפורש שהניבוי המדויק ביותר עדיין קיים ל<b>עצם</b> - ניבוי תוצאת רקמה רכה הוא כיוון עתידי, לא יכולת נוכחית מלאה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TXJ--eG7F70" title="Jaw in a Day surgery – MUSC Hollings Cancer Center" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קליני-חינוכי (מבית חולים אקדמי, MUSC Hollings Cancer Center) על גישת "Jaw in a Day" למטופלים - שחזור לסת ושתלים דנטליים בניתוח בודד באמצעות תכנון וירטואלי מראש. מקור: ערוץ MUSC Hollings Cancer Center (YouTube).</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">P-M-S-E</span> - ארבעת שלבי ה-VSP</h3>
+  <p>
+    <b>P</b> – <span class="term" dir="ltr">Planning</span> (CT + CTA, פגישת ווב).<br>
+    <b>M</b> – <span class="term" dir="ltr">Modeling</span> (יצירת מדריכי חיתוך ופלטה).<br>
+    <b>S</b> – <span class="term" dir="ltr">Surgical</span> (יישום המדריכים בחדר ניתוח).<br>
+    <b>E</b> – <span class="term" dir="ltr">Evaluation</span> (השוואת CT פוסט-ניתוחי לתכנון).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני אדריכל שבונה בית: הוא לא מגיע לאתר הבנייה ומתחיל "לאלתר" איפה יעמדו הקירות. הוא קודם מצייר <b>תוכנית מדויקת</b> על הנייר (Planning), אז מכין <b>תבניות מדידה</b> לכל קיר ולכל חלון (Modeling), נותן לפועלים למדוד ולחתוך <b>בדיוק לפי התבנית</b> ולא בעין (Surgical), ולבסוף בא לבדוק שהבית שנבנה תואם בדיוק לתוכנית המקורית (Evaluation). כך גם המנתח: הוא "בונה" מחדש את הלסת לפי תוכנית שהוכנה מראש, לא בעין בשטח.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>האדריכל והבית - משל ל-VSP</title>
+    <rect x="390" y="30" width="90" height="70" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="435" y="70" font-size="30" text-anchor="middle">📐</text>
+    <rect x="270" y="30" width="90" height="70" rx="6" fill="#fef3e2" stroke="#c2410c"/>
+    <text x="315" y="70" font-size="30" text-anchor="middle">🧩</text>
+    <rect x="150" y="30" width="90" height="70" rx="6" fill="#ecfdf5" stroke="#047857"/>
+    <text x="195" y="70" font-size="30" text-anchor="middle">🔨</text>
+    <rect x="30" y="30" width="90" height="70" rx="6" fill="#f3e8ff" stroke="#7e22ce"/>
+    <text x="75" y="70" font-size="30" text-anchor="middle">✅</text>
+    <polygon points="360,65 368,60 368,70" fill="#374151"/>
+    <line x1="390" y1="65" x2="368" y2="65" stroke="#374151" stroke-width="2"/>
+    <polygon points="240,65 248,60 248,70" fill="#374151"/>
+    <line x1="270" y1="65" x2="248" y2="65" stroke="#374151" stroke-width="2"/>
+    <polygon points="120,65 128,60 128,70" fill="#374151"/>
+    <line x1="150" y1="65" x2="128" y2="65" stroke="#374151" stroke-width="2"/>
+    <text x="435" y="125" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">תכנון</text>
+    <text x="315" y="125" font-size="12" text-anchor="middle" fill="#7c2d12" font-weight="700">מידול</text>
+    <text x="195" y="125" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">ביצוע</text>
+    <text x="75" y="125" font-size="12" text-anchor="middle" fill="#581c87" font-weight="700">הערכה</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=hvyZ3GdlO9w" target="_blank">Virtual Surgical Planning for Orthognathic Surgery & Maxillofacial Trauma</a>
+    <div class="desc">הרצאה מקצועית שמסבירה את שילוב VSP עם ניתוחי טראומה פנים-פציאלית - משלים את סעיף 5 בסיכום זה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Free_fibula_flap" target="_blank">Free fibula flap – Wikipedia</a>
+    <div class="desc">רקע נוסף על אנטומיית פלאפ השוק ושימושיו בשחזור לסת, כולל ההיסטוריה של Hidalgo.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Computer-aided_design" target="_blank">Computer-Aided Design (CAD) – Wikipedia</a>
+    <div class="desc">רקע כללי על טכנולוגיית CAD/CAM שבבסיס כל התהליך המתואר בפרק.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 מאובחן עם קרצינומה של תאי קשקש (SCC) בחניכיים התחתונות, עם חדירה לעצם הלסת התחתונה. מתוכננת כריתת מקטע מנדיבולה (segmental mandibulectomy) עם שולי בטיחות, ושחזור מיידי בפלאפ שוק חופשי. שבועיים לפני הניתוח מבוצע CT דק-חתך של הפנים ו-CTA של הרגליים, ומתקיימת פגישת ווב משותפת בין הכירורג האבלטיבי, המנתח המשחזר וצוות המהנדסים. בניתוח, לאחר כריתת המקטע, מוצמד מדריך חיתוך ללסת הנותרת ומדריך נפרד לשוקה (שנלקחת עם הצקל שלם עד לשלב העיצוב).</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הסיבה המרכזית לפיה CTA (אנגיוגרפיה בCT) של הרגליים נדרשת בשלב התכנון, לפני שנבחר פלאפ השוק?</div>
+  <button class="opt" data-i="0">כדי לבדוק אם למטופל יש אוסטיאופורוזיס בעצם השוקה</button>
+  <button class="opt" data-i="1">כדי לשלול מחלת עורקים היקפית או אנטומיה וסקולרית אברנטית שעלולה למנוע שימוש בטוח בשוקה כפלאפ, ולשקול חלופה (שכמה, כסל) אם צריך</button>
+  <button class="opt" data-i="2">כדי למדוד את גובה המטופל לפני הניתוח</button>
+  <button class="opt" data-i="3">CTA אינה נדרשת כלל בתהליך התכנון לפי הפרק</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שבשלב התכנון בודקים "עדות ל-PVD/אנטומיה אברנטית של הגפה התחתונה, או קונטרא-אינדיקציות אחרות לשימוש בשוקה לשחזור" - ואם יש כאלה, שוקלים אתר תורם חלופי (שכמה, כסל) ומבצעים CTA שלו. תשובות 1, 3, 4 אינן קשורות למטרת הבדיקה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהי "אוסטאוטומיה משלימה" (complementary osteotomy) בהקשר של תכנון וירטואלי לשחזור לסת בפלאפ שוק?</div>
+  <button class="opt" data-i="0">אוסטאוטומיה נוספת בעצם הבריאה, שאינה קשורה לשחזור</button>
+  <button class="opt" data-i="1">חיתוך שמבוצע רק בחדר הניתוח, ללא תכנון מוקדם</button>
+  <button class="opt" data-i="2">אוסטאוטומיה שמתוכננת וירטואלית בשוקה כך שתתאים בדיוק לצורת גבולות הכריתה בלסת, במטרה להבטיח הצמדה מלאה (bony apposition) בין קטעי העצם</button>
+  <button class="opt" data-i="3">הליך שמתבצע רק כאשר יש כשל בפלאפ הראשוני</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר שלאחר שהשוקה הווירטואלית "מושתלת" בפגם המנדיבולרי הווירטואלי, יוצרים אוסטאוטומיות משלימות כדי להבטיח הצמדה מלאה בין קטעי העצם - כלומר שהצורה של קצה השוקה החתוכה תואמת בדיוק לצורה של קצה הלסת החתוכה. תשובות 1, 2, 4 אינן תואמות להגדרה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. לפי הפרק, מהו מקור השגיאה העיקרי בדיוק התוצאה הסופית, למרות שהתכנון הווירטואלי עצמו מדויק מאוד?</div>
+  <button class="opt" data-i="0">כיפוף ידני (hand bending) של פלטת הקיבוע התוך-ניתוחית, כאשר לא משתמשים בפלטה מותאמת-מראש</button>
+  <button class="opt" data-i="1">רזולוציית ה-CT הראשוני, שתמיד נמוכה מדי</button>
+  <button class="opt" data-i="2">חוסר ניסיון של מהנדסי המידול</button>
+  <button class="opt" data-i="3">אי-דיוק מובנה בתוכנת ה-CAD עצמה</button>
+  <div class="explain">התשובה הנכונה: הפרק קובע במפורש ש"מקור השגיאה העיקרי כנראה נובע מכיפוף ידני של פלטת השחזור" - שלב זה בוצע תוך-ניתוחית לפני הכנסת פלטות מותאמות-אישית שמגיעות כבר מעוצבות. עם המעבר לפלטות אלה, הדיוק השתפר משמעותית. תשובות 1, 2, 4 אינן מוזכרות כמקור השגיאה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו העיקרון המנחה לגבי אורך מינימלי של קטעי עצם בתכנון שחזור מרובה-קטעים (כגון double barrel fibula)?</div>
+  <button class="opt" data-i="0">אין מגבלת אורך כל עוד יש מדריך חיתוך מדויק</button>
+  <button class="opt" data-i="1">קטעים קצרים מ-5 ס"מ אסורים לחלוטין</button>
+  <button class="opt" data-i="2">האורך המינימלי נקבע רק לפי צרכי השתלים הדנטליים, לא לפי אספקת דם</button>
+  <button class="opt" data-i="3">יש לשמור על קטעי עצם באורך של לפחות כ-2 ס"מ כדי לשמר זרימת דם תקינה לקטע</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין באופן מפורש בנקודות המפתח שכאשר מתכננים את מיקום קטעי העצם, יש "לתכנן שקטעי עצם יישארו לפחות 2 ס"מ באורכם כדי לשמר זרימת דם מתאימה" - זהו שיקול ביולוגי (וסקולרי) ולא רק גיאומטרי. תשובות 1-3 אינן תואמות את העיקרון שמוצג בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו "Jaw in a Day", כפי שמוזכר בהקשר לשיקום דנטלי מיידי בעזרת VSP?</div>
+  <button class="opt" data-i="0">שיטה לביצוע כל הניתוחים הפנים-פציאליים של מטופל בתוך יום אחד ללא קשר לדנטליה</button>
+  <button class="opt" data-i="1">פרוטוקול שמחייב להמתין שנה שלמה לפני השתלת implants</button>
+  <button class="opt" data-i="2">גישה משולבת שבה שחזור עצם הלסת, השתלת שתלים אוסאואינטגרטיביים, ואף הרכבת תותבת שיניים - מבוצעים כולם באותו ניתוח, בזכות תכנון וירטואלי מדויק מראש</button>
+  <button class="opt" data-i="3">שיטת הדמיה חדשה שמחליפה את הצורך ב-CT</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר במפורש (ומפנה למקור Levine et al., "Jaw in a day: total maxillofacial reconstruction using digital technology") שבזכות דיוק התכנון הווירטואלי, ניתן במקרים שפירים נבחרים לתכנן ולבצע שחזור עצם, השתלת שתלים דנטליים ואף תותבת - הכול בניתוח יחיד, ולא בתהליך מדורג על פני חודשים. תשובות 1, 2, 4 אינן תואמות את התיאור בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מדוע מדריכי חיתוך (cutting guides) שימושיים במיוחד בשחזור מבוסס עצם שכמה (scapula), בהשוואה לשוקה?</div>
+  <button class="opt" data-i="0">כי עצם השכמה קלה יותר להדפסה בתלת-ממד</button>
+  <button class="opt" data-i="1">כי עצם השכמה דקה יחסית וסביבתה עמוסת רקמה רכה שמקשה על ראייה תוך-ניתוחית ישירה - כך שמדריך מדויק מפחית סיכון לשבר בלתי-מכוון בעת ביצוע מספר אוסטאוטומיות</button>
+  <button class="opt" data-i="2">כי אין צורך כלל בהדמיה מקדימה בעצם השכמה</button>
+  <button class="opt" data-i="3">כי עצם השכמה משמשת רק לשחזור סינוס פרונטלי ולא ללסת</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין שבגלל האופי הדק של עצם השכמה, מדריכי חיתוך מועילים במיוחד כאשר נדרשים מספר קטעים לשחזור, כדי להפחית את הסיכון לשבר בלתי-מכוון, וגם מפני שהחשיפה החזותית מוגבלת בשל השרירים והרקמה הרכה הרבים סביב האזור. תשובות 1, 3, 4 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>VSP/CAD-CAM</b> מעבירים את שלב "החשיבה התלת-ממדית" מהניתוח עצמו לתכנון מוקדם על מודל וירטואלי מדויק, המתורגם למדריכי חיתוך ופלטות קיבוע מותאמות אישית.</li>
+    <li>ארבעה שלבים קבועים: <b>תכנון (CT/CTA) &#8592; מידול (פגישת ווב, מדריכים) &#8592; ניתוחי (יישום מדריכים) &#8592; הערכה (השוואה ל-CT פוסט-ניתוחי)</b>.</li>
+    <li>היישום המרכזי: שחזור לסת תחתונה בפלאפ שוק חופשי (Fibula Free Flap - התקן הזהב), עם אוסטאוטומיות משלימות שמבטיחות הצמדה מלאה, ומדריכים עם "חורים חזויים" לקיבוע מדויק.</li>
+    <li>דיוק אופייני: 1-5 מ"מ; <b>מקור השגיאה העיקרי הוא כיפוף ידני של הפלטה</b>, לא התכנון הדיגיטלי עצמו - השתפר משמעותית עם פלטות מותאמות-מראש.</li>
+    <li>שמירה על קטעי עצם &#8805; 2 ס"מ (אספקת דם); פגישת תכנון מולטי-דיסציפלינרית חובה.</li>
+    <li>יישומים נוספים: טראומה פנים-פציאלית מרובת קטעים (virtual reduction, סדים וטמפלטים), סינוס פרונטלי (גישה מינימלית ללא קרניוטומיה מלאה), ו-TMJ/בסיס גולגולת (מעבר משיטה דו-שלבית לניתוח בטוח בשלב אחד עם ניווט).</li>
+    <li>"Jaw in a Day" - שחזור עצם + שתלים דנטליים + תותבת, הכול בניתוח יחיד, בזכות דיוק התכנון המוקדם.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
