@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>פגיעה תאית — התאמות תאיות (Cellular Injury — Cellular Adaptations)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>פגיעה תאית — התאמות תאיות <span class="term" dir="ltr">(Cellular Injury — Cellular Adaptations)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section II — Pathology &middot; יחידה 17/20 בתוכנית הלימוד</div>
+
+<p>לפני שתא "נשבר" (פגיעה בלתי-הפיכה ומוות תאי — נושא שנרחיב עליו ביחידות הבאות בפרק הפתולוגיה), יש לו רפרטואר של תגובות <b>הפיכות</b> לשינוי בדרישה הפיזיולוגית או בעומס הסביבתי. אלו הן <b>ההתאמות התאיות</b> <span class="term" dir="ltr">(cellular adaptations)</span>: היפרטרופיה, היפרפלזיה, אטרופיה, מטאפלזיה ודיספלזיה — ולצידן שתי תקלות התפתחותיות עובריות, אפלזיה והיפופלזיה. אלו מהנושאים ה"קלאסיים" ביותר ב-Step 1 בדיוק כי כמעט כל שאלה עליהם בנויה על "יוצא מן הכלל" שקל להתבלבל בו (לב שלא יכול לעבור היפרפלזיה, BPH שלא מסוכן, מטאפלזיה אפוקרינית שלא מסוכנת, myositis ossificans שמחקה סרקומה) — ולכן הסיכום הזה בנוי כך שכל כלל מלווה מיד ב"יוצא הדופן" שלו.</p>
+
+<h2><span class="num">2</span> המנגנונים המרכזיים — למה כל דבר קורה</h2>
+
+<h3>2.1 הומאוסטזיס, היפרטרופיה והיפרפלזיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>הומאוסטזיס</b> תאי הוא מצב שיווי-משקל בין הדרישה הפיזיולוגית לתא (עומס מכני, גירוי הורמונלי, דרישה מטבולית) לבין המבנה והתפקוד שלו. כששינוי בדרישה הזו נמשך זמן מספיק, התא לא "נשאר" במצבו הישן ולא "נשבר" — הוא <b>מתאים את עצמו</b> למצב חדש של שיווי-משקל. שני המנגנונים הבסיסיים ביותר להתאמה כלפי מעלה (יותר עומס/דרישה) הם היפרטרופיה והיפרפלזיה, ולרוב הם קורים <b>יחד</b> (למשל ברחם בהיריון, או בשד בהתבגרות המינית).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b class="key">היפרטרופיה</b> <span class="term" dir="ltr">(hypertrophy)</span> — הגדלת <b>גודל</b> התא הבודד. הגירוי (עומס מכני מוגבר, גורם גדילה, גירוי הורמונלי) <b>מפעיל גנים</b> ספציפיים בתא → עלייה בסינתזת חלבון → יצירת אורגנלות נוספות ועלייה בייצור חלבוני הציטוסקלטון — כך שהתא בפועל "בונה יותר מכונות ייצור" בתוך אותו מפעל, ולא בונה מפעל נוסף. דוגמה קלאסית: קרדיומיוציט שגדל בתגובה לעומס-יתר (יתר לחץ דם, היצרות אבי העורקים).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b class="key">היפרפלזיה</b> <span class="term" dir="ltr">(hyperplasia)</span> — עלייה <b>במספר</b> התאים ברקמה, המגיעה מחלוקה מיטוטית של <b>תאי גזע</b> (stem cells) הקיימים ברקמה. כלומר: היפרפלזיה מחייבת שברקמה יהיו בכלל תאי גזע מסוגלים להתחלק.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>יוצא הדופן החשוב ביותר בנושא זה: רקמות קבועות</b> <span class="term" dir="ltr">(permanent tissues)</span> — קרדיומיוציטים, תאי שריר השלד, ונוירונים — הן תאים שאין בהם (או כמעט אין) תאי גזע פעילים, ולכן הן <b>יכולות לעבור היפרטרופיה בלבד, לעולם לא היפרפלזיה</b>. זו הסיבה שלב שעובר עומס-יתר כרוני (יתר לחץ דם לא מאוזן) עובר <b>היפרטרופיה של שריר הלב</b> ולא היפרפלזיה — קרדיומיוציטים בודדים גדלים משמעותית, אך מספרם כמעט ואינו עולה. זו שאלה קלאסית בבחינה: "האם שריר הלב שעבר עיבוי עבר היפרטרופיה או היפרפלזיה?" — התשובה תמיד <b>היפרטרופיה</b>, בדיוק בגלל שקרדיומיוציטים הם רקמה קבועה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    היפרפלזיה <b>פתולוגית</b> (לא רק פיזיולוגית כמו בהיריון) עלולה, אם היא נמשכת זמן רב, להתקדם לדיספלזיה ואף לסרטן (למשל היפרפלזיה של רירית הרחם שיכולה להתקדם לסרטן אנדומטריום). <b>יוצא הדופן השני החשוב</b>: <b class="key">היפרפלזיה שפירה של הערמונית</b> <span class="term" dir="ltr">(benign prostatic hyperplasia, BPH)</span> — למרות שזו היפרפלזיה, <b>אין לה שום קשר מוגבר לסיכון לסרטן הערמונית</b>. BPH נגרמת מהצטברות דיהידרוטסטוסטרון <span class="term" dir="ltr">(DHT)</span> שמעורר היפרפלזיה של התאים האפיתליאליים והסטרומליים באזור המעברי/פריאורטרלי של הערמונית (לא באזור ההיקפי שבו נוטים להתפתח גידולים ממאירים) — ולכן מבחינה קלינית והיסטולוגית זהו מסלול נפרד לגמרי מסרטן הערמונית.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>היפרטרופיה מול היפרפלזיה, ויוצא הדופן של רקמות קבועות</title>
+  <text x="430" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">תגובה לעלייה בדרישה הפיזיולוגית</text>
+  <rect x="20" y="45" width="240" height="70" rx="8" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="140" y="72" font-size="12.5" text-anchor="middle" fill="#1f2937">תא/רקמה במצב בסיס</text>
+  <text x="140" y="92" font-size="11" text-anchor="middle" fill="#4b5563">(הומאוסטזיס)</text>
+  <polygon points="270,80 290,72 290,88" fill="#4b5563"/>
+
+  <rect x="300" y="20" width="250" height="95" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="425" y="42" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">היפרטרופיה</text>
+  <text x="425" y="62" font-size="11" text-anchor="middle" fill="#1f2937">↑סינתזת חלבון+אורגנלות</text>
+  <text x="425" y="80" font-size="11" text-anchor="middle" fill="#1f2937">תא בודד גדל בגודלו</text>
+  <text x="425" y="98" font-size="10.5" text-anchor="middle" fill="#1e3a8a">היחיד האפשרי ברקמה קבועה</text>
+
+  <rect x="300" y="130" width="250" height="95" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="425" y="152" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">היפרפלזיה</text>
+  <text x="425" y="172" font-size="11" text-anchor="middle" fill="#1f2937">חלוקת תאי גזע</text>
+  <text x="425" y="190" font-size="11" text-anchor="middle" fill="#1f2937">עלייה במספר התאים</text>
+  <text x="425" y="208" font-size="10.5" text-anchor="middle" fill="#b91c1c">דורשת תאי גזע ברקמה!</text>
+
+  <polygon points="560,67 580,60 580,75" fill="#2563eb"/>
+  <polygon points="560,177 580,170 580,185" fill="#047857"/>
+
+  <rect x="600" y="20" width="240" height="95" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="720" y="42" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">רקמה רגילה (למשל שריר חלק)</text>
+  <text x="720" y="62" font-size="11" text-anchor="middle" fill="#1f2937">יש תאי גזע →</text>
+  <text x="720" y="80" font-size="11" text-anchor="middle" fill="#1f2937">היפרטרופיה + היפרפלזיה יחד</text>
+
+  <rect x="600" y="130" width="240" height="95" rx="8" fill="#fce7f3" stroke="#a21caf"/>
+  <text x="720" y="150" font-size="12" font-weight="700" text-anchor="middle" fill="#701a75">רקמה קבועה</text>
+  <text x="720" y="168" font-size="11" text-anchor="middle" fill="#1f2937">קרדיומיוציט, שריר שלד, נוירון</text>
+  <text x="720" y="186" font-size="11" text-anchor="middle" fill="#1f2937">אין תאי גזע →</text>
+  <text x="720" y="204" font-size="11" font-weight="700" text-anchor="middle" fill="#701a75">היפרטרופיה בלבד!</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/M87yqroIPHo" title="Cellular Adaptations: Hypertrophy, Hyperplasia, Atrophy, & Metaplasia" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון סקירה על ארבע ההתאמות התאיות המרכזיות (היפרטרופיה, היפרפלזיה, אטרופיה, מטאפלזיה) ברמת USMLE. מקור: <a href="https://www.youtube.com/watch?v=M87yqroIPHo" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — היפרטרופיה והיפרפלזיה</h4>
+  <p>
+    <b>"היפרטרופיה = TROPHY בגודל אחד גדול; היפרפלזיה = PLUS תאים רבים"</b> — <span class="term" dir="ltr">Hyper-TROPHY</span> נשמע כמו "טרופיאה" ענקית אחת (תא אחד שגדל); <span class="term" dir="ltr">Hyper-PLASia</span> נשמע כמו "PLUS" (יותר תאים).<br>
+    <b>דמיינו מפעל</b>: היפרטרופיה = קונים מכונות גדולות יותר לאותו מפעל (אותו מבנה, יותר ייצור); היפרפלזיה = פותחים עוד קווי-מפעל חדשים (עוד יחידות). <b>אבל</b> בלב, בשריר השלד ובנוירונים <b>אי אפשר לפתוח קו-ייצור חדש</b> — רק להגדיל את הקיים.<br>
+    <b>"BPH לא שווה קנצר"</b> — היפרפלזיה שפירה של הערמונית פועלת דרך DHT באזור המעברי, לא באזור ההיקפי שבו מתפתח סרטן.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 170" xmlns="http://www.w3.org/2000/svg">
+  <title>איור לסיפור הדמיוני - מפעל אחד עם מכונות גדולות מול כמה קווי ייצור</title>
+  <rect x="30" y="20" width="360" height="130" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="210" y="42" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">היפרטרופיה: מכונה אחת ענקית</text>
+  <rect x="150" y="60" width="120" height="70" rx="8" fill="#bfdbfe" stroke="#1e3a8a"/>
+  <text x="210" y="100" font-size="26" text-anchor="middle" fill="#1e3a8a">🏭</text>
+
+  <rect x="470" y="20" width="360" height="130" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="650" y="42" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">היפרפלזיה: הרבה מכונות קטנות</text>
+  <rect x="500" y="65" width="55" height="55" rx="6" fill="#a7f3d0" stroke="#065f46"/>
+  <rect x="565" y="65" width="55" height="55" rx="6" fill="#a7f3d0" stroke="#065f46"/>
+  <rect x="630" y="65" width="55" height="55" rx="6" fill="#a7f3d0" stroke="#065f46"/>
+  <rect x="695" y="65" width="55" height="55" rx="6" fill="#a7f3d0" stroke="#065f46"/>
+  <rect x="760" y="65" width="55" height="55" rx="6" fill="#a7f3d0" stroke="#065f46"/>
+</svg>
+
+<h3>2.2 אטרופיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>אטרופיה</b> <span class="term" dir="ltr">(atrophy)</span> היא ירידה בגודל האיבר בתגובה לירידה בעומס/במתח המופעל עליו (חוסר שימוש, ירידה בעצבוב, ירידה באספקת דם, ירידה בגירוי הורמונלי, תת-תזונה, או פשוט הזדקנות). ירידת הגודל של האיבר כולו מושגת בשני מסלולים משלימים, שפועלים ברמת התא הבודד:
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>1. ירידה בגודל התאים הקיימים</b> — באמצעות שני מנגנוני פירוק תוך-תאיים: <b class="key">מסלול היוביקוויטין-פרוטאזום</b> <span class="term" dir="ltr">(ubiquitin-proteasome degradation pathway)</span>, שבו חלבוני ציטוסקלטון ואברוני-תא מסומנים בתגית יוביקוויטין ומופנים לפירוק בפרוטאזום — כלומר התא פשוט "מפרק ומוכר" חלק מהתכולה שלו כדי לצמצם את עצמו. ו<b class="key">אוטופאגיה</b> <span class="term" dir="ltr">(autophagy)</span> — התא "אוכל את עצמו" ממש: נוצרות ואקואולות אוטופגיות (autophagic vacuoles) שבולעות אברונים פגומים/מיותרים ומעכלות אותם באמצעות ליזוזומים; שאריות בלתי-מתעכלות מצטברות כפיגמנט <span class="term" dir="ltr">ליפופוסצין (lipofuscin)</span> — הפיגמנט ה"חום-צהוב של ההזדקנות" שרואים בתאים אטרופיים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>2. ירידה במספר התאים</b> — באמצעות <b class="key">אפופטוזיס</b> <span class="term" dir="ltr">(apoptosis)</span>, מוות תאי מתוכנת ומסודר של תאים בודדים ברקמה (ללא תגובה דלקתית, בניגוד לנמק). כאשר האטרופיה חמורה וממושכת מספיק, לא רק שהתאים הקיימים מצטמצמים — חלקם גם נעלמים לגמרי.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שני מסלולי האטרופיה</title>
+  <text x="430" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">ירידה בעומס/דרישה על האיבר</text>
+  <polygon points="330,40 350,40 340,58" fill="#4b5563"/>
+  <polygon points="510,40 530,40 520,58" fill="#4b5563"/>
+
+  <rect x="30" y="65" width="380" height="130" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="220" y="88" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">מסלול 1: הקטנת התא עצמו</text>
+  <text x="220" y="110" font-size="11" text-anchor="middle" fill="#1f2937">יוביקוויטין-פרוטאזום — "תיוג ופירוק" חלבונים</text>
+  <text x="220" y="130" font-size="11" text-anchor="middle" fill="#1f2937">אוטופאגיה — ואקואולות "אוכלות" אברונים</text>
+  <text x="220" y="150" font-size="11" text-anchor="middle" fill="#1f2937">שארית: פיגמנט ליפופוסצין</text>
+  <text x="220" y="175" font-size="11" font-weight="700" text-anchor="middle" fill="#1e3a8a">← תא קטן יותר, לא נעלם</text>
+
+  <rect x="450" y="65" width="380" height="130" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="640" y="88" font-size="13" font-weight="700" text-anchor="middle" fill="#7f1d1d">מסלול 2: הקטנת מספר התאים</text>
+  <text x="640" y="115" font-size="11" text-anchor="middle" fill="#1f2937">אפופטוזיס — מוות תאי מתוכנת ומסודר</text>
+  <text x="640" y="135" font-size="11" text-anchor="middle" fill="#1f2937">ללא תגובה דלקתית (בניגוד לנמק)</text>
+  <text x="640" y="175" font-size="11" font-weight="700" text-anchor="middle" fill="#7f1d1d">← תאים שלמים נעלמים</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/4_0-7UOAgx8" title="Apoptosis vs. Necrosis - Cell Death - Pathology Series" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הבדלים בין אפופטוזיס לנמק — רלוונטי להבנת אחד משני מנגנוני האטרופיה (ירידה במספר התאים). מקור: <a href="https://www.youtube.com/watch?v=4_0-7UOAgx8" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — אטרופיה</h4>
+  <p><b>"Shrink or Sink"</b> — יוביקוויטין-פרוטאזום ואוטופאגיה גורמים לתא <b>להתכווץ (shrink)</b>; אפופטוזיס גורם לתא <b>לשקוע/להיעלם (sink)</b> לגמרי. שני הכיוונים יחד = איבר קטן יותר.</p>
+</div>
+
+<h3>2.3 מטאפלזיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>מטאפלזיה</b> <span class="term" dir="ltr">(metaplasia)</span> היא שינוי מסוג תא <b>בוגר אחד</b> לסוג תא <b>בוגר אחר</b>, בתגובה לשינוי כרוני בסוג הלחץ/הגירוי שהתא חשוף לו. היא קורית לרוב באפיתל פני השטח <span class="term" dir="ltr">(surface epithelium)</span>, והתא ה"חדש" בדרך כלל מסתגל <b>טוב יותר</b> לתנאי הלחץ החדשים מהתא המקורי. חשוב להבין את המנגנון הביולוגי המדויק: מטאפלזיה <b>אינה</b> "הפיכת" תא בוגר קיים לתא בוגר אחר — היא מתרחשת באמצעות <b>"תכנות מחדש"</b> <span class="term" dir="ltr">(reprogramming)</span> של <b>תאי הגזע</b> של הרקמה, כך שהם מתחילים להתמיין לכיוון סוג התא החדש במקום הסוג המקורי.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    הדוגמה הקלאסית ביותר: <b class="key">ושט בארט</b> <span class="term" dir="ltr">(Barrett esophagus)</span> — אפיתל סקוואמוזי <span class="term" dir="ltr">(squamous epithelium)</span> בוושט התחתון הופך לאפיתל קולומנרי <span class="term" dir="ltr">(columnar epithelium)</span> עם תאי גביע <span class="term" dir="ltr">(goblet cells)</span> — מטאפלזיה מסוג "מעי" (intestinal-type). הגורם: ריפלוקס כרוני של תוכן קיבה חומצי לוושט <span class="term" dir="ltr">(GERD)</span>. האפיתל הקולומנרי, בדומה לרירית המעי, עמיד יותר בפני חשיפה חוזרת לחומציות מאפיתל סקוואמוזי רגיל, ולכן ה"בחירה" של תאי הגזע להתמיין לכיוון הזה משפרת את סיכויי ההישרדות המקומית של הרקמה תחת הלחץ הכרוני.
+  </p>
+</div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Histopathology_of_Barrett's_esophagus,_annotated.jpg?width=650" alt="היסטופתולוגיה של ושט בארט - מעבר מאפיתל סקוואמוזי לאפיתל קולומנרי עם תאי גביע">
+<p class="media-cap">חתך היסטולוגי מתויג של ושט בארט: בצד אחד אפיתל סקוואמוזי (Ep) תקין, ובצד השני אפיתל קולומנרי עם תאי גביע (Barrett's Esophagus) — קו הגבול ביניהם הוא אזור המטאפלזיה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Histopathology_of_Barrett's_esophagus,_annotated.jpg" target="_blank">Wikimedia Commons</a>.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Barretts_esophagus_alcian_blue.jpg?width=650" alt="צביעת אלשיאן בלו המדגימה תאי גביע בושט בארט">
+<p class="media-cap">צביעה היסטוכימית ייעודית (Alcian blue) המדגישה בכחול את המוצין בתוך תאי הגביע — כלי עזר לאישוש מטאפלזיה מסוג מעי בביופסיית ושט. מקור: <a href="https://commons.wikimedia.org/wiki/File:Barretts_esophagus_alcian_blue.jpg" target="_blank">Wikimedia Commons</a>.</p>
+
+<div class="mechanism">
+  <p class="chain">
+    מטאפלזיה היא <b>הפיכה</b> — אם הגורם המלחיץ מוסר (למשל טיפול יעיל ב-GERD עם מעכבי משאבת פרוטונים, או ניתוח אנטי-רפלוקס), תאי הגזע יכולים "לחזור" ולהתמיין לכיוון המקורי. אך אם הגירוי הכרוני נמשך, המטאפלזיה עלולה <b>להתקדם לדיספלזיה ואף לסרטן</b> — בושט בארט זהו הבסיס לסיכון המוגבר לאדנוקרצינומה של הוושט, ולכן מטופלים עם ושט בארט עוברים מעקב אנדוסקופי תקופתי עם ביופסיות לאיתור דיספלזיה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>יוצא דופן שאוהבים לשאול עליו:</b> <b class="key">מטאפלזיה אפוקרינית</b> <span class="term" dir="ltr">(apocrine metaplasia)</span> — חלק מהשינויים הפיברוציסטיים השפירים בשד <span class="term" dir="ltr">(fibrocystic changes)</span> — <b>אינה מעלה סיכון לסרטן</b>, בניגוד לרוב המטאפלזיות האחרות שמוזכרות כאן. זהו טריק בחינה נפוץ: "אם יש מטאפלזיה, זה תמיד גורם סיכון לממאירות" — משפט שגוי, וזו הדוגמה הנגדית הקלאסית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מחסור בויטמין A</b> יכול לגרום למטאפלזיה סקוואמוזית באפיתלים שבדרך כלל אינם סקוואמוזיים — דוגמה קלאסית: <b class="key">קרטומלציה</b> <span class="term" dir="ltr">(keratomalacia)</span>, שבה אפיתל הלחמית/הקרנית עובר מטאפלזיה לאפיתל סקוואמוזי קרטיני יבש, מה שפוגע בשימון התקין של העין וגורם ליובש, כיוב והתרככות הקרנית. ויטמין A גם נחוץ להתמיינות תקינה של תאי המערכת החיסונית (כולל הבשלה של תאים פרומיאלוציטיים במח העצם) — ולכן מחסור בו יכול לפגוע גם בכיוון ההתמיינות המיאלואידית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מטאפלזיה אינה מוגבלת לאפיתל: גם <b class="key">תאי גזע מזנכימליים</b> <span class="term" dir="ltr">(mesenchymal stem cells)</span> — כמו אלו שבתוך רקמת השריר והחיבור — יכולים לעבור "תכנות מחדש" לסוג רקמה בוגר אחר. הדוגמה הקלאסית: <b class="key">Myositis ossificans</b> — לאחר טראומה לשריר השלד (למשל חבטה חזקה), הדלקת המקומית הנוצרת מפעילה מטאפלזיה של תאי הגזע המזנכימליים ברקמת השריר הפגועה <b>לרקמת עצם</b> בשלה, במקום לתיקון שריר רגיל.
+  </p>
+</div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Heterotopic_Ossification_Elbow1.JPG?width=650" alt="צילום רנטגן המדגים ossification הטרוטופי ברקמה רכה, עם עצם תקינה סמוכה">
+<p class="media-cap">צילום רנטגן המדגים היווצרות עצם ברקמה רכה (heterotopic ossification — הקטגוריה הרחבה שכוללת גם myositis ossificans טראומטית) בסמוך לעצם תקינה לחלוטין. מקור: <a href="https://commons.wikimedia.org/wiki/File:Heterotopic_Ossification_Elbow1.JPG" target="_blank">Wikimedia Commons</a>.</p>
+
+<div class="key-box">
+  <p>שאלה קלאסית מכשילה ב-Step 1: מציגים צילום שנראה כמו <b>אוסטאוסרקומה</b> <span class="term" dir="ltr">(osteosarcoma)</span> — מסה חדשה עם היווצרות עצם. אך ב-<span class="term" dir="ltr">myositis ossificans</span>: (1) <b>העצם הסמוכה נראית תקינה לחלוטין</b> (אין הרס/חדירה לעצם המקורית), ו-(2) יש <b>הפרדה ברורה (zonation)</b> בין הרקמה החדשה שנוצרה לבין העצם — האזור ההיקפי מוסתת ובשל, בעוד המרכז פחות מאורגן ("zonation הפוך" ביחס לגידול). זה שונה לחלוטין מהתבנית ה<b>חודרנית</b> וחסרת הגבול הברור של אוסטאוסרקומה. ההקשר הקליני (טראומה קודמת ברורה) הוא רמז נוסף וחשוב.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Wq6rQ5Karp8" title="Myositis Ossificans (benign mimic of sarcoma)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר רדיולוגי על myositis ossificans כחיקוי שפיר של סרקומה, כולל ההבדלים ההדמייתיים (zonation, עצם סמוכה תקינה) שמפרידים בין השניים. מקור: <a href="https://www.youtube.com/watch?v=Wq6rQ5Karp8" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — מטאפלזיה</h4>
+  <p>
+    <b>דמיינו "החלפת תחפושת" של תאי הגזע</b> — לא שהתא הבוגר עצמו מחליף בגדים, אלא שה"מפעל" (תאי הגזע) מקבל הוראת ייצור חדשה ומתחיל להלביש את כל הדור הבא בתחפושת אחרת, המתאימה יותר לסביבה החדשה (חומצה בוושט → "תחפושת" עמידה יותר של תאי מעי).<br>
+    <b>"A for Apocrine, A for All-clear"</b> — מטאפלזיה אפוקרינית בשד = יוצא הדופן ה"נקי" מסיכון סרטני.<br>
+    <b>"A for Vitamin A, A for Arid eyes"</b> — מחסור בויטמין A → קרטומלציה, עיניים יבשות/מקורנות.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 170" xmlns="http://www.w3.org/2000/svg">
+  <title>איור לסיפור הדמיוני - החלפת תחפושת של תאי גזע</title>
+  <rect x="30" y="20" width="360" height="130" rx="10" fill="#fef3c7" stroke="#b45309"/>
+  <text x="210" y="42" font-size="12.5" font-weight="700" text-anchor="middle" fill="#92400e">לפני: תאי גזע "מלבישים" סקוואמוזי</text>
+  <text x="120" y="100" font-size="30" text-anchor="middle">🧍</text>
+  <text x="210" y="100" font-size="30" text-anchor="middle">🧍</text>
+  <text x="300" y="100" font-size="30" text-anchor="middle">🧍</text>
+  <text x="210" y="130" font-size="11" text-anchor="middle" fill="#92400e">"תחפושת" סקוואמוזית רגילה</text>
+
+  <polygon points="400,75 440,75 440,60 460,85 440,110 440,95 400,95" fill="#4b5563"/>
+
+  <rect x="470" y="20" width="360" height="130" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="650" y="42" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">אחרי: הוראת-ייצור חדשה → קולומנרי</text>
+  <text x="560" y="100" font-size="30" text-anchor="middle">🧑‍🍳</text>
+  <text x="650" y="100" font-size="30" text-anchor="middle">🧑‍🍳</text>
+  <text x="740" y="100" font-size="30" text-anchor="middle">🧑‍🍳</text>
+  <text x="650" y="130" font-size="11" text-anchor="middle" fill="#065f46">"תחפושת" עמידה יותר לחומצה</text>
+</svg>
+
+<h3>2.4 דיספלזיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>דיספלזיה</b> <span class="term" dir="ltr">(dysplasia)</span> היא <b>חוסר-ארגון</b> בגדילת התאים ברקמה — מבחינת גודל, צורה וארגון האדריכלות התאית ביחס לרקמה התקינה. ברוב המקרים המונח משמש לתיאור פרוליפרציה של תאים <b>טרום-סרטניים</b> <span class="term" dir="ltr">(precancerous cells)</span>. הדוגמה השכיחה ביותר בבחינה: <b class="key">CIN</b> <span class="term" dir="ltr">(cervical intraepithelial neoplasia)</span> — דיספלזיה של אפיתל צוואר הרחם, המדורגת (CIN 1-3) לפי אחוז עובי האפיתל שתפוס בתאים לא-מאורגנים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    דיספלזיה לרוב <b>לא נוצרת "יש מאין"</b> — היא בדרך כלל שלב מאוחר יותר בשרשרת שמתחילה בהיפרפלזיה פתולוגית ממושכת או במטאפלזיה ממושכת (בדיוק כפי שתואר בשני הסעיפים הקודמים). ההבדל הקריטי לזכור: <b>דיספלזיה עצמה עדיין הפיכה</b> — אם מסלקים את הגורם (למשל כריתת האזור הדיספלסטי בצוואר הרחם, או חיסון/טיפול בזיהום HPV שגרם לו), הרקמה יכולה לחזור לתקינות. אך אם הדיספלזיה <b>מתקדמת ופורצת את קרום הבסיס</b> והופכת לקרצינומה פולשנית <span class="term" dir="ltr">(carcinoma)</span> — זהו <b>קו הגבול ההופך את המצב לבלתי-הפיך</b>.
+  </p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/GpweJOYDgW4" title="General Pathology – Part 1 | Cell Injury, Necrosis, Apoptosis & Cellular Adaptations" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת יסוד רחבה על ההתאמות התאיות בהקשר הכללי של פתולוגיה ופגיעה תאית — טובה לחיבור בין כל תת-הנושאים שבסיכום זה. מקור: <a href="https://www.youtube.com/watch?v=GpweJOYDgW4" target="_blank">YouTube</a></p>
+
+<h3>2.5 אפלזיה והיפופלזיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    בניגוד לכל ההתאמות שתוארו למעלה (שקורות ברקמה <b>בוגרת</b>, אחרי הלידה), אפלזיה והיפופלזיה הן <b>תקלות התפתחותיות</b> שמקורן <b>באמבריוגנזה</b> עצמה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b class="key">אפלזיה</b> <span class="term" dir="ltr">(aplasia)</span> — כישלון <b>מוחלט</b> של גדילת רקמה או איבר במהלך ההתפתחות העוברית (מהיוונית: <b>א-</b> = חוסר, <b>-פלזיה</b> = גדילה) — האיבר פשוט לא נוצר כלל.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b class="key">היפופלזיה</b> <span class="term" dir="ltr">(hypoplasia)</span> — ירידה ב<b>ייצור התאים</b> במהלך האמבריוגנזה, שתוצאתה איבר שכן נוצר, אך <b>קטן מהתקין</b>. הדוגמה הקלאסית: <b class="key">שחלה פסיכית/רצועתית</b> <span class="term" dir="ltr">(streak ovary)</span> בתסמונת טרנר <span class="term" dir="ltr">(Turner syndrome, 45,X)</span> — במקום שחלה תפקודית מלאה, נוצרת רצועת רקמת חיבור פיברוטית עם מעט מאוד או ללא זקיקים, כתוצאה מהתמעטות מואצת ובלתי-תקינה של הזקיקים העובריים.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>הספקטרום המלא - מהתאמה הפיכה בוגרת ועד תקלה עוברית</title>
+  <text x="430" y="22" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">ציר 1: התאמות תאיות ברקמה בוגרת (הפיכות, עד לפריצת קרום הבסיס)</text>
+  <rect x="15" y="35" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="90" y="67" font-size="11.5" text-anchor="middle" fill="#1f2937">היפרטרופיה/היפרפלזיה/אטרופיה</text>
+  <polygon points="170,60 190,53 190,68" fill="#4b5563"/>
+  <rect x="195" y="35" width="140" height="55" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="265" y="67" font-size="12" text-anchor="middle" fill="#92400e">מטאפלזיה</text>
+  <polygon points="340,60 360,53 360,68" fill="#4b5563"/>
+  <rect x="365" y="35" width="140" height="55" rx="8" fill="#fde68a" stroke="#b45309"/>
+  <text x="435" y="67" font-size="12" text-anchor="middle" fill="#92400e">דיספלזיה</text>
+  <polygon points="510,60 530,53 530,68" fill="#4b5563"/>
+  <rect x="535" y="35" width="150" height="55" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="610" y="60" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">קרצינומה</text>
+  <text x="610" y="78" font-size="10.5" text-anchor="middle" fill="#7f1d1d">בלתי-הפיך!</text>
+
+  <text x="430" y="130" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">ציר 2: תקלות התפתחותיות עובריות (לא הפיכות, לא קשורות לגירוי חיצוני)</text>
+  <rect x="200" y="145" width="200" height="65" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="300" y="170" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">אפלזיה</text>
+  <text x="300" y="190" font-size="11" text-anchor="middle" fill="#1f2937">האיבר לא נוצר כלל</text>
+  <rect x="460" y="145" width="200" height="65" rx="8" fill="#fce7f3" stroke="#a21caf"/>
+  <text x="560" y="170" font-size="12" font-weight="700" text-anchor="middle" fill="#701a75">היפופלזיה</text>
+  <text x="560" y="190" font-size="11" text-anchor="middle" fill="#1f2937">איבר קטן (למשל streak ovary)</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — אפלזיה והיפופלזיה, וסיכום כל הספקטרום</h4>
+  <p>
+    <b>"אפלזיה = Absent, היפופלזיה = Half-size"</b> — שתי המילים מתחילות כמעט אותו דבר בגלל שהן שתי דרגות של אותה בעיה עוברית (A ל-Absent, שתיהן "-plasia" לגדילה).<br>
+    <b>סולם ההיפוך</b>: כל עוד לא פרצנו את קרום הבסיס (היפרטרופיה→היפרפלזיה→אטרופיה→מטאפלזיה→דיספלזיה) — <b>אפשר לחזור אחורה</b>. ברגע שפרצנו אותו (קרצינומה פולשנית) — <b>אין דרך חזרה</b>.
+  </p>
+</div>
+
+<h2><span class="num">4</span> רלוונטיות קלינית מרכזית — טבלת ריכוז</h2>
+<table>
+  <thead><tr><th>התאמה</th><th>הדוגמה/ה"יוצא דופן" הקלאסי</th><th>נקודת המבחן</th></tr></thead>
+  <tbody>
+    <tr><td>היפרטרופיה בלבד (ללא היפרפלזיה)</td><td>קרדיומיוציט בעומס-יתר (יל"ד, היצרות אבי העורקים)</td><td>רקמה קבועה — אין תאי גזע</td></tr>
+    <tr><td>היפרפלזיה "בטוחה"</td><td>BPH — היפרפלזיה תלוית-DHT באזור המעברי</td><td>אינה מעלה סיכון לסרטן ערמונית</td></tr>
+    <tr><td>אטרופיה — הקטנת תא</td><td>יוביקוויטין-פרוטאזום, אוטופאגיה (ליפופוסצין)</td><td>מנגנון פירוק תוך-תאי, לא מוות תא</td></tr>
+    <tr><td>אטרופיה — הקטנת מספר תאים</td><td>אפופטוזיס</td><td>מוות מתוכנת, ללא דלקת</td></tr>
+    <tr><td>מטאפלזיה אפיתליאלית</td><td>ושט בארט (סקוואמוזי→קולומנרי+גביע, GERD)</td><td>הפיכה; יכולה להתקדם לאדנוקרצינומה</td></tr>
+    <tr><td>מטאפלזיה "בטוחה"</td><td>מטאפלזיה אפוקרינית (שינויים פיברוציסטיים בשד)</td><td>אינה מעלה סיכון לסרטן</td></tr>
+    <tr><td>מטאפלזיה ממחסור ויטמין A</td><td>קרטומלציה (סקוואמוזית בעין)</td><td>קשור גם להתמיינות מיאלואידית</td></tr>
+    <tr><td>מטאפלזיה מזנכימלית</td><td>Myositis ossificans (שריר→עצם, אחרי טראומה)</td><td>מחקה אוסטאוסרקומה — zonation ועצם תקינה מבדילים</td></tr>
+    <tr><td>דיספלזיה</td><td>CIN (צוואר הרחם)</td><td>הפיכה עד פריצת קרום הבסיס</td></tr>
+    <tr><td>אפלזיה</td><td>העדר מוחלט של איבר עוברי</td><td>תקלת התפתחות, לא תגובה לגירוי</td></tr>
+    <tr><td>היפופלזיה</td><td>Streak ovary בתסמונת טרנר (45,X)</td><td>איבר קטן שכן נוצר</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> משמעות קלינית: הפיכות, מעקב וטיפול לפי סוג ההתאמה</h2>
+<p>בניגוד לפרק "מבוסס-מחלה" עם תרופה ספציפית אחת, כאן ה"טיפול" הרלוונטי הוא בעיקר <b>זיהוי הגורם המלחיץ והסרתו</b> — כי רוב ההתאמות שתוארו כאן הפיכות. עם זאת, יש כמה נקודות ניהוליות קונקרטיות שכן נשאלות בבחינה:</p>
+
+<div class="surgery">
+  <h4>ושט בארט — מעקב, לא רק "לתת PPI"</h4>
+  <p>הטיפול בגורם (מעכבי משאבת פרוטונים כמו <span class="term" dir="ltr">Omeprazole</span>, שינוי אורח חיים, ובמקרים עמידים ניתוח אנטי-רפלוקס) מפחית את הגירוי החומצי אך <b>אינו הופך את המטאפלזיה הקיימת בהכרח</b>. לכן מטופלים עם ושט בארט מאובחן עוברים <b>מעקב אנדוסקופי תקופתי עם ביופסיות מרובות</b> לדירוג דיספלזיה (ללא דיספלזיה / דיספלזיה בדרגה נמוכה / דיספלזיה בדרגה גבוהה). כאשר מתגלה דיספלזיה בדרגה גבוהה (או אדנוקרצינומה מוקדמת) — הטיפול הוא לרוב <b>אבלציה אנדוסקופית בתדר רדיו</b> <span class="term" dir="ltr">(radiofrequency ablation, RFA)</span> של האזור הפגוע, שנועדה להשמיד את שכבת האפיתל הבארטי ולאפשר צמיחה מחדש של אפיתל סקוואמוזי תקין מתחתיה.</p>
+  <h4>CIN — לפי דרגה</h4>
+  <p>CIN בדרגה נמוכה (CIN 1) לרוב עובר נסיגה ספונטנית ומטופל במעקב בלבד (ציטולוגיה/קולפוסקופיה חוזרת). CIN בדרגה גבוהה יותר (CIN 2-3) מטופל בכריתה מקומית (<span class="term" dir="ltr">LEEP</span> — לולאת חשמל, או קוניזציה) כדי למנוע התקדמות לקרצינומה פולשנית. מניעה ראשונית: <b>חיסון נגד HPV</b>.</p>
+  <h4>BPH — טיפול תרופתי (רלוונטי כי זו "היפרפלזיה" שדורשת ניהול משלה)</h4>
+  <p>למרות שאינה קדם-ממאירה, BPH סימפטומטית (חסימת דרכי שתן) מטופלת בשתי קבוצות תרופתיות עיקריות: חוסמי אלפא-1 (כמו <span class="term" dir="ltr">Tamsulosin</span>) המרפים את השריר החלק בצוואר השלפוחית והערמונית להקלה מהירה על התסמינים, ומעכבי 5-אלפא-רדוקטאז (כמו <span class="term" dir="ltr">Finasteride, Dutasteride</span>) החוסמים את המרה של טסטוסטרון ל-DHT ומקטינים בפועל את נפח הבלוטה לאורך זמן.</p>
+  <h4>קרצינומה פולשנית — מעבר לגבול ההפיך</h4>
+  <p>ברגע שדיספלזיה פרצה את קרום הבסיס, הטיפול עובר לגמרי לעולם האונקולוגי (כריתה כירורגית, טיפול קרינתי/כימותרפי לפי סוג הגידול ושלב) — נושא שיפורט בהרחבה ביחידה 19 (ניאופלזיה) בהמשך תוכנית הלימוד.</p>
+</div>
+
+<h2><span class="num">7</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.osmosis.org/learn/Barrett_esophagus" target="_blank">Barrett esophagus — Osmosis</a>
+    <div class="desc">סקירה נוספת על מנגנון, אבחנה וטיפול בושט בארט.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Heterotopic_Ossification_Elbow1.JPG" target="_blank">Heterotopic Ossification (elbow) — Wikimedia Commons</a>
+    <div class="desc">תמונת רנטגן נוספת של היווצרות עצם ברקמה רכה, לעיון חוזר על התבנית ההדמייתית.</div>
+  </li>
+  <li>
+    <a href="https://radiopaedia.org/articles/myositis-ossificans" target="_blank">Myositis ossificans — Radiopaedia</a>
+    <div class="desc">מאמר ייחוס רדיולוגי עם תיאור שלבי ההתפתחות ההדמייתית של myositis ossificans לאורך זמן.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 52 עם היסטוריה של ריפלוקס קיבתי-ושטי כרוני (GERD) במשך כ-15 שנה, המטופל באופן לא-סדיר במעכבי משאבת פרוטונים, מגיע לבדיקת גסטרוסקופיה בעקבות תלונות על צרבת מתמשכת. באנדוסקופיה מזוהה אזור ורוד-סלמוני החורג מקו ה-Z (הגבול הרגיל בין אפיתל הוושט לקיבה) לתוך הוושט התחתון. נלקחת ביופסיה, ובבדיקה ההיסטולוגית מדווח פתולוג על "אפיתל קולומנרי עם תאי גביע" באזור זה, ללא עדות לדיספלזיה. שבוע לאחר מכן המטופל שואל את הרופא המטפל האם יש לו "כבר סרטן".</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה ההיסטולוגית המתוארת, ומהו המנגנון הישיר שגרם לה?</div>
+  <button class="opt" data-i="0">דיספלזיה בדרגה גבוהה — פרוליפרציה בלתי-מאורגנת של תאים טרום-סרטניים</button>
+  <button class="opt" data-i="1">מטאפלזיה (ושט בארט) — תכנות מחדש של תאי גזע אפיתליאליים לכיוון אפיתל קולומנרי עם תאי גביע, בתגובה לחשיפה חוזרת לחומצה</button>
+  <button class="opt" data-i="2">אטרופיה — ירידה בגודל התאים בעקבות חשיפה כרונית לחומצה</button>
+  <button class="opt" data-i="3">אפלזיה — כישלון התפתחותי של רירית הוושט</button>
+  <div class="explain">נכון: התיאור ההיסטולוגי (אפיתל קולומנרי + תאי גביע במקום סקוואמוזי, ללא דיספלזיה) הוא מטאפלזיה קלאסית — ושט בארט, הנגרם מתכנות מחדש של תאי גזע בתגובה לריפלוקס כרוני. דיספלזיה (א') הייתה כוללת חוסר-ארגון תאי, שלא תואר כאן במפורש ("ללא עדות לדיספלזיה"). אטרופיה (ב') מתארת הקטנת גודל/מספר תאים, לא שינוי סוג התא. אפלזיה (ד') היא תקלה עוברית ולא תגובה נרכשת בבגרות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה התשובה המדויקת ביותר לשאלת המטופל "האם יש לי כבר סרטן"?</div>
+  <button class="opt" data-i="0">כן, מטאפלזיה מוגדרת כשלב ראשון של סרטן</button>
+  <button class="opt" data-i="1">לא, ומעולם לא יהיה לו סיכון מוגבר, כי מטאפלזיה תמיד שפירה לחלוטין</button>
+  <button class="opt" data-i="2">לא — כרגע יש לו מטאפלזיה בלבד ללא דיספלזיה, מצב הפיך; אך יש לו סיכון מוגבר לאורך זמן להתקדמות לדיספלזיה ואף לאדנוקרצינומה, ולכן נדרש מעקב אנדוסקופי תקופתי</button>
+  <button class="opt" data-i="3">לא ניתן לדעת בלי בדיקת דם לסמן גידול</button>
+  <button class="opt" data-i="4">כן, כי כל שינוי היסטולוגי בוושט הוא ממאיר בהגדרה</button>
+  <div class="explain">נכון: מטאפלזיה כשלעצמה אינה סרטן והיא הפיכה, אך היא מהווה גורם סיכון להתקדמות עתידית (דרך דיספלזיה) לאדנוקרצינומה אם הגירוי הכרוני נמשך — ולכן נדרש מעקב, לא רק הרגעה. תשובה א' שגויה כי מטאפלזיה ודיספלזיה הם שני שלבים שונים, לא אותו דבר. תשובה ב' שגויה — זה נכון עבור מטאפלזיה אפוקרינית בשד, לא עבור ושט בארט. תשובה ד' ו-ה' אינן מדויקות קלינית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אילו תאים ברקמה "עוברים" בפועל את השינוי המטאפלסטי, לפי ההבנה המנגנונית המקובלת?</div>
+  <button class="opt" data-i="0">תאי הגזע של האפיתל, שמתכנתים מחדש להתמיין לכיוון תאי אפיתל קולומנרי במקום סקוואמוזי</button>
+  <button class="opt" data-i="1">התאים הסקוואמוזיים הבוגרים עצמם, שהופכים ישירות לתאים קולומנריים</button>
+  <button class="opt" data-i="2">תאי דם לבנים שמסתננים לרקמה ומחליפים אותה</button>
+  <button class="opt" data-i="3">תאי שריר חלק בדופן הוושט</button>
+  <div class="explain">נכון: מטאפלזיה מתרחשת דרך תכנות-מחדש של תאי הגזע, לא הפיכה ישירה ("טרנס-דיפרנציאציה") של תא בוגר לתא בוגר אחר. תאים בוגרים סופיים (א' השגוי בתשובה ב') אינם הופכים תפקוד; ההחלפה נעשית בדור התאים הבא שנוצר מתאי הגזע. תאי דם לבנים (ג') קשורים לתגובה דלקתית, לא למטאפלזיה עצמה. שריר חלק (ד') אינו האפיתל שעובר את השינוי כאן.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אם באותו מטופל היו מוצאים בביופסיה גם אזורים של תאים לא-מאורגנים, בגדלים וצורות משתנים, אך עדיין ללא פריצה של קרום הבסיס — כיצד היו מסווגים את המצב, והאם הוא עדיין הפיך?</div>
+  <button class="opt" data-i="0">קרצינומה פולשנית — בלתי הפיך</button>
+  <button class="opt" data-i="1">אפלזיה — בלתי הפיך, כי מדובר בתקלת התפתחות</button>
+  <button class="opt" data-i="2">אטרופיה — הפיך אך אינו קשור לממצא המתואר</button>
+  <button class="opt" data-i="3">דיספלזיה — עדיין הפיך, כל עוד קרום הבסיס לא נפרץ; זהו לרוב שלב מאוחר של מטאפלזיה ממושכת</button>
+  <div class="explain">נכון: חוסר-ארגון תאי (גודל/צורה/סדר) ללא פריצת קרום הבסיס הוא בדיוק ההגדרה של דיספלזיה — עדיין הפיכה, אך שלב מתקדם ומדאיג יותר ממטאפלזיה טהורה. קרצינומה (א') הייתה מחייבת פריצה בפועל של קרום הבסיס, שלא תוארה. אפלזיה (ב') אינה רלוונטית למצב נרכש בבגרות. אטרופיה (ג') מתארת תופעה שונה לגמרי (הקטנת גודל/מספר תאים).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. באותו הקשר של הפיגור בנטילת PPI, מדוע דווקא רקמת ושט התחתון (ולא למשל שריר הלב) יכולה בכלל לעבור מטאפלזיה בתגובה לגירוי כרוני?</div>
+  <button class="opt" data-i="0">כי שריר הלב עמיד באופן טבעי לכל שינוי מטאפלסטי</button>
+  <button class="opt" data-i="1">כי אפיתל הוושט הוא רקמה מתחדשת עם תאי גזע פעילים המסוגלים "להתכנת מחדש", בניגוד לקרדיומיוציטים שהם רקמה קבועה חסרת תאי גזע משמעותיים</button>
+  <button class="opt" data-i="2">כי מטאפלזיה יכולה להתרחש רק באיברים מתחת לסרעפת</button>
+  <button class="opt" data-i="3">כי חומציות פוגעת רק ברקמות אפיתליאליות ולא בשריר בכלל</button>
+  <div class="explain">נכון: מטאפלזיה תלויה בקיום תאי גזע שניתן "לתכנת מחדש" — אפיתל הוושט מתחדש כל הזמן ובעל תאי גזע פעילים, בעוד קרדיומיוציטים הם רקמה קבועה (כמו שנלמד בסעיף ההיפרטרופיה/היפרפלזיה) חסרת יכולת דומה. תשובות ב', ג' ו-ד' (במספור התשובות: א', ג', ד') אינן מבוססות עובדתית ואינן קשורות למנגנון האמיתי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופלת אחרת, בת 25 עם קומה נמוכה, אי-התפתחות מאפייני מין משניים, וקריוטיפ 45,X, מגיעה לבירור אי-פוריות. בהדמיה נמצאות "רצועות" רקמת חיבור במקום שחלות תפקודיות. כיצד יש לסווג את הממצא הזה?</div>
+  <button class="opt" data-i="0">אטרופיה של שחלות שהיו תפקודיות בעבר</button>
+  <button class="opt" data-i="1">מטאפלזיה של רקמת השחלה</button>
+  <button class="opt" data-i="2">היפופלזיה — streak ovary, ירידה בייצור תאי השחלה כבר בשלב האמבריוגנזה, אופיינית לתסמונת טרנר</button>
+  <button class="opt" data-i="3">אפלזיה מוחלטת של השחלות</button>
+  <div class="explain">נכון: streak ovary הוא הדוגמה הקלאסית להיפופלזיה — איבר שכן נוצר אך קטן/לא-מפותח בגלל ירידה בייצור התאים כבר באמבריוגנזה, ואופייני לתסמונת טרנר. אטרופיה (א') הייתה מחייבת שהשחלה הייתה תפקודית ולאחר מכן הצטמקה — לא המקרה כאן (זו תקלה עוברית מלכתחילה). מטאפלזיה (ב') אינה רלוונטית לשינוי גודל איבר. אפלזיה (ד') הייתה אומרת שהשחלה לא נוצרה כלל, בעוד ב-streak ovary כן קיימת רקמה (רצועתית) במקומה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h4>היפרטרופיה והיפרפלזיה</h4>
+  <ul>
+    <li>היפרטרופיה = גדילת תא בודד (↑סינתזת חלבון/אורגנלות); היפרפלזיה = חלוקת תאי גזע → יותר תאים. לרוב יחד.</li>
+    <li>רקמות קבועות (קרדיומיוציט, שריר שלד, נוירון) — היפרטרופיה בלבד, לעולם לא היפרפלזיה.</li>
+    <li>היפרפלזיה פתולוגית ממושכת יכולה להתקדם לדיספלזיה/סרטן — <b>חוץ מ-BPH</b>, שאין לה קשר לסרטן ערמונית (DHT, אזור מעברי).</li>
+  </ul>
+  <h4>אטרופיה</h4>
+  <ul>
+    <li>ירידה בגודל האיבר = ירידה בעומס/דרישה.</li>
+    <li>הקטנת תא: יוביקוויטין-פרוטאזום + אוטופאגיה (ליפופוסצין). הקטנת מספר תאים: אפופטוזיס.</li>
+  </ul>
+  <h4>מטאפלזיה</h4>
+  <ul>
+    <li>שינוי תא בוגר אחד לאחר, דרך תכנות-מחדש של תאי גזע — הפיך.</li>
+    <li>ושט בארט: סקוואמוזי→קולומנרי+תאי גביע, GERD כרוני; יכול להתקדם לאדנוקרצינומה.</li>
+    <li>יוצאי דופן: מטאפלזיה אפוקרינית בשד (לא מסוכנת); מחסור ויטמין A (קרטומלציה, גם ↓התמיינות מיאלואידית); myositis ossificans (מזנכימלי, שריר→עצם אחרי טראומה, מחקה אוסטאוסרקומה אך עם zonation ועצם תקינה).</li>
+  </ul>
+  <h4>דיספלזיה, אפלזיה והיפופלזיה</h4>
+  <ul>
+    <li>דיספלזיה = חוסר-ארגון תאי טרום-סרטני (CIN); הפיך עד פריצת קרום הבסיס — משם והלאה קרצינומה, בלתי-הפיך.</li>
+    <li>אפלזיה = כישלון מוחלט של התפתחות איבר עוברי. היפופלזיה = איבר עוברי קטן מהתקין (streak ovary, תסמונת טרנר).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
