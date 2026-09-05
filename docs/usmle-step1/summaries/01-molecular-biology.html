@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ביולוגיה מולקולרית (Molecular Biology)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>ביולוגיה מולקולרית <span class="term" dir="ltr">(Molecular Biology)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section II — Biochemistry &middot; יחידה 1/20 בתוכנית הלימוד</div>
+
+<p>ה"ביולוגיה המולקולרית" היא הבסיס שעליו נשען כמעט כל שאר החומר ב-Step 1: איך ה-DNA ארוז, איך הוא משוכפל ומתוקן, איך הוא מתועתק ל-RNA, ואיך ה-RNA מתורגם לחלבון — ומה קורה כשכל אחד מהשלבים האלה משתבש. בניגוד לפרקים "מבוססי-מחלה", זהו פרק "מסד עובדות" צפוף במיוחד, ולכן הסיכום הזה בנוי כרצף של כ-20 תת-נושאים, כל אחד עם המנגנון שלו, ההקשר הקליני שלו, וטכניקת הזכירה שלו.</p>
+
+<h2><span class="num">2</span> המנגנונים המרכזיים — למה כל דבר קורה</h2>
+
+<h3>2.1 מבנה הכרומטין ואפיגנטיקה</h3>
+<div class="mechanism">
+  <p class="chain">
+    ה-DNA טעון שלילית (מקבוצות הזרחה בשלד הסוכר-זרחה שלו), ולכן <b>נמשך</b> חשמלית להיסטונים — חלבונים גדולים, עשירים בליזין וארגינין הטעונים חיובית. שמונה היסטונים (שני עותקים מכל אחד מ-<span class="term" dir="ltr">H2A, H2B, H3, H4</span>) מרכיבים <b>אוקטמר</b> שסביבו ה-DNA כרוך פעמיים ליצירת <b>נוקלאוזום</b> ("חרוזים על חוט"). היסטון <span class="term" dir="ltr">H1</span> ("linker") נקשר הן לנוקלאוזום והן ל-DNA המקשר בין נוקלאוזומים סמוכים, ומייצב את קיפול הסיב לרמה הבאה. סינתזת DNA והיסטונים חדשים <b>מתואמת</b> ומתרחשת יחד בפאזת S של מחזור התא — כדי שלכל DNA חדש יהיו מיד די היסטונים לארוז אותו.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מידת <b>הכיווץ</b> של הכרומטין קובעת ישירות אם הגן נגיש למכונת התעתוק: <b class="key">הטרוכרומטין</b> <span class="term" dir="ltr">(heterochromatin)</span> מכווץ מאוד, נראה כהה יותר במיקרוסקופ אלקטרונים (יותר צפיפות = יותר פיזור אלקטרונים), ולכן סטרית לא-נגיש לפקטורי תעתוק — שקט תעתיקית. <b class="key">אאוכרומטין</b> <span class="term" dir="ltr">(euchromatin)</span> רפוי יותר, בהיר יותר ב-EM, ונגיש — פעיל תעתיקית. גופיפי בר (כרומוזום X לא-פעיל) הם דוגמה קלינית להטרוכרומטין שניתן לראות בפריפריית הגרעין.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    שני "מתגים" כימיים קובעים את מידת הכיווץ הזו: <b>אצטילציה של היסטון</b> מוסיפה קבוצת אצטיל לליזין, <b>מנטרלת את המטען החיובי</b> שלו — כך המשיכה ל-DNA (הטעון שלילה) נחלשת, הליפוף מתרפה, <b>ומתאפשר תעתוק</b>. <b>דה-אצטילציה</b> עושה בדיוק ההפך — מחזירה מטען חיובי, מהדקת את הליפוף, <b>ומשתיקה</b> תעתוק. באופן דומה, <b>מתילציה של DNA</b> (בעיקר באזורי <span class="term" dir="ltr">CpG island</span> בפרומוטורים) בדרך כלל <b>משתיקה</b> תעתוק — מנגנון הפיך (לא משנה את הרצף עצמו) המעורב בהטבעה גנומית <span class="term" dir="ltr">(genomic imprinting)</span>, הזדקנות, קרצינוגנזה, ואי-הפעלת כרומוזום X. מתילציה לא-מוסדרת מעורבת בתסמונת <span class="term" dir="ltr">Fragile X</span>, ודה-אצטילציה של היסטונים קשורה לביטוי גנים משתנה במחלת <b>הנטינגטון</b>.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>אריזת הכרומטין: מ-DNA לכרומוזום</title>
+  <rect x="10" y="20" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">DNA כפול-סליל</text>
+  <text x="85" y="61" font-size="11" text-anchor="middle" fill="#4b5563">"חוט חשוף"</text>
+  <polygon points="165,47 185,40 185,54" fill="#2563eb"/>
+  <rect x="190" y="20" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="265" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">נוקלאוזום</text>
+  <text x="265" y="61" font-size="11" text-anchor="middle" fill="#4b5563">DNA + אוקטמר היסטונים</text>
+  <polygon points="345,47 365,40 365,54" fill="#2563eb"/>
+  <rect x="370" y="20" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="445" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">"חרוזים על חוט"</text>
+  <text x="445" y="61" font-size="11" text-anchor="middle" fill="#4b5563">H1 מייצב סיב 30nm</text>
+  <polygon points="525,47 545,40 545,54" fill="#2563eb"/>
+  <rect x="550" y="20" width="300" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="700" y="45" font-size="12.5" text-anchor="middle" fill="#1f2937">כרומטין מכווץ מאוד</text>
+  <text x="700" y="61" font-size="11" text-anchor="middle" fill="#4b5563">כרומוזום במיטוזה</text>
+
+  <rect x="30" y="110" width="360" height="100" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="210" y="132" font-size="13" font-weight="700" text-anchor="middle" fill="#047857">אאוכרומטין (Euchromatin)</text>
+  <text x="210" y="152" font-size="12" text-anchor="middle" fill="#1f2937">רפוי, בהיר ב-EM</text>
+  <text x="210" y="170" font-size="12" text-anchor="middle" fill="#1f2937">↑אצטילציה היסטון</text>
+  <text x="210" y="188" font-size="12" text-anchor="middle" fill="#1f2937">→ נגיש → פעיל תעתיקית</text>
+
+  <rect x="440" y="110" width="360" height="100" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="620" y="132" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">הטרוכרומטין (Heterochromatin)</text>
+  <text x="620" y="152" font-size="12" text-anchor="middle" fill="#1f2937">מכווץ, כהה ב-EM</text>
+  <text x="620" y="170" font-size="12" text-anchor="middle" fill="#1f2937">↑מתילציה, ↓אצטילציה</text>
+  <text x="620" y="188" font-size="12" text-anchor="middle" fill="#1f2937">→ לא נגיש → שקט תעתיקית</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — כרומטין</h4>
+  <p>
+    <b>Eu = "אמיתי"</b> — Euchromatin is <b>Eu</b>xpressed (מתועתק באמת).<br>
+    <b>Heterochromatin = highly</b> condensed, <b>hidden</b> chromatin — כרומטין "מוסתר".<br>
+    <b>"Histone Acetylation makes DNA Active"</b> / <b>"Histone Deacetylation Deactivates DNA"</b> — שתי החריזות המקבילות.<br>
+    <b>"CpG methylation makes DNA mute"</b> — מתילציה = השתקה.
+  </p>
+</div>
+
+<h3>2.2 נוקלאוטידים: מבנה, פירוק וסינתזה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>פורינים</b> <span class="term" dir="ltr">(Adenine, Guanine)</span> הם דו-טבעתיים; <b>פירימידינים</b> <span class="term" dir="ltr">(Cytosine, Uracil, Thymine)</span> חד-טבעתיים. נוקלאוזיד = בסיס+סוכר; נוקלאוטיד = בסיס+סוכר+זרחה, מקושרים בקשר פוספודיאסטרי 3'-5'. <b>תגובות דה-אמינציה</b> ספונטניות משנות בסיסים: ציטוזין→אורציל, אדנין→היפוקסנתין, גואנין→קסנתין, 5-מתילציטוזין→תימין — אם לא מתוקנות לפני השכפול הבא, הופכות למוטציה קבועה (בדרך כלל טרנזיציה).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    סינתזת נוקלאוטידים חדשה <b>(דה-נובו)</b> היא טרגט תרופתי מרכזי כי היא חיונית לתאים המתחלקים במהירות: <b>מתוטרקסט</b> (אדם), <b>טרימתופרים</b> (חיידקים) ו<b>פירימתמין</b> (טפילים) כולם מעכבים <span class="term" dir="ltr">דיהידרופולט רדוקטאז (DHFR)</span> — אותו טרגט אנזימטי, בשלושה מינים שונים, מנוצל לסלקטיביות טיפולית כי לכל מין איזופורם מעט שונה. <b>5-פלואורואורציל/קפציטבין</b> מעכבים תימידילט סינתאז (↓dTMP). <b>6-מרקפטופורין/אזתיופרין</b> משבשים שיקוץ פורינים ליצירת נוקלאוטידים רעילים (6-TGN). <b>לפלונומיד</b> מעכב סינתזת פירימידינים (DHODH).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>שיקוץ פורינים</b> (מיחזור בסיסים חופשיים במקום סינתזה חדשה) תלוי באנזימי מפתח שחסרונם גורם למחלות קלאסיות: <b>חסר ADA</b> (אדנוזין דה-אמינאז) → הצטברות דאוקסיאדנוזין → <b>עיכוב ריבונוקלאוטיד רדוקטאז</b> → ↓תוצרי DNA → פגיעה בלימפוציטים (T ו-B) → אחד הגורמים המרכזיים ל-<b>SCID</b> אוטוזומלי-רצסיבי. <b>חסר HGPRT</b> (X-linked recessive) → שיקוץ לקוי של גואנין/היפוקסנתין → אובדן משוב שלילי טבעי על הסינתזה הדה-נובו → <b>עודף חומצת שתן</b> → <b>תסמונת לש-נייהן</b> (פיגור שכלי, פגיעה עצמית, גאוט, דיסטוניה).
+  </p>
+</div>
+
+<div class="link-card">
+  <span class="ico">🧬</span>
+  <div>
+    <div class="t"><a href="https://www.osmosis.org/learn/Severe_combined_immunodeficiency" target="_blank">Severe Combined Immunodeficiency (SCID) — Osmosis</a></div>
+    <div class="d">סקירה של הגנטיקה והפתופיזיולוגיה של SCID, כולל חסר ADA — קישור למאמר/וידאו של Osmosis.</div>
+  </div>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — נוקלאוטידים</h4>
+  <p>
+    <b>"Pure As Gold"</b> — Purines = <b>A</b>denine, <b>G</b>uanine (דו-טבעתי, כמו מתכת יקרה גדולה).<br>
+    <b>"CUT the pyramid"</b> — Pyrimidines = <b>C</b>ytosine, <b>U</b>racil, <b>T</b>hymine.<br>
+    <b>"m-ethotrexate</b> לאדם, <b>tr-imethoprim</b> לחיידק, <b>py-rimethamine</b> לטפיל" — שלוש התרופות על אותו טרגט (DHFR).<br>
+    <b>HGPRT</b>: <b>H</b>yperuricemia, <b>G</b>out, <b>P</b>issed off (תוקפנות עצמית), <b>R</b>ed/orange crystals, <b>T</b>ense muscles (דיסטוניה).
+  </p>
+</div>
+
+<h3>2.3 תכונות הקוד הגנטי</h3>
+<div class="mechanism">
+  <p class="chain">
+    הקוד הגנטי הוא <b>חד-משמעי</b> (כל קודון מקודד חומצת אמינו אחת בלבד), <b>מנוון/יתיר</b> (רוב חומצות האמינו מקודדות ע"י כמה קודונים שונים — למעט מתיונין <span class="term" dir="ltr">AUG</span> וטריפטופן <span class="term" dir="ltr">UGG</span>), <b>ללא-פסיקים ולא-חופף</b> (נקרא ברצף רציף מנקודת התחלה קבועה, פרט לחריגים נדירים בווירוסים), ו<b>אוניברסלי</b> (משומר לאורך האבולוציה — פרט לחריגים נדירים כמו וריאנטים בקודוני עצירה במיטוכונדריה). הבסיס בעל התפקיד המעניין ביותר הוא <b>השלישי בקודון</b>: לפי <b>השערת ה-wobble</b>, שני הבסיסים הראשונים קריטיים לזיווג מדויק לאנטיקודון, בעוד השלישי "מתפשר" ויכול להשתנות — בגלל גמישות גיאומטרית גדולה יותר באזור הזה בלולאת האנטיקודון. זו הסיבה שרוב המוטציות בעמדה השלישית הן <b>אילמות</b>.
+  </p>
+</div>
+
+<h3>2.4 שכפול DNA</h3>
+<div class="mechanism">
+  <p class="chain">
+    השכפול מתחיל ב<b>אתר מקור</b> <span class="term" dir="ltr">(origin of replication)</span> — רצף עשיר ב-AT (קל יותר לפתיחה, כי לזוג A-T יש רק 2 קשרי מימן לעומת 3 ב-C-G). <b>הליקאז</b> "חוצה" (halves) את הסליל הכפול ופותח אותו במזלג השכפול; <b>חלבוני SSB</b> נקשרים לגדילים החד-סליליים החשופים ומונעים הידבקות-מחדש; <b>טופואיזומראז</b> חותך זמנית גדיל אחד (TOP I) או שניים (TOP II) כדי לשחרר את הסופר-קוילינג (פיתולי-יתר) שנוצר "לפני" ההליקאז המתקדם; <b>פרימאז</b> מייצר פריימר RNA קצר, כי DNA פולימראז אינו יכול להתחיל סינתזה יש מאין ודורש קצה 3'-OH קיים להאריך ממנו.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    בפרוקריוטים, <b>DNA פולימראז III</b> מאריכה את הגדיל המוביל ברציפות ואת הגדיל המפגר בשברי <span class="term" dir="ltr">אוקזאקי (Okazaki)</span> נפרדים (כי סינתזה תמיד 5'→3', והתבנית נקראת בכיוונים מנוגדים בשני הגדילים) — ומגיהה 3'→5' תוך כדי. <b>DNA פולימראז I</b> מסלקת את פריימרי ה-RNA ומחליפה אותם ב-DNA. <b>DNA ליגאז</b> אוטמת את הקשר הפוספודיאסטרי האחרון בין שברי אוקזאקי סמוכים. תרופות המשנות את קבוצת ה-3'-OH ("chain termination") עוצרות את השכפול לגמרי, כי האנזים אינו יכול ליצור את הקשר הפוספודיאסטרי הבא.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    בעיה ייחודית לגדיל המפגר: בקצה הכרומוזום אין מקום לפריימר RNA נוסף שממנו ניתן להשלים את הקטע האחרון — כך שכל שכפול "מאבד" קטע קצר (בעיית סיום-השכפול). <b>טלומראז</b> (רברס טרנסקריפטאז עם תבנית RNA פנימית, קיים רק באאוקריוטים) מוסיף חזרות <span class="term" dir="ltr">TTAGGG</span> לקצוות כדי לפצות. פעילותו עולה בתאי-אב ובתאי סרטן (אלמותיות תאית), ויורדת בהזדקנות תקינה ובפרוגריה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מזלג השכפול</title>
+  <text x="430" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">מזלג השכפול (Replication Fork)</text>
+  <path d="M 60 130 Q 250 60 430 130" stroke="#94a3b8" stroke-width="4" fill="none"/>
+  <path d="M 60 150 Q 250 220 430 150" stroke="#94a3b8" stroke-width="4" fill="none"/>
+  <path d="M 430 130 L 800 130" stroke="#94a3b8" stroke-width="4" fill="none"/>
+  <path d="M 430 150 L 800 150" stroke="#94a3b8" stroke-width="4" fill="none"/>
+
+  <circle cx="430" cy="140" r="26" fill="#f59e0b" stroke="#78350f"/>
+  <text x="430" y="145" font-size="11" text-anchor="middle" fill="#1f2937">הליקאז</text>
+
+  <rect x="470" y="118" width="60" height="16" rx="4" fill="#bfdbfe" stroke="#2563eb"/>
+  <text x="500" y="130" font-size="9.5" text-anchor="middle" fill="#1e3a8a">SSB</text>
+  <rect x="470" y="146" width="60" height="16" rx="4" fill="#bfdbfe" stroke="#2563eb"/>
+  <text x="500" y="158" font-size="9.5" text-anchor="middle" fill="#1e3a8a">SSB</text>
+
+  <circle cx="360" cy="95" r="18" fill="#a7f3d0" stroke="#047857"/>
+  <text x="360" y="99" font-size="9" text-anchor="middle" fill="#065f46">טופו</text>
+
+  <rect x="560" y="112" width="70" height="22" rx="6" fill="#fecaca" stroke="#b91c1c"/>
+  <text x="595" y="127" font-size="10" text-anchor="middle" fill="#7f1d1d">פרימאז</text>
+
+  <rect x="650" y="112" width="90" height="22" rx="6" fill="#ddd6fe" stroke="#6d28d9"/>
+  <text x="695" y="127" font-size="10" text-anchor="middle" fill="#4c1d95">פול' III (מוביל)</text>
+
+  <rect x="560" y="158" width="90" height="22" rx="6" fill="#ddd6fe" stroke="#6d28d9"/>
+  <text x="605" y="173" font-size="9.5" text-anchor="middle" fill="#4c1d95">פול' III (מפגר, אוקזאקי)</text>
+  <rect x="660" y="158" width="70" height="22" rx="6" fill="#fed7aa" stroke="#c2410c"/>
+  <text x="695" y="173" font-size="9.5" text-anchor="middle" fill="#7c2d12">פול' I + ליגאז</text>
+
+  <text x="430" y="230" font-size="12" text-anchor="middle" fill="#4b5563">גדיל מוביל: סינתזה רציפה 5'→3' &nbsp;|&nbsp; גדיל מפגר: שברי אוקזאקי נפרדים, נתפרים ע"י ליגאז</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/_hws_ucfbjI" title="DNA Replication Explained Step-By-Step" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון המסביר שלב-אחר-שלב את מזלג השכפול ותפקיד כל אנזים. מקור: <a href="https://www.youtube.com/watch?v=_hws_ucfbjI" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — שכפול</h4>
+  <p>
+    <b>"Helicase halves DNA"</b> · <b>"Ligase links DNA"</b> — שם האנזים מזכיר את פעולתו.<br>
+    <b>"Telomerase TAGs for Greatness and Glory"</b> — TAG=חזרת TTAGGG, Greatness/Glory=אלמותיות תאית בסרטן.
+  </p>
+</div>
+
+<h3>2.5 תיקון DNA</h3>
+<div class="mechanism">
+  <p class="chain">
+    לכל סוג נזק ל-DNA יש מנגנון תיקון ייעודי. <b>תיקון בחיתוך נוקלאוטידים <span class="term" dir="ltr">(NER)</span></b> מסלק פגם <b>מעוות-סליל</b> (בעיקר דימרי פירימידין מקרינת UV) על ידי חיתוך אוליגונוקלאוטיד שלם סביב הפגם; פועל בפאזת G1; פגום ב<b>קסרודרמה פיגמנטוזה</b> (עור יבש, פוטוסנסיטיביות, סרטן עור). <b>תיקון בחיתוך בסיס <span class="term" dir="ltr">(BER)</span></b> מסלק <b>בסיס בודד פגום</b> (כמו מדה-אמינציה) — גליקוזילאז מסלק את הבסיס, אנדונוקלאז/ליאז חותכים את השלד, פולימראז β ממלא, ליגאז אוטם; פועל לאורך כל מחזור התא. <b>תיקון חוסר-התאמה <span class="term" dir="ltr">(MMR)</span></b> מסלק נוקלאוטידים <b>לא-מותאמים</b> שנוצרו בטעות בגדיל החדש לאחר שכפול; פועל בעיקר בפאזת S; פגום ב<b>תסמונת לינץ'</b> <span class="term" dir="ltr">(HNPCC)</span>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    לתיקון <b>שבר דו-גדילי</b> יש שתי אסטרטגיות שונות: <b>NHEJ</b> <span class="term" dir="ltr">(nonhomologous end joining)</span> מחברת את שני הקצוות ללא צורך בהומולוגיה — מהירה אך עלולה לאבד/לשנות נוקלאוטידים. <b>רקומבינציה הומולוגית</b> משתמשת בכרומטידת-אחות תקינה כתבנית מדויקת — זמינה רק ב-S/G2 (כשקיים עותק הומולוגי), משחזרת ללא איבוד נוקלאוטידים; פגומה במוטציות <b>BRCA1/BRCA2</b> (סרטן שד/שחלה) ובחלק מסוגי <b>אנמיה פנקוני</b>.
+  </p>
+</div>
+
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Xeroderma_pigmentosum_02.jpg?width=420" alt="קסרודרמה פיגמנטוזה">
+    <figcaption class="media-cap">עור עם פגיעה קשה מחשיפה סולארית ונגעים פיגמנטריים בילד עם קסרודרמה פיגמנטוזה — תוצאה של פגם ב-NER. מקור: <a href="https://commons.wikimedia.org/wiki/File:Xeroderma_pigmentosum_02.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שלושת מנגנוני התיקון החד-גדילי</title>
+  <rect x="15" y="20" width="260" height="170" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="145" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">NER</text>
+  <text x="145" y="65" font-size="11" text-anchor="middle" fill="#1f2937">פגם מעוות-סליל</text>
+  <text x="145" y="83" font-size="11" text-anchor="middle" fill="#1f2937">(דימר פירימידין, UV)</text>
+  <text x="145" y="105" font-size="11" text-anchor="middle" fill="#1f2937">חיתוך אוליגונוקלאוטיד שלם</text>
+  <text x="145" y="123" font-size="11" text-anchor="middle" fill="#1f2937">פאזת G1</text>
+  <text x="145" y="150" font-size="11" font-weight="700" text-anchor="middle" fill="#b91c1c">פגום: קסרודרמה פיגמנטוזה</text>
+
+  <rect x="300" y="20" width="260" height="170" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#065f46">BER</text>
+  <text x="430" y="65" font-size="11" text-anchor="middle" fill="#1f2937">בסיס בודד פגום</text>
+  <text x="430" y="83" font-size="11" text-anchor="middle" fill="#1f2937">(דה-אמינציה, חמצון)</text>
+  <text x="430" y="105" font-size="11" text-anchor="middle" fill="#1f2937">גליקוזילאז→אנדונוקלאז→פול' β→ליגאז</text>
+  <text x="430" y="123" font-size="11" text-anchor="middle" fill="#1f2937">כל מחזור התא</text>
+  <text x="430" y="150" font-size="11" font-weight="700" text-anchor="middle" fill="#065f46">"GEL Please"</text>
+
+  <rect x="585" y="20" width="260" height="170" rx="10" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="715" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#4c1d95">MMR</text>
+  <text x="715" y="65" font-size="11" text-anchor="middle" fill="#1f2937">חוסר-התאמה שלאחר שכפול</text>
+  <text x="715" y="90" font-size="11" text-anchor="middle" fill="#1f2937">מסלק נוקלאוטידים לא-מותאמים</text>
+  <text x="715" y="123" font-size="11" text-anchor="middle" fill="#1f2937">פאזת S</text>
+  <text x="715" y="150" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">פגום: תסמונת לינץ' (HNPCC)</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ZlEh3fllQe0" title="DNA Repair Mechanisms Explained: Mismatch, Base Excision & Nucleotide Excision Repair" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר משווה על מנגנוני MMR, BER ו-NER. מקור: <a href="https://www.youtube.com/watch?v=ZlEh3fllQe0" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — תיקון DNA</h4>
+  <p><b>"GEL Please"</b> — <b>G</b>lycosylase, <b>E</b>ndonuclease, <b>L</b>yase, Pol β, Ligase (סדר הפעולות ב-BER).</p>
+</div>
+
+<h3>2.6 מוטציות</h3>
+<div class="mechanism">
+  <p class="chain">
+    דרגת החומרה עולה בסדר: <b>אילמת</b> < <b>שינוי-משמעות</b> < <b>שטות</b> < <b>פריימשיפט</b>. מוטציית <b>אילמת</b> — קודון שונה לחומצת אמינו זהה (סינונימית), לרוב בעמדה השלישית (wobble). מוטציית <b>שינוי-משמעות</b> — חומצת אמינו שונה; "משמרת" אם דומה כימית (למשל אנמיה חרמשית: גלוטמט→ואלין). מוטציית <b>שטות</b> — קודון עצירה מוקדם (UGA/UAA/UAG), לרוב חלבון לא-תפקודי. <b>טרנזיציה</b> = פורין↔פורין או פירימידין↔פירימידין; <b>טרנסברסיה</b> = פורין↔פירימידין.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מוטציית <b>פריימשיפט</b> — הוספה/מחיקה של מספר נוקלאוטידים <b>שאינו מתחלק ב-3</b>, כך שכל הקודונים מנקודה זו והלאה נקראים במסגרת שגויה (דוגמאות: דושן, טיי-זקס). מוטציית <b>אתר-שחבור</b> — אינטרון נשמר במקום שיוסר, מוביל לחלבון עם תפקוד פגום (רכיבים נדירים בסרטן, דמנציה, אפילפסיה, β-תלסמיה, מרפאן). <b>החלקה בשכפול</b> <span class="term" dir="ltr">(slipped strand mispairing)</span> — פולימראז "מחליק" באזורי חזרות (כמו CAG-CAG-CAG) ומוסיף/מסיר יחידות חזרה שלמות בטעות; כשמספר החזרות גדל מדור לדור, המחלה מופיעה מוקדם/חמור יותר — תופעת <b>האנטיציפציה</b>, האופיינית ל<b>מחלת הנטינגטון</b> (חזרות CAG).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+  <title>סוגי מוטציות</title>
+  <text x="430" y="22" font-size="13" font-weight="700" text-anchor="middle" fill="#1f2937">רצף מקורי: G-A-G (Glu)</text>
+  <rect x="20" y="40" width="150" height="150" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="95" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">אילמת</text>
+  <text x="95" y="90" font-size="12" text-anchor="middle" fill="#1f2937">G-A-A</text>
+  <text x="95" y="108" font-size="11" text-anchor="middle" fill="#1f2937">(Glu — זהה)</text>
+  <text x="95" y="160" font-size="10.5" text-anchor="middle" fill="#4b5563">קודון שונה,</text>
+  <text x="95" y="176" font-size="10.5" text-anchor="middle" fill="#4b5563">אותה חומצת אמינו</text>
+
+  <rect x="185" y="40" width="150" height="150" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="260" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">שינוי-משמעות</text>
+  <text x="260" y="90" font-size="12" text-anchor="middle" fill="#1f2937">G-T-G</text>
+  <text x="260" y="108" font-size="11" text-anchor="middle" fill="#1f2937">(Val — שונה)</text>
+  <text x="260" y="160" font-size="10.5" text-anchor="middle" fill="#4b5563">חומצת אמינו</text>
+  <text x="260" y="176" font-size="10.5" text-anchor="middle" fill="#4b5563">אחרת (חרמשית)</text>
+
+  <rect x="350" y="40" width="150" height="150" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="425" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">שטות</text>
+  <text x="425" y="90" font-size="12" text-anchor="middle" fill="#1f2937">T-A-G</text>
+  <text x="425" y="108" font-size="11" text-anchor="middle" fill="#1f2937">(STOP)</text>
+  <text x="425" y="160" font-size="10.5" text-anchor="middle" fill="#4b5563">עצירה מוקדמת,</text>
+  <text x="425" y="176" font-size="10.5" text-anchor="middle" fill="#4b5563">חלבון קטוע</text>
+
+  <rect x="515" y="40" width="160" height="150" rx="8" fill="#fce7f3" stroke="#a21caf"/>
+  <text x="595" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#701a75">פריימשיפט</text>
+  <text x="595" y="90" font-size="12" text-anchor="middle" fill="#1f2937">G-A-∅-G...</text>
+  <text x="595" y="108" font-size="11" text-anchor="middle" fill="#1f2937">(מחיקת בסיס בודד)</text>
+  <text x="595" y="160" font-size="10.5" text-anchor="middle" fill="#4b5563">כל הקריאה</text>
+  <text x="595" y="176" font-size="10.5" text-anchor="middle" fill="#4b5563">שלאחר מכן משתבשת</text>
+
+  <rect x="695" y="40" width="150" height="150" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="770" y="62" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">חזרות CAG↑</text>
+  <text x="770" y="90" font-size="11" text-anchor="middle" fill="#1f2937">CAG×n → CAG×(n+k)</text>
+  <text x="770" y="150" font-size="10.5" text-anchor="middle" fill="#4b5563">אנטיציפציה —</text>
+  <text x="770" y="166" font-size="10.5" text-anchor="middle" fill="#4b5563">הנטינגטון</text>
+</svg>
+
+<h3>2.7 ויסות ביטוי גנים: אופרון Lac כמודל</h3>
+<div class="mechanism">
+  <p class="chain">
+    האופרון <span class="term" dir="ltr">lac</span> ב-<span class="term" dir="ltr">E. coli</span> ממחיש רגולציה כפולה ("AND logic") הבנויה משני מסלולים עצמאיים: <b>גלוקוז נמוך</b> → ↑פעילות אדנילט ציקלאז → ↑ייצור <span class="term" dir="ltr">cAMP</span> מ-ATP → הפעלת חלבון <span class="term" dir="ltr">CAP</span> שנקשר ל-DNA ומגביר קישור RNA פולימראז לפרומוטור. <b>לקטוז זמין</b> → אלולקטוז (אינדוקטור) נקשר לחלבון הדיכוי ומשחרר אותו מהאופרטור, מה שמסיר את החסימה הפיזית לתעתוק. רק כששני התנאים מתקיימים יחד (גלוקוז נמוך <b>וגם</b> לקטוז זמין) מתקבל ביטוי מרבי — כי אין טעם לבטא אנזימי פירוק לקטוז אם אין לקטוז (המשוב הראשון), ואין טעם "לטרוח" עליו אם גלוקוז הקל-יותר-לפירוק כבר זמין (המשוב השני).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>אופרון lac</title>
+  <rect x="20" y="20" width="380" height="75" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="210" y="45" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">גלוקוז נמוך</text>
+  <text x="210" y="63" font-size="11" text-anchor="middle" fill="#1f2937">↑cAMP → הפעלת CAP → קישור RNA-פול' משופר</text>
+  <text x="210" y="82" font-size="11" text-anchor="middle" fill="#1f2937">"מתג 1: כדאי להשקיע אנרגיה?"</text>
+
+  <rect x="460" y="20" width="380" height="75" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="650" y="45" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">לקטוז זמין</text>
+  <text x="650" y="63" font-size="11" text-anchor="middle" fill="#1f2937">אלולקטוז משחרר חלבון דיכוי מהאופרטור</text>
+  <text x="650" y="82" font-size="11" text-anchor="middle" fill="#1f2937">"מתג 2: יש בכלל מה לפרק?"</text>
+
+  <polygon points="420,58 400,50 400,66" fill="#4b5563"/>
+  <polygon points="440,58 460,50 460,66" fill="#4b5563"/>
+  <text x="430" y="120" font-size="12" text-anchor="middle" fill="#4b5563">+</text>
+
+  <rect x="270" y="140" width="320" height="50" rx="10" fill="#fef3c7" stroke="#b45309"/>
+  <text x="430" y="170" font-size="13" font-weight="700" text-anchor="middle" fill="#92400e">שני התנאים יחד → ביטוי מרבי של lacZ/Y/A</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — RNA פולימראזות</h4>
+  <p><b>I, II, III</b> ממוספרים לפי סדר השימוש בתוצריהם בסינתזת חלבון: <b>rRNA (I)</b> → <b>mRNA (II)</b> → <b>tRNA (III)</b>. פול' I: rampant (rRNA, הנפוץ ביותר). פול' II: massive (mRNA). פול' III: tiny (tRNA).</p>
+</div>
+
+<h3>2.8 מפרומוטור ל-mRNA בשל: תעתוק ועיבוד</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>פרומוטור</b> — אתר AT-עשיר עם תיבות TATA/CAAT, שם נקשר RNA פולימראז II ופקטורי תעתוק ומעלה יזום תעתוק. <b>אנהנסר/סיילנסר</b> — אתרים רחוקים (או אפילו בתוך אינטרון) שם נקשרים "אקטיבטורים"/"רפרסורים" ומגבירים/מנמיכים ביטוי גן <b>על אותו כרומוזום</b>. שלושה סוגי RNA פולימראז אאוקריוטיים: <b>פול' I</b> עושה <span class="term" dir="ltr">rRNA</span> (בגרעינון); <b>פול' II</b> עושה <span class="term" dir="ltr">mRNA, miRNA, snRNA</span> — הטרגט של <b>α-אמניטין</b> (רעלן מפטריית כובע-המוות); <b>פול' III</b> עושה <span class="term" dir="ltr">tRNA, 5S rRNA</span>. בפרוקריוטים, פולימראז יחיד רב-יחידות עושה את כל שלושת הסוגים, מעוכב ע"י <b>ריפמפיצין/ריפבוטין</b>; <b>דקטינומיצין</b> מעכב בשני העולמות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    התמליל הראשוני (<span class="term" dir="ltr">hnRNA</span>) עובר שלושה שינויים בגרעין לפני ייצוא לציטופלזם: <b>כובע 5'</b> (7-מתילגואנוזין, קו-תעתיקי) מגן ומזוהה ע"י מכונת התרגום; <b>פוליאדנילציה 3'</b> (~200 A, פוסט-תעתיקי, ללא תבנית) מגנה מפני פירוק; <b>שחבור אינטרונים</b> (פוסט-תעתיקי) מסלק רצפים לא-מקודדים. <b>הספליציאוזום</b> (קומפלקס snRNP — snRNA+חלבונים כמו Smith) חותך בדיוק בגבולות <span class="term" dir="ltr">GU</span> (5' של האינטרון) ו-<span class="term" dir="ltr">AG</span> (3'). פגיעה בהרכבת snRNP (↓חלבון <span class="term" dir="ltr">SMN</span>) → ניוון קרנות קדמיות בחוט השדרה → <b>SMA</b> ("תינוק רפוי"). נוגדני אנטי-U1 snRNP קשורים ל-<b>SLE</b> ומחלת רקמת חיבור מעורבת. <b>שחבור חלופי</b> <span class="term" dir="ltr">(alternative splicing)</span> מייצר מגוון חלבונים מתמליל יחיד (למשל טרופומיוזין, קולטני דופמין). לבסוף, <b>רצף קוזאק</b> סביב קודון ה-AUG מסייע לתת-יחידה הריבוזומלית הקטנה להיקשר במקום הנכון.
+  </p>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — תעתוק ועיבוד</h4>
+  <p><b>"Introns stay IN, exons EXit and are EXpressed"</b> — אינטרונים נשארים בגרעין, אקסונים יוצאים ומתבטאים.</p>
+</div>
+
+<h3>2.9 תרגום (סינתזת חלבון) ושינויים לאחר-תרגום</h3>
+<div class="mechanism">
+  <p class="chain">
+    tRNA (75-90 נוקלאוטידים, צורת תלתן, <span class="term" dir="ltr">CCA</span> בקצה 3') נטען על ידי <b>אמינואציל-tRNA סינתטאז ספציפי</b> (20 סוגים, אחד לכל חומצת אמינו) המשתמש ב-ATP ומגיה את הזיווג לפני ואחרי הקישור. הריבוזום קורא רק את <b>האנטיקודון</b> ולא את חומצת האמינו — לכן tRNA מוטען-שגוי (mischarged) מכניס חומצת אמינו שגויה שוב ושוב, בלי שהריבוזום "יבחין".
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>יזום</b>: פקטורי <span class="term" dir="ltr">eIF</span> מזהים את כובע ה-5', מרכיבים תת-יחידה 40S עם ה-tRNA היזום שנושא מתיונין (או fMet בפרוקריוטים), ואז מצטרפת 60S בקודון <span class="term" dir="ltr">AUG</span> — דורש GTP. <b>הארכה</b>: אתר <b>A</b> (Aminoacyl) מקבל tRNA טעון נכנס; ה-<span class="term" dir="ltr">rRNA</span> ("ריבוזים") מזרז את יצירת הקשר הפפטידי בין חומצת האמינו החדשה לשרשרת שבאתר <b>P</b> (Peptidyl); הריבוזום מתקדם 3 נוקלאוטידים (טרנסלוקציה, דורשת GTP) וה-tRNA הריק יוצא מאתר <b>E</b> (Exit). <b>סיום</b>: פקטורי שחרור (eRF/RF) מזהים קודון עצירה (<span class="term" dir="ltr">UGA, UAA, UAG</span>) ומשחררים את הפוליפפטיד המוגמר. באאוקריוטים 40S+60S→80S; בפרוקריוטים 30S+50S→70S. <b>רעלנים חיידקיים</b> (דיפתריה, פסאודומונס) תוקפים דווקא <b>גורמי הארכה</b> — צוואר בקבוק המשותף לכל מחזורי התרגום בתא, ולכן שיתוקו עוצר את כל סינתזת החלבון בבת אחת.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    לאחר התרגום: <b>גיזום</b> מסיר פרופפטידים כדי להבשיל את החלבון (זימוגן→אנזים פעיל, כמו טריפסינוגן→טריפסין); <b>שינויים קוולנטיים</b> (זרחון, גליקוזילציה, הידרוקסילציה, מתילציה, אצטילציה, יוביקוויטינציה) משנים תפקוד/מיקום/יציבות. <b>חלבוני שפרון</b> (כמו HSP60 בשמר) מסייעים לקיפול נכון ומונעים צבירה של חלבונים מקופלים-שגוי; ביטויים עולה בסטרס תאי (חום, חמצת, היפוקסיה) כדי להגן על חלבוני התא.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>שלבי התרגום</title>
+  <rect x="20" y="20" width="250" height="170" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="145" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">יזום</text>
+  <text x="145" y="70" font-size="11" text-anchor="middle" fill="#1f2937">eIF מזהים כובע 5'</text>
+  <text x="145" y="90" font-size="11" text-anchor="middle" fill="#1f2937">40S+tRNA יזום</text>
+  <text x="145" y="110" font-size="11" text-anchor="middle" fill="#1f2937">60S מצטרף ב-AUG</text>
+  <text x="145" y="140" font-size="11" font-weight="700" text-anchor="middle" fill="#1e3a8a">דורש GTP</text>
+
+  <rect x="305" y="20" width="250" height="170" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#065f46">הארכה — "APE"</text>
+  <text x="430" y="70" font-size="11" text-anchor="middle" fill="#1f2937">A = Aminoacyl נכנס</text>
+  <text x="430" y="90" font-size="11" text-anchor="middle" fill="#1f2937">P = Peptide גדל</text>
+  <text x="430" y="110" font-size="11" text-anchor="middle" fill="#1f2937">E = Empty tRNA יוצא</text>
+  <text x="430" y="140" font-size="11" font-weight="700" text-anchor="middle" fill="#065f46">רעלנים חיידקיים כאן!</text>
+
+  <rect x="590" y="20" width="250" height="170" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="715" y="45" font-size="13" font-weight="700" text-anchor="middle" fill="#7f1d1d">סיום</text>
+  <text x="715" y="70" font-size="11" text-anchor="middle" fill="#1f2937">eRF מזהה קודון עצירה</text>
+  <text x="715" y="90" font-size="11" text-anchor="middle" fill="#1f2937">UGA / UAA / UAG</text>
+  <text x="715" y="110" font-size="11" text-anchor="middle" fill="#1f2937">שחרור הפוליפפטיד</text>
+  <text x="715" y="140" font-size="11" font-weight="700" text-anchor="middle" fill="#7f1d1d">דורש GTP</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/WZDroJA0TpY" title="Translation / Protein Synthesis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה מלאה של שלבי התרגום — יזום, הארכה וסיום. מקור: <a href="https://www.youtube.com/watch?v=WZDroJA0TpY" target="_blank">YouTube</a></p>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — תרגום</h4>
+  <p>
+    <b>"CCA Can Carry Amino acids"</b> — קצה 3' של tRNA.<br>
+    <b>"ATP - tRNA Activation (טעינה). GTP - tRNA Gripping and Going places (טרנסלוקציה)."</b><br>
+    <b>"going APE"</b> — A נכנס, P פפטיד גדל, E יוצא ריק.<br>
+    <b>AUG inAUGurates protein synthesis</b> — קודון ההתחלה.<br>
+    <b>UGA=U Go Away, UAA=U Are Away, UAG=U Are Gone</b> — שלושת קודוני העצירה.
+  </p>
+</div>
+
+<h2><span class="num">3</span> תמונה כוללת: "קו הייצור" של הביטוי הגנטי</h2>
+<p>שימו לב כיצד כל תת-הנושאים הקודמים מתחברים לרצף אחד לוגי: <b>DNA ארוז</b> (2.1) ← <b>משוכפל</b> (2.4) ← <b>מתוקן אם נפגע</b> (2.5) ← <b>מתועתק</b> תוך רגולציה (2.7-2.8) ← <b>מעובד ל-mRNA בשל</b> (2.8) ← <b>מתורגם לחלבון</b> (2.9) ← <b>עובר שינויים לאחר-תרגום</b> (2.9). מוטציה (2.6) בכל אחת מהתחנות האלה — מהקוד הגנטי עצמו ועד לשלב התרגום האחרון — יכולה לשבש את התוצר הסופי. גישה זו (לשאול "באיזה שלב בקו הייצור זה קרה?") מסייעת מאוד לפתור שאלות בחינה שמתארות ממצא מולקולרי לא מוכר.</p>
+
+<h2><span class="num">4</span> רלוונטיות קלינית מרכזית — טבלת ריכוז</h2>
+<table>
+  <thead><tr><th>מחלה/תופעה</th><th>הפגם המולקולרי</th><th>ממצא מפתח</th></tr></thead>
+  <tbody>
+    <tr><td>SCID (חלק)</td><td>חסר ADA</td><td>↓לימפוציטים T ו-B, זיהומים חוזרים בינקות</td></tr>
+    <tr><td>תסמונת לש-נייהן</td><td>חסר HGPRT (X-linked)</td><td>גאוט, פגיעה עצמית, דיסטוניה</td></tr>
+    <tr><td>קסרודרמה פיגמנטוזה</td><td>פגם ב-NER</td><td>עור יבש, פוטוסנסיטיביות, סרטן עור</td></tr>
+    <tr><td>תסמונת לינץ' (HNPCC)</td><td>פגם ב-MMR</td><td>סרטן המעי הגס התורשתי הלא-פוליפוזי</td></tr>
+    <tr><td>סרטן שד/שחלה תורשתי</td><td>פגם ב-BRCA1/2 (רקומבינציה הומולוגית)</td><td>סיכון מוגבר לגידולים</td></tr>
+    <tr><td>מחלת הנטינגטון</td><td>הרחבת חזרות CAG (אנטיציפציה)</td><td>כוריאה, דמנציה, ניוון נוירונים</td></tr>
+    <tr><td>SMA</td><td>↓SMN, פגיעה בהרכבת snRNP</td><td>"תינוק רפוי", חולשה סימטרית</td></tr>
+    <tr><td>Fragile X</td><td>מתילציה לא-מוסדרת</td><td>פיגור שכלי, פנים מוארכות</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> תרופות שפועלות דרך ביולוגיה מולקולרית</h2>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון</th><th>הקשר קליני</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Methotrexate / Trimethoprim / Pyrimethamine</span></td><td>מעכבים DHFR (אדם/חיידק/טפיל)</td><td>אונקולוגיה / זיהומים חיידקיים / טפיליים</td></tr>
+    <tr><td><span class="term" dir="ltr">5-Fluorouracil, Capecitabine</span></td><td>מעכבים תימידילט סינתאז</td><td>אונקולוגיה (↓dTMP)</td></tr>
+    <tr><td><span class="term" dir="ltr">6-Mercaptopurine, Azathioprine</span></td><td>יוצרים 6-TGN רעילים (שיקוץ פורינים)</td><td>אימונוסופרסיה / אונקולוגיה</td></tr>
+    <tr><td><span class="term" dir="ltr">Allopurinol, Febuxostat</span></td><td>מעכבי קסנתין אוקסידאז</td><td>גאוט, תסמונת לש-נייהן</td></tr>
+    <tr><td><span class="term" dir="ltr">α-Amanitin</span> (רעלן, לא תרופה)</td><td>מעכב RNA פולימראז II</td><td>הרעלת פטריות — הפטוטוקסיות</td></tr>
+    <tr><td><span class="term" dir="ltr">Rifampin, Rifabutin</span></td><td>מעכבים RNA פולימראז חיידקי</td><td>שחפת ומיקובקטריות אחרות</td></tr>
+    <tr><td><span class="term" dir="ltr">Dactinomycin</span></td><td>מעכב RNA פולימראז (שני העולמות)</td><td>אונקולוגיה (גידולי ילדים)</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=ZnpSUGIz0Xc" target="_blank">Nucleosome Explained in 5 Minutes — YouTube</a>
+    <div class="desc">הסבר קצר וממוקד על מבנה הנוקלאוזום, טוב לחזרה מהירה לפני מבחן.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Xeroderma_pigmentosum_02.jpg" target="_blank">Xeroderma pigmentosum — Wikimedia Commons</a>
+    <div class="desc">תמונה קלינית ישירה של הביטוי העורי בקסרודרמה פיגמנטוזה, הקשורה לפגם ב-NER.</div>
+  </li>
+  <li>
+    <a href="https://www.osmosis.org/learn/Lesch-Nyhan_syndrome" target="_blank">Lesch-Nyhan syndrome — Osmosis</a>
+    <div class="desc">סקירה של מנגנון וקליניקה של תסמונת לש-נייהן.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוקת בת 5 חודשים מובאת עקב זיהומים חוזרים ונשנים — דלקת ריאות ופטרת פה (candidiasis) שאינה מגיבה לטיפול רגיל. בבדיקת דם: ספירת לימפוציטים נמוכה משמעותית, הן T והן B. הרנטגן חזה מדגים היעדר צל תימוס. ההורים מדווחים שאין היסטוריה משפחתית ידועה של מחלות חיסון, אך יש קרבת משפחה בין ההורים (נישואי קרובים). בבירור הגנטי מאובחן חסר באנזים מסוים המעורב בפירוק פורינים.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו האנזים החסר הסביר ביותר במקרה זה, ומהו המנגנון הביוכימי הישיר הפוגע בלימפוציטים?</div>
+  <button class="opt" data-i="0">HGPRT — עודף ייצור חומצת שתן פוגע ישירות בלימפוציטים</button>
+  <button class="opt" data-i="1">DNA פולימראז III — חוסר יכולת להאריך גדילי DNA בכל תא בגוף</button>
+  <button class="opt" data-i="2">ADA — הצטברות דאוקסיאדנוזין מעכבת ריבונוקלאוטיד רדוקטאז ופוגעת בסינתזת DNA בתאים המתחלקים במהירות</button>
+  <button class="opt" data-i="3">טלומראז — קיצור מואץ של הכרומוזומים בלימפוציטים בלבד</button>
+  <div class="explain">נכון: התמונה הקלינית (SCID, ירושה אוטוזומלית רצסיבית משוערת, זיהומים משני הענפים החיסוניים) קלאסית לחסר ADA. ההצטברות של דאוקסיאדנוזין מעלה dATP שמעכב ריבונוקלאוטיד רדוקטאז, מדלדל את בריכת הדאוקסיריבונוקלאוטידים, ופוגע בעיקר בתאים המתחלקים במהירות (לימפוציטים מתפתחים). HGPRT (א') גורם לתסמונת לש-נייהן עם היפראוריצמיה, לא לכשל חיסוני זה. DNA פולימראז III (ב') הוא אנזים פרוקריוטי בלבד ואינו קיים באדם. טלומראז (ד') אינו קשור למנגנון המתואר כאן.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. אם לתינוקת הזו הייתה במקום זאת תסמונת לש-נייהן, איזה ממצא קליני היה הכי צפוי להופיע שאינו מתאים לתמונה של חסר ADA?</div>
+  <button class="opt" data-i="0">זיהומים חוזרים בשני ענפי המערכת החיסונית</button>
+  <button class="opt" data-i="1">פגיעה עצמית (נשיכת שפתיים/אצבעות) וגאוט</button>
+  <button class="opt" data-i="2">היעדר צל תימוס בצילום חזה</button>
+  <button class="opt" data-i="3">ירושה אוטוזומלית רצסיבית</button>
+  <div class="explain">נכון: פגיעה עצמית וגאוט (עודף חומצת שתן) הם ספציפיים לתסמונת לש-נייהן (חסר HGPRT), ואינם חלק מהתמונה של חסר ADA. זיהומים חוזרים (א') ותימוס חסר (ג') אופייניים ל-SCID/חסר ADA. ירושה (ד') שגויה כהבחנה כי לש-נייהן היא X-linked recessive ולא אוטוזומלית — אך זו לא הייתה השאלה; יש לשים לב שבחלק זה השאלה מבקשת את הממצא ה"לא-מתאים" לחסר ADA ולכן פגיעה עצמית/גאוט הם התשובה הנכונה ביותר.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אם הבירור הגנטי היה מגלה במקום זאת פגם בתיקון בחיתוך נוקלאוטידים (NER), איזו תמונה קלינית שונה לחלוטין הייתה צפויה?</div>
+  <button class="opt" data-i="0">רגישות קיצונית לשמש, עור יבש ומעוקל, וסיכון גבוה לסרטן עור (קסרודרמה פיגמנטוזה)</button>
+  <button class="opt" data-i="1">חולשת שרירים סימטרית והיפוטוניה ("תינוק רפוי")</button>
+  <button class="opt" data-i="2">כוריאה מתקדמת ודמנציה שמופיעה מוקדם יותר מדור לדור</button>
+  <button class="opt" data-i="3">סרטן המעי הגס התורשתי הלא-פוליפוזי</button>
+  <div class="explain">נכון: פגם ב-NER קלאסי לקסרודרמה פיגמנטוזה — חוסר יכולת לתקן דימרי פירימידין מקרינת UV. "תינוק רפוי" (ב') קשור לפגיעה בהרכבת snRNP (SMA), לא ל-NER. כוריאה מתקדמת (ג') אופיינית להנטינגטון (חזרות CAG), לא לתיקון DNA. סרטן מעי גס תורשתי (ד') קשור ל-MMR (תסמונת לינץ'), לא ל-NER.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע דווקא לימפוציטים מתפתחים (ולא רוב תאי הגוף) הם הראשונים והחמורים ביותר להיפגע בחסר ADA?</div>
+  <button class="opt" data-i="0">כי יש להם קולטן ייחודי ל-ADA שאינו קיים בתאים אחרים</button>
+  <button class="opt" data-i="1">כי ADA מיוצר אך ורק בבלוטת התימוס</button>
+  <button class="opt" data-i="2">כי לימפוציטים אינם מסוגלים לבצע שיקוץ פורינים כלל</button>
+  <button class="opt" data-i="3">כי הם מתחלקים בקצב גבוה מאוד ותלויים בסינתזת DNA חדשה, ולכן רגישים במיוחד לדלדול בריכת הדאוקסיריבונוקלאוטידים</button>
+  <div class="explain">נכון: הרגישות המיוחדת של לימפוציטים מתפתחים נובעת מקצב ההתחלקות הגבוה שלהם ומהתלות המוגברת בסינתזת DNA חדשה בזמן ההתבגרות — עיכוב ריבונוקלאוטיד רדוקטאז פוגע קודם כל בתאים כאלה. אין קולטן ייחודי (א'), ADA מיוצר בתאים רבים לא רק בתימוס (ב'), ולימפוציטים כן מבצעים שיקוץ פורינים באופן עקרוני — הבעיה היא בפירוק המצטבר, לא ביכולת השיקוץ עצמה (ג').</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h4>כרומטין ואפיגנטיקה</h4>
+  <ul>
+    <li>נוקלאוזום = DNA כרוך פעמיים סביב אוקטמר היסטונים (H2A,H2B,H3,H4)×2; H1 מייצב.</li>
+    <li>אצטילציה היסטון → ↑תעתוק; דה-אצטילציה/מתילציה DNA → ↓תעתוק (הפיך, לא משנה רצף).</li>
+  </ul>
+  <h4>נוקלאוטידים</h4>
+  <ul>
+    <li>פורינים (A,G) דו-טבעתי; פירימידינים (C,U,T) חד-טבעתי.</li>
+    <li>DHFR: יעד משותף למתוטרקסט/טרימתופרים/פירימתמין (אדם/חיידק/טפיל).</li>
+    <li>חסר ADA → SCID; חסר HGPRT → לש-נייהן (X-linked).</li>
+  </ul>
+  <h4>קוד גנטי, שכפול ותיקון</h4>
+  <ul>
+    <li>הקוד: חד-משמעי, מנוון (wobble בעמדה 3), ללא-פסיקים, אוניברסלי.</li>
+    <li>שכפול 5'→3', סמי-שמרני; הליקאז/SSB/טופואיזומראז/פרימאז/פול' III/פול' I/ליגאז/טלומראז.</li>
+    <li>NER (XP) — פגם מעוות-סליל; BER — בסיס בודד; MMR (לינץ') — חוסר-התאמה; NHEJ מול HR (BRCA) — שבר דו-גדילי.</li>
+  </ul>
+  <h4>מוטציות, ויסות ותרגום</h4>
+  <ul>
+    <li>אילמת < שינוי-משמעות < שטות < פריימשיפט; חזרות תלת-נוקלאוטיד → אנטיציפציה (הנטינגטון).</li>
+    <li>אופרון lac: גלוקוז נמוך (cAMP/CAP) + לקטוז זמין (שחרור דיכוי) → ביטוי מרבי.</li>
+    <li>פול' I=rRNA, II=mRNA (α-אמניטין), III=tRNA; עיבוד mRNA: כובע+פוליA+שחבור (ספליציאוזום, SMA).</li>
+    <li>תרגום: יזום (AUG)→הארכה (APE)→סיום (קודון עצירה); רעלנים חיידקיים תוקפים גורמי הארכה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
