@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 232: הערכה אלקטרודיאגנוסטית של עצבים היקפיים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 3</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 232: הערכה אלקטרודיאגנוסטית של עצבים היקפיים <span class="term" dir="ltr">Electrodiagnostic Evaluation of Peripheral Nerves</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק VIII - Peripheral Nerve | מאת Lawrence Robinson, Eric C. Yuen</div>
+
+<p>EMG (אלקטרומיוגרפיה) ומחקרי הולכה עצבית <span class="term" dir="ltr">nerve conduction studies, NCS</span> הם "המשך" של הבדיקה הנוירולוגית: הם לא מחליפים את הבדיקה הקלינית, אלא עונים בצורה אובייקטיבית על השאלה שהבדיקה הקלינית משאירה פתוחה - <b>איפה בדיוק</b> לאורך המסלול ההיקפי (מקרן הקדמית של חוט השדרה ועד השריר) נמצאת הבעיה, <b>מה מנגנון</b> הפגיעה (אקסון או מיאלין), <b>כמה חמורה</b> היא, ו<b>מה קורה איתה עם הזמן</b>. הרעיון המרכזי של הפרק כולו הוא שכל תבנית חריגה ב-NCS או ב-EMG היא למעשה "טביעת אצבע" פיזיולוגית שמצביעה בו-זמנית על מיקום, מנגנון וגיל הנגע.</p>
+
+<h2><span class="num">1</span> העיקרון הפיזיולוגי: איך בכלל "רואים" עצב פועל</h2>
+<div class="mechanism">
+  <p class="chain">
+    שרשרת הסיבתיות הבסיסית של כל בדיקת NCS: <b>גירוי סופרה-מקסימלי</b> (זרם חשמלי חזק מספיק כדי להפעיל את כל הסיבים בבת אחת) &#8592; <b>דה-פולריזציה סינכרונית</b> של כל האקסונים &#8592; <b>נדידת פוטנציאל הפעולה</b> במהירות התלויה בקוטר הסיב ובמידת המיאלינציה &#8592; <b>סיכום</b> (summation) של אלפי פוטנציאלי פעולה בודדים תחת האלקטרודה &#8592; גל טריפאזי אחד שנרשם במכשיר.
+  </p>
+  <p>
+    כשבודקים סיב <b>חושי</b>, הסכום הזה נקרא <b>SNAP</b> (Sensory Nerve Action Potential) ונרשם ישירות מהעצב עצמו. כשבודקים סיב <b>מוטורי</b>, לא ניתן להקליט מהעצב אלא רק מהשריר שהוא מפעיל - ולכן הגל נקרא <b>CMAP</b> (Compound Muscle Action Potential), והוא כולל גם את זמן המעבר בצומת העצבית-שרירית (כ-0.5-1 מילישנייה נוספות).
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0011_ActionPotential_Nerve.png?width=700" alt="Propagation of an action potential along a myelinated nerve fiber">
+<p class="media-cap">נדידת פוטנציאל הפעולה לאורך סיב עצב ממוילן - הבסיס הפיזיולוגי לכל מדידת NCS. מקור: Wikimedia Commons (Blausen Medical).</p>
+<svg class="diagram" viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg">
+  <title>עקרון הרישום של SNAP</title>
+  <desc>תרשים סכמטי של גירוי עצב חושי ורישום הפוטנציאל המסוכם דרך אלקטרודות G1 ו-G2</desc>
+  <rect x="20" y="90" width="660" height="10" rx="4" fill="#93c5fd"/>
+  <text x="350" y="80" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עצב חושי (אלפי אקסונים במקביל)</text>
+  <polygon points="60,150 45,170 75,170" fill="#b91c1c"/>
+  <text x="60" y="188" font-size="11" text-anchor="middle" fill="#7f1d1d">גירוי סופרה-מקסימלי</text>
+  <circle cx="560" cy="95" r="10" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+  <text x="560" y="99" font-size="10" text-anchor="middle" fill="#1e3a8a" font-weight="700">G1</text>
+  <circle cx="600" cy="95" r="10" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+  <text x="600" y="99" font-size="10" text-anchor="middle" fill="#1e3a8a" font-weight="700">G2</text>
+  <path d="M 480 40 L 500 40 L 505 20 L 515 55 L 525 15 L 535 40 L 560 40" fill="none" stroke="#047857" stroke-width="2.5"/>
+  <text x="510" y="10" font-size="11" text-anchor="middle" fill="#047857" font-weight="700">SNAP (סיכום פוטנציאלים)</text>
+  <rect x="20" y="200" width="660" height="30" rx="6" fill="#f3f4f6"/>
+  <text x="350" y="220" font-size="12" text-anchor="middle" fill="#374151">אמפליטודה = מספר האקסונים הפעילים &#160;|&#160; מהירות הולכה = קוטר + מיאלינציה</text>
+</svg>
+<p class="figcap">תרשים עצמאי (לא תצלום) המדגים כיצד גירוי, נדידה וסיכום פוטנציאלים יוצרים את גל ה-SNAP הנרשם.</p>
+
+<h2><span class="num">2</span> SNAP - כיצד לוקליזציה של הפגיעה משנה את התוצאה</h2>
+<p>הפרמטר החשוב ביותר בניתוח SNAP הוא <b>היחס בין מיקום הנגע לגנגליון השורש הדורסלי</b> <span class="term" dir="ltr">dorsal root ganglion, DRG</span>: אקסונים חושיים שגופם (בגנגליון) שלם ימשיכו להוליך תקין גם אם הענף המרכזי שלהם (השורש) נפגע, כי ניוון וולריאני מתרחש רק דיסטלית לאתר הפגיעה ביחס לגוף התא.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מנגנון ומיקום</th><th>אמפליטודת SNAP</th><th>מהירות הולכה</th><th>משמעות קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>ניוון אקסונלי, דיסטלי לגנגליון (למשל עצב חתוך)</td><td>ירודה</td><td>תקינה/כמעט תקינה</td><td>הסיבים שנותרו תקינים ומיאלינם שמור</td></tr>
+    <tr><td>דה-מיאלינציה דיסטלית (למשל תעלה קרפלית)</td><td>ירודה עד תקינה, בהתאם לפיזור טמפורלי</td><td>איטית / לטנטיות מוארכת</td><td>ייתכן חסם הולכה (conduction block) אם החומרה גבוהה</td></tr>
+    <tr><td>נגע פרוקסימלי לגנגליון (שורש, CNS)</td><td><b>תקינה</b> - למרות תחושת חוסר תחושה קלינית!</td><td>תקינה</td><td>SNAP תקין + חוסר תחושה = הנגע פרוקסימלי לגנגליון (סימן פרוגנוסטי גרוע במקרה של avulsion)</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="key-box">SNAP תקין בנוכחות חוסר תחושה קליני הוא אחד מהממצאים הכי "מטעים למי שלא מכיר" בכל הבדיקה - אך למעשה הוא מצביע במדויק על נגע פרוקסימלי לגנגליון השורש הדורסלי (שורש, cauda equina, או CNS).</div>
+
+<h2><span class="num">3</span> CMAP - האבחנה בין אובדן אקסונלי לחסם הולכה</h2>
+<p>מכיוון שה-CMAP נמדד מהשריר ולא מהעצב, הפרמטר החשוב ביותר הוא <b>ההשוואה בין גירוי דיסטלי לגירוי פרוקסימלי לאתר הנגע החשוד</b>: ירידה משמעותית באמפליטודה בין הגירוי הדיסטלי לפרוקסימלי (מעל כ-50% שטח, לפי קריטריונים שונים) מצביעה על <b>חסם הולכה</b> (Conduction Block) - כלומר דה-מיאלינציה מקומית שלא הרגה את האקסון, ולכן בעלת פרוגנוזה טובה בהרבה מאובדן אקסונלי.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>ממצא ב-CMAP</th><th>גירוי דיסטלי</th><th>גירוי פרוקסימלי</th><th>פרשנות</th></tr></thead>
+  <tbody>
+    <tr><td>אובדן אקסונלי (ללא רה-אינרבציה)</td><td>נמוך (חצי מהתקין למשל)</td><td>נמוך פרופורציונלית</td><td>אין ירידה יחסית בין דיסטלי לפרוקסימלי - האובדן אחיד לאורך העצב</td></tr>
+    <tr><td>חסם הולכה (דה-מיאלינציה)</td><td>תקין - כל הסיבים מגיבים</td><td>נמוך משמעותית</td><td>הירידה מתרחשת <b>רק</b> כשחוצים את אתר הפגיעה - עדות ישירה לחסימה מקומית</td></tr>
+    <tr><td>עיכוב הולכה דיסטלי (למשל תעלה קרפלית)</td><td>לטנטיות מוארכת</td><td>תקין (מהירות פרוקסימלית שמורה)</td><td>הבעיה ממוקמת בדיוק בקטע הדיסטלי בין נקודת הגירוי לשריר</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/HZH95nMsVKM" title="A basic intro to NCS/EMG for Neurologists" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מבוא בסיסי ל-NCS ו-EMG - עקרונות הגירוי, ההולכה והרישום.</p>
+
+<h2><span class="num">4</span> תגובות מאוחרות: F-wave ו-H-reflex</h2>
+<p>SNAP ו-CMAP מצוינים להערכת עצבים דיסטליים, אך גירוי ורישום ישירים מאתרים פרוקסימליים (שורש, מקלעת) לרוב אינם אמינים. לכן משתמשים ב"תגובות מאוחרות" - גלים שמייצגים מסע הלוך-ושוב של פוטנציאל הפעולה עד גוף התא המוטורי ובחזרה.</p>
+<svg class="diagram" viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מסלולי F-wave ו-H-reflex</title>
+  <desc>תרשים המשווה בין מסלול ה-F-wave (מוטורי טהור, הלוך-חזור) לבין מסלול ה-H-reflex (חושי-מוטורי, מונוסינפטי)</desc>
+  <rect x="20" y="20" width="320" height="180" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="180" y="42" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">F-wave</text>
+  <text x="180" y="65" font-size="11" text-anchor="middle" fill="#1e3a8a">גירוי אקסון מוטורי</text>
+  <text x="180" y="85" font-size="11" text-anchor="middle" fill="#1e3a8a">&#8595; נודד פרוקסימלית לקרן הקדמית</text>
+  <text x="180" y="105" font-size="11" text-anchor="middle" fill="#1e3a8a">&#8595; "מקפץ" חזרה במוטונוירון בודד/מעטים</text>
+  <text x="180" y="125" font-size="11" text-anchor="middle" fill="#1e3a8a">&#8595; חוזר דיסטלית לשריר</text>
+  <text x="180" y="150" font-size="11.5" text-anchor="middle" fill="#1e40af" font-weight="700">רגיש להפגנת דה-מיאלינציה מפושטת</text>
+  <text x="180" y="170" font-size="11.5" text-anchor="middle" fill="#1e40af" font-weight="700">(למשל Guillain-Barré)</text>
+  <rect x="360" y="20" width="320" height="180" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="520" y="42" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">H-reflex</text>
+  <text x="520" y="65" font-size="11" text-anchor="middle" fill="#4c1d95">גירוי עצב טיביאלי (סוליארי)</text>
+  <text x="520" y="85" font-size="11" text-anchor="middle" fill="#4c1d95">&#8595; מסלול חושי לחוט השדרה</text>
+  <text x="520" y="105" font-size="11" text-anchor="middle" fill="#4c1d95">&#8595; סינפסה מונוסינפטית לקרן קדמית</text>
+  <text x="520" y="125" font-size="11" text-anchor="middle" fill="#4c1d95">&#8595; מוטורי חזרה לשריר הסוליארי</text>
+  <text x="520" y="150" font-size="11.5" text-anchor="middle" fill="#5b21b6" font-weight="700">שקול לרפלקס קרסול אלקטרופיזיולוגי</text>
+  <text x="520" y="170" font-size="11.5" text-anchor="middle" fill="#5b21b6" font-weight="700">רגיש לנגעי שורש S1</text>
+</svg>
+<p>ה-F-wave רגיש במיוחד להפרעות דה-מיאלינציה מפושטות או רב-מוקדיות, אך פחות רגיש לנגעים ממוקדים (כמו רדיקולופתיה) - כי ההאטה המקומית "מתמוססת" לאורך המסלול הפרוקסימלי הארוך והתקין ברובו. ה-H-reflex, לעומת זאת, רגיש יותר מ-EMG במחט לגילוי נגעי שורש S1 מוקדמים, כי הוא מגלה דה-מיאלינציה בעוד EMG מגלה בעיקר אובדן אקסונלי.</p>
+
+<h2><span class="num">5</span> EMG במחט: פעילות ספונטנית ו-MUAP</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Needle%20EMG%20of%20paravertebral%20muscles(2J009).jpg?width=700" alt="Needle electromyography examination of paravertebral muscles">
+<p class="media-cap">בדיקת EMG במחט של השרירים הפרה-ספינליים - חשובה במיוחד לאבחון רדיקולופתיה מוקדמת. מקור: Wikimedia Commons.</p>
+<p>בשריר בריא ורגוע, אין פעילות חשמלית ספונטנית משמעותית. פעילות ספונטנית חריגה מצביעה על פגיעה ספציפית:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>ממצא ספונטני</th><th>מייצג</th><th>זמן הופעה מהפגיעה</th></tr></thead>
+  <tbody>
+    <tr><td>פיברילציות ו-positive sharp waves</td><td>דה-נרבציה חריפה / נמק סיב שריר חריף</td><td>2-3 שבועות</td></tr>
+    <tr><td>Complex repetitive discharge</td><td>דה-נרבציה כרונית (&gt;2 חודשים)</td><td>חודשים</td></tr>
+    <tr><td>Fasciculation potential</td><td>יכול להיות תקין; גם מחלת מוטונוירון, רדיקולופתיה, נוירופתיה</td><td>משתנה</td></tr>
+    <tr><td>Myotonic discharge</td><td>דיסטרופיה מיוטונית, מיוטוניה קונגניטלית</td><td>מחלת שריר ראשונית</td></tr>
+  </tbody>
+</table>
+</div>
+<p>ה-MUAP (Motor Unit Action Potential) הוא סכום פוטנציאלי הפעולה של כל סיבי השריר ששולט בהם אקסון מוטורי בודד. שינויים ב-MUAP חושפים תהליכים כרוניים:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>דה-נרבציה עם רה-אינרבציה (כרונית):</b> אקסונים שרדו "מאמצים" סיבי שריר יתומים &#8592; מספר סיבי השריר ליחידה מוטורית עולה &#8592; MUAP <b>גדול</b> יותר (משך ואמפליטודה מוגברים), לרוב פוליפאזי.<br>
+    <b>מיופתיה / הפרעת צומת עצבית-שרירית:</b> סיבי שריר בודדים "נושרים" מכל יחידה &#8592; מספר הסיבים הפעילים ליחידה יורד &#8592; MUAP <b>קטן</b> יותר, וגיוס מוקדם (early recruitment) כדי לפצות על הכוח החסר.
+  </p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/4kkIvP1jNLA" title="Electromyography (EMG) and Nerve Conduction Studies (NCS) - Mayfield Brain and Spine" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: הסבר קליני על EMG ו-NCS מבית Mayfield Brain &amp; Spine.</p>
+
+<h2><span class="num">6</span> גירוי חוזר: הפרעות בצומת העצבית-שרירית</h2>
+<p>גירוי חוזר (Repetitive Stimulation) בתדרים של 2-50 הרץ משמש לאבחון מיאסטניה גרביס, בוטוליזם, תסמונת Lambert-Eaton ומיאסטניה מולדת:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תדר גירוי</th><th>ממצא</th><th>מנגנון</th><th>מחלה טיפוסית</th></tr></thead>
+  <tbody>
+    <tr><td>נמוך (2-3 הרץ)</td><td>ירידה הדרגתית (decrement) באמפליטודת CMAP</td><td>פגם פוסט-סינפטי בשחרור/קליטת אצטילכולין</td><td>מיאסטניה גרביס</td></tr>
+    <tr><td>גבוה (50 הרץ) או אחרי מאמץ</td><td>עלייה (increment) באמפליטודת CMAP</td><td>פגם פרה-סינפטי - הצטברות סידן משפרת שחרור</td><td>תסמונת Lambert-Eaton</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">7</span> תסמונות היקפיות שכיחות: תעלה קרפלית ופגיעת אולנר במרפק</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Carpal-Tunnel.svg?width=700" alt="Diagram of the carpal tunnel and median nerve at the wrist">
+<p class="media-cap">אנטומיית התעלה הקרפלית והעצב המדיאני - האתר הקלאסי להאטת הולכה חושית מוקדמת. מקור: Wikimedia Commons.</p>
+<p>בתעלה הקרפלית, סיבים חושיים גדולים-קוטר נפגעים לפני סיבים מוטוריים - ולכן מחקרי הולכה חושית רגישים יותר ממוטוריים. הגישה הסטנדרטית היא <b>השוואה</b> בין לטנטיות מדיאני לעצב שכן (אולנרי או רדיאלי) שאינו עובר בתעלה, כדי לנטרל גורמים לא-פתולוגיים (טמפרטורה, גיל, גובה). סכימת שלוש השוואות כאלה נקראת "אינדקס חושי משולב" (combined sensory index); סכום של 1 מילישנייה או יותר נחשב חריג.</p>
+<p>בפגיעת עצב אולנרי במרפק, מחקרי הולכה מוטורית הם הכלי המרכזי ללוקליזציה: האטת מהירות הולכה בקטע-על-המרפק (across-elbow), או ירידה של מעל 10% באמפליטודה בקטע זה, מעידות על נגע ממוקד. עם זאת, בפגיעות אקסונליות טהורות (למשל טראומה, וסקוליטיס) יש האטה מפושטת ולא ממוקדת - ואז EMG במחט של השרירים המסופקים על ידי העצב האולנרי (abductor digiti minimi, first dorsal interosseus) הופך קריטי לאבחנה, גם כאשר NCS תקין לחלוטין.</p>
+
+<h2><span class="num">8</span> רדיקולופתיה: שילוב הדמיה ואלקטרודיאגנוסטיקה</h2>
+<div class="key-box">MRI רגיש מאוד לזיהוי בליטות דיסק, אך לא ספציפי - כ-61% מבני 40-49 א-סימפטומטיים מראים בליטת דיסק בהדמיה. EMG פחות רגיש אך ספציפי בהרבה (מעל 85-90%) - ולכן השילוב בין השניים הוא הדרך הטובה ביותר לאשש רדיקולופתיה חשודה.</div>
+<p>EMG במחט הוא הבדיקה האלקטרופיזיולוגית הטובה ביותר לזיהוי רדיקולופתיה. עדות לדה-נרבציה בשרירים פרה-ספינליים יכולה להופיע כבר תוך 10-14 יום; שרירים דיסטליים יותר בגפה מראים ממצאים רק אחרי 3-4 שבועות. לאבחנה נדרשת עדות לדה-נרבציה בלפחות שני שרירים באותו מיוטום, המסופקים על ידי עצבים היקפיים שונים - כדי לשלול פגיעה בעצב היקפי בודד. מחקרי הולכה חושית לרוב <b>תקינים</b> ברדיקולופתיה, כי הדחיסה מתרחשת פרוקסימלית לגנגליון השורש הדורסלי (ראו סעיף 2) - וכל שינוי חושי מצביע דווקא על נגע דיסטלי יותר (פלקסופתיה, entrapment).</p>
+
+<h2><span class="num">9</span> פגיעה טראומטית בעצב היקפי: תזמון ולוקליזציה</h2>
+<p>הפרק מדגיש עיקרון קריטי: <b>שינויים אלקטרודיאגנוסטיים לא מופיעים מייד</b> אלא לפי לוח זמנים ביולוגי מוגדר של ניוון וולריאני:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>זמן מהפגיעה</th><th>ממצא ב-NCS</th><th>ממצא ב-EMG מחט</th></tr></thead>
+  <tbody>
+    <tr><td>מייד (0-3 ימים)</td><td>נוירפרקסיה וניתוק אקסונלי נראים <b>זהים</b> - תגובה תקינה מתחת לנגע, נמוכה/נעדרת מעליו</td><td>שינויי גיוס בלבד, ללא פעילות ספונטנית</td></tr>
+    <tr><td>3-9 ימים</td><td>אמפליטודת CMAP הדיסטלי מתחילה לרדת בנוירוטמזיס/אקסונוטמזיס</td><td>עדיין ללא פיברילציות</td></tr>
+    <tr><td>9 ימים ואילך</td><td>ניתן להבדיל נוירפרקסיה (תקין דיסטלית) מאובדן אקסונלי (נמוך/נעדר משני עברי הנגע)</td><td>-</td></tr>
+    <tr><td>10-30 יום</td><td>-</td><td>פיברילציות ו-positive sharp waves מופיעות (תלוי אורך הגדם הדיסטלי)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">נוירפרקסיה (חסם הולכה טהור) ואקסונוטמזיס לא ניתנות להבחנה עד שחולף הזמן הדרוש לניוון וולריאני להתרחש - כ-9 ימים לסיבים מוטוריים ו-11 ימים לסיבים חושיים. לכן תזמון הבדיקה משפיע ישירות על מה שניתן לגלות ממנה.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/XTQp66Fcf34" title="An Overview of Nerve Conduction Studies and Electromyography" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: סקירה של מחקרי הולכה עצבית ו-EMG, כולל יישום קליני-כירורגי.</p>
+
+<h2><span class="num">10</span> פרוגנוזה בתרדמת: SEP</h2>
+<p>ה-SEP (Somatosensory Evoked Potential) של העצב המדיאני הוא השיטה האלקטרופיזיולוגית עם הראיות החזקות ביותר לניבוי תוצא בחולים בתרדמת. היעדר דו-צדדי של תגובה קורטיקלית לגירוי העצב המדיאני מנבא בביטחון גבוה <b>אי-התעוררות</b> באנצפלופתיה היפוקסית-איסכמית (מתוך מעל 200 חולים עם ממצא זה - איש לא התעורר, רווח בר-סמך עליון של 1%). באטיולוגיה טראומטית הניבוי פחות חד-משמעי (כ-5% סיכוי להתעוררות, לרוב עם נכות קשה).</p>
+
+<h2><span class="num">11</span> סיכום השוואתי: מה כל בדיקה "רואה" הכי טוב</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>בדיקה</th><th>הכי רגישה ל...</th><th>מגבלה עיקרית</th></tr></thead>
+  <tbody>
+    <tr><td>SNAP</td><td>לוקליזציה פרה/פוסט-גנגליונית; מידת אובדן אקסונלי חושי דיסטלי</td><td>תקין ברדיקולופתיה - עלול להטעות אם לא זוכרים למה</td></tr>
+    <tr><td>CMAP</td><td>חסם הולכה מקומי (דה-מיאלינציה) לעומת אובדן אקסונלי</td><td>לא ניתן לחשב מהירות הולכה טהורה בגלל עיכוב הצומת העצבית-שרירית</td></tr>
+    <tr><td>F-wave</td><td>דה-מיאלינציה מפושטת/רב-מוקדית (Guillain-Barré)</td><td>לא רגיש לנגע ממוקד (כמו רדיקולופתיה בודדת)</td></tr>
+    <tr><td>H-reflex</td><td>נגע שורש S1 מוקדם</td><td>ניתן לגרות באמינות רק בשריר הסוליארי</td></tr>
+    <tr><td>EMG מחט - פעילות ספונטנית</td><td>דה-נרבציה חריפה מול כרונית</td><td>מופיעה רק 10-30 יום אחרי הפגיעה</td></tr>
+    <tr><td>EMG מחט - MUAP וגיוס</td><td>רדיקולופתיה, מיופתיה, הפרעת NMJ</td><td>לא רגיש לפגיעה חושית טהורה</td></tr>
+    <tr><td>גירוי חוזר</td><td>הפרעות NMJ (מיאסטניה, Lambert-Eaton)</td><td>לא רלוונטי לנגעי אקסון/מיאלין רגילים</td></tr>
+    <tr><td>SEP</td><td>פרוגנוזה בתרדמת; רדיקולופתיה רב-שורשית (סטנוזיס)</td><td>פחות רגיש מ-EMG לרדיקולופתיה בודדת</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">12</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-C-F-N-R</span> - חמש שאלות שכל בדיקה עונה עליהן</h3>
+  <p>
+    <b>S</b> - <span class="term" dir="ltr">SNAP</span> (האם הנגע פרה- או פוסט-גנגליוני? "SNAP תקין = פרוקסימלי לגנגליון")<br>
+    <b>C</b> - <span class="term" dir="ltr">CMAP</span> (חסם הולכה או אובדן אקסון? "השווה דיסטלי לפרוקסימלי")<br>
+    <b>F</b> - <span class="term" dir="ltr">F-wave/H-reflex</span> ("תגובות מאוחרות" לנגעים פרוקסימליים שלא ניתן לגרות ישירות)<br>
+    <b>N</b> - <span class="term" dir="ltr">Needle EMG</span> (פעילות ספונטנית = דה-נרבציה חריפה; MUAP = כרוני/מיופתי)<br>
+    <b>R</b> - <span class="term" dir="ltr">Repetitive stimulation</span> (ירידה = פוסט-סינפטי; עלייה = פרה-סינפטי)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חוקר שמגיע לזירת "פשע" לאורך כביש עצב אחד ארוך. הוא שואל חמש שאלות בסדר קבוע: קודם הוא בודק את "העדים החושיים" בקצה הכביש (SNAP) - אם הם ראו הכול כרגיל, הפשע קרה רחוק מהם, קרוב לתחנת המשטרה (הגנגליון/השורש). אחר כך הוא משווה שני מצלמות אבטחה על הכביש המוטורי (CMAP דיסטלי מול פרוקסימלי) - אם המצלמה הרחוקה יותר "פספסה" משהו, הפשע קרה בדיוק שם. כשאין מצלמות בקטע הפרוקסימלי, הוא שולח שליח שרץ הלוך ושוב (F-wave/H-reflex). לבסוף הוא נכנס לשריר עצמו עם מיקרופון (EMG מחט) כדי לשמוע אם יש "רעש רקע" חשוד (פיברילציות) או אם קולות הפעולה השתנו בגודלם (MUAP).</p>
+</div>
+
+<h2><span class="num">13</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Nerve_conduction_study" target="_blank">Nerve Conduction Study – Wikipedia</a>
+    <div class="desc">רקע כללי על עקרונות ה-NCS, SNAP ו-CMAP.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Electromyography" target="_blank">Electromyography – Wikipedia</a>
+    <div class="desc">הסבר על טכניקת ה-EMG במחט, פעילות ספונטנית ו-MUAP.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/F_wave" target="_blank">F Wave – Wikipedia</a>
+    <div class="desc">מסלול ומשמעות קלינית של תגובת ה-F-wave.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/H-reflex" target="_blank">H-reflex – Wikipedia</a>
+    <div class="desc">רקע על הרפלקס ה-H, מקבילו האלקטרופיזיולוגי של רפלקס הקרסול.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Carpal_tunnel_syndrome" target="_blank">Carpal Tunnel Syndrome – Wikipedia</a>
+    <div class="desc">רקע קליני על תסמונת התעלה הקרפלית ואבחון אלקטרודיאגנוסטי.</div>
+  </li>
+</ul>
+
+<h2><span class="num">14</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופלת בת 45 מגיעה עם נימול ועקצוצים בשלוש האצבעות הרדיאליות של כף היד הימנית, מחמירים בלילה. בדיקת NCS מראה לטנטיות חושית מדיאנית מוארכת בהשוואה לאולנרית (הפרש של 0.6 מילישנייה), עם מהירות הולכה מוטורית תקינה ו-EMG מחט תקין של השרירים התנריים. שבועיים לאחר מכן מגיע מטופל אחר עם חולשה בכף יד שמאל ותת-נטייה בעצב האולנרי - NCS מראה ירידה של 60% באמפליטודת CMAP בין גירוי מתחת למרפק לגירוי מעליו, ללא האטת מהירות משמעותית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה מסביר את הלטנטיות המדיאנית המוארכת בהשוואה לאולנרית אצל המטופלת הראשונה, ולמה זו הדרך המועדפת לבדוק זאת?</div>
+  <button class="opt" data-i="0">כי העצב המדיאני תמיד איטי יותר מהאולנרי גם באנשים בריאים</button>
+  <button class="opt" data-i="1">כי יש לה פגיעה אקסונלית מוחלטת בעצב המדיאני</button>
+  <button class="opt" data-i="2">כי דה-מיאלינציה מקומית של העצב המדיאני בתעלה הקרפלית מאיטה את הולכתו; ההשוואה לעצב האולנרי הסמוך מנטרלת גורמים לא-פתולוגיים כמו גיל וטמפרטורה</button>
+  <button class="opt" data-i="3">כי היא נבדקה בטמפרטורת חדר נמוכה מדי</button>
+  <div class="explain">התשובה הנכונה: תעלה קרפלית גורמת לדה-מיאלינציה מקומית של הסיבים החושיים המדיאניים בדיוק במעבר דרך התעלה, ומאיטה את הלטנטיות שם. השוואה לעצב סמוך (אולנרי או רדיאלי) שאינו עובר בתעלה חשובה כי שניהם מושפעים באותה מידה מגורמים לא-פתולוגיים (גיל, גובה, טמפרטורה) - כך שההפרש ביניהם משקף רק את הפתולוגיה. תשובה 0 שגויה - בלי פתולוגיה ההפרש קטן בהרבה. תשובות 1 ו-3 לא נתמכות בממצאים המתוארים (EMG מחט תקין שולל אובדן אקסונלי משמעותי).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה הממצא המרכזי אצל המטופל השני, ומה המשמעות הפרוגנוסטית שלו?</div>
+  <button class="opt" data-i="0">אובדן אקסונלי מלא - פרוגנוזה גרועה, נדרש ניתוח דחוף</button>
+  <button class="opt" data-i="1">חסם הולכה (conduction block) מקומי מדה-מיאלינציה במרפק - פרוגנוזה טובה יחסית, כי האקסונים עצמם שלמים</button>
+  <button class="opt" data-i="2">נגע פרה-גנגליוני בשורש C8</button>
+  <button class="opt" data-i="3">הפרעה בצומת העצבית-שרירית</button>
+  <div class="explain">התשובה הנכונה: ירידה חדה באמפליטודת CMAP בדיוק בין גירוי מתחת לגירוי מעל אתר חשוד (המרפק), ללא האטה משמעותית וללא ירידה פרופורציונלית בגירוי הדיסטלי, היא ההגדרה הקלאסית של חסם הולכה - סימן לדה-מיאלינציה מקומית ולא לניתוק אקסונלי. זו בשורה טובה יחסית כי ברגע שהדה-מיאלינציה מחלימה (רה-מיאלינציה), ההולכה חוזרת לתקין הרבה יותר מהר מאשר בהחלמה מניוון אקסונלי, שדורשת צמיחה מחדש איטית. תשובה 0 הייתה נכונה אם הייתה ירידה פרופורציונלית גם בגירוי הדיסטלי. תשובות 2 ו-3 אינן תואמות לתבנית שתוארה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. אם ל-EMG מחט של שרירי הידיים משני המטופלים היה נלקח מייד ביום הפנייה, מדוע לא היינו מצפים לראות פיברילציות אצל אף אחד מהם, גם אם היה אובדן אקסונלי משמעותי?</div>
+  <button class="opt" data-i="0">כי פיברילציות אף פעם לא מופיעות בעצב המדיאני או האולנרי</button>
+  <button class="opt" data-i="1">כי מחט EMG לא יכולה לזהות פיברילציות כלל</button>
+  <button class="opt" data-i="2">כי פיברילציות מופיעות רק בשרירים פרה-ספינליים</button>
+  <button class="opt" data-i="3">כי דרושים 10-30 יום מרגע הפגיעה עד שהדה-נרבציה החריפה מתבטאת בפיברילציות ו-positive sharp waves, בהתאם לאורך הגדם הדיסטלי</button>
+  <div class="explain">התשובה הנכונה: פיברילציות ו-positive sharp waves הן תוצאה של דה-נרבציה מלאה של סיב שריר בודד, אך זו תופעה שמתפתחת בהדרגה ולא מייד - נדרשים בממוצע 10-14 יום לגדם דיסטלי קצר ועד 21-30 יום לגדם ארוך יותר. לכן תזמון הבדיקה קריטי לפרשנות הנכונה שלה. תשובות 0-2 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזו בדיקה הייתה הכי שימושית כדי לזהות פגיעה מוקדמת בשורש S1 אצל מטופל עם כאב גב תחתון, לפני שהופיעו שינויים ב-EMG מחט?</div>
+  <button class="opt" data-i="0">H-reflex - רגיש יותר מ-EMG מחט לגילוי דה-מיאלינציה מוקדמת בנתיב S1</button>
+  <button class="opt" data-i="1">F-wave - הכי רגיש לנגעים ממוקדים כמו רדיקולופתיה בודדת</button>
+  <button class="opt" data-i="2">SNAP של העצב הסוראלי - תמיד חריג ברדיקולופתיה S1</button>
+  <button class="opt" data-i="3">גירוי חוזר בתדר גבוה</button>
+  <div class="explain">התשובה הנכונה: ה-H-reflex, המקביל האלקטרופיזיולוגי לרפלקס הקרסול, רגיש יותר מ-EMG מחט לזיהוי נגעי שורש S1 מוקדמים, כי הוא מגלה דה-מיאלינציה (שמופיעה מוקדם) בעוד EMG מגלה בעיקר אובדן אקסונלי (שמופיע מאוחר יותר ודורש זמן להתפתחות). F-wave (1) פחות רגיש לנגעים ממוקדים דווקא כי ההאטה המקומית "מתמוססת" לאורך המסלול הפרוקסימלי הארוך התקין. SNAP (2) לרוב תקין ברדיקולופתיה כי הפגיעה פרוקסימלית לגנגליון. גירוי חוזר (3) רלוונטי להפרעות NMJ, לא לרדיקולופתיה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">15</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>SNAP תקין + חוסר תחושה קליני</b> = הנגע פרוקסימלי לגנגליון השורש הדורסלי (שורש/CNS) - סימן חשוב, כולל פרוגנוסטי ב-avulsion.</li>
+    <li>ב-<b>CMAP</b>, ההשוואה בין גירוי דיסטלי לפרוקסימלי היא המפתח: ירידה חדה רק כשחוצים אתר חשוד = חסם הולכה (דה-מיאלינציה, פרוגנוזה טובה); ירידה פרופורציונלית משני העברים = אובדן אקסונלי.</li>
+    <li><b>F-wave</b> רגיש לדה-מיאלינציה מפושטת (Guillain-Barré); <b>H-reflex</b> רגיש במיוחד לנגעי שורש S1 מוקדמים.</li>
+    <li>ב-<b>EMG מחט</b>, פעילות ספונטנית (פיברילציות) מופיעה רק 10-30 יום אחרי דה-נרבציה חריפה; שינויי MUAP (גודל, פאזות, גיוס) משקפים תהליכים כרוניים או מיופתיים.</li>
+    <li><b>גירוי חוזר</b>: ירידה בתדר נמוך = פגם פוסט-סינפטי (מיאסטניה גרביס); עלייה בתדר גבוה = פגם פרה-סינפטי (Lambert-Eaton).</li>
+    <li>ברדיקולופתיה, שילוב MRI (רגיש, לא ספציפי) עם EMG (ספציפי יותר, פחות רגיש) הוא הגישה האופטימלית.</li>
+    <li>תזמון הבדיקה קריטי: נוירפרקסיה ואקסונוטמזיס נראות זהות עד שחולף זמן הניוון הוולריאני (כ-9 ימים מוטורי, 11 ימים חושי).</li>
+    <li>SEP דו-צדדי נעדר של העצב המדיאני מנבא בביטחון גבוה אי-התעוררות מתרדמת היפוקסית-איסכמית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
