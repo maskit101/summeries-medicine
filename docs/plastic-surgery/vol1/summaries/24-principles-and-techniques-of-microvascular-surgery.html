@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 24: עקרונות וטכניקות בכירורגיה מיקרווסקולרית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 24: עקרונות וטכניקות בכירורגיה מיקרווסקולרית <span class="term" dir="ltr">Principles and Techniques of Microvascular Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Fu-Chan Wei, Sherilyn Keng Lin Tay, Nidal F. Al Deek</div>
+
+<p>מיקרוכירורגיה היא הטכנולוגיה שהפכה את הכירורגיה הפלסטית המשחזרת ממקצוע של "סולם שחזור" (רקמה מקומית → אזורית → מרוחקת בהגבלות) למקצוע שבו כמעט כל פגם, בכל מקום בגוף, ניתן לשחזר עם רקמה חופשית (<span class="term" dir="ltr">free flap</span>) המחוברת מחדש לכלי דם בגודל מילימטר בודד תחת מיקרוסקופ. הפרק סוקר את הכלים, העקרונות הטכניים, והסיבוכים המרכזיים – בעיקר <b>פקקת</b> (<span class="term" dir="ltr">thrombosis</span>) ותופעת <b>ה-no-reflow</b> – שהם הבסיס להבנת כל ניתוח פלאפ חופשי בספר.</p>
+
+<h2><span class="num">1</span> מהי מיקרוכירורגיה, ולמה היא בכלל אפשרית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>מיקרוכירורגיה (<span class="term" dir="ltr">microsurgery</span>):</b> תפירה של כלי דם קטנים (סביב 1 מ"מ) תחת הגדלה אופטית.<br>
+    <b>סופר-מיקרוכירורגיה (<span class="term" dir="ltr">supramicrosurgery</span>):</b> אנסטומוזה של כלים זעירים עוד יותר – 0.3–0.8 מ"מ – נפוצה בשחזור לימפטי, אנסטומוזת פרפורטור-לפרפורטור, וריפלנטציה של אצבע דיסטלית.<br>
+    <b>מיקרוכירורגיה משחזרת (<span class="term" dir="ltr">reconstructive microsurgery</span>):</b> שימוש בטכניקות אלו לרה-וסקולריזציה, ריפלנטציה והשתלה עצמית/אלוגנית של רקמה, לפתרון פגמים טראומטיים, מולדים ואונקולוגיים.
+  </p>
+  <p>שלושה גורמים היסטוריים אפשרו את המהפכה: (1) פיתוח <b>המיקרוסקופ הניתוחי</b> (1921, לראשונה בבעלי חיים ואז בחולה על ידי Nylén); (2) בידוד <b>הפרין</b> מהכבד על ידי הסטודנט לרפואה McLean, ושימושו הקליני כנוגד קרישה; (3) פיתוח <b>מיקרו-מכשירים ותפרים אולטרה-דקים</b>. הצירוף של השלושה אפשר לרדת בהדרגה בגודל כלי הדם שניתן לתפור – מטכניקת ה-triangulation של Carrel (1902, זכה בנובל 1912) ועד לאנסטומוזות של 0.3 מ"מ היום.</p>
+</div>
+<table>
+  <thead><tr><th>שנה</th><th>אבן דרך</th></tr></thead>
+  <tbody>
+    <tr><td>1902</td><td>Carrel מתאר את שיטת ה-triangulation לאנסטומוזה של כלי דם (נובל 1912)</td></tr>
+    <tr><td>1921</td><td>Nylén משתמש לראשונה במיקרוסקופ ניתוחי בבעל חיים ואז בחולה</td></tr>
+    <tr><td>1960</td><td>Jacobson ו-Suarez מציגים את ה-diploscope ומבצעים אנסטומוזה של כלי 1 מ"מ – "לידת" המיקרוכירורגיה המודרנית</td></tr>
+    <tr><td>1964–1965</td><td>ריפלנטציית זרוע ראשונה (Malt & McKhann); ריפלנטציית אגודל ראשונה עם מיקרוסקופ (Komatsu & Tamai)</td></tr>
+    <tr><td>1970</td><td>הפלאפ החופשי המוצלח לחלוטין הראשון – פלאפ אומנטום (McLean & Buncke)</td></tr>
+    <tr><td>1989</td><td>הפלאפ הפרפורטורי הראשון – DIEP flap (Koshima & Soeda)</td></tr>
+    <tr><td>1998–1999</td><td>השתלת יד ראשונה (Lyon, ואז Louisville) – תחילת עידן ה-VCA</td></tr>
+    <tr><td>2005 / 2010</td><td>השתלת פנים חלקית ראשונה / מלאה ראשונה (שתיהן החלו ב-Lyon/Barcelona)</td></tr>
+  </tbody>
+</table>
+<p class="key-box">שיעורי ההצלחה של פלאפים חופשיים היום עומדים על <b>96%–100%</b> במרכזים מנוסים, לעומת 74%–91% בעבר – עלייה שהפכה את המיקרוכירורגיה מ"מוצא אחרון" לבחירה ראשונה בשחזור, ואף הפכה (reversed) את סולם השחזור המסורתי.</p>
+
+<h2><span class="num">2</span> כלי העבודה: מיקרוסקופ, לופות ומכשור</h2>
+<p>שני סוגי הגדלה אופטית עומדים לרשות המנתח:</p>
+<div class="table-scroll"><table>
+  <thead><tr><th></th><th>מיקרוסקופ ניתוחי</th><th>לופות (<span dir="ltr">loupes</span>)</th></tr></thead>
+  <tbody>
+    <tr><td>הגדלה</td><td>עד פי 62 (בדרך כלל 6×–40×)</td><td>2.5×–8×</td></tr>
+    <tr><td>יתרון עיקרי</td><td>הגדלה ותאורה מיטביות, כפול ראש להוראה/צילום, כלים לפלואורסצנציה תוך-ניתוחית</td><td>זול, קל משקל, חופש תנועה למנתח</td></tr>
+    <tr><td>שימוש טיפוסי</td><td>אנסטומוזה של כלים קטנים במיוחד (&lt;1.5 מ"מ), ילדים</td><td>ניתוק פלאפ, אנסטומוזה של כלים 2–3 מ"מ; במחקר של 200 מקרים – 99% הצלחה בשתי השיטות לכלים סביב 1 מ"מ</td></tr>
+    <tr><td>רמת הגדלה עבודה</td><td>נמוכה (6×–12×) להכנת כלי ותפירה; בינונית (9×–15×) להנחת תפר; גבוהה לאנסטומוזות זעירות ובדיקה</td><td>2.5× מספיק לרוב ניתוקי הפלאפ; 3.5–4.5× לדיסקציית פרפורטור/פלאפים דקים</td></tr>
+  </tbody>
+</table></div>
+<p>מכשור מיקרוכירורגי כולל: <b>מספריים</b> קפיציים עם קצה מעוגל, <b>מחזיקי מחט</b> קפיציים (טיטניום מועדף בסופר-מיקרוכירורגיה), <b>פינצטות</b> (Dumont, לתפוסה של תפר 10-0 בדיוק 1/1000 אינץ'), ו<b>קלמפים וסקולריים</b> – קלמפים לוורידים (סימון V, לחץ נמוך) לעומת עורקים (לחץ גבוה יותר, שוליים מעוקלים קלות). לחץ קלמפ אידיאלי: 5–10 g/mm² בכלי גדול, 15–20 g/mm² בכלי קטן.</p>
+
+<h2><span class="num">3</span> תפרים ומכשירי אנסטומוזה חלופיים</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>שיטה</th><th>עיקרי</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>תפר ניילון מונופילמנטי</td><td>9-0 לכלים ≥2 מ"מ; 10-0 ל-1–2 מ"מ; 11-0/12-0 לכלים קטנים יותר</td><td>הסטנדרט המקובל; ריאקטיביות רקמה נמוכה, אחיזת קשר טובה</td></tr>
+    <tr><td>מכשיר צימוד (<span class="term" dir="ltr">coupler / UNILINK</span>)</td><td>שתי טבעות פוליאתילן עם 6–8 סיכות מחוברות</td><td>מהיר מאוד (2–6 דק'), עד 100% פטנטיות; בעיקר ורידים אך גם עורקים; אסור בכלים עבי-דופן, הבדל קוטר &gt;1.5:1, כלים &lt;1.5 מ"מ</td></tr>
+    <tr><td>מהדק לא-חודר (<span class="term" dir="ltr">VCS clip</span>)</td><td>סיכות טיטניום בלתי-חודרות באוורסיה</td><td>זמן אנסטומוזה קצר יותר (~12 דק'), 100% פטנטיות בסדרות</td></tr>
+    <tr><td>דבק פיברין / ציאנואקרילט</td><td>איטום לאחר תפרים ראשוניים</td><td>מקטין מספר תפרים אך לא נכנס לשימוש נרחב (חשש מכניסה ללומן, אלרגיה)</td></tr>
+    <tr><td>ריתוך לייזר</td><td>אנרגיה תרמית לאיחוי דפנות</td><td>שיעורי פטנטיות גבוהים אך חשש להיווצרות פסאודואנוריזמה – שימוש קליני מוגבל</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">4</span> טכניקת האנסטומוזה: End-to-End מול End-to-Side</h2>
+<p>ה<b>עקרונות של Carrel</b> עדיין תקפים היום: הימנעות מהיצרות לומן, הימנעות מקפלים ומשטח פנימי מחוספס, וקירוב מדויק של קצוות האינטימה. השיטה הנפוצה ביותר היא <b>תפר קטוע (interrupted)</b> עם 2–3 תפרי עיגון (stay sutures) ב-120° או 180°, כשהקשר הראשון הוא קשר כפול. חלופות: תפר רציף (continuous – חוסך כמעט מחצית מהזמן, מתאים לכלים ≥2-3 מ"מ ללא הבדל קוטר משמעותי), תפר open-loop (משלב יתרונות של שניהם), ואנסטומוזת שרוול (sleeve – טלסקופ של כלי אחד לתוך השני).</p>
+<div class="table-scroll"><table>
+  <thead><tr><th></th><th>End-to-End</th><th>End-to-Side</th></tr></thead>
+  <tbody>
+    <tr><td>שימוש עיקרי</td><td>רוב האנסטומוזות העורקיות והוורידיות</td><td>הבדל קוטר/עובי דופן משמעותי; צורך לשמר זרימה דיסטלית (רגל עם כלי בודד)</td></tr>
+    <tr><td>יתרון</td><td>פשוט, מהיר</td><td>פחות ואזוספזם (על פי ניסיון קליני); לא חושף פלאק טרשתי כמו end-to-side בכלי חולה</td></tr>
+    <tr><td>פטנטיות</td><td>~100% במחקרים גדולים</td><td>שקולה ל-end-to-end כשמבוצעת נכון (מחקר של 2000+ אנסטומוזות)</td></tr>
+  </tbody>
+</table></div>
+<p class="key-box">כלל אצבע: פער קוטר עד <b>4:1</b> ניתן עדיין לגשר ב-end-to-end (מתיחה, חתך אלכסוני עד 30°, פתיחת ענף צדדי). מעל <b>3:1</b> יש לשקול end-to-side, שתל ורידי, או שימוש בענף צדדי של הכלי הגדול.</p>
+
+<h2><span class="num">5</span> בדיקת פטנטיות ואיתור בעיות תוך-ניתוחיות</h2>
+<p>סימנים לפטנטיות טובה: פעימה עורקית <b>אקספנסילית</b> (לא אורכית – סימן לפקקת חלקית/מלאה), ורידי מזין בקוטר עגול טבעי מלא. שני מבחנים קלאסיים:</p>
+<ul>
+  <li><b>מבחן ה-uplift</b> – הרמת כלי דק-דופן עד חסימה כמעט מלאה; מילוי-התרוקנות חוזרים עם כל פעימה = פטנטי.</li>
+  <li><b>מבחן ה-empty-and-refill</b> – סחיטת מקטע כלי בין שתי פינצטות, שחרור הפינצטה הפרוקסימלית; מילוי מיידי = פטנטי, מילוי איטי/נעדר = לא פטנטי (מיועד בעיקר לוורידים).</li>
+</ul>
+<p>כיום נעשה שימוש נרחב ב-<span class="term" dir="ltr">ICG (indocyanine green)</span> להערכת פרפוזיה בזמן אמת דרך מצלמות אינפרא-אדום המשולבות במיקרוסקופים מודרניים.</p>
+
+<h2><span class="num">6</span> ניטור פלאפ חופשי לאחר הניתוח</h2>
+<div class="mechanism">
+  <p class="chain">הבסיס: <b>הערכה קלינית נשארת ה-gold standard</b> לכל שיטות הניטור – צבע, מילוי נימי, טורגור, טמפרטורת פני השטח, ובדיקת דקירה (pinprick) אם מילוי נימי לא ברור.</p>
+  <p>תדירות טיפוסית: כל 30 דקות ב-24 השעות הראשונות → כל 1–2 שעות ב-24 השעות הבאות → כל 4 שעות ב-48 השעות שלאחר מכן. חלון הזמן הקריטי ביותר: <b>72 השעות הראשונות</b>.</p>
+</div>
+<div class="table-scroll"><table>
+  <thead><tr><th>שיטת ניטור</th><th>עיקרון</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>הערכה קלינית</td><td>צבע, מילוי נימי, טמפרטורה</td><td>Gold standard; הבדל טמפרטורה 1.8°C בין פלאפ לביקורת = 98% רגישות; טמפ' &lt;30°C = כשל</td></tr>
+    <tr><td>דופלר יד (pencil Doppler)</td><td>אולטרסאונד רציף בתדר נמוך מעל פרפורטור</td><td>הנפוץ ביותר בסקרים בקרב מנתחים</td></tr>
+    <tr><td>דופלר משתל (implantable)</td><td>בוחן סביב הפדיקל, בעיקר הווריד</td><td>רגיש מאוד אך שיעור false-positive גבוה; מתאים לפלאפים קבורים</td></tr>
+    <tr><td>לייזר דופלר</td><td>מדידת זרימה נימית בעור</td><td>מדויק, יכול להבדיל חסימה ורידית מעורקית, ללא false positive/negative</td></tr>
+    <tr><td>אוקסימטריית רקמה (tissue oximetry)</td><td>ריווי חמצן ברקמה</td><td>מבין הכלים המשפיעים ביותר על החלטה קלינית להחזרה לחדר ניתוח</td></tr>
+    <tr><td>טלה-ניטור (סמארטפון)</td><td>צילום/וידאו מרחוק</td><td>דיוק דומה לבדיקה פרונטלית, זמן תגובה קצר יותר</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">7</span> כשל פלאפ: וזוספזם, פקקת, ותופעת ה-No-Reflow</h2>
+<p>שלושה מנגנוני כשל עיקריים, לפי סדר התפתחות:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>1. וזוספזם (<span class="term" dir="ltr">vasospasm</span>)</b> – מתרחש ב-5–10% מהמקרים, לרוב בגלל טמפרטורה נמוכה (&lt;36°C), כאב, היפוולמיה, או דיסקציה מכנית. עורקים רגישים יותר לוזוספזם אך ורידים – קשים יותר לטיפול לאחר שהתפתח.<br>
+    ↓ אם לא מטופל<br>
+    <b>2. פקקת (<span class="term" dir="ltr">thrombosis</span>)</b> – עורקית לרוב ב-24 השעות הראשונות (אגרגציית טסיות באתר האנסטומוזה); ורידית מאוחרת יותר וקשורה לסטזיס. גורמים: קרע, דליפה, היצרות לומן, through-stitching, הכללת אדוונטיציה בתפר.<br>
+    ↓ אם ממושכת/לא מטופלת<br>
+    <b>3. תופעת No-Reflow</b> – חוסר יכולת לחדש זרימת דם לפלאפ למרות אנסטומוזה פתוחה, עקב וזוקונסטריקציה בלתי-הפיכה + נזק אנדותליאלי, בצקת תאית, חשיפת קולגן תת-אנדותליאלי, הצטברות טסיות-לויקוציטים – זהו סוף הדרך של פגיעת <span class="term" dir="ltr">ischemia-reperfusion</span> חמורה.
+  </p>
+</div>
+<p class="key-box">ההבדל הקריטי בין וזוספזם לפקקת: וזוספזם הפיך ומטופל בתרופות/מכני; פקקת דורשת לרוב <b>חזרה מיידית לחדר ניתוח</b> לרזקציה ואנסטומוזה מחדש או Fogarty thrombectomy; No-reflow הוא לעיתים בלתי הפיך גם לאחר שהאנסטומוזה תוקנה.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>טיפול</th><th>מנגנון</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td>פפאברין</td><td>מעכב פוספודיאסטראז → cAMP → הרפיית שריר חלק</td><td>מקומי, נפוץ ביותר</td></tr>
+    <tr><td>לידוקאין 2–4%</td><td>תגובה דו-פאזית: ריכוז נמוך=כיווץ, גבוה=הרחבה</td><td>אפקט נמשך גם לאחר שטיפה</td></tr>
+    <tr><td>חוסמי תעלות סידן (ניפדיפין, ורפמיל)</td><td>חסימת תעלות סידן בשריר חלק וסקולרי</td><td>עשוי להיות יעיל יותר מפפאברין</td></tr>
+    <tr><td>הפרין (השקיה תוך-ניתוחית + מנת נמוכה סיסטמית)</td><td>מפחית אגרגציית טסיות, מפעיל אנטיתרומבין III</td><td>שימוש אוניברסלי; זהירות מ-HIT (טרומבוציטופניה מושרית הפרין)</td></tr>
+    <tr><td>דקסטרן-40</td><td>מגביר אלקטרונגטיביות של תאי דם/טסיות, מפחית צמיגות</td><td>ללא הוכחה חד-משמעית ליעילות; קשור לסיבוכים סיסטמיים (בצקת ריאות)</td></tr>
+    <tr><td>אספירין</td><td>מעכב COX, מפחית תרומבוקסן A2</td><td>נפוץ כטיפול מונע פוסט-ניתוחי</td></tr>
+    <tr><td>תרומבוליטיקה (אורוקינאז, tPA)</td><td>מפרקת פקקת קיימת</td><td>לפקקת עמידה לטיפול סטנדרטי; סיכון דימום</td></tr>
+    <tr><td>עלוקות רפואיות (<span class="term" dir="ltr">Hirudo medicinalis</span>)</td><td>הזרקת הירודין (אנטי-קרישה) + הרחבת כלי + יניקת דם</td><td>קו אחרון לגודש ורידי; מוניטורינג המוגלובין יומי; אנטיביוטיקה נגד Aeromonas</td></tr>
+  </tbody>
+</table></div>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מפל הכשל המיקרווסקולרי</title>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="770" y="48" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">גורם מקדים</text>
+  <text x="770" y="66" font-size="11" text-anchor="middle" fill="#78350f">קור, כאב, טכניקה</text>
+  <text x="770" y="80" font-size="11" text-anchor="middle" fill="#78350f">לקויה, לחץ דם נמוך</text>
+
+  <rect x="480" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="560" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">וזוספזם</text>
+  <text x="560" y="66" font-size="11" text-anchor="middle" fill="#1e3a8a">הפיך – פפאברין,</text>
+  <text x="560" y="80" font-size="11" text-anchor="middle" fill="#1e3a8a">לידוקאין, חום</text>
+
+  <rect x="260" y="20" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="340" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פקקת</text>
+  <text x="340" y="66" font-size="11" text-anchor="middle" fill="#7f1d1d">חזרה לחדר ניתוח,</text>
+  <text x="340" y="80" font-size="11" text-anchor="middle" fill="#7f1d1d">Fogarty, הפרין</text>
+
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#111827" stroke="#000"/>
+  <text x="110" y="48" font-size="13" text-anchor="middle" fill="#fca5a5" font-weight="700">No-Reflow</text>
+  <text x="110" y="66" font-size="11" text-anchor="middle" fill="#fecaca">וזוקונסטריקציה</text>
+  <text x="110" y="80" font-size="11" text-anchor="middle" fill="#fecaca">בלתי-הפיכה = כשל</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,55 480,49 480,61" fill="#374151"/>
+  <line x1="480" y1="55" x2="440" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,55 260,49 260,61" fill="#374151"/>
+  <line x1="260" y1="55" x2="220" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="60" y="150" width="740" height="120" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="430" y="180" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">Ischemia-Reperfusion Injury – המנגנון התאי מאחורי No-Reflow</text>
+  <text x="430" y="205" font-size="12" text-anchor="middle" fill="#4c1d95">נזק אנדותליאלי → בצקת תאית ובין-תאית → חשיפת קולגן תת-אנדותליאלי</text>
+  <text x="430" y="228" font-size="12" text-anchor="middle" fill="#4c1d95">→ הצטברות טסיות-לויקוציטים → ירידה בזרימת דם → פקקת וכשל פלאפ</text>
+  <text x="430" y="251" font-size="11" text-anchor="middle" fill="#6d28d9">(ציטוקינים דלקתיים IL-1β, TNF-α מעורבים ישירות)</text>
+  <polygon points="430,150 424,130 436,130" fill="#6d28d9"/>
+  <line x1="430" y1="150" x2="430" y2="130" stroke="#6d28d9" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">8</span> טיפים כירורגיים מפתח שהמחברים מדגישים</h2>
+<ul>
+  <li><b>שיקום פדיקל דו-שלבי:</b> תיקון עורק ראשון עם השארתו פתוח בזמן תפירת הווריד מקצר את זמן איסכמיה חמה, אך עלול לגרום לגודש ורידי זמני – ברוב המרכזים (כולל המחברים, &gt;1000 פלאפים/שנה) לא נצפית בעיה מהותית.</li>
+  <li><b>אנסטומוזה ורידית כפולה</b> מפחיתה כשל (4.3% לעומת 0% לפי Khouri) אך אנסטומוזה בודדת לווריד אמין מספיקה במקרים רבים ומקצרת זמן ניתוח.</li>
+  <li><b>הכנסת הפלאפ (inset) לפני האנסטומוזה</b> מומלצת בדרך כלל – לאחר שחרור הזרימה הפלאפ מתנפח ומדמם משוליו, מה שמקשה על החדרתו לאזורים עמוקים (למשל ראש-צוואר).</li>
+  <li><b>שטיפה מתמדת בהפרין/רינגר לקטט</b> מונעת התייבשות כלי, הדבקת תפר לרקמה, והצטברות פרוטרומבוטינים.</li>
+  <li><b>עודף מתיחה בתפר</b> עלול לגרום לנמק שכבת המדיה (אם &gt;1/3 מההיקף נהרס – לא תתרחש רה-אנדותליזציה וחסימת לומן ודאית).</li>
+</ul>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-T-A-G-E</span> של הכשל המיקרווסקולרי</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Spasm</span> (וזוספזם – הפיך, טיפול מקומי).<br>
+    <b>T</b> – <span class="term" dir="ltr">Thrombosis</span> (פקקת – דורשת חזרה לחדר ניתוח).<br>
+    <b>A</b> – <span class="term" dir="ltr">Anastomotic failure</span> (קרע/דליפה/היצרות – בעיה טכנית).<br>
+    <b>G</b> – <span class="term" dir="ltr">General/systemic factors</span> (לחץ דם, נפח נוזלים, טמפרטורה – לתקן ראשון, לפני חקירה כירורגית).<br>
+    <b>E</b> – <span class="term" dir="ltr">End result: no-reflow</span> (השלב הבלתי הפיך – מטרת כל הטיפול היא למנוע הגעה לכאן).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני נהר קטן (כלי הדם המיקרוסקופי) שסוללים בו סכר חדש (האנסטומוזה). אם הסכר בנוי היטב – הנהר זורם חלק. אם יורד קור פתאומי (וזוספזם), מי הנהר מאטים אך עדיין זורמים – אפשר לחמם ולפתוח מחדש. אם נופלים לתוכו ענפים (פקקת) – חייבים לצאת מהר ולפנות אותם. אבל אם הסכר קורס לגמרי וגם השטח שמסביב הופך לביצה (no-reflow) – אי אפשר להציל את הכפר למטה בזרם, גם אם פותחים את הסכר בחזרה.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>נהר האנסטומוזה</title>
+    <rect x="0" y="140" width="500" height="10" fill="#a3a3a3"/>
+    <path d="M20,110 Q140,90 250,110 T480,110" stroke="#2563eb" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <circle cx="250" cy="108" r="16" fill="#fbbf24" stroke="#78350f"/>
+    <text x="60" y="170" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">זרימה תקינה</text>
+    <text x="250" y="170" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">הסכר (אנסטומוזה)</text>
+    <text x="440" y="170" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">הפלאפ (הכפר)</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Microsurgery" target="_blank">Microsurgery – Wikipedia</a>
+    <div class="desc">סקירה כללית על עקרונות המיקרוכירורגיה, הסטוריה והתפתחות הטכניקה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Free_flap" target="_blank">Free flap – Wikipedia</a>
+    <div class="desc">רקע על פלאפים חופשיים, סוגיהם והתפתחותם ההיסטורית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Alexis_Carrel" target="_blank">Alexis Carrel – Wikipedia</a>
+    <div class="desc">ביוגרפיה של Carrel, ממציא טכניקת ה-triangulation לאנסטומוזה של כלי דם וזוכה פרס נובל 1912.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/No-reflow_phenomenon" target="_blank">No-reflow phenomenon – Wikipedia</a>
+    <div class="desc">הסבר על תופעת ה-no-reflow ומנגנון פגיעת ischemia-reperfusion.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 58 עבר שחזור פגם בלסת התחתונה עם פלאפ פיבולה חופשי לאחר כריתת גידול. שש שעות לאחר הניתוח, האחות מדווחת שהעור המנוטר של הפלאפ הפך כהה-סגלגל, מילוי נימי מהיר (&lt;1 שנייה), ודימום כהה ומתמשך מהדקירה. לחץ הדם, החמצון, וטמפרטורת הגוף של המטופל תקינים. אין דחיסה חיצונית נראית לעין ואין המטומה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה מרמז התיאור הקליני (עור סגלגל, מילוי נימי מהיר, דימום כהה)?</div>
+  <button class="opt" data-i="0">וזוספזם עורקי הפיך</button>
+  <button class="opt" data-i="1">גודש/חסימה ורידית (venous congestion/thrombosis)</button>
+  <button class="opt" data-i="2">תופעת no-reflow בלתי הפיכה</button>
+  <button class="opt" data-i="3">התייבשות הפלאפ בלבד ללא בעיה וסקולרית</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שסימני אי-פטנטיות ורידית כוללים "engorgement" (גודש), עמוד דם כהה יותר מהכלי המקבל, ודימום כהה מתמשך מהשוליים – בדיוק התמונה בוינייטה. וזוספזם עורקי (תשובה 1) היה מציג עור חיוור וקר, לא כהה עם מילוי נימי מהיר. No-reflow (תשובה 3) הוא אבחנה שנקבעת רק לאחר שהאנסטומוזה נפתחה מחדש כירורגית ועדיין אין פרפוזיה – זהו שלב מאוחר יותר. תשובה 4 מתעלמת מהסימנים הווסקולריים הברורים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו הצעד הראשון הנכון בטיפול בפלאפ הכושל בוינייטה, בהתאם לעקרונות הפרק?</div>
+  <button class="opt" data-i="0">מיד להזריק סטרפטוקינאז לפדיקל ללא בדיקה נוספת</button>
+  <button class="opt" data-i="1">להתחיל טיפול בעלוקות רפואיות מיד ללא הערכה נוספת</button>
+  <button class="opt" data-i="2">לתקן קודם גורמים סיסטמיים ומקומיים פשוטים (לחץ דם, חום, לשחרר לחץ/תחבושת הדוקה) ורק אחר כך לשקול חקירה כירורגית</button>
+  <button class="opt" data-i="3">להמתין 24 שעות נוספות לפני כל פעולה כדי לוודא שהבעיה אינה חולפת מעצמה</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שכאשר פלאפ מתחיל להיכשל, יש לבצע קודם "פעולות פשוטות ליד המיטה" כדי למנוע חקירה כירורגית מיותרת – תיקון לחץ דם, היפוולמיה, היפותרמיה, שחרור תחבושת הדוקה או המטומה. רק אם הפלאפ לא משתפר לאחר תיקון גורמים אלו, מתבצעת חקירה ליד המיטה ואז החזרה לחדר ניתוח בעדות לפקקת. תשובות 1 ו-2 (סטרפטוקינאז, עלוקות) הן טיפולים מתקדמים המשמשים רק לאחר שהאבחנה ברורה וטיפולים אחרים נכשלו. תשובה 4 מסוכנת – הפרק מדגיש זיהוי מוקדם והתערבות מהירה כמכריעים לשיעורי הצלה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו ההבדל המהותי בין וזוספזם לתופעת ה-no-reflow, לפי הפרק?</div>
+  <button class="opt" data-i="0">וזוספזם הוא כיווץ הפיך של השריר החלק שניתן לטפל בו תרופתית/מכנית; no-reflow הוא וזוקונסטריקציה בלתי הפיכה עם נזק אנדותליאלי מבני שמונע פרפוזיה גם כשהאנסטומוזה פתוחה</button>
+  <button class="opt" data-i="1">אין הבדל מהותי, אלו שמות חלופיים לאותה תופעה</button>
+  <button class="opt" data-i="2">וזוספזם מתרחש רק בוורידים ו-no-reflow רק בעורקים</button>
+  <button class="opt" data-i="3">וזוספזם מטופל רק בניתוח חוזר, ו-no-reflow מטופל רק בתרופות מקומיות</button>
+  <div class="explain">התשובה הנכונה: וזוספזם הוא תופעה פיזיולוגית הפיכה (5-10% מהמקרים) שניתן להקל עליה בחום, בתרופות מקומיות (פפאברין, לידוקאין, חוסמי סידן) או בדילטציה מכנית. no-reflow, לעומת זאת, הוא תוצאה של פגיעת ischemia-reperfusion חמורה שגורמת לנזק אנדותליאלי מבני, בצקת תאית וחשיפת קולגן תת-אנדותליאלי – מצב שבו גם לאחר פתיחה מחדש מוצלחת של האנסטומוזה, הרקמה לא מקבלת פרפוזיה. תשובה 2 שגויה במפורש – הפרק מבחין בבירור בין השניים. תשובה 3 שגויה עובדתית – שני התהליכים יכולים להתרחש בשני סוגי הכלים, וההבדל הוא בהפיכות ולא במיקום. תשובה 4 הפוכה חלקית מהעובדות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מה קובע את בחירת סוג האנסטומוזה (end-to-end לעומת end-to-side) על פי הפרק?</div>
+  <button class="opt" data-i="0">end-to-side תמיד עדיפה משום שהיא מהירה משמעותית יותר בכל מצב</button>
+  <button class="opt" data-i="1">end-to-end תמיד אסורה בכלים עם הבדל קוטר</button>
+  <button class="opt" data-i="2">הבחירה תלויה אך ורק בהעדפה אסתטית של המנתח וללא שיקולים טכניים</button>
+  <button class="opt" data-i="3">הבדל קוטר/עובי דופן משמעותי בין כלים, או הצורך לשמר זרימת דם דיסטלית (למשל ברגל עם כלי דם בודד), מטים לכיוון end-to-side; end-to-end מועדפת בהיעדר גורמים אלו ומקנה תוצאה טובה יותר בכלים טרשתיים</button>
+  <div class="explain">התשובה הנכונה: הפרק מפרט ששיטת end-to-side שימושית "כאשר יש הבדל משמעותי בקוטר או עובי הדופן... או כשיש צורך לשמר את הזרימה הדיסטלית, כמו ברגל עם כלי בודד". יחד עם זאת, בכלים טרשתיים, end-to-end מועדפת כי end-to-side חושפת ישירות יותר את הפלאק הטרשתי לזרימה. תשובה 1 שגויה – אין נתון כזה בפרק, ולמעשה end-to-end לרוב מהירה ופשוטה יותר. תשובה 2 שגויה – יש תלות בקוטר. תשובה 3 (מספר 2 באפשרויות) שגויה כי הבחירה בהחלט תלויה בשיקולים אנטומיים ולא רק העדפה אסתטית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. באיזה שלב במיפוי הזמן מתרחשת רוב הפקקת העורקית לעומת הוורידית, ומדוע חשוב לדעת זאת?</div>
+  <button class="opt" data-i="0">שתיהן מתרחשות אך ורק לאחר 7 ימים, ולכן ניטור נדרש רק בשבוע השני</button>
+  <button class="opt" data-i="1">רוב הפקקת העורקית מתרחשת ב-24 השעות הראשונות (אגרגציית טסיות באתר האנסטומוזה); הפקקת הורידית נוטה להתרחש מאוחר יותר וקשורה לסטזיס – ולכן ניטור אינטנסיבי חייב להתמקד בעיקר ב-72 השעות הראשונות</button>
+  <button class="opt" data-i="2">שתיהן מתרחשות אך ורק בזמן הניתוח עצמו ואינן קשורות לתקופה הפוסט-ניתוחית</button>
+  <button class="opt" data-i="3">הפקקת הורידית תמיד מוקדמת יותר מהעורקית</button>
+  <div class="explain">התשובה הנכונה: הפרק קובע שסיכון הפקקת גבוה ביותר ב-48 השעות הראשונות, כשרוב הפקקת העורקית קשורה לאגרגציית טסיות באתר האנסטומוזה ומתרחשת בעיקר ב-24 השעות הראשונות, בעוד פקקת ורידית מאוחרת יותר וקשורה יותר לסטזיס זרימה. זו הסיבה שהפרק ממליץ על ניטור צמוד לפחות ב-72 השעות הראשונות לאחר הניתוח – חלון הזמן הקריטי ביותר לזיהוי מוקדם והצלה. תשובות 1, 3 ו-4 סותרות במפורש את העובדות שהפרק מציג.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מיקרוכירורגיה = אנסטומוזה של כלי דם ~1 מ"מ תחת הגדלה; סופר-מיקרוכירורגיה = כלים 0.3–0.8 מ"מ. פותחה על בסיס שילוב מיקרוסקופ, הפרין, ומיקרו-תפרים.</li>
+    <li>שיעור הצלחת פלאפים חופשיים כיום: 96%–100% במרכזים מנוסים; הפך ממוצא אחרון לבחירה ראשונה בשחזור מורכב.</li>
+    <li>תפר ניילון 9-0/10-0 הוא הסטנדרט; מכשיר Coupler הוא החלופה המהירה והנפוצה ביותר לוורידים (ולעיתים עורקים).</li>
+    <li>End-to-end לרוב האנסטומוזות; end-to-side כשיש הבדל קוטר משמעותי או צורך לשמר זרימה דיסטלית.</li>
+    <li>מפל הכשל: וזוספזם (הפיך) → פקקת (דורשת התערבות מהירה) → no-reflow (לעיתים בלתי הפיך) – כל הטיפול נועד למנוע הגעה לשלב האחרון.</li>
+    <li>ניטור קליני נשאר ה-gold standard, אינטנסיבי ביותר ב-72 השעות הראשונות; קו טיפול: תיקון גורמים סיסטמיים/מקומיים → חקירה ליד המיטה → חזרה לחדר ניתוח → הפרין/תרומבוליזה/עלוקות כקו אחרון.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

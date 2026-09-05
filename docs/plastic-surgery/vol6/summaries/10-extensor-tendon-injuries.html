@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 10: פגיעות בגידים המיישרים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 10: פגיעות בגידים המיישרים <span class="term" dir="ltr">Extensor Tendon Injuries</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: יד וגפה עליונה | עמ' 321–344</div>
+
+<p>גידים מיישרים (<span class="term" dir="ltr">extensor tendons</span>) נפגעים לעיתים קרובות בטראומה קלה יחסית לעור גב היד והאצבעות – ודווקא בגלל זה הם <b>מוערכים בחסר</b>. בניגוד לתפיסה הרווחת, פציעות בגידים המיישרים קשות יותר לטיפול מפגיעות בגידים הכופפים: המנגנון המיישר הוא רשת דקה ומורכבת של גידים חיצוניים ושרירים פנימיים (אינטרינזיים) שחייבת לפעול באיזון עדין, וכל שינוי קטן באורך הגיד – אפילו מילימטרים בודדים – עלול לגרום להפרעה משמעותית בטווח התנועה. הפרק בנוי סביב תשע אזורים אנטומיים (I–IX), שלכל אחד מהם ביטוי קליני, טיפול ופרוגנוזה שונים.</p>
+
+<h2><span class="num">1</span> אנטומיה: מערכת מורכבת יותר משנדמה</h2>
+<p>מנגנון היישור מורכב משלושה סוגי מרכיבים: <b>שרירים חיצוניים</b> (<span class="term" dir="ltr">extrinsic</span> – ממוקמים באמה: extensor digitorum/ED, extensor indicis/EI, extensor digiti minimi/EDM), <b>שרירים פנימיים</b> (<span class="term" dir="ltr">intrinsic</span> – ממוקמים בגובה כף היד: שרירי האינטרוסאוס והלומבריקל), ו<b>מבנים סיביים</b> שמחברים ומאזנים בין השניים.</p>
+
+<p>כל הגידים החיצוניים עוברים דרך <b>שישה תאים</b> (<span class="term" dir="ltr">extensor compartments</span>) של הרשתית המיישרת (<span class="term" dir="ltr">extensor retinaculum</span>) בגב שורש כף היד:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תא</th><th>גידים</th><th>הערה קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>I</td><td>APL, EPB</td><td>ב-34% מהאנשים יש מחיצה נוספת – משמעותי למחלת דה-קרוון</td></tr>
+    <tr><td>II</td><td>ECRL, ECRB</td><td>-</td></tr>
+    <tr><td>III</td><td>EPL</td><td>עובר אלכסונית מעל תא II, עם פקעת ליסטר כנקודת ציר – <b class="key">רגיש לקרע בשברי רדיוס דיסטלי</b></td></tr>
+    <tr><td>IV</td><td>ED, EI</td><td>-</td></tr>
+    <tr><td>V</td><td>EDM</td><td>-</td></tr>
+    <tr><td>VI</td><td>ECU</td><td>גם מייצב את מפרק ה-DRUJ (חלק ממערכת ה-TFCC)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p>בגובה הפלנגה הפרוקסימלית, כל גיד מיישר מתפצל לשלושה חלקים: <b>הרצועה המרכזית</b> (<span class="term" dir="ltr">central slip</span>) ושתי <b>רצועות צדדיות</b> (<span class="term" dir="ltr">lateral bands</span>). אלה מתמזגות עם המערכת הפנימית ליצירת "מנגנון היישור" המורכב של האצבע. לגיד החיצוני יש שלוש נקודות עיגון: פרוקסימלית – ל<b>לוחית הכף הפלמרית</b> (palmar plate) על ידי <b>רצועות הסגיטל</b> (<span class="term" dir="ltr">sagittal bands</span>), שמייצבות את הגיד במרכז מפרק ה-MCP ומונעות ממנו יתר-יישור; באמצע – לבסיס הפלנגה התיכונה (הרצועה המרכזית); ובקצה הדיסטלי – <b>הגיד הטרמינלי</b> (<span class="term" dir="ltr">terminal tendon</span>) לבסיס הפלנגה הדיסטלית.</p>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>תשעת אזורי הגיד המיישר</title>
+  <rect x="740" y="80" width="90" height="50" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="785" y="108" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">IX</text>
+  <rect x="640" y="80" width="90" height="50" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="685" y="108" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">VIII</text>
+  <rect x="560" y="80" width="70" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="595" y="108" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">VII</text>
+  <rect x="480" y="80" width="70" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="515" y="108" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">VI</text>
+  <rect x="410" y="80" width="60" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="440" y="108" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">V</text>
+  <rect x="340" y="80" width="60" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="370" y="108" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">IV</text>
+  <rect x="270" y="80" width="60" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="300" y="108" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">III</text>
+  <rect x="160" y="70" width="100" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="210" y="98" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">II</text>
+  <text x="210" y="115" font-size="10" text-anchor="middle" fill="#7f1d1d">Boutonnière</text>
+  <rect x="70" y="80" width="80" height="50" rx="8" fill="#fee2e2" stroke="#991b1b"/>
+  <text x="110" y="108" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">I</text>
+  <text x="430" y="30" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">כיוון: פרוקסימלי (ימין, אמה) &#8592; דיסטלי (שמאל, קצה אצבע)</text>
+  <text x="110" y="160" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="600">Mallet</text>
+  <text x="210" y="160" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="600">Central slip</text>
+  <text x="300" y="160" font-size="11" text-anchor="middle" fill="#78350f">PIP</text>
+  <text x="370" y="160" font-size="11" text-anchor="middle" fill="#065f46">פרוקס.</text>
+  <text x="440" y="160" font-size="11" text-anchor="middle" fill="#065f46">MCP</text>
+  <text x="515" y="160" font-size="11" text-anchor="middle" fill="#1e3a8a">מטה-קרפ.</text>
+  <text x="595" y="160" font-size="11" text-anchor="middle" fill="#1e3a8a">רשתית</text>
+  <text x="685" y="160" font-size="11" text-anchor="middle" fill="#4c1d95">אמה דיסט.</text>
+  <text x="785" y="160" font-size="11" text-anchor="middle" fill="#4c1d95">אמה פרוקס.</text>
+  <text x="430" y="205" font-size="12" text-anchor="middle" fill="#6b7280">חלוקת Kleinert-Verdan (I–VIII) + תוספת Doyle (IX, אמה פרוקסימלית)</text>
+</svg>
+
+<h2><span class="num">2</span> מנגנון: השרשרת עם שלושה חוליות ולמה "פחות" זה "יותר מדי"</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>יישור האצבע דורש שילוב מדויק של שלושה כוחות: הגיד המיישר החיצוני, השרירים הפנימיים (אינטרינזיים), והרצועה הרטינקולרית האלכסונית (Landsmeer) ← Landsmeer הראה שנדרשים לפחות שלושה שרירים כדי לשלוט בשרשרת רב-מפרקית (3 פלנגות, 2 מפרקים) ← אם מרכיב אחד חסר או מקוצר/מוארך אפילו מעט, שיווי המשקל מופר ← במקום יישור חלק ואחיד, נוצרת דפורמציה אופיינית (Swan-neck או Boutonnière) שמשקפת בדיוק היכן שרשרת הכוחות נשברה.</b>
+  </p>
+  <p>הסיבה שאפילו הארכה זעירה של הגיד גורמת לבעיה כה משמעותית: <b class="key">טווח התזוזה (excursion) של הגיד הטרמינלי הוא רק כ-4 מ"מ בלבד</b> – פער קטן משמעותית מהתזוזה הנדרשת בגידים כופפים. כשהתפר "מוסיף" אורך של מילימטרים בודדים, זה כבר מהווה אחוז ניכר מטווח התנועה הכולל, ומתבטא כפיגור יישור (extensor lag) קליני. זו הסיבה שלמרות ש"מדובר רק בכמה מילימטרים" – התוצאה עלולה להיות דפורמציה קבועה.</p>
+</div>
+
+<p class="key-box">בניגוד לגידים הכופפים, הגידים המיישרים ברובם <b>אקסטרה-סינוביאליים</b> (מחוץ לנדן סינוביאלי) - תיאורטית זה אמור להפחית הידבקויות. בפועל, בגלל שהם שטוחים, דקים, וצמודים ישירות לעצם שמתחתם (ללא רקמה רכה מפרידה), הם <b>נוטים באותה מידה, ואף יותר, להידבקויות</b> - כי אין מרווח שמאפשר החלקה חופשית. זו הסיבה ששיקום מוקדם ומדויק קריטי גם כאן, לא פחות מבגידים כופפים.</p>
+
+<h2><span class="num">3</span> פגיעות לפי אזור - ביטוי קליני, אבחנה וטיפול</h2>
+
+<h3>אזור I: Mallet Finger</h3>
+<p>פגיעה סגורה קלאסית בגובה מפרק ה-DIP: כשל בגיד הטרמינלי גורם ל<b>כיפוף מתמשך של הפלנגה הדיסטלית</b> (אין יכולת יישור אקטיבי). ניתן לסווג לפי מעורבות עצמית: קרע גיד בלבד, לעומת שברי אבולסיה (קטנים/גדולים עם תת-פריקה כפית, או ניתוק אפיפיזיאלי בילדים).</p>
+<p><b>טיפול שמרני</b> הוא קו ראשון כמעט תמיד: סד (<span class="term" dir="ltr">stack splint</span>) המחזיק את ה-DIP ביישור מלא (או יתר-יישור קל) למשך <b>6-8 שבועות</b> ברציפות מלאה, ואחריו 2-6 שבועות נוספים בלילה בלבד. מחקרים (Niechajev, Stern & Kastrup) מצאו ששיעור הסיבוכים בטיפול ניתוחי (זיהום, דפורמציית ציפורן, אי-התאמה מפרקית, כשל קיבוע) מגיע ל-<b>53%</b> - ולכן ברוב המקרים סד הוא עדיף. חשוב: הסד חייב להישאר צמוד תמיד - אפילו הנחת האצבע שטוחה על שולחן לרגע אחד (ללא הסד) עלולה לאפס את תהליך הריפוי, כי הכיפוף הכפוי מרחיק שוב את קצות הגיד.</p>
+<p><b>ניתוח</b> נשקל רק כאשר: השבר גדול מ<b>שליש</b> משטח המפרק, יש תת-פריקה כפית של הפלנגה, או דיאסטזיס מעל 3 מ"מ. שיטה מועדפת לשברים קטנים: <b>"דלת-עצירה" (doorstop osteosynthesis)</b> - קידוח סיכת קירשנר באלכסון 45° לתוך הפלנגה התיכונה מאחורי השבר כדי ליצור "בלם", ואז יישור המפרק שמכניס את השבר למקומו, ומקבע בסיכה שנייה. שברים גדולים יותר מקובעים ישירות (בורג או סיכה).</p>
+
+<img class="media-img" src="https://www.ncbi.nlm.nih.gov/books/NBK534058/bin/mallet_finger.jpg" alt="Mallet finger">
+<p class="media-cap">Mallet finger - כיפוף מתמשך של הפלנגה הדיסטלית עקב קרע בגיד המיישר הטרמינלי. מקור: StatPearls - NCBI Bookshelf.</p>
+
+<h3>אזור II: פגיעות בגובה הפלנגה התיכונה</h3>
+<p>לרוב מחתכים חדים או פגיעות מעיכה. אם פחות מ-50% מרוחב הגיד פגוע - לא נדרש תפר (הגיד נחשב יציב). מעל 50% - תפירה נדרשת, בטכניקת <b>ריצה + תפר צולב Silfverskiöld</b>. יש להיזהר מקיצור-יתר של הגיד שיפגע בכיפוף ה-DIP.</p>
+
+<h3>אזור III: Boutonnière Deformity</h3>
+<p>פגיעה בגובה מפרק ה-PIP - הכי חשוב להבין את <b>הפתופיזיולוגיה המדורגת</b>: קרע ברצועה המרכזית (central slip) גורם תחילה רק לחוסר יכולת ליישר את ה-PIP <b>אקטיבית</b> (יישור פסיבי עדיין אפשרי!). רק בהמשך, כשהרצועות הצדדיות נודדות פלמרית (כלפי כף היד) והרצועה המרכזית ממשיכה להיסוג - נוצרת הדפורמציה המלאה: <b class="key">יתר-כיפוף ב-PIP + יתר-יישור ב-DIP</b>. חשוב לזכור: זה <b>לא קורה מיידית</b> אחרי הפציעה - יש חלון זמן לאבחון ולטיפול לפני שהדפורמציה "מתקבעת".</p>
+
+<div class="key-box">מבחן Elson לבדיקת שלמות הרצועה המרכזית: מניחים את האצבע על קצה שולחן עם ה-PIP בכיפוף 90°, לוחצים על הפלנגה התיכונה כלפי מטה ומבקשים מהמטופל ליישר. יישור <b>חלש ב-PIP + יישור חזק וחריג ב-DIP</b> (כי הכוח "נשפך" דרך הרצועות הצדדיות) = רצועה מרכזית קרועה. יישור חזק ב-PIP = רצועה מרכזית שלמה.</div>
+
+<p><b>טיפול סגור</b>: סד יישור שמכסה רק את ה-PIP (ה-DIP נשאר חופשי ומעודדים תנועה בו באופן פעיל - כי כיפוף ה-DIP מותח את המנגנון המיישר ומסייע להחזרת הרצועות הצדדיות למקומן הגבי) למשך <b>5-6 שבועות</b>. גישה מודרנית חלופית: <span class="term" dir="ltr">Relative Motion Flexion Splinting (RMFS)</span> - כיפוף יחסי קל של מפרק ה-MCP באצבע הפגועה ביחס לשכנותיה, שמפחית עומס על התפר ומאפשר תנועה פעילה מוקדמת יותר.</p>
+<p><b>טיפול פתוח</b>: תפירה ישירה או השתלה חוזרת לפלנגה התיכונה. בפגיעות עם חסר רקמה (למשל פגיעות מסור), טכניקות שחזור כוללות <b>שרפרף גיד רטרוגרדי של Snow</b> (הפיכת חלק מהגיד הפרוקסימלי לגשר מעל המפרק) או <b>טכניקת Aiache</b> (פיצול שתי הרצועות הצדדיות ואיחודן במרכז).</p>
+
+<h3>אזור IV: פגיעות בגובה הפלנגה הפרוקסימלית</h3>
+<p>הגיד רחב מאוד כאן - לכן פציעות חלקיות שכיחות יותר מפגיעות מלאות. בדיקה חייבת להיות נגד התנגדות. פגיעות באזור זה מלוות לעיתים קרובות בשברי הפלנגה הפרוקסימלית, מה שמגביר סיכון להידבקויות (קרבה ישירה בין גיד לעצם) - ולכן מומלץ פרוטוקול תנועה אקטיבית מוקדמת.</p>
+
+<h3>אזור V: MCP - "Fight Bite" ופגיעה ברצועות הסגיטל</h3>
+<p>פציעות שלמות נדירות (הגיד רחב מאוד) אך פציעות חלקיות נפוצות ועלולות "להתחמק" מאבחון כי היישור עדיין נשמר על ידי מה שנותר מהגיד. <b class="key">מנגנון קלאסי: "Fight Bite" - נשיכת אדם על אגרוף שהוכה בשיניים של היריב</b> (למשל מכה לפה של מישהו). זו פציעה מזוהמת מאוד (חיידקי פה כמו <span class="term" dir="ltr">Eikenella corrodens</span>, סטרפטוקוקים ואנאירובים), מוערכת בחסר כי הפגיעה העורית קטנה יחסית - חובה בדיקה כירורגית וניקוי (דברידמנט) ושטיפת המפרק בתמיסת אנטיביוטיקה, וצילום רנטגן לשלילת שיניים או שברי עצם שנשארו בפצע.</p>
+
+<p><b>פגיעה ברצועות הסגיטל (sagittal bands)</b>: קריעה (סגורה או פתוחה) גורמת ל<b>תת-פריקה של הגיד המיישר</b> לצד הבריא בזמן כיפוף. קרע חלקי בדרך כלל לא גורם לתת-פריקה אלא אם כן פגועים לפחות שני-שליש מהרצועה. קרעים סגורים ספונטניים שכיחים במחלות מפרקיות (למשל דלקת מפרקים שגרונית). <b>טיפול</b>: פגיעות יציבות - הצמדה (buddy-taping) ל-3 שבועות; פגיעות לא-יציבות/פתוחות - תפירה ישירה תוך 10-14 יום; קרעים כרוניים - שחזור ניתוחי (ראו סעיף 6).</p>
+
+<img class="media-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Extensor_hood.jpg/500px-Extensor_hood.jpg" alt="Extensor apparatus">
+<p class="media-cap">מנגנון היישור - הרצועה המרכזית, הרצועות הצדדיות ורצועות הסגיטל שמייצבות את הגיד סביב מפרק ה-MCP. מקור: Wikimedia Commons.</p>
+
+<h3>אזורים VI-IX: מכף היד ועד לבטן השריר</h3>
+<p>ככל שהפגיעה פרוקסימלית יותר - הפרוגנוזה טובה יותר, כי הגיד רחב, אקסטרה-סינוביאלי (לא קשור למפרק), וטווח התזוזה גדול יותר (פחות רגיש לחוסר איזון קטן). <b>אזור VII</b> (רשתית) מיוחד: פתיחת חלק מהרשתית נדרשת לתיקון, ויש ויכוח לגבי שחזורה - חלקם ממליצים לכרות אותה למניעת הידבקויות, אחרים לשחזר חלקית למניעת בואסטרינגינג. <b>קרע EPL</b> (extensor pollicis longus) בגובה אזור III-VII שכיח במיוחד <b>לאחר שברי רדיוס דיסטלי</b> (בגלל בורג ארוך מדי או שבר גבי שפוגע ישירות בגיד) או במחלה שגרונית - עקב אופי ניווני התהליך, תפירה קצה-לקצה בדרך כלל בלתי אפשרית ונדרש שחזור (ראו סעיף 6). <b>אזורים VIII-IX</b> (בטן שריר וצומת שריר-גיד) - תפרים חלשים משמעותית (סיבי שריר לא מחזיקים תפר), ולכן נדרשת אימוביליזציה מלאה 3-4 שבועות ולא פרוטוקול דינמי.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אזור</th><th>מיקום אנטומי</th><th>פגיעה אופיינית</th><th>טיפול עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>I</b></td><td>מפרק DIP</td><td>Mallet finger</td><td>סד יישור 6-8 שבועות (שמרני); ניתוח רק בשבר >1/3 מהמפרק</td></tr>
+    <tr><td><b>II</b></td><td>פלנגה תיכונה</td><td>חתך/מעיכה</td><td>תפר אם >50% מהגיד פגוע (ריצה + Silfverskiöld)</td></tr>
+    <tr><td><b>III</b></td><td>מפרק PIP</td><td>Boutonnière (קרע ברצועה המרכזית)</td><td>סד יישור ל-PIP 5-6 שבועות / RMFS; ניתוח בפגיעה פתוחה</td></tr>
+    <tr><td><b>IV</b></td><td>פלנגה פרוקסימלית</td><td>לרוב חלקית, ± שבר</td><td>תפר + תנועה אקטיבית מוקדמת מבוקרת</td></tr>
+    <tr><td><b>V</b></td><td>מפרק MCP</td><td>Fight bite; קרע רצועת סגיטל</td><td>דברידמנט לפצעי נשיכה; buddy-tape/תפר לרצועת סגיטל</td></tr>
+    <tr><td><b>VI</b></td><td>מטה-קרפלים</td><td>חתך; פרוגנוזה טובה יחסית</td><td>תפר ליבה 3-0 + תפר היקפי; splinting יחסי</td></tr>
+    <tr><td><b>VII</b></td><td>רשתית מיישרת</td><td>קרע EPL אחרי שבר רדיוס דיסטלי</td><td>תפר ישיר או שחזור (העברת EI ל-EPL)</td></tr>
+    <tr><td><b>VIII</b></td><td>אמה דיסטלית</td><td>צומת שריר-גיד</td><td>אימוביליזציה מלאה 3-4 שבועות</td></tr>
+    <tr><td><b>IX</b></td><td>אמה פרוקסימלית</td><td>בטן שריר, פגיעות עצב מוטורי נלוות</td><td>אימוביליזציה; זיהוי עצב תוך-ניתוחי קריטי</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">4</span> טיפול כירורגי - עקרונות התפירה</h2>
+<p>עובי וצורת הגיד המיישר משתנים דרמטית לאורך מסלולו - עגול ועבה פרוקסימלית, שטוח ודק דיסטלית - ולכן <b>שיטת התפר משתנה בהתאם למיקום</b>:</p>
+<ul>
+  <li><b>אזורים II-IV</b> (גיד דק ושטוח): תפרים היקפיים (epitendinous) עדיפים על תפרי ליבה מרובי-חוטים שלא מתאימים לרוחב הגיד. תפר צולב יחיד (Silfverskiöld) יכול לעלות אף על תפרי צולב מרובים.</li>
+  <li><b>אזורים VI ומעלה</b> (הגיד דומה יותר לגיד כופף): תפר ליבה + תפר היקפי רץ, בדרך כלל <span class="term" dir="ltr">3-0/4-0</span> לליבה ו-<span class="term" dir="ltr">5-0</span> להיקפי. אין הוכחה מדעית ליתרון חוט נספג לעומת לא-נספג.</li>
+</ul>
+<p class="key-box">תפרים <b>"נועלים" (locking)</b> עדיפים על תפרי "אחיזה" (grasping) פשוטים למניעת חליצת התפר והפחתת פערים - אך בגידים מיישרים, תפרי אחיזה הראו חוזק משיכה גבוה יותר ופחות פערים בהשוואה לתפרי מזרן או פרפר (figure-of-eight). תפרים רצים פשוטים (running) יש להימנע מהם - חוזק החזקה נמוך מדי.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/u1bswmO9RbA" title="Tendon suture technique demonstration" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של טכניקת תפר ליבה מודרנית לגיד - עקרונות דומים חלים על תיקון גיד מיישר באזורים הפרוקסימליים.</p>
+
+<h3>ניתוח בהרדמה מקומית עם המטופל ער - WALANT</h3>
+<p><span class="term" dir="ltr">WALANT (Wide-Awake Local Anesthesia No Tourniquet)</span> - שילוב לידוקאין ואדרנלין תמיסתי (tumescent), ללא הרדמה כללית וללא חוסם עורקים. יתרון מרכזי: המנתח יכול לבקש מהמטופל להזיז את האצבע <b>בזמן אמת על שולחן הניתוחים</b> ולוודא שהתפר יציב ושתנועת הגיד חלקה - לפני סגירת החתך. זה רלוונטי במיוחד לטנוליזה (שחרור הידבקויות) ולהעברות גיד, ותורם משמעותית להבנה הביומכנית העדכנית של המנגנון.</p>
+
+<h2><span class="num">5</span> שיקום לאחר ניתוח</h2>
+<p>העיקרון דומה לגידים כופפים: אימוביליזציה מוחלטת מונעת קרע אך מעודדת הידבקויות; תנועה מוקדמת מפחיתה הידבקויות אך מסכנת בקרע. הפתרון תלוי אזור:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פרוטוקול</th><th>עקרון</th><th>מתאים לאזור</th></tr></thead>
+  <tbody>
+    <tr><td>אימוביליזציה סטטית מלאה</td><td>סד קבוע ללא תנועה, 6-8 שבועות</td><td>Mallet (אזור I), קרע סגור מרכזי (אזור III), אזורים VIII-IX</td></tr>
+    <tr><td><b>Short Arc Motion (Evans)</b></td><td>3 סדים מתחלפים; תנועה אקטיבית מבוקרת בטווח קטן שגדל בהדרגה על פני 3 שבועות</td><td>אזורים III-V (פגיעות פתוחות)</td></tr>
+    <tr><td>Dynamic splinting (רצועת גומי, "reversed Kleinert")</td><td>יישור פסיבי + כיפוף אקטיבי מוגבל, 3-6 שבועות</td><td>אזורים V-VII</td></tr>
+    <tr><td><b>Relative Motion Splinting (RMES/RMFS)</b></td><td>מיקום האצבע הפגועה ב-15-20° יותר יישור (RMES) או כיפוף (RMFS) ממפרקי המקבילות</td><td>אזורים III-VII; תפיסה עדכנית ופופולרית</td></tr>
+  </tbody>
+</table>
+</div>
+<p>הרעיון מאחורי <span class="term" dir="ltr">RMES</span>: כי שרירי ה-EDM וה-ED חולקים "בטן שריר" משותפת (בדומה לאפקט Quadriga בגידים כופפים) - כאשר האצבעות השכנות מתכופפות לאגרוף, הן "מושכות" את הגיד המיושר-יתר של האצבע הפגועה מבלי לדרוש ממנה תנועה עצמאית, ובכך <b class="key">מפחיתות את טווח התזוזה הנדרש מהתפר מ-12 מ"מ לכ-6 מ"מ בלבד</b>. יתרון גדול נוסף: הסד קטן משמעותית מסד דינמי מסורתי, ומאפשר שימוש יומיומי נרחב יותר ביד הפגועה.</p>
+
+<h2><span class="num">6</span> ניתוחים משניים ותוצאות</h2>
+<h3>דפורמציית Swan-Neck</h3>
+<p>אם Mallet Finger לא מטופל כראוי, הכוח המיישר "מתרכז" יתר על המידה במפרק ה-PIP, וגורם ליתר-יישור שם (במיוחד אם לוחית הכף כבר רפויה). <b>טיפול</b>: אם ה-PIP עדיין גמיש - טנוטומיה של הרצועה המרכזית (<span class="term" dir="ltr">Fowler release</span>) לאיזון מחדש של הכוחות; לחלופין שחזור ה-<span class="term" dir="ltr">SORL (Spiral Oblique Retinacular Ligament)</span> באמצעות שתל גיד (palmaris longus) שמעביר כוח בין הכיפוף לפלנגה הדיסטלית.</p>
+
+<h3>Boutonnière כרוני</h3>
+<p>אם לא מטופל - הרצועה הרטינקולרית האלכסונית מתקצרת ומקבעת את הדפורמציה. <b>טנוטומיה</b> (Dolphin/Fowler) - חיתוך הגיד המיישר בפלנגה התיכונה, מתאימה כאשר התלונה העיקרית היא יתר-יישור ב-DIP. <b>שחזור</b> - טכניקות Littler-Eaton או Matev המשתמשות ברצועות הצדדיות עצמן להחזרת הרצועה המרכזית.</p>
+
+<h3>קרע EPL - השתלה או העברת גיד</h3>
+<p>כשלא ניתן לתפור ישירות (רקמה נוונית) - שתי אפשרויות: <b>שתל גיד חופשי</b> (palmaris longus) - דורש שני תפרי שזירה (סיכון כפול לכשל), אך אין צורך בהתאמה קורטיקלית; או <b>העברת גיד EI</b> (extensor indicis) - תפר שזירה אחד בלבד (סיכון קרע נמוך יותר), אך דורש התאמת מוח (למידה קורטיקלית) לתפקוד חדש, ומחליש מעט את כוח היישור העצמאי של האצבע המורה.</p>
+
+<h3>סיבוכים כלליים</h3>
+<p>הסיבוך השכיח ביותר הוא <b>הידבקויות</b>, שעלולות ליצור מגבלת "tenodesis" - הגבלת כיפוף ה-PIP כשה-MCP גם כפוף. גישת טיפול: פיזיותרפיה וסד תחילה; אם אין שיפור אחרי 4-6 חודשים - <b>טנוליזה</b> (רצוי בטכניקת WALANT כדי לוודא תנועה חופשית בזמן אמת). לעיתים נדרשת גם קפסולוטומיה או שחרור רצועה בטרפית נלווה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/paXHJl_Hccc" title="Tendon repair and secondary reconstruction overview" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת עקרונות תיקון ושחזור גידים - רלוונטי גם להבנת עקרונות שחזור משני של גידים מיישרים.</p>
+
+<h2><span class="num">7</span> פציעות משולבות בגב כף היד</h2>
+<p>כשיש פגיעה משולבת בעור, גיד ועצם - סדר הפעולות קריטי: <b>(1)</b> דברידמנט רדיקלי מלא של כל רקמה לא-חיה (עדיף חד-שלבי ולא מספר דברידמנטים חוזרים, שגורמים לבצקת ורקמת גרנולציה נגועה שאנטיביוטיקה לא חודרת אליה היטב); <b>(2)</b> ייצוב עצמות (קיבוע פנימי/חיצוני); <b>(3)</b> כיסוי רקמה רכה יציב - לרוב באמצעות דש מוקדם (למשל <span class="term" dir="ltr">posterior interosseous artery flap</span> או דש חופשי מיקרוכירורגי), בשאיפה להשגת כיסוי תוך <b>72 שעות</b> (בהשראת עקרונות Godina בגפה תחתונה). שחזור הגידים החסרים מבוצע בדרך כלל <b>בו-זמנית</b> עם כיסוי הרקמה הרכה (שתל או העברת גיד) - שחזור דו-שלבי עם מוט סיליקון נדיר יחסית בגידים מיישרים כי אין צורך ליצור נדן חדש.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">EXTEND</span> לזכירת עקרונות הטיפול בגיד מיישר</h3>
+  <p>
+    <b>E</b> – <span class="term" dir="ltr">Excursion</span> קטן (רק 4 מ"מ בגיד הטרמינלי) - גם הארכה קלה גורמת לפיגור יישור.<br>
+    <b>X</b> – e<b>X</b>tra-synovial אך עדיין נוטה מאוד להידבקויות (צמוד לעצם).<br>
+    <b>T</b> – <span class="term" dir="ltr">Test against resistance</span> - תמיד לבדוק יישור נגד התנגדות (פגיעה חלקית מוסתרת בקלות).<br>
+    <b>E</b> – <span class="term" dir="ltr">Elson test</span> לבדיקת הרצועה המרכזית באזור III.<br>
+    <b>N</b> – <span class="term" dir="ltr">Nine zones</span> - חלוקה ל-9 אזורים (I-IX), טיפול שונה לכל אחד.<br>
+    <b>D</b> – <span class="term" dir="ltr">Delayed deformity</span> - הדפורמציה (Swan-neck/Boutonnière) לא מיידית - יש חלון לאבחון וטיפול.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני מקהלה עם שלושה זמרים (הגיד החיצוני, השרירים הפנימיים, והרצועה האלכסונית) ששרים תו אחד ארוך ומדויק (יישור האצבע). אם זמר אחד "מאחר" בשבריר שנייה או משנה טון קלות - כל המקהלה נשמעת לא מתואמת, וגם אם רק זמר אחד השתתק, הקהל שומע מיד שמשהו "לא ישר". בדיוק כך אצבע עם רק שני מרכיבים תקינים מתוך שלושה כבר לא תדע ליישר בצורה חלקה - היא תיישר יתר על המידה במקום אחד ופחות מדי במקום אחר.</p>
+  <svg class="diagram" viewBox="0 0 480 190" xmlns="http://www.w3.org/2000/svg">
+    <title>שלושת הזמרים של מנגנון היישור</title>
+    <circle cx="120" cy="90" r="38" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="120" y="85" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">גיד</text>
+    <text x="120" y="100" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">חיצוני</text>
+    <circle cx="240" cy="60" r="38" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="240" y="55" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700">שרירים</text>
+    <text x="240" y="70" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700">פנימיים</text>
+    <circle cx="360" cy="90" r="38" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="360" y="85" font-size="10.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">רצועת</text>
+    <text x="360" y="100" font-size="10.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">Landsmeer</text>
+    <text x="240" y="150" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">שלושה קולות = תו יישור אחד נקי</text>
+    <text x="240" y="175" font-size="12" text-anchor="middle" fill="#6b7280">חוסר איזון באחד ← Swan-neck או Boutonnière</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK534058/" target="_blank">Mallet Finger – StatPearls</a>
+    <div class="desc">סקירה תמציתית של מנגנון, סיווג וטיפול ב-Mallet Finger, כולל האיור שהוטמע למעלה.</div>
+  </li>
+  <li>
+    <a href="https://www.jhandsurg.org/" target="_blank">Journal of Hand Surgery (American Volume)</a>
+    <div class="desc">כתב העת המוביל למאמרי המקור המצוטטים בפרק (Newport, Evans, Merritt ואחרים) על טכניקות תפר ופרוטוקולי שיקום.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=u1bswmO9RbA" target="_blank">Tendon suture technique – YouTube</a>
+    <div class="desc">הדגמת טכניקת תפר ליבה שלב-אחר-שלב (מוטמע גם למעלה).</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=paXHJl_Hccc" target="_blank">Tendon repair and reconstruction techniques – YouTube</a>
+    <div class="desc">סקירת טכניקות תיקון ושחזור גיד (מוטמע גם למעלה).</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 34 מגיע למיון לאחר שחתך את גב האצבע האמצעית שלו בעת עבודה עם סכין. בבדיקה: פצע חתך של כ-1.5 ס"מ בגובה הפלנגה התיכונה, מעל מפרק ה-PIP. כאשר מתבקש ליישר את המפרק נגד התנגדות, המטופל מסוגל ליישר את ה-PIP באופן חלש בלבד, בעוד שה-DIP נשאר מסוגל ליישור תקין. יישור פסיבי של ה-PIP תקין לחלוטין. אין שבר בצילום רנטגן. מבחן דחיפה על הפלנגה התיכונה (Elson) מדגים יישור חלש ב-PIP ויישור חזק וחריג ב-DIP.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה האבחנה הסבירה ביותר, ואיזה מבנה אנטומי נפגע?</div>
+  <button class="opt" data-i="0">Mallet finger - קרע בגיד הטרמינלי</button>
+  <button class="opt" data-i="1">פגיעה בזור III (Boutonnière) - קרע ברצועה המרכזית (central slip)</button>
+  <button class="opt" data-i="2">קרע ברצועת הסגיטל הרדיאלית</button>
+  <button class="opt" data-i="3">קרע בגיד הכופף העמוק (FDP)</button>
+  <div class="explain">התשובה הנכונה: מיקום הפגיעה (מעל PIP, פלנגה תיכונה), אובדן יישור אקטיבי עם יישור פסיבי תקין, ומבחן Elson חיובי (יישור חלש ב-PIP + יתר-יישור חריג ב-DIP) - כל אלה מגדירים בדיוק פגיעה בזור III עם קרע ברצועה המרכזית. תשובה 1 שגויה - Mallet פוגע ב-DIP לא ב-PIP. תשובה 2 לא מתאימה לממצאים (הייתה גורמת לתת-פריקה של הגיד ב-MCP, לא לחולשת יישור ב-PIP). תשובה 3 היא פגיעה בגיד כופף ומתבטאת בחוסר כיפוף, לא יישור.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע חשוב במיוחד למנוע קיבוע (splinting) של מפרק ה-DIP בטיפול השמרני בפגיעה זו?</div>
+  <button class="opt" data-i="0">כי זה גורם לכאב מיותר למטופל</button>
+  <button class="opt" data-i="1">כי אין שום השפעה קלינית לתנועת ה-DIP במקרה זה</button>
+  <button class="opt" data-i="2">כי כיפוף אקטיבי ופסיבי של ה-DIP מותח את המנגנון המיישר ומסייע להחזרת הרצועות הצדדיות למקומן הגבי, ומונע התקדמות לדפורמציה כרונית</button>
+  <button class="opt" data-i="3">כי תנועת ה-DIP מקצרת את משך הטיפול לשבוע בלבד</button>
+  <div class="explain">התשובה הנכונה: תנועה אקטיבית ופסיבית של ה-DIP בזמן שה-PIP מקובע ביישור מסייעת פיזיולוגית להחזיר את הרצועות הצדדיות שנודדו פלמרית בחזרה למיקומן התקין, ובכך תורמת ישירות למניעת התקדמות לדפורמציית Boutonnière כרונית. תשובות 1 ו-4 אינן נכונות עובדתית. תשובה 3 מתעלמת מהעיקרון הביומכני שמוסבר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אם הפצע היה ממוקם מעל מפרק ה-DIP במקום ה-PIP, וגרם לכיפוף מתמשך של הפלנגה הדיסטלית בלבד (ללא פגיעה ב-PIP) - מהו הטיפול הראשוני המומלץ?</div>
+  <button class="opt" data-i="0">סד יישור (stack splint) ל-DIP במשך 6-8 שבועות רציפים</button>
+  <button class="opt" data-i="1">ניתוח מיידי עם קיבוע פנימי בכל מקרה</button>
+  <button class="opt" data-i="2">קטיעת האצבע בגובה ה-DIP</button>
+  <button class="opt" data-i="3">אין צורך בכל טיפול - זה יחלים מעצמו ללא סד</button>
+  <div class="explain">התשובה הנכונה: זהו תיאור קלאסי של Mallet Finger, וסד יישור למשך 6-8 שבועות הוא הטיפול המומלץ ברוב המכריע של המקרים (עדות מדעית תומכת בכך על פני ניתוח, ראו Stern & Kastrup - 53% סיבוכים בניתוח). ניתוח (תשובה 1) שמור למקרים ספציפיים (שבר גדול מ-1/3 מהמפרק, תת-פריקה). קטיעה (תשובה 2) קיצונית ולא מוצדקת. חוסר טיפול (תשובה 3) יגרום לדפורמציה קבועה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופל שסבל מ-Fight Bite (נשיכת אדם על אגרוף) מגיע למיון עם פצע קטן יחסית מעל מפרק ה-MCP. מהי הגישה הנכונה?</div>
+  <button class="opt" data-i="0">ניקוי שטחי בלבד וחבישה, ללא צורך בהערכה נוספת כי הפצע קטן</button>
+  <button class="opt" data-i="1">מתן אנטיביוטיקה פומית בלבד ושחרור הביתה ללא בדיקה נוספת</button>
+  <button class="opt" data-i="2">התעלמות מהצילום רנטגן כי אין חשד לשבר בפגיעה כזו</button>
+  <button class="opt" data-i="3">בדיקה כירורגית מלאה כולל שטיפת המפרק בתמיסת אנטיביוטיקה וצילום רנטגן לשלילת שיניים/שברי עצם שנשארו בפצע</button>
+  <div class="explain">התשובה הנכונה: Fight bite מוערכת בחסר בדיוק כי הפצע העורי קטן יחסית לחומרת הזיהום הפוטנציאלי (זיהום עמוק במפרק עם חיידקי פה כמו Eikenella corrodens); לכן חובה בדיקה כירורגית פעילה, שטיפת המפרק וצילום רנטגן. תשובות 1-3 כולן מתעלמות מהסיכון הגבוה לזיהום מפרקי קשה שהפרק מדגיש במפורש.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מטופלת בת 58 עם שבר רדיוס דיסטלי שטופל בקיבוע פנימי לפני שנה, מתלוננת כעת על חוסר יכולת ליישר את האגודל במפרק ה-IP. מה הגורם הסביר ביותר ומה הטיפול?</div>
+  <button class="opt" data-i="0">קרע ב-FDP של האגודל; טיפול בסד כיפוף</button>
+  <button class="opt" data-i="1">Mallet finger באגודל; טיפול בסד יישור בלבד</button>
+  <button class="opt" data-i="2">קרע ניווני מאוחר ב-EPL (עקב בורג ארוך מדי או שבר גבי שפגע בגיד); טיפול בהעברת גיד EI-ל-EPL או שתל גיד חופשי, לא תפר ישיר</button>
+  <button class="opt" data-i="3">תסמונת התעלה הקרפלית; טיפול בשחרור התעלה</button>
+  <div class="explain">התשובה הנכונה: קרע EPL מאוחר לאחר שבר רדיוס דיסטלי (עם או בלי קיבוע פנימי) הוא תופעה מוכרת היטב - עקב אופי ניווני של התהליך (שחיקה מתמשכת של הגיד על ידי בורג בולט או שבר גבי), תפירה ישירה קצה-לקצה כמעט תמיד בלתי אפשרית בגלל קיצור-יתר, ולכן נדרש שחזור באמצעות העברת גיד EI או שתל חופשי. תשובה 1 מתייחסת לגיד כופף לא רלוונטי. תשובה 2 מתארת פגיעה שונה במיקום שונה. תשובה 4 אינה קשורה ליישור האגודל.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהו העיקרון הביומכני מאחורי Relative Motion Extension Splinting (RMES)?</div>
+  <button class="opt" data-i="0">הוא דורש קיבוע מוחלט של כל האצבעות יחד למשך 8 שבועות</button>
+  <button class="opt" data-i="1">מיקום האצבע הפגועה ביישור יחסי גדול יותר מהשכנות מנצל את בטן השריר המשותפת (EDM/ED) כדי להפחית את טווח התזוזה הנדרש מהגיד המתוקן, מכ-12 מ"מ לכ-6 מ"מ</button>
+  <button class="opt" data-i="2">הוא מיועד אך ורק לפגיעות באזור I (Mallet finger)</button>
+  <button class="opt" data-i="3">הוא מחליף לחלוטין את הצורך בתפר ליבה בזמן הניתוח</button>
+  <div class="explain">התשובה הנכונה: RMES מנצל את העובדה שגידי ED/EDM חולקים בטן שריר משותפת - מיקום האצבע הפגועה ביישור יחסי גדול יותר מהמקבילות מאפשר לתנועת האצבעות השכנות "לספק" את התזוזה הנדרשת מבלי להעמיס על התפר הטרי, מפחית עומס מ-12 מ"מ לכ-6 מ"מ תזוזה. תשובה 1 מתארת את הגישה הישנה (אימוביליזציה מלאה) לא RMES. תשובה 2 שגויה - RMES משמש בעיקר לאזורים IV-VII. תשובה 3 שגויה - RMES הוא פרוטוקול שיקום שלאחר התפר, לא תחליף לו.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מנגנון היישור = שרשרת של גיד חיצוני + שרירים פנימיים + רצועת Landsmeer; חייבים כל שלושת המרכיבים לתפקוד תקין. חלוקה ל-9 אזורים (Kleinert-Verdan + Doyle).</li>
+    <li>טווח תזוזת הגיד הטרמינלי קטן מאוד (~4 מ"מ) - <b>גם הארכה מזערית גורמת לפיגור יישור משמעותי</b>.</li>
+    <li><b>Mallet finger (אזור I)</b>: טיפול שמרני (סד יישור 6-8 שבועות) הוא קו ראשון כמעט תמיד; ניתוח רק בשבר >1/3 מהמפרק או תת-פריקה.</li>
+    <li><b>Boutonnière (אזור III)</b>: קרע ברצועה המרכזית → יישור אקטיבי חלש ב-PIP + פסיבי תקין → בהמשך יתר-יישור ב-DIP. מבחן Elson מאבחן. יש להשאיר את ה-DIP חופשי לתנועה בטיפול שמרני.</li>
+    <li><b>Fight bite (אזור V)</b>: זיהום קשה מוערך בחסר; חובה דברידמנט, שטיפת מפרק וצילום רנטגן.</li>
+    <li>קרע EPL אחרי שבר רדיוס דיסטלי - ניווני, לא ניתן לתפור ישירות; שחזור בהעברת EI או שתל גיד.</li>
+    <li>שיקום: <b>Relative Motion Splinting</b> הוא הגישה המודרנית המובילה - מפחית עומס על התפר תוך שימוש בבטן שריר משותפת, ומאפשר תנועה פעילה מוקדמת יותר מפרוטוקולים דינמיים ישנים.</li>
+    <li>פציעות משולבות בגב היד: סדר טיפול קבוע - דברידמנט → ייצוב עצם → כיסוי רקמה רכה (עדיף תוך 72 שעות) → שחזור גיד, לרוב בו-זמנית עם הכיסוי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
