@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 17: הדמיית CT ו-MRI של המוח</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 1</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 17: הדמיית CT ו-MRI של המוח <span class="term" dir="ltr">Computed Tomography and Magnetic Resonance Imaging of the Brain</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery</div>
+
+<p>הפרק הזה עונה על שאלה אחת גדולה: <b>איך הופכים אותות פיזיקליים (החלשת קרני רנטגן, או תהודה מגנטית של פרוטוני מימן) לתמונה שמאפשרת לנתח לתכנן ניתוח בלי לפתוח את הגולגולת מראש?</b> כל שיטת הדמיה בפרק - CT, MRI רגיל, CTA, MRA, פרפוזיה, ספקטרוסקופיה, DWI, fMRI - היא בעצם דרך אחרת "לצבוע" את אותו איבר לפי תכונה פיזית שונה (צפיפות אלקטרונים, זמן הרפיה T1/T2, תנועת מים, זרימת דם). ברגע שמבינים <i>למה</i> כל רקמה "נצבעת" אחרת, אפשר להבין למה גידול מסוים נראה כמו שהוא נראה - ולא רק לשנן "גליומה = ככה, מנינגיומה = ככה".</p>
+
+<h2><span class="num">1</span> מנגנון: איך בכלל נוצרת תמונת CT</h2>
+<div class="mechanism">
+  <p class="chain">
+    שרשרת הסיבתיות ב-CT: <b>שלב 1</b> - קרן רנטגן (צילום השתקפות אלקטרומגנטית) עוברת דרך הראש ונחלשת (attenuation) בהתאם לצפיפות האלקטרונים של כל רקמה שהיא חוצה - עצם קולט את רוב הפוטונים, אוויר כמעט לא בולע כלום, ורקמת מוח נמצאת איפשהו באמצע.<br>
+    <b>שלב 2</b> - גלאים מסביב לראש מודדים כמה קרינה "שרדה" את המעבר מכל זווית, ומחשב משחזר מהערכים האלה מפת ספיגה דו-ממדית (יחידות הופנספילד, Hounsfield units) לכל שכבה.<br>
+    <b>שלב 3</b> - ככל שערך ההופנספילד גבוה יותר (עצם, סידן, דם טרי) התמונה "בהירה" יותר (היפרדנס); ככל שהוא נמוך יותר (אוויר, שומן, בצקת) היא כהה יותר (היפודנס).
+  </p>
+</div>
+<p>מכאן נובעות ישירות כל ההרחבות הטכנולוגיות בפרק: <b>אנגיוגרפיה ב-CT (CTA)</b> - הזרקת חומר ניגוד יודי תוך-ורידי שמעלה זמנית את הצפיפות האלקטרונית בתוך כלי הדם, כך שהעורקים "מוארים" ביחס לרקמה שסביבם; ו<b>פרפוזיה ב-CT (pCT)</b> - סדרת סריקות מהירות במהלך מעבר בולוס של חומר ניגוד, שמאפשרת לחשב מפות צבע כמותיות של זרימת דם מוחית (CBF), נפח דם מוחי (CBV), וזמן מעבר ממוצע (MTT) - כלי מרכזי להערכת שבץ חריף ווזוספזם.</p>
+<svg class="diagram" viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg">
+  <title>עקרון יצירת תמונת CT</title>
+  <desc>תרשים סכמטי המראה קרן רנטגן חוצה את הראש, נחלשת בהתאם לרקמה, ונקלטת בגלאים שמהם משוחזרת התמונה</desc>
+  <rect x="20" y="30" width="60" height="30" fill="#374151"/>
+  <text x="50" y="50" font-size="11" text-anchor="middle" fill="#fff">מקור רנטגן</text>
+  <path d="M80 45 L 340 45" stroke="#f59e0b" stroke-width="4"/>
+  <circle cx="380" cy="120" r="90" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <circle cx="380" cy="120" r="55" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+  <circle cx="360" cy="110" r="14" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+  <text x="380" y="45" font-size="12" text-anchor="middle" fill="#713f12" font-weight="700">ראש (עצם היקפי, מוח, נגע)</text>
+  <path d="M420 45 L 700 45" stroke="#f59e0b" stroke-width="4" stroke-dasharray="6,4"/>
+  <rect x="700" y="30" width="40" height="200" fill="#1f2937"/>
+  <text x="720" y="240" font-size="11" text-anchor="middle" fill="#1f2937" font-weight="700">מערך גלאים</text>
+  <text x="380" y="200" font-size="11.5" text-anchor="middle" fill="#374151">הקרן נחלשת שונה לפי צפיפות: עצם &gt; דם/נגע &gt; מוח &gt; נוזל &gt; אוויר</text>
+  <text x="380" y="250" font-size="11.5" text-anchor="middle" fill="#374151">סיבוב סביב הראש בזוויות רבות ← שחזור מפת הופנספילד ← "פרוסת" CT</text>
+</svg>
+<p class="figcap">איור סכמטי עצמאי: עקרון ההחלשה הדיפרנציאלית שביסוד כל תמונת CT.</p>
+
+<h2><span class="num">2</span> מנגנון: למה בכלל יש אות ב-MRI (פיזיקת התהודה המגנטית)</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>למה משתמשים במימן?</b> כי לגרעין המימן (פרוטון בודד) יש מומנט מגנטי חזק, הוא נמצא בשפע עצום בגוף (בעיקר במים - כ-67% ממשקל המוח), וקל לזהות את אותותיו. גרעינים אחרים (זרחן-31, פחמן-13, נתרן-23) קיימים בכמויות זעירות בהרבה.<br>
+    <b>שלב 1 - קיטוב:</b> כשהראש מוכנס לשדה מגנטי חזק וקבוע (B0, בדרך כלל 1.5-3 טסלה ממגנט על-מוליך), ספיני המימן מתקטבים חלקית לאורך B0 (M0). רק כ-10 מתוך כל מיליון גרעינים בפועל "מתיישרים" בשדה של 1.5T - זה כל מה שיוצר את האות.<br>
+    <b>שלב 2 - עירור:</b> פולס רדיו-תדר (RF, שדה B1) בתדר לרמור המתאים מטה את הקיטוב למישור הרוחבי (transverse plane).<br>
+    <b>שלב 3 - הרפיה ואיבוד קוהרנטיות:</b> אחרי העירור, הספינים חוזרים לאורך B0 בקצב הנקרא <b>T1</b> (הרפיה אורכית - תלוי באינטראקציה עם מולקולות גדולות סביב), ובמקביל מאבדים קוהרנטיות במישור הרוחבי בקצב הנקרא <b>T2</b> (הרפיה רוחבית - תלוי בהבדלי שדה מגנטי מיקרוסקופיים בין ספינים שכנים).<br>
+    <b>שלב 4 - קליטה:</b> סליל ה-RF קולט את האות הזעיר (בסדר גודל של 10<sup>-12</sup> וואט, לעומת מאות עד אלפי וואט של פולס השידור).
+  </p>
+</div>
+<p class="key-box">שלושת גורמי העוצמה שקובעים כל פיקסל בתמונת MRI הם צפיפות פרוטונים, T1 ו-T2. לכן עצם קורטיקלית (מעט פרוטונים ניידים) כהה, ונוזל השדרה (T1 ארוך) כהה ב-T1 אבל בהיר ב-T2. בחירת זמן ההד <span class="term" dir="ltr">TE</span> וזמן החזרה <span class="term" dir="ltr">TR</span> קובעת אם התמונה "T1-weighted" (TE/TR קצרים), "T2-weighted" (TE/TR ארוכים) או "proton density" (TE קצר, TR ארוך).</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th></th><th>TE קצר</th><th>TE ארוך</th></tr></thead>
+<tbody>
+<tr><td><b>TR קצר</b></td><td>T1-weighted</td><td>מעורב - לא לשימוש</td></tr>
+<tr><td><b>TR ארוך</b></td><td>Proton density-weighted</td><td>T2-weighted</td></tr>
+</tbody>
+</table>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mri_scanner_schematic_labelled.svg?width=700" alt="Schematic diagram of an MRI scanner showing the main magnet, gradient coils and RF coil">
+<p class="media-cap">תרשים סכמטי של מכשיר MRI: המגנט הראשי (B0), סלילי הגרדיאנט למיקום מרחבי, וסליל ה-RF לשידור וקליטת האות. מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/An_MRI_scanner.JPG?width=700" alt="Photograph of a real clinical MRI scanner">
+<p class="media-cap">מכשיר MRI קליני אמיתי - מגנט על-מוליך גלילי (סולנואיד) שבתוכו שוכב המטופל. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/qrR2yoRhAmY" title="What's the difference between T1 and T2 relaxation? - MRI physics explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: ההבדל בין הרפיית T1 להרפיית T2 - הבסיס לכל שקלול תמונה ב-MRI.</p>
+
+<h2><span class="num">3</span> מיקום מרחבי, ספין-הד וטכניקות מהירות</h2>
+<p>כדי לדעת <i>מאיפה</i> באה כל תגובה, המכשיר מפעיל שלושה שדות גרדיאנט (x, y, z) שמשנים את השדה המגנטי המקומי באופן ליניארי - כך שכל מיקום מקבל תדר תהודה ייחודי (<span class="term" dir="ltr">frequency encoding</span>) ומופע ייחודי (<span class="term" dir="ltr">phase encoding</span>). ברצף ה<b>ספין-הד</b> הקלאסי, פולס 90° מטה את המגנוט למישור הרוחבי, ופולס 180° נוסף "מבטל" חוסר-הומוגניות של השדה כדי לשחזר קוהרנטיות בזמן ההד (TE) - זהו הבסיס לרוב ההדמיה הקלינית.</p>
+<p>שיפורי מהירות מרכזיים: <b>Fast Spin Echo (FSE)</b> אוסף כמה "שורות" מידע (views) בכל TR אחד במקום שורה בודדת, ומקצר את זמן הסריקה פי כמה (לפי אורך שרשרת ההדים, ETL). <b>Gradient Echo</b> מוותר על פולס ה-180° לגמרי ומשתמש בגרדיאנט קריאה ליצירת ההד - קצר יותר אך רגיש יותר להטרוגניות (T2* במקום T2), שימושי במיוחד ל-MRA ולזיהוי המוסידרין. <b>Echo Planar Imaging (EPI)</b> אוסף את כל מרחב ה-k בעירור בודד תוך כ-40 מילישניות - איטי יותר ברזולוציה אך הכרחי לרצפים רגישים לתנועה כמו דיפוזיה, פרפוזיה ו-fMRI.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/2Md0t5ZsFho" title="What is a conventional spin echo pulse sequence? - MRI physics explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: רצף ספין-הד קלאסי - הפולסים, זמן ה-TE וה-TR, ואיך נוצר ההד.</p>
+<p><b>Inversion Recovery</b> מוסיף פולס 180° לפני הרצף העיקרי כדי "לאפס" (null) אות מרקמה מסוימת לפי ה-T1 שלה - כך פועל רצף ה-<span class="term" dir="ltr">FLAIR</span> (Fluid-Attenuated Inversion Recovery), שמאפס את אות נוזל השדרה תוך שמירה על אות רקמה בצקתית - הרצף הכי רגיש לזיהוי נגעים סמוכים לחללי CSF (קורטקס, חומר לבן תת-קורטיקלי, פריונטריקולרי).</p>
+
+<h2><span class="num">4</span> טכניקות מתקדמות: דיפוזיה, פרפוזיה, ספקטרוסקופיה ו-fMRI</h2>
+<p>ארבע הטכניקות האלה לא מודדות אנטומיה אלא <b>פיזיולוגיה</b> - וזו הסיבה שהן קריטיות לשבץ, גידולים וזיהומים:</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>טכניקה</th><th>מה נמדד בפועל</th><th>שימוש קליני מרכזי</th></tr></thead>
+<tbody>
+<tr><td><b>Diffusion-Weighted Imaging (DWI)</b></td><td>תנועה מיקרוסקופית (בראונית) של מולקולות מים; נמדד כמקדם דיפוזיה נראה לעין (ADC)</td><td>שבץ חריף - בצקת ציטוטוקסית מגבילה דיפוזיה תוך דקות מהאירוע (רגיש בהרבה מ-T2 הרגיל); גם מבדילה מורסה (דיפוזיה מוגבלת) מגידול נמקי (דיפוזיה מוגברת)</td></tr>
+<tr><td><b>Perfusion (MRI/CT)</b></td><td>זרימת דם מוחית (CBF), נפח דם (CBV), זמן מעבר ממוצע (MTT) דרך מעקב אחרי בולוס חומר ניגוד</td><td>זיהוי "פנומברה" ניתנת להצלה בשבץ (חוסר תאימות CBF/MTT מול CBV תקין); הערכת וזוספזם אחרי דימום תת-עכבישי</td></tr>
+<tr><td><b>MR Spectroscopy (MRS)</b></td><td>ספקטרום כימי של מטבוליטים (NAA, כולין, קריאטין, לקטט) בתוך וקסל גדול (כ-2 סמ"ק)</td><td>כולין מוגבר + NAA מופחת = גידול; לקטט מוגבר = מטבוליזם אנאירובי (גידול/מורסה); מבדיל הישנות גידול מנמק קרינתי</td></tr>
+<tr><td><b>Functional MRI (fMRI)</b></td><td>שינוי ביחס אוקסיהמוגלובין/דאוקסיהמוגלובין (BOLD) בעקבות פעילות קורטיקלית</td><td>מיפוי טרום-ניתוחי של קורטקס מוטורי/שפה לפני כריתת גידול סמוך לאזורים קריטיים (eloquent cortex)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="key-box">האסימטריה החשובה בין ADC לאות ה-DWI הגולמי: אזור אוטם חריף <b>מגביל</b> דיפוזיה (ADC נמוך) ולכן מופיע <b>בהיר</b> על DWI - אבל מורסה מגבילה דיפוזיה גם היא (בגלל צמיגות המוגלה), בעוד שגידול נמקי <b>לא</b> מגביל דיפוזיה (ADC גבוה, כהה יחסית ב-DWI). זה ההבדל המעשי שמשמש לאבחנה מבדלת ליד מיטת החולה.</p>
+
+<h2><span class="num">5</span> גידולים: איך המנגנון הביולוגי "מצטייר" על ההדמיה</h2>
+<p>העיקרון המארגן כאן: <b>תכונת הרקמה קובעת את האות</b>. גידול צפוף תאים עם מעט מים חופשיים ייטה להיות היפואינטנס יחסית ב-T2; גידול עם בצקת סביבו (וזוגנית, כלומר נוזל שדולף דרך מחסום דם-מוח פגוע) ייתן היפראינטנסיות T2 נרחבת; גידול עם כלי דם "דולפים" (מחסום דם-מוח שבור) יתעצם (enhance) בחומר ניגוד גדוליניום.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Glioblastoma_-_MR_coronal_with_contrast.jpg?width=700" alt="Coronal contrast-enhanced T1 MRI showing a glioblastoma with ring enhancement">
+<p class="media-cap">גליובלסטומה (Glioblastoma multiforme) בחתך קורונלי, T1 עם חומר ניגוד - התעצמות טבעתית אופיינית סביב מרכז נמקי, המשקפת כלי דם פתולוגיים עם מחסום דם-מוח פגום. מקור: Wikimedia Commons.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>גידול</th><th>T1</th><th>T2</th><th>התעצמות</th><th>מאפיין מבדיל</th></tr></thead>
+<tbody>
+<tr><td>אסטרוציטומה דרגה נמוכה</td><td>היפואינטנס</td><td>היפראינטנס קל-בינוני</td><td>מועטה/אין</td><td>גבולות מוגדרים, בצקת מועטה</td></tr>
+<tr><td>גליובלסטומה (דרגה גבוהה)</td><td>הטרוגני</td><td>הטרוגני</td><td>טבעתית בולטת</td><td>בצקת וזוגנית נרחבת, גבולות מסתננים</td></tr>
+<tr><td>מנינגיומה</td><td>איזואינטנס לחומר אפור</td><td>איזואינטנס</td><td><b>הומוגנית ובולטת מאוד</b></td><td>"זנב דורלי" (dural tail); לרוב בצקת מועטה יחסית לגודל</td></tr>
+<tr><td>אדנומה של ההיפופיזה</td><td>איזו-/היפואינטנס</td><td>משתנה</td><td>מיקרואדנומה - מתעצמת לאט יותר מהבלוטה התקינה</td><td>נדרשת סדרה דינמית תוך הזרקת בולוס לאבחון מיקרואדנומה</td></tr>
+<tr><td>גרורה (מטסטזה)</td><td>איזו-/היפואינטנס</td><td>איזו-/היפראינטנס</td><td>בינונית עד בולטת, לרוב מרובה</td><td>בצומת חומר אפור-לבן; בצקת וזוגנית לא פרופורציונלית לגודל הנגע</td></tr>
+<tr><td>שוואנומה וסטיבולרית</td><td>איזו-/היפואינטנס</td><td>היפראינטנס</td><td>הומוגנית (קטנה) עד הטרוגנית (גדולה)</td><td>ממורכז בפורוס אקוסטיקוס; מרחיב את התעלה השמיעתית הפנימית</td></tr>
+</tbody>
+</table>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Falxmeningeom_MRT_T1_mit_Kontrastmittel.jpg?width=700" alt="T1-weighted contrast-enhanced MRI showing a falx meningioma with homogeneous enhancement">
+<p class="media-cap">מנינגיומה פלקסית (Falx meningioma), T1 עם חומר ניגוד - התעצמות הומוגנית ובולטת האופיינית למנינגיומות, לעומת ההתעצמות הטבעתית וההטרוגנית של גליובלסטומה. מקור: Wikimedia Commons.</p>
+<div class="mechanism">
+  <p class="chain">למה מנינגיומה "נעלמת" בסריקה בלי ניגוד: הגידול נובע מתאי הכיסוי הארכנואידליים ובנוי מרקמה צפופה יחסית עם תכולת מים דומה לחומר אפור - ולכן הוא כמעט איזואינטנס גם ב-T1 וגם ב-T2. רק גדוליניום, שחודר דרך כלי הדם החריגים והדולפים של הגידול (מחוץ למחסום דם-מוח, כי מנינגיומה היא חוץ-אקסיאלית וניזונה מכלי דם דוראליים), "מסגיר" אותו כהתעצמות בולטת - זו הסיבה שסריקת MRI סקרינינג ללא ניגוד עלולה לפספס מנינגיומה לגמרי.</p>
+</div>
+
+<h2><span class="num">6</span> זיהומים: איך מבדילים מורסה מגידול נמקי</h2>
+<p>מורסה מוחית (abscess) וגידול נמקי (כמו גליובלסטומה) יכולים להיראות דומים מאוד - שניהם נגעים טבעתיים עם מרכז לא-מתעצם ובצקת סביב. ה<b>הבדל הקריטי</b> הוא בדיפוזיה: מוגלה בתוך חלל המורסה צמיגה ותאית מאוד, ולכן <b>מגבילה דיפוזיה</b> (ADC נמוך, בהיר ב-DWI) - בעוד שנוזל נמקי בתוך גידול זורם חופשי יחסית ו<b>לא</b> מגביל דיפוזיה (ADC גבוה, כהה ב-DWI). בספקטרוסקופיה, שתי הישויות מראות לקטט ושומנים ניידים, אך אמינו-חומצות ספציפיות (כמו אצטט וסוצינאט) נוטות להופיע יותר במורסות.</p>
+<p>דלקת קרום המוח (מנינגיטיס) ויראלית וחיידקית מתבטאות בהתעצמות דיפוזית של הקרומים בגדוליניום T1, אך אבחנה סופית עדיין דורשת בדיקת נוזל שדרה (CSF) - MRI תקין <b>אינו</b> שולל מנינגיטיס.</p>
+
+<h2><span class="num">7</span> שבץ מוחי: חלון הזמן שמכתיב את הבחירה בטכניקה</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת האירועים בשבץ איסכמי חריף: <b>שלב 1</b> - חסימת כלי דם → הפסקת אספקת חמצן וגלוקוז → כשל במשאבת נתרן-אשלגן בממברנת התא. <b>שלב 2</b> - מים זורמים מהמרחב החוץ-תאי לתוך התא (בצקת ציטוטוקסית) → המרחב החוץ-תאי מצטמצם → תנועת המים הכוללת ברקמה יורדת → זה בדיוק מה ש-DWI מזהה תוך דקות עד שעה, הרבה לפני ש-T2 הרגיל משתנה. <b>שלב 3</b> - עם הזמן (ימים) הבצקת הופכת וזוגנית ומערבת גם את החומר הלבן, וגם T2/FLAIR הופכים חיוביים. <b>שלב 4</b> - בשלב הכרוני, הרקמה ההרוסה מתכווצת (איבוד נפח) עם התרחבות מפצה של החללים הסמוכים.</p>
+</div>
+<p class="key-box">מכאן הכלל הקליני המרכזי: DWI הוא הרצף הראשון שנהיה חיובי בשבץ (תוך 30-60 דקות מהאירוע), ולכן הוא הבסיס להחלטה על תרומבוליזה או trombectomy תוך-ורידית/תוך-עורקית. שילוב מפות פרפוזיה (CBF/MTT מוחסרים) מול DWI (ADC נמוך) מזהה "פנומברה" - רקמה בסיכון אך עדיין ניתנת להצלה.</p>
+
+<h2><span class="num">8</span> הדמיה מותאמת: לא כל שאלה קלינית מקבלת את אותה בדיקה</h2>
+<p>עיקרון חשוב שהפרק מדגיש שוב ושוב: MRI "סקרינינג" סטנדרטי (T1/T2 אקסיאלי + FLAIR ± גדוליניום) מתאים לשאלה כללית, אבל שאלה קלינית ממוקדת דורשת <b>פרוטוקול מותאם</b> - למשל, חשד למנינגיומה בסינוס הקברנוזי דורש חתכים דקים (3 מ"מ) קורונליים לפני ואחרי ניגוד; חשד למיקרואדנומה של ההיפופיזה דורש סדרה דינמית מהירה במהלך הזרקת בולוס. תכנון כזה דורש תקשורת ישירה בין הנוירוכירורג לנוירורדיולוג <b>לפני</b> הבדיקה, לא רק פענוח אחרי.</p>
+
+<h3>טכניקת זכירה</h3>
+<div class="mnemonic">
+  <h3>ראשי תיבות: "1-2 FAT" לשקלול T1 מול T2</h3>
+  <p><b>T1</b> = <span dir="ltr">1</span> אות - מים (CSF, בצקת) <b>כהים</b>, שומן <b>בהיר</b>. <b>T2</b> = <span dir="ltr">2</span> אותיות - "<b>W</b>ater is <b>W</b>hite" - מים ובצקת <b>בהירים</b>.<br>
+  סיפור לזכירה: תדמייני "T1 = תמונה של פני השטח (Skin/fat) בהירים, כמו תצלום רגיל" מול "T2 = תמונה שמראה איפה יש 'טוב' (Water) - הכל שמכיל מים בוהק כמו פנס".</p>
+</div>
+<svg class="diagram" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+  <title>איור זכירה: T1 מול T2</title>
+  <desc>איור סכמטי קליל: T1 עם שומן בהיר ומים כהים, T2 עם מים בהירים</desc>
+  <rect x="20" y="20" width="280" height="150" rx="10" fill="#1f2937"/>
+  <circle cx="160" cy="95" r="40" fill="#fef3c7"/>
+  <text x="160" y="40" font-size="16" text-anchor="middle" fill="#fff" font-weight="700">T1</text>
+  <text x="160" y="100" font-size="11" text-anchor="middle" fill="#713f12" font-weight="700">שומן = בהיר</text>
+  <text x="160" y="155" font-size="11" text-anchor="middle" fill="#f9fafb">מים/CSF = כהה</text>
+  <rect x="340" y="20" width="280" height="150" rx="10" fill="#1e3a8a"/>
+  <circle cx="480" cy="95" r="40" fill="#dbeafe"/>
+  <text x="480" y="40" font-size="16" text-anchor="middle" fill="#fff" font-weight="700">T2</text>
+  <text x="480" y="100" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">מים/CSF = בהיר</text>
+  <text x="480" y="155" font-size="11" text-anchor="middle" fill="#eff6ff">"Water is White"</text>
+</svg>
+
+<h2><span class="num">9</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=l9swbAtRRbg" target="_blank">How Does a CT Scan Work? (NIBIB)</a><span class="tag">וידאו</span><div class="desc">הסבר קצר ורשמי על עקרון הפעולה של CT - קרני רנטגן, גלאים ושחזור תמונה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:An_MRI_scanner.JPG" target="_blank">תצלום מכשיר MRI קליני</a><span class="tag">תמונה</span><div class="desc">מקור לתמונה שהוטמעה למעלה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Glioblastoma_-_MR_coronal_with_contrast.jpg" target="_blank">גליובלסטומה - MRI קורונלי עם ניגוד</a><span class="tag">תמונה</span><div class="desc">מקור לתמונה שהוטמעה למעלה.</div></li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/l9swbAtRRbg" title="How Does a CT Scan Work?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: כיצד עובד מכשיר CT - מקרן רנטגן ועד תמונת חתך.</p>
+
+<div class="case">
+<h3>מקרה קליני</h3>
+<p>אישה בת 58 מגיעה למיון עם חולשה פתאומית בצד ימין של הגוף וקושי בדיבור שהחל לפני כ-40 דקות. בבדיקה גופנית: המיפרזיס ימנית, אפזיה. CT מוח ללא ניגוד תקין ("לא רואים דבר"). מבצעים MRI דחוף.</p>
+<div class="quiz" data-q="1">
+  <div class="q">1. איזה רצף MRI צפוי להיות הראשון להראות ממצא חיובי במקרה הזה?</div>
+  <button class="opt" data-correct="false">T1-weighted</button>
+  <button class="opt" data-correct="false">T2-weighted</button>
+  <button class="opt" data-correct="true">Diffusion-Weighted Imaging (DWI)</button>
+  <button class="opt" data-correct="false">MR Spectroscopy</button>
+  <div class="explain">נכון: DWI מזהה בצקת ציטוטוקסית תוך 30-60 דקות מהאירוע האיסכמי, הרבה לפני ש-T2 משתנה. T1 בדרך כלל תקין בשלב חריף כל כך, ו-MRS אינו הבדיקה הראשונה לשבץ חריף.</div>
+</div>
+<div class="quiz" data-q="2">
+  <div class="q">2. מדוע ה-CT ללא ניגוד יצא תקין למרות התסמינים הברורים?</div>
+  <button class="opt" data-correct="false">כי CT אינו יכול לזהות שבץ בשום שלב</button>
+  <button class="opt" data-correct="true">כי שינויי צפיפות ב-CT (בצקת) מתפתחים לאט יחסית ולעיתים אינם נראים בשעות הראשונות</button>
+  <button class="opt" data-correct="false">כי המטופלת קיבלה ניגוד לפני הבדיקה</button>
+  <button class="opt" data-correct="false">כי ה-CT זיהה את השבץ אך הרדיולוג טעה</button>
+  <div class="explain">נכון: CT ללא ניגוד רגיש מאוד לדימום אך פחות רגיש לאיסכמיה בשעות הראשונות - שינויי הצפיפות מתפתחים בהדרגה עם התפתחות הבצקת, ולכן CT תקין בשלב חריף אינו שולל שבץ.</div>
+</div>
+<div class="quiz" data-q="3">
+  <div class="q">3. איזה שילוב הדמיה הכי שימושי כדי לזהות "פנומברה" ניתנת להצלה?</div>
+  <button class="opt" data-correct="false">T1 בלבד</button>
+  <button class="opt" data-correct="true">DWI (רקמה שכבר נהרסה) מול מפות פרפוזיה CBF/MTT (רקמה בסיכון)</button>
+  <button class="opt" data-correct="false">MRS בלבד</button>
+  <button class="opt" data-correct="false">FLAIR בלבד</button>
+  <div class="explain">נכון: אזור ה-DWI החיובי מייצג לרוב רקמה שכבר עברה נזק בלתי הפיך (core), בעוד שאזור עם הפרעה בפרפוזיה (CBF/MTT מוארך) שעדיין אינו מופיע ב-DWI מייצג רקמה בת-הצלה (פנומברה) - חוסר ההתאמה ביניהם מנחה החלטות על טיפול חודרני.</div>
+</div>
+<div class="quiz" data-q="4">
+  <div class="q">4. אילו ממצאים ב-MRI היו מבדילים מורסה מוחית מגליובלסטומה נמקית באזור דומה?</div>
+  <button class="opt" data-correct="false">שתיהן זהות לחלוטין ואי אפשר להבדיל בהדמיה</button>
+  <button class="opt" data-correct="true">מורסה מגבילה דיפוזיה (בהירה ב-DWI, ADC נמוך); גידול נמקי לרוב אינו מגביל דיפוזיה (כהה יחסית ב-DWI, ADC גבוה)</button>
+  <button class="opt" data-correct="false">רק גודל הנגע מבדיל ביניהם</button>
+  <button class="opt" data-correct="false">רק צבע הניגוד בהזרקה מבדיל ביניהם</button>
+  <div class="explain">נכון: תוכן המורסה צמיג ותאי ומגביל תנועת מים, בעוד נוזל נמקי בגידול זורם חופשי יחסית - ההבדל הזה בדיפוזיה הוא הכלי המעשי המרכזי, בנוסף לספקטרוסקופיה (אמינו-חומצות במורסה).</div>
+</div>
+<div class="quiz" data-q="5">
+  <div class="q">5. במקרה של מנינגיומה שנראית איזואינטנסית לחומר אפור בסריקה ללא ניגוד - מדוע חיוני לתת גדוליניום?</div>
+  <button class="opt" data-correct="false">כי גדוליניום מוריד את הרדיאציה</button>
+  <button class="opt" data-correct="true">כי כלי הדם הדוראליים של המנינגיומה נמצאים מחוץ למחסום דם-מוח, כך שהגדוליניום דולף אליהם ויוצר התעצמות בולטת שמסגירה את הגידול שאחרת "נטמע" ברקע</button>
+  <button class="opt" data-correct="false">כי גדוליניום הופך את הגידול לגידול ממאיר</button>
+  <button class="opt" data-correct="false">כי T1 ו-T2 אינם ניתנים לביצוע במנינגיומה</button>
+  <div class="explain">נכון: מנינגיומה חוץ-אקסיאלית ניזונה מכלי דם דוראליים מחוץ למחסום דם-מוח, ולכן חומר הניגוד דולף אליה בקלות ומייצר התעצמות הומוגנית ובולטת - בלי ניגוד, הגידול עלול פשוט להיעלם על רקע החומר האפור.</div>
+</div>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(quiz){
+  var opts = quiz.querySelectorAll('.opt');
+  opts.forEach(function(opt){
+    opt.addEventListener('click', function(){
+      if (quiz.dataset.answered) return;
+      quiz.dataset.answered = "1";
+      opts.forEach(function(o){
+        o.disabled = true;
+        if (o.dataset.correct === "true") o.classList.add('correct');
+        else if (o === opt) o.classList.add('wrong');
+      });
+      var explain = quiz.querySelector('.explain');
+      explain.classList.add('show');
+    });
+  });
+});
+document.querySelectorAll('.media-img, svg.diagram').forEach(function(el){
+  el.addEventListener('click', function(){
+    var overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay show';
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'lightbox-close';
+    closeBtn.innerHTML = '&times;';
+    overlay.appendChild(closeBtn);
+    var clone = el.cloneNode(true);
+    overlay.appendChild(clone);
+    overlay.addEventListener('click', function(){ overlay.remove(); });
+    document.body.appendChild(overlay);
+  });
+});
+</script>
+
+<div class="tldr">
+<h2><span class="num">10</span> סיכום של הסיכום</h2>
+<ul>
+<li><b>CT</b>: קרני רנטגן נחלשות לפי צפיפות אלקטרונים ← יחידות הופנספילד; עצם/דם בהירים, אוויר כהה.</li>
+<li><b>MRI</b>: תהודה מגנטית של פרוטוני מימן במים; T1 (הרפיה אורכית) ו-T2 (הרפיה רוחבית) קובעים שקלול התמונה לפי TE/TR.</li>
+<li>"T2 = Water is White" - מים ובצקת בהירים ב-T2, כהים ב-T1 (שומן הפוך).</li>
+<li><b>DWI</b> - הרצף הראשון החיובי בשבץ חריף (30-60 דקות), מגביל דיפוזיה = בהיר, ADC נמוך.</li>
+<li><b>פרפוזיה</b> (CBF/CBV/MTT) מול DWI מזהה פנומברה ניתנת להצלה בשבץ.</li>
+<li><b>מורסה</b> מגבילה דיפוזיה (כמו שבץ); <b>גידול נמקי</b> בדרך כלל לא - זה מבדיל ביניהם.</li>
+<li><b>מנינגיומה</b>: איזואינטנסית ללא ניגוד, אך מתעצמת הומוגנית ובולטת עם גדוליניום ("זנב דורלי").</li>
+<li><b>גליובלסטומה</b>: התעצמות טבעתית סביב מרכז נמקי, בצקת וזוגנית נרחבת, גבולות מסתננים.</li>
+<li><b>MRS</b>: כולין↑ + NAA↓ = גידול; לקטט = מטבוליזם אנאירובי (גידול או מורסה).</li>
+<li><b>fMRI</b>: מיפוי קורטקס אלוקוונטי (מוטורי/שפה) לתכנון ניתוחי לפני כריתת גידול.</li>
+<li>כל בדיקת הדמיה צריכה <b>פרוטוקול מותאם</b> לשאלה הקלינית - לא סקירה גנרית אחת מתאימה לכול.</li>
+</ul>
+</div>
+
+</body>
+</html>
