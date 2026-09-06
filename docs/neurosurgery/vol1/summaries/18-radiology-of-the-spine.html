@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 18: הדמיה של עמוד השדרה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 1</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 18: הדמיה של עמוד השדרה <span class="term" dir="ltr">Radiology of the Spine</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק 1 - Introduction to Neurological Surgery</div>
+
+<p>הפרק הזה עונה על שאלה מעשית מאוד: כשמטופל מגיע עם כאב גב, מה בדיוק אפשר "לראות", באיזו שיטת הדמיה, ולמה כל שיטה מראה דבר אחר? הרעיון המארגן הוא ש<b>כל שיטת הדמיה "שואלת" את הרקמה שאלה פיזיקלית שונה</b> - CT שואל "כמה צפוף החומר?" (ולכן מצוין לעצם ולמתכת), ואילו MRI שואל "כמה מים חופשיים יש כאן, ובאיזה מצב?" (ולכן מצוין לדיסק, לחוט השדרה ולרקמות רכות). מכאן ואילך, כל שאר הפרק - ניוון הדיסק, בקע, היצרות התעלה, זיהום, וגידולים - הוא בעצם תרגום של פתולוגיות ספציפיות לשפה של אות (signal) על גבי כל אחת מהשיטות הללו.</p>
+
+<h2><span class="num">1</span> שיטות ההדמיה: מה כל שיטה "שואלת" את הרקמה</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת ההיגיון שמסבירה למה בוחרים שיטת הדמיה מסוימת:</p>
+  <p>
+    <b>שלב 1 - צילום רנטגן (Plain films):</b> מראה בעיקר עצם ויישור כללי (אליגנמנט); לא מדמה ישירות דיסק, עצב או חוט שדרה.<br>
+    <b>שלב 2 - CT:</b> רגישה ביותר לצפיפות רקמה - מצוינת לעצם, לתעלת השדרה הבוני, ולזיהוי מתכת/גז/הסתיידות; פחות טובה ברזולוציית רקמה רכה.<br>
+    <b>שלב 3 - מיאלוגרפיה + CT מיאלוגרפי:</b> הזרקת חומר ניגוד לחלל התת-עכבישי מוסיפה מידע תפקודי - "האם משהו לוחץ על שק ה-CSF?" - שימושי כשיש התוויות נגד ל-MRI (למשל השתלים מתכתיים).<br>
+    <b>שלב 4 - MRI:</b> רצפים שונים "שואלים" שאלות שונות: T1 מדגיש שומן (מח עצם בהיר, CSF כהה) - טוב לאנטומיה; T2 מדגיש מים חופשיים (CSF ודיסק מוות בהיר) - טוב לפתולוגיה ולבצקת; STIR מדכא אות שומן וחושף בצקת במח העצם ביתר רגישות.
+  </p>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/L4-l5-disc-herniation.png?width=700" alt="MRI of L4-L5 lumbar disc herniation, sagittal view">
+<p class="media-cap">MRI סגיטלי אמיתי המדגים בקע דיסק ברמת L4-L5. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/xMv3t8D1pks" title="T1 vs T2 MRI Basics" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: ההבדל בין רצפי T1 ו-T2 ב-MRI, וכיצד לזהות כל אחד מהם על פי צבע ה-CSF.</p>
+<div class="key-box">כלל אצבע קליני מהיר: אם ה-CSF (או השתן, או מרה) <b>בהיר</b> בתמונה - זהו כנראה T2. אם ה-CSF <b>כהה</b> ומח העצם בהיר - זהו כנראה T1. STIR תמיד ידגים דיכוי אות שומן (מח עצם כהה יחסית) יחד עם בליטת נוזל/בצקת.</div>
+
+<h2><span class="num">2</span> טרמינולוגיה של ניוון ובקע הדיסק</h2>
+<p>הדיסק הבין-חולייתי מורכב מגרעין מקבל (<span class="term" dir="ltr">nucleus pulposus</span>) המוקף בטבעת סיבית (<span class="term" dir="ltr">annulus fibrosus</span>). עם הגיל והניוון, יורד תכולת המים ב-nucleus יותר מאשר ב-annulus, כלומר <b>שני החלקים "מתייבשים", אך בקצב שונה</b> - וזה ההסבר לירידה באות T2 (המשקף בעיקר ריכוז פרוטאוגליקנים, לא כמות מים מוחלטת) ולערעור היציבות המכנית של הדיסק.</p>
+<p>הטרמינולוגיה הרשמית (לפי סכימת Fardon המקובלת) מבחינה בין ארבע דרגות של תזוזת חומר דיסק כלפי חוץ, לפי <b>ההיקף</b> וה<b>צורה</b> של הבליטה:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מונח</th><th>הגדרה</th><th>משמעות קלינית</th></tr></thead>
+  <tbody>
+    <tr><td><b>בליטה (Bulge)</b></td><td>חומר דיסק המשתרע על פני 50%-100% מהיקף הדיסק - <b>אינה</b> נחשבת סוג של בקע (הרניאציה)</td><td>שינוי דיפוזי, שכיח, לרוב בעל משמעות קלינית פחותה</td></tr>
+    <tr><td><b>בקע (Herniation)</b></td><td>תזוזה מקומית של חומר דיסק, פחות מ-50% מההיקף</td><td>יכול להיות מוקדי (&lt;25%) או רחב-בסיס (25%-50%)</td></tr>
+    <tr><td><b>בליטה (Protrusion)</b></td><td>המרחק הגדול ביותר בין קצוות הבליטה קטן מהמרחק בין קצוות הבסיס שלה</td><td>"בסיס רחב מהקצה" - צורת בליטה יחסית מבוקרת</td></tr>
+    <tr><td><b>פליטה (Extrusion)</b></td><td>המרחק בין קצוות החומר הפולט גדול מהמרחק בין קצוות הבסיס, או שאין רציפות עם הדיסק המקורי</td><td>"הקצה רחב מהבסיס" - סימן לבקע גדול/לא יציב יותר</td></tr>
+    <tr><td><b>הפרדה (Sequestration)</b></td><td>תת-סוג של extrusion, שבו החומר הפלוט איבד לחלוטין רציפות עם דיסק המקור</td><td>שבר חופשי (free fragment) שיכול לנדוד (migration) לאורך התעלה</td></tr>
+  </tbody>
+</table>
+</div>
+<svg class="diagram" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+  <title>ספקטרום בקע הדיסק: בליטה, פליטה והפרדה</title>
+  <desc>תרשים סכמטי עצמאי המדגים ארבעה מצבים: bulge סימטרי, disk protrusion עם בסיס רחב מהקצה, extrusion עם קצה רחב מהבסיס, ו-sequestration עם פיסת חומר נפרדת שנודדת</desc>
+  <rect x="10" y="10" width="160" height="230" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+  <text x="90" y="30" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">Bulge</text>
+  <ellipse cx="90" cy="150" rx="70" ry="30" fill="#bbf7d0" stroke="#15803d" stroke-width="2"/>
+  <text x="90" y="200" font-size="10.5" text-anchor="middle" fill="#14532d">היקף שלם, סימטרי - לא נחשב הרניאציה</text>
+
+  <rect x="180" y="10" width="160" height="230" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="260" y="30" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">Protrusion</text>
+  <path d="M 210 150 Q 260 110 310 150 Q 260 165 210 150 Z" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+  <text x="260" y="200" font-size="10.5" text-anchor="middle" fill="#1e3a8a">קצה &lt; בסיס</text>
+
+  <rect x="350" y="10" width="160" height="230" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="430" y="30" font-size="13" text-anchor="middle" fill="#713f12" font-weight="700">Extrusion</text>
+  <path d="M 380 150 Q 430 165 480 150 Q 450 100 410 105 Z" fill="#fde68a" stroke="#a16207" stroke-width="2"/>
+  <text x="430" y="200" font-size="10.5" text-anchor="middle" fill="#713f12">קצה &gt; בסיס</text>
+
+  <rect x="520" y="10" width="170" height="230" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="605" y="30" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">Sequestration</text>
+  <ellipse cx="580" cy="150" rx="30" ry="20" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+  <circle cx="650" cy="110" r="16" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+  <text x="605" y="200" font-size="10.5" text-anchor="middle" fill="#7f1d1d">פיסה חופשית, ייתכן נדידה (migration)</text>
+</svg>
+<p class="figcap">ארבעת המצבים העיקריים בספקטרום בקע הדיסק, לפי סכימת Fardon.</p>
+
+<h2><span class="num">3</span> היצרות תעלת השדרה (Stenosis)</h2>
+<p>היצרות מוגדרת כל צרות של תעלת השדרה, תעלות השורש או הפורמינות. מבחינים בין היצרות <b>נרכשת</b> (בעיקר על רקע ניווני) לבין <b>מולדת/התפתחותית</b>, שיכולות להצטרף זו לזו. חשוב: <b>מידת ההיצרות בהדמיה אינה קבועה</b> - יישור-יתר (extension) מחמיר את ההיצרות המרכזית והפורמינלית בכ-11%, בעוד כיפוף (flexion) משפר אותה בכ-11% בממוצע, מה שמסביר את התלונה הקלאסית של הקלה בכיפוף קדימה (הליכה עם עגלת קניות).</p>
+<div class="key-box">אין מתאם טוב בין מידת ההיצרות בהדמיה לבין חומרת התסמינים הקליניים - הממצאים ההדמייתיים לרוב "מוגזמים" ביחס לתמונה הקלינית, ולכן ההחלטה הטיפולית אינה יכולה להתבסס על ההדמיה בלבד.</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/jqDFv6UJd80" title="Spinal Stenosis Explained" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מה זה בעצם ממצא של היצרות (stenosis) ב-MRI, ומה המשמעות הקלינית שלו.</p>
+
+<h2><span class="num">4</span> חוסר יציבות וספונדילוליסטזיס</h2>
+<p>חוסר יציבות סגמנטלי (Segmental instability) נובע מניוון בדיסק, בגופי החוליות ובמפרקי הפאסט, ופוגע בתבנית התנועה הרגילה של עמוד השדרה. שני סוגי אליגנמנט לא תקין השכיחים ביותר הם חוסר יציבות סגמנטלי וספונדילוליסטזיס (Spondylolisthesis) - החלקה קדמית (או אחורית) של חוליה אחת ביחס לשכנתה, המדורגת לרוב בשיטת Meyerding (I-IV לפי אחוז ההחלקה).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Spondylolisthesis%20measurement%20on%20X-ray.png?width=700" alt="X-ray demonstrating measurement of spondylolisthesis grade">
+<p class="media-cap">צילום רנטגן המדגים את שיטת המדידה של דרגת הספונדילוליסטזיס (אחוז ההחלקה של חוליה אחת קדימה ביחס לשכנתה). מקור: Wikimedia Commons.</p>
+<p>בספונדילוליסטזיס ניווני, ההחלקה מלווה לרוב בהיצרות תעלה מרכזית קשה ובעיבוי הרצועות האחוריות, כתוצאה מהעומס הבלתי-תקין על מפרקי הפאסט.</p>
+
+<h2><span class="num">5</span> זיהום: דיסקיטיס ואוסטאומייליטיס חולייתית</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת הממצאים בזיהום חולייתי (vertebral osteomyelitis): הזיהום מתחיל לרוב סמוך ללוחית הקצה (end plate), ומתפשט משם גם לדיסק וגם לגוף החוליה השכן - זו הסיבה שבניגוד לגידול (שנוטה "לחסוך" מהדיסק), <b>זיהום כמעט תמיד חוצה את מרחב הדיסק ופוגע בשתי החוליות משני צדדיו</b>.</p>
+  <p><b>שלב 1:</b> בצילום רנטגן - צרות קלה של מרחב הדיסק וטשטוש לוחיות הקצה (השלב המוקדם ביותר, עדין).<br>
+  <b>שלב 2:</b> ב-CT - הרס עצם "מכורסם" (moth-eaten), גז בעצם/רקמה רכה, מעורבות הדיסק.<br>
+  <b>שלב 3:</b> ב-MRI (הרגישה ביותר - רגישות 96%, סגוליות 92%): ירידת אות T1 בדיסק ובחוליות הסמוכות עם טשטוש הגבול ביניהם, עליית אות T2, והדגמת אבצס אפידורלי (Epidural abscess) כמסה מוגברת אות ב-T2/STIR שאינה מתאבצעת (nonenhancing core) - ממצא שמבדיל אותו משאר הפלגמון שכן מתאבצע הומוגנית.</p>
+</div>
+<p class="key-box">אבחנה מבדלת חשובה: לימפומה אפידורלית או המטומה אפידורלית עלולות להידמות קלינית לאבצס, אך בהדמיה - ליפומטוזיס אפידורלי (epidural lipomatosis) יראה אות שומן טיפוסי ב-T1, בניגוד לזיהום.</p>
+
+<h2><span class="num">6</span> עמוד שדרה לאחר ניתוח: צלקת מול בקע חוזר</h2>
+<p>זיהוי הדמייתי מדויק בעמוד שדרה שנותח הוא אחד האתגרים הגדולים ביותר בפרק - וגם אחד השימושיים ביותר קלינית, כי הוא קובע האם יש צורך בניתוח חוזר.</p>
+<div class="mechanism">
+  <p class="chain">למה חומר ניגוד (גדוליניום) הוא המפתח להבחנה: צלקת (fibrosis) היא רקמת גרנולציה עשירת כלי דם, ולכן <b>מתאבצעת באופן הומוגני ומיידי</b> אחרי הזרקת גדוליניום. לעומת זאת, חומר דיסק חוזר/שריד (recurrent/residual disk) הוא רקמה אווסקולרית, ולכן <b>אינו מתאבצע</b> באופן מיידי (ולכל היותר מראה מעטפת דקה של אבצוע היקפי מאוחר יותר). ההבדל הזה הוא הבסיס לכל האבחנה.</p>
+</div>
+<table>
+  <thead><tr><th>ממצא</th><th>צלקת (Scar/Fibrosis)</th><th>בקע חוזר (Recurrent Disk)</th></tr></thead>
+  <tbody>
+    <tr><td>אבצוע מיידי אחרי גדוליניום</td><td>הומוגני, מיידי</td><td>נעדר או היקפי בלבד</td></tr>
+    <tr><td>אפקט מסה על שק התקה</td><td>לרוב מזערי, ללא אפקט מסה משמעותי</td><td>לרוב נוכח</td></tr>
+    <tr><td>משמעות טיפולית</td><td>לרוב לא כירורגי</td><td>עשוי לדרוש ניתוח חוזר</td></tr>
+  </tbody>
+</table>
+<p>מצב קרוב נוסף הוא ארכנואידיטיס (Arachnoiditis) - הידבקות וגיבוב של שורשי העצבים בתוך שק ה-CSF בעקבות דלקת (למשל אחרי ניתוחים חוזרים או זיהום). שלושה דפוסים הדמייתיים תוארו: גיבוב שורשים, שק "חלק" ללא שורשים נראים לעין, ומסות רקמה רכה החוסמות את זרימת חומר הניגוד המיאלוגרפי.</p>
+
+<h2><span class="num">7</span> גידולים וממאירויות - עקרון המיקום</h2>
+<p>גידולי עמוד השדרה מסווגים לפי המיקום ביחס לדורה ולחוט השדרה - וזהו בעצם הכלי האבחוני-דיפרנציאלי המרכזי:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מיקום</th><th>גידולים אופייניים</th><th>רמז הדמייתי</th></tr></thead>
+  <tbody>
+    <tr><td><b>תוך-דורלי חוץ-מדולרי</b> <span class="term" dir="ltr">intradural extramedullary</span></td><td>מנינגיומה, שוואנומה (נוירינומה)</td><td>מסה תוך השק, חוט השדרה נדחק לצד - "cap sign" של CSF סביב המסה</td></tr>
+    <tr><td><b>תוך-מדולרי</b> <span class="term" dir="ltr">intramedullary</span></td><td>אפנדימומה, אסטרוציטומה</td><td>הרחבה (widening) של חוט השדרה עצמו, שקט בצילום רנטגן וב-CT - נראה רק ב-MRI</td></tr>
+    <tr><td><b>אפידורלי/חוץ-דורלי</b> <span class="term" dir="ltr">extradural</span></td><td>גרורות (metastases), לימפומה</td><td>מעורבות גוף החוליה, לרוב "חוסך" את מרחב הדיסק (בניגוד לזיהום!)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">כלל אבחנתי מהיר: מעורבות שחוצה את מרחב הדיסק מרמזת על <b>זיהום</b>; מעורבות ששומרת על גובה הדיסק ותוקפת רק את גוף החוליה (לעיתים עם קריסה - "vertebra plana") מרמזת על <b>גידול/גרורה</b>.</p>
+
+<h2><span class="num">8</span> ארטיפקטים והתוויות נגד</h2>
+<p>מתכת היא האתגר המרכזי בשתי השיטות: ב-CT היא יוצרת ארטיפקט "הקשחת קרן" (beam hardening) שמטשטש רקמה סמוכה. ב-MRI, "רגישות מגנטית" (magnetic susceptibility) יוצרת עיוות גיאומטרי ואיבוד אות (dephasing) - רצפי gradient echo רגישים לכך במיוחד. התוויות נגד מוחלטות/יחסיות ל-MRI קשורות בעיקר להשתלים אלקטרוניים (קוצבי לב ישנים, סוגי קליפס מסוימים לאניוריזמה) העלולים לחמם, לזוז או להפסיק לתפקד בשדה המגנטי.</p>
+
+<h2><span class="num">9</span> תמונת מצב: מתי כל שיטת הדמיה היא הבחירה הנכונה</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שאלה קלינית</th><th>שיטת בחירה</th><th>למה</th></tr></thead>
+  <tbody>
+    <tr><td>חשד לבקע דיסק / דחיסת שורש עצב</td><td>MRI</td><td>הרזולוציה הטובה ביותר לרקמה רכה ולדיסק עצמו</td></tr>
+    <tr><td>מטופל עם השתל מתכתי/קוצב שאינו תואם MRI</td><td>CT מיאלוגרפי</td><td>עוקף את מגבלת המתכת של MRI, עדיין מדמה את שק ה-CSF</td></tr>
+    <tr><td>חשד לזיהום חולייתי (דיסקיטיס/אוסטאומייליטיס)</td><td>MRI עם גדוליניום</td><td>רגישות וסגוליות הגבוהות ביותר; מדגים אבצס אפידורלי</td></tr>
+    <tr><td>הבחנה בין צלקת לבקע חוזר לאחר ניתוח</td><td>MRI עם גדוליניום (אבצוע מיידי)</td><td>צלקת מתאבצעת הומוגנית ומיידית; דיסק - לא</td></tr>
+    <tr><td>שבר / יישור עצם / הסתיידות</td><td>CT / צילום רנטגן</td><td>הרזולוציה הטובה ביותר לעצם</td></tr>
+    <tr><td>חשד למלפורמציה וסקולרית (AVM) - טרם טיפול</td><td>אנגיוגרפיה קטטרית סלקטיבית</td><td>עדיין נחשבת הסטנדרט המדויק ביותר לאפיון טרום-טיפולי, גם אם MRA/CTA מכוונות את הבדיקה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">B-E-S-S-I-T</span> - שש התחנות של הדמיית עמוד השדרה</h3>
+  <p>
+    <b>B</b> - <span class="term" dir="ltr">Bulge/herniation terminology</span> (בליטה, פליטה, הפרדה - לפי היקף וצורה)<br>
+    <b>E</b> - <span class="term" dir="ltr">Extradural vs intradural vs intramedullary</span> (מיקום הגידול קובע הכל)<br>
+    <b>S</b> - <span class="term" dir="ltr">Stenosis</span> (תלוי-תנוחה, לא תמיד תואם קליניקה)<br>
+    <b>S</b> - <span class="term" dir="ltr">Spondylolisthesis/instability</span> (הידרדרות מכנית של הסגמנט)<br>
+    <b>I</b> - <span class="term" dir="ltr">Infection crosses the disk</span> (זיהום חוצה את מרחב הדיסק - בניגוד לגידול)<br>
+    <b>T</b> - <span class="term" dir="ltr">T1/T2 + contrast for scar vs. recurrence</span> (גדוליניום מבדיל צלקת מבקע חוזר)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בלש שמגיע לזירת "פשע" בעמוד השדרה עם שתי עדשות בלבד: עדשת CT (רואה רק עצם וצפיפות) ועדשת MRI (רואה מים ורקמה רכה). כשהוא בודק את הדיסק - הוא בודק קודם כול "כמה מההיקף מעורב" (בליטה מול בקע), ואז "האם הקצה רחב מהבסיס" (פליטה). אם יש מסה, הוא שואל "בפנים או מחוץ לשק ה-CSF? בתוך חוט השדרה או מחוצה לו?" ולבסוף, כשהוא בודק מטופל שכבר עבר ניתוח, הוא תמיד "צובע" את הזירה בגדוליניום - כי רק כך אפשר להבדיל בין "עדות ישנה" (צלקת, שנצבעת) לבין "החשוד האמיתי" (בקע חוזר, שלא נצבע).</p>
+</div>
+
+<h2><span class="num">11</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://radiologyassistant.nl/neuroradiology/spine/lumbar-disc-nomenclature-2-0" target="_blank">Lumbar Disc Nomenclature 2.0 – The Radiology Assistant</a>
+    <div class="desc">הסבר מפורט ומאויר על סכימת Fardon לטרמינולוגיה של בקע הדיסק.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Vertebral_osteomyelitis" target="_blank">Vertebral Osteomyelitis – Wikipedia</a>
+    <div class="desc">רקע קליני והדמייתי על זיהום חולייתי ודיסקיטיס.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Spinal_stenosis" target="_blank">Spinal Stenosis – Wikipedia</a>
+    <div class="desc">הגדרות, גורמים וממצאי הדמיה בהיצרות תעלת השדרה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Spondylolisthesis" target="_blank">Spondylolisthesis – Wikipedia</a>
+    <div class="desc">סיווג Meyerding ותמונות המחשה של דרגות ההחלקה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 55 עבר לפני שנה כריתת דיסקוס בגובה L4-L5 עקב בקע גדול, וכעת חוזר עם כאב גב תחתון המקרין לרגל, דומה לכאב שלפני הניתוח. בהדמיית MRI ללא ניגוד נצפית מסה ברקמה הרכה האפידורלית באותו גובה, הנוגעת בשק התקה. הרופאה המטפלת מבקשת MRI עם גדוליניום לפני קבלת החלטה על ניתוח חוזר.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע יש צורך ספציפית בהזרקת גדוליניום כדי להכריע אם למטופל יש צלקת או בקע חוזר?</div>
+  <button class="opt" data-i="0">כי גדוליניום מראה טוב יותר את העצם</button>
+  <button class="opt" data-i="1">כי צלקת (רקמת גרנולציה עשירת כלי דם) מתאבצעת הומוגנית ומיידית, בעוד חומר דיסק (אווסקולרי) אינו מתאבצע - וזהו ההבדל המכריע</button>
+  <button class="opt" data-i="2">כי גדוליניום מסוכן רק בהדמיה ללא ניגוד</button>
+  <button class="opt" data-i="3">כי בלי ניגוד אי אפשר לראות בכלל את שק ה-CSF</button>
+  <div class="explain">התשובה הנכונה: צלקת עשירה בכלי דם ולכן סופגת ומאבצעת חומר ניגוד באופן הומוגני ומיידי; חומר דיסק חוזר הוא רקמה אווסקולרית שאינה מתאבצעת (לכל היותר מעטפת היקפית מאוחרת). זהו הכלל הקליני המרכזי המתואר בפרק להבחנה בין השניים בעמוד שדרה שלאחר ניתוח.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופלת עם כאב גב וחשד לזיהום. אילו ממצאים ב-MRI יתמכו בזיהום (אוסטאומייליטיס/דיסקיטיס) ולא בגידול גרורתי?</div>
+  <button class="opt" data-i="0">מעורבות גוף חוליה אחד בלבד, עם שמירה על גובה הדיסק</button>
+  <button class="opt" data-i="1">מסה תוך-דורלית חוץ-מדולרית עם "cap sign"</button>
+  <button class="opt" data-i="2">מעורבות המשכית של הדיסק ושתי החוליות הסמוכות לו, עם טשטוש הגבול ביניהן וירידת אות T1</button>
+  <button class="opt" data-i="3">הרחבה של חוט השדרה עצמו ללא מעורבות עצם</button>
+  <div class="explain">התשובה הנכונה: זיהום מתחיל סמוך ללוחית הקצה ומתפשט לדיסק ולשתי החוליות משני צדדיו, ולכן חוצה את מרחב הדיסק ומטשטש את הגבול חוליה-דיסק. גידול גרורתי, לעומת זאת, נוטה לשמר את מרחב הדיסק ולתקוף בעיקר גוף חוליה בודד. תשובות 1 ו-3 מתארות מיקומי גידול (תוך-דורלי או תוך-מדולרי), לא זיהום.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי ה"בליטה" (bulge) לעומת בקע (herniation) של דיסק, לפי הטרמינולוגיה בפרק?</div>
+  <button class="opt" data-i="0">בליטה משתרעת על 50%-100% מהיקף הדיסק ואינה נחשבת סוג של הרניאציה; בקע הוא תזוזה מקומית של פחות מ-50% מההיקף</button>
+  <button class="opt" data-i="1">אין הבדל, אלו מונחים נרדפים</button>
+  <button class="opt" data-i="2">בליטה היא רק במישור הצידי, בקע רק במישור האמצעי</button>
+  <button class="opt" data-i="3">בליטה מוגדרת רק ב-CT, בקע מוגדר רק ב-MRI</button>
+  <div class="explain">התשובה הנכונה: ההבדל הוא היקפי - bulge משתרע לאורך רוב או כל היקף הדיסק (50%-100%) ואינו נחשב לצורת הרניאציה, ואילו herniation היא תזוזה מקומית וממוקדת (מוקדית או רחבת-בסיס) שפחותה מ-50% מההיקף. שתי השיטות (CT ו-MRI) יכולות להדגים את שניהם.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופל עם שתל מתכתי גדול (כגון מוטות תיוך) שלא ניתן להסירו לפני הדמיה. איזו שיטת הדמיה עוקפת בצורה הטובה ביותר את מגבלת ארטיפקט המתכת תוך שמירה על מידע פונקציונלי על שק ה-CSF?</div>
+  <button class="opt" data-i="0">MRI עם רצף gradient echo</button>
+  <button class="opt" data-i="1">אולטרסאונד תוך-ניתוחי</button>
+  <button class="opt" data-i="2">תרמוגרפיה</button>
+  <button class="opt" data-i="3">CT מיאלוגרפי</button>
+  <div class="explain">התשובה הנכונה: CT מיאלוגרפי משלב את היתרון של CT (פחות רגיש לארטיפקט מתכת מ-MRI, במיוחד עם טכניקות הפחתת הקשחת קרן) עם מידע פונקציונלי על שק ה-CSF דרך חומר הניגוד התוך-תת-עכבישי. MRI עם gradient echo (0) דווקא רגיש יותר לארטיפקט מגנטי, לא פחות. אולטרסאונד (1) ותרמוגרפיה (2) אינם רלוונטיים למגבלת מתכת בעמוד שדרה מכני.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהי ההגדרה של "sequestration" (הפרדה) בהקשר של בקע דיסק, ולמה היא חשובה קלינית?</div>
+  <button class="opt" data-i="0">התייבשות מלאה של הדיסק ללא בליטה</button>
+  <button class="opt" data-i="1">חומר דיסק שאיבד לחלוטין רציפות עם הדיסק המקורי, ועלול לנדוד (migration) בתעלה</button>
+  <button class="opt" data-i="2">היצרות מלאה של התעלה המרכזית</button>
+  <button class="opt" data-i="3">הסתיידות של הרצועה הצהובה</button>
+  <div class="explain">התשובה הנכונה: sequestration הוא תת-סוג של extrusion, שבו הקטע הפלוט של חומר הדיסק מנותק לחלוטין מהדיסק המקורי - ולכן יכול "לנדוד" (migration) מעלה או מטה בתעלה, לעיתים הרחק מגובה הדיסק המקורי, מה שחשוב מאוד לתכנון כירורגי מדויק של רמת הגישה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מדוע התלונה הקלאסית של מטופלים עם היצרות תעלה ("קלאודיקציה נוירוגנית") משתפרת בכיפוף קדימה (למשל נשען על עגלת קניות)?</div>
+  <button class="opt" data-i="0">כי כיפוף קדימה מגביר את זרימת הדם העורקית לרגליים</button>
+  <button class="opt" data-i="1">כי כיפוף קדימה מקטין את חתך הדיסק</button>
+  <button class="opt" data-i="2">כי יישור-יתר (extension) מחמיר את ההיצרות המרכזית והפורמינלית, ואילו כיפוף (flexion) מרחיב את התעלה ומקל על הלחץ</button>
+  <button class="opt" data-i="3">אין בסיס הדמייתי לתופעה זו</button>
+  <div class="explain">התשובה הנכונה: כפי שמתואר בפרק, מדידות דינמיות מראות שיישור-יתר מחמיר את מידת ההיצרות (כ-11% בממוצע) ואילו כיפוף משפר אותה (כ-11% בממוצע) - ולכן תנוחת כיפוף קדימה (כמו הישענות על עגלה) מרחיבה את התעלה ומקלה זמנית על תסמיני הלחיצה על השורשים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כל שיטת הדמיה "שואלת" שאלה פיזיקלית אחרת: CT - צפיפות (טוב לעצם/מתכת); MRI - תכולת מים ומצבם (טוב לרקמה רכה, דיסק, חוט שדרה); T1 מדגיש שומן/אנטומיה, T2 מדגיש מים/פתולוגיה.</li>
+    <li>טרמינולוגיית בקע הדיסק (Fardon): <b>bulge</b> (50-100% היקף, לא הרניאציה) → <b>protrusion</b> (בסיס&gt;קצה) → <b>extrusion</b> (קצה&gt;בסיס) → <b>sequestration</b> (ניתוק מלא, אפשרות לנדידה).</li>
+    <li><b>היצרות תעלה</b> תלוית תנוחה (מחמירה ביישור, משתפרת בכיפוף) ואינה תמיד תואמת לחומרת התסמינים הקליניים.</li>
+    <li><b>זיהום חולייתי</b> חוצה את מרחב הדיסק ופוגע בשתי החוליות הסמוכות; <b>גידול גרורתי</b> נוטה לשמר את מרחב הדיסק ולתקוף גוף חוליה בודד.</li>
+    <li>הבחנה בין <b>צלקת לבקע חוזר</b> אחרי ניתוח מבוססת על אבצוע גדוליניום: צלקת מתאבצעת הומוגנית ומיידית, דיסק - לא.</li>
+    <li>מיקום גידול (תוך-דורלי חוץ-מדולרי / תוך-מדולרי / אפידורלי) הוא הכלי הדיפרנציאלי המרכזי לזיהוי סוג הגידול.</li>
+    <li>מתכת יוצרת ארטיפקטים שונים ב-CT (הקשחת קרן) וב-MRI (רגישות מגנטית); CT מיאלוגרפי הוא הפתרון כאשר MRI אינו אפשרי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
