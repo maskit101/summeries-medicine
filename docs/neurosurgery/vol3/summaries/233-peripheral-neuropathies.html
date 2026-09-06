@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 233: נוירופתיות היקפיות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">&#8962; עמוד הבית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">&#8592; נוירוכירורגיה: כל הכרכים</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">כרך 3</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת פרקי הכרך</a></div>
+
+<h1>פרק 233: נוירופתיות היקפיות <span class="term" dir="ltr">Peripheral Neuropathies</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 6), חלק VIII - Peripheral Nerve | מאת William Campbell, Aaron G. Filler</div>
+
+<p>נוירופתיה היקפית היא לא אבחנה - היא <b>סימפטום</b>. יותר ממאה מצבים שונים יכולים לגרום לה, וברוב המרפאות רק בכ-50% מהמקרים מגיעים לאבחנה אטיולוגית מדויקת. הפרק בונה כלי חשיבה שיטתי: לכל מטופל עם נוירופתיה יש לשאול חמש שאלות מסווגות - האם זה אקסונופתיה או מיאלינופתיה? מוטורי, סנסורי או מעורב? חריף או כרוני? סימטרי או פוקאלי? תורשתי או נרכש? השילוב של התשובות מצמצם רשימת מאות גורמים אפשריים לרשימה קצרה וממוקדת.</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: אקסונופתיה מול מיאלינופתיה</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה ההבחנה בין אקסונופתיה למיאלינופתיה היא הצעד הראשון בכל בירור? כי שני התהליכים פוגעים במרכיב אחר לגמרי של הסיב העצבי, ולכן מייצרים <b>שרשרת קלינית ואלקטרופיזיולוגית שונה לגמרי</b>:
+  </p>
+  <p>
+    <b>שלב 1 - היכן הפגיעה הראשונית:</b> באקסונופתיה נפגע הציטופלזמה של האקסון עצמו ומתפרקת בהדרגה (ניוון אקסונלי); במיאלינופתיה נפגעים תא שוואן <span class="term" dir="ltr">Schwann cell</span> ומעטפת המיאלין שלו, בעוד האקסון עצמו נשאר שלם בשלב הראשוני.<br>
+    <b>שלב 2 - תבנית ההתפשטות:</b> אקסונופתיה מתחילה תמיד בקצוות האקסונים הארוכים ביותר (בהונות וכפות הרגליים) ומתקדמת פרוקסימלית - תופעה שנקראת <b>"דיינג בק"</b> (dying back) ו"תלות באורך" (length dependency); מיאלינופתיה נרכשת בדרך כלל מולטיפוקלית ולא תלוית-אורך.<br>
+    <b>שלב 3 - התוצאה התפקודית:</b> באקסונופתיה, אובדן האקסון גורם לאובדן ההשפעה הטרופית על השריר - ולכן מתפתחת ניוון שרירים, פיברילציות ופוטנציאלים חדים חיוביים ב-EMG. במיאלינופתיה טהורה האקסון שלם, ולכן אין ניוון שרירים - אבל אובדן ההולכה הסלטטורית (saltatory conduction) גורם להאטה דרמטית במהירות ההולכה.
+  </p>
+</div>
+<p class="key-box">זו הסיבה שבדיקת הולכה עצבית (NCS) היא הכלי המרכזי להבחנה: מיאלינופתיה מאטה את מהירות ההולכה (CV) אך שומרת על עוצמת הגל (CMAP) התקינה, ואילו אקסונופתיה מקטינה את עוצמת הגל אך שומרת על מהירות הולכה תקינה יחסית.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Propagation_of_action_potential_along_myelinated_nerve_fiber_en.svg?width=700" alt="Propagation of action potential along a myelinated nerve fiber showing nodes of Ranvier and saltatory conduction">
+<p class="media-cap">הולכה סלטטורית (saltatory conduction) לאורך סיב עצבי ממוילן - הפוטנציאל "מדלג" בין הצמתים של רנווייה (nodes of Ranvier). פגיעה במיאלין הורסת את הקפיצה הזו ומאיטה את ההולכה משמעותית. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">2</span> אבחנה מבדלת: תבניות זמן ותפוצה</h2>
+<p>שני צירים נוספים חיוניים לצמצום האבחנה המבדלת: ציר הזמן (חריף לעומת כרוני) וציר התפוצה (סימטרי-כללי לעומת פוקאלי-מולטיפוקלי). נוירופתיה כללית-סימטרית נקראת <b>פולינוירופתיה</b> <span class="term" dir="ltr">polyneuropathy</span>; נוירופתיה שפוגעת ביותר מעצב אחד אך לא בכולם נקראת <b>מונונוירופתיה מרובה</b> <span class="term" dir="ltr">mononeuropathy multiplex</span>.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>קטגוריה</th><th>דוגמאות מרכזיות</th><th>קצב התקדמות</th></tr></thead>
+  <tbody>
+    <tr><td><b>מיאלינופתיה חריפה-תת-חריפה</b></td><td>Guillain-Barré syndrome (GBS), טוקסינים (הקסקרבונים, אמיודרון)</td><td>ימים עד שבועות</td></tr>
+    <tr><td><b>מיאלינופתיה כרונית</b></td><td>CIDP, HMSN סוג I/III (Charcot-Marie-Tooth), לפרה, תת-פעילות בלוטת התריס</td><td>חודשים עד שנים</td></tr>
+    <tr><td><b>אקסונופתיה חריפה-תת-חריפה</b></td><td>AMAN (הצורה האקסונלית של GBS), פורפיריה, הרעלת עופרת</td><td>ימים עד שבועות</td></tr>
+    <tr><td><b>אקסונופתיה כרונית</b></td><td>סוכרת, אלכוהוליזם, אי-ספיקת כליות סופנית (ESRD), חסר B12, HMSN סוג II</td><td>חודשים עד שנים</td></tr>
+  </tbody>
+</table>
+</div>
+<p>נוירופתיה תלוית-אורך קלאסית מתחילה בסימטריה בבהונות וכפות הרגליים, עולה עד לברכיים, ואז מצטרפת מעורבות באצבעות הידיים - כי אורך הסיב מגנגליון השורש הגבי המותני-סקרלי ועד לברך דומה לאורך מגנגליון השורש הגבי הצווארי עד לאצבעות. עם ההתקדמות, איבוד הרפלקסים מתחיל תמיד ברפלקס הקרסול.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Charcot-marie-tooth_foot.jpg?width=500" alt="Foot with high arch (pes cavus) and hammer toes characteristic of Charcot-Marie-Tooth hereditary neuropathy">
+<p class="media-cap">כף רגל עם קשת גבוהה (pes cavus) ואצבעות פטיש (hammer toes) - סימן קלאסי לנוירופתיה תורשתית ממושכת כמו מחלת Charcot-Marie-Tooth, הנובע מחוסר איזון בין שרירי הרגל התחתונה החזקים לשרירים הפנימיים של כף הרגל שנחלשים. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/1C47kWHicIk" title="Polyneuropathy - axonal and demyelinating neuropathies mechanism of disease" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מנגנון המחלה בפולינוירופתיה אקסונלית מול מיאלינית.</p>
+
+<h2><span class="num">3</span> אלקטרופיזיולוגיה: איך קוראים בדיקת הולכה עצבית</h2>
+<p>הבחנה בין אקסונופתיה למיאלינופתיה נשענת בעיקר על שני פרמטרים: מהירות הולכה <span class="term" dir="ltr">conduction velocity, CV</span> ועוצמת הגל המורכב <span class="term" dir="ltr">compound muscle action potential, CMAP</span>. שני ממצאים חשובים נוספים - <b>בלוק הולכה</b> <span class="term" dir="ltr">conduction block</span> ו<b>פיזור זמני</b> <span class="term" dir="ltr">temporal dispersion</span> - הם סמנים ספציפיים למיאלינופתיה מוקדית.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין</th><th>אקסונופתיה</th><th>מיאלינופתיה</th></tr></thead>
+  <tbody>
+    <tr><td>קליני</td><td>התקדמות איטית, תלוית-אורך, פיזור בגרביים</td><td>התקדמות מהירה יחסית, א-סימטריה קלה, מעורבות עצבים גולגולתיים</td></tr>
+    <tr><td>CV (מהירות הולכה)</td><td>תקינה עד מעט מואטת</td><td>מואטת משמעותית - עונה לקריטריונים לדמיאלינציה</td></tr>
+    <tr><td>CMAP (עוצמת גל)</td><td>מוקטנת</td><td>תקינה (אלא אם יש בלוק הולכה)</td></tr>
+    <tr><td>EMG במחט</td><td>פיברילציות, פוטנציאלים חדים חיוביים, גרדיאנט פרוקסימלי-דיסטלי</td><td>מיעוט ממצאי דנרבציה, ללא גרדיאנט</td></tr>
+    <tr><td>חלבון CSF</td><td>תקין</td><td>מוגבר (ב-GBS וב-CIDP)</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="mechanism">
+  <p class="chain">למה קלינית חולשה מתואמת עם "בלוק הולכה" ולא עם "האטת CV"? כי בבלוק הולכה, סיבים מסוימים כלל לא מצליחים להוליך את האות דרך האזור הפגוע - כלומר פחות סיבי שריר בפועל מופעלים, וזה מה שהמוח "מרגיש" כחולשה. בעוד שהאטת CV בלבד עדיין מאפשרת לכל הסיבים להוליך את האות, רק לאט יותר - ולכן, באופן פרדוקסלי, יכולה להיות האטה חמורה מאוד בלי חולשה קלינית משמעותית.</p>
+</div>
+
+<h2><span class="num">4</span> Guillain-Barré Syndrome (GBS) ו-CIDP: שני קצוות של אותו ספקטרום</h2>
+<p>GBS (הצורה החריפה, הידועה גם כ-AIDP) ו-CIDP (הצורה הכרונית) נחשבים לשני שלבי זמן של אותו תהליך דיסאימוני בסיסי: תקיפה חיסונית (תאית והומורלית) נגד מרכיבי המיאלין ההיקפי. GBS מתפתח באופן מלא תוך 4 שבועות; CIDP, לפי הגדרה, מתפתח לאורך 8 שבועות ומעלה. בכ-60% מהמקרים של GBS יש אירוע מקדים - זיהום (במיוחד <i>Campylobacter jejuni</i>, CMV, EBV), ניתוח, הריון או חיסון.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Guillain_Barre_Patterns.png?width=700" alt="Diagram showing varying clinical patterns of manifestation of Guillain-Barre syndrome">
+<p class="media-cap">תבניות שונות של הופעה קלינית ב-Guillain-Barré syndrome - החולשה יכולה לעלות (הקלאסי), לרדת, או להתמקד בעצבים גולגולתיים בלבד (תסמונת Miller-Fisher). מקור: Wikimedia Commons.</p>
+<p>ה-GBS הקלאסי גורם לחולשה ואי-רפלקסיה סימטרית עולה, בדרך כלל תוך חסכון בתפקוד הסוגרים, ועלול לגרום לכשל נשימתי (25%-30% מהמקרים) המצריך הנשמה. חלבון ה-CSF תקין בימים הראשונים ואז עולה - לעיתים לרמות קיצוניות - ונשאר גבוה חודשים. תת-הסוג האקסונלי (AMAN - Acute Motor Axonal Neuropathy) קשור בעיקר לזיהום ב-<i>C. jejuni</i> ונוגדנים נגד GM1, עם פרוגנוזה גרועה יותר.</p>
+<div class="key-box">כלל אצבע לפרוגנוזה ב-GBS: המנבא הטוב ביותר הוא עוצמת ה-CMAP. חולים עם CMAP מתחת ל-10%-20% מהגבול התחתון של הנורמה - פרוגנוזה גרועה. חולים עם CMAP תקין - פרוגנוזה מצוינת.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/0fHgYaYvcNA" title="Guillain-Barre Syndrome mechanism and presentation" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מנגנון ותמונה קלינית של Guillain-Barré syndrome.</p>
+
+<p>CIDP מייצג כ-10%-20% מכלל הנוירופתיות שלא אובחנו בתחילה, וחשוב לזהות אותו כי הוא לרוב מגיב לטיפול (סטרואידים, IVIG, פלזמפרזיס). לאבחנה יש קריטריונים קליניים, פתולוגיים ושל CSF (טבלה 233-8 בפרק המקורי) - התנאי המחייב המרכזי הוא חולשה או חסר מתקדם/חוזר הנמשך מעל חודשיים, עם ירידה או היעדר רפלקסים.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LDdLVwSA3qU" title="What is Chronic Inflammatory Demyelinating Polyneuropathy CIDP" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מהי CIDP.</p>
+
+<h2><span class="num">5</span> נוירופתיות נרכשות שכיחות: סוכרת, אי-ספיקת כליות, אלכוהול, B12</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גורם</th><th>תבנית עיקרית</th><th>מנגנון מרכזי</th></tr></thead>
+  <tbody>
+    <tr><td><b>סוכרת</b></td><td>סנסורית-מוטורית סימטרית כרונית, מעורבות אוטונומית משתנה; גם צורות פוקאליות (עצב III, עצב פמורלי - "אמיוטרופיה סוכרתית")</td><td>מעורבת: ניוון אקסונלי + דמיאלינציה משמעותית, מדולה ע"י אלדוז רדוקטאז (גלוקוז→סורביטול), מיקרואנגיופתיה, ותוצרי גליקוזילציה מתקדמים (AGEs)</td></tr>
+    <tr><td><b>אי-ספיקת כליות סופנית (ESRD)</b></td><td>סנסורית-מוטורית דיסטלית, תת-חריפה, איטית-מתקדמת; 60%-80% מהחולים כבר בתחילת דיאליזה</td><td>בעיקר אקסונופתיה עם דמיאלינציה משנית; משתפרת רק לאחר השתלה</td></tr>
+    <tr><td><b>אלכוהוליזם</b></td><td>סנסורית-מוטורית סימטרית דיסטלית, כאב וחוסר תחושה בולטים, חולשה קלה</td><td>השפעה נוירוטוקסית ישירה (כנראה ע"י אצטלדהיד), קשורה ישירות לכמות האלכוהול ולא בהכרח למצב תזונתי</td></tr>
+    <tr><td><b>חסר ויטמין B12</b></td><td>סנסורית, גדולת-סיבים, לרוב עם מיאלופתיה נלווית ("שילוב תת-חריף משולב")</td><td>עיכוב מתיונין סינתאז → הפרעה במתילציה → פגיעה בסינתזת DNA; אובדן רפלקס קרסול + בהונות עולות = דגל אדום קלאסי</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">שילוב של אובדן רפלקס קרסול (סימן היקפי) יחד עם בהונות עולות/רפלקס בבינסקי חיובי (סימן מרכזי) הוא רמז קלאסי וקריטי לחסר B12, כי הוא היחיד שגורם בו-זמנית לפגיעה היקפית ומרכזית (מיאלופתיה).</p>
+
+<h2><span class="num">6</span> כלים אבחנתיים נוספים</h2>
+<p>מעבר לבדיקת הולכה עצבית, כלים נוספים חשובים: בדיקת CSF (חלבון מוגבר ב-GBS/CIDP), MRI של עמוד השדרה המותני-סקרלי (עיבוי שורשים ב-CIDP), וביופסיית עור <span class="term" dir="ltr">skin biopsy</span> - כלי בטוח יחסית להערכת סיבים דקים בלתי-ממוילנים ומעוטי-מיאלין, שיכול לזהות שינויים פתולוגיים מוקדמים מאוד במהלך המחלה, לפני שבדיקת ההולכה העצבית הרגילה (שבודקת רק סיבים גדולים וממוילנים) מראה חריגה.</p>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">A-B-C-D-E</span> - חמש השאלות המסווגות בכל בירור נוירופתיה</h3>
+  <p>
+    <b>A</b> - <span class="term" dir="ltr">Axonal or demyelinating?</span> (אקסונופתיה מול מיאלינופתיה - הציר הראשון והחשוב ביותר)<br>
+    <b>B</b> - <span class="term" dir="ltr">Both sides or focal?</span> (סימטרי-כללי מול פוקאלי/מולטיפוקלי)<br>
+    <b>C</b> - <span class="term" dir="ltr">Chronic or acute?</span> (ציר הזמן - ימים מול חודשים-שנים)<br>
+    <b>D</b> - <span class="term" dir="ltr">Distribution: motor, sensory, or mixed?</span> (איזה סוג סיב מעורב)<br>
+    <b>E</b> - <span class="term" dir="ltr">Etiology: hereditary or acquired?</span> (תורשתי מול נרכש - קובע את כיוון הבירור המעבדתי)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חוקר שמגיע לזירת "פשע" (הנוירופתיה) ושואל חמש שאלות לפי הסדר: קודם - "מה נהרס, כבל החשמל (אקסון) או הבידוד שסביבו (מיאלין)?" (A). אחר כך - "כמה קורבנות יש, אחד או כולם?" (B). אז - "כמה זמן זה כבר קורה?" (C). אחר כך - "איזה סוג פונקציה נפגע - תזוזה, תחושה, או שניהם?" (D). ולבסוף - "זה תורשתי במשפחה, או שמשהו בסביבה גרם לזה?" (E). חמש התשובות יחד מצמצמות רשימה של מאה חשודים לכמה שמות בודדים.</p>
+</div>
+
+<h2><span class="num">8</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Guillain%E2%80%93Barr%C3%A9_syndrome" target="_blank">Guillain-Barré Syndrome – Wikipedia</a>
+    <div class="desc">רקע קליני ואבחנתי מקיף על GBS, כולל תת-סוגים ופרוגנוזה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Chronic_inflammatory_demyelinating_polyneuropathy" target="_blank">Chronic Inflammatory Demyelinating Polyneuropathy – Wikipedia</a>
+    <div class="desc">קריטריונים אבחנתיים, טיפולים ווריאנטים של CIDP.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Charcot%E2%80%93Marie%E2%80%93Tooth_disease" target="_blank">Charcot-Marie-Tooth Disease – Wikipedia</a>
+    <div class="desc">נוירופתיה תורשתית קלאסית, כולל pes cavus וסיווג HMSN.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Diabetic_neuropathy" target="_blank">Diabetic Neuropathy – Wikipedia</a>
+    <div class="desc">מנגנוני נוירופתיה סוכרתית, כולל אמיוטרופיה סוכרתית וטיפולים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Node_of_Ranvier" target="_blank">Node of Ranvier – Wikipedia</a>
+    <div class="desc">מנגנון ההולכה הסלטטורית והשלכותיו על מיאלינופתיה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 עם היסטוריה של דלקת מעיים לפני שבועיים (חשד ל-<i>Campylobacter</i>) מגיע עם חולשה עולה בשתי הרגליים שהתפתחה תוך 4 ימים, איבוד רפלקס קרסול דו-צדדי, ותחושת נימול קלה בכפות הרגליים ללא חסר תחושתי אובייקטיבי משמעותי. לא נצפה חום. בבדיקת CSF ביום השלישי - חלבון תקין. לאחר שבוע נוסף - חלבון CSF עולה משמעותית, ותפקוד נשימתי מתחיל להיחלש.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה הכי מתאים לאבחנה של המטופל, ומדוע חלבון ה-CSF היה תקין בבדיקה הראשונה?</div>
+  <button class="opt" data-i="0">CIDP - כי חלבון CSF תמיד תקין בשלב מוקדם</button>
+  <button class="opt" data-i="1">Guillain-Barré syndrome (AIDP) - כי חלבון CSF ב-GBS בדרך כלל תקין בימים הראשונים ועולה רק אחרי מספר ימים</button>
+  <button class="opt" data-i="2">נוירופתיה סוכרתית - כי יש מעורבות אוטונומית</button>
+  <button class="opt" data-i="3">חסר B12 - כי יש נימול בכפות הרגליים</button>
+  <div class="explain">התשובה הנכונה: התמונה הקלינית (חולשה עולה תוך ימים, אירוע זיהומי מקדים, איבוד רפלקסים, תפקוד סוגרים תקין) קלאסית ל-GBS. חלבון CSF ב-GBS מתחיל תקין ועולה רק לאחר מספר ימים, לעיתים לרמות גבוהות מאוד. CIDP (0) מוגדר כתהליך הנמשך מעל 8 שבועות - לא מתאים לקצב כאן. סוכרת (2) וחסר B12 (3) הן נוירופתיות כרוניות, לא מתאימות לתמונה חריפה זו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. אם בבדיקת הולכה עצבית תימצא מהירות הולכה (CV) מואטת משמעותית עם עוצמת CMAP תקינה, מה זה מרמז?</div>
+  <button class="opt" data-i="0">אקסונופתיה חמורה</button>
+  <button class="opt" data-i="1">ניוון שרירים משמעותי</button>
+  <button class="opt" data-i="2">מיאלינופתיה - כי האקסון עצמו שלם ולכן העוצמה נשמרת, אך אובדן ההולכה הסלטטורית מאט את המהירות</button>
+  <button class="opt" data-i="3">אין מספיק מידע כדי לקבוע</button>
+  <div class="explain">התשובה הנכונה: הצירוף הקלאסי של האטת CV משמעותית עם שימור עוצמת CMAP הוא הסימן האלקטרופיזיולוגי המובהק ביותר למיאלינופתיה ראשונית - כי הפגיעה היא במיאלין ולא באקסון, וכל הסיבים עדיין מוליכים (רק לאט יותר) ומגייסים את אותה כמות סיבי שריר. אקסונופתיה (0) הייתה מציגה תמונה הפוכה - CMAP נמוך עם CV תקין יחסית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע נוירופתיה תלוית-אורך (length-dependent) מתחילה תמיד בבהונות ולא באצבעות היד?</div>
+  <button class="opt" data-i="0">כי האקסונים המספקים את כפות הרגליים הם הארוכים ביותר בגוף, וב"דיינג בק" הפגיעה מתחילה בקצה הרחוק ביותר של הסיב הארוך ביותר</button>
+  <button class="opt" data-i="1">כי כפות הרגליים רגישות יותר מבנית</button>
+  <button class="opt" data-i="2">כי יש פחות זרימת דם לכפות הרגליים</button>
+  <button class="opt" data-i="3">אין הבדל אמיתי - זה מקרי</button>
+  <div class="explain">התשובה הנכונה: בתהליך "דיינג בק" (dying back), הפגיעה האקסונלית מתחילה תמיד בקצה הכי דיסטלי של הסיב הארוך ביותר ומתקדמת פרוקסימלית. מכיוון שהסיבים המולכים לכפות הרגליים (מגנגליון השורש הגבי המותני-סקרלי) הם הארוכים ביותר בגוף, הם הראשונים להיפגע - ורק כשהתהליך מגיע לאורך המקביל (בערך בברכיים) מצטרפת גם מעורבות של הידיים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופלת בת 45 עם סוכרת סוג 2 במשך 20 שנה מציגה נוירופתיה סנסורית-מוטורית סימטרית עם מעורבות אוטונומית. מה המנגנון הכי סביר לפי הפרק?</div>
+  <button class="opt" data-i="0">רק תהליך דמיאלינציה טהור, ללא מרכיב אקסונלי</button>
+  <button class="opt" data-i="1">רק ניוון אקסונלי, ללא מרכיב דמיאלינטיבי כלל</button>
+  <button class="opt" data-i="2">זיהום ויראלי ישיר של העצבים ההיקפיים</button>
+  <button class="opt" data-i="3">שילוב של ניוון אקסונלי כרוני ודמיאלינציה משמעותית, בתיווך אלדוז רדוקטאז, מיקרואנגיופתיה ותוצרי גליקוזילציה מתקדמים</button>
+  <div class="explain">התשובה הנכונה: נוירופתיה סוכרתית היא הדוגמה הקלאסית לתהליך "מעורב" - יש גם ניוון אקסונלי כרוני וגם דמיאלינציה משמעותית מעבר למצופה מאקסונופתיה טהורה. המנגנון כולל המרת גלוקוז לסורביטול ע"י אלדוז רדוקטאז (עם ירידה במיואינוזיטול ופגיעה במשאבת Na/K), מיקרואנגיופתיה עם היפוקסיה תוך-עצבית, ותוצרי גליקוזילציה מתקדמים (AGEs) הפוגעים במטריצה החוץ-תאית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הציר הראשון והחשוב ביותר בכל בירור נוירופתיה הוא <b>אקסונופתיה מול מיאלינופתיה</b>: אקסונופתיה מקטינה CMAP עם CV תקין יחסית ומתקדמת תלוית-אורך ("דיינג בק"); מיאלינופתיה מאטה CV משמעותית עם CMAP שמור, וגורמת לבלוק הולכה/פיזור זמני.</li>
+    <li>נוירופתיה תלוית-אורך תמיד מתחילה בבהונות (הסיבים הארוכים ביותר) ומתקדמת פרוקסימלית; רפלקס הקרסול הוא הראשון להיעלם.</li>
+    <li><b>GBS (AIDP)</b> ו-<b>CIDP</b> הם שני קצוות זמן (חריף מול &gt;8 שבועות) של אותו תהליך דיסאימוני; CSF ב-GBS מתחיל תקין ועולה בהמשך; המנבא הפרוגנוסטי המרכזי ב-GBS הוא עוצמת ה-CMAP.</li>
+    <li>נוירופתיה סוכרתית ונוירופתיה של אי-ספיקת כליות הן דוגמאות ל<b>תהליכים מעורבים</b> (אקסונלי + דמיאלינטיבי), בשונה מהתמונה "הטהורה" הקלאסית.</li>
+    <li>שילוב איבוד רפלקס קרסול עם בהונות עולות (בבינסקי) הוא דגל אדום קלאסי ל<b>חסר B12</b>, כי הוא היחיד שפוגע בו-זמנית בעצב ההיקפי ובחוט השדרה.</li>
+    <li>ביופסיית עור יכולה לזהות פגיעה בסיבים דקים <b>לפני</b> שבדיקת הולכה עצבית סטנדרטית (הבודקת רק סיבים גדולים) מראה חריגה כלשהי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
