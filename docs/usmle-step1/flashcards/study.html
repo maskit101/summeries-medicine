@@ -53,6 +53,8 @@
   .block.mnemonic{background:#fff7ed; border:1px dashed #ea580c}
   .block.explain{background:#f3f4f6}
   .answer-line{display:flex; gap:8px; align-items:flex-start; margin:5px 0}
+  .q-image{width:100%; height:auto; border-radius:10px; border:1px solid var(--line); margin:6px 0 14px; display:block}
+  .q-image-cap{font-size:12.5px; color:var(--sub); text-align:center; margin:-8px 0 14px}
   .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:12px 0}
   .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
 
@@ -260,12 +262,14 @@
         '<span class="badge" style="background:'+colorFor(cat)+'">'+cat+'</span>' +
         '<span class="badge diff">'+diffLabel+'</span>' +
         '<div class="progress-line">'+topicLabel+' · '+t('כרטיס','Card')+' '+(idx+1)+' / '+deck.length+'</div>' +
+        (c.question_image ? '<img class="q-image" src="'+c.question_image.src+'" alt="">' + (c.question_image[lang+'_cap'] ? '<div class="q-image-cap">'+c.question_image[lang+'_cap']+'</div>' : '') : '') +
         '<div class="question">'+L.question+'</div>' +
         '<div class="opts">'+optsHtml+'</div>' +
         '<div class="answer-section" id="answerSection">' +
           '<div class="block answer"><h4>✅ '+t('תשובה','Answer')+'</h4>' +
             L.answer_lines.map(function(a){ return '<div class="answer-line"><span>'+(a.icon||'•')+'</span><span style="color:'+(a.c?('#'+a.c):'inherit')+'">'+a.t+'</span></div>'; }).join('') +
           '</div>' +
+          (c.diagram_ref && c.diagram_ref[lang] ? '<div class="block diagram"><img src="diagrams/'+c.diagram_ref[lang]+'" style="width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff;display:block" alt="diagram"></div>' : '') +
           (L.term_definition ? '<div class="block def"><h4>📖 '+L.term_definition.term+'</h4><div>'+L.term_definition.text+'</div></div>' : '') +
           (L.story ? '<div class="block story"><h4>💭 '+t('סיפור לזכירה','Story to remember')+'</h4><div>'+L.story+'</div></div>' : '') +
           (c.mnemonic ? '<div class="block mnemonic"><h4>🔤 '+t('ראשי תיבות','Mnemonic')+': '+c.mnemonic.text+' ('+(c.mnemonic.source==='known'?t('ידוע','well-known'):t('מקורי','original'))+')</h4>' + (c.mnemonic.breakdown ? c.mnemonic.breakdown[lang].map(function(x){return '<div>'+x+'</div>';}).join('') : '') + '</div>' : '') +
