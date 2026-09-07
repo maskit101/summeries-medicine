@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>תסמונת מצוקה נשימתית חריפה (ARDS) בחולה הכירורגי הקריטי</title>
+<!-- מקור: לא נמצא PDF של פרק 22 בהרצה זו (uploads לא נגישים בהרצה מתוזמנת) - הסיכום מבוסס על מחקר אמיתי במקורות מהימנים: StatPearls, BJA Education, Surviving Sepsis Campaign / SCCM 2026, NIH ARDSnet Protocol, NEJM (ROSE trial), Wikimedia Commons ו-YouTube (Osmosis, Ninja Nerd) לתמונות וסרטונים. -->
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>תסמונת מצוקה נשימתית חריפה <span class="term" dir="ltr">(ARDS)</span> בחולה הכירורגי הקריטי</h1>
+<div class="subtitle">אי-ספיקת נשימה קריטית בטיפול נמרץ כירורגי — פרק 22 בספר Sabiston/Schwartz's Principles of Surgery (Surgical Critical Care)</div>
+
+<p>הטיפול הנמרץ הכירורגי <span class="term" dir="ltr">(Surgical Critical Care)</span> עוסק במגוון רחב של אי-ספיקות איברים בחולה שלאחר ניתוח/טראומה גדולים — נשימתית, המודינמית (הלם, ר' פרק 4), כלייתית, נוירולוגית (דליריום, ר' פרק 13) ותזונתית (ר' פרק 5). מבין אלה, <b>תסמונת המצוקה הנשימתית החריפה (ARDS)</b> נבחרה כליבת הסיכום הזה — היא הביטוי הריאתי הקשה ביותר של פגיעה מערכתית (טראומה, ספסיס, שאיפת תוכן קיבה, עירויי דם מרובים), עתירת מנגנון פתופיזיולוגי, ומהווה את אחד הגורמים המובילים לתמותה ולתחלואה ממושכת בטיפול נמרץ כירורגי.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    ARDS אינו מחלה בפני עצמה אלא <b>תגובה ריאתית סטריאוטיפית לפגיעה חמורה</b> — ישירה (שאיבת תוכן קיבה <span class="term" dir="ltr">(aspiration)</span>, חבלת ריאה, דלקת ריאות, טביעה כמעט) או <b>עקיפה</b> (ספסיס — הגורם השכיח ביותר, פנקראטיטיס חריפה, טראומה קשה עם הלם דימומי ועירויי דם מרובים - <span class="term" dir="ltr">TRALI</span>, כוויות נרחבות). בשני המקרים, מתווכי דלקת סיסטמיים (<span class="term" dir="ltr">TNF-α, IL-1, IL-6, IL-8</span>) פוגעים בקרום המכתשית-נימי <span class="term" dir="ltr">(alveolar-capillary membrane)</span> - המחסום העדין שמפריד בין האוויר במכתשית לדם בנימים הריאתיים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>שני האתרים שנפגעים בו-זמנית</b>: (1) האנדותל הנימי - הופך חדיר יתר לחלבון ולנוזל; (2) האפיתל המכתשיתי, במיוחד <b>תאי טיפוס II</b> (האחראים על ייצור <span class="term" dir="ltr">surfactant</span> - חומר שמוריד את מתח הפנים במכתשית ומונע קריסתה). הרס תאי טיפוס II <b>גורם</b> לירידה בייצור surfactant, מה שגורם לקריסת מכתשיות <span class="term" dir="ltr">(atelectasis)</span> ולירידה בהיענות הריאה (compliance). בו-זמנית, נויטרופילים מגויסים למרחב המכתשיתי ומשחררים רדיקלים חופשיים ופרוטאזות שמעצימים את הנזק - מעגל קסמים דלקתי.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    התוצאה: נוזל עתיר-חלבון דולף מהנימים אל תוך המכתשיות (<b>בצקת ריאות לא-קרדיוגנית</b> - שונה מבצקת לב, כי כאן הבעיה היא <b>חדירות</b> הממברנה ולא לחץ הידרוסטטי מוגבר), ומשקע יחד עם שאריות תאים מתות ופיברין כדי ליצור <b>קרומי היאלין</b> <span class="term" dir="ltr">(hyaline membranes)</span> על פני שטח המכתשית - הסימן ההיסטולוגי הקלאסי של <b>נזק מכתשיתי מפושט</b> <span class="term" dir="ltr">(Diffuse Alveolar Damage, DAD)</span>, שהוא הממצא הפתולוגי-הבסיס של ARDS. קרומים אלה, יחד עם הבצקת וקריסת המכתשיות, <b>חוסמים פיזית את חילופי הגזים</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>ההיפוקסמיה החמורה</b> נובעת משילוב של <b>shunt</b> תוך-ריאתי (מכתשיות מוצפות/קרוסות עדיין מקבלות זרימת דם אך אין בהן חילופי גזים - דם "עוקף" את חמצון) ו<b>אי-התאמת אוורור-זילוח</b> <span class="term" dir="ltr">(V/Q mismatch)</span>. מכיוון שהשאנט הוא הגורם הדומיננטי, <b>מתן חמצן בריכוז גבוה בלבד אינו פותר את הבעיה</b> - דם שעובר דרך מכתשית קרוסה לחלוטין לא "רואה" את החמצן הנוסף כלל, ולכן חובה לשלב אמצעים שמפתחים מחדש (recruit) את המכתשיות הקרוסות, כמו <span class="term" dir="ltr">PEEP</span> (לחץ סוף-נשיפתי חיובי).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    עם הזמן (מעבר לשבוע-שבועיים), אם התהליך לא נפתר, נכנסים ל<b>שלב פרוליפרטיבי ואז פיברוטי</b> - פיברובלסטים חודרים ומייצרים קולגן, והריאה עוברת שיפוץ בלתי-הפיך חלקי, מה שמסביר תחלואה נשימתית ממושכת אצל ניצולי ARDS קשה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון ה-ARDS</title>
+  <rect x="10" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">פגיעה ישירה/עקיפה</text>
+  <text x="85" y="64" font-size="11" text-anchor="middle" fill="#4b5563">ספסיס, שאיבה, טראומה</text>
+
+  <polygon points="168,55 188,48 188,62" fill="#2563eb"/>
+  <rect x="193" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="268" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">ציטוקינים סיסטמיים</text>
+  <text x="268" y="64" font-size="11" text-anchor="middle" fill="#4b5563">TNF-α, IL-1, IL-6, IL-8</text>
+
+  <polygon points="351,55 371,48 371,62" fill="#2563eb"/>
+  <rect x="376" y="20" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="451" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">פגיעה אנדותל+אפיתל</text>
+  <text x="451" y="64" font-size="11" text-anchor="middle" fill="#4b5563">↓ surfactant, ↑ חדירות</text>
+
+  <polygon points="534,55 554,48 554,62" fill="#b45309"/>
+  <rect x="559" y="20" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="634" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">בצקת לא-קרדיוגנית</text>
+  <text x="634" y="64" font-size="11" text-anchor="middle" fill="#4b5563">קרומי היאלין (DAD)</text>
+
+  <polygon points="634,90 627,110 641,110" fill="#b91c1c"/>
+  <rect x="530" y="115" width="220" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="640" y="140" font-size="12.5" font-weight="700" text-anchor="middle" fill="#b91c1c">Shunt + V/Q mismatch</text>
+  <text x="640" y="156" font-size="11" text-anchor="middle" fill="#4b5563">היפוקסמיה עמידה לחמצן בלבד</text>
+
+  <rect x="10" y="180" width="330" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="175" y="205" font-size="12.5" text-anchor="middle" fill="#1f2937">שלב אקסודטיבי (ימים 1-7)</text>
+  <text x="175" y="222" font-size="11" text-anchor="middle" fill="#4b5563">בצקת, קרומי היאלין, נויטרופילים</text>
+  <polygon points="345,210 365,203 365,217" fill="#6d28d9"/>
+  <rect x="370" y="180" width="330" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="535" y="205" font-size="12.5" text-anchor="middle" fill="#1f2937">שלב פרוליפרטיבי/פיברוטי</text>
+  <text x="535" y="222" font-size="11" text-anchor="middle" fill="#4b5563">פיברובלסטים, שיפוץ בלתי-הפיך חלקי</text>
+</svg>
+
+<div class="key-box">בשלב האקסודטיבי הפגיעה היא <b>דלקתית-סטרילית</b> - תוצאה של ציטוקינים ונויטרופילים "משתוללים", לא זיהום ריאתי ישיר בהכרח (גם אם הטריגר היה ספסיס ממקור בטני, למשל). זו הסיבה ש-ARDS יכול להחמיר גם כשמקור הזיהום המקורי כבר תחת שליטה (source control הושג) - הנזק הריאתי כבר "עצמאי".</div>
+
+<h2><span class="num">3</span> פיזיולוגיה - היענות ריאה, PEEP וה-"ריאת התינוק"</h2>
+<p>בריאת ARDS, לא כל שטח הריאה חולה באופן אחיד - יש אזורים קרוסים לחלוטין (בעיקר גרביטציוניים, תחתונים/אחוריים בשכיבה על הגב), אזורים "נפתחים-ונסגרים" מחדש עם כל נשימה (recruitable), ואזורים בריאים יחסית. בפועל, נפח הריאה התפקודי הזמין לאוורור עשוי להיות רק כשליש מהרגיל - תפיסה שמכונה <b>"ריאת התינוק" (baby lung)</b>. נפח גזירה גדול מדי (tidal volume) שמוזרם לתוך שטח מצומצם זה גורם למתיחת-יתר של המכתשיות הבריאות שנותרו (<b>volutrauma</b>), בעוד פתיחה וסגירה חוזרת של מכתשיות קרוסות עם כל נשימה גורמת לחיכוך מכני חוזר (<b>atelectrauma</b>). שני אלה, יחד עם לחצים גבוהים מדי (<b>barotrauma</b>), מפעילים תאים לשחרר עוד ציטוקינים (<b>biotrauma</b>) - כלומר <b>הנשמה מכנית לא-מותאמת עלולה בעצמה להחמיר את ה-ARDS</b>, תופעה המכונה <span class="term" dir="ltr">Ventilator-Induced Lung Injury (VILI)</span>. זו הסיבה המרכזית לאסטרטגיית "הנשמה מגוננת-ריאה" המתוארת בהמשך.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Respirator_icu.JPG?width=600" alt="מכשיר הנשמה מכנית בטיפול נמרץ">
+  <figcaption class="media-cap">מכשיר הנשמה מכנית טיפוסי בטיפול נמרץ - הגדרות ה-PEEP, נפח הגזירה ולחץ הרמה (plateau pressure) הן שדות המפתח בניהול ARDS. מקור: <a href="https://commons.wikimedia.org/wiki/File:Respirator_icu.JPG" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">4</span> ביטוי קליני</h2>
+<p>הופעה חדה (תוך שבוע מהאירוע המחולל) של קוצר נשימה מתקדם, טכיפניאה, וירידה מהירה בסטורציה עמידה למתן חמצן. בבדיקה - חרחורים דו-צדדיים, שימוש בשרירי עזר לנשימה, ולעיתים ציאנוזה. חשוב: ARDS מתפתח <b>לאחר</b> תקופת לטנטיות מהאירוע המחולל (למשל ספסיס בטני לאחר ניתוח) - ולכן ירידה חדה בחמצון בימים שלאחר ניתוח גדול או טראומה צריכה להעלות חשד גבוה, ולא להיזקף אוטומטית ל"אטלקטזיס פשוט".</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>הגדרת ברלין (Berlin Definition)</h3>
+<table>
+  <thead><tr><th>קריטריון</th><th>דרישה</th></tr></thead>
+  <tbody>
+    <tr><td>עיתוי</td><td>הופעה תוך 7 ימים מאירוע קליני ידוע או החמרת תסמינים נשימתיים</td></tr>
+    <tr><td>הדמיה</td><td>הסננים דו-צדדיים בצילום/CT חזה, שלא מוסברים במלואם ע"י תפליט, קריסת אונה/ריאה, או גושים</td></tr>
+    <tr><td>מקור הבצקת</td><td>אי-ספיקת נשימה שלא מוסברת במלואה ע"י אי-ספיקת לב או עודף נוזלים (יש לשלול בצקת קרדיוגנית - עם אקוקרדיוגרפיה אם אין גורם סיכון ברור)</td></tr>
+    <tr><td>חמצון (עם PEEP≥5)</td><td><b>קל</b>: P/F 200-300 &nbsp;|&nbsp; <b>בינוני</b>: P/F 100-200 &nbsp;|&nbsp; <b>קשה</b>: P/F &lt;100</td></tr>
+  </tbody>
+</table>
+<p><b>יחס P/F</b> = <span class="term" dir="ltr">PaO2/FiO2</span> - מודד כמה חמצן "נכנס בפועל" לדם ביחס לכמה חמצן ניתן באוויר הנשאף; ככל שהיחס נמוך יותר, כך יותר מהריאה "לא עובדת" (shunt גדול יותר), ללא תלות בכמות החמצן שניתנה - זו הסיבה שהוא מדד טוב יותר מסטורציה גולמית להערכת חומרה.</p>
+
+<h3>אבחנה מבדלת - ARDS מול בצקת ריאות קרדיוגנית</h3>
+<table>
+  <thead><tr><th>מאפיין</th><th>ARDS</th><th>בצקת קרדיוגנית</th></tr></thead>
+  <tbody>
+    <tr><td>מנגנון</td><td>חדירות ממברנה (permeability edema)</td><td>לחץ הידרוסטטי מוגבר (אי-ספיקת לב)</td></tr>
+    <tr><td>נוזל המכתשית</td><td>עתיר חלבון (exudate)</td><td>דל חלבון (transudate)</td></tr>
+    <tr><td>BNP / NT-proBNP</td><td>לרוב תקין/נמוך יחסית</td><td>מוגבר משמעותית</td></tr>
+    <tr><td>אקוקרדיוגרפיה</td><td>תפקוד חדר שמאל תקין</td><td>לרוב ירידה בתפקוד סיסטולי/דיאסטולי</td></tr>
+    <tr><td>תגובה לתרופות משתנות</td><td>מוגבלת</td><td>שיפור משמעותי</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/aG6fYRYBPUI" title="Respiratory Distress Syndrome - Pathology Review - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת פתולוגיה של ARDS (Osmosis) - מנגנון, הגדרת ברלין ואבחנה מבדלת. מקור: <a href="https://www.youtube.com/watch?v=aG6fYRYBPUI" target="_blank">YouTube - Osmosis</a></p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/ARDS_X-Ray.jpg?width=600" alt="צילום חזה המדגים הסננים דו-צדדיים באפנדיציטיס">
+  <figcaption class="media-cap">צילום חזה בחולה עם ARDS - הסננים/עכירויות דו-צדדיות מפושטות ("whiteout" של הריאות), האופייניות למחלה. מקור: <a href="https://commons.wikimedia.org/wiki/File:ARDS_X-Ray.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>אין טיפול תרופתי ספציפי שמרפא ARDS עצמו - הטיפול הוא <b>תומך</b> ומכוון למניעת נזק נוסף (בעיקר VILI) בזמן שהריאה מחלימה, לצד טיפול אגרסיבי בגורם המחולל (למשל source control וניקוז מוקד ספטי, אנטיביוטיקה - ר' עקרונות בפרק 11).</p>
+
+<h3>הנשמה מגוננת-ריאה (Lung-Protective Ventilation) - עמוד השדרה של הטיפול</h3>
+<table>
+  <thead><tr><th>פרמטר</th><th>יעד</th><th>למה בדיוק זה פותר את הבעיה</th></tr></thead>
+  <tbody>
+    <tr><td>נפח גזירה <span class="term" dir="ltr">(Tidal Volume)</span></td><td>6 מ"ל/ק"ג <b>משקל גוף חזוי</b> (לא בפועל!)</td><td>מונע מתיחת-יתר (volutrauma) של "ריאת התינוק" המצומצמת שעדיין מתפקדת</td></tr>
+    <tr><td>לחץ הרמה <span class="term" dir="ltr">(Plateau Pressure)</span></td><td>&lt;30 ס"מ מים</td><td>מגביל את הלחץ המקסימלי על דופן המכתשית, מסמן עודף מתיחה גם כשה-TV "נראה" תקין</td></tr>
+    <tr><td><span class="term" dir="ltr">PEEP</span> (לפי טבלת ARDSnet PEEP/FiO2)</td><td>מותאם לחומרה, לרוב 5-24 ס"מ מים</td><td>שומר מכתשיות קרוסות פתוחות בין נשימות → מונע atelectrauma וקריסה חוזרת-ונשנית</td></tr>
+    <tr><td>יעד חמצון</td><td>PaO2 55-80 ממ"כ / SpO2 88-95%</td><td>"מספיק טוב" מכוון - חמצון-יתר אגרסיבי לא משפר תוצאות ורק מגביר טוקסיות חמצן</td></tr>
+    <tr><td>קצב נשימה</td><td>עד 35/דקה, מותאם ל-pH</td><td>מפצה חלקית על TV נמוך; מקובל pH מעט חומצי ("hypercapnia מותרת")</td></tr>
+  </tbody>
+</table>
+
+<h3>שכיבה על הבטן (Prone Positioning)</h3>
+<p>ב-ARDS בינוני-קשה (P/F&lt;150), שכיבה על הבטן במשך 12-16 שעות ביממה משפרת חמצון ומפחיתה תמותה. <b>המנגנון</b>: בשכיבה על הגב, משקל הלב והבטן דוחס את האונות התחתונות-אחוריות של הריאה (האזור עם רוב מסת הריאה); שכיבה על הבטן משחררת דחיסה זו, מפזרת את האוורור באופן אחיד יותר, ומשפרת את ההתאמה בין אוורור לזילוח (שהוא גרביטציוני-תלוי גם הוא) - כלומר פחות shunt.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/E_6jT9R7WJs" title="Prone Positioning in Severe ARDS" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת שכיבה על הבטן (proning) בחולה מונשם עם ARDS קשה בטיפול נמרץ. מקור: <a href="https://www.youtube.com/watch?v=E_6jT9R7WJs" target="_blank">YouTube</a></p>
+
+<h3>אמצעים נוספים</h3>
+<table>
+  <thead><tr><th>התערבות</th><th>מנגנון/מטרה</th><th>הערה קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>אסטרטגיית נוזלים שמרנית (conservative)</td><td>הימנעות מעודף נוזלים מקטינה בצקת ריאות נוספת מעבר לזו שכבר קיימת מחדירות הממברנה</td><td>יש לאזן מול צורך בפרפוזיה לאיברים אחרים (במיוחד אם יש הלם ספטי במקביל)</td></tr>
+    <tr><td>חסם עצבי-שרירי <span class="term" dir="ltr">(Cisatracurium)</span></td><td>משתק שרירים, מבטל מאמץ נשימתי ספונטני "נלחם" בהנשמה (patient-ventilator dyssynchrony) שעלול להחמיר VILI</td><td>מחקר ACURASYS (2010) הראה תועלת ב-ARDS קשה; מחקר ROSE (2019, NEJM) לא הראה יתרון תמותה על פני סדציה עמוקה בלבד והצביע על סיכון לחולשה נרכשת בטיפול נמרץ - השימוש כיום סלקטיבי, לא גורף</td></tr>
+    <tr><td><span class="term" dir="ltr">ECMO</span> (חמצון-דם חוץ-גופי)</td><td>עוקף לחלוטין את הריאות לחמצון/סילוק CO2, מאפשר "מנוחה" של הריאה עם הגדרות הנשמה מינימליות ביותר</td><td>שמור למקרים חמורים ביותר (P/F&lt;80 עמיד) במרכזים מומחים</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">בחולה כירורגי עם ARDS על רקע ספסיס - יש לטפל <b>בו-זמנית</b> במקור הזיהום (source control - ניקוז אבצס, כריתת רקמה נמקית וכו', ר' עקרונות בפרקים 11-12) ובתמיכה הנשימתית. תיקון המקור בלבד, בלי הנשמה מגוננת-ריאה נכונה, לא ימנע VILI; והנשמה נכונה בלבד, בלי source control, לא תעצור את הדלקת המחוללת.</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - "ARDS" כתזכורת להגדרת ברלין</h3>
+  <p>
+    <b>A</b>cute onset (עד 7 ימים)<br>
+    <b>R</b>adiographic bilateral infiltrates (הסננים דו-צדדיים)<br>
+    <b>D</b>epressed oxygenation - P/F&lt;300 (חמצון ירוד)<br>
+    <b>S</b>ource not cardiac - לא מוסבר ע"י אי-ספיקת לב/עודף נוזלים
+  </p>
+  <h3>סיפור דמיוני - "הספוג הרטוב מדי"</h3>
+  <p>דמיינו את הריאה כספוג ים גדול (מכתשיות פתוחות ומאווררות). ARDS הוא כמו לשפוך על הספוג דלי מים סמיך ודביק (הבצקת עתירת-החלבון) - חלקים גדולים מהספוג נהיים כבדים, קרוסים ולא סופגים אוויר יותר (השאנט). אם תנסו לדחוף עכשיו נפח אוויר גדול מדי לתוך מה שנשאר מהספוג היבש (ה"baby lung"), תקרעו אותו (volutrauma) - ולכן צריך לנשוף אוויר <b>בעדינות ובכמות מוגבלת</b>, ולתת ל-PEEP "לפתוח מחדש" בעדינות את החלקים הרטובים שעדיין ניתן להציל.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: הספוג הרטוב מדי</title>
+    <rect x="40" y="40" width="180" height="100" rx="14" fill="#bae6fd" stroke="#0369a1" stroke-width="3"/>
+    <text x="130" y="80" font-size="13" text-anchor="middle" fill="#1f2937">ספוג = ריאה</text>
+    <text x="130" y="100" font-size="11" text-anchor="middle" fill="#4b5563">חלק יבש = "baby lung"</text>
+    <circle cx="100" cy="60" r="4" fill="#0369a1"/>
+    <circle cx="160" cy="65" r="4" fill="#0369a1"/>
+    <circle cx="130" cy="120" r="4" fill="#0369a1"/>
+    <text x="270" y="70" font-size="24">💧💧💧</text>
+    <text x="270" y="95" font-size="11" fill="#4b5563">בצקת עתירת חלבון</text>
+    <polygon points="360,80 390,68 390,92" fill="#b91c1c"/>
+    <text x="420" y="60" font-size="12" fill="#b91c1c" font-weight="700">נפח גזירה גדול</text>
+    <text x="420" y="78" font-size="12" fill="#b91c1c" font-weight="700">= קורעים את הספוג!</text>
+    <text x="250" y="170" font-size="11" text-anchor="middle" fill="#4b5563">פתרון: 6 מ"ל/ק"ג + PEEP שפותח בעדינות מחדש</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK436002/" target="_blank">Acute Respiratory Distress Syndrome — StatPearls (NCBI Bookshelf)</a>
+    <div class="desc">סקירה מקיפה של פתופיזיולוגיה, אבחנה וטיפול - מקור הייחוס המרכזי לסיכום זה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=bXWksu3APic" target="_blank">Acute Respiratory Distress Syndrome (ARDS) | Clinical Medicine — Ninja Nerd</a>
+    <div class="desc">הרצאה מקיפה עם דיאגרמות מפורטות על פתופיזיולוגיה, אבחנה וטיפול הנשמתי.</div>
+  </li>
+  <li>
+    <a href="https://www.sccm.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026" target="_blank">Surviving Sepsis Campaign Guidelines 2026 — SCCM</a>
+    <div class="desc">ההנחיות העדכניות ביותר (2026) לניהול ספסיס והלם ספטי - נוגע ישירות לחולה הכירורגי הקריטי שבו ARDS מתפתח לרוב על רקע ספסיס.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 עבר לפני 4 ימים כריתת קולון דחופה עקב פרפורציה דיברטיקולרית עם צפקת מפושטת. יומיים לאחר הניתוח פיתח חום 39.1°C ולחץ דם נמוך שהגיב לנוזלים ולנוראפינפרין (הלם ספטי, ר' פרק 4). כעת, ביום הרביעי, מתפתחת קוצר נשימה חדה עם צורך בהגברת ריכוז החמצן. בבדיקת גזים עורקיים: PaO2 78 ממ"כ תחת FiO2 60% (PEEP 8). צילום חזה מדגים הסננים דו-צדדיים מפושטים חדשים. אקוקרדיוגרפיה מדגימה תפקוד חדר שמאל תקין. BNP תקין.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו יחס ה-P/F של המטופל, ולאיזו קטגוריית חומרת ARDS לפי הגדרת ברלין הוא משתייך?</div>
+  <button class="opt" data-i="0">P/F=195, ARDS קל</button>
+  <button class="opt" data-i="1">P/F=350, אין ARDS</button>
+  <button class="opt" data-i="2">P/F=130, ARDS בינוני</button>
+  <button class="opt" data-i="3">P/F=78, ARDS קשה</button>
+  <div class="explain">נכון: P/F = PaO2/FiO2 = 78/0.6 = 130, המשתייך לטווח ARDS בינוני (100-200) לפי הגדרת ברלין (עם PEEP≥5, מתקיים כאן). שימו לב: PaO2 (78) אינו יחס ה-P/F עצמו - טעות נפוצה היא לבלבל בין הערך הגולמי ליחס המחושב.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע האקוקרדיוגרפיה והבדיקת BNP התקינות במטופל זה חשובות לאבחנה?</div>
+  <button class="opt" data-i="0">הן קובעות את חומרת ה-ARDS</button>
+  <button class="opt" data-i="1">הן עוזרות לשלול בצקת ריאות קרדיוגנית כמקור להסננים, כנדרש בהגדרת ברלין</button>
+  <button class="opt" data-i="2">הן קובעות את הצורך ב-ECMO</button>
+  <button class="opt" data-i="3">הן מיותרות כי CT כבר אבחן ARDS</button>
+  <div class="explain">נכון: הגדרת ברלין דורשת שהאי-ספיקה הנשימתית "לא תוסבר במלואה" ע"י אי-ספיקת לב או עודף נוזלים. תפקוד חדר שמאל תקין ו-BNP תקין תומכים בכך שהבצקת נובעת מחדירות ממברנה (ARDS) ולא מלחץ הידרוסטטי מוגבר (קרדיוגני) - הבדל קריטי בין שני המצבים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזו אסטרטגיית הנשמה מתאימה ביותר למטופל זה, ומדוע?</div>
+  <button class="opt" data-i="0">נפח גזירה גבוה (12 מ"ל/ק"ג) כדי להבטיח אוורור מספק של כל הריאה</button>
+  <button class="opt" data-i="1">PEEP אפס כדי למנוע פגיעה בהחזר הוורידי</button>
+  <button class="opt" data-i="2">חמצון-יתר אגרסיבי ל-SpO2 100% כדי להבטיח רזרבה</button>
+  <button class="opt" data-i="3">נפח גזירה 6 מ"ל/ק"ג משקל גוף חזוי, לחץ הרמה מתחת ל-30 ס"מ מים, ו-PEEP מותאם</button>
+  <div class="explain">נכון: זו הגדרת הליבה של הנשמה מגוננת-ריאה. נפח גזירה גבוה (1) יגרום ל-volutrauma על "ריאת התינוק" המצומצמת. PEEP אפס (2) יאפשר קריסה וסגירה חוזרת של מכתשיות (atelectrauma). חמצון-יתר (3) לא משפר תוצאות ומעלה טוקסיות חמצן - היעד הוא PaO2 55-80/SpO2 88-95%.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. חמצון המטופל ממשיך להידרדר (P/F יורד ל-95) למרות הנשמה מגוננת-ריאה מיטבית. מהי ההתערבות הבאה הנתמכת בראיות להורדת תמותה?</div>
+  <button class="opt" data-i="0">שכיבה על הבטן (proning) 12-16 שעות ביממה</button>
+  <button class="opt" data-i="1">הפסקת האנטיביוטיקה כי מקור הזיהום כבר טופל</button>
+  <button class="opt" data-i="2">מתן משתנים אגרסיבי ללא קשר למצב הנפחי</button>
+  <button class="opt" data-i="3">הגדלת נפח הגזירה כדי לשפר את חילופי הגזים</button>
+  <div class="explain">נכון: שכיבה על הבטן ב-ARDS בינוני-קשה (P/F&lt;150) משפרת חמצון ומפחיתה תמותה, ע"י שחרור דחיסת הריאה מהלב/הבטן ופיזור אחיד יותר של אוורור-זילוח. הפסקת אנטיביוטיקה (2) אינה קשורה ישירות לחמצון ומסוכנת בהלם ספטי פעיל. משתנים (3) עוזרים רק אם יש עודף נוזלים אמיתי. הגדלת TV (4) מגבירה VILI ומחמירה את המצב.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע מחקר ROSE (NEJM, 2019) לא הראה יתרון תמותה לחסם עצבי-שרירי מוקדם (cisatracurium) בניגוד למחקר ACURASYS הקודם?</div>
+  <button class="opt" data-i="0">כי cisatracurium אינו בטוח לשימוש בחולים כירורגיים</button>
+  <button class="opt" data-i="1">כי ב-ROSE כל החולים טופלו ב-ECMO ולא נזקקו לחסם עצבי-שרירי</button>
+  <button class="opt" data-i="2">כי פרוטוקולי הטיפול (סדציה קלה יותר, שיעור proning שונה) השתנו בין המחקרים, ונמצא סיכון לחולשה נרכשת בטיפול נמרץ</button>
+  <button class="opt" data-i="3">כי ROSE בדק רק חולים עם ARDS קל</button>
+  <div class="explain">נכון: ROSE נערך על רקע פרקטיקה קלינית משתנה - יעדי סדציה קלים יותר ושיעור proning נמוך יותר (16% לעומת כמעט מחצית ב-ACURASYS) - ונמצא סיכון מוגבר לחולשה נרכשת בטיפול נמרץ (ICU-acquired weakness) ותופעות לוואי קרדיווסקולריות. כיום השימוש בחסם עצבי-שרירי ב-ARDS סלקטיבי ולא גורף.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: תגובה ריאתית סטריאוטיפית לפגיעה ישירה/עקיפה (הכי שכיח - ספסיס) - בצקת ריאות לא-קרדיוגנית עם קרומי היאלין (DAD).</li>
+    <li><b>המנגנון</b>: ציטוקינים → פגיעה אנדותל+אפיתל → ↓surfactant + חדירות ממברנה → shunt/V-Q mismatch → היפוקסמיה עמידה לחמצן בלבד → "ריאת התינוק" רגישה ל-VILI (volu/baro/atelectrauma).</li>
+    <li><b>אבחנה</b>: הגדרת ברלין - עד 7 ימים, הסננים דו-צדדיים, לא מוסבר ע"י אי-ספיקת לב, P/F&lt;300 (קל 200-300, בינוני 100-200, קשה &lt;100).</li>
+    <li><b>טיפול</b>: הנשמה מגוננת-ריאה (TV 6 מ"ל/ק"ג PBW, Pplat&lt;30, PEEP מותאם, יעד SpO2 88-95%) + נוזלים שמרניים + proning ב-P/F&lt;150 + חסם עצבי-שרירי סלקטיבי + ECMO במקרים עמידים - לצד טיפול אגרסיבי במקור המחולל (source control).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
