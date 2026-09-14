@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>גנטיקה (Genetics)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .sources{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:14px 0; font-size:14px; color:var(--sub)}
+  .sources h4{margin:0 0 8px; color:var(--ink); font-size:15px}
+  .sources ul{margin:0; padding-inline-start:18px}
+  .sources li{margin:5px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>גנטיקה <span class="term" dir="ltr">(Genetics)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section II — Biochemistry &middot; יחידה 4/20 בתוכנית הלימוד</div>
+
+<p>זו היחידה שבה "העובדות" של גנטיקה קלאסית (דומיננטי/רצסיבי, X-לינקד) נפגשות עם "המנגנון" - <b>למה</b> אלל מסוים משתיק את השני, <b>איך</b> טעות בחלוקת תאים יוצרת טריזומיה, <b>למה</b> חזרה תלת-נוקלאוטידית מחמירה מדור לדור. השיטה בכל סעיף: קודם <b>ההגדרה/המנגנון המדויק</b>, ואז <b>מחלה אחת מייצגת</b> שממחישה אותו - כי ב-USMLE כמעט תמיד שואלים על מחלה ספציפית, לא על ההגדרה כשלעצמה.</p>
+
+<h2><span class="num">2</span> מונחים גנטיים בסיסיים - איך מבחינים ביניהם</h2>
+<div class="mechanism">
+  <p class="chain">
+    שני מונחים הכי מבלבלים: <b>אקספרסיביות משתנה</b> <span class="term" dir="ltr">(variable expressivity)</span> מול <b>חדירות לא-מלאה</b> <span class="term" dir="ltr">(incomplete penetrance)</span>. ההבדל: אקספרסיביות = <b>כולם חולים, אבל בחומרה שונה</b> (למשל שני חולי נוירופיברומטוזיס סוג 1 עם גנוטיפ זהה, אחד עם כמה כתמי קפה-בחלב ואחד עם עשרות גידולים). חדירות = <b>לא כולם בכלל חולים</b> - אחוז מסוים מנושאי הגנוטיפ הפתוגני לא מפתחים את המחלה כלל (למשל נשאיות BRCA1 שלא תמיד מפתחות סרטן שד/שחלה). <b>נוסחה:</b> אחוז חדירות × הסתברות לרשת את הגנוטיפ = הסיכון לביטוי הפנוטיפ.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>קודומיננטיות</b> - שני האללים <b>שניהם באים לידי ביטוי</b> בהטרוזיגוט (לא מיזוג, לא דומיננטיות של אחד) - למשל סוגי דם A/B/AB, חסר אלפא-1-אנטיטריפסין, קבוצות HLA. <b>פליאוטרופיה</b> - <b>גן אחד</b> גורם למספר השפעות פנוטיפיות שונות לכאורה-בלתי-קשורות - הדוגמה הקלאסית: סיסטיק פיברוזיס (מוטציה אחת ב-CFTR) גורמת גם לריר סמיך בריאות, גם לאי-ספיקה לבלבית, גם לאי-פוריות בגברים - כולן תוצאה של אותה תעלת כלוריד לא-תקינה ברקמות שונות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>אנטיסיפציה</b> - חומרת המחלה עולה וגיל ההופעה יורד בדורות עוקבים - אופיינית למחלות חזרה תלת-נוקלאוטידית (ראו סעיף 5). <b>אפיסטזיס</b> - האלל של גן אחד <b>משפיע על הביטוי הפנוטיפי</b> של אלל בגן <b>אחר</b> (לא אותו גן!) - למשל אלביניזם: מוטציה בגן אחד (למשל טירוזינאז) יכולה "להסתיר" את הביטוי הצפוי של גנים אחרים הקובעים צבע עור/שיער, כי בלי פיגמנט הם לא יכולים "להתבטא" חזותית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>אבדן הטרוזיגוטיות</b> <span class="term" dir="ltr">(loss of heterozygosity)</span> - חשוב במיוחד בגנים <b>מדכאי גידול</b> (לא באונקוגנים!): אם אדם יורש/מפתח מוטציה באלל אחד של גן מדכא-גידול, הוא <b>עדיין בריא</b> כי האלל השני התקין "מכסה" עליו - רק כשהאלל השני <b>גם</b> נפגע (נמחק/מוטציה/אבד) מתפתח סרטן - זו "תיאוריית שני-המכות" <span class="term" dir="ltr">(two-hit hypothesis)</span> של רטינובלסטומה. לעומת זאת, <b>אונקוגן</b> צריך רק <b>מכה אחת</b> (מוטציה באלל אחד מספיקה, כי היא "רווח-תפקוד" ולא "אבדן-תפקוד").
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מוטציה דומיננטית-שלילית</b> <span class="term" dir="ltr">(dominant negative)</span> - שונה מ"מוטציה דומיננטית רגילה": כאן האלל המוטנטי לא רק לא-פעיל בעצמו, אלא <b>מפריע באופן אקטיבי</b> לחלבון התקין מהאלל השני לתפקד (למשל p53 מוטנטי שנקשר ל-DNA וחוסם את p53 התקין מלהגיע לפרומוטור שלו). <b>חוסר שיווי-משקל קישורי</b> <span class="term" dir="ltr">(linkage disequilibrium)</span> - נטייה של שני אללים ב<b>אתרים שונים</b> באותו כרומוזום להופיע <b>יחד</b> בתדירות שונה מהצפוי במקרה - זו תופעה <b>אוכלוסייתית</b> (לא משפחתית) ומשתנה בין אוכלוסיות שונות - דוגמאות: גני HLA, גן CFTR.
+  </p>
+</div>
+
+<h3>2.1 מוזאיקה, הטרוגניות גנטית, והטרופלזמיה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>מוזאיקה</b> - <b>שני קווי תאים גנטית שונים</b> באותו אדם. <b>מוזאיקה סומטית</b> - מוטציה מתרחשת לאחר ההפריה (שגיאה מיטוטית), ומתפשטת רק ברקמות שמקורן באותו תא. <b>מוזאיקה גרמינלית (גונדלית)</b> - המוטציה קיימת <b>רק בתאי הרבייה</b> (ביצית/זרע) - אם ההורים ואחיהם בריאים לחלוטין אבל כמה מהילדים חולים באותה מחלה "דומיננטית" - יש לחשוד במוזאיקה גרמינלית אצל אחד ההורים (לא מוטציה חדשה-אמיתית בכל ילד בנפרד). הדוגמה הקלאסית למוזאיקה סומטית: <b>תסמונת מקיון-אולברייט</b> - מוטציית רווח-תפקוד ב-GNAS (חלבון Gs) - כתמי קפה-בחלב <b>חד-צדדיים</b> עם שוליים משוננים, דיספלזיה סיבית פוליאוסטוטית, והפרעה אנדוקרינית אחת לפחות (למשל התבגרות מוקדמת). קטלנית אם המוטציה מתרחשת <b>לפני</b> ההפריה (פוגעת בכל התאים), אך ניתנת להישרדות דווקא כמוזאיקה (כי חלק מהתאים תקינים).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>הטרוגניות לוקוסית</b> <span class="term" dir="ltr">(locus heterogeneity)</span> - מוטציות ב<b>לוקוסים (גנים) שונים</b> גורמות ל<b>אותה מחלה</b> (למשל אלביניזם, רטיניטיס פיגמנטוזה - כל אחת יכולה לנבוע ממספר גנים שונים). <b>הטרוגניות אללית</b> <span class="term" dir="ltr">(allelic heterogeneity)</span> - מוטציות <b>שונות באותו לוקוס</b> גורמות לאותה מחלה (למשל בטא-תלסמיה - עשרות מוטציות אפשריות בגן הבטא-גלובין, כולן גורמות לתלסמיה). <b>הטרופלזמיה</b> - נוכחות בו-זמנית של mtDNA <b>תקין ומוטנטי</b> בתוך אותו תא/אדם - מסבירה למה מחלות מיטוכונדריאליות (למשל נוירופתיה אופטית תורשתית של לבר) יכולות להתבטא <b>בחומרה משתנה מאוד</b>, תלוי ביחס העותקים המוטנטים בכל רקמה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>דיסומיה חד-הורית</b> <span class="term" dir="ltr">(uniparental disomy)</span> - הצאצא מקבל <b>שני עותקים</b> של כרומוזום <b>מהורה אחד בלבד</b>, ואפס עותקים מההורה השני (מספר הכרומוזומים עצמו תקין - "יופלואיד"). <b>הטרודיסומיה</b> (שני עותקים <b>שונים</b> מאותו הורה - הטרוזיגוטית) מרמזת על שגיאה במיוזה I. <b>איזודיסומיה</b> (שני עותקים <b>זהים</b> - הומוזיגוטית) מרמזת על שגיאה במיוזה II, או שכפול פוסט-זיגוטי של כרומוזום אחד עם אבדן בן-זוגו. ברוב המקרים UPD לא גורם לבעיה (כי הכמות התקינה), <b>אלא אם</b>: (1) יש חשד למחלה רצסיבית כשרק הורה אחד נשא (איזודיסומיה חושפת אלל רצסיבי בודד להומוזיגוטיות!), או (2) האזור כרוך ב<b>הטבעה גנומית</b> - ראו סעיף 4.
+  </p>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — מונחים גנטיים</h4>
+  <p><b>"Penetrance = Percent that even shows up"</b> - כמה אחוז מהנושאים בכלל מבטאים; <b>"Expressivity = Extent of severity"</b> - כמה חמור אצל מי שכן חולה. <b>"Two hits for tumor suppressor, One hit for oncogene"</b>.</p>
+</div>
+
+<h2><span class="num">3</span> גנטיקה אוכלוסייתית ועקרון הרדי-ויינברג</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>ברירה טבעית</b> - אללים שמעלים כושר-הישרדות (fitness) עוברים לדור הבא בתדירות גבוהה יותר. <b>סחף גנטי</b> <span class="term" dir="ltr">(genetic drift)</span> - שינוי <b>אקראי</b> (לא-ברירתי) בתדירות אלל - קורה במיוחד באוכלוסיות קטנות. <b>אפקט צוואר-בקבוק</b> <span class="term" dir="ltr">(bottleneck effect)</span> - סוג של סחף גנטי: אסון (למשל מגפה) מוחק חלק מהאוכלוסייה <b>באקראי</b> (לא לפי כושר-הישרדות) → תדירות אללים חדשה, לא-מייצגת של האוכלוסייה המקורית. <b>אפקט מייסד</b> <span class="term" dir="ltr">(founder effect)</span> הוא צוואר-בקבוק ספציפי שנגרם מ<b>הפרדה קלנדרית</b> של תת-אוכלוסייה קטנה (למשל אמיש, אשכנזים) - שתי התופעות הן דוגמאות ל<b>סחף גנטי</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>עקרון הרדי-ויינברג</b> - באוכלוסייה עם זיווג אקראי, תדירות האללים והגנוטיפים <b>נשארת קבועה</b> מדור לדור - <b>בתנאי</b> שמתקיימות חמש הנחות: <b>אין מוטציה</b> חדשה באותו לוקוס, <b>אין ברירה טבעית</b> פועלת, <b>זיווג אקראי לחלוטין</b>, <b>אין הגירה</b> נטו פנימה/החוצה, ו<b>אוכלוסייה גדולה</b> (כדי שסחף גנטי אקראי יהיה זניח). אם p ו-q הם תדירויות האללים A ו-a (p + q = 1), אז תדירויות הגנוטיפים הן <b>p² (הומוזיגוט AA) + 2pq (הטרוזיגוט Aa) + q² (הומוזיגוט aa) = 1</b>. במחלה רצסיבית נדירה, אפשר להניח <b>p ≈ 1</b> ולכן <b>q² ≈ שכיחות המחלה</b>. <b>עבור מחלה נסגרת-X</b>: שכיחות בזכרים = q (המיזיגוטים - X אחד בלבד), ובנקבות = q² (צריכות שני עותקים).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 340" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>עקרון הרדי-ויינברג: שכיחות אללים ושכיחות גנוטיפים</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">שיווי משקל הרדי-ויינברג: p + q = 1, ולכן p&#178; + 2pq + q&#178; = 1</text>
+<rect x="30" y="50" width="330" height="180" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="195" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">לוגיקת ריבוע פנט</text>
+<rect x="130" y="90" width="70" height="34" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="165" y="112" font-size="12" text-anchor="middle" fill="#1f2937">A (p)</text>
+<rect x="200" y="90" width="70" height="34" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="235" y="112" font-size="12" text-anchor="middle" fill="#1f2937">a (q)</text>
+<rect x="60" y="124" width="70" height="34" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="95" y="146" font-size="12" text-anchor="middle" fill="#1f2937">A (p)</text>
+<rect x="130" y="124" width="70" height="34" fill="#ecfdf5" stroke="#047857"/>
+<text x="165" y="146" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">AA (p&#178;)</text>
+<rect x="200" y="124" width="70" height="34" fill="#fffbeb" stroke="#b45309"/>
+<text x="235" y="146" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Aa (pq)</text>
+<rect x="60" y="158" width="70" height="34" fill="#f3f4f6" stroke="#9ca3af"/>
+<text x="95" y="180" font-size="12" text-anchor="middle" fill="#1f2937">a (q)</text>
+<rect x="130" y="158" width="70" height="34" fill="#fffbeb" stroke="#b45309"/>
+<text x="165" y="180" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Aa (pq)</text>
+<rect x="200" y="158" width="70" height="34" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="235" y="180" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">aa (q&#178;)</text>
+<text x="195" y="212" font-size="10.5" text-anchor="middle" fill="#374151">הומוזיגוט AA (p&#178;) + הטרוזיגוט Aa (2pq) + הומוזיגוט aa (q&#178;) = 1</text>
+<rect x="390" y="50" width="440" height="180" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="610" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">דוגמה מחושבת: סיסטיק פיברוזיס (AR)</text>
+<text x="810" y="95" font-size="10.5" text-anchor="end" fill="#1f2937">שכיחות המחלה (aa) &#8776; 1/3200 &#8592; q&#178; = 1/3200</text>
+<text x="810" y="114" font-size="10.5" text-anchor="end" fill="#1f2937">q = &#8730;(1/3200) &#8776; 0.017 (1.7% מהאללים)</text>
+<text x="810" y="133" font-size="10.5" text-anchor="end" fill="#1f2937">p = 1 &#8722; q &#8776; 0.982 (מחלה נדירה, לכן p &#8776; 1)</text>
+<text x="810" y="152" font-size="10.5" font-weight="700" text-anchor="end" fill="#4c1d95">שכיחות נשאים = 2pq &#8776; 0.035 &#8592; 3.5% מהאוכלוסייה</text>
+<text x="810" y="178" font-size="10" text-anchor="end" fill="#4b5563">מחלה נסגרת ל-X: שכיחות בזכרים = q, בנקבות = q&#178;</text>
+<text x="810" y="196" font-size="10" text-anchor="end" fill="#4b5563">(זכרים המיזיגוטים &#8212; X אחד בלבד)</text>
+<rect x="30" y="245" width="800" height="75" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+<text x="430" y="268" font-size="11.5" font-weight="700" text-anchor="middle" fill="#92400e">הנחות: אין מוטציה, אין ברירה טבעית, זיווג אקראי, אין הגירה, אוכלוסייה גדולה</text>
+<text x="430" y="288" font-size="10.5" text-anchor="middle" fill="#92400e">הפרת הנחה (bottleneck, founder effect, זיווג לא-אקראי) &#8592; שינוי בשכיחות האללים = סחף גנטי</text>
+<text x="430" y="306" font-size="9.5" text-anchor="middle" fill="#92400e">בשיווי משקל, p ו-q נשארים קבועים מדור לדור</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — הרדי-ויינברג</h4>
+  <p><b>"p² + 2pq + q² = 1, just like (p+q)²"</b> - זה פשוט הרחבה אלגברית רגילה של הביטוי הבינומי. עבור מחלה נדירה: <b>q² = שכיחות החולים, 2pq ≈ 2q = שכיחות הנשאים</b>.</p>
+</div>
+
+<h2><span class="num">4</span> הפרעות הטבעה — Prader-Willi ואנג'למן</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>הטבעה גנומית</b> <span class="term" dir="ltr">(genomic imprinting)</span> - תופעה שבה עותק אחד של גן <b>מושתק ע"י מתילציה</b> (לא מוטציה!) בהתאם למקור ההורי שלו, ורק העותק השני מתבטא. משמעות: אם העותק ה<b>פעיל</b> (הלא-מושתק) נמחק/מוטציה/אבד - <b>אין עותק פעיל כלל</b>, גם אם העותק ה"מושתק" תקין לגמרי מבחינה גנטית! זה שונה עקרונית מירושה רצסיבית רגילה - כאן <b>עותק תקין אחד לא מציל</b>, כי הוא ממילא מושתק ביולוגית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    באזור 15q11-13, <b>הגנים האמהיים מושתקים</b> באופן תקין (חוץ מ-UBE3A). לכן <b>תסמונת פראדר-ווילי</b> מתפתחת כשה<b>אלל האבהי</b> (הפעיל) נמחק/מוטציה - אין עותק פעיל בכלל, כי האמהי ממילא מושתק: היפרפגיה, השמנה, פיגור שכלי, היפוגונדיזם, היפוטוניה. לעומת זאת <b>UBE3A ספציפית מושתק באלל האבהי</b> - כך שכש<b>האלל האמהי</b> (היחיד הפעיל עבור UBE3A) נמחק/מוטציה, מתפתחת <b>תסמונת אנג'למן</b>: ניפנוף ידיים, אטקסיה, פיגור שכלי חמור, צחוק בלתי-הולם, פרכוסים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    25% מהמקרים של פראדר-ווילי, ו-5% מהמקרים של אנג'למן, נובעים מ<b>דיסומיה חד-הורית</b> (במקום מחיקה/מוטציה קלאסית) - שני עותקים מאותו הורה שהוא "הלא-נכון" עבור אותו אזור מוטבע.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>הטבעה גנומית: תסמונת פראדר-ווילי מול תסמונת אנג'למן</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">כרומוזום 15q11-13: עותק הורי אחד מושתק באופן תקין ע"י מתילציה</text>
+<rect x="30" y="48" width="800" height="80" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="430" y="68" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1f2937">אדם תקין &#8212; שני העותקים ההוריים קיימים, אזור אחד מוטבע</text>
+<rect x="230" y="78" width="110" height="34" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+<text x="285" y="99" font-size="11" font-weight="700" text-anchor="middle" fill="#1e3a8a">P (אבהי)</text>
+<text x="285" y="122" font-size="9" text-anchor="middle" fill="#4b5563">פעיל (רוב הגנים)</text>
+<rect x="520" y="78" width="110" height="34" rx="6" fill="#fce7f3" stroke="#be185d"/>
+<text x="575" y="99" font-size="11" font-weight="700" text-anchor="middle" fill="#831843">M (אמהי)</text>
+<text x="575" y="122" font-size="9" text-anchor="middle" fill="#4b5563">פעיל (UBE3A)</text>
+<path d="M 210 148 L 210 168" stroke="#4b5563" stroke-width="2" marker-end="url(#impArrHeMain1)"/>
+<path d="M 650 148 L 650 168" stroke="#4b5563" stroke-width="2" marker-end="url(#impArrHeMain1)"/>
+<defs><marker id="impArrHeMain1" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto"><polygon points="0,0 5,9 10,0" fill="#4b5563"/></marker></defs>
+<text x="210" y="145" font-size="10" text-anchor="middle" fill="#7f1d1d">האלל האבהי נמחק/מוטציה</text>
+<text x="650" y="145" font-size="10" text-anchor="middle" fill="#7f1d1d">האלל האמהי נמחק/מוטציה</text>
+<rect x="45" y="172" width="330" height="185" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="210" y="195" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">תסמונת פראדר-ווילי</text>
+<rect x="130" y="205" width="65" height="30" rx="5" fill="#e5e7eb" stroke="#6b7280"/>
+<text x="162" y="225" font-size="9.5" text-anchor="middle" fill="#374151">P: נמחק/מוטציה</text>
+<rect x="225" y="205" width="65" height="30" rx="5" fill="#fce7f3" stroke="#be185d"/>
+<text x="257" y="225" font-size="9.5" text-anchor="middle" fill="#831843">M: מושתק</text>
+<text x="210" y="256" font-size="10" text-anchor="middle" fill="#7f1d1d">הגנים האמהיים מושתקים באופן תקין &#8592;</text>
+<text x="210" y="272" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">אין עותק פעיל כלל</text>
+<text x="210" y="294" font-size="9.5" text-anchor="middle" fill="#7f1d1d">היפרפגיה, השמנה, פיגור שכלי,</text>
+<text x="210" y="309" font-size="9.5" text-anchor="middle" fill="#7f1d1d">היפוגונדיזם, היפוטוניה</text>
+<text x="210" y="330" font-size="9.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">25% מהמקרים = UPD אמהי</text>
+<text x="210" y="347" font-size="9" text-anchor="middle" fill="#7f1d1d">"POP": Paternal allele deleted, Obesity, Prader-Willi</text>
+<rect x="485" y="172" width="330" height="185" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="650" y="195" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">תסמונת אנג'למן</text>
+<rect x="570" y="205" width="65" height="30" rx="5" fill="#eff6ff" stroke="#2563eb"/>
+<text x="602" y="225" font-size="9.5" text-anchor="middle" fill="#1e3a8a">P: מושתק (UBE3A)</text>
+<rect x="665" y="205" width="65" height="30" rx="5" fill="#e5e7eb" stroke="#6b7280"/>
+<text x="697" y="225" font-size="9.5" text-anchor="middle" fill="#374151">M: נמחק/מוטציה</text>
+<text x="650" y="256" font-size="10" text-anchor="middle" fill="#065f46">UBE3A האבהי מושתק באופן תקין &#8592;</text>
+<text x="650" y="272" font-size="10" font-weight="700" text-anchor="middle" fill="#065f46">אין עותק UBE3A פעיל</text>
+<text x="650" y="294" font-size="9.5" text-anchor="middle" fill="#065f46">HAILS: ניפנוף ידיים, אטקסיה,</text>
+<text x="650" y="309" font-size="9.5" text-anchor="middle" fill="#065f46">פיגור שכלי, צחוק בלתי-הולם, פרכוסים</text>
+<text x="650" y="330" font-size="9.5" font-weight="700" text-anchor="middle" fill="#065f46">5% מהמקרים = UPD אבהי</text>
+<text x="650" y="347" font-size="9" text-anchor="middle" fill="#065f46">"MAMAS": Maternal allele deleted, Angelman</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — הטבעה</h4>
+  <p><b>POP</b>: Paternal allele deleted, Obesity, Prader-Willi. <b>MAMAS</b>: Maternal allele deleted, Angelman, Mood, Ataxia, Seizures. <b>HAILS the Angels</b>: Hand-flapping, Ataxia, Intellectual disability, Laughter, Seizures.</p>
+</div>
+
+<h2><span class="num">5</span> דפוסי תורשה מנדליים</h2>
+<div class="mechanism">
+  <p class="chain">
+    ארבעת הדפוסים הקלאסיים נבדלים בשלוש שאלות: <b>כמה עותקים פגומים צריך</b> (1 או 2), <b>באיזה כרומוזום</b> (אוטוזום או X), ו<b>מה קורה בהעברה מאב לבן</b> (קריטי להבחנה בין XR ל-XD, כי בן מקבל Y מאביו ולעולם לא X). <b>אוטוזומלי דומיננטי</b> - עותק פגום אחד מספיק; הורה חולה הטרוזיגוטי × הורה בריא → 50% מהילדים חולים, כל דור, שני המינים; לרוב פגם בגן <b>מבני</b> (לא אנזימטי) עם אקספרסיביות משתנה ופליאוטרופיה. <b>אוטוזומלי רצסיבי</b> - שני עותקים פגומים נדרשים; שני הורים נשאים × → 25% חולים, 50% נשאים, 25% בריאים-לא-נשאים; לרוב <b>חסר אנזימטי</b>, חמור יותר, מופיע בדרך כלל בדור אחד, ועולה בקרבת-דם (אח בריא של ילד חולה = 2/3 סיכוי נשא).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>נסגר-X רצסיבי</b> - אם באמצע, בן של אם נשאית (הטרוזיגוטית) = 50% סיכוי חולה (כי לבן יש רק X אחד - המיזיגוט); <b>אין העברה מזכר לזכר</b> (אב מעביר לבנו רק Y); "מדלג דורות"; חמור יותר בזכרים כי נקבות צריכות שתי עותקים פגומים. <b>נסגר-X דומיננטי</b> - עותק פגום אחד ב-X מספיק לשני המינים; אם חולה (הטרוזיגוטית) → 50% מכלל ילדיה חולים (שני המינים); אב חולה → <b>100% מבנותיו</b> חולות (הן חייבות לקבל את ה-X היחיד שלו) אבל <b>0% מבניו</b> (הם מקבלים ממנו Y בלבד) - זה ה"טביעת אצבע" הקלאסית שמבדילה XD מ-AD.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>תורשה מיטוכונדריאלית</b> - עוברת <b>רק דרך האם</b> (זרע כמעט לא תורם מיטוכונדריות לביצית המופרית); כל צאצאי אישה חולה עלולים להיות מושפעים, אך לרוב ברמת חומרה <b>משתנה</b> בגלל <b>הטרופלזמיה</b> (תערובת mtDNA תקין/מוטנטי). גם ל<b>X-אינאקטיבציה (ליונאיזציה)</b> יש חשיבות: בכל תא XX, אחד מכרומוזומי ה-X מושבת אקראית והופך ל<b>גופיף בר</b> (הטרוכרומטין ממותל) - אם ההשבתה "מוטה" (לא 50:50), אישה נשאית XR עלולה בכל זאת <b>לבטא</b> מחלה נסגרת-X (למשל חסר G6PD), ואף חומרת מחלה XD יכולה להיות מושפעת מכך.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 460" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>דפוסי תורשה: AD, AR, נסגר-X רצסיבי, נסגר-X דומיננטי</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">ארבעת דפוסי התורשה המנדליים הקלאסיים ותרשימי ההצלבה שלהם</text>
+<rect x="30" y="48" width="390" height="185" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="225" y="70" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">אוטוזומלי דומיננטי (Aa &#215; aa)</text>
+<rect x="80" y="82" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="101" y="99" font-size="10" text-anchor="middle">A</text>
+<rect x="122" y="82" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="143" y="99" font-size="10" text-anchor="middle">a</text>
+<rect x="38" y="108" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="59" y="125" font-size="10" text-anchor="middle">a</text>
+<rect x="80" y="108" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="101" y="125" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">Aa</text>
+<rect x="122" y="108" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="143" y="125" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">Aa</text>
+<rect x="38" y="134" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="59" y="151" font-size="10" text-anchor="middle">a</text>
+<rect x="80" y="134" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="101" y="151" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">Aa</text>
+<rect x="122" y="134" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="143" y="151" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">Aa</text>
+<text x="270" y="100" font-size="10" fill="#1f2937">50% מהילדים חולים</text>
+<text x="270" y="118" font-size="10" fill="#1f2937">בכל דור, שני המינים</text>
+<text x="270" y="136" font-size="10" fill="#1f2937">אקספרסיביות משתנה</text>
+<text x="270" y="154" font-size="10" fill="#1f2937">ופלייוטרופיה שכיחות</text>
+<text x="225" y="182" font-size="10" text-anchor="middle" fill="#1e3a8a">למשל: מרפן, הנטינגטון, NF1, ADPKD</text>
+<text x="225" y="200" font-size="10" text-anchor="middle" fill="#1e3a8a">אכונדרופלזיה, היפרכולסטרולמיה משפחתית</text>
+<text x="225" y="218" font-size="9.5" text-anchor="middle" fill="#1e3a8a">פגם בגן מבני &#8212; עותק פגום אחד מספיק</text>
+<rect x="440" y="48" width="390" height="185" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="635" y="70" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אוטוזומלי רצסיבי (Aa &#215; Aa)</text>
+<rect x="490" y="82" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="511" y="99" font-size="10" text-anchor="middle">A</text>
+<rect x="532" y="82" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="553" y="99" font-size="10" text-anchor="middle">a</text>
+<rect x="448" y="108" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="469" y="125" font-size="10" text-anchor="middle">A</text>
+<rect x="490" y="108" width="42" height="26" fill="#ecfdf5" stroke="#047857"/><text x="511" y="125" font-size="10" font-weight="700" text-anchor="middle" fill="#065f46">AA</text>
+<rect x="532" y="108" width="42" height="26" fill="#fffbeb" stroke="#b45309"/><text x="553" y="125" font-size="10" font-weight="700" text-anchor="middle" fill="#92400e">Aa</text>
+<rect x="448" y="134" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="469" y="151" font-size="10" text-anchor="middle">a</text>
+<rect x="490" y="134" width="42" height="26" fill="#fffbeb" stroke="#b45309"/><text x="511" y="151" font-size="10" font-weight="700" text-anchor="middle" fill="#92400e">Aa</text>
+<rect x="532" y="134" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="553" y="151" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">aa</text>
+<text x="680" y="100" font-size="10" fill="#1f2937">25% חולה, 50% נשא,</text>
+<text x="680" y="118" font-size="10" fill="#1f2937">25% בריא-לא-נשא</text>
+<text x="680" y="136" font-size="10" fill="#1f2937">לרוב חסר אנזימטי,</text>
+<text x="680" y="154" font-size="10" fill="#1f2937">דור אחד, &#8593; בקרבת-דם</text>
+<text x="635" y="182" font-size="10" text-anchor="middle" fill="#7f1d1d">למשל: סיסטיק פיברוזיס, אנמיה חרמשית, PKU,</text>
+<text x="635" y="200" font-size="10" text-anchor="middle" fill="#7f1d1d">טיי-זקס, תלסמיה, מחלת וילסון</text>
+<text x="635" y="218" font-size="9.5" text-anchor="middle" fill="#7f1d1d">אח בריא לילד חולה: 2/3 סיכוי להיות נשא</text>
+<rect x="30" y="245" width="390" height="185" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="225" y="267" font-size="12.5" font-weight="700" text-anchor="middle" fill="#92400e">נסגר-X רצסיבי (נשאית X&#775;X &#215; XY)</text>
+<rect x="80" y="279" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="101" y="296" font-size="10" text-anchor="middle">X</text>
+<rect x="122" y="279" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="143" y="296" font-size="10" text-anchor="middle">Y</text>
+<rect x="38" y="305" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="59" y="322" font-size="10" text-anchor="middle">X</text>
+<rect x="80" y="305" width="42" height="26" fill="#ecfdf5" stroke="#047857"/><text x="101" y="322" font-size="9" font-weight="700" text-anchor="middle" fill="#065f46">XX</text>
+<rect x="122" y="305" width="42" height="26" fill="#eff6ff" stroke="#2563eb"/><text x="143" y="322" font-size="9" font-weight="700" text-anchor="middle" fill="#1e3a8a">XY</text>
+<rect x="38" y="331" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="59" y="348" font-size="10" text-anchor="middle">X&#775;</text>
+<rect x="80" y="331" width="42" height="26" fill="#fffbeb" stroke="#b45309"/><text x="101" y="348" font-size="8.5" font-weight="700" text-anchor="middle" fill="#92400e">X&#775;X נשאית</text>
+<rect x="122" y="331" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="143" y="348" font-size="8.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">X&#775;Y חולה</text>
+<text x="270" y="297" font-size="10" fill="#1f2937">50% מהבנים חולים,</text>
+<text x="270" y="315" font-size="10" fill="#1f2937">50% מהבנות נשאיות</text>
+<text x="270" y="333" font-size="10" fill="#1f2937">אין העברה מזכר לזכר,</text>
+<text x="270" y="351" font-size="10" fill="#1f2937">מדלג דורות, חמור יותר בזכרים</text>
+<text x="225" y="380" font-size="10" text-anchor="middle" fill="#92400e">למשל: DMD/BMD, המופיליה A/B, חסר G6PD,</text>
+<text x="225" y="398" font-size="9.5" text-anchor="middle" fill="#92400e">פאברי, לש-נייהן, תסמונת האנטר</text>
+<text x="225" y="416" font-size="9.5" text-anchor="middle" fill="#92400e">טרנר (45,XO) &#8592; &#8593; סיכון לביטוי מחלה נסגרת-X</text>
+<rect x="440" y="245" width="390" height="185" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="635" y="267" font-size="12.5" font-weight="700" text-anchor="middle" fill="#4c1d95">נסגר-X דומיננטי (X&#775;X &#215; XY)</text>
+<rect x="490" y="279" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="511" y="296" font-size="10" text-anchor="middle">X</text>
+<rect x="532" y="279" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="553" y="296" font-size="10" text-anchor="middle">Y</text>
+<rect x="448" y="305" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="469" y="322" font-size="10" text-anchor="middle">X&#775;</text>
+<rect x="490" y="305" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="511" y="322" font-size="8" font-weight="700" text-anchor="middle" fill="#7f1d1d">X&#775;X חולה</text>
+<rect x="532" y="305" width="42" height="26" fill="#fef2f2" stroke="#b91c1c"/><text x="553" y="322" font-size="8" font-weight="700" text-anchor="middle" fill="#7f1d1d">X&#775;Y חולה</text>
+<rect x="448" y="331" width="42" height="26" fill="#f3f4f6" stroke="#9ca3af"/><text x="469" y="348" font-size="10" text-anchor="middle">X</text>
+<rect x="490" y="331" width="42" height="26" fill="#ecfdf5" stroke="#047857"/><text x="511" y="348" font-size="9" font-weight="700" text-anchor="middle" fill="#065f46">XX</text>
+<rect x="532" y="331" width="42" height="26" fill="#eff6ff" stroke="#2563eb"/><text x="553" y="348" font-size="9" font-weight="700" text-anchor="middle" fill="#1e3a8a">XY</text>
+<text x="680" y="297" font-size="10" fill="#1f2937">אם חולה: 50% מכלל</text>
+<text x="680" y="315" font-size="10" fill="#1f2937">הילדים חולים</text>
+<text x="680" y="333" font-size="10" fill="#1f2937">אב חולה: 100% מהבנות,</text>
+<text x="680" y="351" font-size="10" fill="#1f2937">0% מהבנים חולים</text>
+<text x="635" y="380" font-size="10" text-anchor="middle" fill="#4c1d95">למשל: תסמונת X שביר, תסמונת אלפורט,</text>
+<text x="635" y="398" font-size="9.5" text-anchor="middle" fill="#4c1d95">רככת היפופוספטמית נסגרת-X</text>
+<text x="635" y="416" font-size="9.5" text-anchor="middle" fill="#4c1d95">(בזבוז זרחה בטובולוס הפרוקסימלי)</text>
+</svg>
+
+<h3>5.1 מחלות אוטוזומליות דומיננטיות ורצסיביות עיקריות</h3>
+<table>
+  <thead><tr><th>דפוס תורשה</th><th>מחלות עיקריות</th></tr></thead>
+  <tbody>
+    <tr><td>אוטוזומלי דומיננטי</td><td>אכונדרופלזיה, ADPKD, פוליפוזיס אדנומטוטי משפחתי, היפרכולסטרולמיה משפחתית, טלנגיאקטזיה המורגית תורשתית (אוסלר-וובר-רנדו), ספרוציטוזיס תורשתי, הנטינגטון, לי-פראומני, מרפן, נאופלזיות אנדוקריניות מרובות, דיסטרופיה מיוטונית, NF1, NF2, טוברוס סקלרוזיס, פון היפל-לינדאו</td></tr>
+    <tr><td>אוטוזומלי רצסיבי</td><td>אלביניזם עורי-עיני, PKU, סיסטיק פיברוזיס, אנמיה חרמשית, מחלת וילסון, ספינגוליפידוזות (חוץ מפאברי), המוכרומטוזיס, מחלות אגירת גליקוגן, תלסמיה, מוקופוליסכרידוזות (חוץ מהאנטר), אטקסיית פרידרייך, תסמונת קרטגנר, ARPKD</td></tr>
+    <tr><td>נסגר-X רצסיבי</td><td>אגמאגלובולינמיה ע"ש ברוטון, דושן ובקר, פאברי, חסר G6PD, המופיליה A ו-B, תסמונת האנטר, לש-נייהן, אלביניזם עיני, חסר OTC, תסמונת ויסקוט-אולדריץ'</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> סיסטיק פיברוזיס — מגן ל"ריר עבה"</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>אוטוזומלי רצסיבי</b>, פגם בגן <b>CFTR</b> על כרומוזום 7 - לרוב מחיקה קטנה (<b>&#916;F508</b>, מחיקת חומצת אמינו בודדת, פנילאלנין 508). המחלה הגנטית הקטלנית השכיחה ביותר בקרב אנשים ממוצא אירופי. <b>CFTR</b> מקודד תעלת כלוריד תלוית-ATP: <b>מפרישה</b> Cl⁻ בריאות/GI, <b>סופגת-חזרה</b> Cl⁻ בבלוטות הזיעה (כיוון הפוך!). מחיקת Phe508 → חלבון <b>מקופל לא-תקין</b> → תובלה חלבונית לא-תקינה (לא מגיע לגולג'י/ממברנה) → <b>נעדר מממברנת התא</b> → ↓הפרשת Cl⁻ (וגם H₂O ו-HCO₃⁻) → ↑ ספיגת-חזרה מפצה של Na⁺ דרך תעלות ENaC → ↑ ספיגת H₂O → <b>ריר סמיך באופן חריג</b> בריאות ומערכת העיכול. ↑ ספיגת Na⁺ גם יוצרת הפרש-פוטנציאל טרנס-אפיתליאלי שלילי יותר.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>אבחון</b>: ↑ ריכוז כלוריד בבדיקת <b>זיעה עם פילוקרפין</b> (בבלוטת הזיעה CFTR אמור לספוג Cl⁻ בחזרה - אם הוא לא עובד, Cl⁻ נשאר בזיעה). יכול להתבטא עם אלקלוזיס-התכווצות והיפוקלמיה (השפעות ECF דומות למשתן-לולאה, עקב איבוד H₂O/Na⁺ בזיעה ואיבוד כלייתי מקביל של K⁺/H⁺). ↑ טריפסינוגן אימונוריאקטיבי (סקר יילודים) עקב חסימת צינור הלבלב. <b>סיבוכים</b>: זיהומים ריאתיים חוזרים (<i>S. aureus</i> בינקות, <i>P. aeruginosa</i> בבגרות, ABPA), ברונכיטיס כרונית וברונכיאקטזיס, פוליפים באף, אצבעות מקוש; אי-ספיקה לבלבית עם תת-ספיגה וסטאטוריאה וחסר ויטמינים מסיסי-שומן (A,D,E,K), מקוניום איליאוס ביילודים; אי-פוריות בגברים (העדר vas deferens), תת-פוריות בנשים (ריר צווארי סמיך).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>טיפול</b>: פיזיותרפיה נשימתית, דורנאז אלפא באירוסול (DNase) ומי-מלח היפרטוני שאיפתי - לפינוי ריר. אזיתרומיצין למניעת החמרות. איבופרופן להשפעה אנטי-דלקתית. תחליפי אנזימי לבלב (פנקרליפאז) לאי-ספיקה לבלבית. <b>מווסתי CFTR</b> - <b>פוטנציאטורים</b> (למשל ivaCaFTor) משאירים את שער התעלה פתוח; <b>מתקנים (correctors)</b> (למשל lumaCaFTor, tezaCaFTor) מסייעים לחלבון להתקפל נכון ולהגיע לממברנה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 380" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>מנגנון CFTR &#916;F508: מחלבון מעוות עד ריר סמיך</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">סיסטיק פיברוזיס: איך מחיקת חומצת אמינו אחת (Phe508) גורמת להפרשות סמיכות</text>
+<rect x="30" y="48" width="380" height="130" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="220" y="70" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">CFTR תקין</text>
+<rect x="60" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#047857"/>
+<text x="105" y="103" font-size="9.5" text-anchor="middle" fill="#065f46">קיפול תקין</text>
+<polygon points="155,99 180,92 180,106" fill="#4b5563"/>
+<rect x="185" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#047857"/>
+<text x="230" y="103" font-size="9" text-anchor="middle" fill="#065f46">ER &#8592; גולג'י &#8592; ממברנה</text>
+<polygon points="280,99 305,92 305,106" fill="#4b5563"/>
+<rect x="310" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#047857"/>
+<text x="355" y="98" font-size="9" text-anchor="middle" fill="#065f46">תעלת Cl&#8315;</text>
+<text x="355" y="111" font-size="9" text-anchor="middle" fill="#065f46">בפני התא</text>
+<text x="220" y="140" font-size="10" text-anchor="middle" fill="#065f46">Cl&#8315; מופרש (ריאה/GI); Cl&#8315; נספג-חזרה (בלוטת זיעה)</text>
+<text x="220" y="158" font-size="10" text-anchor="middle" fill="#065f46">H&#8322;O עוקב אחר Cl&#8315; &#8592; ריר דק ותקין</text>
+<rect x="450" y="48" width="380" height="130" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="640" y="70" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">CFTR מוטנטי &#916;F508</text>
+<rect x="480" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#b91c1c"/>
+<text x="525" y="98" font-size="9" text-anchor="middle" fill="#7f1d1d">Phe508 נמחק</text>
+<text x="525" y="111" font-size="9" text-anchor="middle" fill="#7f1d1d">&#8592; מתקפל לא-תקין</text>
+<polygon points="575,99 600,92 600,106" fill="#4b5563"/>
+<rect x="605" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#b91c1c"/>
+<text x="650" y="98" font-size="9" text-anchor="middle" fill="#7f1d1d">נתקע ב-ER &#8592;</text>
+<text x="650" y="111" font-size="9" text-anchor="middle" fill="#7f1d1d">מפורק</text>
+<polygon points="700,99 725,92 725,106" fill="#4b5563"/>
+<rect x="730" y="82" width="90" height="34" rx="6" fill="#fff" stroke="#b91c1c"/>
+<text x="775" y="98" font-size="9" text-anchor="middle" fill="#7f1d1d">נעדר מממברנת</text>
+<text x="775" y="111" font-size="9" text-anchor="middle" fill="#7f1d1d">התא</text>
+<text x="640" y="140" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">&#8595; הפרשת Cl&#8315; (וגם H&#8322;O, HCO&#8323;&#8315;)</text>
+<text x="640" y="158" font-size="10" text-anchor="middle" fill="#7f1d1d">ספיגת-חזרה מפצה של Na&#8314; דרך ENaC</text>
+<path d="M 430 178 L 430 205" stroke="#4b5563" stroke-width="2.5" marker-end="url(#cftrArrHeMain)"/>
+<defs><marker id="cftrArrHeMain" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto"><polygon points="0,0 5,9 10,0" fill="#4b5563"/></marker></defs>
+<rect x="130" y="210" width="600" height="60" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="430" y="233" font-size="11.5" font-weight="700" text-anchor="middle" fill="#92400e">&#8593; ספיגת Na&#8314; &#8592; &#8593; ספיגת H&#8322;O &#8592; ריר סמיך באופן חריג, מיובש</text>
+<text x="430" y="252" font-size="10" text-anchor="middle" fill="#92400e">מופרש לריאות, מערכת העיכול, צינורות הלבלב, צינור הזרע</text>
+<rect x="30" y="285" width="380" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="220" y="307" font-size="11" font-weight="700" text-anchor="middle" fill="#1e3a8a">בלוטת זיעה: כיוון הפוך</text>
+<text x="220" y="325" font-size="10" text-anchor="middle" fill="#1f2937">CFTR תקין סופג את Cl&#8315; בצינורות</text>
+<text x="220" y="343" font-size="10" font-weight="700" text-anchor="middle" fill="#1e3a8a">אובדן CFTR &#8592; &#8593;Cl&#8315; נשאר בזיעה</text>
+<text x="220" y="358" font-size="9.5" text-anchor="middle" fill="#1f2937">&#8592; אבחנתי: &#8593; כלוריד בבדיקת זיעה</text>
+<rect x="450" y="285" width="380" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="640" y="307" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">תרופות CFTR modulator</text>
+<text x="640" y="325" font-size="10" text-anchor="middle" fill="#1f2937">Potentiators (ivacaftor): משאירות את השער פתוח</text>
+<text x="640" y="343" font-size="10" text-anchor="middle" fill="#1f2937">Correctors (lumacaftor/tezacaftor): מתקנות קיפול תלת-מימדי</text>
+<text x="640" y="358" font-size="9.5" text-anchor="middle" fill="#1f2937">כך שהחלבון יכול לעבור לממברנה</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/-DZ-a-yEnQI" title="Cystic Fibrosis Pathophysiology" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על מנגנון הפתופיזיולוגיה של סיסטיק פיברוזיס. מקור: <a href="https://www.youtube.com/watch?v=-DZ-a-yEnQI" target="_blank">YouTube</a></p>
+
+<h2><span class="num">7</span> דיסטרופיות שרירים</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>דושן</b> - נסגר-X רצסיבי, לרוב <b>מחיקות פריימשיפט</b> או מוטציות שטות (יכול גם לנבוע משגיאות שחבור) בגן <b>הדיסטרופין</b> (DMD) - הגן <b>הגדול ביותר</b> בגנום האנושי המקודד חלבון → ↑ סיכוי למוטציה ספונטנית. הדיסטרופין מעגן סיבי שריר לרקמת החיבור החוץ-תאית (בעיקר בשריר שלד ולב) → אבדנו → <b>מיונקרוזיס</b> מתקדם. פרוטאין <b>חסר/קטוע</b> → חולשה שמתחילה בחגורת האגן ומתקדמת קרנית; <b>פסאודוהיפרטרופיה</b> של שריר השוק (החלפה בשומן/פיברוזיס); הליכה מדדה; <b>סימן גאוורס</b> (שימוש בגפיים עליונות כדי לעמוד - לא ספציפי לדושן, מופיע גם בדלקות שריר). הופעה לפני גיל 5; קרדיומיופתיה מורחבת = סיבת מוות שכיחה. ↑ CK ואלדולאז; בדיקה גנטית מאשרת.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>בקר</b> - גם נסגר-X רצסיבי, אך מוטציות <b>לא-פריימשיפט</b> (חלבון חלקית-פעיל במקום קטוע לגמרי) - קל יותר, הופעה בגיל ההתבגרות/בגרות מוקדמת. שתי המחלות יכולות לנבוע ממחיקות (⅔ מהמקרים כרוכים במחיקות המקיפות אקסון אחד או יותר). <b>דיסטרופיה מיוטונית</b> - <b>אוטוזומלי דומיננטי</b>, הופעה בגיל 20-30; חזרת CTG בגן DMPK → ביטוי לא-תקין של אנזים מיוטונין-קינאז → מיוטוניה בפרקוסיה (למשל קושי לשחרר יד מלחיצת-יד), בזבוז שריר, קטרקט, ניוון אשכים, קרחת פרונטלית, הפרעות קצב. ביופסיית שריר: סיבי-טבעת וגרעינים מרכזיים.
+  </p>
+</div>
+
+<div class="figure-pair">
+  <figure>
+    <span class="label abnormal">פסאודוהיפרטרופיה</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Duchenne_Muscular_Dystrophy_Calf_muscle_pseudohypertrophy.JPG?width=420" alt="פסאודוהיפרטרופיה של שריר השוק בדושן">
+    <figcaption>פסאודוהיפרטרופיה קלאסית של שרירי השוק בדושן - החלפת סיבי שריר ברקמת שומן/חיבור. מקור: <a href="https://commons.wikimedia.org/wiki/Category:Duchenne_muscular_dystrophy" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — דיסטרופיות שרירים</h4>
+  <p><b>"Duchenne = Deleted dystrophin"</b>. <b>Becker is Better</b> - מוטציה לא-פריימשיפט, חלבון חלקי, מהלך מתון. דיסטרופיה מיוטונית: <b>"Cataracts, Toupee, Gonadal atrophy"</b> (CTG!).</p>
+</div>
+
+<h2><span class="num">8</span> מחלות מיטוכונדריאליות, רט, ו-X שביר</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>מחלות מיטוכונדריאליות</b> - נדירות, נובעות משיבוש בזרחון-חמצוני; פוגעות בעיקר ברקמות בעלות צריכת אנרגיה גבוהה (CNS, שריר שלד). <b>מיופתיות מיטוכונדריאליות</b> כוללות <b>MELAS</b> (אנצפלומיופתיה מיטוכונדריאלית עם חמצת לקטית ואירועים דמויי-שבץ) ו<b>MERRF</b> (אפילפסיה מיוקלונית עם סיבים אדומים מרוטשים) - במיקרוסקופ אור: סיבים אדומים מרוטשים (ריבוי מיטוכונדריה מפצה); במיקרוסקופ אלקטרונים: תכלילים גבישיים מיטוכונדריאליים. <b>נוירופתיה אופטית תורשתית של לבר</b> - מוטציות במתחם I של שרשרת הנשימה → מוות נוירוני ברשתית ובעצב הראייה → אבדן ראייה דו-צדדי תת-חריף בגיל ההתבגרות/בגרות צעירה (זכרים>נקבות), לרוב בלתי-הפיך.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>תסמונת רט</b> - ספוראדית, מוטציה <b>דה-נובו</b> ב-MECP2 על כרומוזום X, כמעט אך ורק בנקבות (קטלנית עוברית בזכרים). התפתחות תקינה ראשונית (6-18 חודשים) ואז <b>נסיגה</b> ("retturn") מוטורית/מילולית/קוגניטיבית, אטקסיה, פרכוסים, סקוליוזיס, ותנועות סטראוטיפיות של "שפשוף ידיים".
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>תסמונת X שביר</b> - תורשה נסגרת-X <b>לא-טיפוסית</b>: חזרות תלת-נוקלאוטידיות (CGG)ₙ בגן <b>FMR1</b> → היפר-מתילציה של שאריות ציטוזין → ↓ ביטוי. הגורם השכיח ביותר <b>לפיגור שכלי תורשתי</b> (דאון שכיח יותר בכלל, אך לרוב ספוראדי לא תורשתי). ההרחבה מתרחשת ב<b>אוגנזה</b> ("Fragile EGG" - CGG ואוגנזה). <b>פרה-מוטציה</b> (50-200 חזרות) → רעד, אטקסיה, אי-ספיקה שחלתית ראשונית. <b>מוטציה מלאה</b> (מעל 200 חזרות) → מקרואורכידיזם פוסט-פובר-טלי, פנים מוארכות עם לסת גדולה, אוזניים בולטות, אוטיזם, צניחת מסתם מיטרלי, פרקים היפר-ניידים. פגיעה עצמית שכיחה - עלולה להתבלבל עם תסמונת לש-נייהן.
+  </p>
+</div>
+
+<h2><span class="num">9</span> חזרות תלת-נוקלאוטידיות ואנטיסיפציה</h2>
+<div class="mechanism">
+  <p class="chain">
+    מנגנון משותף: <b>"החלקה" של DNA פולימראז</b> באזור חזרות (למשל CAG, CTG, CGG, GAA) במהלך שכפול → רצף החזרות <b>מתארך</b> בכל העברה לדור הבא → ככל שיש יותר חזרות, כך המחלה חמורה יותר ומופיעה מוקדם יותר - זו <b>אנטיסיפציה</b>. ארבע המחלות הקלאסיות: <b>הנטינגטון</b> (CAG)ₙ, אוטוזומלי דומיננטי; <b>דיסטרופיה מיוטונית</b> (CTG)ₙ, אוטוזומלי דומיננטי; <b>X שביר</b> (CGG)ₙ, נסגר-X (לא-טיפוסי); <b>אטקסיית פרידרייך</b> (GAA)ₙ, אוטוזומלי רצסיבי (יוצאת-הדופן היחידה - AR ולא AD, ולמרות זאת שייכת למשפחה הזו).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>הרחבת חזרות תלת-נוקלאוטידיות ואנטיסיפציה גנטית</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">אנטיסיפציה: חזרות מתרחבות מדור לדור &#8592; הופעה מוקדמת יותר, חומרה גוברת</text>
+<rect x="30" y="48" width="180" height="150" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="120" y="70" font-size="11.5" font-weight="700" text-anchor="middle" fill="#065f46">דור 1</text>
+<rect x="55" y="82" width="130" height="24" fill="#fff" stroke="#047857"/>
+<text x="120" y="99" font-size="9.5" text-anchor="middle" fill="#065f46">(CGG)&#8319;&#8309; תקין</text>
+<text x="120" y="125" font-size="9.5" text-anchor="middle" fill="#1f2937">מעט חזרות</text>
+<text x="120" y="143" font-size="10" font-weight="700" text-anchor="middle" fill="#065f46">בריא</text>
+<text x="120" y="165" font-size="9" text-anchor="middle" fill="#4b5563">החזרות עלולות "להחליק"</text>
+<text x="120" y="180" font-size="9" text-anchor="middle" fill="#4b5563">ולהתרחב בשכפול (בעיקר</text>
+<text x="120" y="193" font-size="9" text-anchor="middle" fill="#4b5563">באוגנזה עבור FMR1)</text>
+<polygon points="215,120 245,113 245,127" fill="#4b5563"/>
+<rect x="255" y="48" width="180" height="150" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="345" y="70" font-size="11.5" font-weight="700" text-anchor="middle" fill="#92400e">דור 2</text>
+<rect x="270" y="82" width="150" height="24" fill="#fff" stroke="#b45309"/>
+<text x="345" y="99" font-size="9.5" text-anchor="middle" fill="#92400e">(CGG)&#8319;&#8309;&#8319;&#8309; פרה-מוטציה</text>
+<text x="345" y="125" font-size="9.5" text-anchor="middle" fill="#1f2937">50&#8211;200 חזרות</text>
+<text x="345" y="143" font-size="10" font-weight="700" text-anchor="middle" fill="#92400e">תסמינים קלים/מאוחרים</text>
+<text x="345" y="165" font-size="9" text-anchor="middle" fill="#4b5563">למשל, פרה-מוטציית X שביר:</text>
+<text x="345" y="180" font-size="9" text-anchor="middle" fill="#4b5563">רעד, אטקסיה, אי-ספיקה</text>
+<text x="345" y="193" font-size="9" text-anchor="middle" fill="#4b5563">שחלתית</text>
+<polygon points="440,120 470,113 470,127" fill="#4b5563"/>
+<rect x="480" y="48" width="200" height="150" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="580" y="70" font-size="11.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">דור 3</text>
+<rect x="495" y="82" width="170" height="24" fill="#fff" stroke="#b91c1c"/>
+<text x="580" y="99" font-size="9.5" text-anchor="middle" fill="#7f1d1d">(CGG)&gt;&#8322;&#8320;&#8320; מוטציה מלאה</text>
+<text x="580" y="125" font-size="9.5" text-anchor="middle" fill="#1f2937">מעל 200 חזרות</text>
+<text x="580" y="143" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">מחלה מוקדמת וחמורה</text>
+<text x="580" y="165" font-size="9" text-anchor="middle" fill="#4b5563">היפר-מתילציה &#8592; השתקת הגן</text>
+<text x="580" y="180" font-size="9" text-anchor="middle" fill="#4b5563">&#8592; פיגור שכלי, מקרואורכידיזם,</text>
+<text x="580" y="193" font-size="9" text-anchor="middle" fill="#4b5563">פנים מוארכות, אוזניים גדולות</text>
+<rect x="700" y="48" width="130" height="150" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="765" y="70" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">חזרה / מחלה /</text>
+<text x="765" y="84" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">תורשה</text>
+<text x="765" y="104" font-size="8.5" text-anchor="middle" fill="#1f2937">הנטינגטון (CAG)n &#8212; AD</text>
+<text x="765" y="122" font-size="8.5" text-anchor="middle" fill="#1f2937">דיסטרופיה מיוטונית</text>
+<text x="765" y="135" font-size="8.5" text-anchor="middle" fill="#1f2937">(CTG)n &#8212; AD</text>
+<text x="765" y="153" font-size="8.5" text-anchor="middle" fill="#1f2937">X שביר (CGG)n &#8212; XD</text>
+<text x="765" y="171" font-size="8.5" text-anchor="middle" fill="#1f2937">אטקסיית פרידרייך</text>
+<text x="765" y="184" font-size="8.5" text-anchor="middle" fill="#1f2937">(GAA)n &#8212; AR</text>
+<rect x="30" y="215" width="800" height="65" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="430" y="238" font-size="11.5" font-weight="700" text-anchor="middle" fill="#4c1d95">אנטיסיפציה גנטית = חומרת המחלה &#8593; וגיל ההופעה &#8595; בדורות עוקבים</text>
+<text x="430" y="257" font-size="10" text-anchor="middle" fill="#4c1d95">מנגנון: "החלקה" של DNA פולימראז בשכפול &#8592; רצף החזרות מתארך בכל העברה</text>
+<text x="430" y="273" font-size="9" text-anchor="middle" fill="#4c1d95">מנמוניקה: "Caudate has &#8595;ACh and &#8595;GABA" (הנטינגטון) &#8226; "Chin, Giant Gonads" (X שביר) &#8226; "Ataxic GAAit" (פרידרייך)</text>
+</svg>
+
+<h2><span class="num">10</span> אנאופלואידיות אוטוזומליות — טריזומיות</h2>
+<div class="mechanism">
+  <p class="chain">
+    שכיחות: דאון (21) > אדוארדס (18) > פטאו (13). <b>מונוזומיה אוטוזומלית מלאה לא-תואמת חיים כלל</b> (סיכוי גבוה לביטוי תכונות רצסיביות בלי כרומוזום שני שיכסה עליהן). 95% מהמקרים נובעים מ<b>אי-הפרדה מייוטית</b> - לרוב במיוזה I (עולה מאוד עם גיל אמהי מתקדם: מ-1:1500 בנשים מתחת לגיל 20, ל-1:25 מעל גיל 45); 4% מטרנסלוקציה רוברטסונית לא-מאוזנת (בדרך כלל בין כרומוזומים 14 ו-21); 1% משגיאה מיטוטית פוסט-הפריה (מוזאיקה).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 370" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>אי-הפרדה מייוטית: שגיאות במיוזה I מול מיוזה II</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">אי-הפרדה: כרומוזומים הומולוגיים/כרומטידות אחיות לא נפרדים</text>
+<rect x="30" y="48" width="380" height="270" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="220" y="70" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אי-הפרדה במיוזה I</text>
+<text x="220" y="88" font-size="9.5" text-anchor="middle" fill="#7f1d1d">זוג הומולוגי לא נפרד</text>
+<circle cx="140" cy="120" r="9" fill="#2563eb"/><circle cx="160" cy="120" r="9" fill="#2563eb"/>
+<circle cx="280" cy="120" r="9" fill="#b45309"/><circle cx="300" cy="120" r="9" fill="#b45309"/>
+<text x="220" y="140" font-size="9" text-anchor="middle" fill="#4b5563">שני ההומולוגים לאותו קוטב (שגיאת MI)</text>
+<path d="M 150 150 L 150 180" stroke="#4b5563" stroke-width="2" marker-end="url(#ndArrHeMain1)"/>
+<path d="M 290 150 L 290 180" stroke="#4b5563" stroke-width="2" marker-end="url(#ndArrHeMain1)"/>
+<defs><marker id="ndArrHeMain1" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto"><polygon points="0,0 5,9 10,0" fill="#4b5563"/></marker></defs>
+<text x="150" y="196" font-size="9" text-anchor="middle" fill="#374151">MII ממשיכה תקין</text>
+<text x="290" y="196" font-size="9" text-anchor="middle" fill="#374151">MII ממשיכה תקין</text>
+<rect x="55" y="215" width="330" height="90" rx="6" fill="#fff" stroke="#9ca3af"/>
+<text x="220" y="233" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">4 תאי מין נוצרים:</text>
+<circle cx="100" cy="255" r="11" fill="#fecaca" stroke="#b91c1c"/><text x="100" y="259" font-size="8.5" text-anchor="middle" fill="#7f1d1d">n+1</text>
+<circle cx="160" cy="255" r="11" fill="#fecaca" stroke="#b91c1c"/><text x="160" y="259" font-size="8.5" text-anchor="middle" fill="#7f1d1d">n+1</text>
+<circle cx="280" cy="255" r="11" fill="#e5e7eb" stroke="#6b7280"/><text x="280" y="259" font-size="8.5" text-anchor="middle" fill="#374151">n&#8722;1</text>
+<circle cx="340" cy="255" r="11" fill="#e5e7eb" stroke="#6b7280"/><text x="340" y="259" font-size="8.5" text-anchor="middle" fill="#374151">n&#8722;1</text>
+<text x="220" y="285" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">2 תאי טריזומיה + 2 תאי מונוזומיה</text>
+<text x="220" y="300" font-size="9" text-anchor="middle" fill="#7f1d1d">(אף תא מין תקין)</text>
+<rect x="450" y="48" width="380" height="270" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="640" y="70" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">אי-הפרדה במיוזה II</text>
+<text x="640" y="88" font-size="9.5" text-anchor="middle" fill="#1e3a8a">MI תקינה; כרומטידות אחיות לא נפרדות</text>
+<circle cx="560" cy="120" r="9" fill="#2563eb"/>
+<circle cx="700" cy="115" r="9" fill="#047857"/><circle cx="700" cy="130" r="9" fill="#047857"/>
+<text x="640" y="150" font-size="9" text-anchor="middle" fill="#4b5563">תא בת אחד מתחלק תקין, השני לא (שגיאת MII)</text>
+<rect x="475" y="215" width="330" height="90" rx="6" fill="#fff" stroke="#9ca3af"/>
+<text x="640" y="233" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">4 תאי מין נוצרים:</text>
+<circle cx="520" cy="255" r="11" fill="#d1fae5" stroke="#047857"/><text x="520" y="259" font-size="8.5" text-anchor="middle" fill="#065f46">n</text>
+<circle cx="580" cy="255" r="11" fill="#d1fae5" stroke="#047857"/><text x="580" y="259" font-size="8.5" text-anchor="middle" fill="#065f46">n</text>
+<circle cx="690" cy="255" r="11" fill="#e5e7eb" stroke="#6b7280"/><text x="690" y="259" font-size="8.5" text-anchor="middle" fill="#374151">n&#8722;1</text>
+<circle cx="750" cy="255" r="11" fill="#fecaca" stroke="#b91c1c"/><text x="750" y="259" font-size="8.5" text-anchor="middle" fill="#7f1d1d">n+1</text>
+<text x="640" y="285" font-size="10" font-weight="700" text-anchor="middle" fill="#1e3a8a">2 תקינים + 1 מונוזומיה + 1 טריזומיה</text>
+<text x="640" y="300" font-size="9" text-anchor="middle" fill="#1e3a8a">(השפעה קלה יותר מאשר שגיאת MI)</text>
+<rect x="30" y="330" width="800" height="30" rx="6" fill="#fffbeb" stroke="#fcd34d"/>
+<text x="430" y="350" font-size="10.5" font-weight="700" text-anchor="middle" fill="#92400e">תסמונת דאון: 95% אי-הפרדה (לרוב MI, &#8593; עם גיל אמהי), 4% טרנסלוקציה רוברטסונית, 1% מוזאיקה (לאחר הפריה)</text>
+</svg>
+
+<h3>10.1 תסמונת דאון (טריזומיה 21)</h3>
+<div class="mechanism">
+  <p class="chain">
+    ממצאים: פיגור שכלי, פנים שטוחות, קפלים אפיקנטליים בולטים, קפל כף-יד בודד (palmar), אצבע חמישית מעוקלת פנימה, מרווח בין הבוהן הראשונה לשנייה, אטרזיה תריסרית, מחלת הירשפרונג, מחלת לב מולדת (למשל AVSD), כתמי ברושפילד (כתמים לבנבנים בהיקף הקשתית). קשור לאלצהיימר מוקדם (כרומוזום 21 מקודד APP - חלבון קדם-עמילואיד) ו↑ סיכון ל-AML/ALL. <b>6 ה-A</b>: <b>A</b>tlantoaxial instability, <b>A</b>dvanced maternal age, <b>A</b>tresia (תריסרית), <b>A</b>trioventricular septal defect, <b>A</b>lzheimer (מוקדם), <b>A</b>ML (מתחת 5)/<b>A</b>LL (מעל 5).
+  </p>
+</div>
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Down_Syndrome_Karyotype.png?width=420" alt="קריוטיפ טריזומיה 21 בתסמונת דאון">
+    <figcaption>קריוטיפ המדגים עותק שלישי של כרומוזום 21 בתסמונת דאון. מקור: <a href="https://commons.wikimedia.org/wiki/Category:Down_syndrome" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<h3>10.2 תסמונת אדוארדס (טריזומיה 18) ותסמונת פטאו (טריזומיה 13)</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>אדוארדס</b> - "PRINCE Edward": <b>P</b>rominent occiput, <b>R</b>ocker-bottom feet, <b>I</b>ntellectual disability, <b>N</b>ondisjunction, <b>C</b>lenched fists עם אצבעות חופפות, <b>E</b>ars נמוכות, מיקרוגנתיה, מחלת לב מולדת (למשל VSD), אומפלוצלה, מיילומנינגוצלה. מוות לרוב עד גיל שנה. הטריזומיה השנייה בשכיחותה בלידות חי (אחרי דאון).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>פטאו</b> - פיגור שכלי קשה, רגליים דמויות-נדנדה, מיקרופתלמיה, מיקרוצפליה, שפה/חיך שסועים, הולופרוזאנצפליה, פולידקטיליה, אפלזיה עורית, מחלת לב מולדת, מחלת כליות פוליציסטית, אומפלוצלה. פגם בהתמזגות המזודרם הפרה-כורדלי → פגמי קו-אמצע. מוות לרוב עד גיל שנה.
+  </p>
+</div>
+
+<h3>10.3 טבלאות סקר פרנטלי</h3>
+<table>
+  <thead><tr><th>טריזומיה</th><th>סקר שליש 1: β-hCG</th><th>סקר שליש 1: PAPP-A</th></tr></thead>
+  <tbody>
+    <tr><td>21 (דאון)</td><td>↑</td><td>↓</td></tr>
+    <tr><td>18 (אדוארדס)</td><td>↓</td><td>↓</td></tr>
+    <tr><td>13 (פטאו)</td><td>↓</td><td>↓</td></tr>
+  </tbody>
+</table>
+<table>
+  <thead><tr><th>טריזומיה</th><th>hCG</th><th>Inhibin A</th><th>Estriol</th><th>AFP</th></tr></thead>
+  <tbody>
+    <tr><td>21 (דאון)</td><td>↑</td><td>↑</td><td>↓</td><td>↓</td></tr>
+    <tr><td>18 (אדוארדס)</td><td>↓</td><td>— / ↓</td><td>↓</td><td>↓</td></tr>
+    <tr><td>13 (פטאו)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </tbody>
+</table>
+<p style="font-size:14.5px;color:var(--sub)">בדאון, בדיקת אולטרסאונד שליש-ראשון מראה לרוב ↑ שקיפות עורפית ועצם אף היפופלסטית; "המרקרים גבוהים למעלה" - ↑hCG, ↑inhibin. באדוארדס, כל סמן סקר יורד.</p>
+
+<h2><span class="num">11</span> טרנסלוקציה רוברטסונית ותסמונת קרי-דו-שאט</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>טרנסלוקציה רוברטסונית</b> - סוג הטרנסלוקציה השכיח ביותר; מתרחשת כש<b>שתי הזרועות הארוכות</b> של שני כרומוזומים <b>אקרוצנטריים</b> (צנטרומר קרוב לקצה) מתמזגות בצנטרומר, ו<b>שתי הזרועות הקצרות</b> אובדות. בדרך כלל מעורבים כרומוזומים 13, 14, 15, 21, 22. <b>טרנסלוקציה מאוזנת</b> (ללא רווח/אובדן משמעותי של חומר גנטי) - בדרך כלל <b>פנוטיפ תקין</b>. <b>טרנסלוקציה לא-מאוזנת</b> (חומר גנטי חסר/עודף) - יכולה לגרום להפלה, לידת מת, וחוסר איזון כרומוזומלי (למשל דאון, פטאו).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>מנגנון הטרנסלוקציה הרוברטסונית</title>
+<text x="430" y="24" font-size="13.5" font-weight="700" text-anchor="middle" fill="#1f2937">טרנסלוקציה רוברטסונית: שני כרומוזומים אקרוצנטריים מתמזגים בצנטרומר</text>
+<rect x="30" y="50" width="230" height="150" rx="8" fill="#f3f4f6" stroke="#9ca3af" stroke-width="1.5"/>
+<text x="145" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">שני כרומוזומים אקרוצנטריים</text>
+<text x="145" y="88" font-size="12" font-weight="700" text-anchor="middle" fill="#1f2937">תקינים (למשל 14 ו-21)</text>
+<rect x="70" y="100" width="16" height="60" rx="6" fill="#2563eb"/>
+<circle cx="78" cy="112" r="4" fill="#1e3a8a"/>
+<text x="78" y="175" font-size="9" text-anchor="middle" fill="#1e3a8a">כרומ' 14</text>
+<rect x="160" y="100" width="16" height="60" rx="6" fill="#b45309"/>
+<circle cx="168" cy="112" r="4" fill="#78350f"/>
+<text x="168" y="175" font-size="9" text-anchor="middle" fill="#92400e">כרומ' 21</text>
+<text x="145" y="190" font-size="9" text-anchor="middle" fill="#4b5563">צנטרומר קרוב לקצה; זרועות קצרות זעירות</text>
+<polygon points="270,120 300,113 300,127" fill="#4b5563"/>
+<text x="285" y="105" font-size="9.5" text-anchor="middle" fill="#4b5563">היתוך</text>
+<text x="285" y="145" font-size="9.5" text-anchor="middle" fill="#4b5563">בצנטרומר</text>
+<rect x="310" y="50" width="230" height="150" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="425" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">תוצר היתוך רוברטסוני</text>
+<text x="425" y="88" font-size="10" text-anchor="middle" fill="#065f46">זרועות ארוכות מותכות; שתי הזרועות הקצרות אבדו</text>
+<rect x="395" y="105" width="20" height="70" rx="8" fill="#6d28d9"/>
+<circle cx="405" cy="140" r="5" fill="#4c1d95"/>
+<text x="405" y="192" font-size="9" text-anchor="middle" fill="#4c1d95">der(14;21)</text>
+<polygon points="550,120 580,113 580,127" fill="#4b5563"/>
+<rect x="590" y="50" width="240" height="150" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="710" y="72" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">נשא: סה"כ 45 כרומוזומים</text>
+<text x="710" y="90" font-size="10" text-anchor="middle" fill="#92400e">מאוזן &#8212; אין רווח/אובדן משמעותי</text>
+<text x="710" y="105" font-size="10" text-anchor="middle" fill="#92400e">של חומר גנטי</text>
+<text x="710" y="125" font-size="10.5" font-weight="700" text-anchor="middle" fill="#92400e">נשא בעל פנוטיפ תקין</text>
+<text x="710" y="145" font-size="10" text-anchor="middle" fill="#92400e">אך במיוזה עלול ליצור</text>
+<text x="710" y="163" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">תאי מין לא-מאוזנים</text>
+<text x="710" y="181" font-size="9.5" text-anchor="middle" fill="#7f1d1d">&#8592; הפלה, או תסמונת דאון/פטאו</text>
+<rect x="30" y="220" width="800" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="430" y="243" font-size="11.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">סוג הטרנסלוקציה השכיח ביותר &#8212; בדרך כלל מעורבים כרומוזומים 13, 14, 15, 21, 22</text>
+<text x="430" y="263" font-size="10.5" text-anchor="middle" fill="#7f1d1d">נשא טרנסלוקציה מאוזנת &#8592; פנוטיפ תקין, אך &#8593; סיכון לתאי מין לא-מאוזנים בצאצאים</text>
+<text x="430" y="283" font-size="10.5" text-anchor="middle" fill="#7f1d1d">טרנסלוקציה לא-מאוזנת (חומר גנטי עודף/חסר) &#8592; הפלה, לידת מת, או טריזומיה (כ-4% מתסמונת דאון דרך der(14;21))</text>
+<text x="430" y="300" font-size="9.5" text-anchor="middle" fill="#7f1d1d">לא קשור לסיכון התלוי בגיל אמהי של אי-הפרדה &#8592; עלול לחזור ללא קשר לגיל האם</text>
+</svg>
+
+<p class="chain" style="margin-top:10px"><b>תסמונת קרי-דו-שאט</b> ("בכי של חתול") - מחיקה מולדת בזרוע הקצרה של כרומוזום 5 (46,XX או XY, 5p−). ממצאים: מיקרוצפליה, פיגור שכלי בינוני-קשה, בכי בגובה-צליל גבוה, קפלים אפיקנטליים, פגמים לבביים (VSD). <span class="term" dir="ltr">"I cry when I am Very SaD"</span> (5p−).</p>
+
+<h2><span class="num">12</span> הפרעות גנטיות לפי כרומוזום — טבלת ריכוז</h2>
+<table>
+  <thead><tr><th>כרומוזום</th><th>דוגמאות נבחרות</th></tr></thead>
+  <tbody>
+    <tr><td>3</td><td>פון היפל-לינדאו, קרצינומה תאי כליה</td></tr>
+    <tr><td>4</td><td>ADPKD (PKD2), אכונדרופלזיה, הנטינגטון</td></tr>
+    <tr><td>5</td><td>קרי-דו-שאט, פוליפוזיס אדנומטוטי משפחתי</td></tr>
+    <tr><td>6</td><td>המוכרומטוזיס (HFE)</td></tr>
+    <tr><td>7</td><td>תסמונת ויליאמס, סיסטיק פיברוזיס</td></tr>
+    <tr><td>9</td><td>אטקסיית פרידרייך, טוברוס סקלרוזיס (TSC1)</td></tr>
+    <tr><td>11</td><td>גידול וילמס, פגמי בטא-גלובין (אנמיה חרמשית, בטא-תלסמיה), MEN1, אטקסיה-טלנגיאקטזיה, אווינג סרקומה (t[11;22])</td></tr>
+    <tr><td>13</td><td>פטאו, מחלת וילסון, רטינובלסטומה (RB1), BRCA2</td></tr>
+    <tr><td>15</td><td>פראדר-ווילי, אנג'למן, מרפן</td></tr>
+    <tr><td>16</td><td>ADPKD (PKD1), פגמי גן אלפא-גלובין (למשל אלפא-תלסמיה), טוברוס סקלרוזיס (TSC2)</td></tr>
+    <tr><td>17</td><td>NF1, BRCA1, TP53 (לי-פראומני)</td></tr>
+    <tr><td>18</td><td>אדוארדס</td></tr>
+    <tr><td>21</td><td>דאון</td></tr>
+    <tr><td>22</td><td>NF2, די-ג'ורג' (22q11)</td></tr>
+    <tr><td>X</td><td>X שביר, טרנר (XO), אגמאגלובולינמיה ע"ש ברוטון, קליינפלטר (XXY)</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">13</span> רלוונטיות קלינית מרכזית — טבלת ריכוז</h2>
+<table>
+  <thead><tr><th>נושא</th><th>נקודת מפתח קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>חדירות לא-מלאה</td><td>BRCA1 - לא כל נשאית מפתחת סרטן</td></tr>
+    <tr><td>אבדן הטרוזיגוטיות</td><td>רטינובלסטומה - שני-מכות; לא נכון לאונקוגנים</td></tr>
+    <tr><td>הרדי-ויינברג</td><td>q&#178;=שכיחות מחלה רצסיבית; 2pq=שכיחות נשאים</td></tr>
+    <tr><td>הטבעה</td><td>פראדר-ווילי=מחיקה אבהית; אנג'למן=מחיקה אמהית (UBE3A)</td></tr>
+    <tr><td>סיסטיק פיברוזיס</td><td>&#916;F508, בדיקת זיעה, CFTR modulators</td></tr>
+    <tr><td>דושן</td><td>פריימשיפט/דיסטרופין קטוע; בקר=לא-פריימשיפט וקל יותר</td></tr>
+    <tr><td>X שביר</td><td>הגורם התורשתי השכיח ביותר לפיגור שכלי; CGG ב-FMR1</td></tr>
+    <tr><td>אנטיסיפציה</td><td>הרחבת חזרות תלת-נוקלאוטידיות - חמור יותר בכל דור</td></tr>
+    <tr><td>דאון</td><td>95% אי-הפרדה (MI, גיל אמהי), 4% רוברטסונית</td></tr>
+    <tr><td>טרנסלוקציה רוברטסונית</td><td>נשא מאוזן=בריא, אך תאי מין עלולים להיות לא-מאוזנים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">14</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/results?search_query=Ninja+Nerd+Hardy+Weinberg" target="_blank">עקרון הרדי-ויינברג — Ninja Nerd (YouTube)</a>
+    <div class="desc">הסבר מעמיק על החישובים והנחות היסוד.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/results?search_query=Osmosis+Down+syndrome" target="_blank">תסמונת דאון — Osmosis (YouTube)</a>
+    <div class="desc">סקירה ויזואלית של הגנטיקה והממצאים הקליניים.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/results?search_query=Armando+Hasudungan+modes+of+inheritance" target="_blank">דפוסי תורשה — Armando Hasudungan (YouTube)</a>
+    <div class="desc">איור-הרצאה על AD/AR/X-linked ותרשימי משפחה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/results?search_query=Dirty+Medicine+genetics" target="_blank">גנטיקה למבחן — Dirty Medicine (YouTube)</a>
+    <div class="desc">סקירה ממוקדת-מבחן של מונחי הגנטיקה והפרעות ההטבעה.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Down_syndrome" target="_blank">קטגוריית תסמונת דאון — Wikimedia Commons</a>
+    <div class="desc">תמונות נוספות של ממצאים קליניים וקריוטיפים.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Duchenne_muscular_dystrophy" target="_blank">קטגוריית דושן — Wikimedia Commons</a>
+    <div class="desc">תמונות קליניות נוספות של פסאודוהיפרטרופיה וחולשת שריר.</div>
+  </li>
+</ul>
+
+<h2><span class="num">15</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוקת בת 3 חודשים מובאת עקב שיעול חוזר, צואה שומנית-מסריחה, ועלייה איטית במשקל. בבדיקה: ריאות עם צפצופים דיפוזיים. בדיקת זיעה מדגימה ריכוז כלוריד גבוה משמעותית מהנורמה. ההורים, שניהם בריאים, שואלים כיצד ייתכן שלשתיהם ילד חולה כאשר אף אחד מהם לא חולה בעצמו. באותה משפחה מורחבת, דודן מבוגר יותר אובחן לאחרונה עם חולשת שרירי אגן מתקדמת ופסאודוהיפרטרופיה של שרירי השוק שהחלה בילדותו.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה ההסבר הגנטי הסביר ביותר למצב הילדה, בהינתן ששני ההורים בריאים?</div>
+  <button class="opt" data-i="0">מוטציה דה-נובו קרתה רק בילדה</button>
+  <button class="opt" data-i="1">תורשה אוטוזומלית דומיננטית עם חדירות לא-מלאה</button>
+  <button class="opt" data-i="2">שני ההורים הם נשאים הטרוזיגוטים (Aa) של אלל רצסיבי ב-CFTR - הילדה הומוזיגוטית (aa)</button>
+  <button class="opt" data-i="3">תורשה נסגרת-X מהאם בלבד</button>
+  <div class="explain">נכון: סיסטיק פיברוזיס היא אוטוזומלית רצסיבית - הורים נשאים (הטרוזיגוטים, בריאים כי יש להם עותק תקין אחד) יכולים להוליד ילד חולה (הומוזיגוט aa) בהסתברות 25% לכל הריון. מוטציה דה-נובו (א') לא מסבירה מחלה רצסיבית קלאסית. AD עם חדירות לא-מלאה (ב') לא מתאים לתמונה הקלינית (ריר סמיך, זיעה מלוחה) שהיא סיסטיק פיברוזיס קלאסית. אין רמז לתורשה נסגרת-X (ד') - האב יכול להיות נשא לגן אוטוזומלי בדיוק כמו האם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהו המנגנון התאי שגורם לריר הסמיך בריאות אצל הילדה?</div>
+  <button class="opt" data-i="0">עודף ייצור מוצין ע"י תאי גביע בלבד, ללא קשר לתעלות יונים</button>
+  <button class="opt" data-i="1">חלבון CFTR מקופל לא-תקין (&#916;F508) אינו מגיע לממברנת התא &#8592; &#8595;הפרשת Cl&#8315; &#8592; &#8593;ספיגת Na&#8314;/H&#8322;O מפצה &#8592; ריר מיובש וסמיך</button>
+  <button class="opt" data-i="2">חסר באנזים ליזוזומלי גורם להצטברות גליקוליפידים בתאי הריאה</button>
+  <button class="opt" data-i="3">נוגדנים עצמיים תוקפים את האפיתל הריאתי</button>
+  <div class="explain">נכון: מחיקת Phe508 גורמת לקיפול חלבון לא-תקין, מניעת הגעתו לממברנת התא, ירידה בהפרשת Cl&#8315; (ולכן גם H&#8322;O), עלייה מפצה בספיגת Na&#8314; דרך ENaC ולבסוף ריר מיובש וסמיך. תשובה א' מתעלמת מהמנגנון התעלתי המרכזי. תשובה ג' מתארת מחלת אגירה ליזוזומלית (לא רלוונטי). תשובה ד' מתארת מחלה אוטואימונית (לא רלוונטי לסיסטיק פיברוזיס).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי כנראה האבחנה של הדודן עם חולשת אגן מתקדמת ופסאודוהיפרטרופיה של שוקיים מילדות, ומהו דפוס התורשה?</div>
+  <button class="opt" data-i="0">דיסטרופיה שרירית ע"ש דושן - נסגר-X רצסיבי (מוטציית פריימשיפט בדיסטרופין)</button>
+  <button class="opt" data-i="1">דיסטרופיה מיוטונית - אוטוזומלי דומיננטי</button>
+  <button class="opt" data-i="2">תסמונת רט - נסגר-X, כמעט רק בנקבות</button>
+  <button class="opt" data-i="3">אטקסיית פרידרייך - אוטוזומלי רצסיבי</button>
+  <div class="explain">נכון: חולשה מתקדמת שמתחילה בגיל צעיר בחגורת האגן, עם פסאודוהיפרטרופיה קלאסית של שרירי השוק, מתאימה לדיסטרופיה שרירית ע"ש דושן - נסגר-X רצסיבי עקב מוטציות פריימשיפט/שטות בגן הדיסטרופין. דיסטרופיה מיוטונית (ב') מציגה מיוטוניה וקטרקט, לא פסאודוהיפרטרופיה קלאסית. רט (ג') פוגעת כמעט אך ורק בבנות עם נסיגה התפתחותית. אטקסיית פרידרייך (ד') מציגה אטקסיה, לא חולשה פרוקסימלית עם פסאודוהיפרטרופיה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אם למשפחה זו נולד בעתיד ילד נוסף מאותם הורים (שניהם נשאים לאלל ה-CFTR הפגום), מהי ההסתברות שהילד יהיה נשא בריא (הטרוזיגוט) בלבד?</div>
+  <button class="opt" data-i="0">100%</button>
+  <button class="opt" data-i="1">75%</button>
+  <button class="opt" data-i="2">25%</button>
+  <button class="opt" data-i="3">50%</button>
+  <div class="explain">נכון: בהצלבה Aa × Aa (כלל הרדי-ויינברג/מנדל), ההתפלגות היא 25% AA (בריא-לא-נשא), 50% Aa (נשא בריא), 25% aa (חולה). ההסתברות להיות נשא הטרוזיגוטי בריא היא 50% - זהו החלק הגדול ביותר בהתפלגות, ולכן חשוב לזכור אותו לצורך ייעוץ גנטי.</div>
+</div>
+
+<div class="sources">
+  <h4>מקורות</h4>
+  <ul>
+    <li>First Aid for the USMLE Step 1 2026, Section II — Biochemistry, Genetics (עמ' 54-62 בספר המקור).</li>
+    <li>תמונות: Wikimedia Commons (קריוטיפ תסמונת דאון, פסאודוהיפרטרופיה בדושן) — שמות קבצים אומתו קיומם דרך תוצאות חיפוש רשת; גישת curl ישירה ל-commons.wikimedia.org חסומה במדיניות הרשת של סביבת ריצה זו, כך שלא בוצע אימות ישיר בקוד תגובה 200.</li>
+    <li>סרטוני YouTube: קישורים לחיפוש בערוצים מוכרים (Ninja Nerd, Osmosis, Armando Hasudungan, Dirty Medicine) — אותרו כערוצים אמיתיים העוסקים בנושא, לא נצפו בפועל בשל חסימת רשת בסביבה; סרטון אחד (פתופיזיולוגיה של סיסטיק פיברוזיס) הוטמע כ-iframe ספציפי על בסיס תוצאות חיפוש תואמות-כותרת.</li>
+    <li>שאר האיורים בסיכום זה הם דיאגרמות SVG סכמטיות מצוירות (הרדי-ויינברג, הטבעה, דפוסי תורשה, אי-הפרדה מייוטית, טרנסלוקציה רוברטסונית, CFTR, אנטיסיפציה), הזמינות גם כקבצים עצמאיים בתיקיית flashcards/diagrams.</li>
+  </ul>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">16</span> סיכום של הסיכום</h2>
+  <h4>מונחים ומודלים בסיסיים</h4>
+  <ul>
+    <li>אקספרסיביות=כולם חולים בחומרה שונה; חדירות=לא כולם מבטאים; שני-מכות=מדכאי-גידול בלבד.</li>
+    <li>הרדי-ויינברג: p²+2pq+q²=1; במחלה רצסיבית נדירה q²=שכיחות, 2pq≈2q=שכיחות נשאים.</li>
+    <li>הטבעה: פראדר-ווילי=מחיקה אבהית (רוב הגנים מושתקים אמהית); אנג'למן=מחיקה אמהית (UBE3A מושתק אבהית).</li>
+  </ul>
+  <h4>דפוסי תורשה ומחלות מייצגות</h4>
+  <ul>
+    <li>AD: מרפן, הנטינגטון, NF1; AR: סיסטיק פיברוזיס, אנמיה חרמשית, PKU; XR: דושן, המופיליה, G6PD; XD: X שביר, אלפורט.</li>
+    <li>סיסטיק פיברוזיס: &#916;F508 &#8592; CFTR מעוות &#8592; &#8595;Cl&#8315; &#8592; &#8593;Na&#8314;/H&#8322;O &#8592; ריר סמיך; אבחון בבדיקת זיעה.</li>
+    <li>דושן=פריימשיפט/דיסטרופין קטוע (XR, חמור); בקר=לא-פריימשיפט (קל); דיסטרופיה מיוטונית=CTG (AD).</li>
+    <li>חזרות תלת-נוקלאוטידיות: הנטינגטון(CAG,AD), מיוטונית(CTG,AD), X שביר(CGG,XD), פרידרייך(GAA,AR) - אנטיסיפציה.</li>
+  </ul>
+  <h4>כרומוזומים וציטוגנטיקה</h4>
+  <ul>
+    <li>דאון(21)>אדוארדס(18)>פטאו(13); 95% אי-הפרדה (MI>MII, ↑גיל אמהי), 4% רוברטסונית, 1% מוזאיקה.</li>
+    <li>טרנסלוקציה רוברטסונית: היתוך זרועות ארוכות של כרומוזומים אקרוצנטריים (13,14,15,21,22); נשא מאוזן בריא.</li>
+    <li>קרי-דו-שאט=5p−; סקר פרנטלי: דאון=↑hCG↓PAPP-A שליש1, אדוארדס/פטאו=הכל יורד.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
