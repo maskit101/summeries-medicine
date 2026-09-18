@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>תפקיד הכירורג באירועי אבדות המוניות (Mass Casualty Incidents)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 24 בהרצה זו (uploads לא נגישים בהרצה מתוזמנת) - הסיכום מבוסס על מחקר אמיתי במקורות מהימנים: StatPearls (EMS Mass Casualty Triage, EMS Mass Casualty Management, EMS Reverse Triage, Blast Injuries), ACS Statement on Disaster and Mass Casualty Management, PMC (The Leadership Role of Surgeons in Disaster Management), ו-Wikimedia Commons/YouTube לתמונות וסרטונים. -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>תפקיד הכירורג באירועי אבדות המוניות <span class="term" dir="ltr">(Mass Casualty Incidents, MCI)</span></h1>
+<div class="subtitle">מעבר ממודל "הטוב ביותר לחולה הבודד" למודל "הטוב ביותר למספר הגדול ביותר" — פרק 24 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>אירוע אבדות המוניות <span class="term" dir="ltr">(Mass Casualty Incident, MCI)</span> מוגדר לא לפי מספר מוחלט של נפגעים, אלא לפי <b>יחס בין הביקוש למשאבים</b>: כל אירוע (טבע, טרור, תאונה תעשייתית, מגפה) שבו מספר וחומרת הנפגעים חורגים מיכולת המענה השוטפת של מערכת הבריאות המקומית. הכירורג — ולא רק "עוד רופא בזירה" — הוא לרוב האדם המתאים ביותר להוביל את המענה, מכיוון שהכשרתו כוללת גם קבלת החלטות תחת לחץ קיצוני עם מידע חלקי, וגם ניהול לוגיסטי של חדר ניתוח כמשאב מוגבל. איגוד הכירורגים האמריקאי <span class="term" dir="ltr">(ACS)</span> קבע רשמית שכירורגים צריכים להוביל את תכנון ותפעול המענה לאסון, בייחוד כשמדובר בטראומה פיזית.</p>
+
+<h2><span class="num">2</span> המנגנון - למה כל זה קורה (השינוי הרעיוני והפיזיולוגי)</h2>
+<div class="mechanism">
+  <p class="chain">
+    בטיפול רפואי רגיל, העיקרון המנחה הוא <b>אתי-אינדיבידואלי</b> — "הטוב ביותר לכל חולה וחולה", ללא הגבלת משאבים. ברגע שמספר הנפגעים <b>עולה על</b> יכולת הטיפול המיידית (רופאים, חדרי ניתוח, דם, מכשירי הנשמה), נכנס לתוקף עיקרון <b>אוטיליטריאני</b> — "הטוב ביותר למספר הגדול ביותר של אנשים". זה <b>גורם</b> להיפוך סדר העדיפויות המוכר: בטראומה רגילה מטפלים ראשונים בפצוע הקשה ביותר; באבדות המוניות, פצוע קשה ביותר עם סיכוי הישרדות נמוך (גם עם השקעת משאבים מלאה) עלול לקבל עדיפות <b>נמוכה יותר</b> אם הטיפול בו "יבלע" משאבים שהיו יכולים להציל מספר גדול יותר של פצועים בינוניים. זהו קטגוריית ה<b>-"מצפה" (Expectant, שחור)</b> — לא זניחה, אלא הקצאת משאבים רציונלית תחת מגבלה קשה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    כדי לבצע את ההיפוך הזה במהירות ובלי לבדוק כל חולה לעומק (כפי שעושים בחדר מיון רגיל), פותחו אלגוריתמי <b>מיון מהיר</b> <span class="term" dir="ltr">(triage)</span> שמבוססים על 2-3 פרמטרים פיזיולוגיים בלבד שניתן להעריך תוך שניות בודדות, ללא ציוד: נשימה, זרימת דם היקפית (דופק רדיאלי או מילוי נימי), ומצב הכרה. אלגוריתם ה-<span class="term" dir="ltr">START</span> (Simple Triage And Rapid Treatment) הוא הנפוץ ביותר בארה"ב: הפרמטרים מקוצרים לראשי התיבות <b>RPM</b> — <span class="term" dir="ltr">Respirations, Perfusion, Mental status</span> — עם ספי החלטה קבועים (קצב נשימה מעל 30, מילוי נימי/דופק רדיאלי, יכולת לציית לפקודה פשוטה).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">חשוב להבין: המיון הראשוני (Primary triage) אינו אבחנתי</span> — הוא לא קובע <i>מה</i> הפגיעה, אלא רק <i>באיזה סדר</i> לטפל. זה מסביר למה מטופל יכול לעבור בין קטגוריות שונות ("צהוב" ל"אדום") ככל שמצבו הפיזיולוגי משתנה — המיון הוא תהליך <b>דינמי וחוזר</b>, לא תווית קבועה. המיון המשני (Secondary triage, למשל שיטת <span class="term" dir="ltr">SALT</span> — Sort, Assess, Lifesaving interventions, Treatment/transport) מתבצע בבית החולים או בתחנת ריכוז נפגעים ומוסיף שכבת הערכה קלינית מפורטת יותר, כולל התערבויות מצילות-חיים מיידיות (פתיחת נתיב אוויר, עצירת דימום פעיל, דקומפרסיה של פנאומוטורקס במחט).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>מהלך קבלת ההחלטות באבדות המוניות</title>
+  <rect x="10" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="100" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">ביקוש &gt; משאבים</text>
+  <text x="100" y="64" font-size="11" text-anchor="middle" fill="#4b5563">= הכרזה על MCI</text>
+
+  <polygon points="200,55 220,48 220,62" fill="#2563eb"/>
+  <rect x="225" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="315" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">מעבר אתי</text>
+  <text x="315" y="64" font-size="11" text-anchor="middle" fill="#4b5563">אינדיבידואלי ← אוטיליטריאני</text>
+
+  <polygon points="415,55 435,48 435,62" fill="#2563eb"/>
+  <rect x="440" y="20" width="200" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="540" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">מיון ראשוני (START)</text>
+  <text x="540" y="64" font-size="11" text-anchor="middle" fill="#4b5563">RPM: נשימה/זרימה/הכרה</text>
+
+  <polygon points="650,55 670,48 670,62" fill="#b45309"/>
+  <rect x="675" y="20" width="215" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="782" y="42" font-size="12" text-anchor="middle" fill="#1f2937">4 קטגוריות צבע</text>
+  <text x="782" y="58" font-size="10.5" text-anchor="middle" fill="#4b5563">אדום/צהוב/ירוק/שחור</text>
+  <text x="782" y="72" font-size="10.5" text-anchor="middle" fill="#4b5563">(מיידי/דחוי/קל/מצפה)</text>
+
+  <rect x="60" y="130" width="220" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="170" y="155" font-size="12.5" text-anchor="middle" fill="#1f2937">מיון משני בבי"ח (SALT)</text>
+  <text x="170" y="172" font-size="11" text-anchor="middle" fill="#4b5563">התערבות מצילת-חיים מיידית</text>
+  <polygon points="285,160 305,153 305,167" fill="#6d28d9"/>
+  <rect x="310" y="130" width="220" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="420" y="155" font-size="12.5" text-anchor="middle" fill="#1f2937">ניתוח בקרת נזקים</text>
+  <text x="420" y="172" font-size="11" text-anchor="middle" fill="#4b5563">קיצור זמן OR, "parallel operating"</text>
+  <polygon points="535,160 555,153 555,167" fill="#6d28d9"/>
+  <rect x="560" y="130" width="230" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="675" y="155" font-size="12.5" text-anchor="middle" fill="#1f2937">טריאז' הפוך (Reverse triage)</text>
+  <text x="675" y="172" font-size="11" text-anchor="middle" fill="#4b5563">שחרור מוקדם כדי לפנות מיטות</text>
+
+  <rect x="250" y="230" width="400" height="55" rx="8" fill="#111827"/>
+  <text x="450" y="253" font-size="13" font-weight="700" text-anchor="middle" fill="#fff">מטרה: הטוב ביותר למספר הגדול ביותר</text>
+  <text x="450" y="270" font-size="11" text-anchor="middle" fill="#d1d5db">לא זניחת הפרט — הקצאה רציונלית תחת אילוץ</text>
+</svg>
+
+<h2><span class="num">3</span> פתופיזיולוגיה של פגיעות פיצוץ (Blast Injury) — הפרופיל הפגיעתי השכיח באבדות המוניות</h2>
+<p>הרבה MCI-ים (טרור, תאונות תעשייתיות) נובעים מפיצוץ, ולפגיעת פיצוץ יש חמישה מנגנונים נפרדים שיכולים להתקיים בו-זמנית באותו נפגע — חשוב לזהות את כולם כי כל אחד דורש הערכה שונה:</p>
+<table>
+  <thead><tr><th>סוג פגיעה</th><th>מנגנון</th><th>איברים טיפוסיים</th></tr></thead>
+  <tbody>
+    <tr><td><b>ראשונית (Primary)</b></td><td>גל הלחץ (overpressure) עצמו פוגע ישירות באיברים מלאי-אוויר</td><td>עור התוף (השכיח ביותר, עד 47%), ריאה (blast lung), מעי</td></tr>
+    <tr><td><b>שניונית (Secondary)</b></td><td>רסיסים ועצמים מוטסים החודרים לגוף</td><td>פציעות חודרות בכל מקום בגוף — הגורם השכיח ביותר לתמותה</td></tr>
+    <tr><td><b>שלישונית (Tertiary)</b></td><td>הדחיפה הפיזית של הגוף על ידי "רוח הפיצוץ" והתנגשות במשטח/עצם</td><td>שברים, חבלת ראש, פגיעת איברים פנימיים קהה</td></tr>
+    <tr><td><b>רביעונית (Quaternary)</b></td><td>כל מנגנון נוסף — כוויה, שאיפת עשן, קריסת מבנה (Crush)</td><td>כוויות, כוויות שאיפה, תסמונת מעיכה</td></tr>
+    <tr><td><b>חמישונית (Quinary)</b></td><td>חשיפה לחומרים שנוספו לחומר הנפץ (רדיולוגי/כימי/ביולוגי)</td><td>תלוי חומר — "פצצה מלוכלכת" למשל</td></tr>
+  </tbody>
+</table>
+<p><b>למה עור התוף נפגע ראשון</b>: התוף הוא הממברנה הדקה ביותר בגוף שחשופה ישירות לגל הלחץ, ולכן משמש כ"חיישן" רגיש לחשיפה לפיצוץ — אך <b>קרום תקין אינו שולל</b> פגיעת ריאה, כי הסף לקרע בתוף ולנזק ריאתי אינו זהה (עד 50% מפגועי הריאה מוחמצים אם מסתמכים על בדיקת התוף בלבד). <b>פגיעת הריאה (blast lung)</b> נובעת מקריעה של המחיצות בין נאדיות (alveolar septae) ופגיעה בממברנה הקפילרית-אלוואולרית עצמה — זה גורם לדימום תוך-אלוואולרי, בצקת, ותגובה דלקתית מקומית (ציטוקינים, נויטרופילים) שיכולה להתקדם ל-ARDS גם שעות אחרי הפיצוץ, כאשר הנפגע נראה תקין לכאורה בהתחלה. זו הסיבה שנפגע פיצוץ קרוב חייב מעקב נשימתי גם ללא תלונה מיידית.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ומיון בזירה</h2>
+<p>לפי אלגוריתם ה-<span class="term" dir="ltr">START</span>: כל מי שיכול <b>ללכת</b> מסומן "ירוק" (קל) ומופנה הצידה לפני שממשיכים במיון — זה מפנה קיבולת קשב לבודקים להתמקד בשאר. מבין הנשארים: מי <b>שאינו נושם</b> גם אחרי פתיחת נתיב אוויר (הטיית ראש) מסומן "שחור" (מצפה/נפטר); מי שנושם אך <b>בקצב מעל 30 לדקה</b>, או שאין מילוי נימי תקין/דופק רדיאלי, או <b>אינו מציית לפקודה פשוטה</b> — מסומן "אדום" (מיידי); מי שעומד בכל שלושת הקריטריונים — "צהוב" (דחוי). כלל האצבע הזה מכונה <b>"RPM: 30-2-can do"</b> (קצב נשימה 30, מילוי נימי 2 שניות, יכולת לציית).</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/START_Triage_algorithm.png?width=650" alt="אלגוריתם START">
+  <figcaption class="media-cap">אלגוריתם ה-START המלא — עץ ההחלטות לפי נשימה, זרימה, ומצב הכרה. מקור: <a href="https://commons.wikimedia.org/wiki/File:START_Triage_algorithm.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Triage_colors.png?width=500" alt="צבעי מיון">
+  <figcaption class="media-cap">ארבעת צבעי המיון הסטנדרטיים וייעודם. מקור: <a href="https://commons.wikimedia.org/wiki/File:Triage_colors.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/m-b9pelsHQE" title="START Triage: EM in 5" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה קצרה וממוקדת של תהליך ה-START triage בזירת אירוע. מקור: <a href="https://www.youtube.com/watch?v=m-b9pelsHQE" target="_blank">YouTube</a></p>
+
+<h2><span class="num">5</span> קטגוריות המיון וכשלי מיון</h2>
+<table>
+  <thead><tr><th>צבע</th><th>קטגוריה</th><th>קריטריון (START)</th><th>עדיפות טיפול/פינוי</th></tr></thead>
+  <tbody>
+    <tr><td>🔴 אדום</td><td>מיידי (Immediate)</td><td>נשימה תקינה אך RR&gt;30, או ללא מילוי נימי/דופק רדיאלי, או לא מציית לפקודה</td><td>ראשון</td></tr>
+    <tr><td>🟡 צהוב</td><td>דחוי (Delayed)</td><td>עומד בכל 3 הקריטריונים (RR≤30, זרימה תקינה, מציית)</td><td>שני</td></tr>
+    <tr><td>🟢 ירוק</td><td>קל (Minimal/Minor)</td><td>הולך בעצמו</td><td>אחרון — "walking wounded"</td></tr>
+    <tr><td>⚫ שחור</td><td>מצפה (Expectant) / נפטר</td><td>לא נושם גם אחרי פתיחת נתיב אוויר</td><td>טיפול תומך/הקלה בלבד בשלב זה</td></tr>
+  </tbody>
+</table>
+<p><b>שני סוגי שגיאת מיון, ולמה כל אחת מסוכנת אחרת</b>: <b>תת-מיון</b> <span class="term" dir="ltr">(under-triage)</span> — סיווג פצוע קשה כקל יותר ממצבו האמיתי — מסכן חיים ישירות כי הוא לא יקבל טיפול בזמן. <b>יתר-מיון</b> <span class="term" dir="ltr">(over-triage)</span> — סיווג פצוע קל כחמור יותר — פחות מסוכן לפרט אך <b>מבזבז משאבים קריטיים</b> שהיו יכולים להציל מישהו אחר; שיעור יתר-מיון גבוה מדי (מעל כ-25%–35%, יעד מקובל בספרות) נחשב כשל מערכתי של תוכנית האבדות ההמוניות, לא רק "זהירות יתר" חסרת מחיר.</p>
+<p>חשוב: המיון <b>אינו חד-פעמי</b> — נפגע "צהוב" שמצבו מתדרדר (למשל דימום פנימי מתגלה, פגיעת ריאה מתפתחת) חייב לעבור מיון חוזר ל"אדום". לכן תחנות מיון בזירת אסון גדול כוללות תמיד גם מיון חוזר בכניסה לבית החולים ולא רק בשטח.</p>
+
+<h2><span class="num">6</span> ניהול המענה — מבנה ארגוני, ניתוח, והקצאת משאבים</h2>
+<p>מבנה הפיקוד הסטנדרטי הוא <span class="term" dir="ltr">Incident Command System (ICS)</span> בזירה, ו<span class="term" dir="ltr">Hospital Incident Command System (HICS)</span> בבית החולים — מבנה מודולרי היררכי עם מפקד אירוע יחיד ותפקודי-על (מבצעים, תכנון, לוגיסטיקה, כספים/מנהלה) שמתרחב או מצטמצם לפי היקף האירוע. הכירורג הבכיר לרוב ממלא תפקיד "מנהל טריאז'" או חבר בצוות הפיקוד הרפואי — לא רק מנתח בחדר ניתוח.</p>
+<div class="surgery">
+  <h4>עקרונות ניתוח באבדות המוניות (לא "ניתוח רגיל בקצב מהיר")</h4>
+  <p>המטרה היא <b>לא</b> ניתוח מוגדר/סופי לכל פצוע — היא <b>בקרת נזקים</b> <span class="term" dir="ltr">(damage control surgery)</span>: עצירת דימום וזיהום מהיר ככל האפשר (יעד &lt;60 דקות לחדר ניתוח), השארת התיקון הסופי (שחזור מעי, סגירת בטן) לשלב מאוחר יותר אחרי ייצוב פיזיולוגי. גישות ייעודיות למחסור בזמן/צוות: <b>"parallel operating"</b> — שני צוותים מבצעים חלקים שונים בו-זמנית באותו חולה, או מנתח בכיר "קופץ" בין שני חדרי ניתוח סמוכים תוך שהצוות הזוטר ממשיך את חלקי הניתוח הפשוטים.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>הפיתוי הגדול ביותר של כירורג מיומן באבדות המוניות הוא להשקיע זמן ומאמץ ב"ניצחון" על מקרה בודד וקשה מאוד על חשבון פצועים רבים יותר שממתינים — זו בדיוק ההיפוך האתי שתואר לעיל, וקבלת ההחלטה הזו (מתי "לוותר" זמנית על מקרה קשה כדי לטפל באחרים) היא לרוב הרגע הקשה ביותר נפשית בתפקיד הכירורג באסון.</p>
+  <h4>הרחבת קיבולת (Surge capacity) וטריאז' הפוך</h4>
+  <p><span class="term" dir="ltr">Reverse triage</span> — סקירה מהירה של המאושפזים <b>הקיימים</b> בבית החולים וזיהוי מי מהם יכול להשתחרר בבטחה מוקדם (בד"כ מי שלא צפוי להזדקק לטיפול משמעותי ב-96 השעות הקרובות) כדי לפנות מיטות ואנשי צוות למקרי האסון הנכנסים. זהו כלי לוגיסטי חשוב לא פחות מהמיון עצמו, ומעלה שיקולים אתיים משלו (למשל זהירות משחרור מוקדם של קשישים/חולים ללא תמיכה ביתית).</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/9QHDs10e-G0" title="START Triage Basics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת יסודות המיון וחלוקת התפקידים בזירת אבדות המוניות. מקור: <a href="https://www.youtube.com/watch?v=9QHDs10e-G0" target="_blank">YouTube</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — RPM: "30-2-can do" (מקובל, ליבת אלגוריתם START)</h3>
+  <p>
+    <b>R</b>espirations — קצב נשימה מעל 30 = אדום<br>
+    <b>P</b>erfusion — ללא מילוי נימי/דופק רדיאלי = אדום<br>
+    <b>M</b>ental status — לא מציית לפקודה פשוטה = אדום<br>
+    אם עומד בכל השלושה (≤30, זרימה תקינה, מציית) → צהוב. הולך בעצמו → ירוק. לא נושם אחרי פתיחת נתיב אוויר → שחור.
+  </p>
+  <h3>סיפור דמיוני — "המלצר בזירת אסון"</h3>
+  <p>דמיינו מלצר יחיד באולם מלא סועדים אחרי אסון (המנתח/הצוות הרפואי) שחייב להחליט מי מקבל אוכל קודם (זמן טיפול = משאב). הוא לא בודק לעומק כל שולחן — הוא סורק במהירות: מי כבר קם ומתהלך (ירוק, לא צריך אותו דחוף), מי יושב אך נושם ותקין (צהוב, יחכה), מי מתקשה לנשום (אדום, קודם כול), ומי כבר לא מגיב כלל (שחור, כרגע אין מה לעשות). המלצר לא "מוותר" על אף אחד — הוא פשוט לא יכול להאכיל את כולם בבת אחת, אז הוא מקצה את עצמו למי שהמנה שלו תציל הכי הרבה חיים ליחידת זמן.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: המלצר בזירת אסון</title>
+    <circle cx="90" cy="95" r="34" fill="#dcfce7" stroke="#047857" stroke-width="2"/>
+    <text x="90" y="100" font-size="24" text-anchor="middle">🚶</text>
+    <text x="90" y="145" font-size="11" text-anchor="middle" fill="#4b5563">ירוק - הולך לבד</text>
+    <circle cx="200" cy="95" r="34" fill="#fef9c3" stroke="#b45309" stroke-width="2"/>
+    <text x="200" y="100" font-size="24" text-anchor="middle">⏳</text>
+    <text x="200" y="145" font-size="11" text-anchor="middle" fill="#4b5563">צהוב - יציב, ימתין</text>
+    <circle cx="310" cy="95" r="34" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="310" y="100" font-size="24" text-anchor="middle">🚨</text>
+    <text x="310" y="145" font-size="11" text-anchor="middle" fill="#4b5563">אדום - קודם כול</text>
+    <circle cx="420" cy="95" r="34" fill="#e5e7eb" stroke="#374151" stroke-width="2"/>
+    <text x="420" y="100" font-size="24" text-anchor="middle">🕯️</text>
+    <text x="420" y="145" font-size="11" text-anchor="middle" fill="#4b5563">שחור - מצפה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK459369/" target="_blank">EMS Mass Casualty Triage — StatPearls</a>
+    <div class="desc">סקירה מלאה של אלגוריתמי START ו-SALT עם קריטריונים מדויקים, כולל דיון בשיעורי תת/יתר-מיון.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK430914/" target="_blank">Blast Injuries — StatPearls</a>
+    <div class="desc">פירוט מלא של חמשת סוגי פגיעת הפיצוץ, כולל הצגות קליניות וגישת טיפול ראשונית.</div>
+  </li>
+  <li>
+    <a href="https://www.facs.org/about-acs/statements/disaster-and-mass-casualty-management/" target="_blank">Statement on Disaster and Mass Casualty Management — ACS</a>
+    <div class="desc">העמדה הרשמית של איגוד הכירורגים האמריקאי לגבי תפקיד הכירורג בהובלת המענה לאסון.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK482234/" target="_blank">EMS Reverse Triage — StatPearls</a>
+    <div class="desc">הרחבה על עקרונות טריאז' הפוך לפינוי מיטות בבית חולים בזמן אסון.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>פיצוץ מטען חבלה מתרחש בתחנה מרכזית עמוסה. כ-40 נפגעים בזירה. את/ה הכירורג/ית הבכיר/ה הראשון/ה שמגיע/ה. בסריקה ראשונית: גבר צעיר הולך בעצמו וצועק מכאב ביד — מסומן ומופנה הצידה. אישה שוכבת על הרצפה, נושמת בקצב 34 לדקה, דופק רדיאלי נמוש אך חלש, מגיבה כשקוראים לה בשם. גבר מבוגר ללא נשימה נראית לעין; לאחר הטיית ראש ופתיחת נתיב אוויר — עדיין ללא נשימה ספונטנית. ילדה יושבת, נושמת ברוגע 18 לדקה, דופק תקין, עונה על שאלות בבירור אך אינה יכולה לעמוד בגלל שבר בקרסול.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו העיקרון האתי שמסביר מדוע פצוע קשה מאוד עלול לקבל עדיפות טיפול נמוכה יותר באירוע אבדות המוניות, בניגוד לטיפול טראומה רגיל?</div>
+  <button class="opt" data-i="0">חוסר בזמן בלבד, ללא הצדקה אתית</button>
+  <button class="opt" data-i="1">גיל המטופל קובע תמיד עדיפות</button>
+  <button class="opt" data-i="2">מעבר מעיקרון אינדיבידואלי לעיקרון אוטיליטריאני — הטוב ביותר למספר הגדול ביותר</button>
+  <button class="opt" data-i="3">מדיניות ביטוח רפואי מקומית</button>
+  <div class="explain">נכון: כשביקוש הטיפול עולה על המשאבים הזמינים, העיקרון המנחה עובר מדאגה לפרט לדאגה לאוכלוסייה כולה — פצוע עם סיכוי הישרדות נמוך גם עם השקעה מלאה עלול לקבל עדיפות נמוכה כדי לשחרר משאבים למי שסיכויי ההצלה שלו גבוהים יותר. גיל (1) אינו קריטריון פורמלי באלגוריתמי המיון. ביטוח (3) אינו רלוונטי בזירת אסון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. לפי אלגוריתם START, כיצד יסווג הגבר המבוגר שאינו נושם גם אחרי הטיית ראש?</div>
+  <button class="opt" data-i="0">אדום (מיידי)</button>
+  <button class="opt" data-i="1">שחור (מצפה)</button>
+  <button class="opt" data-i="2">צהוב (דחוי)</button>
+  <button class="opt" data-i="3">ירוק (קל)</button>
+  <div class="explain">נכון: בהיעדר נשימה ספונטנית גם לאחר ניסיון פתיחת נתיב אוויר בסיסי, START מסווג את המטופל כשחור (מצפה) — לא מבצעים החייאה מלאה בשלב המיון הראשוני כי המשאב (זמן צוות) חייב לשרת נפגעים רבים נוספים. זהו ההבדל המרכזי בין טיפול פרטני רגיל (שם היו מבצעים החייאה) לטריאז' אבדות המוניות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. האישה עם קצב נשימה 34 לדקה תסווג כ:</div>
+  <button class="opt" data-i="0">אדום (מיידי) — קצב הנשימה מעל 30</button>
+  <button class="opt" data-i="1">צהוב (דחוי) — כי היא מגיבה לקול</button>
+  <button class="opt" data-i="2">ירוק (קל) — כי היא נושמת בעצמה</button>
+  <button class="opt" data-i="3">שחור — כי הדופק חלש</button>
+  <div class="explain">נכון: קצב נשימה מעל 30 לדקה הוא לבדו מספיק כדי לסווג כאדום ב-START, ללא צורך להמשיך לבדוק זרימה או הכרה. מגיבה לקול (1) לא רלוונטי כשהקריטריון הראשון (נשימה) כבר חורג מהסף. "נושמת בעצמה" (2) לא מספיק — הקצב עצמו חריג. דופק חלש (3) תומך בהחלטה אך לא זו הסיבה הפורמלית - כבר הוכרעה לפי הנשימה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. הילדה עם שבר בקרסול, נשימה ודופק תקינים, אך אינה יכולה ללכת עצמאית — כיצד תסווג?</div>
+  <button class="opt" data-i="0">ירוק, כי אין פגיעה מסכנת חיים</button>
+  <button class="opt" data-i="1">אדום, כי כל שבר דורש טיפול מיידי</button>
+  <button class="opt" data-i="2">שחור, כי אינה נעה</button>
+  <button class="opt" data-i="3">צהוב — עומדת בכל שלושת קריטריוני RPM אך אינה "הולכת" ולכן לא ממוינת אוטומטית כירוק</button>
+  <div class="explain">נכון: קטגוריית "ירוק" ב-START ניתנת רק למי שיכול/ה ללכת בעצמו/ה בשלב המיון הראשוני. הילדה עומדת בכל קריטריוני RPM (נשימה תקינה, זרימה תקינה, מגיבה כראוי) אך אינה מסוגלת ללכת בגלל שבר — לכן מסווגת צהוב (דחוי), לא ירוק. שבר בקרסול בלבד אינו מצדיק אדום.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע קרום תוף שלם (ללא קרע) אינו שולל פגיעת ריאה מפיצוץ (blast lung)?</div>
+  <button class="opt" data-i="0">כי פגיעת הריאה תמיד קודמת לפגיעת האוזן</button>
+  <button class="opt" data-i="1">כי הסף לקרע בתוף והסף לנזק ריאתי אינם זהים — עד כ-50% מפגיעות הריאה מוחמצות אם מסתמכים על בדיקת התוף בלבד</button>
+  <button class="opt" data-i="2">כי גל הפיצוץ פוגע רק באיברים מוצקים</button>
+  <button class="opt" data-i="3">כי בדיקת התוף אינה אמינה טכנית</button>
+  <div class="explain">נכון: עור התוף רגיש מאוד לגל הלחץ ולכן נפגע בקלות, אך זה לא אומר שסף הפגיעה שלו זהה לסף הפגיעה הריאתית — ולכן אין להשתמש בבדיקת התוף כ"בדיקת סקר" בלעדית לפגיעת ריאה. פגיעת ריאה פוגעת דווקא באיברים מלאי-אוויר (לא מוצקים) ויכולה להתפתח גם שעות לאחר החשיפה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: תפקיד הכירורג בהובלה, מיון וטיפול כירורגי כשמספר/חומרת הנפגעים עולה על יכולת המענה השוטפת.</li>
+    <li><b>המנגנון האתי</b>: מעבר מדאגה לפרט (best for the individual) לדאגה לאוכלוסייה (best for the greatest number) — כולל קטגוריית "מצפה" (שחור).</li>
+    <li><b>מיון</b>: START בזירה (RPM: 30-2-can do → אדום/צהוב/ירוק/שחור), SALT בבית החולים — תהליך דינמי וחוזר, לא תווית קבועה. תת-מיון מסכן פרט; יתר-מיון מבזבז משאבים משותפים.</li>
+    <li><b>פגיעת פיצוץ</b>: 5 מנגנונים (ראשוני/שניוני/שלישוני/רביעוני/חמישוני) - סעורת תוף אינה שוללת פגיעת ריאה.</li>
+    <li><b>ניהול</b>: ICS/HICS, ניתוח בקרת נזקים ("parallel operating"), טריאז' הפוך לפינוי מיטות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
