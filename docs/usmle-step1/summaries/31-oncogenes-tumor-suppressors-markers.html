@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אונקוגנים, גנים מדכאי גידול וסמנים גידוליים</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>אונקוגנים, גנים מדכאי גידול וסמנים גידוליים <span class="term" dir="ltr">(Oncogenes, Tumor Suppressors &amp; Tumor Markers)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section II — Pathology &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 220-224) — רלוונטיות גבוהה לכירורגיה פלסטית</div>
+
+<p>יחידה זו עוברת על עקרון האונקוגנים וגנים מדכאי-גידול (כולל השערת "שני הפגיעות" של קנודסון), טבלת קרצינוגנים סביבתיים/תעסוקתיים, מיקרובים אונקוגניים, סמני גידול בסרום, שיטות בדיקה מודרניות לסרטן, צביעות אימונוהיסטוכימיות מרכזיות, ומסיימת בתסמונות פאראנאופלסטיות לפי מערכות. יחידה דחוסה במיוחד מבחינת מספר העובדות — טבלאות רבות, קומפקטיות ולעניין, בהתאם לאופי חומר המקור.</p>
+
+<h2><span class="num">1</span> אונקוגנים (Oncogenes)</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>אונקוגן</b>: מוטציית <b>gain of function</b> ההופכת פרוטו-אונקוגן (גן תקין) לאונקוגן → ↑סיכון לסרטן. דורשת פגיעה ב<b>אלל אחד בלבד</b> של הפרוטו-אונקוגן (בניגוד לגנים מדכאי-גידול).
+  </p>
+</div>
+
+<table class="keytable">
+  <thead><tr><th>גן</th><th>תוצר הגן</th><th>גידול/מצב קשור</th></tr></thead>
+  <tbody>
+    <tr><td>ALK</td><td>רצפטור טירוזין קינאז</td><td>אדנוקרצינומה של הריאה</td></tr>
+    <tr><td>EGFR (ERBB1)</td><td>רצפטור טירוזין קינאז</td><td>אדנוקרצינומה של הריאה</td></tr>
+    <tr><td>HER2 (ERBB2)</td><td>רצפטור טירוזין קינאז</td><td>קרצינומות שד וקיבה</td></tr>
+    <tr><td>RET</td><td>רצפטור טירוזין קינאז</td><td>MEN2A ו-2B, קרצינומה מדולרית ופפילרית של התריס, פאוכרומוציטומה</td></tr>
+    <tr><td>BCR-ABL</td><td>טירוזין קינאז שאינו-רצפטור</td><td>CML, ALL</td></tr>
+    <tr><td>JAK2</td><td>טירוזין קינאז שאינו-רצפטור</td><td>ניאופלזיות מיאלופרוליפרטיביות</td></tr>
+    <tr><td>BRAF</td><td>סרין/תראונין קינאז</td><td>מלנומה, לימפומת non-Hodgkin, קרצינומה קולורקטלית, קרצינומה פפילרית של התריס, hairy cell leukemia</td></tr>
+    <tr><td>c-KIT</td><td>רצפטור ציטוקין (CD117)</td><td>GIST (Gastrointestinal Stromal Tumor), מסטוציטוזיס</td></tr>
+    <tr><td>MYCC (c-myc)</td><td>גורם שעתוק</td><td>לימפומת Burkitt</td></tr>
+    <tr><td>MYCN (N-myc)</td><td>גורם שעתוק</td><td>נוירובלסטומה</td></tr>
+    <tr><td>KRAS</td><td>RAS GTPase</td><td>סרטני לבלב, מעי גס, ריאה, רירית הרחם</td></tr>
+    <tr><td>BCL-2</td><td>מולקולה אנטי-אפופטוטית (מעכבת אפופטוזיס)</td><td>לימפומות B פוליקולריות ומפושטות (diffuse large B-cell)</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — BRAF, c-KIT ומלנומה</h4>
+  <p>עבור כירורג/ית פלסטי/ת, שלושה אונקוגנים בטבלה זו קריטיים במיוחד: <b>BRAF</b> (מוטציה נפוצה במלנומה קוטנית — קובעת התאמה לטיפול ממוקד ב-BRAF/MEK inhibitors לפני/אחרי כריתה רחבה), <b>c-KIT</b> (GIST — רלוונטי לכירורגיה שחזורית לאחר כריתות בטן נרחבות), ו-HER2 (רלוונטי לתכנון שחזור שד לאחר מסטקטומיה בסרטן שד HER2-positive, כולל תזמון מול טיפול ביולוגי אנטי-HER2).</p>
+</div>
+
+<h2><span class="num">2</span> גנים מדכאי גידול (Tumor Suppressor Genes) והשערת קנודסון</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>אובדן תפקוד (loss of function)</b> → ↑סיכון לסרטן. <b>שני האללים</b> (שניהם!) של הגן המדכא-גידול חייבים לאבד תפקוד כדי שהמחלה תתבטא — זוהי <b>השערת שני הפגיעות של קנודסון (Knudson two-hit hypothesis)</b>.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>השערת שני הפגיעות של קנודסון (Knudson two-hit hypothesis) לגנים מדכאי גידול</title>
+<text x="450" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">השערת "שני הפגיעות" של קנודסון — גנים מדכאי גידול דורשים אובדן שני האללים</text>
+
+<g>
+<rect x="20" y="55" width="860" height="125" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="40" y="76" font-size="12.5" font-weight="700" fill="#065f46">1. תא תקין</text>
+<rect x="330" y="90" width="140" height="55" rx="6" fill="#a7f3d0" stroke="#047857" stroke-width="1.5"/>
+<text x="400" y="113" font-size="10.5" font-weight="700" text-anchor="middle" fill="#065f46">אלל 1</text>
+<text x="400" y="130" font-size="9.5" text-anchor="middle" fill="#065f46">תקין ✓</text>
+<rect x="490" y="90" width="140" height="55" rx="6" fill="#a7f3d0" stroke="#047857" stroke-width="1.5"/>
+<text x="560" y="113" font-size="10.5" font-weight="700" text-anchor="middle" fill="#065f46">אלל 2</text>
+<text x="560" y="130" font-size="9.5" text-anchor="middle" fill="#065f46">תקין ✓</text>
+<text x="450" y="167" font-size="10" text-anchor="middle" fill="#065f46">שני אללי הגן המדכא-גידול תקינים → תפקוד מלא, בקרה תקינה על מחזור התא</text>
+</g>
+
+<line x1="450" y1="180" x2="450" y2="200" stroke="#b45309" stroke-width="3"/>
+<polygon points="450,200 444,188 456,188" fill="#b45309"/>
+<text x="600" y="194" font-size="10.5" font-weight="700" fill="#92400e">פגיעה ראשונה (Hit 1)</text>
+
+<g>
+<rect x="20" y="200" width="860" height="125" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="40" y="221" font-size="12.5" font-weight="700" fill="#92400e">2. פגיעה באלל אחד בלבד (Hit 1) — טרם מחלה</text>
+<rect x="330" y="235" width="140" height="55" rx="6" fill="#fecaca" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="400" y="258" font-size="10.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אלל 1</text>
+<text x="400" y="275" font-size="9.5" text-anchor="middle" fill="#7f1d1d">פגוע ✗</text>
+<rect x="490" y="235" width="140" height="55" rx="6" fill="#a7f3d0" stroke="#047857" stroke-width="1.5"/>
+<text x="560" y="258" font-size="10.5" font-weight="700" text-anchor="middle" fill="#065f46">אלל 2</text>
+<text x="560" y="275" font-size="9.5" text-anchor="middle" fill="#065f46">תקין ✓</text>
+<text x="450" y="312" font-size="10" font-weight="700" text-anchor="middle" fill="#92400e">האלל התקין הנותר עדיין מספק תפקוד תקין → אין מחלה עדיין</text>
+</g>
+
+<line x1="450" y1="325" x2="450" y2="345" stroke="#b91c1c" stroke-width="3"/>
+<polygon points="450,345 444,333 456,333" fill="#b91c1c"/>
+<text x="600" y="339" font-size="10.5" font-weight="700" fill="#7f1d1d">פגיעה שנייה (Hit 2)</text>
+
+<g>
+<rect x="20" y="345" width="860" height="125" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="40" y="366" font-size="12.5" font-weight="700" fill="#7f1d1d">3. שני האללים אבדו (Hit 2) — התאמת סרטן</text>
+<rect x="330" y="380" width="140" height="55" rx="6" fill="#fecaca" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="400" y="403" font-size="10.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אלל 1</text>
+<text x="400" y="420" font-size="9.5" text-anchor="middle" fill="#7f1d1d">פגוע ✗</text>
+<rect x="490" y="380" width="140" height="55" rx="6" fill="#fecaca" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="560" y="403" font-size="10.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אלל 2</text>
+<text x="560" y="420" font-size="9.5" text-anchor="middle" fill="#7f1d1d">פגוע ✗</text>
+<text x="450" y="457" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">אובדן מוחלט של תפקוד הגן המדכא-גידול → אובדן בקרה על מחזור התא → סרטן</text>
+</g>
+
+<rect x="20" y="480" width="860" height="65" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="450" y="502" font-size="10" text-anchor="middle" fill="#1f2937">בתסמונות משפחתיות (למשל רטינובלסטומה תורשתית): Hit 1 מולד (בתאי נבט) — נדרש Hit 2 סומטי בלבד → הופעה מוקדמת, לעיתים דו-צדדית</text>
+<text x="450" y="522" font-size="10" text-anchor="middle" fill="#1f2937">במקרים ספורדיים: שתי הפגיעות סומטיות ומקריות → הופעה מאוחרת יותר, לרוב חד-צדדית ונדירה יותר</text>
+</svg>
+
+<table class="keytable">
+  <thead><tr><th>גן</th><th>תוצר הגן</th><th>מצב קשור</th></tr></thead>
+  <tbody>
+    <tr><td>APC</td><td>רגולטור שלילי של מסלול β-catenin/WNT</td><td>סרטן קולורקטלי (קשור ל-FAP)</td></tr>
+    <tr><td>BRCA1/BRCA2</td><td>חלבוני BRCA1/BRCA2</td><td>סרטני שד, שחלה, ערמונית, לבלב</td></tr>
+    <tr><td>CDKN2A</td><td>p16, חוסם מעבר G1→S</td><td>סרטנים רבים (למשל מלנומה, ריאה, לבלב)</td></tr>
+    <tr><td>DCC</td><td>"Deleted in Colorectal Cancer"</td><td>סרטן קולורקטלי</td></tr>
+    <tr><td>SMAD4 (DPC4)</td><td>"Deleted in Pancreatic Cancer"</td><td>סרטן לבלב, סרטן קולורקטלי</td></tr>
+    <tr><td>MEN1</td><td>Menin</td><td>Multiple Endocrine Neoplasia type 1</td></tr>
+    <tr><td>NF1</td><td>Neurofibromin (Ras GTPase activating protein)</td><td>נוירופיברומטוזיס סוג 1</td></tr>
+    <tr><td>NF2</td><td>Merlin (schwannomin)</td><td>נוירופיברומטוזיס סוג 2</td></tr>
+    <tr><td>PTEN</td><td>רגולטור שלילי של מסלול PI3K/AKT</td><td>סרטני ערמונית, שד, ורירית הרחם</td></tr>
+    <tr><td>RB1</td><td>מעכב E2F; חוסם מעבר G1→S</td><td>רטינובלסטומה, אוסטאוסרקומה (סרטן עצם)</td></tr>
+    <tr><td>TP53</td><td>p53, מפעיל p21, חוסם מעבר G1→S</td><td>רוב הסרטנים; תסמונת Li-Fraumeni (SBLA: Sarcoma, Breast/Brain, Lung/Leukemia, Adrenal)</td></tr>
+    <tr><td>TSC1</td><td>חלבון Hamartin</td><td>Tuberous sclerosis complex</td></tr>
+    <tr><td>TSC2</td><td>Tuberin</td><td>Tuberous sclerosis complex</td></tr>
+    <tr><td>VHL</td><td>מעכב hypoxia-inducible factor 1α</td><td>מחלת von Hippel-Lindau</td></tr>
+    <tr><td>WT1</td><td>גורם שעתוק להתפתחות אורוגניטלית</td><td>גידול Wilms (נפרובלסטומה)</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — BRCA1/2 ושחזור שד</h4>
+  <p><b>BRCA1/BRCA2</b> הם ככל הנראה הגנים המדכאי-גידול הרלוונטיים ביותר לכירורגיה פלסטית: נשאיות מוטציה עוברות לעיתים <b>מסטקטומיה מפחיתת-סיכון (risk-reducing mastectomy)</b> ופונות לכירורג פלסטי לשחזור שד (autologous flap כגון DIEP, או שחזור בהשתלה). הבנת הגנטיקה (Knudson two-hit — נשאיות נולדות עם Hit 1 בכל תאי הגוף, ורק Hit 2 סומטי נדרש ברקמת השד/שחלה → סיכון גבוה ומוקדם משמעותית) מסבירה מדוע ההתערבות הכירורגית-מונעת מתבצעת בגיל צעיר יחסית, ומדגישה חשיבות תיאום רב-תחומי (אונקולוג/ית, גנטיקאי/ת, כירורג/ית שד וכירורג/ית פלסטי/ת).</p>
+</div>
+
+<h2><span class="num">3</span> קרצינוגנים (Carcinogens)</h2>
+<table>
+  <thead><tr><th>רעלן</th><th>חשיפה</th><th>איבר</th><th>השפעה</th></tr></thead>
+  <tbody>
+    <tr><td>אפלטוקסינים (Aspergillus)</td><td>דגנים ואגוזים מאוחסנים</td><td>כבד</td><td>קרצינומה הפטוצלולרית</td></tr>
+    <tr><td>חומרי אלקילציה</td><td>כימותרפיה אונקולוגית</td><td>דם</td><td>לוקמיה/לימפומה</td></tr>
+    <tr><td>אמינים ארומטיים (למשל בנזידין, 2-נפתילאמין)</td><td>תעשיית הטקסטיל (צבעים), עישון</td><td>שלפוחית שתן</td><td>קרצינומה של תאי מעבר (transitional cell)</td></tr>
+    <tr><td>ארסן</td><td>קוטלי עשבים (עובדי כרמים), התכת מתכות, שימור עץ</td><td>כבד; ריאה; עור</td><td>אנגיוסרקומה כבדית; סרטן ריאה; קרצינומה של תאי קשקש</td></tr>
+    <tr><td>אזבסט</td><td>חומרי גג ישנים, עובדי מספנות</td><td>ריאה</td><td>קרצינומה ברונכוגנית &gt; מזותליומה</td></tr>
+    <tr><td>עישון</td><td>—</td><td>שלפוחית; צוואר הרחם; ושט; כליה; גרון; ריאה; אורופרינקס; לבלב</td><td>קרצינומת תאי מעבר; SCC; SCC/אדנוקרצינומה; RCC; SCC; SCC ו-small cell; SCC; אדנוקרצינומה של הלבלב</td></tr>
+    <tr><td>אתנול</td><td>—</td><td>ושט; כבד; שד</td><td>SCC; קרצינומה הפטוצלולרית; סרטן שד</td></tr>
+    <tr><td>קרינה מייננת</td><td>—</td><td>דם; תריס</td><td>לוקמיה; קרצינומה פפילרית של התריס</td></tr>
+    <tr><td>ניקל, כרום, בריליום, סיליקה</td><td>חשיפה תעסוקתית</td><td>ריאה</td><td>סרטן ריאה</td></tr>
+    <tr><td>ניטרוזאמינים</td><td>מזון מעושן</td><td>קיבה</td><td>סרטן קיבה (טיפוס אינטסטינלי)</td></tr>
+    <tr><td>רדון</td><td>תוצר פירוק אורניום, מצטבר במרתפים</td><td>ריאה</td><td>סרטן ריאה (הגורם השני בשכיחותו אחרי עישון)</td></tr>
+    <tr><td>וויניל כלוריד</td><td>ייצור צינורות PVC</td><td>כבד</td><td>אנגיוסרקומה כבדית</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — קרצינוגני עור</h4>
+  <p>מבין הקרצינוגנים בטבלה, <b>ארסן</b> (SCC של העור) ו<b>קרינה מייננת</b> (סיכון עורי מוגבר לאחר הקרנות, כולל שדות הקרנה קודמים) הכי רלוונטיים ישירות לניתוחי גידולי עור. הערה חשובה (מהרחבה מעבר לטקסט המקור עצמו — לא נמנה בטבלת המקור אך ידע רקע כללי מוכר): קרינת UV אינה מופיעה בטבלה זו ב-First Aid אך היא הקרצינוגן העורי המוביל בפועל בקליניקה של כירורגיה פלסטית (BCC/SCC/מלנומה) — יש להיזהר לא לבלבל בין רשימת הקרצינוגנים של הטבלה המקורית לבין הידע הקליני הרחב יותר על סרטן עור.</p>
+</div>
+
+<h2><span class="num">4</span> מיקרובים אונקוגניים וסמני גידול בסרום</h2>
+<h3>4.1 מיקרובים אונקוגניים</h3>
+<table>
+  <thead><tr><th>מיקרוב</th><th>סרטן קשור</th></tr></thead>
+  <tbody>
+    <tr><td>EBV</td><td>לימפומת Burkitt, לימפומת Hodgkin, קרצינומה נזופרינגיאלית, לימפומת CNS ראשונית (במדוכאי חיסון)</td></tr>
+    <tr><td>HBV, HCV</td><td>קרצינומה הפטוצלולרית</td></tr>
+    <tr><td>HHV-8</td><td>סרקומת Kaposi</td></tr>
+    <tr><td>HPV (בעיקר טיפוסים 16, 18)</td><td>קרצינומה של צוואר הרחם ופין/אנוס, סרטן ראש-צוואר</td></tr>
+    <tr><td>H. pylori</td><td>אדנוקרצינומה קיבתית ולימפומת MALT</td></tr>
+    <tr><td>HTLV-1</td><td>לוקמיה/לימפומה של תאי T בוגרים</td></tr>
+    <tr><td>תולעת כבד (Clonorchis sinensis)</td><td>כולנגיוקרצינומה</td></tr>
+    <tr><td>Schistosoma haematobium</td><td>סרטן שלפוחית מסוג SCC</td></tr>
+  </tbody>
+</table>
+
+<h3>4.2 סמני גידול בסרום</h3>
+<div class="key-box">
+  סמני גידול בסרום <b>אינם</b> אמורים לשמש ככלי ראשי לאבחון או סקר סרטן. ניתן להשתמש בהם למעקב אחר הישנות ותגובה לטיפול, אך האבחנה הסופית נעשית ע"י ביופסיה. חלקם עשויים להיות קשורים גם למצבים לא-ניאופלסטיים.
+</div>
+<table class="keytable">
+  <thead><tr><th>סמן</th><th>קשרים חשובים</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>אלקלין פוספטאז</td><td>גרורות לעצם/כבד, מחלת Paget של העצם, סמינומה (PLAP)</td><td>יש לשלול מקור כבדי ע"י בדיקת LFTs ורמות GGT</td></tr>
+    <tr><td>α-fetoprotein (AFP)</td><td>קרצינומה הפטוצלולרית, גידול sinus אנדודרמלי (yolk sac), גידול תאי נבט מעורב, אטקסיה-טלנגיאקטזיה, מומי תעלה עצבית</td><td>מיוצר תקין ע"י העובר; מוגבר זמנית בהריון; רמות גבוהות קשורות למומי תעלה עצבית ודופן בטן, רמות נמוכות קשורות לתסמונת דאון</td></tr>
+    <tr><td>hCG</td><td>מולה הידטידיפורמית וכוריוקרצינומה (מחלה טרופובלסטית הריונית), סרטן אשך, גידול תאי נבט מעורב</td><td>מיוצר ע"י סינציטיוטרופובלסטים של השליה</td></tr>
+    <tr><td>CA 15-3/CA 27-29</td><td>סרטן שד</td><td>—</td></tr>
+    <tr><td>CA 19-9</td><td>אדנוקרצינומה של הלבלב</td><td>—</td></tr>
+    <tr><td>CA 125</td><td>סרטן שחלה אפיתליאלי</td><td>—</td></tr>
+    <tr><td>קלציטונין</td><td>קרצינומה מדולרית של התריס (לבד ובמסגרת MEN2A, MEN2B)</td><td>—</td></tr>
+    <tr><td>CEA</td><td>סרטני מעי גס ולבלב</td><td>CarcinoEmbryonic Antigen, לא-ספציפי מאוד; קשרים משניים: קיבה, שד, קרצינומה מדולרית של התריס</td></tr>
+    <tr><td>כרומוגרנין</td><td>גידולים נוירואנדוקריניים</td><td>—</td></tr>
+    <tr><td>LDH</td><td>גידולי תאי נבט של האשך, דיסגרמינומה שחלתית, סרטנים נוספים</td><td>ניתן להשתמש כמדד לעומס גידולי (tumor burden)</td></tr>
+    <tr><td>Neuron-specific enolase</td><td>גידולים נוירואנדוקריניים (למשל small cell lung cancer, גידול קרצינואיד, נוירובלסטומה)</td><td>—</td></tr>
+    <tr><td>PSA</td><td>סרטן ערמונית</td><td>Prostate-Specific Antigen — מעקב הישנות/תגובה; תועלת-מול-סיכון לא ודאית לסקר; מוגבר גם ב-BPH/פרוסטטיטיס</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — S-100, BRAF וסימני מלנומה</h4>
+  <p>אף שהאלקלין-פוספטאז/AFP/hCG/CA-markers רלוונטיים בעיקר לאונקולוגיה כללית, יש לזכור שסמן ה-<b>S-100</b> (ראו טבלת אימונוהיסטוכימיה בהמשך) הוא הצביעה המרכזית לזיהוי מלנומה בביופסיה/דוח פתולוגיה — משמעותי ישירות לכירורג פלסטי המבצע כריתת נגעי עור חשודים ומפרש דוחות פתולוגיה של שוליים ובלוטת זקיף.</p>
+</div>
+
+<h2><span class="num">5</span> שיטות בדיקה מודרניות לסרטן</h2>
+<div class="mechanism">
+  <p class="chain"><b>Tumor mutational burden</b>: מספר המוטציות הכולל בתאי הסרטן. עשוי לחזות תגובה לטיפולים מסוימים (למשל מעכבי immune-checkpoint).</p>
+  <p class="chain" style="margin-top:10px"><b>Microsatellite instability testing</b>: מעריך פגמים במסלול תיקון ה-mismatch (סימן היכר של תסמונת Lynch). משמש להערכת פרוגנוזה וקביעת טיפול בסרטנים מסוימים (למשל אדנוקרצינומה קולורקטלית, קרצינומה של רירית הרחם).</p>
+  <p class="chain" style="margin-top:10px"><b>דפוסי ביטוי PD-L1</b>: PD-L1 מתבטא במידות שונות בסרטנים מסוימים (למשל NSCLC, קרצינומה אורותליאלית). ניתן למקד בנוגדני אנטי-PD-L1 ואנטי-PD-1.</p>
+  <p class="chain" style="margin-top:10px"><b>Homologous recombination deficiency testing</b>: מזהה סוגי סרטן עם פגמים גנטיים וחוסר יציבות גנומית (למשל שד, שחלה) שעשויים להגיב לטיפולים מסוימים (למשל מעכבי PARP).</p>
+  <p class="chain" style="margin-top:10px"><b>ביופסיה נוזלית (Liquid biopsy)</b>: בדיקה אבחנתית לא-פולשנית בנוזל גוף (למשל דם, שתן) המשתמשת ב-ctDNA, ctRNA, או CTCs (תאי סרטן במחזור) לפרופיל גנטי של הגידול (למשל EGFR בסרטן ריאה), מעקב טיפול, ומעקב לאחר טיפול (למשל סרטן קולורקטלי). מסייעת באיתור מוקדם של גרורות ובטיפול מותאם-אישית.</p>
+</div>
+
+<h2><span class="num">6</span> צביעות אימונוהיסטוכימיות חשובות</h2>
+<div class="mechanism">
+  <p class="chain">
+    צביעות אימונוהיסטוכימיות (IHC) קובעות את אתר המקור העיקרי של גידולים גרורתיים ומאפיינות גידולים קשי-סיווג. עשויות להיות בעלות ערך פרוגנוסטי וניבויי.
+  </p>
+</div>
+<table class="keytable">
+  <thead><tr><th>צביעה</th><th>מטרה (מבנה תאי)</th><th>גידולים מזוהים</th></tr></thead>
+  <tbody>
+    <tr><td>כרומוגרנין וסינפטופיזין</td><td>תאים נוירואנדוקריניים</td><td>small cell carcinoma של הריאה, גידול קרצינואיד, נוירובלסטומה</td></tr>
+    <tr><td>ציטוקרטין</td><td>תאים אפיתליאליים</td><td>גידולים אפיתליאליים (למשל קרצינומה של תאי קשקש)</td></tr>
+    <tr><td>Desmin</td><td>שריר</td><td>גידולי שריר (למשל רבדומיוסרקומה)</td></tr>
+    <tr><td>GFAP</td><td>נוירוגליה (אסטרוציטים, תאי שוואן, אוליגודנדרוציטים)</td><td>אסטרוציטומה, גליובלסטומה</td></tr>
+    <tr><td>Neurofilament</td><td>נוירונים</td><td>גידולים נוירונליים (למשל נוירובלסטומה)</td></tr>
+    <tr><td>PSA</td><td>אפיתל הערמונית</td><td>סרטן ערמונית</td></tr>
+    <tr><td>PECAM-1/CD-31</td><td>תאי אנדותל</td><td>גידולים וסקולריים (למשל אנגיוסרקומה)</td></tr>
+    <tr><td>S-100</td><td>תאי neural crest</td><td>מלנומה, שוואנומה, Langerhans cell histiocytosis</td></tr>
+    <tr><td>TRAP</td><td>Tartrate-Resistant Acid Phosphatase</td><td>Hairy cell leukemia</td></tr>
+    <tr><td>Vimentin</td><td>רקמה מזנכימלית (פיברובלסטים, אנדותל, מקרופאגים)</td><td>גידולים מזנכימליים (למשל סרקומה), אך גם גידולים רבים נוספים (למשל קרצינומה של רירית הרחם, RCC, מנינגיומה)</td></tr>
+  </tbody>
+</table>
+<p><b>P-glycoprotein</b>: משאבת יעפוק (efflux) תלוית-ATP, המכונה גם multidrug resistance protein 1 (<b>MDR1</b>). מתבטאת בחלק מתאי הסרטן כדי לשאוב החוצה רעלים, כולל תרופות כימותרפיות (אחד ממנגנוני ↓תגובה/עמידות לכימותרפיה עם הזמן).</p>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — S-100/Vimentin/Desmin בפתולוגיית עור-רקמה רכה</h4>
+  <p>שלוש הצביעות המרכזיות בעבודה היומיומית של כירורג/ית פלסטי/ת עם גידולי עור ורקמה רכה: <b>S-100</b> — אישוש היסטולוגי למלנומה/שוואנומה (חיוני לדוח פתולוגיה של כריתת נגע פיגמנטרי חשוד); <b>Vimentin</b> ו<b>Desmin</b> — מסייעים באפיון סרקומות רקמה רכה (למשל רבדומיוסרקומה, ליומיוסרקומה) שכירורג פלסטי-אונקולוגי עשוי להיות מעורב בכריתתן ובשחזור לאחריה. פרשנות נכונה של IHC משפיעה ישירות על החלטת שוליים והצורך בטיפול משלים.</p>
+</div>
+
+<h2><span class="num">7</span> תסמונות פאראנאופלסטיות</h2>
+<div class="mechanism">
+  <p class="chain">תסמונות פאראנאופלסטיות הן ביטויים קליניים מרוחקים מהגידול, שאינם נובעים ישירות מפלישה או גרורה, אלא ממתווכים (הורמונים, נוגדנים) שהגידול מפריש או מעורר.</p>
+</div>
+
+<h3>7.1 שרירי-שלד-שרירי ועוריים</h3>
+<table>
+  <thead><tr><th>תסמונת</th><th>ביטוי</th><th>גידול קשור</th></tr></thead>
+  <tbody>
+    <tr><td>דרמטומיוזיטיס</td><td>חולשת שרירים פרוקסימלית מתקדמת, Gottron papules, פריחת heliotrope</td><td>אדנוקרצינומות, בעיקר שחלה</td></tr>
+    <tr><td>Acanthosis nigricans</td><td>פלאקים קטיפתיים היפרפיגמנטיים בבית השחי ובצוואר</td><td>אדנוקרצינומה קיבתית וממאירויות ויסצרליות אחרות</td></tr>
+    <tr><td>סימן Leser-Trélat</td><td>הופעה פתאומית של seborrheic keratoses מרובות</td><td>אדנוקרצינומות של מערכת העיכול וממאירויות ויסצרליות אחרות</td></tr>
+    <tr><td>Hypertrophic osteoarthropathy</td><td>שגשוג לא-תקין של עור ועצם בגפיים דיסטליות → clubbing, ארתרלגיה, תפליטים מפרקיים, periostosis של עצמות ארוכות</td><td>אדנוקרצינומה של הריאה</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — סימנים עוריים פאראנאופלסטיים</h4>
+  <p>שלושת הממצאים העוריים בטבלה — דרמטומיוזיטיס, Acanthosis nigricans, וסימן Leser-Trélat — עשויים להגיע לראשונה לתשומת ליבו של כירורג/ית פלסטי/ת (למשל בהפניה לביופסיית עור או הערכת נגע עורי), עוד לפני שהאבחנה האונקולוגית הבסיסית ידועה. זיהוי מוקדם של הדפוסים הללו מאפשר הפניה מהירה לבירור ממאירות ויסצרלית סמויה — תפקיד חשוב של הכירורג הפלסטי כ"שומר סף" אבחנתי.</p>
+</div>
+
+<h3>7.2 אנדוקריניות</h3>
+<table>
+  <thead><tr><th>תסמונת</th><th>מנגנון</th><th>גידול קשור</th></tr></thead>
+  <tbody>
+    <tr><td>היפרקלצמיה</td><td>דרך PTHrP</td><td>קרצינומות תאי קשקש של ריאה, ראש וצוואר; קרצינומות כליה, שלפוחית, שד, שחלה</td></tr>
+    <tr><td>היפרקלצמיה (מנגנון חלופי)</td><td>↑1,25-(OH)2 ויטמין D (קלציטריול)</td><td>לימפומה</td></tr>
+    <tr><td>תסמונת Cushing</td><td>↑ACTH</td><td>Small cell lung cancer</td></tr>
+    <tr><td>היפונתרמיה (SIADH)</td><td>↑ADH</td><td>Small cell lung cancer</td></tr>
+  </tbody>
+</table>
+
+<h3>7.3 המטולוגיות</h3>
+<table>
+  <thead><tr><th>תסמונת</th><th>ביטוי</th><th>גידול קשור</th></tr></thead>
+  <tbody>
+    <tr><td>פוליציטמיה</td><td>↑אריתרופויאטין, עלייה פאראנאופלסטית ברמות המטוקריט</td><td>פאוכרומוציטומה, קרצינומה של תאי כליה, HCC, המנגיובלסטומה, ליומיומה</td></tr>
+    <tr><td>Pure red cell aplasia</td><td>אנמיה עם רטיקולוציטים נמוכים</td><td>תימומה</td></tr>
+    <tr><td>תסמונת Good</td><td>היפוגמאגלובולינמיה</td><td>תימומה</td></tr>
+    <tr><td>תסמונת Trousseau</td><td>תרומבופלביטיס שטחי נודד</td><td>אדנוקרצינומות, בעיקר לבלב</td></tr>
+    <tr><td>אנדוקרדיטיס תרומבוטית לא-בקטריאלית</td><td>שקיעת תרומבים סטריליים של טסיות על מסתמי הלב</td><td>אדנוקרצינומות, בעיקר לבלב</td></tr>
+  </tbody>
+</table>
+
+<h3>7.4 נוירומוסקולריות</h3>
+<table>
+  <thead><tr><th>תסמונת</th><th>ביטוי</th><th>גידול קשור</th></tr></thead>
+  <tbody>
+    <tr><td>אנצפליטיס אנטי-NMDA</td><td>הפרעה פסיכיאטרית, ליקויי זיכרון, פרכוסים, דיסקינזיות, אי-יציבות אוטונומית, הפרעת שפה</td><td>טרטומה שחלתית</td></tr>
+    <tr><td>Opsoclonus-myoclonus ataxia syndrome</td><td>"עיניים רוקדות, רגליים רוקדות"</td><td>נוירובלסטומה (ילדים), small cell lung cancer (מבוגרים)</td></tr>
+    <tr><td>ניוון צרבלרי פאראנאופלסטי</td><td>נוגדנים נגד אנטיגנים בתאי Purkinje</td><td>Small cell lung cancer (anti-Hu), סרטני גינקולוגיה ושד (anti-Yo), לימפומת Hodgkin (anti-Tr)</td></tr>
+    <tr><td>אנצפלומייליטיס פאראנאופלסטי</td><td>Anti-Hu בנוירונים</td><td>Small cell lung cancer</td></tr>
+    <tr><td>תסמונת Lambert-Eaton</td><td>נוגדנים נגד תעלות Ca2+ פרה-סינפטיות (P/Q-type) ב-NMJ</td><td>נוגדנים אלו הם המנגנון המוגדר במקור; לא לצטט שיוך גידולי ספציפי מעבר לכך שאינו רשום מפורשות במקור זה</td></tr>
+    <tr><td>Myasthenia gravis</td><td>נוגדנים נגד רצפטורי ACh פוסט-סינפטיים</td><td>תימומה</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — תימומה</h4>
+  <p><b>תימומה מקושרת לשלוש תסמונות "T"</b>: pure red cell aplasia, תסמונת Good (היפוגמאגלובולינמיה), ו-Myasthenia gravis — כל השלוש נובעות מהפרעה חיסונית הקשורה לבלוטת התימוס.</p>
+</div>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 45 מגיעה עם גוש עורי פיגמנטרי לא-סימטרי בגב, שגדל בחודשים האחרונים. הביופסיה מראה מלנומה עם צביעת S-100 חיובית, ובדיקה מולקולרית מגלה מוטציית BRAF. במקביל, האישה מספרת שאמה ואחותה אובחנו עם סרטן שד לפני גיל 45, ובדיקה גנטית מגלה שגם היא נשאית מוטציה ב-BRCA1.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. לאור נשאות BRCA1 של המטופלת, איזה עיקרון גנטי מסביר מדוע נשאיות BRCA1/2 מפתחות סרטן שד/שחלה מוקדם ובשכיחות גבוהה יותר מהאוכלוסייה הכללית?</div>
+  <button class="opt" data-i="0">BRCA1/2 הם אונקוגנים, ומספיקה מוטציה באלל אחד בלבד כדי לגרום לסרטן</button>
+  <button class="opt" data-i="1">BRCA1/2 אינם קשורים כלל להשערת שני הפגיעות של קנודסון</button>
+  <button class="opt" data-i="2">BRCA1/2 הם גנים מדכאי-גידול; נשאיות נולדות עם Hit 1 גרמינלי בכל תאי הגוף, כך שנדרש רק Hit 2 סומטי ברקמת המטרה — מסביר הופעה מוקדמת ותכופה יותר (Knudson two-hit hypothesis)</button>
+  <button class="opt" data-i="3">BRCA1/2 גורמים לסרטן רק דרך מנגנון של תסמונת פאראנאופלסטית</button>
+  <div class="explain">נכון: BRCA1/BRCA2 הם גנים מדכאי-גידול, ולכן דורשים אובדן שני האללים (Knudson two-hit hypothesis) כדי לבטא מחלה. בנשאיות תורשתיות, ה-Hit הראשון כבר קיים בקו הנבט (בכל תא בגוף), כך שרק פגיעה סומטית שנייה נדרשת ברקמת המטרה (שד/שחלה) — זה מסביר סיכון מצטבר גבוה משמעותית והופעה בגיל צעיר יותר בהשוואה למקרים ספורדיים (הדורשים שתי פגיעות סומטיות עצמאיות). תשובה א' שגויה — BRCA אינם אונקוגנים. תשובה ב' שגויה — זהו בדיוק המנגנון של קנודסון. תשובה ד' שגויה — אין קשר לתסמונת פאראנאופלסטית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה אונקוגן קשור ישירות למלנומה, ומאיזה סוג הוא מבחינה מולקולרית?</div>
+  <button class="opt" data-i="0">RB1 — גן מדכא-גידול המעכב E2F</button>
+  <button class="opt" data-i="1">BRAF — סרין/תראונין קינאז, גם קשור לקרצינומה פפילרית של התריס ול-hairy cell leukemia</button>
+  <button class="opt" data-i="2">WT1 — גורם שעתוק המעורב בהתפתחות אורוגניטלית</button>
+  <button class="opt" data-i="3">VHL — מעכב HIF-1α</button>
+  <div class="explain">נכון: BRAF הוא אונקוגן (gain-of-function) המקודד סרין/תראונין קינאז, וקשור למלנומה (וגם ללימפומת non-Hodgkin, קרצינומה קולורקטלית, קרצינומה פפילרית של התריס, ו-hairy cell leukemia). RB1, WT1 ו-VHL (תשובות א', ג', ד') הם כולם גנים מדכאי-גידול (loss-of-function) הקשורים לגידולים אחרים — לא למלנומה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזה סמן/תסמונת מתאימים למקרה של מטופל עם small cell lung cancer שפיתח היפונתרמיה משמעותית?</div>
+  <button class="opt" data-i="0">היפרקלצמיה דרך PTHrP — טיפוסי לקרצינומת תאי קשקש של הריאה, לא small cell</button>
+  <button class="opt" data-i="1">עלייה ב-PSA — סמן ספציפי לערמונית, לא קשור</button>
+  <button class="opt" data-i="2">Trousseau syndrome — טיפוסי יותר לאדנוקרצינומת לבלב</button>
+  <button class="opt" data-i="3">SIADH (הפרשת יתר של ADH) — תסמונת פאראנאופלסטית קלאסית של small cell lung cancer, גורמת להיפונתרמיה</button>
+  <div class="explain">נכון: Small cell lung cancer קשור קלאסית לשתי תסמונות אנדוקריניות עיקריות: תסמונת Cushing (↑ACTH) ו-SIADH (↑ADH → היפונתרמיה). לכן, במטופל עם small cell lung cancer והיפונתרמיה, האבחנה הסבירה ביותר היא SIADH פאראנאופלסטי. היפרקלצמיה דרך PTHrP (א') אופיינית ל-squamous cell carcinoma של הריאה, לא small cell. PSA (ב') אינו קשור. Trousseau syndrome (ג') קשור בעיקר לאדנוקרצינומת לבלב.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> תמצית</h2>
+  <h4>אונקוגנים וגנים מדכאי-גידול</h4>
+  <ul>
+    <li>אונקוגן = gain-of-function, מספיק אלל אחד. גנים מדכאי-גידול = loss-of-function, נדרשים שני אללים (Knudson two-hit hypothesis).</li>
+    <li>אונקוגנים לזכור: BRAF (מלנומה), c-KIT (GIST), HER2 (שד/קיבה), BCR-ABL (CML), MYCC (Burkitt), KRAS (לבלב/מעי גס/ריאה).</li>
+    <li>גנים מדכאי-גידול לזכור: TP53 (רוב הסרטנים, Li-Fraumeni), RB1 (רטינובלסטומה), BRCA1/2 (שד/שחלה — רלוונטי ישירות לשחזור שד), APC (FAP), VHL, NF1/NF2.</li>
+  </ul>
+  <h4>קרצינוגנים, מיקרובים וסמני גידול</h4>
+  <ul>
+    <li>קרצינוגנים מרכזיים: אזבסט→ריאה/מזותליומה, ארסן→עור/כבד/ריאה, ניטרוזאמינים→קיבה, וויניל כלוריד/ארסן→אנגיוסרקומה כבדית.</li>
+    <li>מיקרובים אונקוגניים: HPV→צוואר הרחם, HBV/HCV→HCC, EBV→Burkitt/Hodgkin/נזופרינגיאלי, H. pylori→MALT/קיבה, HHV-8→Kaposi.</li>
+    <li>סמני גידול: AFP→HCC/yolk sac, hCG→כוריוקרצינומה/אשך, CA-125→שחלה, CA-19-9→לבלב, PSA→ערמונית, קלציטונין→מדולרי תריס. אינם כלי אבחון ראשוני — ביופסיה קובעת.</li>
+  </ul>
+  <h4>IHC ופאראנאופלסטיות</h4>
+  <ul>
+    <li>IHC: S-100→מלנומה/שוואנומה, Vimentin/Desmin→מזנכימלי/שריר, כרומוגרנין/סינפטופיזין→נוירואנדוקריני, ציטוקרטין→אפיתליאלי.</li>
+    <li>פאראנאופלסטיות: דרמטומיוזיטיס/Acanthosis nigricans/Leser-Trélat — סימנים עוריים לממאירות ויסצרלית סמויה; SIADH/Cushing→small cell lung; Trousseau→אדנוקרצינומת לבלב; Myasthenia gravis/Good/pure red cell aplasia→תימומה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
