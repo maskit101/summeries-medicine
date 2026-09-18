@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 14: הוצאת שתלי שד - אינדיקציות ואסטרטגיות לאופטימיזציה של תוצאה אסתטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 14: הוצאת שתלי שד <span class="term" dir="ltr">Breast implant explantation: indications and strategies to optimize aesthetic outcomes</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | מאת Connor Crowley, M. Bradley Calobrace, Mark W. Clemens, Neil Tanna</div>
+
+<p>הוצאת שתלי שד (<span class="term" dir="ltr">explantation</span>) היא אחת הפרוצדורות שנפחן גדל הכי מהר בכירורגיה אסתטית - בשנת 2020 בוצעו בארה"ב כ-49,631 הוצאות שתל אלקטיביות, בעלות כוללת של כ-180 מיליון דולר. הפרק מארגן את הנושא הרחב הזה בשלושה צעדים ברורים שכדאי לזכור כמסגרת חשיבה: <b>(1) מה האינדיקציה</b> להוצאה, <b>(2) מה עושים עם הקפסולה</b>, ו-<b>(3) אילו פרוצדורות נלוות</b> משפרות את התוצאה האסתטית. שלושת הצעדים האלה הם השלד של כל הפרק.</p>
+
+<h2><span class="num">1</span> האינדיקציות להוצאת שתל</h2>
+<div class="mechanism">
+  <p class="chain">שש הסיבות המרכזיות להוצאת שתל: <b>העדפת המטופלת</b>, <b>קונטרקטורת קפסולה</b> (<span class="term" dir="ltr">capsular contracture</span>) בדרגה III-IV, <b>קרע שתל</b> (<span class="term" dir="ltr">rupture</span>), <b>חשיפה/זיהום</b> של השתל, <b>BIA-ALCL</b> (לימפומה מקושרת לשתל), ו<b>מחלת שתלי שד</b> (<span class="term" dir="ltr">BII – breast implant illness</span>) - תלונות סיסטמיות לא ספציפיות.</p>
+</div>
+
+<h3>קונטרקטורת קפסולה</h3>
+<p>שכיחה ב-2.8%-18.9% מהמטופלות אחרי הגדלת חזה, ומהווה מעל 55% מהניתוחים החוזרים לאורך 25 שנות מעקב. הגישה המסורתית לדרגות Baker III-IV הייתה קפסולקטומיה מלאה עם החלפת שתל, אך מטא-אנליזה של Wan ו-Rohrich (2016) הראתה שהעדות לעדיפות קפסולקטומיה <b>מלאה</b> על פני חלקית היא "חלשה ביותר" - מה שבאמת הפחית הישנות היה <b>החלפת השתל וחלל הכיס (site change)</b>, לא בהכרח הוצאת כל הקפסולה. זה חשוב במיוחד בשתלים סאב-פקטורליים, שם קפסולקטומיה מלאה מעלה סיכון לפנאומותורקס ופגיעה בדופן החזה.</p>
+
+<h3>קרע שתל</h3>
+<p>קרע סיליקון קשה לאבחון ("<span class="term" dir="ltr">silent rupture</span>"). ה-FDA ממליץ על אולטרסאונד או MRI סקר 5-6 שנים אחרי ההשתלה, וכל 2-3 שנים לאחר מכן. ההבחנה הקריטית היא בין <b>קרע תוך-קפסולרי</b> (סיליקון מוכל בתוך הקפסולה, ללא שינויים בקפסולה - מספיקה הוצאת שתל בלבד) לבין <b>קרע חוץ-קפסולרי</b> (קפסולה מעובה, מסוידת, או עם גושי סיליקון - נדרשת קפסולקטומיה חלקית או מלאה).</p>
+
+<h3>חשיפה וזיהום</h3>
+<p>הגישה השמרנית ההיסטורית: הוצאה, שטיפה, והשתלה חוזרת מושהית. אך Spear ואחרים הראו ש"הצלת שתל" (<span class="term" dir="ltr">implant salvage</span>) - שטיפה, קפסולקטומיה, והחלפה מיידית עם שינוי מישור - יכולה להצליח בלי סיבוכים גבוהים. יש לחשוב על זיהום כרצף (<span class="term" dir="ltr">continuum</span>) מזיהום עור קל ועד חשיפה מוגלתית קשה, ולהחליט לפי חומרה.</p>
+
+<h3>BIA-ALCL</h3>
+<p>מקושר לשתלים מחוספסים (<span class="term" dir="ltr">textured</span>), מציג כסרומה מאוחרת, כאב/נפיחות, שינויים בעור, או גוש. באבחנה מאושרת - טיפול הוא <b>resection en bloc</b> (ראה סעיף 3). <b class="key">חשוב מאוד</b>: אין המלצה לאף חברה מדעית או ה-FDA להוצאה שגרתית של שתלים מחוספסים ללא תסמינים - ההחלטה נשארת לשיקול דעת משותף של מנתח ומטופלת.</p>
+
+<h3>מחלת שתלי שד (BII)</h3>
+<p>שנוי במחלוקת מאז המורטוריום על סיליקון ב-1992. דוח ה-Institute of Medicine (1999) לא מצא עדות לקשר עם מחלות אוטואימוניות/אונקולוגיות. מחקר Coroneos (2019, מבוסס נתוני LPAS של ה-FDA) דיווח על עלייה סטטיסטית במחלות רקמת חיבור, אך היה שנוי במחלוקת חריפה (דיווח עצמי לעומת אבחנה רפואית, שיעורי מעקב נמוכים מאוד - 21% ל-Mentor, 60% ל-Allergan). ה-FDA "לא הסכים בכבוד" (<span class="term" dir="ltr">respectfully disagree</span>) עם מסקנות Coroneos, אך בכל זאת הוסיף אזהרת "Black Box" ב-2019. סקירת ספרות של de Boer (2017, 622 מטופלות) מצאה ש-75% מהמטופלות עם תלונות "הקשורות לסיליקון" (עייפות, מיאלגיה, ארתרלגיה, חום, יובש, הפרעות זיכרון/שינה) חוו שיפור אחרי הוצאת שתל - אך שיפור בתלונות אוטואימוניות היה נדיר ללא טיפול נוסף.</p>
+
+<h3>העדפת המטופלת</h3>
+<p>סיבה פשוטה אך דורשת שיחה מקדימה מלאה: יש להסביר שאחרי הוצאת שתל תהיה איבוד משמעותי של נפח קוטב עליון, פטוזיס בולט, והחזה לרוב <b>לא ייראה כמו לפני</b> ההשתלה - גם בגלל ההזדקנות וגם בגלל השפעת השתל על הרקמה לאורך זמן.</p>
+
+<div class="key-box">מבחינה קלינית, לא כל אינדיקציה דורשת אותה רמת קיצוניות בטיפול בקפסולה: <b>העדפת מטופלת וקרע תוך-קפסולרי</b> יכולים להסתפק בקפסולוטומיה או קפסולקטומיה חלקית, בעוד ש-<b>BIA-ALCL מאושר</b> מחייב תמיד en bloc.</div>
+
+<h2><span class="num">2</span> ניהול הקפסולה - חמש אופציות</h2>
+<p>הפרק מציג חמש רמות התערבות בקפסולה, מהשמרנית ביותר לאגרסיבית ביותר:</p>
+<table>
+  <thead><tr><th>טכניקה</th><th>מה כוללת</th><th>מתי מתאימה</th></tr></thead>
+  <tbody>
+    <tr><td><b>קפסולוטומיה</b></td><td>פתיחת הקפסולה בלבד, ללא הוצאתה. שומרת על אספקת הדם לעור העליון</td><td>החלפת שתל מהעדפה, ללא פתולוגיה בקפסולה; קריטי כשמתוכננת מסטופקסי בו-זמנית (סכנת דה-וסקולריזציה של הפטמה)</td></tr>
+    <tr><td><b>קפסולקטומיה חלקית</b></td><td>הוצאת חלק מהקפסולה; לעיתים עם אלקטרוקאוטר לחיסול השארית והביופילם</td><td>השיטה הנפוצה ביותר לקונטרקטורה (46% מהמנתחים ב-2016 לעומת 35% לקפסולקטומיה מלאה); מועדפת בשתלים סאב-פקטורליים</td></tr>
+    <tr><td><b>קפסולקטומיה מלאה</b></td><td>הוצאת הדופן הקדמית והאחורית כאחד. לעיתים כ"strip capsulectomy" - הוצאה בחתיכות אם הקפסולה שברירית</td><td>קונטרקטורה בשתל סאב-גלנדולרי, גרנולומות סיליקון משמעותיות, כיסים מזוהמים מוגלתית</td></tr>
+    <tr><td><b>כיס נאופקטורלי (<span class="term" dir="ltr">neopectoral pocket</span>)</b></td><td>יצירת כיס חדש קדמי לקפסולה הישנה אך עמוק לשריר החזה; קיפול הקפסולה הישנה וסגירתה</td><td>מלפוזיציה של שתל וקונטרקטורה, כשאין רקמה סאב-גלנדולרית מספקת; לא כשיש זיהום או קפסולה מסובכת</td></tr>
+    <tr><td><b><span class="term" dir="ltr">En bloc</span> capsulectomy</b></td><td>הוצאת השתל <b>יחד עם</b> הקפסולה כמקשה אחת, מוקפת ברקמה בריאה - פרוצדורה אונקולוגית</td><td>רק לאבחנה <b>מאושרת</b> של BIA-ALCL - <b>לא</b> לתלונות BII ו<b>לא</b> לשתלים מחוספסים א-סימפטומטיים בלבד</td></tr>
+  </tbody>
+</table>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם ניהול הקפסולה לפי אינדיקציה</title>
+  <rect x="330" y="15" width="200" height="46" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="43" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">אינדיקציה להוצאת שתל</text>
+
+  <!-- 5 branch boxes -->
+  <rect x="700" y="95" width="140" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="770" y="118" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">העדפת מטופלת</text>
+  <text x="770" y="135" font-size="11" text-anchor="middle" fill="#4c1d95">שיחה + התאמת ציפיות</text>
+
+  <rect x="530" y="95" width="140" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="600" y="118" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">קונטרקטורה</text>
+  <text x="600" y="135" font-size="11" text-anchor="middle" fill="#1e3a8a">חלקית / מלאה / נאופקטורלי</text>
+
+  <rect x="360" y="95" width="140" height="55" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="118" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">קרע שתל</text>
+  <text x="430" y="135" font-size="11" text-anchor="middle" fill="#065f46">תלוי אם חוץ/תוך-קפסולרי</text>
+
+  <rect x="190" y="95" width="140" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="260" y="118" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">זיהום/חשיפה</text>
+  <text x="260" y="135" font-size="11" text-anchor="middle" fill="#7f1d1d">קפסולוטומיה עד מלאה</text>
+
+  <rect x="20" y="95" width="140" height="55" rx="8" fill="#fdf2f8" stroke="#be185d"/>
+  <text x="90" y="118" font-size="12" text-anchor="middle" fill="#831843" font-weight="700">BIA-ALCL מאושר</text>
+  <text x="90" y="135" font-size="11" text-anchor="middle" fill="#831843">En bloc בלבד</text>
+
+  <!-- connecting lines from top box down to each branch -->
+  <line x1="430" y1="61" x2="430" y2="80" stroke="#374151" stroke-width="2"/>
+  <line x1="90" y1="80" x2="770" y2="80" stroke="#374151" stroke-width="2"/>
+  <line x1="90" y1="80" x2="90" y2="95" stroke="#374151" stroke-width="2"/>
+  <line x1="260" y1="80" x2="260" y2="95" stroke="#374151" stroke-width="2"/>
+  <line x1="430" y1="80" x2="430" y2="95" stroke="#374151" stroke-width="2"/>
+  <line x1="600" y1="80" x2="600" y2="95" stroke="#374151" stroke-width="2"/>
+  <line x1="770" y1="80" x2="770" y2="95" stroke="#374151" stroke-width="2"/>
+
+  <!-- bottom note box -->
+  <rect x="20" y="190" width="820" height="55" rx="8" fill="#fff" stroke="#e5e7eb"/>
+  <text x="430" y="213" font-size="12.5" text-anchor="middle" fill="#1f2937" font-weight="700">ככל שהאינדיקציה "חדה" יותר אונקולוגית (BIA-ALCL) - כך הטיפול בקפסולה אגרסיבי יותר</text>
+  <text x="430" y="231" font-size="11.5" text-anchor="middle" fill="#4b5563">לעומת זאת: "en bloc" הוא מונח אונקולוגי בלבד - שימוש שגוי בו בהקשרים אחרים מטעה מטופלות</text>
+</svg>
+<p class="figcap">איור סכמטי: עיבוד של Algorithm 14.1 מהפרק - ניהול הקפסולה בהתאם לאינדיקציה להוצאה</p>
+
+<div class="key-box">בלבול נפוץ מאוד: <b>"en bloc capsulectomy"</b> ו<b>"total capsulectomy"</b> הם <b>לא</b> מילים נרדפות! Total capsulectomy = הוצאת כל הקפסולה (קדמית+אחורית), אך לא בהכרח יחד עם השתל כמקשה אחת ולא בהכרח עם שוליים של רקמה בריאה. En bloc = מונח אונקולוגי ספציפי שמשמעותו הוצאת השתל <b>בתוך</b> הקפסולה כיחידה אחת מוקפת ברקמה בריאה - שמור <b>אך ורק</b> ל-BIA-ALCL מאושר. הפרק מדגיש שמנתחים חייבים "להילחם" בשימוש השגוי במונח שנכנס לתרבות הפופולרית ולרשתות החברתיות.</div>
+
+<h2><span class="num">3</span> פרוצדורות נלוות לאופטימיזציה אסתטית</h2>
+<p>מחקר של Peters ואחרים מצא שכ-33% מהמטופלות שעברו הוצאת שתל <b>ללא</b> החלפה או פרוצדורה נלווית הרגישו אכזבה מהמראה, ו-13% נוספות הרגישו "מוטלות" (<span class="term" dir="ltr">mutilated</span>) - תוצאה בלתי מקובלת. לכן חובה לדון עם המטופלת מראש באפשרויות הבאות:</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פרוצדורה</th><th>יתרונות</th><th>חסרונות</th></tr></thead>
+  <tbody>
+    <tr><td><b>מסטופקסי</b></td><td>מטפלת בעודף עור פטוטי; ניתן לבצע בו-זמנית או בדחייה</td><td>לא פותרת אובדן נפח; צלקת נוספת; סיכון לוסקולריזציה של הפטמה (במיוחד בעישון, הרמת פטמה מעל 4 ס"מ, עובי פרנכימה מתחת ל-4 ס"מ - Rohrich ממליץ להמתין 3 חודשים)</td></tr>
+    <tr><td><b>השתלת שומן (<span class="term" dir="ltr">fat grafting</span>)</b></td><td>שומרת/מגדילה נפח ללא שתל; מאפשרת כיוונונים עדינים; שיטת SIEF (Del Vecchio) - נפח שומן ≈ נפח השתל הרצוי חלקי 0.6</td><td>שימור נפח לא עקבי בין מטופלות; דורש שומן תורם מספיק; סיכון לנמק שומן וציסטות שמן (כ-5.6% לפי Abboud & Dibo)</td></tr>
+    <tr><td><b>אוטו-אוגמנטציה (פלאפ)</b></td><td>יכולה לספק נפח משמעותי ללא שתל, כולל פרויקציה מרכזית (למשל פלאפ דרמו-גלנדולרי דה-אפיתלי)</td><td>תחלואת אתר תורם משמעותית; זמן ניתוח ארוך; שיעור סיבוכים מוגבר</td></tr>
+  </tbody>
+</table>
+</div>
+<p>טריק קליני שימושי: <b>ריקון שתל מי מלח לפני ההוצאה עצמה</b> מאפשר למטופלת "לראות" איך ייראה החזה בלי שתל, ומאפשר החלמת רקמה רכה אם מתוכנן ניתוח נוסף.</p>
+
+<h2><span class="num">4</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופלת בת 51, עם שתלים תת-שריריים מזה 15 שנה, פונה עם תלונות של עייפות כרונית, כאבי פרקים, וערפול מוחי (<span class="term" dir="ltr">brain fog</span>) שהחלו כשנתיים אחרי ההשתלה. בדיקות מעבדה שגרתיות ואוטואימוניות תקינות. השתלים נראים תקינים בהדמיה, ללא עדות לקרע. היא ראתה סרטונים ברשתות החברתיות על "breast implant illness" ומבקשת "en bloc capsulectomy" כדי "להוציא את כל הרעל".</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. איך יש להגיב נכון לבקשת המטופלת מהווינייטה ל"en bloc capsulectomy"?</div>
+  <button class="opt" data-i="0">לבצע en bloc capsulectomy כפי שהתבקש, כי המטופלת "צודקת תמיד"</button>
+  <button class="opt" data-i="1">לסרב לכל ניתוח כי אין ממצא אובייקטיבי בבדיקות</button>
+  <button class="opt" data-i="2">להסביר שהמונח "en bloc" שמור לאבחנת BIA-ALCL מאושרת בלבד, ושבמקרה שלה (חשד ל-BII) מדובר בהוצאת שתל עם או בלי קפסולקטומיה חלקית/מלאה - תוך שיחה כנה שהניתוח עשוי או לא עשוי לשפר את התסמינים (כ-75% שיפור לפי de Boer, פחות בתלונות אוטואימוניות)</button>
+  <button class="opt" data-i="3">לשלוח אותה לאונקולוג לפני כל דיון בניתוח</button>
+  <div class="explain">התשובה הנכונה (3): הפרק מדגיש שימוש נכון במינוח - "en bloc" הוא מונח אונקולוגי המיועד ל-BIA-ALCL מאושר בלבד, ומנתחים צריכים "להילחם" בשימוש השגוי שחדר לתרבות הפופולרית. במקרה זה (BII, ללא ממצא קרע) מתאימה שיחה מבוססת-ראיות (Rohrich et al. ו-de Boer et al.) הכוללת את שיעורי ההצלחה הריאליים ואת הסיכונים (פנאומותורקס, דימום, תוצאה אסתטית פחות טובה), ואם המטופלת עדיין מעוניינת - זה לגיטימי להציע הוצאת שתל. תשובה 1 מתעלמת מהגדרה רפואית מדויקת; תשובה 2 מתעלמת מעקרון האוטונומיה שהפרק מדגיש; תשובה 4 לא רלוונטית - BII אינה אבחנה אונקולוגית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהו ההבדל המהותי בין "total capsulectomy" ל-"en bloc capsulectomy"?</div>
+  <button class="opt" data-i="0">אין הבדל - אלו שני שמות לאותה פרוצדורה בדיוק</button>
+  <button class="opt" data-i="1">Total capsulectomy = הוצאת כל הקפסולה (קדמית ואחורית); En bloc = הוצאת השתל בתוך הקפסולה כמקשה אחת עם שוליים של רקמה בריאה, מיועד ל-BIA-ALCL בלבד</button>
+  <button class="opt" data-i="2">En bloc משמעו רק הוצאת חלק קדמי של הקפסולה, בעוד total מוציא הכל</button>
+  <button class="opt" data-i="3">Total capsulectomy מבוצעת רק בזיהום, ו-en bloc רק בקונטרקטורה</button>
+  <div class="explain">התשובה הנכונה (2): הפרק מתריע במפורש מפני בלבול בין המונחים. Total capsulectomy מתייחסת להוצאת הדופן הקדמית והאחורית של הקפסולה (יכולה להתבצע כ-strip capsulectomy בחתיכות) ומתאימה למגוון אינדיקציות (קונטרקטורה סאב-גלנדולרית, גרנולומות, זיהום מוגלתי). En bloc היא פרוצדורה אונקולוגית ספציפית - השתל מוצא בתוך הקפסולה כיחידה אחת מוקפת ברקמה תקינה - ומיועדת רק לאבחנה מאושרת של BIA-ALCL. תשובות 1, 3, 4 שגויות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופלת עם שתל תת-שרירי ודרגת Baker IV מגיעה להתייעצות לגבי טיפול בקונטרקטורת קפסולה. מה עולה מהמטא-אנליזה של Wan ו-Rohrich (2016) לגבי הבחירה בין קפסולקטומיה מלאה לחלקית?</div>
+  <button class="opt" data-i="0">קפסולקטומיה מלאה מפחיתה הישנות קונטרקטורה בצורה משמעותית וברורה יותר מחלקית, ולכן תמיד עדיפה</button>
+  <button class="opt" data-i="1">קפסולקטומיה חלקית אסורה לחלוטין בשתלים תת-שריריים</button>
+  <button class="opt" data-i="2">אין כל הבדל בין שתי הטכניקות בכל פרמטר, כולל סיבוכים</button>
+  <button class="opt" data-i="3">העדות לעדיפות קפסולקטומיה מלאה על פני חלקית הייתה "חלשה ביותר"; מה שכן נמצא קשור להפחתת הישנות הוא החלפת השתל ו/או שינוי מיקום הכיס - ובשתלים תת-שריריים קפסולקטומיה מלאה נושאת סיכון מוגבר לפנאומותורקס ופגיעה בדופן החזה</button>
+  <div class="explain">התשובה הנכונה (4): זו בדיוק המסקנה המרכזית של הפרק בנושא זה - חשוב במיוחד כי היא הפוכה מהתפיסה המסורתית. Wan ו-Rohrich הראו שההוכחה התומכת בקפסולקטומיה מלאה על פני חלקית/חלקי חלשה, ושהגורם המשמעותי סטטיסטית להפחתת הישנות הוא <i>החלפת השתל</i> ולעיתים <i>שינוי מיקום הכיס</i> - לא בהכרח הוצאת הקפסולה כולה. בנוסף, בשתלים סאב-פקטורליים קפסולקטומיה מלאה כרוכה בסיכון מוגבר לפנאומותורקס. תשובות 1-3 סותרות את הממצאים המפורשים בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מטופלת עברה הוצאת שתלים בלבד (ללא מסטופקסי, ללא השתלת שומן, ללא החלפה) לפי בקשתה. איזה נתון מהפרק הכי רלוונטי לשיחה שהייתה צריכה להתקיים לפני הניתוח?</div>
+  <button class="opt" data-i="0">כ-33% מהמטופלות שעברו הוצאת שתל ללא פרוצדורה נלווית הרגישו אכזבה מהמראה, וכ-13% נוספות הרגישו "מוטלות" - שיעור בלתי מקובל שמחייב דיון מקדים באופציות</button>
+  <button class="opt" data-i="1">הוצאת שתל ללא פרוצדורה נלווית היא תמיד הבחירה הבטוחה ביותר מבחינה אסתטית</button>
+  <button class="opt" data-i="2">מסטופקסי מתקנת גם את אובדן הנפח וגם את עודף העור, ולכן תמיד מיותר לשקול אוגמנטציה נוספת</button>
+  <button class="opt" data-i="3">FDA דורש חוקית מסטופקסי בו-זמנית בכל הוצאת שתל</button>
+  <div class="explain">התשובה הנכונה (1): מחקר Peters שמצוטט בפרק מדגיש בדיוק את הסיכון הזה - שיעור גבוה של חוסר שביעות רצון (33% אכזבה, 13% תחושת "מוטלות") אחרי הוצאה בלעדית. זו הסיבה שהפרק מקדיש חלק שלם לפרוצדורות נלוות ומדגיש חובת דיון מקדים. תשובה 2 הפוכה מהעובדות. תשובה 3 שגויה - מסטופקסי מטפלת בעור אך <b>לא</b> באובדן הנפח (מפורש בפרק). תשובה 4 בדיונית - אין דרישה כזו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מטופלת עם שתל סיליקון שנקרע, כשההדמיה מראה קפסולה מעובה עם גושי סיליקון בתוכה (extracapsular rupture). מהי הגישה הנכונה?</div>
+  <button class="opt" data-i="0">הוצאת שתל בלבד, ללא כל טיפול בקפסולה - מספיק כי הסיליקון "יתפרק" מעצמו</button>
+  <button class="opt" data-i="1">en bloc capsulectomy מיידית כי זה קרע, בדיוק כמו ב-BIA-ALCL</button>
+  <button class="opt" data-i="2">קפסולקטומיה חלקית או מלאה, בהתאם למידת המעורבות - כי הסיליקון כבר חרג מגבולות השתל והקפסולה ("extracapsular")</button>
+  <button class="opt" data-i="3">אין צורך בהתערבות ניתוחית כלל בקרע חוץ-קפסולרי אסימפטומטי</button>
+  <div class="explain">התשובה הנכונה (3): הפרק קובע חלוקה ברורה - קרע <b>תוך</b>-קפסולרי (סיליקון מוכל, קפסולה תקינה) מאפשר הוצאת שתל בלבד עם/בלי החלפה. קרע <b>חוץ</b>-קפסולרי (קפסולה מעובה, מסוידת, או עם גושי סיליקון) מחייב קפסולקטומיה חלקית או מלאה כדי להוציא את הרקמה החשופה לסיליקון ולמנוע גרנולומות, זיהומים ולימפאדנופתיה. en bloc (תשובה 2) שמור ל-BIA-ALCL מאושר בלבד ואינו האינדיקציה כאן.</div>
+</div>
+
+<h2><span class="num">5</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">3 I's</span> של הוצאת שתל</h3>
+  <p>
+    <b>I</b> – <span class="term" dir="ltr">Indication</span> (אינדיקציה) - למה בכלל מוציאים? (קונטרקטורה / קרע / זיהום / BIA-ALCL / BII / העדפה)<br>
+    <b>I</b> – <span class="term" dir="ltr">(capsule) Intervention</span> (התערבות בקפסולה) - כמה להוציא? (קפסולוטומיה ← חלקית ← מלאה ← נאופקטורלי ← en bloc)<br>
+    <b>I</b> – <span class="term" dir="ltr">Improvement</span> (שיפור אסתטי) - מה נלווה? (מסטופקסי / שומן / אוטו-אוגמנטציה)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חדר ניתוח כמו תחנת רכבת עם שלושה קרונות ברצף: הקרון הראשון הוא "תחנת האינדיקציה" - שם מחליטים <i>למה בכלל</i> הרכבת יוצאת לדרך. הקרון השני הוא "תחנת הקפסולה" - שם מחליטים כמה עומק לחפור: לפעמים מספיק לפתוח דלת (קפסולוטומיה), לפעמים צריך לפרק את כל הקיר (קפסולקטומיה מלאה), ולפעמים - רק כשיש "אזעקת אמת" אמיתית (BIA-ALCL) - צריך לפרק את התחנה כולה יחד עם מה שבתוכה (en bloc). הקרון השלישי הוא "תחנת השחזור" - שם דואגים שהנוסעת לא תרד ברציף ריק, אלא עם מסטופקסי, שומן, או אוטו-אוגמנטציה שמחזירים לה צורה.</p>
+</div>
+
+<h2><span class="num">6</span> סרטונים ומקורות מהימנים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=l3ZGnzEm1bg" target="_blank">Breast implant removal, total capsulectomy, and breast lift – Dr. Elliot Hirsch (YouTube)</a>
+    <div class="desc">הדגמת ניתוח אמיתית של הוצאת שתל, קפסולקטומיה מלאה ומסטופקסי בו-זמנית - ממחישה את שילוב שלושת הצעדים מהפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=RrRhSgB3Fck" target="_blank">Watch A Breast Implant Removal With Full Capsulectomy – Dr. Lisa Cassileth (YouTube)</a>
+    <div class="desc">מנתחת פלסטית מסבירה תוך כדי ניתוח מדוע נוצרת קפסולה סביב שתל וכיצד מבצעים קפסולקטומיה מלאה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=JdAg_DDHbgk" target="_blank">Breast Implant Removal with Fat Grafting Explained (YouTube)</a>
+    <div class="desc">הסבר על שילוב הוצאת שתל עם השתלת שומן עצמי כדי לשמר נפח - רלוונטי לסעיף הפרוצדורות הנלוות.</div>
+  </li>
+  <li>
+    <a href="https://www.plasticsurgery.org/patient-safety/breast-implant-safety/bia-alcl-summary" target="_blank">BIA-ALCL Summary – American Society of Plastic Surgeons (ASPS)</a>
+    <div class="desc">מקור רשמי ומעודכן על BIA-ALCL: סימנים, שכיחות, וההמלצה שלא להוציא שגרתית שתלים מחוספסים אסימפטומטיים.</div>
+  </li>
+  <li>
+    <a href="https://www.fda.gov/medical-devices/breast-implants/questions-and-answers-about-breast-implant-associated-anaplastic-large-cell-lymphoma-bia-alcl" target="_blank">Questions and Answers about BIA-ALCL – FDA</a>
+    <div class="desc">עמדת ה-FDA הרשמית, כולל הרקע לדיון על Black Box Warning ומחקר ה-LPAS שמוזכר בפרק.</div>
+  </li>
+</ul>
+
+<div class="tldr">
+  <h2><span class="num">7</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הוצאת שתל שד היא הפרוצדורה האסתטית השנייה בקצב הצמיחה שלה בארה"ב; יש לחשוב עליה בשלושה צעדים: <b>אינדיקציה → טיפול בקפסולה → פרוצדורה נלווית</b>.</li>
+    <li>אינדיקציות: העדפת מטופלת, קונטרקטורה (Baker III-IV), קרע (תוך/חוץ-קפסולרי), זיהום/חשיפה, BIA-ALCL, ותלונות BII (עייפות, ארתרלגיה - 75% שיפור לפי de Boer, אך פחות בתלונות אוטואימוניות).</li>
+    <li>ניהול קפסולה - סקאלה מדורגת: <b>קפסולוטומיה → קפסולקטומיה חלקית → קפסולקטומיה מלאה → כיס נאופקטורלי → en bloc</b>. <b>en bloc שמור אך ורק ל-BIA-ALCL מאושר</b> - ולא נרדף ל-"total capsulectomy"!</li>
+    <li>אין המלצה להוצאה שגרתית של שתלים מחוספסים אסימפטומטיים - זו החלטה משותפת מנתח-מטופלת ללא בסיס מדעי מחייב.</li>
+    <li>פרוצדורות נלוות חיוניות: כ-46% מהמטופלות ללא פרוצדורה נלווית חוות אכזבה/תחושת מוטלוּת. מסטופקסי מטפלת בעור אך לא בנפח; שומן משמר נפח אך לא עקבי; אוטו-אוגמנטציה נותנת נפח משמעותי במחיר תחלואת אתר תורם.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

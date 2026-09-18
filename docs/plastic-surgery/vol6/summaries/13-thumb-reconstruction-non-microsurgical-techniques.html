@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: שחזור אגודל - טכניקות לא-מיקרוכירורגיות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 13: שחזור אגודל - טכניקות לא-מיקרוכירורגיות <span class="term" dir="ltr">Thumb Reconstruction: Non-Microsurgical Techniques</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | Section II: Trauma Reconstruction | מאת Jeffrey B. Friedrich, Nicholas B. Vedder, Elisabeth Haas-Lützenberger</div>
+
+<p>האגודל אחראי לכ-40% מתפקוד כף היד. אובדן אגודל, בין אם מטראומה (הסיבה השכיחה ביותר - חתך, קרע, מעיכה), זיהום או גידול, הוא פגיעה תפקודית קשה במיוחד. הפרק עוסק בכל האפשרויות ה<b>לא-מיקרוכירורגיות</b> לשחזור אגודל - כלומר לא כולל השתלת אצבע מהרגל (toe-to-hand), שנדונה בפרק הבא. העיקרון המנחה המרכזי: <b class="key">רמת האובדן קובעת את שיטת השחזור</b>, ולכן סיווג רמת החסר הוא הצעד הראשון והחשוב ביותר בכל תכנון.</p>
+
+<h2><span class="num">1</span> עקרונות יסוד: חמשת המטרות וסיווג רמת האובדן</h2>
+<div class="mechanism">
+  <p class="chain">כאשר משחזרים אגודל, יש חמש מטרות קרדינליות שיש לשאוף להשיג - כולן ביחד, ואם לא ניתן את כולן, לפחות אורך ויציבות בסיסיים:</p>
+  <table>
+    <thead><tr><th>מטרה</th><th>למה זה קריטי</th></tr></thead>
+    <tbody>
+      <tr><td><b>אורך</b> (<span class="term" dir="ltr">length</span>)</td><td>מאפשר אחיזה (<span class="term" dir="ltr">grip</span>) וצביטה (<span class="term" dir="ltr">pinch</span>) יעילות מול שאר האצבעות</td></tr>
+      <tr><td><b>יציבות</b> (<span class="term" dir="ltr">stability</span>)</td><td>נדרשת כדי שכוחות הצביטה לא "יקרסו" את המפרקים</td></tr>
+      <tr><td><b>תנועתיות</b> (<span class="term" dir="ltr">mobility</span>), בעיקר אופוזיציה</td><td>האגודל חייב "לפגוש" את שאר האצבעות בזוויות שונות</td></tr>
+      <tr><td><b>תחושה</b> (<span class="term" dir="ltr">sensibility</span>)</td><td>נותנת משוב חושי בזמן אחיזה ומונעת פציעות חוזרות</td></tr>
+      <tr><td><b>מראה</b> (<span class="term" dir="ltr">appearance</span>)</td><td>חשיבות פסיכולוגית ותפקודית-חברתית</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p>סיווג רמת האובדן מחולק ל<b>שלישים</b> - זהו כלי הסיווג המרכזי של הפרק כולו:</p>
+<svg class="diagram" viewBox="0 0 700 160" xmlns="http://www.w3.org/2000/svg">
+  <title>סיווג רמת אובדן האגודל לשלישים</title>
+  <rect x="500" y="30" width="170" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="585" y="58" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">שליש דיסטלי</text>
+  <text x="585" y="76" font-size="11.5" text-anchor="middle" fill="#065f46">קצה האגודל &#8592; מפרק IP</text>
+  <text x="585" y="92" font-size="11" text-anchor="middle" fill="#065f46">רקמה רכה בלבד</text>
+
+  <rect x="265" y="30" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="58" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">שליש אמצעי</text>
+  <text x="350" y="76" font-size="11.5" text-anchor="middle" fill="#1e3a8a">מפרק IP &#8592; צוואר המטקרפל</text>
+  <text x="350" y="92" font-size="11" text-anchor="middle" fill="#1e3a8a">שחזור אורך</text>
+
+  <rect x="30" y="30" width="170" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="115" y="58" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">שליש פרוקסימלי</text>
+  <text x="115" y="76" font-size="11.5" text-anchor="middle" fill="#7f1d1d">צוואר המטקרפל &#8592; מפרק CMC</text>
+  <text x="115" y="92" font-size="11" text-anchor="middle" fill="#7f1d1d">אובדן כמעט מלא</text>
+
+  <text x="350" y="135" font-size="12" text-anchor="middle" fill="#4b5563">ככל שהאובדן פרוקסימלי יותר - כך השחזור מורכב יותר ותלוי יותר במיקרוכירורגיה</text>
+</svg>
+<p class="figcap">איור 13.1 מהפרק: חלוקת האגודל לשלישים - דיסטלי (קצה עד מפרק IP), אמצעי (מפרק IP עד צוואר המטקרפל), פרוקסימלי (צוואר המטקרפל עד מפרק CMC).</p>
+
+<p class="key-box">כלל אצבע: כאשר אפשר, <b>רפלנטציה</b> (החזרת האגודל הקטוע) היא תמיד עדיפה על כל שיטת שחזור אחרת - היא נותנת את התוצאה התפקודית והאסתטית הטובה ביותר. שחזור נדרש רק כשרפלנטציה אינה אפשרית.</p>
+
+<h2><span class="num">2</span> שליש דיסטלי - כיסוי רקמה רכה בלבד</h2>
+<p>אובדן בשליש הדיסטלי כמעט ואינו פוגע בתפקוד (אגודל שנקטע במפרק ה-IP עדיין תפקודי מאוד), ולכן <b>המטרה היחידה היא כיסוי רקמה רכה ושימור אורך</b> - לא נדרש שחזור שלד.</p>
+<h3>ללא חשיפת עצם</h3>
+<p>פגמים עד 1.5 ס"מ קוטר ללא חשיפת עצם: החלמה משנית (<span class="term" dir="ltr">secondary intention</span>) בעזרת חבישות יומיות - נותנת צלקת יציבה ותחושה טובה (עדיפה על שתל עור כי היא נשארת רקמה סנסורית). פגמים גדולים יותר עם בסיס יציב: שתל עור מלא (<span class="term" dir="ltr">full-thickness skin graft</span>) - עמיד יותר לאזורי לחץ.</p>
+<h3>עם חשיפת עצם - פלאפים וסקולריים</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פלאפ</th><th>מיקום פגם אידיאלי</th><th>גודל מקסימלי</th><th>נקודות מפתח</th></tr></thead>
+  <tbody>
+    <tr><td><b>V-Y advancement</b> (Atasoy)</td><td>קצה, פגם קטן מאוד</td><td>קטן מאוד</td><td>שימוש מוגבל בפועל בגלל התקדמות מצומצמת</td></tr>
+    <tr><td><b>Moberg</b> (volar advancement)</td><td>וולארי + קצה</td><td>1-2 סמ"ר</td><td>סנסאטיבי (כולל את שני צרורות העצב-כלי הדם), "מתקדם" בעזרת כיפוף מפרק ה-IP</td></tr>
+    <tr><td><b>Cross-finger flap</b> מהאצבע המורה</td><td>וולארי + קצה, פגמים גדולים יותר</td><td>2-3 סמ"ר</td><td>חוסרון: סינדקטיליה זמנית ל-2-3 שבועות + שתל עור על אצבע המורה</td></tr>
+    <tr><td><b>Neurovascular island flap</b> (Littler)</td><td>שיקום תחושה בעיקר (לא כיסוי ראשוני)</td><td>-</td><td>מבוסס על צרור עצב-כלי דם אולנרי של האצבע האמצעית/הטבעת</td></tr>
+    <tr><td><b>First dorsal metacarpal artery flap</b> ("kite flap")</td><td>דורסלי/לטרלי (פחות טוב לוולארי)</td><td>בינוני</td><td>סנסאטיבי בזכות ענפי העצב הרדיאלי התחושתי, כמעט ללא תחלואת תורם</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">בחירת פלאפ בשליש הדיסטלי נקבעת בעיקר לפי <b>מיקום</b> הפגם: פגמים וולאריים - Moberg / cross-finger / neurovascular island; פגמים דורסליים - שתל עור או FDMA flap.</p>
+
+<h2><span class="num">3</span> שליש אמצעי - שחזור אורך: מוחלט מול יחסי</h2>
+<p>כאן המטרה משתנה: לא רק כיסוי, אלא <b>שחזור אורך פונקציונלי</b>. יש שתי אסטרטגיות עקרוניות שונות לגמרי:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>אורך יחסי - "פלנגיזציה" (<span class="term" dir="ltr">phalangization</span>):</b> לא מאריכים בפועל את האגודל, אלא מעמיקים את המרווח הבין-אצבעי הראשון (<span class="term" dir="ltr">first webspace</span>) כדי לשפר את טווח התנועה (אבדוקציה פלמרית ורדיאלית) - וכך האגודל "מרגיש" ארוך יותר יחסית לאצבעות האחרות.<br>
+    <b>אורך מוחלט:</b> הארכת עצם המטקרפל בפועל (דיסטרקציה) או הוספת עצם + רקמה רכה (שחזור אוסטאופלסטי).
+  </p>
+</div>
+
+<h3>3א. פלנגיזציה - העמקת המרווח הבין-אצבעי</h3>
+<table>
+  <thead><tr><th>חומרת ההצרות</th><th>שיטה</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>רצועת צלקת דקה ולינארית</td><td>Z-plasty בודד, four-flap Z-plasty, או double-opposing Z-plasty ("jumping man")</td><td>שתי הטכניקות האחרונות נותנות שחרור דומה, ומיוחדות אנטומית לאזור המרווח הראשון</td></tr>
+    <tr><td>הצרות רחבה (broad contracture)</td><td>שחרור הצלקת + שתל עור מלא</td><td>שתל דק-מפוצל אפשרי גם כן אך פחות מועדף</td></tr>
+    <tr><td>הצרות קשה, צורך ברקמה מוסקולרית</td><td>פלאפים אזוריים: <span class="term" dir="ltr">radial forearm flap</span> (בד"כ fascia-alone עם שתל עור מעליו) או <span class="term" dir="ltr">posterior interosseous artery (PIA) flap</span></td><td>PIA flap שומר על העורק הרדיאלי והאולנרי לגמרי; radial forearm flap "עולה" עורק רדיאלי - בעייתי אם מתוכנן toe transfer עתידי (ניתן לפתור עם radial artery perforator flap)</td></tr>
+  </tbody>
+</table>
+
+<h3>3ב. אורך מוחלט - הארכת מטקרפל (Matev) ושחזור אוסטאופלסטי</h3>
+<p><b>הארכת מטקרפל בדיסטרקציה</b> (פותחה ע"י Matev): מתקינים פינים דיסטלית ופרוקסימלית, חותכים את העצם (אוסטאוטומיה) ומותחים ב-1 מ"מ ליום. התוויית הנגד היחידה המוחלטת: פחות מ-3 ס"מ שארית מטקרפל. דורש לרוב שלב שני של השתלת עצם (מכסל האגן, או ברדיוס הדיסטלי לפגמים קטנים).</p>
+<svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+  <title>עקרון הארכת המטקרפל בדיסטרקציה</title>
+  <rect x="330" y="40" width="130" height="40" rx="6" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="395" y="65" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">קיבוע חיצוני</text>
+  <polygon points="270,60 310,54 310,66" fill="#374151"/>
+  <line x1="330" y1="60" x2="270" y2="60" stroke="#374151" stroke-width="2"/>
+  <rect x="150" y="40" width="120" height="40" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="210" y="65" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">דיסטרקציה 1מ"מ/יום</text>
+  <polygon points="90,60 130,54 130,66" fill="#374151"/>
+  <line x1="150" y1="60" x2="90" y2="60" stroke="#374151" stroke-width="2"/>
+  <rect x="10" y="40" width="80" height="40" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="50" y="65" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">השתלת עצם</text>
+  <text x="250" y="115" font-size="11.5" text-anchor="middle" fill="#6b7280">התוויית נגד מוחלטת: פחות מ-3 ס"מ שארית מטקרפל (Matev)</text>
+</svg>
+
+<p><b>שחזור אוסטאופלסטי</b> (osteoplastic reconstruction) - שלוש שלבים קלאסיים:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>שלב 1:</b> שחזור שלד עם שתל עצם מכסל האגן (tricortical), עטוף ב<span class="term" dir="ltr">groin flap</span> (פלאפ אקסיאלי המבוסס על ה-superficial circumflex iliac artery).<br>
+    <b>שלב 2:</b> חלוקת ה-groin flap (2-3 שבועות לאחר ההשתלה) והדקה הדרגתית (<span class="term" dir="ltr">thinning</span>) בכמה שלבים נוספים.<br>
+    <b>שלב 3 (3-6 חודשים לאחר מכן):</b> שחזור תחושה בעזרת neurovascular island flap.
+  </p>
+</div>
+<p>חסרונות: תהליך רב-שלבי וארוך, סיכון לספיגת שתל העצם, ומראה "מגושם" (bulky) של האגודל המשוחזר. חלופה: שימוש בפלאפ radial forearm אוסטאוקוטני במקום שתל עצם מהכסל - "שלב אחד", אך עדיין דורש בד"כ הדקה.</p>
+
+<h3>3ג. On-top plasty - העברת מורה פגועה</h3>
+<p>כאשר קיימת גם פגיעה באצבע המורה (תרחיש שכיח - "ניתוחי חלקי חילוף"), אפשר להעביר את גדם המורה הפגוע <b>אל</b> גדם האגודל. זהו הפתרון המועדף לאובדן בקצה הפרוקסימלי של השליש האמצעי. חשוב: בניגוד ל<span class="term" dir="ltr">pollicization</span> (העברת אצבע <u>תקינה</u>), ב-on-top plasty גיד הכפיפה וההרחבה של המורה הפגועה בדרך כלל <b>לא</b> מועברים (כי הם ממילא פגועים) - מקובעים לגזרה המתאימה של המטקרפל השני, ווריד גדתי אחד לפחות משומר.</p>
+
+<h2><span class="num">4</span> שליש פרוקסימלי - כמעט אובדן מלא</h2>
+<p>ברמה זו יש לרוב אובדן חלקי או מלא של השרירים התנרים (<span class="term" dir="ltr">thenar muscles</span>), מה שפוסל שיטות כמו שחזור אוסטאופלסטי, דיסטרקציה, ולעיתים גם on-top plasty. לכן <b class="key">שחזור מיקרוכירורגי (השתלת אצבע רגל, פרק הבא) הוא כיום שיטת הבחירה</b> ברמה זו. עם זאת, הפרק דן בשתי אלטרנטיבות לא-מיקרוכירורגיות:</p>
+<table>
+  <thead><tr><th>שיטה</th><th>מתי מתאימה</th><th>הערה חשובה</th></tr></thead>
+  <tbody>
+    <tr><td><b>On-top plasty</b></td><td>יש גם מורה פגועה</td><td>אם השרירים התנרים חסרים, ניידות מוגבלת - ייתכן שיידרש שחזור אופוזיציה משני (FDS של הטבעת, או EIP)</td></tr>
+    <tr><td><b>Pollicization</b> (Littler/Buck-Gramcko/Brunelli)</td><td>מורה תקינה, שרירים תנרים נעדרים לגמרי (יילודים - היפופלזיה) או חלקית (מבוגרים)</td><td>ניתוח היחיד שאינו מיקרוכירורגי ומספק אגודל תקין תפקודית; במבוגרים שרידי שרירי האגודל נתפרים לגידי הבין-עצמיים (interossei) של המורה במקום להיות מועברים כמו בילדים</td></tr>
+  </tbody>
+</table>
+<p>בפוליציזציה: המטקרפל השני נכרת בצוואר, האצבע מסובבת (כ-120-160 מעלות) ומקובעת במיקום האגודל כך שהעוקץ (pulp) פונה לכיוון האצבע הטבעת. הגיד של השריר הבין-עצמי הדורסלי הראשון נתפר לשריר התנר (opponens pollicis אם קיים שריד), והגיד הבין-עצמי הפלמרי - לשריר ה-adductor pollicis. מפרק ה-MCP מקובע כ-6 שבועות בכיפוף קל למניעת יתר-יישור.</p>
+
+<h2><span class="num">5</span> טבלת סיכום: בחירת שיטה לפי רמת חסר</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>רמת חסר</th><th>מטרה עיקרית</th><th>אפשרויות מרכזיות</th></tr></thead>
+  <tbody>
+    <tr><td><b>דיסטלי</b></td><td>כיסוי רקמה רכה, שימור אורך</td><td>החלמה משנית / שתל עור; Moberg; cross-finger; FDMA flap</td></tr>
+    <tr><td><b>אמצעי</b></td><td>שחזור אורך (יחסי או מוחלט)</td><td>העמקת מרווח (Z-plasty / שתל / פלאפ אזורי); הארכת מטקרפל; שחזור אוסטאופלסטי; on-top plasty</td></tr>
+    <tr><td><b>פרוקסימלי</b></td><td>שחזור קרן אגודל שלמה</td><td>מיקרוכירורגיה (עדיפה, פרק 14); on-top plasty; pollicization</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">6</span> טיפול לאחר הניתוח, סיבוכים ופרוגנוזה</h2>
+<p>שיקום יד הוא חלק בלתי נפרד מההצלחה - במיוחד בשחזורים אמצעיים ופרוקסימליים. עקרונות עיקריים:</p>
+<ul>
+  <li>שחזור דיסטלי (רקמה רכה בלבד): גבס למשך כשבוע, אחר כך סד נשלף, הסרת תפרים ב-2 שבועות.</li>
+  <li>שחזורים פרוקסימליים יותר (עם שחזור שלד): קיבוע פלטה וברגים מאפשר תנועה מוקדמת (1-2 שבועות); קיבוע בחוטי K פחות יציב אך עדיין מאפשר תרגילי גלישה פסיביים ב-2 שבועות.</li>
+  <li>סביב 6 שבועות: איחוי עצם מספק להתחלת תרגילים נגד התנגדות.</li>
+  <li>בפלאפים ובהעברות אצבע - <b>חינוך חושי מחדש</b> (<span class="term" dir="ltr">sensory re-education</span>) הוא חלק חשוב בשיקום.</li>
+</ul>
+<p><b>סיבוכים שכיחים לפי טכניקה:</b> הצרות מרווח חוזרת ("creep" - שכיחה במיוחד לאחר הארכת מטקרפל, כי הדיסטרקציה מושכת את עור המרווח הראשון דיסטלית); הידבקויות גידים (טופלות בטנוליזיס אם טיפול יד אגרסיבי לא מספיק); ספיגת שתל עצם (בעיקר בשחזור אוסטאופלסטי); נוירומות כואבות (בעיקר לאחר אובדן דיסטלי - נמנעות בעזרת נוירקטומיה בתזוזה בזמן הניתוח הראשוני); מראה מגושם (bulky) באוסטאופלסטי.</p>
+
+<h2><span class="num">7</span> פרוטזות וכיווני עתיד</h2>
+<p>עבור מטופלים שאינם רוצים שחזור כירורגי - פרוזתיקה היא אלטרנטיבה סבירה. יש להבחין בין <b>פרוטזה אסתטית</b> (הצורך המינימלי: שריד של הפלנקס הפרוקסימלי כדי שהפרוטזה תישאר על האגודל) לבין פרוטזות "driver" חדישות יותר עם מפרק IP פעיל (הכרחי שריד פלנקס פרוקסימלי) ופרוטזות אוסאואינטגרטיביות ניסיוניות.</p>
+<p>כיוונים עתידיים: פלאפי פרפורטור מקומיים ("מיקרוכירורגיה בלי מיקרוסקופ") כמו princeps pollicis perforator flap ופלאפ Moschella (דורסלי, מבוסס ענף מתחת לגיד ה-EPB); שיפור טכניקות רפלנטציה (סופר-מיקרוכירורגיה מאפשרת כיום רפלנטציה גם ברמת מיטת הציפורן); ופרוטזות עתידיות שאולי יאפשרו גם תחושה.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">M-S-M-S-A</span> - חמשת מטרות שחזור האגודל</h3>
+  <p>
+    <b>M</b> – <span class="term" dir="ltr">Mobility</span> (תנועתיות / אופוזיציה)<br>
+    <b>S</b> – <span class="term" dir="ltr">Stability</span> (יציבות)<br>
+    <b>M</b> – <span class="term" dir="ltr">... (Sensibility)</span> - שים לב: תחושה<br>
+    <b>S</b> – <span class="term" dir="ltr">Sensibility</span> (תחושה)<br>
+    <b>A</b> – <span class="term" dir="ltr">Appearance</span> (מראה) + כמובן <b>אורך (Length)</b> ברקע כל השיטות
+  </p>
+  <h3>סיפור דמיוני - "בניין בן שלוש קומות"</h3>
+  <p>דמייני את האגודל כבניין בן שלוש קומות. <b>קומת הקרקע (דיסטלי)</b> ניזוקה קלות - צריך רק צבע חדש (רקמה רכה). <b>הקומה האמצעית</b> קרסה חלקית - צריך להאריך אותה או להרחיב את חלל המדרגות לידה (העמקת מרווח / הארכת מטקרפל). <b>קומת היסוד (פרוקסימלי)</b> נהרסה כמעט לגמרי - כאן צריך צוות בנייה שלם מבניין שכן (העברת אצבע - on-top plasty או pollicization), או תוכנית בנייה מורכבת עוד יותר (מיקרוכירורגיה, הפרק הבא).</p>
+  <svg class="diagram" viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <title>בניין שלוש הקומות של שחזור האגודל</title>
+    <rect x="120" y="20" width="160" height="55" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="200" y="43" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">קומת יסוד</text>
+    <text x="200" y="60" font-size="11.5" text-anchor="middle" fill="#7f1d1d">פרוקסימלי - צוות מבניין שכן</text>
+    <rect x="120" y="80" width="160" height="55" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="200" y="103" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קומה אמצעית</text>
+    <text x="200" y="120" font-size="11.5" text-anchor="middle" fill="#1e3a8a">אמצעי - הארכה/הרחבה</text>
+    <rect x="120" y="140" width="160" height="55" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+    <text x="200" y="163" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">קומת קרקע</text>
+    <text x="200" y="180" font-size="11.5" text-anchor="middle" fill="#065f46">דיסטלי - צבע חדש (רקמה רכה)</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> סרטונים ומקורות מומלצים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=0HvvtcY_2Qs" target="_blank">Moberg Flap - YouTube</a>
+    <div class="desc">הדגמת הטכניקה של פלאפ Moberg (volar advancement flap) לכיסוי פגמים וולאריים וקצה האגודל.</div>
+    <span class="tag">וידאו טכניקה</span>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=E0HrUstZQ1k" target="_blank">How to do a Cross Finger Flap for hand reconstruction - YouTube</a>
+    <div class="desc">סקירה מקיפה של טכניקת ה-cross-finger flap, כולל סימון, הרמה, וחלוקה בשלב שני.</div>
+    <span class="tag">וידאו טכניקה</span>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=olbv91Zwh10" target="_blank">First Dorsal Metacarpal Artery (FDMA) Flap - YouTube</a>
+    <div class="desc">הדגמת פלאפ ה-"kite flap" המבוסס על העורק המטקרפלי הדורסלי הראשון, פלאפ מרכזי לכיסוי דורסלי/לטרלי של האגודל.</div>
+    <span class="tag">וידאו טכניקה</span>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=5GpBwYODqjc" target="_blank">Making a Thumb: The Story of Pollicization - Texas Scottish Rite Hospital - YouTube</a>
+    <div class="desc">סרטון המספר את תהליך הפוליציזציה מנקודת מבט קלינית ומטופלים - רקע מצוין להבנת המושג ותוצאותיו.</div>
+    <span class="tag">רקע קליני</span>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Pollicization" target="_blank">Pollicization – Wikipedia</a>
+    <div class="desc">סקירה כללית, היסטוריה (Guermonprez, Littler, Gosset) ותמונות ממחישות של התהליך.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Thumb" target="_blank">Thumb – Wikipedia</a>
+    <div class="desc">אנטומיה בסיסית של האגודל - רקע לפני צלילה לפרטי השחזור.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, עובד נגרות, נפגע ממסור חשמלי וסבל מקטיעה של האגודל הימני בגובה מפרק ה-CMC (בסיס המטקרפל). האצבע המורה נפגעה גם היא קשות באותה פגיעה ואינה ניתנת לשימור תפקודי מלא. רפלנטציה אינה אפשרית עקב זמן איסכמיה ממושך ומעיכה נרחבת. המטופל מעוניין בתוצאה תפקודית טובה ומוכן לעבור תהליך שיקום ארוך.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי רמת האובדן של המטופל בוינייטה, ומהי השיטה הלא-מיקרוכירורגית המתאימה ביותר בהינתן שגם המורה פגועה?</div>
+  <button class="opt" data-i="0">שליש דיסטלי; מספיק פלאפ Moberg</button>
+  <button class="opt" data-i="1">שליש אמצעי; יש לבצע הארכת מטקרפל בלבד</button>
+  <button class="opt" data-i="2">שליש פרוקסימלי (בגובה CMC); on-top plasty של גדם המורה הפגועה הוא אפשרות מתאימה</button>
+  <button class="opt" data-i="3">שליש פרוקסימלי; יש לבצע רק שתל עור מלא</button>
+  <div class="explain">התשובה הנכונה: קטיעה בגובה מפרק ה-CMC היא ההגדרה של אובדן בשליש הפרוקסימלי (מצוואר המטקרפל ועד מפרק ה-CMC). מכיוון שיש גם אצבע מורה פגועה זמינה, on-top plasty (העברת גדם המורה הפגועה לאגודל) היא אפשרות לא-מיקרוכירורגית מצוינת ברמה זו - עדיפה לרוב על pollicization כאשר המורה כבר פגועה ולא תקינה. תשובות 1 ו-4 (Moberg, שתל עור) מתאימות רק לאובדן דיסטלי מינימלי. תשובה 2 (הארכת מטקרפל) מתאימה לשליש האמצעי, לא לאובדן כמעט-מלא בשליש הפרוקסימלי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהו ההבדל המהותי בין "on-top plasty" ל"pollicization" לפי הפרק?</div>
+  <button class="opt" data-i="0">on-top plasty מבוצע רק בילדים, pollicization רק במבוגרים</button>
+  <button class="opt" data-i="1">on-top plasty מעביר גדם אצבע פגועה (המורה בד"כ, בלי גידים תקינים) לאגודל, בעוד pollicization מעביר אצבע תקינה ומתפקדת במלואה</button>
+  <button class="opt" data-i="2">אין הבדל מהותי - אלו שני שמות לאותה פרוצדורה בדיוק</button>
+  <button class="opt" data-i="3">on-top plasty הוא ניתוח מיקרוכירורגי, pollicization אינו כולל חיבור כלי דם כלל</button>
+  <div class="explain">התשובה הנכונה: ההבדל המרכזי הוא מצב האצבע המועברת. ב-on-top plasty מעבירים גדם אצבע שכבר פגוע (המורה או לעיתים האמצעית/הטבעת) - ולכן הגידים הכופפים והמרחיבים הפגועים בדרך כלל לא מועברים, רק העור, העצם וצרורות כלי הדם-עצב. ב-pollicization מעבירים אצבע <b>תקינה</b> ומתפקדת (בד"כ המורה) עם כל מנגנוניה - גידים, שרירים בין-עצמיים - ולכן היא "עולה" באצבע שלמה בתמורה לתפקוד אגודל. תשובה 1 שגויה - שתי הטכניקות יכולות להתבצע בילדים ומבוגרים. תשובה 4 שגויה - שתיהן טכניקות פדיקלד (לא מיקרוכירורגיות), לא הבדל בחיבור כלי דם.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהי ההתוויית נגד המוחלטת היחידה להארכת מטקרפל האגודל לפי Matev?</div>
+  <button class="opt" data-i="0">גיל מעל 40</button>
+  <button class="opt" data-i="1">פגיעה קודמת במרווח הבין-אצבעי הראשון</button>
+  <button class="opt" data-i="2">עישון פעיל</button>
+  <button class="opt" data-i="3">פחות מ-3 ס"מ שארית מטקרפל אגודל</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שלפי Matev, ההתוויית נגד המוחלטת היחידה להארכת מטקרפל היא פחות מ-3 ס"מ שארית מטקרפל אגודל - כי אין מספיק עצם "לתפוס" בה את הקיבוע החיצוני ולמשוך אותה בדיסטרקציה. עישון, גיל ופגיעה קודמת במרווח (תשובות 1-3) הם שיקולים חשובים לכל שחזור יד באופן כללי, אך לא צוינו כהתוויית הנגד המוחלטת הספציפית לפרוצדורה הזו.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מדוע נעדיף לעיתים radial artery perforator flap על פני radial forearm flap "רגיל" (פדיקל רחב) לשחזור המרווח הבין-אצבעי הראשון?</div>
+  <button class="opt" data-i="0">כי הוא שומר על העורק הרדיאלי עצמו, ומאפשר עדיין להשתמש בו בעתיד כעורק מקבל להשתלת אצבע רגל מיקרוכירורגית</button>
+  <button class="opt" data-i="1">כי הוא נותן יותר רקמה מכל פלאפ אזורי אחר</button>
+  <button class="opt" data-i="2">כי אין בו כלל סיכון לגודש ורידי</button>
+  <button class="opt" data-i="3">כי הוא היחיד שניתן להשתמש בו לכיסוי פגם דורסלי</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שהחיסרון המרכזי של radial forearm flap "רגיל" (reverse-flow) הוא הקרבת העורק הרדיאלי - מה שעלול לפסול אותו כעורק מקבל אם בעתיד מתכננים toe-to-hand transfer מיקרוכירורגי (עורק רדיאלי הוא העורק המקבל המועדף לכך). radial artery perforator flap שומר על העורק הרדיאלי שלם, ולכן משאיר פתח לאופציה מיקרוכירורגית עתידית. תשובות 2-4 אינן נכונות עובדתית לפי הפרק - גודש ורידי הוא סיכון קיים גם בפלאפ הפרפורטור, וגודל/מיקום הפגם אינם ההבדל המרכזי המודגש.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו הסיבוך הייחודי המתואר בפרק כתוצאה מהארכת מטקרפל בדיסטרקציה, ומה מנגנונו?</div>
+  <button class="opt" data-i="0">זיהום פין (pin infection) בלבד - אין סיבוכים ייחודיים נוספים</button>
+  <button class="opt" data-i="1">קרע גיד כופף עמוק עקב מתיחה מהירה מדי</button>
+  <button class="opt" data-i="2">"creep" של המרווח הבין-אצבעי הראשון - הדיסטרקציה מושכת את עור המרווח הראשון דיסטלית יחד עם המטקרפל, ומצמצמת אותו מחדש</button>
+  <button class="opt" data-i="3">נמק עור מלא סביב אתר הניתוח בכל המקרים</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר במפורש שבניסיונו של Matev, מספר מטופלים סבלו מ"first webspace creep" - תופעה שבה תהליך הדיסטרקציה (מתיחת העצם) מושך יחד איתו גם את העור הסמוך של המרווח הבין-אצבעי הראשון, מה שגורם לו להצטמצם מחדש במהלך ההארכה. הפתרון המוצע בפרק: שימוש בטכניקות העמקת מרווח (Z-plasty, שתל עור) לאחר מכן במידת הצורך. זיהום פין (תשובה 1) הוא אכן סיבוך שכיח אך לא ה"ייחודי" המודגש; קרע גיד ונמק עור גורף (תשובות 2, 4) אינם מתוארים כסיבוך אופייני לפרוצדורה זו בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>חמש מטרות שחזור אגודל: אורך, יציבות, תנועתיות, תחושה, מראה. סיווג לפי שלישים (דיסטלי / אמצעי / פרוקסימלי) קובע את השיטה.</li>
+    <li><b>שליש דיסטלי:</b> רקמה רכה בלבד - החלמה משנית/שתל עור ללא חשיפת עצם; Moberg / cross-finger / neurovascular island / FDMA flap עם חשיפת עצם, לפי מיקום הפגם.</li>
+    <li><b>שליש אמצעי:</b> שחזור אורך - "פלנגיזציה" (העמקת מרווח בין-אצבעי עם Z-plasty/שתל/פלאפ אזורי) לאורך יחסי, או הארכת מטקרפל (Matev) ושחזור אוסטאופלסטי (groin flap + שתל עצם, 3 שלבים) לאורך מוחלט.</li>
+    <li><b>שליש פרוקסימלי:</b> אובדן כמעט מלא - מיקרוכירורגיה (toe transfer) היא שיטת הבחירה, אך on-top plasty (מורה פגועה) ו-pollicization (מורה תקינה) נותרות אפשרויות לא-מיקרוכירורגיות מרכזיות.</li>
+    <li>רפלנטציה, כשאפשרית, תמיד עדיפה על כל שחזור. שיקום יד אגרסיבי וחינוך חושי מחדש חיוניים להצלחת התוצאה בכל הרמות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
