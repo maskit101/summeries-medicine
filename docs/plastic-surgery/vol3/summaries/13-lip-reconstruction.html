@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: שחזור השפה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 13: שחזור השפה <span class="term" dir="ltr">Lip Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head &amp; Neck, Pediatric | פרק 11 במקור, מאת Julian J. Pribaz ו-Mitchell Buller</div>
+
+<p>שחזור השפה הוא אחד הנושאים ה"אלגוריתמיים" ביותר בכירורגיה פלסטית: ההחלטה איך לשחזר פגם נגזרת כמעט ישירות מ<b>גודל הפגם</b> (כאחוז מהשפה), <b>מיקומו</b> (מרכזי מול צדי, נוגע בזווית הפה או לא) ו<b>עומקו</b> (חלקי מול מלוא העובי). המטרה העליונה איננה קוסמטית בלבד אלא שחזור של <b>סוגר פומי (oral sphincter) תפקודי</b> עם פתח פה מספיק לאכילה ודיבור - וכל טכניקת שחזור נבחנת קודם כל לפי המידה שבה היא משיגה את זה.</p>
+
+<h2><span class="num">1</span> אנטומיה ועקרונות - למה השפה כל כך "רגישה" לעיוות</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>השפה היא מבנה תלת-שכבתי (<span class="term" dir="ltr">trilaminar</span>):</b> רירית (mucosa) &#8592; שריר (orbicularis oris) &#8592; עור, ולכן כל פגם צריך להיבדק לפי איזה משכבות אלו חסרות - זה חשוב יותר מגודל הפגם עצמו.<br>
+    <b>השריר עצמו הוא בעל שתי שכבות בעלות תפקיד הפוך:</b> ה-<span class="term" dir="ltr">pars marginalis</span> (שכבה קדמית, מתחת לוורמיליון) מבליטה את השפות החוצה ("נשיקה"/פאוט), וה-<span class="term" dir="ltr">pars peripheralis</span> (עמוקה יותר) מושכת את השפתיים פנימה לעבר הלסתות ("פוקר"/פורסה). השילוב של שתי הפעולות יוצר את תנועת ה"פאקר".
+  </p>
+  <p>העליונה שונה מהתחתונה בנוכחות <b>הפילטרום</b> (<span class="term" dir="ltr">philtrum</span>) - שתי עמודות (<span class="term" dir="ltr">philtral columns</span>) שנוצרות מסיבי שריר orbicularis oris נגדיים שנצמדים לעור מעליהם, ומגיעות עד ל<b>קשת קופידון</b> (<span class="term" dir="ltr">Cupid's bow</span>). מתחתן יש שלושה "טוברקלים" בשפה העליונה (אחד מרכזי, שניים צדדיים) לעומת שניים בלבד בתחתונה. <b class="key">בגלל שלושת התתי-יחידות האלה, השפה העליונה נחשבת "רגישה יותר לעיוות" מהתחתונה, ולכן הסף לסגירה ראשונית בה נמוך יותר.</b></p>
+  <p>ה<b>וורמיליון</b> (השפה האדומה) הוא אזור מעבר בין אפיתל קרטיני חיצוני לאפיתל לא-קרטיני של הרירית, ללא בלוטות רוק קטנות. הגבול שלו - ה<b>"רול הלבן"</b> (<span class="term" dir="ltr">white roll</span>, נוצר מסיבי pars marginalis) - הוא קו הציון הקוסמטי הכי רגיש בכל האזור: סטייה של <b>1 מ"מ בלבד</b> כבר נראית לעין במרחק שיחה רגיל. זו הסיבה שכל ניתוח בשפה מתחיל ונגמר בהקפדה על יישור מדויק של הרול הלבן (לעיתים בעזרת קעקוע זמני עם מתילן כחול לסימון).</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 820 230" xmlns="http://www.w3.org/2000/svg">
+  <title>שכבות ותת-יחידות השפה</title>
+  <rect x="620" y="20" width="170" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="705" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">עור (Skin)</text>
+  <text x="705" y="63" font-size="11" text-anchor="middle" fill="#7f1d1d">כולל תתי-יחידות: פילטרום, קופידון</text>
+
+  <rect x="420" y="20" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="505" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שריר Orbicularis oris</text>
+  <text x="505" y="63" font-size="11" text-anchor="middle" fill="#1e3a8a">pars marginalis + peripheralis</text>
+
+  <rect x="220" y="20" width="170" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="305" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">וורמיליון + רול לבן</text>
+  <text x="305" y="63" font-size="11" text-anchor="middle" fill="#065f46">גבול קוסמטי קריטי - עד 1 מ"מ נראה לעין</text>
+
+  <rect x="20" y="20" width="170" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="105" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">רירית (Mucosa)</text>
+  <text x="105" y="63" font-size="11" text-anchor="middle" fill="#4c1d95">אפיתל לא-קרטיני</text>
+
+  <polygon points="580,50 620,44 620,56" fill="#374151"/>
+  <line x1="620" y1="50" x2="580" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="380,50 420,44 420,56" fill="#374151"/>
+  <line x1="420" y1="50" x2="380" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="180,50 220,44 220,56" fill="#374151"/>
+  <line x1="220" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="120" y="130" width="580" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="410" y="158" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מבנה תלת-שכבתי (trilaminar): רירית &#8592; שריר &#8592; עור</text>
+  <text x="410" y="178" font-size="12" text-anchor="middle" fill="#78350f">מיקום הפגם על פני שלוש השכבות (לא רק גודלו) קובע את הטכניקה</text>
+  <text x="410" y="196" font-size="12" text-anchor="middle" fill="#78350f">שיקום מוצלח = שחזור כל שלוש השכבות + שימור הרול הלבן</text>
+  <polygon points="410,130 404,110 416,110" fill="#b45309"/>
+  <line x1="410" y1="130" x2="410" y2="110" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<p>אספקת הדם לשתי השפתיים מגיעה מ<b>עורק הפנים (facial artery)</b> דרך העורקים הלבביים העליון והתחתון (<span class="term" dir="ltr">superior/inferior labial arteries</span>), שמסתעפים כ-1.5 ס"מ לרוחב מזווית הפה ורצים בין הרירית לשריר, עם אנסטומוזה בקו האמצע - זו העובדה האנטומית שמאפשרת את כל "פלאפי מתג השפה" (Abbe/Estlander). עצבוב חושי מגיע מהעצב הטריגמינלי (מקסילרי לעליונה, מנדיבולרי לתחתונה), ועצבוב מוטורי - מהעצב הפציאלי (ענפים buccal ו-marginal mandibular).</p>
+
+<h2><span class="num">2</span> הערכת הפגם - שלוש שאלות לפני כל תכנון</h2>
+<p>לפני שבוחרים טכניקה, הפרק מדגיש שלוש שאלות שחייבים לענות עליהן:</p>
+<table>
+  <thead><tr><th>שאלה</th><th>למה זה משנה</th></tr></thead>
+  <tbody>
+    <tr><td><b>אטיולוגיה</b> - טראומה, ממאירות, או מולד</td><td>בפגמים טראומטיים, השוליים נוטים "לפעור" בגלל כוחות הסוגר של ה-orbicularis - הפגם נראה גדול יותר ממה שהוא באמת ברקמה שאבדה בפועל. בממאירות - רוב הסרטנים בשפה הם בתחתונה (עקב חשיפה לשמש); קרצינומה של תאי קשקש (SCC) היא השכיחה ביותר בסך הכל, ואילו קרצינומה בזאלית (BCC) שכיחה יותר בעליונה.</td></tr>
+    <tr><td><b>גודל</b> - נמדד ב<b>רבעים</b> בשפה העליונה וב<b>שלישים</b> בתחתונה</td><td>ההבדל בשיטת המדידה נובע ישירות מהאנטומיה: לעליונה יש שלוש תתי-יחידות (רגישה יותר לעיוות), לתחתונה יש שתיים בלבד - ולכן פגם גדול יותר יחסית בתחתונה עדיין "נסלח" בסגירה ראשונית.</td></tr>
+    <tr><td><b>מרכיבים חסרים</b> - חלקי-עובי מול מלוא-עובי, ואילו תתי-יחידות (פילטרום, זווית הפה/commissure, שיעור זקן בגברים)</td><td>זו לרוב השאלה החשובה ביותר בפועל: פגם קטן שכולל את זווית הפה מצריך טכניקה אחרת לגמרי (Estlander) מפגם גדול יותר שלא נוגע בה.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">3</span> שחזור וורמיליון</h2>
+<p>שחזור הוורמיליון (השפה האדומה) מטופל בנפרד כי הוא דורש דיוק מרבי בגבול. בקרעים פשוטים ללא אובדן רקמה - תיקון ראשוני עם יישור מדויק של הרול הלבן; אם התפר חוצה את הוורמיליון, ניתן לשלב <b>Z-פלסטי קטן</b> כדי לשבור את הצלקת הליניארית ולמנוע התכווצות משנית.</p>
+<svg class="diagram" viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+  <title>Z-פלסטי לשבירת צלקת חוצה-וורמיליון</title>
+  <ellipse cx="130" cy="85" rx="110" ry="60" fill="#fde8e0" stroke="#c2410c" stroke-width="1.5"/>
+  <path d="M110,50 L150,120" stroke="#7f1d1d" stroke-width="3" fill="none"/>
+  <text x="130" y="150" font-size="12" text-anchor="middle" fill="#374151">לפני: צלקת ליניארית חוצה את הרול הלבן</text>
+  <ellipse cx="380" cy="85" rx="110" ry="60" fill="#e8f5ec" stroke="#2C5F2D" stroke-width="1.5"/>
+  <path d="M360,50 L380,85 L400,50 M380,85 L400,120" stroke="#14532d" stroke-width="3" fill="none"/>
+  <text x="380" y="150" font-size="12" text-anchor="middle" fill="#374151">אחרי: Z-פלסטי שובר את קו הצלקת</text>
+</svg>
+<p>לפגמים עמוקים יותר (עד השריר, אך לא חוצים את הרול הלבן) - פלאפי התקדמות מקומיים, מ-<b>V-Y advancement</b> קלאסי ועד פלאפי התקדמות מוקו-שריריים (musculomucosal) של כל הוורמיליון, המבוססים על שימור אספקת הדם הצדדית מה-labial artery. לפגמים נרחבים יותר - פלאפים מהרירית הבוקאלית, ובראשם ה<b>-FAMM flap</b> (<span class="term" dir="ltr">Facial Artery Musculomucosal flap</span>): פלאפ תוך-פומי אקסיאלי המבוסס על עורק הפנים, יכול להיות מבוסס תחתית (זרימה אנטרוגרדית) או עליון (זרימה רטרוגרדית), וכולל את עורק הפנים עם הפלקסוס הוורידי שלו, שומן בוקאלי, שריר הבוקצינטור, תת-רירית ורירית - תוך שמירה על שרירי הבעת הפנים ועל העור שמעליו. זהו פלאפ ה"עבודה" לשחזור וורמיליון נרחב, ובפגמים ענקיים אפשר להיעזר גם בפלאפ לשון דו-שלבי.</p>
+
+<h2><span class="num">4</span> שחזור השפה העליונה</h2>
+<p>העיקרון המנחה: פגמים עד רבע מהשפה - סגירה ראשונית; עד מחצית - פלאפים מקומיים/פלאפי מתג-שפה; עד שני-שליש - Karapandzic; מעל 80% - פלאפים אזוריים או העברה חופשית.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גודל הפגם</th><th>מיקום</th><th>טכניקה מובילה</th></tr></thead>
+  <tbody>
+    <tr><td>מבוגר &lt;20% / ילד &lt;10%</td><td>צדי או מרכזי</td><td>סגירה ראשונית (תפר אנכי מועדף)</td></tr>
+    <tr><td>20%–80%</td><td>מרכזי</td><td>פלאפי התקדמות ± כריתות סהרוניות (crescentic) בחריץ האלה, ± Abbe</td></tr>
+    <tr><td>20%–80%</td><td>צדי (כולל זווית הפה)</td><td>Estlander</td></tr>
+    <tr><td>מעל 80%</td><td>-</td><td>Karapandzic דו-צדדי / נאסולביאלי / סאבמנטלי ± קדם-לימינציה, או העברה חופשית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">מבוסס על אלגוריתם 11.1 בפרק המקורי.</p>
+
+<h3>פגמים חלקיים עד רבע מהשפה</h3>
+<p>פגם חלקי-עובי קטן מרבע השפה - <b>כריתת טריז (wedge excision)</b> קטנה יותר מהפגם העורי עצמו, שהופכת אותו לפגם מלא-עובי - מאפשרת שחזור בשלב אחד עם המשכיות שרירית ועצבוב שמור. תפר אנכי תמיד עדיף (ממזער עיוות של קווי ציון וזקן). אם צריך פגם גדול יותר - כריתות סהרוניות בחריץ האלה (crescentic excisions) מאפשרות מדיאליזציה של רקמת השפה כפלאפ התקדמות ללא מתח.</p>
+
+<h3>פגמים עד מחצית השפה - פלאפי "מתג שפה"</h3>
+<p>אלה פלאפים המחליפים "כמו-בכמו" (like-with-like) מהשפה הנגדית - הפתרון הכי קרוב לרקמת המקור מבחינת מרקם, צבע ותפקוד שרירי.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פלאפ</th><th>מקור אספקת הדם</th><th>מספר שלבים</th><th>שימור עצבוב</th><th>שימוש עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>Abbe</b></td><td>עורק לבבי תחתון איפסילטרלי</td><td>2 (חלוקה אחרי 2–3 שבועות)</td><td>עצבוב צדדי נשמר (בסיס מרכזי)</td><td>פגם מרכזי, בעיקר שחזור פילטרום, כשה-commissure שלם</td></tr>
+    <tr><td><b>Estlander</b> (reverse Abbe)</td><td>עורק לבבי קונטרלטרלי</td><td>1 (שלב יחיד)</td><td>-</td><td>פגם צדי הכולל את זווית הפה; לעיתים נדרשת commissuroplasty משנית</td></tr>
+    <tr><td>נאסולביאלי</td><td>עורק הפנים (אופציונלי) או אספקה אקראית</td><td>1–2</td><td>עלול לגרום דה-נרבציה איאטרוגנית</td><td>פגמים גדולים, חלופה לרקמת לחי כשאין מספיק שפה נגדית</td></tr>
+    <tr><td>פלאפ פרפורטור עורק הפנים</td><td>פרפורטורים לאורך עורק הפנים</td><td>1</td><td>נשמר</td><td>איי-פלאפ מסתובב עד 180° הודות לגמישות אזור הנאסולביאלי/jowl</td></tr>
+  </tbody>
+</table>
+</div>
+<p>ה-<b>Abbe flap</b> מתוכנן ברוחב <b>חצי</b> מרוחב הפגם ובאותו גובה - זהו עיקרון "שיתוף שפה" אמיתי (lip-sharing). נקודת הסיבוב מתוכננת כך שתישאר פתיחת פה מספקת לאכילה בין השלבים. יש להשאיר מנג'טה קטנה של שריר ורירית סביב עורק הפנים כדי למנוע אבולסיה ולאפשר ניקוז ורידי. Abbe שימושי במיוחד לשחזור פילטרום: בפגם קטן מהפילטרום, Abbe יכול להיות עדיף אפילו על סגירה ראשונית כי הוא נמנע מעיוות עמודות הפילטרום. <b class="key">חסרונות Abbe: תלות בשיתוף פעולה של המטופל בין השלבים, ורקמה לא-חשה בהתחלה.</b></p>
+<p>ה-<b>Estlander flap</b> מתוכנן דומה (חצי רוחב, אותו גובה) אך <b>בשלב אחד</b>, ומבוסס על עורק השפה הנגדית - העורק לא משוחרר מהרקמה סביבו (skeletonized) כדי לשמר פלקסוס ורידי מספק. אם ה-commissure שלם, יש לשמרו בזמן הרמת הפלאפ; אם הוא מעורב, תידרש <b>commissuroplasty</b> משנית. חיסרון עיקרי: עיוות אפשרי של אנימציה פומית.</p>
+
+<h3>פגמים עד שני-שליש - פלאפ Karapandzic</h3>
+<p>ה-Karapandzic הוא שכלול של ה-<b>Gillies fan flap</b> (1957), שתואר ב-1974 - פלאפ רוטציה-התקדמות מיוקוטני צירקום-אוראלי דו-צדדי, בצורת חצאי-עיגול המשתרעים מהפגם סביב זוויות הפה, כאשר <b>רדיוס הפלאפ שווה לגובה הפגם</b>. הדיסקציה מתבצעת ב-1–3 ס"מ הסמוכים לפגם דרך כל שכבות השפה, ולרוחק יותר - דיסקציה תוך-שרירית בטכניקת "spreading" ששומרת על הצרור העצבי-וסקולרי הדו-צדדי (עורקי labial). <b class="key">זה בניגוד לגרסאות מוקדמות יותר של הטכניקה שגרמו לדה-נרבציה נרחבת של השריר - בזכות שימור הצרור, מתקבל שחזור חד-שלבי, חש, ופונקציונלי</b> עם תפקוד שרירי מוקדם. עודף עור עקב פער אורך בין הלחי לפלאפ ניתן לכרות כמשולש Burow's. <b>מגבלה מרכזית: מעל שני-שליש מהשפה, הטכניקה גורמת למיקרוסטומיה משמעותית</b> - ואז יש לעבור לפלאפי לחי (נאסולביאלי, Webster, Bernard, פרפורטור עורק הפנים, סאבמנטלי).</p>
+
+<svg class="diagram" viewBox="0 0 620 260" xmlns="http://www.w3.org/2000/svg">
+  <title>עקרון פלאפ Karapandzic</title>
+  <ellipse cx="310" cy="170" rx="260" ry="80" fill="#fde8e0" stroke="#c2410c" stroke-width="1.5"/>
+  <ellipse cx="310" cy="170" rx="90" ry="30" fill="#fff" stroke="#7f1d1d" stroke-width="2"/>
+  <text x="310" y="176" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">פה / פגם מרכזי</text>
+  <path d="M220,170 A90,80 0 0,0 90,110" stroke="#1C7293" stroke-width="4" fill="none"/>
+  <path d="M400,170 A90,80 0 0,1 530,110" stroke="#1C7293" stroke-width="4" fill="none"/>
+  <text x="90" y="95" font-size="12" text-anchor="middle" fill="#1C7293" font-weight="700">חצי-עיגול ימני</text>
+  <text x="530" y="95" font-size="12" text-anchor="middle" fill="#1C7293" font-weight="700">חצי-עיגול שמאלי</text>
+  <text x="310" y="30" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">רדיוס הפלאפ = גובה הפגם; דיסקציה תוך-שרירית משמרת עורקי labial</text>
+  <text x="310" y="240" font-size="12" text-anchor="middle" fill="#78350f">רוטציה-התקדמות דו-צדדית סביב זוויות הפה &#8592; סוגר תפקודי חד-שלבי</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/2ruDDR5JmNQ"
+  title="Karapandzic flap for lip reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה כירורגית של פלאפ Karapandzic לשחזור השפה - רואים את חצאי-העיגול הדו-צדדיים סביב הפה ואת הדיסקציה תוך-השרירית השומרת על הצרור הנוירווסקולרי. מקור: YouTube.</p>
+
+<h2><span class="num">5</span> שחזור השפה התחתונה</h2>
+<p>העיקרון דומה לשפה העליונה אך "מוזז" - מכיוון שאין תת-יחידה שלישית בתחתונה, פגם יחסית גדול יותר (עד שליש) עדיין נסלח בסגירה ראשונית.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גודל הפגם</th><th>מיקום</th><th>טכניקה מובילה</th></tr></thead>
+  <tbody>
+    <tr><td>מבוגר &lt;30% / ילד &lt;20%</td><td>-</td><td>סגירה ראשונית (± כריתת טריז V/W אם נוגע בקפל הסנטר)</td></tr>
+    <tr><td>20%–80%</td><td>מרכזי</td><td>Bernard–Burow cheiloplasty ± וורמיליונקטומיה</td></tr>
+    <tr><td>20%–80%</td><td>צדי (כולל commissure)</td><td>Estlander</td></tr>
+    <tr><td>מעל 80%</td><td>-</td><td>Karapandzic דו-צדדי / נאסולביאלי / סאבמנטלי ± קדם-לימינציה/פרה-פבריקציה, ± FAMM, ± תמיכת פאשיה</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">מבוסס על אלגוריתם 11.2 בפרק המקורי.</p>
+
+<p><b class="key">שימו לב לחריג החשוב ביותר בפרק:</b> בעוד ש-Estlander (מהשפה העליונה לתחתונה) נשאר אופציה טובה לשחזור זווית הפה, <b>פלאפ Abbe מהעליונה לתחתונה כמעט אינו מבוצע</b> - כי אתר התורם בשפה העליונה "רגיש" מדי: אפילו כמות קטנה של רקמה שנלקחת ממנו עלולה לעוות את קשת קופידון. לכן פגמים גדולים בתחתונה מטופלים בעיקר עם Karapandzic דו-צדדי, נאסולביאלי, או Bernard-Burow.</p>
+
+<p>ה-<b>Bernard–Burow cheiloplasty</b> משחזרת פגמים מרכזיים גדולים בשפה התחתונה בעזרת פלאפי התקדמות אופקיים המבוססים לטרלית. השריר נשמר כמעט לגמרי (מלבד קטע קטן בקצה המוביל שמנותק), בעוד שהחתכים עצמם עוברים דרך עור ורירית תוך-פומית - כך נשמרות התצורות הנוירווסקולריות. עודף עור ורקמה תת-עורית נכרת כמשולשי Burow's בבסיס הפלאפים, ועודף רירית מקודם קדמית לשחזור הוורמיליון.</p>
+
+<p>לפגם צדי הכולל את זווית הפה, ה-<b>Estlander</b> המקורי (רוטציה-התקדמות מבוססת-מדיאלית מהעליונה לתחתונה) הוא הבחירה הראשונה. לפגם שדורש גיוס רקמה נוסף - <b>פלאפ Gillies rotation advancement fan</b> הוא בעצם Estlander גדול יותר עם רקמת לחי נוספת המסתובבת צירקום-אורלית סביב זווית הפה.</p>
+
+<h2><span class="num">6</span> שחזור מלוא-השפה (Total lip reconstruction)</h2>
+<p>אובדן מלא של שפה אחת, ולעיתים אף גרוע יותר - שתיהן - הוא אחד האתגרים הקשים ביותר בכירורגיה פלסטית: פלאפים מקומיים פשוט לא מספיקים, ופלאפים אזוריים/מרוחקים אף פעם לא זהים לחלוטין ברקמתם לשפה המקורית. לכן זה כמעט תמיד תהליך <b>רב-שלבי</b> שמסתיים בתוצאה "סב-אופטימלית" - וחשוב לדון על כך עם המטופל כחלק מהסכמה מדעת, וגם לא "לשרוף גשרים" של אפשרויות עתידיות תוך כדי התהליך.</p>
+
+<h3>פלאפים אזוריים</h3>
+<p>אם רק שפה שלמה אחת חסרה, פלאפ <b>סאבמנטלי</b> (myocutaneous, מבוסס ענף סאבמנטלי של עורק הפנים) הוא אופציה טובה - יש לו מראה עורי דומה לשפה וכולל עור שעיר בגברים. ניתן להרחיב אותו מראש עם מרחיב רקמה, ולקפל אותו כדי לספק גם כיסוי חיצוני וגם ריפוד פנימי. שריר ה-<b>platysma</b> חלק מהפלאפ, ובדיסקציה זהירה ניתן לשמר את עצבובו (ענפי צוואר של העצב הפציאלי) ולקבל מידה מסוימת של אנימציה בשפה המשוחזרת - השריר, שהיה מכוון אנכית באתר המקור, מסתובב כ-90° בטרנספוזיציה ומקבל כיוון דומה ל-orbicularis לאחר ההשתלה.</p>
+<p>שיטה מתקדמת יותר - <b>"פרה-לימינציה" (prelamination)</b>: הרמת הפלאפ ויישום שתל עור מלא-עובי על פני התחתית של שריר ה-platysma, יחד עם מרחיב רקמה, כשלב מקדים. התוצאה היא פלאפ רב-שכבתי דומה יותר לארכיטקטורה הטבעית של השפה - עור צווארי + platysma "כריך" עם שתל העור. שיטה נוספת היא <b>"פרה-פבריקציה" (prefabrication)</b>: השתלת צרור וסקולרי מתחת לאזור עור שישמש בעתיד לשחזור, המאפשרת לאחר כ-8 שבועות (אחרי אינוסקולציה ספונטנית) להעביר אותו כפלאפ אקסיאלי לשפה.</p>
+
+<h3>העברת רקמה חופשית (Free tissue transfer)</h3>
+<p>לפגם מלא/כמעט-מלא, העברה חופשית היא <b>הטיפול המועדף</b> - הפלאפ הנפוץ ביותר הוא <b>הפלאפ החופשי של אמת היד הרדיאלית (radial forearm flap)</b>: דק, גמיש, קל לקצירה, יכול לכלול את העצב ה-lateral antebrachial cutaneous לשימור תחושה (אך לא תנועה). הדקות והעשירות הוסקולרית מאפשרות קיפול הפלאפ כך שיספק גם כיסוי וגם ריפוד פנימי - אך בשחזור שפה תחתונה בפרט, יש להוסיף גם תמיכה ל<b>למלה האמצעית</b> (שריר או תחליף), אחרת הפלאפ המקופל "יישמט" כלפי מטה בהשפעת כוח הכבידה.</p>
+<p>אם המודיולי (fibrous modiolus) שלמים משני הצדדים, ניתן לשלב גיד palmaris longus או שתל פאשיה לאטה, ולארוג אותו בתוכם כדי ליצור מנגנון "שרוך תלייה" (sling) שמנסה לחקות יכולת סגירה פומית. אם השרירים חסרים לגמרי, שרוך סטטי לרוב "נמתח" ולא עובד לטווח ארוך - ולכן פותחו פתרונות דינמיים: שריר גרסיליס חופשי מועצב (Ninkovic), או שילוב של שני פלאפי שריר/פאשיה טמפורליס דו-צדדיים מקופלים (Gillies-type) המחוברים בשתלי פאשיה לאטה - מכיוון ששריר הטמפורליס הוא שריר לעיסה, הוא מופעל באופן טבעי כשהמטופל אוכל ומושך את השפה התחתונה כלפי מעלה לשיפור סגירות פומית.</p>
+<p>הוורמיליון משוחזר בשלב הראשון בעזרת FAMM flap חד/דו-צדדי אם עורקי הפנים עדיין זמינים; אם לא - ניתן קעקוע וורמיליון מאוחר, אך תוצאתו נוטה לדהות ולהיות פחות אסתטית.</p>
+<p><b>השתלת פנים (facial allotransplantation)</b> מוזכרת כאופציה עתידית בפגמים קטסטרופליים של מלוא שתי השפות והרקמות הסובבות - עם תוצאות מוקדמות מבטיחות, אך תוצאות ארוכות-טווח של דיכוי חיסוני כרוני עדיין לא ידועות במלואן.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/mCliAC_LoYQ"
+  title="Lip cancer removal with Abbe flap reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">כריתת גידול בשפה ושחזור בעזרת Abbe flap - רואים את עקרון "שיתוף השפה" (lip-sharing) בין השפה העליונה לתחתונה. מקור: YouTube.</p>
+
+<p>אפשרות נדירה נוספת בפגם טראומטי היא <b>ריפלנטציה</b> (החזרת חלק שפה שנקטע) - מצריכה לרוב שימוש בעלוקות לניקוז ורידי בשל היעדר ורידים לבביים מתאימים לאנסטומוזה מיקרו-וסקולרית, אך במקרה של הצלחה מספקת רקמה טבעית זהה לחלוטין.</p>
+
+<h2><span class="num">7</span> שיקולים לאחר הניתוח</h2>
+<table>
+  <thead><tr><th>תחום</th><th>עיקרון</th></tr></thead>
+  <tbody>
+    <tr><td><b>תזונה</b></td><td>דיאטה נוזלית/רכה בשלב המוקדם להפחתת מתח על קווי התפר, עם השלמת חלבון מספקת לריפוי פצע.</td></tr>
+    <tr><td><b>היגיינה</b></td><td>חלל הפה הוא סביבה לא-סטרילית מטבעה עם פלורה מגוונת; לחות הרוק מחלישה תפרים, ואמילאז רוק מזרז פירוק תפרים נספגים. מומלץ כלורהקסידין גלוקונט לשטיפת פה בתקופה המוקדמת; יש לתאם מתי לחזור לצחצוח שיניים כדי לא לפגוע בתפרים.</td></tr>
+    <tr><td><b>סד (splinting)</b></td><td>לעיתים נדרש סד מותאם אישית למניעת מיקרוסטומיה - שיתוף פעולה של המטופל קריטי כי סדים יכולים להפריע לדיבור ולאכילה.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> סיבוכים ופרוצדורות משניות</h2>
+<p>הסיבוך השכיח ביותר קשור <b>להיצטלקות</b>: אי-יישור של הוורמיליון או א-סימטריה עלולים לדרוש תיקון צלקת או Z-פלסטי. הסיבוך התפקודי החמור ביותר הוא <b>מיקרוסטומיה</b> - שילוב של התכווצות צלקת ומחסור ברקמה בפגמים גדולים. הטיפול הוא <b>commissuroplasty</b>: מסמנים את מיקום זווית הפה החדשה, חותכים מהזווית הקיימת אל הסימון החדש עם הרחבת "T"/"Y" צדית, חותכים את הצלקת עד מחצית עובי השפה, ומעלים פלאפ מבוסס-לטרלי מרירית ותת-רירית שמושהה ותפור לעור.</p>
+<p>פגיעה בעצב הפציאלי בקרבת השפה בדרך כלל דיסטלית מדי לתיקון ראשוני - יש לעקוב קלינית אחר החזרה ההדרגתית; במקרים של פגיעה חד-צדדית קבועה, זריקת <b>בוטולינום טוקסין</b> לצד הבריא הנגדי יכולה לסייע ביצירת סימטריה באנימציה.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">A-E-K</span> - שלוש האחיות של שחזור השפה, לפי גודל עולה</h3>
+  <p>
+    <b>A</b> – <span class="term" dir="ltr">Abbe</span> - פגם <b>מרכזי קטן</b>, commissure שלם, <b>שני</b> שלבים, מבוסס על עורק לבבי איפסילטרלי.<br>
+    <b>E</b> – <span class="term" dir="ltr">Estlander</b> - פגם <b>צדי</b> הכולל את commissure, <b>שלב אחד</b>, מבוסס על עורק לבבי קונטרלטרלי.<br>
+    <b>K</b> – <span class="term" dir="ltr">Karapandzic</span> - פגם <b>גדול (עד 2/3)</b>, <b>דו-צדדי</b> וצירקום-אורלי, שומר עצבוב ותחושה.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שלוש אחיות שמגיעות לעזור למטופל לפי סדר "התגברות": <b>Abbe הקטנה</b> מגיעה כשהחור במרכז השפה קטן - היא "משאילה" חצי חתיכה מהשפה השנייה לשבועיים-שלושה ואז חוזרת לקחת אותה בחזרה (שני ביקורים = שני שלבים). אם הפגם זז לפינת הפה, <b>Estlander האמצעית</b> מגיעה במקומה - היא לא צריכה לחזור (שלב אחד), אבל היא תמיד מטפלת בפינה. ואם הפגם ממש גדול ומקיף את כל מרכז השפה, <b>Karapandzic הגדולה</b> מגיעה ופשוט "מחבקת" את כל הפה בשתי זרועות (חצאי-העיגול הדו-צדדיים) כדי לסגור אותו בבת אחת.</p>
+  <svg class="diagram" viewBox="0 0 540 200" xmlns="http://www.w3.org/2000/svg">
+    <title>שלוש האחיות - AEK</title>
+    <circle cx="90" cy="90" r="55" fill="#fde8e0" stroke="#c2410c" stroke-width="2"/>
+    <text x="90" y="85" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">A</text>
+    <text x="90" y="105" font-size="11" text-anchor="middle" fill="#7f1d1d">Abbe</text>
+    <text x="90" y="165" font-size="12" text-anchor="middle" fill="#374151">מרכזי קטן, 2 שלבים</text>
+
+    <circle cx="270" cy="90" r="55" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+    <text x="270" y="85" font-size="14" text-anchor="middle" fill="#0c4a6e" font-weight="700">E</text>
+    <text x="270" y="105" font-size="11" text-anchor="middle" fill="#0c4a6e">Estlander</text>
+    <text x="270" y="165" font-size="12" text-anchor="middle" fill="#374151">צדי + commissure, שלב 1</text>
+
+    <circle cx="450" cy="90" r="55" fill="#e8f5ec" stroke="#2C5F2D" stroke-width="2"/>
+    <text x="450" y="85" font-size="14" text-anchor="middle" fill="#14532d" font-weight="700">K</text>
+    <text x="450" y="105" font-size="11" text-anchor="middle" fill="#14532d">Karapandzic</text>
+    <text x="450" y="165" font-size="12" text-anchor="middle" fill="#374151">גדול עד 2/3, דו-צדדי</text>
+
+    <polygon points="150,90 180,84 180,96" fill="#6b7280"/>
+    <line x1="180" y1="90" x2="150" y2="90" stroke="#6b7280" stroke-width="2"/>
+    <polygon points="330,90 360,84 360,96" fill="#6b7280"/>
+    <line x1="360" y1="90" x2="330" y2="90" stroke="#6b7280" stroke-width="2"/>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=lHamjFIecDM" target="_blank">Carcinoma Lower Lip: Reconstruction by Karapandzic Flap – YouTube</a>
+    <div class="desc">מקרה נוסף של שחזור שפה תחתונה בטכניקת Karapandzic לאחר כריתת קרצינומה.</div>
+  </li>
+  <li>
+    <a href="https://www.theplasticsfella.com/lip-reconstruction/" target="_blank">Lip Reconstruction: Anatomy, Indications & Algorithm – The Plastics Fella</a>
+    <div class="desc">סיכום עיוני נוסף עם תרשימי אלגוריתם משלימים לאלו שבפרק.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Abbe-Estlander_operation" target="_blank">Abbe–Estlander operation – Wikipedia</a>
+    <div class="desc">רקע היסטורי ותיאור טכני משלים על משפחת פלאפי "מתג השפה".</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 68, מעשן כבד עם חשיפה מצטברת לשמש, מגיע עם נגע כיבי בשפה התחתונה הקרוב לזווית הפה השמאלית, בביופסיה - קרצינומה של תאי קשקש (SCC). לאחר כריתה מיקרוגרפית מתקבל פגם מלוא-עובי המהווה כ-35% מהשפה התחתונה, כאשר קצה הפגם מגיע עד ל-commissure השמאלי אך לא חוצה אותו. המטופל מעוניין בפתרון בשלב ניתוחי אחד אם אפשר, ומדגיש שהוא זקוק לפה תפקודי לאכילה עצמאית.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. בהתחשב באחוז הפגם, המיקום (נוגע ב-commissure), ורצון המטופל בשלב אחד - מהי הטכניקה המתאימה ביותר?</div>
+  <button class="opt" data-i="0">סגירה ראשונית פשוטה</button>
+  <button class="opt" data-i="1">Estlander flap - רוטציה-התקדמות משפה עליונה לתחתונה, שלב יחיד, מיועד בדיוק לפגם צדי הכולל את זווית הפה</button>
+  <button class="opt" data-i="2">Abbe flap דו-שלבי מהשפה העליונה</button>
+  <button class="opt" data-i="3">Karapandzic דו-צדדי</button>
+  <div class="explain">התשובה הנכונה: פגם של 35% הנוגע בזווית הפה חורג מסף הסגירה הראשונית (עד כ-30% למבוגר) ואינו מתאים ל-Abbe (המיועד לפגם מרכזי, ללא מעורבות commissure, ודורש שני שלבים). Estlander תוכנן במקור בדיוק לתרחיש הזה - פגם צדי הכולל את זווית הפה - והוא מבוצע בשלב ניתוחי אחד, כפי שהמטופל מבקש. Karapandzic נשמר לפגמים גדולים יותר (עד שני-שליש) ואינו הכרחי כאן.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע פלאפ Abbe "קלאסי" כמעט אינו משמש לשחזור פגמים גדולים בשפה התחתונה מהשפה העליונה, בניגוד לשימושו השכיח בכיוון ההפוך?</div>
+  <button class="opt" data-i="0">כי עורק השפה התחתונה קטן מדי לתמוך בפלאפ</button>
+  <button class="opt" data-i="1">כי מבחינה חוקית אסור לקחת רקמה מהשפה העליונה</button>
+  <button class="opt" data-i="2">כי אתר התורם בשפה העליונה רגיש לעיוות - אפילו כמות קטנה של רקמה שנלקחת ממנו עלולה לעוות מבנים כמו קשת קופידון</button>
+  <button class="opt" data-i="3">כי השפה העליונה נטולת עצבוב תחושתי משמעותי</button>
+  <div class="explain">התשובה הנכונה: השפה העליונה מכילה תתי-יחידות רגישות (פילטרום, קשת קופידון) שקל לעוות גם בנטילת כמות קטנה יחסית של רקמה - זו הסיבה שהפרק מציין במפורש ש-Abbe מהעליונה לתחתונה כמעט לא מבוצע, בניגוד לכיוון ההפוך (מהתחתונה לעליונה) שנפוץ ומקובל. שאר האפשרויות אינן מבוססות על מה שנאמר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה ההבדל העיקרי בין גרסאות מוקדמות של פלאפ ה-Gillies fan flap לבין ה-Karapandzic flap המודרני?</div>
+  <button class="opt" data-i="0">ה-Karapandzic משתמש בדיסקציה תוך-שרירית בטכניקת "spreading" ששומרת על הצרורות הנוירווסקולריות, ובכך נמנע מהדה-נרבציה הנרחבת שאפיינה את הגרסאות המוקדמות</button>
+  <button class="opt" data-i="1">ה-Karapandzic הוא פלאפ חד-צדדי בלבד, בעוד ש-Gillies היה דו-צדדי</button>
+  <button class="opt" data-i="2">ה-Karapandzic מבוסס על עורק הפנים ולא על העורקים הלבביים</button>
+  <button class="opt" data-i="3">אין הבדל מהותי - השמות מתארים בדיוק אותה פרוצדורה</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שהשכלול המרכזי של Karapandzic (1974) על בסיס ה-Gillies fan flap (1957) הוא הדיסקציה התוך-שרירית העדינה שמשמרת את הצרור הנוירווסקולרי הדו-צדדי (כולל עורקי labial) - זה מה שמאפשר שחזור חד-שלבי, חש ותפקודי. גרסאות מוקדמות יותר גרמו לדה-נרבציה נרחבת של ה-orbicularis. שתי הטכניקות הן דו-צדדיות ומבוססות על עורקי labial.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופלת עברה שחזור שפה תחתונה גדול, ולאחר מספר חודשים מפתחת מיקרוסטומיה משמעותית המפריעה לה להכניס מזון וללבוש תותבות שיניים. מהו קו הטיפול המתאים?</div>
+  <button class="opt" data-i="0">אין טיפול אפשרי, המצב בלתי הפיך</button>
+  <button class="opt" data-i="1">יש לבצע מיד השתלת פנים מלאה</button>
+  <button class="opt" data-i="2">להזריק בוטולינום טוקסין לשריר ה-orbicularis כדי להרפות אותו</button>
+  <button class="opt" data-i="3">Commissuroplasty - סימון מיקום הזווית החדשה, חתך מהזווית הקיימת עד לסימון עם הרחבת T/Y, וחיתוך הצלקת עד מחצית עובי השפה עם הרמת פלאפ רירית-תת-רירית מבוסס-לטרלית</button>
+  <div class="explain">התשובה הנכונה: מיקרוסטומיה נובעת משילוב של התכווצות צלקת ומחסור ברקמה, והטיפול המקובל שמתואר בפרק הוא commissuroplasty - טכניקה מדויקת המשלבת סימון, חיתוך הצלקת, והרמת פלאפ רירית מבוסס-לטרלית שתפור לעור ליצירת זווית פה חדשה. בוטולינום (תשובה 2) שמור לפגיעה בעצב הפציאלי הגורמת לחוסר סימטריה באנימציה, לא לטיפול במיקרוסטומיה. השתלת פנים (תשובה 1) שמורה למקרים קטסטרופליים של אובדן שתי השפות, לא לסיבוך זה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. באיזה שלב הופכת דלקת/פגם שפה טראומטי לדרוש התייחסות דחופה יותר מהסתכלות פשוטה על גודל הפצע?</div>
+  <button class="opt" data-i="0">תמיד - כל פגם טראומטי בשפה מוגדר כחירום כירורגי מיידי</button>
+  <button class="opt" data-i="1">יש להעריך תמיד את מלוא עובי הפגם (מוקוזה/שריר/עור) ואת המבנים החסרים (commissure, פילטרום) לפני שפוגם על גודל בלבד - כי שוליים "פעורים" מכוח הסוגר של ה-orbicularis עלולים להטעות לגבי כמות הרקמה שאבדה בפועל</button>
+  <button class="opt" data-i="2">רק אם יש זיהום פעיל בפצע</button>
+  <button class="opt" data-i="3">רק בילדים מתחת לגיל 10</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שפגמים טראומטיים נוטים "להיראות גדולים" בהערכה ראשונית מכיוון שכוחות הסוגר הטבעיים של ה-orbicularis oris גורמים לשוליים לפעור, אך לרוב לאחר ניקוי ובדיקה יסודית מתברר שאין אובדן רקמה בפועל בהיקף שנראה. לכן יש להעריך תמיד את שלוש השכבות ואת המבנים המעורבים (לא רק את "גודל הפער" הנראה לעין) לפני קביעת תוכנית שחזור.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה מבנה אנטומי הוא הבסיס לכך שכל "פלאפי מתג השפה" (Abbe, Estlander) אפשריים מבחינה וסקולרית?</div>
+  <button class="opt" data-i="0">שריר ה-buccinator</button>
+  <button class="opt" data-i="1">עצב הפנים (facial nerve)</button>
+  <button class="opt" data-i="2">האנסטומוזה בקו האמצע בין העורקים הלבביים העליון והתחתון, שניהם ענפים של עורק הפנים המסתעף כ-1.5 ס"מ לרוחב מזווית הפה</button>
+  <button class="opt" data-i="3">הפלקסוס הוורידי הסינציטיאלי בשפה</button>
+  <div class="explain">התשובה הנכונה: העורקים הלבביים העליון והתחתון (ענפי עורק הפנים) רצים בין הרירית לשריר ה-orbicularis ומתאחדים (אנסטומוזה) בקו האמצע - זו העובדה האנטומית שמאפשרת לתכנן פלאפ מבוסס-פדיקל מהשפה האחת ולהעביר אותו כ"מתג" לשפה השנייה תוך שמירה על אספקת דם. הפלקסוס הוורידי (תשובה 4) חשוב לניקוז אך לא "לזרימת הדם הנכנסת" שמאפשרת את הפלאפ; buccinator ועצב הפנים אינם הבסיס הוסקולרי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מטרת-העל: שחזור <b>סוגר פומי תפקודי</b> עם פתח פה מספק - לא רק מראה. השפה היא מבנה <b>תלת-שכבתי</b> (רירית-שריר-עור); הערכת פגם חייבת לכלול אילו שכבות ואילו תתי-יחידות (פילטרום, commissure) חסרות.</li>
+    <li>גודל נמדד ב<b>רבעים</b> בעליונה (רגישה יותר - 3 תתי-יחידות) וב<b>שלישים</b> בתחתונה (2 תתי-יחידות בלבד).</li>
+    <li>וורמיליון: יישור מדויק של <b>הרול הלבן</b> (סטייה של 1 מ"מ נראית לעין); Z-פלסטי לשבירת צלקת חוצה; FAMM flap לפגמים נרחבים.</li>
+    <li>עליונה: עד 1/4 - סגירה ראשונית; עד 1/2 - <b>Abbe</b> (מרכזי, 2 שלבים) או <b>Estlander</b> (צדי/commissure, שלב 1); עד 2/3 - <b>Karapandzic</b> דו-צדדי (שומר עצבוב).</li>
+    <li>תחתונה: עד 1/3 - סגירה ראשונית; פגמים גדולים - <b>Bernard-Burow</b>, Karapandzic, נאסולביאלי. <b>Abbe מהעליונה לתחתונה כמעט לא מבוצע</b> (מסכן את קשת קופידון).</li>
+    <li>שחזור מלוא-שפה: פלאפ <b>סאבמנטלי</b> (± קדם-לימינציה/פרה-פבריקציה) לאובדן שפה אחת; <b>העברה חופשית</b> (בעיקר radial forearm flap) + שרוך (גיד/פאשיה/שריר טמפורליס/גרסיליס) לפגם מלא, תמיד רב-שלבי.</li>
+    <li>סיבוכים: היצטלקות/א-סימטריה, <b>מיקרוסטומיה</b> (טיפול: commissuroplasty), פגיעה עצבית (טיפול תומך: בוטולינום לצד הבריא).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

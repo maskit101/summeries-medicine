@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 27: לימפדמה - פתופיזיולוגיה ומדע בסיס</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 27: לימפדמה - פתופיזיולוגיה ומדע בסיס <span class="term" dir="ltr">Lymphedema: Pathophysiology and Basic Science</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles, מהדורה 5 (עמ' 656–678)</div>
+
+<p>לימפדמה (<span class="term" dir="ltr">lymphedema</span>) היא הצטברות כרונית ובלתי-נשלטת של נוזל עתיר-חלבון ברקמה התת-עורית, כתוצאה מכשל בהובלה הלימפטית. זה לא "עוד סוג של בצקה" - ההרכב הייחודי של הנוזל (עתיר חלבון) הוא שהופך אותה עם הזמן למחלה מתקדמת של הרקמה עצמה (פיברוזיס, הצטברות שומן), ולא רק בעיית נוזלים זמנית. בכירורגיה פלסטית זהו נושא מרכזי כי הטיפול המודרני - LVA ו-VLNT - הוא כירורגיה מיקרו-וסקולרית לכל דבר.</p>
+
+<h2><span class="num">1</span> אנטומיה ופיזיולוגיה - איך מערכת הלימפה עובדת בכלל</h2>
+<p>נימי הדם (<span class="term" dir="ltr">capillaries</span>) מסננים כל הזמן נוזל, מלחים ומולקולות קטנות אל האינטרסטיציום (Starling forces). כ-90% מהנוזל הזה חוזר ישירות לצד הוורידי של הנימים. אבל חלבונים גדולים, שברי תאים ותאי דם לבנים שדלפו - <b>גדולים מדי מכדי לחזור לנימי הדם</b>. המסלול היחיד להחזיר אותם למחזור הדם הוא מערכת הלימפה.</p>
+<div class="mechanism">
+  <p class="chain">
+    נימי לימפה ראשוניים (<span class="term" dir="ltr">initial lymphatics</span>) - כלי עיוורים ודקיקים עם תאי אנדותל בעלי חיבורים "כפתוריים" (<span class="term" dir="ltr">button-like junctions</span>) שנפתחים כשלחץ הרקמה עולה ⟵ קולטים נוזל, חלבון ותאים ⟵ ממשיכים לכלי איסוף (<span class="term" dir="ltr">collecting lymphatics</span>) עם שכבת שריר חלק ומסתמים חד-כיווניים שדוחפים את הלימפה קדימה ⟵ עוברים דרך בלוטות לימפה (סינון וניטור חיסוני) ⟵ מתנקזים בסופו של דבר אל <span class="term" dir="ltr">thoracic duct</span> (רוב הגוף) או <span class="term" dir="ltr">right lymphatic duct</span> (רבע גוף עליון-ימני) ⟵ נכנסים למחזור הדם הוורידי המרכזי.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 820 220" xmlns="http://www.w3.org/2000/svg">
+  <title>מסלול ניקוז הלימפה מהרקמה למחזור הדם</title>
+  <rect x="660" y="30" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="730" y="55" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">אינטרסטיציום</text>
+  <text x="730" y="73" font-size="11.5" text-anchor="middle" fill="#1e3a8a">נוזל + חלבון + תאים</text>
+
+  <rect x="460" y="30" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="535" y="52" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">נימי לימפה</text>
+  <text x="535" y="70" font-size="11" text-anchor="middle" fill="#065f46">ראשוניים (עיוורים)</text>
+
+  <rect x="260" y="30" width="150" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="335" y="52" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">כלי איסוף</text>
+  <text x="335" y="70" font-size="11" text-anchor="middle" fill="#78350f">שריר חלק + מסתמים</text>
+
+  <rect x="60" y="30" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="135" y="52" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">בלוטות לימפה</text>
+  <text x="135" y="70" font-size="11" text-anchor="middle" fill="#4c1d95">סינון + מערכת חיסון</text>
+
+  <polygon points="620,60 660,54 660,66" fill="#374151"/>
+  <line x1="660" y1="60" x2="620" y2="60" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,60 460,54 460,66" fill="#374151"/>
+  <line x1="460" y1="60" x2="420" y2="60" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,60 260,54 260,66" fill="#374151"/>
+  <line x1="260" y1="60" x2="220" y2="60" stroke="#374151" stroke-width="2"/>
+
+  <rect x="60" y="150" width="300" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="210" y="172" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">Thoracic duct / Right lymphatic duct</text>
+  <text x="210" y="190" font-size="11" text-anchor="middle" fill="#7f1d1d">חזרה למחזור הדם הוורידי המרכזי</text>
+  <polygon points="135,150 129,130 141,130" fill="#b91c1c"/>
+  <line x1="135" y1="150" x2="135" y2="130" stroke="#b91c1c" stroke-width="2"/>
+</svg>
+<p class="figcap">תרשים 1: שרשרת ההובלה הלימפטית מהרקמה ועד המחזור הוורידי (חץ מצביע בכיוון הזרימה, ימין לשמאל).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Anatomy_of_the_lymphatic_system.jpg?width=700" alt="אנטומיה של מערכת הלימפה">
+<p class="media-cap">תרשים אנטומי כללי של מערכת הלימפה בגוף - רשת כלי הלימפה ובלוטות הלימפה הראשיות. מקור: Wikimedia Commons.</p>
+
+<p class="key-box">מערכת הלימפה היא <b class="key">חלק אינטגרלי ממערכת החיסון</b> - לא רק "ניקוז מכני" נוסף. בלוטות הלימפה הן תחנות סינון וניטור חיסוני, ותאי הלימפה עצמם נושאים תאי דם לבנים. זו הסיבה שחסימה לימפטית פוגעת גם ביכולת ניקוי הרקמה מפתוגנים (ראו סעיף סיבוכים).</p>
+
+<h2><span class="num">2</span> פתופיזיולוגיה - למה זה קורה, ולמה זה מחמיר עם הזמן</h2>
+<p>לימפדמה נגרמת מ<b>אי-ספיקה לימפטית</b> (<span class="term" dir="ltr">lymphatic insufficiency</span>), שיש לה שני מנגנונים אפשריים:</p>
+<ul>
+<li><b>אי-ספיקה מכנית (<span class="term" dir="ltr">mechanical/low-output insufficiency</span>)</b> - זהו המנגנון השכיח בהרבה: כמות הנוזל שנכנסת לרקמה נורמלית, אבל יכולת ההובלה של מערכת הלימפה ירדה (כלי לימפה נכרתו, נחסמו, או לא התפתחו כראוי) - "צינור הניקוז" עצמו פגום.</li>
+<li><b>אי-ספיקה דינמית (<span class="term" dir="ltr">dynamic/high-output insufficiency</span>)</b> - מערכת הלימפה תקינה אך עומס הנוזל שנכנס לרקמה עולה על יכולת הניקוז המרבית שלה (למשל באי-ספיקת לב קשה) - זו לא "לימפדמה" קלאסית אלא עומס יתר על מערכת תקינה.</li>
+</ul>
+
+<div class="mechanism">
+  <p class="chain">
+    <b>1. חסימה/כשל לימפטי מכני</b> ⟵ הובלת נוזל וחלבון מהרקמה פוחתת ⟵ <b>2. הצטברות נוזל עתיר-חלבון</b> באינטרסטיציום (זה מה שמייחד לימפדמה מבצקה ורידית "רגילה" - ראו טבלה 1) ⟵ <b>3. הלחץ האוסמוטי-קולואידי הגבוה</b> מהחלבון מושך ומחזיק עוד מים ברקמה ⟵ <b>4. גיוס מקרופאגים</b> שמזהים את הצטברות החלבון כגירוי כרוני (זוהי דלקת "סטרילית" - <b class="key">לא חיידקית</b> - בשלב הזה) ⟵ <b>5. הפרשת ציטוקינים פרו-דלקתיים ופרו-פיברוטיים</b>, ובראשם <span class="term" dir="ltr">TGF-β1</span> ⟵ <b>6. שני מסלולים מקבילים:</b> (א) גירוי פיברובלסטים לייצור קולגן = <b>פיברוזיס</b>; (ב) דיפרנציאציה של תאי גזע/פרה-אדיפוציטים לתאי שומן בוגרים = <b>הצטברות שומנית (adipose hypertrophy)</b> ⟵ <b>7. שינוי מבני קבוע ברקמה</b> - שלב זה, בניגוד לשלב הנוזלי המוקדם, <b class="key">אינו הפיך</b> גם אם מקור החסימה מטופל.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 820 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הפיברוזיס וההצטברות השומנית בלימפדמה</title>
+  <rect x="650" y="20" width="150" height="55" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="725" y="42" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">חסימה לימפטית</text>
+  <text x="725" y="59" font-size="10.5" text-anchor="middle" fill="#7f1d1d">מכנית (שכיח) / דינמית</text>
+
+  <rect x="450" y="20" width="150" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="525" y="42" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">נוזל עתיר-חלבון</text>
+  <text x="525" y="59" font-size="10.5" text-anchor="middle" fill="#1e3a8a">מצטבר ברקמה</text>
+
+  <rect x="250" y="20" width="150" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="325" y="42" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">מקרופאגים + TGF-β</text>
+  <text x="325" y="59" font-size="10.5" text-anchor="middle" fill="#78350f">דלקת "סטרילית" כרונית</text>
+
+  <rect x="50" y="20" width="150" height="55" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="125" y="42" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">רימודלינג רקמתי</text>
+  <text x="125" y="59" font-size="10.5" text-anchor="middle" fill="#4c1d95">בלתי הפיך</text>
+
+  <polygon points="610,47 650,41 650,53" fill="#374151"/>
+  <line x1="650" y1="47" x2="610" y2="47" stroke="#374151" stroke-width="2"/>
+  <polygon points="410,47 450,41 450,53" fill="#374151"/>
+  <line x1="450" y1="47" x2="410" y2="47" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,47 250,41 250,53" fill="#374151"/>
+  <line x1="250" y1="47" x2="210" y2="47" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="150" width="330" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="185" y="175" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">פיברובלסטים → קולגן</text>
+  <text x="185" y="192" font-size="11" text-anchor="middle" fill="#065f46">= פיברוזיס (עור/רקמה קשה)</text>
+  <text x="185" y="209" font-size="10" text-anchor="middle" fill="#065f46">Stemmer sign חיובי</text>
+
+  <rect x="470" y="150" width="330" height="70" rx="8" fill="#fdf2f8" stroke="#a21caf"/>
+  <text x="635" y="175" font-size="12" text-anchor="middle" fill="#701a75" font-weight="700">תאי גזע → אדיפוציטים</text>
+  <text x="635" y="192" font-size="11" text-anchor="middle" fill="#701a75">= הצטברות שומנית</text>
+  <text x="635" y="209" font-size="10" text-anchor="middle" fill="#701a75">נפח קבוע, לא-נוזלי</text>
+
+  <polygon points="185,150 179,130 191,130" fill="#b45309"/>
+  <line x1="185" y1="150" x2="185" y2="130" stroke="#b45309" stroke-width="2"/>
+  <polygon points="635,150 629,130 641,130" fill="#b45309"/>
+  <line x1="635" y1="150" x2="635" y2="130" stroke="#b45309" stroke-width="2"/>
+  <text x="410" y="130" font-size="10" text-anchor="middle" fill="#78350f">שני מסלולים מקבילים מאותו גירוי דלקתי</text>
+</svg>
+<p class="figcap">תרשים 2: מ"בצקת נוזל" ל"מחלת רקמה" - למה טיפול מוקדם (לפני שלב הרימודלינג) קריטי.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LFkuFF5DEB8" title="Lymphedema - causes, symptoms, diagnosis, treatment, pathology" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הסבר על לימפדמה - סיבות, תסמינים, מנגנון, אבחנה וטיפול (ערוץ חינוכי רפואי, YouTube).</p>
+
+<p class="key-box">שני מסלולים <b class="key">מקבילים</b> יוצאים מאותה דלקת: פיברוזיס (קולגן) והצטברות שומנית (אדיפוציטים). זו הסיבה שברקמת לימפדמה מתקדמת יש גם עיבוי-עור קשה וגם נפח "רך" של שומן - שניהם תוצר של אותה שרשרת ציטוקינים, ושניהם <b class="key">לא נספגים בחזרה בטיפול שמרני בלבד</b>.</p>
+
+<h2><span class="num">3</span> סיווג - לימפדמה ראשונית מול משנית</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>קטגוריה</th><th>הגדרה</th><th>תת-סוגים / גורמים עיקריים</th></tr></thead>
+<tbody>
+<tr><td><b>ראשונית (<span class="term" dir="ltr">primary</span>)</b></td><td>פגם מולד בהתפתחות/במספר/בתפקוד כלי הלימפה עצמם, לרוב גנטי (מוטציות ב-<span class="term" dir="ltr">VEGFR3/FLT4</span> ואחרות)</td><td>
+<b>Milroy disease</b> - מלידה (congenital)<br>
+<b>Meige disease (lymphedema praecox)</b> - השכיחה מכולן, מופיעה סביב גיל ההתבגרות (עד ~35)<br>
+<b>Lymphedema tarda</b> - נדירה, אחרי גיל 35
+</td></tr>
+<tr><td><b>משנית (<span class="term" dir="ltr">secondary</span>)</b></td><td>מערכת לימפה שהתפתחה תקין נפגעת אח"כ מגורם חיצוני</td><td>
+<b>עולמית</b>: זיהום <span class="term" dir="ltr">filariasis</span> (תולעת <span class="term" dir="ltr">Wuchereria bancrofti</span>) - הגורם השכיח ביותר בעולם בכללותו<br>
+<b>עולם מערבי</b>: טיפול אונקולוגי - כריתת בלוטות לימפה (בעיקר בית שחי בסרטן שד, מפשעה במלנומה) + הקרנה, ניתוח, טראומה, זיהום חוזר
+</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="num">4</span> ביטוי קליני וסיווג שלבים (ISL Staging)</h2>
+<p>איגוד הלימפולוגיה הבינלאומי (<span class="term" dir="ltr">International Society of Lymphology, ISL</span>) מגדיר סיווג קליני שמבוסס על <b>מידת ההפיכות</b> של הבצקה ולא רק על היקף הגפה:</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>שלב</th><th>מאפיינים</th></tr></thead>
+<tbody>
+<tr><td><b>0 - סמוי (latent)</b></td><td>הובלה לימפטית פגומה כבר בהדמיה, אך <b>אין בצקה נראית לעין</b> קלינית</td></tr>
+<tr><td><b>I</b></td><td>בצקה <b>נמעכת (pitting)</b>, חולפת עם הרמת הגפה/מנוחה בלילה - עדיין נשלטת ע"י נוזל, לא ע"י פיברוזיס</td></tr>
+<tr><td><b>II (מוקדם/מאוחר)</b></td><td>בצקה <b>לא-נמעכת (non-pitting)</b>, אינה נסוגה במנוחה - הרקמה כבר עברה שינוי פיברוטי</td></tr>
+<tr><td><b>III - Elephantiasis</b></td><td>עיוות קשה, שינויים עוריים (היפרקרטוזיס, <span class="term" dir="ltr">papillomatosis</span>), נפח עצום, פגיעה תפקודית משמעותית</td></tr>
+</tbody>
+</table>
+</div>
+<p>סימן קליני חשוב לאבחנה: <b class="key">Stemmer's sign חיובי</b> - חוסר יכולת להרים ולקפל עור בבסיס האצבע השנייה ברגל (עקב עיבוי עורי ופיברוזיס), <b>סימן ספציפי מאוד ללימפדמה</b> (אינו קיים בבצקה ורידית או בליפדמה).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Lower_Limb_Lymphedema.png?width=700" alt="לימפדמה בגפה תחתונה - דרגות חומרה">
+<p class="media-cap">מראה קליני של לימפדמה בגפה תחתונה בדרגות חומרה שונות - שימו לב לעיבוי הפרוגרסיבי ולמעורבות כף הרגל. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">5</span> אבחנה מבדלת - לא כל בצקת גפיים היא לימפדמה</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>מצב</th><th>חיסכון כף הרגל</th><th>כאב/רגישות</th><th>Stemmer's sign</th><th>הממצא המבדיל</th></tr></thead>
+<tbody>
+<tr><td><b>לימפדמה</b></td><td>לא - כף הרגל מעורבת ("square toes")</td><td>לרוב לא כואבת למגע רגיל</td><td><b>חיובי</b></td><td>עיבוי עורי + פיברוזיס, לרוב חד-צדדי (משנית)</td></tr>
+<tr><td><b>ליפדמה (<span class="term" dir="ltr">lipedema</span>)</b></td><td><b>כן</b> - כף הרגל נחסכת קלאסית</td><td><b>כן</b> - רגישות ו-bruising קל</td><td>שלילי</td><td>שומן תת-עורי סימטרי, דו-צדדי, כמעט תמיד בנשים</td></tr>
+<tr><td><b>אי-ספיקה ורידית כרונית</b></td><td>לא בהכרח</td><td>לרוב לא</td><td>שלילי (בשלב מוקדם)</td><td>שינויי עור ורידיים (היפרפיגמנטציה, ורידים גליים), משתפר בהרמת רגל</td></tr>
+</tbody>
+</table>
+</div>
+<p class="key-box">ליפדמה <b class="key">מאובחנת בטעות כלימפדמה</b> בתדירות גבוהה בגלל הדמיון החזותי - אבל הטיפול שונה מהותית (ליפדמה לא מגיבה טוב לניקוז לימפטי ידני באותה מידה, ודורשת התייחסות לניהול משקל, כאב ותמיכה פסיכולוגית).</p>
+
+<h2><span class="num">6</span> הדמיה - איך מאבחנים ומכמתים את הבעיה</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>בדיקה</th><th>איך זה עובד</th><th>יתרונות</th><th>מגבלות</th></tr></thead>
+<tbody>
+<tr><td><b><span class="term" dir="ltr">Lymphoscintigraphy</span></b></td><td>הזרקת חומר רדיואקטיבי (טכנציום) תת-עורית, מעקב עם מצלמת גמא</td><td>"תקן הזהב" ההיסטורי, מכמת תפקוד לימפטי כללי וקצב זרימה</td><td>איטית, חשיפה לקרינה, רזולוציה מרחבית נמוכה יחסית, לא בזמן אמת</td></tr>
+<tr><td><b>ICG Lymphography</b> (ירוק אינדוציאנין)</td><td>הזרקה תוך-עורית של צבע פלואורסצנטי, דימות מיידי במצלמת אינפרה-אדום קרוב (789nm הזרקה / 814nm פלואורסצנציה)</td><td>זמן אמת, כולל תוך-ניתוחי, רגישות גבוהה לשינויים מוקדמים, ללא קרינה</td><td>רואה רק כלי לימפה שטחיים (עד ~1-1.5 ס"מ עומק)</td></tr>
+<tr><td><b>MRI / MR Lymphangiography</b></td><td>הדמיית רזולוציה גבוהה של רקמה רכה עם/בלי חומר ניגוד</td><td>מדגימה גם כלי עמוקים וגם דפוס "חלת דבש" (<span class="term" dir="ltr">honeycomb pattern</span>) של שומן תת-עורי מעובה - מבדיל לימפדמה מליפדמה</td><td>יקרה, זמינות מוגבלת, לא בזמן אמת בניתוח</td></tr>
+</tbody>
+</table>
+</div>
+<p>ממצא הדמייתי אופייני ללימפדמה מתקדמת ב-ICG הוא <b><span class="term" dir="ltr">dermal backflow</span></b> - במקום שהצבע יזרום בכלי לימפה מוגדר, הוא "נשפך" באופן מפושט לתוך העור, כי הלחץ הגבוה מהחסימה דוחף אותו אחורה מהכלים הפגומים.</p>
+
+<h2><span class="num">7</span> טיפול</h2>
+<h3>טיפול שמרני - קו ראשון תמיד</h3>
+<p>הטיפול המקובל הראשוני לכל שלבי הלימפדמה הוא <b><span class="term" dir="ltr">Complete/Complex Decongestive Therapy (CDT)</span></b>, המשלב: ניקוז לימפטי ידני (<span class="term" dir="ltr">MLD</span>), תחבושות דחיסה רב-שכבתיות, תרגילים תפקודיים, טיפוח עור קפדני, ולאחר מכן גרביים/שרוולי לחץ לתחזוקה. זהו קו הטיפול הראשון - ניתוח נשקל רק <b>לאחר כישלון טיפול שמרני נאות</b> (בדרך כלל שנה ומעלה).</p>
+
+<h3>טיפול מיקרוכירורגי</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>שיטה</th><th>עיקרון</th><th>מתי מתאימה</th></tr></thead>
+<tbody>
+<tr><td><b>LVA - <span class="term" dir="ltr">Lymphaticovenous Anastomosis</span></b></td><td>חיבור סופר-מיקרוכירורגי (מתחת למ"מ) בין כלי לימפה שעדיין פתוח לוורידון סמוך - מטה את הלימפה ישירות למחזור הוורידי</td><td>דורשת כלי לימפה שטחיים <b>עדיין תקינים ופתוחים</b> - לכן מתאימה בעיקר לשלבים מוקדמים (I-II מוקדם)</td></tr>
+<tr><td><b>VLNT - <span class="term" dir="ltr">Vascularized Lymph Node Transfer</span></b></td><td>השתלה מיקרוכירורגית חופשית (free flap) של בלוטות לימפה בריאות עם אספקת דם עצמאית (מבית שחי צידי, מפשעה, אזור תת-סנטרי או אומנטום) לאזור הפגוע - פועלת כ"משאבה" חדשה ומעודדת לימפאנגיוגנזה מקומית</td><td>לא תלויה בכלי לימפה קיימים - מתאימה לשלבים מתקדמים יותר או כשאין כלי לימפה שטחיים תקינים ל-LVA</td></tr>
+<tr><td><b>ניתוחי הפחתת נפח (<span class="term" dir="ltr">debulking</span>, כמו Charles procedure)</b></td><td>כריתת רקמה פיברוטית/שומנית עודפת</td><td>שמורים לשלבים המתקדמים ביותר (elephantiasis) כשהרקמה כבר קבועה ואינה ניתנת לשיקום מיקרוכירורגי</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/R-qXuCrIrgo" title="Lymphovenous Bypass Surgery for Lymphedema" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של ניתוח לימפטיקו-ורידי (LVA/lymphovenous bypass) לטיפול בלימפדמה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/HOfeEzi0LQg" title="Vascularized Lymph Node Transfer: What It Is and How It Works" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר אנימציה על עקרון פעולת השתלת בלוטות לימפה עם וסקולריזציה (VLNT).</p>
+
+<p class="key-box">כלל אצבע קליני: <b class="key">LVA לשלבים מוקדמים עם כלי לימפה שרידים, VLNT לשלבים מתקדמים יותר או כשל כלי לימפה שטחיים</b> - הבחירה נגזרת מממצאי ה-ICG לימפוגרפיה, לא ברירת מחדל אחידה.</p>
+
+<h2><span class="num">8</span> סיבוכים</h2>
+<ul>
+<li><b>צלוליטיס/דמדמת (<span class="term" dir="ltr">erysipelas</span>) חוזרים</b> - הפתוגן השכיח ביותר הוא <span class="term" dir="ltr">Streptococcus</span> מקבוצה A (בטא-המוליטי), החודר דרך סדקים עוריים זעירים (בין אצבעות, טינאה). המנגנון כפול: (1) פינוי חיסוני פגום כי הלימפה היא חלק ממערכת החיסון עצמה, ו-(2) הנוזל עתיר-החלבון משמש מצע גדילה מעולה לחיידקים. <b class="key">כל אפיזודת זיהום פוגעת עוד בכלי הלימפה השרידים - מעגל קסמים שמחמיר את הלימפדמה עצמה</b>.</li>
+<li><b>ליקוד לימפטי (<span class="term" dir="ltr">lymphorrhea</span>)</b> - דליפת נוזל לימפה ישירות דרך העור כשהלחץ התוך-רקמתי עולה מעבר ליכולת העור להכיל אותו; מגביר עוד יותר את הסיכון לזיהום דרך פתח העור הפתוח.</li>
+<li><b><span class="term" dir="ltr">Lymphangiosarcoma</span> (תסמונת Stewart-Treves)</b> - סיבוך נדיר אך קטלני של לימפדמה כרונית ארוכת שנים (בעיקר לאחר כריתת שד), גידול ממאיר נדיר של כלי הלימפה.</li>
+</ul>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">P-F-A</span> לשרשרת הפתופיזיולוגיה</h3>
+  <p>
+    <b>P</b> - <span class="term" dir="ltr">Protein</span> (חלבון) נשאר ברקמה בגלל חסימה<br>
+    <b>F</b> - <span class="term" dir="ltr">Fibrosis</span> (פיברוזיס) - קולגן מפיברובלסטים<br>
+    <b>A</b> - <span class="term" dir="ltr">Adipose</span> (שומן) - אדיפוציטים מתאי גזע<br>
+    שני האחרונים (F, A) קורים <b>במקביל</b> מאותה דלקת - זה מה שהופך לימפדמה למחלת רקמה בלתי-הפיכה, לא רק בעיית נוזל.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>תארי לעצמך תעלת ניקוז בעיר שנסתמת (חסימה לימפטית). קודם מצטבר רק מים עכורים (בצקה). אבל אם לא מנקים, הבוץ שבתחתית (חלבון) מתחיל להתקשות - חלק ממנו הופך לבטון (פיברוזיס), וחלק אחר מושך אליו שכבות שומן וזוהמה שנדבקות ומצטברות (הצטברות שומנית). בשלב הזה, גם אם פותחים מחדש את מקור החסימה למעלה, התעלה עצמה כבר לא אותה תעלה - היא נשארה מעוותת.</p>
+  <svg class="diagram" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+    <title>תעלת הניקוז שנסתמת</title>
+    <rect x="20" y="70" width="460" height="40" rx="6" fill="#e5e7eb" stroke="#6b7280"/>
+    <rect x="20" y="70" width="180" height="40" rx="6" fill="#93c5fd"/>
+    <text x="110" y="95" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">מים (בצקה)</text>
+    <rect x="200" y="70" width="140" height="40" fill="#a3a3a3"/>
+    <text x="270" y="95" font-size="11" text-anchor="middle" fill="#292524" font-weight="700">בוץ מתקשה (חלבון)</text>
+    <rect x="410" y="55" width="60" height="70" rx="4" fill="#7c2d12"/>
+    <text x="440" y="145" font-size="11" text-anchor="middle" fill="#7c2d12" font-weight="700">סתימה</text>
+    <text x="250" y="40" font-size="12" text-anchor="middle" fill="#374151">תעלת ניקוז עירונית שנסתמת בהדרגה</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3366958/" target="_blank">ICG Lymphography vs Lymphoscintigraphy - PMC</a>
+    <div class="desc">מאמר המשווה ישירות בין ICG לימפוגרפיה ללימפוסינטיגרפיה באבחון לימפדמה מוקדמת בגפה עליונה.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11895410/" target="_blank">LVA vs VLNT - Systematic Review and Meta-Analysis - PMC</a>
+    <div class="desc">סקירה שיטתית המשווה תוצאות קליניות בין שתי שיטות הניתוח המיקרוכירורגיות העיקריות.</div>
+  </li>
+  <li>
+    <a href="https://lymphnet.org/page/stages-of-lymphedema" target="_blank">Stages of Lymphedema - Lymphology Association of North America</a>
+    <div class="desc">הסבר נגיש לסיווג ה-ISL עם דגשים קליניים לכל שלב.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/Category:Lymphedema" target="_blank">Category: Lymphedema - Wikimedia Commons</a>
+    <div class="desc">אוסף תמונות קליניות נוספות של לימפדמה בדרגות חומרה שונות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58, שנתיים אחרי כריתת שד עם ניתוח בלוטות בית שחי והקרנה, מתייצגת עם לימפדמה משמעותית ביד שמאל שלא הגיבה לטיפול שמרני (CDT) במשך שנה. בבדיקה: בצקה לא-נמעכת, <b>Stemmer's sign חיובי</b> באצבע היד, ללא מעורבות כף היד עצמה בלבד - כל היד מעורבת. ב-ICG lymphography מודגם דפוס <b>dermal backflow</b> נרחב ללא כלי לימפה שטחיים תקינים ופתוחים הניתנים לזיהוי באזור הנגוע.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הגישה הכירורגית המתאימה ביותר במקרה זה?</div>
+  <button class="opt" data-i="0">LVA - כי היא הפעולה הפחות פולשנית ומתאימה לכל שלב של לימפדמה</button>
+  <button class="opt" data-i="1">VLNT - כי בהיעדר כלי לימפה שטחיים תקינים ל-LVA, צריך להביא רקמת בלוטות לימפה בריאה עם אספקת דם עצמאית שתשמש כ"משאבה" חדשה ותעודד לימפאנגיוגנזה מקומית</button>
+  <button class="opt" data-i="2">כריתת רקמה נרחבת (Charles procedure) ללא כל שיקום מיקרוכירורגי</button>
+  <button class="opt" data-i="3">להמשיך רק בטיפול שמרני ללא הגבלת זמן</button>
+  <div class="explain">התשובה הנכונה: המידע המכריע הוא היעדר כלי לימפה תקינים ל-LVA. VLNT לא תלויה בכלי לימפה קיימים כי מביאה רקמת בלוטה עצמאית וסקולרית. תשובה 1 שגויה כי LVA דורשת בדיוק את מה שחסר. תשובה 3 (Charles) שמורה לשלבים המתקדמים ביותר בלבד. תשובה 4 מתעלמת מכישלון טיפול שמרני מלא במשך שנה - קריטריון מקובל למעבר לשיקול כירורגי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע הבצקה במקרה זה מתוארת כ"לא-נמעכת" (non-pitting) ולא "נמעכת" כמו בשלבים מוקדמים יותר?</div>
+  <button class="opt" data-i="0">כי המטופלת שותה יותר מדי מים</button>
+  <button class="opt" data-i="1">כי מדובר בבצקה ורידית ולא לימפטית</button>
+  <button class="opt" data-i="2">כי הרקמה כבר עברה רימודלינג פיברוטי (קולגן מפיברובלסטים בתגובה ל-TGF-β) - הבצקה כבר לא נשלטת רק ע"י נוזל חופשי אלא ע"י שינוי מבני קבוע ברקמה</button>
+  <button class="opt" data-i="3">כי הניתוח הקודם (כריתת בלוטות) פגע בעצמות היד</button>
+  <div class="explain">התשובה הנכונה: מעבר מ-pitting ל-non-pitting משקף את המעבר משלב הבצקה ההפיכה (I) לשלב שבו הרקמה עצמה עברה שינוי פיברוטי (II ואילך) - כפי שתואר בשרשרת המנגנון (חלבון ⟵ TGF-β ⟵ פיברוזיס). זה לא קשור לצריכת מים, לסוג הבצקה (התיאור הקליני ברור ללימפדמה) או לפגיעה עצמית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה חיידק הכי סביר יגרום לצלוליטיס אם מתפתח זיהום בגפה זו, ומה נקודת הכניסה הטיפוסית?</div>
+  <button class="opt" data-i="0">Streptococcus מקבוצה A (בטא-המוליטי), דרך סדק עורי זעיר (למשל בין אצבעות, טינאה)</button>
+  <button class="opt" data-i="1">Mycobacterium tuberculosis, דרך אינהלציה</button>
+  <button class="opt" data-i="2">רק וירוסים, כי לימפדמה פוגעת רק בחסינות נגד וירוסים</button>
+  <button class="opt" data-i="3">Candida albicans בלבד, ותמיד ללא צורך באנטיביוטיקה</button>
+  <div class="explain">התשובה הנכונה: Group A Streptococcus הוא הפתוגן הקלאסי בצלוליטיס/erysipelas על רקע לימפדמה, החודר לרוב דרך פגיעות עוריות זעירות. מנגנון כפול: פינוי חיסוני פגום + סביבת חלבון כמצע גדילה. Mycobacterium ווירוסים (תשובות 2-3) אינם הגורמים הטיפוסיים כאן; Candida (תשובה 4) עלול להיות גורם נלווה בקפלי עור אך אינו הגורם המוביל לצלוליטיס החריפה ודורש טיפול.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע דווקא ICG lymphography (ולא לימפוסינטיגרפיה) היא בדיקת הבחירה למיפוי תוך-ניתוחי לפני LVA?</div>
+  <button class="opt" data-i="0">כי היא זולה יותר בכל מקרה</button>
+  <button class="opt" data-i="1">כי היא היחידה שמדמה כלי לימפה עמוקים</button>
+  <button class="opt" data-i="2">כי היא לא דורשת הזרקה כלל</button>
+  <button class="opt" data-i="3">כי היא מספקת דימות בזמן אמת של כלי הלימפה השטחיים, כולל בתוך חדר הניתוח עצמו, בעוד שלימפוסינטיגרפיה איטית ולא מתאימה למיפוי תוך-ניתוחי מדויק</button>
+  <div class="explain">התשובה הנכונה: ICG מספקת דימות מיידי בזמן אמת (מצלמת אינפרה-אדום קרוב) שמאפשר למנתח לראות בדיוק היכן יש עדיין זרימה לימפטית פעילה תוך כדי הניתוח. לימפוסינטיגרפיה (תשובה שגויה נוספת) היא אמנם ה"תקן הזהב" ההיסטורי לאבחנה, אך אינה מציעה דימות מיידי בחדר הניתוח. ICG כן דורשת הזרקה (תוך-עורית), ומגבלתה היא שהיא רואה רק כלי שטחיים (MRI עדיף לכלים עמוקים).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופלת אחרת עם תלונה דומה מתגלה כבעלת חיסכון מוחלט בכפות הרגליים, רגישות למגע ו-Stemmer's sign שלילי. מה האבחנה הסבירה ביותר, בשונה מהמקרה הראשון?</div>
+  <button class="opt" data-i="0">לימפדמה ראשונית מסוג Milroy</button>
+  <button class="opt" data-i="1">ליפדמה (lipedema) - הצטברות שומן תת-עורי סימטרית שחוסכת את כפות הרגליים ומלווה ברגישות/bruising, עם Stemmer's sign שלילי</button>
+  <button class="opt" data-i="2">לימפדמה משנית זהה למקרה הראשון</button>
+  <button class="opt" data-i="3">תסמונת Stewart-Treves</button>
+  <div class="explain">התשובה הנכונה: שלושת הממצאים (חיסכון כפות רגליים, רגישות/bruising, Stemmer שלילי) הם קריטריון קלאסי המבדיל ליפדמה מלימפדמה - מצב שמאובחן בטעות כלימפדמה בתדירות גבוהה. Milroy (תשובה 1) הייתה מופיעה מלידה, לא מתאימה לתיאור. לימפדמה משנית (תשובה 3) הייתה מלווה ב-Stemmer חיובי ומעורבות כף הרגל. Stewart-Treves (תשובה 4) הוא גידול ממאיר נדיר על רקע לימפדמה ארוכת שנים, לא אבחנה ראשונית להבחנה מבדלת בסיסית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>לימפדמה = בצקה <b>עתירת חלבון</b> על רקע כשל בהובלה הלימפטית - נימי לימפה ראשוניים הם המסלול היחיד להחזרת חלבון ומולקולות גדולות לדם.</li>
+    <li>שרשרת המנגנון: חסימה ⟵ חלבון נשאר ברקמה ⟵ מקרופאגים + TGF-β ⟵ פיברוזיס (קולגן) <b>וגם</b> הצטברות שומנית (אדיפוציטים) במקביל ⟵ שינוי רקמתי בלתי-הפיך.</li>
+    <li>ראשונית (Milroy מלידה, Meige בהתבגרות, tarda אחרי 35) מול משנית (עולמית: פילריאזיס; מערבית: כריתת בלוטות + הקרנה).</li>
+    <li>סיווג ISL: 0 (סמוי) → I (נמעכת, הפיכה) → II (לא-נמעכת, פיברוטית) → III (elephantiasis). Stemmer's sign חיובי = ספציפי ללימפדמה.</li>
+    <li>אבחנה מבדלת מרכזית: ליפדמה (חיסכון כף רגל, רגישות, Stemmer שלילי) ואי-ספיקה ורידית.</li>
+    <li>הדמיה: לימפוסינטיגרפיה (תקן זהב היסטורי) / ICG lymphography (זמן אמת, שטחי, תוך-ניתוחי) / MRI (עמוק, דפוס honeycomb).</li>
+    <li>טיפול: CDT שמרני קודם לכל; LVA לשלבים מוקדמים עם כלי לימפה שרידים; VLNT כשאין כלי לימפה שטחיים תקינים; ניתוחי הפחתת נפח לשלב elephantiasis.</li>
+    <li>סיבוכים: צלוליטיס/erysipelas חוזרים (בעיקר Group A Streptococcus) במעגל קסמים עם הלימפדמה; ליקוד לימפטי; לימפאנגיוסרקומה (נדיר).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

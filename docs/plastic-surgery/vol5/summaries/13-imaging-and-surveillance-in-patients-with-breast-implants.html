@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: הדמיה ומעקב במטופלות עם שתלי שד</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .surgery{background:#f8fafc; border:1px solid #e5e7eb; border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px; margin:0; text-align:center}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px; border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:#ecfdf5; color:#047857}
+  .figure-pair .label.abnormal{background:#fef2f2; color:#b91c1c}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 13: הדמיה ומעקב במטופלות עם שתלי שד <span class="term" dir="ltr">Imaging and Surveillance in Patients with Breast Implants</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | מאת Bradley Bengtson, Patricia McGuire, Caroline Glicksman, Pat Pazmiño</div>
+
+<p>הפרק עוסק בשאלה קלינית מרכזית: איך עוקבים אחרי שלמות שתל שד לאורך שנים, בלי לחכות שהמטופלת תפתח תסמינים? זהו פרק "אבחנתי-מעקבי" במובהק, שמרכז את הדגש בהדמיה בהפרזה על אולטרסאונד ברזולוציה גבוהה (<span class="term" dir="ltr">High Resolution Ultrasound, HRUS</span>) כשיטת סקר עדכנית, לצד MRI כבדיקה האבחנתית ה"מכרעת" במקרה של חשד.</p>
+
+<h2><span class="num">2</span> המנגנון - למה בכלל צריך לעקוב אחרי שתל "שקט"</h2>
+<div class="mechanism">
+  <p class="chain">
+    שתל סיליקון בנוי ממעטפת אלסטומרית (<span class="term" dir="ltr">shell</span>) שמכילה בתוכה ג'ל סיליקון. עם הזמן, כיפופים חוזרים, לחץ מכני, והזדקנות החומר גורמים ל<b>היחלשות מיקרוסקופית ואז לקרע במעטפת</b> - תהליך שברוב המקרים <b class="key">אינו כואב ואינו מורגש כלל</b> ("קרע שקט", <span class="term" dir="ltr">silent rupture</span>), כי הג'ל הקוהזיבי המודרני נוטה להישאר במקומו במקום "לדלוף" בחופשיות. בגלל זה בדיקה גופנית וסימפטומים בלבד <b>לא מספיקים</b> לאבחנה - במחקר שמצוטט בפרק, לבדיקה הקלינית הייתה רגישות של רק 42% לעומת HRUS.<br><br>
+    לאחר הקרע נוצרות שתי אפשרויות התפתחות, בהתאם לשלמות ה<b>קפסולה הפיברוטית</b> (<span class="term" dir="ltr">fibrous capsule</span>) - שכבת רקמת צלקת שהגוף בונה סביב כל גוף זר, כולל שתל שלם:
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון קרע שתל שד - תוך-קפסולרי מול חוץ-קפסולרי</title>
+  <rect x="680" y="20" width="180" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="770" y="45" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">שתל שלם</text>
+  <text x="770" y="63" font-size="11.5" text-anchor="middle" fill="#065f46">(Intact implant)</text>
+
+  <line x1="680" y1="50" x2="640" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,50 640,44 640,56" fill="#374151"/>
+
+  <rect x="430" y="20" width="190" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="525" y="42" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">היחלשות/קרע במעטפת</text>
+  <text x="525" y="60" font-size="11.5" text-anchor="middle" fill="#78350f">לרוב א-סימפטומטי ("שקט")</text>
+
+  <line x1="480" y1="80" x2="720" y2="150" stroke="#374151" stroke-width="2"/>
+  <polygon points="740,162 715,150 727,140" fill="#374151"/>
+
+  <line x1="480" y1="80" x2="260" y2="150" stroke="#374151" stroke-width="2"/>
+  <polygon points="240,162 250,138 265,150" fill="#374151"/>
+
+  <rect x="560" y="160" width="300" height="100" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="710" y="184" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">תוך-קפסולרי (Intracapsular)</text>
+  <text x="710" y="203" font-size="11.5" text-anchor="middle" fill="#1e3a8a">הקפסולה נשארת שלמה - הג'ל כלוא בתוכה</text>
+  <text x="710" y="220" font-size="11.5" text-anchor="middle" fill="#1e3a8a">MRI: "linguine sign"</text>
+  <text x="710" y="237" font-size="11.5" text-anchor="middle" fill="#1e3a8a">US: "stepladder sign"</text>
+
+  <rect x="40" y="160" width="300" height="100" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="190" y="184" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חוץ-קפסולרי (Extracapsular)</text>
+  <text x="190" y="203" font-size="11.5" text-anchor="middle" fill="#7f1d1d">קרע גם בקפסולה - ג'ל חודר לרקמת השד</text>
+  <text x="190" y="220" font-size="11.5" text-anchor="middle" fill="#7f1d1d">ולעיתים לבלוטות לימפה בבית השחי</text>
+  <text x="190" y="237" font-size="11.5" text-anchor="middle" fill="#7f1d1d">US: "snowstorm sign"</text>
+
+  <rect x="150" y="290" width="600" height="40" rx="6" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="450" y="315" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">מכאן הצורך בהדמיה יזומה ולא רק תגובה לתסמינים - "screening" ולא רק "diagnosis"</text>
+</svg>
+
+<p>כדי לזהות את שני מצבי הקרע האלה לפני שהם גורמים לנזק (חדירת סיליקון לרקמות, גירוי דלקתי כרוני, קונטמינציה של הכיס בזמן ניתוח חוזר) - יש צורך בבדיקת הדמיה תקופתית, גם כשאין שום תלונה.</p>
+
+<h2><span class="num">3</span> הטכנולוגיה: איך HRUS עובד ולמה הוא "מתחרה" ב-MRI</h2>
+<p>HRUS דורש מערכת ייעודית: פלטפורמת אולטרסאונד, <b>ראש (transducer) ליניארי ברזולוציה של 12MHz ומעלה</b> (טווח 12-15MHz מתאים לשד ולגוף; 20MHz+ מתאים לרקמות שטחיות יותר כמו ראש-צוואר), תוכנה ומסך. ככל שהתדר גבוה יותר - הרזולוציה המרחבית טובה יותר, אך העומק שאליו הגלים חודרים קטן יותר, ולכן בוחרים את התדר הגבוה ביותר שעדיין מספיק חודר לעומק המעניין.</p>
+<p>ב-MRI, האבחנה מתבססת על רצפים "רגישים לסיליקון" (<span class="term" dir="ltr">silicone-selective sequences</span>) ורצפי T2: סיליקון תקין מופיע כאות אחיד וחזק בתוך מעטפת שלמה. כאשר המעטפת קורסת, היא נראית כקווים מרובים בעלי אות נמוך שצפים בתוך הג'ל (אות גבוה) - זהו ה"<b>linguine sign</b>" המפורסם, הקרוי כך כי הקווים נראים כמו אטריות שצפות במרק.</p>
+<div class="key-box">בישראל ובעולם, מאז שה-FDA הסיר ב-2019 את דרישת ה-MRI השגרתית למעקב אחרי שתלים אסימפטומטיים והמליץ על HRUS כחלופה - הפרוטוקול המקובל הוא: <b>HRUS לסקר שגרתי במטופלת א-סימפטומטית</b>, ו<b>MRI אבחנתי כאשר יש חשד קליני לקרע</b> (למשל שינוי בצורת השד, כאב, גוש חדש).</div>
+
+<h2><span class="num">4</span> ביטוי קליני וממצאים בבדיקה</h2>
+<p>ברוב המקרים אין ממצא קליני כלל. כאשר יש ביטוי, הוא יכול לכלול: שינוי בצורת/גודל השד, א-סימטריה חדשה, גוש מוחשי (סימן לתגובה גרנולומטית לסיליקון חוץ-קפסולרי, או ל<b>קונטרקטורה קפסולרית</b> - <span class="term" dir="ltr">capsular contracture</span> - התכווצות והתעבות הקפסולה סביב השתל שהופכת אותה מספרית לצורה כדורית/עגולה יותר), נפיחות (מצביעה על אוסף נוזל פריפרוסתטי - סרומה), או תסמינים מערכתיים אצל מטופלות עם שתלים מחוספסים (<span class="term" dir="ltr">macrotextured</span>) שמחשידים ל<b>לימפומה מקושרת לשתל (BIA-ALCL)</b> - נושא שמפורט בפרק 11 בכרך זה.</p>
+<p>בבדיקת HRUS ניתן להבחין ישירות בין מעטפת חלקה (<span class="term" dir="ltr">smooth</span>) למחוספסת (<span class="term" dir="ltr">textured</span>), להעריך את עובי הקפסולה, לזהות מטריצות דרמליות אצלוליות (<span class="term" dir="ltr">ADM</span>) אם הושתלו, ולזהות נוזל סביב ההתקן.</p>
+
+<h2><span class="num">5</span> אבחנה - השוואת שיטות הדמיה וממצאים אופייניים</h2>
+<h3>טבלה 13.1 - השוואת שיטות הדמיה לפי ממצא</h3>
+<table>
+  <thead><tr><th>ממצא</th><th>ממוגרפיה</th><th>אולטרסאונד (US)</th><th>MRI</th></tr></thead>
+  <tbody>
+    <tr><td><b>קרע (Rupture)</b></td><td>קריסת מעטפת (שתל סליין), הבחנה תוך/חוץ-קפסולרי בשתלי ג'ל</td><td>קווי הד אופקיים מוערמים ("stepladder sign")</td><td>"linguine sign" - קווים דמויי אטריות בעלי אות נמוך בתוך הג'ל</td></tr>
+    <tr><td><b>קונטרקטורה קפסולרית (CC)</b></td><td>צורה כדורית (לא אובלית), בליטה</td><td>קפסולה עבה ואקוגנית</td><td>עלייה בקוטר קדמי-אחורי (AP) של השתל</td></tr>
+    <tr><td><b>נוזל פריפרוסתטי</b></td><td>-</td><td>דפוסי הד משתנים (אנכואי/מורכב)</td><td>עלייה באות T2</td></tr>
+    <tr><td><b>שומן אוטולוגי (לאחר השתלת שומן)</b></td><td>מיקרו-הסתיידויות, גושים רדיולוסנטיים</td><td>ציסטות אקוגניות, מסה מוצקה היפואקוגנית</td><td>עיוות ארכיטקטוני, מסה</td></tr>
+  </tbody>
+</table>
+<p>הסבר מנגנוני לממצא ה"stepladder": כאשר המעטפת קורסת פנימה, השברים שלה יוצרים קווים אקוגניים מקבילים <b>אופקיים</b> - בניגוד לקפלים הרדיאליים התקינים שמופיעים <b>אנכית</b> בתוך שתל שלם. זה ההבדל שמאפשר להבחין בין "קפל תקין" ל"מעטפת קרועה".</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/iWCtYl427uQ" title="Breast Implant Rupture: MRI & Ultrasound Evaluation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">ד"ר Rebecca Oudsema (רדיולוגית הדמיית שד, Michigan Medicine) מדגימה כיצד מאבחנים קרע תוך-קפסולרי וחוץ-קפסולרי ב-US וב-MRI, כולל ה-stepladder sign, ה-linguine sign וה-snowstorm sign. מקור: YouTube, Michigan Medicine.</p>
+
+<h3>טבלה 13.2 - רגישות וסגוליות באבחון קרע (מחקר על 60 שתלים, 12 קרעים)</h3>
+<table>
+  <thead><tr><th></th><th>רגישות (Sensitivity)</th><th>סגוליות (Specificity)</th><th>ערך ניבוי חיובי</th></tr></thead>
+  <tbody>
+    <tr><td>בדיקה קלינית</td><td>42%</td><td>50%</td><td>-</td></tr>
+    <tr><td>אולטרסאונד (US)</td><td>50%</td><td>90%</td><td>86%</td></tr>
+    <tr><td>MRI</td><td>84%</td><td>90%</td><td>91%</td></tr>
+  </tbody>
+</table>
+<p><b>הסבר המספרים:</b> רגישות = הסתברות לתוצאה חיובית כשבאמת יש קרע (כמה "תפסנו" מכלל הקרועים באמת). סגוליות = הסתברות לתוצאה שלילית כשבאמת אין קרע (כמה "לא הפחדנו" מטופלות בריאות). המגבלה הגדולה ביותר של US לפי המחקר הזה: הוא <b>תלוי-מפעיל (operator-dependent)</b> באופן קיצוני - כאן הייתה רגישות של רק 50%, כלומר חצי מהקרעים "פוספסו". חשוב: US הוכיח סגוליות זהה ל-MRI (90%), כך שאם US מזהה קרע חשוד - הסבירות שזה אמיתי גבוהה מאוד.</p>
+<p>לעומת זאת, בסדרה גדולה בהרבה של המחבר הבכיר (1104 מטופלות, ניתוח מאשר) - HRUS השיג <b>רגישות 97.2% וסגוליות 99.8%</b>, מה שממחיש כמה הביצועים תלויים בניסיון המפעיל ובאיכות השתלים הנבדקים (שתלים ישנים, מפותלים, בעלי קונטרקטורה חמורה או שתלי לומן כפול - נוטים ליצור תוצאות חיוביות-כוזבות).</p>
+
+<h3>אבחנה מבדלת - ממצא חשוד לעומת אבחנות דומות</h3>
+<table>
+  <thead><tr><th>מצב</th><th>ממצא ב-US</th><th>מה עושים</th></tr></thead>
+  <tbody>
+    <tr><td>קרע תוך-קפסולרי</td><td>stepladder sign, קריסת מעטפת עם ג'ל שנשאר בגבולות הקפסולה</td><td>תכנון לניתוח חילוף/הוצאה תוך-קפסולרית כדי למזער זיהום הכיס בג'ל</td></tr>
+    <tr><td>קרע חוץ-קפסולרי</td><td>snowstorm sign - גוש היפראקוגני עם צל אקוסטי אחורי</td><td>MRI לאפיון מלא + תכנון כירורגי נרחב יותר (ייתכן קפסולקטומיה מלאה)</td></tr>
+    <tr><td>קונטרקטורה קפסולרית ללא קרע</td><td>קפסולה עבה אקוגנית, שתל כדורי, ללא ג'ל מחוץ למעטפת</td><td>מעקב או קפסולוטומיה/קפסולקטומיה לפי דרגה קלינית</td></tr>
+    <tr><td>סרומה מאוחרת (מעל שנה מהניתוח)</td><td>אוסף נוזל פרי-פרוסתטי בלבד, מעטפת שלמה</td><td>שאיבה מודרכת US + ציטולוגיה + אימונוהיסטוכימיה ל-CD30 לשלילת BIA-ALCL</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> שילוב HRUS בפרקטיקה - פרוטוקול מעקב</h2>
+<div class="surgery">
+  <h4>הכנה - לפני שמתחילים להשתמש ב-HRUS</h4>
+  <p>רכישת מערכת מתאימה (נייחת/ניידת, לקליניקה ו/או לחדר ניתוח), הכשרה של המנתח והצוות (רוב היצרנים מספקים הדרכה בסיסית אך מומלצת הכשרה מעשית נוספת), ושילוב עם מאגר המידע של המרפאה לתיעוד תמונות. יש לקבל <b>הסכמה מדעת ייעודית</b> מהמטופלת (ראו טופס לדוגמה בפרק, Fig. 13.7) - המבהירה במפורש ש-HRUS בקליניקה הפלסטית בודק <b>רק את שלמות השתל</b>, ואינו תחליף או תוספת לבדיקות סקר שגרתיות לסרטן השד (ממוגרפיה לפי ההנחיות של ה-American Cancer Society/ACR).</p>
+  <h4>מהלך הבדיקה - פרוטוקול מעקב מומלץ</h4>
+  <p>להגדלת חזה ראשונית: HRUS בביקור הראשון שלאחר הניתוח (כדי ללמוד איך נראה שתל "תקין" של המטופלת הספציפית), ואז מעקב <b>אחת לשנתיים לפחות</b>. לפי הנחיות ה-FDA מ-2020: סקר ראשוני לקרע <b>5-6 שנים לאחר הניתוח</b>, ואז <b>כל 2-3 שנים</b>. במטופלות רוויזיה - HRUS כמה שבועות לפני הניתוח משפר תכנון ניתוחי, יעילות בחדר ניתוח, והסכמה מדעת מדויקת יותר; מומלץ גם לחזור על הבדיקה באותו יום ממש לפני הניתוח.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>US הוא <b>תלוי-מפעיל</b> - הטעות הנפוצה ביותר בשלב הלמידה היא לפרש בטעות קפל רדיאלי תקין (אנכי) כממצא פתולוגי, או ממצא ב"שתל ישן" (מפותל, בעל קונטרקטורה חמורה) כקרע. הדרך הבטוחה ביותר ללמוד: לבצע HRUS ממש לפני הניתוח, ואז להשוות מיד לממצא התוך-ניתוחי - כך המנתח "מכייל" את העין שלו לאורך זמן.</p>
+  <h4>אחרי הבדיקה</h4>
+  <p>ממצא תקין → תיעוד וקביעת מועד למעקב הבא. ממצא חשוד לקרע → MRI אבחנתי לאישור (או תכנון ניתוחי ישיר אם הממצא חד-משמעי וקליני תואם). נוזל חדש סביב שתל מחוספס, בעיקר מעל שנה מהניתוח → שאיבה מודרכת US ושליחה לציטולוגיה + CD30 לשלילת BIA-ALCL.</p>
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>שלושת סימני הקרע - זכרו לפי "איפה הג'ל"</h3>
+  <p>
+    <b>L</b> – <span class="term" dir="ltr">Linguine sign</span> (MRI, תוך-קפסולרי) - קווי מעטפת קרועה צפים <b>בתוך</b> הג'ל, כמו אטריות במרק.<br>
+    <b>S</b> – <span class="term" dir="ltr">Stepladder sign</span> (US, תוך-קפסולרי) - אותו רעיון ב-US: קווי הד אופקיים מוערמים <b>בתוך</b> המעטפת השלמה.<br>
+    <b>S</b> – <span class="term" dir="ltr">Snowstorm sign</span> (US, חוץ-קפסולרי) - כשהג'ל בורח <b>מחוץ</b> לקפסולה לרקמה - הוא "מטשטש" את התמונה כמו סופת שלגים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שק ניילון סגור (הקפסולה) עם צלחת לינגוויני בפנים (הג'ל שדלף מהמעטפת הקרועה). כל עוד השק סגור - האטריות נשארות בפנים, מבולגנות אבל כלואות (תוך-קפסולרי - "מבולגן אבל בפנים"). אם השק עצמו נקרע - האטריות (עכשיו כמו פתיתי שלג לבנים על המסך) מתפזרות לכל החדר (חוץ-קפסולרי - "סופת שלגים בחוץ").</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>שק לינגוויני כלוא מול סופת שלגים בחוץ</title>
+    <ellipse cx="140" cy="120" rx="110" ry="75" fill="#eff6ff" stroke="#2563eb" stroke-width="3" stroke-dasharray="6,3"/>
+    <path d="M90,90 q10,20 0,40 q10,20 0,40" stroke="#1e3a8a" stroke-width="4" fill="none"/>
+    <path d="M120,85 q10,20 0,40 q10,20 0,40" stroke="#1e3a8a" stroke-width="4" fill="none"/>
+    <path d="M150,90 q10,20 0,40 q10,20 0,40" stroke="#1e3a8a" stroke-width="4" fill="none"/>
+    <path d="M180,85 q10,20 0,40 q10,20 0,40" stroke="#1e3a8a" stroke-width="4" fill="none"/>
+    <text x="140" y="210" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">תוך-קפסולרי - הכל כלוא בפנים</text>
+
+    <ellipse cx="380" cy="120" rx="60" ry="40" fill="#fef2f2" stroke="#b91c1c" stroke-width="3" stroke-dasharray="4,4" opacity="0.6"/>
+    <circle cx="330" cy="70" r="3" fill="#7f1d1d"/>
+    <circle cx="410" cy="55" r="3" fill="#7f1d1d"/>
+    <circle cx="450" cy="90" r="3" fill="#7f1d1d"/>
+    <circle cx="320" cy="150" r="3" fill="#7f1d1d"/>
+    <circle cx="460" cy="150" r="3" fill="#7f1d1d"/>
+    <circle cx="400" cy="180" r="3" fill="#7f1d1d"/>
+    <circle cx="350" cy="175" r="3" fill="#7f1d1d"/>
+    <circle cx="380" cy="120" r="3" fill="#7f1d1d"/>
+    <text x="390" y="210" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חוץ-קפסולרי - סופת שלגים החוצה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://radiopaedia.org/articles/stepladder-sign-intracapsular-breast-implant-rupture?lang=us" target="_blank">Stepladder sign - Radiopaedia</a>
+    <div class="desc">הסבר רדיולוגי מפורט וקצר על ה-stepladder sign עם תמונות אולטרסאונד לדוגמה.</div>
+  </li>
+  <li>
+    <a href="https://radiologyassistant.nl/breast/breast-prosthesis/breast-prosthesis-imaging" target="_blank">The Radiology Assistant - Breast Implants</a>
+    <div class="desc">מדריך מקיף עם תמונות המשווה בין ממצאי US, MRI וממוגרפיה בשתלי שד תקינים וקרועים, כולל linguine sign ו-snowstorm sign.</div>
+  </li>
+  <li>
+    <a href="https://www.fda.gov/media/131885/download" target="_blank">FDA - Breast Implant Labeling Guidance (2020)</a>
+    <div class="desc">מסמך ההנחיה הרשמי של ה-FDA שקבע את מרווחי הסקר המומלצים (5-6 שנים, ואז כל 2-3 שנים) וההכרה ב-HRUS כחלופה ל-MRI.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52, לאחר הגדלת חזה מחוץ לארץ ב-2002 (סוג השתל אינו ידוע לה - לא יודעת אם ג'ל או סליין, ולא את סוג המעטפת), מגיעה עם נפיחות חדשה בשד ימין ללא כאב, חום או תסמינים נוספים. ב-HRUS מתגלה אוסף נוזל מסביב לשתל, שנראה כמחוספס, עם מעטפת שנראית שלמה. תחת הנחיית US נשאבו 100 סמ"ק נוזל צהוב-בהיר, שנשלח לציטולוגיה ואימונוהיסטוכימיה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה השלב המתבקש הבא באבחנה המבדלת של אוסף הנוזל בווינייטה?</div>
+  <button class="opt" data-i="0">מעקב בלבד ללא בדיקה נוספת, כי הנוזל צהוב ובהיר ולכן שפיר מטבעו</button>
+  <button class="opt" data-i="1">MRI דחוף לפני כל בדיקה נוספת</button>
+  <button class="opt" data-i="2">בדיקת הנוזל השאוב ל-CD30 באימונוהיסטוכימיה, לשלילת BIA-ALCL - במיוחד כשמדובר בסרומה מאוחרת סביב שתל מחוספס</button>
+  <button class="opt" data-i="3">אין צורך בבדיקה כי HRUS כבר קבע שהמעטפת שלמה</button>
+  <div class="explain">התשובה הנכונה: כל אוסף נוזל מאוחר (מעל שנה מהניתוח) סביב שתל מחוספס מחייב שלילת BIA-ALCL באמצעות ציטולוגיה ו-CD30, בדיוק כפי שנעשה במקרה בפרק. צבע הנוזל לבדו (תשובה 1) אינו קריטריון מספיק. MRI (תשובה 2) אינו הצעד הראשון לאבחון תאי בנוזל. שלמות המעטפת ב-US (תשובה 4) אינה שוללת תהליך גידולי בנוזל הסובב.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מדוע קרע במעטפת שתל שד נחשב לרוב "שקט" (א-סימפטומטי) עם ג'ל סיליקון קוהזיבי מודרני?</div>
+  <button class="opt" data-i="0">הג'ל הקוהזיבי נוטה לשמור על צורתו וגבולותיו גם לאחר קרע במעטפת, ולכן לרוב נשאר כלוא בתוך הקפסולה הפיברוטית בלי לגרות רקמות או לשנות את מראה השד</button>
+  <button class="opt" data-i="1">כי כל השתלים המודרניים עשויים סליין ולא סיליקון</button>
+  <button class="opt" data-i="2">כי הקפסולה הפיברוטית תמיד נעדרת לחלוטין בשתלים מודרניים</button>
+  <button class="opt" data-i="3">כי מערכת החיסון מפרקת את הג'ל תוך ימים ספורים מהקרע</button>
+  <div class="explain">התשובה הנכונה: ג'ל סיליקון קוהזיבי (form-stable) נוטה "להחזיק צורה" גם אם המעטפת החיצונית קרעה, ונשאר בדרך כלל בגבולות הקפסולה - ולכן אין שינוי חיצוני מורגש. תשובה 1 שגויה עובדתית (הפרק עוסק בשתלי ג'ל סיליקון). תשובה 2 הפוכה - הקפסולה נוצרת תמיד סביב כל שתל. תשובה 3 אינה נכונה - סיליקון אינו מתפרק על ידי מערכת החיסון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. לפי הנחיות ה-FDA העדכניות (2019-2020) שמוזכרות בפרק, מהו פרוטוקול הסקר המומלץ למטופלת א-סימפטומטית עם שתלי סיליקון?</div>
+  <button class="opt" data-i="0">MRI חובה כל שנה החל מהניתוח</button>
+  <button class="opt" data-i="1">HRUS כאמצעי סקר, החל מ-5-6 שנים לאחר הניתוח, ואז כל 2-3 שנים; MRI שמור למקרים בהם יש חשד קליני לקרע</button>
+  <button class="opt" data-i="2">אין צורך בשום מעקב הדמייתי כל עוד אין תסמינים</button>
+  <button class="opt" data-i="3">ממוגרפיה בלבד, ללא צורך ב-US או MRI</button>
+  <div class="explain">התשובה הנכונה: ב-2019 ה-FDA הסיר את דרישת ה-MRI הקבועה ל-3/5/7 שנים, והכיר ב-HRUS כחלופה לסקר אסימפטומטי; ההנחיה העדכנית (2020) ממליצה על סקר ראשוני 5-6 שנים לאחר הניתוח ואז כל 2-3 שנים, כשה-MRI נשמר כבדיקה אבחנתית לחשד קליני. תשובה 1 שגויה (זו הייתה הדרישה הישנה, שבוטלה). תשובה 3 סותרת את כל הפרק. תשובה 4 מתעלמת מכך שממוגרפיה אינה כלי הבחירה להערכת שלמות שתל.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. במחקר שמצוטט בפרק (60 שתלים, 12 קרעים), לאולטרסאונד הייתה רגישות של 50% בלבד לעומת 84% ב-MRI. מה ההשלכה הקלינית המרכזית של הפער הזה?</div>
+  <button class="opt" data-i="0">אין להשתמש באולטרסאונד כלל באף מצב</button>
+  <button class="opt" data-i="1">אולטרסאונד וMRI שקולים תמיד ואין הבדל משמעותי ביניהם</button>
+  <button class="opt" data-i="2">מכיוון שהסגוליות של US הייתה נמוכה, יש הרבה תוצאות חיוביות כוזבות</button>
+  <button class="opt" data-i="3">כאשר יש חשד קליני גבוה לקרע ותוצאת ה-US שלילית, יש לשקול המשך בירור ב-MRI, כי הרגישות הנמוכה של US פירושה שיעור גבוה של קרעים שפוספסו (שליליים כוזבים)</button>
+  <div class="explain">התשובה הנכונה: רגישות נמוכה (50%) אומרת שחצי מהקרעים האמיתיים לא זוהו ב-US - כלומר יש הרבה שליליים כוזבים. לכן במקרה של חשד קליני משמעותי, תוצאת US שלילית אינה שוללת קרע וצריך לשקול MRI. תשובה 3 (סגוליות נמוכה) שגויה - במחקר זה הסגוליות של US הייתה 90%, זהה ל-MRI. תשובות 1-2 מתעלמות מהניואנס שהפרק עצמו מדגיש - שגם עם המגבלות, US הוא כלי סקר יעיל וזול, אך לא מושלם.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">5. אילו שתלים נוטים ליצור תוצאות חיוביות כוזבות (false positive) בסדרה הגדולה (1104 מטופלות) שמתוארת בפרק?</div>
+  <button class="opt" data-i="0">שתלים ישנים ומפותלים, קונטרקטורה קפסולרית חמורה, ושתלי לומן כפול (double lumen)</button>
+  <button class="opt" data-i="1">שתלים חדשים בני פחות משנה בלבד</button>
+  <button class="opt" data-i="2">שתלים מלאי סליין בלבד, לעולם לא שתלי ג'ל</button>
+  <button class="opt" data-i="3">שתלים חלקים (smooth) בלבד</button>
+  <div class="explain">התשובה הנכונה: מתוך שבעה תוצאות חיוביות כוזבות בסדרת 1104 המטופלות, שלוש היו קונטרקטורה קפסולרית חמורה, שלוש היו שתלים מפותלים בני מעל 30 שנה, ואחת שתל לומן כפול - כולם מצבים שבהם המבנה המורכב או הישן "מבלבל" את התמונה האולטרסאונית ומדמה קרע. תשובות 1, 3-4 אינן נתמכות בנתוני הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופלת שואלת אם HRUS שמבוצע במרפאה הפלסטית יכול להחליף את בדיקות הסקר השגרתיות לסרטן השד (ממוגרפיה). מה התשובה הנכונה על פי הפרק וההסכמה מדעת המומלצת?</div>
+  <button class="opt" data-i="0">כן, HRUS מספק מידע מלא גם על רקמת השד וגם על השתל</button>
+  <button class="opt" data-i="1">כן, אבל רק אם המטופלת מעל גיל 50</button>
+  <button class="opt" data-i="2">לא - HRUS במרפאה הפלסטית מיועד להערכת שלמות השתל בלבד, ואינו תחליף או תוספת לבדיקות הסקר המומלצות (ACR/American Cancer Society) לרקמת השד עצמה</button>
+  <button class="opt" data-i="3">לא, כי HRUS אסור לשימוש בנשים עם שתלים</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש באופן מפורש (בטופס ההסכמה לדוגמה) ש-HRUS בקליניקה הפלסטית הוא כלי לבדיקת השתל בלבד, ומנתחים פלסטיים - שאינם רדיולוגים - אינם מעירים הערה על פתולוגיה ברקמת השד. יש להבהיר זאת למטופלת ולהפנות אותה לבדיקות הסקר הסטנדרטיות בנפרד. תשובות 1, 2, 4 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>HRUS</b> (אולטרסאונד ברזולוציה גבוהה, ≥12MHz, ראש ליניארי) הפך לכלי הסקר המועדף לשתלי שד אסימפטומטיים, לפי הנחיית ה-FDA מ-2019/2020 שביטלה את חובת ה-MRI התקופתי.</li>
+    <li>פרוטוקול סקר: <b>5-6 שנים לאחר הניתוח, ואז כל 2-3 שנים</b>; MRI שמור לחשד קליני לקרע.</li>
+    <li>קרע <b>תוך-קפסולרי</b> - ג'ל כלוא בקפסולה שלמה: "linguine sign" ב-MRI, "stepladder sign" ב-US. קרע <b>חוץ-קפסולרי</b> - ג'ל חודר לרקמה: "snowstorm sign" ב-US.</li>
+    <li>US תלוי-מפעיל מאוד (רגישות 50-97% תלוי בניסיון), אך סגוליות דומה ל-MRI (~90-99%) - תוצאה חיובית ב-US אמינה, תוצאה שלילית פחות "סוגרת".</li>
+    <li>נוזל מאוחר (מעל שנה) סביב שתל מחוספס מחייב שאיבה מודרכת US + ציטולוגיה + CD30 לשלילת BIA-ALCL.</li>
+    <li>HRUS בקליניקה הפלסטית בודק <b>רק את השתל</b> - אינו תחליף לסקר סרטן שד שגרתי, ודורש הסכמה מדעת ייעודית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

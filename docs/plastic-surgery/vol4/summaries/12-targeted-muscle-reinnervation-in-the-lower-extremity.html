@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 12: רה-אינרבציה שרירית ממוקדת בגפה התחתונה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 12: רה-אינרבציה שרירית ממוקדת בגפה התחתונה <span class="term" dir="ltr">Targeted Muscle Reinnervation (TMR) in the Lower Extremity</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | פרק 6.2, מאת Brian L. Chang ו-Grant M. Kleiber</div>
+
+<p>TMR היא טכניקת ניתוח עצבים היקפיים מודרנית: לוקחים עצב תחושתי/מעורב שנחתך (למשל בזמן קטיעת גפה) ומחברים אותו, קצה-לקצה, לענף מוטורי של עצב שמעצבב שריר "מיותר" (<span class="term" dir="ltr">expendable muscle</span>). המטרה: לתת לעצב הפגוע "מקום ללכת אליו ומשהו לעשות" - כדי למנוע ממנו ליצור נוירומה כואבת, ולהפחית כאב שריד גפה (<span class="term" dir="ltr">residual limb pain, RLP</span>) וכאב פנטום (<span class="term" dir="ltr">phantom limb pain, PLP</span>). הטכניקה פותחה במקור לשיפור שליטה בפרוטזות מיואלקטריות בגפה העליונה, אך היום השימוש העיקרי שלה בגפה התחתונה הוא <b>מניעה וטיפול בכאב</b>.</p>
+
+<h2><span class="num">1</span> מנגנון - למה בכלל נוצרת נוירומה, ולמה TMR פותר את זה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>חיתוך עצב</b> (ניתוח/טראומה) &larr; <b>ניוון אקסונלי</b> פרוקסימלי ודיסטלי לנקודת החיתוך &larr;
+    האקסונים הפרוקסימליים "מנסים" לנבוט (<span class="term" dir="ltr">sprout</span>) כדי למצוא מחדש את היעד הדיסטלי שלהם &larr;
+    <b>אם הנביטה מצליחה להתחבר ליעד</b> (איבר מטרה/שריר) - משתחררים גורמים נוירוטרופיים שגורמים "לגזום" את הענפים העודפים ולעצור את הנביטה &larr;
+    <b>אם הנביטה נכשלת</b> (העצב נשאר "תלוי באוויר" או לכוד בצלקת) - הנביטה נמשכת ללא בקרה ונוצרת <b>נוירומה</b>: גוש כאוטי של סיבי עצב שממשיכים לנבוט לשווא.
+  </p>
+  <p>נוירומה סימפטומטית גורמת לכאב עז, שורף, המקרין לאורך תפוצת העצב. בקטועי גפיים, הנוירומה עלולה להיות אחד המקורות ההיקפיים לכאב פנטום - אך <b>כאב פנטום אינו נובע רק מנוירומה</b>: הוא תוצאה של פתולוגיה גם במערכת העצבים ההיקפית (PNS) וגם המרכזית (CNS - כולל ארגון מחדש לא-תקין של המפה הקורטיקלית של הגפה החסרה), ולכן גם TMR מושלם לא תמיד מבטל את כל הכאב.</p>
+  <p><b>הממצא המפתח שעליו מבוססת כל הטכניקה:</b> דומניאן (Dumanian) הראה שהאקסונים המעורבים ביצירת נוירומה הם <b>תחושתיים</b>, לא מוטוריים - עובדה שמתיישבת עם התצפית הקלינית שעצבים מוטוריים כמעט אף פעם לא יוצרים נוירומה סימפטומטית באתר התורם בפלאפים שריריים חופשיים. לכן ב-TMR: לוקחים את העצב התחושתי/המעורב הפגוע, וחותכים לחלוטין (באופן מכוון!) עצב מוטורי בריא שמזין שריר "מיותר" - וכך יוצרים שריר מנורבז שממתין ומוכן לקבל חיבור חדש. מחברים את שני הקצוות קצה-לקצה (<span class="term" dir="ltr">end-to-end</span>, לא קצה-לצד) - האקסונים התחושתיים "נשתלים" מחדש לתוך לוחיות הקצה המוטוריות (<span class="term" dir="ltr">motor end plates</span>) ואיברי החישה בשריר, ומקבלים "בית" קבוע במקום להמשיך לנבוט חסרי מטרה.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון היווצרות נוירומה מול TMR</title>
+  <rect x="640" y="30" width="180" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="730" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">עצב תחושתי נחתך</text>
+  <text x="730" y="76" font-size="12" text-anchor="middle" fill="#7f1d1d">(קטיעה / טראומה)</text>
+
+  <rect x="380" y="30" width="200" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="480" y="52" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">נביטה אקסונלית</text>
+  <text x="480" y="70" font-size="12" text-anchor="middle" fill="#78350f">ללא יעד = ממשיכה לנצח</text>
+  <text x="480" y="87" font-size="12" text-anchor="middle" fill="#78350f">&#8592; נוירומה כואבת</text>
+
+  <rect x="140" y="30" width="180" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="230" y="52" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שריר "מיותר"</text>
+  <text x="230" y="70" font-size="12" text-anchor="middle" fill="#4c1d95">עצב מוטורי שלו נחתך</text>
+  <text x="230" y="87" font-size="12" text-anchor="middle" fill="#4c1d95">בכוונה &#8594; מנורבז</text>
+
+  <polygon points="610,65 640,58 640,72" fill="#374151"/>
+  <line x1="640" y1="65" x2="610" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="350,65 380,58 380,72" fill="#374151"/>
+  <line x1="380" y1="65" x2="350" y2="65" stroke="#374151" stroke-width="2"/>
+
+  <rect x="240" y="150" width="380" height="80" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="430" y="178" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">קואפטציה קצה-לקצה (TMR)</text>
+  <text x="430" y="198" font-size="12.5" text-anchor="middle" fill="#065f46">אקסונים תחושתיים &#8592; לוחיות קצה מוטוריות בשריר המנורבז</text>
+  <text x="430" y="216" font-size="12.5" text-anchor="middle" fill="#065f46">גורמים נוירוטרופיים &#8592; עצירת נביטה &#8592; אין נוירומה</text>
+
+  <line x1="480" y1="100" x2="430" y2="150" stroke="#047857" stroke-width="2" stroke-dasharray="4 3"/>
+  <line x1="230" y1="100" x2="380" y2="150" stroke="#047857" stroke-width="2" stroke-dasharray="4 3"/>
+</svg>
+<p class="figcap">חיבור עצב תחושתי פגוע לענף מוטורי של שריר מנורבז "בכוונה" - כך נמנעת נביטה בלתי מבוקרת (נוירומה).</p>
+
+<p class="key-box">שתי תיאוריות מוצעות להסבר ההצלחה הקלינית של TMR למרות אי-התאמה גדולה בקוטר בין העצב התחושתי הגדול לענף המוטורי הקטן: (1) רציפות אקסונלית חלקית באתר הקואפטציה משחררת גורמים נוירוטרופיים שמדכאים נביטה של הסיבים הסמוכים שלא הצליחו להתחבר; (2) האזור הגדול של שריר מנורבז יוצר "יחידות מוטוריות" רבות המוכנות לקבל עצבוב מחדש - מנגנון דומה לזה של <span class="term" dir="ltr">RPNI</span> (ר' טבלת השוואה בהמשך).</p>
+
+<h2><span class="num">2</span> אינדיקציות</h2>
+<p>שלוש אינדיקציות עיקריות ל-TMR בגפה התחתונה:</p>
+<table>
+  <thead><tr><th>אינדיקציה</th><th>מתי</th></tr></thead>
+  <tbody>
+    <tr><td><b>מניעה ראשונית (<span class="term" dir="ltr">primary</span>)</b></td><td>בזמן קטיעת גפה - כל המנותחים לקטיעה מעל רמת הקרסול צריכים להיחשב מועמדים, ללא תלות בסיבת הקטיעה (טראומה, אונקולוגיה, איסכמיה, זיהום). התפיסה הישנה ש"סוכרתיים/חולי כלי דם לא מרוויחים" - שגויה.</td></tr>
+    <tr><td><b>טיפול משני (<span class="term" dir="ltr">secondary</span>)</b></td><td>בקטוע קיים עם נוירומה סימפטומטית ו/או כאב פנטום מבוסס.</td></tr>
+    <tr><td><b>אדג'ובנטי</b></td><td>בשילוב עם כריתה כירורגית של נוירומה סימפטומטית קיימת.</td></tr>
+  </tbody>
+</table>
+<p><b>קונטרא-אינדיקציה יחידה:</b> חולה קריטי שאינו יכול לשאת זמן הרדמה נוסף. גפיים משותקות ואינסנסיטיביות לחלוטין (למשל פגיעת חוט שדרה) - תועלת מוגבלת. יש לוודא שהכאב אינו נובע מבעיה סומטית אחרת ולסנן לתסמונת כאב אזורית מורכבת (<span class="term" dir="ltr">CRPS</span>) ו/או "מרכוז" (<span class="term" dir="ltr">centralization</span>) של הכאב במערכת העצבים המרכזית, מצבים שבהם TMR פחות יעיל.</p>
+
+<h2><span class="num">3</span> עקרונות כלליים בבחירת המעבר</h2>
+<p>כמו בהעברות עצב/גיד אחרות, יש כמה עקרונות מנחים:</p>
+<table>
+  <thead><tr><th>עיקרון</th><th>הסבר</th></tr></thead>
+  <tbody>
+    <tr><td><b>מטרה מוטורית "מיותרת"</b></td><td>בקטועים - השריר כבר לא מתפקד תפקוד תנועתי, אלא רק כרפידת רקמה רכה מעל הגדם. עדיף לבחור שרירים קטנים ועמוקים (EDL, tibialis posterior) על פני שרירים גדולים החשובים לריפוד (TA, גסטרוקנמיוס, סולאוס). בלא-קטועים - לבחור פונקציה פחות קריטית לוויתור (למשל TA חשוב יותר מ-EDL לדורסיפלקציה - מעדיפים לוותר על EDL).</td></tr>
+    <tr><td><b>היתכנות אנטומית</b></td><td>קואפטציה חייבת להיות ללא מתח, ועדיף באותו תא פשיאלי כדי למנוע הידבקות בצלקת. עצבים שטחיים (סאפנוס, סוראלי) יש להעביר תת-פשיאלית עם שחרור הפשיה בנקודת המעבר, למניעת אתר הידקקות (<span class="term" dir="ltr">entrapment</span>).</td></tr>
+    <tr><td><b>"לכידת" אקסונים (<span class="term" dir="ltr">axonal capture</span>)</b></td><td>כשיש אי-התאמת קוטר גדולה בין העצב התחושתי לענף המוטורי - חותכים בצורה חדה עם שוליים גדולים יחסית של אפינוריום, משתמשים בתפרי אפינוריום ובדבק פיברין, ובמקרים קיצוניים "עוגנים" את כל אתר הקואפטציה לתוך השריר (שילוב עם עקרון RPNI).</td></tr>
+    <tr><td><b>הזזת העצב פרוקסימלית</b></td><td>מרחיקים את אתר החיבור ("תינל" כואב פוטנציאלי) משטח המגע של הגדם עם השתל/פרוטזה.</td></tr>
+    <tr><td><b>שימור תפקוד פרוקסימלי</b></td><td>למשל, עצב סוראלי מספק תחושה לחלק האחורי של הרגל - שטח נשיאת המשקל הקריטי בגדם BKA; מעבר קרוב מדי יקריב תחושה חשובה.</td></tr>
+    <tr><td><b>הערכת נקודות לחיצה פרוקסימליות</b></td><td>תופעת "המחיצה הכפולה" (<span class="term" dir="ltr">double-crush</span>) - עצב עם פתולוגיה במקום אחד נוטה יותר לפתולוגיה במקום נוסף (במיוחד בפולינוירופתיה סוכרתית). למשל: נוירומה של SPN &#8592; לבדוק לכידה של CPN בראש השוקה.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> טכניקה כירורגית - לפי רמת הקטיעה ולפי עצב</h2>
+<p>חמשת העצבים העיקריים שנחתכים בקטיעה מתחת לברך (BKA): העצב הפרונאלי השטחי (<span class="term" dir="ltr">SPN</span>), הפרונאלי העמוק (<span class="term" dir="ltr">DPN</span>), הטיביאלי, הסאפנוס והסוראלי. בפועל מתמקדים בשלושה - SPN, טיביאלי, סאפנוס - כי הם יוצרים הכי הרבה נוירומות סימפטומטיות וכאב פנטום בתפוצה נרחבת; DPN וסוראלי מטופלים רק אם נהיים בעייתיים משנית.</p>
+
+<h3>BKA - קטיעה מתחת לברך</h3>
+<ul>
+  <li><b>SPN &#8592;&#8592; ענף מוטורי בתוך CPN</b> (בד"כ ל-EDL): חתך אלכסוני קטן מתחת לראש הפיבולה, זיהוי ה-CPN מתחת לפשיה הקרוראלית, ניתוק פנימי (<span class="term" dir="ltr">internal neurolysis</span>) של קבוצות הפאשיקולים בעזרת גירוי עצבי, איתור הפאשיקול המוטורי (בד"כ ה-anterolateral), העברת ה-SPN פרוקסימלית לתוך התעלה הפרונאלית, וקואפטציה אנטגרדית קצה-לקצה. חלופות: EHL, peroneus longus/brevis, או ענף עודף ל-TA.</li>
+  <li><b>עצב טיביאלי &#8592;&#8592; ענף לתא האחורי העמוק</b> (tibialis posterior, FDL, FHL): ניתוח רטרוגרדי לאורך העצב הטיביאלי מהגדם עד לזיהוי ענף מוטורי לתא העמוק - שרירים אלה קטנים, תורמים מעט לריפוד ובדרך כלל נחתכים בגובה האוסטאוטומיה בכל מקרה. צפויה אי-התאמת קוטר משמעותית - עוגנים את הקואפטציה לרקמת השריר הסובבת.</li>
+  <li><b>סאפנוס &#8592;&#8592; ענף תוך-שרירי ב-tibialis posterior</b>: פתיחת הפשיה מתחת לעצב הסאפנוס בגבול המדיאלי של השוקה, ניתוח תוך-שרירי עד לזיהוי ענף מוטורי דיסטלי. אם לא נמצא יעד - נוירקטומיה עם "מעיכה וקבורה" (<span class="term" dir="ltr">crush-and-bury</span>).</li>
+  <li><b>סוראלי ו-DPN</b> - בדרך כלל <b>לא</b> מטופלים ב-TMR ראשוני (עומס ניתוחי, שכיחות נמוכה של נוירומה סימפטומטית, וחשיבות התחושה הפרוקסימלית של הסוראלי לגדם) - מבוצעת נוירקטומיה עם מעיכה וקבורה, ו-TMR משני רק אם מתפתח כאב.</li>
+</ul>
+
+<h3>KDA - ניתוק פרק הברך (<span class="term" dir="ltr">Knee disarticulation</span>)</h3>
+<p>מתאים למטופל מבוגר עם פחות דרישות תפקודיות (משמר את הקונדילים הפמורליים כבסיס יציב לפרוטזה, אך פחות תואם פרוטזה עם ציר ברך). העצבים המנותקים: עצב טיביאלי, CPN וסאפנוס. הגסטרוקנמיוס נשמר ומשמש תורם מוטורי נוח (טיביאלי/CPN &#8592;&#8592; ענף לגסטרוקנמיוס/סולאוס; אם לא נמצא - המרים ((BF, ST, SM)) בישיבה שנייה). ה-CPN מועבר לתעלת העצב הטיביאלי בעזרת שתי מלחציים בטכניקת "העברה מוגנת" כדי למנוע יצירת מסלולים לא-אנטומיים.</p>
+
+<h3>AKA - קטיעה מעל הברך</h3>
+<p>מורבידית יותר מ-BKA (הוצאת אנרגיה גבוהה יותר בהליכה), אך מתאימה יותר לפרוטזה עם ציר ברך במטופל צעיר ופעיל. העצבים: עצב סיאטי (הגדול ביותר בגוף - מתפצל לרוב לרכיב טיביאלי ופרונאלי, כל אחד מועבר בנפרד או בפאשיקולים נוספים אם יש אי-התאמת קוטר), עצב סאפנוס (בתעלת האדוקטורים &#8592;&#8592; ענף ל-sartorius/vastus medialis) ועצב עורי-ירך אחורי (<span class="term" dir="ltr">PFCN</span>, &#8592;&#8592; ענף שטחי ל-biceps femoris). TMR לעצב הסיאטי ול-PFCN מבוצע בגישה אחורית, עדיף בשכיבה על הבטן (<span class="term" dir="ltr">prone</span>) - נוח יותר לכירורג, ולעיתים מבוצע בהרדמה נפרדת מהקטיעה עצמה במטופלים עם תחלואה נלווית.</p>
+
+<h3>רמות פרוקסימליות מאוד ומיעוט אצבעות/כף רגל</h3>
+<p>בניתוקי ירך ופלווקטומיה - העצבים הפמורלי, הסיאטי, עורי-ירך צדי, PFCN והאובטורטורי, עם תורמים מוטוריים משרירי הישבן/המרים/הארבע-ראשי/האדוקטורים הנותרים. בקטיעות אצבע/חלק מכף רגל - TMR לא מבוצע באופן שגרתי בשל היעדר עדות לתועלת (הענפים התחושתיים כבר קטנים ומסתעפים, ומגיבים היטב לנוירקטומיה פשוטה).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/oThMGNJB-wU" title="Targeted Muscle Reinnervation for Treatment and Prevention of Amputee Pain - Dumanian, MD" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הרצאה מאת Dr. Gregory Dumanian (ממפתחי הטכניקה) על TMR לטיפול ומניעת כאב בקטועים - רציונל, אינדיקציות ותוצאות.</p>
+
+<h2><span class="num">5</span> TMR בלא-קטועים (נוירומה סימפטומטית בגפה שלמה)</h2>
+<p>העיקרון זהה, אך יש הבדל קריטי: המטופל <b>עדיין מרגיש</b> בעור באזור העצב - כלומר הוא "סוחר" תחושה תקינה תמורת סיכוי להפחתת כאב, ולכן הסכמה מדעת מפורטת קריטית. בחירת מטרה מוטורית מיותרת חשובה עוד יותר כי אין "פיצוי" של אובדן תפקוד ממילא. הטכניקה לכל עצב (SPN, DPN, סאפנוס, סוראלי, טיביאלי) דומה לזו שב-TMR משני בקטועים, אך שמרנית יותר: לדוגמה בעצב הטיביאלי יש לשמר תחושה כף-רגלית ולעבוד רחוק ככל האפשר דיסטלית, ואפשר לשמר את הענפים הפלנטריים; ובעצב הסוראלי - לא לדנרב את ה-triceps surae (גסטרוקנמיוס+סולאוס) הפרוקסימלי, אלא לחפש ענף תוך-שרירי (בד"כ לסולאוס או ל-peroneus brevis).</p>
+
+<h2><span class="num">6</span> תוצאות ויעילות</h2>
+<table>
+  <thead><tr><th>מחקר/הקשר</th><th>ממצא עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>Valerio et al. - TMR ראשוני, 18 BKA</td><td>0% נוירומה סימפטומטית, 13% בלבד עם PLP ב-6 חודשים</td></tr>
+    <tr><td>Dumanian &amp; Valerio - 51 חולים, TMR ראשוני</td><td>45%-50% ללא PLP/RLP כלל; רק 15%-20% עם כאב חמור (&ge;7/10)</td></tr>
+    <tr><td>עבודת המחבר הבכיר - 100 TMR ראשוני מול 100 נוירקטומיית משיכה (BKA)</td><td>RLP: 17% (TMR) מול 57%; PLP: 18% מול 47%; ללא כאב כלל: 70% מול 36%; שימוש כרוני באופיואידים: 6% מול 24%; הליכה עם פרוטזה: 91.7% מול 70.5%</td></tr>
+    <tr><td>TMR משני - מחקר רב-מוסדי (33 חולים)</td><td>PLP ירד מ-6.0/10 ל-3.6/10; RLP מ-6.4/10 ל-3.6/10 בשנה</td></tr>
+    <tr><td>ניסוי אקראי מבוקר (Dumanian et al., 2019)</td><td>שיפור PLP ב-3.2 נקודות ב-TMR מול הרעה של 0.2 בביקורת (כריתת נוירומה + השתלת שריר)</td></tr>
+    <tr><td>TMR ל-15 לא-קטועים עם נוירומה עמידה</td><td>שיפור כאב, תדירות ואיכות חיים; ללא חולשה תפקודית מזוהה בשריר התורם</td></tr>
+  </tbody>
+</table>
+<p class="key-box"><b>נקודה חשובה לזכור:</b> גם עם TMR מוצלח, כ-15%-30% מהחולים עדיין סובלים מדרגת-מה של כאב כרוני לאחר קטיעה - לא ברור אם זה נובע מסיבה נוספת (סיבה גרמית/רקמה רכה אחרת), "מרכוז" מוקדם של הכאב, או כישלון ההעברה עצמה. יש לתת ציפיות ריאליות למטופל לפני הניתוח: TMR מפחית תדירות וחומרה של כאב, אך אינו מבטיח היעדרות כאב מוחלטת.</p>
+
+<h2><span class="num">7</span> TMR מול RPNI - טבלת השוואה</h2>
+<p>שתי הטכניקות הפכו לחלופות המובילות לנוירקטומיה פשוטה/השתלת שריר, ולעיתים אף משולבות יחד (<span class="term" dir="ltr">TMRpni</span>) לאפקט כפול.</p>
+<table>
+  <thead><tr><th></th><th>TMR</th><th>RPNI (<span class="term" dir="ltr">Regenerative Peripheral Nerve Interface</span>)</th></tr></thead>
+  <tbody>
+    <tr><td><b>עיקרון</b></td><td>חיבור קצה-לקצה של העצב הפגוע לענף מוטורי <b>חי</b> של שריר יעד (שנחתך בכוונה)</td><td>עטיפת קצה העצב הפגוע בשריר <b>חופשי לא-וסקולרי</b> (גרפט שריר קטן), ללא צורך בענף עצב מוטורי ספציפי</td></tr>
+    <tr><td><b>דרישה טכנית</b></td><td>איתור ענף מוטורי מתאים (נדרש גירוי עצבי, ניתוח מדוקדק יותר, זמן ניתוח ארוך יותר)</td><td>פשוטה וקצרה יותר - כל שריר תורם מתאים כגרפט</td></tr>
+    <tr><td><b>מתי מועדף</b></td><td>כשיש שריר "מיותר" נגיש עם ענף מוטורי ברור בקרבת מקום</td><td>כשאין שריר מיותר עם עצבוב מוטורי מזוהה, או לעצבים קטנים/מרובים (למשל אצבעות)</td></tr>
+    <tr><td><b>שילוב אפשרי</b></td><td colspan="2" style="text-align:center">TMRpni - עוטפים את אתר הקואפטציה של ה-TMR בגרפט שריר לא-וסקולרי נוסף, לתפיסת אקסונים "בורחים" - שילוב היתרונות</td></tr>
+    <tr><td><b>יעילות</b></td><td colspan="2" style="text-align:center">בספרות הנוכחית: שתי הטכניקות משפרות כאב נוירומה (75%-100%) וכאב פנטום (45%-80%) בשיעור דומה; <b>אין עדיין השוואה ישירה (head-to-head) מוכחת</b> שמראה עליונות של אחת על השנייה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> סיבוכים וסיכונים</h2>
+<ul>
+  <li><b>כישלון להשיג התחדשות</b> - חיבור ה-TMR "לא עובד" והנוירומה/הכאב הסימפטומטי מתפתחים בכל זאת.</li>
+  <li><b>חוסר יעד מוטורי מתאים</b> - מחייב מעבר לנוירקטומיית משיכה קלאסית עם השתלת שריר.</li>
+  <li><b>אובדן תפקוד מוטורי</b> של השריר התורם (בלא-קטועים - חשוב מאוד לתכנון קפדני של הבחירה; בקטועים - פחות משמעותי כי השריר ממילא לא מתפקד).</li>
+  <li><b>זמן הרדמה נוסף</b> - החיסרון העיקרי בביצוע TMR ראשוני, בעיקר במטופלים חולים קשה (אך רוב העבודה מתבצעת בגדם המנותק ולא מוסיפה סיכון מהותי).</li>
+  <li><b>הידבקות/תינל כואב</b> באתר הקואפטציה אם לא הוזז מספיק פרוקסימלית משטח המגע של הגדם.</li>
+  <li><b>ריפוי פצע מושהה</b> - הסיבוך השכיח ביותר בטכניקות עטיפת עצב בכלל (13%-31% לפי סקירות משולבות TMR/RPNI).</li>
+</ul>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"GO"</span> - התמצית של TMR</h3>
+  <p>
+    <b>G</b>ive the nerve somewhere to <b>G</b>o - חתכי בכוונה עצב מוטורי של שריר מיותר.<br>
+    <b>O</b> - end-to-end coaptation - חברי קצה-לקצה (לא קצה-לצד!), כדי שהאקסונים התחושתיים "יאמצו" את לוחיות הקצה המוטוריות.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני עצב תחושתי חתוך כמו עובד שפוטר בטעות ונשאר בלי משרד - הוא ימשיך "לשוטט במסדרונות" (לנבוט חסר כיוון) וליצור בלגן (נוירומה) עד שימצא תפקיד. TMR הוא כמו למצוא לו משרד ריק (שריר מנורבז שהעצב המוטורי שלו "פוטר" בכוונה) ולשבץ אותו שם רשמית (קואפטציה קצה-לקצה) - ברגע שיש לו "כתובת" קבועה, הוא מפסיק לשוטט.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>עובד ללא משרד מול עובד עם משרד</title>
+    <rect x="20" y="30" width="180" height="120" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="110" y="55" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">לפני TMR</text>
+    <circle cx="60" cy="90" r="8" fill="#b91c1c"/>
+    <circle cx="100" cy="75" r="8" fill="#b91c1c"/>
+    <circle cx="140" cy="100" r="8" fill="#b91c1c"/>
+    <circle cx="90" cy="120" r="8" fill="#b91c1c"/>
+    <circle cx="150" cy="130" r="8" fill="#b91c1c"/>
+    <text x="110" y="145" font-size="11" text-anchor="middle" fill="#7f1d1d">"שוטט" = נוירומה</text>
+
+    <rect x="300" y="30" width="180" height="120" rx="10" fill="#ecfdf5" stroke="#047857"/>
+    <text x="390" y="55" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אחרי TMR</text>
+    <rect x="345" y="80" width="90" height="45" rx="6" fill="#fff" stroke="#047857"/>
+    <text x="390" y="107" font-size="11" text-anchor="middle" fill="#065f46">"משרד" קבוע</text>
+    <circle cx="390" cy="70" r="7" fill="#047857"/>
+    <line x1="390" y1="77" x2="390" y2="80" stroke="#047857" stroke-width="2"/>
+    <text x="390" y="143" font-size="11" text-anchor="middle" fill="#065f46">מיושב = שקט</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> סרטונים ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/9O_zw8KTHsg" title="Targeted Muscle Reinnervation for Pain Reduction with Amputation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קליני קצר על TMR כטיפול להפחתת כאב פנטום וכאב שריד לאחר קטיעת גפה.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12081100/" target="_blank">Targeted Muscle Reinnervation - an Up-to-Date Review (PMC, 2025)</a>
+    <div class="desc">סקירה עדכנית ומקיפה על TMR - אינדיקציות, טכניקה, עדויות מהספרות.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9815223/" target="_blank">TMR in above-knee amputation: surgical technique (Neurosurgical Focus Video)</a>
+    <div class="desc">מאמר ילווה בוידאו ניתוחי המדגים TMR בזמן קטיעה מעל הברך - קואפטציות לענפי הסאפנוס, הטיביאלי והפרונאלי.</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13240872/" target="_blank">TMR או RPNI למניעת כאב - פרוטוקול לסקירה שיטתית ומטא-אנליזה</a>
+    <div class="desc">רקע מפורט להשוואה השיטתית שטרם הושלמה בין שתי הטכניקות.</div>
+  </li>
+  <li>
+    <a href="https://journals.lww.com/prsgo/fulltext/10.1097/gox.0000000000004663~below-the-knee-amputation-with-targeted-muscle-reinnervation" target="_blank">Below-the-knee Amputation with TMR: Operative Technique and Technical Pearls (PRS Global Open)</a>
+    <div class="desc">מאמר טכניקה מפורט לגישת TMR אינטרפאשיקולרית לעצב הפרונאלי השטחי ב-BKA, עם טיפים ניתוחיים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 עם סוכרת ומחלת כלי דם היקפית עבר קטיעה מתחת לברך (BKA) שמאלית עקב איסכמיה בלתי הפיכה של כף הרגל. בזמן הקטיעה זוהו ונשמרו לאורך העצבים הפרונאלי השטחי, הטיביאלי והסאפנוס, ובוצעה TMR ראשונית: SPN הועבר לענף מוטורי ל-EDL דרך חתך מתחת לראש הפיבולה, העצב הטיביאלי חובר לענף לתא האחורי העמוק, והסאפנוס חובר לענף תוך-שרירי ב-tibialis posterior. 4 חודשים לאחר הניתוח, המטופל מדווח על כאב שריד קל (2/10) ותחושת פנטום בלתי-כואבת מדי פעם, ללא נוירומה מישושית בבדיקה, ומתנייד עם פרוטזה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו הממצא המפתח (Dumanian et al.) שעליו מבוססת הבחירה לחתוך בכוונה עצב מוטורי בזמן TMR?</div>
+  <button class="opt" data-i="0">עצבים תחושתיים לעולם אינם מסוגלים ליצור נוירומה</button>
+  <button class="opt" data-i="1">האקסונים המעורבים ביצירת נוירומה הם תחושתיים ולא מוטוריים, כפי שנתמך גם בכך שעצבים מוטוריים לא יוצרים נוירומה סימפטומטית באתר תורם של פלאפ שרירי חופשי</button>
+  <button class="opt" data-i="2">עצבים מוטוריים תמיד רגישים יותר מעצבים תחושתיים לניוון וולריאני</button>
+  <button class="opt" data-i="3">אין הבדל בין עצבים תחושתיים למוטוריים מבחינת יצירת נוירומה</button>
+  <div class="explain">התשובה הנכונה: Dumanian הראה שהאקסונים בנוירומה הם תחושתיים, לא מוטוריים - עובדה שמתיישבת עם התצפית שעצבי מוטור לא יוצרים נוירומות סימפטומטיות באתר תורם בפלאפים חופשיים. זו הסיבה שב-TMR חותכים בכוונה עצב מוטורי (ולא תחושתי) כדי לספק "יעד בטוח" לעצב התחושתי הפגוע. תשובה 1 מוגזמת (עצבים תחושתיים כן יוצרים נוירומה - זו בדיוק הבעיה). תשובות 3-4 אינן נתמכות בטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע ב-TMR מעדיפים קואפטציה קצה-לקצה (end-to-end) ולא קצה-לצד (end-to-side)?</div>
+  <button class="opt" data-i="0">קצה-לצד קשה יותר טכנית ודורשת מיקרוסקופ</button>
+  <button class="opt" data-i="1">קצה-לקצה מונע לחלוטין כל כאב לאחר הניתוח</button>
+  <button class="opt" data-i="2">העצב המוטורי התורם נחתך לחלוטין כדי ליצור שריר מנורבז "מוכן" לקבל עצבוב - קצה-לצד לא ינרב את כל השריר ולא ייתן לעצב התחושתי "מקום" מספיק</button>
+  <button class="opt" data-i="3">קצה-לצד משמש רק בגפה העליונה</button>
+  <div class="explain">התשובה הנכונה: העיקרון המרכזי הוא ליצור שריר מטרה שהעצבוב המוטורי המקורי שלו הוסר לחלוטין ("שריר מיותר, מנורבז") - כך שכל האקסונים התחושתיים שמגיעים יכולים "לאמץ" את לוחיות הקצה המוטוריות הפנויות. חיבור קצה-לצד היה משאיר את העצב המוטורי המקורי שלם ומתפקד, ולא היה יוצר את אותו "ואקום" של מטרה פנויה. תשובות 1 ו-4 אינן נכונות עובדתית; תשובה 2 מוגזמת - TMR מפחית אך לא מבטל כאב לגמרי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה שריר עדיף לבחור כמטרה מוטורית ב-TMR ראשוני בזמן BKA, ומדוע?</div>
+  <button class="opt" data-i="0">Extensor digitorum longus (EDL) או tibialis posterior - קטנים, עמוקים, ותורמים מעט לריפוד הגדם</button>
+  <button class="opt" data-i="1">Gastrocnemius - השריר הגדול ביותר וקל לזיהוי</button>
+  <button class="opt" data-i="2">Tibialis anterior - קריטי לדורסיפלקציה ולכן הכי "מוכן" לוויתור</button>
+  <button class="opt" data-i="3">Soleus - כי הוא נחתך ממילא באוסטאוטומיה</button>
+  <div class="explain">התשובה הנכונה: העיקרון של "מטרה מוטורית מיותרת" מחייב בחירת שרירים קטנים ועמוקים שתורמים מעט לריפוד הגדם, כמו EDL ו-tibialis posterior - להבדיל מגסטרוקנמיוס, סולאוס ו-TA שהם קריטיים לריפוד פריטיביאלי אופטימלי של הגדם וצריך לשמר אותם. תשובה 2 שגויה כי גסטרוקנמיוס דווקא נשמר בדרך כלל. תשובה 3 הפוכה - TA הוא הדורסיפלקסור העיקרי וחשוב לשימור. תשובה 4 לא מדויקת כעיקרון בחירה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו ההבדל העיקרי בין TMR ל-RPNI?</div>
+  <button class="opt" data-i="0">RPNI משמש רק בגפה העליונה, TMR רק בגפה התחתונה</button>
+  <button class="opt" data-i="1">TMR פחות יעיל מ-RPNI בכל המדדים לפי מטא-אנליזות שפורסמו</button>
+  <button class="opt" data-i="2">RPNI דורש חיתוך עצב מוטורי בריא, ואילו TMR אינו דורש זאת</button>
+  <button class="opt" data-i="3">TMR מחבר את העצב הפגוע לענף מוטורי חי של שריר יעד, ואילו RPNI עוטף את קצה העצב בגרפט שריר חופשי לא-וסקולרי ללא צורך בענף מוטורי ספציפי</button>
+  <div class="explain">התשובה הנכונה: TMR מבוסס על קואפטציה לענף עצב מוטורי מזוהה של שריר יעד; RPNI לעומת זאת עוטף את קצה העצב בגרפט שריר קטן חופשי (לא-וסקולרי) בלי צורך לזהות ענף מוטורי ספציפי - ולכן RPNI פשוט וקצר יותר טכנית, במיוחד כשאין יעד מוטורי ברור. תשובה 3 (הפוכה) מתארת את RPNI כדורש חיתוך עצב מוטורי - זה דווקא מאפיין TMR. אין עדות למגבלת גפה (תשובה 1) ואין הוכחה לעליונות מובהקת של אחת הטכניקות (תשובה 2) - הספרות עדיין לא כוללת השוואה ישירה מוכחת.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופלת עברה TMR משני מוצלח לנוירומה של העצב הטיביאלי, אך ממשיכה לדווח על כאב פנטום בעצימות בינונית. מה ההסבר הסביר ביותר?</div>
+  <button class="opt" data-i="0">TMR אינו יעיל כלל לכאב פנטום ורק לנוירומה מקומית</button>
+  <button class="opt" data-i="1">כאב פנטום נובע גם מפתולוגיה במערכת העצבים המרכזית (ארגון קורטיקלי לא-תקין), ולא רק ממקור היקפי - כך ש-TMR עשוי להפחית אך לא לבטל אותו לגמרי, וזה עולה בקנה אחד עם השיעור המדווח בספרות (כ-15%-30% כאב שיורי)</button>
+  <button class="opt" data-i="2">חובה לבצע ניתוח חוזר מיידי כי TMR שנכשל הוא הסיבה היחידה האפשרית</button>
+  <button class="opt" data-i="3">כאב פנטום תמיד חולף לחלוטין תוך שבועיים מכל ניתוח TMR מוצלח</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שכאב פנטום נובע גם מפתולוגיה מרכזית (CNS) ולא רק ממקור היקפי (נוירומה) - ולכן גם TMR "מוצלח" קלינית (ללא נוירומה מישושית) לא בהכרח מבטל כאב פנטום לחלוטין. כ-15%-30% מהמטופלים חווים כאב שיורי כלשהו גם לאחר TMR ראשוני מוצלח. תשובה 1 קיצונית מדי (TMR כן מפחית משמעותית PLP בממוצע). תשובה 3 מנוגדת לנתונים. תשובה 4 שגויה קלינית - אין להסיק כישלון מיד בלי הערכה נוספת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>TMR</b> = חיבור קצה-לקצה של עצב תחושתי/מעורב פגוע לענף מוטורי בריא (שנחתך בכוונה) של שריר "מיותר" - נותן לעצב "מקום ללכת אליו" ומונע נוירומה.</li>
+    <li>מבוסס על הממצא שנוירומה מורכבת מאקסונים <b>תחושתיים</b> בלבד; עצבים מוטוריים לא יוצרים נוירומה.</li>
+    <li>אינדיקציות: מניעה ראשונית בזמן קטיעה, טיפול משני בנוירומה/כאב פנטום קיים, או אדג'ובנטי לכריתת נוירומה.</li>
+    <li>עקרונות בחירת מטרה: שריר מיותר, קרבה אנטומית, טיפול באי-התאמת קוטר (עוגן לשריר), הזזה פרוקסימלית, שימור תפקוד קריטי, בדיקת double-crush.</li>
+    <li>בגפה התחתונה: SPN&#8592;&#8594;CPN/EDL, טיביאלי&#8592;&#8594;תא אחורי עמוק, סאפנוס&#8592;&#8594;tibialis posterior/sartorius/VM, סיאטי&#8592;&#8594;המרים, PFCN&#8592;&#8594;biceps femoris.</li>
+    <li>תוצאות: הפחתה עקבית ב-RLP/PLP, ב-25-40 נק' אחוז פחות כאב חמור, פחות שימוש כרוני באופיואידים ויותר הליכה עם פרוטזה - אך 15%-30% ממשיכים לסבול מכאב שיורי כלשהו.</li>
+    <li><b>TMR מול RPNI</b>: שתיהן יעילות דומה בספרות הנוכחית, ללא השוואה ישירה מוכחת; ניתן לשלב (TMRpni).</li>
+    <li>סיבוכים עיקריים: כישלון ההעברה, חוסר יעד מוטורי, ריפוי פצע מושהה, זמן הרדמה נוסף.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

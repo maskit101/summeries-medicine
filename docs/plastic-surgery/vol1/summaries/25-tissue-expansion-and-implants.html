@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 25: הרחבת רקמה ושתלים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 25: הרחבת רקמה ושתלים <span class="term" dir="ltr">Tissue Expansion and Implants</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles, מהדורה 5 | מאת Britta A. Kuehlmann, Eva Brix, Lukas M. Prantl</div>
+
+<p>הגדלת שד היא אחת הפרוצדורות האסתטיות הנפוצות בעולם, ושתלי שד הם נדבך יסודי גם בכירורגיה משחזרת וגם באסתטית. מרחיבי רקמה (<span class="term" dir="ltr">tissue expanders</span>) הם התשתית שמאפשרת "לגדל" עור נוסף בגוף עצמו – במקום להביא אותו ממקום אחר – על ידי הפעלת לחץ מתמשך שגורם לרקמה להתרחב. הפרק עוסק בשני נושאים שלובים: המדע והטכניקה של הרחבת רקמה, והמדע והטכניקה של שתלי שד (סוגים, בחירה, מיקום, וסיבוכים).</p>
+
+<h2><span class="num">1</span> מנגנון: איך רקמה "לומדת" לגדול (מכנוטרנסדוקציה)</h2>
+<div class="mechanism">
+  <p class="chain">
+  מתיחת עור מעבר לגבול הפיזיולוגי הרגיל שלו מפעילה <b>מכנוטרנסדוקציה</b> (<span class="term" dir="ltr">mechanotransduction</span>) – תהליך שבו כוח מכני מתורגם לאות ביוכימי. הלחץ הקבוע של המרחיב מפעיל תעלות יונים רגישות ללחץ (<span class="term" dir="ltr">mechanosensitive ion channels</span>), חלבוני G, קינאזות חלבון (<span class="term" dir="ltr">protein kinases</span>), ואינטגרינים שמתקשרים עם המטריקס החוץ-תאי (<span class="term" dir="ltr">integrin-matrix interactions</span>). כל אלה יחד "מתרגמים" את הכוח הפיזי לשינוי ביולוגי בפועל.
+  </p>
+  <p>
+  התוצאה: פיברובלסטים מתחילים להתרבות, נוצרת סינתזת קולגן מוגברת, וקולגן ואלסטין <b>מסתדרים מחדש במקביל לכיוון המתיחה</b> – זו הסיבה שרקמה שהורחבה נשארת אלסטית וגמישה יותר בכיוון שבו נמתחה. במקביל, ההתרחבות מעודדת <b>אנגיוגנזה</b> (<span class="term" dir="ltr">angiogenesis</span>) – ביטוי גנים מוגבר של גורמי גדילה כלי-דמיים כמו <span class="term" dir="ltr">VEGF</span> (<span class="term" dir="ltr">vascular endothelial growth factor</span>), <span class="term" dir="ltr">PDGF</span> (<span class="term" dir="ltr">platelet-derived growth factor</span>) ו-<span class="term" dir="ltr">bFGF</span> (<span class="term" dir="ltr">basic fibroblast growth factor</span>) גבוה משמעותית ברקמה המורחבת לעומת רקמה רגילה. וסקולריות מוגברת זו היא הסיבה המעשית לכך שאפשר לקצור <b class="key">פלאפ גדול יותר ואמין יותר</b> מרקמה שעברה הרחבה מוקדמת – יש לה יותר עתודת דם.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת המכנוטרנסדוקציה בהרחבת רקמה</title>
+  <rect x="740" y="20" width="140" height="65" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="810" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">לחץ קבוע ממרחיב</text>
+  <text x="810" y="63" font-size="11.5" text-anchor="middle" fill="#7f1d1d">מתיחת עור מעל הגבול</text>
+
+  <rect x="500" y="20" width="180" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="590" y="40" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">מכנוטרנסדוקציה</text>
+  <text x="590" y="58" font-size="11" text-anchor="middle" fill="#1e3a8a">תעלות יונים, אינטגרינים,</text>
+  <text x="590" y="72" font-size="11" text-anchor="middle" fill="#1e3a8a">קינאזות, G-proteins</text>
+
+  <rect x="270" y="20" width="170" height="65" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="355" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">קסקדת איתות תוך-תאית</text>
+  <text x="355" y="63" font-size="11" text-anchor="middle" fill="#065f46">שגשוג פיברובלסטים, DNA</text>
+
+  <rect x="20" y="20" width="190" height="65" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="40" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">רקמה חדשה</text>
+  <text x="115" y="58" font-size="11" text-anchor="middle" fill="#4c1d95">קולגן/אלסטין מיושרים,</text>
+  <text x="115" y="72" font-size="11" text-anchor="middle" fill="#4c1d95">שטח עור מוגדל</text>
+
+  <polygon points="700,52 740,46 740,58" fill="#374151"/>
+  <line x1="740" y1="52" x2="700" y2="52" stroke="#374151" stroke-width="2"/>
+  <polygon points="460,52 500,46 500,58" fill="#374151"/>
+  <line x1="500" y1="52" x2="460" y2="52" stroke="#374151" stroke-width="2"/>
+  <polygon points="230,52 270,46 270,58" fill="#374151"/>
+  <line x1="270" y1="52" x2="230" y2="52" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="150" width="500" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="270" y="175" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">אנגיוגנזה: VEGF↑ PDGF↑ bFGF↑ ברקמה המורחבת</text>
+  <text x="270" y="193" font-size="11.5" text-anchor="middle" fill="#78350f">וסקולריות גבוהה יותר → אפשר לקצור פלאפ גדול ובטוח יותר</text>
+  <polygon points="115,150 109,130 121,130" fill="#b45309"/>
+  <line x1="115" y1="150" x2="115" y2="130" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<p>שני עקרונות קליניים ישירים נובעים מכך: (1) יש <b>סף מתיחה פיזיולוגי</b> – מעבר לו נפגעת תפקוד התא, ולכן ניפוח יתר מהיר מדי מסכן את אספקת הדם לרקמה; (2) התהליך <b>תלוי-זמן</b> – זו הסיבה שהרחבה נעשית בהדרגה על פני שבועות ולא בבת אחת.</p>
+
+<h2><span class="num">2</span> רקע היסטורי</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שנה</th><th>מי</th><th>מה נעשה לראשונה</th></tr></thead>
+  <tbody>
+    <tr><td>1905</td><td>Codvilla</td><td>הארכת עצם גפה תחתונה על ידי כוח חיצוני – ראשית רעיון ההרחבה ההדרגתית</td></tr>
+    <tr><td>1957</td><td>Neumann</td><td>ראשון שהשיג גדילת רקמה רכה בפועל – שתל תת-עורי בלון לטקס לשחזור חלקי של אוזן חיצונית</td></tr>
+    <tr><td>1962–1963</td><td>Cronin &amp; Gerow (עם Dow Corning)</td><td>פיתוח השתל הראשון מלא סיליקון עם קליפת אלסטומר נפרדת – תחילת עידן שתלי השד</td></tr>
+    <tr><td>1964</td><td>יצרן צרפתי</td><td>השתל הראשון מלא-מי מלח (סליין) יוצר בצרפת</td></tr>
+    <tr><td>1976</td><td>Radovan</td><td>מרחיב סיליקון עם שני שסתומים לכיסוי פגם בזרוע – אב-טיפוס למרחיב המודרני</td></tr>
+    <tr><td>1977</td><td>Austad &amp; Rose</td><td>מרחיב סיליקון עם מילוי עצמי אוסמוטי-מלחי (ללא שסתום)</td></tr>
+    <tr><td>1992</td><td>FDA (ארה"ב)</td><td>מורטוריום על שתלי סיליקון-ג'ל אסתטיים בעקבות חשד לקשר למחלות מערכתיות – רק שתלי סליין הותרו</td></tr>
+    <tr><td>2006</td><td>FDA</td><td>לאחר כ-14 שנות מחקר מבוסס-ראיות – ביטול המורטוריום, אישור שתלי סיליקון-ג'ל גם לשחזור וגם להגדלה אסתטית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">כיום קיים הדור החמישי של שתלי סיליקון-ג'ל, עם ג'ל דביק-קוהסיבי (<span class="term" dir="ltr">cohesive</span>) יותר משמעותית מהדורות הקודמים.</p>
+
+<h2><span class="num">3</span> סוגי מרחיבי רקמה</h2>
+<p>מרחיבי רקמה הם התקנים בלוניים המורכבים מסיליקון, המאפשרים לגוף "לגדל" עור נוסף על ידי מתיחה מכנית מבוקרת מעבר לגבול הפיזיולוגי (מכנוטרנסדוקציה). הגדילה <b>קבועה</b> ברובה, אך העור נסוג במידת-מה לאחר הוצאת המרחיב.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג</th><th>עקרון פעולה</th><th>יתרון / חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>שסתום מרוחק (<span class="term" dir="ltr">remote valve</span>) + צינורית</td><td>שסתום מונח מתחת לעור במרחק מהמרחיב, מוזרק דרכו סליין</td><td>מונע ניקוב בטעות של המרחיב עצמו; שימושי כשהעור דק מדי או הכיס נוקשה מדי</td></tr>
+    <tr><td>שסתום משולב (<span class="term" dir="ltr">integrated valve</span>)</td><td>מאגר ההזרקה משולב בתוך המרחיב עצמו</td><td>פחות סיכון לזיהום צינורית, אך סיכון גבוה יותר לניקוב בטעות בזמן הזרקה</td></tr>
+    <tr><td>מרחיב אוסמוטי עצמי-מילוי (הידרוג'ל)</td><td>הידרוג'ל (ויניל-פירולידון + מתיל-מתאקרילט) סופג נוזל חוץ-תאי באוסמוזה, עם קליפת פלסטיק שמגבילה התרחבות בלתי-מבוקרת</td><td>מתרחב תוך 6–8 שבועות ללא צורך בזריקות חוזרות; פחות ביקורי מטופל וכאב</td></tr>
+    <tr><td>מרחיב עצמי-מילוי בפחמן דו-חמצני (<span class="term" dir="ltr">CO₂ self-inflating</span>)</td><td>מילוי ב-CO₂ בשלט רדיו מרחוק</td><td>סיכון להתרחבות מתמשכת מעבר ליכולת הווסקולריות של הרקמה</td></tr>
+    <tr><td>מרחיב Becker (דו-לומני)</td><td>תא פנימי מתמלא סליין בזמן ההרחבה; תא חיצוני טעון ג'ל מראש כמו שתל רגיל</td><td>נשאר כשתל שד קבוע לאחר ההרחבה – חוסך ניתוח החלפה נוסף; שסתום מרוחק ניתן לניתוק בסוף התהליך</td></tr>
+    <tr><td>מרחיב מותאם-אישית (<span class="term" dir="ltr">custom-built</span>)</td><td>מיוצר לפי נפח, רוחב, אורך ובליטה ספציפיים</td><td>לפגמים לא-שגרתיים או מורכבים</td></tr>
+  </tbody>
+</table>
+</div>
+<p>מרחיבים סטנדרטיים מגיעים בצורות עגולות, מלבניות או חצי-סהר, בנפחים של 50–1000 סמ"ק. <b>מרחיבים דיפרנציאליים</b> (למשל מרחיב "אנטומי") מתוכננים להרחיב יותר בחלק אחד מהשטח – שימושי בעיקר בשחזור שד כדי לשפר את הקוטב התחתון.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/esHztsX-uFE" title="How does a Tissue Expander for Breast Reconstruction Work" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה קצרה של עקרון הפעולה של מרחיב רקמה בשחזור שד – איך מוזרק הסליין דרך השסתום ואיך העור מתרחב בהדרגה.</p>
+
+<h2><span class="num">4</span> שתלי שד: מבנה, מילוי וצורה</h2>
+<p>מאז שנות ה-60 היו חמישה דורות של שתלי שד, הנבדלים בקליפה, במילוי, בצורה ובעיצוב פני השטח. פני השטח (מרקם השתל) הם המשתנה בעל ההשפעה הקלינית המשמעותית ביותר על תגובת הרקמה:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג משטח</th><th>מאפיין</th></tr></thead>
+  <tbody>
+    <tr><td>חלק (<span class="term" dir="ltr">smooth</span>) / ננו-מרקם</td><td>מיוצר בטבילת מנדרל בסיליקון נוזלי ליצירת שכבות; מאפשר לשתל "לזוז" בתוך הקפסולה בלי לשנות צורה חיצונית כמו שתל מרוקם עושה</td></tr>
+    <tr><td>מיקרו-מרקם</td><td>חספוס פני שטח קל להגברת חיכוך ומניעת סיבוב/תזוזה</td></tr>
+    <tr><td>מקרו-מרקם</td><td>חספוס גס יותר; שכיח בשתלים אנטומיים (טיפת-דמעה) שחייבים משטח מחוספס כדי למנוע סיבוב</td></tr>
+    <tr><td>פוליאורתן (<span class="term" dir="ltr">polyurethane</span>)</td><td>דיווח על שיעורי פיברוזיס קפסולרי נמוכים יותר, אך הוצא מרצון מהשוק האמריקאי בגלל חשש להתפרקות (<span class="term" dir="ltr">degeneration</span>) קרצינוגנית פוטנציאלית <i>in vivo</i></td></tr>
+  </tbody>
+</table>
+</div>
+<p><b>ההיגיון מאחורי טקסטורה:</b> משטח לא-אחיד אמור למנוע יישור מקביל של סיבי קולגן סביב השתל, ובכך להפחית פיברוזיס קפסולרי (<span class="term" dir="ltr">capsular fibrosis</span>). מחקרים ראשוניים תמכו בכך, אך מחקרים ארוכי-טווח יותר הראו הבדל זניח בין חלק למרוקם. <b class="key">בו-זמנית, שתלים מרוקמים (ובעיקר מקרו-מרוקמים) קושרו לסיכון מוגבר משמעותית (פי 67–421) ל-BIA-ALCL</span> (ראו סעיף סיבוכים) – כך שהבחירה בין חלק למרוקם כרוכה בפשרה בין שני סיכונים שונים, לא בבחירה "בטוחה" מובהקת.</p>
+
+<h3>מילוי: סיליקון מול סליין</h3>
+<p>ג'ל הסיליקון קוהסיבי (מחזיק צורה), אך מידת הקוהסיביות משתנה לפי צפיפות הצלבת השרשראות (<span class="term" dir="ltr">cross-linking</span>): ג'ל פחות-מוצלב = אלסטי ורך יותר; ג'ל מוצלב יותר = קשיח ויציב יותר. כדי להפחית "דליפת ג'ל" (<span class="term" dir="ltr">gel bleed</span>) דרך הקליפה, בדורות השלישי-חמישי מוסיפים קבוצות פניל או טריפלואורופרופיל לקליפה להורדת חדירותה. שתלי סיליקון מורגשים טבעיים ורכים יותר; שתלי סליין קלים יותר לניפוח ולסינון דרך חתך קטן יותר, אך נוטים ל"קמטוט" (<span class="term" dir="ltr">rippling</span>) נראה במיקום תת-בלוטי.</p>
+
+<h3>צורה ופרופיל</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>צורה</th><th>מילוי אפשרי</th><th>מאפיין קליני</th></tr></thead>
+  <tbody>
+    <tr><td>עגול (<span class="term" dir="ltr">round</span>)</td><td>סליין או סיליקון</td><td>בליטה מקסימלית במרכז, נפח שווה מעל ומתחת – טוב לקוטב עליון מלא; פחות קמטים אך יכול לסובב בלי לשנות מראה</td></tr>
+    <tr><td>אנטומי / טיפת-דמעה (<span class="term" dir="ltr">anatomic/teardrop</span>)</td><td>סיליקון בלבד</td><td>עליון דק יותר, תחתון בולט יותר – מדמה שד טבעי, מתאים לפטוזיס קל; <b>חייב</b> משטח מרוקם למניעת סיבוב</td></tr>
+  </tbody>
+</table>
+</div>
+<p>חשוב להבחין בין <b>פרופיל</b> (מונח יצרן לא-סטנדרטי, תלת-ממדי – משלב בליטה וקוטר בסיס) לבין <b>בליטה/פרויקציה</b> (מדד ליניארי בודד וממשי של הממד הקדמי-אחורי). הפרופילים הנפוצים (מנמוך ל"אולטרה-גבוה") נותנים יותר מלאות מוגברת ופחות מלאות "טבעית", אך אין תקינה אחידה בין יצרנים – מה שנקרא "פרופיל גבוה" אצל יצרן אחד לא בהכרח שווה לאותו סיווג אצל יצרן אחר.</p>
+
+<h2><span class="num">5</span> בחירת מטופל ותכנון טרום-ניתוחי</h2>
+<p>הרחבת רקמה משמשת למגוון רחב של פגמים: כוויות, פגיעות, פגמים גדולים לאחר כריתת גידול, עיוותי שד וקרניופציאליים, נשירת שיער (אלופציה) ועוד. תנאי בסיס להצלחה: <b>יציבות פסיכולוגית</b> של המטופל (מול העיוות האסתטי הזמני בזמן ההרחבה), <b>רקמה מוזערת היטב מבחינת אספקת דם</b> באזור התורם, וללא <b>זיהום חיידקי</b> – כי גוף זר תת-עורי הופך כל זיהום לסיכון גבוה יותר לתשלוב וסטרוזיה.</p>
+
+<h3>מדידה ובחירת גודל השתל</h3>
+<ul>
+<li><b>מבחן הצביטה (<span class="term" dir="ltr">pinch test</span>)</b>: פחות מ-2 ס"מ – בחירה במיקום תת-שרירי (סאב-פקטורלי); מעל 2 ס"מ – ניתן לשקול תת-בלוטי.</li>
+<li><b>שיטת "High Five" של Tebbetts</b>: חמש החלטות קריטיות – כיסוי/כיס השתל, גודל/נפח השתל, סוג השתל, מיקום הקפל התת-שדי (<span class="term" dir="ltr">IMF</span>), ומיקום החתך.</li>
+<li><b>"מספר Y" (Del Yerro)</b>: מתאם את המרחק חריץ-על-החזה לפטמה עם היקף בית החזה, לצורך בחירת גובה השתל האופטימלי.</li>
+<li><b>כלל Regnault</b>: תוספת של כ-100 סמ"ק לשתל שווה בערך גודל כוס אחד נוסף.</li>
+<li><b>טבלת Botti</b> (לאישה בהיקף חזה ~75 ס"מ): כוס AA≈50–100 סמ"ק, A≈200, B≈350, C≈500, D≈650, ותוספת של כ-150 סמ"ק לכל כוס נוספת.</li>
+</ul>
+
+<h3>מיקום השתל</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מיקום</th><th>תיאור</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td>תת-בלוטי (<span class="term" dir="ltr">subglandular</span>)</td><td>מעל השריר החזי הגדול, מתחת לעור/שומן/רקמת בלוטה</td><td>פחות תזוזת שתל בפעילות גופנית, פחות כאב מיידי</td><td>סיכון גבוה יותר לפיברוזיס קפסולרי; קמטים/קצוות נראים יותר</td></tr>
+    <tr><td>תת-פאשיאלי (<span class="term" dir="ltr">subfascial</span>)</td><td>בין פאשיית השריר החזי לשריר עצמו</td><td>כיסוי טוב יותר, פחות קצוות נראים</td><td>הפאשיה דקה ושברירית – דורש זהירות רבה בהכנתה</td></tr>
+    <tr><td>Dual Plane I</td><td>תת-שרירי חלקי, שחרור מינימלי של הפרנכימה מהחיבורים התחתונים לשריר</td><td>הקלאסי, שחרור מוגבל</td><td>&nbsp;</td></tr>
+    <tr><td>Dual Plane II</td><td>שחרור פרנכימה עד לגובה הפטמה</td><td>משפר פטוזיס קל מאוד</td><td>קושי טכני גובר</td></tr>
+    <tr><td>Dual Plane III</td><td>השחרור הנרחב ביותר, עד לגובה הפטמה ומעבר</td><td>הכי גמיש למקרים מורכבים</td><td>קושי טכני מרבי; השריר נוטה "לקפוץ" בזמן ניתוק</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">6</span> טכניקה כירורגית</h2>
+<h3>הרחבת רקמה בראש-צוואר וקרקפת</h3>
+<p>נעשה חתך אחד או שניים, קדמי ו/או אחורי לאזור המורחב. אם צפויים פגמים, יש לכלול גשר עור (<span class="term" dir="ltr">skin bridge</span>) של לפחות 3 ס"מ. החתך מועמק עד <b>המישור התת-גלאלי</b> (<span class="term" dir="ltr">subgaleal plane</span>), שם קל לתת-חתור את הקרקפת ולהכין את הכיס. גודל בסיס הכיס צריך להיות שווה לגודל בסיס המרחיב – כדי למנוע נדידה של המרחיב. השסתום ממוקם בצד הנגדי לחתכים. <b class="key">ניפוח ראשוני של 15–20% מהנפח נעשה תוך-ניתוחית</b> להבטחת פריסה מלאה, ומילוי נוסף מתבצע שבוע-שבועיים לאחר החלמת העור.</p>
+
+<h3>הרחבת שד (מרחיב שד)</h3>
+<p>המרחיב ממוקם בכיס תת-שרירי, 2 ס"מ מתחת לקפל התת-שדי הטבעי, מכוסה במלואו על ידי השריר החזי הגדול, פאשיית השריר המשונן (סראטוס) ועטיפת השריר הישר הבטני. מילוי מתחיל תוך-ניתוחית עם סליין. במקרים נדירים (למשל שד שלא הוקרן קודם) ניתן למקם את המרחיב בכיס אפי-פקטורלי (מעל השריר), אך חובה שכיסוי הדרמיס/שומן יהיה עבה מספיק כדי להבטיח זילוח מספק ולמנוע נמק עור.</p>
+
+<h3>חתכים להשתלת שד</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>חתך</th><th>מתי מועדף</th></tr></thead>
+  <tbody>
+    <tr><td>תת-שדי (<span class="term" dir="ltr">inframammary</span>)</td><td>הנפוץ ביותר – תצפית מיטבית על הכיס, מאפשר קיצור מרחק פטמה-קפל</td></tr>
+    <tr><td>פריאראולרי</td><td>קוטר עטרה מעל 3.5 ס"מ ונפח שתל מתחת ל-300 סמ"ק; מאפשר גם תיקון קל של הקפל התת-שדי</td></tr>
+    <tr><td>טרנס-אקסילרי</td><td>עם ויזואליזציה אנדוסקופית לחיתוך שריר מדויק ולהמוסטזה מונעת</td></tr>
+    <tr><td>טרנס-אומביליקלי</td><td>שימוש מוגבל מאוד כיום – מתאים רק לשתלי סליין</td></tr>
+  </tbody>
+</table>
+</div>
+<p>השתל מוחדר ידנית או באמצעות שרוול החדרה (למשל משפך Keller) להפחתת מגע ישיר עם העור וסיכון זיהום.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/uZkn1IyzO3E" title="What is a Tissue Expander | Breast Reconstruction Overview" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה כללית של תהליך שחזור שד עם מרחיב רקמה ולאחר מכן שתל קבוע – ממחישה את רצף הטיפול לאורך זמן.</p>
+
+<h2><span class="num">7</span> טיפול לאחר הניתוח</h2>
+<p><b>הרחבת רקמה</b>: ניפוח סדרתי מתחיל 1–2 שבועות לאחר הניתוח, באמצעות מחט 23G או קטנה יותר, בהתאם לסבילות המטופל ולוסקולריות העור, לרוב פעם בשבוע. במרחיבי שד מקובל <b>ניפוח-יתר מכוון (over-inflation)</b> כדי להשיג פטוזיס טבעי לאחר החלפה לשתל קבוע.</p>
+<p><b>שתלי שד</b>: אשפוז 1–2 לילות, ניתוק נקזים כשספיקתם מתחת ל-30–40 סמ"ק, חזייה דוחסת 4–6 שבועות, הימנעות מספורט וסאונה לאותה תקופה. עיסוי שתל מותר ומועיל בשתלים חלקים (מתחיל 4–5 ימים לאחר הניתוח) אך <b class="key">אסור בשתלים מרוקמים</b> כי הוא מעלה סיכון להצטברות נוזל סביב השתל. מעקבים שגרתיים: 14 יום, 6 שבועות, 3 חודשים, שנה.</p>
+
+<h2><span class="num">8</span> סיבוכים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיבוך</th><th>שכיחות משוערת</th><th>נקודות מפתח</th></tr></thead>
+  <tbody>
+    <tr><td>המטומה / סרומה</td><td>6–30% במרחיבים, 3–70% בשתלים; סרומה מאוחרת (&gt;שנה) 0.9–1.8%</td><td>טיפול: שאיבה, קטטר לסרומה, או ניקוז ניתוחי; סרומה מאוחרת היא גורם סיכון ל-BIA-ALCL</td></tr>
+    <tr><td>זיהום</td><td>עד 2.9% אחרי הגדלת שד אסתטית (1.7% מוקדם, 0.8% מאוחר)</td><td>מקור עיקרי: זיהום חיידקי בזמן הניתוח; אם אין שיפור – יש לחלץ את השתל/מרחיב ללא דיחוי</td></tr>
+    <tr><td>פיברוזיס קפסולרי (<span class="term" dir="ltr">capsular fibrosis</span>)</td><td>שכיחות כוללת 10.6%</td><td>הגירת תאי T ומקרופאגים ← הפעלת (מיו)פיברובלסטים ← שקיעת קולגן ומטריקס עודפת; טיפול סטנדרטי לדרגה קשה: קפסולקטומיה/קפסולוטומיה</td></tr>
+    <tr><td>מיקום לא-תקין (Bottoming out / Double bubble / Snoopy / Symmastia)</td><td>שכיח בניתוחי תיקון</td><td>ראו טבלה ואיור מפורטים למטה</td></tr>
+    <tr><td>קרע/דלף/כשל</td><td>עד 11.8% ב-13 שנים</td><td>קרע סיליקון לרוב "שקט" קלינית; MRI הוא הכלי הרגיש ביותר לאבחון קרע תוך-קפסולרי</td></tr>
+    <tr><td>חשיפת שתל/מרחיב</td><td>נמוכה</td><td>טיפול לפי סימפטומים; לעיתים נדרש שיקום רקמה מקומי או פלאפ מרוחק</td></tr>
+    <tr><td>BIA-ALCL</td><td>נדיר, אך סיכון גובר פי 67–421 בשתלים מרוקמים</td><td>ראו הרחבה בהמשך</td></tr>
+    <tr><td>מחלת שתל שד (BII)</td><td>לא ידוע במדויק – אבחנת שלילה</td><td>ראו הרחבה בהמשך</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>ארבע דפורמציות המיקום הקלאסיות</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>דפורמציה</th><th>מנגנון</th><th>מראה קליני</th></tr></thead>
+  <tbody>
+    <tr><td>Bottoming out</td><td>נדידה תחתונה של השתל</td><td>פטמה "רוכבת גבוה", קוטב תחתון מוארך יתר על המידה</td></tr>
+    <tr><td>Double bubble</td><td>הפרעה של הקפל התת-שדי הישן, פיברוזיס קפסולרי, פטוזיס בלוטית</td><td>שני קפלים רוחביים מקבילים על הקוטב התחתון (קמור כפול)</td></tr>
+    <tr><td>Snoopy / Waterfall</td><td>מיקום עליון-מדי של השתל</td><td>קוטב עליון מלא, אך הרקמה הטבעית "נשפכת" מתחת לשתל</td></tr>
+    <tr><td>Symmastia</td><td>חיתוך יתר של קו האמצע – שני כיסים נפרדים הופכים לכיס אחד</td><td>השתלים נפגשים מעבר לקו האמצע, ללא "סינוס" טבעי בין השדיים</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>קרע/דלף - הבחנה בין קרע לדלף</h3>
+<p>ה-FDA מגדיר <b>קרע (rupture)</b> כקרע או חור בקליפה החיצונית – מונח שחל על כל סוגי השתלים. <b>דלף (deflation)</b> חל <i>רק</i> על שתלי סליין – דליפת הסליין החוצה עם קריסה חלקית/מלאה, שמתגלה כמעט מיד. שתלי סיליקון, לעומת זאת, נוטים לקרוע "בשקט" – הג'ל נשאר כלוא בתוך קפסולת הצלקת (קרע תוך-קפסולרי) בלי שינוי חיצוני נראה, ולכן ה-MRI (ולא הבדיקה הפיזיקלית) הוא כלי האבחון הרגיש ביותר לקרעים שקטים.</p>
+
+<h3>BIA-ALCL – לימפומה הקשורה לשתלי שד</h3>
+<p><span class="term" dir="ltr">BIA-ALCL (Breast Implant-Associated Anaplastic Large Cell Lymphoma)</span> היא לימפומה על-שם תאי T, נדירה אך פוטנציאלית קטלנית, המופיעה כמעט אך ורק סביב שתלים <b>מרוקמים</b>. סימן החשד המרכזי הוא <b>סרומה מאוחרת</b> (יותר משנה לאחר ההשתלה) שאינה מוסברת בזיהום או טראומה – יש לחקור אותה בשאיפת מחט דקה, ציטומטריית זרימה, ואימונוהיסטוכימיה ל-CD30/ALK. הטיפול העיקרי הוא כריתה ניתוחית מלאה (כולל קפסולקטומיה), עם קווים מנחים של ה-NCCN לניהול המחלה בכל שלביה.</p>
+
+<h3>מחלת שתל שד (Breast Implant Illness, BII)</h3>
+<p>מכלול תסמינים סיסטמיים (עייפות, סחרחורת, מיאלגיה, ארתרלגיה, פריחה, קהות/עקצוץ בגפיים, נשירת שיער, ירידה קוגניטיבית, יובש בעיניים ועוד) המדווח בחלק מהנשים עם שתלי שד, ללא בדיקה אבחנתית ספציפית. מנגנון אפשרי: תגובה אוטואימונית-דלקתית שהוצע לכנותה תסמונת ASIA (Autoimmune/inflammatory Syndrome Induced by Adjuvants) או תסמונת Shoenfeld. <b class="key">BII היא אבחנת שלילה</b> – יש לשלול מחלות אחרות (בדיקות דם לנוגדנים ואנטיגנים) לפני ייחוס התסמינים לשתל. בחלק מהמקרים הסרת השתל משפרת או פותרת את התסמינים לחלוטין.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-U-B</span> לבחירת מיקום שתל השד</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Subglandular</span> (מעל השריר) – פחות תזוזה, יותר קפסולה.<br>
+    <b>U</b> – <span class="term" dir="ltr">Under fascia</span> (תת-פאשיאלי) – כיסוי טוב, פאשיה שברירית.<br>
+    <b>B</b> – <span class="term" dir="ltr">Beneath muscle / dual-plane</span> (תת-שרירי) – הכי הרבה כיסוי, הכי מורכב טכנית.
+  </p>
+  <h3>סיפור דמיוני: "מסיבת הבלון האיטית"</h3>
+  <p>דמייני בלון מסיבה שמנפחים לא בנשיפה אחת אלא לאט לאט, פעם בשבוע, במשך חודשים. ככל שהבלון (המרחיב) גדל בעדינות, קרום הגומי (העור) לא נקרע – הוא "לומד" להתרחב, מכווץ סיבים חדשים ומזמין יותר "צנרת" (כלי דם חדשים) כדי להזין את השטח הנוסף. אם ננפח מהר מדי – הבלון יתפוצץ (איסכמיה/נמק). זו בדיוק הסיבה שהרחבת רקמה היא תהליך של שבועות, לא של יום אחד.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>מסיבת הבלון האיטית</title>
+    <circle cx="150" cy="110" r="38" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <text x="150" y="115" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">שבוע 1</text>
+    <circle cx="290" cy="100" r="55" fill="#fcd34d" stroke="#b45309" stroke-width="3"/>
+    <text x="290" y="105" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">שבוע 4</text>
+    <circle cx="440" cy="90" r="72" fill="#fbbf24" stroke="#b45309" stroke-width="3" opacity="0.9"/>
+    <text x="440" y="95" font-size="14" text-anchor="middle" fill="#78350f" font-weight="700">שבוע 8+</text>
+    <line x1="440" y1="162" x2="440" y2="180" stroke="#78350f" stroke-width="2"/>
+    <line x1="290" y1="155" x2="290" y2="180" stroke="#78350f" stroke-width="2"/>
+    <line x1="150" y1="148" x2="150" y2="180" stroke="#78350f" stroke-width="2"/>
+    <text x="270" y="20" font-size="12.5" text-anchor="middle" fill="#4b5563">ניפוח הדרגתי → עור ורקמה "לומדים" לגדול בלי לקרוע</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.fda.gov/medical-devices/breast-implants/types-breast-implants" target="_blank">Types of Breast Implants – FDA</a>
+    <div class="desc">סקירה רשמית של ה-FDA על סוגי שתלי השד (סיליקון/סליין, חלק/מרוקם, עגול/אנטומי).</div>
+  </li>
+  <li>
+    <a href="https://www.fda.gov/medical-devices/implants-and-prosthetics/breast-implants" target="_blank">Breast Implants – FDA (Implants and Prosthetics)</a>
+    <div class="desc">עמוד המרכז של ה-FDA לנושא שתלי שד, כולל קישורים לבטיחות, קרע, ו-BIA-ALCL.</div>
+  </li>
+  <li>
+    <a href="https://www.plasticsurgery.org/patient-safety/breast-implant-safety/bia-alcl-summary" target="_blank">BIA-ALCL Summary – ASPS (American Society of Plastic Surgeons)</a>
+    <div class="desc">מסמך עמדה של האיגוד האמריקאי לכירורגיה פלסטית על BIA-ALCL: גורמי סיכון, אבחון, וטיפול.</div>
+  </li>
+  <li>
+    <a href="https://my.clevelandclinic.org/health/diseases/21078-bia-alcl" target="_blank">BIA-ALCL – Cleveland Clinic</a>
+    <div class="desc">הסבר קליני ידידותי על תסמינים, אבחנה ופרוגנוזה של BIA-ALCL.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 47, שנתיים לאחר מסטקטומיה ושחזור שד עם שתל סיליקון מרוקם תת-שרירי, מגיעה עם נפיחות פתאומית וכאב בשד ימין, ללא חום. בבדיקה: בצקת ניכרת, ללא סימני זיהום מקומי. שאיפת נוזל מגלה כמות ניכרת של נוזל צלול-מעט עכור. אין טראומה או זיהום ידוע.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי האבחנה המבדלת הדחופה ביותר שיש לשלול במטופלת זו, ואיזו בדיקה מתאימה ביותר לכך?</div>
+  <button class="opt" data-i="0">קרע שתל סליין – יש לבצע בדיקה גופנית בלבד</button>
+  <button class="opt" data-i="1">זיהום חריף – יש להתחיל אנטיביוטיקה ולעקוב קלינית בלבד</button>
+  <button class="opt" data-i="2">BIA-ALCL – יש לבצע שאיבת מחט דקה עם ציטומטריית זרימה ואימונוהיסטוכימיה ל-CD30/ALK</button>
+  <button class="opt" data-i="3">מחלת שתל שד (BII) – יש לבצע רק בדיקות דם לנוגדנים</button>
+  <div class="explain">התשובה הנכונה: סרומה מאוחרת (יותר משנה לאחר ההשתלה), במיוחד עם שתל מרוקם וללא סימני זיהום או טראומה, היא הסימן הקלאסי המחשיד ל-BIA-ALCL, ולכן מחייבת בירור פעיל בציטומטריית זרימה ואימונוהיסטוכימיה ל-CD30/ALK. תשובה 1 שגויה כי קרע שתל סליין מתבטא בקריסת נפח מיידית וגלויה, לא בסרומה; שתל זה גם סיליקון ולא סליין. תשובה 2 שגויה כי אין חום או סימנים אחרים לזיהום, ולכן אין להסתפק במעקב בלבד בלי לשלול BIA-ALCL. תשובה 4 שגויה כי BII היא אבחנת שלילה כללית (עייפות, מיאלגיה וכו') ולא מתאימה לתמונה הממוקדת של נפיחות/כאב חד-צדדי חדש עם סרומה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מהו ההסבר המנגנוני לכך שמשטח מרוקם (textured) על שתל שד נחשב אמצעי להפחתת פיברוזיס קפסולרי?</div>
+  <button class="opt" data-i="0">המשטח המרוקם מפריש חומר אנטי-דלקתי לרקמה הסובבת</button>
+  <button class="opt" data-i="1">משטח לא-אחיד מונע יישור מקביל של סיבי קולגן סביב השתל, ובכך מפחית תגובת גוף זר מוגזמת</button>
+  <button class="opt" data-i="2">המשטח המרוקם מונע כל אפשרות של הצטברות חיידקים סביב השתל</button>
+  <button class="opt" data-i="3">משטח מרוקם מגביר את זרימת הדם המקומית סביב השתל</button>
+  <div class="explain">התשובה הנכונה: ההיגיון התיאורטי מאחורי טקסטורת שתלים הוא שמשטח לא-סדיר מפריע ליצירת יישור מקביל וסדיר של סיבי קולגן סביב השתל – יישור כזה הוא הבסיס להתפתחות קפסולה סיבית מכווצת (פיברוזיס קפסולרי). תשובה 1 שגויה כי אין הפרשה כזו. תשובה 3 שגויה – טקסטורה לא "מונעת לגמרי" זיהום, ובפועל דווקא נקשרה גם לסיכון BIA-ALCL. תשובה 4 אינה מוזכרת כמנגנון הפעולה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי ההגדרה המדויקת של ה-FDA למונח "רופצ'ר" (rupture) בהקשר של שתלי שד, ובמה זה שונה מ"דפלציה" (deflation)?</div>
+  <button class="opt" data-i="0">רופצ'ר = קרע או חור בקליפה החיצונית, חל על כל סוגי השתלים; דפלציה חלה רק על שתלי סליין ומתארת דליפת נוזל עם קריסת נפח נראית</button>
+  <button class="opt" data-i="1">רופצ'ר ודפלציה הם מונחים זהים לחלוטין וניתן להשתמש בהם לסירוגין</button>
+  <button class="opt" data-i="2">רופצ'ר חל רק על שתלי סליין, ודפלציה חלה רק על שתלי סיליקון</button>
+  <button class="opt" data-i="3">רופצ'ר מתרחש רק כתוצאה מטראומה חיצונית, בעוד דפלציה מתרחשת רק באופן ספונטני</button>
+  <div class="explain">התשובה הנכונה: לפי הגדרת ה-FDA, "רופצ'ר" הוא כל קרע/חור בקליפה החיצונית של השתל, ומונח זה תקף לכל סוגי שתלי השד (סיליקון וסליין כאחד). "דפלציה" הוא מונח ספציפי יותר, החל רק על שתלי סליין, ומתאר את דליפת הנוזל הפיזיולוגי דרך פגם בקליפה עם קריסה נראית מיידית של השתל. תשובה 2 הפוכה מההגדרה. תשובה 3 שגויה כי שתי התופעות יכולות לקרות מסיבות שונות (פיברוזיס, ניקוב, בלאי) ולא רק טראומה או ספונטניות בלעדית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופלת עברה הגדלת שד תת-שרירית עם דיסקציה נרחבת מדי לאורך קו האמצע, וכעת השדיים "נפגשים" ללא סינוס טבעי ביניהם. מהי הדפורמציה, ומהו עקרון התיקון הכירורגי הבסיסי?</div>
+  <button class="opt" data-i="0">Double bubble – תיקון בהמרה מתת-שרירי לתת-בלוטי בלבד</button>
+  <button class="opt" data-i="1">Bottoming out – תיקון על ידי הגבהת הקפל התת-שדי בלבד</button>
+  <button class="opt" data-i="2">Snoopy deformity – תיקון על ידי הנחת רשת תומכת מסיבית מתחת לשתל</button>
+  <button class="opt" data-i="3">Symmastia – תיקון על ידי קפסולורפיה מדיאלית (תפירה מחדש של הקפסולה לעצם החזה) או יצירת כיס "נאו-סאב-פקטורלי"</button>
+  <div class="explain">התשובה הנכונה: Symmastia נגרמת מדיסקציה מוגזמת של קו האמצע שהופכת שני כיסים נפרדים לכיס אחד רציף, כך שהשתלים "נפגשים" מעבר לקו האמצע. התיקון הבסיסי כולל קפסולורפיה מדיאלית (חיבור מחדש של הקפסולה לעצם החזה) או יצירת כיס נאו-סאב-פקטורלי חדש וצר יותר. Double bubble (תשובה 1) הוא הפרעה של הקפל התת-שדי הישן עם שני קמורים מקבילים – תמונה שונה לחלוטין. Bottoming out (תשובה 2) הוא נדידה תחתונה, לא מדיאלית. Snoopy (תשובה 3) הוא מיקום עליון-מדי של השתל – גם כן תמונה שונה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע הרחבת רקמה מבוצעת בהדרגה על פני שבועות ולא בניפוח אחד גדול, לפי מנגנון המכנוטרנסדוקציה שתואר בפרק?</div>
+  <button class="opt" data-i="0">כי סליכון מתפוגג מהר מדי אם מוזרק בבת אחת</button>
+  <button class="opt" data-i="1">כי מתיחה מעבר לגבול הפיזיולוגי משנה תפקוד תא ומסכנת את הוסקולריות, ואילו התהליך הביולוגי (שגשוג תאים, סינתזת קולגן, אנגיוגנזה) תלוי-זמן מטבעו</button>
+  <button class="opt" data-i="2">כי חוקי ה-FDA אוסרים ניפוח מהיר של מרחיבים ללא קשר לביולוגיה</button>
+  <button class="opt" data-i="3">כי מרחיבים מודרניים כולם מוגבלים טכנית לניפוח של 5% נפח ביום בלבד</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שמתיחה מעבר לגבול הפיזיולוגי גורמת לשינוי בתפקוד התא, ושתגובת הרקמה (שגשוג פיברובלסטים, סינתזת קולגן, אנגיוגנזה עם עלייה ב-VEGF/PDGF/bFGF) היא תהליך ביולוגי שדורש זמן להתרחש בבטחה, מבלי לפגוע באספקת הדם לרקמה. תשובה 1 אינה מוזכרת כלל בפרק כשיקול. תשובה 3 אינה נכונה עובדתית – אין רגולציה כזו על קצב הניפוח. תשובה 4 ממציאה מגבלה טכנית קונקרטית שלא מוזכרת בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מכנוטרנסדוקציה</b>: מתיחה מכנית מעבר לגבול הפיזיולוגי → תעלות יונים/אינטגרינים/קינאזות → שגשוג תאים, יישור קולגן/אלסטין, אנגיוגנזה (VEGF/PDGF/bFGF) → רקמה חדשה ווסקולרית יותר. תהליך תלוי-זמן – לכן הרחבה הדרגתית.</li>
+    <li><b>מרחיבי רקמה</b>: שסתום מרוחק/משולב, אוסמוטי-הידרוג'ל, CO₂ עצמי-מילוי, Becker דו-לומני (זמני→קבוע), מותאם-אישית.</li>
+    <li><b>שתלי שד</b>: חמישה דורות מאז שנות ה-60; משטח (חלק↔מרוקם), מילוי (סיליקון↔סליין), צורה (עגול↔אנטומי), פרופיל (שונה מפרויקציה!).</li>
+    <li><b>מיקום</b>: תת-בלוטי / תת-פאשיאלי / תת-שרירי (Dual Plane I–III בהתאם למידת שחרור השריר).</li>
+    <li><b>סיבוכים מרכזיים</b>: המטומה/סרומה, זיהום, פיברוזיס קפסולרי (10.6%), מיקום לא-תקין (Bottoming out / Double bubble / Snoopy / Symmastia), קרע/דלף (11.8% ב-13 שנים, MRI לקרע שקט), BIA-ALCL (סרומה מאוחרת + שתל מרוקם → FNA + CD30/ALK), BII (אבחנת שלילה).</li>
+    <li>FDA: מורטוריום על סיליקון 1992 → ביטול 2006 לאחר עדות מבוססת-ראיות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

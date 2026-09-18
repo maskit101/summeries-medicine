@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 12: שחזור היד המרוסקת</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  .note-box{background:#f0f9ff; border:1px solid #7dd3fc; border-radius:6px; padding:12px 16px; margin:12px 0; font-size:15px}
+  .note-box::before{content:"הערת מקור: "; font-weight:700; color:#0369a1}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 12: שחזור היד המרוסקת <span class="term" dir="ltr">Reconstructive Surgery of the Mutilated Hand</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | מהדורה 5</div>
+
+<div class="note-box">קובץ ה-PDF המקורי של הפרק חרג מהגודל שניתן לקריאה ישירה בסביבת העבודה (מעל 20MB), וכלי חילוץ העמודים (<span dir="ltr">pdftoppm</span>) לא היה זמין בסביבה גם לאחר מספר ניסיונות חוזרים בטווחי עמודים קטנים. לכן סיכום זה נבנה על בסיס ידע כללי מבוסס על התוכן הסטנדרטי והמוכר של פרק זה במהדורה 5 של Neligan (הפרק מבוסס במידה רבה על גישת ה-"Reconstructive Ladder for the Mutilated Hand" ועקרונות שפורסמו על ידי מחברים כמו Neil F. Jones ו-Norman Weinzweig), ולא על קריאה ישירה של קובץ ה-PDF הספציפי. מומלץ לאמת נתונים מספריים מדויקים (אחוזים, מספרי עמודים) מול הטקסט המקורי בעת הכנה למבחן.</div>
+
+<p>"יד מרוסקת" (<span class="term" dir="ltr">mutilated hand</span>) היא לא אבחנה אחת אלא תיאור של דפוס פגיעה: פגיעה קשה, רב-רקמתית (עור, עצם, גיד, עצב, כלי דם) שפוגעת ב<b>מספר קרניים (rays)</b> בו-זמנית, בדרך כלל כתוצאה ממנגנון בעל אנרגיה גבוהה - מכונות תעשייתיות (מכבש, מסור עגול), פגיעות דריסה (<span class="term" dir="ltr">crush</span>), פגיעות עקירה/הפשטה (<span class="term" dir="ltr">avulsion/degloving</span>) או פגיעות פיצוץ (<span class="term" dir="ltr">blast</span>). זהו אחד האתגרים המורכבים ביותר בכירורגיה של היד, כי בניגוד לקטיעה "נקייה" (הנדונה בפרק ההשתלה החוזרת), כאן הרקמה הנותרת עצמה פגועה ובלתי-ודאית, וההחלטות (מה לשמר, מה לקטוע, איך לתעדף) הן שקובעות את התפקוד העתידי הרבה יותר מאשר בכל פציעה אחרת ביד.</p>
+
+<h2><span class="num">1</span> עקרון העל: הטיפול הראשוני קובע את התוצאה הסופית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>למה זה כל כך קריטי?</b> ביד מרוסקת, בניגוד לרוב הפציעות האחרות, אי אפשר "לתקן מאוחר יותר" מה שהוקרב או נהרס בניתוח הראשון. רקמה שהוסרה בטעות (עור שנראה גבולי אך היה שריד), עצב שלא זוהה ונקטע, או קיצור עצם מיותר - כל אלו הם החלטות בלתי הפיכות שמגבילות לצמיתות את אפשרויות השחזור העתידיות.
+  </p>
+  <p>המנתח הראשון שרואה את היד המרוסקת בחדר המיון/ניתוח <b class="key">"בונה את התשתית"</b> לכל מה שיבוא אחר כך - גם אם השחזור הסופי (פלאפים, השתלות אצבע, גידים) יבוצע חודשים לאחר מכן על ידי צוות אחר. לכן הגישה הראשונית חייבת תמיד להישען על שאלה מרכזית: <b>"מה אפשר עדיין להציל, ומה חובה להקריב כדי לאפשר תפקוד טוב יותר?"</b> - ולא רק "מה נראה פגוע ביותר".</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>סדר העדיפויות בטיפול ביד המרוסקת</title>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">הצלת חיים</text>
+  <text x="770" y="66" font-size="12" text-anchor="middle" fill="#7f1d1d">(ATLS, לפני האיבר)</text>
+
+  <rect x="540" y="20" width="140" height="70" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+  <text x="610" y="42" font-size="13" text-anchor="middle" fill="#7c2d12" font-weight="700">דברידמן</text>
+  <text x="610" y="60" font-size="12" text-anchor="middle" fill="#7c2d12">רדיקלי + חוזר</text>
+  <text x="610" y="76" font-size="11" text-anchor="middle" fill="#7c2d12">("second look")</text>
+
+  <rect x="380" y="20" width="140" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="450" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלד</text>
+  <text x="450" y="66" font-size="12" text-anchor="middle" fill="#1e3a8a">אורך ויישור</text>
+
+  <rect x="220" y="20" width="140" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="290" y="42" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">כיסוי רקמה רכה</text>
+  <text x="290" y="60" font-size="12" text-anchor="middle" fill="#4c1d95">מכוסה כלי דם</text>
+  <text x="290" y="76" font-size="11" text-anchor="middle" fill="#4c1d95">(פלאפ)</text>
+
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="110" y="42" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">גיד → עצב → תחושה</text>
+  <text x="110" y="60" font-size="12" text-anchor="middle" fill="#065f46">מיידי או מושהה</text>
+  <text x="110" y="76" font-size="11" text-anchor="middle" fill="#065f46">(reconstructive ladder)</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="500,55 540,49 540,61" fill="#374151"/>
+  <line x1="540" y1="55" x2="500" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="340,55 380,49 380,61" fill="#374151"/>
+  <line x1="380" y1="55" x2="340" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,55 220,49 220,61" fill="#374151"/>
+  <line x1="220" y1="55" x2="200" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="120" y="140" width="620" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="168" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">כלל האצבע: "עצם ← גיד ← עצב ← עור" - אבל בפועל, כיסוי רקמה רכה מכוסת-כלי-דם (פלאפ) הוא לרוב הצעד הדוחק ביותר</text>
+  <text x="430" y="188" font-size="12" text-anchor="middle" fill="#78350f">כדי למנוע התייבשות/זיהום של עצם וגיד חשופים, גם אם השחזור התפקודי המלא נדחה לשלב מאוחר יותר</text>
+  <polygon points="430,140 424,120 436,120" fill="#b45309"/>
+  <line x1="430" y1="140" x2="430" y2="120" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">2</span> הערכה ראשונית וטיפול חירום</h2>
+<p>ניהול היד המרוסקת מתחיל תמיד ב<b>גישת ATLS</b> - חיי החולה קודמים לאיבר (במיוחד בפציעות עתירות-אנרגיה שנלוות לעיתים לטראומה רב-מערכתית). לאחר ייצוב, ההערכה הספציפית ליד כוללת:</p>
+<table>
+  <thead><tr><th>שלב</th><th>מה כוללים</th></tr></thead>
+  <tbody>
+    <tr><td><b>תיעוד</b></td><td>צילום (לפני כל ניקוי/דברידמן!), תיאור מדויק של מנגנון הפגיעה (דריסה לעומת עקירה משנים לחלוטין את הפרוגנוזה של כלי הדם והעצבים), ותיעוד ממצאים נוירווסקולריים ראשוניים לכל קרן בנפרד.</td></tr>
+    <tr><td><b>הדמיה</b></td><td>צילומי רנטגן בכיוונים מרובים לכל האזור הפגוע - כולל שורש כף היד ואמה אם יש חשד להארכת הפגיעה פרוקסימלית.</td></tr>
+    <tr><td><b>הערכת כלי דם</b></td><td>בדיקת דופק, מילוי קפילרי, וצבע העור לכל קרן. בפגיעת עקירה (avulsion) הנזק לאינטימה של כלי הדם עשוי להימשך הרבה מעבר לאזור הנראה לעין - זו הסיבה שפגיעות עקירה מנובאות גרוע יותר מפגיעות דריסה "נקיות" יחסית, גם כשהן נראות דומות מבחוץ.</td></tr>
+    <tr><td><b>אנטיביוטיקה וטטנוס</b></td><td>מתן מוקדם של אנטיביוטיקה תוך-ורידית רחבת טווח (למשל Cefazolin, עם תוספת כיסוי לגראם-שלילי/אנאירובי בפצעים מזוהמים מאוד כמו פגיעות חקלאיות) ועדכון טטנוס לפי הצורך.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">3</span> דברידמן: אבן היסוד של הטיפול</h2>
+<div class="mechanism">
+  <p class="chain"><b>למה דברידמן רדיקלי כל כך קריטי?</b> רקמה שמתה או במצב גבולי (עור מרוסק, שריר לא-כדאי) שנותרת במקום היא מצע לזיהום, ומונעת ריפוי ראשוני של מה שכן הושתל/שוחזר. אך יחד עם זאת - ביד, בניגוד לרוב חלקי הגוף האחרים, אין "רקמה מיותרת": כל מילימטר עור, כל גיד, כל ענף עצבי עשוי להיות קריטי לתפקוד הסופי.</p>
+  <p><b class="key">העיקרון המנחה: "דבדרם עד רקמה בריאה בוודאות, אך אל תקריב רקמה רק כי היא נראית גרועה"</b> - כלי הדם ביד עשירים באנסטומוזות (חיבורים) והרקמה עמידה יחסית לאיסכמיה קצרה; ולכן שריר או עור שנראים גבוליים יכולים להתאושש. הפתרון לדילמה הזו הוא <b><span class="term" dir="ltr">"second-look" debridement</span></b> - חזרה מתוכננת לחדר ניתוח תוך 24-48 שעות, לאחר שהגבול בין רקמה קיימא ללא-קיימא מתבהר, ולפני שמבצעים סגירה/שחזור סופי.</p>
+</div>
+<p>עקרונות נוספים בדברידמן: שטיפה נרחבת בנפח גדול (irrigation), הסרת כל גוף זר וזיהום גס, שימור מקסימלי של עור בריא גם אם לא בשימוש מיידי (ניתן "לבנק" אותו כשתל עתידי או כדי לכסות מבנים חשופים זמנית), ושימור אקטיבי של מבנים ניתנים לשחזור (עצבים, גידים, כלי דם) גם אם הם קרועים - לסמן ולתייג אותם לתיקון מאוחר יותר ולא "לאבד" אותם בתוך רקמה מרוסקת.</p>
+
+<h2><span class="num">4</span> החלטות קריטיות: מה לשמר, מה לקטוע</h2>
+<p>זו לרוב ההחלטה הקשה ביותר ביד המרוסקת, ומשפיעה יותר על התוצאה הפונקציונלית מכל טכניקת שחזור. עקרונות מנחים:</p>
+<table>
+  <thead><tr><th>עיקרון</th><th>הסבר</th></tr></thead>
+  <tbody>
+    <tr><td><b>האגודל קודם לכל</b></td><td>האגודל אחראי ל-40-50% מתפקוד היד כולה (אחיזה, צביטה). שימור אורך, ניידות ותחושת האגודל הוא בעל עדיפות עליונה, ולעיתים מצדיק ניתוחים מורכבים (כמו העברת אצבע/בוהן) גם כשקרניים אחרות מוקרבות.</td></tr>
+    <tr><td><b>שימור אורך לעומת תפקוד</b></td><td>קרן קצרה מדי (למשל קטומה קרוב לכף היד ללא מפרקים פעילים) עלולה להפריע יותר משהיא עוזרת - "מכשול" שמפריע לאחיזה של קרניים סמוכות בריאות. לעיתים קטיעה של קרן פגועה קשות (<span class="term" dir="ltr">ray amputation</span>) משפרת תפקוד כולל יותר משימור "בכל מחיר".</td></tr>
+    <tr><td><b>שימור המרווח הראשון (first web space)</b></td><td>המרווח בין האגודל לאצבע המורה קובע את טווח התנועה של הצביטה (pinch) והאחיזה הגלילית. איבוד שלו (למשל מצלקת מכווצת) הוא מהסיבוכים הפונקציונליים המשמעותיים ביותר, ולכן יש להשקיע במיוחד בכיסוי רקמה רכה שלא יגרום להצטלקות מכווצת באזור הזה (למשל פלאפ Z-plasty או פלאפ חופשי דק).</td></tr>
+    <tr><td><b>קטיעת קרן (ray amputation/transposition)</b></td><td>הסרת קרן שלמה (אצבע + המטקרפל שלה) עם קירוב הקרניים הסמוכות - משפרת קוסמטיקה (סוגר את "החור" ביד) ומפחיתת סיבוכי כאב/נוירומה, אך מקטינה את רוחב כף כף היד ואת כוח האחיזה. שיקול מיוחד לגבי אצבע קטנה (5) ומורה (2), שקטיעתן משמרת תפקוד טוב יחסית.</td></tr>
+    <tr><td>"חלקי חילוף" (<span class="term" dir="ltr">spare parts surgery</span>)</td><td>עיקרון ייחודי ליד המרוסקת: מקרן/אצבע שאינה ניתנת להצלה אך יש בה רקמה בריאה (עור, כלי דם, עצב, ציפורן, מפרק) - ניתן "למחזר" את הרקמה לשחזור קרן אחרת פגועה יותר (למשל עור מאצבע שאבדה משמש לכיסוי אגודל פגוע, או פלנקס עם מפרק בריא מועבר לאגודל). זהו עיקרון ה"אל תזרוק כלום" שמייחד את הניתוח ביד מרוסקת מניתוחי טראומה אחרים.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> סדר העדיפויות בשחזור: "עצם ← גיד ← עצב ← עור"</h2>
+<p>לאחר ייצוב ראשוני וכיסוי (או תכנון לכיסוי) - השחזור עוקב בדרך כלל אחרי סדר לוגי-אנטומי, מהעמוק לשטחי, כי כל שכבה תלויה בשכבה שמתחתיה:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>1. שלד (עצם ומפרקים)</b> - קודם כל קובעים אורך ויישור, כי כל שאר השכבות (גידים, עצבים, עור) "נמתחות" מעל השלד ותלויות באורך הסופי שנקבע. קיבוע עם חוטי K, מיני-פלטות, או מקבעים חיצוניים (במיוחד כשיש איבוד עצם ומתוכננת לאחר מכן השתלת עצם או <span class="term" dir="ltr">distraction osteogenesis</span>).<br>
+    <b>2. כיסוי רקמה רכה מכוסה כלי דם</b> - בפועל זהו לרוב הצעד הדחוף ביותר בפועל (גם אם "מבחינה תיאורטית" מגיע אחרי עצם), כי עצם/גיד/עצב חשופים ללא כיסוי מתייבשים ונדבקים תוך ימים ספורים. הבחירה בין שתל עור פשוט לפלאפ מקומי/אזורי/חופשי תלויה בעומק הפגם ובחשיפת מבנים "אצילים" (טנדונים, עצם ללא periosteum).<br>
+    <b>3. גידים</b> - שחזור ראשוני (מיידי) כשהפצע נקי ובלי זיהום משמעותי; שחזור מושהה/דו-שלבי (עם מוט סיליקון - <span class="term" dir="ltr">Hunter rod</span> - ולאחר מכן השתלת גיד) כשהמיטה הביולוגית לא מתאימה עדיין (זיהום, כיסוי לא יציב, נזק נרחב לנרתיק הגיד).<br>
+    <b>4. עצבים</b> - תיקון ראשוני קצה-לקצה כשאין מתח וגדמי העצב נקיים; אם יש פער - השתלת עצב (למשל sural nerve autograft) או מוליכי עצב סינתטיים לפערים קצרים. שחזור עצבי מושהה מקובל גם הוא כשהמצב המקומי לא מאפשר תיקון מיידי איכותי.<br>
+    <b>5. עור/תחושה סופית</b> - סגירה סופית, לעיתים בשילוב עם שחזור תחושתי מיוחד (פלאפים תחושתיים, השתלת עצב) באזורים קריטיים לתחושה כמו האגודל.
+  </p>
+</div>
+<p class="key-box">בפועל, השלבים האלה מוזגים זה בזה ולא תמיד נעשים לפי הסדר הכתוב - בפצע נקי, יציב וטרי אפשר (ואף רצוי) לבצע שחזור <b>ראשוני-מלא בו-זמני</b> ("שחזור הכל בבת אחת") לכל השכבות; בפצע מזוהם/לא ודאי מעדיפים <b>שחזור מדורג</b> (staged reconstruction) על פני ימים-שבועות, עם דבדרם חוזר וכיסוי ראשוני מהיר, ורק לאחר מכן גידים/עצבים בשלב שני-שלישי.</p>
+
+<h2><span class="num">6</span> אפשרויות כיסוי רקמה רכה - מהפשוט למורכב</h2>
+<p>הבחירה בפלאפ/כיסוי עוקבת אחרי "סולם השחזור" (<span class="term" dir="ltr">reconstructive ladder</span>) אך מותאמת לצרכים הייחודיים של כף היד - צורך בכיסוי דק וגמיש (לא מסיבי) שלא יפריע לתנועה, ולעיתים בכיסוי בעל תחושה.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>אפשרות כיסוי</th><th>מתי משתמשים</th><th>יתרונות</th><th>חסרונות</th></tr></thead>
+  <tbody>
+    <tr><td>שתל עור (<span class="term" dir="ltr">skin graft</span>)</td><td>פגם שטחי, מיטה כלי-דם טובה (פריוסטאום/פרטנון שלמים)</td><td>פשוט, זמין, תחלואת אתר תורם נמוכה</td><td>לא מתאים מעל עצם/גיד חשופים ללא כיסוי, נוטה להצטלקות מכווצת</td></tr>
+    <tr><td>פלאפ מקומי (למשל <span class="term" dir="ltr">cross-finger flap</span>, <span class="term" dir="ltr">reverse homodigital flap</span>)</td><td>פגם קטן-בינוני באצבע בודדת</td><td>התאמת מרקם וצבע טובה, ניתוח יחסית פשוט</td><td>מוגבל בגודל, לעיתים דורש שלב שני לניתוק</td></tr>
+    <tr><td>פלאפ אזורי (למשל <span class="term" dir="ltr">groin flap</span>, <span class="term" dir="ltr">posterior interosseous flap</span>)</td><td>פגמים גדולים יותר, כשמיקרוכירורגיה לא זמינה/רצויה</td><td>לא דורש אנסטומוזה מיקרווסקולרית</td><td>לרוב מחייב קיבוע היד לגוף (בpedicled flaps כמו groin) ושלב ניתוק נפרד</td></tr>
+    <tr><td>פלאפ חופשי (<span class="term" dir="ltr">free flap</span>: <span class="term" dir="ltr">radial forearm, ALT, latissimus dorsi, scapular/parascapular, gracilis</span>)</td><td>פגמים נרחבים, רב-קרניים, פציעות דגלאבינג (degloving) של כל כף היד</td><td>כיסוי חד-שלבי גם לפגמים גדולים מאוד, ניתן לבחור עובי/גודל/רקמה נלווית (עצם, שריר לתפקוד)</td><td>דורש מיומנות מיקרווסקולרית, סיכון לכשל פלאפ (5-10%), משך ניתוח ארוך</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Boji5Lw75Wk" title="Hand reconstruction surgery illustrated - Microsurgery in Hand" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון המדגים עקרונות מיקרוכירורגיה בשחזור יד, כולל שימוש בפלאפים ובהשתלות גיד לשיקום תפקוד לאחר פגיעה קשה.</p>
+
+<h2><span class="num">7</span> שחזור אגודל ואצבעות אבודות: מ-Pollicization ועד Toe-to-Hand</h2>
+<p>כשהאגודל או אצבעות מרובות אבודים לחלוטין ואי אפשר לשמר אותם, קיימות שלוש רמות עיקריות של שחזור, מהפשוט למורכב:</p>
+<table>
+  <thead><tr><th>טכניקה</th><th>עיקרון</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Pollicization</span> (הפיכת אצבע לאגודל)</td><td>העברה מיקרוכירורגית-אזורית של אצבע קיימת (בדרך כלל המורה, שנפגעה ואינה ניתנת לשימור כאצבע) למיקום האגודל, עם שימור צרור כלי הדם-עצבים שלה</td><td>אין צורך באתר תורם מרוחק (הרקמה כבר קיימת ביד עצמה); תוצאה תפקודית מצוינת במיוחד בילדים</td><td>מצריך שהאצבע המועברת עצמה תהיה שמישה מבחינה נוירווסקולרית; "מקריבה" אצבע קיימת</td></tr>
+    <tr><td><span class="term" dir="ltr">Toe-to-hand transfer</span> (העברת בוהן חופשית)</td><td>העברה מיקרווסקולרית חופשית של הבוהן הגדולה או השנייה מכף הרגל לשחזור אגודל/אצבע אבודים, עם אנסטומוזה של עורקים, ורידים ועצבים</td><td>משחזר יחידה שלמה עם ציפורן, מפרקים פעילים ותחושה - הפתרון הקרוב ביותר ל"אגודל אמיתי" כשאין אצבע זמינה להעברה מקומית</td><td>ניתוח ארוך ומורכב, תחלואת כף הרגל התורמת, דורש מיומנות מיקרווסקולרית גבוהה</td></tr>
+    <tr><td>הארכת עצם הדרגתית (<span class="term" dir="ltr">distraction osteogenesis</span>) / השתלת עצם</td><td>הארכת גדם קצר קיים באמצעות מקבע חיצוני ומתיחה הדרגתית, או השתלת עצם וגוש</td><td>שומר על הרקמה העצמית של המטופל, לא דורש מיקרוכירורגיה</td><td>תהליך ארוך (שבועות-חודשים), לא תמיד מספק אורך/תפקוד מספק לבדו</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Qzw_wrJ5_bY" title="Thumb Reconstruction Using Microvascular Second Toe to Thumb Transfer" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מקרה קליני אמיתי ממרכז רפואי אקדמי (Harborview Medical Center) המדגים שחזור אגודל בעזרת העברת בוהן שנייה חופשית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tIbkTUHC21w" title="Loyola Hand Surgeons Perform Toe-To-Thumb Transfer" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מקרה חולה אמיתי לאחר קטיעת אגודל בפגיעת מסור עגול, שעבר שחזור בעזרת העברת בוהן לאגודל (Loyola Medicine).</p>
+
+<h2><span class="num">8</span> תזמון השחזור: מיידי לעומת מושהה</h2>
+<div class="mechanism">
+  <p class="chain">מרבית הספרות המודרנית (כולל הגישה המתוארת בפרק) מעדיפה <b>שחזור מוקדם (early/primary reconstruction)</b> על פני שחזור מושהה כשניתן - כלומר לבצע דבדרם, ייצוב שלד וכיסוי סופי תוך ימים ספורים מהפציעה, ולא להמתין שבועות "עד שהפצע יתייצב".</p>
+  <p><b class="key">למה מוקדם עדיף כשאפשר?</b> כל יום שגידים/עצבים/עצם נשארים חשופים או מכוסים בלחות זמנית (כמו VAC) מגביר את הסיכון לזיהום, יובש ופיברוזיס (הצטלקות) שמקבעים מפרקים במקום נייח ("קפיאה" - <span class="term" dir="ltr">joint stiffness</span>) לפני שבכלל התחילה פיזיותרפיה. שחזור מוקדם מאפשר גם התחלת תנועה מוקדמת (early mobilization) שהיא הגורם החשוב ביותר בשמירה על טווח תנועה תקין לטווח ארוך.</p>
+</div>
+<p>עם זאת, כשהפצע מזוהם משמעותית או שהמצב הכללי של המטופל אינו יציב - עדיף <b>שחזור מדורג</b>: כיסוי זמני (VAC, שתל עור זמני, אלוגרפט) עד להשגת פצע "נקי ויציב", ורק אז מעבר לשחזור סופי מוגדר.</p>
+
+<h2><span class="num">9</span> סיבוכים</h2>
+<table>
+  <thead><tr><th>סיבוך</th><th>גורם/מנגנון</th><th>התייחסות</th></tr></thead>
+  <tbody>
+    <tr><td>נוקשות מפרקים (<span class="term" dir="ltr">stiffness</span>)</td><td>בצקת ממושכת, קיבוע ממושך, הצטלקות סביב מבני כיפוף - הסיבוך השכיח ביותר ביד המרוסקת</td><td>מניעה: תנוחת "אינטרינזיק-פלוס" בקיבוע, פיזיותרפיה מוקדמת ואגרסיבית ברגע שהרקמה מאפשרת</td></tr>
+    <tr><td>אי-חיבור עצם (<span class="term" dir="ltr">non-union</span>)</td><td>אספקת דם ירודה לקצוות העצם, חוסר יציבות מכנית, פער עצם גדול מדי</td><td>קיבוע יציב יותר, לעיתים השתלת עצם וסקולרית (למשל fibula flap) לפערים גדולים</td></tr>
+    <tr><td>כשל פלאפ</td><td>פקקת עורקית/ורידית באנסטומוזה, לחץ חיצוני, מתח יתר</td><td>ניטור צמוד 48-72 שעות ראשונות, סף נמוך לחזרה לחדר ניתוח</td></tr>
+    <tr><td>נוירומה כואבת</td><td>קצה עצב חתוך שאינו מחובר מחדש יוצר גדילה כאוטית ורגישה</td><td>קבורת קצה העצב ברקמה שקטה (שריר), או שיוך עצבי (targeted reinnervation) במקרים נבחרים</td></tr>
+    <tr><td>תסמונת כאב אזורי מורכב (<span class="term" dir="ltr">CRPS</span>)</td><td>תגובת מערכת עצבים סימפתטית מוגזמת לאחר טראומה/ניתוחים חוזרים</td><td>שיקום מוקדם, טיפול כאב רב-תחומי, לעיתים חסם סימפתטי</td></tr>
+    <tr><td>קור-אי-סבילות (<span class="term" dir="ltr">cold intolerance</span>)</td><td>שכיחה מאוד לאחר פגיעה/השתלה חוזרת/שחזור מיקרווסקולרי - קשורה לפגיעה בעצבים הסימפתטיים ולזרימת דם משנית לא-תקינה</td><td>לרוב משתפרת עם הזמן (שנה-שנתיים), התאמת לבוש חם</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">B-S-T-N-S</span> - סדר השחזור ביד המרוסקת</h3>
+  <p>
+    <b>B</b> – <span class="term" dir="ltr">Bone</span> (עצם) - קובעים אורך ויישור ראשונים.<br>
+    <b>S</b> – <span class="term" dir="ltr">Soft-tissue coverage</span> (כיסוי רקמה רכה) - הדחוף ביותר בפועל, מונע התייבשות מבנים עמוקים.<br>
+    <b>T</b> – <span class="term" dir="ltr">Tendons</span> (גידים) - מיידי או מושהה (מוט סיליקון) לפי מצב המיטה.<br>
+    <b>N</b> – <span class="term" dir="ltr">Nerves</span> (עצבים) - תיקון ראשוני או השתלת עצב.<br>
+    <b>S</b> – <span class="term" dir="ltr">Skin/Sensibility</span> (עור ותחושה סופית) - כולל שיקום תחושתי לאזורים קריטיים.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בית שנהרס בסופה: קודם בונים מחדש את <b>שלד הבניין</b> (העצם) - בלי שלד יציב אי אפשר לבנות דבר מעליו. מיד אחר כך, לפני שגשם נכנס פנימה, שמים <b>גג זמני</b> (כיסוי רקמה רכה/פלאפ) שמגן על הפנים. רק אחר כך, כשהגג מוגן, מתקינים בפנים את <b>הכבלים החשמליים</b> (גידים - "מושכים" תנועה), ואת <b>מערכת התקשורת</b> (עצבים - מעבירים "מידע" תחושתי), ולבסוף מסיימים עם <b>הטיח החיצוני</b> (עור ותחושה סופית) שנותן לבית את המראה והתפקוד המלא.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>בניית מחדש: מטאפורת הבית ההרוס</title>
+    <polygon points="60,150 60,90 250,40 440,90 440,150" fill="none" stroke="#6b7280" stroke-width="3"/>
+    <line x1="60" y1="150" x2="60" y2="90" stroke="#2563eb" stroke-width="5"/>
+    <line x1="440" y1="150" x2="440" y2="90" stroke="#2563eb" stroke-width="5"/>
+    <line x1="250" y1="150" x2="250" y2="60" stroke="#2563eb" stroke-width="5"/>
+    <path d="M60,90 L250,40 L440,90" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <rect x="150" y="110" width="30" height="40" fill="#047857"/>
+    <rect x="320" y="110" width="30" height="40" fill="#6d28d9"/>
+    <text x="250" y="30" font-size="12" text-anchor="middle" fill="#b45309" font-weight="700">גג זמני = כיסוי רקמה רכה</text>
+    <text x="250" y="175" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלד = עצם</text>
+    <text x="165" y="105" font-size="10" text-anchor="middle" fill="#065f46" font-weight="700">גידים</text>
+    <text x="335" y="105" font-size="10" text-anchor="middle" fill="#4c1d95" font-weight="700">עצבים</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=Boji5Lw75Wk" target="_blank">Hand reconstruction surgery illustrated - Microsurgery in Hand (YouTube)</a>
+    <div class="desc">הדגמת עקרונות מיקרוכירורגיה ושחזור גיד ביד לאחר פגיעה קשה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=Qzw_wrJ5_bY" target="_blank">Thumb Reconstruction Using Microvascular Second Toe to Thumb Transfer - Harborview Medical Center (YouTube)</a>
+    <div class="desc">מקרה קליני של שחזור אגודל בעזרת העברת בוהן שנייה חופשית, ממרכז אקדמי מוביל בכירורגיית יד.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=tIbkTUHC21w" target="_blank">Loyola Hand Surgeons Perform Toe-To-Thumb Transfer (YouTube)</a>
+    <div class="desc">מקרה חולה אמיתי לאחר קטיעת אגודל בתאונת עבודה, ותהליך השחזור באמצעות העברת בוהן.</div>
+  </li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, עובד מפעל נגרות, נפגע ביד ימין השלטת כשהיד נמשכה לתוך מכונת הבלטה (planer). בהגעה למיון: קרעים נרחבים בעור גב כף היד ואצבעות 2-4, חשיפת עצם ברמת המטקרפלים, חוסר תפקוד כיפוף מלא באצבעות 3-4, ותחושה ירודה באצבע 2. האגודל תקין מבחינה נוירווסקולרית ותפקודית. אין ראיות לפגיעה פרוקסימלית לשורש כף היד. המטופל יציב המודינמית ללא פגיעות נלוות.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו הצעד הראשון המומלץ בניהול המקרה בחדר הניתוח (לאחר ייצוב כללי)?</div>
+  <button class="opt" data-i="0">שחזור מיידי של כל הגידים הפגועים לפני כל דבר אחר</button>
+  <button class="opt" data-i="1">דברידמן רדיקלי עם שטיפה נרחבת, תיעוד המבנים הפגועים, והחלטה אם נדרש "second look" תוך 24-48 שעות</button>
+  <button class="opt" data-i="2">קטיעה מיידית של כל האצבעות הפגועות למניעת זיהום</button>
+  <button class="opt" data-i="3">סגירת העור ללא דבדרם, כדי לא "לבזבז" רקמה</button>
+  <div class="explain">התשובה הנכונה: דבדרם רדיקלי הוא תמיד הצעד הראשון בטיפול ביד מרוסקת - מסיר רקמה לא-קיימא וזיהום, ומאפשר הערכה ברורה של מה אכן ניתן לשחזר. שחזור גידים (תשובה 1) מוקדם מדי ומסוכן בפצע לא-מנוקה. קטיעה גורפת (תשובה 3) מנוגדת לעיקרון "אל תקריב רקמה רק כי היא נראית גרועה" - יש להעריך קיימא לאחר דבדרם, לא לקטוע מראש. אי-ביצוע דבדרם (תשובה 4) מגדיל דרמטית את סיכון הזיהום.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. במטופל זה, מהי המשמעות התפקודית של כך שהאגודל תקין לחלוטין?</div>
+  <button class="opt" data-i="0">אין משמעות - האגודל תמיד מתפקד בנפרד מהאצבעות האחרות</button>
+  <button class="opt" data-i="1">אפשר להזניח את שחזור האצבעות 3-4 לגמרי כי האגודל מפצה על הכל</button>
+  <button class="opt" data-i="2">תפקוד תקין של האגודל, שאחראי ל-40-50% מתפקוד היד, הוא בסיס טוב לשיקום צביטה ואחיזה גם אם חלק מהאצבעות האחרות ידרשו קטיעת קרן</button>
+  <button class="opt" data-i="3">האגודל צריך להיות מוקרב כדי לשפר את הכיסוי של האצבעות הפגועות</button>
+  <div class="explain">התשובה הנכונה: מכיוון שהאגודל אחראי לחלק כה גדול מתפקוד היד (אחיזה, צביטה), שימורו התקין במקרה זה הוא נכס משמעותי - גם אם קרן אחת או שתיים מהאצבעות הפגועות (למשל 3-4 אם לא ניתן לשחזרן היטב) יזדקקו לקטיעת קרן, התוצאה התפקודית הכוללת (אגודל תקין + מספר אצבעות שמורות) עדיין יכולה להיות טובה. תשובה 1 מתעלמת מהעיקרון שהאגודל הוא "עוגן" לתפקוד שאר האצבעות (צביטה מולו). תשובה 2 שגויה - יש עדיין לשאוף לשחזר כמה שיותר אצבעות פעילות. תשובה 4 הפוכה לחלוטין מהעיקרון "האגודל קודם לכל".</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. הפצע ברמת המטקרפלים נשאר עם חשיפת עצם משמעותית לאחר הדבדרם. מהו הצעד הבא המתאים ביותר?</div>
+  <button class="opt" data-i="0">כיסוי מוקדם ברקמה רכה מכוסת כלי דם (פלאפ אזורי/חופשי) כדי למנוע התייבשות וזיהום של העצם החשופה</button>
+  <button class="opt" data-i="1">המתנה של מספר שבועות עד שהעצם "תתכסה מעצמה" בגרנולציה</button>
+  <button class="opt" data-i="2">השתלת עור פשוטה ישירות מעל העצם החשופה</button>
+  <button class="opt" data-i="3">קיבוע העצם בלבד ללא כל התייחסות לכיסוי הרקמה הרכה</button>
+  <div class="explain">התשובה הנכונה: עצם חשופה ללא פריוסטאום (periosteum) אינה יכולה לקלוט שתל עור פשוט ותתייבש/תידבק תוך ימים ספורים - נדרש כיסוי מכוסה כלי-דם (פלאפ). המתנה לגרנולציה (תשובה 1) עלולה לגרום לנמק עצם ולזיהום. שתל עור ישיר על עצם חשופה (תשובה 2) ייכשל כמעט תמיד. התעלמות מכיסוי הרקמה הרכה (תשובה 4) מתעלמת מהעדיפות המעשית הגבוהה של כיסוי בזמן, שכן מבנה חשוף גורם לסיבוכים מהירים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. שבוע לאחר הניתוח הראשוני, הפצע נקי ומכוסה היטב, אך יש פער תפקודי בכיפוף אצבעות 3-4 עקב קרע נרחב בגידי הכופפים שלא תוקן בניתוח הראשון בשל זיהום מקומי באותו שלב. מהי הגישה המקובלת?</div>
+  <button class="opt" data-i="0">לוותר לצמיתות על שחזור הגידים ולהסתפק בתנועה פסיבית בלבד</button>
+  <button class="opt" data-i="1">להשתיל גיד מיידית דרך הרקמה שעדיין לא לגמרי יציבה</button>
+  <button class="opt" data-i="2">לקטוע את שתי האצבעות הפגועות מיד כדי למנוע כל סיבוך עתידי</button>
+  <button class="opt" data-i="3">שחזור גיד מושהה - דו-שלבי, עם הכנסת מוט סיליקון (Hunter rod) ליצירת נרתיק סינוביאלי חדש, ולאחר מכן השתלת גיד בשלב שני</button>
+  <div class="explain">התשובה הנכונה: כאשר המיטה הביולוגית (רקמה סובבת, נרתיק גיד) אינה מוכנה לשחזור גיד ראשוני איכותי - הגישה המקובלת היא שחזור מושהה בשני שלבים, תוך שימוש במוט סיליקון (Hunter rod) שיוצר נרתיק סינוביאלי פסאודו-תקין, ולאחר מספר שבועות-חודשים (כשהרקמה יציבה) מבצעים השתלת גיד דרך הנרתיק החדש. ויתור על שחזור (תשובה 1) מוותר מיותר על תפקוד אפשרי. השתלה מיידית לתוך רקמה לא-יציבה (תשובה 2) מגדילה סיכון לכשל והדבקות. קטיעה מיידית (תשובה 3) קיצונית מדי כאשר קיימת אפשרות ריאלית לשחזור שלבי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע חשוב לתעד ולצלם את הפצע לפני הדבדרם, ולא רק אחריו?</div>
+  <button class="opt" data-i="0">זה נדרש רק לצרכים משפטיים ואין לכך משמעות קלינית</button>
+  <button class="opt" data-i="1">מנגנון הפגיעה (דריסה לעומת עקירה) והממצאים המקוריים משפיעים ישירות על החלטות שחזור עתידיות ועל הערכת פרוגנוזה של כלי דם ועצבים, מידע שעלול "להיעלם" לאחר דבדרם וניקוי</button>
+  <button class="opt" data-i="2">אין הבדל - אפשר לתעד באותה מידה של דיוק בכל שלב</button>
+  <button class="opt" data-i="3">תיעוד לפני דבדרם נדרש רק כדי לחסוך זמן ניתוח</button>
+  <div class="explain">התשובה הנכונה: המראה הראשוני של הפצע (טרם ניקוי) נושא מידע קליני קריטי - למשל, פגיעת עקירה (avulsion) מסמנת נזק ארוך-טווח לאינטימה של כלי הדם שאינו נראה מיד לעין ומחמיר פרוגנוזה, בעוד פגיעת דריסה "נקייה" עשויה להתנהג טוב יותר. מידע זה עוזר לצוות המשחזר (לעיתים בשלב מאוחר יותר ועל ידי צוות אחר) להבין את מלוא היקף הפגיעה. תשובה 2 מצמצמת בטעות את התיעוד לעניין משפטי בלבד ומתעלמת מהערך הקליני. תשובה 3 ו-4 מפספסות את הסיבה המרכזית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>יד מרוסקת = פגיעה רב-רקמתית (עור, עצם, גיד, עצב, כלי דם) במספר קרניים בו-זמנית, בדרך כלל ממנגנון בעל אנרגיה גבוהה (דריסה, עקירה, פיצוץ).</li>
+    <li>הטיפול הראשוני (דבדרם, תיעוד, שימור מבנים) בלתי הפיך ומכריע את כל אפשרויות השחזור העתידיות.</li>
+    <li>דבדרם רדיקלי אך לא "אגרסיבי מדי" - עקרון "second-look" תוך 24-48 שעות כשיש ספק לגבי קיימות רקמה.</li>
+    <li>סדר עדיפויות שחזור: <b>עצם (אורך/יישור) ← כיסוי רקמה רכה (הדחוף ביותר בפועל) ← גידים ← עצבים ← עור/תחושה סופית</b>.</li>
+    <li>עקרונות מפתח בהחלטת שימור/קטיעה: האגודל קודם לכל, שימור המרווח הראשון, שיקול קטיעת קרן, ו"חלקי חילוף" (spare parts) מקרניים לא-ניתנות-להצלה.</li>
+    <li>שחזור אגודל/אצבעות אבודות: Pollicization (העברת אצבע קיימת) ← Toe-to-hand transfer (העברת בוהן חופשית) ← הארכת עצם הדרגתית/השתלת עצם.</li>
+    <li>שחזור מוקדם עדיף כשהפצע נקי; שחזור מדורג כשיש זיהום/אי-ודאות. תנועה מוקדמת קריטית למניעת נוקשות מפרקים - הסיבוך השכיח ביותר.</li>
+    <li>סיבוכים עיקריים: נוקשות מפרקים, אי-חיבור עצם, כשל פלאפ, נוירומה, CRPS, קור-אי-סבילות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

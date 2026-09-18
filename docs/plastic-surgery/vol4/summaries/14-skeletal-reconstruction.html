@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 14: שחזור שלד</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 14: שחזור שלד <span class="term" dir="ltr">Skeletal Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | פרק 7 בספר המקורי (Section I – Lower Extremity Surgery), מאת Marco Innocenti, Stephen Kovach III, Elena Lucattelli, L. Scott Levin</div>
+
+<p>הפרק עוסק בשחזור פגמי עצם (<span class="term" dir="ltr">bone defects</span>) בגפה התחתונה - בין אם ממקור אונקולוגי (כריתת גידול), טראומטי (שבר פתוח עם אובדן עצם) או זיהומי (non-union מזוהם). זהו תחום שבו כירורג פלסטי וכירורג אורתופד עובדים יחד בגישה ה"אורתופלסטית" (<span class="term" dir="ltr">orthoplastic approach</span>), כי הבעיה היא תמיד גם מכנית (איך למלא את החלל וליצור יציבות) וגם ביולוגית (איך לגרום לעצם לאחות בפועל).</p>
+
+<h2><span class="num">1</span> מנגנון: איך עצם בכלל מחלימה, ולמה זה קובע הכול</h2>
+<div class="mechanism">
+  <p class="chain">
+    לאחר פגיעה בעצם מתחיל תהליך תלת-שלבי: <b>(1) דלקת</b> - נוצר המטומה סביב כלי הדם הפגועים, נויטרופילים ומקרופאגים מסלקים רקמה נמקית ומשחררים ציטוקינים (IL-1, IL-6, TNF) שמגייסים תאי גזע מזנכימליים (<span class="term" dir="ltr">MSCs</span>) ממח העצם ומהפריוסטאום. <b>(2) תיקון</b> - התאים המזנכימליים מתמיינים לאוסטאובלסטים, נוצר "בלסטומה משקמת" (<span class="term" dir="ltr">repair blastoma</span>) שמפרישה אוסטאואיד חדש, ולבסוף נוצר קאלוס עצמי. <b>(3) עיצוב מחדש</b> - סיבי הקולגן מאורגנים ומעוצבים מחדש עד שהעצם חוזרת למבנה למלרי חזק כמעט כמו לפני הפגיעה.
+  </p>
+  <p>מולקולות מפתח בתהליך: <b>BMPs</b> (Bone Morphogenetic Proteins, בעיקר BMP-2/4/7) מעודדות דיפרנציאציה של MSC לתאי עצם (אושטאואינדוקציה), <b>VEGF</b> מעודד אנגיוגנזה, ו-<b>TGF-β</b> ו-<b>FGF/IGF</b> תומכים בשגשוג התאים. ה-FDA אישר שימוש ב-BMP-2/7 בפרוטוקולים קליניים לעידוד איחוי.</p>
+  <p><b class="key">שלוש הדרכים שבהן שתל עצם "עוזר" לעצם להחלים - וזה בדיוק מה שקובע איזה שתל לבחור:</b><br>
+  <b>אוסטאוקונדוקציה (<span class="term" dir="ltr">osteoconduction</span>)</b> - השתל משמש "פיגום" סביל שתאי גזע וכלי דם מהמקום המקבל צומחים לתוכו (לכל שתל יש את זה, גם אלוגרפט מת).<br>
+  <b>אוסטאואינדוקציה (<span class="term" dir="ltr">osteoinduction</span>)</b> - השתל מכיל גורמי גדילה (כמו BMP) שממש "מגייסים ומכוונים" תאי גזע להפוך לתאי עצם - זקוק לגורמי גדילה ביולוגיים פעילים.<br>
+  <b>אוסטאוגנזה (<span class="term" dir="ltr">osteogenesis</span>)</b> - בתוך השתל עצמו יש תאים חיים (אוסטאובלסטים/אוסטאוציטים) שמייצרים עצם חדשה ישירות - קיים רק בשתל אוטולוגי עם תאים חיים ששרדו.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>שלושת מנגנוני איחוי השתל</title>
+  <rect x="640" y="30" width="180" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="730" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגיעה בעצם</text>
+  <text x="730" y="76" font-size="11.5" text-anchor="middle" fill="#7f1d1d">חלל / דפקט</text>
+
+  <rect x="360" y="30" width="220" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="470" y="52" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שתל עצם מושתל</text>
+  <text x="470" y="70" font-size="11.5" text-anchor="middle" fill="#1e3a8a">(אוטולוגי / אלוגרפט / פלאפ)</text>
+  <text x="470" y="86" font-size="11.5" text-anchor="middle" fill="#1e3a8a">פיגום + (אולי) גורמי גדילה + (אולי) תאים חיים</text>
+
+  <polygon points="600,65 640,59 640,71" fill="#374151"/>
+  <line x1="640" y1="65" x2="600" y2="65" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="130" width="230" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="135" y="155" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">אוסטאוקונדוקציה</text>
+  <text x="135" y="173" font-size="11" text-anchor="middle" fill="#4c1d95">פיגום סביל - MSC וכלי דם</text>
+  <text x="135" y="189" font-size="11" text-anchor="middle" fill="#4c1d95">צומחים פנימה מבחוץ</text>
+
+  <rect x="315" y="130" width="230" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="155" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אוסטאואינדוקציה</text>
+  <text x="430" y="173" font-size="11" text-anchor="middle" fill="#065f46">גורמי גדילה (BMP) מגייסים</text>
+  <text x="430" y="189" font-size="11" text-anchor="middle" fill="#065f46">ומכווני MSC לתאי עצם</text>
+
+  <rect x="610" y="130" width="230" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="725" y="155" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">אוסטאוגנזה</text>
+  <text x="725" y="173" font-size="11" text-anchor="middle" fill="#78350f">תאים חיים בתוך השתל עצמו</text>
+  <text x="725" y="189" font-size="11" text-anchor="middle" fill="#78350f">מייצרים עצם ישירות (רק בפלאפ!)</text>
+
+  <polygon points="470,130 464,110 476,110" fill="#374151"/>
+  <line x1="470" y1="130" x2="470" y2="105" stroke="#374151" stroke-width="2"/>
+</svg>
+<p class="figcap">שלושת המנגנונים הביולוגיים - שתל אוטולוגי וסקולרי (פלאפ) הוא היחיד שמספק את כל השלושה יחד, ולכן הוא ה"גולד סטנדרד".</p>
+
+<h2><span class="num">2</span> אספקת הדם לעצם - למה זה קובע איך מרימים כל פלאפ</h2>
+<p>עצמות ארוכות (פמור, טיביה, פיבולה) מקבלות אספקת דם <b>כפולה</b>: <b>עורק תזונתי (<span class="term" dir="ltr">nutrient artery</span>)</b> שמזין את מח העצם והקורטקס הפנימי, ו<b>כלי פריוסטאליים</b> שמזינים את הקורטקס החיצוני הדיאפיזרי, עם ארקדה אנסטומוטית בין השניים. לכן פלאפ עצם ארוכה כמו הפיבולה יכול לשרוד רק על בסיס אספקת דם פריוסטאלית בלבד, גם אם העורק התזונתי לא נלקח.<br>
+לעומת זאת, עצמות ממברנוזיות (כמו הכסל, <span class="term" dir="ltr">ilium</span>) מקבלות אספקת דם <b>פריוסטאלית בעיקרה</b> - לדוגמה פלאפ הכסל (<span class="term" dir="ltr">iliac crest flap</span>) מבוסס על הכלי הפריוסטאלי היוצא מה-<span class="term" dir="ltr">DCIA</span> (Deep Circumflex Iliac Artery).</p>
+
+<h2><span class="num">3</span> non-union: מתי אבחנה, ואילו סוגים יש</h2>
+<p>לפי ה-FDA, שבר שלא החלים אחרי 9 חודשים, וללא סימני החלמה ב-3 החודשים האחרונים, מוגדר כ<b>non-union</b>. שכיחות: 5-10%.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>סוג non-union</th><th>המנגנון</th><th>הטיפול הנגזר</th></tr></thead>
+  <tbody>
+    <tr><td><b>היפרטרופי (<span class="term" dir="ltr">hypertrophic</span>)</b></td><td>יש תנועה מוגזמת באתר השבר בגלל קיבוע לא מספק - אבל יכולת ההחלמה הביולוגית תקינה ("רגל פיל" ברנטגן)</td><td>קיבוע נוקשה יותר (מיטבי) - <b>לא</b> צריך שתל עצם</td></tr>
+    <tr><td><b>אטרופי (<span class="term" dir="ltr">atrophic</span>)</b></td><td>יכולת ביולוגית ירודה להחלמה - אין מספיק תאי גזע/כלי דם/גורמי גדילה באתר</td><td>דורש אמצעים נוספים - שתל עצם (אוסטאואינדוקציה/גנזה)</td></tr>
+    <tr><td><b>אוליגוטרופי (<span class="term" dir="ltr">oligotrophic</span>)</b></td><td>מצב ביניים</td><td>תלוי בהערכה קלינית</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">4</span> סוגי שתלי עצם - טבלת השוואה מקיפה</h2>
+<p>העיקרון המנחה הבסיסי (Kazanjian, 1952): כדי שגרפט עצם ייקלט צריך <b>אספקת דם טובה במקום המקבל</b>, <b>מגע עצם-לעצם</b>, <b>קיבוע נוקשה</b>, ו<b>העדר זיהום</b>. גרפטים לא-וסקולריים (קנצלוס/קורטיקלי) <b>לא מיועדים</b> לפגמים מעל 5-6 ס"מ, למיטות מזוהמות/צלקתיות/עם אספקת דם ירודה - כי הם ייספגו לפני שיאחו.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>סוג שתל</th><th>אוסטאוקונדוקציה</th><th>אוסטאואינדוקציה</th><th>אוסטאוגנזה</th><th>גודל מרבי לפגם</th><th>מהירות שילוב</th></tr></thead>
+  <tbody>
+    <tr><td><b>קנצלוס (<span class="term" dir="ltr">cancellous</span>)</b></td><td>כן</td><td>מוגבל</td><td>כן (גבוה - אוסטאוציטים רבים שורדים)</td><td>≤5-6 ס"מ</td><td>מהירה - וסקולריזציה תוך 2-3 ימים</td></tr>
+    <tr><td><b>קורטיקלי (<span class="term" dir="ltr">cortical</span>)</b></td><td>כן (דרך תעלות Haversian)</td><td>מוגבל</td><td>נמוך (רוב התאים מתים)</td><td>≤5-6 ס"מ</td><td>איטית - "החלפה זוחלת" (<span class="term" dir="ltr">creeping substitution</span>), חודשים</td></tr>
+    <tr><td><b>פלאפ עצם וסקולרי (פיבולה/כסל/MFC)</b></td><td>כן</td><td>כן</td><td>כן (תאים חיים משורדים - אין צורך ב"החלפה זוחלת")</td><td>עד 26-28 ס"מ (פיבולה)</td><td>מהירה - איחוי ראשוני/שניוני כמו שבר רגיל</td></tr>
+    <tr><td><b>אלוגרפט (<span class="term" dir="ltr">allograft</span>)</b></td><td>כן בלבד</td><td>רק אם משולב BMP</td><td>לא (אצללולרי)</td><td>גדול (אך non-union עד 35%)</td><td>איטית מאוד, לרוב לא שלמה - עד 23 חודש באזור אינטרקלרי</td></tr>
+  </tbody>
+</table></div>
+<p class="key-box">אלוגרפט הוא <b>אוסטאוקונדוקטיבי בלבד</b> - אין בו תאים חיים, ולכן שיעור סיבוכים (זיהום, שבר, non-union) גבוה במיוחד: שיעור כישלון מדווח עד 37% בסדרות גדולות, ורוב הכשלים מתרחשים ב-3-4 השנים הראשונות.</p>
+
+<h2><span class="num">5</span> טכניקת Masquelet (ממברנה מושרית)</h2>
+<div class="mechanism">
+  <p class="chain">שיטה דו-שלבית לפגמים אינטרקלריים גדולים (<b>5-24 ס"מ</b>):<br>
+  <b>שלב 1</b>: דברידמן רדיקלי של רקמה נמקית → החדרת <b>ספייסר צמנט</b> (PMMA) לתוך הפגם → כיסוי רקמה רכה בפלאפ אם צריך.<br>
+  <b>שלב 2</b> (כ-6-8 שבועות אחר כך): הסרת הספייסר תוך <b>השארת הממברנה שנוצרה סביבו</b> → מילוי החלל בגרפט קנצלוס אוטולוגי (בד"כ מהכסל) → סגירת הממברנה מעל השתל.</p>
+  <p>למה זה עובד: הספייסר גורם לגוף ליצור סביבו <b>ממברנה ביו-אקטיבית</b> (רשת כלי דם עשירה, רירית דמוית סינוביה) שמפרישה בעצמה VEGF ו-TGF-β1 ומעודדת שגשוג והתמיינות תאי מח עצם. הממברנה גם "כולאת" את הגרפט הקנצלוסי במרחב סגור, מונעת ספיגה שלו ע"י הרקמה הרכה שמסביב, ומספקת לו וסקולריות טובה משלה.</p>
+</div>
+
+<h2><span class="num">6</span> הפלאפים העצמיים הוסקולריים העיקריים - טבלת השוואה</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>פלאפ</th><th>עורק מזין</th><th>אורך עצם מרבי</th><th>שימוש עיקרי</th><th>סיבוכי תורם</th></tr></thead>
+  <tbody>
+    <tr><td><b>פיבולה (<span class="term" dir="ltr">fibular flap</span>)</b></td><td>עורק פרונאלי (<span class="term" dir="ltr">peroneal artery</span>)</td><td>עד 26 ס"מ</td><td>פמור, טיביה, מסרק כף רגל - עצמות ארוכות</td><td>כאב כרוני (11%), אי-יציבות קרסול (4%), חולשת רגל (8%), קונטרקטורת בוהן (9%)</td></tr>
+    <tr><td><b>כסל (<span class="term" dir="ltr">iliac crest flap</span>)</b></td><td>DCIA</td><td>עד 4×11 ס"מ + עור 8×18</td><td>עצמות שטוחות/עקומות, שחזור קלקנאוס</td><td>בקע (9.7%), כאב כרוני (8.4%), חוסר תחושה (עצב femoral cutaneus לטרלי)</td></tr>
+    <tr><td><b>קונדיל פמורלי מדיאלי (<span class="term" dir="ltr">MFC flap</span>)</b></td><td>עורק גניקולרי יורד</td><td>קטע פריוסטאלי/עצם קטן</td><td>non-union קטנים, תרשמות עצמות תרסיות (טרסליות), navicular</td><td>נמוכה - כאב ברך, שינויים תחושתיים</td></tr>
+    <tr><td><b>אפיפיזה פרוקסימלית של פיבולה</b></td><td>ענף אפיפיזרי מעורק tibialis anterior</td><td>-</td><td>שחזור אפיפיזרי וסקולרי בילדים (שימור פוטנציאל גדילה!)</td><td>אי-יציבות ברך אסימפטומטית (שכיחה), נדיר: פגיעה בעצב פרונאלי</td></tr>
+  </tbody>
+</table></div>
+<p class="key-box">רק שחזור אפיפיזרי וסקולרי (<span class="term" dir="ltr">vascularized epiphyseal transfer</span>) - בד"כ מהאפיפיזה הפרוקסימלית של הפיבולה - יכול לשמר <b>פוטנציאל גדילה אורכי</b> בילד עם שלד לא בשל. שתלים לא-וסקולריים, אלוגרפטים ופרוטזות לא יכולים לתת את זה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/bvSBaoGE3bI" title="How to Harvest a Fibula Free Flap" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הדגמה של הרמת פלאפ פיבולה חופשי (free fibula flap) - כולל זיהוי הפדיקל הפרונאלי, אוסטאוטומיה ושימור 6 הס"מ הדיסטליים לשימור יציבות הקרסול.</p>
+
+<h2><span class="num">7</span> אלגוריתם קליני לבחירת סוג השחזור</h2>
+<svg class="diagram" viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם שחזור פגם עצם</title>
+  <rect x="360" y="15" width="140" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגם עצם</text>
+
+  <line x1="430" y1="65" x2="430" y2="90" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,90 424,78 436,78" fill="#374151"/>
+  <line x1="200" y1="95" x2="660" y2="95" stroke="#374151" stroke-width="2"/>
+  <line x1="200" y1="95" x2="200" y2="115" stroke="#374151" stroke-width="2"/>
+  <line x1="660" y1="95" x2="660" y2="115" stroke="#374151" stroke-width="2"/>
+
+  <rect x="100" y="115" width="200" height="45" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="200" y="142" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">עצם שטוחה (כסל וכו')</text>
+
+  <rect x="560" y="115" width="200" height="45" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="660" y="142" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עצם ארוכה</text>
+
+  <line x1="150" y1="160" x2="150" y2="180" stroke="#374151" stroke-width="2"/>
+  <line x1="250" y1="160" x2="250" y2="180" stroke="#374151" stroke-width="2"/>
+  <rect x="60" y="180" width="120" height="40" rx="6" fill="#fffbeb" stroke="#b45309"/>
+  <text x="120" y="205" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">כסל</text>
+  <rect x="200" y="180" width="120" height="40" rx="6" fill="#fffbeb" stroke="#b45309"/>
+  <text x="260" y="205" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">MFC</text>
+
+  <line x1="660" y1="160" x2="660" y2="185" stroke="#374151" stroke-width="2"/>
+  <polygon points="660,185 654,173 666,173" fill="#374151"/>
+  <line x1="540" y1="190" x2="780" y2="190" stroke="#374151" stroke-width="2"/>
+  <line x1="540" y1="190" x2="540" y2="210" stroke="#374151" stroke-width="2"/>
+  <line x1="780" y1="190" x2="780" y2="210" stroke="#374151" stroke-width="2"/>
+  <text x="660" y="180" font-size="11" text-anchor="middle" fill="#374151">פגם ברקמה רכה נלווה?</text>
+
+  <rect x="450" y="210" width="180" height="45" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="540" y="232" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">ללא - VFG / DBF</text>
+  <text x="540" y="247" font-size="10.5" text-anchor="middle" fill="#065f46">± אלוגרפט (Capanna)</text>
+
+  <rect x="690" y="210" width="180" height="45" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="780" y="232" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">כן - OC VFG</text>
+  <text x="780" y="247" font-size="10.5" text-anchor="middle" fill="#7f1d1d">או פלאפ כימרי</text>
+
+  <text x="430" y="300" font-size="11.5" text-anchor="middle" fill="#4b5563">VFG = פלאפ פיבולה וסקולרי | DBF = פיבולה כפולת-קנה (double-barrel) | OC = אוסטאוקוטני</text>
+</svg>
+<p class="figcap">מבוסס על Algorithm 7.1 בפרק המקורי: סוג העצם (שטוחה מול ארוכה) והצורך ברקמה רכה נלווית קובעים את הבחירה הראשונית.</p>
+
+<h2><span class="num">8</span> טכניקת Capanna - שילוב אלוגרפט + פלאפ וסקולרי</h2>
+<p>לפגמים מאסיביים (בד"כ אחרי כריתת סרקומה) - <b>אלוגרפט קורטיקלי מספק יציבות מכנית מיידית</b> (מאפשר הליכה מוקדמת), בעוד <b>הפיבולה הוסקולרית מוכנסת לתוך התעלה המדולרית של האלוגרפט</b> ומספקת את הפוטנציאל הביולוגי לשילוב ארוך-טווח, עמידה בפני עייפות מכנית של האלוגרפט, והיפרטרופיה עם הזמן. זמן איחוי ממוצע מדווח: 8.6 חודשים, שיעור הצלת גפה עד 94%. הגרסה "hemi-Capanna" (Momeni) - חצייה של האלוגרפט לאורך - מקלה על מיקום הפיבולה והאנסטומוזה, ומאפשרת לפיבולה להיפרטרופר בלי הגבלה מהאלוגרפט הסובב.</p>
+<p><b>פיבולה כפולת-קנה (<span class="term" dir="ltr">Double-Barrel Fibula, DBF</span>)</b>: אוסטאוטומיה תת-פריוסטאלית של הפיבולה תוך שימור הפדיקל הפרונאלי השלם, כך שמתקבלים <b>שני קנים מקבילים</b> מאותו פלאפ - מכפיל את החוזק המכני המיידי בלי להמתין להיפרטרופיה. מוגבל לפגמים <12 ס"מ (כי אורך פיבולה מרבי ~28 ס"מ מחולק לשניים).</p>
+
+<h2><span class="num">9</span> דיסטרקציה אוסטאוגנית (טכניקת Ilizarov)</h2>
+<div class="mechanism">
+  <p class="chain">עקרון: ביצוע קורטיקוטומיה (לא אוסטאוטומיה מלאה - שימור וסקולריות!) ולאחר <b>תקופת השהיה (latency)</b> של כמה ימים, מתיחה הדרגתית של שני קצות העצם בקצב <b>1-2 מ"מ ליום</b> (תקופת הדיסטרקציה) - הגירוי המכני הזה מעודד יצירת עצם חדשה בפער (<span class="term" dir="ltr">osteogenesis</span> באזור המתיחה עצמו), ולבסוף <b>תקופת קונסולידציה</b> שבה העצם החדשה מתמצקת.</p>
+  <p>מעניין: לא רק העצם "נמתחת" - גם שרירים, עצבים, כלי דם ועור מתרחבים בתגובה למתח דרך שגשוג תאי ברמה התאית. שיעור הצלת גפה מדווח: 84%, כאשר אי-השגת איחוי ראשוני הוא הגורם המנבא היחיד לצורך בקטיעה.</p>
+</div>
+
+<h2><span class="num">10</span> שחזור לפי אזור אנטומי</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>אזור</th><th>שיטת בחירה מועדפת</th><th>הערה</th></tr></thead>
+  <tbody>
+    <tr><td><b>אגן</b></td><td>DBF (double-barrel fibula)</td><td>פער בין האגן לעמוד השדרה מונע נשיאת משקל - חייב שחזור מכני רציף</td></tr>
+    <tr><td><b>פמור</b></td><td>פיבולה תוך-מדולרית (concentric) או Capanna</td><td>קוטר הפמור פי 3 מהפיבולה - היפרטרופיה איטית, יש להגן על השחזור כ-2 שנים</td></tr>
+    <tr><td><b>טיביה</b></td><td>פיבולה חופשית (עד היפרטרופיה מלאה תוך שנתיים) או + אלוגרפט</td><td>קיבוע אלסטי יותר → היפרטרופיה מהירה יותר אך יותר שברי מאמץ; קיבוע נוקשה → הפוך</td></tr>
+    <tr><td><b>כף רגל</b></td><td>כסל / MFC לעצמות תרסיות (הפיבולה נדירה כאן), פיבולה למסרקיים</td><td>הקלקנאוס דורש משטח שטוח ועגול - כסל תלת-קורטיקלי הפוך משמש לכך</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">11</span> מעקב לאחר ניתוח וסיבוכים</h2>
+<p>מכיוון שאי אפשר "לראות" עצם וסקולרית טהורה קלינית (בניגוד לפלאפ עור), פלאפים אוסטאוסקוטניים (עם אי עור) עוברים מעקב קליני + דופלר על אי העור. הסמן המקצועי לאיחוי עצם הוא הדמיה סדרתית (רנטגן, CT, MRI) או סריקת עצם בטכנציום-99. סיבוכים עיקריים: כישלון הפלאפ (טרומבוזה של הפדיקל), שבר מאמץ (במיוחד בפיבולה לפני היפרטרופיה מלאה), זיהום, non-union בקצוות ההשקה, וסיבוכי תורם (כאב כרוני, אי-יציבות מפרק).</p>
+
+<h2><span class="num">12</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">3G</span> של שתל עצם מנצח</h3>
+  <p>
+    <b>G1 – Girders (מוטות תמיכה)</b> = אוסטאוקונדוקציה - הפיגום הפיזי.<br>
+    <b>G2 – Growth factors (גורמי גדילה)</b> = אוסטאואינדוקציה - הגיוס הכימי.<br>
+    <b>G3 – Generating cells (תאים מייצרים)</b> = אוסטאוגנזה - הייצור בפועל.<br>
+    רק פלאפ וסקולרי אוטולוגי מביא את שלושת ה-G יחד - זו הסיבה שהוא ה"גולד סטנדרד" האמיתי, לא רק שם קוד.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני אתר בנייה הרוס (הפגם בעצם) שצריך לשקם. <b>קבלן הפיגומים</b> (אוסטאוקונדוקציה) מגיע ראשון ומקים שלד מתכת שאפשר לטפס עליו. <b>מנהל הפרויקט</b> (אוסטאואינדוקציה, BMP) מגיע ומחלק הוראות עבודה - "אתה תהיה קורה, אתה תהיה עמוד". אבל רק אם יש בפועל <b>פועלים חיים באתר</b> (אוסטאוגנזה) הבניין באמת נבנה - אפשר להביא כמה שיותר פיגומים והוראות עבודה, בלי פועלים חיים שום דבר לא נבנה. אלוגרפט הוא אתר עם פיגומים אבל בלי פועלים - לכן הוא לבד תמיד "תקוע".</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>אתר הבנייה של העצם</title>
+    <rect x="20" y="130" width="460" height="14" fill="#a3a3a3"/>
+    <rect x="60" y="60" width="16" height="80" fill="#9ca3af"/>
+    <rect x="120" y="60" width="16" height="80" fill="#9ca3af"/>
+    <rect x="60" y="60" width="76" height="10" fill="#9ca3af"/>
+    <circle cx="250" cy="90" r="24" fill="#fbbf24" stroke="#78350f"/>
+    <text x="250" y="95" font-size="11" text-anchor="middle" fill="#78350f" font-weight="700">BMP</text>
+    <circle cx="400" cy="80" r="12" fill="#047857"/>
+    <circle cx="425" cy="95" r="12" fill="#047857"/>
+    <circle cx="410" cy="110" r="12" fill="#047857"/>
+    <text x="98" y="165" font-size="12" text-anchor="middle" fill="#4b5563" font-weight="700">פיגומים</text>
+    <text x="250" y="165" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">מנהל פרויקט</text>
+    <text x="412" y="165" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">פועלים חיים</text>
+  </svg>
+</div>
+
+<h2><span class="num">13</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=dkJ8XRFziJc" target="_blank">Fibular free flap – Mayo Clinic (YouTube)</a>
+    <div class="desc">סרטון הסבר קצר של Mayo Clinic על פלאפ הפיבולה החופשי - עקרונות האנטומיה והשימושים העיקריים.</div>
+  </li>
+  <li>
+    <a href="https://ota.org/education/ota-online-resources/video-library-procedures-techniques/treatment-segmental-bone-defect" target="_blank">Treatment of Segmental Bone Defect Using the Induced Membrane Technique (OTA)</a>
+    <div class="desc">הדגמה של טכניקת Masquelet לפגם עצם מקטעי (18 ס"מ בפמור) - שני השלבים, ספייסר והשתלת עצם.</div>
+  </li>
+  <li>
+    <a href="https://pie.med.utoronto.ca/TVASurg/project/fibula-flap-harvest/" target="_blank">Fibula Osteocutaneous Flap Harvest – Toronto Video Atlas of Surgery</a>
+    <div class="desc">אטלס וידאו מפורט (פתוח לציבור) המראה את שלבי הרמת פלאפ הפיבולה האוסטאוקוטני, כולל מיקומי האוסטאוטומיה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">14</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 נפגע בתאונת אופנוע וסבל משבר פתוח מסוג Gustilo IIIB בשליש האמצעי של הטיביה, עם פגם עצם של 16 ס"מ לאחר דברידמן חוזר. הפגם נותר אחרי שהזיהום נשלט. המנתחים שוקלים בין שיקום עם גרפט קנצלוס פשוט, טכניקת Masquelet, פלאפ פיבולה וסקולרי חופשי, ודיסטרקציה אוסטאוגנית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע גרפט קנצלוס לא-וסקולרי פשוט אינו אופציה סבירה במקרה הזה?</div>
+  <button class="opt" data-i="0">קנצלוס אינו אוסטאוגני בכלל</button>
+  <button class="opt" data-i="1">קנצלוס מתאים רק לפגמים בעצמות שטוחות</button>
+  <button class="opt" data-i="2">פגם של 16 ס"מ חורג בהרבה מהגבול של 5-6 ס"מ שבו גרפט לא-וסקולרי עדיין יכול לקבל אספקת דם ולהיקלט</button>
+  <button class="opt" data-i="3">קנצלוס מוגבל לשימוש בילדים בלבד</button>
+  <div class="explain">התשובה הנכונה: לפי עקרונות Kazanjian, גרפט קנצלוס לא-וסקולרי מוגבל לפגמים של עד 5-6 ס"מ - מעבר לכך המרחק גדול מדי מכדי שכלי דם מהמקום המקבל יחדרו לכל השתל בזמן, והוא ייספג לפני שיאחה. תשובה 1 שגויה - קנצלוס דווקא בעל פוטנציאל אוסטאוגני גבוה בזכות אוסטאוציטים ששרדו. תשובה 2 הפוכה - קנצלוס מתאים לפגמים קטנים בכל סוגי העצם. תשובה 4 לא מוזכרת בפרק כלל.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזו משתי הטכניקות - Masquelet או פלאפ פיבולה וסקולרי חופשי - עדיפה מבחינת מהירות איחוי, ולמה?</div>
+  <button class="opt" data-i="0">Masquelet תמיד מהירה יותר כי היא לא דורשת מיקרוכירורגיה</button>
+  <button class="opt" data-i="1">הפיבולה הוסקולרית מספקת אוסטאוגנזה מיידית (תאים חיים) ומאחה כמו שבר רגיל, בעוד ש-Masquelet דורש שני שלבים נפרדים במרווח של 6-8 שבועות ולאחר מכן איחוי "רגיל" של גרפט לא-וסקולרי</button>
+  <button class="opt" data-i="2">שתי הטכניקות זהות מבחינת קצב איחוי</button>
+  <button class="opt" data-i="3">Masquelet מהירה יותר כי הממברנה המושרית מכילה תאי גזע רבים יותר מכל פלאפ</button>
+  <div class="explain">התשובה הנכונה: לפלאפ הפיבולה החופשי יש תאים חיים (אוסטאוגנזה) שמאפשרים איחוי ישיר לעצם המקבלת (כמו איחוי שבר), בעוד ש-Masquelet היא טכניקה דו-שלבית מובנית (השהיה של 6-8 שבועות בין השלבים) שמשתמשת בגרפט קנצלוס לא-וסקולרי בשלב השני - כך שהיא איטית יותר במהותה, גם אם הממברנה משפרת משמעותית את סיכויי ההצלחה לעומת גרפט "רגיל". תשובה 1 ו-4 הפוכות לעובדות. תשובה 3 שגויה כי הן שונות מהותית בקצב.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהו double-barrel fibula (DBF), ומתי משתמשים בו?</div>
+  <button class="opt" data-i="0">שני פלאפי פיבולה שונים מכל רגל, המחוברים יחד</button>
+  <button class="opt" data-i="1">שימוש בפיבולה יחד עם אלוגרפט מוקפא</button>
+  <button class="opt" data-i="2">שיטת קיבוע חיצוני עם שתי מוטות מקבילות</button>
+  <button class="opt" data-i="3">אוסטאוטומיה של פיבולה אחת תוך שימור הפדיקל הפרונאלי השלם, כך שנוצרים שני קנים מקבילים מאותו פלאפ - מכפיל את החוזק המכני המיידי בלי להמתין להיפרטרופיה, מוגבל לפגמים מתחת ל-12 ס"מ</button>
+  <div class="explain">התשובה הנכונה: DBF הוא חיתוך תת-פריוסטאלי (לא ניתוק) של פיבולה בודדת שהפדיקל שלה נשאר שלם, כך שמתקבלים שני קנים ("חביות") מקבילים שיחד בעלי קוטר וחוזק גדולים משמעותית מפיבולה בודדת - שימושי כשצריך יציבות מיידית לפני שההיפרטרופיה הטבעית (שלוקחת חודשים-שנים) מתרחשת. מוגבל ל-12 ס"מ כי הפיבולה המקורית (עד 28 ס"מ) מתחלקת לשני קטעים. תשובות 1-3 מתארות טכניקות אחרות (Capanna, קיבוע חיצוני) בטעות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזה שיקול ייחודי היה משנה את הבחירה אם הפצוע במקרה היה ילד בן 8 עם פגיעה שכללה גם את לוחית הגדילה (physis)?</div>
+  <button class="opt" data-i="0">יש לשקול שחזור אפיפיזרי וסקולרי (למשל מהאפיפיזה הפרוקסימלית של הפיבולה הנגדית) כדי לשמר פוטנציאל גדילה אורכי - אפשרות שלא קיימת באף שתל אחר</button>
+  <button class="opt" data-i="1">אין הבדל - הטיפול זהה למבוגרים</button>
+  <button class="opt" data-i="2">יש להימנע מכל ניתוח עד גיל 18</button>
+  <button class="opt" data-i="3">יש להשתמש באלוגרפט בלבד כי הוא הבטוח ביותר לילדים</button>
+  <div class="explain">התשובה הנכונה: בילדים עם שלד לא-בשל, שחזור עם אלוגרפט, גרפט לא-וסקולרי או פלאפ עצם רגיל (ללא אפיפיזה) לא משמר את יכולת הגדילה האורכית של הגפה - מה שעלול לגרום לקיצור גפה או דפורמציה משמעותית עם הגדילה. רק העברה וסקולרית של אפיפיזה (בד"כ האפיפיזה הפרוקסימלית של הפיבולה, המסופקת מענף אפיפיזרי של העורק הטיביאלי הקדמי) משמרת גם משטח מפרקי אמיתי וגם לוחית גדילה פעילה. תשובות 1, 2, 4 מתעלמות מהשיקול הייחודי הזה בילדים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. שלושה חודשים לאחר שחזור טיביה עם פלאפ פיבולה חופשי, המטופל מדווח על כאב מקומי מתגבר בעת נשיאת משקל, והצילום מראה קו שקיפות חדש בגוף השתל. מה הסיבוך הסביר ביותר, ולמה?</div>
+  <button class="opt" data-i="0">non-union אטרופי מסיבית אוסטאואינדוקטיבית</button>
+  <button class="opt" data-i="1">דחיית שתל אימונולוגית</button>
+  <button class="opt" data-i="2">שבר מאמץ (stress fracture) בפיבולה - סיבוך שכיח בשלב שבו הפלאפ עדיין לא עבר היפרטרופיה מלאה תחת עומס נשיאת המשקל, לפני שהקוטר שלו הספיק לגדול ולהתאים לעומס</button>
+  <button class="opt" data-i="3">כישלון וסקולרי מאוחר של הפדיקל</button>
+  <div class="explain">התשובה הנכונה: הפיבולה עוברת היפרטרופיה הדרגתית (לפי חוק וולף - עצם מתחזקת בתגובה לעומס) כדי להתאים לקוטר עצם הטיביה, אך תהליך זה אורך עד שנתיים - ובשלב מוקדם, בעוד קוטר הפיבולה עדיין קטן משמעותית מקוטר הטיביה, העומס עלול לגרום לשבר מאמץ, בייחוד עם קיבוע אלסטי יותר שמעודד היפרטרופיה אך גם מעמיס יותר. תשובה 0 - non-union לא מתאר קו שקיפות חדש עם כאב מתגבר בצורה כזו. תשובה 1 - גרפטים אוטולוגיים וסקולריים (רקמת המטופל עצמו) אינם עוברים דחייה אימונולוגית. תשובה 3 היתה מתבטאת מוקדם יותר (ימים) ולא כקו שקיפות בהדמיה אחרי 3 חודשים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">15</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>שלושת מנגנוני האיחוי</b>: אוסטאוקונדוקציה (פיגום), אוסטאואינדוקציה (גורמי גדילה כמו BMP), אוסטאוגנזה (תאים חיים) - רק פלאפ עצם וסקולרי אוטולוגי מספק את כל השלושה.</li>
+    <li><b>non-union</b>: FDA - ללא איחוי 9 חודשים, ללא סימני החלמה 3 חודשים אחרונים. היפרטרופי (יציבות מספקת → קיבוע נוקשה) מול אטרופי (ביולוגיה חלשה → שתל עצם).</li>
+    <li><b>גרפט לא-וסקולרי</b> (קנצלוס/קורטיקלי) מוגבל לפגמים ≤5-6 ס"מ ומיטה מוזלת; <b>פלאפ וסקולרי</b> (פיבולה עד 26-28 ס"מ, כסל, MFC) לפגמים גדולים יותר.</li>
+    <li><b>טכניקת Masquelet</b>: שלב 1 ספייסר צמנט + דברידמן, שלב 2 (6-8 שבועות) הסרת ספייסר ומילוי בגרפט קנצלוס בתוך הממברנה המושרית - לפגמים 5-24 ס"מ.</li>
+    <li><b>DBF (double-barrel fibula)</b> לחוזק מיידי; <b>Capanna</b> (אלוגרפט + פיבולה תוך-מדולרית) לפגמים מאסיביים אונקולוגיים; <b>שחזור אפיפיזרי וסקולרי</b> - היחיד ששומר גדילה בילדים.</li>
+    <li><b>דיסטרקציה אוסטאוגנית (Ilizarov)</b>: קורטיקוטומיה → השהיה → מתיחה 1-2 מ"מ/יום → קונסולידציה; שיעור הצלת גפה 84%.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

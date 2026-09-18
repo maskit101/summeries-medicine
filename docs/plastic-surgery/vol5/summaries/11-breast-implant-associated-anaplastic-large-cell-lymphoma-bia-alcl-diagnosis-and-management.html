@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 11: לימפומה מקושרת לשתל שד (BIA-ALCL)</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  .warn-box{background:#fef2f2; border:1px solid #fca5a5; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .warn-box::before{content:"סימן אזהרה: "; font-weight:700; color:#b91c1c}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+  .quiz .score{font-size:14px; color:#4b5563; margin-top:8px}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 11: לימפומה מקושרת לשתל שד <span class="term" dir="ltr">Breast Implant-Associated Anaplastic Large Cell Lymphoma (BIA-ALCL)</span> – אבחנה וטיפול</h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | Section I – Aesthetic Breast Surgery, פרק 11, מאת Mark W. Clemens, Eliora A. Tesfaye, Anand Deva</div>
+
+<p>BIA-ALCL הוא לימפומה נדירה ועדיין "מתגלה" (<span class="term" dir="ltr">emerging</span>) מסוג <b>T-cell</b>, הקשורה כמעט אך ורק לשתלי שד בעלי <b>משטח מחוספס (<span class="term" dir="ltr">textured</span>)</b>. זהו אחד הפרקים החשובים ביותר מבחינה מדיקו-לגלית וקלינית בכל הכרך: כל מטופלת עם שתל שד (אסתטי או שחזורי) חייבת להיות מוכרת לסיכון הזה, וכל מנתח פלסטי חייב לדעת לזהות אותו – כי <b class="key">אבחנה מוקדמת + כריתה כירורגית שלמה = ריפוי ברוב המקרים</b>, בעוד עיכוב באבחנה עלול להוביל למחלה מתקדמת ואף למוות.</p>
+
+<h2><span class="num">1</span> מנגנון ופתוגנזה – למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    שתל מחוספס (<span class="term" dir="ltr">textured</span>) &#8592; שטח פנים גדול בהרבה משתל חלק &#8592; מצע נוח להיצמדות חיידקים ויצירת <b>ביופילם</b> (<span class="term" dir="ltr">biofilm</span>) &#8592; גירוי אנטיגני כרוני של תאי T בקפסולה &#8592; אצל מטופלת עם <b>רגישות גנטית</b> (מוטציות ב-JAK/STAT, TP53, ועוד) &#8592; שגשוג פוליקלונלי הופך לשגשוג <b>מונוקלונלי</b> ("second hit" גנטי) &#8592; לימפומה.
+  </p>
+  <p>זמן ההתפתחות ממוצע הוא <b>7–12 שנים</b> מהשתלת השתל ועד האבחנה – זהו תהליך <b>איטי</b> שדורש חשיפה כרונית ומתמשכת, לא אירוע חד-פעמי. חשוב להבין: BIA-ALCL אינה "סרטן שד" קלאסי (לא מקורה ברקמת הפרנכימה של השד) – היא לימפומה של תאי T שמקורה <b>בקפסולה סביב השתל או בנוזל (אפוזיה) שמצטבר בתוכה</b>.</p>
+</div>
+
+<p><b>מדוע דווקא משטח מחוספס?</b> מספר גורמים מוצעים (לא כולם הוכחו באותה רמת ודאות):</p>
+<table>
+  <thead><tr><th>גורם מוצע</th><th>המנגנון המוצע</th><th>רמת ביסוס</th></tr></thead>
+  <tbody>
+    <tr><td><b>חיכוך מכני</b> (<span class="term" dir="ltr">mechanical friction</span>)</td><td>שחיקה מתמדת של השתל כנגד הקפסולה</td><td>חלש – מדגימים בעיקר ממכשור אורתופדי, בעיקר לימפומות מסוג B</td></tr>
+    <tr><td><b>חלקיקי סיליקון</b> מהמעטפת (<span class="term" dir="ltr">shell particulate</span>)</td><td>חלקיקים קטנים דיים להיבלע ע"י מקרופאגים &#8592; שחרור ציטוקינים ואפופטוזיס</td><td>בעיקר גורם לדלקת/פיברוזיס דרך המערכת החיסונית המולדת, לא הוכח כמניע ישיר של שינוי לימפוציטרי</td></tr>
+    <tr><td><b>Leachables</b> (סילוקסאנים, פלסטיזרים, פלטינה)</td><td>דליפה מהשתל לרקמה סביב</td><td>חלש – אין קורלציה מוכחת בין תוכן השתל (ג'ל/סליין) לשכיחות המחלה</td></tr>
+    <tr><td><b>ביופילם חיידקי</b> <span class="key">(ההשערה המובילה)</span></td><td>שטח פנים גדול יותר &#8592; יותר חיידקים נצמדים &#8592; ליפופוליסכריד (LPS) מדופן חיידקים גראם-שליליים מעורר ציטוקינים דלקתיים &#8592; גירוי אנטיגני כרוני של תאי T</td><td>הכי חזק: מודלים <i>in vitro/in vivo</i> הראו עומס חיידקי גבוה משמעותית על שתלים מחוספסים לעומת חלקים (P&lt;0.001)</td></tr>
+    <tr><td><b>רגישות גנטית</b></td><td>מוטציות סומטיות ב-JAK1/STAT3, SOCS, JunB, SATB1, Notch1, TP53, MYC, DNMT3A; מוטציות germline ב-TP53 (כולל Li-Fraumeni); אובדן כרומוזום 20q</td><td>חזק – "second hit" גנטי נדרש מעבר לגירוי דלקתי בלבד</td></tr>
+  </tbody>
+</table>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון פתוגנזה מוצע ל-BIA-ALCL</title>
+  <desc>שרשרת סיבתית מימין לשמאל: שתל מחוספס עם ביופילם, גירוי אנטיגני, שגשוג פוליקלונלי, שגשוג מונוקלונלי, BIA-ALCL</desc>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="48" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">שתל מחוספס</text>
+  <text x="770" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">+ ביופילם חיידקי</text>
+  <text x="770" y="80" font-size="11" text-anchor="middle" fill="#7f1d1d">(שטח פנים גדול)</text>
+
+  <rect x="480" y="20" width="160" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="560" y="48" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">גירוי אנטיגני כרוני</text>
+  <text x="560" y="65" font-size="11" text-anchor="middle" fill="#78350f">של תאי T בקפסולה</text>
+  <text x="560" y="80" font-size="11" text-anchor="middle" fill="#78350f">(host genetics)</text>
+
+  <rect x="270" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="345" y="48" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">שגשוג פוליקלונלי</text>
+  <text x="345" y="65" font-size="11" text-anchor="middle" fill="#1e3a8a">(polyclonal)</text>
+  <text x="345" y="80" font-size="10.5" text-anchor="middle" fill="#1e3a8a">עדיין תגובה תקינה</text>
+
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="110" y="42" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">"Second hit" גנטי</text>
+  <text x="110" y="58" font-size="11" text-anchor="middle" fill="#4c1d95">(JAK1/STAT3, TP53...)</text>
+  <text x="110" y="74" font-size="11" text-anchor="middle" fill="#4c1d95">&#8594; שגשוג מונוקלונלי</text>
+
+  <polygon points="660,55 700,48 700,62" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,55 480,48 480,62" fill="#374151"/>
+  <line x1="480" y1="55" x2="430" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,55 270,48 270,62" fill="#374151"/>
+  <line x1="270" y1="55" x2="210" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="330" y="160" width="200" height="70" rx="8" fill="#f0fdf4" stroke="#047857"/>
+  <text x="430" y="190" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">BIA-ALCL</text>
+  <text x="430" y="208" font-size="11" text-anchor="middle" fill="#065f46">CD30+, ALK− T-cell לימפומה</text>
+  <text x="430" y="222" font-size="10" text-anchor="middle" fill="#065f46">7–12 שנים מההשתלה</text>
+  <polygon points="430,160 424,140 436,140" fill="#047857"/>
+  <line x1="430" y1="160" x2="430" y2="140" stroke="#047857" stroke-width="2"/>
+</svg>
+
+<div class="key-box">כל התהליך הזה <b>איטי מטבעו</b> (ממוצע 7–8 שנים, טווח עד 8–12 שנים) – זו הסיבה שכל אישה עם שתל מחוספס, גם שנים רבות אחרי הניתוח, נותרת בסיכון ולעולם לא "יוצאת מהחלון" של המעקב.</div>
+
+<h2><span class="num">2</span> מה זה בכלל BIA-ALCL – רקע פתולוגי</h2>
+<p>לימפומה (<span class="term" dir="ltr">lymphoma</span>) היא סרטן של מערכת החיסון שמקורו בלימפוציטים. ALCL (<span class="term" dir="ltr">anaplastic large cell lymphoma</span>) תואר לראשונה ב-1985 ע"י Stein וחב' כסוג חדש של לימפומה שאינה הודג'קין (NHL), עם תאים אנפלסטיים גדולים המבטאים את החלבון <b>CD30</b>. ALCL מתחלקת לפי ביטוי הקולטן <b>ALK</b> (<span class="term" dir="ltr">anaplastic lymphoma kinase</span> – תוצר טרנסלוקציה t(2;5)): ALK+ (בעיקר גברים צעירים, פרוגנוזה טובה יותר) מול ALK−.</p>
+<div class="key-box"><b>כל מקרי BIA-ALCL המאומתים הם ALK-שלילי (ALK−)</b> ומבטאים CD30 באופן חד-משמעי – זהו קריטריון אבחנתי מרכזי.</div>
+
+<p>קריטריוני האבחנה הרשמיים של ארגון הבריאות העולמי (WHO):</p>
+<table>
+  <thead><tr><th>#</th><th>קריטריון</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>גידול עם דגימה פתולוגית נאותה, הכולל אפוזיה סביב שתל שד או ריפוד קפסולת השתל</td></tr>
+    <tr><td>2</td><td>ניאופלזמה עם תאים לימפואידים גדולים, ציטופלזמה שופעת וגרעינים פלאומורפיים</td></tr>
+    <tr><td>3</td><td>ביטוי אחיד של CD30 באימונוהיסטוכימיה + אוכלוסיית תאי T מונוקלונלית בציטומטריית זרימה</td></tr>
+    <tr><td>4</td><td>שלילי ל-ALK (חלבון או טרנסלוקציה בכרומוזום 2q23)</td></tr>
+  </tbody>
+</table>
+
+<p>חשוב להבדיל מ-<b>Primary Breast Lymphoma (PBL)</b> – מחלה של פרנכימת השד עצמה, מהווה 0.04–0.5% מסרטני השד, ורובה (65–90%) היא לימפומה מסוג <b>B</b> ולא T. BIA-ALCL לעומת זאת היא <b>תמיד T-cell</b> ומקורה בקפסולה/אפוזיה, לא ברקמת השד.</p>
+
+<p><b>אפידמיולוגיה:</b> מ-1997 ועד 2021 דווחו מעל 1300 מקרים ב-35 מדינות. הסיכון תלוי מאוד בסוג הטקסטורה: שתלי <span class="term" dir="ltr">Allergan Biocell</span> (טקסטורה "salt-loss" גסה) נמצאו בסיכון גבוה משמעותית משתלי <span class="term" dir="ltr">Mentor Siltex</span> (יחס 1:6600 לעומת 1:53,300, P&lt;0.001). שתלי פוליאוריטן (Silimed) ו-Biocell נמצאו בסיכון הגבוה ביותר (יחס סיכויים 23.4 ו-16.5 בהתאמה לעומת Siltex). ביולי 2019 ה-FDA דרש <b>Class I recall</b> (החזרה מסוג I – הדרגה החמורה ביותר) של שתלי Allergan Biocell, ו-38 מדינות אסרו שימוש בהם.</p>
+
+<h2><span class="num">3</span> ביטוי קליני</h2>
+<table>
+  <thead><tr><th>מאפיין</th><th>נתון</th></tr></thead>
+  <tbody>
+    <tr><td>גיל ממוצע באבחנה</td><td>52 שנים (טווח 28–87)</td></tr>
+    <tr><td>זמן חציוני מההשתלה ועד האבחנה</td><td>9 שנים (טווח 1–32 שנים)</td></tr>
+    <tr><td><b>אפוזיה מאוחרת (seroma)</b> – שכיחות ~70%</td><td>הביטוי השכיח ביותר: <b>אפוזיה פריפרוסטטית מאוחרת (&gt;שנה מההשתלה)</b> שלא מוסברת בזיהום או טראומה. זהו "דגל אדום" שחייב בירור.</td></tr>
+    <tr><td><b>מסה (mass)</b> – שכיחות ~30%</td><td>מנבאת מהלך אגרסיבי יותר ו-OS/PFS נמוך יותר</td></tr>
+    <tr><td>ביטויים פחות שכיחים</td><td>לימפאדנופתיה, פריחת עור, קונטרקטורה קפסולרית בשילוב תסמינים אחרים</td></tr>
+  </tbody>
+</table>
+<div class="warn-box">כל <b>seroma מאוחר (&gt;שנה מההשתלה)</b> שאינו מוסבר בזיהום או טראומה – <b>חשוד ל-BIA-ALCL עד שיוכח אחרת</b>. זהו הכלל הקליני החשוב ביותר בפרק.</div>
+
+<h2><span class="num">4</span> אבחנה – בירור שיטתי</h2>
+<p>האבחנה מבוססת על אלגוריתם ה-NCCN (אומץ ב-2016, מומלץ ע"י ASPS ו-ASAPS):</p>
+<svg class="diagram" viewBox="0 0 860 430" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם אבחנה ל-BIA-ALCL (NCCN)</title>
+  <rect x="290" y="10" width="280" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="35" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חשד ל-BIA-ALCL</text>
+  <text x="430" y="52" font-size="11" text-anchor="middle" fill="#7f1d1d">seroma מאוחר / מסה / פריחה / לימפאדנופתיה</text>
+  <text x="430" y="68" font-size="10.5" text-anchor="middle" fill="#7f1d1d">שלילת זיהום וטראומה (CBC, תרביות, אנטיביוטיקה)</text>
+
+  <rect x="290" y="105" width="280" height="55" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="430" y="128" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">הדמיית שד</text>
+  <text x="430" y="146" font-size="11" text-anchor="middle" fill="#1e3a8a">אולטרסאונד &#8592; MRI אם לא חד-משמעי</text>
+
+  <polygon points="430,105 424,90 436,90" fill="#374151"/>
+  <line x1="430" y1="105" x2="430" y2="80" stroke="#374151" stroke-width="2"/>
+
+  <rect x="30" y="200" width="200" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="130" y="222" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">אפוזיה</text>
+  <text x="130" y="240" font-size="11" text-anchor="middle" fill="#78350f">FNA &gt;50 מ"ל</text>
+
+  <rect x="330" y="200" width="200" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="222" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">מסה</text>
+  <text x="430" y="240" font-size="11" text-anchor="middle" fill="#78350f">ביופסיה</text>
+
+  <rect x="630" y="200" width="200" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="730" y="222" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">לא חד-משמעי</text>
+  <text x="730" y="240" font-size="11" text-anchor="middle" fill="#78350f">הדמיה נוספת</text>
+
+  <polygon points="130,200 124,180 136,180" fill="#374151"/>
+  <line x1="130" y1="200" x2="290" y2="160" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,200 424,180 436,180" fill="#374151"/>
+  <line x1="430" y1="200" x2="430" y2="160" stroke="#374151" stroke-width="2"/>
+  <polygon points="730,200 724,180 736,180" fill="#374151"/>
+  <line x1="730" y1="200" x2="570" y2="160" stroke="#374151" stroke-width="2"/>
+
+  <rect x="130" y="300" width="400" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="330" y="322" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">ציטולוגיה + ציטומטריית זרימה (שיבוט T-cell) + CD30 IHC</text>
+  <text x="330" y="340" font-size="10.5" text-anchor="middle" fill="#4c1d95">סמנים משלימים: CD2, CD3, CD4, CD5, CD7, CD8, CD45, ALK</text>
+
+  <polygon points="330,300 324,280 336,280" fill="#374151"/>
+  <line x1="130" y1="255" x2="330" y2="280" stroke="#374151" stroke-width="2"/>
+  <line x1="430" y1="255" x2="330" y2="280" stroke="#374151" stroke-width="2"/>
+
+  <rect x="30" y="390" width="230" height="35" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="145" y="412" font-size="11" text-anchor="middle" fill="#065f46">שלילי (תאים תקינים) &#8592; seroma שפיר</text>
+  <rect x="590" y="390" width="240" height="35" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="710" y="412" font-size="11" text-anchor="middle" fill="#7f1d1d">חיובי (&gt;10% CD30, תאים אנפלסטיים) &#8592; אישור BIA-ALCL</text>
+</svg>
+
+<h3>הדמיה – רגישות וסגוליות (Adrada וחב', 44 חולות)</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>בדיקה</th><th>גילוי אפוזיה (רגישות/סגוליות)</th><th>גילוי מסה (רגישות/סגוליות)</th></tr></thead>
+  <tbody>
+    <tr><td><b>אולטרסאונד</b> (בדיקת קו ראשון)</td><td>84% / 75%</td><td>46% / 100%</td></tr>
+    <tr><td>CT</td><td>55% / 83%</td><td>50% / 100%</td></tr>
+    <tr><td>MRI</td><td>82% / 33%</td><td>82% / 33%</td></tr>
+    <tr><td>PET</td><td>38% / 83%</td><td>64% / 88%</td></tr>
+    <tr><td>ממוגרפיה</td><td colspan="2">רגישות נמוכה יותר לשני הממצאים – לא בדיקת הבחירה</td></tr>
+  </tbody>
+</table></div>
+<p>נפח אפוזיה טיפוסי: 50–1000 מ"ל, בד"כ צמיגי. סמנים נוספים שמופיעים באחוזים משתנים: CD4 (80–84%), CD43 (80–88%), CD3 (30–46%), CD45 (36%), CD2 (30%); ביטוי CD5, CD7, CD8 או CD15 נדיר. <b>PET/CT</b> שימושי במיוחד להדגמת מעורבות דופן החזה, לימפאדנופתיה אזורית וגרורות רחוקות – ומשמש לתכנון הניתוח.</p>
+
+<h2><span class="num">5</span> שלב המחלה (<span class="term" dir="ltr">staging</span>)</h2>
+<p>בניגוד ללימפומות אחרות שמדורגות לפי Ann Arbor (מודל של "גידול נוזלי" – liquid tumor), BIA-ALCL מתנהגת יותר כמו <b>גידול מוצק</b> (התקדמות מקומית/אזורית) – ולכן פותחה מערכת ייעודית מבוססת <b>TNM</b> (של MD Anderson Cancer Center – MDACC):</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>T (גידול)</th><th>תיאור</th></tr></thead>
+  <tbody>
+    <tr><td>T1</td><td>מוגבל לאפוזיה או שכבה בצד הלומינלי של הקפסולה</td></tr>
+    <tr><td>T2</td><td>חדירה שטחית לצד הלומינלי של הקפסולה</td></tr>
+    <tr><td>T3</td><td>אשכולות/שכבות תאים חודרים לעובי הקפסולה</td></tr>
+    <tr><td>T4</td><td>חדירה מעבר לקפסולה אל רקמת רכה/פרנכימת שד סמוכה</td></tr>
+  </tbody>
+</table></div>
+<div class="table-scroll"><table>
+  <thead><tr><th>N (בלוטות)</th><th>M (גרורות)</th><th>שלב</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td>N0 – אין מעורבות</td><td>M0 – אין פיזור</td><td>IA / IB / IC</td><td>T1N0M0 / T2N0M0 / T3N0M0</td></tr>
+    <tr><td>N1 – בלוטה אזורית אחת</td><td>M1 – פיזור לאיברים/מקומות מרוחקים</td><td>IIA</td><td>T4N0M0 (מסה)</td></tr>
+    <tr><td>N2 – מספר בלוטות אזוריות</td><td></td><td>IIB</td><td>T1-3N1M0</td></tr>
+    <tr><td></td><td></td><td>III</td><td>T4N(1-2)M0</td></tr>
+    <tr><td></td><td></td><td>IV</td><td>T(כלשהו)N(כלשהי)M1</td></tr>
+  </tbody>
+</table></div>
+<p><b>84% מהחולות הן שלב Ann-Arbor IE, 16% שלב IIE.</b> הישרדות ללא מחלה (EFS) והישרדות כללית (OS) יורדות משמעותית ככל שהשלב (לפי TNM או Ann Arbor) עולה (P=0.03/0.007 בהתאמה) – מה שתומך בחשיבות אבחנה מוקדמת בשלב מוקדם.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>עקרון-העל: ניתוח שלם הוא הטיפול המכריע</h3>
+<p>מחלה המוגבלת לקפסולה (שלבים IA–IC) מטופלת <b>בניתוח בלבד</b>, ואילו מחלה מתקדמת (שלב IIB ומעלה, מעורבות בלוטות) דורשת טיפול משלים. במחקר מפתח, ה-OS וה-PFS לא נבדלו משמעותית בין חולות שקיבלו וחולות שלא קיבלו כימותרפיה (P=0.44/0.28) – כלומר <b class="key">בגישה כירורגית נאותה, הרבה חולות משיגות תוצאה מיטבית ללא כימותרפיה כלל</b>.</p>
+
+<h3>מהלך הניתוח – עקרונות טכניקה אונקולוגית</h3>
+<table>
+  <thead><tr><th>שלב</th><th>מה נעשה</th></tr></thead>
+  <tbody>
+    <tr><td><b>בירור טרום-ניתוחי</b></td><td>אנמנזה ובדיקה גופנית, CBC + דיפרנציאל, CMP + LDH, PET/CT, דיון בצוות רב-תחומי (המטו-אונקולוג, כירורג אונקולוגי, כירורג פלסטי, פתולוג המטופתולוג)</td></tr>
+    <tr><td><b>כריתה En bloc</b></td><td>הוצאת השתל <b>יחד עם קפסולקטומיה מלאה (total capsulectomy)</b> – לא חלקית! + כריתת כל מסה עם שוליים נקיים</td></tr>
+    <tr><td><b>בלוטות לימפה</b></td><td>ביופסיה אקסיזיונלית (לא FNA – עלולה לתת תוצאה שלילית כוזבת) לכל בלוטה חשודה. <b>אין תפקיד ל-sentinel lymph node biopsy</b> כי הקפסולה עלולה לנקז למספר אגני בלוטות</td></tr>
+    <tr><td><b>עקרונות טכניים</b></td><td>תפרי סימון אוריינטציה על הדגימה, סיכות כירורגיות בערוגת הגידול, החלפת מכשירים אם מבוצעת גם אקספלנטציה של הצד הנגדי</td></tr>
+    <tr><td><b>שתל נגדי (contralateral)</b></td><td>יש לשקול הוצאה מונעת לפי הנחיות NCCN; ה-FDA <b>אינו</b> ממליץ על הוצאה שגרתית/מונעת בנשים אסימפטומטיות ללא BIA-ALCL מאובחנת</td></tr>
+    <tr><td><b>שחזור</b></td><td>מיידי או דחוי, עם שתלים <b>חלקים בלבד</b> או שחזור אוטולוגי – <b>לעולם לא</b> שתל מחוספס נוסף (בגלל הרגישות הגנטית המוכחת)</td></tr>
+  </tbody>
+</table>
+
+<div class="warn-box">נקודת הכשל הקריטית ביותר בניתוח: <b>כריתה חלקית או שיורית</b>. קפסולקטומיה חלקית עם מחלה שיורית מחייבת טיפול משלים (הקרנה/כימותרפיה) ומחמירה משמעותית את הפרוגנוזה בהשוואה לכריתה מלאה ללא שאריות.</div>
+
+<h3>טיפול משלים (Adjuvant)</h3>
+<table>
+  <thead><tr><th>מצב</th><th>טיפול</th><th>מנגנון/הערות</th></tr></thead>
+  <tbody>
+    <tr><td>מחלה שיורית מקומית (לאחר כריתה חלקית)</td><td>הקרנות (RT) 24–36 Gy</td><td>שליטה מקומית</td></tr>
+    <tr><td>מחלה מתקדמת (שלב IIB ומעלה)</td><td><b>Brentuximab vedotin</b> (קו ראשון לפי NCCN)</td><td>נוגדן חד-שבטי אנטי-CD30 מצומד לתרופה ציטוטוקסית (ADC – antibody-drug conjugate); שיעור תגובה אובייקטיבי 86%, הפוגה מלאה 59% ב-ALCL מערכתית חוזרת/עמידה</td></tr>
+    <tr><td>מחלה נפוצה/עמידה</td><td>פרוטוקולי כימותרפיה מבוססי אנתרציקלין (כמו ב-ALCL מערכתית)</td><td>לחולות שלא הגיבו לטיפול קו-ראשון</td></tr>
+  </tbody>
+</table>
+
+<h3>מעקב</h3>
+<p>מעקב קליני עם אונקולוג <b>כל 3–6 חודשים למשך שנתיים לפחות</b>; הדמיית CT או PET/CT <b>כל 6 חודשים למשך שנתיים</b>, ולאחר מכן לפי הצורך הקליני.</p>
+
+<h2><span class="num">7</span> אבחנה מבדלת – טבלת השוואה</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>מאפיין</th><th>BIA-ALCL</th><th>Seroma שגרתי (זיהומי/טראומטי)</th><th>קונטרקטורה קפסולרית (Baker III–IV)</th></tr></thead>
+  <tbody>
+    <tr><td>עיתוי</td><td>מאוחר (&gt;שנה, ממוצע 8–10 שנים)</td><td>מוקדם, לרוב בתוך שבועות מהניתוח או מטראומה/זיהום ברור</td><td>יכול להתפתח בכל שלב, לרוב חודשים עד שנים</td></tr>
+    <tr><td>הקשר לזיהום/טראומה</td><td>לרוב <b>לא</b> ניתן להסביר בזיהום/טראומה</td><td>לרוב יש הסבר ברור (ניתוח לאחרונה, חבלה, תסמיני זיהום)</td><td>אין קשר ישיר</td></tr>
+    <tr><td>ציטולוגיה/CD30</td><td>תאים אנפלסטיים גדולים, <b>CD30 חיובי חזק, ALK שלילי</b></td><td>תאי דלקת תקינים, CD30 שלילי/מועט</td><td>לרוב לא נלקחת ציטולוגיה כשגרה; אם נלקחת – תקינה</td></tr>
+    <tr><td>הדמיה</td><td>אפוזיה +/- מסה לצד הקפסולה</td><td>נוזל פשוט ללא מסה</td><td>קפסולה מעובה, עיוות שתל, ללא אפוזיה משמעותית</td></tr>
+    <tr><td>טיפול</td><td>כריתה אונקולוגית (en bloc + קפסולקטומיה מלאה) +/- טיפול משלים</td><td>ניקוז/אנטיביוטיקה/טיפול תומך לפי הגורם</td><td>קפסולוטומיה/קפסולקטומיה +/- החלפת שתל</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">הכלל הפרקטי: <b>כל seroma מאוחר שלא מוסבר, נשלח לציטולוגיה עם ציון מפורש "לשלול BIA-ALCL"</b> – זו בדיקה שלא מבוצעת כשגרה על נוזל אפוזיה סתמי, וצריך לבקש אותה באופן פעיל.</div>
+
+<h2><span class="num">8</span> שיקולים מדיקו-לגליים ודיווח</h2>
+<p>מאז המלצות ה-FDA ב-2011, יצרני השתלים מוסיפים אזהרה כתובה על BIA-ALCL לעלוני המידע. הסכמה מדעת צריכה לכלול שלושה יעדים: (1) מודעות לקיום המחלה הנדירה, (2) הכרת תסמינים אופייניים (seroma מאוחר/מסה), (3) הנעה לפעולה ופנייה לרופא בהופעת תסמינים. ה-FDA וה-American College of Surgeons ממליצים ליידע את כל המטופלות שקיבלו שתלי Allergan Biocell בעבר על ה-Class I recall משנת 2019. מקרים מאומתים מדווחים למרשם <b>PROFILE</b> (Patient Registry and Outcomes For breast Implants and anaplastic large cell Lymphoma etiology and Epidemiology) – שיתוף פעולה בין ASPS ל-FDA, ב-<span dir="ltr">www.thepsf.org/PROFILE</span>.</p>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-T-A-G-E</span> לזיהוי וטיפול ב-BIA-ALCL</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Seroma</span> (מאוחר, &gt;שנה) – דגל האזהרה המרכזי.<br>
+    <b>T</b> – <span class="term" dir="ltr">Textured implant</span> – כמעט תמיד בהיסטוריה.<br>
+    <b>A</b> – <span class="term" dir="ltr">ALK-negative, CD30-positive</span> – חתימה פתולוגית.<br>
+    <b>G</b> – <span class="term" dir="ltr">General excision (en bloc + total capsulectomy)</span> – הטיפול המכריע.<br>
+    <b>E</b> – <span class="term" dir="ltr">Early diagnosis = Excellent prognosis</span> – ככל שמוקדם יותר, כך טוב יותר.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני "בית" (הקפסולה) שנבנה סביב "אורח קבוע" (השתל המחוספס) במשך שנים. בקירות המחוספסים של הבית מצטברים "פולשים קטנים" (חיידקים) שיוצרים "מחנה" (ביופילם). כל יום, "שומרי הבית" (תאי T) מגיבים לפולשים – עד שיום אחד, אחד השומרים "משתגע" (מוטציה גנטית) ומתחיל להתרבות בלי בקרה, הופך לאזרח סורר שמשתלט על הבית כולו. הפתרון היחיד: <b>להרוס את הבית כולו עד היסוד</b> (קפסולקטומיה מלאה) – לא לתקן רק את החלק הפגוע, כי כל שריד של הבית הישן עלול להכיל עוד "שומרים משתגעים".</p>
+  <svg class="diagram" viewBox="0 0 500 210" xmlns="http://www.w3.org/2000/svg">
+    <title>איור דמיוני – הבית והשומר המשתגע</title>
+    <polygon points="250,20 90,110 410,110" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <rect x="110" y="110" width="280" height="80" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+    <circle cx="180" cy="150" r="12" fill="#2563eb"/>
+    <text x="180" y="175" font-size="10" text-anchor="middle" fill="#1e3a8a">שומר תקין</text>
+    <circle cx="250" cy="150" r="14" fill="#b91c1c"/>
+    <text x="250" y="130" font-size="18" text-anchor="middle" fill="#b91c1c">!</text>
+    <text x="250" y="175" font-size="10" text-anchor="middle" fill="#7f1d1d" font-weight="700">שומר "משתגע"</text>
+    <circle cx="320" cy="150" r="12" fill="#2563eb"/>
+    <text x="320" y="175" font-size="10" text-anchor="middle" fill="#1e3a8a">שומר תקין</text>
+    <text x="250" y="55" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">הקפסולה סביב השתל המחוספס</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<p>לא נמצאו ע"י חיפוש ישיר סרטוני YouTube חינוכיים מובהקים או קבצי תמונה מזוהים בוודאות ב-Wikimedia Commons העונים על נושא הפרק – לכן לא הוטמעו כאן תמונות/סרטונים חיצוניים (כדי לא לצטט קישור לא מאומת). האיורים הסכמטיים בסיכום זה מבוססים על התרשימים המקוריים בפרק (Fig. 11.3, Algorithm 11.1, Algorithm 11.2, Fig. 11.5/11.6, Table 11.1). להלן מקורות טקסטואליים מהימנים ומעודכנים לעיון נוסף:</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.fda.gov/medical-devices/breast-implants/breast-implant-associated-anaplastic-large-cell-lymphoma-bia-alcl" target="_blank">FDA – Breast Implant-Associated Anaplastic Large Cell Lymphoma (BIA-ALCL)</a>
+    <div class="desc">העמוד הרשמי של ה-FDA – עדכוני בטיחות, נתוני recall, והנחיות דיווח.</div>
+  </li>
+  <li>
+    <a href="https://www.plasticsurgery.org/patient-safety/breast-implant-safety/bia-alcl-summary" target="_blank">ASPS – BIA-ALCL Summary</a>
+    <div class="desc">עמדת האיגוד האמריקאי לכירורגיה פלסטית, כולל קישור למרשם PROFILE.</div>
+  </li>
+  <li>
+    <a href="https://www.nccn.org" target="_blank">NCCN – National Comprehensive Cancer Network</a>
+    <div class="desc">מקור אלגוריתמי האבחנה והטיפול הרשמיים (Algorithm 11.1 ו-11.2 בפרק מבוססים עליהם).</div>
+  </li>
+  <li>
+    <a href="https://www.mskcc.org/cancer-care/types/lymphoma/types/breast-implant-associated-anaplastic-large-cell-lymphoma" target="_blank">Memorial Sloan Kettering – BIA-ALCL</a>
+    <div class="desc">הסבר קליני מכוון-מטופלות ממרכז אונקולוגי מוביל.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 54 מגיעה למרפאה עם תלונה על נפיחות והתעבות בשד שמאל, 9 שנים לאחר הגדלת חזה עם שתלי סיליקון מחוספסים (טקסטורה מקרו). היא מכחישה טראומה או חום. בבדיקה: שד שמאל נפוח, לא רגיש במיוחד, ללא אודם. אולטרסאונד מדגים אפוזיה פריפרוסטטית משמעותית ללא מסה נראית לעין. מבוצעת שאיבה (FNA) של 80 מ"ל נוזל צמיגי, הנשלחת לפתולוגיה עם ציון "לשלול BIA-ALCL". ציטולוגיה מדגימה תאים אנפלסטיים גדולים עם גרעינים פלאומורפיים; אימונוהיסטוכימיה: CD30 חיובי חזק, ALK שלילי.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהו הביטוי הקליני השכיח ביותר של BIA-ALCL, ובאיזה שלב זמן מהניתוח?</div>
+  <button class="opt" data-i="0">מסה מוחשית בשד, מיד לאחר הניתוח</button>
+  <button class="opt" data-i="1">אפוזיה פריפרוסטטית מאוחרת (&gt;שנה מההשתלה, ממוצע 8–10 שנים)</button>
+  <button class="opt" data-i="2">פריחה עורית בתוך שבועיים מהניתוח</button>
+  <button class="opt" data-i="3">לימפאדנופתיה צווארית ללא מעורבות שד כלל</button>
+  <div class="explain">התשובה הנכונה: כ-70% מהמקרים מציגים כאפוזיה/seroma מאוחר, בממוצע 8–10 שנים לאחר ההשתלה – כל seroma כזה שאינו מוסבר בזיהום או טראומה נחשב חשוד. מסה (תשובה 1) מופיעה ב-30% מהמקרים בלבד ומנבאת מהלך אגרסיבי יותר. פריחה מוקדמת (תשובה 3) ולימפאדנופתיה מבודדת (תשובה 4) הם ביטויים נדירים ולא הצגה טיפוסית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. אישה עם BIA-ALCL מאובחנת. מהו הטיפול המרכזי במחלה המוגבלת לקפסולה (שלב IA-IC)?</div>
+  <button class="opt" data-i="0">כימותרפיה מבוססת אנתרציקלין כקו ראשון, ללא ניתוח</button>
+  <button class="opt" data-i="1">קפסולוטומיה חלקית בלבד, תוך שימור השתל</button>
+  <button class="opt" data-i="2">כריתה En bloc: הוצאת השתל + קפסולקטומיה מלאה + כריתת כל מסה עם שוליים נקיים</button>
+  <button class="opt" data-i="3">הקרנות בלבד ללא ניתוח כלל</button>
+  <div class="explain">התשובה הנכונה: הטיפול המכריע במחלה מוגבלת לקפסולה הוא ניתוח - כריתה En bloc הכוללת קפסולקטומיה מלאה (לא חלקית!), הוצאת השתל, וכריתת כל מסה קיימת עם שוליים נקיים. מחקרים הראו ש-OS ו-PFS דומים בין מי שקיבלה כימותרפיה למי שלא, כלומר ניתוח נאות לבדו יכול להספיק. תשובה 1 (כימותרפיה בלבד) מתאימה למחלה מתקדמת בלבד, לא כקו ראשון במחלה מוקדמת. תשובה 2 (קפסולוטומיה חלקית) היא בדיוק הטעות הקריטית שהפרק מזהיר מפניה - כריתה חלקית משאירה מחלה שיורית ומחייבת טיפול משלים. תשובה 4 (הקרנות בלבד) שמורה למחלה שיורית לאחר ניתוח לא שלם, לא כטיפול ראשוני.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהי החתימה האימונופנוטיפית (immunophenotype) הפתולוגית המאפיינת את כל מקרי BIA-ALCL המאומתים?</div>
+  <button class="opt" data-i="0">CD30 שלילי, ALK חיובי</button>
+  <button class="opt" data-i="1">CD30 שלילי, ALK שלילי</button>
+  <button class="opt" data-i="2">CD30 חיובי, ALK חיובי</button>
+  <button class="opt" data-i="3">CD30 חיובי חזק ואחיד, ALK שלילי</button>
+  <div class="explain">התשובה הנכונה: כל מקרי BIA-ALCL המאומתים הם ALK-שליליים (ALK−) עם ביטוי חד-משמעי וחזק של CD30 - זהו קריטריון האבחנה המרכזי לפי ה-WHO. ALK חיובי (תשובות 1,2) מאפיין תת-סוג אחר של ALCL מערכתית, לא נצפה ב-BIA-ALCL. CD30 שלילי (תשובות 0,1) סותר את ההגדרה עצמה - CD30 חיובי הוא תנאי הכרחי לאבחנה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהו התפקיד המוגדר ל-Sentinel lymph node biopsy (SLNB) בטיפול הכירורגי ב-BIA-ALCL?</div>
+  <button class="opt" data-i="0">אין לו תפקיד - יש לבצע ביופסיה אקסיזיונלית לכל בלוטה חשודה, כי הקפסולה עלולה לנקז למספר אגני בלוטות</button>
+  <button class="opt" data-i="1">הוא הבדיקה הראשונה והחובה בכל מקרה, לפני כל כריתה אחרת</button>
+  <button class="opt" data-i="2">הוא מחליף לחלוטין את הצורך בהדמיית PET/CT טרום ניתוחית</button>
+  <button class="opt" data-i="3">הוא מבוצע רק בשלב IV של המחלה</button>
+  <div class="explain">התשובה הנכונה: הפרק קובע במפורש שאין תפקיד ל-sentinel lymph node biopsy בטיפול ב-BIA-ALCL, מכיוון שקפסולת השתל עלולה לנקז למספר אגני בלוטות לימפה שונים בו-זמנית (בניגוד לניקוז הצפוי והעקבי בסרטן שד קלאסי). לכן כל בלוטה חשודה מטופלת בביופסיה אקסיזיונלית (לא FNA, שעלולה לתת תוצאה שלילית כוזבת). תשובות 1, 2 ו-3 כולן מייחסות ל-SLNB תפקיד שלא קיים בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהי Brentuximab vedotin, ובאיזה שלב מחלה היא מומלצת כקו ראשון לפי NCCN?</div>
+  <button class="opt" data-i="0">אנטיביוטיקה רחבת טווח, ניתנת לכל מטופלת עם seroma מאוחר</button>
+  <button class="opt" data-i="1">נוגדן חד-שבטי אנטי-CD30 מצומד לתרופה ציטוטוקסית (ADC), מומלצת כטיפול משלים קו-ראשון במחלה מתקדמת (שלב IIB ומעלה)</button>
+  <button class="opt" data-i="2">תרופה נוגדת קרישה הניתנת לפני כל ניתוח קפסולקטומיה</button>
+  <button class="opt" data-i="3">חיסון מונע הניתן לפני השתלת שתל מחוספס</button>
+  <div class="explain">התשובה הנכונה: Brentuximab vedotin הוא נוגדן חד-שבטי (monoclonal antibody) המכוון כנגד CD30 ומצומד לתרופה ציטוטוקסית (antibody-drug conjugate) - היא משנה את הטיפול ב-ALCL מערכתית עם שיעור תגובה אובייקטיבי של 86% והפוגה מלאה ב-59% מהמקרים החוזרים/עמידים, ומומלצת כקו ראשון למחלה מתקדמת (IIB+) לפי NCCN. תשובה 1 (אנטיביוטיקה) מבלבלת בין הטיפול האונקולוגי לטיפול בזיהום/שלילתו. תשובות 3-4 ממציאות שימושים שאינם קיימים בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו ההבדל המרכזי בין BIA-ALCL ל-Primary Breast Lymphoma (PBL)?</div>
+  <button class="opt" data-i="0">אין כל הבדל - שני המונחים מתארים בדיוק את אותה מחלה</button>
+  <button class="opt" data-i="1">PBL היא תמיד T-cell lymphoma ואילו BIA-ALCL היא תמיד B-cell lymphoma</button>
+  <button class="opt" data-i="2">BIA-ALCL היא תמיד T-cell lymphoma שמקורה בקפסולה/אפוזיה סביב השתל, ואילו PBL היא בעיקר (65-90%) B-cell lymphoma שמקורה בפרנכימת השד עצמה</button>
+  <button class="opt" data-i="3">BIA-ALCL שכיחה הרבה יותר מ-PBL ומהווה את רוב סרטני השד</button>
+  <div class="explain">התשובה הנכונה: ההבדל המהותי הוא גם ברקמת המקור וגם בסוג התא. BIA-ALCL מקורה תמיד בקפסולה סביב השתל או באפוזיה שבתוכה, והיא תמיד לימפומה מסוג T (T-cell). לעומתה, PBL היא מחלה של פרנכימת השד עצמה (לא קשורה לשתל), ומהווה רק 0.04-0.5% מסרטני השד, כאשר רובה המכריע (65-90%) הוא לימפומה מסוג B. תשובה 1 הפוכה מהעובדות. תשובה 3 שגויה - הן BIA-ALCL והן PBL נדירות ביחס לסרטן שד אפיתליאלי קלאסי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>BIA-ALCL</b> = לימפומת T-cell נדירה, <b>CD30+, ALK−</b>, הקשורה כמעט אך ורק לשתלי שד <b>מחוספסים (textured)</b>; ממוצע 7–12 שנים מההשתלה עד האבחנה.</li>
+    <li>מנגנון מוביל: <b>ביופילם חיידקי</b> על השתל המחוספס &#8592; גירוי אנטיגני כרוני של תאי T &#8592; שגשוג מונוקלונלי אצל מטופלות עם רגישות גנטית (מוטציות JAK/STAT, TP53 ועוד).</li>
+    <li>ביטוי אופייני: <b>seroma מאוחר (&gt;שנה)</b> ב-70% מהמקרים; מסה ב-30% (פרוגנוזה גרועה יותר).</li>
+    <li>אבחנה: אולטרסאונד (קו ראשון) &#8592; FNA/ביופסיה &#8592; ציטולוגיה + ציטומטריית זרימה + <b>CD30 IHC</b>.</li>
+    <li>דירוג: מערכת <b>TNM</b> (MD Anderson) עדיפה על Ann Arbor לחיזוי פרוגנוזה.</li>
+    <li>טיפול מרכזי: <b>כריתה En bloc + קפסולקטומיה מלאה</b>; מחלה מתקדמת מקבלת גם Brentuximab vedotin/הקרנות/כימותרפיה.</li>
+    <li>שחזור לאחר טיפול: שתלים <b>חלקים בלבד</b> או שחזור אוטולוגי - לעולם לא מחוספס נוסף.</li>
+    <li>דיווח מקרים מאומתים למרשם <b>PROFILE</b> (ASPS/FDA).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
