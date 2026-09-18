@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ניאופלזיה: דיספלזיה, פלישה וגרורות</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>ניאופלזיה: דיספלזיה, פלישה וגרורות <span class="term" dir="ltr">(Neoplasia: Dysplasia, Invasion &amp; Metastasis)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section II — Pathology &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 215-219) — רלוונטיות גבוהה לכירורגיה פלסטית</div>
+
+<p>יחידה זו עוברת מהמושגים הבסיסיים של ניאופלזיה (פרוליפרציה מונוקלונלית בלתי-מבוקרת) דרך רצף הפרוגרסיה מדיספלזיה ועד גרורה, נומנקלטורת גידולים, ההבדל הקריטי בין <b>grade</b> ל-<b>stage</b>, שמונת "hallmarks of cancer", נקודות ביקורת חיסוניות (ומעכביהן התרופתיים), אפידמיולוגיה של סרטן, ומסיימת בטבלת דפוסי הגרורות השכיחים (CLaSH) — נושא בעל השלכה ישירה על תכנון ניתוחי אונקולוגיים-שחזוריים.</p>
+
+<h2><span class="num">1</span> ניאופלזיה ורצף הפרוגרסיה הניאופלסטית</h2>
+
+<div class="mechanism">
+  <p class="chain">
+    <b>ניאופלזיה</b>: פרוליפרציה תאית בלתי-מבוקרת, לרוב מונוקלונלית. יכולה להיות שפירה או ממאירה. לכל גדילה ניאופלסטית שני מרכיבים: <b>פרנכימה</b> (התאים הניאופלסטיים עצמם) ו<b>סטרומה תומכת</b> (לא-ניאופלסטית — למשל כלי דם, רקמת חיבור).
+  </p>
+</div>
+
+<h3>1.1 הרצף: תקין → דיספלזיה → CIS → פלישה → גרורה</h3>
+<div class="mechanism">
+  <p class="chain">
+    <b>תאים תקינים</b>: קוטביות בסיס→אפיקלי שמורה (למשל אפיתל צוואר הרחם).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>דיספלזיה</b>: אובדן אחידות בגודל ובצורת התא (<b>פליאומורפיזם</b>); אובדן כיוון (אוריינטציה) רקמתי; שינויים גרעיניים (למשל ↑<b>יחס גרעין:ציטופלזמה</b>); לרוב <b>הפיכה</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>קרצינומה In Situ (CIS) / טרום-פולשנית</b>: דיספלזיה חמורה <b>בלתי-הפיכה</b> המערבת את מלוא עובי האפיתל אך <b>אינה</b> חודרת דרך קרום הבסיס השלם.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>קרצינומה פולשנית (Invasive)</b>: התאים פלשו את קרום הבסיס בעזרת קולגנאזות והידרולאזות (<b>מטלופרוטאינזות</b>). קשרי תא-תא אבדו ע"י אינאקטיבציה של <b>E-cadherin</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>גרורה (Metastasis)</b>: התפשטות לאיבר(ים) מרוחקים דרך לימפה או דם.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>רצף הפרוגרסיה הניאופלסטית: מאפיתל תקין ועד גרורה</title>
+<text x="480" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">רצף הפרוגרסיה הניאופלסטית — מאפיתל תקין ועד גרורה מרוחקת</text>
+<g>
+<rect x="15" y="60" width="220" height="230" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="125" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">1. אפיתל תקין</text>
+<rect x="30" y="230" width="190" height="8" fill="#334155"/>
+<text x="125" y="252" font-size="9" text-anchor="middle" fill="#334155">קרום בסיס (שלם)</text>
+<rect x="30" y="160" width="190" height="70" fill="#a7f3d0" opacity="0.5"/>
+<g>
+<rect x="38" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="48" cy="215" r="5" fill="#065f46"/>
+<rect x="64" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="74" cy="215" r="5" fill="#065f46"/>
+<rect x="90" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="100" cy="215" r="5" fill="#065f46"/>
+<rect x="116" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="126" cy="215" r="5" fill="#065f46"/>
+<rect x="142" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="152" cy="215" r="5" fill="#065f46"/>
+<rect x="168" y="165" width="20" height="60" rx="4" fill="#6ee7b7" stroke="#047857"/>
+<circle cx="178" cy="215" r="5" fill="#065f46"/>
+</g>
+<text x="125" y="150" font-size="8.5" text-anchor="middle" fill="#065f46">קוטביות בסיס→אפיקלי אחידה</text>
+<line x1="60" y1="90" x2="60" y2="150" stroke="#94a3b8" stroke-width="4"/>
+<polygon points="60,150 55,140 65,140" fill="#94a3b8"/>
+<text x="65" y="100" font-size="7.5" fill="#4b5563">אפיקלי</text>
+<text x="65" y="145" font-size="7.5" fill="#4b5563">בסיסי</text>
+<text x="125" y="270" font-size="9" text-anchor="middle" fill="#1f2937">גודל/צורה אחידים</text>
+</g>
+<polygon points="238,175 262,168 262,182" fill="#4b5563"/>
+<g>
+<rect x="265" y="60" width="220" height="230" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="375" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#92400e">2. דיספלזיה</text>
+<rect x="280" y="230" width="190" height="8" fill="#334155"/>
+<text x="375" y="252" font-size="9" text-anchor="middle" fill="#334155">קרום בסיס (עדיין שלם)</text>
+<rect x="280" y="150" width="190" height="80" fill="#fde68a" opacity="0.4"/>
+<ellipse cx="305" cy="205" rx="14" ry="20" fill="#fcd34d" stroke="#92400e" transform="rotate(-10 305 205)"/>
+<circle cx="305" cy="205" r="8" fill="#78350f"/>
+<ellipse cx="335" cy="195" rx="18" ry="14" fill="#fcd34d" stroke="#92400e" transform="rotate(15 335 195)"/>
+<circle cx="335" cy="195" r="9" fill="#78350f"/>
+<ellipse cx="368" cy="210" rx="12" ry="24" fill="#fcd34d" stroke="#92400e"/>
+<circle cx="368" cy="210" r="9" fill="#78350f"/>
+<ellipse cx="400" cy="190" rx="20" ry="13" fill="#fcd34d" stroke="#92400e" transform="rotate(-20 400 190)"/>
+<circle cx="400" cy="190" r="8.5" fill="#78350f"/>
+<ellipse cx="435" cy="208" rx="15" ry="18" fill="#fcd34d" stroke="#92400e" transform="rotate(8 435 208)"/>
+<circle cx="435" cy="208" r="9.5" fill="#78350f"/>
+<text x="375" y="146" font-size="8.5" text-anchor="middle" fill="#92400e">אובדן קוטביות + פליאומורפיזם</text>
+<text x="375" y="266" font-size="8.5" font-weight="700" text-anchor="middle" fill="#92400e">↑ יחס גרעין:ציטופלזמה</text>
+<text x="375" y="280" font-size="8" text-anchor="middle" fill="#1f2937">הפיך (לרוב)</text>
+</g>
+<polygon points="488,175 512,168 512,182" fill="#4b5563"/>
+<g>
+<rect x="515" y="60" width="220" height="230" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="625" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">3. קרצינומה In Situ</text>
+<rect x="530" y="230" width="190" height="8" fill="#334155"/>
+<text x="625" y="252" font-size="9" text-anchor="middle" fill="#334155">קרום בסיס — עדיין שלם!</text>
+<rect x="530" y="140" width="190" height="90" fill="#fecaca" opacity="0.5"/>
+<ellipse cx="555" cy="150" rx="13" ry="12" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="555" cy="150" r="8" fill="#7f1d1d"/>
+<ellipse cx="580" cy="170" rx="14" ry="13" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="580" cy="170" r="9" fill="#7f1d1d"/>
+<ellipse cx="608" cy="150" rx="12" ry="14" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="608" cy="150" r="8.5" fill="#7f1d1d"/>
+<ellipse cx="635" cy="195" rx="15" ry="12" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="635" cy="195" r="9" fill="#7f1d1d"/>
+<ellipse cx="660" cy="160" rx="13" ry="15" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="660" cy="160" r="9" fill="#7f1d1d"/>
+<ellipse cx="690" cy="180" rx="14" ry="13" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="690" cy="180" r="9" fill="#7f1d1d"/>
+<ellipse cx="565" cy="210" rx="13" ry="12" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="565" cy="210" r="8" fill="#7f1d1d"/>
+<ellipse cx="600" cy="215" rx="14" ry="12" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="600" cy="215" r="8.5" fill="#7f1d1d"/>
+<ellipse cx="655" cy="215" rx="13" ry="12" fill="#fca5a5" stroke="#7f1d1d"/><circle cx="655" cy="215" r="8.5" fill="#7f1d1d"/>
+<text x="625" y="264" font-size="8.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">דיספלזיה חמורה בכל עובי האפיתל</text>
+<text x="625" y="278" font-size="8" text-anchor="middle" fill="#1f2937">בלתי-הפיך; לא חדר לקרום הבסיס</text>
+</g>
+<polygon points="738,175 762,168 762,182" fill="#4b5563"/>
+<g>
+<rect x="765" y="60" width="180" height="230" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="855" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#4c1d95">4. פלישה וגרורה</text>
+<rect x="780" y="230" width="60" height="8" fill="#334155"/>
+<rect x="855" y="230" width="70" height="8" fill="#334155"/>
+<text x="855" y="252" font-size="8" text-anchor="middle" fill="#334155">קרום בסיס נפרץ</text>
+<ellipse cx="800" cy="200" rx="12" ry="11" fill="#c4b5fd" stroke="#4c1d95"/><circle cx="800" cy="200" r="7" fill="#4c1d95"/>
+<ellipse cx="830" cy="185" rx="12" ry="11" fill="#c4b5fd" stroke="#4c1d95"/><circle cx="830" cy="185" r="7" fill="#4c1d95"/>
+<ellipse cx="845" cy="245" rx="11" ry="10" fill="#c4b5fd" stroke="#4c1d95"/><circle cx="845" cy="245" r="6.5" fill="#4c1d95"/>
+<ellipse cx="870" cy="255" rx="11" ry="10" fill="#c4b5fd" stroke="#4c1d95"/><circle cx="870" cy="255" r="6.5" fill="#4c1d95"/>
+<ellipse cx="880" cy="130" rx="45" ry="16" fill="#fecaca" opacity="0.6" stroke="#b91c1c" stroke-width="1"/>
+<circle cx="865" cy="130" r="6" fill="#4c1d95"/>
+<circle cx="895" cy="128" r="6" fill="#4c1d95"/>
+<text x="880" y="112" font-size="7.5" text-anchor="middle" fill="#7f1d1d">כלי דם/לימפה — תסחיף גידולי</text>
+<text x="855" y="278" font-size="8" font-weight="700" text-anchor="middle" fill="#4c1d95">קולגנאזות/הידרולאזות + אובדן E-cadherin</text>
+</g>
+<rect x="15" y="305" width="930" height="105" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="480" y="326" font-size="11" font-weight="700" text-anchor="middle" fill="#1f2937">נקודת המפתח: קרום הבסיס נשאר שלם עד שלב 4 (הבדל דיספלזיה/CIS מול סרטן פולשני)</text>
+<text x="480" y="346" font-size="9.5" text-anchor="middle" fill="#1f2937">דיספלזיה: אובדן אחידות גודל/צורה (פליאומורפיזם) + אובדן כיוון רקמתי + ↑יחס גרעין:ציטופלזמה — לרוב הפיך</text>
+<text x="480" y="364" font-size="9.5" text-anchor="middle" fill="#1f2937">CIS: דיספלזיה חמורה בעובי מלא, בלתי-הפיך, אך ללא חדירה דרך קרום הבסיס השלם</text>
+<text x="480" y="382" font-size="9.5" text-anchor="middle" fill="#1f2937">פלישה: תאים חודרים קרום הבסיס ע"י קולגנאזות/הידרולאזות (מטלופרוטאינזות); אובדן קשרי תא-תא ע"י אינאקטיבציה של E-cadherin</text>
+<text x="480" y="400" font-size="9.5" font-weight="700" text-anchor="middle" fill="#4c1d95">גרורה: התפשטות לאיבר מרוחק דרך לימפה או דם</text>
+</svg>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — שולי כריתה</h4>
+  <p>ההבחנה בין דיספלזיה (הפיכה) ל-CIS (בלתי-הפיך אך תוך קרום בסיס שלם) לפלישה (חדירת קרום הבסיס) היא הבסיס הפתולוגי לקביעת <b>שולי כריתה</b> בניתוחי גידולי עור (BCC/SCC/מלנומה) ובניתוחי שחזור אונקולוגי: כריתה חייבת לכלול את כל האזור הפולשני + שוליים נקיים, ודוח פתולוגיה שמדווח "CIS/margin involved by dysplasia בלבד" משמעו סיכון שונה לחלוטין מ"פלישה עד לשוליים".</p>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — הרצף</h4>
+  <p><b>"דיספלזיה מתהפכת, CIS נעצר בגבול, פלישה שוברת את הקיר"</b> — קרום הבסיס הוא "הקיר" שמפריד גידול טרום-פולשני מגידול פולשני עם פוטנציאל גרורתי אמיתי.</p>
+</div>
+
+<h2><span class="num">2</span> נומנקלטורת גידולים</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>קרצינומה</b> — מקור אפיתליאלי. <b>סרקומה</b> — מקור מזנכימלי. שני המונחים מרמזים באופן כללי על <b>ממאירות</b>.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>גידולים שפירים</b> בדרך כלל מובחנים היטב (well-differentiated) ותחומים היטב, עם פעילות מיטוטית נמוכה, ללא גרורות וללא נמק. <b>גידולים ממאירים (סרטן)</b> עשויים להראות התמיינות ירודה, גדילה בלתי-סדירה, פלישה מקומית, גרורות, ו↓אפופטוזיס.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מונחים למלפורמציות לא-ניאופלסטיות: <b>המרטומה</b> (גדילת יתר לא-מאורגנת של רקמות במיקומן הטבעי — למשל פוליפים בתסמונת Peutz-Jeghers) ו<b>כוריסטומה</b> (רקמה תקינה במיקום זר — למשל רקמת קיבה באיליאום הדיסטלי בדיברטיקולום מקל).
+  </p>
+</div>
+
+<h3>2.1 טבלת מפתח: סוג תא, שפיר וממאיר</h3>
+<table class="keytable">
+  <thead><tr><th>סוג תא</th><th>שפיר</th><th>ממאיר</th></tr></thead>
+  <tbody>
+    <tr><td>אפיתל</td><td>אדנומה, פפילומה</td><td>אדנוקרצינומה, קרצינומה פפילרית</td></tr>
+    <tr><td>מזנכימה — תאי דם</td><td>—</td><td>לוקמיה, לימפומה</td></tr>
+    <tr><td>מזנכימה — כלי דם</td><td>המנגיומה</td><td>אנגיוסרקומה</td></tr>
+    <tr><td>מזנכימה — שריר חלק</td><td>ליומיומה</td><td>ליומיוסרקומה</td></tr>
+    <tr><td>מזנכימה — שריר משורטט</td><td>רבדומיומה</td><td>רבדומיוסרקומה</td></tr>
+    <tr><td>מזנכימה — רקמת חיבור</td><td>פיברומה</td><td>פיברוסרקומה</td></tr>
+    <tr><td>מזנכימה — עצם</td><td>אוסטאומה</td><td>אוסטאוסרקומה</td></tr>
+    <tr><td>מזנכימה — שומן</td><td>ליפומה</td><td>ליפוסרקומה</td></tr>
+    <tr><td>מזנכימה — מלנוציט</td><td>נבוס (שומה)</td><td>מלנומה</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — טבלת השפיר/ממאיר</h4>
+  <p>טבלה זו היא "שפת האם" של כירורג פלסטי: ליפומה מול ליפוסרקומה, נבוס מול מלנומה — קביעת האבחנה ההיסטולוגית קובעת ישירות אם מדובר בכריתה מוגבלת בהרדמה מקומית או בכריתה רחבה עם שוליים אונקולוגיים ובדיקת בלוטת זקיף.</p>
+</div>
+
+<h2><span class="num">3</span> Grade מול Stage</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>Grade (דרגת התמיינות)</b>: מידת ההתמיינות התאית (דמיון לרקמת המקור) ופעילות מיטוטית בהיסטולוגיה. נע מ-low-grade (מובחן היטב) עד high-grade (מובחן גרוע/לא-מובחן — אנפלסטי). דרגה גבוהה יותר מתואמת לרוב עם אגרסיביות גבוהה יותר.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Stage (שלב)</b>: מידת הפלישה וההתפשטות מאתר ההתחלה. עומק הפלישה מתואם עם סיכון לגרורות. מבוסס על ממצאים קליניים (c) או פתולוגיים (p).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    מערכת <b>TNM</b> (חשיבות: <b>M &gt; N &gt; T</b>): T = גודל/פלישת הגידול הראשוני; N = גרורות לבלוטות לימפה אזוריות; M = גרורות מרוחקות.
+  </p>
+  <div class="key-box">
+    ל-Stage בדרך כלל ערך פרוגנוסטי גבוה יותר מ-Grade (למשל, גידול בשלב גבוה אך דרגה נמוכה בדרך כלל גרוע יותר מגידול בשלב נמוך אך דרגה גבוהה). <b>Stage (התפשטות) קובע הישרדות.</b>
+  </div>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — TNM ותכנון ניתוחי</h4>
+  <p>מערכת TNM (בעיקר M ואז N) היא הבסיס לתכנון ניתוח: T קובע היקף כריתה מקומית ושחזור (למשל flap מול graft), N קובע הצורך בדיסקציית בלוטות/בלוטת זקיף, ו-M קובע האם ניתוח מקומי-שחזורי בכלל מוצדק מבחינה אונקולוגית (גרורות מרוחקות עשויות להפוך ניתוח נרחב לפליאטיבי בלבד). חשוב לזכור: Stage משפיע יותר על הפרוגנוזה מ-Grade — לכן תכנון ניתוחי-שחזורי חייב תמיד "סטייג'ינג" מלא לפני כריתה נרחבת.</p>
+</div>
+
+<h2><span class="num">4</span> Hallmarks of Cancer (מאפייני הסרטן)</h2>
+<div class="mechanism">
+  <p class="chain">
+    סרטן נגרם ע"י מוטציות DNA (ברובן נרכשות) המשפיעות על תהליכים תאיים בסיסיים (גדילה, תיקון DNA, הישרדות).
+  </p>
+</div>
+<table>
+  <thead><tr><th>Hallmark</th><th>מנגנון</th></tr></thead>
+  <tbody>
+    <tr><td>אי-תלות באות גדילה</td><td>מוטציות ב: פרוטו-אונקוגנים → ↑גורמי גדילה → לולאה אוטוקרינית (למשל ↑PDGF בגידולי מוח); רצפטורים לגורמי גדילה → סיגנל קונסטיטוטיבי (למשל HER2 בסרטן שד); מולקולות סיגנל (למשל RAS); גורמי שעתוק (למשל MYC); רגולטורים של מחזור התא (ציקלינים, CDKs)</td></tr>
+    <tr><td>חוסר רגישות לאותות אנטי-גדילה</td><td>מוטציות בגנים מדכאי גידול (למשל Rb); אובדן תפקוד E-cadherin → אובדן עיכוב מגע (למשל מוטציות NF2)</td></tr>
+    <tr><td>הימלטות מאפופטוזיס</td><td>מוטציות בגנים המווסתים אפופטוזיס (למשל TP53, BCL2 → לימפומת B פוליקולרית)</td></tr>
+    <tr><td>פוטנציאל שכפול בלתי-מוגבל</td><td>הפעלה מחדש של טלומראז → תחזוקה והארכת טלומרים → מניעת קיצור כרומוזומים והזדקנות תאית</td></tr>
+    <tr><td>אנגיוגנזה מתמשכת</td><td>↑גורמים פרו-אנגיוגניים (למשל VEGF) או ↓גורמים מעכבים. עשויים להיות מיוצרים ע"י תאי גידול או סטרומה. כלי דם עשויים לנבוט מנימים קיימים (ניאואנגיוגנזה) או תאי אנדותל מגויסים ממח העצם (וסקולוגנזה). הכלים עשויים להיות דולפים ו/או מורחבים</td></tr>
+    <tr><td>אפקט Warburg</td><td>מעבר ממטבוליזם גלוקוז חמצוני (מיטוכונדריאלי) לגליקוליזה, גם בתנאים אירוביים. מונע ע"י אנזימים מטבוליים משתנים (למשל pyruvate kinase M2, LDH-A). גליקוליזה אירובית מספקת לתאי סרטן מתחלקים במהירות אבני-בניין ביוסינתטיות (נוקלאוטידים, שומנים, חומצות אמינו) → ↑ייצור לקטט</td></tr>
+    <tr><td>הימלטות חיסונית בסרטן</td><td>בדרך כלל, תאי חיסון מזהים ותוקפים תאי גידול. תאי גידול חייבים להימלט מהמערכת החיסונית: ↓ביטוי MHC class I → תאי T ציטוטוקסיים לא מזהים; תאי גידול מפרישים גורמים מדכאי-חיסון (למשל TGF-β) ומגייסים תאי T רגולטוריים; תאי גידול ↑ביטוי מולקולות נקודות ביקורת חיסוניות, המעכבות תגובה חיסונית</td></tr>
+    <tr><td>פלישת רקמה</td><td>אובדן תפקוד E-cadherin → הרפיית קשרים בין-תאיים → מטלופרוטאינזות מפרקות קרום בסיס ו-ECM → תאים נצמדים לחלבוני ECM (למשל למינין, פיברונקטין) → תאים נודדים דרך ה-ECM המפורק ("locomotion") → הפצה וסקולרית</td></tr>
+    <tr><td>גרורה</td><td>תאי גידול או תסחיפים מתפשטים דרך לימפה או דם → הצמדות לאנדותל → אקסטרווזציה והתמקמות. אתר הגרורה ניתן לחיזוי ע"פ אתר הגידול הראשוני, כיוון שהאיבר המטרה הוא לרוב מיטת הנימים הראשונה שנתקלת בתסחיף. לחלק מהסרטנים "טרופיזם" לאיבר (למשל סרטני ריאה נוטים לגרר לבלוטות האדרנל)</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Hallmarks</h4>
+  <p>תשעת המאפיינים: <b>גדילה עצמאית, חוסר-רגישות אנטי-גדילה, הימלטות מאפופטוזיס, טלומראז אינסופי, אנגיוגנזה, Warburg, הימלטות חיסונית, פלישת רקמה, גרורה</b> — כל אחד הוא "כלל" תקין של תא בריא שהתא הסרטני שובר בכוונה.</p>
+</div>
+
+<h2><span class="num">5</span> אינטראקציות נקודות ביקורת חיסוניות (Immune Checkpoints)</h2>
+<div class="mechanism">
+  <p class="chain">
+    אותות המווסתים הפעלה ותפקוד תאי T → ↓תגובה חיסונית נגד תאי גידול. מטרה למספר אימונותרפיות לסרטן.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>PD-1</b> (על תאי T) ו-<b>PD-L1/2</b> (על תאי גידול או תאי חיסון בסביבת הגידול) → אינטראקציה → תפקוד לקוי (תשישות/exhaustion) של תא T. מעוכב ע"י נוגדנים נגד PD-1 (<b>cemiplimab, nivolumab, pembrolizumab</b>) או נגד PD-L1 (<b>atezolizumab, durvalumab, avelumab</b>).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>CTLA-4</b> על תאי T מנצח על CD28 בתחרות על B7 שעל APCs → אובדן אות קוסטימולציה של תא T. מעוכב ע"י נוגדנים נגד CTLA-4 (<b>ipilimumab</b>).
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 940 460" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>אינטראקציות נקודות ביקורת חיסוניות: CTLA-4/B7 ו-PD-1/PD-L1</title>
+<text x="470" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">נקודות ביקורת חיסוניות בגידול — CTLA-4/B7 ו-PD-1/PD-L1, וחסימתן התרופתית</text>
+<g>
+<rect x="30" y="55" width="230" height="150" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="145" y="78" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">APC</text>
+<text x="145" y="96" font-size="9" text-anchor="middle" fill="#1f2937">מציג אנטיגן ל-T cell</text>
+<text x="145" y="112" font-size="9" text-anchor="middle" fill="#1f2937">דרך MHC I/II</text>
+<rect x="230" y="130" width="24" height="18" rx="3" fill="#93c5fd" stroke="#1e3a8a"/>
+<text x="242" y="126" font-size="8" text-anchor="middle" fill="#1e3a8a">B7</text>
+<rect x="330" y="55" width="230" height="150" rx="10" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="445" y="78" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">תא T</text>
+<text x="445" y="96" font-size="9" text-anchor="middle" fill="#1f2937">CD28 מתחרה על B7</text>
+<text x="445" y="112" font-size="9" text-anchor="middle" fill="#1f2937">מול CTLA-4</text>
+<rect x="336" y="130" width="24" height="18" rx="3" fill="#c4b5fd" stroke="#4c1d95"/>
+<text x="348" y="126" font-size="8" text-anchor="middle" fill="#4c1d95">CD28</text>
+<rect x="336" y="160" width="30" height="18" rx="3" fill="#ddd6fe" stroke="#4c1d95"/>
+<text x="351" y="176" font-size="7.5" text-anchor="middle" fill="#4c1d95">CTLA-4</text>
+<line x1="254" y1="139" x2="336" y2="139" stroke="#1e3a8a" stroke-width="2.5"/>
+<text x="295" y="134" font-size="7.5" text-anchor="middle" fill="#1e3a8a">קוסטימולציה</text>
+<line x1="254" y1="139" x2="336" y2="169" stroke="#b91c1c" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="470" y="205" font-size="9.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">CTLA-4 מנצח על B7 → אובדן קוסטימולציה</text>
+</g>
+<rect x="600" y="60" width="310" height="60" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="755" y="82" font-size="11" font-weight="700" text-anchor="middle" fill="#7f1d1d">חסימת CTLA-4: ipilimumab</text>
+<text x="755" y="100" font-size="9" text-anchor="middle" fill="#1f2937">נוגדן חוסם CTLA-4 → משחזר קוסטימולציה B7-CD28</text>
+<line x1="595" y1="130" x2="560" y2="145" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="2 2"/>
+<g>
+<rect x="30" y="245" width="230" height="150" rx="10" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="145" y="268" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">תא T (בגידול)</text>
+<text x="145" y="286" font-size="9" text-anchor="middle" fill="#1f2937">מבטא PD-1</text>
+<rect x="230" y="320" width="24" height="18" rx="3" fill="#c4b5fd" stroke="#4c1d95"/>
+<text x="242" y="316" font-size="8" text-anchor="middle" fill="#4c1d95">PD-1</text>
+<rect x="330" y="245" width="230" height="150" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="445" y="268" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">תא גידול</text>
+<text x="445" y="286" font-size="9" text-anchor="middle" fill="#1f2937">מבטא PD-L1/PD-L2</text>
+<rect x="336" y="320" width="30" height="18" rx="3" fill="#fca5a5" stroke="#7f1d1d"/>
+<text x="351" y="316" font-size="7.5" text-anchor="middle" fill="#7f1d1d">PD-L1/2</text>
+<line x1="254" y1="329" x2="336" y2="329" stroke="#7f1d1d" stroke-width="2.5"/>
+<text x="470" y="360" font-size="9.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">PD-1/PD-L1 → תשישות (exhaustion) של תא T</text>
+<text x="470" y="378" font-size="8.5" text-anchor="middle" fill="#1f2937">התוצאה: תא T אינו תוקף את תא הגידול — הימלטות חיסונית</text>
+</g>
+<rect x="600" y="248" width="310" height="82" rx="8" fill="#e0e7ff" stroke="#4c1d95" stroke-width="1.5"/>
+<text x="755" y="268" font-size="10.5" font-weight="700" text-anchor="middle" fill="#312e81">חסימת PD-1: cemiplimab, nivolumab, pembrolizumab</text>
+<text x="755" y="288" font-size="10.5" font-weight="700" text-anchor="middle" fill="#312e81">חסימת PD-L1: atezolizumab, durvalumab, avelumab</text>
+<text x="755" y="306" font-size="9" text-anchor="middle" fill="#1f2937">חסימת האינטראקציה → משחזר תפקוד תא T נגד הגידול</text>
+<line x1="595" y1="320" x2="560" y2="330" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="2 2"/>
+<rect x="30" y="410" width="880" height="40" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+<text x="470" y="434" font-size="10.5" font-weight="700" text-anchor="middle" fill="#92400e">שני המנגנונים מפחיתים תגובה חיסונית נגד הגידול — נחסמים ע"י אימונותרפיה בעלת חשיבות כירורגית-אונקולוגית הולכת וגוברת (לפני/אחרי כריתה)</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — נקודות ביקורת</h4>
+  <p><b>"PD-1/L1 = תשישות (Late exhaustion), CTLA-4 = חסימת ההתחלה (early costimulation block)"</b> — CTLA-4 פועל בשלב ההפעלה הראשוני של תא T, PD-1/PD-L1 פועל מאוחר יותר, בסביבת הגידול עצמה (״-mab״ בסוף כל התרופות = נוגדן).</p>
+</div>
+
+<h2><span class="num">6</span> אפידמיולוגיה של סרטן</h2>
+<div class="mechanism">
+  <p class="chain">
+    סרטן העור (בזאלי &gt; קשקשי &gt;&gt; מלנומה) הוא הסרטן השכיח ביותר (לא נכלל בטבלת הדירוג שלהלן).
+  </p>
+</div>
+<table>
+  <thead><tr><th></th><th>1</th><th>2</th><th>3</th></tr></thead>
+  <tbody>
+    <tr><td><b>שכיחות — גברים</b></td><td>ערמונית</td><td>ריאה</td><td>מעי גס/פי הטבעת</td></tr>
+    <tr><td><b>שכיחות — נשים</b></td><td>שד</td><td>ריאה</td><td>מעי גס/פי הטבעת</td></tr>
+    <tr><td><b>שכיחות — ילדים (0-14)</b></td><td>לוקמיה</td><td>CNS</td><td>נוירובלסטומה</td></tr>
+    <tr><td><b>תמותה — גברים</b></td><td>ריאה</td><td>ערמונית</td><td>מעי גס/פי הטבעת</td></tr>
+    <tr><td><b>תמותה — נשים</b></td><td>ריאה</td><td>שד</td><td>מעי גס/פי הטבעת</td></tr>
+    <tr><td><b>תמותה — ילדים (0-14)</b></td><td>לוקמיה</td><td>CNS</td><td>נוירובלסטומה</td></tr>
+  </tbody>
+</table>
+<div class="key-box">
+  שכיחות סרטן הריאה ↓ בגברים, אך לא השתנתה משמעותית בנשים. סרטן הוא סיבת המוות השנייה בשכיחותה בארה"ב (מחלות לב — הראשונה).
+</div>
+
+<h2><span class="num">7</span> גרורות שכיחות — CLaSH</h2>
+<div class="mechanism">
+  <p class="chain">
+    רוב ה<b>קרצינומות</b> מתפשטות דרך <b>לימפה</b>; רוב ה<b>סרקומות</b> מתפשטות <b>המטוגנית</b> (זכרון: <b>CLaSH</b>). עם זאת, ארבע קרצינומות עוברות דרך המסלול ההמטוגני: <b>קרצינומה פוליקולרית של התריס, כוריוקרצינומה, קרצינומה של תאי כליה, וקרצינומה הפטוצלולרית</b>. גרורה לעצם, כבד, ריאה ומוח שכיחה יותר מממאירות ראשונית באיברים אלו. גרורות מופיעות לרוב כנגעים מרובים (לעומת גידולים ראשוניים שבדרך כלל בודדים).
+  </p>
+</div>
+<table class="keytable">
+  <thead><tr><th>אתר גרורה</th><th>גידול ראשוני</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td>עצם</td><td>ערמונית, שד &gt;&gt; ריאה &gt; כליה, מעי גס</td><td>נטייה לשלד הצירי (axial). יכולה להיות בלסטית (למשל ערמונית, סרטן ריאה small cell), מעורבת (למשל שד), או ליטית (למשל כליה, מעי גס, סרטן ריאה non-small cell)</td></tr>
+    <tr><td>כבד</td><td>מעי גס &gt; שד &gt;&gt; לבלב, ריאה, ערמונית</td><td>מפוזר לאורך פרנכימת הכבד</td></tr>
+    <tr><td>ריאה</td><td>מעי גס, שד &gt;&gt; כליה, ערמונית</td><td>בדרך כלל מערב את שתי הריאות</td></tr>
+    <tr><td>מוח</td><td>ריאה &gt; שד &gt;&gt; מלנומה &gt; מעי גס, ערמונית</td><td>לרוב בגבול חומר אפור-לבן</td></tr>
+  </tbody>
+</table>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — דפוסי גרורה בשחזור</h4>
+  <p>ידיעת דפוסי הגרורה הצפויים (עצם/כבד/ריאה/מוח) חיונית בכירורגיה פלסטית-שחזורית אונקולוגית: היא משפיעה על סדר ההדמיה טרם ניתוח נרחב, על תזמון שחזור (למשל דחיית שחזור נרחב עד לשלילת גרורות מרוחקות), ועל ניתוח פליאטיבי-שחזורי (למשל שחזור לאחר כריתת גרורת עור/רקמה רכה מסרטן ריאה או כליה). הבדל בלסטי/ליטי בעצם משפיע גם על תכנון יציבות שלד לפני כריתה/שחזור אורתופדי-פלסטי משולב.</p>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — CLaSH ואיברי גרורה</h4>
+  <p><b>CLaSH</b>: <b>C</b>arcinomas → <b>L</b>ymphatic, <b>Sa</b>rcomas → <b>H</b>ematogenous. ארבע היוצאות-דופן ההמטוגניות: <b>"Very Cancerous Tumors Hate Kidneys, Liver, Thyroid Cells" </b>— חשבו: <b>כוריוקרצינומה, כליה, כבד, תריס (פוליקולרי)</b>. איברי הגרורה השכיחים: <b>"BLLB" — Bone, Liver, Lung, Brain</b>.</p>
+</div>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58, מעשן כבד, מגיע עם שיעול כרוני וירידה במשקל. בהדמיית חזה נמצא גוש ריאתי בגודל 4 ס"מ עם מעורבות של בלוטות לימפה הילריות, וב-MRI מוח מתגלים שני נגעים קטנים בגבול החומר האפור-לבן, ללא גרורות עצם או כבד. הביופסיה מהריאה מראה קרצינומה מובחנת היטב, אך הפתולוג מציין שהיא בדרגת (grade) נמוכה יחסית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה נכון ביחס לפרוגנוזה של המטופל, בהתחשב ב-grade נמוך אך ב-stage גבוה (עם גרורות מוחיות, M1)?</div>
+  <button class="opt" data-i="0">ה-grade הנמוך קובע פרוגנוזה טובה, ללא קשר לגרורות</button>
+  <button class="opt" data-i="1">Grade ו-stage תמיד שווי-ערך פרוגנוסטי</button>
+  <button class="opt" data-i="2">ה-stage (M1, גרורות מרוחקות) קובע פרוגנוזה גרועה יותר, ובדרך כלל בעל ערך פרוגנוסטי גבוה יותר מה-grade</button>
+  <button class="opt" data-i="3">אין למחלה גרורתית קשר לפרוגנוזה כלל, רק ה-grade חשוב</button>
+  <div class="explain">נכון: Stage (מידת ההתפשטות) הוא בדרך כלל בעל ערך פרוגנוסטי גבוה יותר מ-Grade — גידול בשלב גבוה (כאן M1, גרורות מוחיות) גרוע יותר בפרוגנוזה מגידול בדרגה גבוהה אך שלב נמוך. Grade מתאר התמיינות היסטולוגית בלבד, ואינו מבטל את המשמעות הפרוגנוסטית החמורה של גרורות מרוחקות. תשובות א', ב', ד' מתעלמות מהעיקרון "Stage קובע הישרדות".</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה מנגנון "hallmark of cancer" מוסבר בצורה הטובה ביותר ע"י מוטציה בגן TP53 שמובילה לאובדן תפקוד?</div>
+  <button class="opt" data-i="0">אנגיוגנזה מתמשכת דרך VEGF</button>
+  <button class="opt" data-i="1">הימלטות מאפופטוזיס — TP53 מווסת אפופטוזיס, ואובדן תפקודו מבטל בקרה זו</button>
+  <button class="opt" data-i="2">אפקט Warburg — מעבר לגליקוליזה אירובית</button>
+  <button class="opt" data-i="3">פוטנציאל שכפול בלתי-מוגבל דרך טלומראז</button>
+  <div class="explain">נכון: TP53 הוא גן מדכא-גידול המווסת אפופטוזיס בתגובה לנזק DNA; מוטציה מאבדת-תפקוד בו מבטלת מנגנון בקרה זה ומאפשרת לתאים עם DNA פגום לשרוד ולהתחלק — זהו hallmark של "הימלטות מאפופטוזיס". VEGF (א') קשור לאנגיוגנזה, לא ל-TP53. Warburg (ג') קשור לאנזימי גליקוליזה כמו LDH-A/PKM2. טלומראז (ד') קשור לתחזוקת טלומרים, לא ל-TP53 ישירות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופלת עם מלנומה גרורתית מתחילה טיפול ב-pembrolizumab. מה המנגנון התרופתי, ולאיזו קבוצה של תרופות הוא דומה מבחינת אתר הפעולה?</div>
+  <button class="opt" data-i="0">חוסם CTLA-4 על תאי T, כמו ipilimumab</button>
+  <button class="opt" data-i="1">חוסם B7 על APCs, ומונע קוסטימולציה לגמרי</button>
+  <button class="opt" data-i="2">מפעיל ישירות אפופטוזיס בתאי הגידול דרך TP53</button>
+  <button class="opt" data-i="3">נוגדן חוסם PD-1 על תאי T, מונע אינטראקציה עם PD-L1/2 על תאי הגידול ומשחזר תפקוד תא T — כמו cemiplimab ו-nivolumab</button>
+  <div class="explain">נכון: pembrolizumab הוא נוגדן אנטי-PD-1, השייך לאותה קבוצה כמו cemiplimab ו-nivolumab — כולם חוסמים את אינטראקציית PD-1 (על תא T) עם PD-L1/2 (על תא הגידול), ובכך משחזרים את יכולת התקיפה של תא T. תשובה א' מתארת מנגנון שונה (CTLA-4, למשל ipilimumab). תשובה ב' אינה מדויקת — PD-1 אינו B7. תשובה ג' אינה מנגנון אימונותרפי אלא מנגנון תיאורטי לא-קיים עבור תרופה זו.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <h4>רצף הפרוגרסיה ונומנקלטורה</h4>
+  <ul>
+    <li>תקין → דיספלזיה (הפיכה, פליאומורפיזם) → CIS (בלתי-הפיך, קרום בסיס שלם) → פלישה (חדירת קרום בסיס ע"י מטלופרוטאינזות + אובדן E-cadherin) → גרורה (לימפה/דם).</li>
+    <li>קרצינומה = אפיתל; סרקומה = מזנכימה. שפיר: אדנומה/פפילומה/המנגיומה/ליומיומה/ליפומה/נבוס. ממאיר: אדנוקרצינומה/אנגיוסרקומה/ליומיוסרקומה/ליפוסרקומה/מלנומה.</li>
+  </ul>
+  <h4>Grade/Stage, Hallmarks וחיסון</h4>
+  <ul>
+    <li>Grade = התמיינות; Stage = התפשטות (TNM, חשיבות M&gt;N&gt;T). Stage קובע הישרדות.</li>
+    <li>9 Hallmarks: גדילה עצמאית, חוסר-רגישות אנטי-גדילה, הימלטות מאפופטוזיס, טלומראז, אנגיוגנזה, Warburg, הימלטות חיסונית, פלישת רקמה, גרורה.</li>
+    <li>נקודות ביקורת: CTLA-4/B7 (ipilimumab); PD-1/PD-L1 (cemiplimab/nivolumab/pembrolizumab נגד PD-1; atezolizumab/durvalumab/avelumab נגד PD-L1).</li>
+  </ul>
+  <h4>אפידמיולוגיה וגרורות</h4>
+  <ul>
+    <li>שכיחות: גברים — ערמונית/ריאה/מעי גס; נשים — שד/ריאה/מעי גס; ילדים — לוקמיה/CNS/נוירובלסטומה. תמותה: גברים/נשים — ריאה ראשון.</li>
+    <li>CLaSH: קרצינומה→לימפה, סרקומה→דם (חוץ מ-4: תריס פוליקולרי, כוריוקרצינומה, כליה, כבד). איברי גרורה שכיחים: עצם, כבד, ריאה, מוח.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
