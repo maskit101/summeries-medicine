@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>חום (Fever)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>חום <span dir="ltr" class="term">(Fever)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 18 (עמ' 171-173) | מנגנון, אבחנה מבדלת מהיפרתרמיה, וכללי הטיפול</div>
+
+<p>חום הוא אחד הסימנים הקליניים הנפוצים והלא-ספציפיים ברפואה — הוא <span class="key">לא מחלה בעצמו, אלא תגובה תקינה של הגוף להפרעה בפיזיולוגיה הבסיסית שלו</span>. הבנת המנגנון (למה בכלל עולה החום, ולמה הוא לא "מתפרץ" בלי גבול) היא המפתח להבין גם מתי לטפל בו, ומתי הוא עצמו מספק רמז אבחנתי (כמו דפוסי חום מחזוריים).</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    בגוף הבריא ההיפותלמוס (בעיקר האזור הפרה-אופטי הקדמי) מקבל שני זרמי מידע: טמפרטורת העור (מקולטני חום/קור בעור) וטמפרטורת הדם שעובר בו עצמו. הוא משווה בין השניים ל"נקודת כיוון" (<span dir="ltr" class="term">set point</span>) שמור בטווח 36.5–37.5°C.
+  </p>
+  <p class="chain">
+    <b>איך בכלל עולה נקודת הכיוון?</b> חלבונים קטנים בשם <span dir="ltr" class="term">פירוגנים</span> (<i>pyro</i> = אש) מפעילים את השרשרת. יש שני סוגים: <b>פירוגנים אקסוגניים</b> — תוצרים חיצוניים כמו <span dir="ltr" class="term">LPS/אנדוטוקסין</span> מחיידקים גראם-שליליים, או אנטרוטוקסינים/סופר-אנטיגנים מ-<i>Staphylococcus aureus</i> וסטרפטוקוקים מקבוצה A/B; ו<b>פירוגנים אנדוגניים</b> — ציטוקינים שהגוף עצמו מפריש: <span dir="ltr" class="term">IL-1, IL-6, TNF, אינטרפרון</span>. תאי מונוציט/מקרופאג ותאי אנדותל הם היצרנים העיקריים.
+  </p>
+  <p class="chain">
+    <span class="key">חשוב: הציטוקינים הפירוגניים בעצמם אינם עוברים למוח.</span> הם פועלים על תאי האנדותל של איברים היקפיים קטנים בהיפותלמוס (<span dir="ltr" class="term">organum vasculosum of the lamina terminalis, OVLT</span>) — רשת קפילרות מוגדלות שבה ה"מחסום" בין הדם למוח חלש יותר. שם, האנדותל מגיב לציטוקינים (ולתוצרי חיידקים ישירות, דרך <span dir="ltr" class="term">Toll-like receptors</span> הדומים לקולטני IL-1) ומייצר <span dir="ltr" class="term">פרוסטגלנדין E2 (PGE2)</span> — זהו השליח האמיתי שחוצה לתוך המוח.
+  </p>
+  <p class="chain">
+    ה-<span dir="ltr" class="term">PGE2</span> נקשר לקולטן <span dir="ltr" class="term">EP-3</span> על תאי גליה, מה שמעלה <span dir="ltr" class="term">cAMP</span> — וזהו הנוירוטרנסמיטר שמפעיל בפועל את נוירוני מרכז התרמורגולציה ו"מזיז" את נקודת הכיוון מעלה, למשל מ-37°C ל-39°C.
+  </p>
+  <p class="chain">
+    ברגע שנקודת הכיוון עולה, ההיפותלמוס "חושב" שהגוף קר מדי — הוא מפעיל <b>שימור חום</b> (כיווץ כלי דם היקפיים — לכן הידיים והרגליים קרות ראשונות) ו<b>ייצור חום</b> (רעד שרירי, ותרמוגנזה לא-רעדית בכבד). זה נמשך עד שטמפרטורת הדם המגיע להיפותלמוס תואמת את נקודת הכיוון החדשה — ואז מתבסס "מצב חדש" של איזון חום בטמפרטורה הגבוהה יותר.
+  </p>
+  <p class="chain">
+    <b>ולמה כאבי שרירים/פרקים מלווים חום?</b> חלק מה-PGE2 המיוצר בהיקף (לא רק בהיפותלמוס) לא נהרס לגמרי בריאה ומגיע לרקמות היקפיות — זה ההסבר המנגנוני למיאלגיה וארתרלגיה הנפוצות בזמן חום, לא רק "תשישות כללית".
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="180" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="100" y="45" text-anchor="middle" font-size="13" fill="#1f2937">זיהום / רקמה פגועה</text>
+  <text x="100" y="63" text-anchor="middle" font-size="11" fill="#4b5563">(LPS, טוקסינים, טראומה)</text>
+  <line x1="192" y1="52" x2="235" y2="52" stroke="#2563eb" stroke-width="3" marker-end="url(#a1)"/>
+  <rect x="240" y="20" width="180" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="330" y="45" text-anchor="middle" font-size="13" fill="#1f2937">מונוציטים/אנדותל</text>
+  <text x="330" y="63" text-anchor="middle" font-size="11" fill="#4b5563">מפרישים IL-1,IL-6,TNF</text>
+  <line x1="422" y1="52" x2="465" y2="52" stroke="#2563eb" stroke-width="3" marker-end="url(#a1)"/>
+  <rect x="470" y="20" width="190" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="565" y="45" text-anchor="middle" font-size="13" fill="#1f2937">אנדותל OVLT בהיפותלמוס</text>
+  <text x="565" y="63" text-anchor="middle" font-size="11" fill="#4b5563">מייצר PGE2 (השליח שחוצה)</text>
+  <line x1="662" y1="52" x2="700" y2="52" stroke="#b45309" stroke-width="3" marker-end="url(#a2)"/>
+  <rect x="705" y="20" width="180" height="65" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="795" y="45" text-anchor="middle" font-size="13" fill="#1f2937">קולטן EP-3 → cAMP</text>
+  <text x="795" y="63" text-anchor="middle" font-size="11" fill="#4b5563">נקודת הכיוון עולה</text>
+  <line x1="795" y1="86" x2="795" y2="120" stroke="#047857" stroke-width="2" marker-end="url(#a3)"/>
+  <rect x="620" y="125" width="265" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="752" y="150" text-anchor="middle" font-size="13" fill="#1f2937">כיווץ כלי דם + רעד</text>
+  <text x="752" y="168" text-anchor="middle" font-size="12" fill="#4b5563">(שימור+ייצור חום)</text>
+  <text x="752" y="186" text-anchor="middle" font-size="12" fill="#4b5563">עד שהדם מגיע לנק' הכיוון החדשה = חום</text>
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker>
+    <marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b45309"/></marker>
+    <marker id="a3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#047857"/></marker>
+  </defs>
+</svg>
+
+<h2><span class="num">3</span> פיזיולוגיה - מדידה, שונות תקינה וגבול "התקרה"</h2>
+<p>הטמפרטורה התקינה משתנה בהתאם למקור המדידה: פי הטבעת גבוהה בכ-0.4°C מהפומית (נשימה בפה מוזילה את המדד הפומי — משמעותי בנשימה מהירה עם זיהום נשימתי), ורמת הוושט התחתון משקפת בצורה הטובה ביותר את טמפרטורת הגרעין. מד חום טימפני מודד קרינת חום מהעור התוך-שמעי — נוח, אך משתנה יותר מאשר מדידה ישירה. יש גם שונות יומית (נמוכה ב-8 בבוקר, גבוהה ב-4 אחה"צ) ועונתית, וכן שונות דמוגרפית (למשל נשים אפרו-אמריקאיות נוטות לטמפרטורת בסיס גבוהה יותר ב-0.052°C מגברים לבנים). <span dir="ltr">Fever</span> מוגדר כטמפרטורה פומית מעל 37.7°C (99.9°F) — האחוזון ה-99 של אנשים בריאים.</p>
+<div class="key-box">חום מעל <b>41.5°C</b> נקרא <span dir="ltr" class="term">hyperpyrexia</span>. זה נדיר בזיהומים "רגילים" בעידן שלפני אנטיביוטיקה — נדיר לחלוף מ-106°F גם בזיהומים חמורים — ומשוער שיש "תקרה תרמית" טבעית שמתווכת ע"י נוירופפטידים אנטי-פירטיים מרכזיים. חום קיצוני שכזה שכיח יותר בדימומים תוך-מוחיים (השפעה ישירה של ציטוקינים שמיוצרים <b>במוח עצמו</b>, ולא רק בהיקף).</div>
+
+<h2><span class="num">4</span> חום מול היפרתרמיה - הבדלה קריטית</h2>
+<p>שני מצבים שנראים דומים (טמפרטורה גבוהה) אך המנגנון שלהם הפוך:</p>
+<table>
+  <thead><tr><th>מדד</th><th>חום (Fever)</th><th>היפרתרמיה (Heat stroke)</th></tr></thead>
+  <tbody>
+    <tr><td>נקודת הכיוון ההיפותלמית</td><td><b>עולה</b> (הגוף "רוצה" להיות חם יותר)</td><td>נשארת תקינה — הגוף פשוט לא מצליח לפרוק חום</td></tr>
+    <tr><td>פירוגנים מעורבים</td><td>כן</td><td>לא — זה עודף חום מסביבה/שריר, לא מולקולות פירוגניות</td></tr>
+    <tr><td>העור</td><td>יכול להיות <b>קר</b> (כיווץ כלי דם)</td><td>חם ו<b>יבש</b> (בעיקר עם תרופות חוסמות הזעה)</td></tr>
+    <tr><td>תגובה לתרופות מפחיתות חום (אקמול/אספירין)</td><td>יורדת</td><td><span class="key">לא יורדת בכלל — זה הרמז האבחנתי המכריע</span></td></tr>
+  </tbody>
+</table>
+<p>הבחנה קלינית: היפרתרמיה יכולה להיות קטלנית במהירות ולא מגיבה לתרופות מפחיתות חום, ולכן קריטי לזהות אותה — לרוב על סמך ההקשר (חשיפה לחום, מאמץ פיזי בחום, תרופות שמפריעות לתרמורגולציה) ולא רק המדידה עצמה.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Thermometer_Fever_40.png?width=450" alt="מד חום קליני המציג חום גבוה">
+  <figcaption class="media-cap">מד חום קליני המציג טמפרטורה של 40°C — חום גבוה משמעותי הדורש הערכה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Thermometer_Fever_40.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">5</span> אבחנה - גישה למטופל עם חום</h2>
+<p>קטגוריות המחלה הגורמות לחום (טבלה 18-1 בהריסון): מחלות זיהומיות, מחלות אוטואימוניות/דלקתיות לא-זיהומיות, סרטן, תרופות (כולל חיסונים וחום תרופתי), הפרעות אנדוקריניות (כמו יתר-פעילות בלוטת התריס), ותפקוד היפותלמי פנימי לקוי.</p>
+<p><b>מעבדה:</b> ספירת דם מלאה עם דיפרנציאל (ידני או אוטומטי רגיש לצורות צעירות/גרנולציות רעילות/גופיפי Döhle התומכים בזיהום חיידקי; נויטרופניה יכולה להעיד על זיהום ויראלי). מדידת ציטוקינים בדם (כמו IL-1, TNF) <b>אינה מועילה</b> — הריכוזים לרוב מתחת לסף הגילוי או לא חופפים בזמן לחום. במקום זאת, ב<b>חום ממושך בלתי מוסבר</b>, <span dir="ltr" class="term">CRP</span> ו-<span dir="ltr" class="term">ESR</span> הם המדדים המועילים ביותר לגילוי מחלה סמויה — כי הם תוצרים משניים ליציבים יותר בזמן (CRP במיוחד נשאר גבוה יציב, בניגוד ל-IL-6 שמשתנה).</p>
+<div class="key-box">קבוצות בהן <span class="key">חום עלול להיות נעדר למרות מחלה פעילה</span>: יילודים, קשישים, אי-ספיקת כבד/כליות כרונית, ומטופלים על גלוקוקורטיקואידים או תרופות אנטי-ציטוקין. באלה — היעדר חום <b>לא</b> שולל זיהום קשה, וספסיס יכול להתבטא כהיפותרמיה.</div>
+<h3>דיסוציאציית טמפרטורה-דופק (ברדיקרדיה יחסית)</h3>
+<p>מצב שבו הדופק לא עולה בהתאם לצפוי לכל מעלת חום — נצפה קלאסית ב<span dir="ltr" class="term">typhoid fever</span>, <span dir="ltr" class="term">brucellosis</span>, <span dir="ltr" class="term">leptospirosis</span>, חום תרופתי מסוים, וחום פיקטיבי (מדומה).</p>
+<h3>דפוסי חום מחזוריים - רמז אבחנתי בפני עצמו</h3>
+<table>
+  <thead><tr><th>דפוס</th><th>מחלה אופיינית</th></tr></thead>
+  <tbody>
+    <tr><td>חום כל יום שלישי</td><td><i>Plasmodium vivax</i></td></tr>
+    <tr><td>חום כל יום רביעי</td><td><i>Plasmodium malariae</i></td></tr>
+    <tr><td>ימי חום שלאחריהם תקופה אפברילית ואז חזרה</td><td>חום חוזר (<span dir="ltr" class="term">relapsing fever</span>) — <i>Borrelia</i></td></tr>
+    <tr><td>דפוס <span dir="ltr" class="term">Pel-Ebstein</span>: חום 3-10 ימים, אפברילי 3-10 ימים</td><td>מחלת הודג'קין ולימפומות אחרות</td></tr>
+    <tr><td>חום כל 21 יום, מלווה נויטרופניה</td><td><span dir="ltr" class="term">cyclic neutropenia</span></td></tr>
+  </tbody>
+</table>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Temperature_curve_of_relapsing_fever_cases._Wellcome_M0013358.jpg?width=550" alt="עקומת טמפרטורה בחום חוזר">
+  <figcaption class="media-cap">עקומת טמפרטורה היסטורית המדגימה דפוס חום-מחזורי (relapsing fever) — עליות וירידות חדות בחום במרווחים קבועים, בדיוק סוג הדפוס שיש לזהות בהיסטוריה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Temperature_curve_of_relapsing_fever_cases._Wellcome_M0013358.jpg" target="_blank">Wellcome Collection, Wikimedia Commons</a></figcaption>
+</figure>
+<h3>חום במטופלים על טיפול אנטי-ציטוקין</h3>
+<p>מטופלים על תרופות אנטי-<span dir="ltr" class="term">TNF/IL-1/IL-6/IL-12/IL-17</span> (למחלת קרון, RA, פסוריאזיס) בסיכון מוגבר לזיהומים (כולל <i>M. tuberculosis</i> סמוי שמתפזר, וזיהומים פטרייתיים) — אך התגובה הפברילית עלולה להיות מוחלשת. <span class="key">חום קל בקבוצה זו הוא ממצא מדאיג שדורש הערכה דחופה ואגרסיבית</span>, לא הרגעה.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p><b>העיקרון המנחה: חום עצמו אינו האויב.</b> אין עדות קלינית שתרופות מפחיתות חום מאטות החלמה מזיהום ויראלי/חיידקי, ואין עדות שהחום עצמו מסייע להחלמה או פועל כ"עוזר" למערכת החיסון. לכן טיפול שגרתי בחום ובתסמיניו — בטוח ולא מזיק ברוב המצבים.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון פעולה</th><th>הערה קלינית</th></tr></thead>
+  <tbody>
+    <tr><td>אספירין</td><td>מעכב <span dir="ltr" class="term">cyclooxygenase</span> היקפי ומרכזי → מפחית סינתזת PGE2</td><td>יעיל כמו אקמול; נמנעים בילדים (תסמונת ריי)</td></tr>
+    <tr><td>אקמול (<span dir="ltr" class="term">acetaminophen</span>)</td><td>מעכב <span dir="ltr" class="term">COX</span> חלש בהיקף, אך במוח מחומצן ע"י <span dir="ltr" class="term">P450</span> ומעכב <span dir="ltr" class="term">COX-3</span> (קיים רק במע' העצבים המרכזית)</td><td>יעיל להפחתת חום ללא פעילות אנטי-דלקתית היקפית משמעותית</td></tr>
+    <tr><td>NSAIDs (איבופרופן, מעכבי COX-2)</td><td>עיכוב COX היקפי ומרכזי</td><td>אנטי-פירטים מצוינים, גם אפקט אנטי-דלקתי היקפי</td></tr>
+    <tr><td dir="ltr">Anakinra / Canakinumab</td><td>חסימת פעילות IL-1</td><td>מפחיתים חום דרמטית במחלות אוטו-אינפלמטוריות (חום משפחתי, Still's disease)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">שקלו <b>אי-מתן</b> תרופות מפחיתות חום כשרוצים "לעקוב" אחר יעילות אנטיביוטיקה בזיהום חיידקי — טיפול שגרתי בחום יכול להסוות זיהום חיידקי שמטופל לא מספיק. גם דפוס חום מחזורי (טבלה מעלה) עוזר לאבחנה — ולכן הפחתת חום שגרתית עלולה "לטשטש" רמז אבחנתי.</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/nBhi14I0i20" title="Fever - mechanism and physiology explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קליני-פיזיולוגי על חום: מה מגדיר חום, איך מתבצעת התרמורגולציה התקינה, מנגנון הפירוגנים, וההבדל מהיפרתרמיה.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות למנגנון</h3>
+  <p><b><span dir="ltr">P-A-T-E</span></b>: <span dir="ltr">P</span>yrogen (חיצוני/פנימי) → <span dir="ltr">A</span>ctivates monocytes/endothelium → <span dir="ltr">T</span>hromboxane-like PGE2 ב-OVLT → <span dir="ltr">E</span>levates set point. ארבע אותיות, ארבע תחנות בשרשרת.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את ההיפותלמוס כ<b>תרמוסטט קיר בבית</b>. חיידק "פורץ" ומחליף בחשאי את הגדרת התרמוסטט מ-37° ל-39° (זה ה-PGE2 שמזייף את ההגדרה). הבית (הגוף) לא מתקלקל — הוא רק "חושב" שקר לו ב-39°, אז הוא מדליק את התנור (רעד) וסוגר את החלונות (כיווץ כלי דם) עד שהחדר מגיע ל-39° בפועל. אקמול/אספירין הם כמו "לתקן את התרמוסטט בחזרה" — לכן הם עוזרים בחום. בהיפרתרמיה לעומת זאת, התרמוסטט תקין (עדיין על 37°) אבל התנור בבית נדלק לבד בלי שליטה (חשיפה לחום/שריר עודף) — לכן תיקון התרמוסטט (אקמול) לא עוזר בכלל.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="180" y="30" width="140" height="90" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <text x="250" y="65" text-anchor="middle" font-size="14" fill="#78350f">תרמוסטט</text>
+    <text x="250" y="85" text-anchor="middle" font-size="20" font-weight="bold" fill="#b91c1c">39°</text>
+    <text x="250" y="102" text-anchor="middle" font-size="10" fill="#78350f">(זויף ע"י PGE2)</text>
+    <path d="M320,75 Q370,50 420,75" stroke="#2563eb" stroke-width="2" fill="none" marker-end="url(#a5)"/>
+    <text x="400" y="45" text-anchor="middle" font-size="11" fill="#2563eb">"קר לי" → תנור+חלונות סגורים</text>
+    <defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker></defs>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.osmosis.org/learn/Approach_to_a_fever:_Clinical_sciences" target="_blank">Osmosis — Approach to a fever: Clinical sciences</a>
+    <div class="desc">גישה קלינית שיטתית להערכת מטופל עם חום, כולל אבחנה מבדלת ותרשים החלטה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Pel%E2%80%93Ebstein_fever" target="_blank">Wikipedia — Pel-Ebstein fever</a>
+    <div class="desc">רקע נוסף על דפוס החום המחזורי הקלאסי של מחלת הודג'קין.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 34 עם מחלת קרון על טיפול באינפליקסימאב (נוגדן אנטי-TNF) מגיעה עם תחושת חולי כללית ותשישות בשלושת השבועות האחרונים. מדידה עצמית בבית מראה טמפרטורה של 37.9°C בלבד — "רק חום קל", היא אומרת. בבדיקה — ריאות עם קרפיטציות בסיסיות דו"צ, ו-CRP מוגבר משמעותית. צילום חזה מדגים הסננה נודולרית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע חום כל כך "קל" (37.9°C) אינו מרגיע במטופלת זו?</div>
+  <button class="opt" data-i="0">37.9°C הוא בעצם תקין ולא מהווה חום כלל</button>
+  <button class="opt" data-i="1">חום קל תמיד מעיד על מחלה קלה, בלי קשר לטיפול</button>
+  <button class="opt" data-i="2">טיפול אנטי-TNF מחליש/מבליט את התגובה הפברילית, כך שחום קל יכול לבטא זיהום חמור (למשל שחפת מופצת)</button>
+  <button class="opt" data-i="3">37.9°C אינו יכול להימדד נכון במד חום ביתי</button>
+  <div class="explain">נכון: <b>אפשרות 3 (המקורית 2)</b>. מטופלים על אנטי-ציטוקינים (במיוחד אנטי-TNF) בסיכון לזיהומים חמורים (כמו הפצת שחפת סמויה) עם תגובה פברילית מוחלשת — לכן חום קל בקבוצה זו הוא ממצא מדאיג שדורש בירור דחוף, לא הרגעה. 37.9°C גם עונה טכנית להגדרת חום (מעל 37.7°C).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מטופל מגיע מהעבודה בחוץ ביום קיץ חם מאוד עם טמפרטורה 41°C, עור חם ויבש, ואינו מגיב לאקמול. מה ההסבר הפיזיולוגי לכך שאקמול לא עוזר?</div>
+  <button class="opt" data-i="0">המנה שניתנה הייתה נמוכה מדי</button>
+  <button class="opt" data-i="1">נקודת הכיוון ההיפותלמית לא השתנתה בכלל — הבעיה היא עודף חום שהגוף לא מצליח לפרוק, לא "תרמוסטט" שהוזז</button>
+  <button class="opt" data-i="2">אקמול פועל רק על חום זיהומי</button>
+  <button class="opt" data-i="3">בחום גבוה כזה יש צורך במינון כפול</button>
+  <div class="explain">נכון: <b>אפשרות 2</b>. זו היפרתרמיה (חום-מכת-חום), לא חום קלאסי: נקודת הכיוון בהיפותלמוס תקינה, ואין פירוגנים מעורבים — הטמפרטורה עולה כי הגוף פשוט לא מסוגל לפרוק את החום שנוצר/נקלט. תרופות מפחיתות חום פועלות על ידי הורדת נקודת הכיוון, ולכן אין להן מטרה לפעול עליה כאן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופל עם לימפומה של הודג'קין מדווח על שבועיים של חום גבוה ולאחריהם שבועיים ללא חום, לסירוגין. איזה דפוס חום זה?</div>
+  <button class="opt" data-i="0">דפוס Pel-Ebstein</button>
+  <button class="opt" data-i="1">חום כל יום שלישי (Plasmodium vivax)</button>
+  <button class="opt" data-i="2">דיסוציאציית טמפרטורה-דופק</button>
+  <button class="opt" data-i="3">חום cyclic neutropenia (כל 21 יום)</button>
+  <div class="explain">נכון: <b>אפשרות 1</b>. תקופות חום של ימים-שבועות המופרדות בתקופות אפבריליות דומות באורך הן הדפוס הקלאסי (Pel-Ebstein) שמתואר במחלת הודג'קין ולימפומות אחרות. הדפוס של מלריה הוא יומי-מחזורי קצר יותר (כל 2-3 ימים), ו-cyclic neutropenia חזרה כל 21 יום בדיוק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע מדידת רמות ציטוקינים בדם (כמו IL-1, IL-6) אינה שימושית באבחון חום בלתי מוסבר, בניגוד ל-CRP?</div>
+  <button class="opt" data-i="0">ציטוקינים לא קשורים למנגנון החום בכלל</button>
+  <button class="opt" data-i="1">מדידת ציטוקינים יקרה מדי ולכן לא זמינה</button>
+  <button class="opt" data-i="2">CRP מיוצר ע"י אותם תאים בדיוק שמייצרים ציטוקינים</button>
+  <button class="opt" data-i="3">רמות הציטוקינים בדם נמוכות מסף הגילוי או לא חופפות בזמן לחום, בעוד ש-CRP (המושרה ע"י IL-6) נשאר גבוה ויציב יותר</button>
+  <div class="explain">נכון: <b>אפשרות 4</b>. הציטוקינים הפירוגניים פועלים באופן מקומי/פראקריני ובריכוזים נמוכים מאוד באתר הפעולה (OVLT), כך שברמת הדם המערכתי הם עלולים להיות בלתי-נמדדים ברגע המדידה. CRP, שמושרה ע"י IL-6 בכבד, מצטבר ונשאר גבוה יותר זמן — ולכן שימושי הרבה יותר קלינית כמדד עקיף לדלקת פעילה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>חום = עליית נקודת הכיוון ההיפותלמית (לא תגובה פתולוגית עצמה) בתיווך פירוגנים (LPS/טוקסינים חיצוניים, או IL-1/IL-6/TNF פנימיים) הפועלים דרך PGE2 ב-OVLT.</li>
+    <li>הבדלה קריטית: חום = נקודת כיוון עולה, מגיב לאקמול/אספירין; היפרתרמיה = נקודת כיוון תקינה, עור חם-יבש, <b>לא</b> מגיבה לתרופות מפחיתות חום — עלולה להיות קטלנית ומהירה.</li>
+    <li>קבוצות בהן חום עלול להיות נעדר למרות זיהום: יילודים, קשישים, אי-ספיקת כבד/כליות, גלוקוקורטיקואידים, טיפול אנטי-ציטוקין — היעדר חום לא שולל זיהום.</li>
+    <li>מדדי מעבדה שימושיים: CRP ו-ESR (לא רמות ציטוקינים ישירות). דפוסי חום מחזוריים (Pel-Ebstein, מלריה, Borrelia, cyclic neutropenia) הם רמז אבחנתי בעצמם.</li>
+    <li>טיפול: אקמול/אספירין/NSAIDs בטוחים ולא מעכבים החלמה; שקלו הימנעות מהם כשרוצים לעקוב אחר תגובה לאנטיביוטיקה או לזהות דפוס חום אבחנתי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
