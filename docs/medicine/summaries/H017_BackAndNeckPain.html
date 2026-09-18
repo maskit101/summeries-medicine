@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כאב גב וצוואר (Back and Neck Pain)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  h4{font-size:16px; margin:14px 0 4px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<h1>כאב גב וצוואר <span dir="ltr" class="term">(Back and Neck Pain)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 — פרק 17 (עמ' 158-170) | גישה אבחנתית וטיפולית לתלונה השכיחה ביותר בפניות לרופא הראשוני</div>
+
+<p>כאב גב תחתון (<span dir="ltr" class="term">Low Back Pain, LBP</span>) הוא הסיבה השנייה בשכיחותה לביקור אצל רופא בארה"ב, וארבעה מכל חמישה אנשים יחוו כאב גב משמעותי בשלב כלשהו בחייהם. העלות השנתית בארה"ב מוערכת ביותר מ-200 מיליארד דולר, כאשר שני שליש מהעלות הם עקיפים (אובדן ימי עבודה). המסר המרכזי של הפרק: רוב המקרים הם שפירים וחולפים מעצמם, והאתגר האמיתי הוא <span class="key">לזהות את המיעוט הקטן עם סיבה מבנית חמורה</span> (זיהום, גידול, שבר, תסמונת <span dir="ltr" class="term">cauda equina</span>) לפני שהיא גורמת נזק בלתי הפיך.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    עמוד השדרה בנוי מגוף חוליה קדמי הסופג זעזועים, ודיסק בין-חולייתי (<span dir="ltr" class="term">nucleus pulposus</span> ג'לטיני מוקף ב-<span dir="ltr" class="term">annulus fibrosus</span> סיבי) המאפשר תנועה. <span class="key">הדיסק עצמו, במצב תקין, כמעט ואינו מעוצבב ואינו כואב</span> — הכאב נוצר כשמבנים <em>אחרים</em> נפגעים: הפריוסטאום של החוליות, ה-<span dir="ltr" class="term">dura</span>, מפרקי הפאסט, השכבה החיצונית של האנולוס, ורצועות אורך השדרה — כל אלו כן עשירים בעצבוב כאב.
+  </p>
+  <p class="chain">
+    כשהאנולוס הפנימי נקרע (למשל מעומס חוזר, שיעול, הרמת משקל), הנוקלאוס יכול לבלוט (<span dir="ltr" class="term">protrusion</span>) או לחצות החוצה לגמרי (<span dir="ltr" class="term">herniation/extrusion</span>). זה יוצר שני מסלולי כאב שונים לגמרי, וחשוב להבדיל ביניהם:
+  </p>
+  <p class="chain">
+    <b>מסלול 1 — כאב מקומי/דיסקוגני (לא דלקתי-זיהומי כלל):</b> קרע באנולוס משחרר ציטוקינים פרו-דלקתיים (כמו <span dir="ltr" class="term">IL-1, TNF-α</span>) מתוך רקמת הדיסק עצמה, ובנוסף סיבי עצב כואבים (<span dir="ltr" class="term">nociceptive</span>) "צומחים פנימה" לתוך הנוקלאוס הפגוע ברקמה הכרונית — <span class="key">זו דלקת סטרילית לחלוטין, ללא שום חיידק מעורב</span>. זה ההסבר לכאב גב "דיסקוגני" כרוני.
+  </p>
+  <p class="chain">
+    <b>מסלול 2 — רדיקולופתיה (לחץ/דלקת על שורש עצב):</b> כשהבליטה לוחצת על שורש עצב בתעלה הצדדית (<span dir="ltr" class="term">lateral recess</span>) או בפורמן הבין-חולייתי, נוצר כאב קורן (<span dir="ltr" class="term">radicular</span>) — לא מלחץ מכני גרידא, אלא בעיקר מתגובה דלקתית סביב השורש (בצקת, שחרור מתווכי דלקת) שמגבירה רגישות העצב. זה ההסבר לכך שגם בליטה קטנה יכולה לגרום לכאב עז, ולכך שסטרואידים (המדכאים דלקת) עוזרים גם בלי ניתוח.
+  </p>
+  <p class="chain">
+    <b>מתי זה הופך לזיהומי?</b> ברוב המכריע של המקרים — <span class="key">אף פעם</span>. זיהום אמיתי (<span dir="ltr" class="term">vertebral osteomyelitis, diskitis, epidural abscess</span>) הוא ישות נפרדת לגמרי, לרוב מזריעה המטוגנית של <i>Staphylococcus aureus</i> (השכיח ביותר), לעיתים <i>Mycobacterium tuberculosis</i> (מחלת <span dir="ltr" class="term">Pott</span>) ממקור עור/דרכי שתן/שימוש בסמים תוך-ורידי, ולא שלב מאוחר של דיסק ניוון תקין. הדגל האדום המבדיל: כאב <span class="key">בלתי תלוי בתנוחה, מתמיד גם במנוחה ובלילה</span>, בנוכחות חום ו-<span dir="ltr" class="term">ESR/CRP</span> מוגברים.
+  </p>
+  <p class="chain">
+    <b>ולמה כאב יכול "להיות מורגש" רחוק מהעמוד השדרה (כאב מוקרן)?</b> מבנים ויסצרליים (קיבה, לבלב, כליה, אבי העורקים) חולקים עצבוב סגמנטלי (<span dir="ltr" class="term">dermatomal</span>) עם אזורים בגב — לכן מחלה בטנית/אגנית יכולה "להקרין" לגב בלי שום פתולוגיה בעמוד השדרה עצמו, וללא רגישות מקומית במישוש.
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="20" width="190" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="105" y="45" text-anchor="middle" font-size="14" fill="#1f2937">עומס/קרע באנולוס</text>
+  <text x="105" y="65" text-anchor="middle" font-size="12" fill="#4b5563">(שיעול, הרמה, ניוון גיל)</text>
+  <line x1="200" y1="55" x2="250" y2="55" stroke="#2563eb" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="255" y="20" width="190" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="45" text-anchor="middle" font-size="14" fill="#1f2937">בליטה/הרניאציה</text>
+  <text x="350" y="65" text-anchor="middle" font-size="12" fill="#4b5563">של הנוקלאוס פולפוזוס</text>
+
+  <line x1="350" y1="90" x2="230" y2="140" stroke="#047857" stroke-width="2" marker-end="url(#arrow2)"/>
+  <rect x="60" y="145" width="220" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="170" y="170" text-anchor="middle" font-size="13" fill="#1f2937">ללא לחץ שורש עצב:</text>
+  <text x="170" y="190" text-anchor="middle" font-size="12" fill="#4b5563">ציטוקינים בתוך הדיסק → כאב מקומי דיסקוגני (סטרילי)</text>
+
+  <line x1="350" y1="90" x2="560" y2="140" stroke="#b45309" stroke-width="2" marker-end="url(#arrow3)"/>
+  <rect x="450" y="145" width="240" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="570" y="170" text-anchor="middle" font-size="13" fill="#1f2937">לחץ על שורש עצב:</text>
+  <text x="570" y="190" text-anchor="middle" font-size="12" fill="#4b5563">בצקת+דלקת סביב השורש → כאב קורן/רדיקולופתיה</text>
+
+  <rect x="700" y="20" width="180" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="790" y="45" text-anchor="middle" font-size="13" fill="#1f2937">בנפרד לגמרי:</text>
+  <text x="790" y="65" text-anchor="middle" font-size="12" fill="#4b5563">זריעה חיידקית המטוגנית</text>
+  <text x="790" y="82" text-anchor="middle" font-size="12" fill="#4b5563">(לא המשך של ניוון!)</text>
+  <text x="790" y="99" text-anchor="middle" font-size="12" fill="#b91c1c">← אוסטאומיאליטיס/אבצס</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#047857"/></marker>
+    <marker id="arrow3" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b45309"/></marker>
+  </defs>
+</svg>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה של עמוד השדרה</h2>
+<p>עמוד השדרה הקדמי (גופי חוליות + דיסקים) סופג זעזועים; העמוד האחורי (קשתות, מפרקי פאסט, תהליכים שוקיים ורוחביים) מהווה עוגן לשרירים ורצועות ומגן על תעלת השדרה. שורש עצב יוצא <b>מעל</b> החוליה התואמת בצוואר (למשל <span dir="ltr" class="term">C7</span> יוצא ברמת <span dir="ltr" class="term">C6-C7</span>), אך <b>מתחת</b> לחוליה התואמת בגב תיכון/תחתון (למשל <span dir="ltr" class="term">T1</span> יוצא ברמת <span dir="ltr" class="term">T1-T2</span>). הבדל קריטי נוסף: חוט השדרה מסתיים ברמת <span dir="ltr" class="term">L1-L2</span>, ולכן שורשי העצב המותניים ("<span dir="ltr" class="term">cauda equina</span>" - "זנב הסוס") ממשיכים מסלול ארוך בתוך התעלה לפני שהם יוצאים — ולכן <span class="key">הרניאציה ב-L4-L5 פוגעת בפועל לרוב בשורש L5 העובר, ולא רק ב-L4 היוצא שם</span> (ר' איור 17-3 בהריסון).</p>
+<p>מבחינת עומס יומיומי — הדיסקים הגדולים ביותר, והפגיעים ביותר לניוון, הם בצוואר ובגב התחתון (האזורים עם טווח התנועה הגדול ביותר). התייבשות (<span dir="ltr" class="term">desiccation</span>) של הנוקלאוס עם הגיל מפחיתה את גובה הדיסק — זה ההסבר לכך שהרניאציה נדירה מתחת לגיל 20 (הדיסק עדיין "טרי" ולחוץ) ונדירה גם בזקנה מופלגת (הדיסק כבר פיברוטי ויבש מכדי לבלוט).</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>ארבעה טיפוסי כאב שחשוב להבחין ביניהם: <b>כאב מקומי</b> (מעל האזור הפגוע עצמו), <b>כאב מוקרן מוויסצרה</b> (בטני/אגני, לא מושפע מתנוחה), <b>כאב קורן/רדיקולרי</b> (חד, יורד לרגל בטריטוריית שורש, מוחמר בשיעול/הטלת מאמץ בטני), ו<b>כאב הקשור לספאזם שרירי</b> (עמום, עם תנוחה לא תקינה ושרירים פארא-ספינליים מתוחים).</p>
+<p><b>מבחן ה-<span dir="ltr" class="term">Straight Leg Raise (SLR)</span></b> — עם המטופל שוכב על הגב, מרימים את הרגל הישרה באגן; זה מותח את שורשי L5-S1 ואת העצב הסיאטי. אצל אדם בריא ניתן להגיע ל-80° בלי כאב. המבחן <b>חיובי</b> אם התנועה משחזרת את כאב הגב/הרגל הרגיל של המטופל (לא רק מתיחה בהמסטרינג). <span class="key">מבחן ה-SLR הצולב</span> (הרמת הרגל הבריאה משחזרת כאב ברגל הפגועה) פחות רגיש אך יותר ספציפי להרניאציה. <b>מבחן היפוך (reverse SLR)</b> — מותח שורשי L2-L4 בעמידה עם הארכת הרגל לאחור.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Exercise_Straight_Leg_Raises.png?width=500" alt="הדגמת תנועת הרמת רגל ישרה">
+  <figcaption class="media-cap">תנוחת הרמת רגל ישרה (עקרון התנועה במבחן ה-SLR הקליני זהה לתנוחה זו, עם הבדל שבמבחן הקליני הבודק מבצע את התנועה באופן פסיבי ובוחן שחזור כאב). מקור: <a href="https://commons.wikimedia.org/wiki/File:Exercise_Straight_Leg_Raises.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p>בבדיקה הנוירולוגית מחפשים חולשה מוקדית, שינוי רפלקסים ממוקד, ותחושה מופחתת — לפי מפתח מדויק (טבלה 17-2 בהריסון) שמאפשר לזהות איזה שורש מותני-סקראלי מעורב:</p>
+<table>
+  <thead><tr><th>שורש</th><th>רפלקס</th><th>תחושה</th><th>שריר עיקרי</th><th>פיזור כאב</th></tr></thead>
+  <tbody>
+    <tr><td dir="ltr">L4</td><td>ברך (קוואדריצפס)</td><td>שוק מדיאלי</td><td>קוואדריצפס</td><td>ברך, שוק מדיאלי</td></tr>
+    <tr><td dir="ltr">L5</td><td>— (ללא רפלקס ייעודי)</td><td>גב כף הרגל</td><td>שרירי אצבעות/דורסיפלקסורים</td><td>שוק לטרלי, גב כף רגל</td></tr>
+    <tr><td dir="ltr">S1</td><td>קרסול (גסטרוקנמיוס)</td><td>כף רגל צדית/כפית</td><td>גסטרוקנמיוס/סולאוס</td><td>כף רגל, שוק אחורית</td></tr>
+  </tbody>
+</table>
+<p>ב<b>צוואר</b>, המקביל הוא <span dir="ltr" class="term">Spurling's sign</span>: הטיית הצוואר לצד + הארכה מצרה את הפורמן הצדדי ומשחזרת כאב רדיקולרי — בדיוק כמו שה-SLR עושה למותן.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p><b>הכלל המרכזי: מעבדה והדמיה מיותרות ברוב המקרים.</b> ב-<span dir="ltr" class="term">ALBP</span> (כאב גב תחתון חריף, &lt;12 שבועות) ללא דגלים אדומים — אין צורך בשום בדיקה בחודש הראשון. הדמיית יתר נקשרה ל"אפקט מפל" (<span dir="ltr" class="term">cascade effect</span>): ממצא ניווני שפיר לחלוטין (הנפוץ אצל אנשים בריאים בלי כאב כלל — עד שליש מהאוכלוסייה הבוגרת מראה בליטת דיסק אסימפטומטית) מוביל לבדיקות וטיפולים מיותרים.</p>
+<div class="key-box">הדמיה/מעבדה מוצדקות רק כשיש <b>דגל אדום</b>: חום בלתי מוסבר, ירידה במשקל, סרטן בעבר, זיהום כרוני, טראומה, אי-שליטה על סוגרים, גיל &gt;70, שימוש בסמים תוך-ורידי, שימוש בסטרואידים, כאב מחמיר במנוחה/לילה, גירעון נוירולוגי פרוגרסיבי, ורגישות מיקוד במישוש קו האמצע.</div>
+<h3>אבחנה מבדלת - הבדלה בין הגורמים השכיחים לכאב גב</h3>
+<table>
+  <thead><tr><th>מצב</th><th>אופי הכאב</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td>הרניאציית דיסק</td><td>קורן, מחמיר בשיעול/הרמה</td><td>SLR חיובי, מפת דרמטום תואמת</td></tr>
+    <tr><td>היצרות תעלה מותנית (<span dir="ltr" class="term">LSS</span>)</td><td>קלאודיקציה נוירוגנית — ברגל/ישיבה, לא בהליכה בלבד</td><td>מוחמר בעמידה/הליכה, <span class="key">מוקל בישיבה/כפיפה</span> (בניגוד לקלאודיקציה וסקולרית שדורשת מנוחה ולא רק שינוי תנוחה)</td></tr>
+    <tr><td>גרורה/גידול</td><td>קבוע, לא מוקל במנוחה, גרוע בלילה</td><td>היסטוריית סרטן, ירידה במשקל, MRI כל עמוד השדרה (שליש מגלים גרורות נוספות)</td></tr>
+    <tr><td>אוסטאומיאליטיס/אבצס אפידורלי</td><td>קבוע, לא תלוי תנוחה</td><td>חום, <span dir="ltr" class="term">ESR/CRP</span> גבוהים, רגישות מישוש מקומית</td></tr>
+    <tr><td>שבר דחיסה אוסטיאופורוטי</td><td>מקומי, מוחמר במישוש עצם השוקק</td><td>גיל מבוגר, גלוקוקורטיקואידים, "step-off" רק בספונדילוליסטזיס</td></tr>
+    <tr><td>מפרצת אבי העורקים הבטנית קרועה (<span dir="ltr" class="term">AAA</span>)</td><td>כאב בטני+גב פתאומי</td><td>מסה פועמת (50-75%), שוק — טריאדה קלאסית ב-&lt;20% בלבד!</td></tr>
+  </tbody>
+</table>
+<h3>הדמיה</h3>
+<p><span dir="ltr" class="term">CT</span> עדיף לזיהוי שברים ומבנה עצם (במיוחד <span dir="ltr" class="term">C1-C2</span>, מפרקים קרניו-צוואריים). <span dir="ltr" class="term">MRI</span> עדיף להגדרת רקמות רכות — הדיסק עצמו, השורש, חוט השדרה, אבצס. <span dir="ltr" class="term">CT myelography</span> (הזרקת חומר ניגוד לתעלת השדרה + CT) שימושי כשה-MRI אסור (קוצר נשימה מקלאוסטרופוביה, השתלים מתכתיים) ומדויק במיוחד להגדרת התעלה הצדדית.</p>
+<div class="figure-pair">
+  <figure>
+    <span class="label abnormal">פתולוגי</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/L4-l5-disc-herniation.png?width=500" alt="הרניאציית דיסק L4-L5">
+    <figcaption class="media-cap">MRI המדגים הרניאציית דיסק ברמת L4-L5 עם בליטה לתוך התעלה. מקור: <a href="https://commons.wikimedia.org/wiki/File:L4-l5-disc-herniation.png" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>כאב גב תחתון חריף ללא רדיקולופתיה (<span dir="ltr" class="term">ALBP</span>)</h3>
+<p>ההחלמה הספונטנית טובה מאוד (&gt;85% תוך שבועות) — לכן העיקרון המנחה הוא <b>הימנעות מטיפול-יתר</b>: אין לבצע הדמיה, לרשום מנוחה במיטה, או לתת בדיקות שאינן משנות התנהלות. תנועה מוקדמת עדיפה על מנוחה במיטה (שהוכחה כמאטה החלמה, לא מזרזת אותה).</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון / קו טיפול</th><th>הערות</th><th>קונטרא-אינדיקציה עיקרית</th></tr></thead>
+  <tbody>
+    <tr><td dir="ltr">NSAIDs</td><td>קו ראשון</td><td>אין הוכחה ליתרון קליני על אקמול בפועל, למרות ההיגיון האנטי-דלקתי</td><td>אי-ספיקת כליות, שטפי דם GI, נוגדי קרישה</td></tr>
+    <tr><td>אקמול (<span dir="ltr" class="term">acetaminophen</span>)</td><td>קו ראשון חלופי</td><td>ניתן בשילוב עם NSAID</td><td>מחלת כבד</td></tr>
+    <tr><td dir="ltr">Cyclobenzaprine / methocarbamol</td><td>מרפי שרירים</td><td>שימושי לספאזם; לתת בלילה בגלל הרדמה</td><td>הרדמת יתר</td></tr>
+    <tr><td>אופיואידים</td><td>קו שני בלבד</td><td><span class="key">מוגבל ל-3-7 ימים</span> — אין הוכחה ליתרון מעבר ל-16 שבועות; סיכון תלות</td><td>שימוש כרוני/תלות בהיסטוריה</td></tr>
+  </tbody>
+</table>
+<p>ללא הוכחת יעילות בכאב חריף: <span dir="ltr" class="term">TENS</span>, עיסוי, אקופונקטורה, מניפולציה, קורסטים, מזרנים מיוחדים, תרגילי גב, גלוקוקורטיקואידים אפידורליים.</p>
+
+<h3>כאב גב תחתון כרוני ללא רדיקולופתיה (<span dir="ltr" class="term">CLBP</span>, &gt;12 שבועות)</h3>
+<p>המטרה משתנה: פחות "לרפא כאב", יותר <b>שיפור תפקוד</b>. טיפול תרופתי בעל בסיס ראייתי: <span dir="ltr" class="term">Duloxetine</span> (60 מ"ג/יום — מאושר לכאב כרוני ומטפל גם בדיכאון נלווה), טריציקליים לפעמים מקלים כאב גם בלי דיכאון גלוי. <span class="key">תוכנית פעילות גופנית מובנית</span> (חיזוק ליבה + מתיחות + אירובי הדרגתי) ו-<span dir="ltr" class="term">CBT</span> הוכיחו יעילות בגודל אפקט דומה. ניתוח פיוז'ן ל-CLBP ללא רדיקולופתיה — עדות חלשה, בדרך כלל לא עדיף על שיקום שמרני אינטנסיבי.</p>
+
+<h3>כאב גב עם רדיקולופתיה (הרניאציית דיסק סימפטומטית)</h3>
+<p>הפרוגנוזה טובה — רגרסיה ספונטנית של חלק הבליטה נצפית ב-2/3 מהמטופלים תוך 6 חודשים. גלוקוקורטיקואידים אפידורליים (או קורס קצר של סטרואיד פומי במינון גבוה, 3 ימים + הפחתה הדרגתית) מקלים תסמינים אך אינם מפחיתים את הצורך בניתוח עתידי. ניתוח מומלץ רק לאחר 6-8 שבועות ללא שיפור בטיפול שמרני — <b>למעט</b> שני מצבים דחופים:</p>
+<div class="key-box">ניתוח <b>דחוף</b> תמיד: (1) <span dir="ltr" class="term">Cauda equina syndrome (CES)</span> — פגיעה משולבת בשורשים מרובים מתחת ל-L1-L2: חולשה ואראפלקסיה ברגליים, תחושה מופחתת ב"אוכף" (<span dir="ltr" class="term">saddle anesthesia</span>), אובדן שליטה בשלפוחית. (2) חולשה מוטורית פרוגרסיבית מוכחת בבדיקה/EMG.</div>
+
+<div class="surgery">
+  <h4>הכנה לפני ניתוח</h4>
+  <p>הערכת סטטוס נוירולוגי בסיסי (מכריע לפרוגנוזה — במיוחד בגרורות, שבהן יכולת ההליכה לפני האבחנה חוזה סיכוי להחלמה), הדמיה מדויקת (MRI/CT myelography) לאישור רמה ומעורבות, ולעיתים הערכה פסיכולוגית טרום-ניתוחית (פסיכופתולוגיה משמעותית מנבאת תוצאה כירורגית גרועה).</p>
+  <h4>מהלך הניתוח - שלבים עיקריים</h4>
+  <p>הפרוצדורה הנפוצה היא <span dir="ltr" class="term">partial hemilaminectomy</span> עם כריתת חלק הדיסק הבולט (<span dir="ltr" class="term">diskectomy</span>) — גישה ממוקדת דרך הקשת האחורית לשחרור הלחץ על השורש. פיוז'ן (איחוי חוליות) נשמר למקרים עם אי-יציבות משמעותית (כמו ספונדילוליסטזיס דגנרטיבי), לא כשגרה.</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>ב-<span dir="ltr" class="term">CES</span> — הזמן קריטי: הניתוח חייב להתבצע בדחיפות כדי לשמר תפקוד מוטורי/סוגרים; עיכוב מוביל לנזק בלתי הפיך. בניתוחי דיסק אלקטיביים, טכניקות זעיר-פולשניות פופולריות אך יש עדויות לשיעורי אשפוז-חוזר וכאב שיורי גבוהים יותר מהגישה הסטנדרטית.</p>
+  <h4>החלמה</h4>
+  <p>שיפור כאב מהיר יחסית לאחר דיסקטומי; אך תוצאה תפקודית ארוכת-טווח דומה בין טיפול כירורגי לשמרני לאחר שנתיים במקרים שאינם דחופים. תסמינים מחשידים לסיבוך: חום, החמרת כאב, חולשה חדשה, אצירת שתן.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KJ8NLJZxlFs" title="Tests For Examination of the Lower Back - Dr. Nabil Ebraheim" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת מבחני בדיקה גופנית לגב תחתון (כולל SLR ומבדילים נוספים) — ד"ר Nabil Ebraheim, ערוץ חינוכי אורתופדי.</p>
+
+<h3>כאב צוואר</h3>
+<p>הגישה דומה לגב: רוב הכאב החריף חולף עצמונית; NSAIDs/אקמול/חום-קור בקו ראשון; <span dir="ltr" class="term">cyclobenzaprine</span> בלילה לספאזם; קולר רך (לא קשיח) מקל לחלק מהמטופלים. ל<b>רדיקולופתיה צווארית</b> — קורס סטרואידים פומי או אפידורלי יכול לעזור, אך <span class="key">סיכון סיבוכי הזרקה גבוה יותר בצוואר מאשר בגב</span> (דיסקציית עורק חוליתי, פגיעה בחוט השדרה). ניתוח (דיסקטומי קדמי, למינקטומי, או עם פיוז'ן) שמור למחסור מוטורי פרוגרסיבי, כאב עמיד לטיפול שמרני, או לחץ על חוט השדרה.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות לדגלים אדומים בכאב גב</h3>
+  <p><b><span dir="ltr">TUNAFISH</span></b> (גרסה שימושית לזכירת דגלי אזהרה): <span dir="ltr">T</span>rauma, <span dir="ltr">U</span>nexplained weight loss, <span dir="ltr">N</span>eurologic deficit (פרוגרסיבי), <span dir="ltr">A</span>ge&gt;70 / Age&lt;20 עם היסטוריה חשודה, <span dir="ltr">F</span>ever, <span dir="ltr">I</span>V drug use, <span dir="ltr">S</span>teroid use, <span dir="ltr">H</span>istory of cancer. (אם לא נתקלת בראשי תיבות אלו בקורס שלך — השתמשי בטבלה 17-1 המקורית כרשימת בדיקה: זו בדיוק אותה רשימה, רק מסודרת כמילה.)</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את הדיסק הבין-חולייתי כ<b>כרית ג'לי עגולה בתוך שק בד מתוח</b> (האנולוס). כשמישהו דורך על הכרית שוב ושוב (עומס יומיומי, גיל), הבד נקרע בצד אחד — והג'לי מתחיל לזלוג. אם הזליגה פשוט לוחצת על שק בד סמוך (שורש עצב) — יש "צביטה" מקומית שמקרינה לאורך הצינור שהוא נדחק אליו (רגל). אבל אם הג'לי עצמו "מתסיס" בתוך הכרית (דלקת פנימית סטרילית) — הכאב נשאר במקום, בלי הקרנה ברורה. שני מנגנונים, שני סיפורי כאב שונים לגמרי מאותה פציעה.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="180" cy="100" rx="90" ry="60" fill="#fef3c7" stroke="#b45309" stroke-width="3"/>
+    <ellipse cx="180" cy="100" rx="55" ry="35" fill="#fde68a"/>
+    <text x="180" y="105" text-anchor="middle" font-size="13" fill="#78350f">כרית ג'לי (נוקלאוס)</text>
+    <path d="M255,90 Q300,70 340,90" stroke="#b91c1c" stroke-width="4" fill="none"/>
+    <text x="300" y="65" text-anchor="middle" font-size="12" fill="#b91c1c">קרע בבד (אנולוס)</text>
+    <circle cx="360" cy="100" r="12" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="420" y="105" text-anchor="middle" font-size="12" fill="#1f2937">זליגה לכיוון</text>
+    <text x="420" y="122" text-anchor="middle" font-size="12" fill="#1f2937">שק סמוך (שורש עצב)</text>
+    <line x1="372" y1="100" x2="405" y2="100" stroke="#b45309" stroke-width="2" marker-end="url(#arrow4)"/>
+    <defs><marker id="arrow4" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b45309"/></marker></defs>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/pjNF7q-g9fU" title="Examination of Low Back Pain - Clinical examination video" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הדגמה קליני מובנה לבדיקת כאב גב תחתון (אנמנזה + בדיקה גופנית מלאה).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/5LcuOR9MAAo" title="Cauda Equina Syndrome - Clinical Anatomy" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר אנטומי-קליני על תסמונת <span dir="ltr">cauda equina</span> — המצב הדחוף שאסור לפספס בכאב גב.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.osmosis.org/learn/Back_pain:_Pathology_review" target="_blank">Osmosis — Back pain: Pathology review</a>
+    <div class="desc">סקירת פתולוגיה מקיפה של כל הגורמים לכאב גב, עם תרשימים ושאלון תרגול.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Dermatomes_and_cutaneous_nerves_-_posterior.svg" target="_blank">Wikimedia Commons — מפת דרמטומים (תצוגה אחורית)</a>
+    <div class="desc">מפת דרמטומים מלאה לגוף — שימושית להצלבת פיזור כאב/תחושה מול שורש העצב החשוד.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 42, עובד הובלות, מגיע עם כאב גב תחתון קשה שהחל אתמול תוך כדי הרמת ארגז כבד, מקרין לאורך ירך אחורית-שמאלית ועד לגב כף הרגל. השיעול מחמיר את הכאב. בבדיקה — רפלקס קרסול תקין, אך רפלקס ברך שמאל מוחלש קלות, ותחושה מופחתת בגב כף הרגל השמאלית. הרמת רגל ישרה בשמאל ב-30° משחזרת את כאב הרגל המוכר. אין חום, אין ירידה במשקל, אין אצירת שתן, ללא היסטוריית סרטן.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. על פי ממצאי הבדיקה (תחושה מופחתת בגב כף הרגל, SLR חיובי), איזה שורש עצב הכי סביר שמעורב?</div>
+  <button class="opt" data-i="0">L3</button>
+  <button class="opt" data-i="1">L5</button>
+  <button class="opt" data-i="2">S1</button>
+  <button class="opt" data-i="3">L2</button>
+  <div class="explain">נכון: <b>L5</b>. תחושה בגב כף הרגל ושוק לטרלית, ללא רפלקס ייעודי (L5 אינו קשור לרפלקס גיד ספציפי בטבלה 17-2), עם SLR חיובי — תואם L5 בדיוק. L3 היה נותן כאב ירך קדמית; S1 היה פוגע ברפלקס קרסול (שכאן תקין) ובתחושת הצד הכפי; L2 כלל אינו קשור ל-SLR קלאסי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. איזה מהבאים אינו מהווה אינדיקציה לבדיקת הדמיה דחופה בשלב זה?</div>
+  <button class="opt" data-i="0">חום בלתי מוסבר</button>
+  <button class="opt" data-i="1">אצירת שתן חדשה</button>
+  <button class="opt" data-i="2">כאב רגל המחמיר בשיעול, ללא סימני CES</button>
+  <button class="opt" data-i="3">חולשה מוטורית פרוגרסיבית</button>
+  <div class="explain">נכון: <b>אפשרות 3</b>. כאב רדיקולרי טיפוסי המחמיר בשיעול (מנגנון מכני צפוי בהרניאציה) אינו כשלעצמו דגל אדום — זה חלק מהתמונה הרגילה של רדיקולופתיה דיסקוגנית. חום, אצירת שתן (חשד ל-CES), וחולשה פרוגרסיבית הן כולן אינדיקציות מובהקות להדמיה/הערכה דחופה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו קו הטיפול הראשוני המתאים ביותר בשלב זה למטופל זה, בהינתן שאין דגלים אדומים ואין סימני CES?</div>
+  <button class="opt" data-i="0">טיפול שמרני: NSAIDs/אקמול, המשך פעילות רגילה ככל האפשר, ללא הדמיה מיידית</button>
+  <button class="opt" data-i="1">MRI דחוף באותו יום כדי לאשר את מיקום ההרניאציה</button>
+  <button class="opt" data-i="2">הפניה מיידית לניתוח דיסקטומי</button>
+  <button class="opt" data-i="3">מנוחה מוחלטת במיטה למשך שבוע</button>
+  <div class="explain">נכון: <b>אפשרות 1</b>. בהיעדר דגלים אדומים או CES, הגישה המקובלת היא טיפול שמרני, המשך פעילות (לא מנוחה ממושכת שהוכחה כלא-יעילה ואף מעכבת החלמה), והדמיה רק אם אין שיפור לאחר 6-8 שבועות או אם מופיעים סימני אזהרה. ניתוח דחוף אינו מוצדק ללא CES או חולשה פרוגרסיבית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופלת בת 68 מדווחת על כאב וחולשה ברגליים המופיעים לאחר הליכה של 200 מטר, מוקלים תוך דקות בישיבה או בכפיפה קדימה על עגלת קניות. מהי האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">קלאודיקציה וסקולרית</button>
+  <button class="opt" data-i="1">הרניאציית דיסק חריפה</button>
+  <button class="opt" data-i="2">Cauda equina syndrome</button>
+  <button class="opt" data-i="3">היצרות תעלה מותנית (Lumbar Spinal Stenosis) עם קלאודיקציה נוירוגנית</button>
+  <div class="explain">נכון: <b>אפשרות 4</b>. ההקלה הספציפית בישיבה/כפיפה (שמגדילה את קוטר התעלה ומפחיתה לחץ ורידי תוך-ספינלי) היא הסימן הקלאסי המבדיל קלאודיקציה נוירוגנית מווסקולרית — האחרונה מוקלת רק במנוחה מוחלטת (לאו דווקא בישיבה) ואינה תלויה בתנוחת הכיפוף. LSS שכיחה יותר בגיל מבוגר, בהתאם לגיל המטופלת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כאב גב/צוואר — תלונה שכיחה ביותר; רוב המקרים שפירים וחולפים עצמונית תוך שבועות.</li>
+    <li>מנגנון: קרע באנולוס → כאב דיסקוגני מקומי (דלקת סטרילית בתוך הדיסק) <b>או</b> לחץ+דלקת על שורש עצב → כאב קורן (רדיקולופתיה). זיהום אמיתי (אוסטאומיאליטיס) הוא ישות נפרדת לגמרי — לא המשך טבעי של תהליך ניווני.</li>
+    <li>אבחנה: היסטוריה ובדיקה גופנית (SLR, בדיקת שורש עצב) מספיקות ברוב המקרים; הדמיה/מעבדה רק בנוכחות דגל אדום (חום, ירידה במשקל, סרטן, טראומה, גיל&gt;70, גירעון נוירולוגי פרוגרסיבי, אצירת שתן).</li>
+    <li>LSS מובחנת מקלאודיקציה וסקולרית ע"י הקלה בישיבה/כפיפה (לא רק במנוחה).</li>
+    <li>טיפול: NSAIDs/אקמול קו ראשון, תנועה מוקדמת ולא מנוחה במיטה, אופיואידים מוגבלים ל-3-7 ימים בלבד. ניתוח דחוף רק ב-CES או חולשה מוטורית פרוגרסיבית; אחרת רק לאחר 6-8 שבועות ללא שיפור שמרני.</li>
+    <li><span class="key">CES = חירום כירורגי</span>: אראפלקסיה, saddle anesthesia, אצירת שתן — דורש ניתוח מיידי לשימור תפקוד.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כאב ראש - גישה אבחנתית (Headache)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<h1>כאב ראש - גישה אבחנתית (<span dir="ltr" class="term">Headache</span>)</h1>
+<div class="subtitle">פרק 16 בהריסון (מהדורה 21) - אחת התלונות השכיחות ביותר ברפואה. המשימה המרכזית: להבדיל בין הרוב הגדול והשפיר (כאב ראש ראשוני) לבין המיעוט המסוכן שדורש הערכה דחופה (כאב ראש שניוני).</div>
+
+<p>כאב ראש הוא אחת הסיבות השכיחות ביותר לפנייה לרופא, ואחראי - על בסיס עולמי - ליותר נכות מכל בעיה נוירולוגית אחרת. הבחנה בין <b>כאב ראש ראשוני</b> (<span dir="ltr" class="term">primary headache</span> - הכאב עצמו הוא המחלה, כמו מיגרנה) לבין <b>כאב ראש שניוני</b> (<span dir="ltr" class="term">secondary headache</span> - הכאב הוא ביטוי של מחלה חיצונית, כמו דימום תוך-גולגולתי) היא לב האבחון: רוב כאבי הראש שפירים, אך מיעוט קטן מסכן חיים ומחייב זיהוי מהיר.</p>
+
+<h2><span class="num">2</span> המנגנון - למה בכלל כואב "בראש"</h2>
+<div class="mechanism">
+  <p class="chain">
+    מרקמת המוח עצמה (<span dir="ltr" class="term">brain parenchyma</span>), האפנדימה החדרית והפלקסוס הכורואידי - <b>אין בהן קולטני כאב כלל</b>. לכן כאב ראש לעולם לא נובע "מהמוח כואב" אלא ממבנים ספציפיים סביבו הרגישים לכאב: הקרקפת, עורקי הקרום הקשה (<span dir="ltr" class="term">dural arteries</span>), הסינוסים הוורידיים, ה-<span dir="ltr" class="term">falx cerebri</span>, והחלקים הפרוקסימליים של עורקי הפיה הגדולים.
+    <br><br>
+    שרשרת ההולכה: גירוי של אחד המבנים הללו (למתיחה, דלקת, לחץ) &larr; מופעלים קולטני כאב היקפיים (<span dir="ltr" class="term">nociceptors</span>) שמעצבבים אותם דרך <b>העצב הטריגמינלי</b> (<span dir="ltr" class="term">trigeminovascular system</span>) &larr; האותות מגיעים לגרעין הטריגמינלי הזנבי, שמשתרע עד לקרניים הדורסליות של חוט השדרה הצווארי העליון וכולל קלט משורשי העצבים הצוואריים C1-C2 - זהו ה"<span dir="ltr" class="term">trigeminocervical complex</span>", וזו הסיבה שכאב ממקור צווארי יכול "להישלח" קדימה כראש כואב &larr; משם הקלט עולה לאזורי עיבוד גבוהים יותר (התלמוס הוונטרופוסטרומדיאלי והקורטקס) &larr; ולאורך כל הדרך פועלות מערכות מווסתות-כאב (בהיפותלמוס ובגזע המוח) שמשפיעות גם על תפקודים וגטטיביים - זו הסיבה שבמיגרנה ובכאבי TAC מופיעים גם תסמינים אוטונומיים (דמעת, גודש באף, פטוזיס).
+  </p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <rect x="10" y="70" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="85" y="95" text-anchor="middle" font-size="13" fill="#1f2937">גירוי כלי-דם/קרום קשה</text>
+  <text x="85" y="113" text-anchor="middle" font-size="11" fill="#4b5563">(מתיחה/דלקת/לחץ)</text>
+  <line x1="160" y1="100" x2="200" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="205" y="70" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="280" y="95" text-anchor="middle" font-size="13" fill="#1f2937">עצב טריגמינלי</text>
+  <text x="280" y="113" text-anchor="middle" font-size="11" fill="#4b5563">(nociceptors היקפיים)</text>
+  <line x1="355" y1="100" x2="395" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="400" y="70" width="170" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="485" y="90" text-anchor="middle" font-size="13" fill="#1f2937">Trigeminocervical</text>
+  <text x="485" y="108" text-anchor="middle" font-size="12" fill="#1f2937">complex (+C1-C2)</text>
+  <line x1="570" y1="100" x2="610" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="615" y="70" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="690" y="95" text-anchor="middle" font-size="13" fill="#1f2937">תלמוס &#8592; קורטקס</text>
+  <text x="690" y="113" text-anchor="middle" font-size="11" fill="#4b5563">(תחושת כאב מודעת)</text>
+  <line x1="770" y1="100" x2="810" y2="100" stroke="#2563eb" stroke-width="2" marker-end="url(#ah)"/>
+  <rect x="815" y="70" width="75" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="852" y="95" text-anchor="middle" font-size="12" fill="#1f2937">תסמינים</text>
+  <text x="852" y="112" text-anchor="middle" font-size="12" fill="#1f2937">אוטונומיים</text>
+  <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 z" fill="#2563eb"/></marker></defs>
+</svg>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה רלוונטית</h2>
+<p>מבנים <b>כן</b> רגישים לכאב: קרקפת, עורקי הקרום הקשה (<span dir="ltr" class="term">meningeal arteries</span>), סינוסים ורידיים, <span dir="ltr" class="term">falx cerebri</span>, מקטעים פרוקסימליים של עורקי הפיה הגדולים. מבנים <b>שאינם</b> רגישים לכאב: אפנדימה חדרית, פלקסוס כורואידי, ורידי הפיה, ורוב פרנכימת המוח. זו הסיבה שגידול מוחי או דימום תוך-מוחי יכולים לגדול משמעותית בשקט - הכאב מופיע רק כשהמסה מותחת/לוחצת על מבנה רגיש (קרום, כלי-דם, או גורמת לעליית לחץ תוך-גולגולתי).</p>
+<p>תסמונות <span dir="ltr" class="term">TAC</span> (<span dir="ltr" class="term">Trigeminal Autonomic Cephalalgias</span> - כמו כאב ראש בצרורות) נובעות מהפעלת מסלולים פאראסימפתטיים גולגולתיים, ולכן מלוות בדמעת, אודם לחמית, גודש/נזלת באף, נפיחות פריאורביטלית ופטוזיס - <b>אלו תופעות משניות למנגנון הכאב ולא הגורם לו</b>: מיגרנה וכאבי TAC אינם "כאבי ראש וסקולריים" כפי שחשבו בעבר, אלא הפרעה מוחית ראשונית שמפעילה גם את המערכת הוסקולרית וגם את המערכת האוטונומית במקביל.</p>
+
+<h2><span class="num">4</span> ביטוי קליני - איך ניגשים לחולה עם כאב ראש חדש</h2>
+<p>ההבחנה הקריטית הראשונה: <b>כאב ראש חדש וחריף</b> מול <b>כאב ראש חוזר לאורך שנים</b>. בכאב ראש חדש/חריף, הסבירות למצוא סיבה מסוכנת גבוהה משמעותית - יש להעריך במהירות. הגורמים הרציניים שחובה לשקול: <b>דלקת קרום המוח (מנינגיטיס)</b>, <b>דימום תת-עכבישי (SAH)</b>, המטומה אפידורלית/סובדורלית, גלאוקומה, גידול, וסינוסיטיס מוגלתי.</p>
+<p>בבדיקה גופנית: בדיקה נוירולוגית מלאה היא הצעד החיוני הראשון. אצל חולה עם ממצא נוירולוגי חריג או כאב ראש חדש - יש לבצע הדמיה (CT/MRI מוח). לעיתים גם ניקור מותני (<span dir="ltr" class="term">LP</span>) נדרש, אלא אם ניתן לשלול סיבה שפירה בביטחון. הערכה כללית כוללת: מישוש עורקי הגולגולת, עמוד שדרה צווארי (תנועה פסיבית + הדמיה), מצב קרדיווסקולרי/כלייתי (לחץ דם, שתן), ובדיקת עיניים (פונדוסקופיה, לחץ תוך-עיני, רפרקציה).</p>
+
+<div class="key-box">
+  דגלים אדומים ("<span dir="ltr" class="term">red flags</span>") לכאב ראש שניוני מסוכן: כאב פתאומי בעוצמה מרבית תוך שניות ("<span dir="ltr" class="term">thunderclap</span>"), "הכאב הכי חזק בחיים", הקאות שקדמו לכאב, החמרה הדרגתית לאורך ימים-שבועות, כאב שמוחמר בכיפוף/הרמה/שיעול, כאב שמפריע לשינה או מופיע מיד עם ההתעוררות, מחלה סיסטמית ידועה, הופעה אחרי גיל 55, חום או סימנים סיסטמיים לא מוסברים, בדיקה נוירולוגית חריגה, ורגישות מקומית (למשל מעל עורק הרקה).
+</div>
+
+<h2><span class="num">5</span> אבחנה - כאב ראש ראשוני מול שניוני, וגורמים שניוניים חשובים</h2>
+<p>מבחינה סטטיסטית, כ-90% ממטופלים שמגיעים לרפואת קהילה עם תלונת כאב ראש יאובחנו עם <b>מיגרנה</b>. הטבלה הבאה (מבוססת על נתוני Olesen) ממחישה את השכיחות היחסית:</p>
+<table>
+  <thead><tr><th>כאב ראש ראשוני</th><th>%</th><th>כאב ראש שניוני</th><th>%</th></tr></thead>
+  <tbody>
+    <tr><td><span dir="ltr" class="term">Tension-type</span></td><td>69</td><td>זיהום סיסטמי</td><td>63</td></tr>
+    <tr><td>מיגרנה</td><td>16</td><td>חבלת ראש</td><td>4</td></tr>
+    <tr><td>דקירתי אידיופתי</td><td>2</td><td>הפרעות וסקולריות</td><td>1</td></tr>
+    <tr><td>מאמצי</td><td>1</td><td>דימום תת-עכבישי</td><td>&lt;1</td></tr>
+    <tr><td>כאב ראש בצרורות</td><td>0.1</td><td>גידול מוחי</td><td>0.1</td></tr>
+  </tbody>
+</table>
+
+<h3>אבחנה מבדלת של הגורמים השניוניים המסוכנים</h3>
+<table>
+  <thead><tr><th>מצב</th><th>אופי הכאב</th><th>ממצא מבדיל מרכזי</th><th>בירור</th></tr></thead>
+  <tbody>
+    <tr><td>מנינגיטיס</td><td>חריף, חמור, עם נוקשות עורף וחום</td><td>הקצנת כאב בתנועות עיניים; לרוב פוטופוביה, בחילה, הקאות (מדמה מיגרנה!)</td><td><span dir="ltr" class="term">LP</span> חובה</td></tr>
+    <tr><td>דימום תת-עכבישי (SAH)</td><td>מרבי תוך &lt;5 דק', נמשך &gt;5 דק', עם נוקשות עורף <b>ללא</b> חום</td><td>"הכאב הכי חזק בחיים"; CT יכול להיות תקין אם הדימום קטן/מתחת לפורמן מגנום</td><td>CT מוח, ואם שלילי - LP להדגמת דם/קסנטוכרומיה</td></tr>
+    <tr><td>גידול מוחי</td><td>עמום, עמוק, בינוני, לסירוגין, מחמיר במאמץ/שינוי תנוחה</td><td>מפריע לשינה בכ-10%; הקאות שמקדימות כאב שבועות = אופייני לגידולי גומה אחורית</td><td>MRI מוח</td></tr>
+    <tr><td>ארטריטיס טמפורלית (ענקי תאים)</td><td>הדרגתי לאורך שעות, קהה/כואב עם דקירות</td><td>גיל &gt;50, רגישות בקרקפת/עורק הרקה, פולימיאלגיה ראומטית, קלאודיקציה בלעיסה</td><td>ESR (לרוב מוגבר, לא תמיד), ביופסיה - אך לא לעכב טיפול</td></tr>
+    <tr><td>גלאוקומה</td><td>מתיש, עם בחילה/הקאות</td><td>כאב עיני קשה, עין אדומה, אישון קבוע ומורחב חלקית</td><td>מדידת לחץ תוך-עיני</td></tr>
+  </tbody>
+</table>
+
+<h3>הדמיה בחשד לדימום תת-עכבישי או כאב ראש חדש-חמור</h3>
+<p><span dir="ltr" class="term">CT</span> ו-<span dir="ltr" class="term">MRI</span> נחשבים דומים ברגישות כבדיקת סקירה ראשונית לפתולוגיה תוך-גולגולתית בכאב ראש חדש. ב-<b>כאב ראש נמוך-נפח נוזל שדרתי</b> (<span dir="ltr" class="term">low CSF volume headache</span> - למשל אחרי דליפה בעקבות LP) - ה-MRI עם גדוליניום מדגים דפוס אופייני מאוד: <b>העצמה מנינגאלית דיפוזית</b> לאורך הקרום הרך, כתוצאה מהתרחבות ורידית פיצוי לירידת נפח הנוזל השדרתי.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Papilledema.jpg?width=500" alt="Papilledema - בצקת דיסקת עצב הראייה">
+  <figcaption class="media-cap">פפילאדמה (<span dir="ltr" class="term">papilledema</span>) - נפיחות דיסקת עצב הראייה עם גבולות מטושטשים ועליית ורידים רשתיתיים, סימן ללחץ תוך-גולגולתי מוגבר (למשל בהיפרטנשן תוך-גולגולתי אידיופתי). מקור: <a href="https://commons.wikimedia.org/wiki/File:Papilledema.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">6</span> טיפול לפי אבחנה</h2>
+<p>הכלל המנחה: <b>טיפול בכאב ראש שניוני = טיפול בגורם הבסיסי</b>. טיפול בכאב ראש ראשוני (מיגרנה, כאב ראש מסוג מתח, TACs) נדון בהרחבה בפרק 430 בהריסון; כאן מתמקדים במצבים שניוניים ובכאב ראש כרוני יומיומי.</p>
+<table>
+  <thead><tr><th>מצב/תרופה</th><th>מנגנון/סוג</th><th>איך עוזר</th><th>הערות/קונטרא-אינדיקציה</th></tr></thead>
+  <tbody>
+    <tr><td>ארטריטיס טמפורלית - <span dir="ltr" class="term">Prednisone</span></td><td>גלוקוקורטיקואיד</td><td>מדכא את הדלקת הגרנולומטוטית בדופן העורק, מונע התקדמות לעיוורון בלתי-הפיך</td><td>80 מ"ג/יום למשך 4-6 שבועות; יש להתחיל <b>מיד</b> עם חשד קליני גבוה, לא לחכות לביופסיה</td></tr>
+    <tr><td>כאב ראש נמוך-נפח - קפאין IV</td><td>אנטגוניסט לקולטני אדנוזין, מכווץ כלי-דם מוחיים</td><td>מקטין את הפיצוי הוסקולרי לירידת נפח ה-CSF</td><td>500 מ"ג ב-500 מ"ל תמיסה למשך 2 שעות; יש לבצע א.ק.ג לפני מתן</td></tr>
+    <tr><td>כאב ראש נמוך-נפח - <span dir="ltr" class="term">Blood patch</span> אוטולוגי</td><td>הזרקת דם אפידורלי במקום הדליפה</td><td>"אוטם" את נקודת הדליפה, מרפא ברוב המקרים</td><td>קו טיפול לאחר כישלון קפאין; יעיל גם בכאב ראש שלאחר LP</td></tr>
+    <tr><td>לחץ CSF מוגבר (<span dir="ltr" class="term">idiopathic intracranial hypertension</span>) - <span dir="ltr" class="term">Acetazolamide</span></td><td>מעכב <span dir="ltr" class="term">carbonic anhydrase</span></td><td>מפחית ייצור CSF על ידי הפלקסוס הכורואידי</td><td>250-500 מ"ג פעמיים ביום; קו שני - טופירמאט (גם מוריד משקל)</td></tr>
+    <tr><td>כאב ראש כרוני יומיומי - <span dir="ltr" class="term">Amitriptyline/Nortriptyline</span></td><td>טריציקליים</td><td>מניעתי; יעיל גם ב-CDH ממקור מיגרנה וגם ממקור מתח</td><td>מתחילים במינון נמוך (10-25 מ"ג) 12 שעות לפני זמן ההתעוררות הרצוי, כדי למנוע ישנוניות בוקר</td></tr>
+    <tr><td>כאב ראש עקב שימוש-יתר בתרופות (<span dir="ltr" class="term">medication-overuse headache</span>)</td><td>גמילה הדרגתית</td><td>הפסקת האנלגטיקה שוברת את מעגל הריבאונד</td><td>הפחתה של 10% כל 1-2 שבועות; לעיתים נדרש אשפוז לגמילה מאופיואידים</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">
+  ברוב המקרים <b>אין להימנע ממתן משככי כאב</b> לחולה עם כאב ראש חד עד לקבלת אבחנה - טיפול אנלגטי הולם אינו "מטשטש" את התמונה הקלינית באופן שמונע אבחון.
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - SNOOP לזיהוי כאב ראש שניוני מסוכן</h3>
+  <p>
+    <b>S</b>ystemic symptoms/disease (חום, ירידה במשקל, מחלה סיסטמית ידועה כמו סרטן/HIV) &middot;
+    <b>N</b>eurologic signs/symptoms (ממצא נוירולוגי חריג בבדיקה) &middot;
+    <b>O</b>nset sudden ("<span dir="ltr" class="term">thunderclap</span>") &middot;
+    <b>O</b>nset after age 50 (חשד לארטריטיס טמפורלית) &middot;
+    <b>P</b>attern change (שינוי באופי/תדירות של כאב ראש כרוני מוכר).
+    זהו כלי-עזר קליני נפוץ ומקובל שמסכם היטב את הדגלים האדומים שתוארו בסעיף 4.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את הראש כ"תחנת שוטר" (<span dir="ltr" class="term">trigeminocervical complex</span>) שמקבלת דיווחים רק מ"סיירים" ספציפיים - כלי-הדם הגדולים והקרום הקשה - ולא מכל השכונה (רקמת המוח עצמה, שקטה תמיד). כשהסייר מדווח על "אזעקה" פתאומית וחדה (thunderclap) - זה חשוד לפריצה אלימה (SAH). כשהאזעקה מלווה בחום וקשיחות בצוואר - זה חשוד לפולש עוין שחדר מבפנים (מנינגיטיס). וכשהדיווח מגיע בהדרגה יום אחר יום ומחמיר - זה מתאים יותר לגידול שגדל לאט ומותח את הקרום.</p>
+  <svg class="diagram" viewBox="0 0 500 180" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="90" cy="90" r="50" fill="#ecfdf5" stroke="#047857"/>
+    <text x="90" y="85" text-anchor="middle" font-size="12" fill="#1f2937">תחנת</text>
+    <text x="90" y="102" text-anchor="middle" font-size="12" fill="#1f2937">שוטר</text>
+    <line x1="150" y1="60" x2="230" y2="30" stroke="#047857" stroke-width="2"/>
+    <text x="240" y="30" font-size="12" fill="#1f2937">אזעקה פתאומית = SAH</text>
+    <line x1="150" y1="90" x2="230" y2="90" stroke="#047857" stroke-width="2"/>
+    <text x="240" y="94" font-size="12" fill="#1f2937">פולש+חום = מנינגיטיס</text>
+    <line x1="150" y1="120" x2="230" y2="150" stroke="#047857" stroke-width="2"/>
+    <text x="240" y="154" font-size="12" fill="#1f2937">דיווח הדרגתי = גידול</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/d2vW_CHWqo4" title="Types of Headaches - Primary vs. Secondary (Ninja Nerd)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Ninja Nerd - הרצאה מקיפה על סוגי כאבי הראש הראשוניים והשניוניים, כולל מנגנונים ואבחנה מבדלת.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/jv1qlJLqGk0" title="Osmosis - Headaches Clinical Practice" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis - גישה קלינית לחולה עם כאב ראש, כולל דגלים אדומים והחלטת הדמיה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/UpfX1ET1Vt4" title="Subarachnoid Hemorrhage and Thunderclap Headaches" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">The Heart Course - הסבר על דימום תת-עכבישי וה-thunderclap headache האופייני לו, כולל מלכודות אבחוניות.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Giant_cell_arteritis_--_intermed_mag.jpg?width=600" alt="Giant cell arteritis histopathology">
+  <figcaption class="media-cap">היסטופתולוגיה של ארטריטיס ענקי-תאים (טמפורלית) - דלקת גרנולומטוטית בדופן העורק עם תאי ענק רב-גרעיניים. מקור: <a href="https://commons.wikimedia.org/wiki/File:Giant_cell_arteritis_--_intermed_mag.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ihs-headache.org/en/resources/guidelines/" target="_blank">International Headache Society - Classification Guidelines</a>
+    <div class="desc">מערכת הסיווג הרשמית לכאבי ראש ראשוניים ושניוניים, כפי שמוזכרת בפרק המקורי.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK459376/" target="_blank">StatPearls - Giant Cell Arteritis</a>
+    <div class="desc">סקירה מעמיקה של ארטריטיס טמפורלית - קריטריונים לאבחון, טיפול וסיבוכים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 72, בריאה בעברה מלבד יתר לחץ דם, מגיעה עם כאב ראש הדרגתי בן שבועיים, ממוקם בעיקר מעל הרקה השמאלית, מלווה בעייפות, כאבי שרירים בכתפיים ובאגן (במיוחד בבוקר), וירידה של 3 ק"ג במשקל. היא מדווחת שהמברשת שיער "כואבת" לה על הקרקפת, ושהיא חשה כאב בלעיסה של מזון קשה. בבדיקה: רגישות מעל עורק הרקה השמאלי, ללא ממצא נוירולוגי מוקדי. בדיקות דם: <span dir="ltr" class="term">ESR</span> 78 מ"מ/שעה, <span dir="ltr" class="term">CRP</span> מוגבר.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">מיגרנה ללא אאורה</button>
+  <button class="opt" data-i="1">ארטריטיס טמפורלית (ענקי תאים)</button>
+  <button class="opt" data-i="2">כאב ראש ממקור צווארי</button>
+  <button class="opt" data-i="3">כאב ראש מסוג מתח כרוני</button>
+  <div class="explain">התשובה הנכונה: <b>ארטריטיס טמפורלית</b>. השילוב של גיל &gt;50, כאב ראש הדרגתי מעל עורק הרקה, רגישות בקרקפת, קלאודיקציה בלעיסה, פולימיאלגיה ראומטית (כאבי כתפיים/אגן בוקר), ESR מוגבר - קלאסי לארטריטיס ענקי-תאים. מיגרנה בגיל זה פחות סבירה כאבחנה ראשונה ואינה מסבירה את הממצאים הסיסטמיים. כאב ראש ממקור צווארי לא מסביר קלאודיקציה בלעיסה ופולימיאלגיה. כאב ראש מסוג מתח לא מלווה בעליית ESR או קלאודיקציה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו הצעד הבא הנכון ביותר בטיפול?</div>
+  <button class="opt" data-i="0">להמתין לתוצאות ביופסיית עורק הרקה לפני התחלת טיפול</button>
+  <button class="opt" data-i="1">NSAID במינון גבוה בלבד</button>
+  <button class="opt" data-i="2">התחלת פרדניזון במינון גבוה (כ-80 מ"ג/יום) באופן מיידי</button>
+  <button class="opt" data-i="3">אנטיביוטיקה רחבת-טווח</button>
+  <div class="explain">התשובה הנכונה: <b>התחלת פרדניזון מיידית</b>. הסיכון העיקרי בארטריטיס טמפורלית הוא עיוורון בלתי-הפיך מנוירופתיה איסכמית של עצב הראייה - טיפול בסטרואידים מונע זאת ואסור לעכבו כדי לחכות לביופסיה (הביופסיה עדיין תישאר חיובית מספר ימים-שבועות אחרי תחילת טיפול). NSAID לא מספיק למניעת סיבוך עיני. אין אינדיקציה לזיהום, כך שאנטיביוטיקה לא רלוונטית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופל בן 45 מגיע עם כאב הראש "החזק ביותר בחייו", שהגיע לעוצמה מרבית תוך פחות מ-5 דקות, ללא חום, עם נוקשות עורף קלה. CT מוח ללא ממצא. מהו הצעד הבא?</div>
+  <button class="opt" data-i="0">ניקור מותני (LP) לבדיקת דם/קסנטוכרומיה</button>
+  <button class="opt" data-i="1">שחרור עם אקמול ומעקב מרפאתי</button>
+  <button class="opt" data-i="2">MRI שגרתי בעוד שבוע</button>
+  <button class="opt" data-i="3">התחלת אנטיביוטיקה IV אמפירית</button>
+  <div class="explain">התשובה הנכונה: <b>LP</b>. תמונה קלינית קלאסית ל-thunderclap headache - חשד גבוה לדימום תת-עכבישי (SAH). CT יכול להיות תקין (במיוחד אם הדימום קטן, מתחת לפורמן מגנום, או אם עברו מספר ימים), ולכן LP חובה לשלילה ודאית. שחרור בלי בירור מסוכן - SAH לא-מטופל עלול להיות קטלני. MRI שגרתי בעוד שבוע מאחר מדי. אין סימנים לזיהום שמצדיקים אנטיביוטיקה אמפירית (אין חום).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אישה בת 28 עם השמנה, כאב ראש שמחמיר בבוקר ומשתפר במהלך היום, טשטוש ראייה חולף, ופפילאדמה בפונדוסקופיה. הדמיית MRI+MRV תקינה מלבד סינוסים ורידיים תקינים. מהו הטיפול הראשוני המתאים ביותר?</div>
+  <button class="opt" data-i="0">ניתוח שאנט מיידי</button>
+  <button class="opt" data-i="1">גלוקוקורטיקואידים במינון גבוה</button>
+  <button class="opt" data-i="2">אנטיביוטיקה רחבת טווח</button>
+  <button class="opt" data-i="3">אצטזולאמיד (Acetazolamide) והפניה לירידה במשקל</button>
+  <div class="explain">התשובה הנכונה: <b>אצטזולאמיד</b>. התמונה קלאסית ל-<span dir="ltr" class="term">idiopathic intracranial hypertension</span> (פסאודוטומור צרברי) - השמנה, מגדר נשי, כאב ראש בוקר עם פפילאדמה, MRV תקין (שולל חסימה ורידית משנית). אצטזולאמיד מעכב carbonic anhydrase בפלקסוס הכורואידי ומפחית ייצור CSF; טיפול קו שני הוא טופירמאט. ניתוח שאנט שמור למקרים חמורים שלא מגיבים לטיפול תרופתי. אין אינדיקציה לזיהום או לטיפול סטרואידלי כאן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>כאב ראש = ראשוני</b> (הכאב הוא המחלה - מיגרנה, מתח, TACs) <b>או שניוני</b> (ביטוי של מחלה אחרת - מנינגיטיס, SAH, ארטריטיס טמפורלית, גידול, גלאוקומה).</li>
+    <li><b>מנגנון:</b> רק מבנים ספציפיים כואבים (קרום קשה, כלי-דם גדולים, קרקפת) - לא רקמת המוח עצמה; ההולכה דרך העצב הטריגמינלי ל-trigeminocervical complex.</li>
+    <li><b>דגלים אדומים (SNOOP):</b> תסמינים סיסטמיים, ממצא נוירולוגי, התחלה פתאומית (thunderclap), התחלה אחרי גיל 50, שינוי בדפוס כאב ראש כרוני.</li>
+    <li><b>אבחנה:</b> thunderclap ללא חום → חשד ל-SAH (CT ואז LP אם שלילי). חום+נוקשות עורף → LP למנינגיטיס. גיל&gt;50+ESR מוגבר → ארטריטיס טמפורלית.</li>
+    <li><b>טיפול:</b> תמיד לפי הגורם - סטרואידים מיידיים בארטריטיס טמפורלית (למניעת עיוורון), אצטזולאמיד ב-IIH, blood patch/קפאין בכאב ראש נמוך-נפח, גמילה הדרגתית מאנלגטיקה ב-medication-overuse headache.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
