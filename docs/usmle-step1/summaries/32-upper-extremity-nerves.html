@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>עצבי הגפה העליונה ומכרסם הכתפיים</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>עצבי הגפה העליונה ומכרסם הכתפיים <span class="term" dir="ltr">(Upper Extremity Nerves &amp; Rotator Cuff)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section III — Musculoskeletal, Skin, and Connective Tissue &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 450-451) — רלוונטיות גבוהה מאוד לכירורגיה פלסטית</div>
+
+<p>יחידה זו עוברת על חמשת עצבי הגפה העליונה המרכזיים (אקסילרי, מוסקולוקוטני, רדיאלי, מדיאני, אולנרי) — מנגנוני הפגיעה האופייניים, הביטויים המוטוריים והתחושתיים, וההבדל הקריטי בין פגיעה פרוקסימלית לדיסטלית בכל עצב. מסתיימת בסקירת ארבעת שרירי מכרסם הכתפיים (SItS) ורצף ההרחקה של הזרוע (SALT) — ידע אנטומי-קליני בעל חשיבות עליונה לכירורגיה פלסטית-שחזורית של הגפה העליונה והכתף.</p>
+
+<h2><span class="num">1</span> עצבי הגפה העליונה — טבלת מפתח</h2>
+<table class="keytable">
+  <thead><tr><th>עצב</th><th>סיבות פגיעה</th><th>ביטוי קליני</th></tr></thead>
+  <tbody>
+    <tr><td>אקסילרי (C5-C6)</td><td>שבר צוואר כירורגי של ההומרוס; נקע קדמי של ההומרוס</td><td>דלטואיד שטוח; אובדן הרחקת זרוע מעל 15°; אובדן תחושה מעל הדלטואיד והזרוע הלטרלית</td></tr>
+    <tr><td>מוסקולוקוטני (C5-C7)</td><td>לחץ על ה-upper trunk</td><td>↓רפלקס דו-ראשי (C5-C6); אובדן כיפוף וסופינציה של האמה; אובדן תחושה באמה הרדיאלית/לטרלית</td></tr>
+    <tr><td>רדיאלי (C5-T1)</td><td>לחץ בבית השחי (קביים, "Saturday night palsy"); שבר אמצע-גוף ההומרוס; פרונציה/סופינציה חוזרת ("finger drop")</td><td>מעל המרפק: אובדן תחושה בזרוע/אמה אחוריים+גב כף היד, wrist drop, ↓כוח אחיזה. מתחת למרפק: פרסתזיות בגב כף היד (שטחי) או wrist drop (אינטרוסאוס אחורי)</td></tr>
+    <tr><td>מדיאני (C5-T1)</td><td>שבר סופרהקונדילרי (פרוקסימלי); תעלה קרפלית/חתך שורש (דיסטלי)</td><td>"יד קוף"/"יד ברכה"; אובדן כיפוף שורש כף היד ותפקוד LOAF (רק בפגיעה פרוקסימלית); אובדן תחושה בתנר ו-3.5 אצבעות לטרליות (בפגיעה פרוקסימלית)</td></tr>
+    <tr><td>אולנרי (C8-T1)</td><td>שבר אפיקונדיל מדיאלי (פרוקסימלי); שבר hook of hamate/לחץ ברכיבת אופניים (דיסטלי)</td><td>"ulnar claw" בפשיטת אצבעות; סטייה רדיאלית של שורש בכיפוף (פרוקסימלי בלבד); אובדן תחושה ב-1.5 אצבעות אולנריות + היפותנר</td></tr>
+    <tr><td>ענף חוזר של עצב מדיאני (C5-T1)</td><td>חתך שטחי בכף היד</td><td>"יד קוף" (אובדן קבוצת שרירי תנר); ללא אובדן תחושה</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">
+  שברי הומרוס, מפרוקסימלי לדיסטלי, עוקבים אחר עצבי <b>ARM</b>: <b>A</b>xillary (צוואר כירורגי) → <b>R</b>adial (אמצע הגוף) → <b>M</b>edian (סופרהקונדילרי).
+</div>
+
+<svg class="diagram" viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>תנוחות יד קלאסיות בפגיעות עצבי הגפה העליונה</title>
+<text x="480" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">תנוחות יד קלאסיות — פגיעות בעצבי הגפה העליונה</text>
+<g>
+<rect x="15" y="60" width="220" height="250" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="125" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">עצב רדיאלי</text>
+<text x="125" y="98" font-size="9.5" text-anchor="middle" fill="#1e3a8a">"Wrist drop" — שורש כף יד צנוח</text>
+<rect x="70" y="150" width="110" height="14" rx="4" fill="#93c5fd" stroke="#1e3a8a" transform="rotate(35 70 150)"/>
+<circle cx="60" cy="185" r="7" fill="#93c5fd" stroke="#1e3a8a"/>
+<circle cx="75" cy="195" r="7" fill="#93c5fd" stroke="#1e3a8a"/>
+<circle cx="90" cy="203" r="7" fill="#93c5fd" stroke="#1e3a8a"/>
+<circle cx="105" cy="210" r="7" fill="#93c5fd" stroke="#1e3a8a"/>
+<text x="125" y="250" font-size="9" text-anchor="middle" fill="#1e3a8a">אובדן פושטי שורש/אצבעות</text>
+<text x="125" y="266" font-size="9" text-anchor="middle" fill="#1e3a8a">שורש כף היד נופל לכיפוף</text>
+<text x="125" y="290" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">מעל המרפק: אובדן תחושה בזרוע/</text>
+<text x="125" y="303" font-size="8.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">אמה אחוריים + גב כף היד</text>
+</g>
+<g>
+<rect x="250" y="60" width="220" height="250" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="360" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#92400e">עצב מדיאני (פרוקסימלי)</text>
+<text x="360" y="98" font-size="9.5" text-anchor="middle" fill="#92400e">"יד קוף" / "יד ברכה"</text>
+<circle cx="310" cy="180" r="8" fill="#fcd34d" stroke="#92400e"/>
+<rect x="325" y="150" width="16" height="55" rx="6" fill="#fcd34d" stroke="#92400e"/>
+<rect x="345" y="150" width="16" height="55" rx="6" fill="#fcd34d" stroke="#92400e"/>
+<rect x="365" y="155" width="16" height="50" rx="6" fill="#fcd34d" stroke="#92400e" transform="rotate(20 365 155)"/>
+<rect x="383" y="160" width="16" height="45" rx="6" fill="#fcd34d" stroke="#92400e" transform="rotate(30 383 160)"/>
+<text x="360" y="250" font-size="9" text-anchor="middle" fill="#92400e">אין אופוזיציית אגודל (שרירי LOAF)</text>
+<text x="360" y="266" font-size="9" text-anchor="middle" fill="#92400e">תנר שטוח, אין יכולת לאגרף</text>
+<text x="360" y="290" font-size="8.5" font-weight="700" text-anchor="middle" fill="#92400e">אובדן תחושה: תנר + 3.5 אצבעות רדיאליות</text>
+</g>
+<g>
+<rect x="485" y="60" width="220" height="250" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="595" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">עצב אולנרי</text>
+<text x="595" y="98" font-size="9.5" text-anchor="middle" fill="#7f1d1d">"ulnar claw" — טופר אולנרי</text>
+<circle cx="545" cy="180" r="8" fill="#fca5a5" stroke="#7f1d1d"/>
+<rect x="560" y="150" width="14" height="55" rx="6" fill="#fca5a5" stroke="#7f1d1d"/>
+<path d="M578,150 Q590,175 578,195" stroke="#7f1d1d" stroke-width="3" fill="none"/>
+<path d="M596,152 Q608,178 596,198" stroke="#7f1d1d" stroke-width="3" fill="none"/>
+<path d="M614,155 Q624,178 614,198" stroke="#7f1d1d" stroke-width="3" fill="none"/>
+<text x="595" y="250" font-size="9" text-anchor="middle" fill="#7f1d1d">↓ למבריקלים/אינטרוסאי (2 אצבעות אולנריות)</text>
+<text x="595" y="266" font-size="9" text-anchor="middle" fill="#7f1d1d">פושטים לא-מנוגדים ← טפירה בפשיטה</text>
+<text x="595" y="290" font-size="8.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אובדן תחושה: 1.5 אצבעות אולנריות + היפותנר</text>
+</g>
+<g>
+<rect x="720" y="60" width="220" height="250" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="830" y="82" font-size="12.5" font-weight="700" text-anchor="middle" fill="#4c1d95">עצב אקסילרי</text>
+<text x="830" y="98" font-size="9.5" text-anchor="middle" fill="#4c1d95">דלטואיד שטוח</text>
+<circle cx="830" cy="150" r="14" fill="#ddd6fe" stroke="#4c1d95"/>
+<path d="M810,175 Q830,165 850,175 L850,220 Q830,230 810,220 Z" fill="#e9d5ff" stroke="#4c1d95"/>
+<line x1="830" y1="230" x2="830" y2="270" stroke="#4c1d95" stroke-width="6"/>
+<text x="830" y="250" font-size="8" text-anchor="middle" fill="#4c1d95">↓ נפח הדלטואיד</text>
+<text x="830" y="290" font-size="9" text-anchor="middle" fill="#4c1d95">אין הרחקת זרוע מעל 15°</text>
+<text x="830" y="303" font-size="8.5" text-anchor="middle" fill="#4c1d95">אובדן תחושה בזרוע לטרלית</text>
+</g>
+<rect x="15" y="330" width="925" height="80" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="477" y="352" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">שברי הומרוס, מפרוקסימלי לדיסטלי, עוקבים אחר עצבי A-R-M: אקסילרי (צוואר כירורגי) ← רדיאלי (אמצע הגוף) ← מדיאני (סופרהקונדילרי)</text>
+<text x="477" y="372" font-size="9.5" text-anchor="middle" fill="#1f2937">עצב מדיאני בשורש כף היד (תעלה קרפלית) = פגיעה דיסטלית ← אובדן תחושה + חולשת תנר, ללא אובדן כיפוף שורש (בשונה מפגיעה פרוקסימלית)</text>
+<text x="477" y="392" font-size="9.5" text-anchor="middle" fill="#1f2937">ענף חוזר של עצב מדיאני (חתך בכף היד): אובדן מוטורי בתנר בלבד — ללא אובדן תחושה (מסתעף אחרי הסיבים התחושתיים)</text>
+</svg>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — טבלת עצבי הגפה העליונה</h4>
+  <p>טבלה זו היא "שפת האם" של כל ניתוח טראומה/שחזור בגפה העליונה: זיהוי מדויק של העצב הפגוע (ומיקום הפגיעה — פרוקסימלי/דיסטלי) לפי הביטוי הקליני קובע את תכנון ההשתלה/שחזור העצבי (nerve graft/transfer), פרוגנוזה לשיקום תפקודי, ובחירת הטכניקה הכירורגית המתאימה.</p>
+</div>
+
+<h2><span class="num">2</span> עצב אקסילרי ומוסקולוקוטני</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>עצב אקסילרי (C5-C6)</b>: נפגע בשבר הצוואר הכירורגי של ההומרוס או נקע קדמי — צמוד אנטומית לאזור זה. גורם לדלטואיד שטוח, אובדן הרחקת זרוע מעל 15°, ואובדן תחושה מעל הדלטואיד/זרוע לטרלית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>עצב מוסקולוקוטני (C5-C7)</b>: נפגע בלחץ על ה-upper trunk. גורם לירידה ברפלקס הדו-ראשי, אובדן כיפוף וסופינציה של האמה, ואובדן תחושה באמה הרדיאלית/לטרלית (המשכו התחושתי — העצב העורי האנטברכיאלי הלטרלי).
+  </p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — סיכון לעצב אקסילרי בניתוחי כתף</h4>
+  <p>העצב האקסילרי עובר בקוודרילטרל ספייס (quadrangular space) בסמוך לצוואר הכירורגי — בעל סיכון מיוחד בניתוחי שחזור כתף, גישות דלטופקטורליות, וקיבוע שברים פרוקסימליים של ההומרוס. פגיעה בלתי-מכוונת בו במהלך ניתוח עלולה להשאיר מטופל עם דלטואיד לא-תפקודי לצמיתות אם לא מזוהה ומתוקנת בזמן.</p>
+</div>
+
+<h2><span class="num">3</span> עצב רדיאלי — פגיעה פרוקסימלית מול דיסטלית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>מנגנוני פגיעה</b>: לחץ בבית השחי (קביים, "Saturday night palsy"), שבר אמצע-גוף ההומרוס, ופרונציה/סופינציה חוזרת (מברג — "finger drop").
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מעל המרפק</b>: אובדן תחושה בזרוע/אמה האחוריים ובגב כף היד, <b>wrist drop</b> (אובדן פשיטת מרפק/שורש/אצבעות) עם ↓כוח אחיזה (פשיטת שורש נחוצה לפעולה מקסימלית של הכופפים).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>מתחת למרפק</b>: העצב מתפצל — <b>עצב רדיאלי שטחי</b> (תחושתי בלבד, פרסתזיות בגב כף היד) ו<b>עצב אינטרוסאוס אחורי</b> (מוטורי בלבד, wrist drop אם נפגע). שריר הטריצפס ותחושת הזרוע האחורית נשמרים בשבר אמצע-הגוף.
+  </p>
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Saturday Night Palsy</h4>
+  <p>מישהו נרדם עם הזרוע תלויה מעל משענת כיסא אחרי מסיבה ("ליל שבת") — לחץ ממושך על העצב הרדיאלי בבית השחי גורם ל-wrist drop זמני. "finger drop" ממברג = תנועה חוזרת של פרונציה/סופינציה.</p>
+</div>
+
+<h2><span class="num">4</span> עצב מדיאני — שלוש רמות פגיעה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>פרוקסימלי (שבר סופרהקונדילרי)</b>: "יד קוף" ו"יד ברכה" — אובדן כיפוף שורש כף היד ותפקוד שרירי <b>LOAF</b> (Lumbricals לטרליים, Opponens pollicis, Abductor pollicis brevis, Flexor pollicis brevis) + אובדן תחושה בתנר ו-3.5 אצבעות לטרליות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>דיסטלי (תעלה קרפלית/חתך שורש)</b>: אותם ממצאי LOAF ותחושה, אך כיפוף שורש כף היד <b>נשאר תקין</b> (מעוצבב פרוקסימלית לתעלה).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>ענף חוזר (חתך שטחי בכף היד)</b>: אובדן מוטורי טהור של קבוצת שרירי התנר ("יד קוף") — <b>ללא כל אובדן תחושה</b> (הענף מסתעף אחרי הסיבים התחושתיים).
+  </p>
+</div>
+
+<div class="key-box">
+  שלוש רמות פגיעה שונות בעצב מדיאני — שלושה תמונות קליניות שונות מעט. תמיד לבדוק: (1) כיפוף שורש כף יד, (2) תחושה בתנר/אצבעות — התשובות ממפות את מיקום הפגיעה בדיוק.
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — שחרור תעלה קרפלית ושחזור עצב מדיאני</h4>
+  <p>הבנת שלוש רמות הפגיעה בעצב מדיאני חיונית הן לניתוחי שחרור תעלה קרפלית (הימנעות מפגיעה בענף החוזר המוטורי, שעובר בסמוך) והן לתכנון שחזור עצבי לאחר פגיעה טראומטית פרוקסימלית (סופרהקונדילרית) — כאשר הפרוגנוזה התפקודית שונה משמעותית בהתאם לגובה הפגיעה.</p>
+</div>
+
+<h2><span class="num">5</span> עצב אולנרי</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>פרוקסימלי (שבר אפיקונדיל מדיאלי)</b>: "ulnar claw" בפשיטת אצבעות (↓lumbricals/interossei ב-2 אצבעות אולנריות), <b>סטייה רדיאלית של שורש כף היד בכיפוף</b> (flexor carpi ulnaris משותק), אובדן תחושה ב-1.5 אצבעות אולנריות + היפותנר.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>דיסטלי (שבר hook of hamate מנפילה על יד מושטת, או לחץ ברכיבת אופניים)</b>: "ulnar claw" ואובדן תחושה דומים, אך <b>ללא</b> סטייה רדיאלית בכיפוף (flexor carpi ulnaris עדיין תקין).
+  </p>
+</div>
+
+<div class="key-box">
+  "Ulnar paradox": טופר בולט <b>יותר</b> בפגיעה דיסטלית מפרוקסימלית — כי ב-flexor digitorum profundus (מעוצבב פרוקסימלית) נשאר תקין רק בפגיעה דיסטלית, וממשיך לכופף יתר-על-המידה את ה-DIP ללא איזון מה-lumbricals הפגועים.
+</div>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Wrist Drop מול Ulnar Claw</h4>
+  <p><b>Wrist drop</b> = אובדן <u>ישיר</u> של פושטים (עצב רדיאלי פגוע בעצמו). <b>Ulnar claw</b> = תופעת "unopposed extension" — פושטי האצבעות (עצב רדיאלי, תקינים!) פועלים ללא נגד כי הכופפים הפנימיים (עצב אולנרי) משותקים.</p>
+</div>
+
+<h2><span class="num">6</span> הענף החוזר של עצב מדיאני</h2>
+<div class="mechanism">
+  <p class="chain">
+    ענף מוטורי <b>טהור</b> המסתעף מהעצב המדיאני העיקרי <b>אחרי</b> (דיסטלית ל) הסיבים התחושתיים. עובר שטחית מעל שריר התנר — פגיע לחתכים שטחיים בכף היד.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    פגיעה גורמת ל"יד קוף" (אובדן אופוזיציה/הרחקה/כיפוף אגודל) <b>ללא כל אובדן תחושה</b> — הבדל מכריע מפגיעה בעצב המדיאני הראשי.
+  </p>
+</div>
+
+<h2><span class="num">7</span> מכרסם הכתפיים (Rotator Cuff) — SItS</h2>
+<div class="mechanism">
+  <p class="chain">
+    ארבעה שרירי כתף המייצבים את מפרק הכתף, מקיפים את ראש ההומרוס כ"שרוול": <b>S</b>upraspinatus, <b>I</b>nfraspinatus, <b>t</b>eres minor, <b>S</b>ubscapularis.
+  </p>
+</div>
+<table class="keytable">
+  <thead><tr><th>שריר</th><th>תפקוד</th><th>עצב</th></tr></thead>
+  <tbody>
+    <tr><td>Supraspinatus</td><td>מרחיק את הזרוע ראשונית (לפני פעולת הדלטואיד); הפגיע ביותר (טראומה/ניוון/impingement → טנדינופתיה/קרע); נבדק ב"empty/full can"</td><td>Suprascapular</td></tr>
+    <tr><td>Infraspinatus</td><td>מסובב את הזרוע החוצה; פציעת זריקה קלאסית (בייסבול)</td><td>Suprascapular</td></tr>
+    <tr><td>Teres minor</td><td>מדביק ומסובב את הזרוע החוצה</td><td>Axillary</td></tr>
+    <tr><td>Subscapularis</td><td>מסובב את הזרוע פנימה ומדביק אותה (היחיד המבצע סיבוב פנימי; היחיד הממוקם אנטריורית)</td><td>Subscapular (עליון+תחתון)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">
+  מכרסם הכתפיים מעוצבב בעיקר מ-C5-C6. פגיעת Supraspinatus היא הנפוצה ביותר — עובר במרחב תת-אקרומיאלי צר, פגיע ל-impingement חוזר.
+</div>
+
+<h2><span class="num">8</span> רצף הרחקת הזרוע — SALT</h2>
+<svg class="diagram" viewBox="0 0 940 400" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>רצף הרחקת הזרוע ושרירי מכרסם הכתפיים (SItS)</title>
+<text x="470" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">רצף הרחקת הזרוע — שרירים ועצבים לפי מעלות (SALT)</text>
+<g>
+<rect x="20" y="60" width="215" height="230" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="127" y="84" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">0°–15°</text>
+<line x1="127" y1="230" x2="127" y2="150" stroke="#334155" stroke-width="6"/>
+<line x1="127" y1="230" x2="150" y2="215" stroke="#34d399" stroke-width="6"/>
+<text x="127" y="255" font-size="10" font-weight="700" text-anchor="middle" fill="#065f46">Supraspinatus</text>
+<text x="127" y="272" font-size="9" text-anchor="middle" fill="#065f46">עצב Suprascapular</text>
+</g>
+<g>
+<rect x="248" y="60" width="215" height="230" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="355" y="84" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">15°–90°</text>
+<line x1="355" y1="230" x2="355" y2="150" stroke="#334155" stroke-width="6"/>
+<line x1="355" y1="230" x2="400" y2="165" stroke="#fbbf24" stroke-width="6"/>
+<text x="355" y="255" font-size="10" font-weight="700" text-anchor="middle" fill="#92400e">Deltoid (דלטואיד)</text>
+<text x="355" y="272" font-size="9" text-anchor="middle" fill="#92400e">עצב Axillary</text>
+</g>
+<g>
+<rect x="476" y="60" width="215" height="230" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="583" y="84" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">&gt;90° (א)</text>
+<line x1="583" y1="230" x2="583" y2="150" stroke="#334155" stroke-width="6"/>
+<line x1="583" y1="230" x2="620" y2="120" stroke="#93c5fd" stroke-width="6"/>
+<text x="583" y="255" font-size="10" font-weight="700" text-anchor="middle" fill="#1e3a8a">Trapezius (טרפזיוס)</text>
+<text x="583" y="272" font-size="9" text-anchor="middle" fill="#1e3a8a">עצב Accessory (CN XI)</text>
+</g>
+<g>
+<rect x="704" y="60" width="215" height="230" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="811" y="84" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">&gt;90° (ב)</text>
+<line x1="811" y1="230" x2="811" y2="150" stroke="#334155" stroke-width="6"/>
+<line x1="811" y1="230" x2="850" y2="115" stroke="#c4b5fd" stroke-width="6"/>
+<text x="811" y="255" font-size="10" font-weight="700" text-anchor="middle" fill="#4c1d95">Serratus Anterior</text>
+<text x="811" y="272" font-size="9" text-anchor="middle" fill="#4c1d95">עצב Long Thoracic</text>
+</g>
+<rect x="20" y="310" width="899" height="68" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="470" y="332" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">SALT: Supraspinatus ← Axillary(דלטואיד) ← Long thoracic(סראטוס) ← Trapezius — מסירת ההרחקה ככל שהזרוע עולה</text>
+<text x="470" y="352" font-size="9.5" text-anchor="middle" fill="#1f2937">מכרסם הכתפיים = SItS: Supraspinatus, Infraspinatus, teres minor (כולם עצב Suprascapular/Axillary) + Subscapularis — מייצבים את מפרק הכתף</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — SALT</h4>
+  <p><b>S</b>upraspinatus (0-15°) → <b>A</b>xillary/דלטואיד (15-90°) → <b>L</b>ong thoracic/סראטוס אנטריור ו-<b>T</b>rapezius (מעל 90°) — "מרוץ שליחים" של הרחקת הזרוע, כל שריר רץ רק בקטע שלו.</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — flaps מהגב/כתף ומכרסם הכתפיים</h4>
+  <p>ניתוחי שחזור המשתמשים ברקמת גב/כתף (כמו latissimus dorsi flap בשחזור שד) עוברים בקרבת מבני מכרסם הכתפיים ועצביו. הערכת טווח ההרחקה הפגוע לאחר ניתוח (0-15° מול 15-90° מול מעל 90°) מכוונת ישירות לאבחנה ולבירור ממוקד, ומהווה כלי אבחוני-קליני מהיר לפני הדמיה.</p>
+</div>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34 נופל מאופניים ונוחת על כף יד מושטת. בבדיקה: אינו יכול לפשוט את אצבעות 4-5 כראוי (נראית "טפירה" קלה), התחושה ב-1.5 האצבעות האולנריות ירודה, אך <b>כיפוף שורש כף היד תקין לחלוטין וללא סטייה</b>. צילום רנטגן מדגים שבר קטן ב-hook of hamate.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. איזו רמת פגיעה בעצב האולנרי מתאימה לממצאים אלו, ומדוע כיפוף שורש כף היד תקין?</div>
+  <button class="opt" data-i="0">פגיעה פרוקסימלית בעצב האקסילרי — לא קשור לעצב אולנרי כלל</button>
+  <button class="opt" data-i="1">פגיעה פרוקסימלית בעצב האולנרי (אפיקונדיל מדיאלי) — flexor carpi ulnaris תמיד נפגע בכל פגיעת אולנר</button>
+  <button class="opt" data-i="2">פגיעה דיסטלית בעצב האולנרי (hook of hamate) — flexor carpi ulnaris מעוצבב פרוקסימלית לאתר הפגיעה ולכן נשאר תקין, כך שאין סטייה רדיאלית בכיפוף</button>
+  <button class="opt" data-i="3">פגיעה בענף החוזר של עצב מדיאני — לא מסביר את אובדן התחושה</button>
+  <div class="explain">נכון: שבר hook of hamate הוא פגיעה דיסטלית קלאסית בעצב האולנרי. flexor carpi ulnaris מעוצבב לפני (פרוקסימלית ל)אתר הפגיעה הדיסטלי, ולכן נשאר תקין — שורש כף היד ממשיך להתכופף בקו ישר ללא סטייה רדיאלית, בניגוד לפגיעה פרוקסימלית (אפיקונדיל מדיאלי) שבה השריר עצמו משותק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. מטופלת מציגה חולשה בהרמת הזרוע — היא מצליחה להגיע ל-80° אך לא מעבר לכך. איזה שריר/עצב הכי סביר שנפגע?</div>
+  <button class="opt" data-i="0">Supraspinatus / עצב suprascapular — פוגע בטווח 0-15° בלבד</button>
+  <button class="opt" data-i="1">Trapezius / עצב accessory — פועל רק מעל 90°</button>
+  <button class="opt" data-i="2">עצב רדיאלי — אינו קשור להרחקת זרוע בכתף</button>
+  <button class="opt" data-i="3">Deltoid / עצב אקסילרי — אחראים לטווח 15°-90°; יכולת הגעה עד 80° (אך לא מעבר) מתאימה בדיוק לפגיעה בשלב זה</button>
+  <div class="explain">נכון: אם המטופלת מגיעה עד כ-80° (בתוך טווח 15-90°) אך לא יכולה להמשיך הלאה, זה מצביע על פגיעה בדלטואיד (עצב אקסילרי) — האחראי על טווח זה בדיוק לפי רצף SALT. Supraspinatus (א') היה פוגע כבר ב-0-15° הראשונות. Trapezius (ב') פועל רק מעל 90°, כך שפגיעה בו הייתה מאפשרת הגעה עד 90° בדיוק אך לא מעבר.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופל עם חתך שטחי בכף היד (מסכין) מפתח "יד קוף" אך התחושה בכל כף היד והאצבעות תקינה לחלוטין. מה הפגיעה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">הענף החוזר של עצב מדיאני — ענף מוטורי טהור, מסתעף אחרי הסיבים התחושתיים, ועובר שטחית מעל התנר</button>
+  <button class="opt" data-i="1">פגיעה פרוקסימלית בעצב מדיאני (שבר סופרהקונדילרי) — תמיד כוללת גם אובדן תחושה</button>
+  <button class="opt" data-i="2">פגיעה בעצב האולנרי — גורמת ל"יד קוף" ולא ל"ulnar claw"</button>
+  <button class="opt" data-i="3">פגיעה בעצב הרדיאלי השטחי — פוגע רק בתחושה, לא במוטוריקה</button>
+  <div class="explain">נכון: "יד קוף" ללא כל אובדן תחושה, לאחר חתך שטחי בכף היד, הוא הממצא הקלאסי לפגיעה בענף החוזר של עצב מדיאני — ענף מוטורי טהור המסתעף אחרי הסתעפות הסיבים התחושתיים ועובר שטחית וחשוף מעל שריר התנר. פגיעה פרוקסימלית (ב') הייתה כוללת גם אובדן תחושה. עצב אולנרי (ג') גורם ל"ulnar claw" לא ל"יד קוף". עצב רדיאלי שטחי (ד') הוא תחושתי טהור, ההפך מהתמונה הקלינית כאן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <h4>חמשת העצבים — מנגנון וביטוי</h4>
+  <ul>
+    <li>אקסילרי (C5-C6): צוואר כירורגי/נקע קדמי → דלטואיד שטוח, אין הרחקה מעל 15°, תחושה דלטואיד/זרוע לטרלית.</li>
+    <li>מוסקולוקוטני (C5-C7): לחץ upper trunk → ↓רפלקס דו-ראשי, אובדן כיפוף+סופינציה אמה, תחושה אמה רדיאלית.</li>
+    <li>רדיאלי (C5-T1): בית שחי/midshaft/מברג → מעל מרפק: wrist drop+↓אחיזה+תחושה אחורית; מתחת מרפק: מתפצל לשטחי (תחושתי) ואינטרוסאוס אחורי (מוטורי).</li>
+    <li>מדיאני (C5-T1): סופרהקונדילרי (פרוקסימלי, LOAF+כיפוף שורש+תחושה) מול תעלה קרפלית (דיסטלי, LOAF+תחושה בלבד) מול ענף חוזר (מוטורי טהור, ללא תחושה).</li>
+    <li>אולנרי (C8-T1): אפיקונדיל מדיאלי (פרוקסימלי, +סטייה רדיאלית בכיפוף) מול hook of hamate (דיסטלי, ללא סטייה) — "ulnar paradox": טופר בולט יותר בפגיעה דיסטלית.</li>
+  </ul>
+  <h4>ARM, LOAF, ומכרסם הכתפיים</h4>
+  <ul>
+    <li>ARM: שברי הומרוס פרוקסימלי→דיסטלי פוגעים ב-Axillary→Radial→Median.</li>
+    <li>LOAF: Lumbricals לטרליים, Opponens pollicis, Abductor pollicis brevis, Flexor pollicis brevis — כל שרירי עצב מדיאני ביד.</li>
+    <li>SItS: Supraspinatus (הרחקה ראשונית, הכי פגיע), Infraspinatus (סיבוב חוץ), teres minor (הדבקה+סיבוב חוץ), Subscapularis (היחיד — סיבוב פנימה, אנטריורי).</li>
+    <li>SALT: Supraspinatus (0-15°) → Axillary/deltoid (15-90°) → Long thoracic/trapezius (מעל 90°).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
