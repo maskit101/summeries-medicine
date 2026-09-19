@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>אימונולוגיה של גידולים ואימונותרפיה (Tumor Immunology and Immunotherapy)</title>
+<!-- מקור: לא נמצא PDF של פרק 30 בהרצה זו (uploads לא נגישים בהרצה מתוזמנת) - הסיכום מבוסס על מחקר אמיתי במקורות מהימנים: NCBI/StatPearls (Chimeric Antigen Receptor T-Cell Therapy), PubMed/ScienceDirect (Cancer Immunoediting - elimination/equilibrium/escape), PMC (PD-1/PD-L1 Checkpoint Signaling, Mechanisms of CRS in CAR-T), ASCO Guideline on irAE management, Wikimedia Commons ו-YouTube. -->
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>אימונולוגיה של גידולים ואימונותרפיה <span class="term" dir="ltr">(Tumor Immunology and Immunotherapy)</span></h1>
+<div class="subtitle">איך מערכת החיסון "רואה" גידול, איך גידול מתחמק ממנה, ואיך משתמשים בעקרונות האלה לטיפול — פרק 30 בספר Sabiston/Schwartz's Principles of Surgery</div>
+
+<p>לאחר שפרק 29 הסביר איך תא הופך לממאיר, הפרק הזה עוסק בצד השני של המשוואה: כיצד מערכת החיסון מנסה לזהות ולחסל תאים סרטניים, מדוע ברוב המקרים היא נכשלת בכך בסופו של דבר, וכיצד הבנה מדויקת של מנגנוני ה"בריחה" הזו הובילה למהפכת האימונותרפיה המודרנית (מעכבי checkpoint, CAR-T, ותאים חודרי-גידול) — טיפולים שהפכו לחלק מרכזי בטיפול המשולב הכירורגי-אונקולוגי במגוון סוגי סרטן.</p>
+
+<h2><span class="num">2</span> המנגנון - איך מערכת החיסון נלחמת בגידול, ואיך הגידול מתחמק</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>אימונו-עריכה של הסרטן (Cancer Immunoediting) — שלוש שלבים ("שלושת ה-E").</b> התהליך המושגי-מרכזי בפרק: תא סרטני מתפתח מבטא אנטיגנים חריגים (neoantigens) שנוצרים מהמוטציות שהצטברו בו, ומערכת החיסון "יכולה" בעיקרון לזהות אותם ככאלה שאינם-עצמי. <b>שלב 1 - חיסול (Elimination)</b>: תאי החיסון המולד (תאי NK, מקרופאגים) והנרכש (תאי T ציטוטוקסיים CD8+, בעזרת הצגת אנטיגן על MHC class I) מזהים ומחסלים את רוב התאים הממאירים המוקדמים לפני שהם נעשים גלויים קלינית - שלב זה קורה כל הזמן ברקע, ולכן רוב "תאים חריגים" שנוצרים בגוף לא הופכים לעולם לסרטן. <b>שלב 2 - שיווי משקל (Equilibrium)</b>: כשלא כל תאי הגידול חוסלו, נוצר מצב "תיקו" ממושך - מערכת החיסון מדכאת את הגידול לגודל קבוע (מיקרוסקופי, "רדום") אך לא מחסלת אותו כליל. זהו השלב <b>הארוך ביותר</b>, שיכול להימשך שנים, ובמהלכו הלחץ החיסוני המתמשך פועל כמו "ברירה טבעית" על תאי הגידול - משמיד את התאים החשופים ביותר לזיהוי חיסוני, ומשאיר לשרוד דווקא את הווריאנטים שכבר פיתחו דרכים להתחמק. <b>שלב 3 - בריחה (Escape)</b>: הווריאנטים העמידים האלה מתרבים ללא הפרעה, והגידול הופך גלוי קלינית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>איך בדיוק גידול "בורח" - שלוש אסטרטגיות עיקריות.</b> (1) <b>אובדן יכולת ההצגה האנטיגנית</b> - הגידול מוריד ביטוי של MHC class I (כך תאי CD8+ "לא רואים" את האנטיגן הזר), או מאבד את האנטיגן החריג עצמו. (2) <b>יצירת סביבה מדכאת-חיסון בתוך הגידול</b> (tumor microenvironment) - גיוס תאים מדכאי-חיסון כמו <span class="term" dir="ltr">Tregs</span> (תאי T ויסותיים) ו-<span class="term" dir="ltr">MDSCs</span> (Myeloid-Derived Suppressor Cells), והפרשת ציטוקינים מעכבי-חיסון כמו <span class="term" dir="ltr">TGF-β</span> ו-<span class="term" dir="ltr">IL-10</span>. (3) <b>ניצול "נקודות בלימה" חיסוניות תקינות</b> (immune checkpoints) - זהו המנגנון החשוב ביותר קלינית, כי הוא הבסיס לאימונותרפיה המודרנית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>נקודות הבלימה החיסוניות (Immune Checkpoints) - "בלמים" שהגוף צריך כדי לא לתקוף את עצמו.</b> בגוף בריא, תאי T חייבים לעצור את עצמם אחרי שסיימו להילחם בזיהום - אחרת הם היו תוקפים רקמות תקינות (אוטואימוניות). שני הבלמים המרכזיים: <b>CTLA-4</b> - מתבטא על תאי T מוקדם מאוד, בשלב ה"גיוס" בבלוטות הלימפה (priming), ומתחרה עם קולטן ה-CD28 המפעיל על קישור ל-B7 (CD80/CD86) שעל תאי מציגי האנטיגן - כך הוא "בולם את הגז" עוד לפני שהתא T התחיל לפעול. <b>PD-1</b> - מתבטא על תאי T "עייפים" (exhausted) בשלב מאוחר יותר, ברקמה הפריפרית עצמה (כלומר בתוך הגידול), ונקשר ל-<b>PD-L1</b> שגידולים רבים <b>מעלים בכוונה</b> על פני השטח שלהם - כך הגידול "מדמה" איתות בלימה תקין ומכבה את תאי ה-T שכבר הגיעו אליו ומוכנים לתקוף. <b>זה בדיוק ה"פרצה" שגידולים מנצלים ואימונותרפיה סוגרת</b>: תרופות אנטי-CTLA-4 ואנטי-PD-1/PD-L1 חוסמות את הבלמים האלה ומאפשרות לתאי ה-T לחזור ולתקוף.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שלושת שלבי האימונו-עריכה של הסרטן</title>
+  <rect x="10" y="20" width="270" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="145" y="48" font-size="13" font-weight="700" text-anchor="middle" fill="#047857">1. חיסול (Elimination)</text>
+  <text x="145" y="68" font-size="11" text-anchor="middle" fill="#4b5563">NK + CD8 מחסלים תאים ממאירים</text>
+  <text x="145" y="84" font-size="11" text-anchor="middle" fill="#4b5563">מוקדמים - קורה כל הזמן ברקע</text>
+
+  <polygon points="285,60 305,52 305,68" fill="#2563eb"/>
+  <rect x="310" y="20" width="270" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="445" y="42" font-size="13" font-weight="700" text-anchor="middle" fill="#b45309">2. שיווי משקל (Equilibrium)</text>
+  <text x="445" y="62" font-size="11" text-anchor="middle" fill="#4b5563">"תיקו" ממושך - ברירה טבעית</text>
+  <text x="445" y="78" font-size="11" text-anchor="middle" fill="#4b5563">משאירה לשרוד ורריאנטים עמידים</text>
+
+  <polygon points="585,60 605,52 605,68" fill="#b45309"/>
+  <rect x="610" y="20" width="270" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="745" y="42" font-size="13" font-weight="700" text-anchor="middle" fill="#b91c1c">3. בריחה (Escape)</text>
+  <text x="745" y="62" font-size="11" text-anchor="middle" fill="#4b5563">אובדן MHC-I, PD-L1↑, Tregs/MDSC</text>
+  <text x="745" y="78" font-size="11" text-anchor="middle" fill="#4b5563">גידול גלוי קלינית</text>
+
+  <rect x="150" y="150" width="270" height="110" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="285" y="175" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1f2937">CTLA-4</text>
+  <text x="285" y="195" font-size="10.5" text-anchor="middle" fill="#4b5563">בולם בשלב הגיוס</text>
+  <text x="285" y="210" font-size="10.5" text-anchor="middle" fill="#4b5563">(בלוטות לימפה)</text>
+  <text x="285" y="228" font-size="10" text-anchor="middle" fill="#4b5563">מתחרה עם CD28 על B7</text>
+  <text x="285" y="245" font-size="10" font-weight="700" text-anchor="middle" fill="#2563eb">חוסם: Ipilimumab</text>
+
+  <rect x="470" y="150" width="270" height="110" rx="10" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="605" y="175" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1f2937">PD-1 / PD-L1</text>
+  <text x="605" y="195" font-size="10.5" text-anchor="middle" fill="#4b5563">בולם בשלב מאוחר</text>
+  <text x="605" y="210" font-size="10.5" text-anchor="middle" fill="#4b5563">(בתוך הגידול עצמו)</text>
+  <text x="605" y="228" font-size="10" text-anchor="middle" fill="#4b5563">גידול מבטא PD-L1 ומכבה T-cell</text>
+  <text x="605" y="245" font-size="10" font-weight="700" text-anchor="middle" fill="#6d28d9">חוסם: Pembrolizumab/Nivolumab</text>
+</svg>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/PD-1,_PD-L1_and_CTLA-4_targets_of_immune_checkpoint_inhibitors.png?width=650" alt="מטרות מעכבי checkpoint - PD-1, PD-L1, CTLA-4">
+  <figcaption class="media-cap">מיקומי הפעולה של מעכבי ה-checkpoint העיקריים - CTLA-4 בשלב הגיוס הלימפתי, PD-1/PD-L1 בתוך רקמת הגידול. מקור: <a href="https://commons.wikimedia.org/wiki/File:PD-1,_PD-L1_and_CTLA-4_targets_of_immune_checkpoint_inhibitors.png" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/v9NBUeU3PG0" title="Checkpoint Inhibitors: Taking the Brakes Off the Immune System" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר חזותי על עקרון "שחרור הבלמים" של מערכת החיסון על ידי מעכבי checkpoint (Cancer Research Institute). מקור: <a href="https://www.youtube.com/watch?v=v9NBUeU3PG0" target="_blank">YouTube</a></p>
+
+<h2><span class="num">3</span> מיקרו-סביבת הגידול (Tumor Microenvironment) ותאי החיסון המעורבים</h2>
+<p>הגידול אינו "כדור תאים סרטניים בלבד" - הוא אקוסיסטם שכולל גם תאי חיסון מגויסים, כלי דם, ורקמת חיבור (סטרומה), וההרכב של האוכלוסייה החיסונית בתוכו קובע במידה רבה את הפרוגנוזה ואת הסיכוי להגיב לאימונותרפיה. <b>תאים "טובים" לפרוגנוזה</b>: תאי T ציטוטוקסיים CD8+ חודרי-גידול (<span class="term" dir="ltr">TILs</span> - Tumor-Infiltrating Lymphocytes) - נוכחות גבוהה שלהם ("גידול חם" / hot tumor) מנבאת תגובה טובה יותר לכימותרפיה ולאימונותרפיה. <b>תאים "רעים" לפרוגנוזה</b>: תאי <span class="term" dir="ltr">Treg</span> (מדכאים ציטוטוקסיות דרך CTLA-4 ו-IL-10/TGF-β), מקרופאגים מסוג M2 (תומכי-גידול, מפרישים גורמי גדילה ואנגיוגנזה), ו-MDSCs (מעכבים ישירות שגשוג תאי T). גידול עם מעט מאוד תאי חיסון חודרים כלל נקרא "גידול קר" (cold tumor) - לרוב מגיב פחות טוב למעכבי checkpoint, כי אין בכלל אוכלוסיית T-cells "עייפה" לשחרר.</p>
+
+<h2><span class="num">4</span> ביטוי קליני - תופעות לוואי אימוניות (irAEs) של אימונותרפיה</h2>
+<p>מכיוון שמעכבי checkpoint משחררים את "הבלמים" הטבעיים של מערכת החיסון באופן <b>סיסטמי ולא ממוקד רק לגידול</b>, תופעת הלוואי האופיינית והחשובה ביותר קלינית היא <b>תופעות לוואי הקשורות-לחיסון</b> (<span class="term" dir="ltr">immune-related adverse events, irAEs</span>) - תגובה אוטואימונית "עודפת" שיכולה לפגוע כמעט בכל איבר: קוליטיס (שלשולים, ולעיתים אף פרפורציה של המעי - סיבוך כירורגי חשוב שכירורג חייב להכיר!), דלקת ריאות אינטרסטיציאלית (pneumonitis), הפטיטיס, דלקת בבלוטת התריס/יותרת הכליה (endocrinopathies), ופריחה עורית. <b>עקרון הטיפול</b>: irAE קל-בינוני מטופל בהפסקת התרופה זמנית ± סטרואידים; irAE חמור מחייב סטרואידים במינון גבוה ולעיתים תרופות אימונוסופרסיביות נוספות (כמו infliximab לקוליטיס עמידה לסטרואידים).</p>
+<div class="key-box">חשוב לכירורג: מטופל תחת טיפול במעכב checkpoint שמגיע עם כאבי בטן חריפים ותפליט/דימום צריך לעורר חשד ל<b>קוליטיס אימונית עם פרפורציה</b> - לא רק לאבחנות כירורגיות "רגילות".</div>
+
+<h2><span class="num">5</span> ביומרקרים לבחירת טיפול</h2>
+<p>מכיוון שלא כל גידול מגיב לאימונותרפיה, פותחו ביומרקרים לחיזוי תגובה: <b>ביטוי PD-L1</b> בתאי הגידול (נבדק באימונוהיסטוכימיה, מבוטא כ-<span class="term" dir="ltr">Combined Positive Score</span>) - ביטוי גבוה יותר מתאם עם סיכוי תגובה גבוה יותר, אך אינו מושלם (גם גידולים PD-L1-שליליים לפעמים מגיבים). <b>עומס מוטציוני של הגידול</b> (<span class="term" dir="ltr">Tumor Mutational Burden, TMB</span>) - גידול עם הרבה מוטציות מייצר הרבה יותר neoantigens "זרים" שמערכת החיסון יכולה לזהות, ולכן TMB גבוה מנבא תגובה טובה יותר. <b>חוסר יציבות מיקרוסאטליטית</b> (<span class="term" dir="ltr">Microsatellite Instability-High, MSI-H</span>, הקשור לתסמונת לינץ') - סמן ה-FDA הראשון שאושר "לפי סוג הגידול הגנטי ולא לפי איבר המקור" לטיפול במעכבי PD-1, בגלל TMB גבוה טיפוסי לגידולים אלה.</p>
+
+<h2><span class="num">6</span> טיפול - סוגי האימונותרפיה העיקריים</h2>
+<h3>מעכבי checkpoint</h3>
+<table>
+  <thead><tr><th>תרופה</th><th>מטרה/מנגנון</th><th>שימוש עיקרי</th><th>תופעת לוואי אופיינית (irAE)</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="term" dir="ltr">Ipilimumab</span> (Yervoy)</td>
+      <td>נוגדן אנטי-CTLA-4 - חוסם את הבלימה המוקדמת בבלוטת הלימפה, "משחרר" יותר תאי T לצאת לפעולה</td>
+      <td>מלנומה גרורתית (התרופה הראשונה שאושרה ב-FDA, 2011)</td>
+      <td>שיעור irAE גבוה יחסית - קוליטיס חמורה, היפופיזיטיס</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Pembrolizumab</span> (Keytruda), <span class="term" dir="ltr">Nivolumab</span> (Opdivo)</td>
+      <td>נוגדנים אנטי-PD-1 - חוסמים את קישור PD-1 לתאי T ל-PD-L1 על הגידול, "מעירים" תאי T עייפים בתוך הגידול עצמו</td>
+      <td>מלנומה, NSCLC, MSI-H/dMMR (לפי סוג גנטי, ללא תלות באיבר), ועוד</td>
+      <td>פנאומוניטיס, תירואידיטיס, עייפות</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Atezolizumab</span>, <span class="term" dir="ltr">Durvalumab</span></td>
+      <td>נוגדנים אנטי-PD-L1 - חוסמים ישירות את הליגנד על תאי הגידול</td>
+      <td>סרטן ריאה, שלפוחית, ועוד</td>
+      <td>דומה לאנטי-PD-1, בשכיחות מעט נמוכה יותר של irAE</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>CAR-T (Chimeric Antigen Receptor T-cell Therapy)</h3>
+<p>הנדסה גנטית של תאי T של המטופל עצמו (אוטולוגיים) כך שיבטאו על פני השטח שלהם קולטן כימרי מלאכותי (CAR) המורכב מחלק חוץ-תאי שמזהה אנטיגן ספציפי על הגידול (למשל <span class="term" dir="ltr">CD19</span> בממאירויות תאי B) בלי תלות ב-MHC, וחלק תוך-תאי שמפעיל את תא ה-T ברגע הקישור. התאים המהונדסים מוחזרים למטופל לאחר "דלדול לימפתי" מקדים (lymphodepletion) בכימותרפיה, מתרבים בגוף, ותוקפים כל תא שנושא את האנטיגן. <b>סיבוך אופייני וחמור</b>: <span class="term" dir="ltr">Cytokine Release Syndrome (CRS)</span> - כשתאי ה-CAR-T מזהים את המטרה, הם משחררים כמויות אדירות של ציטוקינים (IFN-γ, IL-6) שמפעילים מקרופאגים ליצירת "סופת ציטוקינים" סיסטמית - חום גבוה, תת-לחץ דם, היפוקסיה, ולעיתים כשל רב-מערכתי. הטיפול קו-ראשון הוא <span class="term" dir="ltr">Tocilizumab</span> (נוגדן אנטי-קולטן IL-6).</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/CAR_T-cell_Therapy.svg?width=650" alt="מבנה קולטן CAR ותהליך הטיפול">
+  <figcaption class="media-cap">המבנה הבסיסי של קולטן CAR (חלק חוץ-תאי מזהה אנטיגן + חלק תוך-תאי מפעיל) ותהליך יצירת תאי CAR-T. מקור: <a href="https://commons.wikimedia.org/wiki/File:CAR_T-cell_Therapy.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/e8orJ-v_-H0" title="CAR T Cell Therapy Explained (Animation)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הנפשה של תהליך CAR-T - מהוצאת תאי T מהמטופל, הנדסה גנטית, ועד לחיסול תאי הגידול (City of Hope). מקור: <a href="https://www.youtube.com/watch?v=e8orJ-v_-H0" target="_blank">YouTube</a></p>
+
+<div class="surgery">
+  <h4>התפקיד הכירורגי הישיר: קטיף TIL (Tumor-Infiltrating Lymphocytes) לאימונותרפיה בהעברה מאומצת</h4>
+  <p><b>הכנה</b>: איתור נגע גרורתי מתאים לכריתה (גודל מספק ונגישות סבירה) - בלוטות לימפה מספקות את התשואה הגבוהה ביותר של TILs, וגרורות כבד את הנמוכה ביותר.</p>
+  <p><b>מהלך "הניתוח" מנקודת המבט האימונולוגית</b>: הרקמה הגידולית נכרתת כירורגית ונשלחת למעבדה, שם מבודדים ממנה תאי T חודרי-גידול (TILs) - הלימפוציטים שכבר "זיהו" את הגידול באופן טבעי אך היו מדוכאים בתוך הסביבה שלו. התאים מגודלים ומורבים מחוץ לגוף (ex vivo) בנוכחות ציטוקינים (בעיקר <span class="term" dir="ltr">IL-2</span>), ולאחר "דלדול לימפתי" מקדים של המטופל, מוחזרים לגוף בעירוי תוך-ורידי יחד עם IL-2 במינון גבוה.</p>
+  <p><b>נקודת הזהירות הקריטית</b>: בחירת האתר לכריתה משפיעה ישירות על תשואת התאים ועל התוצאה הקלינית - כירורג אונקולוגי מעורב בהחלטה יחד עם הצוות האימונו-אונקולוגי, לא רק כ"מבצע טכני".</p>
+  <p><b>תוצאות</b>: שיעור תגובה אובייקטיבי של כ-56% במלנומה גרורתית במטופלים שלא קיבלו קודם טיפול אנטי-PD-1, עם עמידות תגובה יוצאת דופן - מה שהוביל להגדרת "מטסטזקטומיה למטרת TIL" כאינדיקציה ניתוחית מתפתחת בפני עצמה.</p>
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — שלושת ה-E של אימונו-עריכה</h3>
+  <p><b>E</b>limination (חיסול) → <b>E</b>quilibrium (שיווי משקל, השלב הארוך שבו "מברירים" ורריאנטים עמידים) → <b>E</b>scape (בריחה, גידול גלוי). זכרו: זו לא "בעיה חד-פעמית" - זה תהליך אבולוציוני שקורה על ציר זמן ארוך, בדיוק כמו אבולוציה קלונלית שנלמדה בפרק 29.</p>
+  <h3>סיפור דמיוני — "השוטר שקיבל פקודת עצור-אש מזויפת"</h3>
+  <p>דמיינו שוטר (תא T) שמסתובב באזור ומחפש פורצים (תאי גידול). כשהוא תופס פורץ אמיתי ומכוון אליו נשק, מפקדו (מערכת בקרה תקינה - CTLA-4/PD-1) יכול לתת לו "פקודת עצור-אש" לגיטימית כדי שלא יירה בטעות באזרחים. הבעיה: <b>הפורץ עצמו (הגידול) למד לחקות את קול המפקד</b> ומשדר "עצור-אש" מזויף (PD-L1) ישר לאוזן השוטר - והשוטר, שאינו יכול להבדיל בין הפקודה האמיתית למזויפת, מוריד את הנשק ומניח לפורץ להימלט. תרופת אנטי-PD-1 היא כמו <b>אטם אוזניים</b> לשוטר - היא חוסמת ממנו לשמוע את "פקודת העצור-אש המזויפת" כך שהוא ממשיך לירות בפורץ האמיתי.</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: פקודת עצור-האש המזויפת</title>
+    <circle cx="90" cy="100" r="42" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <text x="90" y="95" font-size="26" text-anchor="middle">👮</text>
+    <text x="90" y="155" font-size="11" text-anchor="middle" fill="#1f2937">שוטר = תא T</text>
+    <text x="360" y="95" font-size="26" text-anchor="middle">🦹</text>
+    <circle cx="360" cy="100" r="42" fill="#fef2f2" stroke="#b91c1c" stroke-width="3"/>
+    <text x="360" y="155" font-size="11" text-anchor="middle" fill="#1f2937">פורץ = תא גידול</text>
+    <text x="225" y="60" font-size="12" text-anchor="middle" fill="#b45309" font-weight="700">"עצור אש!" (PD-L1 מזויף)</text>
+    <polygon points="310,80 250,80 250,95 200,95" fill="none"/>
+    <line x1="310" y1="85" x2="140" y2="85" stroke="#b45309" stroke-width="3" stroke-dasharray="6,4"/>
+    <polygon points="140,85 158,78 158,92" fill="#b45309"/>
+    <text x="225" y="140" font-size="11" text-anchor="middle" fill="#2563eb">אנטי-PD-1 = אטם אוזניים לשוטר</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=SyxW8IbUb80" target="_blank">Introduction to Immune Checkpoint Inhibitor (ICI) Immunotherapy — YouTube</a>
+    <div class="desc">סקירה מבואית נוספת על משפחת התרופות ומנגנון הפעולה שלהן, כולל דגשים קליניים.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK537294/" target="_blank">Chimeric Antigen Receptor T-Cell Therapy — StatPearls</a>
+    <div class="desc">מקור עיקרי לסעיף ה-CAR-T - מנגנון, אינדיקציות, וניהול תופעות לוואי (CRS, ICANS).</div>
+  </li>
+  <li>
+    <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3438746/" target="_blank">Adoptive cell therapy with TIL: The surgeon's perspective — PMC</a>
+    <div class="desc">מאמר ממוקד-כירורג על תפקיד הכריתה בקטיף TIL - מקור עיקרי לסעיף התפקיד הכירורגי.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/24531241/" target="_blank">New insights into cancer immunoediting — PubMed</a>
+    <div class="desc">מקור מדעי-קלאסי לתיאור שלושת שלבי האימונו-עריכה (Elimination/Equilibrium/Escape).</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58 עם מלנומה גרורתית (M1c, נגעים בכבד ובבלוטות לימפה) מתחילה טיפול ב-Pembrolizumab. לאחר כ-10 שבועות מגיעה למיון עם שלשולים מימיים (8-10 פעמים ביום), כאבי בטן דיפוזיים וחום נמוך. בבדיקת דם: CRP מוגבר, ללא לויקוציטוזיס משמעותי. תרבית צואה שלילית לפתוגן זיהומי. בבדיקה גופנית - בטן רגישה דיפוזית ללא סימני גירוי פריטוניאלי מובהקים.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה ההבדל העקרוני בין השלב שבו CTLA-4 פועל לבין השלב שבו PD-1/PD-L1 פועלים?</div>
+  <button class="opt" data-i="0">CTLA-4 ו-PD-1 פועלים באותו שלב בדיוק, ברקמת הגידול</button>
+  <button class="opt" data-i="1">CTLA-4 בולם מוקדם בבלוטת הלימפה בשלב גיוס תא ה-T; PD-1/PD-L1 בולמים מאוחר, ברקמת הגידול עצמה על תאי T "עייפים"</button>
+  <button class="opt" data-i="2">CTLA-4 פועל רק על תאי B, PD-1 פועל רק על תאי T</button>
+  <button class="opt" data-i="3">שניהם פועלים רק על תאי NK</button>
+  <div class="explain">נכון: CTLA-4 מתחרה עם CD28 על B7 בשלב ה-priming בבלוטות הלימפה - "בולם את הגז" לפני שהתא יוצא לפעולה. PD-1 פועל מאוחר יותר, כשהתא T כבר הגיע לרקמה ההיקפית (הגידול) ונקשר ל-PD-L1 שהגידול מבטא - מדמה איתות בלימה תקין באתר עצמו.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. באיזה שלב של אימונו-עריכת הסרטן נוצרת "ברירה" של ורריאנטים עמידים לחיסון, גם אם הגידול עדיין אינו גלוי קלינית?</div>
+  <button class="opt" data-i="0">חיסול (Elimination) בלבד</button>
+  <button class="opt" data-i="1">רק בשלב הבריחה, לא לפני כן</button>
+  <button class="opt" data-i="2">שיווי משקל (Equilibrium) - הלחץ החיסוני הממושך "מברר" אילו וריאנטים שורדים</button>
+  <button class="opt" data-i="3">התהליך אקראי לחלוטין ולא תלוי בלחץ חיסוני</button>
+  <div class="explain">נכון: שלב שיווי המשקל הוא הארוך ביותר וכולל "ברירה טבעית" מתמשכת - תאי הגידול הרגישים ביותר לזיהוי חיסוני מחוסלים, ודווקא הווריאנטים שכבר פיתחו מנגנוני חמקנות (אובדן MHC-I, PD-L1 מוגבר) שורדים ומתרבים, עד שהם משתלטים ומובילים לשלב הבריחה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. בווינייטה שלעיל, מהי האבחנה הסבירה ביותר והטיפול הראשוני המתאים?</div>
+  <button class="opt" data-i="0">גסטרואנטריטיס זיהומית - יש להמתין לתרבית נוספת בלבד</button>
+  <button class="opt" data-i="1">תפוצת הגידול למעי - יש לבצע כריתה כירורגית דחופה</button>
+  <button class="opt" data-i="2">תופעת לוואי לא-קשורה לטיפול - להמשיך Pembrolizumab ללא שינוי</button>
+  <button class="opt" data-i="3">קוליטיס אימונית (irAE) על רקע מעכב checkpoint - יש להפסיק זמנית את התרופה ולשקול סטרואידים</button>
+  <div class="explain">נכון: שלשולים מימיים תכופים עם כאבי בטן וחום נמוך, תרבית שלילית, בהקשר של טיפול פעיל במעכב PD-1, הם התייצגות קלאסית לקוליטיס אימונית - תופעת לוואי שכיחה וחשובה של אימונותרפיה. הטיפול תלוי-חומרה: הפסקת התרופה ± סטרואידים, ובמקרים עמידים - תרופות אימונוסופרסיביות נוספות. חשוב לזכור שקוליטיס אימונית חמורה יכולה להוביל לפרפורציה ולדרוש מעורבות כירורגית.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהו המנגנון של Cytokine Release Syndrome (CRS) לאחר טיפול CAR-T?</div>
+  <button class="opt" data-i="0">תאי CAR-T המזהים את האנטיגן משחררים כמויות גדולות של ציטוקינים (IFN-γ, IL-6) שמפעילים מקרופאגים ל"סופת ציטוקינים" סיסטמית</button>
+  <button class="opt" data-i="1">תגובה אלרגית ישירה לחומר ההזרקה עצמו, ללא קשר לפעילות התאים</button>
+  <button class="opt" data-i="2">זיהום חיידקי משני להחדרת הצנתר</button>
+  <button class="opt" data-i="3">דחיית שתל אקוטית מהתאים המהונדסים</button>
+  <div class="explain">נכון: זיהוי האנטיגן על ידי תאי CAR-T מפעיל אותם לשחרר ציטוקינים בכמות גדולה, שמפעילים בתורם מקרופאגים לייצור ציטוקינים נוספים (IL-6 מרכזי) - "סופה" סיסטמית שגורמת לחום, תת-לחץ דם והיפוקסיה. הטיפול קו-ראשון הוא Tocilizumab, חוסם קולטן IL-6.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. איזה ביומרקר גנטי אושר ב-FDA לטיפול במעכבי PD-1 "לפי סוג הגידול ולא לפי איבר המקור"?</div>
+  <button class="opt" data-i="0">רמת CEA בדם</button>
+  <button class="opt" data-i="1">MSI-High / dMMR (חוסר יציבות מיקרוסאטליטית)</button>
+  <button class="opt" data-i="2">רמת PSA בדם</button>
+  <button class="opt" data-i="3">נוכחות מוטציית BRCA בלבד</button>
+  <div class="explain">נכון: גידולים MSI-High/dMMR (הקשורים לתסמונת לינץ') נושאים עומס מוטציוני גבוה (TMB גבוה) שיוצר הרבה neoantigens "זרים" - ולכן מגיבים היטב למעכבי PD-1 ללא קשר לאיבר המקור. זהו האישור הראשון של ה-FDA המבוסס על סמן גנטי בלבד ("tissue-agnostic").</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>אימונו-עריכה</b>: חיסול (Elimination) → שיווי משקל (Equilibrium, ברירה של ורריאנטים עמידים) → בריחה (Escape, מחלה גלויה).</li>
+    <li><b>מנגנוני בריחה</b>: אובדן MHC-I, סביבה מדכאת-חיסון (Tregs, MDSCs), וניצול נקודות בלימה תקינות (CTLA-4 מוקדם/לימפתי; PD-1/PD-L1 מאוחר/תוך-גידולי).</li>
+    <li><b>מעכבי checkpoint</b>: Ipilimumab (אנטי-CTLA-4), Pembrolizumab/Nivolumab (אנטי-PD-1), Atezolizumab (אנטי-PD-L1) - תופעת לוואי מרכזית: irAEs (קוליטיס, פנאומוניטיס, אנדוקרינופתיות).</li>
+    <li><b>CAR-T</b>: תאי T מהונדסים לזיהוי אנטיגן ללא תלות ב-MHC; סיבוך מרכזי: Cytokine Release Syndrome (טיפול: Tocilizumab).</li>
+    <li><b>תפקיד כירורגי ישיר</b>: כריתת רקמה גידולית לקטיף TILs להעברה מאומצת - אינדיקציה ניתוחית מתפתחת במלנומה גרורתית.</li>
+    <li><b>ביומרקרים</b>: PD-L1 expression, TMB, MSI-H/dMMR - מנבאים סיכוי תגובה לאימונותרפיה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
