@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 16: ניתוחי התאמה מגדרית של השד</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 16: אפשרויות טיפול בניתוחי התאמה מגדרית של השד <span class="term" dir="ltr">Management Options for Gender Affirmation Surgery of the Breast</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, 5th ed. – כרך 5: Breast | Ara A. Salibian, Gaines Blasdel, Rachel Bluebond-Langner</div>
+
+<p>הפרק עוסק בשני הליכים עיקריים: <b>מסטקטומיה מאשרת-מגדר</b> (<span class="term" dir="ltr">gender-affirming mastectomy</span>, "ניתוח top surgery") עבור אנשים טרנסגברים ולא-בינאריים, ו<b>הגדלת שד מאשרת-מגדר</b> עבור נשים טרנסג'נדריות ולא-בינאריות. לכל אחד מהם עקרונות הערכה, טכניקה וסיבוכים ייחודיים, אך שניהם דורשים גישה רב-תחומית ורגישה תרבותית לפי סטנדרטים בינלאומיים (WPATH).</p>
+
+<h2><span class="num">1</span> עקרונות יסוד: טרמינולוגיה ורגישות תרבותית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>טרנסמסקולין (<span class="term" dir="ltr">transmasculine</span>):</b> גברים טרנסג'נדרים ואנשים לא-בינאריים שעשויים לבקש מסטקטומיה.<br>
+    <b>טרנספמינין (<span class="term" dir="ltr">transfeminine</span>):</b> נשים טרנסג'נדריות ואנשים לא-בינאריים שעשויים לבקש הגדלת שד.
+  </p>
+  <p>הפרק מדגיש שיש להימנע מהמונח "chest masculinization" (כי נורמות מגדריות הן תרבותיות ונזילות), ומהתייחסות ל"רקמה טרנסג'נדרית" (רקמה עצמה אינה בעלת זהות מגדרית). כשמתארים אנטומיה ספציפית של מטופל, יש להשתמש בזהות המגדרית או המונח המועדף עליו - למשל "השחלה של הגבר הטרנסג'נדרי" אם כך המטופל מזדהה.</p>
+</div>
+
+<h2><span class="num">2</span> תקני טיפול טרום-ניתוחיים (WPATH SOC)</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>קריטריון</th><th>מסטקטומיה מאשרת-מגדר</th><th>הגדלת שד מאשרת-מגדר</th></tr></thead>
+  <tbody>
+    <tr><td>דיספוריה מגדרית מתועדת</td><td>נדרש</td><td>נדרש</td></tr>
+    <tr><td>מכתב הפניה מבריא נפש מוסמך</td><td>אחד</td><td>אחד</td></tr>
+    <tr><td>טיפול הורמונלי</td><td><b>לא נדרש</b></td><td><b>12 חודשים רציפים</b> (אלא אם קונטרה-אינדיקציה)</td></tr>
+    <tr><td>גיל מינימלי לשתלי סיליקון</td><td>לא רלוונטי</td><td>22 (לפי הנחיית FDA)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">חשוב: דרישת מכתב בריאות הנפש <b>אינה</b> נועדה להיות "מבחן" לזהות מגדרית "אמיתית" (אין מבחן כזה), אלא מרחב תומך פסיכו-חברתי ותכנון משותף. WPATH מזהירה במפורש מפני הצבת דרישות פסיכותרפיה שעלולות לשמש כחסמים.</p>
+
+<h2><span class="num">3</span> מסטקטומיה מאשרת-מגדר: סולם פישר (Fischer) לבחירת טכניקה</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>דרגה</th><th>רקמת בלוטה</th><th>רפיון עור</th><th>מיקום NAC</th><th>טכניקה מועדפת</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>מינימלית</td><td>ללא</td><td>מעל ה-IMF</td><td>פריאראולרית</td></tr>
+    <tr><td>2a</td><td>בינונית</td><td>מעט/ללא</td><td>מעל ה-IMF</td><td>פריאראולרית</td></tr>
+    <tr><td>2b</td><td>בינונית</td><td>מוגבר</td><td>ב/מתחת ל-IMF</td><td>פריאראולרית (סיכון revision ≥30%) או דו-חתכית עם שתל פטמה חופשי</td></tr>
+    <tr><td>3</td><td>משמעותית</td><td>משתנה</td><td>מתחת ל-IMF</td><td>דו-חתכית עם שתל פטמה חופשי (הכי אמינה)</td></tr>
+    <tr><td>4</td><td>מנופחת (מדולדלת)</td><td>משמעותי</td><td>מתחת ל-IMF</td><td>דו-חתכית עם שתל פטמה חופשי</td></tr>
+  </tbody>
+</table>
+</div>
+<p>שלושה מדדים קליניים קובעים את הדרגה: כמות רקמת בלוטה, פטוזיס/מרחק פטמה-IMF, ואיכות ואלסטיות העור. חמשת המטרות הכירורגיות (Hage 1995, עדיין תקפות): הסרת רקמת שד, קונטור אסתטי של דופן החזה, גודל ומיקום מתאימים ל-NAC, מחיקת ה-IMF, ומזעור צלקות.</p>
+
+<h2><span class="num">4</span> טכניקה: דו-חתכית עם שתל פטמה חופשי - נקודות מפתח</h2>
+<table>
+  <thead><tr><th>עיקרון</th><th>למה חשוב</th></tr></thead>
+  <tbody>
+    <tr><td>חתך בצל השריר הפקטורלי - לא ב-IMF</td><td>מסתיר את הצלקת בצל הפקטורליס; חתך ב-IMF נשאר גלוי לרוחב דופן החזה</td></tr>
+    <tr><td>מעקב אחר צל הפקטורליס לטרלית</td><td>אותה סיבה - הסתרת הצלקת</td></tr>
+    <tr><td>הסרת כל רקמת השד, במיוחד בזנב האקסילרי</td><td>מונעת מלאות שיורית סופרולטרלית לא רצויה</td></tr>
+    <tr><td>מחיקת ה-IMF</td><td>יעד מוצהר של הניתוח - קונטור שטוח</td></tr>
+    <tr><td>מיקום פטמה בהיבט התחתון-לטרלי של הפקטורליס</td><td>מיקום אנטומי טבעי יותר לחזה גברי</td></tr>
+    <tr><td>שתל פטמה חופשי 2.2x2.2 ס"מ, מדולל</td><td>משפר קליטה תוך שמירת עובי מרכזי לפרויקציה</td></tr>
+  </tbody>
+</table>
+<p class="key-box">חשוב להסביר למטופל: מסטקטומיה מאשרת-מגדר <b>אינה פרוצדורה אונקולוגית</b> - נותרת רקמת שד שיורית (הכמות תלויה בטכניקה), וקיים סיכון מתמשך לסרטן חזה. הדמיה ממוגרפית לרוב אינה אפשרית טכנית לאחר הניתוח - מעקב הוא בעיקר קליני (בדיקה ידנית).</p>
+
+<h2><span class="num">5</span> הגדלת שד מאשרת-מגדר: הבדלים אנטומיים ותכנון</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין אנטומי</th><th>בחזה גברי (natal male chest)</th></tr></thead>
+  <tbody>
+    <tr><td>עצם החזה (סטרנום)</td><td>רחבה יותר</td></tr>
+    <tr><td>קוטר בסיס השד</td><td>רחב יותר - דורש שתל רחב יותר עם פרויקציה מעט פחותה</td></tr>
+    <tr><td>מיקום הפטמות</td><td>לטרלי יותר - קושי/בלתי אפשרי להשיג "cleavage" עמוק</td></tr>
+    <tr><td>גודל העטרה (areola)</td><td>קטן יותר</td></tr>
+    <tr><td>מרחק פטמה-IMF</td><td>קצר יותר - ניתן להוריד את ה-IMF ב-1-2 ס"מ ולבצע ניקוד קוטב תחתון</td></tr>
+  </tbody>
+</table>
+</div>
+<p>העדפות המחברים: <b>מישור תת-בלוטי</b> (subglandular) - כי שריר הפקטורליס המפותח יותר בנשים טרנסג'נדריות עלול לגרום לעיוות הנעה (animation deformity) ולתזוזת השתל אם ממוקם תת-שרירי; <b>שתלים חלקים</b> (smooth) עקב הקשר בין שתלים מחוספסים ל-BIA-ALCL; חתך ב-IMF (לא פריאראולרי) כי העטרה קטנה והשתל גדול יחסית.</p>
+
+<h2><span class="num">6</span> סיבוכים בשני הניתוחים</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיבוך</th><th>מסטקטומיה</th><th>הגדלה</th></tr></thead>
+  <tbody>
+    <tr><td>המטומה</td><td>הסיבוך השכיח ביותר; מקורה בכלי דם מחוררים ברמת הפקטורליס - חשד גבוה להתערבות</td><td>דומה להגדלת שד רגילה</td></tr>
+    <tr><td>סרומה</td><td>עלולה לגרום פיברוזיס ועיוות קונטור - ניקוז, עיסוי, אולטרסאונד</td><td>-</td></tr>
+    <tr><td>סיבוך NAC איסכמי</td><td>נדיר, יותר במעשנים; דהפיגמנטציה נפוצה יותר בעור כהה - טופלת בקעקוע 9-12 חודשים אח"כ</td><td>לא רלוונטי</td></tr>
+    <tr><td>קונטרקטורת קפסולה</td><td>-</td><td>מוקטן ע"י שתל חלק, אנטיביוטיקה סביב הניתוח, המוסטזיס קפדני, מזעור מגע עם השתל</td></tr>
+    <tr><td>BIA-ALCL</td><td>לא רלוונטי</td><td>דווח גם במטופלות טרנסג'נדריות; מתייצג בד"כ כסרומה מאוחרת, בעיקר בשתלים מחוספסים</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">7</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">F-A-C-E</span> לניתוחי חזה מאשרי-מגדר</h3>
+  <p>
+    <b>F</b> – <span class="term" dir="ltr">Fischer scale</span> - קובע טכניקת מסטקטומיה לפי רקמה, עור ומיקום NAC.<br>
+    <b>A</b> – <span class="term" dir="ltr">Anatomic differences</span> - סטרנום רחב, פטמות לטרליות בהגדלת שד.<br>
+    <b>C</b> – <span class="term" dir="ltr">Consent & Care</span> - WPATH SOC, גישה רב-תחומית, שפה מכבדת.<br>
+    <b>E</b> – <span class="term" dir="ltr">Expectations</span> - לא פרוצדורה אונקולוגית; סיכוני מעקב מתמשך.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שני "מפות דרכים" הפוכות: באחת (מסטקטומיה) מנווטים מרקמה מלאה לקונטור שטוח, עוקבים אחרי "צל" ההר (הפקטורליס) כדי להסתיר את הדרך (הצלקת). בשנייה (הגדלה) מנווטים מכיוון ההפוך - בונים נפח חדש על בסיס רחב יותר, אבל תמיד נשארים מודעים לכך שהפטמות "רוצות" להישאר לטרליות, ולא ניתן לכפות עליהן cleavage עמוק בקלות.</p>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/World_Professional_Association_for_Transgender_Health" target="_blank">WPATH – Wikipedia</a>
+    <div class="desc">רקע על הארגון המקצועי הבינלאומי שמפרסם את תקני הטיפול (Standards of Care) המוזכרים בפרק.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Top_surgery" target="_blank">Top Surgery – Wikipedia</a>
+    <div class="desc">הסבר כללי על מסטקטומיה מאשרת-מגדר ("top surgery") הכולל טכניקות שונות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מטופל בן 24, טרנסמסקולין, מגיע לייעוץ לגבי מסטקטומיה מאשרת-מגדר. בבדיקה: רקמת בלוטה משמעותית, רפיון עור בינוני, NAC ממוקם מתחת ל-IMF. המטופל אינו נוטל טסטוסטרון ומעדיף קונטור שטוח ככל האפשר.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מטופל עם דרגת פישר 3 (רקמת בלוטה משמעותית, NAC מתחת ל-IMF) - איזו טכניקת מסטקטומיה מומלצת?</div>
+  <button class="opt" data-i="0">פריאראולרית עם חצי-סהר תחתון בלבד</button>
+  <button class="opt" data-i="1">אין צורך בניתוח כלל, טיפול הורמונלי מספיק</button>
+  <button class="opt" data-i="2">דו-חתכית עם שתל פטמה חופשי - הטכניקה האמינה ביותר להשגת קונטור שטוח בדרגה זו</button>
+  <button class="opt" data-i="3">הגדלת שד עם שתל תת-בלוטי</button>
+  <div class="explain">התשובה הנכונה (3): רוב המטופלים נופלים בקטגוריית דרגה 3, עם נפח בלוטה גדול ורפיון עור בולט. הפרק קובע במפורש שדרגה זו מטופלת היטב עם דו-חתכית עם שתל פטמה חופשי, וזו הטכניקה האמינה ביותר להשגת חזה שטוח ובעל קונטור טוב. פריאראולרית (תשובה 1) שמורה לדרגות 1-2a עם רקמה מינימלית וללא רפיון עור.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע מכתב הפניה מבריא נפש מוסמך אינו נועד לשמש כ"מבחן" לזהות מגדרית, לפי הנחיות WPATH?</div>
+  <button class="opt" data-i="0">כי בריאי נפש אינם מוסמכים להעריך מטופלים טרנסג'נדרים</button>
+  <button class="opt" data-i="1">כי מטרתו היא מרחב תומך פסיכו-חברתי ותכנון משותף, ואין "מבחן" קיים לזהות מגדרית "אמיתית"</button>
+  <button class="opt" data-i="2">כי הוא מיועד רק למטופלים מתחת לגיל 18</button>
+  <button class="opt" data-i="3">כי הביטוח דורש זאת מסיבות בירוקרטיות בלבד</button>
+  <div class="explain">התשובה הנכונה (2): WPATH SOC מזהירה במפורש מפני הצבת דרישות שעלולות לשמש כחסמים למעורבות משמעותית, ומדגישה שהדרישה למכתב אינה אמורה להיות מבחן ל"זהות אמיתית" (אין מבחן כזה) או פסיכותרפיה ארוכת טווח, אלא מרחב תומך הוליסטי לתמיכה פסיכו-חברתית ותכנון משותף.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מדוע המחברים מעדיפים מישור תת-בלוטי (subglandular) להגדלת שד מאשרת-מגדר, בניגוד למישור תת-שרירי?</div>
+  <button class="opt" data-i="0">כי הוא תמיד זול יותר לבצע</button>
+  <button class="opt" data-i="1">כי הוא היחיד המאושר ע"י ה-FDA לנשים טרנסג'נדריות</button>
+  <button class="opt" data-i="2">כי אין הבדל משמעותי בין המישורים בקבוצת מטופלות זו</button>
+  <button class="opt" data-i="3">כי שריר הפקטורליס המפותח יותר בנשים טרנסג'נדריות רבות עלול לגרום לעיוות הנעה ותזוזה קרניאלית-לטרלית של השתל אם ממוקם תת-שרירית</button>
+  <div class="explain">התשובה הנכונה (4): הפרק מסביר שהפקטורליס מייג'ור המפותח יותר אצל נשים טרנסג'נדריות רבות (עקב היסטוריית התפתחות שרירית גברית) עלול לגרום לתזוזה בלתי רצויה של השתל בכיוון קרניאלי ולטרלי אם ממוקם תת-שרירית - בעוד מיקום תת-בלוטי נמנע מהבעיה הזו. פיתוח רקמת השד וחלוקת שומן מחדש בעקבות טיפול באסטרוגן מאפשרים שימוש במישור תת-בלוטי/תת-פאשיאלי ברוב המקרים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהי הסיבה העיקרית שהפרק נותן לכך שהמעקב האונקולוגי אחרי מסטקטומיה מאשרת-מגדר מאתגר במיוחד?</div>
+  <button class="opt" data-i="0">רקמת שד שיורית נותרת בכמות משתנה תלוית טכניקה, וממוגרפיה של דופן החזה בד"כ אינה אפשרית טכנית לאחר הניתוח ללא קשר לטכניקה</button>
+  <button class="opt" data-i="1">מטופלים טרנסג'נדרים אינם זכאים לביטוח בריאות למעקב</button>
+  <button class="opt" data-i="2">אין כלל סיכון לסרטן חזה אחרי מסטקטומיה מאשרת-מגדר</button>
+  <button class="opt" data-i="3">כל המטופלים מקבלים כריתה מלאה ללא רקמה שיורית</button>
+  <div class="explain">התשובה הנכונה (1): מסטקטומיה מאשרת-מגדר אינה פרוצדורה אונקולוגית, וכמות רקמת השד השיורית משתנה משמעותית בין טכניקות ומנתחים - במיוחד בטכניקות עם שתל פטמה על גבעול (pedicled), שאינן בשימוש בפרקטיקת המחברים. בנוסף, ממוגרפיה של דופן החזה אינה בדרך כלל אפשרית טכנית ללא קשר לטכניקה שנבחרה, מה שמותיר בעיקר בדיקה קלינית כאמצעי מעקב, שיעילותה עצמה לא נקבעה במחקרים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שני הליכים מרכזיים: <b>מסטקטומיה מאשרת-מגדר</b> (טרנסמסקולין) ו<b>הגדלת שד מאשרת-מגדר</b> (טרנספמינין) - כל אחד עם עקרונות משלו.</li>
+    <li>סולם <b>פישר</b> (1-4, לפי רקמת בלוטה, רפיון עור ומיקום NAC) מנחה בחירת טכניקת מסטקטומיה: פריאראולרית לדרגות נמוכות, דו-חתכית עם שתל פטמה חופשי לדרגות גבוהות (הטכניקה השכיחה ביותר).</li>
+    <li>הגדלת שד: הבדלים אנטומיים (סטרנום רחב, פטמות לטרליות) מחייבים שתל רחב יותר; מישור תת-בלוטי מועדף בגלל סיכון לעיוות הנעה תת-שרירי.</li>
+    <li>WPATH SOC: מכתב בריאות נפש אחד (שני ההליכים), טיפול הורמונלי נדרש רק להגדלת שד (12 חודשים).</li>
+    <li>מסטקטומיה <b>אינה פרוצדורה אונקולוגית</b> - נותרת רקמה שיורית, ומעקב הדמיה מוגבל טכנית; יש להסביר זאת בבירור מראש.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
