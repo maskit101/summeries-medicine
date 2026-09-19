@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 15: שחזור היפופרינקס, ושט צווארי והצוואר</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 15: שחזור היפופרינקס, ושט צווארי והצוואר <span class="term" dir="ltr">Hypopharyngeal, Esophageal, and Neck Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: קרניופציאלי, ראש-צוואר, ילדים | פרק 13 במקור (Ch.13), מאת Min-Jeong Cho ו-Peirong Yu</div>
+
+<p>הפרק עוסק בשחזור פגמים של ה<span class="term" dir="ltr">hypopharynx</span> (היפופרינקס) וה<span class="term" dir="ltr">cervical esophagus</span> (ושט צווארי) לאחר כריתת גידולים (בעיקר <span class="term" dir="ltr">laryngopharyngectomy</span> - כריתת גרון-לוע), וכן שחזור של פיסטולות וסטריקטורות שנוצרו בעקבות ניתוחים קודמים והקרנות. זהו אחד השחזורים המורכבים והמאתגרים ביותר בכירורגיה פלסטית: נדרש ליצור צינור חדש (<span class="term" dir="ltr">neopharynx</span>) שיוביל אוכל בבטחה מהפה לוושט, בשדה כירורגי שכמעט תמיד עבר הקרנות, עם סיכון ממשי לסיבוכים מסכני חיים כמו קרע של עורק התרדמה (<span class="term" dir="ltr">carotid artery rupture</span>).</p>
+
+<h2><span class="num">1</span> מנגנון - למה השחזור הזה כל כך קשה</h2>
+<div class="mechanism">
+  <p class="chain">
+    כריתת גידול (סרטן גרון/היפופרינקס/ושט) &larr; יוצרת פגם חלקי או היקפי (<span class="term" dir="ltr">circumferential</span>) בצינור העיכול העליון &larr; חייבים לסגור אותו בזרימת רקמה בעלת <b>אספקת דם עצמאית</b> (פלאפ, לא שתל) &larr; אבל רוב החולים כבר עברו הקרנות לגרון &larr; הקרנה גורמת ל<b><span class="term" dir="ltr">endarteritis obliterans</span></b> (עיבוי והצרות פרוגרסיבית של דופן כלי הדם הקטנים) ופיברוזיס של הרקמה &larr; כלומר <b>כלי הדם המקומיים של המטופל פגומים</b>, אז חייבים להביא רקמה עם אספקת דם חדשה ובריאה מבחוץ (פלאפ חופשי מיקרו-וסקולרי).
+  </p>
+  <p>גם אחרי שמביאים פלאפ בריא, נשאר אתגר שני: קו התפר (<span class="term" dir="ltr">anastomosis</span>) של הפלאפ לרירית הלוע/ושט חשוף 24 שעות ביממה לרוק - נוזל שהוא גם קורוזיבי (אנזימים) וגם עמוס חיידקים. אם קו התפר לא איטום לחלוטין או שהרקמה שסביבו לא בריאה מספיק, הרוק "מוצא" את החולשה ודולף &larr; נוצרת <b><span class="term" dir="ltr">pharyngocutaneous fistula</span></b> (פיסטולה בין הלוע לעור הצוואר) &larr; הרוק שממשיך לזלוג גורם לדלקת כרונית והיפוקסיה של רקמת הצוואר &larr; זה "אפקט כדור שלג": הרקמה נחלשת עוד יותר, מסתכנת בנמק נוסף, ובמקרים הקשים ביותר הפיסטולה חושפת ומכרסמת לכיוון עורק התרדמה &larr; <b class="key">קרע של עורק התרדמה הוא הסיבוך הקטלני ביותר בפרק הזה</b>.</p>
+  <p>בנוסף, כל פיסטולה ממושכת "מרפאה" בסופו של דבר על ידי יצירת רקמת צלקת &larr; צלקת מצטמצמת עם הזמן &larr; נוצרת <b><span class="term" dir="ltr">stricture</span></b> (היצרות) בקו התפר &larr; המטופל מפתח קושי בבליעה (<span class="term" dir="ltr">dysphagia</span>).</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הסיבוך: מהקרנה ועד קרע עורק התרדמה</title>
+  <rect x="740" y="20" width="140" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="810" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">כריתת גידול</text>
+  <text x="810" y="63" font-size="11.5" text-anchor="middle" fill="#7f1d1d">פגם בצינור העיכול</text>
+
+  <rect x="560" y="20" width="140" height="60" rx="8" fill="#fff7ed" stroke="#c2410c"/>
+  <text x="630" y="42" font-size="12.5" text-anchor="middle" fill="#7c2d12" font-weight="700">שדה מוקרן</text>
+  <text x="630" y="58" font-size="11.5" text-anchor="middle" fill="#7c2d12">endarteritis obliterans</text>
+  <text x="630" y="72" font-size="11" text-anchor="middle" fill="#7c2d12">כלי דם פגומים</text>
+
+  <rect x="380" y="20" width="140" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="450" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">פלאפ חופשי</text>
+  <text x="450" y="63" font-size="11.5" text-anchor="middle" fill="#1e3a8a">אספקת דם חדשה</text>
+
+  <rect x="200" y="20" width="140" height="60" rx="8" fill="#fdf4ff" stroke="#a21caf"/>
+  <text x="270" y="42" font-size="12.5" text-anchor="middle" fill="#701a75" font-weight="700">רוק 24/7</text>
+  <text x="270" y="58" font-size="11" text-anchor="middle" fill="#701a75">קורוזיבי + חיידקים</text>
+  <text x="270" y="72" font-size="11" text-anchor="middle" fill="#701a75">חושף חולשה בתפר</text>
+
+  <rect x="20" y="20" width="140" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="90" y="45" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">פיסטולה</text>
+  <text x="90" y="63" font-size="11.5" text-anchor="middle" fill="#7f1d1d">pharyngocutaneous</text>
+
+  <polygon points="700,50 740,44 740,56" fill="#374151"/><line x1="740" y1="50" x2="700" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="520,50 560,44 560,56" fill="#374151"/><line x1="560" y1="50" x2="520" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="340,50 380,44 380,56" fill="#374151"/><line x1="380" y1="50" x2="340" y2="50" stroke="#374151" stroke-width="2"/>
+  <polygon points="160,50 200,44 200,56" fill="#374151"/><line x1="200" y1="50" x2="160" y2="50" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="140" width="860" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="450" y="168" font-size="13.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">דלקת כרונית + היפוקסיה בצוואר &#8592; נמק מתקדם &#8592; חשיפת/כרסום עורק התרדמה</text>
+  <text x="450" y="190" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">= קרע עורק התרדמה (Carotid Blowout) - הסיבוך הקטלני ביותר</text>
+  <text x="450" y="210" font-size="12" text-anchor="middle" fill="#7f1d1d">מקביל: פיסטולה ממושכת &#8592; צלקת מתכווצת &#8592; Stricture &#8592; קושי בבליעה</text>
+  <polygon points="90,140 84,120 96,120" fill="#b91c1c"/><line x1="90" y1="140" x2="90" y2="120" stroke="#b91c1c" stroke-width="2"/>
+</svg>
+<p class="figcap">שרשרת הסיבתיות המרכזית של הפרק: הקרנה פוגעת בכלי הדם, ולכן חייבים פלאפ עם דם עצמאי; רוק מצא כל חולשה בתפר; דלקת כרונית עלולה להגיע עד לעורק התרדמה.</p>
+
+<p class="key-box">שאלת מבחן קלאסית: <b>מדוע פלאפים פאשיוקוטניים (עור-פאשיה, כמו ALT) מחייבים דחיית האכלה דרך הפה ("delayed oral intake"), בעוד שפלאפ מעיים (jejunum) מאפשר האכלה מוקדמת יותר?</b> התשובה: מעי מרפא מהר כי הוא רקמה שרגילה מטבעה לגעת בנוזלים ואנזימים (זהו הסביבה הטבעית שלו). לעומת זאת עור/פאשיה שרגילים לסביבה יבשה, כשהם "טובלים" ברוק 24 שעות ביממה, מחלימים לאט יותר ונוטים ל"התקלפות" (slough) בקצה קו התפר שמחלים בכוונה שנייה - מה שמסביר את שיעור הפיסטולות המאוחרות הגבוה יותר בפלאפים פאשיוקוטניים, ולכן נדרשת דחיית האכלה עד לאישור בבדיקת הדמיה.</p>
+
+<h2><span class="num">2</span> אנטומיה</h2>
+<p>הלוע (<span class="term" dir="ltr">pharynx</span>) מחולק אנטומית לשלושה חלקים:</p>
+<table>
+  <thead><tr><th>אזור</th><th>גבולות</th><th>מבנים עיקריים</th></tr></thead>
+  <tbody>
+    <tr><td><b>נזופרינקס</b> <span class="term" dir="ltr">Nasopharynx</span></td><td>מסביב לחלל האף, מעל החך הרך</td><td>פגמים בד"כ משניים לכריתת מקסילה - נדון בפרק אחר</td></tr>
+    <tr><td><b>אורופרינקס</b> <span class="term" dir="ltr">Oropharynx</span></td><td>גבול עליון = מישור החך הרך; גבול תחתון = עצם ההיואיד <span class="term" dir="ltr">(hyoid bone)</span></td><td>עמודי שקדים, בסיס הלשון, חך רך, דפנות לוע לרוחב ואחורית</td></tr>
+    <tr><td><b>היפופרינקס</b> <span class="term" dir="ltr">Hypopharynx</span></td><td>גבול עליון = עצם ההיואיד; גבול תחתון = הגבול התחתון של הסחוס הקריקואידי <span class="term" dir="ltr">(cricoid cartilage)</span>, וממשיך כווושט הצווארי</td><td>שלושה תת-אזורים: דופן לוע <span class="term" dir="ltr">(pharyngeal wall)</span>, בית-קיבול פיריפורמי <span class="term" dir="ltr">(pyriform sinus)</span>, אזור פוסט-קריקואידי <span class="term" dir="ltr">(postcricoid)</span></td></tr>
+  </tbody>
+</table>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/2303_Anatomy_of_Nose-Pharynx-Mouth-Larynx.jpg?width=700" alt="אנטומיה של האף-לוע-פה-גרון">
+<p class="media-cap">תרשים אנטומי של חלל האף, הלוע, הפה והגרון - רואים את החלוקה לנזופרינקס, אורופרינקס והיפופרינקס. מקור: OpenStax Anatomy & Physiology, Wikimedia Commons.</p>
+
+<p>ההיפופרינקס אחראי לשלוש פונקציות קריטיות: <b>הגנה על נתיב האוויר</b>, <b>בליעה</b>, ו<b>דיבור</b>. פגמים אונקולוגיים נפוצים בו נגרמים מכריתת סרטן בהיפופרינקס/גרון, סרטן בלוטת תריס מתקדם, סטריקטורות מהקרנה, ופציעות כימיות. גידולים מבודדים בוושט הצווארי נדירים אך מחייבים לעיתים כריתה סגמנטלית ושחזור.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/2412_The_Esophagus.jpg?width=700" alt="אנטומיית הוושט">
+<p class="media-cap">אנטומיית הוושט וההמשכיות שלו מההיפופרינקס ועד הקיבה. מקור: OpenStax Anatomy & Physiology, Wikimedia Commons.</p>
+
+<h2><span class="num">3</span> בררת חולים והערכה טרום-ניתוחית</h2>
+<p>רוב החולים עם סרטן ראש-צוואר הם בעלי היסטוריה משמעותית של עישון ושתיית אלכוהול, לרוב בגיל מבוגר - ולכן סיבוכים קרדיו-פולמונריים (אי-ספיקת נשימה, דלקת ריאות, אירוע לבבי) הם הסיבוכים הרפואיים המשמעותיים ביותר לאחר ניתוח גדול. יש לבצע הערכת ריאות/לב מקיפה, ובמיוחד <b>הדמיית עורקי התרדמה</b> (CT צוואר עם חומר ניגוד IV) - לבדוק זמינות כלי דם מקבלים (<span class="term" dir="ltr">recipient vessels</span>) ומצב העורקים. חשוב לברר <b>היסטוריית הקרנה וניתוח קודמים</b> - כי היא קובעת עד כמה השדה הכירורגי "קפוא" (<span class="term" dir="ltr">frozen neck</span>).</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>פתולוגיה</th><th>מיקום הפגם</th><th>סוג פגם אופייני</th></tr></thead>
+  <tbody>
+    <tr><td>SCC ראשוני</td><td>היפופרינקס וושט צווארי</td><td>לרוב חלקי (partial)</td></tr>
+    <tr><td>SCC חוזר</td><td>היפופרינקס וושט צווארי</td><td>לרוב היקפי (circumferential)</td></tr>
+    <tr><td>סרטן תריס מתקדם/חוזר</td><td>היפופרינקס וושט צווארי</td><td>לרוב היקפי</td></tr>
+    <tr><td>גידולי ושט מבודדים</td><td>ושט צווארי, גרון שלם</td><td>לרוב חלקי</td></tr>
+    <tr><td>פיסטולות פרינגו/טרכאו-אזופגיאליות</td><td>ושט צווארי או היפופרינקס</td><td>לרוב חלקי</td></tr>
+    <tr><td>סטריקטורה אנסטומוטית</td><td>ושט צווארי</td><td>לרוב היקפי</td></tr>
+    <tr><td>סטריקטורה מהקרנה</td><td>היפופרינקס/ושט צווארי</td><td>חלקי או היקפי, לפי חומרה</td></tr>
+  </tbody>
+</table>
+</div>
+<p>נבחנת גם זמינות האתר התורם (<span class="term" dir="ltr">donor site</span>): עובי ואיכות עור באמה, ירך, בטן, חזה קדמי; היסטוריית ניתוח/טראומה. יש לבצע <b><span class="term" dir="ltr">Allen's test</span></b> טרום ניתוחית להערכת זרימת דם דרך העורק האולנרי כשמתכננים פלאפ מהאמה (רדיאלי או ulnar perforator). בפלאפ ג'ג'ונום, ניתוח בטני קודם ותחלואה קשה הם קונטרא-אינדיקציה יחסית.</p>
+
+<h2><span class="num">4</span> בחירת פלאפ - עקרונות ואלגוריתם</h2>
+<p>ההיסטוריה של תחום זה עברה מ<span class="term" dir="ltr">deltopectoral flap</span> (שיעור פיסטולה/תמותה גבוה) לעידן ה<b><span class="term" dir="ltr">pectoralis major</span></b> (עד שנות ה-80), ואז לעידן הפלאפים החופשיים המיקרו-וסקולריים: תחילה <b><span class="term" dir="ltr">free jejunal flap</span></b> ("תקן הזהב" בשנות ה-80-90), ואז <b><span class="term" dir="ltr">radial forearm flap</span></b> לפגמים חלקיים, ומאז 2002 - <b><span class="term" dir="ltr">anterolateral thigh (ALT) flap</span></b>, שהחליף כמעט לחלוטין את שני קודמיו כפלאפ המועדף (פותח לשחזור זה על ידי הכותב הבכיר של הפרק בעצמו).</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מדד</th><th>ALT / AMT / PAP</th><th>ג'ג'ונום <span class="term" dir="ltr">Jejunum</span></th><th>אמה <span class="term" dir="ltr">RFF / UAP</span></th></tr></thead>
+  <tbody>
+    <tr><td>הרמת פלאפ</td><td>בינונית</td><td>בינונית</td><td>קלה</td></tr>
+    <tr><td>עובי</td><td>יכול להיות עבה מדי</td><td>טוב</td><td>טוב</td></tr>
+    <tr><td>ריפוי ראשוני</td><td>טוב</td><td>הכי טוב</td><td>טוב</td></tr>
+    <tr><td>תחלואת אתר תורם</td><td>נמוכה</td><td>גבוהה</td><td>בינונית</td></tr>
+    <tr><td>שיעור פיסטולה</td><td>נמוך</td><td>נמוך</td><td>בינוני-גבוה</td></tr>
+    <tr><td>שיעור סטריקטורה</td><td>נמוך</td><td>גבוה</td><td>בינוני</td></tr>
+    <tr><td>איכות קול TEP</td><td>טובה</td><td>גרועה ("רטובה")</td><td>טובה</td></tr>
+    <tr><td>בחירה לפגם היקפי</td><td>ראשון</td><td>שלישי</td><td>שני</td></tr>
+    <tr><td>בחירה לפגם חלקי</td><td>כן</td><td>לא</td><td>כן</td></tr>
+    <tr><td>קונטרא-אינדיקציה</td><td>ירך עבה מאוד (השמנה)</td><td>ניתוח בטני קודם/תחלואה קשה</td><td>מטופל רזה עם זרוע קטנה (לפגם היקפי)</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">אלגוריתם הבחירה: לפגם <b>חלקי</b> - פלאפ מבוסס-אמה (RFF/UAP); לפגם <b>היקפי</b> במטופל <b>שמן</b> - פלאפ מבוסס-אמה (הירך עבה מדי); לפגם היקפי במטופל <b>לא-שמן</b> - פלאפ ALT/AMT אם זמין, ורק אם לא זמין (ירך עבה מדי או שהוא כבר נוצל, וגם האמה קטנה מדי) - פלאפ ג'ג'ונום חופשי כפתרון אחרון.</p>
+
+<h2><span class="num">5</span> טכניקה כירורגית</h2>
+<h3>פלאפ ALT - עיצוב וקציר</h3>
+<p>עקרון עיצוב גיאומטרי: מכיוון שקוטר הוושט החדש (<span class="term" dir="ltr">neoesophagus</span>) צריך להיות כ-3 ס"מ, לפי הנוסחה <span class="term" dir="ltr">3 × π</span> נדרש רוחב פלאפ של <b>9.4 ס"מ</b> כדי ליצור צינור בקוטר 3 ס"מ. בפגם חלקי - מחסרים את רוחב רירית הלוע הנותרת מ-9.4 ס"מ. מציירים קו בין ה<span class="term" dir="ltr">ASIS</span> לפינה העליונה-לרוחב של הפיקה (קו A-P), ומאתרים 3 פרפורטורים לאורכו (A, B, C) - שיטת "ABC" מדויקת יותר מדופלר ידני, במיוחד בחולים שמנים. לרוב משאירים שני פרפורטורים כדי לחלק את הפלאפ לשני אי-עור: אחד לשחזור הלוע והשני לחשיפת/ניטור הפלאפ או לשחזור צוואר/קנה.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray953.png?width=700" alt="חתך סגיטלי של הגרון וההיפופרינקס">
+<p class="media-cap">חתך סגיטלי מ-Gray's Anatomy (1918, נחלת הכלל) המראה את הגרון וגבולו עם ההיפופרינקס/ושט - ממחיש את המעבר האנטומי שהפלאפ צריך לגשר עליו. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/EZtgOeWZO5c" title="Anterolateral thigh (ALT) free flap harvest" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת קציר פלאפ ALT חופשי - איתור פרפורטורים, דיסקציה תת-פשיתית והרמת הפלאפ. מקור: YouTube.</p>
+
+<h3>השתלה (Insetting) ומהלך הניתוח</h3>
+<ol>
+<li><b>אנסטומוזה פרוקסימלית</b> מתבצעת ראשונה - תפירת קצה הפלאפ לבסיס הלשון ולרירית הלוע האחורית, תוך הקפדה שלא לפגוע בעצב ההיפוגלוסלי.</li>
+<li>הפלאפ נתפר לצינור (tubed), עם תפר האורך ממוקם פוסטרולטרלית (4 או 8 שעון).</li>
+<li>הוושט הצווארי נחתך לאורך כ-1.5 ס"מ (<span class="term" dir="ltr">spatulation</span>) כדי להרחיב את קוטר האנסטומוזה הדיסטלית ולמנוע סטריקטורה טבעתית.</li>
+<li>הפשיה של הפלאפ משמשת שכבה שנייה לכיסוי קווי התפר ולהפחתת סיכון דליפה.</li>
+<li>שטיפה מקיפה של פצע הצוואר בסליין פושר (2-3 ליטר), <b>לא ישירות על העוקץ הוסקולרי</b> (סיכון לוואזוספזם), והמוסטזיס קפדני למניעת המטומה שעלולה ללחוץ על העוקץ.</li>
+<li>ניתן להשתמש בצינור <span class="term" dir="ltr">Montgomery salivary bypass tube</span> (קוטר 14 מ"מ) כ"תומך" זמני ללומן במקרים של השתלה קשה, פלאפ עבה, ושט קטן מאוד, או רקמה פגועה מהקרנה.</li>
+</ol>
+
+<h3>פלאפים חלופיים</h3>
+<ul>
+<li><b><span class="term" dir="ltr">Anteromedial thigh (AMT)</span></b> - "פלאפ גיבוי" כשאין פרפורטור ALT מתאים (נמצא רק בכ-51% מהירכיים), אותו עוקץ משותף - מאפשר פלאפ כימרי.</li>
+<li><b><span class="term" dir="ltr">Profunda artery perforator (PAP)</span></b> - אנטומיה עקבית יותר אך הירך המדיאלית עבה יותר מהלטרלית - פחות אידיאלי.</li>
+<li><b><span class="term" dir="ltr">Radial forearm flap (RFF)</span> / <span class="term" dir="ltr">Ulnar artery perforator (UAP)</span></b> - הבחירה השנייה של המחבר הבכיר, בעיקר במטופלים שמנים או לתיקון פיסטולות/סטריקטורות לאחר כישלון פלאפ קודם (נדרש פלאפ דק במיוחד). UAP מועדף היום על RFF: צלקת פחות בולטת, ללא גירעון תחושתי, פחות שיער, יותר סגירה ראשונית.</li>
+<li><b><span class="term" dir="ltr">Free jejunal flap</span></b> - שמור לפגמים היקפיים בחולים עם ירך עבה מדי וזרוע קטנה מדי. חיסרון: ניתוח בטן נוסף, תוצאות דיבור גרועות יותר.</li>
+<li><b><span class="term" dir="ltr">Supercharged pedicled jejunum</span></b> - לשחזור וושט טוטלי (כשגסטריק פול-אפ אינו בטוח/זמין): כריתת קיבה קודמת, קיבה מעורבת בגידול, קיבה מוקרנת, כישלון גסטריק פול-אפ, או לרינגופרינגקטומי טוטלי בו-זמנית.</li>
+<li><b><span class="term" dir="ltr">Pectoralis major</span></b> - הפלאפ המחתי היחיד שעדיין רלוונטי; לשימוש ראשוני בגברים רזים או להצלה.</li>
+</ul>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/gB9-4ECqQ5M" title="Supercharged Pedicled Jejunum for Esophageal Reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת שחזור וושט טוטלי עם פלאפ ג'ג'ונום מחתי "מחוזק" (supercharged) - מנהרה רטרוסטרנלית והעברת מקטע המעי לצוואר. מקור: YouTube.</p>
+
+<h3>ניהול "צוואר קפוא" (Frozen Neck)</h3>
+<p>צוואר קפוא = פיברוזיס חמור ללא מישורי רקמה, משני להקרנה + ניתוח קודם (כמו ניתוח צוואר). שלושה אתגרים: (1) חוסר בכלי דם מקבלים; (2) סיכון לקרע עורק התרדמה; (3) פגמי עור/קנה נלווים. <b class="key">הפתרון המרכזי: להשתמש בכלי הדם הצוואריים הרוחביים (<span class="term" dir="ltr">transverse cervical vessels</span>) כמקבלים במקום לחפש בסביבת עורק התרדמה - "פשוט להתרחק ממנו".</b> כלי הדם הצוואריים הרוחביים זמינים ב-92% מהמקרים ובקוטר דומה לעוקץ הפלאפ. פלאפ ALT רב-איים (multi-island) מאפשר בו-זמנית שחזור לוע, חידוש עור צוואר ושחזור טרכאוסטומה - יתרון גדול על פני ג'ג'ונום/אמה שדורשים פלאפ שני נפרד לעור הצוואר.</p>
+
+<h2><span class="num">6</span> טיפול לאחר הניתוח והחלמה</h2>
+<p><b>פרוטוקול התאוששות מהירה (<span class="term" dir="ltr">RAP - Rapid Awakening Protocol</span>):</b> המטופלים מתעוררים מייד ועוברים לקומת ניטור פלאפים ללא אשפוז שגרתי בטיפול נמרץ עם הרדמה מתמשכת - הוכח שמפחית סיבוכים רפואיים, מקצר אשפוז ומוזיל עלות. ניטור פלאפ: כל שעה ב-48 השעות הראשונות, כל שעתיים ב-48 הבאות, ואז כל 4 שעות.</p>
+
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סוג פלאפ</th><th>עם הקרנה קודמת</th><th>ללא הקרנה קודמת</th></tr></thead>
+  <tbody>
+    <tr><td>ג'ג'ונום / supercharged jejunum</td><td>14 יום</td><td>7 ימים</td></tr>
+    <tr><td>ALT / AMT / PAP</td><td>6 שבועות</td><td>2 שבועות</td></tr>
+    <tr><td>RFF / UAP</td><td>6 שבועות</td><td>2 שבועות</td></tr>
+  </tbody>
+</table>
+</div>
+<p>עד לביצוע <b><span class="term" dir="ltr">MBS - Modified Barium Swallow</span></b> (בליעת בריום מותאמת, בהנחיית קלינאית תקשורת), האכלה נעשית דרך זונדה/גסטרוסטומיה. אם ה-MBS תקין - מתחילים דיאטה נוזלית ומתקדמים בהדרגה. הסבר לפער בזמנים: פלאפים פאשיוקוטניים מחלימים לאט יותר תחת חשיפה מתמדת לרוק (ראו סעיף מנגנון).</p>
+
+<h3>שיקום קול</h3>
+<p><span class="term" dir="ltr">TEP - Tracheoesophageal Puncture</span> - יצירת חיבור בין הקנה לוושט החדש להחדרת תותב קול. <b>TEP ראשוני</b> (בזמן הניתוח) - שיעור כישלון גבוה יחסית בשני סוגי הפלאפים; <b>TEP משני</b> (כ-3 חודשים לאחר הניתוח, לאחר החלמה מלאה) - מועדף היום ומראה תוצאות טובות משמעותית (81% דיבור שוטף לעומת 41% ב-TEP ראשוני). איכות הדיבור טובה משמעותית עם פלאפים פאשיוקוטניים (ALT/RFF) - "רטוב" ופחות ברור עם ג'ג'ונום, כי דופן המעי הרכה ומפרישה ריר לא מאפשרת רטט קול תקין.</p>
+
+<h2><span class="num">7</span> סיבוכים וניהולם</h2>
+<h3>פיסטולה פרינגוקוטנאית</h3>
+<p>שיעור בפרסום המחבר עם ALT: 9%. גורמי סיכון: הקרנה קודמת, תפירה לא נאותה, רקמה באיכות ירודה באתר האנסטומוזה. פיסטולות קטנות ללא הישנות גידול או חסימה דיסטלית לרוב נרפאות ספונטנית תוך שבועיים בטיפול שמרני (הימנעות מאכילה + טיפול מקומי בפצע). <b class="key">בפיסטולות גדולות/עם זיהום - יש לבצע CT לשלילת אבצס ולהעריך את הקרבה לעורק התרדמה; אם מזוהה אבצס/חלל מת ליד העורק - דיברידמנט מוקדם ואגרסיבי הוא המפתח למניעת קרע קטלני, ומילוי החלל בפלאפ שריר (כמו פקטורליס מייג'ור) בעיקר במטופלים מוקרנים.</b> אסור לנסות לתפור מחדש דליפה בשלב החריף - זה לא יצליח ועלול להגדיל את הנזק.</p>
+
+<h3>סטריקטורה אנסטומוטית</h3>
+<p>נדירה באנסטומוזה הפרוקסימלית עם ALT (אלא אם הפלאפ נפגע), אך שכיחה יותר בדיסטלית, במיוחד בפגמים היקפיים. הטיפול המועדף כיום: <b>הרחבה בבלון אנדוסקופית</b> על ידי גסטרואנטרולוג (הרחבה כירורגית בהרדמה כללית ננטשה בשל סיכון לפרפורציה). מקרים עמידים עשויים לדרוש שחזור כירורגי עם פלאפ אמה רדיאלי דק.</p>
+
+<h3>זיהום פצע צוואר</h3>
+<p>לרוב 5-7 ימים לאחר הניתוח, משני לחשיפה ממושכת וזיהום מהפה בזמן הניתוח. טיפול: שטיפה, ניקוז ודיברידמנט מוקדמים; לרוב לא נדרש כיסוי רקמה נוסף. בחולי סוכרת הסימנים עלולים להיות חלשים (ללא חום/אדמומיות) - עלייה ברמת הסוכר או בספירת לויקוציטים עשויה להיות הרמז היחיד.</p>
+
+<h2><span class="num">8</span> פרוצדורות משניות</h2>
+<ul>
+<li><b>דיבולקינג (<span class="term" dir="ltr">flap debulking</span>)</b> - הקטנת נפח עודף של פלאפ ALT (בעיקר בחולים שמנים) בשאיבת שומן וכריתת עור עודף, בד"כ 6-12 חודשים לאחר הניתוח (מאוחר יותר אם צפויה הקרנה נוספת שתכווץ את הפלאפ).</li>
+<li><b><span class="term" dir="ltr">Tracheal stomaplasty</span></b> - יצירת "מסגרת" סביב הטרכאוסטומה (למשל שתל פשיה מהירך) כדי לאפשר החזקת כפתור דיבור ידיים-חופשיות.</li>
+</ul>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">ALT wins - 9.4</span></h3>
+  <p>
+    זכרו את <b>9.4 ס"מ</b> כרוחב פלאפ נדרש לצינור בקוטר 3 ס"מ (3×π&#8776;9.4). ולבחירת הפלאפ: <b>A</b>LT קודם לכל (זמינות, גמישות, שני איי-עור, איכות קול טובה); <b>L</b>ow BMI נדרש (בשמנים - לאמה); <b>T</b>hin arms/thick thighs contraindicate jejunum - ג'ג'ונום רק כשגם הירך עבה מדי וגם הזרוע קטנה מדי.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני צינור מים ישן (הוושט המוקרן) שהצנרת שלו החלידה לגמרי (endarteritis obliterans). כדי לתקן אותו, לא מספיק להדביק טלאי על הצינור החלוד - צריך להביא <b>קטע צינור חדש לגמרי עם ברז מים פרטי משלו</b> (הפלאפ החופשי עם עוקץ הוסקולרי שלו). אבל מסביב לצינור החדש כל הזמן "מטפטף" נוזל חומצי (הרוק) - אם יש אפילו סדק קטן בחיבור, הנוזל ימצא אותו וידלוף (פיסטולה), ואם הטפטוף נמשך זמן רב מדי, הוא "יאכל" את דרכו עד לצינור הראשי הגדול שליד - עורק התרדמה.</p>
+  <svg class="diagram" viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg">
+    <title>צינור המים החלוד והטלאי החדש</title>
+    <rect x="20" y="70" width="180" height="40" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+    <text x="110" y="95" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">צינור ישן וחלוד</text>
+    <rect x="320" y="60" width="180" height="60" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="410" y="85" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">קטע חדש + ברז</text>
+    <text x="410" y="103" font-size="11" text-anchor="middle" fill="#1e3a8a">(פלאפ + עוקץ)</text>
+    <path d="M200,90 L320,90" stroke="#374151" stroke-width="3" fill="none" stroke-dasharray="4 3"/>
+    <circle cx="260" cy="90" r="7" fill="#fbbf24" stroke="#78350f"/>
+    <text x="260" y="130" font-size="11" text-anchor="middle" fill="#78350f">נקודת חיבור - כאן דולף</text>
+    <path d="M260,97 L260,150" stroke="#a21caf" stroke-width="2" stroke-dasharray="2 2"/>
+    <text x="260" y="165" font-size="11" text-anchor="middle" fill="#701a75">טפטוף רוק מתמשך</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=vd1JE2fxdL0" target="_blank">Anterolateral Thigh Free Flap Harvest &amp; Closure - YouTube</a>
+    <div class="desc">הדגמה מלאה נוספת של קציר פלאפ ALT וסגירת אתר התורם.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Gray954.png" target="_blank">Gray954.png - Wikimedia Commons</a>
+    <div class="desc">תרשים נוסף מ-Gray's Anatomy של הגרון וסביבתו, נחלת הכלל.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Tracheo-esophageal_puncture" target="_blank">Tracheo-esophageal puncture - Wikipedia</a>
+    <div class="desc">הסבר והמחשה של פרוצדורת ה-TEP לשיקום דיבור לאחר לרינגקטומי.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/29032878/" target="_blank">The anterolateral thigh perforator flap in pharyngo-esophageal reconstruction - PubMed</a>
+    <div class="desc">מאמר מקור מפורט על שימוש ב-ALT לשחזור פרינגואזופגיאלי, מאותה קבוצת מחברים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 64, מעשן כבד ושותה אלכוהול, עבר לרינגופרינגקטומי טוטלי וכריתת צוואר עקב סרטן היפופרינקס חוזר לאחר הקרנה קודמת. שוחזר עם פלאפ ALT היקפי. ביום ה-9 לאחר הניתוח מבחינים בהפרשה מוגלתית-רוקית דרך פצע הצוואר, עם אודם קל סביב. אין חום גבוה. ה-CT מדגים אוסף נוזל קטן בסמוך לעורק התרדמה המשותף.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הפעולה הראשונה והחשובה ביותר שיש לבצע במקרה זה?</div>
+  <button class="opt" data-i="0">לנסות לתפור מחדש את דליפת האנסטומוזה מייד</button>
+  <button class="opt" data-i="1">דיברידמנט מוקדם ואגרסיבי של האוסף/הזיהום סביב עורק התרדמה, עם מילוי החלל בפלאפ שריר</button>
+  <button class="opt" data-i="2">להמתין שבועיים ולחזור על MBS בלבד ללא כל התערבות</button>
+  <button class="opt" data-i="3">להתחיל דיאטה רגילה כדי לזרז ריפוי</button>
+  <div class="explain">התשובה הנכונה: כאשר יש אוסף/זיהום בקרבת עורק התרדמה, דיברידמנט מוקדם ואגרסיבי הוא קריטי למניעת קרע קטלני של העורק - זהו ההיגיון המרכזי שהפרק מדגיש. מילוי החלל בפלאפ שריר (כמו פקטורליס מייג'ור) מסייע לריפוי מהיר ומגן על העורק. תפירה חוזרת בשלב החריף (תשובה 1) לא תצליח ועלולה להזיק. המתנה פסיבית (תשובה 3) מסוכנת נוכח הקרבה לעורק. דיאטה רגילה (תשובה 4) אסורה כל עוד יש פיסטולה פעילה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע נדרש רוחב פלאפ של כ-9.4 ס"מ לשחזור פגם היקפי בצינור בקוטר 3 ס"מ?</div>
+  <button class="opt" data-i="0">זהו רוחב האמה הממוצע ואין לכך קשר גיאומטרי</button>
+  <button class="opt" data-i="1">כדי להשאיר מרווח בטיחות לכריתה חוזרת אם יש שוליים חיוביים</button>
+  <button class="opt" data-i="2">מקדם ההיקף למול הקוטר הוא π, כך שרוחב 3×π&#8776;9.4 ס"מ מספק היקף שווה לקוטר הרצוי כשהפלאפ נתפר לצינור</button>
+  <button class="opt" data-i="3">כדי לאפשר שני אי-עור נפרדים בכל פלאפ</button>
+  <div class="explain">התשובה הנכונה: זהו חישוב גיאומטרי פשוט - היקף מעגל = π &times; קוטר. כדי שהפלאפ שנתפר לצינור (tubed) ייצור לומן בקוטר 3 ס"מ, צריך רוחב פלאפ (שהופך להיקף הצינור) של כ-3 &times; π &asymp; 9.4 ס"מ. תשובות 1, 2, 4 אינן הסיבה האמיתית שמצוינת בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מטופלת שמנה עם ירך עבה מאוד זקוקה לשחזור פגם היקפי לאחר לרינגופרינגקטומי. איזה פלאפ מועדף לפי האלגוריתם בפרק?</div>
+  <button class="opt" data-i="0">פלאפ מבוסס-אמה (רדיאלי או ulnar artery perforator)</button>
+  <button class="opt" data-i="1">פלאפ ALT תמיד, ללא קשר לעובי הירך</button>
+  <button class="opt" data-i="2">פלאפ ג'ג'ונום חופשי כברירת מחדל בכל מטופלת שמנה</button>
+  <button class="opt" data-i="3">פלאפ פקטורליס מייג'ור כברירת מחדל</button>
+  <div class="explain">התשובה הנכונה: באלגוריתם שבפרק, כאשר הירך עבה מדי (בעיקר בנשים, שבהן הרקמה התת-עורית בירך יכולה להיות כפולה מגברים), הבחירה הראשונה עוברת לפלאפ מבוסס-אמה (RFF/UAP), שהוא דק יותר. ALT (תשובה 2) נפסל כי הוא עלול להיות עבה מדי לצינור צר. ג'ג'ונום (תשובה 3) שמור למקרה שגם האמה קטנה מדי בנוסף לירך העבה. פקטורליס מייג'ור (תשובה 4) שמור להצלה ולא לשחזור ראשוני סטנדרטי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו ההסבר המנגנוני לכך שפלאפ ג'ג'ונום מאפשר האכלה מוקדמת יותר בהשוואה לפלאפ ALT?</div>
+  <button class="opt" data-i="0">ג'ג'ונום עמיד יותר לזיהום חיידקי</button>
+  <button class="opt" data-i="1">ג'ג'ונום מקבל אספקת דם כפולה בעוד ש-ALT מקבל אספקת דם יחידה</button>
+  <button class="opt" data-i="2">אין הבדל אמיתי, זהו רק נוהג מוסדי שרירותי</button>
+  <button class="opt" data-i="3">רירית המעי מותאמת מטבעה לסביבה רטובה ואנזימטית ולכן מחלימה מהר, בעוד עור/פאשיה שאינם רגילים לחשיפה מתמדת לרוק נוטים ל"התקלפות" קצה ולריפוי איטי בכוונה שנייה</button>
+  <div class="explain">התשובה הנכונה: ההסבר הפיזיולוגי בפרק הוא שרקמת המעי "רגילה" מטבעה לסביבה רטובה ואנזימטית ולכן מרפאת מהר גם כשטובלת ברוק. פלאפים פאשיוקוטניים, לעומת זאת, מיועדים מטבעם לסביבה יבשה יחסית, וכשהם חשופים לרוק 24 שעות ביממה חלק מקצה הפלאפ "מתקלף" (slough) ומחלים בכוונה שנייה - מה שמסביר שיעור גבוה יותר של פיסטולות מאוחרות ואת הצורך בדחיית האכלה. תשובות 1-3 אינן ההסבר שמופיע בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהי הגישה המועדפת היום לניהול כלי דם מקבלים בשחזור על רקע "צוואר קפוא" (Frozen Neck)?</div>
+  <button class="opt" data-i="0">דיסקציה נרחבת סביב עורק התרדמה כדי לחשוף כלי דם גדולים ואמינים יותר</button>
+  <button class="opt" data-i="1">שימוש בכלי הדם הצוואריים הרוחביים (transverse cervical vessels), הרחק מעורק התרדמה</button>
+  <button class="opt" data-i="2">דחיית הניתוח עד שהפיברוזיס יחלוף מעצמו</button>
+  <button class="opt" data-i="3">שימוש בעורק התרדמה עצמו כעורק מקבל תמיד</button>
+  <div class="explain">התשובה הנכונה: העיקרון המרכזי בניהול צוואר קפוא הוא "להתרחק" מעורק התרדמה ככל האפשר ולהשתמש בכלי הדם הצוואריים הרוחביים כמקבלים - הם זמינים ב-92% מהמקרים, בקוטר מתאים, ונמצאים הרחק מהאזור הפיברוטי והמסוכן סביב העורק. דיסקציה סביב עורק התרדמה בצוואר קפוא (תשובה 1) מגבירה משמעותית סיכון לקרע. פיברוזיס אינו חולף מעצמו (תשובה 3). שימוש בעורק התרדמה עצמו כעורק מקבל (תשובה 4) אינו נהוג ומסוכן.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מדוע מועדף כיום TEP משני (secondary) על פני TEP ראשוני (primary) לשיקום דיבור?</div>
+  <button class="opt" data-i="0">TEP משני זול יותר</button>
+  <button class="opt" data-i="1">TEP ראשוני אסור לחלוטין מבחינה רפואית</button>
+  <button class="opt" data-i="2">TEP משני, המבוצע כ-3 חודשים לאחר החלמה מלאה של הרקמה, מראה שיעורי דיבור שוטף גבוהים משמעותית לעומת TEP ראשוני שמבוצע בזמן הניתוח כשהרקמה עדיין לא החלימה</button>
+  <button class="opt" data-i="3">TEP משני אינו דורש בחירת מטופלים קפדנית</button>
+  <div class="explain">התשובה הנכונה: הפרק מדווח שבניסיון המחבר הבכיר, 81% מהמטופלים עם TEP משני הגיעו לדיבור שוטף, לעומת רק 41% עם TEP ראשוני - כנראה משום שבזמן שהרקמה עדיין מחלימה (TEP ראשוני), שיעור הכישלון גבוה יותר בשני סוגי הפלאפים. בחירת מטופלים קפדנית (הפוך מתשובה 4) עדיין נדרשת גם ב-TEP משני - מוטיבציה ותאימות המטופל קריטיות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שחזור היפופרינקס/ושט צווארי - לרוב לאחר לרינגופרינגקטומי לסרטן; השדה כמעט תמיד מוקרן (כלי דם פגומים - endarteritis obliterans), ולכן חובה פלאפ עם אספקת דם עצמאית.</li>
+    <li>הרוק (קורוזיבי + חיידקי, 24/7) הוא מקור הסיכון המרכזי לפיסטולה &larr; דלקת כרונית &larr; פוטנציאל לקרע עורק התרדמה (הסיבוך הקטלני ביותר).</li>
+    <li><b>ALT flap</b> הוא הבחירה הראשונה כיום לרוב הפגמים (היקפיים וחלקיים) - רוחב 9.4 ס"מ ליצירת לומן 3 ס"מ (3×π); ניתן לחלוקה לשני אי-עור (פלאפ + חשיפת עור צוואר בו-זמנית).</li>
+    <li>פלאפ מבוסס-אמה (RFF/UAP) - בחירה שנייה, מועדף בשמנים ובתיקון פיסטולות/סטריקטורות.</li>
+    <li>ג'ג'ונום חופשי - כשהירך עבה מדי וגם הזרוע קטנה מדי; supercharged jejunum - לשחזור וושט טוטלי.</li>
+    <li>"צוואר קפוא" - השתמשו בכלי הדם הצוואריים הרוחביים כמקבלים, הימנעו מדיסקציה סביב עורק התרדמה.</li>
+    <li>טיפול בפיסטולה: קטנות - שמרני; גדולות/עם אבצס ליד העורק - דיברידמנט מוקדם ואגרסיבי + כיסוי בפלאפ שריר.</li>
+    <li>TEP משני (3 חודשים) עדיף על TEP ראשוני; דיבור עם פלאפ פאשיוקוטני איכותי יותר מדיבור עם ג'ג'ונום ("רטוב").</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

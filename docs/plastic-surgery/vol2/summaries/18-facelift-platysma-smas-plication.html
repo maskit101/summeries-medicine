@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 18: פייסליפט - פליקציית פלטיזמה-SMAS</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 18: פייסליפט - פליקציית פלטיזמה-SMAS <span class="term" dir="ltr">Facelift: Platysma-SMAS Plication</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: Aesthetic Surgery | פרק 9.5, מאת Miles G. Berry, James D. Frame III, Dai M. Davies</div>
+
+<p>זהו אחד מכמה פרקים בספר שמתארים גישות שונות למניפולציה של ה-<span class="term" dir="ltr">SMAS</span> (המערכת השרירית-אפונורוטית השטחית) בניתוח מתיחת פנים. הטכניקה המתוארת כאן - <b>פליקציית פלטיזמה-SMAS</b> (<span class="term" dir="ltr">Platysma-SMAS Plication, PSP</span>) - היא גישה שמבוססת על <b>תפירת קיפול (פליקציה)</b> של ה-SMAS על עצמו, בלי הרמה נרחבת מתחת לשכבה (<span class="term" dir="ltr">sub-SMAS dissection</span>) ובלי כריתה שלו. המטרה: לשמר את רוב היתרונות של הרמת SMAS מלאה, תוך הפחתת הסיכון לעצב הפנים וזמן ההחלמה.</p>
+
+<h2><span class="num">1</span> למה בכלל "פליקציה" ולא הרמה או כריתה - הרציונל</h2>
+<div class="mechanism">
+  <p class="chain">
+    מאז שתואר ה-SMAS לראשונה על ידי <span class="term" dir="ltr">Skoog</span> בשנות ה-70, ופורסם בצורה קלאסית על ידי <span class="term" dir="ltr">Mitz ו-Peyronie</span> ב-1976, כל טכניקות הפייסליפט המודרניות מתבססות עליו - אך יש חילוקי דעות עצומים <b>מה בדיוק עושים איתו</b>: מרימים אותו כפלאפ (<span class="term" dir="ltr">elevation/advancement</span>), חותכים אותו (<span class="term" dir="ltr">SMASectomy</span>), או מקפלים אותו על עצמו בתפר (<span class="term" dir="ltr">plication</span>) בלי לגעת בו מתחת לפני השטח.
+  </p>
+  <p>
+    הבעיה עם הרמה נרחבת (<span class="term" dir="ltr">sub-SMAS dissection</span>): ה-SMAS <b>דל-כלי-דם יחסית</b> (<span class="term" dir="ltr">relatively avascular</span>) - כלומר אספקת הדם שלו מוגבלת, ולכן כשמפרידים אותו מהרקמה שמתחתיו הוא מתנהג כמעט כמו <b>שתל חופשי (graft)</b> ולא כפלאפ וסקולרי אמיתי. זה הופך הרמה נרחבת לניתוח ארוך וזהיר יותר (סיכון גבוה יותר לעצב הפנים שרץ מתחת ל-SMAS), ובניתוחים חוזרים (<span class="term" dir="ltr">secondary facelift</span>) שכבר עברו הרמה בעבר, מה שנשאר הוא לרוב <b>מסת רקמת צלקת</b> דלת-כלי-דם שקשה לתפור אליה בביטחון.
+  </p>
+  <p>
+    לכן ה-<b>PSP lift</b> נבחר לא לגעת בכלל מתחת ל-SMAS: הוא <b>אוחז ב-SMAS מלמעלה</b> ומקפל אותו לכיוון פוסטרוסופריורי (אחורה-מעלה) בתפר, בלי הפרדה מהרקמה העמוקה שמתחתיו. כך העצב הפני, שרץ <b>מתחת</b> ל-SMAS, כלל לא נחשף - וזה מה שהופך את הטכניקה ל<b>בטוחה במיוחד</b>, גם ב-SMAS דק ואטרופי, וגם בניתוחים חוזרים.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+  <title>שלוש גישות לטיפול ב-SMAS</title>
+  <rect x="620" y="20" width="210" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="725" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">הרמה נרחבת (Elevation)</text>
+  <text x="725" y="68" font-size="11.5" text-anchor="middle" fill="#1e3a8a">חושף את עצב הפנים</text>
+  <text x="725" y="86" font-size="11.5" text-anchor="middle" fill="#1e3a8a">ארוך, סיכון גבוה יותר</text>
+
+  <rect x="330" y="20" width="210" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="435" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כריתה (SMASectomy)</text>
+  <text x="435" y="68" font-size="11.5" text-anchor="middle" fill="#7f1d1d">כריתת רצועת SMAS</text>
+  <text x="435" y="86" font-size="11.5" text-anchor="middle" fill="#7f1d1d">כוח מרוכז מרחוק מהלסת/NLF</text>
+
+  <rect x="40" y="20" width="230" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="155" y="48" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">פליקציה (PSP)</text>
+  <text x="155" y="68" font-size="11.5" text-anchor="middle" fill="#065f46">תפר קיפול מעל ה-SMAS</text>
+  <text x="155" y="86" font-size="11.5" text-anchor="middle" fill="#065f46">עצב הפנים לא נחשף כלל</text>
+
+  <rect x="120" y="150" width="620" height="65" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="178" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">תפר קרוב ככל האפשר לנקודת ההרמה הרצויה = האפקט החזק ביותר</text>
+  <text x="430" y="197" font-size="12" text-anchor="middle" fill="#78350f">אפשר למקם תפרים בכל וקטור נדרש - "תפירה אישית" לכל מטופל</text>
+
+  <polygon points="155,150 149,130 161,130" fill="#047857"/>
+  <line x1="155" y1="150" x2="155" y2="130" stroke="#047857" stroke-width="2"/>
+</svg>
+<p class="figcap">שלוש הגישות המרכזיות למניפולציה של ה-SMAS בפייסליפט, ומה מייחד את הפליקציה.</p>
+
+<p class="key-box">שלוש הטכניקות (הרמה, כריתה, פליקציה) לא מראות הבדל משמעותי בתוצאה לטווח קצר או ארוך במחקרים שהושוו (כולל מחקר תאומים זהים שעברו טכניקות שונות בכל צד פנים!) - ולכן ההיגיון אומר: <b>אם התוצאה דומה, עדיף לבחור בטכניקה עם הסיכון הנמוך ביותר לעצב הפנים.</b></p>
+
+<h2><span class="num">2</span> אנטומיה רלוונטית</h2>
+<p>כדי להבין למה ה-PSP בטוח יחסית, צריך להכיר את סדר השכבות בפנים מהעור פנימה:</p>
+<table>
+  <thead><tr><th>שכבה</th><th>מה זה</th></tr></thead>
+  <tbody>
+    <tr><td>1. עור (<span class="term" dir="ltr">skin</span>)</td><td>השכבה החיצונית - זו שמורמת ונמתחת בסוף הניתוח.</td></tr>
+    <tr><td>2. שומן תת-עורי (<span class="term" dir="ltr">subcutaneous fat</span>)</td><td>שכבת מגן בין העור ל-SMAS; כאן מתבצעת הדיסקציה התת-עורית ב-PSP.</td></tr>
+    <tr><td>3. <span class="term" dir="ltr">SMAS</span> (המערכת השרירית-אפונורוטית השטחית) וברציפות אליו ה-<span class="term" dir="ltr">platysma</span> בצוואר</td><td>שכבה סיבית-שרירית רציפה שעוטפת ומקשרת את שרירי הפנים השטחיים; ב-PSP <b>כאן בדיוק</b> נתפרת הפליקציה - מעליה, לא מתחתיה.</td></tr>
+    <tr><td>4. פאשיה עמוקה שקופה (<span class="term" dir="ltr">parotidomasseteric fascia</span>)</td><td>הפאשיה הקבועה-יחסית מעל בלוטת הפרוטיד והמסטר, שאליה מעגנים את תפר ה-SMAS (נקודת עיגון יציבה שלא זזה).</td></tr>
+    <tr><td>5. ענפי עצב הפנים (<span class="term" dir="ltr">facial nerve branches</span>)</td><td>רצים <b>מתחת</b> ל-SMAS, מעל הפאשיה העמוקה - כלומר בדיוק בשכבה שה-PSP <b>לא</b> נכנס אליה כלל.</td></tr>
+  </tbody>
+</table>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Head_facial_nerve_branches.jpg?width=700" alt="ענפי עצב הפנים">
+<p class="media-cap">חמשת הענפים החוץ-גולגולתיים של עצב הפנים (טמפורלי, זיגומטי, בוקאלי, מרגינלי-מנדיבולרי, צווארי) - כולם רצים מתחת ל-SMAS. מקור: Patrick J. Lynch, Yale University, Wikimedia Commons.</p>
+
+<p>שני הענפים ה"מסוכנים" ביותר לפגיעה בפייסליפט הם <b>הענף הטמפורלי</b> (חוצה את קשת הזיגומה - <span class="term" dir="ltr">zygomatic arch</span> - במקום שבו השכבות דחוסות זו לזו, ולכן פגיע במיוחד בהרמות גבוהות) ו<b>הענף המרגינלי-מנדיבולרי</b> (יוצא כ-1–2 ס"מ מזווית הלסת ורץ שטחי יחסית ליד הגבול התחתון של הלסת, ולכן פגיע בדיסקציה בצוואר/לסת). ראשי תיבות מקובלים לחמשת הענפים: <span class="term" dir="ltr">"To Zanzibar By Motor Car"</span> = Temporal, Zygomatic, Buccal, Marginal mandibular, Cervical.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Platysma.png?width=700" alt="שריר הפלטיזמה">
+<p class="media-cap">שריר הפלטיזמה (<span dir="ltr" class="term">platysma</span>) - שריר שטוח דמוי-סדין שממשיך את ה-SMAS מטה לתוך הצוואר, מהפנים העליונות של בית החזה/דלתא ועד הלסת. חולשתו והתרופפותו עם הגיל יוצרות את ה"צוואר תרנגול הודו". מקור: Gray's Anatomy, Wikimedia Commons.</p>
+
+<p>נקודה חשובה: ה-SMAS <b>אינו נעצר בזווית הלסת</b> - הוא ממשיך ברציפות אנטומית לתוך הצוואר כשריר הפלטיזמה. זו הסיבה לשם "פלטיזמה-<b>SMAS</b> פליקציה": אותו עקרון תפירה (עיגון לרקמה יציבה מתחתיו) מיושם הן על ה-SMAS הפני והן על הפלטיזמה הצווארית, בשני תפרים נפרדים אך באותו רציונל.</p>
+
+<h2><span class="num">3</span> אינדיקציות ומתי טכניקה זו מתאימה במיוחד</h2>
+<p>הפרק מדגיש שה-PSP <b>אינו</b> מיועד לכל מטופל, אלא נבחר במיוחד כשהחלופות (הרמת SMAS נרחבת, MACS lift) בעייתיות:</p>
+<ul>
+  <li><b>SMAS דק ואטרופי</b> - כשיש מעט רקמה לעיגון תפר, "אחיזה גדולה" (<span class="term" dir="ltr">large bites</span>) בפליקציה מספקת עיגון בטוח יותר מהרמה שתלושה מדי.</li>
+  <li><b>פייסליפט חוזר / משני (<span class="term" dir="ltr">secondary facelift</span>)</b> - כשה-SMAS כבר הופרד בעבר והפך למסת צלקת דלת-דם, אין מה "להרים" עוד, אבל אפשר עדיין לתפור ולקפל.</li>
+  <li><b>פטוזיס מרוכז בפנים האמצעיות והלסת (jowl)</b> - הטכניקה עובדת הכי טוב כשהבעיה העיקרית היא בלסת ובלחי, פחות מותאמת כפתרון בלעדי לצוואר קשה.</li>
+  <li><b>רצון בזמן החלמה קצר יחסית</b>, אך עם וקטור גמיש יותר מ-MACS lift (שמוגבל לוקטור אנכי בלבד).</li>
+  <li><b>העדפה להימנע מדיסקציה מתחת ל-SMAS</b> - מטופלים או מנתחים ששמים דגש עליון על מזעור הסיכון לעצב הפנים.</li>
+</ul>
+
+<h2><span class="num">4</span> טכניקה כירורגית - שלב אחר שלב</h2>
+<h3>הכנה</h3>
+<p>המטופל מוכן כמו לפייסליפט סטנדרטי, עם <b>הסתננות תת-עורית טומסצנטית</b> (<span class="term" dir="ltr">tumescent infiltration</span>): תערובת של 20 מ"ל בופיבקאין 0.5% ו-1 מ"ל אדרנלין ביחס 1:1000 ב-200 מ"ל תמיסת NaCl 0.9% - משמשת גם להרדמה מקומית וגם לצמצום דימום תוך-ניתוחי (וזוקונסטריקציה).</p>
+
+<h3>שלבי הניתוח</h3>
+<ol>
+  <li><b>חתך</b> - חתך רטרוטרגלי (מאחורי הטרגוס) סטנדרטי, שממשיך אנכית לתוך הקרקפת הטמפורלית, ולעיתים גם לתוך החריץ הפוסט-אוריקולרי (מאחורי האוזן) לפי הצורך.</li>
+  <li><b>דיסקציה תת-עורית</b> - מותאמת אישית להיקף העודף העורי של כל מטופל (לא קבועה כמו ב-MACS שמוגבל לאובל של 5 ס"מ).</li>
+  <li><b>התפר המרכזי (<span class="term" dir="ltr">key suture</span>)</b> - ה-SMAS הקדמי נאחז ומתוח בכיוון פוסטרוסופריורי (אחורה-מעלה), ונתפר בתפר <span class="term" dir="ltr">2-0 PDS</span> (פוליידיאוקסנון, תפר סינתטי שנספג לאט) אל <b>הפאשיה הפרוטידומאסטרית</b> היציבה יחסית שמתחתיו. זהו התפר החשוב ביותר - אפשר "לנסות" אותו זמנית ולבדוק את האפקט על הלסת וקפל האף-שפה (<span class="term" dir="ltr">nasolabial fold</span>) לפני קיבועו הסופי.</li>
+  <li><b>תפרי פלטיזמה-מסטואיד</b> - תפרים דומים מחברים את הפלטיזמה האחורית לפאשיית המסטואיד, ומהדקים את הפלטיזמה הצווארית, משפרים את הגדרת זווית הלסת, ומסייעים <b>למנוע דפורמציית "pixie ear"</b> (עיוות תנוך האוזן שנמשך כלפי מטה בגלל מתח מוגזם על העור סביבו).</li>
+  <li><b>שכבת עדינה שנייה</b> - תפרי אימבריקציה (קיפול עדין נוסף) ב-<span class="term" dir="ltr">3-0 Vicryl</span> מיישרים אי-סדירויות משטח ומוסיפים חוזק.</li>
+  <li><b>כריתת עודף אינפרלובולרי</b> - עודף רקמת SMAS-פלטיזמה מתחת לתנוך האוזן (אחד משני ה"דוג-ירים" שהטכניקה יוצרת) נכרת אחרי הידרודיסקציה, ונסגר ב-2-0 PDS.</li>
+  <li><b>המוסטזיס וסגירה</b> - לאחר עצירת דימום קפדנית, עודף העור נגזר ונסגר <b>ללא מתח</b> מעל נקירת ואקום קטנה, עם תפרי 4-0 ו-6-0 ניילון.</li>
+  <li><b>חבישה</b> - חבישת פייסליפט קלה ולוחצת נשארת למשך הלילה, מוסרת יחד עם הנקז למחרת בבוקר (או מיד לפני שחרור במטופלי יום). תפרים מוסרים ב-4–6 ימים.</li>
+</ol>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/fT3s4OoSLxE" title="3 Facial Layers Explained - Skin, SMAS and Deep Anatomy in Facelift Surgery" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר חזותי על שלוש השכבות המרכזיות בפייסליפט (עור, SMAS, אנטומיה עמוקה) ואיך הן מתייחסות זו לזו - רקע מצוין להבנת מיקום הפליקציה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/kfLf4QtAHhM" title="Dr Sadati Explains His Triple Layer Plication of the SMAS, Facelift Technique" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה של טכניקת פליקציית SMAS רב-שכבתית (גרסה של אותו עיקרון - תפירת קיפול מעל ה-SMAS, בלי הרמה נרחבת מתחתיו) - ממחישה הלכה למעשה את עקרון ה"תפר קרוב לנקודת ההרמה".</p>
+
+<p class="key-box">נקודת הבטיחות הקריטית: מכיוון שאין דיסקציה מתחת ל-SMAS בכלל, <b>עצב הפנים לעולם לא נחשף</b> בשלבי התפירה המרכזיים. הסיכון העיקרי לעצב נותר בעיקר בשלב הדיסקציה התת-עורית עצמה (חיתוך קרוב מדי לפאשיה) ולא בתפירה.</p>
+
+<h2><span class="num">5</span> השוואה: PSP מול MACS lift</h2>
+<p>ה-PSP פותח כתגובה למגבלות שהתגלו עם השנים ב-<span class="term" dir="ltr">MACS lift</span> (<span class="term" dir="ltr">minimal access cranial suspension</span>) - טכניקה זעיר-פולשנית פופולרית המבוססת על תפרי "מיתר ארנק" (<span class="term" dir="ltr">purse-string</span>). הטבלה הבאה מהפרק מסכמת את ההבדלים:</p>
+<table>
+  <thead><tr><th>מאפיין</th><th>PSP</th><th>MACS</th></tr></thead>
+  <tbody>
+    <tr><td>חתך</td><td>טמפורלי אנכי (± הארכה פוסט-אוריקולרית)</td><td>"L" הפוך (קדמי בלבד)</td></tr>
+    <tr><td>פלאפ עורי</td><td>לפי הצורך</td><td>מוגבל לאובל של 5 ס"מ</td></tr>
+    <tr><td>דיסקציה לתוך הצוואר</td><td>כן</td><td>לא</td></tr>
+    <tr><td>פלטיזמופלסטיה</td><td>ישירה (כריתה אינפרלובולרית)</td><td>עקיפה</td></tr>
+    <tr><td>עיגון SMAS</td><td>SMAS אל SMAS/פאשיה יציבה</td><td>SMAS אל הפאשיה הטמפורלית העמוקה</td></tr>
+    <tr><td>אוגמנטציה מלארית</td><td>כן</td><td>לא</td></tr>
+    <tr><td>וקטור</td><td>צפלופוסטריורי (אלכסוני)</td><td>אנכי בעיקר</td></tr>
+    <tr><td>גזירת עור</td><td>מותאמת, ללא מתח</td><td>מותאמת, במתח גבוה</td></tr>
+    <tr><td>צוואר</td><td>מגוון פרוצדורות</td><td>שאיבת שומן ב-95%+</td></tr>
+  </tbody>
+</table>
+<p>המגבלות שהובילו לפיתוח PSP: תפר ה-purse-string ב-MACS קשה למקם בדיוק, אפקט לא תמיד חזק מספיק על הצוואר הלטרלי במטופלים מבוגרים, כאב ראשוני משמעותי עם הגבלת פתיחת פה, ו<b>שני "דוג-ירים" (עודפי עור/רקמה)</b> בוקטור האנכי הטהור - האחד מתחת לתנוך האוזן, והשני בעפעף התחתון (לעיתים מצריך חתך בלפרופלסטיה תחתונה שלא כל מטופל רוצה).</p>
+
+<h2><span class="num">6</span> תוצאות המחקר המקורי</h2>
+<p>הפרק מדווח על עוקבה רציפה של <b>122 מטופלים</b> (117 עם מעקב מספק לניתוח), גיל ממוצע 55 (טווח 29–79), רובם המכריע נשים. שביעות רצון נמדדה בסולם Likert על ידי המטופל והמנתח במקביל:</p>
+<table>
+  <thead><tr><th>מדד</th><th>ערך</th></tr></thead>
+  <tbody>
+    <tr><td>מתאם מטופל-מנתח (r)</td><td>0.76 (גבוה)</td></tr>
+    <tr><td>ציון ממוצע ראשוני (מטופל / מנתח)</td><td>4.45 / 4.49 מתוך 5</td></tr>
+    <tr><td>ציון ממוצע סופי (מטופל / מנתח)</td><td>4.43 / 4.45 מתוך 5</td></tr>
+    <tr><td>השתפרות עם הזמן</td><td>39.3% מהמטופלים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> סיבוכים</h2>
+<table>
+  <thead><tr><th>סיבוך</th><th>שכיחות בעוקבה</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td><b>המטומה</b></td><td>3.4% (4/117)</td><td>הסיבוך השכיח ביותר; כולן טופלו בפינוי (evacuation) תחת הרדמה מקומית ללא פגיעה בתוצאה הסופית.</td></tr>
+    <tr><td>תפקוד לקוי של עצב (כולל)</td><td>4.3%</td><td>מוטורי 3.4%, תחושתי 0.85% - <b>כולם זמניים</b>, אף אחד לא קבוע.</td></tr>
+    <tr><td>תפקוד מוטורי &gt;6 שבועות</td><td>1 מטופל (מתוך 4 עם תסמינים מוטוריים)</td><td>קשור לזיהום איפסילטרלי (לא לפגיעה ישירה בתפר עצמו).</td></tr>
+    <tr><td>ריפוי פצע מושהה</td><td>5 מטופלים</td><td>כולם הוסדרו שמרנית; אנטיביוטיקה פומית נדרשה במקרה אחד בלבד.</td></tr>
+    <tr><td>צלקת היפרטרופית</td><td>2 מטופלים</td><td>טופלו בסטרואיד תוך-נגעי.</td></tr>
+    <tr><td>אלופציה זמנית בחתך הטמפורלי</td><td>קטנה, לא גלויה חברתית</td><td>השתפרה ספונטנית.</td></tr>
+  </tbody>
+</table>
+<p><b>נקודה מרתקת מבחינת בטיחות:</b> <b class="key">כל מקרי הפגיעה העצבית התרחשו בשליש הראשון של המחקר</b> - כלומר בתקופת "עקומת הלמידה" (<span class="term" dir="ltr">learning curve</span>) של המנתחים, לא באקראי לאורך כל התקופה. וכל התפקוד המוטורי שנפגע התאושש <b>במלואו ובמהירות</b> - עדות לבטיחות הבסיסית של הכנסת מחט "עיוורת" לתוך ה-SMAS הפרה-מאסטרי (חשש שמבקרי הטכניקה העלו). מחצית ממקרי שיתוק הענף הפרונטלי במחקר עברו במקביל <b>מתיחת גבות אנדוסקופית</b> - כך שסביר שהפרוצדורה הנלווית, לא ה-PSP עצמו, היא שגרמה לפגיעה בענף זה.</p>
+
+<h2><span class="num">8</span> הצוואר - אתגר נפרד</h2>
+<p>הצוואר נותר אזור בעייתי במיוחד בפייסליפט מכל טכניקה, מכמה סיבות ביומכניות: לרקמות הצוואר <b>תכונות ויסקואלסטיות שונות</b> מרקמות הפנים - "זחילה" (<span class="term" dir="ltr">creep</span>) ו"הרפיית מתח" (<span class="term" dir="ltr">stress relaxation</span>) גבוהות יותר, כלומר הרקמה נוטה "לחזור" ולהתרופף מהר יותר מרקמת הפנים, גם אחרי תיקון מוצלח. בנוסף, תפרים קונבנציונליים ממוקמים מעל קו הלסת בלבד, כך שרפיון הצוואר חוזר לעיתים תוך שבועות ספורים - אלא אם מתייחסים ישירות לאזור.</p>
+<p>בעוקבה, 78.6% מהמטופלים (92/117) עברו טיפול נלווה בצוואר - הנפוצה ביותר: שאיבת שומן בלבד (54 מטופלים). 7.7% הוגדרו כבעלי תוצאת צוואר תת-אופטימלית, ללא מאפיין מקדים ברור שניבא זאת.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/umsDh7Cw8AE" title="What Is the Difference Between a Platysmaplasty and a Neck Lift?" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר קליני קצר על ההבדל בין פלטיזמופלסטיה (תיקון רצועות הפלטיזמה עצמן) לבין הרמת צוואר כללית - רלוונטי להבנת האפשרויות המשלימות ל-PSP באזור הצוואר.</p>
+
+<h2><span class="num">9</span> החלמה - למה לצפות</h2>
+<ul>
+  <li><b>לילה ראשון</b> - חבישת פייסליפט לוחצת ונקז ואקום קטן נשארים; מוסרים למחרת בבוקר (או לפני שחרור, במטופלי יום).</li>
+  <li><b>4–6 ימים</b> - הסרת תפרים.</li>
+  <li><b>שבועות ראשונים</b> - נפיחות ושטפי דם צפויים, בעיקר סביב הצוואר (בגלל התכונות הוויסקואלסטיות שתוארו למעלה, הצוואר "מתיישב" לאט יותר מהפנים).</li>
+  <li><b>תסמינים מחשידים לסיבוך</b> - כאב חד-צדדי גובר (חשד להמטומה - הסיבוך השכיח ביותר, 3.4%), חולשה מוטורית פתאומית בפנים (חשד לפגיעה עצבית, אף כי כולן במחקר היו זמניות), סימני זיהום (חום, אודם מתפשט, הפרשה) - קשורים לסיכון לריפוי פצע מושהה.</li>
+  <li><b>יתרון עיקרי של PSP</b>: בזכות היעדר דיסקציה נרחבת מתחת ל-SMAS, זמן ההחלמה מדווח כ<b>מהיר יחסית</b>, והטכניקה מתאימה גם לניתוח יום (<span class="term" dir="ltr">day-case surgery</span>).</li>
+  <li>מעקב ל-10 שנים במטופלים הראשונים בסדרה הראה <b>עמידות (durability)</b> טובה של התוצאה לאורך זמן.</li>
+</ul>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">P-S-P</span> = Plicate, Stay superficial, Preserve the nerve</h3>
+  <p>
+    <b>P</b> – <span class="term" dir="ltr">Plicate</span> - מקפלים ותופרים את ה-SMAS על עצמו, לא כורתים ולא מרימים.<br>
+    <b>S</b> – <span class="term" dir="ltr">Stay superficial</span> - כל הפעולה מעל ה-SMAS, לא מתחתיו.<br>
+    <b>P</b> – <span class="term" dir="ltr">Preserve the nerve</span> - כיוון שלא יורדים מתחת ל-SMAS, עצב הפנים לא נחשף כלל.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שהעור והרקמות של הלחי הם כמו <b>וילון ארוך מדי</b> שגולש למטה. אפשר לגזור את הבד העודף (כריתה - מסוכן, פוגע במרקם), אפשר למשוך את כל מוט הווילון החוצה מהקיר (הרמה נרחבת - חושף את מה שמאחורי הקיר, כולל חוטי החשמל = עצב הפנים), או פשוט <b>לקפל את הבד העודף ולתפור אותו בקיפול נקי</b> - בדיוק כמו שעושים כשמקצרים וילון בלי לגזור אותו. ה"קיפול" הזה הוא הפליקציה: הכל נשאר במקומו, רק מקופל אחורה ולמעלה ומחובר בבטחה, בלי לגעת בקיר (=ברקמה העמוקה) שמאחוריו.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>קיפול הווילון</title>
+    <rect x="60" y="20" width="380" height="110" fill="#fef9e7" stroke="#d4a72c" stroke-width="2"/>
+    <path d="M60,20 Q100,60 60,130 Q100,90 140,130 Q180,60 140,20 Q180,60 220,20 Q260,90 220,130 Q260,60 300,20 Q340,90 300,130 Q340,60 380,20 Q420,90 380,130 Q420,60 440,20 L440,130 L60,130 Z" fill="none" stroke="#b45309" stroke-width="1.5" opacity="0.5"/>
+    <circle cx="250" cy="75" r="30" fill="#ecfdf5" stroke="#047857" stroke-width="3"/>
+    <text x="250" y="80" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700">קיפול+תפר</text>
+    <line x1="220" y1="45" x2="280" y2="105" stroke="#047857" stroke-width="3"/>
+    <line x1="280" y1="45" x2="220" y2="105" stroke="#047857" stroke-width="3"/>
+    <text x="250" y="165" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">הבד (SMAS) נשאר במקומו - רק מקופל ונתפר</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Head_facial_nerve_branches.jpg" target="_blank">Head facial nerve branches - Wikimedia Commons</a>
+    <div class="desc">קישור ישיר לתמונת ענפי עצב הפנים שהוטמעה למעלה, למקרה שההטמעה לא נטענת.</div>
+  </li>
+  <li>
+    <a href="https://commons.wikimedia.org/wiki/File:Platysma.png" target="_blank">Platysma - Wikimedia Commons (Gray's Anatomy)</a>
+    <div class="desc">קישור ישיר לתמונת שריר הפלטיזמה שהוטמעה למעלה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=fT3s4OoSLxE" target="_blank">3 Facial Layers Explained: Skin, SMAS and Deep Anatomy in Facelift Surgery</a>
+    <div class="desc">סרטון יסודי המסביר את שלוש השכבות המרכזיות בניתוחי פייסליפט - טוב כרקע לפני קריאת סעיף האנטומיה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=kfLf4QtAHhM" target="_blank">Dr Sadati Explains His Triple Layer Plication of the SMAS, Facelift Technique</a>
+    <div class="desc">הדגמת מנתח של טכניקת פליקציית SMAS רב-שכבתית - ממחישה את עקרון התפירה מעל ה-SMAS בעולם האמיתי.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=umsDh7Cw8AE" target="_blank">What Is the Difference Between a Platysmaplasty and a Neck Lift? - Dr. Angela Sturm</a>
+    <div class="desc">הבדלים בין תיקון פלטיזמה ממוקד להרמת צוואר כללית - משלים את סעיף הצוואר.</div>
+  </li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 58, מעשנת לשעבר, מגיעה לייעוץ עם תלונה על "לסת רופסת" (jowling) בולטת וקפלי אף-שפה עמוקים, אך ללא רפיון חמור בצוואר. היא עברה פייסליפט לפני 12 שנה במרכז אחר וחוששת מ"עוד ניתוח גדול". בבדיקה: SMAS דק ומוגבל בממושש, סימני צלקת תת-עורית מהניתוח הקודם, ותנוך אוזן שכבר מעט מתוח כלפי מטה. היא מעוניינת בזמן החלמה קצר ומדגישה חשש מפגיעה בעצב הפנים.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע מטופלת זו (פייסליפט משני, SMAS דק) היא מועמדת טובה במיוחד ל-PSP lift ולא להרמת SMAS נרחבת?</div>
+  <button class="opt" data-i="0">כי PSP תמיד נותן תוצאה טובה יותר מכל טכניקה אחרת</button>
+  <button class="opt" data-i="1">כי אין דיסקציה מתחת ל-SMAS כלל, כך שאין צורך "להרים" רקמת צלקת דלת-דם, ואחיזה גדולה בתפר מפצה על שכבת SMAS דקה</button>
+  <button class="opt" data-i="2">כי PSP הוא הטכניקה היחידה המתאימה לניתוחים חוזרים</button>
+  <button class="opt" data-i="3">כי PSP מבוצע רק בהרדמה מקומית</button>
+  <div class="explain">התשובה הנכונה: בניתוח משני, ה-SMAS שכבר טופל בעבר הוא לרוב מסת צלקת דלת-כלי-דם שקשה "להרים" בבטחה. ה-PSP לא דורש הרמה מתחת ל-SMAS כלל - רק אחיזה ותפירה מלמעלה, ואחיזה גדולה (large bites) בתפר מספקת עיגון טוב יותר גם ברקמה דקה/אטרופית. תשובה 1 מוגזמת - הפרק מציין שאין הבדל תוצאה מובהק בין טכניקות. תשובה 3 שגויה - רוב המטופלים בעוקבה קיבלו הרדמה כללית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו ההבדל המרכזי בווקטור המשיכה בין PSP לבין MACS lift, ומה המשמעות הקלינית?</div>
+  <button class="opt" data-i="0">אין הבדל - שתיהן משתמשות באותו וקטור אנכי בלבד</button>
+  <button class="opt" data-i="1">MACS משתמש בווקטור אלכסוני-אחורי, PSP רק באנכי</button>
+  <button class="opt" data-i="2">PSP מאפשר וקטור צפלופוסטריורי (אלכסוני) הניתן לתאמה אישית, בעוד MACS מוגבל בעיקר לווקטור אנכי - מה שמסביר את שני ה"דוג-ירים" האופייניים ל-MACS</button>
+  <button class="opt" data-i="3">ההבדל בווקטור משפיע רק על משך הניתוח, לא על התוצאה האסתטית</button>
+  <div class="explain">התשובה הנכונה: PSP מאפשר וקטורים מרובים (multivector) כי התפרים מונחים בדיוק היכן שנדרש, בעוד MACS מבוסס תפר purse-string שמגביל בעיקר לווקטור אנכי. הגבלה זו ב-MACS יוצרת עודפי עור/רקמה ("דוג-ירים") מתחת לתנוך האוזן ובזווית העין החיצונית שלא תמיד מתיישבים היטב. תשובה 4 מפספסת שהווקטור משפיע ישירות על התוצאה (למשל אפקט על קפל האף-שפה).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע הסיכון לפגיעה בעצב הפנים נמוך יחסית ב-PSP lift, מבחינה אנטומית?</div>
+  <button class="opt" data-i="0">כי ענפי עצב הפנים רצים מתחת ל-SMAS, וב-PSP אין דיסקציה מתחת ל-SMAS כלל - התפירה נעשית רק מעליו</button>
+  <button class="opt" data-i="1">כי עצב הפנים לא קיים באזור שבו מתבצע הניתוח</button>
+  <button class="opt" data-i="2">כי המנתח משתמש תמיד בניטור עצבי חשמלי תוך-ניתוחי</button>
+  <button class="opt" data-i="3">כי התפר המרכזי מבוצע רק אחרי שהעצב מזוהה ומסומן ישירות</button>
+  <div class="explain">התשובה הנכונה: ענפי עצב הפנים החוץ-גולגולתיים רצים אנטומית מתחת ל-SMAS, מעל הפאשיה הפרוטידומאסטרית. מכיוון ש-PSP אוחז ותופר את ה-SMAS מלמעלה בלבד, ללא הפרדתו מהרקמה העמוקה, העצב פשוט לא נחשף לאורך התהליך. תשובה 4 שגויה - התפר מוכנס "עיוור" יחסית (בלי זיהוי ישיר של העצב), וזה בדיוק מה שהמחקר הראה כבטוח.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו הסיבוך השכיח ביותר שדווח בעוקבת ה-PSP (117 מטופלים), ואיך טופל?</div>
+  <button class="opt" data-i="0">פגיעה קבועה בעצב הפנים - טופלה בהשתלת עצב</button>
+  <button class="opt" data-i="1">זיהום פצע חמור - טופל באשפוז ואנטיביוטיקה IV</button>
+  <button class="opt" data-i="2">נמק עורי - טופל בדביברידמנט נרחב</button>
+  <button class="opt" data-i="3">המטומה (3.4% מהמטופלים) - כולן טופלו בפינוי תחת הרדמה מקומית, ללא פגיעה בתוצאה הסופית</button>
+  <div class="explain">התשובה הנכונה: המטומה הייתה הסיבוך השכיח ביותר (4/117, 3.4%), אחת מהן לאחר הוצאת הנקז. כל המקרים טופלו בהצלחה בפינוי תחת הרדמה מקומית בלבד, עם ציון תוצאה ממוצע גבוה (4.75). פגיעה עצבית קבועה (תשובה 1) לא דווחה כלל בעוקבה - כל הפגיעות היו זמניות והתאוששו.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע הצוואר נחשב לאזור המאתגר ביותר בפייסליפט, גם כשהפנים עצמן מטופלות בהצלחה?</div>
+  <button class="opt" data-i="0">כי אין בכלל טכניקות זמינות לטיפול בצוואר</button>
+  <button class="opt" data-i="1">כי לרקמות הצוואר תכונות ויסקואלסטיות שונות (זחילה והרפיית מתח גבוהות יותר) הגורמות לרפיון לחזור מהר יותר מאשר בפנים, במיוחד אם התפרים ממוקמים רק מעל קו הלסת</button>
+  <button class="opt" data-i="2">כי עצב הפנים עובר ישירות דרך מרכז הצוואר</button>
+  <button class="opt" data-i="3">כי שאיבת שומן בצוואר אסורה בשילוב עם פייסליפט</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שלרקמת הצוואר "זחילה" (creep) ו"הרפיית מתח" (stress relaxation) גבוהות יותר מרקמת הפנים - כלומר היא נוטה "להתמתח בחזרה" עם הזמן. אם התפרים המסורתיים ממוקמים רק מעל קו הלסת (כמו בפייסליפט קלאסי), רפיון הצוואר יכול לחזור תוך שבועות. תשובה 4 שגויה - 54 מתוך 92 מטופלים שטופלו בצוואר קיבלו שאיבת שומן, לרוב לבד.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו תפקיד תפרי "פלטיזמה-מסטואיד" (platysma-mastoid sutures) בטכניקת ה-PSP?</div>
+  <button class="opt" data-i="0">הם התפר המרכזי היחיד בניתוח, ומחליפים לגמרי את תפר ה-SMAS הקדמי</button>
+  <button class="opt" data-i="1">הם משמשים רק לסגירת העור בסוף הניתוח</button>
+  <button class="opt" data-i="2">הם מהדקים את הפלטיזמה הצווארית, משפרים הגדרת זווית הלסת, ומסייעים למנוע דפורמציית "pixie ear"</button>
+  <button class="opt" data-i="3">הם מיועדים אך ורק לטיפול בהמטומה לאחר הניתוח</button>
+  <div class="explain">התשובה הנכונה: תפרי פלטיזמה-מסטואיד (בין הפלטיזמה האחורית לפאשיית המסטואיד) משלימים את התפר המרכזי הקדמי - הם מהדקים את הצוואר, משפרים את זווית הלסת, ובמיוחד מונעים "pixie ear" (משיכת תנוך האוזן כלפי מטה עקב מתח מוגזם על העור בלבד, ללא עיגון עמוק תומך). זהו תפר שני, נפרד מהתפר המרכזי הקדמי (תשובה 1 שגויה).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>PSP lift</b> = פליקציה (תפר קיפול) של SMAS ופלטיזמה <b>מעל</b> הרקמה העמוקה, ללא דיסקציה מתחת ל-SMAS - בניגוד להרמה (elevation) או כריתה (SMASectomy).</li>
+    <li>עצב הפנים רץ <b>מתחת</b> ל-SMAS - ולכן היעדר דיסקציה מתחתיו הופך את PSP לבטוח יחסית, אפילו עם תפירה "עיוורת".</li>
+    <li>מתאים במיוחד ל: SMAS דק/אטרופי, פייסליפט משני/חוזר, פטוזיס מרוכז בלסת ופנים אמצעיות, מטופלים המחפשים החלמה קצרה.</li>
+    <li>וקטור <b>צפלופוסטריורי אלכסוני</b> (לא אנכי בלבד כמו MACS) - מאפשר תאמה אישית ואוגמנטציה מלארית אוטולוגית.</li>
+    <li>שלבי מפתח: תפר מרכזי SMAS-לפאשיה פרוטידומאסטרית, תפר פלטיזמה-מסטואיד, אימבריקציה שנייה, כריתת עודף אינפרלובולרי.</li>
+    <li>סיבוכים עיקריים: המטומה (3.4%, הכי שכיח), נוירופרקסיה זמנית (4.3%, כולה חלפה), ריפוי מושהה (נדיר).</li>
+    <li>הצוואר נותר האתגר הגדול ביותר בכל טכניקת פייסליפט - בגלל תכונות ויסקואלסטיות שונות מהפנים.</li>
+    <li>עמידות (durability) טובה הודגמה במעקב עד 10 שנים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
