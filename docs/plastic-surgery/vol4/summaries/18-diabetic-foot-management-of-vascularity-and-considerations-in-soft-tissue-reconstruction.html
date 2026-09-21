@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 18: כף רגל סוכרתית - ניהול וסקולרי ושחזור רקמות רכות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 18: כף רגל סוכרתית - ניהול וסקולרי ושיקולים בשחזור רקמות רכות <span class="term" dir="ltr">Diabetic Foot: Management of Vascularity and Considerations in Soft-Tissue Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4 (Lower Extremity, Trunk and Burns) | פרק 9.3, מאת Paige K. Dekker, Kevin G. Kim, Karen K. Evans</div>
+
+<p>פצע כרוני בכף רגל סוכרתית הוא לא "פצע שלא מחלים" סתם - הוא <b>נקודת מפגש</b> בין שלוש בעיות נפרדות שכל אחת מהן, בפני עצמה, כבר מקשה על ריפוי: נוירופתיה שמסתירה נזק, מחלת כלי דם שמונעת אספקת דם לרקמה החדשה, וזיהום שמנצל את שתי החולשות האלה. הפרק עוסק בשאלה המעשית ביותר עבור מנתח פלסטי: <b>איך בוחרים את שיטת השחזור הנכונה</b> (סקין גרפט, פלאפ מקומי, או פלאפ חופשי) עבור פצע נתון, ואיך מוודאים שיש בכלל מספיק זרימת דם כדי שהשחזור יצליח.</p>
+
+<h2><span class="num">1</span> מנגנון ופתופיזיולוגיה - למה כף רגל סוכרתית לא מחלימה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>סוכרת ממושכת ולא מאוזנת</b> גורמת בו-זמנית לשני תהליכים נפרדים שמזינים זה את זה:<br>
+    (1) <b>נוירופתיה פריפרית</b> (<span class="term" dir="ltr">peripheral neuropathy</span>) - פגיעה בעצבים התחושתיים, המוטוריים והאוטונומיים כתוצאה ממחלת כלי דם זעירים (<span class="term" dir="ltr">vasa nervorum</span>) ומהצטברות תוצרי גלוקוז לא תקינים בעצב עצמו &#8592; אובדן <b>תחושה מגנה</b> (<span class="term" dir="ltr">protective sensation</span>) &#8592; המטופל לא מרגיש חיכוך, לחץ חוזר או פציעה קטנה בכף הרגל &#8592; מיקרוטראומה מצטברת הופכת לכיב גלוי רק כשהוא כבר גדול.<br>
+    (2) <b>מחלת כלי דם היקפית</b> (<span class="term" dir="ltr">peripheral vascular/arterial disease, PVD/PAD</span>) - טרשת עורקים מואצת (<span class="term" dir="ltr">macrovascular</span>) יחד עם תפקוד לקוי של האנדותל ברמת כלי הדם הקטנים (<span class="term" dir="ltr">microvascular/endothelial dysfunction</span>) &#8592; ירידה בזרימת דם לעור ולרקמה התת-עורית &#8592; גם אם נוצר פצע, אין מספיק חמצן ותאי דם לבנים כדי לסגור אותו.
+  </p>
+  <p>שני התהליכים האלה נפגשים בנקודה קריטית: <b class="key">כלי דם קולטרליים ("עוקפים") שבדרך כלל מצילים רקמה כשעורק ראשי נחסם, לא עובדים טוב בחולה סוכרתי</b>. כלי דם קטנים שנקראים <span class="term" dir="ltr">choke vessels</span> אמורים להתרחב (אנגיוגנזה) תוך 4-10 ימים מחסימה איסכמית ולשמור על זרימה - אבל תפקוד האנדותל הלקוי בחולים עם איסכמיה קריטית של הגפה (<span class="term" dir="ltr">critical limb ischemia, CLI</span>) פוגע ביכולת הזו. כך שגם רשת הביטחון הטבעית של הגוף חלשה יותר אצל סוכרתיים.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הפתופיזיולוגיה של כף רגל סוכרתית</title>
+  <rect x="330" y="20" width="200" height="55" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="45" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">סוכרת ממושכת / לא מאוזנת</text>
+  <text x="430" y="62" font-size="11" text-anchor="middle" fill="#78350f">היפרגליקמיה כרונית</text>
+
+  <rect x="620" y="110" width="200" height="65" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="720" y="132" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">נוירופתיה פריפרית</text>
+  <text x="720" y="150" font-size="11" text-anchor="middle" fill="#1e3a8a">אובדן תחושה מגנה</text>
+  <text x="720" y="165" font-size="11" text-anchor="middle" fill="#1e3a8a">&#8592; מיקרוטראומה שלא מורגשת</text>
+
+  <rect x="40" y="110" width="200" height="65" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="140" y="132" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">מחלת כלי דם היקפית</text>
+  <text x="140" y="150" font-size="11" text-anchor="middle" fill="#7f1d1d">מאקרו + מיקרווסקולרית</text>
+  <text x="140" y="165" font-size="11" text-anchor="middle" fill="#7f1d1d">&#8592; אספקת דם ירודה</text>
+
+  <rect x="330" y="215" width="200" height="65" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="430" y="237" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">פצע כרוני שלא מחלים</text>
+  <text x="430" y="255" font-size="11" text-anchor="middle" fill="#4c1d95">כלי דם עוקפים (choke vessels)</text>
+  <text x="430" y="270" font-size="11" text-anchor="middle" fill="#4c1d95">גם הם פגועים באנדותל</text>
+
+  <line x1="430" y1="75" x2="720" y2="110" stroke="#374151" stroke-width="2"/>
+  <polygon points="710,100 720,110 705,116" fill="#374151"/>
+  <line x1="430" y1="75" x2="140" y2="110" stroke="#374151" stroke-width="2"/>
+  <polygon points="150,100 140,110 155,116" fill="#374151"/>
+  <line x1="720" y1="175" x2="430" y2="215" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,205 430,215 445,221" fill="#374151"/>
+  <line x1="140" y1="175" x2="430" y2="215" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,205 430,215 415,221" fill="#374151"/>
+</svg>
+<p class="figcap">שרשרת הגורמים: היפרגליקמיה &#8592; נוירופתיה + מחלת כלי דם &#8592; פצע שנוצר בלי שהמטופל ירגיש ולא מחלים כי אין מספיק דם, גם ברמת כלי הדם העוקפים.</p>
+
+<p class="key-box">חשוב להבחין: <b>סוכרת עצמה אינה התוויית נגד מוחלטת</b> לאף שיטת שחזור - לא לסקין גרפט, לא לפלאפ מקומי ולא לפלאפ חופשי. ההשפעה העיקרית של הסוכרת היא על <b>זמן ההחלמה</b> (למשל סקין גרפט: 5-17 שבועות בסוכרתיים לעומת 2-4 שבועות בלא-סוכרתיים) ועל שיעורי הישרדות ארוכי-טווח, לא על שיעור ההצלחה הראשוני של הניתוח עצמו.</p>
+
+<h2><span class="num">2</span> אנטומיה וסקולרית - תיאוריית האנגיוזומים</h2>
+<p>המושג המרכזי לתכנון שחזור בטוח הוא <span class="term" dir="ltr">angiosome</span> - יחידת רקמה תלת-ממדית (עור, רקמה תת-עורית, שריר, עצם) שמוזנת על ידי עורק מקור בודד, כפי שתואר לראשונה על ידי Taylor ו-Palmer ב-1987. Attinger והצוות שלו הרחיבו את הרעיון לכף הרגל והקרסול וזיהו <b>שישה אנגיוזומים</b>:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>עורק מקור</th><th>מספר אנגיוזומים</th><th>אזור מוזן</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Posterior tibial artery</span></td><td>3</td><td>עקב מדיאלי, קשת כף הרגל, חלק גדול מהעקב הפלנטרי</td></tr>
+    <tr><td><span class="term" dir="ltr">Peroneal artery</span></td><td>2</td><td>עקב לטרלי, קרסול לטרלי</td></tr>
+    <tr><td><span class="term" dir="ltr">Anterior tibial artery</span></td><td>1</td><td>גב כף הרגל (ממשיך כ-<span class="term" dir="ltr">dorsalis pedis</span>)</td></tr>
+  </tbody>
+</table>
+</div>
+<p>הזרימה לאנגיוזום <b>אינה תלויה רק בעורק המקור שלו</b> - קיימת זרימה קולטרלית עודפת (<span class="term" dir="ltr">redundant collateral flow</span>) בשלוש רמות, מהחזקה לחלשה:</p>
+<table>
+  <thead><tr><th>סוג חיבור</th><th>גודל</th><th>תפקיד</th></tr></thead>
+  <tbody>
+    <tr><td>חיבורים ישירים עורק-עורק (<span class="term" dir="ltr">arterial-arterial</span>)</td><td>הגדול ביותר</td><td>קשתות מטטרסליות, קשתות כף הרגל, עורקים מחוררים (<span class="term" dir="ltr">perforators</span>)</td></tr>
+    <tr><td>כלי דם מחוררי עור (<span class="term" dir="ltr">cutaneous perforators</span>)</td><td>בינוני</td><td>מפזרים דם בין אנגיוזומים סמוכים</td></tr>
+    <tr><td><span class="term" dir="ltr">Choke vessels</span></td><td>קטן</td><td>נוצרים באנגיוגנזה 4-10 ימים אחרי אירוע איסכמי - <b>אך אצל סוכרתיים עם CLI תפקודם לקוי</b></td></tr>
+  </tbody>
+</table>
+<p><b class="key">חשיבות קלינית לשחזור פלאפ חופשי:</b> אם הפצע נמצא באנגיוזום איסכמי (למשל פצע גבי גדול בחולה עם חסימה של ה-<span class="term" dir="ltr">dorsalis pedis artery</span>), אפשרויות שחזור מקומיות ייכשלו כי אין מספיק דם מסביב. במקרה כזה <b>פלאפ חופשי משמש בפועל כ"מעקף וסקולרי"</b> (<span class="term" dir="ltr">vascular bypass</span>) - הוא לא רק מכסה את הפגם אלא מביא איתו זרימת דם חדשה ובריאה מהעורק הרקיפיינט (למשל <span class="term" dir="ltr">anterior tibial</span> או <span class="term" dir="ltr">posterior tibial artery</span> פרוקסימלית) לאזור שהיה איסכמי.</p>
+
+<h2><span class="num">3</span> הערכה טרום-ניתוחית וייעול המטופל</h2>
+<p>הפרק מדגיש שתהליך זה חייב להיות <b>רב-תחומי</b> (שחזור, וסקולרי, אורתופדי, פודיאטרי, מחלות זיהומיות, אנדוקרינולוגיה, המטולוגיה) עם שתי מטרות: (1) ייעול מהיר ואגרסיבי של מחלות הרקע, (2) הגעה למצע פצע נקי המתאים לשחזור.</p>
+
+<h3>3.1 שליטה בזיהום והכנת מצע הפצע</h3>
+<p>דברידמנטים ניתוחיים חוזרים מסירים רקמה נגועה/נמקית וביופילם. תרביות אירוביות ואנאירוביות נלקחות לפני ואחרי כל דברידמנט כדי לכוון אנטיביוטיקה. מעניין: מחקר מהמוסד של הכותבים מצא ששחזור מוצלח בפלאפ חופשי אפשרי <b>גם כשתרבית ביום הניתוח עצמו עדיין חיובית</b> - כלומר תרבית שלילית מוחלטת אינה תנאי הכרחי, אך זה לא מפחית מהחשיבות של דברידמנט אגרסיבי.</p>
+
+<h3>3.2 בדיקה וסקולרית - עורקית וורידית</h3>
+<p>זו אולי הבדיקה הקריטית ביותר לפני פלאפ. אפשרויות להערכה עורקית: מישוש דפקים, מדד קרסול-זרוע (<span class="term" dir="ltr">ABI</span>), דופלר ידני, אנגיוגרפיה קתטרית, או אנגיוגרפיית CT.</p>
+<table>
+  <thead><tr><th>בדיקה</th><th>יתרון</th><th>חיסרון / הערה</th></tr></thead>
+  <tbody>
+    <tr><td>אנגיוגרפיה קתטרית (<span class="term" dir="ltr">catheter arteriography</span>)</td><td>פחות חומר ניגוד תוך-ורידי, מידע קליני משמעותי יותר, מראה קשיחות/הסתיידות של הכלי (מנחה תכנון אנסטומוזה)</td><td>פולשנית יותר; במוסד הכותבים - שגרתית לכל מטופל לפני פלאפ חופשי, וזיהתה פתולוגיה עורקית ב-67.8% מהמטופלים</td></tr>
+    <tr><td>אנגיוגרפיית CT</td><td>לא פולשנית יחסית</td><td>יותר חומר ניגוד - בעייתי בחולים עם אי-ספיקת כליות (שכיחה בסוכרתיים)</td></tr>
+    <tr><td>דופלקס ורידי (<span class="term" dir="ltr">venous duplex ultrasound</span>)</td><td>לא פולשני, ללא קרינה, ללא חומר ניגוד</td><td>המודליות המועדפת במוסד הכותבים; זיהתה אי-ספיקה ורידית ב-39% ופקקת ורידים עמוקה הדורשת נוגד קרישה ב-6.78% מהמטופלים</td></tr>
+  </tbody>
+</table>
+<p>למה בכלל צריך בדיקה ורידית לפני פלאפ? כי <b class="key">גודש ורידי או פקקת בוריד המקבל הם הגורם המוביל לחזרה לחדר ניתוח ולאובדן פלאפ</b> - זיהוי מוקדם של רפלוקס ורידי מאפשר לבחור מערכת ורידית אחרת (עמוקה או שטחית) לאנסטומוזה.</p>
+
+<h3>3.3 הערכת נטייה לקרישיות יתר (<span class="term" dir="ltr">thrombophilia</span>)</h3>
+<p>קרישיות יתר לא מאובחנת מעלה סיכון לפקקת מיקרווסקולרית ולכישלון פלאפ בשיעורים גבוהים. הסקר כולל אנמנזה (היסטוריה משפחתית/אישית של קרישים, הפלות, ממאירות, מחלות אוטואימוניות) ופאנל מעבדתי מלא:</p>
+<table>
+  <thead><tr><th>קטגוריה</th><th>בדיקות</th></tr></thead>
+  <tbody>
+    <tr><td>פאנל קרישיות יתר מעבדתי</td><td>CBC, PT, PTT, נוגדנים אנטי-פוספוליפידים, הומוציסטאין, פקטור VIII, פעילות אנטיתרומבין III, פרוטאין C, פרוטאין S</td></tr>
+    <tr><td>בדיקות גנטיות</td><td>Factor V Leiden G1691A, Prothrombin G20210A, פולימורפיזמים A1298C ו-C677T של גן <span class="term" dir="ltr">MTHFR</span>, פולימורפיזם 4G/5G של גן PAI-1</td></tr>
+  </tbody>
+</table>
+<p>הממצא המדהים: <b class="key">61% מהמטופלים שעברו שחזור פלאפ חופשי בגפה תחתונה נמצאו עם לפחות תכונה טרומבופילית אחת, ו-20% עם שלוש תכונות ומעלה</b> - שיעור גבוה בהרבה ממה שאפשר לצפות באוכלוסייה הכללית, מה שהופך את הסקר הזה לחלק שגרתי בעבודה טרום-ניתוחית ולא לבדיקה "רק במקרים חשודים".</p>
+
+<h3>3.4 ייעול רפואי כללי</h3>
+<ul>
+  <li><b>בקרת סוכר</b> - היפרגליקמיה סביב הניתוח (מוגדרת כגלוקוז מעל 200 מ"ג/ד"ל) ורמות המוגלובין A1c גבוהות (מעל 6.5%) קשורות בשיעורי פירוק תפרים (<span class="term" dir="ltr">wound dehiscence</span>) גבוהים יותר. גם <b>שונות</b> גבוהה בגלוקוז (טווח מעל 200 נקודות) קשורה בניתוח חוזר.</li>
+  <li><b>תזונה</b> - רמת אלבומין טרום-ניתוחית מעל 2.7 גרם/ד"ל (תוך 30 יום) נמצאה יעד סביר; רמות נמוכות יותר נקשרו לזמני החלמה ארוכים יותר.</li>
+  <li><b>הפסקת עישון</b> - 4-8 שבועות לפני הניתוח, כדי להפחית זיהום, אובדן פלאפ חלקי, וניתוח חוזר.</li>
+  <li><b>בדיקה ביומכנית</b> - הליכה, לחצים פלנטריים, וגמישות גיד אכילס (Achilles) - קיצור הגיד יכול למנוע דורסיפלקציה תקינה ולגרום לכיב פלנטרי ולהתפתחות מפרק שארקו (<span class="term" dir="ltr">Charcot</span>).</li>
+</ul>
+
+<h2><span class="num">4</span> סולם השחזור מול מעלית השחזור, ובחירת שיטת השחזור</h2>
+<p>הגישה הקלאסית היא <b>סולם השחזור</b> (<span class="term" dir="ltr">reconstructive ladder</span>, Mathes & Nahai, 1982) - מתקדמים בהדרגה מריפוי משני, דרך טיפול מקומי וסקין גרפט, ועד פלאפים מקומיים וחופשיים. הגישה הגמישה יותר, <b>מעלית השחזור</b> (<span class="term" dir="ltr">reconstructive elevator</span>), מאפשרת "לעלות ישר" לשיטה היעילה ביותר בלי לעבור את כל השלבים - וזה חשוב במיוחד בכף רגל סוכרתית: אזורים עם כיסוי רקמה רכה דק (המשטח המדיאלי של השוקה, השליש התחתון הלטרלי של השוקית) חושפים עצם מיד עם אובדן העור, כך שסגירה ראשונית או סקין גרפט פשוט לא רלוונטיים כלל.</p>
+<svg class="diagram" viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+  <title>סולם השחזור מול מעלית השחזור</title>
+  <rect x="40" y="200" width="620" height="14" fill="#e5e7eb"/>
+  <rect x="60" y="170" width="90" height="30" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="105" y="190" font-size="11" text-anchor="middle" fill="#1e3a8a">ריפוי משני</text>
+  <rect x="170" y="145" width="90" height="30" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="215" y="165" font-size="11" text-anchor="middle" fill="#1e3a8a">טיפול מקומי</text>
+  <rect x="280" y="120" width="90" height="30" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="325" y="140" font-size="11" text-anchor="middle" fill="#1e3a8a">סקין גרפט</text>
+  <rect x="390" y="95" width="90" height="30" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="435" y="115" font-size="11" text-anchor="middle" fill="#1e3a8a">פלאפ מקומי</text>
+  <rect x="500" y="70" width="90" height="30" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="545" y="90" font-size="11" text-anchor="middle" fill="#1e3a8a">פלאפ חופשי</text>
+  <path d="M105,170 L215,145 L325,120 L435,95 L545,70" stroke="#2563eb" stroke-width="2" fill="none" stroke-dasharray="4"/>
+  <text x="330" y="30" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">סולם: מתקדמים שלב-שלב</text>
+
+  <line x1="600" y1="230" x2="600" y2="90" stroke="#047857" stroke-width="4"/>
+  <polygon points="590,100 600,80 610,100" fill="#047857"/>
+  <rect x="565" y="230" width="70" height="26" fill="#ecfdf5" stroke="#047857"/>
+  <text x="600" y="247" font-size="10" text-anchor="middle" fill="#065f46">מטופל</text>
+  <text x="600" y="60" font-size="13" text-anchor="middle" fill="#047857" font-weight="700">מעלית: "קופצים" ישר לשיטה היעילה</text>
+</svg>
+<p>תכנון השחזור נשען על ארבעה גורמים: (1) גודל הפצע, (2) מיקום הפצע, (3) מבנים חשופים (עצם/גיד/מפרק), (4) במקרה של פלאפ חופשי - תקינות (<span class="term" dir="ltr">patency</span>) של כלי דם תורמים ומקבלים אפשריים. הפרק מציג שלושה אלגוריתמים מפורטים לפי מיקום הפצע (forefoot, midfoot, hindfoot) שכולם חוזרים על עיקרון דומה: <b>גודל קטן וזרימה שמורה &#8592; אפשרות מקומית; גודל גדול או זרימה נפגעת &#8592; פלאפ חופשי או שיקול קטיעה</b>.</p>
+
+<h3>4.1 סקין גרפט (<span class="term" dir="ltr">split-thickness skin graft, STSG</span>)</h3>
+<p>אפשרות אמינה לפצעים שטחיים <b>ללא</b> עצם/גיד חשופים. פחות מתאים למשטחים נושאי-משקל (הכף הפלנטרית) בגלל דאגות לגבי החלמה ועמידות, אם כי מחקרים מראים תוצאות סבירות (שיעור החלמה נמוך יותר בפלנטרי אך לא בהכרח משמעותית). לפני כיסוי - דברידמנטים סדרתיים והשגת תרביות שליליות/מזעריות. גרפט בעובי ביניים (0.012-0.018 אינץ') נמשח וממושת ביחס 1.5:1 או 3:1.</p>
+
+<h3>4.2 פלאפים מקומיים - שרירי כף הרגל הפנימיים</h3>
+<p>מתאימים לפגמים קטנים (עד 3x6 ס"מ) בהישג יד עם עצם/מפרק/גיד חשוף. שלושת השרירים הפנימיים העיקריים בשימוש, כולם מסווגים כ-<span class="term" dir="ltr">Mathes and Nahai type II</span> (פדיקל דומיננטי אחד + פדיקלים מינוריים):</p>
+<table>
+  <thead><tr><th>פלאפ</th><th>כיסוי אזור</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Abductor hallucis (AH)</span></td><td>מידפוט מדיאלי, קרסול, עקב (ניתן לשלב עם ADM לפצעים גדולים יותר)</td></tr>
+    <tr><td><span class="term" dir="ltr">Abductor digiti minimi (ADM)</span></td><td>קרסול לטרלי וקלקנאוס</td></tr>
+    <tr><td><span class="term" dir="ltr">Flexor digitorum brevis (FDB)</span></td><td>עקב פלנטרי</td></tr>
+  </tbody>
+</table>
+<p>יתרונות: ניתוח מהיר ופשוט יחסית, נזק תפקודי/אסתטי מינימלי במקום התרומה. חסרונות: נפח והישג מוגבלים - התכנון חייב לוודא שהשריר המסובב יגיע בפועל לפגם. <b class="key">חשוב: פלאפ שריר לא חייב למלא את כל הפגם - הוא רק חייב לכסות את המבנה החשוף (עצם/גיד/מפרק); את שאר הרקמה הגרנולרית אפשר לכסות בסקין גרפט.</b></p>
+
+<h3>4.3 שחזור בפלאפ חופשי (<span class="term" dir="ltr">free tissue transfer, FTT</span>)</h3>
+<p>פלאפ חופשי כבר לא נחשב "מוצא אחרון" אלא פתרון אמין ומועדף במקרים המתאימים. אינדיקציות ספציפיות: (1) פצע גדול (מעל 2-3 ס"מ), (2) אובדן עצם ושריר גם יחד, (3) מפרק או מבנה נוירווסקולרי חשוף, (4) פצע באנגיוזום איסכמי (כאמור, הפלאפ משמש כמעקף וסקולרי).</p>
+<p><b>התוויות נגד</b> שדורשות תשומת לב מיוחדת בחולה סוכרתי: חוסר כלי דם מקבל מתאים (במיוחד רלוונטי כי PVD שכיחה מאוד); מחלת כליות סופנית/דיאליזה (הסתיידויות כלי דם דיפוזיות המקשות על מיקרו-אנסטומוזה, וסיכון מוגבר להמטומה ולסיבוכים תרומבואמבוליים).</p>
+
+<h3>4.4 בחירת הפלאפ החופשי - שלושה צירים</h3>
+<table>
+  <thead><tr><th>ציר</th><th>אפשרויות עיקריות</th></tr></thead>
+  <tbody>
+    <tr><td><b>הרכב הפלאפ</b></td><td>
+      <span class="term" dir="ltr">Fasciocutaneous</span> - עור+פשיה, דק וגמיש, אך מעל 8 ס"מ עלול לדרוש סקין גרפט במקום התרומה.<br>
+      <span class="term" dir="ltr">Muscle only</span> - כשהרקמה התת-עורית עבה מדי; דורש סקין גרפט מעליו.<br>
+      <span class="term" dir="ltr">Musculocutaneous</span> - עור+שריר, מווסקולריזציה טובה ועמיד יותר לזיהום, מתאים למילוי חלל מת (<span class="term" dir="ltr">dead space</span>).<br>
+      <span class="term" dir="ltr">Chimeric</span> - כמה סוגי רקמה (כולל עצם מווסקולרת) - שימושי לפגמים גידיים/עצמיים משולבים.
+    </td></tr>
+    <tr><td><b>צרכים תפקודיים/אסתטיים</b></td><td>לפי עקרון תת-היחידות של כף הרגל (Hollenbeck): כיבי עקב (יחידה 5) דורשים נפח ועמידות - <span class="term" dir="ltr">vastus lateralis (VL)</span> או <span class="term" dir="ltr">ALT</span>; גב כף הרגל (יחידות 3-4) דורש רקמה דקה כדי שהנעל תתאים - <span class="term" dir="ltr">MSAP</span>, <span class="term" dir="ltr">SCIP</span>, או ALT פשיוקוטני.</td></tr>
+    <tr><td><b>תחלואת אתר תרומה</b></td><td>פלאפ רקטוס או לטיסימוס דורסי פוגעים בכוח פלג הגוף העליון/הליבה - בעייתי במטופלים שעלולים להזדקק לקביים/מעברים עתידיים אם תידרש קטיעה. פלאפים מבוססי-ירך (ALT, VL) שומרים על כוח הגוף העליון ובעלי פדיקל ארוך וקוטר גדול - ה"סוסי העבודה" של השחזור בגפה תחתונה.</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/EZtgOeWZO5c" title="Anterolateral Thigh (ALT) Free Flap Harvest" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת ניתוח: הרמת פלאפ ALT חופשי (Mount Sinai) - הפלאפ ה"סוס עבודה" העיקרי לשחזור גפה תחתונה בפרק זה, על בסיס הענף היורד של העורק הפמורלי הצירקומפלקסי הלטרלי.</p>
+
+<h2><span class="num">5</span> שיקולים ניתוחיים מיוחדים בחולה הסוכרתי - כלי דם מסוידים</h2>
+<p>הסתיידות עורקית מעגלית (<span class="term" dir="ltr">circumferential arterial calcification</span>) שכיחה בסוכרתיים, והמנגנון הפתופיזיולוגי עדיין לא מובן במלואו. עורק מסויד הוא לא אלסטי ונוטה לפקקת עקב קרע רובד (<span class="term" dir="ltr">plaque rupture</span>) והיצרות לומן - סיבת סיכון ידועה לכישלון פלאפ.</p>
+<table>
+  <thead><tr><th>אתגר</th><th>פתרון טכני</th></tr></thead>
+  <tbody>
+    <tr><td>תפירה מבחוץ-פנימה (<span class="term" dir="ltr">outside-to-inside</span>) על כלי מסויד מגבירה סיכון לקרע רובד</td><td>תפירה מבפנים-החוצה (<span class="term" dir="ltr">inside-to-outside suturing</span>) על כל דפנות הכלי המסוידות - הטכניקה המועדפת</td></tr>
+    <tr><td>אי-התאמת קטרים בין הפלאפ לכלי המקבל, פדיקל קצר מדי</td><td>שתל וריד ספניוס פנימי (<span class="term" dir="ltr">saphenous vein interposition graft, SViG</span>) - גמיש, מאריך את הפדיקל, מאפשר אנסטומוזה קצה-לצד חוסכת-זרימה (<span class="term" dir="ltr">flow-sparing end-to-side</span>) ששומרת על זרימה דיסטלית</td></tr>
+    <tr><td>מהדקי כלי דם רגילים (<span class="term" dir="ltr">bulldog clamps</span>) לא סוגרים כלי קשיח, ולחץ יתר עלול לשבור רובד ולנקב את הדופן</td><td>שני צנתרי Fogarty (2F/3F) עם ברז תלת-כיווני פרוקסימלית ודיסטלית לאתר האנסטומוזה - שליטה בזרימה בכוח פנימי אחיד במקום לחץ חיצוני מקומי</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> טיפול אנטי-קרישתי מדורג לפי סיכון</h2>
+<p>מוסד הכותבים פיתח פרוטוקול אנטי-תרומבוטי מדורג-סיכון (<span class="term" dir="ltr">risk-stratified antithrombotic protocol</span>) המבוסס על גורמי סיכון המטולוגיים, נרכשים ותוך-ניתוחיים:</p>
+<table>
+  <thead><tr><th>רמת סיכון</th><th>קריטריון</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>נמוך</td><td>ללא גורמי סיכון נרכשים, ללא מחלה מאקרווסקולרית, פחות מ-3 תכונות טרומבופיליות, אנסטומוזה לא מסובכת</td><td>אספירין (325 מ"ג) + LMWH פרופילקטי מ-POD5</td></tr>
+    <tr><td>בינוני</td><td>&#8805;1 גורם נרכש ו/או &#8805;3 תכונות טרומבופיליות</td><td>בנוסף לעיל - עירוי הפרין במינון נמוך (LDHI) או נומוגרם הפרין לפי משקל (WBHN, יעד PTT 50-70 שנ')</td></tr>
+    <tr><td>גבוה</td><td>כל גורם סיכון תוך-ניתוחי</td><td>כמו בינוני, עם מעקב הדוק יותר; במקרה של פקקת - בולוס הפרין IV (150 U/kg) והמשך WBHN</td></tr>
+  </tbody>
+</table>
+<p>לכל המטופלים, ללא קשר לרמת הסיכון: שטיפה מקומית עם סליין מופרן (100 U/mL) ובולוס הפרין IV (5000 U) לפני חיתוך הפדיקל תוך-ניתוחית. <b class="key">אימוץ הפרוטוקול המדורג במוסד הכותבים הפחית משמעותית את שיעורי אובדן הפלאפ המלא (3.0% לעומת 19.0% בביקורת שלא עברה סטרטיפיקציה) והחלקי (10.0% לעומת 37.0%)</b> - הדגמה ישירה לכך שהתאמת הטיפול לפרופיל הסיכון האישי, ולא פרוטוקול אחיד לכולם, משפרת תוצאות בפועל.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/DmVxX8rmD_U" title="Diabetic Foot - Mechanism of Disease" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון קצר המסכם את שרשרת הגורמים במחלת כף הרגל הסוכרתית - נוירופתיה, מחלת כלי דם וזיהום - כרקע להבנת האתגרים בשחזור.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-A-V-E-S</span> - מה בודקים לפני שחזור כף רגל סוכרתית</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Size</span> - גודל הפצע (קובע קטן=מקומי, גדול=חופשי/קטיעה).<br>
+    <b>A</b> – <span class="term" dir="ltr">Angiosome</span> - האם הפצע באנגיוזום איסכמי? אילו שישה אנגיוזומים מעורבים?<br>
+    <b>V</b> – <span class="term" dir="ltr">Vessels</span> - זרימה עורקית וורידית (ABI, דופלר, אנגיוגרפיה, דופלקס ורידי).<br>
+    <b>E</b> – <span class="term" dir="ltr">Exposed structures</span> - עצם/גיד/מפרק חשופים? (קובע אם סקין גרפט מספיק).<br>
+    <b>S</b> – <span class="term" dir="ltr">Systemic optimization</span> - סוכר, תזונה, עישון, קרישיות יתר.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את כף הרגל הסוכרתית כמו עיר קטנה שהחשמל שלה (זרימת הדם) נחלש בהדרגה, ומערכת האזעקות שלה (התחושה) מנותקת. כשפורצת "שריפה" (פצע), אי אפשר פשוט לכבות אותה במקום (סגירה ראשונית) כי אין מספיק "מים בצינור" (זרימת דם). הפתרון הוא להביא צוות כיבוי חדש עם משאבת מים משלו - זה בדיוק מה שפלאפ חופשי עושה: הוא לא רק "מכסה" את השריפה, הוא מביא איתו קו אספקת מים (וסקולריזציה) חדש לגמרי לאזור שהיה יבש.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>הפלאפ החופשי כ"מעקף וסקולרי"</title>
+    <rect x="20" y="30" width="150" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="95" y="65" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">אזור איסכמי</text>
+    <text x="95" y="85" font-size="11" text-anchor="middle" fill="#7f1d1d">"צינור יבש"</text>
+    <path d="M170,75 Q250,20 330,75" stroke="#2563eb" stroke-width="4" fill="none"/>
+    <polygon points="320,68 335,75 320,82" fill="#2563eb"/>
+    <text x="250" y="35" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">פלאפ חופשי = "צינור מים חדש"</text>
+    <rect x="330" y="30" width="150" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+    <text x="405" y="65" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">רקמה מווסקולרת</text>
+    <text x="405" y="85" font-size="11" text-anchor="middle" fill="#065f46">חדשה ובריאה</text>
+    <text x="250" y="160" font-size="11" text-anchor="middle" fill="#374151">אנסטומוזה קצה-לצד לעורק מקבל פרוקסימלי (PT/AT)</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> סרטונים ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/iiCXX9zy3k4" title="Anterolateral Thigh Perforator Flap Harvest - TVASurg" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון מלא ומפורט (Toronto Video Atlas of Surgery) של הרמת פלאפ פרפורטור ALT - טכניקה מלאה מסימון ועד ניתוק הפדיקל, שימושי להבנת עקרון "שרשרת הזרימה" שנשמרת גם בפלאפ חופשי.</p>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Angiosome" target="_blank">Angiosome – Wikipedia</a>
+    <div class="desc">רקע כללי על מושג האנגיוזום שפותח על ידי Taylor ו-Palmer, כולל התייחסות ליישום בכף רגל וקרסול.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Diabetic_foot" target="_blank">Diabetic foot – Wikipedia</a>
+    <div class="desc">סקירה כללית של פתופיזיולוגיה, גורמי סיכון וניהול כף רגל סוכרתית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Anterolateral_thigh_flap" target="_blank">Anterolateral thigh flap – Wikipedia</a>
+    <div class="desc">רקע אנטומי על פלאפ ה-ALT - עורק המקור, הרכב הפלאפ והשימושים העיקריים בשחזור.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Charcot_arthropathy" target="_blank">Charcot arthropathy – Wikipedia</a>
+    <div class="desc">רקע על ניוון מפרקי שארקו, הקשור לנוירופתיה סוכרתית ומוזכר בהקשר הביומכני של הפרק.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 65 עם סוכרת סוג 2 לא מאוזנת, יתר לחץ דם, מחלת עורקים היקפית ונוירופתיה, מגיע למיון עם פצע גבי-מדיאלי לא מחלים בכף רגל שמאל, בגודל 3.3x2.0 ס"מ, עם גיד חשוף וארוזמה סביבתית ללא הפרשה פעילה. הוא אפירטי אך טכיקרדי (דופק 120). בבדיקה וסקולרית: דופק פופליטאלי מוחלש, סיגנל דופלר ירוד ב-anterior tibial artery, דופק posterior tibial מוחלש אך נמוש, ודופק dorsalis pedis נעדר. HbA1c נמדד 10.4%. צילום רנטגן מראה אוסטאומיאליטיס של הפלנקס הדיסטלי השני. עקב היעדר אפשרויות כיסוי מקומיות, מתחיל תכנון לשחזור בפלאפ חופשי.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. הפצע ממוקם באנגיוזום המוזן על ידי ה-anterior tibial artery, שנמצא חסום. מהי הגישה הנכונה ביותר לשחזור?</div>
+  <button class="opt" data-i="0">סקין גרפט ישיר על הגיד החשוף, מכיוון שהפצע קטן יחסית</button>
+  <button class="opt" data-i="1">פלאפ חופשי עם אנסטומוזה קצה-לצד לעורק מקבל תקין אחר (כגון posterior tibial artery), כדי לספק זרימת דם חדשה לאזור האיסכמי</button>
+  <button class="opt" data-i="2">פלאפ שריר מקומי (Abductor hallucis), מכיוון שהוא תמיד האפשרות הראשונה בגב כף הרגל</button>
+  <button class="opt" data-i="3">אין צורך בשחזור כלל - יש להמתין להתפתחות ריפוי משני</button>
+  <div class="explain">התשובה הנכונה (2): פצע עם עצם/גיד חשוף אינו מתאים לסקין גרפט (תשובה 1) - חסר מצע להיקלטות. פלאפ ה-AH (תשובה 3) מכסה מדיאלי-מידפוט/עקב, לא את הגב, וממילא אינו רלוונטי כשהאנגיוזום עצמו איסכמי - פלאפ מקומי מוזן מאותה רשת כלי דם פגועה וסביר שייכשל. ריפוי משני (תשובה 4) אינו סביר בפצע עם גיד חשוף ואיסכמיה. פלאפ חופשי (תשובה 2) הוא הנכון: מכיוון שהפצע נמצא באנגיוזום איסכמי, המטרה היא לא רק לכסות אלא להביא זרימת דם חדשה - בדיוק כפי שמתואר במקרה 9.3.2 בפרק, שם בוצעה אנסטומוזה קצה-לצד ל-posterior tibial artery.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. לפני הניתוח, איזו בדיקה וסקולרית שגרתית חשובה במיוחד למניעת אחת מהסיבות המובילות לחזרה לחדר ניתוח (re-exploration) לאחר פלאפ חופשי?</div>
+  <button class="opt" data-i="0">בדיקת קרישה כללית (PT/PTT) בלבד</button>
+  <button class="opt" data-i="1">רמת המוגלובין A1c בלבד</button>
+  <button class="opt" data-i="2">דופלקס ורידי (venous duplex ultrasound), לזיהוי רפלוקס או פקקת שעלולים לגרום לגודש ורידי בפלאפ</button>
+  <button class="opt" data-i="3">רמת אלבומין בלבד</button>
+  <div class="explain">התשובה הנכונה (3): גודש ורידי ופקקת הם הגורמים המובילים לחזרה לחדר ניתוח ולאובדן פלאפ. דופלקס ורידי (המודליות המועדפת בפרק בזכות בטיחותה - ללא קרינה וללא חומר ניגוד, חשוב בחולה עם אי-ספיקת כליות) מזהה רפלוקס או פקקת מראש ומאפשר לבחור מערכת ורידית חלופית לאנסטומוזה. בדיקת קרישה (תשובה 1), HbA1c (תשובה 2) ואלבומין (תשובה 4) חשובות לייעול כללי אך אינן מיועדות לזהות באופן ישיר את הגורם לגודש ורידי בפלאפ.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אילו ממצאים תואמים "אנגיוזום איסכמי" מבחינת ההיגיון הפתופיזיולוגי המתואר בפרק, ומדוע פלאפ מקומי צפוי להיכשל שם?</div>
+  <button class="opt" data-i="0">חסימה של עורק המקור לאותו אזור, כאשר גם כלי הדם הקולטרליים (choke vessels) פגומים עקב תפקוד אנדותל לקוי בסוכרת - כך שגם רקמה "סמוכה" סובלת מאיסכמיה</button>
+  <button class="opt" data-i="1">כל פצע בכף הרגל מוגדר כאיסכמי, ללא קשר לזרימת הדם</button>
+  <button class="opt" data-i="2">אנגיוזום איסכמי מתייחס רק לזיהום פעיל בפצע, לא לזרימת דם</button>
+  <button class="opt" data-i="3">פלאפ מקומי תמיד מצליח כי הוא לא תלוי בזרימת דם כלל</button>
+  <div class="explain">התשובה הנכונה (1): כשעורק המקור של אנגיוזום חסום, הרקמה עדיין יכולה להישאר חיה אם הזרימה הקולטרלית (choke vessels וכו') מפצה. אבל בסוכרת, האנדותל הפגוע פוגע גם ברשת הביטחון הזו - ולכן גם רקמה "סמוכה" לפצע (שממנה בדרך כלל מגייסים פלאפ מקומי) עלולה להיות איסכמית וחסרת יכולת לתמוך בהחלמה. תשובות 2-4 מפרשות לא נכון את המושג - איסכמיה היא עניין וסקולרי-אנטומי ולא זיהומי, ופלאפ מקומי כן תלוי לחלוטין בזרימת דם תקינה מסביבו.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. במהלך ניתוח, מתגלה שהעורק המקבל (recipient artery) מוסתד קשות. מהי הטכניקה המועדפת לפי הפרק לביצוע מיקרו-אנסטומוזה בכלי כזה?</div>
+  <button class="opt" data-i="0">תפירה חד-משמעית מבחוץ-פנימה על כל דפנות הכלי, ולחיצה חזקה עם מהדק בולדוג רגיל</button>
+  <button class="opt" data-i="1">יש להימנע לחלוטין מניתוח במקרה כזה ולעבור ישירות לקטיעה</button>
+  <button class="opt" data-i="2">שימוש בחומר קרישה מקומי במקום אנסטומוזה כלל</button>
+  <button class="opt" data-i="3">תפירה מבפנים-החוצה (inside-to-outside) על הדפנות המסוידות, עם שיקול לשימוש בשתל וריד ספניוס (SViG) להארכת פדיקל ובקרת זרימה עם קטטרי Fogarty במקום מהדק חיצוני</button>
+  <div class="explain">התשובה הנכונה (4): תפירה מבפנים-החוצה מפחיתה סיכון לקרע רובד; שתל SViG מספק גמישות, אורך פדיקל ומאפשר אנסטומוזה חוסכת-זרימה; קטטרי Fogarty מספקים בקרת זרימה בכוח פנימי אחיד, ללא הסיכון לשבירת רובד ופגיעה בדופן שקיים במהדקים חיצוניים על כלי מסויד. תשובה 1 (תפירה מבחוץ-פנימה + מהדק רגיל) היא בדיוק הגישה המסוכנת שהפרק מזהיר מפניה. תשובות 2-3 אינן פתרונות מקובלים בספרות המצוטטת.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. סקר טרום-ניתוחי מגלה שלמטופל שלוש תכונות טרומבופיליות שונות. כיצד זה משפיע על תוכנית הטיפול הפרי-ניתוחית לפי הפרוטוקול המדורג-סיכון בפרק?</div>
+  <button class="opt" data-i="0">אין השפעה - כל המטופלים מקבלים את אותו טיפול קבוע ללא קשר לממצאים</button>
+  <button class="opt" data-i="1">המטופל מסווג לפחות לרמת סיכון בינונית (&#8805;3 תכונות טרומבופיליות), ומקבל טיפול אנטי-קרישתי מוגבר (LDHI/WBHN) מעבר לאספירין ו-LMWH הסטנדרטיים, בנוסף להתייעצות המטולוגית</button>
+  <button class="opt" data-i="2">יש לבטל את הניתוח לחלוטין בשל הסיכון</button>
+  <button class="opt" data-i="3">התכונות הטרומבופיליות רלוונטיות רק להיריון ואינן משפיעות על ניתוחי פלאפ</button>
+  <div class="explain">התשובה הנכונה (2): לפי הפרוטוקול המדורג, &#8805;3 תכונות טרומבופיליות (או &#8805;1 גורם סיכון נרכש) מסווגות את המטופל לפחות לרמת סיכון בינונית, המחייבת טיפול אנטי-קרישתי מוגבר מעבר לפרוטוקול הבסיסי (אספירין+LMWH) הניתן לכל המטופלים. הפרק מדגיש שכ-61% מהמטופלים נמצאים עם לפחות תכונה אחת ו-20% עם 3+ - זו אוכלוסייה גדולה מספיק כדי להצדיק סקר שגרתי, לא חריג. ביטול הניתוח (תשובה 3) אינו מוצדק - הפרוטוקול נועד לאפשר ניתוח בטוח יותר, לא למנוע אותו. תשובה 4 שגויה קלינית - התכונות הרלוונטיות ישירות לפקקת מיקרווסקולרית של הפלאפ.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. מה ההבדל המרכזי בין "סולם השחזור" ל"מעלית השחזור", ומדוע הפרק מדגיש את הרלוונטיות של מעלית השחזור לכף רגל סוכרתית?</div>
+  <button class="opt" data-i="0">הסולם מחייב מעבר הדרגתי דרך כל השלבים; המעלית מאפשרת לעלות ישירות לשיטה היעילה ביותר - רלוונטי כי אזורים כמו השוקה המדיאלית חושפים עצם מיד עם אובדן עור, כך שסגירה ראשונית/גרפט אינם רלוונטיים מלכתחילה</button>
+  <button class="opt" data-i="1">אין הבדל מהותי בין המושגים, הם משמשים כשמות נרדפים</button>
+  <button class="opt" data-i="2">המעלית מתייחסת רק לשיטות תרופתיות, לא כירורגיות</button>
+  <button class="opt" data-i="3">הסולם משמש רק לילדים והמעלית רק למבוגרים</button>
+  <div class="explain">התשובה הנכונה (1): סולם השחזור (Mathes & Nahai, 1982) מניח מעבר הדרגתי משיטות פשוטות למורכבות. מעלית השחזור (Gottlieb & Krieger) מאפשרת דילוג ישיר לשיטה המתאימה ביותר - מועיל כשברור מראש ששלבים נמוכים ייכשלו, כפי שקורה באזורים דקי-רקמה בכף רגל סוכרתית שבהם חשיפת עצם היא מיידית ולא הדרגתית. תשובות 2-4 אינן נכונות עובדתית לגבי המושגים כפי שהוגדרו בפרק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כף רגל סוכרתית לא מחלימה כי <b>נוירופתיה</b> (הסתרת נזק) ו<b>מחלת כלי דם</b> (מיקרו+מאקרווסקולרית) פועלות יחד - וגם כלי הדם העוקפים (<span dir="ltr">choke vessels</span>) פגומים בסוכרת.</li>
+    <li><b>סוכרת אינה התוויית נגד</b> לסקין גרפט, פלאפ מקומי או פלאפ חופשי - היא בעיקר מאריכה זמני החלמה ומורידה הישרדות ארוכת-טווח.</li>
+    <li>שישה <b>אנגיוזומים</b> בכף הרגל/קרסול (3 מ-posterior tibial, 2 מ-peroneal, 1 מ-anterior tibial) - פצע באנגיוזום איסכמי דורש פלאפ חופשי כ"מעקף וסקולרי", לא פלאפ מקומי.</li>
+    <li>עבודה טרום-ניתוחית חובה: בדיקה עורקית (עדיפות לאנגיוגרפיה קתטרית), ורידית (עדיפות לדופלקס), וטרומבופיליה (61% מהמטופלים עם תכונה אחת לפחות!).</li>
+    <li>בחירת פלאפ חופשי: הרכב (fasciocutaneous/muscle/musculocutaneous/chimeric), תת-יחידת כף הרגל, ותחלואת אתר תרומה - ALT/VL הם ה"סוסי עבודה".</li>
+    <li>כלי דם מסוידים: תפירה מבפנים-החוצה, שתל וריד ספניוס (SViG), וקטטרי Fogarty במקום מהדקים חיצוניים.</li>
+    <li>פרוטוקול אנטי-קרישה מדורג-סיכון הפחית אובדן פלאפ מלא מ-19% ל-3% במוסד הכותבים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

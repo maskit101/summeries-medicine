@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 20: פייסליפט – טכניקת ה-SMAS המורחבת בהצערת הפנים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 20: פייסליפט – טכניקת ה-SMAS המורחבת בהצערת הפנים <span class="term" dir="ltr">Facelift: The Extended SMAS Technique</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: אסתטיקה | פרק 9.7, מאת James M. Stuzin</div>
+
+<p>הפרק עוסק בגישה הניתוחית המרכזית ל"הצערת" הפנים המזדקנות: פייסליפט מבוסס <b>SMAS</b> (<span class="term" dir="ltr">Superficial Musculo-Aponeurotic System</span> – המערכת השרירית-אפונורוטית השטחית) בטכניקה "מורחבת" (<span class="term" dir="ltr">extended SMAS</span>) המפותחת על ידי סטוזין. הרעיון המרכזי: הזדקנות הפנים היא לא רק "רפיון עור" אלא שינוי במערכת היחסים בין השכבה השטחית לעמוקה של רקמות הפנים – ולכן הפתרון האמיתי הוא לשחזר תמיכה עמוקה (SMAS), לא רק למתוח עור.</p>
+
+<h2><span class="num">1</span> המנגנון: למה הפנים "משתנות בצורה" ולא רק "נהיות רפויות"</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שכבות קונצנטריות:</b> עור &#8592; שומן תת-עורי &#8592; <span class="term" dir="ltr">SMAS</span> (כולל שרירי הבעה שטחיים) &#8592; פאשיה פרוטידומאסטרית עמוקה (<span class="term" dir="ltr">deep facial fascia</span>) &#8592; המישור של עצב הפנים, בלוטת הפרוטיד, כרית השומן הבוקאלית וכלי הדם הפנים.<br>
+    <b>הקישור בין השכבות:</b> "רצועות מייצבות" (<span class="term" dir="ltr">retaining ligaments</span>) – בעיקר הרצועות הזיגומטיות והמאסטריות-עוריות – מחברות פיזית בין הפאשיה השטחית לעמוקה ותפקידן לעגן את הפנים במקומן נגד כוח הכבידה.<br>
+    <b>עם הגיל:</b> הרצועות המייצבות נחלשות (<span class="term" dir="ltr">attenuation</span>) &#8592; השומן התת-עורי "נשמט" (<span class="term" dir="ltr">descent</span>) במישור שבין הפאשיה השטחית לעמוקה, ובמקביל מתרחשת גם "התרחבות רדיאלית" (<span class="term" dir="ltr">radial expansion</span>) – השומן זז הצידה, הרחק מהשלד – ו"התרוקנות" (<span class="term" dir="ltr">deflation</span>) אזורית של תאי שומן ספציפיים &#8592; התוצאה היא שינוי בצורת הפנים (לא רק בכיוון האנכי אלא גם ברוחב ובנפח).
+  </p>
+  <p>נקודה קריטית שהפרק מדגיש: <b class="key">האנטומיה הבסיסית של הפנים כמעט לא משתנה מהנעורים לגיל העמידה – מה שמשתנה זה מיקום השומן וכמות התמיכה בו</b>. לכן המטרה הניתוחית האמיתית איננה "למתוח" את מה שהתרופף, אלא <b>למקם מחדש</b> (<span class="term" dir="ltr">reposition</span>) את השומן שנשמט, דרך שחרור וסיבוב ה-SMAS – ולא רק דרך מתיחת עור.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ההזדקנות של רקמות הפנים</title>
+  <rect x="680" y="20" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="760" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">היחלשות רצועות</text>
+  <text x="760" y="66" font-size="12" text-anchor="middle" fill="#7f1d1d">מייצבות (עם הגיל)</text>
+
+  <rect x="460" y="20" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שומן נשמט</text>
+  <text x="550" y="66" font-size="12" text-anchor="middle" fill="#1e3a8a">בין SMAS לפאשיה עמוקה</text>
+
+  <rect x="240" y="20" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="330" y="48" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">התרחבות רדיאלית</text>
+  <text x="330" y="66" font-size="12" text-anchor="middle" fill="#065f46">+ התרוקנות אזורית</text>
+
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="110" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שינוי צורת הפנים</text>
+  <text x="110" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">לסתות מרובעות, נזוליאביאל, ג'אול</text>
+
+  <polygon points="640,55 680,49 680,61" fill="#374151"/>
+  <line x1="680" y1="55" x2="640" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,55 460,49 460,61" fill="#374151"/>
+  <line x1="460" y1="55" x2="420" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,55 240,49 240,61" fill="#374151"/>
+  <line x1="240" y1="55" x2="200" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="20" y="150" width="820" height="130" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="175" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מיקום השומן ה"מעוגן" בנעורים (בעל צפיפות גבוהה של רצועות): מלארי, פרה-פרוטידי, אורביטלי תחתון וצדדי, סנטר צדדי</text>
+  <text x="430" y="198" font-size="12" text-anchor="middle" fill="#78350f">שכבת ה-SMAS מחזיקה את השרירים המימטיים (זיגומטיקוס, אורביקולריס) ומעבירה את כוח המתיחה בניתוח - לא העור</text>
+  <text x="430" y="225" font-size="12" text-anchor="middle" fill="#78350f">רופא שמבין זאת ישאף ל"מיקום מחדש" (reposition) של השומן במישור התת-SMAS, לא רק מתיחת עור</text>
+  <text x="430" y="250" font-size="12" text-anchor="middle" fill="#78350f">תוצאה: פנים צעירות = משולש (רחב למעלה, צר למטה) &#8594; פנים מזדקנות = מרובע (שקוע במלאר, מלא בג'אול)</text>
+  <polygon points="430,150 424,130 436,130" fill="#b45309"/>
+  <line x1="430" y1="150" x2="430" y2="130" stroke="#b45309" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">2</span> אנטומיה מפורטת: רצועות מייצבות ומדורי שומן</h2>
+<p>הבסיס האנטומי שמאפשר לבצע ריתידקטומיה (<span class="term" dir="ltr">rhytidectomy</span> – הניתוח הטכני של פייסליפט) בבטחה הוא שרקמת הפנים מסודרת ב<b>שכבות קונצנטריות נפרדות</b>: כך אפשר לבתר בתוך מישור אחד מבלי לפגוע במבנים שבמישור אחר.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מבנה</th><th>תפקיד קליני</th></tr></thead>
+  <tbody>
+    <tr><td><b>רצועות זיגומטיות</b> (<span class="term" dir="ltr">zygomatic ligaments</span>)</td><td>יוצאות מהפריוסטאום של אזור המלאר; מייצבות את "כרית המלאר" (<span class="term" dir="ltr">malar fat pad</span>) על הבליטה הזיגומטית בפנים צעירות. היחלשותן = ירידת המלאר.</td></tr>
+    <tr><td><b>רצועות מאסטריות-עוריות</b> (<span class="term" dir="ltr">masseteric cutaneous ligaments</span>)</td><td>רצועה לאורך הגבול הקדמי של שריר המאסטר, מהאזור המלארי ועד לגבול הלסת; תומכות בלחי המדיאלית. שחרורן הכרחי לניוד ה-SMAS ולעליית שומן הג'אול.</td></tr>
+    <tr><td><b>מדורי שומן תת-עורי</b> (<span class="term" dir="ltr">fat compartments</span>, לפי Rohrich &amp; Pessa)</td><td>השומן בלחי אינו רקמה אחידה אלא מחולק למדורים נפרדים עם קרום מפריד ואספקת דם עצמאית לכל מדור. לכן ההתרוקנות (deflation) קורית באזור ספציפי ולא בכל הלחי בבת אחת – שריר הזיגומטיקוס מייג'ור הוא ציר הפרדה טבעי בין דעיכת הלחי הצדדית (מוקדמת, שנות ה-40) לדעיכת הלחי המדיאלית/מלארית (מאוחרת יותר).</td></tr>
+    <tr><td><b>שכבת ה-SMAS</b></td><td>שכבה סיבית-שרירית המקיפה את שרירי ההבעה השטחיים (זיגומטיקוס, אורביקולריס אוקולי) ומחברת ביניהם לעור; זוהי השכבה שנושאת את כוח המתיחה בפייסליפט מודרני – לא העור עצמו.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>חשוב: <b>אנטומיית העצב הפני (<span class="term" dir="ltr">facial nerve</span>) יושבת עמוק לשכבת ה-SMAS</b> – מתחת לשרירי ההבעה. כל עוד המנתח נשאר <b>שטחי</b> לשרירי הזיגומטיקוס והאורביקולריס בזמן הרמת ה-SMAS, ענפי העצב מוגנים. האזור המסוכן ביותר הוא בסמוך לרצועות המאסטריות העליונות, שם קרובים ענפי הזיגומטיקוס של העצב הפני – שם קל לבלבל בין רצועה לענף עצב.</p>
+
+<h2><span class="num">3</span> ניתוח אסתטי וטיפול לפי צורת פנים (לא "מתכון אחיד")</h2>
+<p>נקודה מרכזית בפרק: <b class="key">אין ניתוח אחיד לכל הפנים</b> – מידת השחרור וכיוון ההזזה של ה-SMAS משתנים לפי מבנה השלד:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מאפיין פנים</th><th>גישה מומלצת</th></tr></thead>
+  <tbody>
+    <tr><td>פנים רחבות, בליטות מלאריות חזקות</td><td>הגבלת שחרור ה-SMAS לצד הלטרלי של הבליטה הזיגומטית – <b>לא</b> להגדיל נפח מלארי (אחרת הפנים ייראו רחבות עוד יותר). מיקוד בהעלאת שומן הג'אול וביצירת שקע סאב-מלארי.</td></tr>
+    <tr><td>פנים ארוכות וצרות</td><td>הרחבת ניתוק ה-SMAS מדיאלית לגבול הארובה הלטרלי, שחזור נפח מלארי קדמי &#8592; מגדיל את הרוחב הביזיגומטי ומקזז את האורך.</td></tr>
+    <tr><td>גובה נמוך של ענף הלסת / זווית מנדיבולרית פתוחה</td><td>תמיכה שלדית חלשה &#8592; לעיתים נדרשת תוספת נפח (שתל אלופלסטי או שומן אוטולוגי) בנוסף לניתוח הרקמה הרכה.</td></tr>
+    <tr><td>וקטור אלכסוני (לא אנכי) של הרמת ה-SMAS</td><td>מביא פחות נפח למלאר ויותר לסאב-מלאר – שימושי בפנים "שקועות" בגיל מבוגר שצריכות מילוי סאב-מלארי ולא הדגשת מלאר.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">4</span> טכניקה ניתוחית: דיסקציית ה-SMAS המורחבת</h2>
+<p><b>הכנה טרום-ניתוחית:</b> תכנון מראש (לא אינטראופרטיבית!) של: (1) עד היכן להרחיב את הבתירה התת-עורית; (2) עד היכן להרחיב את בתירת ה-SMAS; (3) הווקטור בו יוסט כל צד של הפנים (בהתחשב בכך שכמעט לכל אדם יש חוסר סימטריה מולד בין הצדדים).</p>
+
+<h3>4.1 עקרון מפתח: לא לבתר את העור עד קפל הנזוליאביאל</h3>
+<p>אם בותרים את העור התת-עורי עד קפל הנזוליאביאל (<span class="term" dir="ltr">nasolabial fold</span>) עצמו, מאבדים את הקשרים בין העור ל-SMAS באזור המדיאלי של הלחי. סטוזין ממליץ להשאיר את הבתירה התת-עורית כמה סנטימטרים <b>לטרלית</b> לקפל, כדי לשמר את הקשרים הללו – כך שכשה-SMAS מסתובב ומורם, הוא "גורר" איתו את העור הבלתי-מבותר דרך הרוטציה, ולא רק דרך משיכה ישירה על העור.</p>
+
+<h3>4.2 השלבים העיקריים</h3>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שלב</th><th>מה נעשה</th><th>נקודת בטיחות קריטית</th></tr></thead>
+  <tbody>
+    <tr><td>1. חתך</td><td>מתחיל כ-1 ס"מ מתחת לקשת הזיגומטית (לשימור ענף המצח של עצב הפנים), נמשך קדימה למפגש הקשת עם גוף הזיגומה, עולה לכיוון הקנטוס הלטרלי לאורך 3–4 ס"מ, ואז פונה 90° מטה לכיוון הקצה העליון של הנזוליאביאל; חתך אנכי פרה-אוריקולרי לאורך הגבול האחורי של הפלטיזמה.</td><td>שמירת מרחק מהקשת הזיגומטית להגנה על ענף המצח.</td></tr>
+    <tr><td>2. הרמת ה-SMAS המלארי</td><td>מורם בהמשכיות עם SMAS הלחי, שטחית לזיגומטיקוס מייג'ור/מינור ולאורביקולריס אוקולי.</td><td>העצב הפני יושב <b>עמוק</b> לשרירים האלה – להישאר שטחי לשרירים.</td></tr>
+    <tr><td>3. שחרור מהזיגומה והרצועות המאסטריות העליונות</td><td>חושף את כרית השומן הבוקאלית.</td><td>ענפי הזיגומטיקוס של העצב הפני קרובים כאן – "השלב המסוכן ביותר בניתוח".</td></tr>
+    <tr><td>4. הרחבה מדיאלית "עיוורת" מעל מרימי השפה העליונה</td><td>מספריים מוכנסים ישירות שטחית למרימי השפה העליונה, ומבתרים בעדינות (בלאנט) לכיוון הנזוליאביאל עד ל"קליק" של שחרור הרצועות הנותרות.</td><td>כל עוד המספריים שטחיים למרימי השפה – אין סיכון לעצב מוטורי.</td></tr>
+    <tr><td>5. קיבוע ה-SMAS (<span class="term" dir="ltr">fixation</span>)</td><td>המתלה המלארי מוסט על-לטרלית לפריוסטאום הזיגומטי; מתלה הלחי מסובב בניצב לגבול המנדיבולה לצורך קונטור הג'אול; המתלה הפרה-אוריקולרי מועבר כפלאפ טרנספוזיציה מאחורי האוזן לצוואר.</td><td>תפירות מרובות עמוק בתוך ה-SMAS – זה, ולא מתח על העור, קובע את היציבות לטווח ארוך.</td></tr>
+    <tr><td>6. פלטיזמופלסטי (אם נדרש)</td><td>חתך תת-סנטרי, בתירת הפלטיזמה, חיתוך הפיברות המצטלבות (decussating fibers) בקו האמצע, תפירת קצה-לקצה (plication), ולעיתים מיוטומיה חלקית נמוכה בגובה הקריקואיד.</td><td><b>יש לבצע את ה-SMAS לפני הפלטיזמופלסטי</b> – סדר הפוך "נועל" שומן ג'אול בצוואר ופוגם בתוצאה.</td></tr>
+    <tr><td>7. סגירת עור</td><td>מתיחה מינימלית בתפרי המפתח; חתכי טראגוס (לא פרה-אוריקולרי) לטשטוש צבע; שימור אשלייה טבעית ("earlobe" מנותק מהלחי).</td><td>מתח עודף על העור &#8592; מראה "מנופח מרוח" (<span class="term" dir="ltr">wind-tunnel appearance</span>).</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/1tSK-SYLQLE" title="The SMAS and Its Role in Facial Rejuvenation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון חינוכי המסביר את תפקיד ה-SMAS בהצערת הפנים ואת העיקרון של ניתוק שכבת ה-SMAS מהעור לצורך וקטורים בלתי-תלויים.</p>
+
+<h2><span class="num">5</span> למה שתי שכבות עדיפות על מתיחת עור בלבד?</h2>
+<div class="mechanism">
+  <p class="chain">בפייסליפט דו-שכבתי (עור + SMAS בנפרד), אפשר לגרור כל שכבה בוקטור שונה. <b>למה זה חשוב?</b> משום שהרפיון העורי (<span class="term" dir="ltr">dermal elastosis</span>) לא בהכרח קורה באותו קצב או כיוון כמו ירידת השומן. אם מותחים רק עור בוקטור אנכי חזק, השטח הפרה-אוריקולרי (שנוטה להתרוקן עם הגיל ממילא) נעשה שטוח באופן לא טבעי, ומתקבל המראה ה"מנותח" הקלאסי – ה"מנהרת רוח". לעומת זאת, אם ה-SMAS משוחרר ומורם בנפרד (בדרך כלל בוקטור תלול יותר, קפאלי), אפשר להשתמש בפחות מתח בתפרי העור לסגירה.</p>
+</div>
+<p class="key-box">שני יתרונות נוספים לגישה הדו-שכבתית: (1) שליטה ארוכת-טווח טובה יותר על מיקום השומן האנכי; (2) שליטה על מיקום השומן ה"פנימי" (<span class="term" dir="ltr">internal repositioning</span>) – כלומר קירוב הרקמה הרכה השטחית לשלד הפנים, מה שמתקן חלק מההתרחבות הרדיאלית שאי אפשר לתקן במתיחת עור בלבד.</p>
+
+<h2><span class="num">6</span> טבלת השוואה: טכניקות פייסליפט מבוססות-SMAS</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>טכניקה</th><th>מישור בתירה</th><th>מידת שחרור SMAS</th><th>יתרון עיקרי</th><th>חיסרון / סיכון</th></tr></thead>
+  <tbody>
+    <tr><td><b>פליקציה של ה-SMAS</b> (<span class="term" dir="ltr">SMAS plication</span>)</td><td>אין בתירה תת-SMAS; רק קיפול ותפירה של השכבה השטחית</td><td>מינימלית</td><td>מהיר, סיכון נמוך לעצב הפני</td><td>תוצאה פחות עמידה בזמן; פחות שליטה בצורה כשה-SMAS דק</td></tr>
+    <tr><td><b>SMAS-אקטומי</b> (<span class="term" dir="ltr">SMASectomy</span>)</td><td>כריתת רצועת SMAS + תפירת קצוות</td><td>בינונית</td><td>פשוט יחסית, זמן ניתוח קצר יותר</td><td>שליטה מוגבלת יותר בווקטורים מאשר בפלאפ מלא</td></tr>
+    <tr><td><b>SMAS מורחב</b> (<span class="term" dir="ltr">extended SMAS</span> – פרק זה)</td><td>פלאפ SMAS מלא, מורחב לאזור המלארי</td><td>נרחבת, כולל שחרור רצועות זיגומטיות ומאסטריות עליונות</td><td>גמישות אסתטית מרבית: שליטה בווקטור, בנפח מלארי/סאב-מלארי ובתיקון התרחבות רדיאלית</td><td>ניתוח ארוך ותובעני מבחינה טכנית; סיכון גבוה יותר לפגיעה בענפי הזיגומטיקוס של העצב הפני אם לא זהירים ברצועות המאסטריות</td></tr>
+    <tr><td><b>דיפ פליין</b> (<span class="term" dir="ltr">deep plane facelift</span>, המרה)</td><td>עור ו-SMAS מורמים כפלאפ מורכב אחד מתחת לשריר</td><td>נרחבת מאוד, כולל שחרור הליגמנט הזיגומטי הרחיקה מתחת לשריר</td><td>הימנעות מבתירה תת-עורית נפרדת; תיקון חזק של הנזוליאביאל</td><td>עוד יותר תובעני טכנית; זמן החלמה ובצקת ראשונית ארוכים יותר</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">7</span> סיבוכים עיקריים ונקודות בטיחות</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סיבוך</th><th>מנגנון / סיבה</th><th>מניעה</th></tr></thead>
+  <tbody>
+    <tr><td>פגיעה בענפי עצב הפנים (בעיקר זיגומטיקוס)</td><td>קרבה אנטומית לרצועות המאסטריות העליונות באזור בו קשה להבחין בין רצועה לעצב</td><td>הישארות שטחית לשרירי ההבעה; זיהוי אנטומי מדויק לפני חיתוך רצועות</td></tr>
+    <tr><td>קרעים ב-SMAS (פלאפ דק מדי)</td><td>בתירה תת-עורית אגרסיבית מדי שמסירה יותר מדי שומן משטח ה-SMAS</td><td>השארת שכבת שומן מתונה על פני ה-SMAS; שימוש בטרנס-אילומינציה נגדית לזיהוי המישור</td></tr>
+    <tr><td>מראה "מנופח מרוח" (<span class="term" dir="ltr">wind-tunnel appearance</span>) / עיוות קו השיער</td><td>מתח אנכי-חזק מוגזם על דש העור בלבד</td><td>העברת המתח לשכבת ה-SMAS ולא לעור; וקטור מתון ומותאם אישית לעור</td></tr>
+    <tr><td>קווי "ג'וקר" / שקע צולב-לחי (<span class="term" dir="ltr">joker lines</span>)</td><td>הזזה אנכית של רקמה רכה מבלי להוסיף נפח לשקע הסאב-מלארי הצדדי לזווית הפה</td><td>הימנעות מהזזה אנכית חדה באזור זה; הוספת נפח בו זמנית</td></tr>
+    <tr><td>עיוות הטראגוס / אונת אוזן "דבוקה" (לא טבעית)</td><td>עיצוב לקוי של חתך הטראגוס וסגירת האונה תחת מתח</td><td>עיצוב מדויק לפי הצורה המלבנית של הטראגוס; השארת שוליים חופשיים לאונה</td></tr>
+    <tr><td>חוסר תפקוד/חולשה של השפה התחתונה</td><td>מיוטומיה של הפלטיזמה בגובה גבוה מדי בצוואר, קרוב לענפים המרווטלים</td><td>ביצוע המיוטומיה נמוך (בגובה הקריקואיד) ולא גבוה בצוואר</td></tr>
+    <tr><td>שקע בצוואר לאחר טרנסקציה</td><td>הסרת שומן פרה-פלטיזמלי באותה רמה שבה בוצעה המיוטומיה</td><td>שימור שומן פרה-פלטיזמלי בגובה המיוטומיה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">R-E-S-T</span> לשלבי הדיסקציה המורחבת</h3>
+  <p>
+    <b>R</b> – <span class="term" dir="ltr">Release</span> (שחרור מהרצועות הזיגומטיות והמאסטריות)<br>
+    <b>E</b> – <span class="term" dir="ltr">Elevate</span> (הרמת פלאפ ה-SMAS בהמשכיות עם המלאר)<br>
+    <b>S</b> – <span class="term" dir="ltr">Suture/fixate</span> (קיבוע לפריוסטאום הזיגומטי בתפרים מרובים)<br>
+    <b>T</b> – <span class="term" dir="ltr">Tailor the vector</span> (התאמת וקטור אישית לכל צד ולכל צורת פנים)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את הפנים כאוהל קמפינג ישן: העור הוא בד האוהל, אבל מה שבאמת מחזיק אותו זקוף זה יתדות וחבלים פנימיים (ה-SMAS והרצועות). עם הזמן היתדות מתרופפות והבד "שוקע" למטה וכלפי חוץ. מותחים חדשים ומהדקים רק את הבד (מתיחת עור בלבד) – האוהל נראה מתוח אבל מעוות ולא יציב. מנתח חכם קודם כל תוקע מחדש את היתדות בזווית הנכונה (משחרר ומרים את ה-SMAS ומקבע אותו לשלד), ורק אז מותח את הבד קלות מעליהן.</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <title>אוהל ה-SMAS</title>
+    <polygon points="260,30 100,170 420,170" fill="#fde68a" stroke="#b45309" stroke-width="3"/>
+    <line x1="100" y1="170" x2="60" y2="185" stroke="#374151" stroke-width="3"/>
+    <line x1="420" y1="170" x2="460" y2="185" stroke="#374151" stroke-width="3"/>
+    <circle cx="60" cy="188" r="6" fill="#047857"/>
+    <circle cx="460" cy="188" r="6" fill="#047857"/>
+    <text x="60" y="180" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700" dy="20">יתד = SMAS מקובע</text>
+    <text x="260" y="20" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">בד האוהל = עור</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> סרטונים ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.youtube.com/watch?v=bT4CbMyNFVo" target="_blank">What is The Extended High SMAS Facelift Technique? – Dr. Karaaltin</a>
+    <div class="desc">הסבר קליני קצר על עקרון ה-SMAS המורחב/גבוה, כולל הדגמת אזור השחרור בפנים.</div>
+  </li>
+  <li>
+    <a href="https://journals.lww.com/plasreconsurg/pages/video.aspx?autoPlay=false&v=827" target="_blank">Extended SMAS Face Lift and Neck Lift with Lipo Filling – James M. Stuzin, MD (Plastic and Reconstructive Surgery Journal)</a>
+    <div class="desc">סרטון ניתוח מקורי של ד"ר סטוזין עצמו (מחבר הפרק), מוצג בכנס Baker Gordon Symposium – מדגים את הטכניקה המדויקת המתוארת בפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK519014/" target="_blank">StatPearls – Anatomy, Skin, Superficial Musculoaponeurotic System (SMAS) Fascia</a>
+    <div class="desc">מאמר רקע פתוח לציבור על אנטומיית ה-SMAS, גבולותיו ושכבותיו – משלים את סעיף האנטומיה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 54, בריאה, פונה בשל "מראה עייף" ותלונה על שקיעה בלחיים ובליטת ג'אול. בבדיקה: פנים רחבות עם בליטות זיגומטיות בולטות, שקע קל בשתי הלחיים לצדדי הפה, קפלי נזוליאביאל בינוניים, וקווי מנדיבולה לא ברורים עם ג'אול קל. אין רפיון פלטיזמלי משמעותי. המנותחת מבקשת "פנים פחות רחבות ולא מנופחות".</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מבחינה אנטומית, מה קורה בפועל כשהפנים מזדקנות, לפי המנגנון המתואר בפרק?</div>
+  <button class="opt" data-i="0">העור מתרחב פיזית ונוצר עודף עורי בלבד</button>
+  <button class="opt" data-i="1">הרצועות המייצבות בין הפאשיה השטחית לעמוקה נחלשות, השומן נשמט ונודד רדיאלית, ומתרחשת התרוקנות אזורית</button>
+  <button class="opt" data-i="2">שריר הפלטיזמה מתקצר ומושך את הלחי כלפי מטה</button>
+  <button class="opt" data-i="3">שכבת ה-SMAS מתעבה ודוחפת את העור החוצה</button>
+  <div class="explain">התשובה הנכונה: המנגנון המרכזי הוא היחלשות הרצועות המייצבות (זיגומטיות ומאסטריות), הגורמת לשומן לנוע במישור שבין SMAS לפאשיה העמוקה (ירידה + התרחבות רדיאלית), בשילוב התרוקנות אזורית ספציפית של מדורי שומן. תשובה 1 מתעלמת מהמרכיב התת-עורי-שרירי. תשובה 3 מתארת פלטיזמה שקשורה לצוואר, לא למנגנון המלארי-לחיי המרכזי. תשובה 4 הפוכה – ה-SMAS לא מתעבה, הרקמה סביבו משתנה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. בהתחשב בכך שלמנותחת פנים רחבות עם בליטות זיגומטיות חזקות (וללא תלונה על אורך פנים), מהי הגישה המתאימה ביותר לתכנון ה-SMAS לפי הפרק?</div>
+  <button class="opt" data-i="0">הרחבת השחרור מדיאלית לגבול הארובה כדי להגדיל נפח מלארי ולהרחיב עוד יותר את הפנים</button>
+  <button class="opt" data-i="1">להימנע לחלוטין מדיסקציית SMAS ולהסתפק במתיחת עור בלבד</button>
+  <button class="opt" data-i="2">להגביל את שחרור ה-SMAS לצד הלטרלי של הבליטה הזיגומטית ולהתמקד בהעלאת שומן הג'אול וביצירת שקע סאב-מלארי</button>
+  <button class="opt" data-i="3">לבצע פלטיזמופלסטי לפני שחרור ה-SMAS</button>
+  <div class="explain">התשובה הנכונה: בפנים רחבות עם תמיכה שלדית טובה, הגדלת הנפח המלארי (תשובה 1) תגרום לפנים להיראות רחבות עוד יותר – בדיוק מה שהמנותחת מבקשת להימנע ממנו. הגישה הנכונה היא הגבלת השחרור ללטרלי לזיגומה ומיקוד בקונטור התחתון (ג'אול, סאב-מלאר). תשובה 2 מוותרת על היתרון המרכזי של הטכניקה (שליטה ווקטורית). תשובה 4 הפוכה מסדר הפעולות הנכון שהפרק מדגיש (SMAS לפני פלטיזמופלסטי).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מדוע סטוזין ממליץ שלא לבתר את העור התת-עורי עד קפל הנזוליאביאל עצמו?</div>
+  <button class="opt" data-i="0">כדי לשמר את הקשרים בין העור ל-SMAS באזור זה, כך שרוטציית ה-SMAS "תגרור" גם את העור הבלתי-מבותר</button>
+  <button class="opt" data-i="1">כי באזור זה עובר עצב הפנים הראשי ואסור לגעת בו כלל</button>
+  <button class="opt" data-i="2">כי זה מקצר את זמן הניתוח בלבד, ללא השפעה אסתטית</button>
+  <button class="opt" data-i="3">כי העור באזור זה דק מדי ועלול להיקרע</button>
+  <div class="explain">התשובה הנכונה: השארת הקשרים העוריים-SMAS-יים באזור המדיאלי מאפשרת "רה-אלבציה" (הרמה מחדש) של עור ושומן דרך רוטציית ה-SMAS בלבד, מה שמניב תוצאה אסתטית טובה יותר ותיקון טוב יותר של ההתרחבות הרדיאלית. תשובה 2 שגויה עובדתית – עצב הפנים לא "עובר" בקו הנזוליאביאל עצמו. תשובות 3-4 אינן הסיבה שניתנה בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו סדר הפעולות הנכון, ולמה, כשמבצעים גם SMAS דיסקציה מורחבת וגם פלטיזמופלסטי באותו ניתוח?</div>
+  <button class="opt" data-i="0">פלטיזמופלסטי תמיד ראשון, כי הצוואר קובע את קו הלסת</button>
+  <button class="opt" data-i="1">אין חשיבות לסדר, שתי הפעולות בלתי תלויות זו בזו</button>
+  <button class="opt" data-i="2">חתכי העור תמיד לפני כל דיסקציה פנימית</button>
+  <button class="opt" data-i="3">SMAS תחילה, מכיוון שביצוע פלטיזמופלסטי קודם "נועל" את שומן הג'אול בצוואר ופוגם בתנועתיות ה-SMAS לאחר מכן</button>
+  <div class="explain">התשובה הנכונה: מכיוון שה-SMAS והפלטיזמה הם אותה שכבה אנטומית מבחינה רציפה, ביצוע פלטיזמופלסטי לפני שחרור ה-SMAS "נועל" את השומן שירד לתוך הצוואר ומקטין את יכולת התנועה של ה-SMAS בהמשך, מה שפוגע בקונטור הסופי. ביצוע SMAS קודם מאפשר להביא את שומן הג'אול לגבול המנדיבולה בקלות ולהפוך את קו הלסת לברור יותר לפני עיצוב הצוואר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו אזור הסיכון הגבוה ביותר לפגיעה עצבית במהלך דיסקציית SMAS מורחבת, ומדוע?</div>
+  <button class="opt" data-i="0">עומק כרית השומן הבוקאלית, שם עובר עצב הטריגמינוס</button>
+  <button class="opt" data-i="1">אזור הרצועות המאסטריות העליונות הסמוך לזיגומטיקוס מייג'ור, שם קרובים ענפי הזיגומטיקוס של עצב הפנים וקשה להבדיל בינם לבין הרצועות</button>
+  <button class="opt" data-i="2">חתך הטראגוס, שם עובר עצב האוריקולוטמפורלי</button>
+  <button class="opt" data-i="3">קו האמצע של הפלטיזמה, שם עובר עצב ההיפוגלוסוס</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שהחלק הקשה ביותר בדיסקציה המורחבת הוא שחרור הרצועות המאסטריות העליונות, בגלל קרבתם של ענפי הזיגומטיקוס של עצב הפנים ("לעיתים קשה להבחין בין רצועות לענפי עצב"). האזורים האחרים (תשובות 1,3,4) אינם האזור המודגש בפרק כמסוכן ביותר עבור עצב הפנים בהקשר זה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו היתרון האסתטי המרכזי של פייסליפט דו-שכבתי (עור ו-SMAS בנפרד) על פני מתיחת עור בלבד, לפי הפרק?</div>
+  <button class="opt" data-i="0">הוא מקצר משמעותית את זמן הניתוח הכולל</button>
+  <button class="opt" data-i="1">הוא מבטל לחלוטין את הצורך בחתכים סביב האוזן</button>
+  <button class="opt" data-i="2">הוא מאפשר וקטורים בלתי-תלויים לכל שכבה, מעביר את מתח הקונטור מהעור ל-SMAS, ומשפר שליטה במיקום פנימי וחיצוני של השומן</button>
+  <button class="opt" data-i="3">הוא מייתר את הצורך בטיפול בפלטיזמה בכל מקרה</button>
+  <div class="explain">התשובה הנכונה: מכיוון שדעיכת עור (elastosis) וירידת שומן לא בהכרח קורות באותו כיוון/קצב, הפרדת השכבות מאפשרת וקטורים עצמאיים, מפחיתה את המתח הנדרש בתפרי העור (ומכאן פחות צלקות בולטות ופחות מראה "מנותח"), ומשפרת גם מיקום אנכי וגם מיקום פנימי (קירוב לשלד) של השומן. תשובות 1, 2 ו-4 אינן נכונות עובדתית – הניתוח למעשה ארוך יותר, חתכי האוזן עדיין נדרשים, והפלטיזמה מטופלת בנפרד כשיש צורך.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הזדקנות הפנים = היחלשות רצועות מייצבות &#8592; ירידת שומן + התרחבות רדיאלית + התרוקנות אזורית ספציפית (לא רק "רפיון עור").</li>
+    <li>הטכניקה: פלאפ SMAS מלא, מורחב לאזור המלארי, המשוחרר מהרצועות הזיגומטיות והמאסטריות ומקובע מחדש לפריוסטאום הזיגומטי – בנפרד מדש העור.</li>
+    <li>עקרון מפתח: להשאיר קשרי עור-SMAS מדיאליים לא-מבותרים (לא לבתר עד הנזוליאביאל) כדי לאפשר רה-אלבציה דרך רוטציית SMAS.</li>
+    <li>סדר נכון: SMAS לפני פלטיזמופלסטי; SMAS לפני עיצוב עור.</li>
+    <li>וקטור וכמות השחרור <b>אישיים</b> לפי צורת פנים (רחב/צר, א-סימטריה) – לא נוסחה אחידה.</li>
+    <li>סיבוכים מרכזיים: פגיעה בענפי הזיגומטיקוס של עצב הפנים (ברצועות המאסטריות העליונות), קרעי SMAS, "מראה מנופח מרוח", קווי ג'וקר, עיוות טראגוס/אונה, חולשת שפה תחתונה (במיוטומיה גבוהה מדי).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

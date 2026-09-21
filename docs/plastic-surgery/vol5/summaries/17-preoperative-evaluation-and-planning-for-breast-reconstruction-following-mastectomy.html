@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 17: הערכה וניתוח טרום-ניתוחי לשחזור שד לאחר מסטקטומיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 17: הערכה וניתוח טרום-ניתוחי לשחזור שד לאחר מסטקטומיה <span class="term" dir="ltr">Preoperative Evaluation and Planning for Breast Reconstruction Following Mastectomy</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: שד | Section II: Reconstructive Breast Surgery, מאת Saïd C. Azoury ו-Liza C. Wu</div>
+
+<p>פרק זה אינו עוסק בטכניקה ניתוחית מסוימת, אלא ב<b>תהליך קבלת ההחלטות</b> שקודם לכל שחזור שד לאחר מסטקטומיה: איך מעריכים את המחלה האונקולוגית, אילו גורמי סיכון של המטופלת משפיעים על הבחירה בין שחזור בשתל (<span class="term" dir="ltr">implant-based reconstruction, IBR</span>) לשחזור עצמי (<span class="term" dir="ltr">autologous breast reconstruction, ABR</span>), ומתי עדיף שחזור מיידי לעומת שחזור מושהה. כ-1 מכל 8 נשים (13%) תאובחן עם סרטן שד פולשני במהלך חייה, ומספר הנשים הבוחרות במסטקטומיה (במקום שימור שד) עולה בהתמדה - מה שהופך את שלב התכנון הטרום-ניתוחי למכריע להצלחת השחזור.</p>
+
+<h2><span class="num">1</span> ההיגיון מאחורי כל החלטה - לא רק "מה אפשר" אלא "למה דווקא זה"</h2>
+<div class="mechanism">
+  <p class="chain">
+    שרשרת קבלת ההחלטות בפרק בנויה כך: <b>מאפייני הגידול</b> (שלב, מיקום, סוג קולטנים) &#8592; קובעים <b>אילו טיפולים אונקולוגיים נדרשים</b> (הקרנה, כימותרפיה, הורמונלי) &#8592; אשר קובעים יחד עם <b>גורמי הסיכון של המטופלת</b> (מחלות רקע, עישון, BMI) &#8592; את <b>הבחירה בין שחזור בשתל לשחזור עצמי, ובין מיידי למושהה</b>.
+  </p>
+  <p>ההיגיון המרכזי: <b class="key">הקרנה היא הגורם היחיד המשפיע ביותר על כל שרשרת ההחלטות</b> - כי רקמה מוקרנת עוברת שינויים בלתי הפיכים (פיברוזיס, פגיעה בכלי דם קטנים) שהופכים שתל זר לפחות בטוח משמעותית מרקמה עצמית חיה עם אספקת דם משלה. לכן ההקרנה (קיימת/מתוכננת) היא לרוב "המסלול המפצל" הראשון בכל אלגוריתם שחזור.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 260" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם החלטות לשחזור שד</title>
+  <rect x="330" y="15" width="200" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">סרטן שד בר-כריתה</text>
+
+  <polygon points="430,90 460,110 430,130 400,110" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="107" font-size="11.5" text-anchor="middle" fill="#78350f" font-weight="700">היסטוריה</text>
+  <text x="430" y="121" font-size="11.5" text-anchor="middle" fill="#78350f" font-weight="700">של הקרנה?</text>
+
+  <rect x="620" y="90" width="180" height="50" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="710" y="112" font-size="12.5" text-anchor="middle" fill="#4c1d95" font-weight="700">כן: עדיפות ל-ABR</text>
+  <text x="710" y="128" font-size="11.5" text-anchor="middle" fill="#4c1d95">(תקן זהב לשדה מוקרן)</text>
+
+  <rect x="40" y="90" width="200" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="140" y="112" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">לא: תכנון הקרנה</text>
+  <text x="140" y="128" font-size="11.5" text-anchor="middle" fill="#1e3a8a">אחרי מסטקטומיה?</text>
+
+  <rect x="20" y="180" width="200" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="120" y="203" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">צפויה הקרנה:</text>
+  <text x="120" y="219" font-size="11.5" text-anchor="middle" fill="#065f46">שקילת IBR מול ABR,</text>
+  <text x="120" y="233" font-size="11.5" text-anchor="middle" fill="#065f46">מיידי מול מושהה</text>
+
+  <rect x="250" y="180" width="220" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="360" y="203" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">אין הקרנה: מועמדת ל-NSM?</text>
+  <text x="360" y="219" font-size="11.5" text-anchor="middle" fill="#065f46">שחזור מיידי - IBR או ABR</text>
+  <text x="360" y="233" font-size="11.5" text-anchor="middle" fill="#065f46">לפי העדפת מטופלת/גוף</text>
+
+  <line x1="430" y1="65" x2="430" y2="90" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,90 424,78 436,78" fill="#374151"/>
+
+  <line x1="400" y1="115" x2="240" y2="115" stroke="#374151" stroke-width="2"/>
+  <polygon points="240,115 252,109 252,121" fill="#374151"/>
+  <text x="320" y="105" font-size="11" fill="#374151">לא</text>
+
+  <line x1="460" y1="115" x2="620" y2="115" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,115 608,109 608,121" fill="#374151"/>
+  <text x="540" y="105" font-size="11" fill="#374151">כן</text>
+
+  <line x1="140" y1="140" x2="120" y2="180" stroke="#374151" stroke-width="2"/>
+  <polygon points="120,180 118,166 130,172" fill="#374151"/>
+
+  <line x1="140" y1="140" x2="360" y2="180" stroke="#374151" stroke-width="2"/>
+  <polygon points="360,180 350,168 362,166" fill="#374151"/>
+</svg>
+<p class="figcap">תרשים מבוסס Algorithm 17.1 המקורי (אלגוריתם המחברים לשחזור שד) - פושט את השרשרת המרכזית: הקרנה &#8592; NSM &#8592; מיידי/מושהה, IBR/ABR.</p>
+
+<h2><span class="num">2</span> מאפייני הגידול - איך המחלה עצמה קובעת את גבולות האפשרויות</h2>
+<p>שיעורי ההישרדות ל-5 שנים לפי שלב (99% מקומי, 86% אזורי, 27% גרורתי, 90% לכל השלבים) הם הבסיס לכך שרוב הדיון בפרק מתמקד בחולות בשלב מוקדם - אלו שיש להן זמן ליהנות מתוצאה אסתטית ארוכת-טווח. עם זאת, גם חולות עם מחלה מתקדמת/גרורתית פונות היום יותר לשחזור, בעקבות שיפור בטיפול האונקולוגי.</p>
+
+<h3>מסטקטומיה משמרת פטמה (<span class="term" dir="ltr">Nipple-Sparing Mastectomy, NSM</span>)</h3>
+<p>ה<b>מנגנון</b> העומד מאחורי הקריטריונים: הפטמה נשמרת רק אם סביר להניח שאין תאי גידול בתעלות החלב שמתחתיה - כלומר, ככל שהגידול קרוב יותר לפטמה, גדול יותר, בעל דרגה היסטולוגית גבוהה יותר, או עם מעורבות לימפו-וסקולרית, כך גדל הסיכון שתאים סרטניים "יושבים" כבר מתחת לפטמה עצמה ולכן היא אינה ניתנת לשימור בבטחה.</p>
+<table>
+  <thead><tr><th>גורם</th><th>תומך ב-NSM</th><th>שולל NSM</th></tr></thead>
+  <tbody>
+    <tr><td>מרחק גידול-פטמה</td><td>&gt;2 ס"מ</td><td>מעורבות ה-<span class="term" dir="ltr">NAC</span> (מכלול פטמה-עטרה), הפרשה דמית</td></tr>
+    <tr><td>גודל גידול</td><td>&lt;5 ס"מ</td><td>&gt;5 ס"מ, מחלה רב-מוקדית/רב-מרכזית</td></tr>
+    <tr><td>קולטן HER2/NEU</td><td>שלילי</td><td>חיובי</td></tr>
+    <tr><td>קולטני הורמונים</td><td>ER/PR חיובי</td><td>-</td></tr>
+    <tr><td>סוג היסטולוגי</td><td>-</td><td>סוג דלקתי (<span class="term" dir="ltr">inflammatory</span>) או דרגה היסטולוגית גבוהה</td></tr>
+    <tr><td>הקרנה קודמת</td><td>ללא</td><td>קיימת</td></tr>
+    <tr><td>מעורבות לימפו-וסקולרית</td><td>ללא</td><td>קיימת</td></tr>
+  </tbody>
+</table>
+<p>מחקר מעקב ארוך-טווח של 944 מטופלות שעברו NSM ושחזור מיידי הראה שיעור הישנות סרטן במכלול הפטמה-עטרה של 3.5% ב-5 שנים בלבד, <b>ללא</b> הבדל בהישרדות כוללת בין מי שחוו הישנות מקומית לבין מי שלא - ממצא שמעודד גישה זו כשהקריטריונים מתקיימים. <b class="key">סיבוך שכיח: נמק פטמה (חלקי או מלא) עד 20% מהמקרים</b> - אך נמק חלקי לרוב מנוהל שמרנית עם תוצאה טובה. חתך היקפי/פרי-אריאולרי נושא את הסיכון הגבוה ביותר לנמק פטמה, בעוד חתך תת-שדי (<span class="term" dir="ltr">inframammary</span>) נסבל היטב יחסית.</p>
+<p>גורמי סיכון של המטופלת (לא של הגידול) לנמק פטמה: <span class="term" dir="ltr">BMI</span> גבוה, גיל מעל 45, עישון, הקרנה קודמת, עובי הדשן שנשאר (<span class="term" dir="ltr">flap thickness</span>), וגודל שד C או יותר.</p>
+
+<h3>מסטקטומיה מונעת בצד השני (<span class="term" dir="ltr">Contralateral Prophylactic Mastectomy, CPM</span>)</h3>
+<p>שיעור ה-CPM יותר מהוכפל בעשור האחרון בארה"ב, ונע ברובו מרצון המטופלת ולא מהכרח אונקולוגי. <b>אין הוכחה פרוספקטיבית ליתרון אונקולוגי</b> ב-CPM. עם זאת, מחקרי איכות-חיים (כולל מחקר MROC הגדול) מראים שיפור משמעותי בשביעות רצון מהשד ובחרדה מהישנות עתידית אצל מי שבחרו ב-CPM עם שחזור דו-צדדי. הנחיות NCCN מעודכנות ממליצות <b>נגד</b> CPM שגרתי, אלא במקרים של סיכון גנטי/משפחתי גבוה (למשל נשאיות BRCA1/2).</p>
+<p class="key-box">קווים מנחים: יש לשקול/לעודד הימנעות מ-CPM בחולות בסיכון גבוה לסיבוכים (עישון, תחלואת רקע), בסיכון גבוה להישנות/גרורות, או במחלה גרורתית (שלב IV).</p>
+
+<h2><span class="num">3</span> שחזור מיידי מול מושהה - מתי לחכות</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שחזור מיידי:</b> מתבצע באותו ניתוח כמו המסטקטומיה. <b>יתרון מנגנוני</b>: חוסך הרדמה/ניתוח נפרד, ומונע את הפגיעה הפסיכו-סוציאלית של תקופה עם חזה חסר לחלוטין.<br>
+    <b>שחזור מושהה:</b> מתבצע לאחר תקופת המתנה, בדרך כלל לאחר השלמת הקרנה אדג'ובנטית, או כאשר דשני העור (<span class="term" dir="ltr">mastectomy flaps</span>) אינם ורודים/חיוניים דיים מיד לאחר הכריתה ויש צורך לתת להם "להוכיח" את עצמם.
+  </p>
+</div>
+<p>שחזור מיידי <b>אינו</b> מעכב בדרך כלל את מתן הטיפול האדג'ובנטי. מנגד, שחזור מושהה עשוי להפחית שיעורי סיבוכים תוך השגת תוצאות דומות בדיווח המטופלת. חשוב: במסטקטומיה דו-צדדית עם שחזור, אין צורך במעקב ממוגרפי נוסף.</p>
+
+<h2><span class="num">4</span> שחזור בשתל (IBR) מול שחזור עצמי (ABR) - טבלת ההשוואה המרכזית</h2>
+<p>ה-IBR עקף את ה-ABR כטכניקה השכיחה ביותר, בין השאר בעקבות ביטול המורטוריום על שתלי סיליקון ב-2006. הבחירה בין השניים אינה "טובה מול רעה" אלא <b>התאמת סיכון-תועלת לפרופיל המטופלת הספציפי</b>.</p>
+<table>
+  <thead><tr><th>מאפיין</th><th>שחזור בשתל (IBR)</th><th>שחזור עצמי (ABR)</th></tr></thead>
+  <tbody>
+    <tr><td>מראה</td><td>פחות טבעי/פחות פטוטי (<span class="term" dir="ltr">ptotic</span>)</td><td>מראה טבעי ופטוטי יותר</td></tr>
+    <tr><td>זמן ניתוח/אשפוז</td><td>קצר יותר</td><td>ארוך יותר, החלמה ממושכת</td></tr>
+    <tr><td>עקומת למידה כירורגית</td><td>קלה יותר, ללא צורך במיקרוכירורגיה</td><td>דורשת הכשרה מיקרוכירורגית (בטכניקות free flap)</td></tr>
+    <tr><td>תחלואת אתר תורם</td><td>אין</td><td>קיימת (בטן/ירך, בהתאם לפלאפ)</td></tr>
+    <tr><td>סיבוכים אופייניים</td><td>קרע, מיקום שגוי, כמוסה (<span class="term" dir="ltr">capsular contracture</span>), זיהום, חשיפת שתל</td><td>אובדן פלאפ, נמק שומני, בקע/סיבוכי אתר תורם</td></tr>
+    <tr><td>ניתוחים חוזרים</td><td>פחות ניתוחי תיקון, אך מספר ניתוחים כולל עלול להיות גבוה לאורך זמן (בעיקר בגלל צורך בהחלפת שתל)</td><td>יותר ניתוחי תיקון ראשוניים, אך ללא צורך עתידי בהחלפת "השתל"</td></tr>
+    <tr><td>מעקב הדמייתי</td><td>נדרש (FDA: US/MRI ראשון ב-5–6 שנים, ואז כל 2–3 שנים לבדיקת קרע א-סימפטומטי)</td><td>לא נדרש</td></tr>
+    <tr><td>תקן טיפול בשדה מוקרן</td><td>סיכון גבוה לכשל (עד 20% בהקרנה לאחר מסטקטומיה)</td><td>תקן הזהב - סיכון כשל מופחת משמעותית ברקמה עצמית</td></tr>
+    <tr><td>סיפוק ורווחה ארוכי-טווח</td><td>יציב לאורך זמן, אך נמוך מ-ABR במרבית המחקרים</td><td>שביעות רצון גבוהה יותר מהשד ורווחה מינית/פסיכו-סוציאלית</td></tr>
+  </tbody>
+</table>
+<p><b>סיכון ייחודי לשתלים מחוררים (<span class="term" dir="ltr">textured</span>):</b> לימפומה של תאים גדולים אנאפלסטית הקשורה לשתל שד (<span class="term" dir="ltr">BIA-ALCL</span>) - מחקר של 26 שנה על 16,065 שתלים זיהה 11 מקרים (1:559), <b>כולם</b> בנשים עם היסטוריה של שתל מחוררר. משך חשיפה ארוך (מעל 10 שנים) מגביר את הסיכון, ולכן פוחת השימוש בשתלים מחוררים בשנים האחרונות.</p>
+
+<h3>סוגי שחזור עצמי (ABR) - מ"הבטן" ל"ירך"</h3>
+<table>
+  <thead><tr><th>פלאפ</th><th>מוצא</th><th>יתרון עיקרי</th><th>חיסרון עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">DIEP</span> (Deep Inferior Epigastric Perforator)</td><td>בטן</td><td>שימור מקסימלי של שריר הבטן (<span class="term" dir="ltr">rectus abdominis</span>)</td><td>דורש מיומנות מיקרוכירורגית גבוהה</td></tr>
+    <tr><td>Muscle-sparing free TRAM</td><td>בטן</td><td>תוצאות דומות ל-DIEP לטווח ארוך</td><td>פגיעה מסוימת בחוזק דופן הבטן</td></tr>
+    <tr><td><span class="term" dir="ltr">SIEA</span> (Superficial Inferior Epigastric Artery)</td><td>בטן</td><td>לא חוצה את הפאשיה - תחלואת אתר תורם מינימלית</td><td>לא כל הנשים בעלות כלי דם מתאימים; סיכון קרישה של עד 11-17%</td></tr>
+    <tr><td><span class="term" dir="ltr">PAP</span> (Profunda Artery Perforator)</td><td>ירך</td><td>עדיפות המחברים לפלאפים מבוססי ירך - צרור ארוך ואמין, רקמה עבה</td><td>נפח תורם מוגבל יחסית לבטן</td></tr>
+    <tr><td>Pedicled Latissimus + שתל</td><td>גב</td><td>אופציה משולבת כשהבטן אינה זמינה או כשההקרנה מחייבת כיסוי שרירי</td><td>אינו פותר לבד את בעיית הנפח - נדרש שתל נלווה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> הקרנה וכימותרפיה - איך הטיפול האונקולוגי "מתנגש" עם תזמון השחזור</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>המנגנון של נזק הקרנה:</b> קרינה מייננת פוגעת ב-DNA של תאים מתחלקים, אך גם גורמת נזק כלי-דמי מתמשך (עיבוי דפנות כלי דם קטנים, ירידה בזרימת דם מקומית) ומעודדת שקיעת קולגן מוגברת (<span class="term" dir="ltr">fibrosis</span>). בדשני עור/שריר שסופגים הקרנה - זה מתבטא כעור נוקשה, פחות אלסטי, עם פגיעה בריפוי פצעים.
+  </p>
+  <p>בשתל (IBR): הפיברוזיס מתבטא כ<b>כמוסה מוצקה</b> (<span class="term" dir="ltr">capsular contracture</span>) שלוחצת על השתל וגורמת לכאב, עיוות ולעיתים לכשל מוחלט - הסיכון לכשל שתל בשדה מוקרן מגיע לניתוח מאוחד (<span class="term" dir="ltr">pooled analysis</span>) של עד 20%.<br>
+  ברקמה עצמית (ABR): הנזק מתבטא כפיברוזיס, אטרופיה, נמק שומני והתכווצות הפלאפ - אך משום שיש לרקמה אספקת דם עצמאית משלה, הסיכון לכשל מוחלט נמוך משמעותית, ולכן <b class="key">רקמה עצמית נחשבת תקן הזהב לשחזור בשדה מוקרן</b>.</p>
+</div>
+<p>גישת "מושהה-מיידי" (<span class="term" dir="ltr">delayed-immediate</span>): מניחים מרחיב רקמה (<span class="term" dir="ltr">tissue expander</span>) מיד לאחר המסטקטומיה, וממתינים לתשובת פתולוגיה סופית ולהחלטה אם נדרשת הקרנה. אם לא נדרשת הקרנה - עוברים לשחזור עצמי כעבור 2–4 שבועות. גישה זו נועדה למנוע מראה "מוטבע" (<span class="term" dir="ltr">patched-on</span>) שנוצר כשמנסים "להדביק" רקמה עצמית על חזה שכבר עבר הקרנה מלאה.</p>
+<p>לגבי כימותרפיה: היא <b>בטוחה</b> יחד עם מסטקטומיה ושחזור מיידי, ולא נמצא שהיא מעכבת משמעותית מתן טיפול אדג'ובנטי. עם זאת, כימותרפיה ניאו-אדג'ובנטית עשויה להעלות מעט את הסיכון לאובדן שתל, וקיים דיווח על שיעור גבוה יותר של נמק שומני וסיבוכי אתר תורם ב-ABR אצל מי שקיבלה כימותרפיה טרם הניתוח.</p>
+<p><b class="key">טמוקסיפן</b> (מעכב קולטן אסטרוגן סלקטיבי) מעלה סיכון לאירועים טרומבואמבוליים - נהוג להפסיקו כשבועיים סביב הניתוח עם תוספת מניעה אנטי-טרומבוטית, אם כי מחקרי מעקב ארוכי-טווח לא מצאו הבדל בשיעורי סיבוכים מיקרו-וסקולריים. <span class="term" dir="ltr">Bevacizumab</span> (מעכב VEGF) קשור לסיבוכי פצע (זיהום, פתיחת פצע, דימום) ומצריך זהירות מיוחדת בבחירת שתל.</p>
+
+<h2><span class="num">6</span> גורמי סיכון של המטופלת - טבלת אופטימיזציה טרום-ניתוחית</h2>
+<p>המטרה בהערכה הטרום-ניתוחית אינה רק "לשלול ניתוח" אלא <b>לבחור את הטכניקה המתאימה ביותר לפרופיל הסיכון, ולבצע אופטימיזציה לפני הניתוח</b>. כלי כמו ציון <span class="term" dir="ltr">BRA (Breast Reconstruction Assessment)</span> משלב נתונים דמוגרפיים ותחלואת רקע כדי לתת הערכת סיכון אישית לסיבוכים.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>גורם סיכון</th><th>ההשפעה העיקרית</th><th>אסטרטגיית אופטימיזציה</th></tr></thead>
+  <tbody>
+    <tr><td>סוכרת</td><td>סיכון מוגבר לזיהום פצע ניתוחי עמוק ואשפוז ממושך (לא מעלה משמעותית כשל פלאפ)</td><td>איזון סוכר, ייעוץ אנדוקריני/סוכרת סביב הניתוח</td></tr>
+    <tr><td>מחלת לב כלילית</td><td>סיכון תחלואה/תמותה משמעותי ב-ABR מיקרו-וסקולרי</td><td>אישור קרדיולוגי, שימור כלי השד הפנימיים לצורך ניתוח לב עתידי (שימוש בכלי <span class="term" dir="ltr">thoracodorsal</span> כמקבלים)</td></tr>
+    <tr><td>השמנה/BMI גבוה</td><td>סיבוכים גדולים יותר בשני סוגי השחזור, אובדן מרחיב מוקדם, כשל פלאפ</td><td>בדיקות תזונה, עידוד ירידה במשקל, אופטימיזציית תזונה לאחר הניתוח</td></tr>
+    <tr><td>COPD</td><td>תחלואה/תמותה מוגברת, סיכון עיכוב בשחזור</td><td>אופטימיזציה רפואית, שקילת אפידורל לניתוחים ארוכים</td></tr>
+    <tr><td>עישון</td><td>נמק דש עור/פטמה, אובדן מרחיב, נמק אתר תורם ובקע ב-ABR</td><td>הפסקה לפחות חודש לפני הניתוח, שקילת מדבקת ניקוטין</td></tr>
+    <tr><td>מצב קרישיות-יתר (למשל Factor V Leiden)</td><td>סיכון פקקת אנסטומוטית - עד 21% פקקת, 15% אובדן פלאפ</td><td>שקילת IBR במקום ABR מיקרו-וסקולרי; אם כן ABR - נוגד קרישה טיפולי בבית חולים במרכז נפחי גבוה</td></tr>
+    <tr><td>הפרעת דימום</td><td>סיכון מוגבר לסיבוכים כירורגיים ורפואיים</td><td>שקילת IBR; ABR רק במרכז נפחי גבוה; שיתוף המטולוג</td></tr>
+    <tr><td>מחלת רקמת חיבור (<span class="term" dir="ltr">CTD</span>)</td><td>פתיחת פצע, זיהום, דימום (בהתאם לטכניקה)</td><td>אופטימיזציה רפואית; אם על סטרואידים - שקילת ויטמין A</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">גזע ואוכלוסיות מוחלשות: נשים אפרו-אמריקאיות פחות נוטות לקבל שחזור לאחר מסטקטומיה, וייתכן שיש להן שיעור תחלואת רקע גבוה יותר - אך כאשר השחזור מתבצע במרכז מומחה, התוצאות דומות. זו אינדיקציה לפער בגישה/חינוך ולא לפער ביכולת הרפואית להשיג תוצאה טובה.</p>
+
+<h2><span class="num">7</span> היסטוריה כירורגית ותרופתית - "לא לפספס" בראיון הטרום-ניתוחי</h2>
+<p>ניתוח קודם בבטן (למשל כריתת רחם, ניתוח קיסרי, כריתת תוספתן - עד 51.4% מהמועמדות ל-ABR) עלול לפגוע בכלי הדם המזינים את הפלאפ הבטני. חתך <span class="term" dir="ltr">Pfannenstiel</span> קודם (חתך אופקי בבטן התחתונה, נפוץ בניתוחים גינקולוגיים) מצריך לרוב הדמיה טרום-ניתוחית (<span class="term" dir="ltr">CTA</span>) כדי לוודא שהכלים המזינים לא נפגעו, אם כי לעיתים חריגות בכלי הדם מתגלות רק בניתוח עצמו. ניתוח בקע קודם בבטן מעלה את הסיכון להישנות בקע לאחר ABR.</p>
+<p>הגדלת שד קודמת <b>אינה</b> מעכבת אבחנה, אינה מעלה שלב באבחון, ואינה מורידה הישרדות. ניתן להציע שחזור בטוח (כולל שימור מסוים של השתל הקודם, בהתאם למיקום הגידול).</p>
+<table>
+  <thead><tr><th>תרופה</th><th>סיבת ההפסקה</th><th>המלצה כללית</th></tr></thead>
+  <tbody>
+    <tr><td>גלולות למניעת הריון / הורמונים</td><td>סיכון טרומבואמבולי</td><td>מעבר לאמצעי מניעה חלופי 4-6 שבועות לפני הניתוח</td></tr>
+    <tr><td>אספירין</td><td>מעכב COX בלתי הפיך - מעלה סיכון דימום</td><td>הפסקה 1-2 שבועות לפני, אלא אם קיים סיכון קרדיווסקולרי מוגבר</td></tr>
+    <tr><td>סטרואידים</td><td>פוגעים בריפוי פצעים</td><td>לשקול המשך בזהירות מול סיכון אי-ספיקת יותרת הכליה; ויטמין A מסייע לריפוי</td></tr>
+    <tr><td>מטפורמין</td><td>קשור לחמצת לקטית לאחר ניתוח</td><td>הפסקה לפי הנחיית הצוות המרדים/מטפל</td></tr>
+    <tr><td>מעכבי ACE / חוסמי קולטן אנגיוטנסין II</td><td>סיכון ליתר לחץ דם תוך-ניתוחי</td><td>שקילת הפסקה זמנית לפי הנחיית הרדמה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> בדיקה גופנית, צילום והדמיה טרום-ניתוחית</h2>
+<p>הבדיקה הגופנית כוללת משקל, גובה, BMI, בדיקה אונקולוגית של השד (גודל/מיקום הגוש, בלוטות לימפה, שינויי עור/פטמה), וגם מדדים אסתטיים: גודל ומבנה השד, דרגת שמט (<span class="term" dir="ltr">ptosis</span>), איכות/עובי העור, וצלקות קודמות. מדידות מפתח: מרחק חריץ בית החזה-פטמה, רוחב בסיס השד, ומרחק פטמה-קפל תת-שדי (<span class="term" dir="ltr">inframammary fold, IMF</span>) - אלו משמשות לבחירת גודל השתל.</p>
+<p>צילום סטנדרטי: תמונות קדמית (<span class="term" dir="ltr">AP</span>), אלכסונית ולטרלית על רקע אחיד, כולל הצוואר מלמעלה ועד מתחת לקשתות הצלעות, עם הידיים בצדי הגוף.</p>
+<p>כשמדובר בשחזור מיקרו-וסקולרי (ABR), אנטומיית הפרפורטורים (כלי הדם הקטנים המזינים את הפלאפ) משתנה מאוד בין מטופלות - לכן מבצעים הדמיה טרום-ניתוחית (בעיקר <span class="term" dir="ltr">CTA</span>, לעיתים <span class="term" dir="ltr">MRA</span> או דופלר) בעיקר במקרים של ניתוח בטן קודם או שחזור מבוסס-ירך, אך רוב הפלאפים הבטניים באתר ללא ניתוח קודם מבוצעים ללא הדמיה מוקדמת אצל מנתחים מנוסים.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">R-I-S-K</span> להערכת מועמדת לשחזור</h3>
+  <p>
+    <b>R</b> – <span class="term" dir="ltr">Radiation</span> (הקרנה, קיימת או צפויה) - הגורם המכריע ביותר לטובת ABR.<br>
+    <b>I</b> – <span class="term" dir="ltr">Immune/Inflammatory</span> (מחלות רקמת חיבור, סטרואידים) - מעכבים ריפוי בשני סוגי השחזור.<br>
+    <b>S</b> – <span class="term" dir="ltr">Smoking/Surgical history</span> (עישון, ניתוחי בטן קודמים) - קובעים בטיחות אתר תורם.<br>
+    <b>K</b> – <span class="term" dir="ltr">Koagulation</span> (מצב קרישה) - קובע האם מיקרוכירורגיה בטוחה.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את המטופלת עומדת בפני שתי דלתות: דלת אחת מובילה ל"בית שכבר נשרף פעם" (שדה מוקרן) - שם אי אפשר להכניס רהיטים חדשים (שתל) כי הקירות רעועים, וצריך לבנות חדר שלם חדש מחומרים משלך (רקמה עצמית). הדלת השנייה מובילה ל"בית תקין" - שם אפשר פשוט להכניס ריהוט מוכן (שתל) מהר וללא שיפוץ נרחב. אך לפני שבוחרים דלת, בודקים שלמטופלת יש "כלים תקינים" (כלי דם, קרישה) לבנות איתם, ושאין לה "אלרגיה לאבק בנייה" (עישון, מחלות רקע) שתעכב את הריפוי.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>שתי הדלתות של השחזור</title>
+    <rect x="30" y="40" width="150" height="130" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <rect x="70" y="90" width="70" height="80" rx="4" fill="#fecaca" stroke="#7f1d1d"/>
+    <circle cx="125" cy="130" r="4" fill="#7f1d1d"/>
+    <text x="105" y="30" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">בית מוקרן</text>
+    <text x="105" y="185" font-size="11.5" text-anchor="middle" fill="#7f1d1d">&#8592; ABR (רקמה עצמית)</text>
+
+    <rect x="320" y="40" width="150" height="130" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <rect x="360" y="90" width="70" height="80" rx="4" fill="#bfdbfe" stroke="#1e3a8a"/>
+    <circle cx="415" cy="130" r="4" fill="#1e3a8a"/>
+    <text x="395" y="30" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">בית תקין</text>
+    <text x="395" y="185" font-size="11.5" text-anchor="middle" fill="#1e3a8a">&#8592; IBR (שתל)</text>
+
+    <text x="250" y="105" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">?</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.plasticsurgery.org/reconstructive-procedures/breast-reconstruction" target="_blank">American Society of Plastic Surgeons – Breast Reconstruction</a>
+    <div class="desc">עמוד מידע רשמי של האיגוד האמריקאי לכירורגיה פלסטית על סוגי שחזור שד, מיועד גם למטופלות.</div>
+  </li>
+  <li>
+    <a href="https://www.nccn.org/guidelines/category_1" target="_blank">NCCN Clinical Practice Guidelines in Oncology</a>
+    <div class="desc">הנחיות NCCN המעודכנות (המוזכרות בפרק) לגבי מסטקטומיה מונעת וניהול סרטן שד.</div>
+  </li>
+  <li>
+    <a href="https://qportfolio.org/breast-q/" target="_blank">BREAST-Q Patient-Reported Outcome Tool</a>
+    <div class="desc">הכלי שהוזכר לאורך הפרק להערכת שביעות רצון ואיכות חיים לאחר שחזור שד.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52, מעשנת, עם BMI של 34 ומחלת סוכרת מאוזנת (המוגלובין A1c 7.1%), אובחנה עם גידול פולשני בשד שמאל בגודל 3 ס"מ, הממוקם 1.5 ס"מ מהפטמה, HER2 חיובי, ללא מעורבות לימפו-וסקולרית. תוכנית הטיפול כוללת מסטקטומיה עם שחזור, ולאחריה - בהתאם לתשובת בלוטות הזקיף - ייתכן צורך בהקרנה. המטופלת מעוניינת בתוצאה טבעית ככל האפשר ושואלת על אפשרות לשימור הפטמה.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. האם המטופלת מועמדת טובה למסטקטומיה משמרת פטמה (NSM)?</div>
+  <button class="opt" data-i="0">כן, ללא סייג - כל הקריטריונים מתקיימים</button>
+  <button class="opt" data-i="1">לא בהכרח - המרחק מהפטמה (1.5 ס"מ) קטן מהסף המקובל של 2 ס"מ, וגם קולטן HER2 חיובי הוא גורם המוריד את הסבירות לשימור בטוח</button>
+  <button class="opt" data-i="2">לא, כי גיל 52 שולל NSM לחלוטין</button>
+  <button class="opt" data-i="3">כן, כי גודל הגידול (3 ס"מ) קטן מ-5 ס"מ וזה הקריטריון היחיד שרלוונטי</button>
+  <div class="explain">התשובה הנכונה: הקריטריונים ל-NSM כוללים גם מרחק גידול-פטמה של יותר מ-2 ס"מ (כאן 1.5 ס"מ - מתחת לסף) וגם קולטן HER2/NEU שלילי (כאן חיובי) - שני גורמים ששוללים NSM בטוח במקרה זה, גם אם גודל הגידול וההיעדר מעורבות לימפו-וסקולרית תומכים בכיוון ההפוך. גיל כשלעצמו אינו קריטריון שולל.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. בהינתן שקיים סיכוי סביר להקרנה עתידית, מהי הגישה הרפואית המועדפת ולמה?</div>
+  <button class="opt" data-i="0">שחזור מיידי בשתל בלבד, כי זה הכי מהיר ומפחית זמן הרדמה</button>
+  <button class="opt" data-i="1">להימנע משחזור לחלוטין עד סיום כל הטיפולים האונקולוגיים</button>
+  <button class="opt" data-i="2">לשקול גישת "מושהה-מיידי" - הנחת מרחיב רקמה זמני עד לקבלת תשובת פתולוגיה סופית, ומעבר לשחזור עצמי אם תידרש הקרנה</button>
+  <button class="opt" data-i="3">לבצע שחזור עצמי סופי מיידי בכל מקרה, גם אם ההקרנה תינתן מאוחר יותר</button>
+  <div class="explain">התשובה הנכונה: כאשר קיימת אי-ודאות לגבי הצורך בהקרנה, גישת "מושהה-מיידי" (הנחת מרחיב, המתנה לפתולוגיה סופית, ואז מעבר לשחזור עצמי אם נדרשת הקרנה) מונעת גם עיכוב מיותר בשחזור וגם מראה "מוטבע" שנוצר משחזור עצמי סופי שמתבצע לפני הקרנה. שחזור בשתל סופי (תשובה 1) מסוכן בשדה שעתיד להיות מוקרן. הימנעות מוחלטת (תשובה 2) פוגעת שלא לצורך באיכות החיים. שחזור עצמי סופי לפני הקרנה ידועה (תשובה 4) מעלה סיכון לאסימטריה ולתוצאה פחות טובה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. אילו שני גורמי סיכון של המטופלת (לא של הגידול) הכי רלוונטיים לתכנון סוג השחזור כאן, ומדוע?</div>
+  <button class="opt" data-i="0">עישון וסוכרת - שניהם פוגעים בריפוי פצעים ומעלים סיכון לנמק דש/פלאפ ולזיהום</button>
+  <button class="opt" data-i="1">גיל וגזע - אלו הגורמים היחידים המוזכרים בפרק כמשפיעים על תוצאות</button>
+  <button class="opt" data-i="2">מין וגובה - אין להם השפעה על שחזור שד</button>
+  <button class="opt" data-i="3">היסטוריה משפחתית וסוג ביטוח - קובעים באופן בלעדי את זכאות המטופלת לשחזור</button>
+  <div class="explain">התשובה הנכונה: עישון פוגע באספקת החמצן ובזרימת הדם ומעלה סיכון לנמק דש עור/פטמה, אובדן מרחיב מוקדם ונמק אתר תורם; סוכרת פוגעת במנגנוני ריפוי הפצע ומעלה סיכון לזיהום אתר ניתוח עמוק ולאשפוז ממושך. שני הגורמים מחייבים אופטימיזציה (הפסקת עישון לפחות חודש מראש, איזון סוכר) לפני קבלת החלטה סופית על טכניקת השחזור. גיל וגזע (תשובה 2) רלוונטיים חלקית אך אינם "הגורמים היחידים". תשובות 3-4 אינן נתמכות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהו ההיגיון המנגנוני לכך שרקמה עצמית (ABR) נחשבת תקן הזהב לשחזור בשדה שעבר הקרנה, בעוד שחזור בשתל (IBR) נושא סיכון כשל גבוה יותר שם?</div>
+  <button class="opt" data-i="0">רקמה עצמית זולה יותר ולכן מועדפת בשדה מוקרן</button>
+  <button class="opt" data-i="1">שתלים אינם עמידים מבנית לחום שנפלט מטיפולי הקרנה</button>
+  <button class="opt" data-i="2">אין הבדל מנגנוני אמיתי, ההעדפה מבוססת רק על ניסיון מוסדי</button>
+  <button class="opt" data-i="3">רקמה עצמית מביאה איתה אספקת דם עצמאית משלה, כך שגם אם הרקמה הסובבת סבלה מפיברוזיס ופגיעה בכלי דם קטנים בעקבות הקרנה, לפלאפ עצמו יש זרימת דם תקינה - בעוד שתל תלוי לחלוטין ברקמה המקרינה שסביבו לצורך כיסוי והזנה, מה שהופך אותו לפגיע יותר לכמוסה ולכשל</button>
+  <div class="explain">התשובה הנכונה: ההיגיון המנגנוני מבוסס על כך שפלאפ עצמי (למשל DIEP) מגיע עם צרור כלי הדם שלו ואינו תלוי בזרימת הדם של הרקמה המוקרנת שמסביב - בעוד ששתל הוא גוף זר פסיבי שתלוי לחלוטין בכמוסה ובעור שסביבו לצורך כיסוי, הזנה וניקוז, ואלו בדיוק המרכיבים שנפגעים מהקרנה (פיברוזיס, פגיעה בכלי דם קטנים). לכן הסיכון לכשל שתל בשדה מוקרן (עד 20%) גבוה משמעותית מהסיכון בפלאפ עצמי. תשובות 1-3 אינן נכונות מבחינה מנגנונית.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. המטופלת שואלת האם כדאי לה לעבור גם מסטקטומיה מונעת בצד הימני (CPM). מהי התשובה המבוססת-ראיות הנכונה ביותר?</div>
+  <button class="opt" data-i="0">בהחלט - CPM מוכח כמפחית תמותה מסרטן שד ולכן מומלץ לכל מטופלת</button>
+  <button class="opt" data-i="1">אין הוכחה פרוספקטיבית ליתרון אונקולוגי מ-CPM (אלא אם קיים סיכון גנטי/משפחתי גבוה), אך יש נתונים התומכים בשיפור שביעות רצון ואיכות חיים אצל חלק מהמטופלות שבוחרות בכך מרצון - ההחלטה היא בעיקרה של המטופלת עצמה</button>
+  <button class="opt" data-i="2">אסור לבצע CPM בשום מצב מכיוון שהיא תמיד מעלה סיבוכים ללא כל תועלת</button>
+  <button class="opt" data-i="3">CPM נדרשת אוטומטית בכל מטופלת עם HER2 חיובי</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שאין מחקר פרוספקטיבי שמוכיח יתרון אונקולוגי ל-CPM (למעט מקרים של סיכון גנטי/משפחתי גבוה, כמו נשאות BRCA), אך מחקרי איכות-חיים (למשל MROC) מראים שיפור משמעותי בשביעות רצון מהשד ובחרדה מהישנות אצל מי שבוחרות בכך. ההנחיות (NCCN) ממליצות שלא לעודד CPM שגרתי, אך ההחלטה הסופית נשענת במידה רבה על רצון המטופלת לאחר ייעוץ מלא. HER2 (תשובה 4) אינו קריטריון ל-CPM.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מבין הפלאפים העצמיים הבאים, איזה מהם מועדף על ידי המחברים כאופציה מבוססת-ירך, ומדוע?</div>
+  <button class="opt" data-i="0">TRAM מנותק (free TRAM) - כי הוא הפלאפ הבטני הקלאסי</button>
+  <button class="opt" data-i="1">SIEA - כי הוא כלל אינו חוצה את הפאשיה ולכן תמיד עדיף</button>
+  <button class="opt" data-i="2">PAP (Profunda Artery Perforator) - כי יש לו צרור כלי דם ארוך ואמין ומספק רקמה עבה, לעומת אופציות ירך אחרות שמוגבלות בנפח התורם</button>
+  <button class="opt" data-i="3">Latissimus dorsi לבדו, ללא שתל נלווה</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין במפורש שהמחבר הבכיר מעדיף PAP לאופציות מבוססות-ירך, בזכות צרור כלי דם ארוך ואמין ואספקת רקמה עבה - לעומת אופציות ירך אחרות המוגבלות בכמות הרקמה הזמינה ובתחלואת אתר תורם. TRAM ו-SIEA (תשובות 1-2) הם פלאפים בטניים ולא ירכיים. Latissimus לבדו (תשובה 4) אינו מספק מספיק נפח ולרוב משולב עם שתל.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ההערכה הטרום-ניתוחית לשחזור שד משלבת <b>שלושה צירים</b>: מאפייני הגידול (שלב, HER2, מרחק מהפטמה), הטיפול האונקולוגי הצפוי (הקרנה/כימותרפיה), וגורמי סיכון של המטופלת (עישון, BMI, מחלות רקע, קרישיות).</li>
+    <li><b>הקרנה היא הגורם המכריע ביותר</b>: שדה מוקרן = עדיפות לשחזור עצמי (ABR) על פני שתל (IBR), כי לרקמה עצמית יש אספקת דם משלה שאינה תלויה ברקמה הפגועה מהקרינה.</li>
+    <li><b>NSM (שימור פטמה)</b> אפשרי כשהגידול קטן מ-5 ס"מ, במרחק &gt;2 ס"מ מהפטמה, HER2 שלילי, ללא מעורבות לימפו-וסקולרית וללא הקרנה קודמת. סיכון עיקרי: נמק פטמה (עד 20%).</li>
+    <li><b>CPM</b> (מסטקטומיה מונעת נגדית) - ללא הוכחת יתרון אונקולוגי (למעט סיכון גנטי גבוה), אך עם יתרון תיעודי לשביעות רצון ואיכות חיים; ההחלטה בעיקרה של המטופלת.</li>
+    <li><b>IBR</b>: ניתוח קצר יותר, ללא תחלואת אתר תורם, אך נדרש מעקב הדמייתי וקיים סיכון BIA-ALCL בשתלים מחוררים. <b>ABR</b>: מראה טבעי יותר, ללא צורך במעקב, אך ניתוח מורכב עם תחלואת אתר תורם.</li>
+    <li>אופטימיזציה טרום-ניתוחית חיונית: הפסקת עישון חודש מראש, איזון סוכרת, בירור קרישיות, ותכנון תרופתי (הפסקת אספירין/הורמונים/מטפורמין לפי הצורך).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
