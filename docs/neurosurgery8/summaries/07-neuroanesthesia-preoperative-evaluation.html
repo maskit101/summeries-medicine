@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 7: נוירואנסתזיה - הערכה טרום-ניתוחית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 7: נוירואנסתזיה - הערכה טרום-ניתוחית <span class="term" dir="ltr">Neuroanesthesia: Preoperative Evaluation</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 8), חלק 1 - Introduction to Neurosurgery | מאת Deepak Sharma, Arthur M. Lam</div>
+
+<p>הפרק הזה בונה מודל חשיבה אחד: <b>ההערכה הטרום-ניתוחית אינה בירוקרטיה, אלא הזדמנות אחרונה למנוע נזק לפני שהוא קורה</b>. כל מטופל שמגיע לניתוח נוירוכירורגי נושא איתו שני "שכבות" סיכון שצריך לזהות בנפרד: הסיכון הכללי (לב, ריאות, כליות, קרישה) שמשותף לכל ניתוח, והסיכון הספציפי-נוירוכירורגי (לחץ תוך-גולגולתי, גישה לדרכי אוויר בנוכחות פגיעה בעמוד השדרה הצווארי, אנטיקואגולציה שמסוכנת פי כמה כשהדימום הוא תוך-גולגולתי). הפרק עוקב אחר שרשרת קבועה: זיהוי גורם סיכון &#8592; כימות שלו בכלי סטנדרטי (ASA, RCRI, METs, Hunt-Hess) &#8592; החלטה אם וכיצד לפעול לפני הניתוח.</p>
+
+<h2><span class="num">1</span> העיקרון המארגן: מהערכה בודדת ל"בית ניתוחי" משולב</h2>
+<div class="mechanism">
+  <p class="chain">
+    למה בכלל צריך מרפאה טרום-ניתוחית נפרדת, ולא רק שיחה קצרה ביום הניתוח? כי ההערכה הטרום-ניתוחית משפיעה על <b>שרשרת שלמה</b> של החלטות במורד הזרם:
+  </p>
+  <p>
+    <b>שלב 1 - זיהוי מצב רפואי בסיסי:</b> היסטוריה, בדיקה גופנית, תרופות נוכחיות - נבנה "קו בסיס" (baseline) שאיתו משווים כל שינוי תוך-ניתוחי.<br>
+    <b>שלב 2 - כימות הסיכון:</b> סיווג ASA, מדד RCRI, יכולת תפקודית ב-METs, ולעיתים ציוני חומרה ספציפיים (Hunt-Hess ל-SAH, WFNS) - כדי לתרגם "תחושת בטן" למספר שאפשר להשוות בינו לבין תוצאות.<br>
+    <b>שלב 3 - החלטה על פעולה:</b> האם צריך לדחות ניתוח, לייעץ עם קרדיולוג, להפסיק נוגד קרישה, לתקן אנמיה - רק אם יש סיכוי סביר שהמידע ישנה את הטיפול.
+  </p>
+</div>
+<p class="key-box">המודל של ASA "הבית הניתוחי הפריאופרטיבי" (Perioperative Surgical Home) ותוכניות ERAS (Enhanced Recovery After Surgery) ממסגרים את ההערכה הטרום-ניתוחית לא כ"תחנת ביקורת" בודדת, אלא כשלב הראשון ברצף אחד רציף שממשיך גם לאחר השחרור - כשההיגיון הוא שכל מה שמתוכנן מראש (חינוך מטופל, אופטימיזציה רפואית, תכנון שחרור) מפחית סיבוכים, זמן אשפוז ועלויות.</p>
+<svg class="diagram" viewBox="0 0 800 260" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ההערכה הטרום-ניתוחית: משלב לשלב</title>
+  <desc>תרשים סכמטי המראה את שלושת השלבים של ההערכה הטרום-ניתוחית ואת התוצרים של כל שלב</desc>
+  <rect x="20" y="30" width="230" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="135" y="55" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלב 1</text>
+  <text x="135" y="78" font-size="12.5" text-anchor="middle" fill="#1e3a8a">היסטוריה + בדיקה גופנית</text>
+  <text x="135" y="98" font-size="12.5" text-anchor="middle" fill="#1e3a8a">+ תרופות נוכחיות</text>
+  <text x="135" y="125" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">תוצר: קו בסיס להשוואה</text>
+  <path d="M 250 90 L 285 90" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow1)"/>
+  <rect x="285" y="30" width="230" height="120" rx="8" fill="#fefce8" stroke="#a16207" stroke-width="2"/>
+  <text x="400" y="55" font-size="14" text-anchor="middle" fill="#713f12" font-weight="700">שלב 2</text>
+  <text x="400" y="78" font-size="12.5" text-anchor="middle" fill="#713f12">ASA class, RCRI, METs</text>
+  <text x="400" y="98" font-size="12.5" text-anchor="middle" fill="#713f12">Hunt-Hess / WFNS (במקרים ספציפיים)</text>
+  <text x="400" y="125" font-size="11" text-anchor="middle" fill="#713f12" font-weight="700">תוצר: כימות סיכון מספרי</text>
+  <path d="M 515 90 L 550 90" stroke="#6b7280" stroke-width="3" marker-end="url(#arrow1)"/>
+  <rect x="550" y="30" width="230" height="120" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="665" y="55" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">שלב 3</text>
+  <text x="665" y="78" font-size="12.5" text-anchor="middle" fill="#7f1d1d">דחיית ניתוח? ייעוץ קרדיולוגי?</text>
+  <text x="665" y="98" font-size="12.5" text-anchor="middle" fill="#7f1d1d">הפסקת נוגד קרישה? תיקון אנמיה?</text>
+  <text x="665" y="125" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">תוצר: תוכנית אנסתזיה סופית</text>
+  <defs><marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#6b7280"/></marker></defs>
+  <rect x="20" y="185" width="760" height="55" rx="6" fill="#f9fafb" stroke="#e5e7eb"/>
+  <text x="400" y="208" font-size="12.5" text-anchor="middle" fill="#374151" font-weight="700">כל שלב בונה על קודמו - החלטה בשלב 3 תמיד מבוססת על המידע שנאסף בשלבים 1-2</text>
+  <text x="400" y="226" font-size="11" text-anchor="middle" fill="#6b7280">המטרה: לא לבצע בדיקה שלא תשנה החלטה קלינית (ASA Task Force)</text>
+</svg>
+
+<h2><span class="num">2</span> סיווג ASA וגורמי סיכון כלליים</h2>
+<p>סיווג הסטטוס הפיזיולוגי של האגודה האמריקאית לאנסתזיולוגיה <span class="term" dir="ltr">ASA Physical Status Classification</span> הוא כלי מקובל עולמית לדרוג המחלה הבסיסית של המטופל - הוא לא לוקח בחשבון את סיכון הניתוח עצמו, אך מתאם עם תחלואה ותמותה פריאופרטיבית. סיווג ASA של 3 עד 5 הוא מנבא עצמאי לסיבוכים לבביים פריאופרטיביים בניתוחים תוך-גולגולתיים.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mallampati.svg?width=700" alt="Mallampati score classification - four classes showing visibility of oropharyngeal structures">
+<p class="media-cap">סיווג Mallampati להערכת דרכי אוויר - ארבע דרגות לפי הנראות של החך הרך, הענבל והעמודים החיכיים. מקור: Wikimedia Commons.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>דרגת ASA</th><th>מצב המטופל</th></tr></thead>
+  <tbody>
+    <tr><td><b>1</b></td><td>מטופל בריא לחלוטין</td></tr>
+    <tr><td><b>2</b></td><td>מחלה סיסטמית קלה</td></tr>
+    <tr><td><b>3</b></td><td>מחלה סיסטמית חמורה</td></tr>
+    <tr><td><b>4</b></td><td>מחלה סיסטמית חמורה שמהווה איום מתמיד על החיים</td></tr>
+    <tr><td><b>5</b></td><td>מטופל גוסס שאינו צפוי לשרוד ללא הניתוח</td></tr>
+    <tr><td><b>6</b></td><td>מטופל שהוכרז מוות מוחי, לצורך הוצאת איברים לתרומה</td></tr>
+  </tbody>
+</table>
+</div>
+<p>ההערכה הכללית כוללת סקירה שיטתית של מערכות: <b>נשימתית</b> (עישון, COPD, דום נשימה חסימתי - כל אלה מעלים סיכון לסיבוכים ריאתיים פריאופרטיביים; אלבומין נמוך מ-35 גרם/ליטר הוא המנבא המעבדתי החזק ביותר), <b>קרדיווסקולרית</b> (מחלת לב איסכמית, אי-ספיקת לב, יתר לחץ דם - עם דגש על מדד ה-RCRI המפורט בהמשך), <b>כלייתית</b> (חשוב לזכור: מניטול אסור לחלוטין במטופל אנורי), <b>המטולוגית</b> (הפרעות קרישה מקבלות משנה חשיבות בניתוח תוך-גולגולתי, כי דימום שם עלול להיות קטלני), ו<b>אנדוקרינית</b> (סוכרת, תת/יתר-פעילות בלוטת התריס, גידולי יותרת המוח המפרישים הורמונים).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/S8lTLp92Ep4" title="ASA Classification Explained" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: סיווג ASA להערכת מצב פיזיולוגי טרום-ניתוחי.</p>
+
+<h2><span class="num">3</span> הערכה גריאטרית: שבריריות וירידה קוגניטיבית</h2>
+<p>כשליש מהניתוחים בארה"ב מבוצעים על מטופלים בגילי 65 ומעלה. ASA השיקה ב-2015 את <span class="term" dir="ltr">Perioperative Brain Health Initiative</span> כדי למזער את השפעת החסר הקוגניטיבי הקיים מראש על תוצאות הניתוח. בין 24% ל-60% ממטופלים גריאטריים לניתוח אלקטיבי עשויים לסבול מחסר קוגניטיבי שלא אובחן קודם לכן, שקשור לדליריום פוסט-ניתוחי, אשפוז ממושך, וסיכוי נמוך יותר לחזור הביתה. כלי סינון מהירים כוללים את מבחן שטף בעלי חיים, מבחן MoCA, ו-Mini-Cog (מבחן זיכרון של שלושה פריטים + ציור שעון).</p>
+<p><b>שבריריות</b> <span class="term" dir="ltr">frailty</span> מוגדרת כירידה ברזרבה הפיזיולוגית שפוגעת ביכולת ההתאוששות ממחלה או ניתוח, ללא תלות בגיל. פנוטיפ Fried כולל חמישה קריטריונים: ירידה במשקל, חולשת אחיזה, תשישות, הליכה איטית, ופעילות גופנית נמוכה - ציון 4-5 = שביר, 2-3 = שביר בינוני, 0-1 = לא שביר. בניתוחי כריתת גידולי עמוד שדרה, שבריריות נקשרה לתמותה גבוהה יותר ואשפוז ממושך; בדימום תת-עכבישי, לתוצאה גרועה יותר (Rankin Scale 3-6).</p>
+<div class="key-box">שבריריות עשויה לנבא תוצאות פוסט-ניתוחיות טוב יותר מסיווג ASA בלבד - ולכן היא נחשבת כיום שכבת הערכה נוספת, לא תחליף.</div>
+
+<h2><span class="num">4</span> הערכה קרדיווסקולרית: RCRI, METs ואלגוריתם ACC/AHA</h2>
+<p>מדד הסיכון הלבבי המתוקן <span class="term" dir="ltr">Revised Cardiac Risk Index, RCRI</span> קובע שנוכחות של שלושה או יותר מששת הגורמים הבאים קשורה לתחלואה לבבית של 11%: (1) ניתוח בסיכון גבוה, (2) היסטוריה של מחלת לב איסכמית, (3) היסטוריה של אי-ספיקת לב, (4) היסטוריה של מחלה צרברווסקולרית, (5) טיפול טרום-ניתוחי באינסולין, (6) קריאטינין מעל 2.0 מ"ג/דצ"ל.</p>
+<p>היכולת התפקודית נמדדת ביחידות מטבוליות <span class="term" dir="ltr">Metabolic Equivalents, METs</span>: מטופלים שאינם מסוגלים לבצע 4 METs (כגון עליית קומת מדרגות, הליכה במהירות 4 מייל/שעה) נמצאים בסיכון מוגבר לסיבוכי לב פריאופרטיביים וארוכי-טווח. מטופל בעל יכולת תפקודית טובה יכול לרוב להמשיך לניתוח מתוכנן ללא בדיקות קרדיווסקולריות נוספות.</p>
+<svg class="diagram" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם ACC/AHA 2014 להערכת סיכון לבבי טרום-ניתוחי - גרסה מקוצרת</title>
+  <desc>תרשים זרימה המראה את הצעדים המרכזיים של האלגוריתם מזיהוי דחיפות ועד החלטה על בדיקות נוספות</desc>
+  <rect x="300" y="15" width="200" height="45" rx="6" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="400" y="38" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">דחיפות הניתוח? (חירום/דחוף/אלקטיבי)</text>
+  <path d="M 400 60 L 400 85" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <rect x="300" y="85" width="200" height="45" rx="6" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="400" y="108" font-size="12.5" text-anchor="middle" fill="#713f12" font-weight="700">תסמונת כלילית חריפה?</text>
+  <path d="M 400 130 L 400 155" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <rect x="300" y="155" width="200" height="45" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="400" y="172" font-size="11.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">חישוב סיכון MACE</text>
+  <text x="400" y="190" font-size="10.5" text-anchor="middle" fill="#1e3a8a">(מחשבון סיכון / RCRI)</text>
+  <path d="M 400 200 L 400 225" stroke="#6b7280" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <rect x="120" y="225" width="220" height="55" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="230" y="248" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">סיכון &lt;1%</text>
+  <text x="230" y="266" font-size="11" text-anchor="middle" fill="#065f46">ממשיכים לניתוח ללא בדיקה נוספת</text>
+  <rect x="460" y="225" width="220" height="55" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="570" y="248" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">סיכון &#8805;1% + METs&lt;4</text>
+  <text x="570" y="266" font-size="11" text-anchor="middle" fill="#7f1d1d">בדיקת מאמץ / ייעוץ קרדיולוגי</text>
+  <path d="M 380 200 Q 300 215 230 225" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <path d="M 420 200 Q 500 215 570 225" stroke="#6b7280" stroke-width="2" fill="none"/>
+  <defs><marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#6b7280"/></marker></defs>
+</svg>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/rPJ-H7s99BU" title="Pre-Operative Evaluation Prior to Non-Cardiac Surgery" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: הערכה טרום-ניתוחית לפני ניתוח לא-לבבי, כולל גישת RCRI ו-METs.</p>
+
+<h2><span class="num">5</span> בדיקות ריאתיות ובדיקות מעבדה - מתי בכלל צריך?</h2>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Spirometry.png?width=700" alt="Spirometry graph showing lung volumes and capacities">
+<p class="media-cap">עקומת ספירומטריה - נפחי וקיבולות ריאתיים כפי שנמדדים בבדיקת תפקודי ריאה. מקור: Wikimedia Commons.</p>
+<p>עישון קשור לעלייה פי שלושה בתחלואה פריאופרטיבית; הפסקה של 6-8 שבועות משפרת ניקוי ריסי הליחה, אך אפילו 24 שעות הפסקה מפחיתות רמות קרבוקסיהמוגלובין. גורמי סיכון הקשורים למטופל לסיבוכים ריאתיים פוסט-ניתוחיים: גיל מתקדם, ASA class II ומעלה, תלות תפקודית, COPD, ואי-ספיקת לב. ה-<span class="term" dir="ltr">ASA Task Force</span> ממליץ במפורש: בדיקות טרום-ניתוחיות מומלצות <b>רק אם</b> המידע ישנה את הטיפול הניתוחי, יגרום לשינוי בתרופות או בניטור, או ידחה את הניתוח עד לייצוב מצב לבבי - עיקרון שחוזר לאורך כל הפרק ומהווה את הגורם המארגן של ה"בית הניתוחי" (עמוד 1).</p>
+<div class="mechanism">
+  <p class="chain">למה זה חשוב קלינית: 50 עד 40 מיליארד דולר מושקעים מדי שנה בבדיקות טרום-ניתוחיות בצפון אמריקה - וכ-50% מכך היה ניתן לחסוך על ידי הזמנה סלקטיבית בלבד. מעבר לעלות, בדיקה "שגרתית" שאינה מבוססת על אינדיקציה קלינית עלולה לייצר ממצאים חיוביים-כוזבים שמעכבים ניתוח דחוף ללא תועלת אמיתית למטופל.</p>
+</div>
+
+<h2><span class="num">6</span> אנטיקואגולציה לפני ניתוח נוירוכירורגי: DOACs ונוגדי טסיות</h2>
+<p>שימוש בנוגדי קרישה ישירים דרך הפה <span class="term" dir="ltr">Direct Oral Anticoagulants, DOACs</span> - דביגטרן (מעכב תרומבין), אפיקסבן, ריברוקסבן ואדוקסבן (מעכבי פקטור Xa) - נפוץ יותר ויותר, במיוחד באוכלוסייה הקשישה שגם עוברת ניתוחים נוירוכירורגיים. בניגוד לניתוח פתוח שבו כמעט תמיד יש להפסיק נוגדי קרישה מראש, בהתערבויות אנדווסקולריות (כגון סגירת מפרצת עם סלילים) המצב הפוך - לעיתים קרובות מתחילים טיפול נוגד טסיות (אספירין + קלופידוגרל) באופן יזום.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>תרחיש</th><th>המלצה</th></tr></thead>
+  <tbody>
+    <tr><td>מעכבי פקטור Xa (אפיקסבן, ריברוקסבן) - הפסקה לפני ניתוח אלקטיבי</td><td>לפחות 48 שעות, ללא תלות בתפקוד כלייתי (חלק מהקווים המנחים ממליצים 72 שעות)</td></tr>
+    <tr><td>דביגטרן - הפסקה לפני ניתוח אלקטיבי</td><td>לפחות 96 שעות אם פינוי קריאטינין &lt;50 מ"ל/דקה (עד 120 שעות לפי חלק מהקווים המנחים)</td></tr>
+    <tr><td>גישור (bridging) עם הפרין</td><td>מומלץ רק לניקוד CHA2DS2-VASc &#8805;7 או CHADS2 &#8805;5 - לרוב מיותר עם DOACs בשל תחילת/סיום פעולה מהירים</td></tr>
+    <tr><td>היפוך חירום</td><td>דביגטרן: אידארוציזומאב (נוגדן מונוקלונלי). אפיקסבן/ריברוקסבן: אנדקסנט (יקר), או ריכוז פרותרומבין ארבע-גורמים (PCC) כחלופה</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="key-box">אספירין הניתן ל-NSAID לפני ניתוח תוך-גולגולתי אלקטיבי - יש להפסיק שבוע מראש, אלא אם המטופל סובל מהתקפים איסכמיים חולפים שבהם סיכון ההפסקה עולה על הסיכון של המשך הטיפול.</div>
+
+<h2><span class="num">7</span> ניתוחים תוך-גולגולתיים ספציפיים: גידולים ודימום תת-עכבישי</h2>
+<p>במטופלים עם גידולים תוך-גולגולתיים, ההערכה הטרום-ניתוחית בודקת סימני לחץ תוך-גולגולתי מוגבר <span class="term" dir="ltr">increased ICP</span>: כאב ראש, בחילה והקאה, שינוי במצב הכרה, כפל ראייה, הפרעות ראייה, ויתר לחץ דם סיסטמי. תרופות מרגיעות ואופיואידים מסוכנים במיוחד במטופלים אלה - הרגעה בגלל רגישות מוגברת להשפעה ההיפנוטית, ואופיואידים בגלל דיכוי נשימתי שמעלה CO2 ולכן גם ICP.</p>
+<p>בדימום תת-עכבישי אנוריסמלי <span class="term" dir="ltr">aneurysmal subarachnoid hemorrhage</span>, הסולם הקלאסי הוא Hunt-Hess, לצידו סולם WFNS המבוסס על ציון גלזגו (GCS) ונוכחות חסר מוטורי, וסיווג Fisher המדרג את כמות הדם בהדמיית CT (חשוב לניבוי וזוספזם). מטופלים אלה נמצאים לעיתים קרובות בדלדול נפח תוך-כלי, ועלולים לפתח תת-נתרנמיה מסיבות שונות (כולל תסמונת בזבוז מלח מוחי) - ייחוס שגוי שלה ל-SIADH עלול להוביל בטעות להגבלת נוזלים ולהחמרת איסכמיה מאוחרת.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>סולם</th><th>מודד</th><th>שימוש עיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>Hunt-Hess (מתוקן)</b></td><td>דרגה 0-V לפי הכרה, כאב ראש, נוקשות עורפית, חסר נוירולוגי</td><td>ניבוי תמותה/תחלואה ב-SAH, אך לא מנבא ישירות וזוספזם</td></tr>
+    <tr><td><b>WFNS</b></td><td>ציון GCS + נוכחות/היעדר חסר מוטורי</td><td>אובייקטיבי יותר מ-Hunt-Hess, מבוסס GCS סטנדרטי</td></tr>
+    <tr><td><b>Fisher</b></td><td>כמות והתפלגות דם ב-CT</td><td>מנבא סיכון לוזוספזם מוחי מאוחר</td></tr>
+  </tbody>
+</table>
+</div>
+<p>במטופלים עם דלקת עורקים קרוטידית טרשתית העוברים כריתת רובד קרוטידי <span class="term" dir="ltr">carotid endarterectomy, CEA</span>, סיווג Mayo Clinic (טבלה 7.2 בפרק) משלב ממצאים נוירולוגיים, רפואיים ואנגיוגרפיים לניבוי סיכון לאוטם שריר הלב או שבץ. סיבוכים לבביים הם הגורם השכיח ביותר לתחלואה פוסט-ניתוחית לאחר CEA, ואחראים לכל מקרי התמותה.</p>
+
+<h2><span class="num">8</span> ERAS וניתוח אמבולטורי (Same-Day) בנוירוכירורגיה</h2>
+<p>תוכניות <span class="term" dir="ltr">Enhanced Recovery After Surgery, ERAS</span> משלבות גישה רב-תחומית, מבוססת-ראיות, לאורך כל התהליך הפריאופרטיבי. יישום ERAS בניתוחי עמוד שדרה מקושר לירידה באשפוזי טיפול נמרץ, זמן אשפוז, סיבוכים, קבלות חוזרות ואיבוד דם - וגם בקרניוטומיה אלקטיבית נמצא קשר לירידה באשפוז ולהתאוששות מהירה יותר ללא עלייה בסיבוכים.</p>
+<p>ניתוח נוירוכירורגי באשפוז יום (Same-day / אמבולטורי) הולך וגדל בשכיחותו - דקומפרסיה מותנית אמבולטורית עלתה מ-18.7% ל-68.5% מהניתוחים בארה"ב בין 2003 ל-2014. מטופלים עם BMI מעל 50 ק"ג/מ"ר נחשבים בסיכון לא-מקובל לניתוח אמבולטורי; גורמים נוספים הפוסלים כוללים חשד לדרכי אוויר קשות, מחלת לב או ריאות משמעותית, דום נשימה בשינה, התקפים לא-נשלטים, מצב נוירולוגי טרום-ניתוחי ירוד, וחוסר מטפל מהימן בבית.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/b67H7zk295E" title="What is the Enhanced Recovery After Surgery (ERAS) Protocol?" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: מהי תוכנית ERAS (Enhanced Recovery After Surgery) והרכיבים המרכזיים שלה.</p>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">A-S-K-M-E</span> - חמישה צירים של ההערכה הטרום-ניתוחית</h3>
+  <p>
+    <b>A</b> - <span class="term" dir="ltr">ASA class</span> (סיווג סטטוס פיזיולוגי כללי - "כמה חולה המטופל בסך הכול")<br>
+    <b>S</b> - <span class="term" dir="ltr">Systems review</span> (סקירת מערכות - לב, ריאה, כליה, דם, אנדוקרין)<br>
+    <b>K</b> - <span class="term" dir="ltr">Known neuro-risk</span> (סיכון נוירוכירורגי ספציפי - ICP, Hunt-Hess, WFNS, Fisher)<br>
+    <b>M</b> - <span class="term" dir="ltr">Medications</span> (תרופות נוכחיות - נוגדי קרישה/טסיות, סטרואידים, נוגדי פרכוסים)<br>
+    <b>E</b> - <span class="term" dir="ltr">ERAS/planning</span> (תכנון פריאופרטיבי - אמבולטורי או מאושפז, שחרור מוקדם)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בלש שחוקר "תיק" לפני שהוא בכלל נכנס לזירה (חדר הניתוח). קודם הוא בודק את "התיק הפלילי" הכללי של החשוד (ASA - כמה בעיות יש לו בסך הכול), אז חוקר כל "מחלקה" בנפרד (Systems - לב, ריאה, כליה...), ואז מתמקד ב"עדות המיוחדת" הרלוונטית לזירה הספציפית (Known neuro-risk - לחץ תוך-גולגולתי, דימום). לבסוף הוא בודק אילו "כלים" החשוד נושא איתו (Medications - נוגדי קרישה) ומתכנן מראש את מסלול הבריחה מהזירה (ERAS - שחרור מהיר ובטוח).</p>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/ASA_physical_status_classification_system" target="_blank">ASA Physical Status Classification System – Wikipedia</a>
+    <div class="desc">רקע מלא על שש דרגות הסיווג והשימוש הקליני בהן.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Revised_Cardiac_Risk_Index" target="_blank">Revised Cardiac Risk Index – Wikipedia</a>
+    <div class="desc">ששת הגורמים המרכיבים את מדד RCRI וכיצד הם מנבאים תחלואה לבבית פריאופרטיבית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Mallampati_score" target="_blank">Mallampati Score – Wikipedia</a>
+    <div class="desc">ארבע דרגות הסיווג להערכת קושי צפוי באינטובציה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Enhanced_recovery_after_surgery" target="_blank">Enhanced Recovery After Surgery (ERAS) – Wikipedia</a>
+    <div class="desc">עקרונות התוכנית הרב-תחומית לשיפור התאוששות פריאופרטיבית.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Frailty_syndrome" target="_blank">Frailty (Fried Phenotype) – Wikipedia</a>
+    <div class="desc">חמשת הקריטריונים של פנוטיפ Fried להערכת שבריריות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 74 עם היסטוריה של יתר לחץ דם וסוכרת מטופלת באינסולין, מתוכנן לקרניוטומיה אלקטיבית להוצאת מנינגיומה פרה-סגיטלית. הוא מדווח שהוא מתקשה לעלות קומת מדרגות בלי לעצור לנוח, ונוטל אפיקסבן בשל פרפור עליות. בבדיקה הוא מדגים ציון Mini-Cog נמוך (1 מתוך 5).</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. לפי מדד RCRI, אילו משני הגורמים של מטופל זה תורמים לניקוד הסיכון הלבבי?</div>
+  <button class="opt" data-i="0">רק הגיל שלו (74)</button>
+  <button class="opt" data-i="1">רק העובדה שהוא עובר ניתוח תוך-גולגולתי</button>
+  <button class="opt" data-i="2">הטיפול באינסולין וניתוח בסיכון גבוה (נוירוכירורגיה תוך-גולגולתית) - שניים מששת הגורמים של RCRI</button>
+  <button class="opt" data-i="3">רק יתר לחץ הדם</button>
+  <div class="explain">התשובה הנכונה: RCRI כולל שישה גורמים - ניתוח בסיכון גבוה, מחלת לב איסכמית, אי-ספיקת לב, מחלה צרברווסקולרית, טיפול באינסולין, וקריאטינין מעל 2.0. גיל ויתר לחץ דם בפני עצמם אינם חלק מהמדד הרשמי. המטופל כאן מקבל נקודה על אינסולין ונקודה על ניתוח בסיכון גבוה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. חוסר היכולת של המטופל לעלות קומת מדרגות ללא עצירה מרמז על מה, ומה המשמעות הקלינית?</div>
+  <button class="opt" data-i="0">יכולת תפקודית מתחת ל-4 METs - מנבא סיכון מוגבר לסיבוכים לבביים פריאופרטיביים וארוכי-טווח</button>
+  <button class="opt" data-i="1">אין לכך משמעות קלינית כלל</button>
+  <button class="opt" data-i="2">זה מעיד על בעיה נשימתית בלבד, לא לבבית</button>
+  <button class="opt" data-i="3">זה מנבא רק סיכון תוך-ניתוחי לדימום</button>
+  <div class="explain">התשובה הנכונה: עלייה בקומת מדרגות משויכת ל-&gt;4 METs. מטופל שאינו מסוגל לבצע פעילות ברמה זו נמצא ביכולת תפקודית נמוכה, שהיא מנבא עצמאי לסיבוכים לבביים - ולפי אלגוריתם ACC/AHA, מטופל כזה עם סיכון MACE מוגבר עשוי להזדקק לבדיקות נוספות (כגון בדיקת מאמץ) לפני שממשיכים לניתוח.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. כמה זמן לפני הניתוח האלקטיבי יש להפסיק את האפיקסבן שהמטופל נוטל?</div>
+  <button class="opt" data-i="0">אין צורך להפסיק כלל</button>
+  <button class="opt" data-i="1">לפחות 48 שעות (חלק מהקווים המנחים ממליצים על 72 שעות), ללא תלות בתפקוד כלייתי</button>
+  <button class="opt" data-i="2">6 חודשים</button>
+  <button class="opt" data-i="3">רק ביום הניתוח עצמו</button>
+  <div class="explain">התשובה הנכונה: כל הקווים המנחים ממליצים על הפסקת מעכבי פקטור Xa (כמו אפיקסבן) לפחות 48 שעות לפני ניתוח אלקטיבי, ללא תלות בתפקוד כלייתי; קבוצת העבודה הצרפתית ממליצה על 72 שעות. זה שונה מדביגטרן, שדורש הפסקה ארוכה יותר (96-120 שעות) בתלות בתפקוד כלייתי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. ציון Mini-Cog נמוך של המטופל (1/5) מעיד על מה, ומדוע חשוב לתעד זאת לפני הניתוח?</div>
+  <button class="opt" data-i="0">בעיה בשמיעה בלבד</button>
+  <button class="opt" data-i="1">התקף אפילפטי צפוי</button>
+  <button class="opt" data-i="2">אין קשר לניתוח תוך-גולגולתי</button>
+  <button class="opt" data-i="3">חשד לחסר קוגניטיבי קיים מראש - תיעוד טרום-ניתוחי חשוב כדי לבדל בין חסר קדם-קיים לבין דליריום/חסר קוגניטיבי פוסט-ניתוחי חדש, ולזהות סיכון מוגבר לדליריום</button>
+  <div class="explain">התשובה הנכונה: Mini-Cog הוא כלי סינון קוגניטיבי מהיר (זיכרון תלת-פריטי + ציור שעון); ציון נמוך (&#8804;2) מעיד על חסר אפשרי. תיעוד טרום-ניתוחי קריטי כי הוא מאפשר בהמשך להבדיל בין ירידה קוגניטיבית שהייתה קיימת עוד לפני הניתוח לבין הפרעה נוירוקוגניטיבית פוסט-ניתוחית חדשה, וגם מסמן את המטופל כבסיכון מוגבר לדליריום (לפי הנחיות ה-American Geriatrics Society).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ההערכה הטרום-ניתוחית היא שרשרת בת שלושה שלבים: איסוף קו בסיס &#8592; כימות סיכון בכלים סטנדרטיים (ASA, RCRI, METs) &#8592; החלטה על פעולה - ורק אם המידע ישנה טיפול, מבצעים בדיקה נוספת.</li>
+    <li><b>סיווג ASA</b> (1-6) מדרג את המחלה הבסיסית של המטופל; ASA 3-5 הוא מנבא עצמאי לסיבוכים לבביים ותמותה בניתוחים תוך-גולגולתיים.</li>
+    <li><b>RCRI</b> - שישה גורמים (ניתוח בסיכון גבוה, מחלת לב איסכמית, אי-ספיקת לב, מחלה צרברווסקולרית, אינסולין, קריאטינין&gt;2.0); שלושה או יותר = סיכון לבבי של 11%. יכולת תפקודית מתחת ל-4 METs מחייבת שקילת בדיקות נוספות.</li>
+    <li><b>שבריריות</b> (פנוטיפ Fried) וירידה קוגניטיבית (Mini-Cog, MoCA) הן שכבות הערכה נוספות בקשישים, מעבר ל-ASA בלבד.</li>
+    <li><b>DOACs</b> - הפסקה טרום-ניתוחית: מעכבי Xa לפחות 48-72 שעות; דביגטרן 96-120 שעות בתלות בתפקוד כלייתי; גישור עם הפרין נחוץ רק בציוני CHA2DS2-VASc/CHADS2 גבוהים במיוחד.</li>
+    <li>בדימום תת-עכבישי - Hunt-Hess, WFNS ו-Fisher הם שלושה סולמות משלימים (קליני/GCS/הדמייתי) לדירוג חומרה וניבוי סיכון לוזוספזם.</li>
+    <li>ERAS וניתוח אמבולטורי (Same-day) הולכים ומתרחבים גם בנוירוכירורגיה - אך מחייבים סינון קפדני (BMI, דרכי אוויר, מצב נוירולוגי, מטפל מהימן בבית).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
