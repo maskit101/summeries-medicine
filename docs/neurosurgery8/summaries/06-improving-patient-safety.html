@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 6: שיפור בטיחות המטופל</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 6: שיפור בטיחות המטופל <span class="term" dir="ltr">Improving Patient Safety</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 8), חלק 1 - Introduction to Neurosurgery | מאת John D. Rolston, Catherine Y. Lau, Sujatha Sankaran, Mitchel S. Berger</div>
+
+<p>הפרק הזה שונה מרוב פרקי האנטומיה בספר: הוא לא עוסק במבנה של המוח אלא ב<b>מבנה של המערכת שמנתחת אותו</b>. הרעיון המרכזי הוא ש"אפילו אם המנתח מבצע את הניתוח בצורה מושלמת, רק כרבע מהשגיאות עשויות להימנע" - כלומר, רוב הטעויות שפוגעות במטופלים אינן טעויות טכניקה אישית, אלא כשלים של המערכת כולה: הצוות, הציוד, המדיניות, והתקשורת. זהו "מעבר פרדיגמה" - מתפיסה שמאשימה את המנתח ("who screwed up?") לתפיסה מערכתית ("what allowed this to happen, and how do we redesign the system?").</p>
+
+<h2><span class="num">1</span> אפידמיולוגיה: כמה זה באמת גדול?</h2>
+<p>התנועה המודרנית לבטיחות המטופל התגבשה בעקבות הפרסום של <span class="term" dir="ltr">To Err Is Human</span> בשנת 2000 על ידי ה-National Academy of Medicine (לשעבר Institute of Medicine). הדוח, שהתבסס על ה-Harvard Medical Practice Study משנת 1991, העריך כי <b>44,000 עד 98,000 אמריקאים</b> נהרגים מדי שנה כתוצאה משגיאות רפואיות - מספר שהושווה מטאפורית ל"מטוס ג'מבו" מתרסק מדי יום. מחקרים מאוחרים יותר אף העלו את ההערכה ל-<b>210,000 עד 440,000</b> הרוגים בשנה.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Surgeons_in_the_operating_room.jpg?width=700" alt="Surgeons working together in an operating room">
+<p class="media-cap">צוות ניתוחי בחדר ניתוח - הפרק מדגיש כי רוב הטעויות אינן טעויות אישיות של מנתח בודד אלא כשלים של הצוות והמערכת כולה. מקור: Wikimedia Commons.</p>
+<p>בנוירוכירורגיה הנתונים דומים: כ-<b>3%</b> מכלל המנותחים חווים אירוע שלילי בתקופה הפריאופרטיבית (מחציתם ניתנים למניעה), ובמטופלים נוירוכירורגיים ספציפית - <b>14.3%</b> חווים לפחות סיבוך אחד. כ-1 מתוך 100,000 ניתוחים הוא ניתוח באתר/בצד השגוי, וב-2.2 מתוך 10,000 קרניוטומיות מנתחים בצד הלא נכון. סקר בקרב נוירוכירורגים מצא ש-25% דיווחו שביצעו אי-פעם חתך בצד הלא נכון של הראש, ו-35% דיווחו על ניתוח גב תחתון ברמה שגויה. העלות הכלכלית עצומה: 1.3 מיליארד דולר בפשרות משפטיות בין 1990-2010 בלבד (ללא 90% מהמקרים שלא הגיעו לתביעה).</p>
+<div class="key-box">כ-1 מתוך 10 מטופלים מפתחים זיהום יאטרוגני (נרכש כתוצאה מטיפול רפואי) - עם כ-100,000 מקרי מוות ו-40 מיליארד דולר עלות שנתית בארה"ב.</div>
+
+<h2><span class="num">2</span> טרמינולוגיה: אדוור אירוע, שגיאה או סיבוך?</h2>
+<p>שלושת המונחים האלה נשמעים דומים אך יש להם הגדרות שונות בתכלית, וההבחנה ביניהם היא הבסיס לכל שאר הפרק:</p>
+<ul>
+  <li><b>אירוע שלילי <span class="term" dir="ltr">adverse event</span></b> - פגיעה גופנית לא מכוונת שנגרמת כתוצאה מטיפול רפואי (או מהיעדר טיפול מתאים), המחייבת מעקב, טיפול נוסף, אשפוז, או גורמת למוות. מתחלק ל<b>נמנע</b> <span class="term" dir="ltr">preventable</span> (למשל ניתוח בצד שגוי) ו<b>בלתי נמנע</b> <span class="term" dir="ltr">nonpreventable</span> (למשל דימום מקובל כתוצאה מהחדרת נקז חדרי חיצוני).</li>
+  <li><b>סיבוך <span class="term" dir="ltr">complication</span></b> - מונח רחב פחות מוגדר, הכולל את כל האירועים השליליים (נמנעים ובלתי נמנעים כאחד), אך <b>גם</b> נזק שקשור ישירות למחלה עצמה ולא לטיפול הרפואי - למשל דימום תוך-גולגולתי כתוצאה מגידול מוחי, גם אם קרה מחוץ לבית החולים.</li>
+  <li><b>שגיאה <span class="term" dir="ltr">error</span></b> - פעולה או מחדל שמובילים לתוצאה בלתי רצויה, או בעלי פוטנציאל גבוה לכך - כולל גם "כמעט-תקלות" <span class="term" dir="ltr">near misses</span> שלא הזיקו בפועל כי נתפסו בזמן (למשל מינון תרופה שגוי שנתפס על ידי מערכת הזמנה ממוחשבת).</li>
+</ul>
+<svg class="diagram" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+  <title>יחסי ההכלה בין סיבוכים, אירועים שליליים ושגיאות</title>
+  <desc>תרשים עיגולים מקוננים: סיבוכים הוא העיגול הרחב ביותר, בתוכו אירועים שליליים (מתחלקים לנמנעים ובלתי נמנעים), ובתוכם שגיאות (הכוללות גם near miss שאינו אירוע שלילי בפועל)</desc>
+  <ellipse cx="350" cy="200" rx="330" ry="160" fill="#fefce8" stroke="#a16207" stroke-width="2.5"/>
+  <text x="350" y="55" font-size="16" text-anchor="middle" fill="#713f12" font-weight="700">סיבוכים (Complications)</text>
+  <text x="350" y="75" font-size="11.5" text-anchor="middle" fill="#713f12">כולל גם נזק ישיר מהמחלה עצמה, ללא קשר לטיפול</text>
+  <ellipse cx="330" cy="215" rx="245" ry="115" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="330" y="118" font-size="15" text-anchor="middle" fill="#1e3a8a" font-weight="700">אירועים שליליים (Adverse Events)</text>
+  <text x="330" y="136" font-size="11" text-anchor="middle" fill="#1e3a8a">פגיעה בלתי מכוונת שנגרמת ע"י טיפול רפואי</text>
+  <ellipse cx="250" cy="255" rx="95" ry="55" fill="#fee2e2" stroke="#b91c1c" stroke-width="2" opacity="0.9"/>
+  <text x="250" y="250" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">נמנע</text>
+  <text x="250" y="266" font-size="10" text-anchor="middle" fill="#7f1d1d">wrong-side surgery</text>
+  <ellipse cx="430" cy="255" rx="95" ry="55" fill="#dcfce7" stroke="#15803d" stroke-width="2" opacity="0.9"/>
+  <text x="430" y="250" font-size="12" text-anchor="middle" fill="#14532d" font-weight="700">בלתי נמנע</text>
+  <text x="430" y="266" font-size="10" text-anchor="middle" fill="#14532d">דימום EVD מקובל</text>
+  <ellipse cx="250" cy="255" rx="70" ry="40" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="250" y="253" font-size="11.5" text-anchor="middle" fill="#4c1d95" font-weight="700">שגיאות</text>
+  <text x="250" y="268" font-size="9.5" text-anchor="middle" fill="#4c1d95">(Errors)</text>
+  <rect x="120" y="330" width="460" height="35" rx="6" fill="#f3f4f6"/>
+  <text x="350" y="352" font-size="11.5" text-anchor="middle" fill="#374151">"Near miss" הוא שגיאה שלא הפכה לאירוע שלילי בפועל - נתפסה בזמן ע"י המערכת</text>
+</svg>
+<p class="figcap">איור סכמטי עצמאי (Figure 6.1 בפרק המקורי) - יחסי ההכלה בין סיבוכים, אירועים שליליים (נמנעים/בלתי נמנעים) ושגיאות.</p>
+
+<h2><span class="num">3</span> שגיאות אקטיביות מול לטנטיות: מודל "גבינה שוויצרית"</h2>
+<p>ג'יימס ריזון <span class="term" dir="ltr">James Reason</span> חילק שגיאות לשתי קטגוריות מרכזיות, שהן אבן היסוד של כל הפרק:</p>
+<div class="mechanism">
+  <p class="chain">
+    <b>שגיאות אקטיביות <span class="term" dir="ltr">active errors</span> ("הקצה החד" - sharp end):</b> מתרחשות כשהמטופל נמצא במגע ישיר עם איש הצוות הרפואי, גלויות לעין, וכמעט תמיד מעורב בהן עובד בקו החזית. מתחלקות ל<b>החלקות</b> <span class="term" dir="ltr">slips</span> (פעולה מכוונת שבוצעה לא מושלם - למשל החלקה עם אזמל מעייפות או הסחת דעת) ו<b>טעויות</b> <span class="term" dir="ltr">mistakes</span> (בחירת הפעולה הלא נכונה, גם אם בוצעה בצורה מושלמת - למשל ניתוח בצד השגוי מחוסר ידע).<br><br>
+    <b>שגיאות לטנטיות <span class="term" dir="ltr">latent errors</span> ("הקצה הקהה" - blunt end):</b> כשלים פחות גלויים של הארגון או העיצוב שמאפשרים לנזק להגיע למטופל - למשל מערכת שמשתמשת בכמה סוגי משאבות עירוי שונות, מה שמגביר בלבול של אחיות.
+  </p>
+</div>
+<p class="key-box">שגיאה אקטיבית קלאסית: אחות מתכנתת קצב שגוי במשאבת כימותרפיה. השגיאה הלטנטית שמאחוריה: בית החולים משתמש בכמה דגמי משאבות שונים, מה שמגדיל את הסבירות לבלבול. <b>שגיאות לטנטיות משפיעות יותר על הגנת המטופל מאשר שגיאות של מתרגל בודד</b> - לכן תיקון המערכת חשוב יותר מהענשת היחיד.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Swiss_cheese_model.svg?width=700" alt="Swiss cheese model of accident causation showing multiple layers of defense with holes representing latent and active failures">
+<p class="media-cap">מודל "הגבינה השוויצרית" של ריזון: כל שכבת הגנה במערכת (מדיניות, הכשרה, ציוד, פרוצדורה) מכילה "חורים" - שגיאות לטנטיות. אירוע שלילי מתרחש רק כאשר החורים בכל השכבות מתיישרים בבת אחת. מקור: Wikimedia Commons.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>רמה במערכת</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td><b>ממשלתית</b></td><td>חוקים פדרליים (EMTALA, Affordable Care Act), דרישות FDA, דיווחי CDC, תקנות The Joint Commission, תקנות OSHA</td></tr>
+    <tr><td><b>מוסדית</b></td><td>החלטות פורמולרי תרופות, גיוס וגודל צוות, מדיניות אורך ותזמון משמרות</td></tr>
+    <tr><td><b>תשתית</b></td><td>מערכת רשומות רפואיות ממוחשבות, פריסת מבנה ומתקן, תחזוקת ציוד ומתקנים</td></tr>
+    <tr><td><b>צוות</b></td><td>קלות תקשורת פיזית (זימונית, טלפון, דוא"ל), תדירות אינטראקציות, נהלים פורמליים להעברת מידע (כמו SBAR), היררכיה ויכולת להטיל ספק בתוכנית</td></tr>
+    <tr><td><b>עובד בריאות בודד</b></td><td>בסיס ידע רפואי, בריאות גופנית ונפשית, ידע מוסדי (יכולת ניווט במערכת הקיימת)</td></tr>
+    <tr><td><b>מטופל בודד</b></td><td>מורכבות המקרה, חסמי שפה ותקשורת, חסמים חברתיים/אישיותיים, אוריינות בריאותית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="figcap">Table 6.1 בפרק המקורי - תצוגה מערכתית של מקורות שגיאה, מהרמה הממשלתית ועד המטופל הבודד.</p>
+
+<h2><span class="num">4</span> חשיבה מערכתית: "אקוסיסטם בטיחות המטופל"</h2>
+<p>ניתוח פרוספקטיבי של שגיאות בפרוצדורות נוירוכירורגיות מצא כי רק <b>23.7%-27.8%</b> מהשגיאות קשורות למיומנות הטכנית של המנתח. השאר, כ-<b>75%</b>, כרוכים במשתתפים אחרים בטיפול - אחיות, מרדימים, טכנאי ציוד. זו הסיבה שהתמקדות בלעדית בביצועי המנתח מפספסת את רוב הבעיה.</p>
+<svg class="diagram" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg">
+  <title>אקוסיסטם בטיחות המטופל</title>
+  <desc>תרשים המראה שלושה מרכיבים פנימיים - חשיבה מערכתית, תרבות בטיחות, וכוח עבודה בטוח - המושפעים מכוחות חיצוניים כמו מדיניות, לחץ חברתי, מדיה ורגולציה</desc>
+  <ellipse cx="350" cy="160" rx="330" ry="145" fill="#f9fafb" stroke="#9ca3af" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="350" y="40" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">כוחות חיצוניים: מדיניות, לחץ חברתי, מדיה, רגולציה, הסמכה, שקיפות</text>
+  <rect x="70" y="90" width="180" height="120" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <text x="160" y="120" font-size="13.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">חשיבה מערכתית</text>
+  <text x="160" y="145" font-size="11" text-anchor="middle" fill="#1e3a8a">תקינה, בדיקות כפולות,</text>
+  <text x="160" y="162" font-size="11" text-anchor="middle" fill="#1e3a8a">רשימות תיוג, דיווח יעיל,</text>
+  <text x="160" y="179" font-size="11" text-anchor="middle" fill="#1e3a8a">פתרונות מסוג "מערכתי"</text>
+  <rect x="260" y="90" width="180" height="120" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2.5"/>
+  <text x="350" y="120" font-size="13.5" text-anchor="middle" fill="#713f12" font-weight="700">תרבות בטיחות</text>
+  <text x="350" y="145" font-size="11" text-anchor="middle" fill="#713f12">עבודת צוות, שיפור תקשורת,</text>
+  <text x="350" y="162" font-size="11" text-anchor="middle" fill="#713f12">היררכיה "ללא האשמה",</text>
+  <text x="350" y="179" font-size="11" text-anchor="middle" fill="#713f12">ריסון סמכות</text>
+  <rect x="450" y="90" width="180" height="120" rx="8" fill="#f0fdf4" stroke="#15803d" stroke-width="2.5"/>
+  <text x="540" y="120" font-size="13.5" text-anchor="middle" fill="#14532d" font-weight="700">כוח עבודה בטוח</text>
+  <text x="540" y="145" font-size="11" text-anchor="middle" fill="#14532d">מיומן, מנוסה,</text>
+  <text x="540" y="162" font-size="11" text-anchor="middle" fill="#14532d">נח דיו (well-rested),</text>
+  <text x="540" y="179" font-size="11" text-anchor="middle" fill="#14532d">מוכשר היטב</text>
+  <text x="350" y="260" font-size="12.5" text-anchor="middle" fill="#374151" font-weight="700">שלושת המרכיבים מזינים זה את זה - ומטרתם המשותפת: "המערכת המורכבת" של הרפואה</text>
+  <text x="350" y="285" font-size="11.5" text-anchor="middle" fill="#6b7280">רק 23.7%-27.8% מהשגיאות בנוירוכירורגיה נובעות ממיומנות טכנית של המנתח בלבד</text>
+</svg>
+<p class="figcap">איור סכמטי עצמאי (Figure 6.2 בפרק המקורי) - "אקוסיסטם בטיחות המטופל": שילוב חשיבה מערכתית, תרבות בטיחות, וכוח עבודה בטוח, בהשפעת כוחות חיצוניים.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/hSG78X_8mv0" title="To Err is Human: Medical Errors" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: על שגיאות רפואיות ותנועת "To Err is Human".</p>
+
+<h2><span class="num">5</span> כלים לזיהוי שגיאות וסיבוכים</h2>
+<p>שני צעדים נדרשים לפיתוח רציונלי של תהליכי בטיחות: <b>ראשית</b> - זיהוי ותיעוד אמין של שגיאות ואירועים שליליים; <b>שנית</b> - הצעת פתרונות ברמת המערכת כולה (לא רק ה"קצה החד").</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>כלי</th><th>איך עובד</th><th>יתרונות / חסרונות</th></tr></thead>
+  <tbody>
+    <tr><td><b>Global Trigger Tool (IHI)</b></td><td>מזהה מקרים עם "טריגרים" (חזרה לחדר ניתוח, מוות תוך-ניתוחי, העברה לרמת טיפול גבוהה יותר, שימוש בנלוקסון) ובודק אותם ידנית</td><td>רגישות וסגוליות מעולות (94.9% / 100%) אך עתיר עבודה, לא מעשי בנפח מטופלים גדול</td></tr>
+    <tr><td><b>דיווחי אירוע</b> <span class="term" dir="ltr">incident reports</span></td><td>דיווחים לא מובנים של אחיות, רופאים ואחרים, נייר או ממוחשב</td><td>לא סטנדרטיים - סף דיווח משתנה בין עובדים; מעט תגמול ולעיתים אין "סגירת מעגל"</td></tr>
+    <tr><td><b>ועדות תחלואה ותמותה (M&amp;M)</b></td><td>שיטה מבוססת בנוירוכירורגיה, זולה, בעלת ערך חינוכי</td><td>נוטות להתמקד בביצוע אישי במקום בבעיות מערכתיות; עדיין חשובה לאחריותיות אישית</td></tr>
+    <tr><td><b>דיווחים אוטומטיים מרשומה רפואית</b></td><td>ניטור אקטיבי - ניתן להגדיר מראש אילו אירועים ותקופה לחפש</td><td>תלוי מאוד באיכות התיעוד; שיעור גבוה של false-positive הדורש סקירה ידנית</td></tr>
+    <tr><td><b>נתוני תביעות</b> <span class="term" dir="ltr">claims data</span></td><td>קידוד לפי ICD-9/10 או CPT, למשל Nationwide Inpatient Sample</td><td>נפוץ ביותר בספרות אך לרוב חסר נתונים דמוגרפיים ואינו מקודד ע"י מי שראה את המטופל</td></tr>
+    <tr><td><b>NSQIP</b> (American College of Surgeons)</td><td>מעל 300 בתי חולים משתתפים, אנשי צוות מיוחדים לאיסוף נתונים, מתועד מ-2005</td><td>ב-14.3% מהמטופלים הנוירוכירורגיים נרשם סיבוך; לא סגולי לנוירוכירורגיה (למשל דליפת נוזל שדרתי) - לכן קיימות גם N²QOD ו-International Spine Study Group</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="key-box">חשוב להבחין: מדדי ה-AHRQ המובנים הראו סגוליות גבוהה מאוד (98.5%) אך רגישות עלובה (5.8%) - כלומר רוב האירועים השליליים כלל לא מדווחים במערכות כאלה. אף אחד מהכלים לא מושלם, ולכן נהוג לשלב כמה שיטות במקביל.</div>
+
+<h2><span class="num">6</span> ניתוח שורש הבעיה (RCA) ומניעת שגיאות ספציפיות</h2>
+<p>ניתוח שורש הבעיה <span class="term" dir="ltr">root cause analysis, RCA</span> הוא ניתוח יסודי ומכוון של שגיאה, המבוצע על ידי צוות רב-תחומי בסביבה מוגנת, שמטרתו לחשוף את הגורמים המערכתיים העומדים ביסוד השגיאה ולתכנן אסטרטגיות להפחתת סיכון עתידי. צוותי RCA יעילים גם מעריכים את השינויים שביצעו לאורך זמן ומתקשרים את התוצאות לצוות המטפל.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ishikawa_Fishbone_Diagram.svg?width=700" alt="Ishikawa fishbone diagram used for root cause analysis, showing categories of contributing causes leading to an effect">
+<p class="media-cap">תרשים "עצם דג" (Ishikawa/Fishbone) - כלי נפוץ לניתוח שורש הבעיה, ממפה קטגוריות שונות של גורמים תורמים (אדם, ציוד, תהליך, סביבה) המובילים לאירוע השלילי. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ZxFEyJgjW4s" title="Root Cause Analysis in Healthcare" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: יישום ניתוח שורש הבעיה (RCA) בסביבה הרפואית.</p>
+
+<h3>ניתוח בצד/אתר/רמה שגויים ו-Checklists</h3>
+<p>נוירוכירורגיה היא ההתמחות השלישית בשכיחותה לביצוע ניתוח באתר או ברמה שגויים, אחרי אורתופדיה וכירורגיה כללית. אירועים אלה מסווגים כ"אירועי חוד" <span class="term" dir="ltr">sentinel events</span> על ידי The Joint Commission וחייבים בדיווח למדינה. האטיולוגיה נובעת בעיקר מ<b>כשל תקשורתי</b>, מה שהוביל לפיתוח נהלי time-out ורשימות תיוג <span class="term" dir="ltr">checklists</span> פורמליים.</p>
+<p>ב-2008 פיתחה ארגון הבריאות העולמי (WHO) את <span class="term" dir="ltr">Surgical Safety Checklist</span> לשיפור תקשורת הצוות. מחקר פיילוט רב-מרכזי מצא הפחתה של <b>4%</b> בסיבוכים ו-<b>0.7%</b> בתמותה. עם זאת, יעילות הרשימה במניעת ניתוח באתר שגוי ספציפית לא נבדקה ישירות בנוירוכירורגיה, אף שקיימות עדויות חזקות בהתמחויות כירורגיות אחרות. שיפור נוסף בהתמצאות תוך-ניתוחית באמצעות כלי ניווט ופלואורוסקופיה יכול לסייע לאישוש מיקום האתר הניתוחי.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Wash-Your-Hands-Information-hygiene_sign.svg?width=500" alt="Hand hygiene information sign used to remind healthcare workers about infection prevention">
+<p class="media-cap">שילוט תזכורת להיגיינת ידיים - סוג התערבות "מערכתית" פשוטה שמשלימה רשימות תיוג ופרוטוקולים למניעת זיהומים. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/_jE5NgLkTo4" title="How To Do The WHO Surgical Safety Checklist" allowfullscreen loading="lazy"></iframe></div><p class="video-cap">סרטון: הדגמת יישום רשימת התיוג הניתוחית של ה-WHO.</p>
+<p>מעבר לרשימות תיוג טרום-ניתוחיות, <b>תשאול לאחר ניתוח</b> <span class="term" dir="ltr">postoperative debriefing</span> הפך נפוץ יותר ויותר, ומטרתו להבטיח תקשורת סטנדרטית בין חברי הצוות ולעקוב אחר בעיות יעילות בחדר הניתוח. הוכח כי הוא משפר מודעות בטיחותית ונכונות לדווח על בעיות.</p>
+
+<h2><span class="num">7</span> זיהומים באתר הניתוח (SSI)</h2>
+<p>זיהומים באתר הניתוח <span class="term" dir="ltr">surgical site infections, SSIs</span> מתרחשים בכ-<b>1%</b> מהמקרים הנוירוכירורגיים, ותכופים יותר בניתוחי עמוד שדרה מאשר קרניאליים. אנטיביוטיקה טרום-ניתוחית ניתנת בזמן מפחיתה את הסיכון - וזו בדיוק הסיבה שרשימות תיוג טרום-ניתוחיות (המכילות תזכורת למתן אנטיביוטיקה) מפחיתות SSI בעקיפין.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שיטת מניעה</th><th>עדות/הערה</th></tr></thead>
+  <tbody>
+    <tr><td>אנטיביוטיקה טרום-ניתוחית בזמן</td><td>עדות מוצקה להפחתת סיכון, כאשר ניתנת בתזמון נכון</td></tr>
+    <tr><td>אבקת ונקומיצין בפצע (בעיקר עמוד שדרה)</td><td>מחקר אחד מצא הפחתה ליחס סיכויים 0.19, אך לא שוחזר במחקרים נוספים</td></tr>
+    <tr><td>דבק ציאנואקרילט במקום סיכות</td><td>אלטרנטיבה לסגירת פצע</td></tr>
+    <tr><td>טיפול בפצע בלחץ שלילי (NPWT)</td><td>שימושי בעיקר באיחוי thoracolumbar ארוך</td></tr>
+    <tr><td>שטיפה עם סליין או אנטיביוטיקה</td><td>מפחיתה עומס חיידקי בפצע</td></tr>
+    <tr><td>שליטה בקומורבידיות (למשל סוכרת)</td><td>גורם סיכון מודיפיקבילי חשוב</td></tr>
+    <tr><td>הגבלת מספר אנשים בחדר הניתוח + קיצור משך הניתוח</td><td>גישה מערכתית - פחות תנועה = פחות חשיפה חיידקית</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">בדיוק כמו ניתוח באתר שגוי, גם SSI נשלט בצורה הטובה ביותר בגישה מערכתית: רשימות תיוג, טכניקה ניתוחית, וניהול מחלות חוץ כמו סוכרת - כולם תורמים למניעה, ואף אחד מהם לבדו אינו "פתרון קסם".</p>
+
+<h2><span class="num">8</span> קשר נפח-תוצאה ו-ERAS</h2>
+<p>קשר נפח-תוצאה <span class="term" dir="ltr">volume-outcome relationship</span> מתייחס לתופעה החוזרת של תחלואה ותמותה מופחתות במרכזים בעלי נפח ניתוחי גבוה, בהשוואה למרכזים בעלי נפח נמוך - נצפה בניתוחי אפילפסיה, טרנססופנואידליים, אנוריזמות, טיפול אנדווסקולרי, אנדרטרקטומיה קרוטידית וניתוחי עמוד שדרה. הדבר מיוחס בחלקו ל"עקומת למידה" - לדוגמה, בכריתת כיס מרה לפרוסקופית הסיכוי לפגיעה הוא 1.7% בניתוח הראשון של המנתח, לעומת 0.17% בניתוח ה-50.</p>
+<div class="mechanism">
+  <p class="chain">חשוב להבין: זו לא רק תוצאה של מיומנות המנתח האישית. גם ההרדמה המומחית, הסיעוד, מדיניות בית החולים וטכנאי החדר תורמים לתוצאה. לכן שיפור התוצאה דורש שיפור <b>המערכת כולה</b> - וזה הבסיס לטיעון בעד <b>ריכוזיות טיפול</b> (regionalization of care) לפרוצדורות ספציפיות במרכזים בעלי נפח גבוה.</p>
+</div>
+<p><b>מסלולי ERAS</b> <span class="term" dir="ltr">Enhanced Recovery After Surgery</span> - סטנדרטיזציה של טיפול מבוסס-ראיות שיושמה בהתמחויות כירורגיות רבות (קולורקטלי, אף-אוזן-גרון, גינקו-אונקולוגי, וגם עמוד שדרה נוירוכירורגי). מחקרים בספרות עמוד השדרה מראים כי ERAS יכול להפחית עלויות ולשפר איכות טיפול.</p>
+
+<h2><span class="num">9</span> בינה מלאכותית בנוירוכירורגיה</h2>
+<p>הגישה הגוברת למאגרי נתונים גדולים, עוצמת חישוב, ואלגוריתמי למידת מכונה מתוחכמים הובילה לעלייה בשימוש ברשתות נוירונים מתקדמות לחיזוי אבחנות ותוצאות בנוירוכירורגיה. מחקר מנובמבר 2018 הראה כי רשתות נוירונים חזו בהצלחה רבה יותר תוצאות של מטופלים ילדים עם פגיעת ראש טראומטית לאחר 6 חודשים, בהשוואה למודלים קונבנציונליים. מחקר נוסף הראה כי סיווג סיכון טרום-ניתוחי יכול להשתפר עם למידת מכונה, ומחקר שבחן מאגרי הדמיה קליניים גדולים הראה קיצור זמן לאבחון פתולוגיה קרניאלית בהשוואה לגישות קונבנציונליות.</p>
+<p class="key-box">אלה עדיין תוצאות מוקדמות ומבטיחות - לא כלים סטנדרטיים בפרקטיקה הקלינית היומיומית כיום.</p>
+
+<h2><span class="num">10</span> מה חשוב לזכור על כל כלי/מושג</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מושג/כלי</th><th>מה הוא</th><th>למה שווה לזכור אותו</th></tr></thead>
+  <tbody>
+    <tr><td><b>אירוע שלילי נמנע</b></td><td>נזק ברור מטעות (למשל ניתוח בצד שגוי)</td><td>הבחנה קריטית: לא כל אירוע שלילי הוא בר-מניעה, ולא כל סיבוך הוא אירוע שלילי</td></tr>
+    <tr><td><b>שגיאה לטנטית</b></td><td>כשל מערכתי לא גלוי (למשל ריבוי דגמי משאבות)</td><td>יש לה השפעה גדולה יותר על הגנת המטופל מאשר שגיאת יחיד - שם צריך למקד את המשאבים</td></tr>
+    <tr><td><b>Global Trigger Tool</b></td><td>סריקה למקרים עם "טריגרים" ספציפיים</td><td>רגישות/סגוליות הגבוהות ביותר מבין הכלים (94.9%/100%) אך עתיר משאבים</td></tr>
+    <tr><td><b>NSQIP</b></td><td>מאגר תוצאות כירורגי לאומי</td><td>מתעד סיבוכים ב-14.3% מהמטופלים הנוירוכירורגיים, אך לא שגיאות עצמן</td></tr>
+    <tr><td><b>RCA</b></td><td>ניתוח שורש הבעיה בצוות רב-תחומי</td><td>עוברים מ"מי אשם" ל"מה במערכת אפשר את זה" - הבסיס לפתרון בר-קיימא</td></tr>
+    <tr><td><b>WHO Surgical Safety Checklist</b></td><td>רשימת תיוג תלת-שלבית לפני/במהלך/אחרי ניתוח</td><td>הפחיתה סיבוכים ב-4% ותמותה ב-0.7% במחקר פיילוט רב-מרכזי</td></tr>
+    <tr><td><b>קשר נפח-תוצאה</b></td><td>תוצאות טובות יותר במרכזים בעלי נפח גבוה</td><td>הבסיס לטיעון בעד ריכוזיות טיפול (regionalization) בפרוצדורות מורכבות</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2><span class="num">11</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">G-I-M-C-R</span> - חמשת מקורות הנתונים לזיהוי שגיאות</h3>
+  <p>
+    <b>G</b> - <span class="term" dir="ltr">Global Trigger Tool</span> (סריקה לפי "טריגרים" - הכי רגיש/סגולי אך יקר בזמן)<br>
+    <b>I</b> - <span class="term" dir="ltr">Incident reports</span> (דיווחים לא סטנדרטיים מהצוות)<br>
+    <b>M</b> - <span class="term" dir="ltr">M&amp;M conferences</span> (ועדות תחלואה ותמותה - זול וחינוכי)<br>
+    <b>C</b> - <span class="term" dir="ltr">Claims data</span> (נתוני תביעות/קידוד ICD - הכי נפוץ בספרות)<br>
+    <b>R</b> - <span class="term" dir="ltr">Registries</span> / <span class="term" dir="ltr">RCA</span> (מאגרים כמו NSQIP, וניתוח שורש הבעיה לפתרון)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חוקר שמנסה לפענש תאונה במפעל ענק. הוא לא מסתפק בעד ראייה אחד - הוא אוסף חמישה סוגי ראיות במקביל: מצלמות אבטחה שמופעלות רק כשמשהו חריג קורה (Global Trigger Tool), תלונות עובדים לא רשמיות (Incident reports), ישיבת ניתוח אירוע שבועית (M&amp;M), תיקי ביטוח ותביעות (Claims), ומאגר נתונים לאומי שמשווה בין מפעלים (Registries). רק כששילב את כל חמשת המקורות יחד, הוא יכול היה סוף-סוף להתחיל ניתוח שורש הבעיה (RCA) אמיתי.</p>
+  <svg class="diagram" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <title>חמשת מקורות הנתונים לזיהוי שגיאות</title>
+    <desc>תרשים חמישה תאים מחוברים המראה את מקורות המידע השונים שמזינים תהליך שיפור בטיחות</desc>
+    <rect x="20" y="20" width="110" height="70" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <text x="75" y="50" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">G</text>
+    <text x="75" y="68" font-size="9.5" text-anchor="middle" fill="#1e3a8a">Trigger Tool</text>
+    <rect x="140" y="20" width="110" height="70" rx="6" fill="#f0fdf4" stroke="#15803d" stroke-width="2"/>
+    <text x="195" y="50" font-size="12" text-anchor="middle" fill="#14532d" font-weight="700">I</text>
+    <text x="195" y="68" font-size="9.5" text-anchor="middle" fill="#14532d">Incident reports</text>
+    <rect x="260" y="20" width="110" height="70" rx="6" fill="#fefce8" stroke="#a16207" stroke-width="2"/>
+    <text x="315" y="50" font-size="12" text-anchor="middle" fill="#713f12" font-weight="700">M</text>
+    <text x="315" y="68" font-size="9.5" text-anchor="middle" fill="#713f12">M&amp;M</text>
+    <rect x="380" y="20" width="110" height="70" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="435" y="50" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">C</text>
+    <text x="435" y="68" font-size="9.5" text-anchor="middle" fill="#7f1d1d">Claims data</text>
+    <rect x="500" y="20" width="110" height="70" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+    <text x="555" y="50" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">R</text>
+    <text x="555" y="68" font-size="9.5" text-anchor="middle" fill="#4c1d95">Registries/RCA</text>
+    <path d="M75 90 L310 150" stroke="#9ca3af" stroke-width="1.5"/>
+    <path d="M195 90 L310 150" stroke="#9ca3af" stroke-width="1.5"/>
+    <path d="M315 90 L310 150" stroke="#9ca3af" stroke-width="1.5"/>
+    <path d="M435 90 L310 150" stroke="#9ca3af" stroke-width="1.5"/>
+    <path d="M555 90 L310 150" stroke="#9ca3af" stroke-width="1.5"/>
+    <rect x="210" y="150" width="200" height="50" rx="8" fill="#111827"/>
+    <text x="310" y="172" font-size="12" text-anchor="middle" fill="#f9fafb" font-weight="700">פתרונות מערכתיים</text>
+    <text x="310" y="189" font-size="10.5" text-anchor="middle" fill="#d1d5db">שיפור בטיחות המטופל</text>
+  </svg>
+</div>
+
+<h2><span class="num">12</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/To_Err_Is_Human_(report)" target="_blank">To Err Is Human (report) – Wikipedia</a>
+    <div class="desc">רקע על הדוח שהתגבש התנועה המודרנית לבטיחות המטופל.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Swiss_cheese_model" target="_blank">Swiss Cheese Model – Wikipedia</a>
+    <div class="desc">הסבר מפורט על מודל ריזון לשגיאות אקטיביות ולטנטיות.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/WHO_Surgical_Safety_Checklist" target="_blank">WHO Surgical Safety Checklist – Wikipedia</a>
+    <div class="desc">רקע ונתונים על רשימת התיוג הניתוחית של ארגון הבריאות העולמי.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Root_cause_analysis" target="_blank">Root Cause Analysis – Wikipedia</a>
+    <div class="desc">שיטות וכלים לניתוח שורש הבעיה, כולל תרשים Ishikawa.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Surgical_site_infection" target="_blank">Surgical Site Infection – Wikipedia</a>
+    <div class="desc">אפידמיולוגיה, גורמי סיכון ואסטרטגיות מניעה לזיהומים באתר הניתוח.</div>
+  </li>
+</ul>
+
+<h2><span class="num">13</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מחלקה נוירוכירורגית מדווחת על עלייה במספר ניתוחי עמוד השדרה עם זיהום באתר הניתוח בחודשים האחרונים. מנהל המחלקה מכנס צוות רב-תחומי (מנתחים, אחיות, מרדימים, בקרת זיהומים) לניתוח האירועים. במקביל, מוצע ליישם רשימת תיוג טרום-ניתוחית מובנית, ומתגלה כי בכמה מהמקרים האנטיביוטיקה הטרום-ניתוחית ניתנה באיחור. הצוות גם מזהה כי בית החולים מפעיל שלושה דגמי משאבות עירוי שונים במחלקות שונות.</p>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">1. איזה סוג תהליך מתאר בצורה הטובה ביותר את הכינוס של הצוות הרב-תחומי לניתוח האירועים?</div>
+  <button class="opt" data-i="0">ניתוח שורש הבעיה (RCA) - דיסקציה מכוונת ומקיפה של השגיאה בסביבה מוגנת, לחשיפת הגורמים המערכתיים</button>
+  <button class="opt" data-i="1">Global Trigger Tool - סריקה אוטומטית של רשומות לפי טריגרים</button>
+  <button class="opt" data-i="2">דיווח אירוע רגיל של אחות בודדת</button>
+  <button class="opt" data-i="3">ניתוח נתוני תביעות (claims data)</button>
+  <div class="explain">התשובה הנכונה: RCA הוא בדיוק תהליך כזה - צוות בין-תחומי שמנתח שגיאה או קבוצת שגיאות בצורה יסודית כדי לחשוף גורמי שורש ולתכנן פתרונות מונעים, ולאחר מכן להעריך את יעילותם לאורך זמן. שאר האפשרויות מתארות כלי איתור נתונים בלבד, לא תהליך ניתוח פעיל של צוות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע העובדה שבית החולים מפעיל שלושה דגמי משאבות עירוי שונים נחשבת "שגיאה לטנטית" ולא "שגיאה אקטיבית"?</div>
+  <button class="opt" data-i="0">כי זו טעות שקרתה ליד מיטת המטופל</button>
+  <button class="opt" data-i="1">כי היא לא קשורה בכלל לבטיחות המטופל</button>
+  <button class="opt" data-i="2">כי זהו כשל ארגוני/עיצובי סמוי שמגדיל את הסבירות לבלבול, בניגוד להחלקה או טעות גלויה שקורית בפועל ליד המטופל</button>
+  <button class="opt" data-i="3">כי היא תמיד גורמת נזק ישיר</button>
+  <div class="explain">התשובה הנכונה: שגיאה לטנטית היא כשל ברמת המערכת/הארגון - במקרה זה ריבוי דגמי משאבות - שאינו גלוי לעין ואינו מתרחש ברגע המגע עם המטופל, אך יוצר "קרקע פורייה" לשגיאה אקטיבית (למשל אחות שמתכנתת קצב שגוי). היא יכולה להיות סמויה זמן רב לפני שגורמת נזק בפועל.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">3. מדוע מתן אנטיביוטיקה טרום-ניתוחית באיחור מגדיל סיכון ל-SSI, ומה הקשר לרשימות תיוג?</div>
+  <button class="opt" data-i="0">אין קשר בין אנטיביוטיקה לרשימות תיוג</button>
+  <button class="opt" data-i="1">אנטיביוטיקה טרום-ניתוחית מפחיתה סיכון SSI רק כשניתנת בזמן; רשימות תיוג משמשות כתזכורת פורמלית לצעד קריטי זה, ולכן הן מפחיתות SSI בעקיפין</button>
+  <button class="opt" data-i="2">אנטיביוטיקה טרום-ניתוחית מונעת רק זיהומים שאינם קשורים לניתוח</button>
+  <button class="opt" data-i="3">רשימות תיוג מחליפות לחלוטין את הצורך באנטיביוטיקה</button>
+  <div class="explain">התשובה הנכונה: אנטיביוטיקה טרום-ניתוחית הוכחה כמפחיתה סיכון זיהום, בתנאי שניתנת בתזמון הנכון. הפרק מציין במפורש שרשימות התיוג הטרום-ניתוחיות מפחיתות SSI בעקיפין בדיוק כי הן פועלות כתזכורת פורמלית לצעד קריטי זה - דוגמה מצוינת לאיך כלי "מערכתי" (checklist) מתרגם לתוצאה קלינית ישירה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מה מצא המחקר הפיילוט הרב-מרכזי על רשימת התיוג הניתוחית של ה-WHO?</div>
+  <button class="opt" data-i="0">הפחתה של 50% בסיבוכים ו-25% בתמותה</button>
+  <button class="opt" data-i="1">אין כל השפעה מדידה</button>
+  <button class="opt" data-i="2">הפחתה בתמותה בלבד, ללא שינוי בסיבוכים</button>
+  <button class="opt" data-i="3">הפחתה של 4% בסיבוכים ו-0.7% בתמותה</button>
+  <div class="explain">התשובה הנכונה: המחקר הפיילוט הרב-מרכזי שבחן את רשימת התיוג הניתוחית של ה-WHO (Haynes et al., 2009) מצא הפחתה של 4% בסיבוכים ו-0.7% בתמותה - תוצאה משמעותית שהובילה לאימוץ נרחב של רשימות תיוג וזמני time-out בתוכניות נוירוכירורגיות רבות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו ה"קשר נפח-תוצאה" (volume-outcome relationship), ומדוע הוא נחשב לתופעה מערכתית ולא רק אישית?</div>
+  <button class="opt" data-i="0">מנתחים עם נפח גבוה תמיד גובים יותר כסף</button>
+  <button class="opt" data-i="1">תוצאות טובות יותר (תמותה/תחלואה נמוכות) נצפות במרכזים בעלי נפח ניתוחי גבוה - לא רק בגלל עקומת הלמידה של המנתח, אלא גם הודות להרדמה מומחית, סיעוד, ומדיניות בית החולים</button>
+  <button class="opt" data-i="2">אין קשר בין נפח לתוצאה בנוירוכירורגיה</button>
+  <button class="opt" data-i="3">נפח ניתוחי גבוה תמיד גורם ליותר סיבוכים בשל עומס יתר</button>
+  <div class="explain">התשובה הנכונה: קשר נפח-תוצאה מתאר תוצאות טובות יותר במרכזים בעלי נפח גבוה, ונצפה במגוון פרוצדורות נוירוכירורגיות ואחרות. הפרק מדגיש שהסיבה אינה רק מיומנות אישית של המנתח (עקומת למידה) אלא גם התשתית התומכת - הרדמה, סיעוד, טכנאים - מה שמהווה בסיס לטיעון בעד ריכוזיות טיפול (regionalization) במרכזים מיומנים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופל עבר כריתת גידול מוחי וסבל מדימום תוך-גולגולתי מקובל כתוצאה מהחדרת נקז חדרי חיצוני. כיצד יש לסווג אירוע זה?</div>
+  <button class="opt" data-i="0">שגיאה אקטיבית - כי הדימום קרה בזמן מגע עם הצוות</button>
+  <button class="opt" data-i="1">near miss - כי לא היה נזק ממשי</button>
+  <button class="opt" data-i="2">אירוע שלילי בלתי נמנע (nonpreventable adverse event) - סיכון מוכר וידוע של ההליך עצמו, לא כתוצאה מטעות</button>
+  <button class="opt" data-i="3">סיבוך בלבד שאינו אירוע שלילי כלל</button>
+  <div class="explain">התשובה הנכונה: הפרק נותן דוגמה כמעט זהה - דימום כתוצאה מהחדרת נקז חדרי חיצוני, כדוגמה קלאסית ל"אירוע שלילי בלתי נמנע" (nonpreventable adverse event): פגיעה בלתי מכוונת מטיפול רפואי, אך כזו שהיא סיכון מקובל של ההליך עצמו ולא תוצאה של טעות. זה עדיין אירוע שלילי (adverse event) - רק לא בר-מניעה - ולכן הוא גם, מטבע הדברים, סוג של סיבוך.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">14</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שגיאות רפואיות הן בעיה עצומה: הערכות של 44,000-440,000 הרוגים בשנה בארה"ב; בנוירוכירורגיה 14.3% מהמטופלים חווים סיבוך, ורק כ-25% מהשגיאות קשורות למיומנות הטכנית האישית של המנתח.</li>
+    <li>יש להבחין בין <b>סיבוך</b> (הרחב ביותר, כולל נזק מהמחלה עצמה), <b>אירוע שלילי</b> (נזק מטיפול רפואי, נמנע/בלתי נמנע) ו<b>שגיאה</b> (כולל near miss שלא הזיק בפועל).</li>
+    <li>מודל "הגבינה השוויצרית" של ריזון: <b>שגיאות אקטיביות</b> (קצה חד, ליד המטופל) קורות על רקע <b>שגיאות לטנטיות</b> (קצה קהה, ברמת המערכת) - והאחרונות משפיעות יותר על הגנת המטופל.</li>
+    <li>כלי זיהוי משלימים: <b>Global Trigger Tool</b> (רגיש וסגולי אך יקר), <b>דיווחי אירוע</b>, <b>M&amp;M</b>, <b>נתוני תביעות</b>, ו<b>NSQIP</b> (מתעד סיבוכים אך לא שגיאות).</li>
+    <li><b>RCA</b> - ניתוח שורש הבעיה - הוא הכלי המרכזי למעבר מ"מי אשם" ל"מה במערכת צריך לתקן"; רשימת התיוג הניתוחית של ה-<b>WHO</b> הפחיתה סיבוכים ב-4% ותמותה ב-0.7%.</li>
+    <li><b>SSI</b> נמנע בעיקר באמצעות אנטיביוטיקה טרום-ניתוחית בזמן (מיוצג ברשימות תיוג), עם עדות פחות ודאית לוונקומיצין באבקה.</li>
+    <li><b>קשר נפח-תוצאה</b> תומך בריכוזיות טיפול; <b>ERAS</b> ו<b>בינה מלאכותית</b> הם כיוונים נוספים לשיפור בטיחות ותוצאה בנוירוכירורגיה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
