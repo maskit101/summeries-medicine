@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>גידולי עצם (Bone Tumors) — אוסטאוסרקומה כליבת הפרק</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 33 בהרצה זו (uploads נגישים רק עד פרק 19) - הסיכום מבוסס על מחקר אמיתי במקורות מהימנים (StatPearls/NCBI, RadioGyan, Radiopaedia-adjacent, Wikimedia Commons, YouTube-Osmosis) -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--blue); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>גידולי עצם <span class="term" dir="ltr">(Bone Tumors)</span> — אוסטאוסרקומה</h1>
+<div class="subtitle">פרק 33 בספר Sabiston/Schwartz's Principles of Surgery — הגידול הממאיר הראשוני הכי שכיח של העצם, עם השוואה לגידולים החשובים האחרים</div>
+
+<p>גידולי עצם ראשוניים נדירים יחסית (בניגוד לגרורות לעצם, שהן שכיחות בהרבה), אך האבחנה המבדלת ביניהם קריטית כי הטיפול והפרוגנוזה שונים בתכלית — מגידול שפיר שלא דורש כלום, ועד סרקומה תוקפנית המחייבת שילוב כימותרפיה וניתוח. הפרק מתמקד באוסטאוסרקומה <span class="term" dir="ltr">(osteosarcoma)</span> כליבת ההבנה המנגנונית והכירורגית, עם התייחסות מובנית לגידולים המרכזיים האחרים (Ewing sarcoma, כונדרוסרקומה, גידול תאי ענק, אוסטאוכונדרומה) כדי לבנות אבחנה מבדלת אמיתית.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain">
+    אוסטאוסרקומה נובעת מתאי מזנכימה פרימיטיביים <span class="term" dir="ltr">(mesenchymal cells)</span> שעוברים <b>טרנספורמציה ממאירה לכיוון קו התמיינות אוסטאובלסטי</b> — כלומר, בניגוד לרוב הסרקומות שרק "יושבות" ברקמה, תאי האוסטאוסרקומה עצמם <b>מייצרים אוסטאואיד ממאיר</b> (רקמת עצם לא-מבוגרת, לא ממוינרלת כראוי). זו בדיוק ההגדרה הפתולוגית של המחלה: נוכחות אוסטאואיד שמיוצר ישירות על ידי תאי הגידול. הטרנספורמציה קשורה ל<b>אובדן תפקוד של גני מדכאי גידול</b> — בעיקר <span class="term" dir="ltr">TP53</span> (מוטציה בו נמצאת גם בתסמונת לי-פראומני, שמעלה סיכון לאוסטאוסרקומה) ו-<span class="term" dir="ltr">RB1</span> (מוטציה בו — תסמונת רטינובלסטומה תורשתית — מעלה סיכון פי כ-500 לאוסטאוסרקומה), יחד עם הפעלת יתר של גנים מקדמי-גידול כמו <span class="term" dir="ltr">MYC</span> ו-<span class="term" dir="ltr">MDM2</span>. אובדן הבקרה הזו <b>גורם</b> לחוסר יציבות כרומוזומלית קשה ולריבוי בלתי מבוקר של תאים שממשיכים "לנסות" לייצר עצם — אך בצורה מבנית לקויה, חלשה ובלתי-מאורגנת.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <span class="key">מדוע דווקא בגיל ההתבגרות?</span> השיא הראשון של המחלה (מתוך התפלגות דו-שיאית) הוא בגילי 10–14, בדיוק בעת קפיצת הגדילה של ההתבגרות — כלומר <b>קצב חלוקת התא הגבוה באזור לוחית הגדילה</b> (במטאפיזה של עצמות ארוכות) הוא-עצמו גורם סיכון: יותר חלוקות תא = יותר הזדמנויות לשגיאות שכפול DNA שמצטברות למוטציות ממאירות. זו הסיבה שהגידול מתפתח כמעט תמיד <b>במטאפיזה</b> (סמוך ללוחית הגדילה) של עצמות ארוכות, ולא באזור הגזע (דיאפיזה) שבו קצב החלוקה נמוך בהרבה. השיא השני, בגיל מבוגר, קשור לרוב לגורם סיכון שונה — <b>שינוי ממאיר על רקע מחלת פאג'ט של העצם</b> (Paget's disease) או חשיפה קודמת להקרנות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>הפריצה דרך הפריוסטאום</b>: הגידול גדל מהר יותר מקצב יכולת העצם "להכיל" אותו — הוא פורץ דרך הקורטקס וגורם להרמת הפריוסטאום (הממברנה העוטפת את העצם). מכיוון שהגדילה מהירה מדי מכדי שהפריוסטאום המורם יתגבש לרקמת עצם מלאה, נוצרות תבניות אופייניות של "ניסיון כושל" ליצור עצם חדשה: <b>משולש קודמן</b> <span class="term" dir="ltr">(Codman triangle)</span> — שוליים מוגבהים ומסוידים בקצוות איזור ההרמה, ו<b>תבנית "פיצוץ שמש"</b> <span class="term" dir="ltr">(sunburst pattern)</span> — קרינות עצם דקות הניצבות לציר העצם, המשקפות ניסיון של תאי הגידול לגדול לאורך כלי הדם החדשים שפולשים לרקמה הרכה שמסביב. <b>חשוב לזכור</b>: משולש קודמן מעיד על <i>מהירות הגדילה</i>, לא על סוג הגידול — אבצס או המטומה תת-פריוסטאלית יכולים ליצור אותו גם הם; זה מה שהופך אבחנה היסטולוגית לבלתי-ניתנת-לוויתור.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>למה בסיס הפוספטאז הבסיסי (ALP) עולה בדם?</b> אנזים ה-ALP יושב על קרום התא של האוסטאובלסטים ומופרש ביתר כשיש פעילות בנייה עצם מוגברת (תקינה או ממאירה כאחד) — כאן, המסה העצומה של תאי גידול "מנסים" לבנות עצם מייצרת רמות ALP גבוהות משמעותית מהנורמה. רמת ALP גבוהה בזמן האבחנה מתואמת עם עומס גידול גדול יותר וסיכון מוגבר לגרורות — משום שהיא קשורה גם לביטוי יתר של <span class="term" dir="ltr">MMP-9</span> (מטלופרוטאינאז שמפרק את המטריצה החוץ-תאית ומאפשר לתאי הגידול לפלוש לכלי דם ולימפה).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>דפוס הגרורות</b>: אוסטאוסרקומה שולחת גרורות המטוגניות (דרך זרם הדם, לא לימפתי) כמעט תמיד <b>לריאות תחילה</b> — כי הניקוז הוורידי מהעצמות הארוכות הפריפריות מגיע ישירות דרך הלב הימני לריאות, שהן "המסנן הראשון" בדרך. גרורות ריאה מרובות, עגולות ומוגדרות היטב מכונות קלינית "מראה כדורי תותח" <span class="term" dir="ltr">(cannonball metastases)</span> בצילום/CT חזה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+  <title>מנגנון האוסטאוסרקומה</title>
+  <rect x="10" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="90" y="44" font-size="12.5" text-anchor="middle" fill="#1f2937">אובדן p53/RB1</text>
+  <text x="90" y="60" font-size="11" text-anchor="middle" fill="#4b5563">+ MYC/MDM2 יתר</text>
+  <text x="90" y="76" font-size="10.5" text-anchor="middle" fill="#4b5563">במטאפיזה (התבגרות)</text>
+
+  <polygon points="180,55 200,48 200,62" fill="#2563eb"/>
+  <rect x="205" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="285" y="44" font-size="12.5" text-anchor="middle" fill="#1f2937">תאי גידול מייצרים</text>
+  <text x="285" y="60" font-size="11" text-anchor="middle" fill="#4b5563">אוסטאואיד ממאיר</text>
+  <text x="285" y="76" font-size="10.5" text-anchor="middle" fill="#4b5563">↑ALP בדם</text>
+
+  <polygon points="375,55 395,48 395,62" fill="#2563eb"/>
+  <rect x="400" y="20" width="160" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="480" y="44" font-size="12.5" text-anchor="middle" fill="#1f2937">פריצת הקורטקס</text>
+  <text x="480" y="60" font-size="11" text-anchor="middle" fill="#4b5563">הרמת פריוסטאום</text>
+  <text x="480" y="76" font-size="10.5" text-anchor="middle" fill="#4b5563">Codman / sunburst</text>
+
+  <polygon points="570,55 590,48 590,62" fill="#b45309"/>
+  <rect x="595" y="20" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="670" y="44" font-size="12.5" text-anchor="middle" fill="#1f2937">פלישה לכלי דם</text>
+  <text x="670" y="60" font-size="11" text-anchor="middle" fill="#4b5563">MMP-9 מפרק מטריצה</text>
+
+  <polygon points="760,55 780,48 780,62" fill="#b91c1c"/>
+  <rect x="785" y="20" width="105" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="837" y="48" font-size="12.5" text-anchor="middle" fill="#1f2937">גרורות ריאה</text>
+  <text x="837" y="64" font-size="11" text-anchor="middle" fill="#4b5563">"כדורי תותח"</text>
+</svg>
+
+<h2><span class="num">3</span> אפידמיולוגיה, אנטומיה ופיזיולוגיה</h2>
+<p>אוסטאוסרקומה אחראית לכ-20% מכלל הגידולים הממאירים הראשוניים של העצם וזהו הגידול העצמי הממאיר הראשוני השכיח ביותר בילדים ומתבגרים. התפלגות גיל דו-שיאית: שיא ראשון וגדול בגילי 10–14 (עם קפיצת הגדילה), ושיא שני קטן יותר בגיל מבוגר (על רקע מחלת פאג'ט או הקרנות קודמות). כ-75% מהמקרים מאובחנים לפני גיל 25. שכיחות מעט גבוהה יותר בגברים (יחס כ-1.4:1), ללא הבדל גזעי מובהק. <b>מיקום אנטומי אופייני</b>: כ-50% מהמקרים סביב הברך — <b>מטאפיזה דיסטלית של הפמור</b> ופרוקסימלית של הטיביה — משום ששם נמצאות לוחיות הגדילה הפעילות ביותר בגוף (הן תורמות את מרבית אורך הרגל).</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>התייצגות אופיינית: כאב עמוק, מתקדם בהדרגה באזור העצם הפגועה, שמחמיר בלילה ואינו חולף במנוחה — תבנית זו (כאב לילי) חשובה כי היא מבדילה מכאבי גדילה שפירים. לרוב מלווה בנפיחות/מסה מוחשית מקומית, לעיתים עם חום מקומי וירידה בטווח התנועה במפרק הסמוך. שבר פתולוגי (שבר דרך אזור העצם המוחלש) הוא סיבוך אפשרי אך לא שכיח יחסית (כי הגידול לרוב סקלרוטי-מוצק ולא רק ליטי).</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Osteosarcoma.jpg?width=600" alt="היסטופתולוגיה של אוסטאוסרקומה">
+  <figcaption class="media-cap">היסטופתולוגיה של אוסטאוסרקומה — תאי מזנכימה אטיפיים המייצרים אוסטאואיד ממאיר (ורוד-אאוזינופילי) ישירות. זו ההגדרה הפתולוגית של המחלה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Osteosarcoma.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LOegtW_TJxA" title="Bone Tumors - Osmosis Pathology Review" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירת פתולוגיה של גידולי עצם (Osmosis) — מנגנון, מיקום טיפוסי לפי גיל, ותבניות הדמיה. מקור: <a href="https://www.youtube.com/watch?v=LOegtW_TJxA" target="_blank">YouTube - Osmosis</a></p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<p><b>עקרון-על: לעולם לא מסתפקים בהדמיה בלבד</b> — האבחנה הסופית של כל גידול עצם חשוד היא <b>ביופסיה</b>, כי כפי שהוסבר לגבי משולש קודמן, ממצאי הדמיה משקפים "מהירות גדילה" ולא בהכרח סוג גידול ספציפי.</p>
+<h3>הדמיה</h3>
+<p><b>צילום רנטגן</b> הוא בדיקת הבחירה הראשונית — מדגים תבנית הרסנית "חודרנית" (permeative) של העצם, עם רקמת עצם חדשה בלתי-סדירה: <b>משולש קודמן</b>, תבנית <b>"פיצוץ שמש" (sunburst)</b>, ולעיתים מסה ברקמה הרכה הסמוכה. <b>MRI עם ניגוד</b> הוא ההדמיה החיונית להערכת היקף מדויק (כולל מעורבות מח העצם ורקמה רכה) לצורך תכנון ניתוחי, ו<b>CT חזה</b> חובה לשלילת גרורות ריאה ("כדורי תותח") לפני קביעת הטיפול.</p>
+<h3>אבחנה מבדלת - טבלת גידולי עצם מרכזיים</h3>
+<table>
+  <thead><tr><th>גידול</th><th>גיל/אוכלוסייה טיפוסית</th><th>מיקום באזור העצם</th><th>ממצא מבדיל</th></tr></thead>
+  <tbody>
+    <tr><td><b>אוסטאוסרקומה</b> (ממאיר)</td><td>10–14 (שיא ראשון); מבוגרים על רקע פאג'ט (שיא שני)</td><td>מטאפיזה — סביב הברך</td><td>אוסטאואיד ממאיר בהיסטולוגיה; משולש קודמן/sunburst; ALP גבוה</td></tr>
+    <tr><td><span class="term" dir="ltr">Ewing sarcoma</span> (ממאיר)</td><td>10–20, לעיתים קרובות דיאפיזה של עצמות ארוכות או אגן</td><td>דיאפיזה/מטא-דיאפיזה</td><td>טרנסלוקציה <span class="term" dir="ltr">t(11;22)</span> ← מיזוג <span class="term" dir="ltr">EWSR1-FLI1</span>; תבנית "קליפות בצל" (onion skin) בהדמיה; תאים קטנים כחולים עגולים בהיסטולוגיה</td></tr>
+    <tr><td>כונדרוסרקומה (ממאיר)</td><td>מבוגרים (40–70)</td><td>מטא-דיאפיזה — אגן, פמור פרוקסימלי</td><td>מטריצה סחוסית ("popcorn" מסוייד) בהדמיה; לרוב מקורה ממאיר-מדרגה-נמוכה על רקע אקסוסטוזיס/אנכונדרומה קיימים</td></tr>
+    <tr><td>גידול תאי ענק <span class="term" dir="ltr">(GCT)</span> (גבולי/מקומית תוקפני)</td><td>מבוגרים צעירים (20–40), נדיר מתחת לגיל סגירת לוחית הגדילה</td><td><b>אפיפיזה</b> (בניגוד לשלושת האחרים!) — לרוב סביב הברך</td><td>נגע ליטי אקסצנטרי מגיע עד פני המפרק; מוטציית <span class="term" dir="ltr">H3F3A</span> (H3.3G34W) ב-92% מהמקרים</td></tr>
+    <tr><td>אוסטאוכונדרומה (שפיר, הכי שכיח)</td><td>ילדים/מתבגרים</td><td>מטאפיזה — בליטה "פטרייתית" הפונה מהמפרק</td><td>המשכיות ישירה של הקורטקס ומח העצם לתוך הגידול (סימן פתוגנומוני)</td></tr>
+  </tbody>
+</table>
+<div class="figure-pair">
+  <figure>
+    <span class="label abnormal">אוסטאוסרקומה — sunburst + Codman</span>
+    <p style="font-size:14px;color:var(--sub);margin:6px 0">תבנית הרסנית עם קרינות עצם ניצבות לציר העצם ומשולש קודמן בשוליים — ראו תיאור מנגנון בסעיף 2.</p>
+  </figure>
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ewing_Sarcoma.jpg?width=450" alt="Ewing sarcoma - תבנית קליפות בצל">
+    <figcaption class="media-cap">Ewing sarcoma — תבנית "קליפות בצל" (onion skin), שכבות מרובות של פריוסטאום מגיב. לעומת sunburst באוסטאוסרקומה — עדיין רק סימן ל"מהירות גדילה", לא לאבחנה עצמה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Ewing_Sarcoma.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Osteochondroma_X-ray.jpg?width=450" alt="אוסטאוכונדרומה - צילום רנטגן">
+  <figcaption class="media-cap">אוסטאוכונדרומה (שפיר) — בליטה עצמית עם המשכיות ישירה של הקורטקס ומח העצם, לצורך השוואה מול הגידולים הממאירים שבטבלה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Osteochondroma_X-ray.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>עקרונות הביופסיה (Enneking) — למה הם קריטיים כל כך</h3>
+<p>ביופסיה שלא תוכננה נכון (מיקום/כיוון שגוי של המסלול) עלולה "לזהם" תאים ממאירים לאורך המסלול ולסבך או אף לפסול ניתוח מרפא בהמשך. <b>הכלל המרכזי</b>: הביופסיה חייבת להתבצע על ידי (או בתיאום הדוק עם) אותו צוות כירורגי שיבצע את הכריתה הסופית, כך שמסלול הביופסיה כולו ייכרת בבלוק אחד יחד עם הגידול. שיטת הבחירה כיום היא <b>ביופסיית מחט מנחית-הדמיה (core needle)</b> ולא ביופסיה פתוחה, כדי לצמצם את שטח הזיהום האפשרי.</p>
+<h3>שיטת שלב אנקינג (Enneking)</h3>
+<p>מדרג את הגידול לפי דרגה היסטולוגית (נמוכה/גבוהה), היקף אנטומי (תוך-תאי מול חוץ-תאי לתא) ונוכחות גרורות: שלב I — דרגה נמוכה, ממוקם; שלב II — דרגה גבוהה, ממוקם; שלב III — כל דרגה, עם גרורות. השלב קובע ישירות את מרווח הכריתה הכירורגי הנדרש ואת הצורך בטיפול משלים.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>הטיפול המודרני באוסטאוסרקומה בדרגה גבוהה הוא <b>רב-תחומי</b>: כימותרפיה נאו-אדג'ובנטית (לפני הניתוח) ← כריתה כירורגית ← כימותרפיה אדג'ובנטית (אחרי הניתוח). הגישה הזו שינתה דרמטית את הפרוגנוזה — משרידות 5 שנים של כ-20% בעידן לפני-כימותרפיה, לכ-60%–70% היום במחלה ממוקמת.</p>
+<table>
+  <thead><tr><th>תרופה</th><th>מנגנון פעולה</th><th>איך זה עוזר לבעיה הספציפית</th><th>תופעת לוואי/קונטרא-אינדיקציה עיקרית</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><span class="term" dir="ltr">Methotrexate</span> (מינון גבוה)</td>
+      <td>מעכב <span class="term" dir="ltr">dihydrofolate reductase</span> — חוסם סינתזת DNA בתאים המתחלקים במהירות</td>
+      <td>פוגע דווקא בתאי הגידול המתחלקים במהירות הגבוהה ביותר בגוף</td>
+      <td>רעילות כלייתית/כבדית — מחייב מתן <span class="term" dir="ltr">leucovorin</span> "להצלה" ומעקב רמות בדם</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Doxorubicin</span> (Adriamycin)</td>
+      <td>אנתרציקלין — נכנס בין גדילי ה-DNA (intercalation) ומעכב טופואיזומראז II</td>
+      <td>מונע שכפול DNA בתאי גידול פעילים במיוחד</td>
+      <td>קרדיוטוקסיות מצטברת — מחייב אקוקרדיוגרפיה לפני/אחרי הטיפול</td>
+    </tr>
+    <tr>
+      <td><span class="term" dir="ltr">Cisplatin</span></td>
+      <td>תרכובת פלטינה היוצרת קישורים צולבים ב-DNA</td>
+      <td>מונע תיקון/שכפול DNA בתאי הגידול</td>
+      <td>אוטוטוקסיות ונפרוטוקסיות</td>
+    </tr>
+  </tbody>
+</table>
+<div class="surgery">
+  <h4>הכנה לפני הניתוח</h4>
+  <p>לאחר סבב כימותרפיה נאו-אדג'ובנטית, MRI חוזר להערכת תגובת הגידול והיקפו המדויק, ותכנון קפדני של מרווח הכריתה יחד עם הצוות שביצע את הביופסיה המקורית.</p>
+  <h4>מהלך הניתוח — כריתה רחבה (wide resection) עם שחזור</h4>
+  <p>המטרה: כריתה עם שוליים נקיים תוך שימור מרבי של הגפה. ב-80%–95% מהמקרים כיום ניתן לבצע <b>ניתוח משמר-גפה</b> (limb-salvage) במקום קטיעה, הודות לשילוב הכימותרפיה, MRI מדויק, ופיתוח אנדופרוסטזות מתכתיות ("מגה-פרוסטזה"). באוכלוסייה ילדית שעדיין לא סיימה גדילה — משתמשים באנדופרוסטזה "מתרחבת" שניתן להאריך עם הזמן (מגנטית או בהליך זעיר-פולשני), או בטכניקת <span class="term" dir="ltr">rotationplasty</span> (סיבוב כף הרגל כך שקרסול משמש כברך חדשה) לגידולים סמוכים מדי למפרק. קטיעה עדיין מיועדת למקרים בהם לא ניתן להשיג שוליים נקיים תוך שימור תפקוד סביר (מעורבות עצבית-כלית נרחבת).</p>
+  <h4>נקודת הזהירות הקריטית</h4>
+  <p>שוליים כירורגיים חיוביים (תאי גידול בקצה הרקמה שנכרתה) הם גורם הפרוגנוזה הכירורגי המשמעותי ביותר להישנות מקומית — לכן שלב האנקינג ותכנון ההדמיה לפני הניתוח קריטיים כדי להבטיח שהמנתח יודע בדיוק היכן עובר גבול הגידול האמיתי, כולל "קפיצות" גידול (skip metastases) בתוך אותה עצם שעלולות להיות בלתי-נראות בעין.</p>
+  <h4>החלמה ומעקב</h4>
+  <p>שיקום פיזיותרפי ממושך להתאמה לאנדופרוסטזה/רה-קונסטרוקציה. מעקב הדמייתי תקופתי (צילום חזה/CT חזה) לגילוי מוקדם של הישנות ריאתית — <b>תסמין מחשיד</b>: כאב חדש בעצם המשוחזרת (רמז לרפיון/זיהום פרוסטזה או הישנות מקומית) או תסמינים נשימתיים חדשים (רמז לגרורות ריאה).</p>
+</div>
+<p>גידולי עצם ממאירים בלתי-נתיחים או עם גרורות נרחבות בעת האבחנה, וכן <span class="term" dir="ltr">Ewing sarcoma</span> — מטופלים גם בהקרנות, כי בניגוד לאוסטאוסרקומה, Ewing רגיש יחסית לקרינה. ל<b>גידול תאי ענק</b> (GCT) הבלתי-נתיח או עם הישנות — קיים טיפול ביולוגי ייעודי, <span class="term" dir="ltr">Denosumab</span> (נוגדן חד-שבטי המעכב <span class="term" dir="ltr">RANKL</span>), שמפחית את פעילות תאי הענק דמויי-האוסטאוקלסט המרכיבים את הגידול.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/MgWRqBtXzI0" title="Bone tumors - causes, symptoms, diagnosis, treatment - Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה כללית של גידולי עצם — גורמים, אבחנה וטיפול, כולל השוואה בין הגידולים השונים (Osmosis). מקור: <a href="https://www.youtube.com/watch?v=MgWRqBtXzI0" target="_blank">YouTube - Osmosis</a></p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות — מיקום גיל לפי גיל האוכלוסייה: "10-20-30-40+"</h3>
+  <p>
+    <b>10</b>–20: Ewing sarcoma ואוסטאוסרקומה (שיא ראשון) — הצעירים ביותר<br>
+    <b>20</b>–40: גידול תאי ענק (GCT) — האפיפיזה, אחרי סגירת לוחית הגדילה<br>
+    <b>40</b>+: כונדרוסרקומה, ואוסטאוסרקומה משנית (שיא שני, על רקע פאג'ט)
+  </p>
+  <h3>סיפור דמיוני — "מפעל הבנייה המשוגע"</h3>
+  <p>דמיינו אתר בנייה (העצם) שבו קבוצת פועלים (תאי האוסטאוסרקומה) קיבלה פקודה שגויה (אובדן p53/RB1) להמשיך לבנות בלי הפסקה ובלי בקרת איכות. הם בונים קירות עקומים ולא-יציבים (אוסטאואיד ממאיר) שפורצים דרך גדר האתר (הקורטקס) ומרימים את יריעת הברזנט שמעליה (הפריוסטאום) — יריעה שמנסה "להיצמד" בקצוות (משולש קודמן) ונקרעת לרצועות דקות (sunburst). חלק מהפועלים בורחים מהאתר דרך משאית משלוחים (זרם הדם) ומגיעים ישר למחסן הכי קרוב — הריאות — ופותחים שם "סניפים" עגולים קטנים (כדורי תותח).</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: מפעל הבנייה המשוגע</title>
+    <rect x="20" y="70" width="130" height="80" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+    <text x="85" y="105" font-size="12" text-anchor="middle" fill="#1f2937">קירות עקומים</text>
+    <text x="85" y="122" font-size="10.5" text-anchor="middle" fill="#4b5563">= אוסטאואיד ממאיר</text>
+    <polygon points="155,110 175,102 175,118" fill="#b45309"/>
+    <path d="M180,70 L230,50 L260,60 L250,110 L200,120 Z" fill="#fca5a5" stroke="#b91c1c" stroke-width="2"/>
+    <text x="220" y="90" font-size="11" text-anchor="middle" fill="#1f2937">ברזנט קרוע</text>
+    <text x="220" y="103" font-size="9.5" text-anchor="middle" fill="#4b5563">sunburst/Codman</text>
+    <polygon points="270,90 300,80 300,100" fill="#b91c1c"/>
+    <ellipse cx="360" cy="60" rx="18" ry="14" fill="#e5e7eb" stroke="#4b5563"/>
+    <ellipse cx="400" cy="50" rx="14" ry="11" fill="#e5e7eb" stroke="#4b5563"/>
+    <ellipse cx="430" cy="70" rx="16" ry="12" fill="#e5e7eb" stroke="#4b5563"/>
+    <text x="400" y="100" font-size="11" text-anchor="middle" fill="#4b5563">"כדורי תותח" בריאה</text>
+    <text x="250" y="175" font-size="11" text-anchor="middle" fill="#4b5563">אובדן בקרה → בנייה פרועה → פריצת גדר → בריחה בדם → גרורות ריאה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://radiogyan.com/articles/codmans-triangle-radiology-sign/" target="_blank">Codman Triangle on X-ray — RadioGyan</a>
+    <div class="desc">הסבר רדיולוגי ממוקד על משולש קודמן — מנגנון היווצרותו ומדוע הוא לא ספציפי לאוסטאוסרקומה בלבד.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK549868/" target="_blank">Osteosarcoma — StatPearls</a>
+    <div class="desc">פרק ייחוס מקיף על אפידמיולוגיה, אבחנה וטיפול באוסטאוסרקומה.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK559183/" target="_blank">Ewing Sarcoma — StatPearls</a>
+    <div class="desc">פרק ייחוס מקיף על Ewing sarcoma, כולל הגנטיקה המולקולרית (EWSR1-FLI1).</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>נער בן 13 מגיע עם כאב הולך ומחמיר בברך שמאל במשך כחודשיים, בולט במיוחד בלילה ומעיר אותו משינה. הוריו ייחסו זאת בתחילה ל"כאבי גדילה". בבדיקה: נפיחות קלה מעל הפמור הדיסטלי, רגישות מקומית, ללא חום גופני. צילום רנטגן מדגים נגע הרסני במטאפיזה הדיסטלית של הפמור עם קרינות עצם ניצבות לציר העצם והרמת פריוסטאום בשוליים. בדיקות דם: ALP גבוה משמעותית מהנורמה לגיל. בוצעה ביופסיית מחט מנחית-הדמיה בתיאום עם הצוות האורתופדי-אונקולוגי שיבצע את הניתוח, שאישרה תאי מזנכימה אטיפיים המייצרים אוסטאואיד. CT חזה תקין.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע אוסטאוסרקומה מתפתחת כמעט תמיד במטאפיזה של עצמות ארוכות ולא בדיאפיזה?</div>
+  <button class="opt" data-i="0">כי אספקת הדם לדיאפיזה חלשה מדי לתמוך בגידול</button>
+  <button class="opt" data-i="1">כי לוחית הגדילה במטאפיזה היא אזור החלוקה התאית המהיר ביותר — יותר חלוקות = יותר סיכוי לשגיאות שכפול DNA שהופכות לממאירות</button>
+  <button class="opt" data-i="2">כי הדיאפיזה מוגנת על ידי שכבת קורטקס עבה יותר</button>
+  <button class="opt" data-i="3">כי תאי מזנכימה קיימים רק במטאפיזה</button>
+  <div class="explain">נכון: קצב חלוקת התא הגבוה בלוחית הגדילה מגדיל את הסיכוי המצטבר לטעויות שכפול DNA שמצטברות למוטציות ממאירות (אובדן p53/RB1). זו גם הסיבה לשיא הגיל בהתבגרות. אספקת דם (1) אינה הגורם המרכזי; עובי הקורטקס (2) אינו רלוונטי למנגנון הביולוגי; תאי מזנכימה (3) קיימים בכל האזורים.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. משולש קודמן (Codman triangle) בצילום רנטגן מעיד בעיקר על:</div>
+  <button class="opt" data-i="0">אבחנה ודאית של אוסטאוסרקומה</button>
+  <button class="opt" data-i="1">גרורות לעצם ממקור אחר</button>
+  <button class="opt" data-i="2">שבר פתולוגי שכבר החלים</button>
+  <button class="opt" data-i="3">מהירות גדילה גבוהה של תהליך תוך-עצמי (ממאיר או לא) שהרימה את הפריוסטאום מהר מדי מכדי שיתגבש כליל</button>
+  <div class="explain">נכון: משולש קודמן משקף קצב גדילה מהיר, לא סוג גידול ספציפי — גם אבצס או המטומה תת-פריוסטאלית יכולים ליצור אותו. זו הסיבה שביופסיה היסטולוגית תמיד נדרשת לאבחנה סופית, ולא רק הדמיה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">3. מהו העיקרון הכי קריטי בתכנון ביופסיה של גידול עצם חשוד?</div>
+  <button class="opt" data-i="0">יש לבצע תמיד ביופסיה פתוחה ולא ביופסיית מחט</button>
+  <button class="opt" data-i="1">ניתן לבצע את הביופסיה בכל בית חולים ללא תיאום עם המנתח הסופי</button>
+  <button class="opt" data-i="2">מסלול הביופסיה חייב להיכרת כליל יחד עם הגידול בניתוח הסופי, ולכן מתוכנן מראש עם אותו צוות שיבצע את הכריתה</button>
+  <button class="opt" data-i="3">אין צורך בהדמיה מקדימה לפני הביופסיה</button>
+  <div class="explain">נכון: ביופסיה שלא תוכננה נכון עלולה "לזהם" תאים ממאירים לאורך המסלול, מה שמסבך או פוסל ניתוח מרפא בהמשך. שיטת הבחירה כיום היא ביופסיית מחט מנחית-הדמיה, לא בהכרח פתוחה (1); התיאום עם הצוות הכירורגי הסופי הוא קריטי (2 הפוך מ-1); הדמיה מקדימה (MRI) חיונית לתכנון (4 הפוך).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מטופלת בת 28 מאובחנת עם נגע ליטי אקסצנטרי המגיע עד פני המפרק באפיפיזה הפרוקסימלית של הטיביה. מהי האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">גידול תאי ענק (GCT)</button>
+  <button class="opt" data-i="1">אוסטאוסרקומה</button>
+  <button class="opt" data-i="2">Ewing sarcoma</button>
+  <button class="opt" data-i="3">אוסטאוכונדרומה</button>
+  <div class="explain">נכון: GCT הוא הגידול היחיד מבין הארבעה שממוקם קלאסית באפיפיזה (לא במטאפיזה/דיאפיזה), ושכיח באוכלוסיית מבוגרים צעירים (20–40) אחרי סגירת לוחית הגדילה. שאר האבחנות ממוקמות במטאפיזה (אוסטאוסרקומה, אוסטאוכונדרומה) או דיאפיזה/מטא-דיאפיזה (Ewing).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהי הסיבה המרכזית לכך שסקר גרורות באוסטאוסרקומה מתמקד קודם כול בריאות?</div>
+  <button class="opt" data-i="0">הריאות עשירות ברקמת עצם התומכת בהתבססות גרורות</button>
+  <button class="opt" data-i="1">התפשטות הגידול היא המטוגנית, והניקוז הוורידי מהעצמות הארוכות מגיע דרך הלב הימני ישירות לריאות כ"מסנן ראשון"</button>
+  <button class="opt" data-i="2">הגידול מתפשט קודם כול דרך מערכת הלימפה לבלוטות המדיאסטינום</button>
+  <button class="opt" data-i="3">כימותרפיה נאו-אדג'ובנטית גורמת לגרורות ריאה כתופעת לוואי</button>
+  <div class="explain">נכון: אוסטאוסרקומה שולחת גרורות המטוגניות (לא לימפתיות) שמגיעות דרך זרם הדם הוורידי ישירות ללב הימני ומשם לריאות — לכן הריאות הן איבר המטרה הראשון והשכיח ביותר לגרורות ("כדורי תותח"). מערכת הלימפה (3) אינה דרך ההתפשטות העיקרית בסרקומות בכלל. כימותרפיה (4) אינה גורמת לגרורות אלא נועדה למנוע/לטפל בהן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: אוסטאוסרקומה — הגידול הממאיר הראשוני השכיח ביותר של העצם, מתאי מזנכימה שמייצרים אוסטאואיד ממאיר; שיא גיל 10–14, במטאפיזה סביב הברך.</li>
+    <li><b>המנגנון</b>: אובדן p53/RB1 + יתר MYC/MDM2 → חלוקת תא לא-מבוקרת → פריצת קורטקס → הרמת פריוסטאום (Codman/sunburst — סימני מהירות גדילה, לא ספציפיים) → פלישה לכלי דם (MMP-9, ↑ALP) → גרורות המטוגניות לריאה ("כדורי תותח").</li>
+    <li><b>אבחנה מבדלת לפי מיקום</b>: אוסטאוסרקומה/אוסטאוכונדרומה — מטאפיזה; Ewing — דיאפיזה/מטא-דיאפיזה + EWSR1-FLI1; GCT — אפיפיזה; כונדרוסרקומה — מבוגרים, מטריצה סחוסית.</li>
+    <li><b>אבחנה</b>: צילום רנטגן ← MRI (היקף מקומי) + CT חזה (גרורות) ← ביופסיית מחט מתוכננת עם הצוות המנתח הסופי; שלב אנקינג קובע היקף הכריתה.</li>
+    <li><b>טיפול</b>: כימותרפיה נאו-אדג'ובנטית (Methotrexate/Doxorubicin/Cisplatin) → כריתה רחבה עם שימור-גפה (80–95%) או קטיעה → כימותרפיה אדג'ובנטית. GCT — Denosumab (מעכב RANKL); Ewing — רגיש גם להקרנות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
