@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 9: מערכות סיווג בנוירוכירורגיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 9: מערכות סיווג בנוירוכירורגיה <span class="term" dir="ltr">Classification Systems in Neurosurgery</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 1 - Introduction to Neurosurgery | מאת Benjamin I. Rapoport, Alexander P. Kelly, H. Richard Winn</div>
+
+<p>נוירוכירורגיה "מדברת" בסולמות: <span dir="ltr" class="term">GCS</span>, <span dir="ltr" class="term">Hunt and Hess</span>, <span dir="ltr" class="term">Spetzler-Martin</span>, <span dir="ltr" class="term">Simpson</span>, <span dir="ltr" class="term">TLICS</span>, <span dir="ltr" class="term">SINS</span> ועוד מאות. הפרק הזה לא מלמד סולם מסוים אחד - הוא עושה משהו חריג: <b>מסווג את מערכות הסיווג עצמן</b>. המחברים סרקו את כל הטקסט של מהדורה 8, מצאו <b>488 מערכות סיווג</b> רלוונטיות קלינית, והציעו היררכיה תלת-שלבית: <b>תיאורית בלבד (סוג 1), ביניים - מרשמת (2a) או מנבאת (2b), ומקיפה (סוג 3)</b>. זה פרק "פילוסופי", אבל הוא נותן את השפה הנכונה לשאול על כל סולם שתפגשי: מה הוא עושה, כמה הוא אמין, ועל איזו ראיה הוא נשען.</p>
+
+<h2><span class="num">1</span> מנגנון: למה מסווגים, ומה סיווג "עושה" בפועל</h2>
+<div class="mechanism">
+  <p class="chain">
+    השרשרת שהופכת תצפית קלינית להחלטה:<br>
+    <b>שלב 1 - תיאור (Descriptive):</b> כל סיווג מתחיל בתיוג. תווית משותפת ("Hunt and Hess 3") מאפשרת לשני רופאים לתקשר בצורה חדה ומדויקת בלי לתאר את המטופל מחדש. <b>כל מערכת סיווג היא תיאורית בהגדרה.</b><br>
+    <b>שלב 2 - מרשם (Prescriptive):</b> חלק מהמערכות בנויות כך שהתווית מכתיבה פעולה - למשל <span dir="ltr" class="term">TLICS</span> ו-<span dir="ltr" class="term">SINS</span> מכמתות אי-יציבות של עמוד השדרה כדי להחליט אם נדרש קיבוע ניתוחי.<br>
+    <b>שלב 3 - ניבוי (Predictive):</b> מערכות אחרות מתרגמות את התווית לפרוגנוזה - <span dir="ltr" class="term">Hunt and Hess</span> ב-SAH ו-<span dir="ltr" class="term">Karnofsky</span> בסרטן מנבאות תמותה.<br>
+    <b>שלב 4 - מערכת מקיפה:</b> כשסיווג עושה את שלושתם יחד (למשל <span dir="ltr" class="term">Simpson</span>: מתאר את היקף הכריתה, מכתיב טיפול בדורה ובעצם, ומנבא הישנות) - זה <b>סוג 3</b>.<br>
+    <b>שלב 5 - שאלת הראיה:</b> מעל כל אלה עומדת שאלה רביעית - <b>כמה חזקה הראיה</b> שעליה המערכת בנויה. שתי מערכות מאותו "סוג" יכולות להיות שונות לחלוטין בחוזקן.
+  </p>
+</div>
+<p>הרעיון המרכזי: <b>סוג המערכת (1/2a/2b/3) מתאר מה היא מתיימרת לעשות, לא עד כמה היא טובה בזה.</b> Simpson ו-GCS שניהם סוג 3 לפי הטקסט - אבל Simpson נשען על סדרת מקרים רטרוספקטיבית מלפני עידן ההדמיה (רמת ראיה II-3), ואילו GCS מגובה בעשורים של ראיות.</p>
+
+<svg class="diagram" viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg">
+  <title>ההיררכיה התלת-שלבית לסיווג מערכות סיווג</title>
+  <desc>פירמידה: בבסיס סוג 1 תיאורי בלבד (62%), מעליו סוג 2a תיאורי ומרשם (7%) וסוג 2b תיאורי ומנבא (25%), ובראש סוג 3 מקיף (6%). בצד: ציר חוזק הראיה.</desc>
+  <polygon points="410,20 520,120 300,120" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="410" y="80" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">סוג 3 - מקיף</text>
+  <text x="410" y="100" font-size="11" text-anchor="middle" fill="#14532d">31 מערכות (6%)</text>
+  <polygon points="300,125 410,125 410,235 190,235" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="325" y="170" font-size="12.5" text-anchor="middle" fill="#713f12" font-weight="700">2a - מתאר+מרשם</text>
+  <text x="325" y="190" font-size="11" text-anchor="middle" fill="#713f12">36 (7%)</text>
+  <text x="325" y="210" font-size="10" text-anchor="middle" fill="#713f12">TLICS, Allen-Ferguson</text>
+  <polygon points="410,125 520,125 630,235 410,235" fill="#fde68a" stroke="#a16207" stroke-width="2"/>
+  <text x="500" y="170" font-size="12.5" text-anchor="middle" fill="#713f12" font-weight="700">2b - מתאר+מנבא</text>
+  <text x="500" y="190" font-size="11" text-anchor="middle" fill="#713f12">120 (25%)</text>
+  <text x="500" y="210" font-size="10" text-anchor="middle" fill="#713f12">Hunt-Hess, Spetzler-Martin</text>
+  <polygon points="190,240 630,240 740,360 80,360" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="410" y="290" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">סוג 1 - תיאורי בלבד</text>
+  <text x="410" y="312" font-size="12" text-anchor="middle" fill="#1e3a8a">301 מערכות (62%)</text>
+  <text x="410" y="334" font-size="10.5" text-anchor="middle" fill="#1e3a8a">WHO CNS Tumours, mRS, MRC, ASIA</text>
+  <path d="M780 360 L780 30" stroke="#6b7280" stroke-width="3" marker-end="url(#ar9)"/>
+  <text x="765" y="200" font-size="11" text-anchor="middle" fill="#374151" transform="rotate(-90 765 200)">יותר "יכולות" - אך לא בהכרח יותר ראיה</text>
+  <text x="410" y="385" font-size="11" text-anchor="middle" fill="#374151">סה"כ 488 מערכות במהדורה 8 (99% בגלל עיגול)</text>
+  <defs><marker id="ar9" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7280"/></marker></defs>
+</svg>
+<p class="figcap">איור סכמטי עצמאי: "פירמידת" הסיווג-של-סיווגים עם ההתפלגות בפועל מטבלה 9.1. רוב המערכות בנוירוכירורגיה תיאוריות בלבד; רק מיעוט קטן מתאר, מכתיב וגם מנבא.</p>
+
+<h2><span class="num">2</span> היסטוריה ופילוסופיה: מאריסטו ועד פרדוקס הספר</h2>
+<p>מילון אוקספורד מגדיר סיווג גם כ<b>פעולה</b> (שיוך למחלקות לפי מאפיינים משותפים) וגם כ<b>תוצאה</b> (החלוקה השיטתית עצמה). כבר <b>אריסטו</b> (<span dir="ltr" class="term">Historia Animalium</span>, המאה ה-4 לפנה"ס) סיווג את כל צורות החיים המוכרות, אך הסיווג המודרני מיוחס ל<b>קרל לינאוס</b> (<span dir="ltr" class="term">Systema Naturae</span>, 1735), שהטקסונומיה ההיררכית שלו היא הבסיס לנומנקלטורה הביולוגית עד היום.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Carl_von_Linné.jpg?width=500" alt="Portrait of Carl von Linné (Linnaeus)">
+<p class="media-cap">קרל לינאוס (1707-1778) - אבי הטקסונומיה ההיררכית המודרנית (Systema Naturae, 1735). מקור: Wikimedia Commons.</p>
+<p>בסוף המאה ה-19 ותחילת ה-20 הסיווג הפך לשאלה יסודית במתמטיקה: המושג <b>"קבוצה" (set)</b> הוא אוסף מוגדר היטב של אובייקטים, ותורת הקבוצות עוסקת בהשתייכות או אי-השתייכות לקבוצות (הילברט, גדל, פון-נוימן). ב-<b>1901</b> גילה <b>ברטרנד ראסל</b> (לימים זוכה פרס נובל לספרות, 1950) את הפרדוקס: <b>קבוצת כל הקבוצות שאינן מכילות את עצמן</b> - אם היא מכילה את עצמה, היא מפרה את הגדרתה; אם לא, היא הייתה צריכה להכיל את עצמה. הגרסה העממית: <i>"אם הספר מגלח את כל מי שאינו מגלח את עצמו, ורק אותם - מי מגלח את הספר?"</i> (איור 9.1 בספר).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bertrand_Russell_photo.jpg?width=450" alt="Bertrand Russell photograph">
+<p class="media-cap">ברטרנד ראסל (1872-1970) - הפרדוקס שלו (1901) הוא הבסיס הלוגי לשאלה "האם סיווג-של-סיווגים צריך לסווג גם את עצמו?". מקור: Wikimedia Commons.</p>
+<p><b>למה זה רלוונטי לנוירוכירורגיה?</b> מערכת סיווג רגילה (למשל Spetzler-Martin) מסווגת אובייקטים פיזיים ולא את עצמה - היא כמו "לקוח רגיל של המספרה". אבל סיווג של מערכות סיווג צריך להחליט: האם הוא כפוף לכללים של עצמו? <b>המחברים קובעים שכן</b> - בדיוק כמו שכללי PRISMA/Cochrane חלים גם על "סקירה של סקירות". והתוצאה המפתיעה: <b>הסיווג שלהם עצמו הוא סוג 1 - תיאורי בלבד</b> (בגרסה הנוכחית).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Russell's_paradox.svg?width=450" alt="Russell's paradox diagram">
+<p class="media-cap">איור של פרדוקס ראסל - קבוצת כל הקבוצות שאינן מכילות את עצמן. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/ymGt7I4Yn3k" title="Russell's Paradox - a simple explanation of a profound problem" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: Jeffrey Kaplan מסביר את פרדוקס ראסל בפשטות - הרקע הלוגי לשאלת "סיווג שמסווג את עצמו".</p>
+
+<h2><span class="num">3</span> סיווג בעידן המודרני: סטטיסטיקה ולמידת מכונה</h2>
+<p>בעידן ה"ביג-דאטה" הסיווג מאפשר חיפוש, תיוג, אינדוקס ושליפה של מידע; אפילו <span dir="ltr" class="term">hash function</span> במדעי המחשב היא צורה מתמטית קפדנית של סיווג. למידת מכונה חושפת דיכוטומיה בין שני סוגי סיווג:</p>
+<table>
+  <tr><th>מאפיין</th><th>למידה מפוקחת <span dir="ltr" class="term">Supervised</span></th><th>למידה לא-מפוקחת <span dir="ltr" class="term">Unsupervised</span></th></tr>
+  <tr><td>הנעה</td><td>מונחית-היפותזה, תוויות מוטלות מבחוץ</td><td>לרוב לא מונחית-היפותזה, לפי תכונות פנימיות של הנתונים</td></tr>
+  <tr><td>שלב אימון</td><td>נתוני "אימון" עם תוויות (תמונה עם/בלי חתול)</td><td>אין תוויות - האלגוריתם מזהה "אשכולות" (clusters) בעצמו</td></tr>
+  <tr><td>אנלוגיה ביולוגית</td><td>-</td><td><b>FACS/פלואו-ציטומטריה</b> - "dot plots" חושפים אשכולות של סוגי תאים, לעיתים אוכלוסייה שלא הוכרה קודם</td></tr>
+  <tr><td>דוגמה נוירוכירורגית</td><td>-</td><td>מערכת ה-AI של Ames לסיווג עיוותי עמוד שדרה במבוגרים (ASD) ע"י אשכולות היררכיים - סוג 2b</td></tr>
+</table>
+<p>השאלות הסטטיסטיות שעולות: כמה אמין סיווג אוטומטי? כמה סיווג-שגוי (misclassification) נסבול? ו<b>למי אנו סומכים שיגדיר ויבצע את הסיווג?</b> עם זאת, מערכות "מורשת" (legacy) עדיין מהוות את רוב המערכות שנסקרו.</p>
+
+<h2><span class="num">4</span> דוגמאות מרכזיות לפי תת-תחום</h2>
+<table>
+  <tr><th>תת-תחום</th><th>מערכות סיווג מובילות</th></tr>
+  <tr><td>נוירו-אונקולוגיה</td><td>WHO Classification of Tumours of the CNS; Karnofsky Performance Status</td></tr>
+  <tr><td>וסקולרי</td><td>Hunt and Hess (חומרת SAH); Modified Fisher (כמות הדם ב-CT); NIHSS (חומרת שבץ, רלוונטי לטיפול אנדווסקולרי דחוף); modified Rankin (נכות לאחר החלמה)</td></tr>
+  <tr><td>טראומה</td><td>Glasgow Coma Scale; Guidelines for Management of Severe TBI</td></tr>
+  <tr><td>עמוד שדרה</td><td>ASIA Impairment Scale; AOSpine; TLICS (טראומה); SINS (גרורות)</td></tr>
+  <tr><td>פונקציונלי</td><td>UPDRS (פרקינסון)</td></tr>
+  <tr><td>אפילפסיה</td><td>ILAE Classification of Seizures; Engel Outcome Scale</td></tr>
+  <tr><td>עצבים פריפריים</td><td>British MRC - כוח שריר (הפך אוניברסלי)</td></tr>
+  <tr><td>רדיוכירורגיה</td><td>הנחיות ISRS ו-ASTRO - סיווג "משתמע" לפי מספר וגודל גרורות</td></tr>
+  <tr><td>רפואה כללית</td><td>ICD, CPT; דירוג רמות ראיה (CTFPHC, USPSTF, WCRF)</td></tr>
+</table>
+
+<h2><span class="num">5</span> קריטריונים להערכת מערכת סיווג: תקפות, עקביות, כימות</h2>
+<p>כל רופא מכיר סיווג בינארי (תקין/לא תקין) ואת הרגישות, הסגוליות, PPV/NPV, שגיאות α/β ועוצמה סטטיסטית. הפרק מתמקד בסיווג ל<b>קטגוריות בדידות</b> ובשלוש תכונות:</p>
+<h3>א. תקפות (Validity)</h3>
+<p><b>תקפות פנימית</b> - עד כמה המערכת באמת מודדת את מה שהיא מתיימרת למדוד; נבחנת בחקירה לוגית של המבנה: הנושא מוגדר היטב, והקטגוריות מכסות את כל האפשרויות.</p>
+<ul>
+  <li><b>Borden</b> (פיסטולות דוראליות AV) - לפי כיוון הניקוז הוורידי: אנטרוגרדי, רטרוגרדי או שניהם. המבנה הלוגי <b>לא משאיר אף אפשרות בחוץ</b> - תקף פנימית.</li>
+  <li><b>Cognard</b> - לא מסווג אף נגע שאינו ב-Borden, אבל משקף היבטים נוספים של האנגיו-ארכיטקטורה והשפעתם על סיכון לדימום. זו דוגמה לוויכוח על תקפות פנימית.</li>
+  <li><b>WHO CNS</b> - עודכן כדי לשקף שמאפיינים <b>מולקולריים וגנומיים</b> גוברים על ההיסטולוגיה (לפחות בגליומות ממאירות).</li>
+  <li><b>GCS</b> "נשבר" במקרים מיוחדים - <b>מטופלים מונשמים</b> (נוטציה מותאמת) ו<b>ילדים טרום-מילוליים</b> (Pediatric GCS).</li>
+</ul>
+<p><b>תקפות חיצונית</b> - הערכה מול נתונים; קשורה ליכולת הכללה (generalizability), ורלוונטית בעיקר למערכות מרשמות/מנבאות. הדוגמה הקלאסית: <b>Spetzler-Martin</b> ל-AVM ניבא תחלואה ניתוחית לפי <b>גודל, רהיטות (eloquence) וניקוז ורידי</b>, ונגזר מניתוח רטרוספקטיבי במוסד אחד. יותר משני עשורים אחר כך, נתונים מאוחדים ממוסדות רבים הראו שניתן לשפר את הניבוי בהוספת <b>גיל, דימום, פיזור הנידוס (diffuseness) ואספקה עורקית</b> - זו מערכת <b>Supplemented Spetzler-Martin / Lawton-Young</b>.</p>
+<h3>ב. עקביות (Consistency / Clinical agreement)</h3>
+<ul>
+  <li><b>Interrater reliability</b> - ההסתברות שמעריכים שונים, שמקבלים את אותם מקרים, יסווגו אותם זהה.</li>
+  <li><b>Intrarater reliability</b> - ההסתברות שאותו מעריך יסווג אותם מקרים זהה בשתי נקודות זמן.</li>
+  <li>בניגוד לתקפות, <b>קל יחסית לכמת עקביות</b>: <span dir="ltr" class="term">Cohen's kappa</span> (שני מעריכים), <span dir="ltr" class="term">Fleiss' kappa</span> (מעריכים רבים), <span dir="ltr" class="term">Scott's pi</span>.</li>
+</ul>
+<h3>ג. כימות (Quantification)</h3>
+<table>
+  <tr><th>סוג נתון</th><th>משמעות</th><th>דוגמה בעמוד שדרה</th></tr>
+  <tr><td><b>נומינלי/קטגוריאלי</b> (תיאורי)</td><td>תוויות איכותיות ללא סדר</td><td>AOSpine - מורפולוגיה (משלב תיאורי + אורדינלי)</td></tr>
+  <tr><td><b>אורדינלי</b> (staging/grading)</td><td>דירוג לפי סדר, בלי כימות מדויק</td><td><b>Denis</b> - פגיעה ב-1/2/3 עמודות; מודל "שלוש העמודות"; יציבות היא <b>משתנה בינארי</b> (יציב/לא יציב, לפי קריטריון "שתי עמודות")</td></tr>
+  <tr><td><b>קרדינלי</b> (scoring)</td><td>ניקוד כמותי</td><td><b>TLICS</b>, <b>SINS</b> - מניחים שאפשר לכמת <b>דרגת</b> אי-יציבות</td></tr>
+</table>
+
+<h2><span class="num">6</span> מערכות "מורשת" (legacy): הדוגמה של Simpson</h2>
+<p>יש מערכות ששרדו בזכות גיל, יוקרה ("הראשון"), שם של חלוץ, ונוחות שימוש - תכונות שאין לזלזל בהן, אבל <b>אינן מקנות לגיטימיות</b> כשלעצמן. <b>דירוג Simpson לכריתת מנינגיומה</b> הוא לדברי המחברים "אולי מזמן זקוק לעדכון": הוא סוג 3 (מתאר את הכריתה, מכתיב טיפול בדורה ובעצם, מנבא הישנות), אבל נבנה על <b>ניתוח רטרוספקטיבי של 339 מטופלים משני מוסדות בשנים 1928-1954</b> - <b>ללא הדמיה טרום- ובתר-ניתוחית</b>. רמת הראיה: <b>II-3</b> (תת-הרמה הנמוכה ביותר של רמה II).</p>
+<div class="key-box">
+  <b>ארבע השאלות שהמחברים שאלו על כל מערכת:</b> (1) האם היא תיאורית בלבד? (2) האם היא מרשמת? (3) האם היא מנבאת? (4) מה חוזק הראיה שעליה היא מבוססת?<br>
+  <b>רמות ראיה</b> (CTFPHC/USPSTF): <b>I</b> = לפחות RCT אחד; <b>II</b> = ניסויים לא-אקראיים, עוקבה, מקרה-ביקורת, מחקרי אורך; <b>III</b> = דעת מומחים. המחברים מציעים להוסיף בעתיד את ממד הראיה לסיווג.
+</div>
+
+<h2><span class="num">7</span> שיטת האיסוף: מ-11,585 רשומות ל-488 מערכות</h2>
+<svg class="diagram" viewBox="0 0 820 330" xmlns="http://www.w3.org/2000/svg">
+  <title>תרשים זרימה של החיפוש (איור 9.2)</title>
+  <desc>חיפוש טקסט מלא של חמש מילים, הסרת כפילויות ל-1347, סינון רלוונטיות ל-488.</desc>
+  <rect x="20" y="20" width="780" height="80" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="410" y="44" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">חיפוש טקסט מלא במהדורה 8 - סה"כ 11,585 רשומות</text>
+  <text x="100" y="78" font-size="11.5" text-anchor="middle" fill="#1e3a8a">Classification 2758</text>
+  <text x="250" y="78" font-size="11.5" text-anchor="middle" fill="#1e3a8a">Staging 1657</text>
+  <text x="410" y="78" font-size="11.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">Grading 4234</text>
+  <text x="570" y="78" font-size="11.5" text-anchor="middle" fill="#1e3a8a">Score 1792</text>
+  <text x="720" y="78" font-size="11.5" text-anchor="middle" fill="#1e3a8a">Scale 1144</text>
+  <path d="M410 100 L410 135" stroke="#6b7280" stroke-width="3" marker-end="url(#ar9b)"/>
+  <rect x="260" y="140" width="300" height="55" rx="8" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="410" y="163" font-size="12.5" text-anchor="middle" fill="#713f12" font-weight="700">הסרת כפילויות</text>
+  <text x="410" y="183" font-size="11.5" text-anchor="middle" fill="#713f12">1347 מערכות ייחודיות - נבדקו כל אחת ידנית</text>
+  <path d="M410 195 L410 230" stroke="#6b7280" stroke-width="3" marker-end="url(#ar9b)"/>
+  <rect x="220" y="235" width="380" height="70" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="410" y="260" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">488 מערכות רלוונטיות קלינית</text>
+  <text x="410" y="282" font-size="10.5" text-anchor="middle" fill="#14532d">הוצאו: מערכות שאינן נוירוכירורגיות, ומערכות לא מתוקפות</text>
+  <text x="410" y="297" font-size="10.5" text-anchor="middle" fill="#14532d">עם ראיה מינימלית/ללא אחיזה בספרות → eTable 9.1</text>
+  <defs><marker id="ar9b" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7280"/></marker></defs>
+</svg>
+<p class="figcap">איור סכמטי עצמאי המבוסס על איור 9.2: "Grading" היה המונח השכיח ביותר (4234). כל מערכת ב-eTable 9.1 מופיעה עם שמה, הפרקים שבהם היא נזכרת, הסוג שלה ומקור מכונן.</p>
+
+<table>
+  <tr><th>סוג</th><th>הגדרה</th><th>מספר</th><th>%</th><th>דוגמאות מ-eTable 9.1</th></tr>
+  <tr><td><b>1</b></td><td>תיאורי בלבד</td><td>301</td><td>62%</td><td>WHO CNS Tumours, Modified Rankin, MRC, ASIA, House-Brackmann, Koos, Engel, Zabramski</td></tr>
+  <tr><td><b>2</b></td><td>ביניים (סה"כ)</td><td>156</td><td>32%</td><td>-</td></tr>
+  <tr><td><b>2a</b></td><td>תיאורי + מרשם</td><td>36</td><td>7%</td><td>TLICS, Allen-Ferguson, Anson-Spetzler, McCormick Load Sharing</td></tr>
+  <tr><td><b>2b</b></td><td>תיאורי + מנבא</td><td>120</td><td>25%</td><td>Hunt-Hess, WFNS, Fisher/Modified Fisher, Spetzler-Martin, Lawton-Young, Borden, Cognard, Denis, ASPECTS, ASA-PS, APACHE II</td></tr>
+  <tr><td><b>3</b></td><td>מקיף: מתאר+מרשם+מנבא</td><td>31</td><td>6%</td><td>Simpson, SINS, Anderson-D'Alonzo (אודונטואיד), AAN concussion grading, Spetzler-Ponce</td></tr>
+  <tr><td colspan="2"><b>סה"כ</b></td><td>488</td><td>99%*</td><td>*עיגול</td></tr>
+</table>
+<p><b>שימי לב לחוסר עקביות קטן בתוך הפרק עצמו:</b> בגוף הטקסט GCS מוצג כדוגמה לסוג 3, ו-Karnofsky ו-Hunt-Hess כמנבאי תמותה; אבל בטבלה המוערת (eTable 9.1) GCS ו-Karnofsky רשומים כסוג 1, ו-Hunt-Hess כ-2b. זה בדיוק ממחיש את טענת המחברים שגם הסיווג שלהם כפוף לבעיית <b>עקביות בין-מעריכים</b> ודורש שיפור איטרטיבי. במבחן - לכי לפי הדוגמאות המפורשות בגוף הטקסט (Simpson ו-GCS = סוג 3).</p>
+
+<h2><span class="num">8</span> הטיות, מגבלות וכיווני עתיד</h2>
+<ul>
+  <li><b>הטיית דגימה</b> - הרשימה מייצגת רק את מה שמחברי Youmans הזכירו; המחברים והעורכים (מאות, משש יבשות) הם עדיין מדגם מוטה, ופרקיהם לא נכתבו במטרה לסקור מערכות סיווג.</li>
+  <li><b>אין הנחיות</b> לפיתוח מערכות סיווג קליניות המקבילות ל-<b>Cochrane/PRISMA</b> לסקירות שיטתיות - המחברים ממליצים לפתח כאלה.</li>
+  <li>סיווג הוא <b>תהליך איטרטיבי</b> של עידון הדרגתי. במהדורות הבאות אפשר לבקש מכל מחבר לזהות במפורש מערכות סיווג וחוזק הראיה שלהן.</li>
+  <li>התועלת המיידית: רשימה מאורגנת ומוצלבת-פרקים (לא קיימת רשימה דומה בספרות) שמקדמת סטנדרטיזציה, בהירות בתקשורת, והנמקה עקרונית לגבי טיפול ופרוגנוזה.</li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/6CGw5nEr9Wc" title="The Glasgow Coma Scale - Emergency Care Series" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: Global Health Media Project - הדגמת שימוש ב-GCS; דוגמה למערכת סיווג שנבדקה לעומק לאורך עשורים, כולל מגבלותיה (מונשמים, ילדים).</p>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">D-P-P + E</span> - מה סיווג עושה</h3>
+  <p>
+    <b>D</b> - <span class="term" dir="ltr">Descriptive</span> (כולן! = סוג 1 אם זה הכל)<br>
+    <b>P</b> - <span class="term" dir="ltr">Prescriptive</span> (אומר מה לעשות = 2a)<br>
+    <b>P</b> - <span class="term" dir="ltr">Predictive</span> (אומר מה יקרה = 2b)<br>
+    <b>E</b> - <span class="term" dir="ltr">Evidence</span> (השאלה הרביעית - לא חלק מה"סוג", אבל קובעת כמה לסמוך עליו)<br>
+    ושלושת הקריטריונים לאיכות: <b>V-C-Q</b> = <span class="term" dir="ltr">Validity, Consistency, Quantification</span> - "<b>V</b>ery <b>C</b>areful <b>Q</b>uantifiers".
+  </p>
+  <h3>סיפור דמיוני: "המספרה של לינאוס"</h3>
+  <p>לינאוס פותח מספרה ותולה שלט עם שלושה כיסאות. בכיסא הכחול יושב <b>הצלם</b> (סוג 1) - רק מצלם ומתאר את התספורת. בכיסא הצהוב יושב <b>הספר עם המספריים</b> (2a) - מחליט מה לגזור. לידו <b>מגדת העתידות</b> (2b) - מנבאת כמה מהר השיער יצמח חזרה. ובכיסא הירוק, המלכותי, יושב <b>Simpson</b> (סוג 3) - מתאר, גוזר ומנבא - אבל כשמסתכלים מקרוב, תעודת ההסמכה שלו מ-1954 ובלי צילומים (ראיה חלשה). בפינה עומד <b>ראסל</b> ושואל: "ומי יסווג את המספרה עצמה?" - ולינאוס תולה עליה תווית: "סוג 1".</p>
+  <svg class="diagram" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <title>איור מטאפורי: המספרה של לינאוס</title>
+    <desc>ארבעה כיסאות בצבעים: צלם (1), ספר (2a), מגדת עתידות (2b), Simpson (3), וראסל בפינה.</desc>
+    <rect x="10" y="20" width="600" height="185" rx="10" fill="#f9fafb" stroke="#6b7280" stroke-width="2"/>
+    <text x="310" y="45" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">המספרה של לינאוס</text>
+    <rect x="30" y="70" width="110" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="85" y="100" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">צלם</text>
+    <text x="85" y="122" font-size="11" text-anchor="middle" fill="#1e3a8a">סוג 1 - מתאר</text>
+    <rect x="155" y="70" width="110" height="80" rx="10" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+    <text x="210" y="100" font-size="12" text-anchor="middle" fill="#713f12" font-weight="700">ספר</text>
+    <text x="210" y="122" font-size="11" text-anchor="middle" fill="#713f12">2a - מרשם</text>
+    <rect x="280" y="70" width="110" height="80" rx="10" fill="#fde68a" stroke="#a16207" stroke-width="2"/>
+    <text x="335" y="100" font-size="12" text-anchor="middle" fill="#713f12" font-weight="700">מגדת עתידות</text>
+    <text x="335" y="122" font-size="11" text-anchor="middle" fill="#713f12">2b - מנבא</text>
+    <rect x="405" y="70" width="110" height="80" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="460" y="100" font-size="12" text-anchor="middle" fill="#14532d" font-weight="700">Simpson</text>
+    <text x="460" y="122" font-size="11" text-anchor="middle" fill="#14532d">סוג 3 - הכל</text>
+    <circle cx="565" cy="110" r="28" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <text x="565" y="107" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">ראסל</text>
+    <text x="565" y="121" font-size="14" text-anchor="middle" fill="#7f1d1d">?</text>
+    <text x="310" y="185" font-size="11" text-anchor="middle" fill="#4b5563">התעודה של Simpson: 1928-1954, 339 מטופלים, בלי הדמיה = ראיה II-3</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/aNY3LGxMKlM" title="Glasgow Coma Scale EXPLAINED + 2 Example Questions" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הסבר על רכיבי ה-GCS עם שאלות תרגול - דוגמה למערכת סיווג אורדינלית שמשמשת גם לתיאור, גם להחלטה וגם לפרוגנוזה.</p>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Carl_von_Linn%C3%A9.jpg" target="_blank">File:Carl von Linné.jpg – Wikimedia Commons</a><div class="desc">דיוקן לינאוס (קישור גיבוי לתמונה המוטמעת).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Bertrand_Russell_photo.jpg" target="_blank">File:Bertrand Russell photo.jpg – Wikimedia Commons</a><div class="desc">תצלום ראסל (קישור גיבוי).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Russell's_paradox.svg" target="_blank">File:Russell's paradox.svg – Wikimedia Commons</a><div class="desc">איור פרדוקס ראסל (קישור גיבוי).</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Cohen's_kappa" target="_blank">Cohen's kappa – Wikipedia</a><div class="desc">נוסחה κ=(Po−Pe)/(1−Pe) ופירוש ערכים - המדד המרכזי לעקביות בין-מעריכים.</div></li>
+  <li><a href="https://radiopaedia.org/articles/spetzler-martin-arteriovenous-malformation-grading-system-2" target="_blank">Spetzler-Martin grading system – Radiopaedia</a><div class="desc">פירוט הניקוד (גודל, רהיטות, ניקוז עמוק) - דוגמת התקפות החיצונית של הפרק.</div></li>
+  <li><a href="https://radiopaedia.org/articles/hunt-and-hess-grading-system-subarachnoid-haemorrhage" target="_blank">Hunt and Hess grading – Radiopaedia</a><div class="desc">חמש הדרגות הקליניות של SAH ומשמעותן הפרוגנוסטית.</div></li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מתמחה בשנה שנייה מציגה בישיבת בוקר אישה בת 58 לאחר כריתת מנינגיומה פרסגיטלית. "הכריתה הייתה Simpson 2 - הוצאנו את כל הגידול וצרבנו את חיבור הדורה", היא אומרת, "ולכן הסיכון להישנות נמוך". מנתח בכיר מעיר: "Simpson נבנה על 339 מטופלים מלפני עידן ה-CT. ומה רמת ההסכמה בינך לביני על הדרגה?" בהמשך הישיבה מוצג גבר בן 34 עם AVM בקוטר 4 ס"מ באזור רהוט, עם ניקוז ורידי עמוק, שדימם בעבר - והצוות מתלבט אם להסתמך על Spetzler-Martin בלבד. מטופל שלישי: פריצת גרורה לחוליה T10 עם כאב מכני - וקבוצה מחשבת SINS.</p>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">1. לפי ההיררכיה שהוצעה בפרק, לאיזה סוג שייך דירוג Simpson, ומה מגבלתו העיקרית?</div>
+  <button class="opt" data-i="0">סוג 1 - תיאורי בלבד; מגבלתו שאינו מנבא הישנות</button>
+  <button class="opt" data-i="1">סוג 2a - מרשם; מגבלתו שאינו מתאר את הכריתה</button>
+  <button class="opt" data-i="2">סוג 2b - מנבא; מגבלתו שנבנה על RCT קטן</button>
+  <button class="opt" data-i="3">סוג 3 - מקיף; אך נבנה על סדרה רטרוספקטיבית של 339 מטופלים (1928-1954) ללא הדמיה - רמת ראיה II-3</button>
+  <div class="explain">התשובה הנכונה: Simpson מתאר את היקף הכריתה, מכתיב טיפול בדורה ובעצם, ומנבא הישנות - לכן סוג 3. אבל "סוג" אינו "איכות": הראיה מבוססת על שני מוסדות, בלי הדמיה, רמה II-3. תשובה 0 שגויה כי הוא כן מנבא; 1 שגויה כי כל סיווג הוא תיאורי; 2 שגויה - מעולם לא היה RCT.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. ההבדל בין Spetzler-Martin המקורי לבין Supplemented Spetzler-Martin (Lawton-Young) ממחיש בעיקר איזו תכונה של מערכת סיווג?</div>
+  <button class="opt" data-i="0">עקביות תוך-מעריך (intrarater reliability)</button>
+  <button class="opt" data-i="1">תקפות חיצונית - מערכת שנגזרה ממוסד אחד שופרה לאחר בחינה על נתונים מרובי-מוסדות, בהוספת גיל, דימום, פיזור נידוס ואספקה עורקית</button>
+  <button class="opt" data-i="2">תקפות פנימית - המערכת המקורית השאירה נגעים מחוץ לקטגוריות</button>
+  <button class="opt" data-i="3">כימות - המעבר מסולם נומינלי לסולם אורדינלי</button>
+  <div class="explain">התשובה הנכונה: תקפות חיצונית היא בחינת המערכת מול נתונים חדשים והכללה מעבר למדגם המקורי. Spetzler-Martin נגזר רטרוספקטיבית במוסד יחיד; נתונים מאוחדים הראו שאפשר לחדד את הניבוי. תשובה 2 מתארת את הדוגמה של Borden/Cognard; 0 ו-3 אינן העניין כאן.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. המנתח הבכיר שואל "מה רמת ההסכמה בינך לביני על הדרגה?". באיזה מדד סטטיסטי מתאים לכמת זאת?</div>
+  <button class="opt" data-i="0">Cohen's kappa - מדד הסכמה בין שני מעריכים המתקן להסכמה מקרית</button>
+  <button class="opt" data-i="1">ערך p ממבחן t</button>
+  <button class="opt" data-i="2">רגישות וסגוליות מול תקן זהב</button>
+  <button class="opt" data-i="3">מקדם מתאם פירסון בין גיל לדרגה</button>
+  <div class="explain">התשובה הנכונה: עקביות בין-מעריכים (interrater) נמדדת ב-Cohen's kappa לשני מעריכים (Fleiss' kappa למעריכים רבים, Scott's pi כחלופה). הפרק מדגיש שבניגוד לתקפות, עקביות קלה יחסית לכימות. p-value, רגישות/סגוליות ופירסון מודדים דברים אחרים.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. מדוע הפרק מתאר את Borden כמערכת "תקפה פנימית"?</div>
+  <button class="opt" data-i="0">כי היא מנבאת במדויק את שיעור הדימום השנתי</button>
+  <button class="opt" data-i="1">כי תוקפה בניסוי אקראי רב-מרכזי</button>
+  <button class="opt" data-i="2">כי היא מסווגת לפי כיוון הניקוז הוורידי (אנטרוגרדי, רטרוגרדי או שניהם) - מבנה לוגי שאינו משאיר אף אפשרות מחוץ לקטגוריות</button>
+  <button class="opt" data-i="3">כי יש לה kappa מעל 0.9</button>
+  <div class="explain">התשובה הנכונה: תקפות פנימית נבחנת בחקירה לוגית של מבנה המערכת - הנושא מוגדר היטב והקטגוריות ממצות. Borden ממצה את כל האפשרויות הלוגיות. Cognard לא מוסיף נגעים חדשים אלא מבטא אנגיו-ארכיטקטורה וסיכון דימום. 0/1/3 מתארים תקפות חיצונית או עקביות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. במודל Denis לפגיעות עמוד שדרה, כיצד מוגדרת יציבות מבחינת סוג המשתנה, ובמה זה שונה מ-SINS/TLICS?</div>
+  <button class="opt" data-i="0">Denis קרדינלי ו-SINS נומינלי</button>
+  <button class="opt" data-i="1">ב-Denis (אורדינלי: 1/2/3 עמודות) יציבות היא משתנה בינארי - יציב/לא יציב לפי קריטריון "שתי עמודות"; SINS ו-TLICS מניחים שאפשר לכמת את דרגת אי-היציבות בניקוד</button>
+  <button class="opt" data-i="2">שניהם מגדירים יציבות כרצף כמותי</button>
+  <button class="opt" data-i="3">Denis מבוסס על MRI בלבד ולכן אינו אורדינלי</button>
+  <div class="explain">התשובה הנכונה: Denis מבוסס על מודל מכני מפושט של שלוש עמודות ומדרג פגיעה בעמודה 1/2/3 (אורדינלי), אך הכרעת היציבות בינארית. TLICS ו-SINS הם מערכות ניקוד (קרדינליות) שמכמתות דרגה - ומשמשות להחלטה על קיבוע. 0, 2, 3 הפוכים מהטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">6. לפי המחברים, לאיזה סוג שייך "הסיווג של מערכות הסיווג" שהם עצמם הציעו, ולמה זו בכלל שאלה?</div>
+  <button class="opt" data-i="0">סוג 3, כי הוא מתאר, מכתיב וגם מנבא את איכות המערכות</button>
+  <button class="opt" data-i="1">אין לו סוג - לפי פרדוקס ראסל אסור לסיווג לסווג את עצמו</button>
+  <button class="opt" data-i="2">סוג 2b, כי הוא מנבא אילו מערכות ישרדו</button>
+  <button class="opt" data-i="3">סוג 1 - תיאורי בלבד; השאלה עולה כי בדומה לפרדוקס ראסל, סיווג-של-סיווגים צריך להחליט אם הוא כפוף לכללי עצמו, והמחברים בחרו שכן</button>
+  <div class="explain">התשובה הנכונה: המחברים בחרו במכוון שהסיווג יהיה עקבי מבנית עם כלליו (כמו PRISMA החל גם על סקירת סקירות), ובגרסתו הנוכחית הוא תיאורי בלבד - סוג 1. בעתיד, עם הוספת ממד הראיה, ייתכן שיוכל גם להמליץ/לנבא. תשובה 1 מתעלמת מהבחירה המפורשת; 0 ו-2 מייחסות לו יכולות שאין לו כרגע.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>פרק "מטא": סיווג של <b>488</b> מערכות סיווג שנמצאו במהדורה 8 (11,585 רשומות → 1347 ייחודיות → 488).</li>
+    <li>היררכיה: <b>סוג 1</b> תיאורי בלבד (301, 62%); <b>2a</b> + מרשם (36, 7%); <b>2b</b> + מנבא (120, 25%); <b>סוג 3</b> מקיף (31, 6%).</li>
+    <li>4 שאלות: תיאורי? מרשם? מנבא? <b>חוזק ראיה?</b> - סוג ≠ איכות.</li>
+    <li>קריטריונים: <b>תקפות</b> (פנימית - Borden/Cognard, WHO מולקולרי, GCS במונשמים/ילדים; חיצונית - Spetzler-Martin → Lawton-Young), <b>עקביות</b> (inter/intra-rater; Cohen/Fleiss kappa, Scott's pi), <b>כימות</b> (נומינלי/אורדינלי/קרדינלי - AOSpine, Denis, TLICS/SINS).</li>
+    <li><b>Simpson</b> = סוג 3 על ראיה חלשה (339 מטופלים, 1928-1954, בלי הדמיה, II-3); <b>GCS</b> = סוג 3 (בטקסט) עם ראיה חזקה.</li>
+    <li>היסטוריה: אריסטו → לינאוס (1735) → תורת הקבוצות → <b>פרדוקס ראסל (1901)</b>; הסיווג מסווג את עצמו = סוג 1.</li>
+    <li>ML: מפוקחת (תוויות, אימון) מול לא-מפוקחת (אשכולות, כמו FACS).</li>
+    <li>מגבלות: הטיית דגימה; אין מקבילה ל-Cochrane/PRISMA לפיתוח סיווגים; סיווג הוא תהליך איטרטיבי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
