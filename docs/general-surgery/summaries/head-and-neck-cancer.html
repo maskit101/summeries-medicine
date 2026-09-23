@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>ראש וצוואר (Head and Neck) — קרצינומה קשקשית של הראש והצוואר</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 34 בהרצה זו (uploads נגישים רק עד פרק 19) - הסיכום מבוסס על מחקר במקורות מהימנים (StatPearls/NCBI, PMC, ASCO guideline, Wikimedia Commons, YouTube) + ידע ספרותי סטנדרטי. הפרק רחב מאוד - הסיכום מתמקד בליבה הנבחנת: קרצינומה קשקשית של הראש והצוואר (HNSCC), עם התייחסות קצרה לגידולי בלוטות רוק ולקרצינומה של הלוע האפי -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--blue); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>ראש וצוואר <span class="term" dir="ltr">(Head and Neck)</span> — קרצינומה קשקשית של הראש והצוואר</h1>
+<div class="subtitle">פרק 34 בספר Sabiston/Schwartz's Principles of Surgery — מבנה לימפטי של הצוואר, שני "מסלולי" קרצינוגנזה (טבק/אלכוהול מול HPV), אבחנה, שלבים וטיפול כולל דיסקציית צוואר</div>
+
+<p>כ-90% מהממאירויות של מערכת העיכול-נשימה העליונה <span class="term" dir="ltr">(upper aerodigestive tract)</span> — חלל הפה, הלוע (oropharynx, hypopharynx, nasopharynx) והגרון — הן <b>קרצינומה קשקשית</b> <span class="term" dir="ltr">(Squamous cell carcinoma, HNSCC)</span>. מבחינה קלינית פוגשים אותה כ<b>גוש צווארי ללא כאב אצל מבוגר</b>, כפצע בפה שלא נרפא, כצרידות מתמשכת, או ככאב אוזן ללא ממצא באוזן. הפרק מתמקד ב-HNSCC ובניהול הצוואר, עם הערות על גידולי בלוטות רוק ועל קרצינומה של הלוע האפי.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain"><b>מסלול 1 — טבק ואלכוהול ("HPV-שלילי")</b>: עשן טבק מכיל קרצינוגנים (ניטרוזאמינים, פוליציקליים ארומטיים כמו <span class="term" dir="ltr">benzo[a]pyrene</span>) שנקשרים ל-DNA של תאי האפיתל הקשקשי ויוצרים <b>אדוקטים</b> — "טלאים" כימיים שגורמים לטעויות העתקה. אלכוהול לא קרצינוגן ישיר חזק, אבל הוא (1) <b>ממס</b> שמגביר חדירת קרצינוגנים מהעשן דרך הרירית, ו-(2) מתפרק ל<b>אצטאלדהיד</b> שפוגע ב-DNA בעצמו. לכן השילוב <b>סינרגיסטי (כפלי, לא חיבורי)</b>. היעד הגנטי הקלאסי הוא <span class="term" dir="ltr">TP53</span> (מוטציה בכ-70-80% מהגידולים HPV-שליליים) ואובדן <span class="term" dir="ltr">CDKN2A (p16)</span> — כלומר שני "הבלמים" של מחזור התא נהרסים בדרך מוטציונית.</p>
+  <p class="chain" style="margin-top:10px"><b>קנסריזציה של שדה</b> <span class="term" dir="ltr">(Field cancerization)</span>: הקרצינוגן לא פוגע בנקודה אחת — הוא "שוטף" את כל רירית הפה, הלוע, הגרון, הוושט והריאות. לכן כל הרירית החשופה צוברת מוטציות במקביל, ואצל חולה עם גידול אחד יש סיכון של <b>כ-3-5% לשנה לגידול ראשוני שני</b> <span class="term" dir="ltr">(second primary)</span> — בעיקר בריאה, בוושט ובראש-צוואר עצמו. זו הסיבה לביצוע <b>פאנאנדוסקופיה</b> בעת האבחנה ולהמלצה חד-משמעית על הפסקת עישון.</p>
+  <p class="chain" style="margin-top:10px"><b>מסלול 2 — HPV (בעיקר <span class="term" dir="ltr">HPV-16</span>) → גידולי אורופרינקס</b>: הנגיף חודר דרך האפיתל ה"רשתי" והדק של <b>קריפטות השקדים ובסיס הלשון</b> — שם שכבה בזאלית חשופה כמעט ישירות (לכן HPV פוגע דווקא באורופרינקס ולא בחלל הפה). חלבון <span class="term" dir="ltr">E6</span> מסמן את p53 לפירוק (ubiquitin), וחלבון <span class="term" dir="ltr">E7</span> נקשר ל-<span class="term" dir="ltr">Rb</span> ומשבית אותו → שחרור <span class="term" dir="ltr">E2F</span> → התא נכנס לשלב S ללא בקרה. <b>למה p16 עולה?</b> בתא תקין Rb פעיל מדכא את ביטוי p16 (לולאת משוב שלילי). כש-E7 משבית את Rb, התא "מרגיש" שאין בלם ומייצר עוד ועוד p16 — שלא יכול לעבוד כי המטרה שלו (מסלול CDK4/6→Rb) כבר מנותקת. לכן <b>ביטוי יתר של p16 באימונוהיסטוכימיה = סמן חלופי ל-HPV</b> באורופרינקס. בניגוד לגידולי טבק, p53 כאן <b>לא מוטנטי</b> (רק מפורק) — לכן הגידול <b>רגיש יותר להקרנה ולכימותרפיה</b> (מסלול האפופטוזיס שמור חלקית), וזה מסביר את <b>הפרוגנוזה הטובה משמעותית</b>.</p>
+  <p class="chain" style="margin-top:10px"><b>דרך ההתפשטות</b>: HNSCC מתפשט קודם כול <b>מקומית</b> (לאורך מישורי רקמה, עצבים — <span class="term" dir="ltr">perineural invasion</span>, ושרירים) ואז <b>לימפתית, בצורה צפויה</b> לפי אתר המוצא אל רמות קשריות הצוואר. גרורות מרוחקות (ריאה בעיקר) מאוחרות יחסית. כשהגידול פורץ את קופסית הקשרית <span class="term" dir="ltr">(Extranodal extension, ENE)</span> — זה סמן לפרוגנוזה גרועה ולהגברת טיפול אדג'ובנטי.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שני מסלולי הקרצינוגנזה ב-HNSCC</title>
+  <rect x="10" y="20" width="170" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="95" y="46" font-size="13" text-anchor="middle" fill="#1f2937">טבק + אלכוהול</text>
+  <text x="95" y="64" font-size="11" text-anchor="middle" fill="#4b5563">אדוקטים / אצטאלדהיד</text>
+  <text x="95" y="80" font-size="10.5" text-anchor="middle" fill="#4b5563">סינרגיה כפלית</text>
+  <polygon points="190,55 210,48 210,62" fill="#b91c1c"/>
+  <rect x="215" y="20" width="180" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="305" y="46" font-size="13" text-anchor="middle" fill="#1f2937">מוטציה ב-TP53</text>
+  <text x="305" y="64" font-size="11" text-anchor="middle" fill="#4b5563">אובדן p16 (CDKN2A)</text>
+  <text x="305" y="80" font-size="10.5" text-anchor="middle" fill="#4b5563">field cancerization</text>
+  <polygon points="405,55 425,48 425,62" fill="#b91c1c"/>
+  <rect x="430" y="20" width="200" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="530" y="46" font-size="13" text-anchor="middle" fill="#1f2937">פה / גרון / היפופרינקס</text>
+  <text x="530" y="64" font-size="11" text-anchor="middle" fill="#4b5563">p16 שלילי</text>
+  <text x="530" y="80" font-size="10.5" text-anchor="middle" fill="#4b5563">עמיד יחסית להקרנה</text>
+  <polygon points="640,55 660,48 660,62" fill="#b91c1c"/>
+  <rect x="665" y="20" width="225" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="777" y="46" font-size="13" text-anchor="middle" fill="#1f2937">פרוגנוזה פחות טובה</text>
+  <text x="777" y="64" font-size="11" text-anchor="middle" fill="#4b5563">סיכון גבוה לגידול ראשוני שני</text>
+
+  <rect x="10" y="160" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="95" y="186" font-size="13" text-anchor="middle" fill="#1f2937">HPV-16</text>
+  <text x="95" y="204" font-size="11" text-anchor="middle" fill="#4b5563">קריפטות שקדים</text>
+  <text x="95" y="220" font-size="10.5" text-anchor="middle" fill="#4b5563">ובסיס לשון</text>
+  <polygon points="190,195 210,188 210,202" fill="#2563eb"/>
+  <rect x="215" y="160" width="180" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="305" y="186" font-size="13" text-anchor="middle" fill="#1f2937">E6 → פירוק p53</text>
+  <text x="305" y="204" font-size="13" text-anchor="middle" fill="#1f2937">E7 → השבתת Rb</text>
+  <text x="305" y="220" font-size="10.5" text-anchor="middle" fill="#4b5563">(p53 לא מוטנטי)</text>
+  <polygon points="405,195 425,188 425,202" fill="#2563eb"/>
+  <rect x="430" y="160" width="200" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="530" y="186" font-size="13" text-anchor="middle" fill="#1f2937">אורופרינקס</text>
+  <text x="530" y="204" font-size="11" text-anchor="middle" fill="#4b5563">p16 ביטוי-יתר (אובדן משוב Rb)</text>
+  <text x="530" y="220" font-size="10.5" text-anchor="middle" fill="#4b5563">קשריות ציסטיות מוקדמות</text>
+  <polygon points="640,195 660,188 660,202" fill="#2563eb"/>
+  <rect x="665" y="160" width="225" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="777" y="186" font-size="13" text-anchor="middle" fill="#1f2937">רגיש להקרנה/כימו</text>
+  <text x="777" y="204" font-size="11" text-anchor="middle" fill="#4b5563">פרוגנוזה טובה משמעותית</text>
+  <text x="777" y="220" font-size="10.5" text-anchor="middle" fill="#4b5563">שלבי AJCC נפרדים</text>
+  <text x="450" y="130" font-size="12" text-anchor="middle" fill="#6b7280">מסלול 1 (למעלה, אדום) מול מסלול 2 (למטה, כחול)</text>
+  <text x="450" y="275" font-size="12" text-anchor="middle" fill="#6b7280">שניהם מגיעים לאותה היסטולוגיה (SCC) — אבל ביולוגיה, גיל, פרוגנוזה ושלבים שונים</text>
+</svg>
+
+<div class="key-box">p16 חיובי הוא סמן חלופי ל-HPV <b>רק באורופרינקס</b>. בחלל הפה ובגרון p16 אינו מנבא אמין של HPV — ולכן שלבי ה-AJCC הנפרדים ל-HPV חלים רק על אורופרינקס.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/THm5tMYF_4M" title="Head and Neck Cancer (Risk Factors, Pathology, Clinical Picture, Diagnosis and Management)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סקירה מלאה של סרטן ראש-צוואר: גורמי סיכון, פתולוגיה, תמונה קלינית, אבחנה וטיפול. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> אפידמיולוגיה, אנטומיה ופיזיולוגיה</h2>
+<p><b>אתרים (subsites)</b> — חשוב כי כל אתר מתנקז לרמות אחרות ומתנהג אחרת:</p>
+<table>
+  <tr><th>אתר</th><th>מה כולל</th><th>גורם סיכון עיקרי</th><th>נקודה למבחן</th></tr>
+  <tr><td>חלל הפה <span class="term" dir="ltr">(Oral cavity)</span></td><td>שפתיים, 2/3 קדמיים של הלשון, רצפת פה, חניכיים, רירית לחי, חך קשה, <span class="term" dir="ltr">retromolar trigone</span></td><td>טבק, אלכוהול, לעיסת בטל</td><td>הלשון הניידת (שוליים לטרליים) השכיחה; <b>עומק חדירה (DOI)</b> מנבא גרורות סמויות</td></tr>
+  <tr><td>אורופרינקס <span class="term" dir="ltr">(Oropharynx)</span></td><td>שקדים, בסיס הלשון (1/3 אחורי), חך רך, דופן לוע אחורית</td><td><b>HPV</b> (רוב המקרים במערב), טבק</td><td>חולה צעיר יחסית, לא מעשן, עם קשרית ציסטית</td></tr>
+  <tr><td>לוע אפי <span class="term" dir="ltr">(Nasopharynx)</span></td><td>מאחורי אחוריות האף, <span class="term" dir="ltr">fossa of Rosenmüller</span></td><td><b>EBV</b>, דגים מלוחים, מוצא דרום-סיני</td><td>דלקת אוזן תיכונה עם תפליט <b>חד-צדדית</b> במבוגר → לשלול; טיפול עיקרי = כימו-הקרנה (לא ניתוח)</td></tr>
+  <tr><td>היפופרינקס <span class="term" dir="ltr">(Hypopharynx)</span></td><td><span class="term" dir="ltr">pyriform sinus</span>, אזור פוסט-קריקואידי, דופן אחורית</td><td>טבק, אלכוהול; פלאמר-וינסון (פוסט-קריקואיד)</td><td>מתגלה מאוחר; הפרוגנוזה הגרועה ביותר</td></tr>
+  <tr><td>גרון <span class="term" dir="ltr">(Larynx)</span></td><td>סופרה-גלוטיס, גלוטיס (מיתרי הקול), סאב-גלוטיס</td><td>טבק</td><td>גלוטיס: צרידות מוקדמת + <b>ניקוז לימפתי דל</b> → פרוגנוזה טובה; סופרה-גלוטיס: ניקוז עשיר, גרורות מוקדמות</td></tr>
+</table>
+
+<p><b>רמות קשריות הלימפה בצוואר</b> <span class="term" dir="ltr">(Neck levels I–VI)</span> — השפה המשותפת של המנתח, הרדיולוג והקרינאי:</p>
+<ul>
+  <li><b>Level I</b> — IA תת-סנטרי <span class="term" dir="ltr">(submental)</span>, IB תת-לסתי <span class="term" dir="ltr">(submandibular)</span>: מנקזות שפה תחתונה, רצפת פה, לשון קדמית.</li>
+  <li><b>Level II</b> — ג'וגולרי עליון (מבסיס הגולגולת עד העצם ההיואידית); IIA/IIB מופרדים ע"י <b>העצב המלווה (CN XI)</b>. <b>הרמה השכיחה ביותר לגרורות</b> — "תחנה ראשונה" של אורופרינקס, גרון, לוע.</li>
+  <li><b>Level III</b> — ג'וגולרי אמצעי (היואיד עד קריקואיד).</li>
+  <li><b>Level IV</b> — ג'וגולרי תחתון (קריקואיד עד עצם הבריח); משמאל — קרבה ל<b>צינור החזה (thoracic duct)</b>.</li>
+  <li><b>Level V</b> — המשולש האחורי (מאחורי ה-SCM); לוע אפי מתנקז לכאן.</li>
+  <li><b>Level VI</b> — המדור המרכזי (פרה-טרכאלי, פרה-לרינגאלי): בלוטת תריס, סאב-גלוטיס.</li>
+</ul>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Diagram_showing_the_areas_of_lymph_nodes_in_the_head_and_neck_CRUK_292.svg?width=600" alt="אזורי קשריות הלימפה בראש ובצוואר">
+  <figcaption class="media-cap">אזורי קשריות הלימפה בראש ובצוואר (Cancer Research UK). השתמשי בו כדי למקם את רמות I–VI ביחס לשריר ה-SCM ולעצם הבריח. מקור: <a href="https://commons.wikimedia.org/wiki/File:Diagram_showing_the_areas_of_lymph_nodes_in_the_head_and_neck_CRUK_292.svg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<ul>
+  <li><b>גוש צווארי ללא כאב אצל מבוגר (>40, או מעשן)</b> — <span class="key">ממאירות עד שיוכח אחרת</span>; ב-HPV+ לעיתים זה התסמין <b>היחיד</b>, והגוש יכול להיות <b>ציסטי</b> (טעות קלאסית: אבחנה של "ציסטה ברנכיאלית" במבוגר).</li>
+  <li><b>כאב אוזן מוקרן</b> <span class="term" dir="ltr">(Referred otalgia)</span> עם בדיקת אוזן תקינה — כי הלוע והגרון מעוצבבים ע"י <b>CN IX</b> (ענף ג'ייקובסון לאוזן התיכונה) ו-<b>CN X</b> (ענף ארנולד לתעלת השמע); המוח "מתרגם" את הכאב לאוזן.</li>
+  <li><b>צרידות מעל 3 שבועות</b> (במיוחד במעשן) → לרינגוסקופיה חובה.</li>
+  <li><b>כיב/פצע בפה שלא נרפא</b> מעל 2-3 שבועות, כאב/קושי בבליעה <span class="term" dir="ltr">(odynophagia/dysphagia)</span>, דימום, שן מתנדנדת ללא סיבה דנטלית.</li>
+  <li><b>טריזמוס</b> <span class="term" dir="ltr">(trismus)</span> — חדירה לשרירי הלעיסה (pterygoids) = מחלה מתקדמת.</li>
+  <li><b>נגעים טרום-ממאירים</b>: <b>לויקופלקיה</b> (כתם לבן שלא נגרד) — סיכון התמרה נמוך יחסית; <b>אריתרופלקיה</b> (כתם אדום) — <span class="key">סיכון גבוה בהרבה לדיספלזיה/קרצינומה</span>, מחייב ביופסיה.</li>
+</ul>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Orale_Leukoplakie.jpg?width=600" alt="לויקופלקיה אוראלית">
+  <figcaption class="media-cap">לויקופלקיה אוראלית — כתם לבן, שטוח, שאינו נגרד ואינו מוסבר ע"י גורם אחר. שימי לב לגבולות ולמרקם: אזור לא-הומוגני/אדמדם (erythroleukoplakia) מחשיד יותר. מקור: <a href="https://commons.wikimedia.org/wiki/File:Orale_Leukoplakie.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<p><b>בדיקה גופנית</b>: בדיקת חלל פה מלאה כולל <b>מישוש דו-ידני</b> של רצפת הפה ובסיס הלשון (גידולים בבסיס הלשון מורגשים יותר מאשר נראים), <b>לרינגוסקופיה גמישה</b> דרך האף, בדיקת תפקוד עצבים קרניאליים (V, VII, X, XI, XII), ומישוש שיטתי של כל רמות הצוואר.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<div class="surgery">
+  <h4>סדר הבירור של גוש צווארי במבוגר</h4>
+  <p>1) אנמנזה + בדיקת ראש-צוואר מלאה כולל אנדוסקופיה גמישה → 2) <b>ביופסיית מחט דקה (FNA) מונחית אולטרסאונד</b> של הקשרית → 3) <b>CT עם חומר ניגוד</b> של הצוואר (או MRI) → 4) בדיקת p16/HPV בחומר → 5) <b>PET-CT</b> במחלה מתקדמת או ב"ראשוני לא ידוע" → 6) <b>פאנאנדוסקופיה בהרדמה</b> (לרינגוסקופיה, פרינגוסקופיה, אזופגוסקופיה ± ברונכוסקופיה) עם ביופסיות, ובמקרה של ראשוני לא ידוע — טונזילקטומיה ו/או ביופסיות/כריתה של בסיס הלשון (לעיתים TORS).</p>
+  <p class="key-box"><b>לא לעשות ביופסיה פתוחה (excisional) לקשרית בצוואר כצעד ראשון</b> — היא מפזרת תאי גידול בשדה, פוגעת במישורים לדיסקציה עתידית ומגבירה חזרה מקומית. FNA קודמת תמיד; ביופסיה פתוחה רק כש-FNA/core לא אבחנתיים ומתוכננת כך שניתן להמיר לדיסקציה.</p>
+</div>
+
+<table>
+  <tr><th>מאפיין</th><th>HPV+ (p16+) אורופרינקס</th><th>HPV− (טבק/אלכוהול)</th></tr>
+  <tr><td>גיל/פרופיל</td><td>צעיר יותר (40-60), לרוב ללא עישון כבד</td><td>מבוגר, מעשן + שותה</td></tr>
+  <tr><td>ראשוני</td><td>קטן, לעיתים סמוי (שקד/בסיס לשון)</td><td>גדול יותר, בולט</td></tr>
+  <tr><td>קשריות</td><td>מוקדמות, גדולות, לעיתים <b>ציסטיות</b></td><td>מוצקות, לעיתים נקרוטיות</td></tr>
+  <tr><td>ביולוגיה</td><td>p53 פראי (מפורק ע"י E6), p16↑</td><td>p53 מוטנטי, p16↓</td></tr>
+  <tr><td>פרוגנוזה</td><td><b>טובה משמעותית</b> (הישרדות 5 שנים גבוהה בהרבה)</td><td>פחות טובה</td></tr>
+  <tr><td>שלבים (AJCC 8)</td><td>מערכת נפרדת — "מורידה" שלבים</td><td>מערכת קלאסית</td></tr>
+</table>
+
+<p><b>הדמיה — מה רואים</b>: CT עם ניגוד מראה מסה אנהנסית באתר הראשוני, וקשריות חשודות לפי: <b>קוטר קצר >1 ס"מ</b> (>1.5 ס"מ ב-level II), <b>נמק מרכזי</b> (אזור היפודנסי בתוך הקשרית — סימן חזק לגרורה), צורה <b>עגולה</b> במקום אליפטית עם אובדן ה-hilum השומני, ו<b>גבולות מטושטשים</b> (רמז ל-ENE). קשרית תקינה, לעומת זאת, היא אליפטית, עם hilum שומני ושוליים חדים. MRI עדיף לחדירה לרקמה רכה/פרינוירלית ובסיס גולגולת (למשל בלוע אפי ובלשון); CT עדיף לחדירה לעצם קורטיקלית (לסת). <b>PET-CT</b> — FDG נקלט בתאים עם גליקוליזה מוגברת (אפקט ורבורג): מאתר ראשוני סמוי, גרורות מרוחקות, ומשמש ~12 שבועות אחרי כימו-הקרנה כדי להחליט אם צריך דיסקציית צוואר (PET-NECK: מעקב PET לא נחות מדיסקציה מתוכננת).</p>
+
+<p><b>שלבים (AJCC 8) — מה חדש וחשוב</b>: בחלל הפה, T נקבע גם לפי <b>עומק חדירה</b> <span class="term" dir="ltr">(Depth of invasion, DOI)</span>: ≤5 מ"מ, 5-10 מ"מ, >10 מ"מ. DOI מעל ~4 מ"מ מנבא גרורות סמויות בצוואר בשיעור גבוה → מצדיק <b>דיסקציית צוואר אלקטיבית</b> גם בצוואר cN0. ב-N לכל האתרים (למעט HPV+ ולוע אפי) נוסף <b>ENE</b> כקריטריון מעלה-שלב.</p>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Oropharyngeal_Cancer.jpg?width=600" alt="סרטן אורופרינקס">
+  <figcaption class="media-cap">סרטן אורופרינקס — מיקום הלוע האמצעי (שקדים, בסיס לשון, חך רך) ביחס לחלל הפה, הלוע האפי והגרון. מקור: <a href="https://commons.wikimedia.org/wiki/File:Oropharyngeal_Cancer.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p><b>עקרון מנחה</b>: מחלה מוקדמת (שלב I-II) → <b>טיפול חד-אופני</b> (ניתוח <u>או</u> הקרנה, לפי אתר ותפקוד צפוי). מחלה מתקדמת מקומית (III-IVB) → <b>טיפול משולב</b>: ניתוח + הקרנה/כימו-הקרנה אדג'ובנטית, או כימו-הקרנה ראשונית (עם "ניתוח הצלה" בכישלון). בחלל הפה — <b>ניתוח הוא הטיפול הראשוני המועדף</b> (הקרנה ללסת גורמת לאוסטאורדיונקרוזיס). בגרון המתקדם — ניסיון <b>שימור גרון</b> בכימו-הקרנה (מחקר VA Larynx, RTOG 91-11) אלא אם יש הרס סחוס/T4a → לרינגקטומיה טוטלית. בלוע האפי — כימו-הקרנה (אזור לא נגיש כירורגית ורגיש מאוד להקרנה).</p>
+
+<p><b>אינדיקציות לטיפול אדג'ובנטי אחרי ניתוח</b>: הקרנה לבד — T3-T4, N2-N3, חדירה פרינוירלית/לימפווסקולרית, רמות IV-V מעורבות. <b>הוספת Cisplatin להקרנה (כימו-הקרנה)</b> — שני הממצאים "הגדולים": <span class="key">שוליים חיוביים או ENE</span> (מחקרי EORTC 22931 ו-RTOG 9501).</p>
+
+<table>
+  <tr><th>תרופה</th><th>סוג / מנגנון</th><th>על מה פועלת</th><th>איך זה עוזר כאן</th><th>קונטרא-אינדיקציות / רעילות עיקרית</th></tr>
+  <tr><td><b>Cisplatin</b> (Platinol) — 100 מ"ג/מ"ר כל 3 שבועות או שבועי 40 מ"ג/מ"ר עם ההקרנה</td><td>מתכת פלטינה — יוצרת קישורים צולבים ב-DNA (intra-strand crosslinks)</td><td>תאים המתחלקים במהירות</td><td><b>מרגיש לקרינה</b> (radiosensitizer): מונע תיקון נזקי DNA שהקרינה יוצרת → יותר מוות תאי; בשוליים חיוביים/ENE משפר שליטה מקומית והישרדות</td><td>אי-ספיקת כליות (GFR נמוך), ירידת שמיעה קיימת/טנטון, נוירופתיה, ECOG גרוע; רעילות: נפרוטוקסיות (הידרציה + Mg), אוטוטוקסיות, בחילות קשות</td></tr>
+  <tr><td><b>Cetuximab</b> (Erbitux)</td><td>נוגדן חד-שבטי נגד <span class="term" dir="ltr">EGFR</span></td><td>תאי SCC עם ביטוי-יתר של EGFR (מעל 90% מ-HNSCC)</td><td>חוסם איתות פרוליפרציה ומגביר רגישות לקרינה; חלופה <b>לחולים שאינם מתאימים לציספלטין</b>. ב-HPV+ <b>נחות מציספלטין</b> (RTOG 1016, De-ESCALaTE) — לכן לא לשימוש כ"הפחתת טיפול"</td><td>תגובת אינפוזיה, פריחה אקנאיפורמית, היפומגנזמיה</td></tr>
+  <tr><td><b>Pembrolizumab</b> (Keytruda)</td><td>נוגדן נגד <span class="term" dir="ltr">PD-1</span> (מעכב נקודת בקרה חיסונית)</td><td>משחרר "בלם" מתאי T ציטוטוקסיים</td><td>קו ראשון במחלה חוזרת/גרורתית עם PD-L1 CPS≥1 (KEYNOTE-048); הורחב גם לטיפול פרי-אופרטיבי במחלה נתיחה מתקדמת (KEYNOTE-689) — ודאי מול ההנחיות העדכניות במחלקה</td><td>מחלה אוטואימונית פעילה, השתלת איבר; תופעות חיסוניות (תירואידיטיס, פנאומוניטיס, קוליטיס)</td></tr>
+  <tr><td><b>Cefazolin + Metronidazole</b> או <b>Ampicillin-sulbactam</b> (Unasyn) — פרופילקסיס 24 שעות</td><td>בטא-לקטם (עיכוב דופן) ± ניטרואימידזול (נזק DNA אנאירובי)</td><td>גרם-חיוביים עוריים (סטפילוקוקים, סטרפטוקוקים) + <b>אנאירובים של חלל הפה</b> (Bacteroides, Prevotella, Peptostreptococcus)</td><td>ניתוח שפותח את רירית הפה/לוע = "נקי-מזוהם" — ללא כיסוי אנאירובי שיעור זיהום הפצע גבוה מאוד; Clindamycin באלרגיה לפניצילין</td><td>אלרגיה לבטא-לקטם (Unasyn); Metronidazole — אינטראקציה עם אלכוהול (דיסולפירם-like)</td></tr>
+</table>
+
+<div class="surgery">
+  <h4>מהלך הניתוח — דיסקציית צוואר (Neck dissection)</h4>
+  <p><b>סוגים</b>:
+  <b>רדיקלית</b> <span class="term" dir="ltr">(Radical, Crile)</span> — רמות I-V + שריר SCM + וריד ג'וגולרי פנימי (IJV) + העצב המלווה (CN XI);
+  <b>רדיקלית מותאמת</b> <span class="term" dir="ltr">(Modified radical)</span> — רמות I-V עם שימור של אחד או יותר מהשלושה (העיקרי: CN XI);
+  <b>סלקטיבית</b> <span class="term" dir="ltr">(Selective)</span> — רק הרמות בסיכון לפי אתר: חלל פה → <b>I-III</b> ("supraomohyoid"); אורופרינקס/גרון/היפופרינקס → <b>II-IV</b> (lateral); בלוטת תריס → VI.
+  <b>אלקטיבית</b> = בצוואר cN0 בסיכון לגרורות סמויות (>15-20%); <b>תרפויטית</b> = בצוואר עם מחלה קלינית.</p>
+  <h4>הכנה</h4>
+  <p>הערכה תזונתית (רבים מתת-תזונתיים — שקילת PEG/זונדה), הפסקת עישון ואלכוהול (<b>מניעת תסמונת גמילה</b> — CIWA, תיאמין), הערכת דרכי אוויר (לעיתים טרכאוסטומיה מתוכננת), טיפול שיניים לפני הקרנות, פרופילקסיס אנטיביוטי ו-VTE.</p>
+  <h4>שלבים עיקריים</h4>
+  <p>חתך בקפל עור צווארי → הרמת מתלה עור מתחת ל-<span class="term" dir="ltr">platysma</span> (תוך שמירה על <b>הענף המרגינלי-מנדיבולרי של CN VII</b> — "Hayes Martin maneuver": קשירת הווריד הפנימי-פני והרמתו מעלה) → זיהוי ה-SCM ופתיחת המעטפת שלו → זיהוי IJV, עורק תרדמה ו-CN X בנדן הקרוטידי → זיהוי <b>CN XI</b> ב-level II ושמירה עליו → הוצאת הרקמה הפיברו-שומנית "en bloc" רמה אחרי רמה, תוך שמירה על <b>CN XII</b> (מתחת לגיד הדיגסטרי), <b>העצב הפרני</b> (על שריר ה-scalenus anterior), ומקלעת הזרוע → ב-level IV שמאלי — זיהוי וקשירה של ענפי <b>צינור החזה</b> → נקזים סגורים.</p>
+  <h4>נקודות בטיחות קריטיות</h4>
+  <ul>
+    <li><b>CN XI</b> — פגיעה → "<b>תסמונת כתף</b>" <span class="term" dir="ltr">(shoulder syndrome)</span>: שיתוק טרפזיוס, שמטת כתף, כאב, קושי בהרמת זרוע מעל 90°, כנפיות שכמה לטרלית.</li>
+    <li><b>ענף מרגינלי-מנדיבולרי של CN VII</b> — אסימטריה של השפה התחתונה (חיוך עקום).</li>
+    <li><b>צינור החזה (level IV שמאל)</b> — <b>דליפת כיל</b> <span class="term" dir="ltr">(chyle leak)</span>: נוזל חלבי בנקז שעולה עם תחילת הזנה, טריגליצרידים >110 מ"ג/ד"ל; טיפול: דיאטה דלת שומן עם MCT (שמזדהים ישירות לווריד השער ועוקפים את הלימפה), לחץ מקומי, אוקטראוטיד; ניקוז גבוה/ממושך → ניתוח חוזר.</li>
+    <li><b>CN XII</b> (סטיית לשון לצד הפגוע), <b>עצב לינגואלי</b> (level IB), <b>עצב פרני</b> (הרמת סרעפת).</li>
+    <li><b>קרע עורק התרדמה</b> <span class="term" dir="ltr">(Carotid blowout)</span> — סיבוך קטלני, בעיקר אחרי הקרנות + פיסטולה/זיהום; לעיתים קודם לו "דימום זקיף" (sentinel bleed) → הכנה לדיאגנוסטיקה/אמבוליזציה/סטנט.</li>
+  </ul>
+  <h4>החלמה</h4>
+  <p>נקזים עד תפוקה נמוכה (לרוב &lt;30 מ"ל/יום), מעקב המטומה (סכנה לדרכי אוויר — פתיחת תפרים ליד המיטה אם יש סטרידור), פיזיותרפיה לכתף, בליעה ודיבור. סימני אזהרה: נפיחות צווארית מתגברת, קוצר נשימה, חום, נוזל חלבי בנקז, דימום מהפצע/פה.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TdKQ22w70t0" title="Level II-IV Select Neck Dissection" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמה ניתוחית של דיסקציית צוואר סלקטיבית רמות II-IV — שימי לב לזיהוי העצב המלווה (CN XI), הווריד הג'וגולרי הפנימי והנדן הקרוטידי. מקור: YouTube.</p>
+
+<p><b>טכניקות נוספות</b>: <b>TORS</b> <span class="term" dir="ltr">(Transoral robotic surgery)</span> ו-<b>TLM</b> <span class="term" dir="ltr">(Transoral laser microsurgery)</span> — כריתה דרך הפה של גידולי אורופרינקס/גרון מוקדמים, ללא חיתוך הלסת, עם תפקוד בליעה טוב יותר. <b>ביופסיית קשרית זקיף</b> <span class="term" dir="ltr">(Sentinel lymph node biopsy)</span> — חלופה מקובלת לדיסקציה אלקטיבית בגידולי חלל פה T1-T2 cN0 במרכזים מנוסים. <b>שחזור</b> — מתלים חופשיים מיקרו-וסקולריים (radial forearm לרקמה רכה; <b>fibula</b> לשחזור לסת).</p>
+
+<p><b>בלוטות רוק — בקצרה</b>: "<b>כלל ה-80</b>" לפרוטיד (ראי טכניקות זכירה). הגידול השפיר השכיח — <b>אדנומה פלאומורפית</b> (לכן כורתים עם שוליים — <b>פרוטידקטומיה שטחית</b> עם שמירה על CN VII, ולא "אנוקליאציה" שמשאירה פסאודופודים וחוזרת); <b>גידול וורטין</b> — מעשנים, דו-צדדי, קולט Tc-99m; הממאיר השכיח — <b>מוקואפידרמואיד</b>; <b>אדנואיד ציסטי</b> — <b>חדירה פרינוירלית</b>, גרורות ריאה מאוחרות. חולשת עצב פני עם גוש בפרוטיד = ממאירות עד שיוכח אחרת. תסמונת פריי <span class="term" dir="ltr">(Frey)</span> אחרי פרוטידקטומיה — הזעה בלחי בזמן אכילה, בגלל חידוש עצבוב שגוי של סיבים פרא-סימפטטיים לבלוטות זיעה.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/60ys-dAMxI8" title="Head and Neck Cancer Surgery - Mayo Clinic" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Mayo Clinic — ניתוחי סרטן ראש-צוואר: גישה רב-תחומית, שחזור ושיקום תפקודי. מקור: YouTube.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>כלל ה-80 לבלוטות רוק (מקובל בספרות)</h3>
+  <p><b>80%</b> מגידולי בלוטות הרוק — בפרוטיד<br>
+  <b>80%</b> מגידולי הפרוטיד — שפירים<br>
+  <b>80%</b> מהשפירים — אדנומה פלאומורפית<br>
+  (ולהפך: ככל שהבלוטה <b>קטנה</b> יותר — תת-לסתית, תת-לשונית, בלוטות רוק זעירות — כך הסיכוי לממאירות <b>גבוה</b> יותר)</p>
+
+  <h3>ראשי תיבות מקוריים — דגלים אדומים: "<span dir="ltr">NECK</span>"</h3>
+  <p><b>N</b> — Node: גוש צווארי ללא כאב במבוגר<br>
+  <b>E</b> — Ear: כאב אוזן עם אוזן תקינה (CN IX/X)<br>
+  <b>C</b> — Croaky voice: צרידות מעל 3 שבועות<br>
+  <b>K</b> — Keeps not healing: כיב בפה שלא נרפא / אריתרופלקיה</p>
+
+  <h3>רמות לפי אתר: "פה = 1-3, לוע וגרון = 2-4"</h3>
+
+  <h3>סיפור דמיוני — "הפורץ והנורה המהבהבת"</h3>
+  <p>בבית (התא) יש שני שומרים: <b>p53</b> — השומר שבודק שאין נזק לפני שנותנים לאורחים להיכנס, ו-<b>Rb</b> — השוער שמחזיק את דלת הכניסה (שלב S) נעולה. ליד השוער יש <b>נורת אזעקה בשם p16</b> שנדלקת כשצריך לחזק את הנעילה — ו-Rb עצמו מכבה אותה כשהכול בסדר. בא פורץ מתוחכם, <b>HPV</b>, עם שני כלים: <b>E6</b> שמרדים את השומר p53 (בלי לפצוע אותו — הוא עדיין שלם, רק ישן), ו-<b>E7</b> שכובל את השוער Rb. הדלת נפתחת לרווחה, ואף אחד לא נמצא כדי לכבות את נורת p16 — <b>היא מהבהבת בלי הפסקה</b> (צביעת p16 חזקה). הבלש (הפתולוג) רואה את הנורה ויודע מיד: "זה היה HPV". ובבית השכן, של המעשן, אין פורץ — יש <b>שריפה איטית</b> שממיסה את השומרים עצמם (מוטציה ב-p53) ושורפת את הנורה (p16 נמחק) — ובגלל שהעשן מילא את <b>כל הרחוב</b>, גם הבתים הסמוכים מתחילים לבעור (field cancerization).</p>
+  <svg class="diagram" viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg">
+    <title>המטאפורה: הפורץ והנורה המהבהבת</title>
+    <rect x="30" y="60" width="180" height="120" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <polygon points="30,60 120,15 210,60" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+    <rect x="100" y="120" width="40" height="60" fill="#fff" stroke="#2563eb"/>
+    <text x="120" y="112" font-size="11" text-anchor="middle" fill="#1f2937">דלת פתוחה</text>
+    <circle cx="180" cy="85" r="13" fill="#fde047" stroke="#b45309" stroke-width="2"/>
+    <text x="180" y="89" font-size="9" text-anchor="middle" fill="#1f2937">p16</text>
+    <text x="180" y="112" font-size="9.5" text-anchor="middle" fill="#b45309">מהבהבת!</text>
+    <text x="65" y="90" font-size="10" text-anchor="middle" fill="#4b5563">p53 ישן</text>
+    <text x="65" y="165" font-size="10" text-anchor="middle" fill="#4b5563">Rb כבול</text>
+    <text x="120" y="200" font-size="11.5" text-anchor="middle" fill="#2563eb">HPV: E6 + E7</text>
+    <rect x="300" y="60" width="180" height="120" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+    <polygon points="300,60 390,15 480,60" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+    <path d="M330,180 Q340,140 355,160 Q365,120 380,155 Q395,110 410,150 Q425,125 440,180 Z" fill="#fb923c" opacity="0.8"/>
+    <circle cx="450" cy="85" r="13" fill="#9ca3af" stroke="#4b5563" stroke-width="2"/>
+    <text x="450" y="89" font-size="9" text-anchor="middle" fill="#fff">p16</text>
+    <text x="450" y="112" font-size="9.5" text-anchor="middle" fill="#4b5563">שרופה</text>
+    <text x="340" y="90" font-size="10" text-anchor="middle" fill="#4b5563">p53 נמס</text>
+    <text x="390" y="200" font-size="11.5" text-anchor="middle" fill="#b91c1c">טבק: שריפה ברחוב כולו</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK536998/" target="_blank">Neck Cancer Resection and Dissection — StatPearls</a>
+    <div class="desc">פרק ייחוס על סוגי דיסקציית צוואר, רמות, אינדיקציות וסיבוכים.</div></li>
+  <li><a href="https://ascopubs.org/doi/10.1200/JCO.18.01921" target="_blank">Management of the Neck in SCC of the Oral Cavity and Oropharynx — ASCO Guideline</a>
+    <div class="desc">הנחיית ASCO: מתי דיסקציה אלקטיבית, אילו רמות, ומספר קשריות מינימלי (≥18).</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12939434/" target="_blank">Elective Neck Dissection Guided by AJCC-8 DOI — Systematic Review (PMC)</a>
+    <div class="desc">סקירה שיטתית על סף עומק החדירה (~4 מ"מ) להמלצה על דיסקציה אלקטיבית בחלל הפה.</div></li>
+  <li><a href="https://radiologyassistant.nl/head-neck/cervical-node-mapping/cervical-node-map" target="_blank">Cervical Lymph Node Map — The Radiology Assistant</a>
+    <div class="desc">מפת רמות קשריות הצוואר בחתכי CT, עם הגבולות האנטומיים של כל רמה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Diagram_showing_the_lymph_nodes_in_the_head_and_neck_CRUK_310.svg" target="_blank">Diagram — lymph nodes in the head and neck (CRUK, Wikimedia)</a>
+    <div class="desc">איור נוסף של קשריות הלימפה בראש ובצוואר (גיבוי לתמונה המוטמעת).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Orale_Leukoplakie.jpg" target="_blank">Oral leukoplakia (Wikimedia)</a> · <a href="https://commons.wikimedia.org/wiki/File:Oropharyngeal_Cancer.jpg" target="_blank">Oropharyngeal Cancer (Wikimedia)</a>
+    <div class="desc">קישורי גיבוי לתמונות המוטמעות בסיכום.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=9EhqPj9AIvI" target="_blank">What is Head and Neck Cancer? — YouTube</a>
+    <div class="desc">סרטון מבוא קצר למטופלים/סטודנטים על סוגי סרטן ראש-צוואר.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 52, מהנדס, <b>לא עישן מעולם</b>, שותה יין בסופי שבוע, מגיע בגלל <b>גוש בצד ימין של הצוואר שהתגלה לפני חודשיים, ללא כאב</b>. רופא המשפחה נתן אנטיביוטיקה ללא שיפור. מציין <b>כאב קל באוזן ימין</b> בבליעה. בבדיקה: גוש 3.5 ס"מ, נייד חלקית, ב-level IIA מימין; <b>אוזניים תקינות</b> באוטוסקופיה. שקד ימין מעט אסימטרי, ובמישוש בסיס הלשון מורגשת התקשות קלה. לרינגוסקופיה גמישה: מיתרי קול תקינים. אולטרסאונד: קשרית <b>ציסטית</b> בחלקה. FNA: קרצינומה קשקשית, <b>p16 חיובי</b> בצביעה חזקה ודיפוזית. CT: קשרית 3.5 ס"מ ב-IIA ללא סימני ENE, ומסה 2 ס"מ בשקד ימין.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע נמצא ביטוי-יתר של p16 בגידול של החולה?</div>
+  <button class="opt" data-i="0">מוטציה מפעילה בגן CDKN2A שנגרמה ע"י אלכוהול</button>
+  <button class="opt" data-i="1">חלבון E6 של HPV מגביר ישירות את שעתוק p16</button>
+  <button class="opt" data-i="2">חלבון E7 משבית את Rb, וכך מבוטל המשוב השלילי שבו Rb מדכא את ביטוי p16</button>
+  <button class="opt" data-i="3">הגידול מבטא p16 כתגובה לנמק בקשרית הציסטית</button>
+  <div class="explain">נכון (3): E7 נקשר ל-Rb ומשבית אותו; בתא תקין Rb פעיל מדכא את p16, וכשהוא מושבת התא מייצר p16 בכמויות — שאינו יעיל כי הציר CDK4/6→Rb מנותק. (1) אלכוהול/טבק דווקא גורמים ל<b>אובדן</b> p16. (2) E6 פועל על p53, לא על p16. (4) נמק אינו מנגנון לביטוי p16.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מהו ההסבר לכאב האוזן של החולה למרות בדיקת אוזן תקינה?</div>
+  <button class="opt" data-i="0">כאב מוקרן דרך עצבים קרניאליים IX ו-X המעצבבים גם את הלוע וגם את האוזן</button>
+  <button class="opt" data-i="1">דלקת אוזן תיכונה עם תפליט עקב חסימת החצוצרה</button>
+  <button class="opt" data-i="2">לחץ ישיר של הקשרית על עצב הפנים (CN VII)</button>
+  <button class="opt" data-i="3">גרורה לעצם הטמפורלית</button>
+  <div class="explain">נכון (1): הלוע (CN IX) וגם תעלת השמע/אוזן תיכונה (ענפי ג'ייקובסון מ-IX וארנולד מ-X) חולקים עצבוב — המוח "ממקם" את הכאב באוזן. (2) דלקת עם תפליט חד-צדדית אופיינית לגידול בלוע <b>האפי</b> (חסימת חצוצרה), ואז הבדיקה לא הייתה תקינה. (3) לחץ על CN VII גורם לחולשת פנים, לא לכאב אוזן. (4) לא סביר ולא מתאים לתמונה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מה הצעד הבא הנכון אילו ה-FNA לא היה אבחנתי?</div>
+  <button class="opt" data-i="0">כריתה פתוחה (excisional biopsy) של הקשרית במרפאה</button>
+  <button class="opt" data-i="1">קורס נוסף של אנטיביוטיקה ומעקב 6 שבועות</button>
+  <button class="opt" data-i="2">דיסקציית צוואר רדיקלית מיידית</button>
+  <button class="opt" data-i="3">חזרה על ביופסיה (FNA/core) מונחית אולטרסאונד ובמקביל הדמיה ופאנאנדוסקופיה לאיתור הראשוני</button>
+  <div class="explain">נכון (4): כשמחשידים SCC, קודם מחזרים דגימה פחות פולשנית ומחפשים את המקור (שקד/בסיס לשון). (1) ביופסיה פתוחה כצעד ראשון מפזרת גידול ופוגעת בטיפול העתידי — מבצעים רק אם כל השאר נכשל, ובתכנון להמרה לדיסקציה. (2) גוש צווארי במבוגר שלא הגיב לאנטיביוטיקה = ממאירות עד שיוכח אחרת — אסור לדחות. (3) אין מקום לניתוח רדיקלי בלי אבחנה ושלב.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. החולה עבר TORS ודיסקציית צוואר. בפתולוגיה: שוליים נקיים, קשרית אחת עם <b>ENE</b>. מה הטיפול האדג'ובנטי המתאים?</div>
+  <button class="opt" data-i="0">מעקב בלבד, כי HPV+ מבטיח פרוגנוזה מצוינת</button>
+  <button class="opt" data-i="1">הקרנה בשילוב Cisplatin</button>
+  <button class="opt" data-i="2">הקרנה בשילוב Cetuximab כדי להפחית רעילות</button>
+  <button class="opt" data-i="3">Pembrolizumab לבד</button>
+  <div class="explain">נכון (2): ENE ושוליים חיוביים הם שתי האינדיקציות הקלאסיות להוספת ציספלטין להקרנה (EORTC 22931/RTOG 9501). (1) HPV+ משפר פרוגנוזה אך לא מבטל אינדיקציה אדג'ובנטית. (3) Cetuximab נחות מציספלטין ב-HPV+ (RTOG 1016) — שמור ללא-מתאימים לציספלטין. (4) אימונותרפיה לבד אינה הסטנדרט במצב זה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. יומיים אחרי דיסקציית צוואר שמאלית (כולל level IV), עם תחילת האכלה, הנקז מפריש 600 מ"ל ביום של נוזל חלבי. מה הסיבה והטיפול הראשוני?</div>
+  <button class="opt" data-i="0">זיהום בפצע — פתיחת הפצע ו-Unasyn IV</button>
+  <button class="opt" data-i="1">פיסטולה של רוק — צום וטיפול באוקטראוטיד בלבד</button>
+  <button class="opt" data-i="2">פגיעה בצינור החזה — דיאטה דלת שומן עם MCT, לחץ מקומי ± אוקטראוטיד; תפוקה גבוהה/מתמשכת → ניתוח חוזר</button>
+  <button class="opt" data-i="3">פגיעה בווריד הג'וגולרי — ניתוח חוזר מיידי לקשירה</button>
+  <div class="explain">נכון (3): צינור החזה מתנקז לצומת הוורידים בצד שמאל ב-level IV; נוזל חלבי שעולה עם אכילת שומן = כיל (טריגליצרידים >110). MCT נספגים ישירות לווריד השער ולכן מקטינים את זרימת הלימפה. (1) זיהום לא נראה כנוזל חלבי. (2) פיסטולת רוק שקופה ורלוונטית כשנפתח חלל הפה/לוע. (4) דימום ורידי יופיע כדם/המטומה, לא כנוזל חלבי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. אישה בת 64, מעשנת כבדה, עם SCC בשולי הלשון הניידת, 1.8 ס"מ, <b>עומק חדירה 6 מ"מ</b>, צוואר cN0. מה הטיפול המתאים?</div>
+  <button class="opt" data-i="0">כריתה רחבה של הגידול + דיסקציית צוואר סלקטיבית אלקטיבית (רמות I-III)</button>
+  <button class="opt" data-i="1">כריתה של הגידול בלבד ומעקב צוואר</button>
+  <button class="opt" data-i="2">כימו-הקרנה ראשונית לשימור איבר</button>
+  <button class="opt" data-i="3">דיסקציית צוואר רדיקלית כולל SCM, IJV ו-CN XI</button>
+  <div class="explain">נכון (1): בחלל הפה ניתוח הוא הטיפול הראשוני; DOI מעל ~4 מ"מ מנבא גרורות סמויות בשיעור גבוה → דיסקציה אלקטיבית של הרמות בסיכון (I-III, supraomohyoid). (2) מעקב בלבד מתאים לגידולים שטחיים מאוד. (3) הקרנה ראשונית בחלל הפה פחות מועדפת (אוסטאורדיונקרוזיס, תוצאות נחותות). (4) דיסקציה רדיקלית אינה מוצדקת בצוואר cN0 — מחיר תפקודי גבוה ללא תועלת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מה זה</b>: ~90% מסרטני הפה, הלוע והגרון הם SCC; שני מסלולים — טבק+אלכוהול (סינרגיה, TP53 מוטנטי, field cancerization) ו-HPV-16 (אורופרינקס, E6→p53, E7→Rb, p16↑).</li>
+    <li><b>HPV+</b>: צעיר, לא מעשן, ראשוני קטן + קשרית ציסטית; פרוגנוזה טובה; p16 סמן חלופי רק באורופרינקס; שלבי AJCC נפרדים.</li>
+    <li><b>דגלים אדומים</b>: גוש צווארי במבוגר, כאב אוזן מוקרן (IX/X), צרידות >3 שבועות, כיב לא מחלים, אריתרופלקיה, טריזמוס.</li>
+    <li><b>בירור</b>: בדיקה + אנדוסקופיה → FNA (לא ביופסיה פתוחה!) → CT/MRI → p16 → PET-CT → פאנאנדוסקופיה (גידול ראשוני שני).</li>
+    <li><b>רמות צוואר</b>: I תת-סנטרי/תת-לסתי, II-IV ג'וגולרי (II השכיח), V משולש אחורי, VI מרכזי; פה → I-III, לוע/גרון → II-IV.</li>
+    <li><b>טיפול</b>: מוקדם → חד-אופני; מתקדם → ניתוח + RT/CRT או CRT ראשוני; חלל פה → ניתוח ראשון; DOI >4 מ"מ → דיסקציה אלקטיבית; שוליים+/ENE → Cisplatin+RT; Cetuximab נחות ב-HPV+; Pembrolizumab במחלה חוזרת/גרורתית.</li>
+    <li><b>סיבוכי דיסקציה</b>: CN XI (תסמונת כתף), ענף מרגינלי CN VII, CN XII, דליפת כיל (level IV שמאל → MCT), המטומה, carotid blowout.</li>
+    <li><b>בלוטות רוק</b>: כלל ה-80; אדנומה פלאומורפית → פרוטידקטומיה שטחית; חולשת VII + גוש = ממאירות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
