@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 19: מבוא לשחזור שד בשתלים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 19: מבוא לשחזור שד בשתלים <span class="term" dir="ltr">Introduction to Prosthetic Breast Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast (מהדורה 5) | פרק 19 | Maurice Y. Nahabedian</div>
+
+<p>שחזור בשתלים (<span class="term" dir="ltr">prosthetic reconstruction</span>) הוא <b>צורת השחזור השכיחה ביותר אחרי מסטקטומיה</b>. פרק המבוא סוקר את ההתקדמויות והנסיגות מאז המהדורה הקודמת: <b>התקדמות</b> – מיקום <b>פרה-פקטורלי</b> (מעל שריר החזה) הפך לאופציה מקובלת ואף לשכיחה; <b>נסיגה</b> – משיכת שתלים מרקם מחוספס (textured) בגלל <b>BIA-ALCL</b>; ו<b>נושאים שנויים במחלוקת</b> – "מחלת שתלי שד" (BII) והשימוש ברשתות/ADM.</p>
+
+<h2><span class="num">1</span> BIA-ALCL – למה עברו לשתלים חלקים</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת האירועים:</p>
+  <p>קשר בין <b>שתלים בעלי מרקם מחוספס (textured)</b> ל-<b>לימפומה אנפלסטית של תאים גדולים (ALCL)</b> ← ויכוח בין רשויות, תעשייה, מנתחים ומטופלות ← <b>משיכה וולונטרית של שתלי macrotextured ע"י Allergan</b> ← מעבר לשתלים <b>חלקים (smooth)</b>, כי <span class="key">עד היום לא דווח מקרה ALCL במטופלת שהיו לה רק שתלים חלקים</span>.</p>
+  <p><b>שכיחות</b>: נמוכה – בערך <b>1 ל-2,000–3,000 מטופלות</b> (הערכה שמשתנה כל הזמן). טכנולוגיית השתלים החלקים ממשיכה להתפתח כדי למזער דלקת ברקמה הרכה ולשפר את הממשק גוף-שתל. (הנושא מפורט בפרק נפרד בכרך.)</p>
+</div>
+
+<h2><span class="num">2</span> Breast Implant Illness (BII)</h2>
+<p>תופעה <b>לא מובנת היטב</b>, שחזרה לדיון בעקבות פרסומים על קשר אפשרי לשתלים ולמחלות רקמת חיבור. מאופיינת באוסף תסמינים <b>מדווחי-מטופלת</b>: כאבי שרירים, כאבי ראש, כאבי מפרקים, "ערפל מוחי" (brain fog), חולשה כללית. תוארה אחרי הגדלה ושחזור, עם שתלי סליין ושתלי סיליקון. חלק מהמומחים סבורים שזו <b>תגובה מסוג אלרגי</b> לשתל.</p>
+<table>
+  <thead><tr><th>מצב</th><th>המלצה</th></tr></thead>
+  <tbody>
+    <tr><td>מטופלת <b>א-תסמינית</b></td><td>מעקב <b>או</b> הוצאת השתל (explantation)</td></tr>
+    <tr><td><b>קפסולקטומיה</b> (כריתת הקופסית)</td><td>מומלצת ב: <b>התכווצות קופסית Baker 3–4</b>, <b>היסטוריה של הקרנה</b>, <b>קופסית מסוידת</b></td></tr>
+    <tr><td><b>En bloc capsulectomy</b> (כריתת שתל + קופסית כיחידה אחת)</td><td><b>רק ב-ALCL או ממאירות שמערבת את הקופסית</b> – <b>לא</b> למצבים שפירים (גם אם המטופלת מבקשת בגלל BII)</td></tr>
+  </tbody>
+</table>
+<p class="key-box">מלכודת מבחן: מטופלות רבות עם BII מבקשות en bloc capsulectomy – אבל לפי הפרק en bloc שמור <b>לממאירות בלבד</b>.</p>
+
+<h2><span class="num">3</span> Acellular Dermal Matrix (ADM) ורשתות</h2>
+<p><b>ADM</b> – "פיגום" ביולוגי מעור (אדם/חיה) שהוסרו ממנו התאים, שנותן כיסוי ותמיכה לשתל ומתאכלס בכלי דם של המטופלת. מאפשר תוצאות אסתטיות מעבר למה שהיה אפשרי – אבל <b>השימוש אינו אוניברסלי</b>:</p>
+<ul>
+  <li>נתונים סותרים: חלק מהמחקרים – <b>יותר סיבוכים</b> עם ADM; אחרים – ללא הבדל.</li>
+  <li>ה-<b>FDA</b> פרסם אזהרת בטיחות: שימוש ב-ADM בשחזור שד הוא <b>off-label</b>, ו<b>אין מחקר רמה 1 או 2</b> שמוכיח יעילות.</li>
+  <li>סקר 891 מטופלות: <b>ללא הבדל ב-PROs</b> בשחזור תת-פקטורלי עם/בלי רשת; <b>סימנים ראשוניים לשיפור PROs בשחזור פרה-פקטורלי עם רשת</b>.</li>
+</ul>
+
+<h2><span class="num">4</span> שלושת מישורי ההנחה – השוואה</h2>
+<svg class="diagram" viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+  <title>מישורי הנחת שתל</title>
+  <!-- right: total submuscular -->
+  <text x="730" y="22" font-size="13" text-anchor="middle" font-weight="700" fill="#1e3a8a">תת-שרירי מלא</text>
+  <rect x="640" y="35" width="10" height="190" fill="#9ca3af"/>
+  <path d="M650,55 Q800,130 650,205" fill="none" stroke="#b91c1c" stroke-width="10"/>
+  <ellipse cx="690" cy="130" rx="32" ry="55" fill="#bfdbfe" stroke="#2563eb"/>
+  <path d="M650,40 Q830,130 650,220" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <text x="730" y="245" font-size="11" text-anchor="middle" fill="#374151">שריר מכסה את כל השתל</text>
+  <!-- middle: dual plane -->
+  <text x="430" y="22" font-size="13" text-anchor="middle" font-weight="700" fill="#065f46">Dual plane</text>
+  <rect x="340" y="35" width="10" height="190" fill="#9ca3af"/>
+  <path d="M350,55 Q470,95 440,150" fill="none" stroke="#b91c1c" stroke-width="10"/>
+  <path d="M440,150 Q430,195 350,205" fill="none" stroke="#6d28d9" stroke-width="5" stroke-dasharray="6 3"/>
+  <ellipse cx="390" cy="130" rx="32" ry="55" fill="#bfdbfe" stroke="#2563eb"/>
+  <path d="M350,40 Q530,130 350,220" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <text x="430" y="245" font-size="11" text-anchor="middle" fill="#374151">שריר 2/3 עליונים + ADM/עור 1/3 תחתון</text>
+  <!-- left: prepectoral -->
+  <text x="130" y="22" font-size="13" text-anchor="middle" font-weight="700" fill="#78350f">פרה-פקטורלי</text>
+  <rect x="40" y="35" width="10" height="190" fill="#9ca3af"/>
+  <path d="M50,60 Q75,130 50,200" fill="none" stroke="#b91c1c" stroke-width="10"/>
+  <ellipse cx="110" cy="130" rx="32" ry="55" fill="#bfdbfe" stroke="#2563eb"/>
+  <path d="M68,70 Q180,130 68,190" fill="none" stroke="#6d28d9" stroke-width="4" stroke-dasharray="6 3"/>
+  <path d="M50,40 Q230,130 50,220" fill="none" stroke="#f59e0b" stroke-width="3"/>
+  <text x="130" y="245" font-size="11" text-anchor="middle" fill="#374151">שתל (± ADM) מעל השריר, מתחת לעור</text>
+  <!-- legend -->
+  <rect x="560" y="60" width="12" height="6" fill="#b91c1c"/><text x="555" y="67" font-size="11" text-anchor="end">פקטורליס</text>
+  <rect x="560" y="80" width="12" height="6" fill="#6d28d9"/><text x="555" y="87" font-size="11" text-anchor="end">ADM</text>
+  <rect x="560" y="100" width="12" height="6" fill="#f59e0b"/><text x="555" y="107" font-size="11" text-anchor="end">עור מסטקטומיה</text>
+</svg>
+<p class="figcap">סכמה (מבט צידי, דופן החזה משמאל לכל צורה): אפור = צלעות, אדום = פקטורליס מייג'ור, סגול מקווקו = ADM, כתום = פלאפ עור.</p>
+
+<table>
+  <thead><tr><th></th><th>תת-שרירי מלא (total submuscular)</th><th>Dual plane (תת-שרירי חלקי)</th><th>פרה-פקטורלי</th></tr></thead>
+  <tbody>
+    <tr><td>למה פותח</td><td>שנות ה-70: מסטקטומיות אגרסיביות עם פלאפי עור דקים ולא מדוממים ← שכבת הגנה נוספת; אם העור לא מחלים – עדיין אפשר להציל</td><td>שילוב כיסוי שריר למעלה עם עיצוב קוטב תחתון טבעי</td><td>מסטקטומיה טובה יותר, שתלים טובים יותר, ADM ו<b>השתלת שומן</b></td></tr>
+    <tr><td>יתרונות</td><td>תמיכה מבנית מיטבית לאקספנדר/שתל; מגן מפני אובדן השחזור בנמק פלאפ; <b>בדרך כלל ללא ADM</b></td><td>יותר כיסוי רקמה, <b>פחות התכווצות קופסית</b>, קוטב עליון מתחדד טבעי וקוטב תחתון בולט</td><td><b>פחות animation</b>, מיקום אופטימלי על דופן החזה, <b>בליטת קוטב תחתון</b> טובה יותר; פחות נמק פלאפ ופחות התכווצות קופסית (מטא-אנליזה)</td></tr>
+    <tr><td>חסרונות</td><td>—</td><td><b>Animation deformity</b> (תזוזת השד בכיווץ השריר) ← כאב, עוויתות, תזוזת שתל</td><td><b>Rippling ו-wrinkling</b> (מרחק קטן בין שתל לעור), <b>צורך בהשתלת שומן</b></td></tr>
+    <tr><td>דרישה</td><td></td><td>לרוב + ADM בקוטב התחתון</td><td><b>פלאפ עור מדומם היטב</b> ושימור שכבת השומן התת-עורית; ADM נפוץ אך <b>לא חובה</b></td></tr>
+  </tbody>
+</table>
+
+<h3>נתונים מרכזיים</h3>
+<ul>
+  <li><b>Ivey</b> – כיסוי שריר מלא (408) מול ADM (73): סיבוכים <b>8.8% מול 20.5%</b> (p=0.005) – פחות הוצאת אקספנדר, סרומות והמטומות בקבוצת השריר. <b>אבל</b>: בקבוצת ה-ADM יותר מעשנות (16.3% מול 11.7%) ויותר הקרנות (37.2% מול 20.3%) – <b>גורם מבלבל</b>.</li>
+  <li><b>Nelson</b> – 2,932 מטופלות, מעקב 8 שנים: איכות החיים נשמרת לאורך זמן.</li>
+  <li>פרה-פקטורלי מול תת-פקטורלי חלקי (39 מול 50): אירוע שלילי <b>20.5% מול 22%</b> – <b>שקילות</b>.</li>
+  <li>מטא-אנליזה (3,014 מטופלות, 4,692 שדיים) פרה-פקטורלי: הסיבוכים השכיחים – <b>rippling 8.7%</b>, סרומה 3.8%, נמק פלאפ 3.8%. לעומת תת-פקטורלי – <b>פחות נמק פלאפ ופחות התכווצות קופסית</b>; זיהום, סרומה והמטומה – שווים.</li>
+  <li>מעקב ארוך פרה-פקטורלי (139 שדיים): סימטריה יורדת עם הזמן (84.4% ← 68.9% ← 56.7%); rippling 19.4%; התכווצות קופסית 3–4: <b>10.1%</b>; השתלת שומן משנית 23.7%.</li>
+</ul>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lv8w0dj3k-4" title="Direct To Implant Prepectoral Breast Reconstruction Using AlloMend Dermal Matrix" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">שחזור direct-to-implant פרה-פקטורלי עם עטיפת ADM (YouTube).</p>
+
+<h3>המרה פרה-פקטורלית (Prepectoral conversion)</h3>
+<p>למטופלות עם <b>animation deformity</b> אחרי dual plane: הוצאת השתל התת-שרירי ← <b>החזרת הפקטורליס לדופן החזה</b> ← יצירת כיס פרה-פקטורלי ← שתל חדש (± ADM). <b>Kraenzlin</b>: animation ירד מ-<b>87.8% ל-7.8%</b>; rippling 19.5%.</p>
+
+<h2><span class="num">5</span> שלב אחד מול שני שלבים</h2>
+<table>
+  <thead><tr><th></th><th>שני שלבים (אקספנדר ← שתל)</th><th>שלב אחד (direct-to-implant, DTI)</th></tr></thead>
+  <tbody>
+    <tr><td>שכיחות (ASPS 2019, 88,005 שחזורים)</td><td><b>82.2%</b> – השכיח ביותר בארה"ב</td><td>17.8%</td></tr>
+    <tr><td>טיעון בעד</td><td><b>שליטה</b> בתהליך ובחירת השתל האופטימלי לפי הרקמה המורחבת</td><td>תכנון ביו-ממדי מדויק ← <b>פחות ניתוחים</b>; מועדף ע"י רוב המטופלות</td></tr>
+    <tr><td>מתי לא מתאים</td><td></td><td><b>פלאפי עור דקים או מדוממים גרוע</b></td></tr>
+    <tr><td>MROC (1,427)</td><td>סיבוכים 26.2%; זיהום 10.5%; ADM ב-51.7%</td><td>סיבוכים 32.3%; זיהום 16.2% (<b>לא מובהק</b>); ADM ב-<b>92.9%</b>; <b>שיפור ב-sexual well-being</b> (p=0.047)</td></tr>
+  </tbody>
+</table>
+<p>שני הסוגים אפשריים בכל שלושת המישורים. ADM נפוץ בתת-שרירי חלקי ובפרה-פקטורלי, <b>נדיר בתת-שרירי מלא</b>.</p>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>"חלק = בטוח מ-ALCL" ו-"En bloc = ממאירות בלבד"</h3>
+  <p>קפסולקטומיה רגילה – "<b>B-R-C</b>": <b>B</b>aker 3–4, <b>R</b>adiation, <b>C</b>alcified. En bloc – רק <b>ALCL/ממאירות</b>.</p>
+  <h3>השוואת המישורים – "3 A"</h3>
+  <p><b>A</b>nimation – בעיה של dual plane (ונפתרת בפרה-פקטורלי) | <b>A</b>DM – כמעט תמיד בפרה-פקטורלי, כמעט אף פעם בשריר מלא | <b>A</b>ppearance of ripples – בעיה של פרה-פקטורלי (ונפתרת בשומן).</p>
+  <h3>סיפור דמיוני: "הכרית, השמיכה והמזרן"</h3>
+  <p>השתל הוא <b>כרית</b>. בשיטה הישנה (תת-שרירי מלא) הכרית מוחבאת <b>מתחת למזרן</b> (השריר) – מוגנת, אבל כשמישהו קופץ על המזרן (כיווץ שריר ב-dual plane) הכרית זזה (animation). בשיטה החדשה (פרה-פקטורלי) הכרית מונחת <b>מעל המזרן</b>, עטופה ב<b>ציפית</b> (ADM) ומכוסה ב<b>שמיכה</b> (עור + שומן). אין קפיצות – אבל אם השמיכה דקה, רואים את הקמטים של הכרית (rippling), ולכן מוסיפים עוד שכבת פוך (השתלת שומן).</p>
+  <svg class="diagram" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg">
+    <title>הכרית, השמיכה והמזרן</title>
+    <rect x="30" y="110" width="460" height="30" rx="6" fill="#fecaca" stroke="#b91c1c"/>
+    <text x="260" y="130" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">מזרן = שריר פקטורלי</text>
+    <ellipse cx="260" cy="85" rx="90" ry="24" fill="#bfdbfe" stroke="#2563eb"/>
+    <text x="260" y="90" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">כרית = שתל</text>
+    <ellipse cx="260" cy="85" rx="100" ry="32" fill="none" stroke="#6d28d9" stroke-width="2" stroke-dasharray="6 3"/>
+    <path d="M120,95 Q260,20 400,95" fill="none" stroke="#f59e0b" stroke-width="5"/>
+    <text x="260" y="35" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">שמיכה = עור + שומן (דקה ← rippling)</text>
+    <text x="430" y="70" font-size="11" fill="#4c1d95">ציפית = ADM</text>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> סרטונים ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/4y2cFgTKwQQ" title="Acellular Dermal Matrix Complications: Plastic Surgery Hot Topics with Rod J. Rohrich, MD" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Rod J. Rohrich – סיבוכי ADM (Plastic Surgery Hot Topics, YouTube).</p>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=lv8w0dj3k-4" target="_blank">Direct To Implant Prepectoral Breast Reconstruction</a><span class="tag">וידאו</span><div class="desc">גיבוי לסרטון ה-DTI הפרה-פקטורלי.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=4y2cFgTKwQQ" target="_blank">ADM Complications – Rohrich</a><span class="tag">וידאו</span><div class="desc">גיבוי לסרטון על סיבוכי ADM.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Breast_implant" target="_blank">Breast implant – Wikipedia</a><span class="tag">רקע</span><div class="desc">סוגי שתלים (סליין/סיליקון, חלק/מחוספס), סיבוכים ורקע על BIA-ALCL.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Breast_reconstruction" target="_blank">Breast reconstruction – Wikipedia</a><span class="tag">רקע</span><div class="desc">סקירה כללית של שחזור בשתלים, אקספנדרים ושחזור עצמי.</div></li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 44, 3 שנים אחרי מסטקטומיה דו-צדדית חוסכת פטמה ושחזור dual plane בשתלי סיליקון. מתלוננת שהשדיים "קופצים ומתעוותים" כשהיא מרימה משקולות, עם כאב ועוויתות. בבדיקה – פלאפי עור בעובי סביר ומדוממים היטב. היא גם קראה ברשת על BII ושואלת אם כדאי לבצע "en bloc".</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה האבחנה והטיפול המתאים לתלונת ה"קפיצה"?</div>
+  <button class="opt" data-i="0">התכווצות קופסית – קפסולקטומיה</button>
+  <button class="opt" data-i="1">Animation deformity – המרה פרה-פקטורלית (החזרת השריר לדופן החזה, שתל חדש מעל השריר ± ADM)</button>
+  <button class="opt" data-i="2">Rippling – השתלת שומן</button>
+  <button class="opt" data-i="3">BIA-ALCL – en bloc capsulectomy</button>
+  <div class="explain">נכון: עיוות בכיווץ השריר = animation, חיסרון מוכר של dual plane. המרה פרה-פקטורלית הורידה animation מ-87.8% ל-7.8%. התכווצות קופסית (1) היא הקשחה, לא תזוזה עם כיווץ. Rippling (3) הוא בעיה של פרה-פקטורלי. אין סימן ל-ALCL (4).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. המטופלת (ללא ממצא ממאיר) מבקשת en bloc capsulectomy בגלל BII. מה ההמלצה לפי הפרק?</div>
+  <button class="opt" data-i="0">En bloc תמיד כשמטופלת מבקשת</button>
+  <button class="opt" data-i="1">En bloc בכל התכווצות קופסית</button>
+  <button class="opt" data-i="2">אין אפשרות להוציא שתלים ב-BII</button>
+  <button class="opt" data-i="3">En bloc רק ב-ALCL או ממאירות בקופסית; בא-תסמינית – מעקב או הוצאה; קפסולקטומיה רגילה ב-Baker 3–4, הקרנה או קופסית מסוידת</button>
+  <div class="explain">נכון: en bloc אינו מומלץ למצבים שפירים. (1), (2) מרחיבים שלא לצורך; (3) שגוי – הוצאת שתל היא אופציה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה נכון לגבי BIA-ALCL?</div>
+  <button class="opt" data-i="0">קשור לשתלים מחוספסים; לא דווח מקרה עם שתלים חלקים בלבד; שכיחות ~1:2,000–3,000</button>
+  <button class="opt" data-i="1">שכיח יותר בשתלים חלקים</button>
+  <button class="opt" data-i="2">שכיחות ~1:20</button>
+  <button class="opt" data-i="3">גרם לאיסור כל שתלי הסיליקון</button>
+  <div class="explain">נכון: הקשר הוא לשתלים textured (Allergan משכה את ה-macrotextured); לא דווח מקרה עם שתל חלק בלבד. (2), (3) שגויים עובדתית; (4) – רק macrotextured נמשכו, לא כל שתלי הסיליקון.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. מה החיסרון העיקרי של מיקום פרה-פקטורלי וכיצד מטפלים בו?</div>
+  <button class="opt" data-i="0">Animation deformity – בוטוקס לשריר</button>
+  <button class="opt" data-i="1">שיעור התכווצות קופסית גבוה מתת-שרירי</button>
+  <button class="opt" data-i="2">Rippling ו-wrinkling בגלל מרחק קטן בין השתל לעור – השתלת שומן</button>
+  <button class="opt" data-i="3">שיעור נמק פלאפ גבוה יותר</button>
+  <div class="explain">נכון: rippling הוא הסיבוך השכיח ביותר (8.7% במטא-אנליזה), ולכן לעיתים קרובות צריך השתלת שומן. Animation (1) הוא בעיה של dual plane; התכווצות קופסית ונמק פלאפ (2, 4) – <b>נמוכים</b> יותר בפרה-פקטורלי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מטופלת עם פלאפי מסטקטומיה דקים ומדוממים גרוע ב-ICG. איזה שחזור מתאים יותר?</div>
+  <button class="opt" data-i="0">Direct-to-implant פרה-פקטורלי</button>
+  <button class="opt" data-i="1">שחזור בשני שלבים (אקספנדר, לרוב מתחת לשריר), ואז שתל</button>
+  <button class="opt" data-i="2">Direct-to-implant ללא ADM</button>
+  <button class="opt" data-i="3">פרה-פקטורלי עם שתל גדול במיוחד</button>
+  <div class="explain">נכון: DTI ופרה-פקטורלי <b>דורשים פלאפ עור מדומם היטב</b>. בפלאפ דק/איסכמי – שני שלבים, וכיסוי שריר נותן שכבת הגנה במקרה של נמק. (1), (3), (4) מסכנים את השתל.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">6. במחקר Ivey נמצאו יותר סיבוכים בקבוצת ה-ADM (20.5% מול 8.8%). מה ההסתייגות החשובה?</div>
+  <button class="opt" data-i="0">המחקר היה אקראי ולכן אין הסתייגות</button>
+  <button class="opt" data-i="1">בקבוצת השריר היו יותר מעשנות</button>
+  <button class="opt" data-i="2">ה-ADM היה פג תוקף</button>
+  <button class="opt" data-i="3">בקבוצת ה-ADM היו יותר מעשנות ויותר מטופלות שעברו הקרנה – גורמים מבלבלים</button>
+  <div class="explain">נכון: 16.3% מול 11.7% עישון, 37.2% מול 20.3% הקרנה – ההבדל בסיבוכים לא בהכרח נובע מה-ADM עצמו. (1) לא אקראי; (2) הפוך; (3) לא הוזכר.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שחזור בשתלים = השכיח ביותר אחרי מסטקטומיה; שני שלבים = 82% בארה"ב.</li>
+    <li>BIA-ALCL: שתלים textured, ~1:2,000–3,000; Allergan משכה macrotextured; שתלים חלקים – אין מקרים.</li>
+    <li>BII: תסמינים מדווחים (כאבים, brain fog); א-תסמינית – מעקב/הוצאה; קפסולקטומיה ב-Baker 3–4/הקרנה/סידוד; en bloc רק בממאירות.</li>
+    <li>ADM: off-label לפי ה-FDA, ללא מחקר רמה 1–2; נתוני סיבוכים סותרים.</li>
+    <li>תת-שרירי מלא: הגנה, ללא ADM. Dual plane: פחות התכווצות קופסית, קוטב טבעי – אבל animation.</li>
+    <li>פרה-פקטורלי: פחות animation, נמק והתכווצות קופסית; rippling ← שומן; דורש פלאפ מדומם.</li>
+    <li>המרה פרה-פקטורלית: animation 87.8% ← 7.8%.</li>
+    <li>DTI מול שני שלבים (MROC): סיבוכים לא שונים מובהק; DTI – יותר ADM, sexual well-being טוב יותר.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

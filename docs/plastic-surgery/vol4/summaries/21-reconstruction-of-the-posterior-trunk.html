@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 21: שחזור הגו האחורי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 21: שחזור הגו האחורי <span class="term" dir="ltr">Reconstruction of the Posterior Trunk</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity (מהדורה 5) | פרק 12 | Falola, Lombana, Altman, Saint-Cyr</div>
+
+<p>פצעי הגב נוצרים מטראומה, כריתת גידולים, לחץ כרוני או מומים מולדים (מיאלומנינגוצלה). הם <b>קשים במיוחד</b> לשחזור: <b>מעט רפיון רקמות רכות</b>, <b>מחסור בכלי דם מקבלים</b> למיקרוכירורגיה, ו<b>מיקום תלוי (dependent)</b> – המטופל שוכב עליו. מתחת עוברים מבנים חיוניים (חוט השדרה, נשימה, הגנה על קרביים, יציבה), ולעתים קרובות נוספים <b>הקרנות, ברגי קיבוע ספינליים, זיהום קשה ודליפת נוזל שדרה (CSF)</b>. לכן ריפוי שניוני או שתל עור לרוב <b>אינם מספקים</b> לפצעים בינוניים ועמוקים.</p>
+
+<h2><span class="num">1</span> ארבעת העקרונות – "למה" כל אחד</h2>
+<div class="mechanism">
+  <p class="chain">בלי קשר לפלאפ שנבחר:</p>
+  <ol>
+    <li><b>דברידמנט מלא</b> של רקמה נגועה/נמקית/פיברוטית – רקמה מתה היא מצע לחיידקים ולא תתחבר לפלאפ.</li>
+    <li><b>גיוס רקמה מדוממת היטב מחוץ לאזור הפגיעה</b> – רקמה מוקרנת/דלקתית בשולי הפצע מספקת דם גרוע.</li>
+    <li><b>סגירת כל חלל מת (empty space)</b> – חלל מת מתמלא בסרומה/המטומה ← מצע לזיהום.</li>
+    <li><b>סגירה ללא מתח</b> (וכיסוי מבנים חיוניים/ברגים בנפח מספיק) – מתח ← איסכמיה בשוליים ← פתיחה.</li>
+  </ol>
+  <p>אם עיקרון אחד לא מתקיים ← עולה הסיכון לזיהום ממושך, חלל מת מתמשך ואף אובדן פלאפ.</p>
+</div>
+
+<h3>למה דווקא שריר? – והוויכוח עם פלאפי פרפורטור</h3>
+<p>באופן מסורתי, <b>פלאפי שריר/מיוקוטניים של לטיסימוס דורסי וטרפזיוס</b> הם קו ראשון: מחקרים מוקדמים הראו עדיפות על פני פלאפים פאסיוקוטניים אקראיים או סגירה ראשונית, <b>במיוחד בנוכחות זיהום</b> – כנראה בגלל <b>הגעה טובה יותר של אנטיביוטיקה ותאי חיסון, חמצון רקמתי טוב יותר, ועיכוב צמיחת חיידקים</b>. מחקרים חדשים יותר מאתגרים זאת ותומכים ב<b>פלאפי פרפורטור</b> גם לפצעים גדולים – ריפוי אמין, קוסמזיס ותחלואה נמוכה יותר; החסרונות: <b>עקומת למידה תלולה</b> ו<b>פחות נפח</b>. מסקנת הפרק: שריר עדיין "קו ראשון" בגלל עקומת הלמידה; פרפורטור – אופציה שניונית חזקה כשרוצים לשמר שריר.</p>
+
+<h2><span class="num">2</span> אנטומיה</h2>
+<p>הגב = <b>18% משטח הגוף</b>. גבולות: למעלה – קו מ-<b>C7 (vertebra prominens)</b> לזווית האקרומיון; למטה – מעל רכסי הכסל; לצדדים – הקו האמצעי-בית-שחי.</p>
+<table>
+  <thead><tr><th>קבוצת שרירים</th><th>שרירים</th><th>תפקיד</th><th>עצבוב</th></tr></thead>
+  <tbody>
+    <tr><td><b>חיצונית/שטחית</b></td><td>טרפזיוס, לטיסימוס דורסי, levator scapulae, רומבואידים</td><td>תנועת הגפה</td><td>ענפים <b>ונטרליים</b></td></tr>
+    <tr><td><b>ביניים</b></td><td>Serratus posterior superior/inferior</td><td>נשימה</td><td></td></tr>
+    <tr><td><b>עמוקה/פנימית</b></td><td>Erector spinae (iliocostalis, longissimus, spinalis = "פרה-ספינליים"); transversospinalis (semispinalis, multifidus, rotatores)</td><td>יישור, כפיפה צידית וסיבוב עמוד השדרה</td><td>ענפים <b>דורסליים</b></td></tr>
+  </tbody>
+</table>
+<p>ארבעת האזורים (מלמעלה למטה): <b>צווארי אחורי, חזי עליון, חזי אמצעי, מותני</b>. שרירי הישבן (גלוטאוס) מתחת לגבול התחתון – חשובים לשחזור המותני.</p>
+
+<h3>פרפורטורים ותיאוריית ה-Perforasome</h3>
+<ul>
+  <li>סוגי פרפורטורים: <b>A – ישיר עורי</b> (חודר רק את הפאסיה העמוקה); <b>B – ספטוקוטני</b> (דרך מחיצה); <b>C – מוסקולוקוטני</b> (דרך השריר).</li>
+  <li><b>Perforasome</b> = אזור רקמה בתוך טריטוריה וסקולרית שמסופק ע"י פרפורטור אחד; צפיפות גבוהה במרכז ויורדת לפריפריה.</li>
+  <li>קו בגובה <b>הצלע ה-12</b> מחלק לשני "hot spots": <b>אשכול חזי</b> (ממוצע 17.8 פרפורטורים, 10–20 ס"מ מ-C7) ו<b>אשכול מותני</b> (21.5 פרפורטורים, 10–20 ס"מ מהעוקץ); צפיפות מרכזית ~0.3/סמ"ר (Aho). ביניהם – <b>אזור "קו פרשת מים" (watershed)</b> דל פרפורטורים – להימנע ממנו בתכנון.</li>
+</ul>
+<table>
+  <thead><tr><th>עקרון Perforasome</th><th>משמעות לתכנון</th></tr></thead>
+  <tbody>
+    <tr><td>1. קשר בין perforasomes – ישיר (linking vessels) או עקיף (subdermal plexus)</td><td>היפופרפוזיה "מגייסת" את השכנים</td></tr>
+    <tr><td>2. כיוון ה-linking vessels = כיוון הווסקולריות המרבית</td><td><b>לתכנן את ציר הפלאפ במקביל ל-linking vessels</b></td></tr>
+    <tr><td>3. מילוי מועדף מאותו עורק-מקור ואז משכן</td><td>למרכז מעל פרפורטורים ידועים, לכלול כמה מאותו עורק</td></tr>
+    <tr><td>4. מסת הווסקולריות ליד מפרקים ומכוונת הרחק מהם</td><td>linking vessels באמצע – זרימה דו-כיוונית</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">3</span> הפלאפים – לפי אזור</h2>
+<svg class="diagram" viewBox="0 0 860 270" xmlns="http://www.w3.org/2000/svg">
+  <title>פלאפים מועדפים לפי אזור בגב</title>
+  <rect x="330" y="10" width="200" height="245" rx="30" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="330" y="10" width="200" height="50" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="430" y="40" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">צווארי אחורי</text>
+  <rect x="330" y="65" width="200" height="60" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="100" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">חזי עליון</text>
+  <rect x="330" y="130" width="200" height="60" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="165" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">חזי אמצעי</text>
+  <rect x="330" y="195" width="200" height="60" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="230" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">מותני</text>
+  <text x="545" y="40" font-size="12" fill="#1e3a8a">← טרפזיוס, LD, keystone, TP</text>
+  <text x="545" y="100" font-size="12" fill="#065f46">← LD, טרפזיוס, keystone, TP/CSAP/ICAP</text>
+  <text x="545" y="165" font-size="12" fill="#78350f">← LD, טרפזיוס, keystone, TDAP/ICAP</text>
+  <text x="545" y="230" font-size="12" fill="#7f1d1d">← LD (reverse), גלוטאוס, LAP/GAP</text>
+  <line x1="430" y1="10" x2="430" y2="255" stroke="#6d28d9" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="315" y="100" font-size="12" text-anchor="end" fill="#4c1d95" font-weight="700">קו אמצע (עמ"ש):</text>
+  <text x="315" y="120" font-size="12" text-anchor="end" fill="#4c1d95">עמוק – פרה-ספינלי</text>
+  <text x="315" y="140" font-size="12" text-anchor="end" fill="#4c1d95">שטחי – טרפזיוס/LD</text>
+  <text x="315" y="160" font-size="12" text-anchor="end" fill="#4c1d95">גיבוי – pVRAM, אומנטום</text>
+</svg>
+<p class="figcap">סכמה לפי Algorithm 12.3 בפרק: אזור + קו אמצע/לא-קו אמצע קובעים את בחירת הפלאפ.</p>
+
+<table>
+  <thead><tr><th>פלאפ</th><th>סוג Mathes-Nahai</th><th>אספקת דם</th><th>נקודות מפתח</th></tr></thead>
+  <tbody>
+    <tr><td><b>טרפזיוס</b></td><td>II</td><td><b>Transverse cervical artery</b> (ענפים עולה ויורד); מינורי – occipital, אינטרקוסטליים</td><td>עצבוב: <b>עצב אקססורי (XI)</b> + C3–C4. 34×18 ס"מ. מורמים מלמטה למעלה. <b>סכנה: כנף עצם השכמה (scapular winging)</b> בקציר אגרסיבי/פגיעת עצב. גרסת פרפורטור (Sadigh 2014) על DSA/SCA – חוסכת שריר ואת מערכת ה-subscapular; עור עד 25×15</td></tr>
+    <tr><td><b>לטיסימוס דורסי (LD)</b></td><td><b>V</b></td><td><b>Thoracodorsal</b> (דרך subscapular) + סגמנטליים אינטרקוסטליים/מותניים</td><td><b>הפלאפ הגדול ביותר על עורק יחיד</b> (עד 20×40). עצב thoracodorsal. <b>Reverse-flow</b> מבוסס מדיאלית על פרפורטורים <b>T9–T11</b> לאזור החזי-אמצעי והמותני. <b>הפלאפ החופשי השכיח ביותר בגב</b> (בעיקר לומבוסקרלי), עובד גם אחרי הקרנה</td></tr>
+    <tr><td><b>TDAP</b></td><td>פרפורטור</td><td>פרפורטורים של thoracodorsal</td><td>פרפורטור ראשון 6–8 ס"מ מתחת לקפל בית השחי האחורי, 2 ס"מ מדיאלית לקו בית השחי האחורי; פדיקל ארוך (~18 ס"מ); עד 18×55 על פרפורטור יחיד; כימרי עם LD/סרטוס</td></tr>
+    <tr><td><b>סקפולרי / פרה-סקפולרי</b></td><td>פאסיוקוטני</td><td><b>Circumflex scapular</b> – ענף רוחבי (סקפולרי) / יורד (פרה-סקפולרי)</td><td>CSA עובר ב<b>משולש (triangular space)</b>: teres minor, teres major, ראש ארוך של טריצפס. סקפולרי – מקביל לשדרת השכמה; פרה-סקפולרי – אנכי לאורך הגבול הלטרלי</td></tr>
+    <tr><td><b>פרה-ספינלי (erector spinae)</b></td><td><b>IV</b> (סגמנטלי)</td><td>אינטרקוסטליים (פרפורטורים מדיאלי ולטרלי)</td><td><b>הבחירה הטובה ביותר לשכבה העמוקה בפצעי קו אמצע</b>. בי-פדיקולרי (מדיאלי ← לטרלי; צריבת פרפורטורים מדיאליים מגדילה התקדמות) או turnover. אחרי למינקטומיות דו-צדדיות – turnover לא אמין</td></tr>
+    <tr><td><b>ICAP</b> (DICAP, DLICAP, LICAP, AICAP)</td><td>פרפורטור</td><td>9 המרווחים הבין-צלעיים התחתונים – <b>האנגיוזום הגדול ביותר בגב</b></td><td>DICAP: עד 5 ס"מ מקו האמצע T3–T11; island / V-Y / propeller. סיבוך שכיח: <b>גודש ורידי</b> – להשאיר אי רקמה סביב הפרפורטור</td></tr>
+    <tr><td><b>LAP</b> (lumbar artery perforator)</td><td>פרפורטור</td><td>4 זוגות מהאאורטה (L1–L4) + L5 מה-iliolumbar</td><td>פדיקל קצר (2–3 ס"מ), עורק ~1 מ"מ. L4 – 7–10 ס"מ מקו האמצע בגובה ה-PSIS. דימות CTA/MRA. חופשי – "love handles"; <b>סרומה עד 80%</b> באתר התורם</td></tr>
+    <tr><td><b>גלוטאוס מקסימוס / SGAP / IGAP</b></td><td>III</td><td>Superior + inferior gluteal</td><td>SGAP: פרפורטור בשליש המרחק PSIS ← טרוכנטר גדול; שקע וצלקת בולטת. IGAP: צלקת בקפל העכוז; לפצעי לחץ סקרליים (10/11 שרדו)</td></tr>
+  </tbody>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tKFt9CCmJYs" title="The Keystone perforator flap: Basics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">The Keystone perforator flap: Basics – מה ייחודי בפלאפ, איך מתכננים ואיפה משתמשים (YouTube).</p>
+
+<h3>Keystone – פלאפ אי רב-פרפורטורי (Behan 2003)</h3>
+<p>פלאפ פאסיוקוטני בצורת טרפז מעוגל (כמו אבן הראשה בקשת רומית), <b>ללא דיסקציה של פרפורטור</b> – מחלקים את הפאסיה העמוקה היקפית ויוצרים <b>שני V-Y מנוגדים</b> לאורך הציר. יחס רוחב פלאפ:פגם בדרך כלל <b>1:1</b> (עד <b>5:1</b> באזורים לא-גמישים). קל, מהיר, "like-with-like", ניידות מוקדמת (&lt;2 ימים) ושחרור תוך שבוע. בסדרת Mohan (45 פלאפים) – <b>אפס אובדן פלאפ</b>.</p>
+<table>
+  <thead><tr><th>סוג Keystone</th><th>תיאור</th></tr></thead>
+  <tbody>
+    <tr><td>I</td><td>סגירת עור ישירה</td></tr>
+    <tr><td>II</td><td>סגירה ישירה ± שתל עור</td></tr>
+    <tr><td>III</td><td><b>Keystone כפול</b> (למשל מיאלומנינגוצלה)</td></tr>
+    <tr><td>IV</td><td>סיבוב-קידום ± שתל עור</td></tr>
+  </tbody>
+</table>
+
+<h3>אופציות גיבוי</h3>
+<ul>
+  <li><b>Pull-through VRAM</b>: רקטוס על <b>deep inferior epigastric</b>, מועבר <b>רטרופריטונאלית</b> ללומבוסקרלי – "סוס העבודה" אחרי כריתות אונקולוגיות באגן. מחיר: חולשת דופן בטן.</li>
+  <li><b>אומנטום</b>: על gastroepiploic (ימני גדול יותר); עשיר בלימפה ודם – נלחם בזיהום; מכסה מכשור תורקו-לומברי. <b>אופציה אחרונה</b> (לפרוטומיה, החלפת תנוחה). <b>התווית נגד: ממאירות תוך-בטנית או כריתת אומנטום קודמת</b>. להיזהר: טחול (דימום ← ספלנקטומיה), middle colic (דה-וסקולריזציה של המעי הגס).</li>
+  <li><b>External oblique turnover</b> + שתל עור – פצעים חזיים-תחתונים ומותניים לטרליים.</li>
+  <li><b>Free flap</b> – <b>אופציה אחרונה</b>: סיבוכים עד 50%, אובדן מלא עד 30%. LD ואחריו TDAP; הכי שכיח ללומבוסקרלי. כלי מקבלים לפי אזור; vein graft (ספנוס, עד 40–50 ס"מ), <b>AV loop</b> לעורקי ירך/איליאקה, flow-through. פרפורטור מקבל: פעימה חזקה, דופלר טוב, קוטר &gt;0.8 מ"מ.</li>
+</ul>
+
+<h2><span class="num">4</span> האלגוריתם</h2>
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם שחזור הגו האחורי</title>
+  <rect x="330" y="10" width="200" height="45" rx="8" fill="#f3f4f6" stroke="#374151"/>
+  <text x="430" y="38" font-size="13" text-anchor="middle" font-weight="700">עומק הפצע?</text>
+  <rect x="620" y="85" width="210" height="45" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="725" y="113" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">שטחי ← טיפול מקומי</text>
+  <rect x="300" y="85" width="260" height="45" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="430" y="113" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">בינוני/עמוק ← קו אמצע?</text>
+  <line x1="480" y1="55" x2="700" y2="80" stroke="#374151" stroke-width="2"/>
+  <polygon points="710,85 697,77 700,88" fill="#374151"/>
+  <line x1="430" y1="55" x2="430" y2="75" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,85 424,73 436,73" fill="#374151"/>
+  <rect x="470" y="170" width="360" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="650" y="195" font-size="12" text-anchor="middle" fill="#4c1d95" font-weight="700">קו אמצע + CSF/ברגים/חשיפת עמ"ש</text>
+  <text x="650" y="215" font-size="12" text-anchor="middle" fill="#4c1d95">סגירה שרירית רב-שכבתית (פרה-ספינלי + טרפז/LD)</text>
+  <rect x="30" y="170" width="400" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="230" y="195" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">לא-קו אמצע: רקמה מקומית טובה?</text>
+  <text x="230" y="215" font-size="12" text-anchor="middle" fill="#78350f">כן ← פלאפ מקומי-אזורי | לא ← free flap</text>
+  <line x1="480" y1="130" x2="600" y2="162" stroke="#374151" stroke-width="2"/>
+  <polygon points="610,168 596,165 602,155" fill="#374151"/>
+  <line x1="380" y1="130" x2="260" y2="162" stroke="#374151" stroke-width="2"/>
+  <polygon points="250,168 258,155 264,165" fill="#374151"/>
+  <rect x="230" y="255" width="400" height="38" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="279" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">Free flap = אופציה אחרונה (סיבוכים עד 50%)</text>
+</svg>
+<p class="key-box">פצע <b>בקו האמצע</b> עם חשיפת עמוד שדרה/דליפה דורש <b>שתי שכבות מלאות של שריר או פאסיה מדוממים</b>. פצע לא-באמצע: הרכב הרקמה נקבע לפי הצורך (שריר, פאסיה, שומן, עור).</p>
+
+<h2><span class="num">5</span> תרחישים מיוחדים</h2>
+<h3>ניתוחי עמוד שדרה, CSF ו-pseudomeningocele</h3>
+<div class="mechanism">
+  <p>אורך הפצעים הספינליים גדל מ-3 ל-<b>11 חוליות</b> בממוצע ← פצעי קו אמצע ארוכים ← סיכון ל<b>דליפת CSF</b> ← <b>מנינגיטיס עולה</b>. <b>Pseudomeningocele</b> = דליפה <b>כלואה</b> של CSF דרך הדורה לרקמות הרכות – עלולה <b>ללחוץ על חוט השדרה</b> ולהחמיר תפקוד מוטורי/תחושתי. באזור המותני יש יותר עיגונים דורליים ← למינקטומיה/טראומה/זיהום ← דורוטומיה ← דליפה.</p>
+  <p><b>הפתרון</b>: תיקון הדורה ← <b>פלאפים פרה-ספינליים דו-צדדיים</b> (הבחירה הטובה ביותר לשכבה העמוקה בכל הגבהים) בסגירת <b>"vest-over-pants"</b> ← שכבה שטחית: <b>טרפזיוס לחזי עליון (T1–T7)</b>, <b>LD לחזי תחתון (T8–T12) ומותני (L1–L5)</b>. באזור המותני גם גלוטאוס/SGAP.</p>
+</div>
+<p>Mericli (92 פלאפים פרה-ספינליים): <b>25%</b> סיבוכי פצע. גורמי סיכון: &gt;2 ניתוחי עמ"ש, טראומה ספינלית, הוצאת ברגים לפני השחזור, יתר ל"ד, <b>מיקום מותני</b>. אחרי ניתוח: שכיבה שטוחה על מזרן להפחתת לחץ שבוע, נקז מותני/גולגולתי ע"י נוירוכירורגיה, מעקב כאבי ראש ו-CT.</p>
+
+<h3>מומים מולדים – מיאלומנינגוצלה</h3>
+<p>הצורה השכיחה של spina bifida aperta: כשל איחוי קשתות החוליה בשבוע 3–4 (קשור ל<b>חוסר חומצה פולית</b>), לרוב <b>לומבוסקרלי</b>. <b>שחזור תוך 48–72 שעות</b>; <b>התיקון הנוירוכירורגי קודם</b> לסגירת הרקמה הרכה. אין להפריד (undermine) את הפלאפים. <b>Keystone (במיוחד כפול דו-צדדי) = בחירה אופטימלית</b> – מגייס כמה אזורי פרפורטורים בלי שריר (שחסר ביילוד). Park: 5 ילודים, ללא סיבוכי פצע; שכיבה על הבטן שבועיים.</p>
+
+<h2><span class="num">6</span> טיפול פרי-אופרטיבי</h2>
+<ul>
+  <li><b>גורמי סיכון</b>: הקרנה, כימותרפיה נאו-אדג'ובנטית, סטרואידים, תת-תזונה, ריבוי ניתוחי עמ"ש, מכשור נרחב, עישון, סוכרת.</li>
+  <li><b>דימות</b>: CTA/MRA לפרפורטורים; <b>MRI – להיקף אוסטאומיאליטיס</b> בפצעי קו אמצע.</li>
+  <li>דברידמנטים סדרתיים עד מצע מדמם; <b>VAC</b> בין השלבים – פי ~4 זרימת דם, הסרת הפרשות, יותר גרנולציה – אבל <b>לא תחליף לדברידמנט</b>. תרביות לפני סגירה; ייצוב גרמי בשלב ראשון; שוליים נקיים (חתך קפוא) לפני שחזור אונקולוגי.</li>
+  <li><b>ERAS</b>: הפסקת עישון/אלכוהול וירידה במשקל (ההשפעה הגדולה ביותר), אנלגזיה מולטימודלית (NSAIDs, אקמול, COX-2, גבפנטינואידים, <b>bupivacaine ליפוזומלי</b>), מניעת DVT, אנטיביוטיקה, שמירת חום ונפח.</li>
+  <li>אחרי: <b>שכיבה על הבטן</b> (עדיף – פחות לחץ וקל לבדוק) או מזרן אוויר; נקזים עד <b>&lt;30 מ"ל/יום שלושה ימים ברציפות</b>; אספירין במינון נמוך ± LMWH.</li>
+</ul>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ארבעת העקרונות: "<span dir="ltr">D-R-O-T</span>" – "דרוט"</h3>
+  <p><b>D</b>ebride | <b>R</b>ecruit (מחוץ לאזור הפגיעה) | <b>O</b>bliterate dead space | <b>T</b>ension-free.</p>
+  <h3>סגירת קו אמצע: "פרה-ספינלי למטה, 'טרפז למעלה ולטי למטה' מעל"</h3>
+  <p>שכבה עמוקה = <b>P</b>araspinous תמיד; שכבה שטחית = <b>T</b>rapezius ל-T1–T7, <b>L</b>atissimus ל-T8 ומטה.</p>
+  <h3>Mathes-Nahai בגב: "טרפז 2, גלוט 3, פרה 4, לטי 5"</h3>
+  <p>סדר עולה כמו מעלית מהטרפז ועד הלטי: II, III, IV, V.</p>
+  <h3>סיפור דמיוני: "הבית על הגבעה"</h3>
+  <p>הגב הוא בית ישן בנוי על מדרון (מיקום תלוי), עם צנרת חיונית (חוט השדרה) בקירות. כשנפער חור בקיר האמצעי – אי אפשר לסתום אותו בנייר (שתל עור). קודם מנקים את הטיח הרקוב (דברידמנט), אחר כך בונים <b>קיר לבנים כפול</b> – שורה פנימית מהשכנים הקרובים לעמוד (פרה-ספינלי, "vest-over-pants"), ושורה חיצונית מהשכנים הגדולים (טרפז למעלה, לטי למטה). אם אין לבנים בשכונה – מביאים משאית מרחוק (free flap), אבל היא נוטה להיתקע בדרך (סיבוכים עד 50%).</p>
+  <svg class="diagram" viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg">
+    <title>קיר הלבנים הכפול</title>
+    <rect x="200" y="20" width="120" height="140" fill="#fef2f2" stroke="#b91c1c" stroke-dasharray="6 4"/>
+    <text x="260" y="95" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">חור בקו האמצע</text>
+    <rect x="130" y="40" width="70" height="100" fill="#fffbeb" stroke="#b45309"/>
+    <rect x="320" y="40" width="70" height="100" fill="#fffbeb" stroke="#b45309"/>
+    <text x="165" y="95" font-size="11" text-anchor="middle" fill="#78350f">פרה-ספינלי</text>
+    <text x="355" y="95" font-size="11" text-anchor="middle" fill="#78350f">פרה-ספינלי</text>
+    <rect x="30" y="30" width="100" height="120" fill="#eff6ff" stroke="#2563eb"/>
+    <rect x="390" y="30" width="100" height="120" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="80" y="85" font-size="11" text-anchor="middle" fill="#1e3a8a">טרפז (עליון)</text>
+    <text x="80" y="105" font-size="11" text-anchor="middle" fill="#1e3a8a">LD (תחתון)</text>
+    <text x="440" y="85" font-size="11" text-anchor="middle" fill="#1e3a8a">טרפז (עליון)</text>
+    <text x="440" y="105" font-size="11" text-anchor="middle" fill="#1e3a8a">LD (תחתון)</text>
+    <polygon points="215,90 203,84 203,96" fill="#374151"/>
+    <polygon points="305,90 317,84 317,96" fill="#374151"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> סרטונים ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/B5CZaPBZnp4" title="Keystone Flap" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Keystone island perforator flap – שחזור פגם אחרי כריתת סרקומה/עור (YouTube).</p>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=tKFt9CCmJYs" target="_blank">The Keystone perforator flap: Basics</a><span class="tag">וידאו</span><div class="desc">גיבוי לסרטון המוטמע הראשון.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=cwmFD4mucwo" target="_blank">Felix Behan: keystone perforator island flap</a><span class="tag">וידאו</span><div class="desc">ממציא הפלאפ מסביר את העקרונות (בהקשר גפה תחתונה – אותם עקרונות לגב).</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Latissimus_dorsi_muscle" target="_blank">Latissimus dorsi muscle – Wikipedia</a><span class="tag">אנטומיה</span><div class="desc">מוצא, אחיזה, אספקת דם (thoracodorsal) ועצבוב.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Trapezius" target="_blank">Trapezius – Wikipedia</a><span class="tag">אנטומיה</span><div class="desc">אנטומיה של הטרפזיוס ועצבוב ע"י העצב האקססורי (XI).</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Spina_bifida" target="_blank">Spina bifida – Wikipedia</a><span class="tag">מולד</span><div class="desc">רקע על מיאלומנינגוצלה, חומצה פולית ותיקון ניתוחי.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 64, 3 שבועות אחרי קיבוע ספינלי T10–L4 (ניתוח עמ"ש שלישי), עם פתיחת פצע בקו האמצע, הפרשה מוגלתית ו<b>ברגים חשופים</b>. הוא סובל מיתר ל"ד וסוכרת. נוירוכירורג מדווח על חשד לדליפת CSF. MRI מראה אוסטאומיאליטיס מוקדית.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה הצעד הראשון בניהול הפצע לפני השחזור הסופי?</div>
+  <button class="opt" data-i="0">הנחת VAC מיד על הפצע ללא ניתוח</button>
+  <button class="opt" data-i="1">שתל עור מפוצל</button>
+  <button class="opt" data-i="2">דברידמנט (סדרתי) עד מצע מדמם, תרביות, אנטיביוטיקה ותיקון דורה ע"י נוירוכירורגיה</button>
+  <button class="opt" data-i="3">Free LD מיידי</button>
+  <div class="explain">נכון: דברידמנט הוא העיקרון הראשון; VAC (1) מועיל בין שלבים אך <b>אינו תחליף לדברידמנט</b>. שתל עור (2) לא מתאים לפצע עמוק עם ברגים. Free flap (4) = אופציה אחרונה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מהי הסגירה המועדפת לפצע זה (T10–L4, קו אמצע, CSF, ברגים)?</div>
+  <button class="opt" data-i="0">פרה-ספינלי דו-צדדי ב-vest-over-pants + LD דו-צדדי כשכבה שטחית</button>
+  <button class="opt" data-i="1">טרפזיוס דו-צדדי בלבד</button>
+  <button class="opt" data-i="2">Keystone בודד ללא שכבת שריר</button>
+  <button class="opt" data-i="3">אומנטום כקו ראשון</button>
+  <div class="explain">נכון: קו אמצע + CSF/ברגים = <b>שתי שכבות שריר</b>; עמוק – פרה-ספינלי; שטחי מתחת ל-T8 – <b>LD</b>. טרפזיוס (2) מתאים ל-T1–T7. Keystone (3) – חסר שכבה שרירית עמוקה. אומנטום (4) – אופציה אחרונה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. אילו מגורמי המטופל מנבאים סיבוכי פצע אחרי פלאפ פרה-ספינלי לפי Mericli?</div>
+  <button class="opt" data-i="0">גיל מעל 60 בלבד</button>
+  <button class="opt" data-i="1">מין זכר</button>
+  <button class="opt" data-i="2">מיקום חזי עליון</button>
+  <button class="opt" data-i="3">&gt;2 ניתוחי עמ"ש, יתר ל"ד, מיקום מותני (וגם טראומה ספינלית והוצאת ברגים לפני השחזור)</button>
+  <div class="explain">נכון: שיעור הסיבוכים 25%; גורמי הסיכון שנמצאו – ריבוי ניתוחים, טראומה, הוצאת מכשור, יתר ל"ד ו<b>מיקום מותני</b>. גיל ומין לא צוינו; מיקום חזי עליון אינו גורם סיכון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מה ההבדל בין pseudomeningocele לדליפת CSF פתוחה?</div>
+  <button class="opt" data-i="0">אין הבדל</button>
+  <button class="opt" data-i="1">Pseudomeningocele היא דליפה כלואה ברקמות הרכות שעלולה ללחוץ על חוט השדרה; דליפה פתוחה מסכנת במנינגיטיס עולה</button>
+  <button class="opt" data-i="2">Pseudomeningocele היא זיהום של הדורה</button>
+  <button class="opt" data-i="3">דליפה פתוחה תמיד נסגרת לבד</button>
+  <div class="explain">נכון: שני הסיכונים שונים – לחץ על חוט השדרה (כלואה) מול מנינגיטיס (פתוחה). (3) שגוי – זה לא זיהום; (4) – דורש סגירה רב-שכבתית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. יילוד עם מיאלומנינגוצלה לומבוסקרלית. מה נכון?</div>
+  <button class="opt" data-i="0">לדחות את הסגירה לגיל חודשיים</button>
+  <button class="opt" data-i="1">לבצע קודם את סגירת העור ואחר כך את התיקון הנוירוכירורגי</button>
+  <button class="opt" data-i="2">שחזור תוך 48–72 שעות אחרי התיקון הנוירוכירורגי; keystone (לרוב כפול) = בחירה אופטימלית</button>
+  <button class="opt" data-i="3">פלאפ LD שרירי הוא הבחירה הראשונה בגלל נפחו</button>
+  <div class="explain">נכון: מבצעים תוך 48–72 שעות, הנוירוכירורגיה קודמת, ו-keystone מגייס כמה אזורי פרפורטורים בלי צורך בשריר (שחסר ביילוד). (1), (2) – תזמון/סדר שגוי; (4) – ביילוד יש מעט מסת שריר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. באיזה מצב אומנטום הוא התווית נגד כפלאפ לשחזור הגב?</div>
+  <button class="opt" data-i="0">מכשור תורקו-לומברי קדמי ואחורי</button>
+  <button class="opt" data-i="1">היסטוריה של ממאירות תוך-בטנית או כריתת אומנטום קודמת</button>
+  <button class="opt" data-i="2">שרירי גב מוקרנים</button>
+  <button class="opt" data-i="3">זיהום בפצע</button>
+  <div class="explain">נכון: זו התווית הנגד המפורשת. (1), (3) – דווקא מצבים שבהם אומנטום שימושי; (4) – העשירות הלימפטית והדמית שלו עוזרת נגד זיהום.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>קושי: מעט רפיון, מעט כלי דם מקבלים, מיקום תלוי, ברגים/הקרנה/CSF.</li>
+    <li>4 עקרונות: דברידמנט, רקמה מחוץ לאזור הפגיעה, סגירת חלל מת, ללא מתח.</li>
+    <li>שריר (LD/טרפז) – קו ראשון; פרפורטור – שניוני חזק (עקומת למידה, פחות נפח).</li>
+    <li>קו הצלע 12 מפריד אשכול חזי ומותני; watershed ביניהם; ציר פלאפ מקביל ל-linking vessels.</li>
+    <li>טרפז (II, TCA, XI – סכנת winging); LD (V, thoracodorsal, הגדול ביותר, reverse T9–T11, free השכיח); פרה-ספינלי (IV); גלוטאוס (III).</li>
+    <li>קו אמצע + CSF/ברגים: פרה-ספינלי vest-over-pants + טרפז (T1–T7) / LD (T8–L5).</li>
+    <li>Keystone: 4 סוגים, 1:1 (עד 5:1), ללא דיסקציית פרפורטור; מיאלומנינגוצלה – keystone כפול תוך 48–72 ש'.</li>
+    <li>גיבוי: pVRAM, אומנטום (לא בממאירות בטנית), EO turnover; Free flap אחרון (עד 50% סיבוכים).</li>
+    <li>אחרי: שכיבה על הבטן, נקזים &lt;30 מ"ל/יום × 3 ימים, ERAS.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

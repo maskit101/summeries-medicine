@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 22: פייסליפט "הרם ומלא" (Lift-and-Fill Facelift)</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 22: פייסליפט "הרם ומלא" <span class="term" dir="ltr">The Lift-and-Fill Facelift</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: Aesthetic Surgery, פרק 9.9 | מאת Stav Brown, Justin L. Bellamy, Rod J. Rohrich</div>
+
+<p>הפייסליפט "הרם ומלא" הוא טכניקת פייסליפט מודרנית שמשלבת בכוונה שני מרכיבים שבעבר טופלו בנפרד: <b>הרמה ומתיחה כירורגית</b> של העור וה-<span class="term" dir="ltr">SMAS</span> (שכבת הרקמה החיבורית-שרירית מתחת לעור הפנים), ו<b>מילוי נפח</b> באמצעות השתלת שומן אוטולוגית (<span class="term" dir="ltr">autologous fat grafting</span>) לתאי השומן העמוקים של הלחי שהתרוקנו עם הגיל. הגישה, שפותחה בעיקר על ידי Rohrich וחבריו, מבוססת על ההבנה שהזדקנות הפנים היא לא רק "צניחה" של רקמה אלא בעיקר <b>איבוד נפח</b> – ולכן הרמה בלבד, בלי החזרת נפח, לא מספיקה לתוצאה טבעית.</p>
+
+<h2><span class="num">1</span> מנגנון ופתופיזיולוגיה – למה הפנים "נראות זקנות"</h2>
+<div class="mechanism">
+  <p class="chain">
+    שלד הפנים מזדקן ← עובר <b>רוטציה בכיוון השעון</b> ביחס לבסיס הגולגולת: הלסת העליונה (<span class="term" dir="ltr">maxilla</span>) גדלה ונסוגה אחורה, פתח הארובה מתרחב, והלסת התחתונה (<span class="term" dir="ltr">mandible</span>) מצטמצמת לגובה ולרוחב.
+    ← השינויים בשלד "מזיזים" את הרצועות התומכות (<span class="term" dir="ltr">retaining ligaments</span>) ואת הרקמה הרכה שמעליהן.
+    ← זה גורם ל<b>ניקוז/דלדול נפח</b> (<span class="term" dir="ltr">deflation</span>) של תאי השומן הספציפיים בפנים (הפנים <b>אינם</b> שכבת שומן אחידה, אלא מחולקים למדורים נפרדים המופרדים על ידי מחיצות סיביות – ראו סעיף 2).
+    ← דלדול השומן העמוק גורם ל<b>איבוד תמיכה</b> לשכבת השומן השטחית שמעליו ← השומן השטחי "צונח" למרות שהוא עצמו לא איבד נפח – תופעה שנקראת <b>"פסאודו-פטוזיס"</b> (<span class="term" dir="ltr">pseudoptosis</span>): צניחה מדומה שנגרמת מאיבוד תמיכה מלמטה, ולא מהתארכות ממשית של הרקמה עצמה.
+  </p>
+  <p><b class="key">נקודת מפתח שהמחקר שינה:</b> בעבר חשבו שהזדקנות הפנים היא בעיקר "צניחה" אמיתית של רקמות כלפי מטה (תיאוריית ה-<span class="term" dir="ltr">descent</span>). המחקר הפוטוגרפי של Lambros על 130 נבדקים הראה שגבולות עור יציבים כמו נקודות חן ונקודת המפגש עפעף-לחי <b>לא זזים</b> עם הגיל – מה שמפריך את תיאוריית הצניחה הטהורה ותומך בכך שה<b>גורם המרכזי הוא איבוד נפח</b>, ולא תזוזה כלפי מטה. זו הסיבה שהפילוסופיה של "הרם ומלא" שמה דגש על מילוי נפח ולא רק על מתיחה חזקה יותר.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת הזדקנות הפנים</title>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="48" font-size="12.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">שינוי שלד הפנים</text>
+  <text x="770" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">רוטציית מידפייס</text>
+  <text x="770" y="80" font-size="11.5" text-anchor="middle" fill="#7f1d1d">(שעון)</text>
+
+  <rect x="480" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="560" y="45" font-size="12.5" text-anchor="middle" fill="#1e3a8a" font-weight="700">רצועות תומכות</text>
+  <text x="560" y="62" font-size="11.5" text-anchor="middle" fill="#1e3a8a">ורקמה רכה זזות</text>
+  <text x="560" y="77" font-size="11.5" text-anchor="middle" fill="#1e3a8a">בעקבות השלד</text>
+
+  <rect x="260" y="20" width="160" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="340" y="45" font-size="12.5" text-anchor="middle" fill="#78350f" font-weight="700">דלדול שומן עמוק</text>
+  <text x="340" y="62" font-size="11.5" text-anchor="middle" fill="#78350f">(deep medial cheek</text>
+  <text x="340" y="77" font-size="11.5" text-anchor="middle" fill="#78350f">מדלדל ראשון)</text>
+
+  <rect x="20" y="20" width="180" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="110" y="45" font-size="12.5" text-anchor="middle" fill="#065f46" font-weight="700">פסאודו-פטוזיס</text>
+  <text x="110" y="62" font-size="11.5" text-anchor="middle" fill="#065f46">שומן שטחי "צונח"</text>
+  <text x="110" y="77" font-size="11.5" text-anchor="middle" fill="#065f46">מאיבוד תמיכה למטה</text>
+
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,55 480,49 480,61" fill="#374151"/>
+  <line x1="480" y1="55" x2="440" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="220,55 260,49 260,61" fill="#374151"/>
+  <line x1="260" y1="55" x2="220" y2="55" stroke="#374151" stroke-width="2"/>
+
+  <rect x="150" y="140" width="560" height="90" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="430" y="168" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">תוצאה קלינית: חלל תת-עינית (V-deformity), נאסולביאל בולט,</text>
+  <text x="430" y="188" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">"ג'אול" בולט, אובדן פרופיל לחיים מלא</text>
+  <text x="430" y="210" font-size="11.5" text-anchor="middle" fill="#4c1d95">← הרמה בלבד לא פותרת איבוד נפח → צריך גם "הרם" וגם "מלא"</text>
+  <polygon points="430,140 424,120 436,120" fill="#6d28d9"/>
+  <line x1="430" y1="140" x2="430" y2="120" stroke="#6d28d9" stroke-width="2"/>
+</svg>
+
+<h2><span class="num">2</span> אנטומיה – מדורי השומן, הרצועות התומכות ואזורי הסכנה</h2>
+<p>ההבנה שהשומן התת-עורי בפנים אינו רקמה רציפה אלא <b>מחולק ל-23 מדורי שומן שטחיים</b> (<span class="term" dir="ltr">superficial fat compartments</span>) ומספר מדורי שומן עמוקים (<span class="term" dir="ltr">deep fat compartments</span>), המופרדים על ידי מחיצות סיביות בעלות כלי דם עוברים (<span class="term" dir="ltr">perforators</span>), היא הבסיס האנטומי לכל הטכניקה. מדורי השומן <b>העמוקים</b> נמצאים מתחת לשרירי הבעה של הפנים, מעל עצם הלסת, ומספקים תמיכה מבנית ובליטה למידפייס; הם <b>לא ניתנים לשינוי על ידי מניפולציית SMAS</b> אלא רק על ידי מילוי נפח. מדורי השומן <b>השטחיים</b> נמצאים מעל ה-SMAS ומופרדים ממנו על ידי מחיצות שמקורן ב-SMAS עצמו – אלה כן מושפעים ממניפולציית SMAS.</p>
+
+<img class="media-img" src="https://www.researchgate.net/profile/Jeffrey-Rohrich/publication/266624756/figure/fig5/AS:392059389603856@1470489499017/Sequence-of-fat-compartment-deflation-commonly-observed-in-facial-aging-Reprinted-with.png" alt="רצף דלדול מדורי השומן בפנים" onerror="this.style.display='none'">
+<p class="media-cap">רצף אופייני של דלדול מדורי שומן בפנים עם ההזדקנות (Rohrich et al., מקור: ResearchGate/PRS Global Open). אם התמונה לא נטענת - ראו קישור ישיר בסעיף 8.</p>
+
+<div class="table-scroll">
+<table>
+<thead><tr><th>מדור שומן</th><th>סוג</th><th>גבולות אנטומיים</th></tr></thead>
+<tbody>
+<tr><td>מצח מרכזי</td><td>שטחי</td><td>קו אמצע המצח, גבול תחתון בגב האף</td></tr>
+<tr><td>מצח רקתי-אמצעי</td><td>שטחי</td><td>גבול תחתון ברצועת ה-<span class="term" dir="ltr">orbicularis</span></td></tr>
+<tr><td>לחי אמצעית (<span class="term" dir="ltr">middle malar</span>)</td><td>שטחי</td><td>דבוק לזיגומטיקוס מייג'ור, קדמי-שטחי לבלוטת הפרוטיד</td></tr>
+<tr><td>לחי לטרלית-גבוהה (<span class="term" dir="ltr">high/lateral malar</span>)</td><td>שטחי</td><td>מעל מדור הלחי האמצעית – מדור שמעצים רוחב פנים</td></tr>
+<tr><td>ג'אול (<span class="term" dir="ltr">jowl</span>)</td><td>שטחי</td><td>גבול מדיאלי – שריר מוריד זווית הפה, גבול תחתון – פלטיזמה</td></tr>
+<tr><td><b>לחי מדיאלית עמוקה (deep medial malar)</b></td><td><b>עמוק – "עמוד השדרה" של הטכניקה</b></td><td>מתחת לאורביקולריס אוקולי, לטרלי לרצועת הפיריפורם, מסופק ע"י העורק התת-ארובתי (<span class="term" dir="ltr">infraorbital artery</span>)</td></tr>
+<tr><td>נאסולביאלי (<span class="term" dir="ltr">nasolabial</span>)</td><td>עמוק</td><td>חופף לג'אול, אנטריורי ללחי המדיאלית, מסופק ע"י העורק האנגולרי</td></tr>
+</tbody>
+</table>
+</div>
+<p><b class="key">מדור הלחי המדיאלית העמוקה (deep medial cheek) הוא תמיד המדור הראשון להזדקין ולהיות ממולא בניתוח</b> – בגלל גודל תאי השומן הקטן יחסית בו וקצב הדלדול המואץ. מילויו לבדו כבר משפר בליטת לחי קדמית, מקטין את הנאסולביאלי ומשפר את מראה "תעלת הדמעות" (<span class="term" dir="ltr">tear trough</span>).</p>
+
+<h3>רצועות תומכות ואזורי סכנה</h3>
+<p>שלוש הרצועות התומכות העיקריות של הפנים – <span class="term" dir="ltr">zygomatic ligament</span>, <span class="term" dir="ltr">mandibular ligament</span> ו-<span class="term" dir="ltr">masseteric cutaneous ligaments</span> – מהוות ציוני דרך לזיהוי <b>4 אזורי הסכנה</b> בדיסקציית פייסליפט, כי בדיוק שם ענפי עצב הפנים חוצים ממקום עמוק למקום שטחי יחסית:</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>#</th><th>מיקום</th><th>ענף עצב פנים בסיכון</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>בין הרצועה הזיגומטית לרצועה המסטרית העליונה, אינפרו-לטרלי לבליטת הזיגומה</td><td>הענף הזיגומטי – הופך שטחי יחסית כאן</td></tr>
+<tr><td>2</td><td>אנטריורי לפרוטיד, במעבר בין מדור הלחי הלטרלי לאמצעי</td><td>הענף הבוקאלי – בתוך שומן בוקאלי עמוק</td></tr>
+<tr><td>3</td><td>גבול מסטרי תחתון, מקור הרצועות המסטריות התחתונות</td><td>הענף המרגינלי מנדיבולרי – יוצא מזנב הפרוטיד</td></tr>
+<tr><td>4</td><td>רצועת המנדיבולה / צומת לחי-סנטר</td><td>הענף המרגינלי מנדיבולרי</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="num">3</span> הערכה טרום-ניתוחית ובחירת מטופל</h2>
+<p>שלושה פרמטרים בסיסיים חייבים להיבחן בניתוח פנים לפני קביעת תוכנית הטיפול: <b>רוחב מידפייס</b>, <b>אורך פנים</b>, ו<b>מלאות פנים</b>. הבחירה בין שתי טכניקות ה-SMAS העיקריות (ראו טבלה) נקבעת מתוך ההערכה הזו, ולעיתים <b>כל צד פנים מקבל טיפול שונה</b> באסימטריה משמעותית – זהו העיקרון של "פייסליפט הרכיב האינדיבידואלי" (<span class="term" dir="ltr">individualized-component facelift</span>) שתואר על ידי Rohrich.</p>
+<div class="table-scroll">
+<table>
+<thead><tr><th>מאפיין פנים</th><th>SMAS Stacking (הערמה)</th><th>SMASectomy (כריתה)</th></tr></thead>
+<tbody>
+<tr><td>אינדיקציה</td><td>פנים <b>צרים וארוכים</b>, זקוקים ליותר מלאות</td><td>פנים <b>רחבים וקצרים</b>, מלאים מדי</td></tr>
+<tr><td>אפקט</td><td><b>אדיטיבי</b> (משמר את הכל + מוסיף שכבה)</td><td><b>סובטרקטיבי</b> (מסיר רקמה)</td></tr>
+<tr><td>מנגנון</td><td>ה-SMAS נחתך, מנותק פרוקסימלית ודיסטלית, ומוזז לקו אמצע ליצירת מבנה תלת-שכבתי ("bilaminar")</td><td>הסרת רצועת SMAS ותפירת הקצוות זה לזה</td></tr>
+<tr><td>ווקטור פייל</td><td>פנים ארוכות → ווקטור <b>אופקי</b> (מלאות מלרית, מקצר אורך)</td><td>פנים קצרות → ווקטור <b>אלכסוני</b> (שומר אורך, מתקן מלאות עודפת)</td></tr>
+<tr><td>קשר לשומן</td><td>מבוצע <b>מעל</b> מדורי השומן העמוקים שמולאו – "גשר קונטור" בין העמוק לשטחי</td><td>בפנים מלאים/רחבים - נפחי שומן במדור הלטרלי-גבוה יהיו <b>פחות</b> נחוצים</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2><span class="num">4</span> הטיפול – רצף הניתוח המלא</h2>
+<p>הרצף הטכני (המתואר באלגוריתם 9.9.1 בפרק) מתחיל תמיד ב<b>ניתוח פנים מדוקדק (רוחב מידפייס, אורך, מלאות)</b>, ואז עובר לסימון טרום-ניתוחי, מילוי שומן, חתכי עור והרדמה מקומית, חשיפת עור סלקטיבית, מניפולציית SMAS/פלטיזמה, וסגירה. בהמשך – בלפרופלסטיקה ורענון עור אם נדרש.</p>
+
+<h3>4.1 השתלת שומן – סדר, מקור וטכניקה</h3>
+<p>מילוי השומן מבוצע <b>בתחילת הניתוח</b>, לפני חתכי העור, כדי למנוע זיהום סביבתי של השומן ולאפשר התאמה מדויקת של מניפולציית ה-SMAS מעל המדורים שמולאו (יוצא דופן: בלפרופלסטיקה טרנס-קונג'ונקטיבלית מקבילה). <b>סדר המילוי הוא תמיד מהעמוק לשטחי, ומהמדיאלי ללטרלי</b>: תחילה מדור הלחי המדיאלית העמוקה והנאסולביאלי (הכי קריטי), ורק לבסוף מדור הלחי הלטרלי-הגבוה (השטחי) והנאסולביאלי המשלים. מדור הלחי הגבוה-לטרלי <b>מודגש בעיקר אצל נשים</b> (להבלטת "היילייטס" מלריים) ומושמט בגברים כדי למנוע מראה מנשי.</p>
+
+<p>מקור השומן המועדף: הבטן התחתונה או הירכיים הפנימיות (ריכוז גבוה של תאי גזע סטרומליים-וסקולריים וגודל תא קטן). הטכניקה מבוססת על <b>שיטת Coleman</b> (מתחילת שנות ה-90): שאיבה עדינה בקנולה 12-גייג' עם חורים קטנים (1 מ"מ) ומזרק Luer-Lok 10 מ"ל, סירכוז (2250 סל"ד, עד דקה) להפרדת השבר השמנוני והמימי משכבת השומן החי, ואמולסיפיקציה מכנית בין שני מזרקים. הזרקה עצמה מבוצעת בכמויות קטנות (<b>עד 0.5-1 מ"ל לשנייה</b>) עם קנולת Coleman קהה (16-גייג' לעומק) או מחט 21-גייג' (לשטחי), כדי למנוע פיברוזיס, הסתיידות, זיהום או ציסטות שמן. נפח כולל טיפוסי: כ-30 מ"ל לצד.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Qkwk83xfdv8" title="The Facelift Journey with Dr. Rohrich" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">"The Facelift Journey with Dr. Rohrich" - סרטון מהערוץ הרשמי של ד"ר Rod Rohrich, אחד ממחברי הפרק ומפתחי טכניקת "הרם ומלא", המתעד את מהלך הפייסליפט המודרני.</p>
+
+<h3>4.2 חתכי עור וחשיפה</h3>
+<p>החתך הקדם-אוזני יכול להיות <b>אינטרה-טרגלי</b> (מוסתר בגבול האחורי של הטרגוס - מועדף להסתרת צלקת) או <b>פרה-טרגלי</b> (בקפל העור הקדם-אוזני - גלוי יותר אך מתאים למקרי אי-התאמת צבע עור). החתך הרטרו-אוריקולרי ממוקם בחריץ האוריקולומסטואידי בגברים, או 2 מ"מ לתוך עור הקונכה האחורית בנשים (לשיפור הסתרת הצלקת ומניעת נדידת צלקת כלפי מטה). ההרדמה המקומית משתמשת <b>בטכניקת ה-superwet</b> (יותר מ-50-100 מ"ל לחצי פנים): 30 מ"ל לידוקאין 0.5% + 1.5 מ"ל אפינפרין 1:1000 ב-300 מ"ל תמיסת מלח, מוזרקים במחט ספינלית 22-גייג' למישור התת-עורי, עם המתנה של 15 דקות להשפעה הווסוקונסטריקטיבית המלאה לפני הרמת העור.</p>
+
+<h3>4.3 מניפולציית SMAS ופלטיזמה</h3>
+<p>לפי הבחירה בין SMAS Stacking ל-SMASectomy (טבלה בסעיף 3). לצוואר: <b>"חלון פלטיזמה" לטרלי</b> (ללא רצועות פלטיזמליות בולטות) - חלון בגודל 2 ס"מ הנתפר לפאשיה המסטואידית האחורית; או <b>פלטיזמופלסטיקה קדמית</b> (כשיש רצועות פלטיזמליות בולטות) - דרך חתך תת-סנטרי, עם כריתת שומן תת-פלטיזמלי וקיצור השריר מעל סחוס התירואיד להדגשת זווית הצוואר-סנטר.</p>
+
+<h3>4.4 מניעת דימום וסיוע להחלמה</h3>
+<p>לפני סגירת החתך, ניתן להשתמש בפלזמה עשירת טסיות (<span class="term" dir="ltr">PRP</span>) המוזרקת בין הפלאפ העורי ל-SMAS להפחתת שטפי דם ובצקת. חומצה טרנקסמית (<span class="term" dir="ltr">TXA</span>, <span dir="ltr">Tranexamic acid</span>) ניתנת דרך שלושה ערוצים - בולוס IV של 1 גרם אחרי אינדוקציה, 1 גרם בתוך תמיסת ההרטבה (Superwet), ותמיסה טופיקלית 2%-3% על מיטת הפצע ל-3-5 דקות - למניעת דימום תוך-ניתוחי, המטומה, שטפי דם ובצקת (בזכות אפקט אנטי-פיברינוליטי ואנטי-דלקתי). <b class="key">התווית נגד ל-TXA: היסטוריה של תרומבואמבוליזם ורידי/עורקי או מצבי קרישיות יתר.</b></p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/WRuen39SeRM" title="FaceLift Surgery Animation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הנפשה כללית המדגימה את עקרון ההרמה של שכבת ה-SMAS והעור בפייסליפט - שימושי כרקע ויזואלי לשלב מניפולציית ה-SMAS המתואר למעלה.</p>
+
+<h3>4.5 טיפול תרופתי סביב ניתוח - מניעת יתר לחץ דם והמטומה</h3>
+<div class="table-scroll">
+<table>
+<thead><tr><th>תרופה/אמצעי</th><th>סוג/מנגנון</th><th>מדוע חשוב כאן</th><th>הערות/קונטרא-אינדיקציות</th></tr></thead>
+<tbody>
+<tr><td>קלונידין (<span dir="ltr">Clonidine</span>)</td><td>אגוניסט אלפא-2 ארוך טווח</td><td>מניעה פרופילקטית של יל"ד ומניעת המטומה לאחר רתידקטומיה, גם בחולים ללא יל"ד קודם</td><td>ניתן דרך פה/עורית בבוקר הניתוח</td></tr>
+<tr><td>לבטלול (<span dir="ltr">Labetalol</span>) / ניקרדיפין (<span dir="ltr">Nicardipine</span>)</td><td>חוסמי בטא/תעלות סידן</td><td>טיפול ביל"ד פורץ (systolic BP&gt;140) בתקופה המיידית שאחרי הניתוח - הגורם הכי מנבא להמטומה</td><td>-</td></tr>
+<tr><td>אספירין / NSAIDs</td><td>אנטי-אגרגנטים</td><td>יש להפסיק לפחות שבועיים לפני הניתוח למניעת המטומה</td><td>הפסקה מתוכננת מראש</td></tr>
+<tr><td>משתנים (במטופלים עם יל"ד קודם)</td><td>-</td><td>ממשיכים את כל התרופות הרגילות סביב ניתוח <b>חוץ</b> ממשתנים</td><td>מופסקים ל-1-2 ימים אחרי הניתוח</td></tr>
+</tbody>
+</table>
+</div>
+<p><b class="key">יתר לחץ דם פוסט-ניתוחי (סיסטולי מעל 140) הוא הגורם המנבא המשמעותי ביותר להמטומה - יותר מיל"ד טרום-קיים.</b> לכן פרוטוקול אנטי-היפרטנסיבי קפדני ניתן לכל המטופלים, ללא תלות בהיסטוריה הרפואית.</p>
+
+<h2><span class="num">5</span> תוצאות, פרוגנוזה וסיבוכים</h2>
+<div class="table-scroll">
+<table>
+<thead><tr><th>סיבוך</th><th>שכיחות/עובדות מפתח</th><th>מניעה</th></tr></thead>
+<tbody>
+<tr><td>אי-סדירות/אסימטריה קלה (מהשומן)</td><td>הסיבוך <b>הכי שכיח</b> אחרי השתלת שומן; גושים מוחשים מהזרקה שטחית מדי או במנות גדולות מדי</td><td>הזרקה במנות קטנות; טיפול בגושים בשאיבה, כריתה פתוחה או Lipodissolve</td></tr>
+<tr><td>המטומה</td><td>0.9%-4% שכיחות ברתידקטומיה; <b>גברים בסיכון גבוה יותר</b> (עור עבה ווסקולרי יותר)</td><td>פרוטוקול אנטי-היפרטנסיבי קפדני (ראו סעיף 4.5), הימוס תוך-ניתוחי בנורמוטנסיה</td></tr>
+<tr><td>סרומה</td><td>-</td><td>נקזי צוואר סגורים דרך העורף, רצועת סד לסתות; טיפול - שאיבה חוזרת או Kenalog 10mg/mL</td></tr>
+<tr><td>איסכמיה/נמק עורי</td><td>גורמים: עישון, פלאפים דקים, מתח סגירה עודף, המטומה/סרומה לא מזוהות</td><td>שמירה על 3 מ"מ שומן על תת-פני הפלאפ, סגירה ללא מתח, ניטרוגליצרין טופיקלי באזורי פרפוזיה ירודה</td></tr>
+<tr><td>פגיעה בעצב Great Auricular</td><td><b>העצב הכי נפגע ברתידקטומיה</b> (כ-6%); הכי פגיע 6.5 ס"מ מתחת לתעלת השמע החיצונית (McKinney point)</td><td>דיסקציה תחת ראייה ישירה מעל השרירit הסטרנוקלידומסטואיד</td></tr>
+<tr><td>פגיעה בענף בוקאלי</td><td>הענף הכי נפגע מבין ענפי עצב הפנים המוטוריים אך <b>מתאושש מהר יחסית</b> בזכות הצטלבות ענפים עשירה עם הזיגומטי</td><td>-</td></tr>
+<tr><td>פגיעה בענף מרגינלי מנדיבולרי/טמפורלי</td><td>פחות הצטלבות ענפים → החלמה קשה יותר אם נפגע; שיתוק מרגינלי מנדיבולרי = הרמה קבועה של השפה התחתונה בחיוך</td><td>זהירות באזורי סכנה 3-4 (טבלת סעיף 2)</td></tr>
+<tr><td>פגיעת עצב מוטורית קבועה</td><td>שכיחות נמוכה מאוד - פחות מ-1%</td><td>-</td></tr>
+</tbody>
+</table>
+</div>
+<p class="key-box">שיתוק זמני של הענף הבוקאלי בדרך כלל מחלים תוך שבועות עד חודשים בזכות רשת ההצטלבות העשירה שלו עם הענף הזיגומטי; לעומת זאת פגיעה בענף המרגינלי מנדיבולרי או הטמפורלי מתאוששת לאט יותר בגלל מיעוט הצטלבויות - ניתן להשתמש בבוטולינום טוקסין בצד הנגדי לשיפור סימטריה זמנית עד ההחלמה.</p>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">D-N-H-L</span> - סדר מילוי השומן</h3>
+  <p>
+    <b>D</b> – <span class="term" dir="ltr">Deep medial</span> (הלחי המדיאלית העמוקה - תמיד ראשונה)<br>
+    <b>N</b> – <span class="term" dir="ltr">Nasolabial</span> (נאסולביאלי - מפרוקסימלי)<br>
+    <b>H</b> – <span class="term" dir="ltr">High lateral</span> (המלרי הגבוה-לטרלי, השטחי - מדגישים בנשים, מדלגים בגברים)<br>
+    <b>L</b> – <span class="term" dir="ltr">Last</span> (אחרון: מדור שטחי משלים סביב פה/סנטר)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שאת בונה <b>בית משפחתי בן שתי קומות</b>: קודם יוצקים את היסודות העמוקים (הלחי המדיאלית העמוקה) - בלעדיהם הכל קורס. אחר כך בונים את קומת הקרקע (הנאסולביאלי, קרוב ליסודות). ורק בסוף מוסיפים את הקומה העליונה עם החלונות המקושטים (המדור הגבוה-לטרלי) - וזה תלוי אם "בעל הבית" (המטופל/ת) רוצה בכלל את הקישוט הזה (נשים כן, גברים בדרך כלל לא).</p>
+  <svg class="diagram" viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg">
+    <title>בניית הבית - סדר מילוי השומן</title>
+    <rect x="150" y="170" width="200" height="30" fill="#78350f"/>
+    <text x="250" y="192" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">1. יסודות (Deep medial)</text>
+    <rect x="140" y="120" width="220" height="50" fill="#b45309"/>
+    <text x="250" y="150" font-size="12" text-anchor="middle" fill="#fff" font-weight="700">2. קומת קרקע (Nasolabial)</text>
+    <rect x="130" y="60" width="240" height="60" fill="#fbbf24"/>
+    <text x="250" y="95" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">3. קומה מקושטת (High lateral)</text>
+    <polygon points="250,20 120,60 380,60" fill="#f87171"/>
+    <text x="250" y="45" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">4. גימור (Last)</text>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://journals.lww.com/plasreconsurg/pages/video.aspx?v=2895" target="_blank">Differential Fat Grafting in Lift-And-Fill Facelift - Plastic and Reconstructive Surgery (Rohrich)</a>
+    <div class="desc">סרטון וידאו רשמי מהמאמר המקורי של Rohrich et al. שמדגים מילוי שומן דיפרנציאלי לתיקון אסימטריה בפייסליפט - המקור הישיר של הטכניקה בפרק זה.</div>
+  </li>
+  <li>
+    <a href="https://www.researchgate.net/figure/Sequence-of-fat-compartment-deflation-commonly-observed-in-facial-aging-Reprinted-with_fig5_266624756" target="_blank">רצף דלדול מדורי השומן בפנים - ResearchGate</a>
+    <div class="desc">תרשים מקורי מתוך מאמרי Rohrich המתאר את רצף הדלדול הכרונולוגי של מדורי השומן - קישור ישיר לגיבוי אם התמונה המוטמעת בסעיף 2 לא נטענת.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/17519724/" target="_blank">The Fat Compartments of the Face: Anatomy and Clinical Implications - Rohrich & Pessa, PRS 2007</a>
+    <div class="desc">המאמר האנטומי המכונן שמיפה לראשונה את מדורי השומן בפנים באמצעות זריקות צבע בגופות - הבסיס לכל הפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=Qkwk83xfdv8" target="_blank">The Facelift Journey with Dr. Rohrich - YouTube</a>
+    <div class="desc">מוטמע למעלה בסעיף 4.1 - תיעוד מהלך פייסליפט מהערוץ הרשמי של אחד ממחברי הפרק.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=WRuen39SeRM" target="_blank">FaceLift Surgery Animation - YouTube</a>
+    <div class="desc">מוטמע למעלה בסעיף 4.4 - הנפשה כללית של עקרון ההרמה השכבתית בפייסליפט.</div>
+  </li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה (מבוססת על מקרי הבוחן בפרק)</h3>
+  <p>אישה בת 60 מגיעה להערכה לקראת פייסליפט. בבדיקה נצפית <b>אסימטריה פנים ברורה</b>: הצד הימני קצר ורחב יותר, הצד השמאלי ארוך וצר יותר. יש דלדול בולט במדור הלחי המדיאלית העמוקה בשני הצדדים, בולט יותר מימין, וכן נאסולביאלי בולט ורצועות פלטיזמליות קדמיות בצוואר. המטופלת מעוניינת בתוצאה טבעית ומאוזנת.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו הגורם המרכזי שהוביל את הזזת הפרדיגמה מ"הרמה בלבד" ל"הרם ומלא" בפייסליפט מודרני?</div>
+  <button class="opt" data-i="0">גילוי שה-SMAS אינו קיים בכלל כשכבה אנטומית נפרדת</button>
+  <button class="opt" data-i="1">הוכחה שהרמת עור לבדה תמיד גורמת לפגיעת עצב פנים</button>
+  <button class="opt" data-i="2">הבנה שהזדקנות פנים נובעת בעיקר מדלדול נפח (fat compartment deflation), לא רק מצניחת רקמה - כפי שהודגם במחקר הפוטוגרפי של Lambros שהראה יציבות של ציוני דרך עוריים עם הגיל</button>
+  <button class="opt" data-i="3">מחסור בטכניקות הרמה כירורגיות יעילות</button>
+  <div class="explain">התשובה הנכונה: המחקר הפוטוגרפי של Lambros הראה שגבולות עור (נקודות חן, קמטים, צומת עפעף-לחי) אינם זזים כלפי מטה עם הגיל, מה שהפריך את תיאוריית ה"צניחה הטהורה" ותמך בכך שהגורם המרכזי הוא דלדול נפח במדורי שומן ספציפיים. תשובה 1 שגויה - SMAS הוא מבנה אנטומי מוגדר ומוכח. תשובה 2 מוגזמת - פגיעת עצב היא סיבוך אפשרי אך לא הסיבה לשינוי הגישה. תשובה 4 לא נתמכת - הבעיה לא הייתה במיומנות ההרמה אלא בהבנת המנגנון.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה מדור שומן תמיד ממולא ראשון בפייסליפט "הרם ומלא", ולמה?</div>
+  <button class="opt" data-i="0">המדור הגבוה-לטרלי השטחי, כי הוא הכי גדול</button>
+  <button class="opt" data-i="1">הלחי המדיאלית העמוקה (deep medial cheek), כי תאי השומן בו קטנים יותר ומדלדלים מהר יותר, והוא "מדור העבודה" המרכזי לבליטת לחי, תעלת דמעות ונאסולביאלי</button>
+  <button class="opt" data-i="2">הג'אול, כי הוא הכי נגיש כירורגית</button>
+  <button class="opt" data-i="3">הנאסולביאלי, כי הוא הכי בולט קלינית</button>
+  <div class="explain">התשובה הנכונה: הלחי המדיאלית העמוקה תמיד ממולאת ראשונה - מחקר של Wan et al. 2014 הראה שתאי השומן בה קטנים יותר מאלה שבמדורים שטחיים, מה שמסביר קצב דלדול מואץ. מילויה לבדה משפר בליטת לחי קדמית, מקטין נאסולביאלי ומשפר תעלת דמעות. תשובה 1 שגויה - זה מדור שטחי שממולא אחרון, לא ראשון. תשובות 3-4 לא מתארות את סדר העדיפות הנכון שמתואר בפרק (מעמוק לשטחי, ממדיאלי ללטרלי).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. במטופלת עם צד פנים ימני קצר ורחב וצד שמאלי ארוך וצר (כמו בווינייטה), מה תהיה הגישה הנכונה למניפולציית SMAS בכל צד?</div>
+  <button class="opt" data-i="0">SMASectomy בשני הצדדים, כי תמיד עדיף אחידות</button>
+  <button class="opt" data-i="1">SMAS stacking בשני הצדדים, כי זה תמיד הבטוח יותר</button>
+  <button class="opt" data-i="2">אין צורך להתאים טכניקה - הכל תלוי רק בגיל המטופלת</button>
+  <button class="opt" data-i="3">בצד הימני (קצר ורחב) - SMASectomy בווקטור אלכסוני; בצד השמאלי (ארוך וצר) - SMAS stacking בווקטור אופקי, לפי עקרון "פייסליפט הרכיב האינדיבידואלי"</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש במפורש שבאסימטריה משמעותית כל צד פנים עשוי להזדקק לטכניקה שונה - צד רחב/קצר נהנה מ-SMASectomy (מפחית מלאות) בווקטור אלכסוני (שומר אורך), וצד ארוך/צר נהנה מ-SMAS stacking (מוסיף מלאות) בווקטור אופקי (מקצר אורך תפיסתי, מוסיף רוחב). זה בדיוק העיקרון של "individualized-component facelift" שמודגם במקרי הבוחן בפרק. תשובות 1-3 מתעלמות מהעיקרון המרכזי של התאמה אישית לכל צד.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. המטופלת חווית עלייה בלחץ דם סיסטולי ל-150 בשעות שאחרי הניתוח. מהו הסיכון המרכזי וכיצד יש לפעול?</div>
+  <button class="opt" data-i="0">סיכון מוגבר להמטומה - יש לטפל אגרסיבית ביתר לחץ הדם (לדוגמה לבטלול/ניקרדיפין) ולטפל בגורמים תורמים כמו כאב, חרדה ובחילה</button>
+  <button class="opt" data-i="1">אין צורך בהתערבות - זהו ממצא שכיח וחסר משמעות קלינית</button>
+  <button class="opt" data-i="2">יש להוריד לחץ דם בעזרת הרדמה היפוטנסיבית עמוקה</button>
+  <button class="opt" data-i="3">הסיכון היחיד הוא לנמק עורי, ואין קשר בין לחץ דם להמטומה</button>
+  <div class="explain">התשובה הנכונה: יל"ד פוסט-ניתוחי (סיסטולי מעל 140) הוא הגורם המנבא החזק ביותר להמטומה אחרי רתידקטומיה - יותר מיל"ד טרום-קיים. יש לטפל אגרסיבית עם תרופות אנטי-היפרטנסיביות דרך הפה כמו לבטלול או ניקרדיפין, ולטפל בגורמים תורמים (כאב, חרדה, בחילה/הקאה). תשובה 2 מסוכנת - הרדמה היפוטנסיבית עמוקה עלולה דווקא להסתיר מקורות דימום פעילים. תשובה 3 שגויה עובדתית - הקשר בין יל"ד להמטומה מתועד בבירור בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע ה-TXA (חומצה טרנקסמית) שימושי בפייסליפט, ומהי התווית הנגד העיקרית?</div>
+  <button class="opt" data-i="0">הוא אנטיביוטיקה שמונעת זיהום בפצע; אין לו התוויות נגד</button>
+  <button class="opt" data-i="1">הוא משכך כאבים אופיואידי; התווית נגד - אלרגיה לאופיואידים</button>
+  <button class="opt" data-i="2">הוא אנטיפיברינוליטי (מונע פירוק קרישי דם) עם השפעה אנטי-דלקתית נלווית, ומפחית דימום תוך-ניתוחי, המטומה ובצקת; התווית נגד העיקרית - היסטוריה של תרומבואמבוליזם ורידי/עורקי או מצב קרישיות יתר</button>
+  <button class="opt" data-i="3">הוא מרחיב כלי דם שמשפר זרימת דם לפלאפ; התווית נגד - יתר לחץ דם</button>
+  <div class="explain">התשובה הנכונה: TXA הוא חומר אנטיפיברינוליטי שמונע פירוק קרישי דם (ובכך מפחית דימום), עם תועלת נוספת מהשפעתו האנטי-דלקתית. ניתן IV, בתמיסת ההרטבה, וטופיקלית. יש להימנע ממנו בהיסטוריה של אירועים תרומבואמבוליים או מצבי קרישיות יתר בגלל הסיכון התיאורטי לקידום קרישה. תשובות 1, 2 ו-4 מייחסות ל-TXA מנגנון ותווית נגד שגויים לחלוטין.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. שבועיים לאחר הניתוח, המטופלת מדווחת על חולשה קלה בהרמת השפה העליונה בחיוך בצד ימין. מה הכי סביר, ומה הפרוגנוזה?</div>
+  <button class="opt" data-i="0">פגיעה בענף הזיגומטי - נדיר מאוד, פרוגנוזה גרועה</button>
+  <button class="opt" data-i="1">פגיעה בענף הבוקאלי - הענף הכי נפוץ להיפגע, אך בזכות הצטלבות ענפים עשירה עם הזיגומטי הפרוגנוזה טובה וההחלמה בדרך כלל מהירה יחסית</button>
+  <button class="opt" data-i="2">פגיעה בענף המרגינלי מנדיבולרי - זהו הענף שנפגע כאן, וההחלמה תמיד קבועה וחלקית בלבד</button>
+  <button class="opt" data-i="3">זו בהכרח המטומה מתפתחת ודורשת חזרה מיידית לחדר ניתוח</button>
+  <div class="explain">התשובה הנכונה: חולשה באלבציה של השפה העליונה בחיוך אופיינית לפגיעה בענף הבוקאלי, שהוא הענף הכי שכיח להיפגע בפייסליפט, אך בזכות הצטלבות ענפים משמעותית עם הענף הזיגומטי ברוב המקרים ההחלמה יחסית מהירה. תשובה 3 מתארת בטעות את התייצגות הפגיעה המרגינלית-מנדיבולרית (הרמה קבועה של שפה תחתונה) ולא את זו המתוארת כאן. תשובה 4 שגויה - התמונה הקלינית המתוארת (חולשה מוטורית ממוקדת, לא נפיחות/כאב/שינוי צבע) אינה תואמת המטומה חריפה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>לייף-אנד-פיל פייסליפט</b> = הרמת SMAS/עור אינדיבידואלית + מילוי שומן אוטולוגי סלקטיבי למדורי שומן עמוקים שהתרוקנו.</li>
+    <li>מנגנון: הזדקנות פנים = בעיקר <b>דלדול נפח</b> במדורי שומן ספציפיים (לא רק צניחה) → תמיכה עמוקה נאבדת → שומן שטחי "פסאודו-פוטוזיס".</li>
+    <li>מדור <b>הלחי המדיאלית העמוקה</b> תמיד ממולא ראשון; המדור הגבוה-לטרלי השטחי אחרון (ובגברים - מדולג בד"כ).</li>
+    <li>שלושה פרמטרים לניתוח פנים: רוחב מידפייס, אורך פנים, מלאות פנים → קובעים SMAS Stacking (פנים ארוכים/צרים) מול SMASectomy (פנים קצרים/רחבים).</li>
+    <li>מניעת המטומה: פרוטוקול אנטי-היפרטנסיבי קפדני (יל"ד פוסט-ניתוחי - הגורם המנבא החזק ביותר), TXA, PRP.</li>
+    <li>סיבוכים: אי-סדירות שומן (הכי שכיח), המטומה (0.9-4%, גברים בסיכון), פגיעת עצב Great Auricular (הכי נפוץ, 6%), פגיעת ענף בוקאלי (הכי שכיח מבין עצבי הפנים המוטוריים, מחלים מהר).</li>
+    <li>עקרון-על: <b>הרמה בלבד לא מספיקה</b> - צריך גם למלא נפח כדי להשיג תוצאה טבעית.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

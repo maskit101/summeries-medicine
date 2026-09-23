@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 34: רובוטיקה בכירורגיה פלסטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 34: רובוטיקה בכירורגיה פלסטית <span class="term" dir="ltr">Robotics in Plastic Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles | מאת Karim A. Sarhane, Jesse C. Selber</div>
+
+<p>זהו פרק טכני-עקרוני: הוא לא עוסק במחלה או בטכניקת ניתוח קלאסית, אלא בפלטפורמה טכנולוגית (הרובוט הכירורגי) ובאופן שבו היא משנה את מה שאפשר לעשות בכירורגיה פלסטית. הציר המרכזי: הרובוט לא "מנתח לבד" – הוא מתווך בין ידי המנתח לרקמה, ומבטל מגבלות אנושיות (רעד, זווית ראייה, גודל תנועה) במחיר של איבוד משוב מישושי (haptic feedback). כל היישום הקליני של הרובוט בכירורגיה פלסטית נובע ישירות מהאיזון הזה.</p>
+
+<h2><span class="num">1</span> איך בכלל הגיע רובוט לחדר ניתוח – ציר זמן</h2>
+<p>חשוב להבין שרובוטיקה כירורגית לא הומצאה בשביל כירורגיה פלסטית – היא יובאה מתעשייה, מהצבא ומחלל. כירורגיה פלסטית היא "מאמצת מאוחרת" יחסית (2003).</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>שנה</th><th>אבן דרך</th><th>למה זה חשוב</th></tr></thead>
+  <tbody>
+    <tr><td>1978</td><td>PUMA 560 – זרוע רובוטית תעשייתית (ג'נרל מוטורס)</td><td>לא נבנה לרפואה כלל</td></tr>
+    <tr><td>1985</td><td>ד"ר Yik San Kwoh משתמש ב-PUMA לניתוח מוח מונחה CT</td><td>"עידן הרובוטיקה הרפואית" מתחיל</td></tr>
+    <tr><td>1992</td><td>RoboDoc – הרובוט הכירורגי הראשון שאושר ע"י FDA (החלפת ירך)</td><td>הוכחת קונספט לדיוק רובוטי בניתוח אורתופדי</td></tr>
+    <tr><td>שנות ה-90</td><td>AESOP (מצלמה לפרוסקופית מבוקרת קול) &#8592; ZEUS &#8592; Da Vinci</td><td>מעבר מכלי בודד למערכת רובוטית שלמה</td></tr>
+    <tr><td>2003</td><td>מיזוג Computer Motion (ZEUS) עם Intuitive Surgical (Da Vinci)</td><td>Da Vinci הופך לשחקן היחיד הדומיננטי בשוק</td></tr>
+    <tr><td>2003</td><td>Jesse Selber (המחבר הבכיר) מתחיל לחקור רובוטיקה בכירורגיה פלסטית</td><td>תחילת הפרק שאנחנו לומדים</td></tr>
+  </tbody>
+</table></div>
+<p class="key-box">ה-DNA של Da Vinci מול ZEUS: ל-Da Vinci יש פרק-יד (<span class="term" dir="ltr">wrist</span>) בקצה כל מכשיר עם <b>7 דרגות חופש</b> (<span class="term" dir="ltr">7 degrees of freedom</span>) – בדיוק כמו יד אנושית, רק בלי רעד. זה ההבדל הטכני שקבע מי ינצח בתחרות בין שתי המערכות.</p>
+
+<h2><span class="num">2</span> מבנה המערכת ולמה זה מתרגם ליתרון קליני</h2>
+<div class="mechanism">
+  <p class="chain">שלושת רכיבי Da Vinci: <b>1) קונסולת המנתח</b> (יושב מרוחק, רואה תמונה תלת-ממדית) &#8592; <b>2) עמדת החולה הניידת</b> (הזרועות והמצלמה, מעוגנות לחולה) &#8592; <b>3) מגדל הראייה</b> (מקור אור ומצלמה כפולה).</p>
+  <p>המנתח לא נוגע בחולה ישירות. תנועת היד שלו בקונסולה מתורגמת דיגיטלית לתנועת הזרוע ליד החולה – ותוך כדי כך המערכת <b class="key">מסננת רעד פיזיולוגי (100%)</b> ומאפשרת <b class="key">קנה מידה של תנועה</b> (<span class="term" dir="ltr">motion scaling</span>, עד יחס 5:1) – כלומר תנועה גדולה של היד האנושית הופכת לתנועה זעירה ומדויקת של המכשיר. זה ההסבר המנגנוני לכל היתרון של המערכת במיקרוכירורגיה.</p>
+</div>
+<div class="table-scroll"><table>
+  <thead><tr><th>פרמטר</th><th>כירורגיה פתוחה / לפרוסקופיה</th><th>רובוט (Da Vinci)</th></tr></thead>
+  <tbody>
+    <tr><td>ראייה</td><td>דו-ממדית (לפרוסקופיה) או ישירה</td><td>תלת-ממדית, הגדלה עד 10-15x</td></tr>
+    <tr><td>דרגות חופש בקצה המכשיר</td><td>4 (לפרוסקופיה, ללא פרק-יד)</td><td>7 (כמו יד אנושית + עוד)</td></tr>
+    <tr><td>רעד פיזיולוגי</td><td>קיים</td><td>מסונן לחלוטין</td></tr>
+    <tr><td>קנה מידה של תנועה</td><td>1:1 בלבד</td><td>ניתן להתאמה, עד 5:1</td></tr>
+    <tr><td>משוב מישושי (haptic)</td><td>קיים (במגע ישיר)</td><td>נעדר – המגבלה המרכזית</td></tr>
+    <tr><td>ארגונומיה למנתח</td><td>עמידה ממושכת, מאמץ גופני</td><td>ישיבה, פחות עייפות</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">3</span> שלושת התחומים העיקריים ביישום קליני</h2>
+<p>הפרק בנוי סביב שלושה יישומים עיקריים שפיתח המחבר הבכיר לאורך שני עשורים:</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>יישום</th><th>הבעיה שהוא פותר</th><th>נקודת מפתח</th></tr></thead>
+  <tbody>
+    <tr><td><b>TORRS</b> – שחזור אורופרינגס (<span class="term" dir="ltr">transoral robotic reconstructive surgery</span>)</td><td>גישה לגרון/בסיס לשון דרך הפה בלי לחתוך שפה או לוע (mandibulotomy)</td><td>"מרכז מרוחק" (remote center) של המכשירים ממוקם בגובה פתיחת הפה כדי למזער תנועה סביב השיניים</td></tr>
+    <tr><td><b>מיקרוכירורגיה רובוטית</b> – אנסטומוזות כלי דם/עצבים/לימפה</td><td>דיוק "על-אנושי" באנסטומוזות שקשות/בלתי אפשריות ידנית</td><td>שימוש נפוץ בסופר-מיקרוכירורגיה (lymphaticovenular bypass) – חשוב במיוחד בלימפדמה</td></tr>
+    <tr><td><b>קציר פלאפים זעיר-פולשני</b> – לטיסימוס דורסי, רקטוס אבדומינוס, DIEP (RoboDIEP)</td><td>הימנעות מחתכים ארוכים (20-40 ס"מ) בבטן/גב שגורמים לתחלואה של אתר התורם</td><td>גישה תוך-בטנית אחורית ל-DIEP ששומרת על שלמות הנדן הקדמי של הרקטוס</td></tr>
+  </tbody>
+</table></div>
+
+<h3>TORRS – פירוט</h3>
+<p>ה"בעיה הישנה": כריתת גידולים בלוע/בסיס לשון (TORS – <span class="term" dir="ltr">transoral robotic surgery</span>) הצליחה למנוע חתכי לוע גדולים, אבל יצרה בעיה חדשה – איך לשחזר את הפגם כשהגישה כל כך מוגבלת (הצינור של האורופרינגס נשאר סגור כמעט לגמרי)? הפתרון: את אותו רובוט שכרת את הגידול, מפעילים גם לשחזור. סט-אפ: עגלת החולה בזווית 60° מראש המיטה, מרחיב פה, אנדוסקופ ושתי זרועות מכשיר מוכנסות דרך הפה ומתכנסות אל האנטומיה. יתרון קליני: מאפשר לכירורג פלסטי לתמוך בכירורג ראש-צוואר בכריתת גידולים גדולים וגדל אשר אחרת יהיה קשה מדי לשחזר בשיטות מסורתיות.</p>
+
+<h3>מיקרוכירורגיה רובוטית – פירוט</h3>
+<p>עקרון: רעד אנושי מוגבל להפרעה זעירה, אך במיקרו-אנסטומוזה (תפר 9-0 עד 12-0) גם רעד זעיר קריטי. הרובוט מספק סינון רעד מלא + הגדלה 10-15x + אפשרות זרוע שלישית "עוזרת" קבועה (מלקחיים לרקמה עדינה) שמבטלת את הצורך בעוזר מיקרוכירורגי מיומן. תוצאות: זמן אנסטמוזה ארוך יותר בתחילת עקומת הלמידה, אך ללא הבדל בשיעורי פטנטיות/כישלון טכני לעומת מיקרוכירורגיה קונבנציונלית. שתי פלטפורמות מיקרוכירורגיות ייעודיות חדשות (לא Da Vinci) מוזכרות: MUSA (הולנד) ו-SYMANI (איטליה) – שתיהן קיבלו סימון CE אירופי.</p>
+
+<h3>RoboDIEP – פירוט</h3>
+<p>הבעיה בגישה הפתוחה הקלאסית ל-DIEP: כדי להגיע לפדיקל חייבים לפצל/להרים את שריר הרקטוס בצדו הרוחבי, מה שעלול לפגוע בצרורות עצביים-וסקולריים סגמנטליים ולהחליש את דופן הבטן (בליטות, בקע). הפתרון הרובוטי: גישה תוך-בטנית <b>אחורית</b> לפדיקל – משמרת את האנטומיה הקדמית, מגבילה את חתך הפאשיה, ומגינה על העצבנות הטבעית. מי מתאים? חולים עם פרפורטור בודד או שניים סמוכים עם מהלך תוך-שרירי קצר. אם דרושים פרפורטורים רבים – עדיין נדרשת גישה פתוחה קלאסית.</p>
+
+<h2><span class="num">4</span> טבלת SARMS – הערכת מיומנות מיקרוכירורגיה רובוטית</h2>
+<p>המחבר הבכיר פיתח כלי הערכה ייעודי (<span class="term" dir="ltr">Structured Assessment of Robotic Microsurgery Skills</span>) המשלב פרמטרים מיקרוכירורגיים קלאסיים עם פרמטרים רובוטיים ייחודיים:</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>קטגוריה</th><th>פרמטרים</th></tr></thead>
+  <tbody>
+    <tr><td>מיומנות מיקרוכירורגית קלאסית (SAMS)</td><td>זריזות דו-ידנית, טיפול ברקמה, מיקום תפר, טכניקת קשירה, זרימת עבודה (תנועה, מהירות)</td></tr>
+    <tr><td>מיומנות רובוטית ייחודית (חדש)</td><td>תנועת מצלמה, תפיסת עומק, ניצול פרק-יד (wrist), טיפול לא-פוגעני במחט, טיפול לא-פוגעני ברקמה</td></tr>
+  </tbody>
+</table></div>
+<p>ממצא מפתיע: בניגוד להערכת מיומנות מיקרוכירורגיה קונבנציונלית (שבה מתאמנים משתפרים בעיקר בטווח הבינוני-גבוה), בהערכת SARMS <b class="key">מתאמנים חסרי ניסיון קודם ברובוט הגיעו כמעט לכל טווחי הציון</b> תוך 5 מפגשים – כלומר עקומת הלמידה של מיקרוכירורגיה רובוטית נלמדת מהר יותר מזו של מיקרוכירורגיה קונבנציונלית, כנראה כי המערכת מבטלת גורמים אנושיים (רעד, יציבות יד) שבמיקרוכירורגיה רגילה לוקח שנים לשלוט בהם.</p>
+
+<h2><span class="num">5</span> יתרונות וחסרונות/מגבלות – טבלת מאזן</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>יתרונות</th><th>חסרונות / מגבלות</th></tr></thead>
+  <tbody>
+    <tr><td>סינון רעד מוחלט</td><td><b>אין משוב מישושי (haptic)</b> – המגבלה המרכזית ביותר</td></tr>
+    <tr><td>ראייה תלת-ממדית, הגדלה גבוהה</td><td>אופטיקת האנדוסקופ נחותה יחסית למיקרוסקופ הניתוחי מעל פי 10 הגדלה (דורש זום דיגיטלי עם אובדן פיקסלים)</td></tr>
+    <tr><td>7 דרגות חופש – תנועת פרק-יד כמו יד אנושית</td><td>מכשור עדיין לא מותאם באופן מלא למיקרוכירורגיה עדינה</td></tr>
+    <tr><td>קנה מידה של תנועה (עד 5:1)</td><td>עלות גבוהה מאוד (1.85-2.3 מיליון $ + תחזוקה שנתית 138,000$)</td></tr>
+    <tr><td>גישה זעיר-פולשנית לאתרי תורם (פחות תחלואה, החלמה מהירה יותר)</td><td>עקומת למידה ותשתית הכשרה שעדיין לא סטנדרטיות בכירורגיה פלסטית</td></tr>
+    <tr><td>אפשרות לזרוע שלישית "עוזרת" קבועה – מבטלת צורך בעוזר מיומן</td><td>נפח מקרים מוגבל בכירורגיה פלסטית מאט את עקומת הלמידה המוסדית</td></tr>
+  </tbody>
+</table></div>
+<p class="key-box">נקודת מפתח כלכלית: העלות אינה רק מחיר המכונה – ה<span class="term" dir="ltr">contribution margin</span> (הכנסה פחות עלות למקרה) הוא הקובע האמיתי. לרוב אין קוד CPT ייעודי לניתוח רובוטי (שכר טרחת המנתח זהה לניתוח פתוח), אך חיוב המתקן כמעט כפול – מה שבפועל מייצר תמריץ כלכלי למוסדות (לא בהכרח למנתח) לאמץ רובוטיקה.</p>
+
+<h2><span class="num">6</span> יישומים קליניים קיימים מול חזיתות עתידיות</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>קטגוריה</th><th>יישום</th><th>סטטוס</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3">קיים, מבוסס</td><td>TORRS לשחזור אורופרינגס</td><td>ניסיון קליני רב, יעילות מוכחת</td></tr>
+    <tr><td>קציר לטיסימוס דורסי רובוטי</td><td>~100 מקרים במוסד המחבר, חלק מפרוטוקול שחזור שד מושהה-מיידי</td></tr>
+    <tr><td>קציר רקטוס אבדומינוס לשחזור אגן/דופן חזה</td><td>מבוסס, מבוצע גם ללא לפרוטומיה</td></tr>
+    <tr><td rowspan="3">מתפתח, ראיות מוקדמות</td><td>RoboDIEP</td><td>סדרות מקרים (20 מקרים ב-2020), ללא המרה לניתוח פתוח</td></tr>
+    <tr><td>סופר-מיקרוכירורגיה ללימפדמה (MUSA)</td><td>ניסוי אקראי פיילוט חיובי (שיפור איכות חיים, ירידה בנפח היד)</td></tr>
+    <tr><td>שיקום מקלעת עצבים (brachial plexus)</td><td>סדרות מקרים בבעלי חיים/גופות, מקרים אנושיים ראשוניים</td></tr>
+    <tr><td rowspan="2">חזית עתידית / ניסיוני</td><td>ניתוח חך שסוע (cleft palate) רובוטי</td><td>סימולטורים בהם מבצעים ניתוח מלא; ניסיון קליני ראשוני מוגבל (10 חולים)</td></tr>
+    <tr><td>מכשור עם משוב מישושי (Amadeus, Sofie)</td><td>בפיתוח, טרם אושר לשימוש נרחב</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">R-O-B-O-T</span> – מה הרובוט נותן ומה הוא לוקח</h3>
+  <p>
+    <b>R</b> – <span class="term" dir="ltr">Reduced tremor</span> (ביטול רעד) – היתרון הבסיסי ביותר.<br>
+    <b>O</b> – <span class="term" dir="ltr">Optics</span> תלת-ממדיות בהגדלה גבוהה.<br>
+    <b>B</b> – <span class="term" dir="ltr">Buttonhole access</span> (גישה זעיר-פולשנית) – פחות תחלואת אתר תורם.<br>
+    <b>O</b> – <span class="term" dir="ltr">Order of magnitude scaling</span> – קנה מידה של תנועה (עד 5:1).<br>
+    <b>T</b> – <span class="term" dir="ltr">Touch is lost</span> – אין משוב מישושי, המחיר של כל השאר.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני מנתח שמרכיב כפפות עבות במיוחד שמבטלות לגמרי כל רעד ביד שלו ומגדילות כל תנועה זעירה שהוא עושה פי חמישה בדיוק – אבל אותן כפפות גם מנתקות אותו לגמרי מתחושת המגע. הוא רואה הכל בתלת-ממד ענק, זז דרך חור מנעול קטן בלי לפתוח את כל הדלת – אבל צריך ללמוד "להרגיש עם העיניים" כי הידיים כבר לא מרגישות.</p>
+  <svg class="diagram" viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg">
+    <title>מאזן הרובוט: מה מתקבל ומה נלקח</title>
+    <rect x="20" y="20" width="220" height="150" rx="10" fill="#ecfdf5" stroke="#047857"/>
+    <text x="130" y="45" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">מה מתקבל</text>
+    <text x="130" y="70" font-size="12" text-anchor="middle" fill="#065f46">ביטול רעד 100%</text>
+    <text x="130" y="92" font-size="12" text-anchor="middle" fill="#065f46">ראייה תלת-ממדית מוגדלת</text>
+    <text x="130" y="114" font-size="12" text-anchor="middle" fill="#065f46">7 דרגות חופש בפרק-יד</text>
+    <text x="130" y="136" font-size="12" text-anchor="middle" fill="#065f46">קנה מידה עד 5:1</text>
+    <text x="130" y="158" font-size="12" text-anchor="middle" fill="#065f46">חתכים זעירים</text>
+
+    <rect x="280" y="20" width="220" height="150" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+    <text x="390" y="45" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">מה נלקח / מחיר</text>
+    <text x="390" y="75" font-size="12" text-anchor="middle" fill="#7f1d1d">משוב מישושי (haptic)</text>
+    <text x="390" y="100" font-size="12" text-anchor="middle" fill="#7f1d1d">עלות ענקית (מכונה+תחזוקה)</text>
+    <text x="390" y="125" font-size="12" text-anchor="middle" fill="#7f1d1d">הכשרה ייעודית ארוכה</text>
+    <text x="390" y="150" font-size="12" text-anchor="middle" fill="#7f1d1d">אופטיקה נחותה &gt;10x</text>
+
+    <line x1="260" y1="95" x2="260" y2="95" stroke="none"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Da_Vinci_Surgical_System" target="_blank">Da Vinci Surgical System – Wikipedia</a>
+    <div class="desc">רקע טכני מלא על המערכת, תולדותיה, ותרשימים של רכיבי הפלטפורמה.</div>
+  </li>
+  <li>
+    <a href="https://www.intuitive.com/en-us/products-and-services/da-vinci" target="_blank">Da Vinci Robotic Surgical Systems – Intuitive (יצרן המערכת)</a>
+    <div class="desc">אתר היצרן הרשמי, כולל תמונות עדכניות של קונסולת המנתח, עמדת החולה ומגדל הראייה.</div>
+  </li>
+  <li>
+    <a href="https://www.mdanderson.org/cancerwise/breast-reconstruction-options--what-to-know-about-diep-flaps-and-tissue-flaps.h00-159464001.html" target="_blank">MD Anderson – Breast Reconstruction Options (DIEP flaps)</a>
+    <div class="desc">מאמר של המוסד שבו עובד ד"ר Selber (מחבר הפרק), על הגישה הרובוטית ל-DIEP בהשוואה לגישה הפתוחה.</div>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=AbNzUf-5GF0" target="_blank">Robotic-assisted DIEP Flap harvest for breast reconstruction – YouTube</a>
+    <div class="desc">סרטון המדגים קציר DIEP רובוטי – ממחיש את הגישה התוך-בטנית האחורית לפדיקל שתוארה בפרק.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 48 מועמדת לשחזור שד עם DIEP לאחר כריתה חלקית. בהדמיה טרום-ניתוחית מזוהה פרפורטור בודד דומיננטי עם מהלך תוך-שרירי קצר יחסית. הצוות שוקל בין גישה פתוחה קלאסית לבין גישה רובוטית (RoboDIEP). המטופלת שואלת מה בדיוק ישתנה עבורה אם יבחרו בגישה הרובוטית.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הסיבה המנגנונית המרכזית לכך שהרובוט מאפשר דיוק "על-אנושי" במיקרוכירורגיה?</div>
+  <button class="opt" data-i="0">הרובוט מחליף לחלוטין את שיקול הדעת של המנתח באלגוריתם</button>
+  <button class="opt" data-i="1">שילוב של סינון רעד פיזיולוגי מוחלט עם קנה מידה של תנועה (עד 5:1) שהופך תנועת יד גדולה לתנועת מכשיר זעירה ומדויקת</button>
+  <button class="opt" data-i="2">הרובוט מספק משוב מישושי חזק יותר מהיד האנושית</button>
+  <button class="opt" data-i="3">הרובוט מבצע את התפרים אוטומטית ללא מעורבות המנתח</button>
+  <div class="explain">התשובה הנכונה: הרובוט הוא כלי טלה-מניפולציה (המנתח עדיין שולט לחלוטין בכל תנועה מהקונסולה) שמבטל רעד פיזיולוגי לגמרי ומאפשר קנה מידה של תנועה – כך שתנועת יד גסה יחסית הופכת לתנועת מכשיר זעירה. תשובה 3 הפוכה מהעובדות: הפרק מדגיש במפורש שדווקא משוב מישושי הוא מה שהרובוט <b>חסר</b>. תשובות 1 ו-4 מתארות אוטומציה מלאה, שאינה קיימת בפלטפורמות המתוארות בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מהו היתרון האנטומי-כירורגי המרכזי של גישת RoboDIEP לעומת הגישה הפתוחה הקלאסית?</div>
+  <button class="opt" data-i="0">היא מבטלת לחלוטין את הצורך בהדמיה טרום-ניתוחית</button>
+  <button class="opt" data-i="1">היא מתאימה לכל מספר של פרפורטורים באותה מידה</button>
+  <button class="opt" data-i="2">גישה תוך-בטנית אחורית לפדיקל ששומרת על שלמות הנדן הקדמי של הרקטוס, במקום פיצול/הרמת השריר הצדדית הנדרשת בגישה פתוחה</button>
+  <button class="opt" data-i="3">היא מקצרת את זמן הניתוח בכל המקרים</button>
+  <div class="explain">התשובה הנכונה: הפרק מדגיש שבגישה הפתוחה יש צורך לפצל או להרים את שריר הרקטוס בצדו כדי לחשוף את הפדיקל, מה שעלול לפגוע בעצבנות הסגמנטלית ולהחליש את דופן הבטן. הגישה הרובוטית "מאחור" (תוך-בטנית) עוקפת את זה ומגינה על האנטומיה הקדמית. תשובה 1 שגויה – הדמיה טרום-ניתוחית עדיין הכרחית לבחירת מועמדים. תשובה 2 הפוכה מהעובדות – מספר פרפורטורים רב דורש דווקא גישה פתוחה. תשובה 4 אינה נכונה גורפת: הפרק מדווח שהות ניתוח יכולה להיות ארוכה יותר בתחילת עקומת הלמידה (כפי שנצפה גם בניתוח חך שסוע רובוטי: 122 מול 87 דקות).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה המגבלה הטכנית המרכזית ביותר של פלטפורמות רובוטיות נוכחיות (Da Vinci, Amadeus) לפי הפרק?</div>
+  <button class="opt" data-i="0">היעדר משוב מישושי (haptic feedback)</button>
+  <button class="opt" data-i="1">חוסר יכולת לבצע ניתוח בהגדלה מעבר לפי 2</button>
+  <button class="opt" data-i="2">חוסר יכולת ליצור תנועת פרק-יד (wrist) בקצה המכשיר</button>
+  <button class="opt" data-i="3">הצורך במנתח שני נוסף שיושב ליד המטופל בכל מקרה</button>
+  <div class="explain">התשובה הנכונה: הפרק חוזר ומדגיש שהמגבלה המרכזית של הרובוט היא היעדר משוב מישושי אמיתי (טקטילי) – רק מספר מוגבל של פלטפורמות ניסיוניות (Amadeus, Sofie) מפתחות פתרון לכך, וגם הן עדיין באות בשלבי מחקר. תשובה 2 שגויה – הרובוט מספק הגדלה של 10-15x (ואף יותר עם VITOM/מצלמות דיגיטליות). תשובה 3 שגויה – זו בדיוק התכונה הייחודית של Da Vinci (7 דרגות חופש בפרק-יד) שנתנה לו יתרון על ZEUS. תשובה 4 אינה נכונה – בדרך כלל יש עוזר ליד המטופל להחלפת מכשירים, אך זה לא "מגבלה טכנית" של הפלטפורמה עצמה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מדוע, לפי הפרק, קשה להעריך את "העלות-תועלת" הכלכלית של ניתוח רובוטי מנקודת מבט מוסדית?</div>
+  <button class="opt" data-i="0">כי אין בכלל קוד חיוב (CPT) לניתוחים רובוטיים</button>
+  <button class="opt" data-i="1">כי ניתוח רובוטי תמיד זול יותר לביצוע מניתוח פתוח</button>
+  <button class="opt" data-i="2">כי חברות הביטוח מסרבות לכסות ניתוחים רובוטיים באופן גורף</button>
+  <button class="opt" data-i="3">כי שכר טרחת המנתח דומה לניתוח פתוח, אך חיוב המתקן כמעט כפול, כך שהתועלת הכלכלית האמיתית תלויה במרווח התרומה (הכנסה פחות עלות) ולא רק במחיר הרובוט</button>
+  <div class="explain">התשובה הנכונה: הפרק מסביר שאין קוד CPT ייעודי לניתוח רובוטי (שכר הטרחה זהה לניתוח פתוח), אך חיוב המתקן גבוה משמעותית (כמעט כפול) – מה שמייצר תמריץ מוסדי שאינו בהכרח משקף חיסכון אמיתי, אלא אם מחשבים גם ירידה בסיבוכים ובאשפוז. תשובה 1 שגויה – יש קוד CPT (19364), פשוט זהה לפתוח. תשובה 2 הפוכה – לרוב עולה יותר לביצוע (ציוד, זמן חדר ניתוח). תשובה 3 אינה מוזכרת בפרק כגורם מרכזי.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. מה מלמד ממצא ה-SARMS על עקומת הלמידה של מיקרוכירורגיה רובוטית בהשוואה למיקרוכירורגיה קונבנציונלית?</div>
+  <button class="opt" data-i="0">מיקרוכירורגיה רובוטית קשה משמעותית יותר ללמידה, ורוב המתאמנים לא מגיעים לרמת מיומנות גבוהה כלל</button>
+  <button class="opt" data-i="1">מתאמנים חסרי ניסיון קודם ברובוט הצליחו לעבור כמעט את כל טווחי הציון תוך מספר קטן של מפגשים – עקומת למידה מהירה יחסית, כנראה בזכות ביטול גורמים אנושיים כמו רעד</button>
+  <button class="opt" data-i="2">אין שום הבדל בין הביצועים של מנתחים מנוסים למתחילים גמורים בשום פרמטר</button>
+  <button class="opt" data-i="3">ניסיון קודם במיקרוכירורגיה קונבנציונלית תמיד פוגע ביכולת ללמוד מיקרוכירורגיה רובוטית</button>
+  <div class="explain">התשובה הנכונה: מחקר ה-SARMS הראה שיפור מהיר ומשמעותי בכל תחומי המיומנות (כולל התחומים הרובוטיים הייחודיים) תוך חמישה מפגשי אימון בלבד, גם אצל מתאמנים ללא כל ניסיון קודם ברובוט או במיקרוכירורגיה – בניגוד להערכת SAMS הקונבנציונלית שבה שיפור נצפה בעיקר בטווח הבינוני-גבוה. תשובה 1 הפוכה מהממצא. תשובה 3 שגויה חלקית: ניסיון קודם דווקא <b>סייע</b> ברכישת מיומנות בתחומים מסוימים. תשובה 4 שגויה – השוואה בין וסקולריים מנוסים למתמחים ברובוט הראתה תוצאות דומות, לא ניגוד.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו העיקרון ההנדסי שגרם ל-TORRS (שחזור רובוטי דרך הפה) להיות אפשרי מבחינה טכנית, בניגוד לניסיון לבצע את אותו שחזור עם מכשור לפרוסקופי רגיל?</div>
+  <button class="opt" data-i="0">האנדוסקופ הרובוטי קטן משמעותית מכל אנדוסקופ לפרוסקופי אחר</button>
+  <button class="opt" data-i="1">הרובוט מאפשר למנתח לעבוד בלי כל מגע עם הפה של המטופל</button>
+  <button class="opt" data-i="2">מיקום ה"מרכז המרוחק" (remote center) של המכשירים בגובה פתיחת הפה, יחד עם דרגות החופש בפרק-היד, מאפשר תמרון והשחלת תפרים בעומק המרחב הצר של האורופרינגס</button>
+  <button class="opt" data-i="3">הרובוט מבטל את הצורך במרחיב פה לחלוטין</button>
+  <div class="explain">התשובה הנכונה: הפרק מתאר כיצד ה"מרכז המרוחק" הווירטואלי-תלת-ממדי שסביבו מסתובבים המכשירים ממוקם בגובה פתיחת הפה כדי למזער תנועה מיותרת סביב השיניים, ובשילוב עם דרגות החופש בפרק-היד (שמאפשרות זוויות תפירה בלתי אפשריות עם מכשור לפרוסקופי ישר) – זה מה שהופך תמרון עדין ותפירה בעומק המרחב הצר לאפשריים. תשובה 4 שגויה במפורש – מרחיב פה עדיין נדרש כדי לבסס את פתיחת המרווח הבין-שיני. תשובות 1 ו-2 אינן הגורם ההנדסי המרכזי שהפרק מדגיש.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>רובוטיקה כירורגית יובאה לרפואה מתעשייה/צבא/חלל, והגיעה לכירורגיה פלסטית רק ב-2003; Da Vinci ניצח את ZEUS בזכות פרק-יד עם 7 דרגות חופש.</li>
+    <li>המנגנון המרכזי: <b>סינון רעד מוחלט + קנה מידה של תנועה</b> = דיוק על-אנושי, במחיר של <b>היעדר משוב מישושי</b>.</li>
+    <li>שלושה תחומי יישום עיקריים בכירורגיה פלסטית: TORRS (שחזור אורופרינגס), מיקרוכירורגיה רובוטית (כולל סופר-מיקרוכירורגיה בלימפדמה), וקציר פלאפים זעיר-פולשני (לטיסימוס דורסי, רקטוס אבדומינוס, RoboDIEP).</li>
+    <li>עקומת הלמידה של מיקרוכירורגיה רובוטית (SARMS) מהירה יחסית למיקרוכירורגיה קונבנציונלית, אבל תשתית ההכשרה הפורמלית עדיין לא קיימת בכירורגיה פלסטית.</li>
+    <li>מגבלות מרכזיות: עלות גבוהה, אופטיקה נחותה מעל פי 10 הגדלה, מכשור לא מותאם דיו למיקרוכירורגיה, והיעדר משוב מישושי – שלושתם צפויים להשתפר טכנולוגית עם הזמן.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
