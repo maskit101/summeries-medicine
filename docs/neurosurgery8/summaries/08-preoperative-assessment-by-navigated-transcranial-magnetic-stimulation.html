@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 8: הערכה טרום-ניתוחית באמצעות גירוי מגנטי טרנסקרניאלי ממוקד ניווט</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 8: הערכה טרום-ניתוחית באמצעות גירוי מגנטי טרנסקרניאלי ממוקד ניווט <span class="term" dir="ltr">Preoperative Assessment by Navigated Transcranial Magnetic Stimulation</span></h1>
+<div class="subtitle">מתוך Youmans Neurological Surgery (מהדורה 8), חלק 1 - Introduction to Neurosurgery | מאת Sandro M. Krieg, Thomas Picht, Karl Schaller</div>
+
+<p>גידול מוחי (בעיקר גליומה) הממוקם בסמוך לקורטקס המוטורי או לרשתות השפה מציב בפני המנתחת דילמה קבועה: כמה רקמה אפשר להוציא בלי לגרום לנכות קבועה? <span dir="ltr" class="term">Navigated transcranial magnetic stimulation (nTMS)</span> הוא כלי לא-פולשני שממפה מראש, עוד לפני הניתוח, היכן בדיוק נמצאת הפעילות המוטורית והשפתית האמיתית של המטופל הספציפי - לא לפי אנטומיה "ממוצעת" מהאטלס, אלא לפי המוח שלו עצמו, שכן גידולים גדולים מזיזים ומעצבים מחדש (plasticity) את מיקום הפונקציה.</p>
+
+<h2><span class="num">1</span> מנגנון: איך בכלל אפשר "לגרות" את המוח מבעד לגולגולת</h2>
+<div class="mechanism">
+  <p class="chain">
+    השרשרת הסיבתית שהופכת פעימה מגנטית לתנועת יד בפועל:<br>
+    <b>שלב 1:</b> זרם חשמלי חזק ומשתנה-מהר (rapidly rising current) עובר בסליל (coil) שמונח על הקרקפת. לפי חוק ההשראה <span dir="ltr" class="term">law of induction</span>, שדה מגנטי משתנה-בזמן משרה זרם חשמלי בכל מוליך שנמצא בטווח שלו.<br>
+    <b>שלב 2:</b> השדה המגנטי עצמו כמעט ולא נבלם על ידי העור, השיער והעצם - כי לרקמות אלה יש התנגדות חשמלית גבוהה (מוליכות נמוכה), ולכן דווקא <b>מוליכות נמוכה של הרקמות שביניים</b> היא מה שמאפשר לשדה המגנטי לחדור כמעט ללא הנחתה עד לקורטקס. זו גם הסיבה שהשיטה אינה כואבת - לזרם המושרה יש השפעה זניחה על הרקמה שבין הסליל לקורטקס עצמו.<br>
+    <b>שלב 3:</b> בהגיעו לקורטקס, השדה המגנטי משרה שם זרם חשמלי משני (כי רקמת המוח כן מוליכה חשמל היטב) שמדפלר את הנוירונים הפירמידליים ומייצר פוטנציאל פעולה - בדיוק כמו גירוי חשמלי ישיר, אך בלי מגע פיזי.<br>
+    <b>שלב 4:</b> סליל "פרפר" (figure-eight / double-ring coil) יוצר שדה מגנטי חרוטי שרק קצהו הצר מגרה את הקורטקס בעצמה על-סיפית (suprathreshold) - זה מה שמאפשר <b>מיפוי ברזולוציה של מילימטרים</b> במקום גירוי מפושט וגס.<br>
+    <b>שלב 5 (ה"נווט"):</b> מצלמה עוקבת אחרי מחזירי-אור (reflectors) המחוברים לסליל ולראש המטופל בזמן אמת, וממפה כל פעימה למיקום המדויק שלה על שחזור תלת-ממדי של ה-MRI של המטופל עצמו - כך שכל תגובה מוטורית/שפתית משויכת למיקום אנטומי ספציפי, לא רק "משהו קרה".
+  </p>
+</div>
+<p>למה חייבים לכוון את כיוון הזרם? האקסונים של התאים הפירמידליים מסודרים <b>בניצב</b> לפני השטח של הגירוס, ומדפלרים בקלות רבה יותר כשהזרם המושרה זורם <b>מקביל</b> לפני השטח (כלומר ניצב לתלם הסמוך). לכן מערכות nTMS מודרניות מחשבות את עוצמת השדה המושרה (ב-<span dir="ltr">V/m</span>) בזמן אמת ומאפשרות כיוונון תוכנתי (software-controlled tilting) של הסליל כדי למקסם את יישור השדה החשמלי עם האנטומיה הקורטיקלית המקומית - זו הגרסה המתקדמת הנקראת <b>"e-field navigated TMS"</b>.</p>
+
+<svg class="diagram" viewBox="0 0 820 400" xmlns="http://www.w3.org/2000/svg">
+  <title>עקרון פעולת nTMS: מסליל מגנטי ועד מיפוי קורטיקלי מנווט</title>
+  <desc>תרשים סכמטי עצמאי המראה את שרשרת הרכיבים: מחשב/ניווט, מצלמה עוקבת, סליל פרפר על הקרקפת, שדה חשמלי מושרה בקורטקס, אלקטרודות EMG בגפה, והצגת התוצאה על מודל MRI תלת-ממדי.</desc>
+  <rect x="20" y="20" width="220" height="110" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="130" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">מסך ניווט</text>
+  <text x="130" y="65" font-size="11" text-anchor="middle" fill="#1e3a8a">שחזור MRI תלת-ממדי</text>
+  <text x="130" y="83" font-size="11" text-anchor="middle" fill="#1e3a8a">+ מיקום הסליל בזמן אמת</text>
+  <text x="130" y="101" font-size="11" text-anchor="middle" fill="#1e3a8a">(ביחס לראש המטופל)</text>
+  <text x="130" y="119" font-size="10" text-anchor="middle" fill="#3730a3">מצלמה עוקבת אחרי reflectors</text>
+
+  <circle cx="420" cy="70" r="34" fill="#fef3c7" stroke="#a16207" stroke-width="2.5"/>
+  <text x="420" y="66" font-size="11" text-anchor="middle" fill="#713f12" font-weight="700">סליל</text>
+  <text x="420" y="80" font-size="10" text-anchor="middle" fill="#713f12">figure-8</text>
+  <path d="M420 104 L420 150" stroke="#a16207" stroke-width="3" marker-end="url(#arrow1)"/>
+
+  <path d="M370 150 Q420 190 470 150 Q460 220 420 250 Q380 220 370 150 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="420" y="195" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">שדה חשמלי חרוטי</text>
+  <text x="420" y="211" font-size="10" text-anchor="middle" fill="#1e3a8a">מושרה בקורטקס (V/m)</text>
+
+  <rect x="330" y="255" width="180" height="60" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="420" y="278" font-size="11.5" text-anchor="middle" fill="#7f1d1d" font-weight="700">קורטקס מוטורי/שפה</text>
+  <text x="420" y="296" font-size="10" text-anchor="middle" fill="#7f1d1d">דפולריזציה של תאים פירמידליים</text>
+
+  <path d="M420 315 L420 350" stroke="#b91c1c" stroke-width="3" marker-end="url(#arrow1)"/>
+  <rect x="330" y="350" width="180" height="40" rx="8" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+  <text x="420" y="374" font-size="11" text-anchor="middle" fill="#374151" font-weight="700">EMG בגפה / הפרעת דיבור</text>
+
+  <path d="M470 275 Q650 275 650 130" fill="none" stroke="#15803d" stroke-width="2.5" marker-end="url(#arrow2)"/>
+  <rect x="600" y="20" width="200" height="110" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="700" y="45" font-size="13" text-anchor="middle" fill="#14532d" font-weight="700">תוצאה מוטמעת</text>
+  <text x="700" y="65" font-size="11" text-anchor="middle" fill="#14532d">נקודות MEP צבעוניות</text>
+  <text x="700" y="83" font-size="11" text-anchor="middle" fill="#14532d">על מפת המוח האישית</text>
+  <text x="700" y="101" font-size="11" text-anchor="middle" fill="#14532d">= זרעים ל-DTI tractography</text>
+  <text x="700" y="119" font-size="10" text-anchor="middle" fill="#166534">ומדריך לגישה הניתוחית</text>
+
+  <defs>
+    <marker id="arrow1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#6b7280"/></marker>
+    <marker id="arrow2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#15803d"/></marker>
+  </defs>
+</svg>
+<p class="figcap">איור סכמטי עצמאי: שרשרת הרכיבים של בדיקת nTMS - מהסליל המגנטי, דרך השדה המושרה בקורטקס, ועד הצגת תוצאת המיפוי על מודל ה-MRI האישי.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Transcranial_magnetic_stimulation.jpg?width=700" alt="Transcranial magnetic stimulation coil placed on a person's head">
+<p class="media-cap">סליל TMS מונח על הקרקפת - כך בפועל נראית הבדיקה מבחוץ: זרם חזק ומשתנה-מהר בסליל יוצר שדה מגנטי שחודר כמעט ללא הנחתה דרך העור, השיער והגולגולת. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/NQHVfF_5rtc" title="Transcranial Magnetic Stimulation (TMS) explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הסבר כללי על עקרון הפעולה הפיזיקלי של TMS - חוק ההשראה, הסליל, והשפעתו על נוירונים קורטיקליים.</p>
+
+<h2><span class="num">2</span> מיפוי מוטורי: סף מוטורי, MEP וכיוון הסליל</h2>
+<p>מיפוי הייצוג המוטורי הקורטיקלי מגיע לפוקליות המקסימלית כשמשתמשים בעצימות גירוי <b>על-סיפית מעט בלבד</b> (just suprathreshold). כדי ליישם זאת, יש לקבוע לכל מטופל בנפרד את <span dir="ltr" class="term">resting motor threshold (RMT)</span> - הסף המינימלי שמעורר תגובה מוטורית - שכן הוא משתנה מאדם לאדם ואף מבדיקה לבדיקה אצל אותו אדם (בהתאם לרמת עוררות, מיקום האלקטרודות ועוד). לאחר קביעת ה-RMT, מיפוי האזור סביב הגידול (peritumoral) מבוצע לרוב ב-105%-110% מה-RMT. עקב הסומטוטופיה של הגירוס (סידור מסודר של ייצוגי הגוף השונים לאורכו), מיפוי שרירי הגפה התחתונה דורש עצימות גבוהה יותר ב-10%-20% מאשר מיפוי שרירי כף היד הקטנים.</p>
+<p>איכות אות ה-<span dir="ltr" class="term">EMG</span> (אלקטרומיוגרפיה) קריטית: יש לוודא שהפעילות במנוחה נמוכה תמיד מסף התגובה החיובית (<span dir="ltr" class="term">motor evoked potential, MEP</span>, בדרך כלל 50 מיקרו-וולט), אחרת אי אפשר להבחין בין רעש לתגובה אמיתית. <b>מגבלה מובנית וחשובה למבחן:</b> בעצימויות גירוי גבוהות אפשר להשרות זרם בעומק של כמה סנטימטרים, אבל אז הפוקליות אובדת - ולכן בדיקת ה-nTMS הטרום-ניתוחית <b>מוגבלת לקורטקס בלבד</b> ואינה יכולה למפות ישירות מבנים תת-קורטיקליים (חומר לבן עמוק).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Motor_homunculus.svg?width=700" alt="Motor homunculus showing somatotopic organization of the motor cortex">
+<p class="media-cap">ההומונקולוס המוטורי - הסידור הסומטוטופי לאורך הגירוס הפרה-מרכזי (יד, פנים, רגל וכו') שבגללו נדרשת עצימות גירוי שונה למיפוי שרירים שונים. מקור: Wikimedia Commons.</p>
+
+<div class="key-box">nTMS מוגבל לקורטקס בלבד - הוא <b>לא</b> מסוגל למפות ישירות חומר לבן תת-קורטיקלי. הפתרון: להשתמש בנקודות ה-nTMS החיוביות (שם התקבלה תגובה מוטורית/שפתית) כ"נקודות זרע" (seed points) עבור אלגוריתם ה-<span dir="ltr" class="term">DTI fiber tracking</span>, כך שהמסלולים המשוחזרים (למשל המסלול הקורטיקוספינלי) הם רק אלה שמקורם בפועל בקורטקס פונקציונלי - ולא סתם מסלול אנטומי "משוער".</div>
+
+<h2><span class="num">3</span> מיפוי שפה: rTMS, "נגע וירטואלי", ויחס דומיננטיות</h2>
+<div class="mechanism">
+  <p class="chain">בניגוד למיפוי מוטורי (פעימה בודדת, single-pulse), מיפוי שפה משתמש ב-<span dir="ltr" class="term">repetitive TMS (rTMS)</span> בתדירות 4-10 הרץ: <b>שלב 1</b> - רצף פעימות מגנטיות (למשך 1-2 שניות) גורם לדפולריזציה של הנוירונים הבסיסיים, <b>שלב 2</b> - אחריה מגיעה פאזה ארוכה יותר של עיכוב GABA-ארגי, <b>שלב 3</b> - השילוב יוצר <b>"נגע וירטואלי" (virtual brain lesion)</b> זמני וחולף - כלומר משבשים זמנית את תפקוד האזור בלי לפגוע בו בפועל, בדיוק כמו הגירוי החשמלי הישיר (DCS) המשמש בניתוח בהכרה. ההפרעה יכולה להתבטא כעיכוב קל בזמן התגובה ועד לאנומיה (חוסר יכולת לשם דבר) ברורה.</p>
+</div>
+<p>המשימה האפקטיבית ביותר שנמצאה למיפוי שפה היא <b>מתן שם לחפץ (object naming)</b> - כי היא חזקה (robust), בוחנת כמה תת-מודליות שפתיות בו-זמנית, וקלה ליישום במשימה קצרה. בסבב בסיס (baseline) המטופל צריך לתת שם נכון לכל החפצים המוצגים; חפצים שנקראו בטעות כבר בבסיס נפסלים מהניתוח. בזמן הגירוי, תשובות שגויות (naming errors) על חפצים שנקראו נכון בבסיס - הן ה"אות" שהאזור המגורה מעורב בשפה.</p>
+<p>מכך נגזר מדד כמותי: <b>שיעור שגיאות (Error Rate, ER)</b> = מספר שגיאות השם המושרות חלקי מספר גירויי ה-nTMS באזור. כאשר ממפים את שתי ההמיספרות, אפשר לחשב <span dir="ltr" class="term">Hemispheric Dominance Ratio (HDR)</span> = ER שמאלי חלקי ER ימני. <span dir="ltr">HDR&gt;1</span> משקף דומיננטיות שפתית שמאלית, ו-<span dir="ltr">HDR&lt;1</span> משקף דומיננטיות ימנית. מטופלים עם HDR שמצביע על דומיננטיות שמאלית נמצאים בסיכון גבוה יותר לאפזיה חולפת בניתוחי גידול המיספרה שמאלית.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/1605_Brocas_and_Wernickes_Areas-02.jpg?width=700" alt="Diagram of Broca's and Wernicke's areas and their connection">
+<p class="media-cap">המודל הקלאסי של אזורי ברוקה (הפקת דיבור) ורניקה (הבנת דיבור) המחוברים על ידי הפאסיקולוס הארקואטי. הפרק מדגיש שהמודל האנטומי-הקבוע הזה הוחלף ברפואה המודרנית במודל <b>הודוטופי</b> (רשתות דינמיות מבוזרות) שמצדיק בדיוק את הצורך במיפוי אישי ולא הסתמכות על אטלס.</p>
+
+<p class="key-box">חשוב מאוד לזכור לגבי ערך האבחוני של nTMS לשפה: בהשוואה ל-DCS (הגירוי הישיר תוך-ניתוחי), ל-nTMS יש <b>ערך ניבוי שלילי גבוה מאוד (98%-100%)</b> אך ערך ניבוי חיובי וספציפיות נמוכים. במילים אחרות - <b>אי אפשר לסמוך על nTMS כדי לקבוע בוודאות שאזור "כן" מעורב בשפה</b>, אבל אפשר לסמוך עליו כדי לקבוע בביטחון גבוה שאזור "בטוח" לכריתה (שלילי). לכן nTMS לא מחליף DCS - הוא מכוון ומקצר אותו.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/EDG2r_EEgDs" title="Nexstim navigated TMS in presurgical mapping of cognitive task function" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הדגמת מיפוי טרום-ניתוחי של פונקציות קוגניטיביות (כולל שפה) באמצעות nTMS ממוקד ניווט ושילוב עם טרקטוגרפיה.</p>
+
+<h2><span class="num">4</span> שילוב עם טרקטוגרפיה (DTI Fiber Tracking)</h2>
+<p><span dir="ltr" class="term">Diffusion Tensor Imaging (DTI)</span> ממחיש מסלולי חומר לבן על ידי מדידת התזוזה האניזוטרופית (לא-אחידה בכל הכיוונים) של מולקולות מים: מים מתפזרים בקלות רבה יותר <b>לאורך</b> הסיבים התת-קורטיקליים מאשר בניצב אליהם, ולכן כיוון הדיפוזיה המהירה ביותר חושף את כיוון הסיבים. אולם ל-DTI יש חולשה מהותית: זוהי <b>הדמיה אנטומית-מבנית בלבד, לא פונקציונלית</b> - היא לא נותנת שום מידע על סוג התפקוד של הסיבים שהיא משחזרת.</p>
+<p>כאן נכנס nTMS: על ידי זיהוי מדויק (ברמת מילימטרים) של הנקודות הקורטיקליות שבאמת חיוניות לתפקוד מוטורי או שפתי, הוא מספק לאלגוריתם ה-DTI נקודות זרע (seed regions) שמקורן פונקציונלי מוכח - ולא רק "אזור שנראה נכון" מבחינה אנטומית שתלוי בניסיון הבודק. כך משוחזרים <b>רק</b> המסלולים שהם באמת קריטיים ובלתי-ניתנים-להחלפה, ולא מסלולים סתמיים. לצורך טרקטוגרפיית שפה, מגדילים תחילה את נפח הנקודות הקורטיקליות המעורבות בשפה, ואז מגדירים אורך סיב מינימלי של 80-100 מ"מ וסף אניזוטרופיה פונקציונלית של 0.1.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DTI_Brain_Tractographic_Image_Set.jpg?width=700" alt="Diffusion tensor imaging tractographic reconstruction of brain white matter tracts">
+<p class="media-cap">שחזור טרקטוגרפי (DTI Fiber Tracking) של מסלולי חומר לבן במוח - כשמשולב עם נקודות זרע שמקורן ב-nTMS, המסלולים המוצגים משקפים תפקוד מוכח ולא רק אנטומיה משוערת. מקור: Wikimedia Commons.</p>
+
+<h2><span class="num">5</span> השוואת שיטות מיפוי טרום-ניתוחי</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>שיטה</th><th>פולשנות</th><th>מה נמדד בפועל</th><th>דיוק/מגבלה עיקרית</th></tr></thead>
+  <tbody>
+    <tr><td><b>nTMS</b></td><td>לא פולשנית</td><td>גירוי חשמלי-מגנטי ישיר של הקורטקס, תגובה מוטורית (MEP) או הפרעת שפה בפועל</td><td>קורלציה גבוהה ל-DCS; לא מושפע משינויי חמצון; מוגבל לקורטקס נגיש (לא תמפה אזורים מתחת למנינגיומה גדולה)</td></tr>
+    <tr><td><span dir="ltr" class="term">DCS</span> (גירוי ישיר תוך-ניתוחי)</td><td>פולשנית - תוך-ניתוחית, בהכרה מלאה בדרך כלל</td><td>גירוי חשמלי ישיר על הקורטקס החשוף</td><td>"תקן הזהב" (gold standard) - אך זמין רק בזמן הניתוח עצמו, לא לתכנון מראש</td></tr>
+    <tr><td><span dir="ltr" class="term">fMRI</span></td><td>לא פולשנית</td><td>שינויים בזרימת דם/חמצון (BOLD) בזמן משימה</td><td>עלולה להיות מוטעית סביב גידולים בגלל שינויי כלי דם פתולוגיים (neurovascular uncoupling); לא בודקת תפקוד באמת אלא מתאם עקיף</td></tr>
+    <tr><td><span dir="ltr" class="term">MEG</span></td><td>לא פולשנית</td><td>שדות מגנטיים הנוצרים מפעילות חשמלית נוירונלית</td><td>רזולוציה זמנית מצוינת אך דורשת ציוד יקר וייעודי; קורלציה ל-DCS נמוכה יותר מ-nTMS</td></tr>
+  </tbody>
+</table>
+</div>
+<p class="key-box">מחקרים חוזרים הראו ש-<b>קורלציית nTMS ל-DCS עדיפה על שיטות לא-פולשניות אחרות כמו fMRI ו-MEG</b> - בין היתר כי nTMS, בהיותה גירוי חשמלי ישיר (ולא מדידת מתאם דמי-זרימה כמו fMRI), אינה מושפעת משינויי חמצון סביב הגידול.</p>
+
+<h2><span class="num">6</span> שכבור סיכון (risk stratification) לפני ניתוח גידול אאלוקוונטי</h2>
+<p>מטרת הניתוח בגליומה תוך-מוחית היא כריתה נרחבת ככל האפשר בלי לפגוע בתפקוד, שכן שארית גידול פוגעת בהישרדות ללא התקדמות. אבל הסתמכות על אנטומיה בלבד (בלי מיפוי) מטעה: גם באנשים בריאים ציוני דרך אנטומיים אינם תמיד מדויקים, ובוודאי לא במוח עם גידול (עקב לחיצה ועיוות מבני). מודל שכבור הסיכון של nTMS מבוסס על <b>שלושה מדדים</b>:</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>מדד</th><th>רמה</th><th>קריטריון סיכון</th></tr></thead>
+  <tbody>
+    <tr><td>חדירת גידול לקורטקס המוטורי הראשי</td><td>קורטיקלי</td><td>נוכחות תגובת nTMS חיובית בתוך גבול הגידול = סיכון משמעותי לחסר תפקודי לאחר הניתוח</td></tr>
+    <tr><td>מרחק בין הגידול למסלול הקורטיקוספינלי (CST)</td><td>תת-קורטיקלי</td><td>מרחק &lt; 8-11 מ"מ בין נפח הכריתה המתוכנן למסלול המבוסס על nTMS-DTI = סיכון מוגבר</td></tr>
+    <tr><td>סף עוררות מוטורית (RMT) בהשוואה בין ההמיספרות</td><td>עוררות קורטיקלית</td><td>פרופיל עוררות "פתולוגי" (שונה משמעותית בין הצדדים, בייחוד ירידה בעוררות בהמיספרה הגידולית) = סיכון מוגבר לתחלואה</td></tr>
+  </tbody>
+</table>
+</div>
+<p>עבור שפה, נמצא שמרחק של לפחות <b>11 מ"מ</b> בין הגידול למסלול השפה המבוסס על nTMS-DTI מנבא היעדר סיכון מוגבר להחמרה קבועה בתפקוד השפה. שילוב שלושת המדדים מאפשר לחלק מטופלים לקבוצות סיכון גבוה/נמוך ולבסס את שיחת ההסכמה מדעת (informed consent) על נתונים אובייקטיביים ולא רק על תחושת בטן ניתוחית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/c6iaD3LWT6o" title="What you need to know about TMS Brain Mapping" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון: הסבר כללי על תהליך מיפוי המוח באמצעות TMS, כולל קביעת סף גירוי והצגת התוצאה למטופל.</p>
+
+<h2><span class="num">7</span> יישומים נוספים: AVM ותכנון הקרנות</h2>
+<p>מעבר לגליומות, nTMS משמש גם לשכבור אובייקטיבי יותר של <b>מומים ורידיים-עורקיים (AVM)</b> לפי דירוג <span dir="ltr" class="term">Spetzler-Martin</span>: בעוד גודל הנידוס (nidus) וניקוזו הם פרמטרים אובייקטיביים, ה"אלוקוונטיות" (eloquence) של הרקמה הסמוכה הייתה עד כה שיפוט סובייקטיבי. מחקרים הראו ש-nTMS שינה את דירוג Spetzler-Martin ב-9 מתוך 34 מקרים, ובששה מקרים אף שינה את ההחלטה הטיפולית לכיוון גישה לא-ניתוחית.</p>
+<p>ביישום נוסף, אזורי MEP-חיוביים שזוהו ב-nTMS משמשים כ"איברים בסיכון" (organs at risk) בתכנון הקרנות (רדיותרפיה/רדיוכירורגיה) לגידולים וגרורות באזורים אלוקוונטיים - כך אפשר להפחית את המינון לקורטקס התפקודי מבלי לפגוע במינון לנפח המטרה עצמו.</p>
+
+<h2><span class="num">8</span> מגבלות מרכזיות</h2>
+<p>שלוש מגבלות שחוזרות ונשאלות במבחנים: <b>ראשית</b>, טווח השדה המגנטי מוגבל - nTMS <b>אינו יכול להגיע</b> לגירוסים טמפורו-מדיאליים או פרונטו-בזליים, וגם לא לקורטקס הנמצא מתחת למנינגיומה גדולה או ציסטה ארכנואידית, כי עוצמת הגירוי הדרושה כדי לחדור מרחק כזה כבר לא תהיה פוקלית. במקרים כאלה, <b>היעדר תגובה אינו מוכיח היעדר תפקוד</b> - אלא רק שהגירוי לא הגיע לשם, מה שהופך שימוש ב-nTMS במנינגיומות מסוימות למסוכן אם מפרשים "שלילי" כ"בטוח".</p>
+<p><b>שנית</b>, nTMS <b>אינו מחליף</b> DCS או ניטור תוך-ניתוחי (IOM) - הוא כלי משלים שמכוון ומקצר אותם, לא תחליף. <b>שלישית</b>, מדובר בבדיקה שדורשת כשעה לכל מטופל, ותלויה בפרוטוקול מיפוי סטנדרטי ומאומן - תוצאות לא-אחידות בין בודקים עלולות לפגוע באמינות הנתונים.</p>
+
+<h2><span class="num">9</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">M-A-P-S</span> - ארבעת מרכיבי nTMS שחייבים לזכור</h3>
+  <p>
+    <b>M</b> - <span class="term" dir="ltr">Magnetic induction</span> (שדה מגנטי משרה זרם בקורטקס, ללא כאב, דרך עור/גולגולת בעלי מוליכות נמוכה)<br>
+    <b>A</b> - <span class="term" dir="ltr">Aiming (navigation)</span> (מצלמה + MRI אישי, ולא אטלס כללי - כי הגידול מזיז ומעצב מחדש את התפקוד)<br>
+    <b>P</b> - <span class="term" dir="ltr">Positive/negative predictive value</span> (חיובי = לא אמין; שלילי = אמין מאוד - קובע מה בטוח לכרות)<br>
+    <b>S</b> - <span class="term" dir="ltr">Seed for tractography</span> (הנקודות הפונקציונליות מזינות את ה-DTI כדי שיציג רק מסלולים אמיתיים)
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני סוכן חשאי (הפעימה המגנטית) שצריך להיכנס למבצר (הגולגולת) בלי לגעת בחומות (העור, השיער, העצם - מוליכות נמוכה, אין נזק). הוא לא נכנס בעיוורון - יש לו מפה אישית ומעודכנת של הבניין (MRI + ניווט מצלמה) ולא מפה כללית ישנה. כשהוא "נוגע" בחדר הנכון, מדליק אור ירוק (MEP/הפרעת דיבור) - אבל אם הוא לא הצליח להיכנס לחדר מסוים (למשל כי הוא עמוק מדי או מאחורי דלת עבה כמו מנינגיומה), זה לא אומר שהחדר ריק - רק שהוא לא הגיע לשם. וכל חדר שכן אותר, הוא מסמן במפה כ"נתיב בטוח לצינורות" (seed לטרקטוגרפיה) כדי שצוות התחזוקה (הכירורג) ידע בדיוק אילו צינורות (מסלולי חומר לבן) אסור לחתוך.</p>
+  <svg class="diagram" viewBox="0 0 620 220" xmlns="http://www.w3.org/2000/svg">
+    <title>איור מטאפורי: הסוכן החשאי במבצר</title>
+    <desc>איור קליל המתאר את המטאפורה של סוכן/פעימה מגנטית הנכנס דרך חומה לא פוגעת ומסמן חדרים במפה אישית</desc>
+    <rect x="20" y="30" width="580" height="160" rx="10" fill="#f3f4f6" stroke="#6b7280" stroke-width="3"/>
+    <text x="310" y="55" font-size="13" text-anchor="middle" fill="#374151" font-weight="700">המבצר = הגולגולת (חומה עבה, לא פוגעת בסוכן)</text>
+    <circle cx="150" cy="120" r="26" fill="#ecfdf5" stroke="#047857" stroke-width="2.5"/>
+    <text x="150" y="124" font-size="11" text-anchor="middle" fill="#047857" font-weight="700">חדר M</text>
+    <circle cx="310" cy="120" r="26" fill="#fef3c7" stroke="#a16207" stroke-width="2.5"/>
+    <text x="310" y="124" font-size="11" text-anchor="middle" fill="#713f12" font-weight="700">חדר A</text>
+    <circle cx="470" cy="120" r="26" fill="#fee2e2" stroke="#b91c1c" stroke-width="2.5"/>
+    <text x="470" y="124" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">חדר P/S</text>
+    <text x="310" y="170" font-size="10.5" text-anchor="middle" fill="#4b5563">כל חדר שאותר = מסומן במפה האישית כ"נתיב בטוח לצינורות"</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Transcranial_magnetic_stimulation" target="_blank">Transcranial Magnetic Stimulation – Wikipedia</a>
+    <div class="desc">רקע כללי על עקרון הפעולה הפיזיקלי והשימושים הקליניים של TMS.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Diffusion_MRI" target="_blank">Diffusion MRI (DTI) – Wikipedia</a>
+    <div class="desc">הסבר על עקרון הדיפוזיה האניזוטרופית העומד בבסיס טרקטוגרפיית חומר לבן.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cortical_stimulation_mapping" target="_blank">Cortical Stimulation Mapping – Wikipedia</a>
+    <div class="desc">רקע על מיפוי גירוי קורטיקלי ישיר (DCS) - "תקן הזהב" שאיתו nTMS מושווה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Arteriovenous_malformation" target="_blank">Arteriovenous Malformation (AVM) – Wikipedia</a>
+    <div class="desc">רקע על מומים ורידיים-עורקיים מוחיים ודירוג Spetzler-Martin.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 37 מגיע עם הפרעה עדינה בתיאום יד שמאל. MRI מדגים נגע היפואינטנסי באונה הפרונטלית האחורית, בסמוך לקורטקס המוטורי. במסגרת התכנון הטרום-ניתוחי מבוצעת בדיקת nTMS: מתקבלות תגובות MEP חיוביות (אדומות וצהובות) בגבול הגידול, המרחק בין נפח הכריתה המתוכנן למסלול הקורטיקוספינלי המבוסס על nTMS-DTI הוא פחות מ-8 מ"מ, וה-RMT נמדד 86 V/m בצד שמאל לעומת 68 V/m בצד ימין - פרופיל עוררות א-סימטרי. הנתונים מוצגים לצוות כמקרה בסיכון גבוה, עם סיכון סטטיסטי מוערך של 47% לחסר מוטורי חדש 3 חודשים לאחר הניתוח.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע שדה מגנטי משרה זרם בקורטקס כמעט בלי לפגוע ברקמות שביניים (עור, שיער, עצם) ובלי לגרום כאב?</div>
+  <button class="opt" data-i="0">כי הגולגולת חוסמת לחלוטין את השדה המגנטי, כך שרק חלק זעיר מגיע לקורטקס</button>
+  <button class="opt" data-i="1">כי הסליל מחומם מראש כדי להפחית את עוצמת השדה</button>
+  <button class="opt" data-i="2">כי לעור, לשיער ולעצם יש מוליכות חשמלית נמוכה (התנגדות גבוהה), ולכן השדה המגנטי חודר כמעט ללא הנחתה ובלי להשפיע משמעותית על הרקמה שביניים</button>
+  <button class="opt" data-i="3">כי המטופל מקבל הרדמה מקומית לפני הבדיקה</button>
+  <div class="explain">התשובה הנכונה: מוליכות נמוכה (התנגדות גבוהה) של עור, שיער ועצם היא בדיוק הסיבה שהשדה המגנטי הראשוני מגיע לקורטקס כמעט בלתי מוחלש - וגם הסיבה שאין כאב, כי לפעימת ה-TMS יש השפעה זניחה על הרקמה שביניים. תשובה 0 הפוכה מהעובדות (השדה כן חודר). תשובה 1 ו-3 אינן חלק מהמנגנון - אין הרדמה בבדיקת nTMS רגילה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. מדוע מיפוי מוטורי טרום-ניתוחי מוגבל לקורטקס בלבד ואינו יכול למפות ישירות מסלולים תת-קורטיקליים?</div>
+  <button class="opt" data-i="0">כי חוק ההשראה לא חל על חומר לבן</button>
+  <button class="opt" data-i="1">כי בעצימויות גבוהות מספיק כדי להגיע לעומק של כמה סנטימטרים, הפוקליות של הגירוי אובדת - כלומר לא ניתן עוד לבצע גירוי ממוקד וספציפי</button>
+  <button class="opt" data-i="2">כי חומר לבן אינו מוליך חשמל בכלל</button>
+  <button class="opt" data-i="3">כי המטופל חייב להיות ער ומדבר במהלך גירוי תת-קורטיקלי</button>
+  <div class="explain">התשובה הנכונה: ניתן להשרות זרם בעומק, אבל ככל שמעמיקים כך השדה המגנטי מתפזר ומאבד את הפוקליות שלו - ולכן גירוי ממוקד ומהימן אפשרי רק בקורטקס עצמו. הפתרון למידע תת-קורטיקלי הוא לא גירוי ישיר אלא שילוב עם DTI tractography, תוך שימוש בנקודות הקורטיקליות החיוביות כזרעים. תשובות 0, 2, 3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופלת עוברת מיפוי שפה טרום-ניתוחי עם nTMS ומתקבל אזור "שלילי" (ללא שגיאות שם בגירוי). איך יש לפרש זאת קלינית, לאור הערכים הניבויים של nTMS?</div>
+  <button class="opt" data-i="0">התוצאה אינה אמינה כלל ואין לה כל משמעות קלינית</button>
+  <button class="opt" data-i="1">האזור בוודאות מעורב בשפה ויש להימנע מכריתתו</button>
+  <button class="opt" data-i="2">יש לחזור על הבדיקה מיד כי תוצאה שלילית תמיד שגויה</button>
+  <button class="opt" data-i="3">ניתן לסמוך על התוצאה בביטחון גבוה (ערך ניבוי שלילי של 98%-100%) - כלומר האזור כנראה אכן בטוח לכריתה, אף שאין באפשרות nTMS לקבוע בוודאות דומה אזורים "חיוביים"</button>
+  <div class="explain">התשובה הנכונה: nTMS מתאפיין בערך ניבוי שלילי גבוה מאוד (98%-100%) אך ערך ניבוי חיובי וספציפיות נמוכים בהשוואה ל-DCS. המשמעות הקלינית: תוצאה שלילית (אין שגיאות) מאפשרת הגדרה בטוחה יחסית של אזורי כריתה אפשריים, בעוד תוצאה "חיובית" צריכה עדיין אימות ב-DCS תוך-ניתוחי. תשובות 0-2 סותרות את הנתונים שהוצגו בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהם שלושת המדדים במודל שכבור הסיכון (risk stratification) הטרום-ניתוחי המבוסס על nTMS?</div>
+  <button class="opt" data-i="0">חדירת גידול לקורטקס המוטורי, מרחק הגידול ממסלול הקורטיקוספינלי (CST), ופרופיל עוררות (RMT) א-סימטרי בין ההמיספרות</button>
+  <button class="opt" data-i="1">גיל המטופל, גודל הגידול, ומיקום האונה</button>
+  <button class="opt" data-i="2">משך הניתוח הצפוי, כמות אובדן הדם, וניסיון המנתח</button>
+  <button class="opt" data-i="3">תוצאות בדיקת fMRI, MEG, ובדיקה נוירולוגית בלבד</button>
+  <div class="explain">התשובה הנכונה: המודל מבוסס באופן ספציפי על שלוש רמות - קורטיקלית (חדירת הגידול לקורטקס המוטורי הראשי לפי nTMS), תת-קורטיקלית (מרחק &lt;8-11 מ"מ בין הגידול למסלול הקורטיקוספינלי המבוסס על nTMS-DTI), ועוררותית (הבדל פתולוגי ב-RMT בין ההמיספרות). תשובות 1-3 אינן חלק מהמודל שתואר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. מדוע שימוש ב-nTMS למיפוי קורטקס מתחת למנינגיומה גדולה עלול להיות מסוכן דווקא בגלל תוצאה "שלילית" (ללא תגובה)?</div>
+  <button class="opt" data-i="0">כי מנינגיומות תמיד מכילות דם רב שמפריע לגירוי המגנטי</button>
+  <button class="opt" data-i="1">כי מנינגיומות גורמות תמיד לפרכוסים במהלך הבדיקה</button>
+  <button class="opt" data-i="2">כי טווח השדה המגנטי מוגבל, ועצימות גירוי גבוהה מספיק כדי לחדור מתחת לנגע גדול כבר מאבדת פוקליות - כך שהיעדר תגובה עלול לשקף רק שהגירוי לא הגיע לקורטקס, ולא שהאזור אינו תפקודי</button>
+  <button class="opt" data-i="3">כי אסור לבצע nTMS כלל בנוכחות כל גידול חוץ-ציר (extra-axial)</button>
+  <div class="explain">התשובה הנכונה: מגבלת הטווח של השדה המגנטי פירושה שקורטקס עמוק מדי (למשל מתחת למנינגיומה גדולה או ציסטה ארכנואידית) עלול פשוט לא לקבל גירוי מספק, כך שתוצאה "שלילית" אינה שוללת נוכחות תפקוד אמיתי - היא רק משקפת כשל טכני של הגירוי להגיע לשם. פרשנות מוטעית של "שלילי" כ"בטוח" במקרה כזה עלולה להוביל לכריתת רקמה תפקודית. תשובות 0, 1 ו-3 אינן מבוססות על הפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מדוע יחס הדומיננטיות ההמיספרית (HDR) מחושב כ-ER שמאלי חלקי ER ימני, ומה המשמעות הקלינית של HDR&gt;1?</div>
+  <button class="opt" data-i="0">HDR&gt;1 פירושו שהמטופל שולט ביד ימין בלבד</button>
+  <button class="opt" data-i="1">HDR&gt;1 (יותר שגיאות שם בגירוי בהמיספרה שמאל) משקף דומיננטיות שפתית שמאלית - כלומר יותר "רקמת שפה אמיתית" נמצאת שם ולכן גם סיכון גבוה יותר לאפזיה חולפת בניתוח שמאלי</button>
+  <button class="opt" data-i="2">HDR נמדד רק בהמיספרה הימנית ואינו תלוי בצד השמאלי כלל</button>
+  <button class="opt" data-i="3">HDR&gt;1 תמיד מעיד על פתולוגיה ומחייב ביטול הניתוח</button>
+  <div class="explain">התשובה הנכונה: ER (שיעור שגיאות) גבוה יותר בהמיספרה מסוימת משקף שיותר גירויים באותה המיספרה שיבשו הפקת שם - כלומר יותר רקמת שפה תפקודית אמיתית נמצאת שם. HDR&gt;1 (ER שמאלי גדול מימני) מצביע על דומיננטיות שפתית שמאלית, ונמצא קשור לסיכון גבוה יותר לאפזיה חולפת בניתוחי גידול המיספרה שמאלית. תשובות 0, 2 ו-3 אינן נכונות עובדתית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>nTMS</b> משתמש בשדה מגנטי משתנה (חוק ההשראה) שחודר כמעט ללא הנחתה דרך עור/שיער/עצם (מוליכות נמוכה) ומדפלר נוירונים קורטיקליים - לא כואב, לא פולשני.</li>
+    <li>מיפוי מוטורי: קביעת <b>RMT</b> אישית, גירוי ב-105%-110% ממנו, זיהוי MEP באלקטרודות EMG. מוגבל <b>לקורטקס בלבד</b> - לא מגיע לחומר לבן עמוק.</li>
+    <li>מיפוי שפה: <b>rTMS</b> ב-4-10 הרץ יוצר "נגע וירטואלי" חולף; משימת מתן שם לחפץ; <b>Error Rate</b> ו-<b>HDR</b> (ER שמאל/ימין) מכמתים דומיננטיות המיספרית.</li>
+    <li>ל-nTMS ערך ניבוי <b>שלילי</b> גבוה (98%-100%) אך ערך ניבוי חיובי נמוך - מגדיר מה בטוח לכרות, לא מה בהכרח מעורב.</li>
+    <li>שילוב עם <b>DTI tractography</b>: נקודות nTMS חיוביות משמשות זרעים לאלגוריתם, כך שהמסלול המשוחזר (למשל CST) מבוסס על תפקוד מוכח.</li>
+    <li>שכבור סיכון טרום-ניתוחי מבוסס על 3 מדדים: <b>חדירת גידול לקורטקס המוטורי, מרחק &lt;8-11 מ"מ מה-CST, ופרופיל עוררות (RMT) א-סימטרי</b>.</li>
+    <li>מגבלות מרכזיות: טווח שדה מוגבל (לא מגיע לאזורים עמוקים/מתחת למנינגיומה גדולה), אינו מחליף DCS/IOM אלא משלים אותם.</li>
+    <li>יישומים נוספים: שכבור אובייקטיבי יותר של דירוג Spetzler-Martim ל-AVM, והגדרת "איברים בסיכון" בתכנון הקרנות.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
