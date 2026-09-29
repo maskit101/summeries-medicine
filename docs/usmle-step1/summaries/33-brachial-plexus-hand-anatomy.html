@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מקלעת ברכיאלית ואנטומיה של כף היד</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .video-path-list{display:flex; flex-direction:column; gap:10px; margin:12px 0}
+  .video-path-item{border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fafafa}
+  .vpi-head{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--crimson); margin-bottom:2px}
+  .video-path-item .d{font-size:13.5px; color:var(--sub); margin-bottom:8px}
+  .vpi-path-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .vpi-path{direction:ltr; unicode-bidi:isolate; font-family:'Consolas','Courier New',monospace; font-size:12.5px; background:#fff; border:1px solid var(--line); border-radius:6px; padding:6px 10px; flex:1; min-width:220px; overflow-wrap:anywhere; color:#374151}
+  .copy-btn{border:1px solid var(--crimson); background:#fff; color:var(--crimson); border-radius:6px; padding:6px 12px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap}
+  .copy-btn:hover{background:var(--crimson-bg)}
+  .copy-btn.copied{background:var(--crimson); color:#fff}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>מקלעת ברכיאלית ואנטומיה של כף היד <span class="term" dir="ltr">(Brachial Plexus &amp; Hand Anatomy)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section III — Musculoskeletal, Skin, and Connective Tissue &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 452-453) — רלוונטיות קריטית לכירורגיה פלסטית/יד</div>
+
+<p>יחידה זו עוברת על ארגון מקלעת הברכיאלית מהשורשים ועד לענפים הסופיים, ארבעת תסמונות הפגיעה הקלאסיות במקלעת (Erb, Klumpke, thoracic outlet syndrome, winged scapula), אנטומיית עצמות שורש כף היד עם דגש על שבר הסקפואיד, ההבחנה הקריטית בין תעלת קרפל לתעלת גיון, ושרירי כף היד הפנימיים (תנר, היפותנר, אינטרוסאי, למבריקלים). כל אלו מהווים את הבסיס האנטומי-קליני לכל ניתוח יד וכף יד — ידע הכרחי לכירורגיה פלסטית-שחזורית.</p>
+
+<h2><span class="num">1</span> ארגון מקלעת הברכיאלית</h2>
+<div class="mechanism">
+  <p class="chain">
+    המקלעת הברכיאלית בנויה מחמש רמות היררכיות עוקבות: <b>שורשים</b> (Roots — C5,C6,C7,C8,T1) ← <b>גזעים</b> (Trunks — עליון/אמצעי/תחתון) ← <b>חלוקות</b> (Divisions — קדמית/אחורית לכל גזע) ← <b>חבלים</b> (Cords — לטרלי/אחורי/מדיאלי) ← <b>ענפים</b> (Branches) — חמשת העצבים הסופיים: Musculocutaneous, Axillary, Radial, Median, Ulnar.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    השורשים ועורק ה-subclavian עוברים בין השריר הסקלני הקדמי לשריר הסקלני האמצעי (scalene triangle). הווריד ה-subclavian עובר אנטרומדיאלית למשולש הסקלני (מחוץ לו) — הבחנה חשובה מהעורק והשורשים.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>מקלעת ברכיאלית — היררכיה מהשורשים לענפים</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">מקלעת ברכיאלית — חמש רמות: שורשים → גזעים → חלוקות → חבלים → ענפים</text>
+
+<text x="500" y="65" font-size="11.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">Roots (שורשים)</text>
+<g>
+<rect x="95" y="80" width="150" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="170" y="107" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">C5</text>
+<rect x="260" y="80" width="150" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="335" y="107" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">C6</text>
+<rect x="425" y="80" width="150" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="500" y="107" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">C7</text>
+<rect x="590" y="80" width="150" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="665" y="107" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">C8</text>
+<rect x="755" y="80" width="150" height="45" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="830" y="107" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">T1</text>
+</g>
+
+<text x="500" y="150" font-size="11.5" font-weight="700" text-anchor="middle" fill="#92400e">Trunks (גזעים)</text>
+<g>
+<rect x="90" y="165" width="260" height="45" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="220" y="192" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Upper (C5-C6)</text>
+<rect x="370" y="165" width="260" height="45" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="500" y="192" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Middle (C7)</text>
+<rect x="650" y="165" width="260" height="45" rx="6" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+<text x="780" y="192" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Lower (C8-T1)</text>
+</g>
+
+<text x="500" y="235" font-size="11.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">Divisions (חלוקות)</text>
+<g>
+<rect x="30" y="250" width="460" height="45" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="260" y="277" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">Anterior divisions (×3)</text>
+<rect x="510" y="250" width="460" height="45" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="740" y="277" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">Posterior divisions (×3)</text>
+</g>
+
+<text x="500" y="320" font-size="11.5" font-weight="700" text-anchor="middle" fill="#065f46">Cords (חבלים)</text>
+<g>
+<rect x="90" y="335" width="260" height="45" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="220" y="362" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">Lateral</text>
+<rect x="370" y="335" width="260" height="45" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="500" y="362" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">Posterior</text>
+<rect x="650" y="335" width="260" height="45" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="780" y="362" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">Medial</text>
+</g>
+
+<text x="500" y="405" font-size="11.5" font-weight="700" text-anchor="middle" fill="#4c1d95">Branches (5 ענפים סופיים)</text>
+<g>
+<rect x="95" y="420" width="150" height="45" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="170" y="443" font-size="10" font-weight="700" text-anchor="middle" fill="#4c1d95">Musculo-</text>
+<text x="170" y="456" font-size="10" font-weight="700" text-anchor="middle" fill="#4c1d95">cutaneous</text>
+<rect x="260" y="420" width="150" height="45" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="335" y="447" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">Axillary</text>
+<rect x="425" y="420" width="150" height="45" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="500" y="447" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">Radial</text>
+<rect x="590" y="420" width="150" height="45" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="665" y="447" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">Median</text>
+<rect x="755" y="420" width="150" height="45" rx="6" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="830" y="447" font-size="11" font-weight="700" text-anchor="middle" fill="#4c1d95">Ulnar</text>
+</g>
+
+<rect x="20" y="485" width="960" height="55" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="500" y="507" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">עצב Long thoracic יוצא ישירות מהשורשים (C5-C7) — לא עובר דרך הגזעים/חבלים; מעצבב את serratus anterior</text>
+<text x="500" y="525" font-size="9.5" text-anchor="middle" fill="#1f2937">השורשים + עורק ה-subclavian עוברים בין השריר הסקלני הקדמי לאמצעי; הווריד ה-subclavian עובר אנטרומדיאלית למשולש הסקלני</text>
+
+<rect x="20" y="555" width="960" height="85" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="500" y="580" font-size="12.5" font-weight="700" text-anchor="middle" fill="#065f46">טכניקת זכירה: "Remember To Drink Cold Beer"</text>
+<text x="500" y="602" font-size="10.5" text-anchor="middle" fill="#065f46">Remember=Roots ← To=Trunks ← Drink=Divisions ← Cold=Cords ← Beer=Branches</text>
+<text x="500" y="622" font-size="9.5" text-anchor="middle" fill="#065f46">חמש המילים במשפט מתאימות בדיוק לחמש הרמות, בסדר מהשורשים ועד הענפים הסופיים</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — 5 הרמות</h4>
+  <p><b>R</b>emember <b>T</b>o <b>D</b>rink <b>C</b>old <b>B</b>eer = <b>R</b>oots → <b>T</b>runks → <b>D</b>ivisions → <b>C</b>ords → <b>B</b>ranches.</p>
+</div>
+
+<h2><span class="num">2</span> ארבע תסמונות פגיעה במקלעת הברכיאלית</h2>
+<table class="keytable">
+  <thead><tr><th>מצב</th><th>פגיעה/מנגנון</th><th>שרירים נפגעים</th><th>ביטוי תפקודי</th></tr></thead>
+  <tbody>
+    <tr><td>Erb palsy ("waiter's tip")</td><td>מתיחה/קרע של הגזע העליון (שורשי C5-C6). תינוקות: מתיחה לטרלית של הצוואר בלידה. מבוגרים: טראומה עם מתיחת צוואר (למשל נפילה על הראש/כתף בתאונת אופנוע)</td><td>Deltoid, Supraspinatus, Infraspinatus, Biceps brachii</td><td>אובדן הרחקה (הזרוע תלויה בצד); אובדן סיבוב חוץ (הזרוע מסובבת פנימה); אובדן כיפוף/סופינציה (הזרוע מושטת ומופרנת)</td></tr>
+    <tr><td>Klumpke palsy</td><td>מתיחה/קרע של הגזע התחתון (שורשי C8-T1). תינוקות: כוח כלפי מעלה על הזרוע בלידה. מבוגרים: טראומה (למשל אחיזה בענף עץ כדי לעצור נפילה)</td><td>שרירים פנימיים של כף היד (למבריקלים, אינטרוסאי, תנר, היפותנר)</td><td>"claw hand" ("Clawmpke palsy") — הלמבריקלים בדרך כלל כופפים MCP ופושטים DIP/PIP, אובדנם גורם לטפירה; ± תסמונת הורנר אם מעורב שורש T1/שרשרת סימפתטית</td></tr>
+    <tr><td>Thoracic outlet syndrome</td><td>לחיצה של הגזע התחתון וכלי הדם ה-subclavian, לרוב בתוך המשולש הסקלני. סיבות: צלע ראשונה צווארית/אנומלית, גידול Pancoast</td><td>זהה ל-Klumpke palsy</td><td>אטרופיה של שרירי כף היד הפנימיים; איסכמיה, כאב ובצקת עקב לחץ וסקולרי</td></tr>
+    <tr><td>Winged scapula</td><td>פגיעה בעצב ה-long thoracic, שורשים C5-C7 ("wings of heaven"). סיבות: ניתוח בית שחי (axillary node dissection) לאחר כריתת שד, פציעות דקירה</td><td>Serratus anterior</td><td>אין אפשרות לעגן את השכמה לבית החזה — לא ניתן להרחיק את הזרוע מעל האופקי</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Erb palsy</h4>
+  <p>"Herb gets DIBs on tips" — <b>D</b>eltoid, <b>I</b>nfraspinatus, <b>B</b>iceps — שלושת השרירים המרכזיים הנפגעים ב-Erb palsy ("waiter's tip").</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — Erb/Klumpke palsy כפניה קלאסית ליד/כירורגיה פלסטית</h4>
+  <p>שיתוק מקלעת ברכיאלית אובסטטרי (obstetric brachial plexus palsy) הוא הפניה קלאסית לכירורגיית יד/פלסטית פדיאטרית לשחזור עצבי — הבחנה בין Erb (גזע עליון) ל-Klumpke (גזע תחתון) קובעת את תכנון ה-nerve graft/nerve transfer, את התזמון הניתוחי (חלון קריטי בחודשים הראשונים לחיים), ואת הפרוגנוזה התפקודית לטווח ארוך.</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — Thoracic outlet syndrome ו-winged scapula בשחזור שד</h4>
+  <p>Thoracic outlet syndrome עשוי לדרוש decompression כירורגי (הסרת צלע ראשונה/שריר סקלני) כאשר טיפול שמרני נכשל. Winged scapula לאחר axillary node dissection במסגרת כריתת שד הוא ממצא ישיר ורלוונטי לכירורג הפלסטי-שחזורי — מטופלות רבות לשחזור שד עוברות דיסקציה בבית השחי, ופגיעה בעצב ה-long thoracic היא סיבוך מוכר שיש לזהות ולתעד לפני ואחרי הניתוח.</p>
+</div>
+
+<h2><span class="num">3</span> עצמות שורש כף היד (Carpal Bones) ושבר הסקפואיד</h2>
+<div class="mechanism">
+  <p class="chain">
+    שמונה עצמות קרפליות בשתי שורות — שורה פרוקסימלית (לטרלי לרדיאלי): <b>Scaphoid, Lunate, Triquetrum, Pisiform</b>. שורה דיסטלית (חזרה, מדיאלי לרדיאלי לכיוון האגודל): <b>Hamate, Capitate, Trapezoid, Trapezium</b>.
+  </p>
+</div>
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — עצמות קרפליות</h4>
+  <p>"So long to pinky, here comes the thumb" — <b>S</b>caphoid, <b>L</b>unate, <b>T</b>riquetrum, <b>P</b>isiform (שורה פרוקסימלית, לטרלי→מדיאלי), ואז חזרה: <b>H</b>amate, <b>C</b>apitate, <b>T</b>rapezoid, <b>T</b>rapezium (שורה דיסטלית, מדיאלי→לטרלי, לכיוון האגודל).</p>
+</div>
+
+<div class="mechanism">
+  <p class="chain">
+    <b>Scaphoid</b>: מוחשש במשולש אנטומי (anatomic snuffbox); העצם הקרפלית הנשברת ביותר; מנגנון אופייני — נפילה על יד מושטת (FOOSH). סיבוכים: נמק אווסקולרי (avascular necrosis) ו-nonunion עקב אספקת דם רטרוגרדית מענף של עורק הרדיאלי. שבר סמוי (occult) לא תמיד נראה בצילום הראשוני.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    נקע (dislocation) של ה-<b>lunate</b> עלול ללחוץ על העצב המדיאני ולגרום לתסמונת התעלה הקרפלית.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    שבר ב-hook of hamate עלול לגרום ללחיצה על העצב האולנרי — תסמונת תעלת גיון (Guyon canal syndrome).
+  </p>
+</div>
+
+<div class="key-box">
+  שבר בסקפואיד עם צילום רנטגן תקין (occult fracture) — לא שוללים קלינית! רגישות בסנאפ-בוקס האנטומי מחייבת התייחסות כשבר עד להוכחת ההפך (הדמיה חוזרת/MRI), בשל הסיכון לנמק אווסקולרי אם מפספסים.
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — ניהול שבר סקפואיד וסיכון נמק אווסקולרי</h4>
+  <p>שבר הסקפואיד הוא "לחם וחמאה" (bread-and-butter) של כירורגיית יד: אספקת הדם הרטרוגרדית (מדיסטלי לפרוקסימלי) הופכת את הקוטב הפרוקסימלי לרגיש במיוחד לנמק אווסקולרי — קביעת מיקום קו השבר (פרוקסימלי מול דיסטלי) קובעת את הבחירה בין קיבוע שמרני (גבס) לקיבוע כירורגי (בורג פנימי), ואת הפרוגנוזה לאיחוי.</p>
+</div>
+
+<h2><span class="num">4</span> תעלה קרפלית מול תעלת גיון</h2>
+<div class="mechanism">
+  <p class="chain">
+    ה-<b>flexor retinaculum</b> (transverse carpal ligament) יוצר את גג התעלה הקרפלית. העצב והעורק האולנריים עוברים <b>שטחית</b> ל-flexor retinaculum, דרך <b>תעלת גיון</b> — <b>לא</b> דרך התעלה הקרפלית עצמה.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>התעלה הקרפלית</b> (עמוק ל-flexor retinaculum) מכילה: עצב מדיאני, גידי flexor digitorum superficialis, גידי flexor digitorum profundus, וגיד flexor pollicis longus. גיד flexor carpi radialis עובר בתא נפרד משלו.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    התנר (thenar) בצד הרדיאלי/לטרלי, ההיפותנר (hypothenar) בצד האולנרי/מדיאלי.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 1000 500" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>חתך שורש כף היד — תעלת קרפל מול תעלת גיון</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">חתך שורש כף היד (פני כף היד) — תעלת קרפל מול תעלת גיון</text>
+
+<g>
+<rect x="20" y="60" width="470" height="340" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="255" y="85" font-size="13" font-weight="700" text-anchor="middle" fill="#1e3a8a">תעלת קרפל (Carpal Tunnel)</text>
+<text x="255" y="102" font-size="10" text-anchor="middle" fill="#1e3a8a">עמוק ל-Flexor Retinaculum</text>
+
+<rect x="60" y="120" width="390" height="24" rx="4" fill="#93c5fd" stroke="#1e3a8a" stroke-width="1.5"/>
+<text x="255" y="137" font-size="10" font-weight="700" text-anchor="middle" fill="#1e3a8a">Flexor Retinaculum (Transverse Carpal Ligament)</text>
+
+<circle cx="130" cy="220" r="26" fill="#fde68a" stroke="#92400e" stroke-width="2"/>
+<text x="130" y="216" font-size="9.5" font-weight="700" text-anchor="middle" fill="#92400e">עצב</text>
+<text x="130" y="229" font-size="9.5" font-weight="700" text-anchor="middle" fill="#92400e">מדיאני</text>
+
+<rect x="185" y="195" width="55" height="50" rx="8" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="1.5"/>
+<text x="212" y="215" font-size="8" text-anchor="middle" fill="#1e3a8a">FDS</text>
+<text x="212" y="227" font-size="8" text-anchor="middle" fill="#1e3a8a">tendons</text>
+
+<rect x="255" y="195" width="55" height="50" rx="8" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="1.5"/>
+<text x="282" y="215" font-size="8" text-anchor="middle" fill="#1e3a8a">FDP</text>
+<text x="282" y="227" font-size="8" text-anchor="middle" fill="#1e3a8a">tendons</text>
+
+<rect x="325" y="200" width="45" height="42" rx="8" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="1.5"/>
+<text x="347" y="216" font-size="7.5" text-anchor="middle" fill="#1e3a8a">FPL</text>
+<text x="347" y="227" font-size="7.5" text-anchor="middle" fill="#1e3a8a">tendon</text>
+
+<rect x="385" y="195" width="55" height="50" rx="8" fill="#dbeafe" stroke="#1e3a8a" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="412" y="212" font-size="7.5" text-anchor="middle" fill="#1e3a8a">FCR</text>
+<text x="412" y="223" font-size="7.5" text-anchor="middle" fill="#1e3a8a">(תא</text>
+<text x="412" y="234" font-size="7.5" text-anchor="middle" fill="#1e3a8a">נפרד)</text>
+
+<text x="255" y="280" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">תוכן: עצב מדיאני + גידי FDS/FDP + FPL</text>
+<text x="255" y="296" font-size="9" text-anchor="middle" fill="#1e3a8a">נקע ה-lunate ← לחץ על העצב המדיאני ← תסמונת התעלה הקרפלית</text>
+
+<rect x="60" y="320" width="180" height="60" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="150" y="340" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">תנר (Thenar)</text>
+<text x="150" y="356" font-size="8" text-anchor="middle" fill="#7f1d1d">צד רדיאלי/לטרלי</text>
+<text x="150" y="370" font-size="8" text-anchor="middle" fill="#7f1d1d">(אגודל)</text>
+
+<rect x="270" y="320" width="180" height="60" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="360" y="340" font-size="9" font-weight="700" text-anchor="middle" fill="#065f46">היפותנר (Hypothenar)</text>
+<text x="360" y="356" font-size="8" text-anchor="middle" fill="#065f46">צד אולנרי/מדיאלי</text>
+<text x="360" y="370" font-size="8" text-anchor="middle" fill="#065f46">(זרת)</text>
+</g>
+
+<g>
+<rect x="510" y="60" width="470" height="340" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="745" y="85" font-size="13" font-weight="700" text-anchor="middle" fill="#7f1d1d">תעלת גיון (Guyon Canal)</text>
+<text x="745" y="102" font-size="10" text-anchor="middle" fill="#7f1d1d">שטחי ל-Flexor Retinaculum</text>
+
+<circle cx="670" cy="150" r="24" fill="#fca5a5" stroke="#7f1d1d" stroke-width="2"/>
+<text x="670" y="147" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">עצב</text>
+<text x="670" y="159" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">אולנרי</text>
+
+<circle cx="740" cy="150" r="18" fill="#fecaca" stroke="#7f1d1d" stroke-width="2"/>
+<text x="740" y="147" font-size="7.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">עורק</text>
+<text x="740" y="157" font-size="7.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">אולנרי</text>
+
+<rect x="600" y="185" width="290" height="22" rx="4" fill="#fca5a5" stroke="#7f1d1d" stroke-width="1.5"/>
+<text x="745" y="200" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">עוברים שטחית לרצועה — לא נכנסים לתעלה הקרפלית</text>
+
+<rect x="560" y="225" width="370" height="24" rx="4" fill="#93c5fd" stroke="#1e3a8a" stroke-width="1.5"/>
+<text x="745" y="242" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">Flexor Retinaculum (עמוק לתעלת גיון)</text>
+
+<text x="745" y="280" font-size="9.5" font-weight="700" text-anchor="middle" fill="#7f1d1d">תוכן: עצב אולנרי + עורק אולנרי בלבד</text>
+<text x="745" y="296" font-size="9" text-anchor="middle" fill="#7f1d1d">שבר hook of hamate ← לחץ על העצב האולנרי ← תסמונת תעלת גיון</text>
+
+<rect x="550" y="320" width="180" height="60" rx="6" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="640" y="340" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">תנר (Thenar)</text>
+<text x="640" y="356" font-size="8" text-anchor="middle" fill="#7f1d1d">צד רדיאלי/לטרלי</text>
+<text x="640" y="370" font-size="8" text-anchor="middle" fill="#7f1d1d">(אגודל)</text>
+
+<rect x="760" y="320" width="180" height="60" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+<text x="850" y="340" font-size="9" font-weight="700" text-anchor="middle" fill="#065f46">היפותנר (Hypothenar)</text>
+<text x="850" y="356" font-size="8" text-anchor="middle" fill="#065f46">צד אולנרי/מדיאלי</text>
+<text x="850" y="370" font-size="8" text-anchor="middle" fill="#065f46">(זרת)</text>
+</g>
+
+<rect x="20" y="415" width="960" height="70" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="500" y="437" font-size="10" font-weight="700" text-anchor="middle" fill="#1f2937">תעלה קרפלית = עמוק לרצועה, מכילה עצב מדיאני + גידי כופפים (FDS/FDP/FPL). תעלת גיון = שטחי לרצועה, מכילה עצב אולנרי + עורק אולנרי בלבד</text>
+<text x="500" y="457" font-size="9.5" text-anchor="middle" fill="#1f2937">הבדל אנטומי קריטי: פגיעה בתעלה הקרפלית (מדיאני) לעולם אינה זהה מבחינת תוכן לפגיעה בתעלת גיון (אולנרי) — שתי תסמונות לחיצה שונות לחלוטין</text>
+</svg>
+
+<div class="key-box">
+  ה"מפתח" לזכור: עצב ועורק אולנריים עוברים <b>שטחית</b> לרצועה (דרך תעלת גיון), בעוד עצב מדיאני וגידי הכופפים עוברים <b>עמוק</b> לרצועה (דרך התעלה הקרפלית עצמה).
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — שחרור תעלת קרפל מול שחרור תעלת גיון</h4>
+  <p>Carpal tunnel release (שחרור התעלה הקרפלית) ו-Guyon canal release (שחרור תעלת גיון) הם שני ניתוחי יד קשורים אך שונים לחלוטין — טיפול בעצב שונה (מדיאני מול אולנרי), גישה כירורגית שונה, ותוצאה קלינית שונה. הבנת ההבדל האנטומי (עמוק מול שטחי לרצועה) חיונית לאבחון מדויק לפני הניתוח ולתכנון הגישה הכירורגית הנכונה, כדי לא לבלבל בין שתי תסמונות הלחיצה.</p>
+</div>
+
+<h2><span class="num">5</span> שרירי כף היד הפנימיים</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>שרירי תנר</b> (עצב מדיאני, פרט למצוין): Opponens pollicis, Abductor pollicis brevis, Flexor pollicis brevis (ראש שטחי — עצב מדיאני; ראש עמוק — עצב אולנרי), ו-Adductor pollicis (עצב אולנרי).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>שרירי היפותנר</b> (עצב אולנרי): Opponens digiti minimi, Abductor digiti minimi, Flexor digiti minimi brevis.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Dorsal interossei</b> (עצב אולנרי): מרחיקים (ABduct) את האצבעות. <b>Palmar interossei</b> (עצב אולנרי): מקרבים (ADduct) את האצבעות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Lumbricals</b>: 1-2 עצב מדיאני, 3-4 עצב אולנרי. תפקוד: כיפוף במפרק MCP ופשיטה במפרקי PIP ו-DIP.
+  </p>
+</div>
+
+<table class="keytable">
+  <thead><tr><th>קבוצת שרירים</th><th>עצב</th><th>תפקוד/מנמוניקה</th></tr></thead>
+  <tbody>
+    <tr><td>תנר + היפותנר</td><td>מדיאני (תנר) / אולנרי (היפותנר, וראש עמוק של FPB+adductor pollicis)</td><td>שתי הקבוצות: אופוזיציה, הרחקה, כיפוף אגודל/זרת — <b>OAF</b> (Oppose, Abduct, Flex)</td></tr>
+    <tr><td>Dorsal interossei</td><td>אולנרי</td><td><b>DAB</b> = Dorsals ABduct</td></tr>
+    <tr><td>Palmar interossei</td><td>אולנרי</td><td><b>PAD</b> = Palmars ADduct</td></tr>
+    <tr><td>Lumbricals</td><td>1-2 מדיאני, 3-4 אולנרי</td><td>כיפוף MCP + פשיטת PIP/DIP</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקות זכירה — שרירי כף היד</h4>
+  <p><b>OAF</b>: תנר והיפותנר שניהם <b>O</b>ppose, <b>A</b>bduct, <b>F</b>lex. <b>DAB</b>: <b>D</b>orsals <b>AB</b>duct. <b>PAD</b>: <b>P</b>almars <b>AD</b>duct.</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — בדיקת יד ותכנון tendon transfer</h4>
+  <p>מנמוניקות OAF/DAB/PAD אינן רק לצורך הבחינה — הן הבסיס לבדיקת יד קלינית מהירה (בדיקת כל קבוצת שרירים בנפרד) ולתכנון tendon transfer לאחר פגיעת עצב אולנרי/מדיאני: כאשר יודעים בדיוק אילו שרירים פועלים ואילו לא (למשל אחרי ulnar claw), ניתן לבחור את הגיד התורם המתאים להשבת התפקוד האבוד (הרחקה/קירוב/אופוזיציה) בניתוח שחזור יד.</p>
+</div>
+
+<h2><span class="num">6</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוק נולד בלידת עכוז עם משיכה על הזרוע כלפי מעלה במהלך הלידה. בבדיקה: כף היד מציגה טפירה ("claw hand") עם אובדן תפקוד השרירים הפנימיים של כף היד, ותסמונת הורנר קלה בצד הפגוע (פטוזיס ומיוזיס).</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. איזו תסמונת פגיעה במקלעת הברכיאלית מתאימה למקרה זה, ומדוע מופיעה תסמונת הורנר?</div>
+  <button class="opt" data-i="0">Erb palsy — פגיעה בגזע העליון (C5-C6), גורמת ל"waiter's tip", לא קשורה לתסמונת הורנר</button>
+  <button class="opt" data-i="1">Klumpke palsy — פגיעה בגזע התחתון (C8-T1) ממשיכה כלפי מעלה על הזרוע; מעורבות שורש T1 עלולה לפגוע בשרשרת הסימפתטית הסמוכה ולגרום לתסמונת הורנר</button>
+  <button class="opt" data-i="2">Winged scapula — פגיעה בעצב long thoracic, אינה גורמת לטפירה או להורנר</button>
+  <button class="opt" data-i="3">Thoracic outlet syndrome — לחיצה וסקולרית כרונית, אינה קשורה למנגנון לידה</button>
+  <div class="explain">נכון: Klumpke palsy נגרמת ממתיחת הגזע התחתון (C8-T1), קלאסית ממשיכה כלפי מעלה על הזרוע בלידה (למשל לידת עכוז). אובדן השרירים הפנימיים של כף היד גורם ל"claw hand". מכיוון שהשורש T1 נושא גם סיבים סימפתטיים לשרשרת הסימפתטית הסמוכה, פגיעה בו יכולה לגרום לתסמונת הורנר נלווית (פטוזיס, מיוזיס, אנהידרוזיס).</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופל נופל על יד מושטת (FOOSH) ומתלונן על כאב בבסיס האגודל. רגישות ניכרת בסנאפ-בוקס האנטומי, אך צילום רנטגן ראשוני תקין. מהי הגישה הנכונה?</div>
+  <button class="opt" data-i="0">לשלול שבר לחלוטין ולשחרר את המטופל ללא מעקב, כי הצילום תקין</button>
+  <button class="opt" data-i="1">האבחנה היחידה האפשרית היא נקע lunate</button>
+  <button class="opt" data-i="2">לטפל כשבר סקפואיד סמוי (occult) עד להוכחת ההפך — קיבוע וחזרה להדמיה, בשל הסיכון לנמק אווסקולרי אם מפספסים</button>
+  <button class="opt" data-i="3">אין צורך בקיבוע כלל, רק מעקב קליני ללא הדמיה חוזרת</button>
+  <div class="explain">נכון: הסקפואיד הוא העצם הקרפלית הנשברת ביותר, מנגנון קלאסי FOOSH, ורגישות בסנאפ-בוקס האנטומי עם רנטגן תקין הוא ממצא קלאסי לשבר סמוי (occult) שלא תמיד נראה בצילום הראשוני. בשל אספקת הדם הרטרוגרדית (מענף של עורק הרדיאלי) קיים סיכון משמעותי לנמק אווסקולרי ו-nonunion אם השבר מפוספס ולא מקובע — יש לקבע ולחזור על הדמיה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופלת עם שבר ב-hook of hamate מפתחת חולשה בשרירים הפנימיים של כף היד ותחושה ירודה ב-1.5 האצבעות האולנריות. איזה מבנה נפגע, ובאיזו תעלה?</div>
+  <button class="opt" data-i="0">עצב מדיאני בתעלה הקרפלית — גורם ל"יד קוף", לא לממצאים המתוארים</button>
+  <button class="opt" data-i="1">עורק רדיאלי בסנאפ-בוקס האנטומי — קשור לנמק אווסקולרי של הסקפואיד, לא לתחושה/מוטוריקה</button>
+  <button class="opt" data-i="2">עצב רדיאלי בבית השחי — גורם ל-wrist drop, לא לממצאים אלו</button>
+  <button class="opt" data-i="3">עצב אולנרי בתעלת גיון — התעלה השטחית ל-flexor retinaculum, מכילה עצב אולנרי (ועורק אולנרי) הסמוכים ל-hook of hamate; פגיעה גורמת לתסמונת תעלת גיון</button>
+  <div class="explain">נכון: תעלת גיון (Guyon canal) עוברת שטחית ל-flexor retinaculum ומכילה את העצב והעורק האולנריים בלבד. ה-hook of hamate גובל ישירות בתעלה זו — שבר בו הוא מנגנון קלאסי ללחיצה על העצב האולנרי (Guyon canal syndrome), הגורם לחולשה בשרירי כף היד הפנימיים (אולנרי) ותחושה ירודה ב-1.5 האצבעות האולנריות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">7</span> סיכום של הסיכום</h2>
+  <h4>מקלעת ברכיאלית ותסמונות פגיעה</h4>
+  <ul>
+    <li>5 רמות: Roots → Trunks → Divisions → Cords → Branches ("Remember To Drink Cold Beer").</li>
+    <li>Erb palsy (גזע עליון, C5-C6): "waiter's tip" — דלטואיד/אינפרהספינטוס/דו-ראשי ("Herb gets DIBs on tips").</li>
+    <li>Klumpke palsy (גזע תחתון, C8-T1): "claw hand", ± הורנר אם מעורב T1.</li>
+    <li>Thoracic outlet syndrome: לחיצה על גזע תחתון + כלי subclavian במשולש הסקלני; ± גידי Pancoast/צלע צווארית.</li>
+    <li>Winged scapula: פגיעה בעצב long thoracic (C5-C7) — לרוב לאחר axillary node dissection/כריתת שד; אין הרחקה מעל אופקי.</li>
+  </ul>
+  <h4>שורש כף יד וכף יד</h4>
+  <ul>
+    <li>עצמות קרפליות: Scaphoid-Lunate-Triquetrum-Pisiform (פרוקסימלי) / Hamate-Capitate-Trapezoid-Trapezium (דיסטלי) — "So long to pinky, here comes the thumb".</li>
+    <li>Scaphoid: העצם הנשברת ביותר, FOOSH, נמק אווסקולרי (אספקת דם רטרוגרדית), שבר סמוי אפשרי בצילום ראשוני.</li>
+    <li>תעלה קרפלית (עמוק לרצועה): עצב מדיאני + גידי FDS/FDP/FPL; נקע lunate ← תסמונת תעלה קרפלית.</li>
+    <li>תעלת גיון (שטחי לרצועה): עצב אולנרי + עורק אולנרי; שבר hook of hamate ← תסמונת תעלת גיון.</li>
+    <li>תנר/היפותנר: OAF (Oppose, Abduct, Flex). Dorsal interossei: DAB. Palmar interossei: PAD. Lumbricals: כיפוף MCP + פשיטת PIP/DIP (1-2 מדיאני, 3-4 אולנרי).</li>
+  </ul>
+</div>
+
+
+<h2><span class="num">8</span> הסרטונים שלי (ספרייה אישית)</h2>
+<p style="font-size:14.5px; color:var(--sub)">הדפדפן <b>חוסם ניווט אוטומטי</b> מדף מאובטח (https, כמו האתר הזה) לקובץ מקומי (<span class="term" dir="ltr">file:///D:\...</span>) — זו הגנת אבטחה של הדפדפן עצמו, ולכן הקישורים למטה אינם לחיצים. במקום זאת: לחצי על <b>"העתק נתיב"</b>, פתחי חלון סייר קבצים חדש (מקש <span class="term" dir="ltr">Win+E</span>) או לשונית דפדפן חדשה, והדביקי (<span class="term" dir="ltr">Ctrl+V</span>) בשורת הכתובת. הנתיבים האלה עובדים <b>רק על המחשב שלך</b>. אם תעלי סרטונים נוספים לתיקיית הסרטונים שלך, עדכני אותי ואוסיף אותם כאן.</p>
+<div class="video-path-list">
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">מקלעת ברכיאלית — אנטומיה (Boards &amp; Beyond)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Boards &amp; Beyond) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal_1_Anatomy_and_Orthopedics_3_Brachial_Plexus.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal_1_Anatomy_and_Orthopedics_3_Brachial_Plexus.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">מקלעת ברכיאלית (Osmosis)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Osmosis) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Neurology (78 Videos)\Brachial plexus.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Neurology (78 Videos)\Brachial plexus.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">שיתוק Erb-Duchenne (Osmosis)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Osmosis) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Neurology (78 Videos)\Erb-Duchenne palsy.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Neurology (78 Videos)\Erb-Duchenne palsy.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">שורש כף היד — אנטומיה (Boards &amp; Beyond)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Boards &amp; Beyond) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal - 1. Anatomy and Orthopedics - 4.Wrist.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal - 1. Anatomy and Orthopedics - 4.Wrist.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">כף היד — אנטומיה (Boards &amp; Beyond)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Boards &amp; Beyond) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal - 1. Anatomy and Orthopedics - 5.Hand.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\Boards&amp;Beyond\Musculoskeletal\Musculoskeletal - 1. Anatomy and Orthopedics - 5.Hand.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">אנטומיה של כף היד (Lecturio)</span></div>
+    <div class="d">וידאו מהספרייה האישית שלך (Lecturio) הרלוונטי לנושאי יחידה זו.</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\lecturio\Anatomy\Upper limb\07. Anatomy of the Hand.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\lecturio\Anatomy\Upper limb\07. Anatomy of the Hand.mp4">📋 העתק נתיב</button></div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.getAttribute('data-copy');
+    var done = function(){
+      var old = btn.textContent;
+      btn.textContent = '✓ הועתק!';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove('copied'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){
+        fallbackCopy(text); done();
+      });
+    } else {
+      fallbackCopy(text); done();
+    }
+  });
+});
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+</script>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
