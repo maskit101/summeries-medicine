@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מחלות השד (Diseases of the Breast) — בירור גוש וסרטן השד</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 35 בהרצה זו (uploads נגישים רק עד פרק 19) - הסיכום מבוסס על מחקר במקורות מהימנים (NCBI/StatPearls: Breast Cancer, Breast Cancer Surgery, Axillary SLNB, DCIS; PDQ Breast Cancer Treatment; PMC: BRCA1/2, SLNB vs ALND/Z0011) + Wikimedia Commons ו-YouTube (Osmosis). הפרק רחב - הסיכום מתמקד בסרטן השד ובבירור גוש בשד, עם טבלת מחלות שפירות לאבחנה מבדלת -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>מחלות השד <span class="term" dir="ltr">(Diseases of the Breast)</span> — בירור גוש וסרטן השד</h1>
+<div class="subtitle">פרק 35 בספר Sabiston/Schwartz's Principles of Surgery — אנטומיה וניקוז לימפטי, הערכה משולשת (triple assessment), מחלות שפירות, DCIS/LCIS, סרטן חודרני לפי קולטנים, וניהול כירורגי של השד ובית השחי</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>סרטן השד הוא <b>הסרטן השכיח ביותר בנשים</b> (בערך אחת מכל 8 נשים במהלך החיים) ומהגורמים המובילים לתמותה מסרטן. הכירורג פוגש את השד בשלושה הקשרים: <b>גוש נמוש</b> או ממצא בממוגרפיית סקר, <b>הפרשה מהפטמה / כאב / דלקת</b>, ו<b>טיפול כירורגי בסרטן מאובחן</b> — כולל השאלה המרכזית: כמה לכרות מהשד וכמה מבית השחי. היום הטיפול הוא <b>רב-תחומי ומונחה ביולוגיה</b>: הקולטנים (ER/PR/HER2) קובעים את הטיפול הסיסטמי לא פחות מגודל הגידול.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain"><b>1. אסטרוגן = "דלק" לחלוקה</b>: תאי האפיתל של יחידת <b>צינורית-אונית סופית</b> <span class="term" dir="ltr">(TDLU, Terminal duct lobular unit)</span> מחזיקים קולטן לאסטרוגן. בכל מחזור, אסטרוגן מגרה חלוקה; כל חלוקה = הזדמנות לטעות העתקה ב-DNA. לכן כל מה ש<b>מאריך את החשיפה המצטברת לאסטרוגן</b> מעלה סיכון: וסת מוקדמת, מנופאוזה מאוחרת, אי-לידה/לידה ראשונה מאוחרת (לפני הריון מלא התאים "לא בשלים" ורגישים יותר), טיפול הורמונלי משולב, והשמנה אחרי מנופאוזה (<b>ארומטאז</b> ברקמת השומן הופך אנדרוגנים לאסטרוגן).</p>
+  <p class="chain"><b>2. פגם בתיקון DNA — BRCA</b>: <span class="term" dir="ltr">BRCA1/BRCA2</span> הם גנים מדכאי-גידול שמתקנים שבר דו-גדילי ב-DNA בשיטת <b>רקומבינציה הומולוגית</b>. נשאית יורשת עותק פגום אחד; כשהעותק השני נפגע בתא בודד (<b>"שתי פגיעות" — Knudson</b>), התא מתחיל לצבור מוטציות במהירות. סיכון מצטבר לסרטן שד ~45–70%, וגם שחלות. <b>BRCA1</b> → לרוב <b>טריפל-נגטיב</b>, בגיל צעיר; <b>BRCA2</b> → לרוב ER+, וקשור גם לסרטן שד בגבר. <b>למה PARP inhibitors (Olaparib) עובדים?</b> תא BRCA-פגום תלוי במסלול תיקון חלופי (PARP); חוסמים גם אותו → התא הסרטני לא מצליח לתקן כלום ומת (<b>סינתטיק לטליות</b>), בעוד תאים תקינים (עם BRCA אחד תקין) שורדים.</p>
+  <p class="chain"><b>3. התקדמות: היפרפלזיה → אטיפיה → in situ → חודרני</b>: כל עוד התאים הממאירים <b>לא חצו את הממברנה הבזאלית</b> — זו קרצינומה <i>in situ</i> (DCIS), ואין לה גישה לכלי לימפה/דם → <b>אין גרורות</b>. ברגע שהם חודרים לסטרומה — הם פוגשים לימפטיקה ומגיעים קודם ל<b>קשרית הזקיף</b> בבית השחי.</p>
+  <p class="chain"><b>4. HER2 — "דוושת גז תקועה"</b>: הגברה <span class="term" dir="ltr">(amplification)</span> של הגן <span class="term" dir="ltr">ERBB2</span> (~15–20%) → עשרות אלפי קולטני טירוזין-קינאז על פני התא → דימריזציה ספונטנית → איתות MAPK/PI3K מתמיד → חלוקה מואצת. גידול אגרסיבי — אבל גם <b>מטרה</b>: <span class="term" dir="ltr">Trastuzumab</span> נקשר לקולטן וחוסם אותו.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>מסלול התקדמות סרטן השד</title>
+  <rect x="520" y="30" width="140" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="590" y="58" text-anchor="middle" font-weight="700">אפיתל תקין</text><text x="590" y="80" text-anchor="middle">TDLU</text>
+  <rect x="355" y="30" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="425" y="58" text-anchor="middle" font-weight="700">היפרפלזיה אטיפית</text><text x="425" y="80" text-anchor="middle">ADH / ALH</text>
+  <rect x="190" y="30" width="140" height="70" rx="8" fill="#fef3c7" stroke="#d97706"/>
+  <text x="260" y="58" text-anchor="middle" font-weight="700">DCIS</text><text x="260" y="80" text-anchor="middle">ממברנה בזאלית שלמה</text>
+  <rect x="25" y="30" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="95" y="58" text-anchor="middle" font-weight="700">IDC חודרני</text><text x="95" y="80" text-anchor="middle">חוצה ממברנה</text>
+  <line x1="520" y1="65" x2="500" y2="65" stroke="#374151" stroke-width="2"/><polygon points="495,65 503,60 503,70" fill="#374151"/>
+  <line x1="355" y1="65" x2="335" y2="65" stroke="#374151" stroke-width="2"/><polygon points="330,65 338,60 338,70" fill="#374151"/>
+  <line x1="190" y1="65" x2="170" y2="65" stroke="#374151" stroke-width="2"/><polygon points="165,65 173,60 173,70" fill="#374151"/>
+  <line x1="95" y1="100" x2="95" y2="150" stroke="#b91c1c" stroke-width="2"/><polygon points="95,156 90,147 100,147" fill="#b91c1c"/>
+  <rect x="25" y="160" width="160" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="105" y="185" text-anchor="middle" font-weight="700">קשרית זקיף בבית השחי</text><text x="105" y="205" text-anchor="middle">→ ריאות, עצם, כבד, מוח</text>
+  <rect x="230" y="150" width="430" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="645" y="175" text-anchor="end" font-weight="700">מאיצים לאורך כל הדרך:</text>
+  <text x="645" y="197" text-anchor="end">אסטרוגן (ER) = דלק לחלוקה · BRCA = אין תיקון DNA</text>
+  <text x="645" y="218" text-anchor="end">HER2 מוגבר = דוושת גז תקועה</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/auF4tT0ETM4" title="Breast cancer: Pathology review | Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — סקירת פתולוגיה של סרטן השד: גורמי סיכון, DCIS/LCIS, סוגים היסטולוגיים וקולטנים. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופיזיולוגיה</h2>
+<p>השד בנוי מ-15–20 אונות, שכל אחת מתנקזת בצינור חלב לפטמה. היחידה הפונקציונלית היא ה-<b>TDLU</b> — ושם מתחילים <b>כמעט כל</b> סרטני השד (גם הדוקטליים וגם הלובולריים). הרקמה נתמכת ע"י <b>רצועות קופר</b> <span class="term" dir="ltr">(Cooper's ligaments)</span> שמחברות את הפאשיה לעור — כשגידול מושך אותן מתקבלת <b>הפנמת עור</b> <span class="term" dir="ltr">(skin dimpling)</span>. <b>הרביע העליון-חיצוני</b> מכיל הכי הרבה רקמה (כולל זנב ספנס לבית השחי) — ולכן שם רוב הגידולים.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Breast_anatomy_normal.jpg?width=600" alt="אנטומיה תקינה של השד">
+  <figcaption class="media-cap">חתך אנטומי של השד התקין: אונות, צינורות חלב, רקמת שומן ושריר החזה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Breast_anatomy_normal.jpg" target="_blank">Wikimedia Commons (P. J. Lynch, C. C. Jaffe)</a></figcaption>
+</figure>
+<p><b>ניקוז לימפטי</b>: ~75% לבית השחי, והשאר לשרשרת <b>הממרית הפנימית</b> <span class="term" dir="ltr">(internal mammary)</span>. רמות בית השחי מוגדרות לפי <b>שריר החזה הקטן</b> <span class="term" dir="ltr">(pectoralis minor)</span>: <b>I</b> — לטרלית לו, <b>II</b> — מאחוריו (כולל קשריות Rotter בין החזה הגדול לקטן), <b>III</b> — מדיאלית לו (אינפרא-קלביקולרית). הגידול מתפשט בדרך כלל <b>בסדר I→II→III</b>, ולכן "קשרית זקיף" היא מושג תקף.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Breast_and_adjacent_lymph_nodes.jpg?width=600" alt="השד וקשריות הלימפה הסמוכות">
+  <figcaption class="media-cap">השד וקשריות הלימפה הסמוכות — בית השחי, אינפרא/סופרא-קלביקולרי וממרי פנימי. מקור: <a href="https://commons.wikimedia.org/wiki/File:Breast_and_adjacent_lymph_nodes.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+</figure>
+<div class="key-box">עצבים בסכנה בדיסקציית בית השחי: <b>Long thoracic</b> (שריר serratus anterior → <b>שכמה מכונפת</b>), <b>Thoracodorsal</b> (latissimus dorsi → חולשת אדדוקציה/רוטציה פנימית), <b>Intercostobrachial</b> (תחושתי → חוסר תחושה בזרוע הפנימית — הנפגע השכיח ביותר), <b>Medial pectoral</b> (אטרופיה של החזה הקטן/הגדול).</div>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<p>רוב הסרטנים היום מתגלים <b>בממוגרפיית סקר</b> לפני שהם נמושים. גוש ממאיר קלאסי: <b>קשה, לא כואב, לא סדיר, מקובע</b> לעור או לשריר. סימנים של מחלה מקומית מתקדמת: <b>הפנמת עור</b> (משיכת רצועות קופר), <b>הפנמת פטמה חדשה</b> (משיכת צינורות), ו<b>"קליפת תפוז"</b> <span class="term" dir="ltr">(Peau d'orange)</span>.</p>
+<div class="mechanism"><b>למה קליפת תפוז?</b> תאי גידול חוסמים את כלי הלימפה הדרמליים → בצקת לימפתית בעור → העור מתנפח סביב זקיקי השערה שקשורים לעומק, ולכן הזקיקים נראים כגומות קטנות — כמו קליפת תפוז. כשזה מתפתח במהירות (פחות מ-6 חודשים) עם אודם וחום על פני שליש מהשד ויותר — זה <b>סרטן שד דלקתי</b> <span class="term" dir="ltr">(Inflammatory breast cancer, T4d)</span>: ה"דלקת" אינה זיהום אלא <b>חסימה לימפטית ע"י אמבולי גידול</b> — ולכן הוא לא מגיב לאנטיביוטיקה.</div>
+<p><b>הפרשה מהפטמה</b>: דו-צדדית, מרובת צינורות, חלבית/ירקרקה → לרוב פיזיולוגית/הורמונלית (בדקי פרולקטין, TSH, תרופות). <b>חד-צדדית, מצינור בודד, דמית/סרוזית, ספונטנית</b> → חשודה; הסיבה השכיחה ביותר היא <b>פפילומה תוך-צינורית</b> <span class="term" dir="ltr">(Intraductal papilloma)</span>, אבל יש לשלול סרטן.</p>
+<p><b>מחלת פג'ט של הפטמה</b> <span class="term" dir="ltr">(Paget disease)</span>: פריחה אקזמטית, מתקלפת, חד-צדדית על הפטמה (לא רק על העטרה) שלא מגיבה לסטרואידים — ביטוי של DCIS/סרטן בבסיסה. תאי פג'ט נודדים לאורך הצינורות לאפידרמיס. <b>פריחה על הפטמה שלא עוברת → ביופסיה.</b></p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>ההערכה המשולשת (Triple assessment)</h3>
+<p>כל גוש נבדק ב<b>שלושה ראשים</b>: (1) בדיקה קלינית, (2) הדמיה, (3) <b>ביופסיית מחט עבה</b> <span class="term" dir="ltr">(Core needle biopsy)</span>. רק כששלושתם <b>תואמים</b> (concordant) אפשר לסמוך על התוצאה. <b>אי-התאמה</b> (למשל ממוגרפיה חשודה וביופסיה שפירה) → כריתה אקסציונלית. ביופסיית Core עדיפה על FNA כי היא נותנת <b>ארכיטקטורה</b> (חודרני מול in situ) ו<b>קולטנים</b>.</p>
+<table>
+  <tr><th>גיל/מצב</th><th>הדמיה ראשונה</th><th>למה</th></tr>
+  <tr><td>מתחת ל-30, הריון/הנקה</td><td>אולטרסאונד</td><td>רקמת שד צפופה מסתירה בממוגרפיה; אין קרינה; מבחין מוצק/ציסטי</td></tr>
+  <tr><td>30 ומעלה</td><td>ממוגרפיה אבחנתית + US</td><td>זיהוי מיקרו-הסתיידויות, מוקדים נוספים ובשד השני</td></tr>
+  <tr><td>נשאיות BRCA / סיכון גבוה, גידול לובולרי, תכנון ניתוח מורכב</td><td>MRI</td><td>רגישות גבוהה מאוד (ספציפיות נמוכה יותר)</td></tr>
+</table>
+<p><b>ממצאים ממוגרפיים חשודים</b>: מסה <b>ספיקולרית</b> (שוליים דוקרניים — תגובה דסמופלסטית לחדירה), <b>מיקרו-הסתיידויות פלאומורפיות מקובצות/לינאריות-מסתעפות</b> (נמק במרכז צינורות DCIS שמסתייד — "יציקה" של הצינור), עיוות ארכיטקטורה. הדיווח לפי <b>BI-RADS</b>: 0 = לא שלם, 1–2 = תקין/שפיר, 3 = כנראה שפיר (מעקב 6 חודשים), <b>4–5 = ביופסיה</b>, 6 = ממאירות מוכחת.</p>
+<div class="figure-pair">
+  <figure>
+    <span class="label normal">תקין</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Normal_mammogram.jpg?width=400" alt="ממוגרפיה תקינה">
+    <figcaption class="media-cap">ממוגרפיה תקינה: רקמה פיברוגלנדולרית סימטרית, ללא מסה/עיוות. מקור: <a href="https://commons.wikimedia.org/wiki/File:Normal_mammogram.jpg" target="_blank">Wikimedia Commons (NCI)</a></figcaption>
+  </figure>
+  <figure>
+    <span class="label abnormal">סרטן</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mammogram_showing_breast_cancer.jpg?width=400" alt="ממוגרפיה עם סרטן שד">
+    <figcaption class="media-cap">ממוגרפיה עם גידול — החץ מצביע על נגע קטן, צפוף, לא סדיר. מקור: <a href="https://commons.wikimedia.org/wiki/File:Mammogram_showing_breast_cancer.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<h3>אבחנה מבדלת — מחלות שפירות</h3>
+<table>
+  <tr><th>מצב</th><th>גיל טיפוסי</th><th>הממצא המבדיל</th><th>מה עושים</th></tr>
+  <tr><td>פיברואדנומה <span class="term" dir="ltr">(Fibroadenoma)</span></td><td>15–35</td><td>גוש חלק, <b>נייד מאוד</b> ("עכבר בשד"), גומי; US: אובלי, מוגדר היטב, רוחבי</td><td>ביופסיה לאישור → מעקב; כריתה אם גדל/מעל 3–5 ס"מ</td></tr>
+  <tr><td>ציסטה</td><td>35–50 (פרימנופאוזה)</td><td>US: אנאקואית עם הגברה אחורית; משתנה עם המחזור</td><td>שאיבה אם סימפטומטית; <b>נוזל דמי או גוש שחוזר/נותר → ציטולוגיה/ביופסיה</b></td></tr>
+  <tr><td>שינויים פיברו-ציסטיים</td><td>30–50</td><td>כאב ורגישות <b>דו-צדדיים מחזוריים</b>, "גבשושיות"</td><td>הרגעה, חזייה תומכת, NSAIDs</td></tr>
+  <tr><td>פפילומה תוך-צינורית</td><td>35–55</td><td>הפרשה <b>דמית חד-צדדית</b> מצינור בודד</td><td>כריתת הצינור המעורב <span class="term" dir="ltr">(microdochectomy)</span></td></tr>
+  <tr><td>גידול פילודס <span class="term" dir="ltr">(Phyllodes)</span></td><td>40–50</td><td>גוש <b>גדול וגדל מהר</b>, "דמוי פיברואדנומה ענקית"; מקור סטרומלי</td><td>כריתה רחבה עם <b>שוליים ≥1 ס"מ</b>, <b>ללא</b> דיסקציית בית שחי (מתפשט המטוגנית)</td></tr>
+  <tr><td>מורסה/מסטיטיס</td><td>הנקה</td><td>אודם, חום, כאב, חום גוף; <span class="term" dir="ltr">S. aureus</span></td><td>המשך הנקה/שאיבה, Dicloxacillin/Cephalexin (MRSA → TMP-SMX/Clindamycin); מורסה → ניקוז בשאיבה מונחית US</td></tr>
+  <tr><td>נמק שומן</td><td>כל גיל, אחרי חבלה/ניתוח</td><td>גוש קשה שיכול לחקות סרטן, עם הסתיידויות</td><td>ביופסיה לשלילת ממאירות</td></tr>
+</table>
+<div class="key-box">"מסטיטיס" <b>אצל אישה שלא מניקה</b>, או כזו ש<b>לא חולפת</b> אחרי קורס אנטיביוטיקה → חייבים לשלול <b>סרטן שד דלקתי</b> (ביופסיית עור + רקמה).</div>
+
+<h3>פתולוגיה וקולטנים</h3>
+<ul>
+  <li><b>DCIS</b> — ממאירות תוך-צינורית, ללא חדירה; מתגלה בעיקר כמיקרו-הסתיידויות. <b>פרה-קנצרוזה אמיתית</b> באותו אזור → כורתים עם שוליים (≥2 מ"מ לפי קונצנזוס) + הקרנה לאחר שימור; <b>אין צורך בדיסקציית בית שחי</b> (אלא אם כריתת שד מלאה — אז שוקלים SLNB כי אחר כך אי אפשר).</li>
+  <li><b>LCIS (קלאסי)</b> — <b>סמן סיכון</b>, לא פרה-קנצרוזה ישירה: הסיכון מוגבר <b>בשני השדיים</b>. אובדן <span class="term" dir="ltr">E-cadherin</span> (מולקולת הדבקה) → תאים "מפוזרים" לא-מלוכדים. טיפול: מעקב מוגבר ± טמוקסיפן למניעה. (LCIS פלאומורפי מטופל כמו DCIS.)</li>
+  <li><b>קרצינומה דוקטלית חודרנית (IDC, NST)</b> — 70–80%.</li>
+  <li><b>קרצינומה לובולרית חודרנית (ILC)</b> — 10–15%; אובדן E-cadherin → תאים בטור יחיד <span class="term" dir="ltr">(single-file)</span>; קשה לראות בממוגרפיה, <b>רב-מוקדית/דו-צדדית</b> יותר, וגרורות "משונות" (צפק, שחלות, מערכת העיכול) → לעתים MRI.</li>
+</ul>
+<table>
+  <tr><th>תת-סוג (Intrinsic)</th><th>קולטנים</th><th>שכיחות</th><th>התנהגות / טיפול סיסטמי עיקרי</th></tr>
+  <tr><td>Luminal A</td><td>ER+/PR+, HER2−, Ki-67 נמוך</td><td>הכי שכיח</td><td>פרוגנוזה טובה; הורמונלי בלבד לרוב</td></tr>
+  <tr><td>Luminal B</td><td>ER+, Ki-67 גבוה ± HER2+</td><td>~15–20%</td><td>הורמונלי ± כימו (לפי Oncotype DX)</td></tr>
+  <tr><td>HER2-enriched</td><td>ER−, HER2+</td><td>~10–15%</td><td>אגרסיבי; כימו + Trastuzumab ± Pertuzumab</td></tr>
+  <tr><td>Triple negative / basal-like</td><td>ER−, PR−, HER2−</td><td>~10–15%</td><td>צעירות, BRCA1; כימו (± Pembrolizumab); אין מטרה הורמונלית</td></tr>
+</table>
+<p><b>שלבים (TNM)</b>: T1 ≤2 ס"מ, T2 2–5, T3 מעל 5, T4 = מעורבות דופן חזה/עור (כולל דלקתי). בירור גרורות (CT/סינטיגרפיית עצם/PET) <b>רק במחלה מתקדמת מקומית או בתסמינים</b> — לא בשלב I שגרתי. אתרי גרורות: <b>עצם (הכי שכיח)</b>, ריאות, כבד, מוח.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>השד — שימור מול כריתה</h3>
+<p><b>ניתוח משמר שד</b> <span class="term" dir="ltr">(BCS / lumpectomy)</span> <b>+ הקרנה לשד</b> שווה בהישרדות לכריתת שד מלאה (<b>NSABP B-06, Milan</b>). ההקרנה חיונית: היא "מנקה" מוקדים מיקרוסקופיים סביב המיטה ומורידה חזרה מקומית בערך בחצי. שוליים בסרטן חודרני: <b>"no ink on tumor"</b> מספיק (SSO/ASTRO).</p>
+<p><b>התוויות-נגד לשימור שד</b> (→ כריתה מלאה): מחלה <b>רב-מרכזית</b> (ברביעים שונים), מיקרו-הסתיידויות ממאירות מפושטות, <b>שוליים חיוביים מתמשכים</b>, סרטן דלקתי, <b>התווית-נגד להקרנה</b> (הריון בשליש הראשון/שני בזמן הקרנה, הקרנה קודמת לשד/לחזה — כגון לימפומה, מחלות קולגן פעילות כמו סקלרודרמה), ויחס גידול/שד גדול מדי לתוצאה קוסמטית (אפשר לשקול כימו ניאו-אדג'ובנטית להקטנה).</p>
+<h3>בית השחי</h3>
+<ul>
+  <li><b>בית שחי קליני שלילי (cN0)</b> → <b>ביופסיית קשרית זקיף (SLNB)</b> עם <b>סמן כפול</b> (טכנציום-99m + צבע כחול/ICG). SLNB שלילית → אין דיסקציה.</li>
+  <li><b>ACOSOG Z0011</b>: T1–T2, cN0, <b>שימור שד + הקרנת שד שלם</b>, ו-<b>1–2 קשריות זקיף חיוביות</b> → <b>אין צורך בדיסקציה</b> (ALND) — אותה הישרדות, פחות לימפדמה.</li>
+  <li><b>ALND</b> (רמות I–II) → בית שחי חיובי קלינית שלא עבר תגובה, 3 ומעלה קשריות זקיף חיוביות, סרטן דלקתי.</li>
+</ul>
+<div class="key-box">סרטן שד דלקתי: <b>כימו ניאו-אדג'ובנטית → כריתת שד רדיקלית מותאמת (MRM) + ALND → הקרנה</b>. לא שימור שד, לא SLNB.</div>
+<h3>טיפול סיסטמי</h3>
+<table>
+  <tr><th>תרופה</th><th>סוג/מנגנון</th><th>למי</th><th>איך זה פותר את הבעיה</th><th>תופעות/קונטרא-אינדיקציות עיקריות</th></tr>
+  <tr><td>Tamoxifen (Nolvadex)</td><td>SERM — אנטגוניסט בשד, אגוניסט חלקי ברחם/עצם</td><td>ER+, <b>טרום-מנופאוזה</b> (גם אחרי)</td><td>חוסם את "הדלק" האסטרוגני בקולטן</td><td><b>סרטן רירית הרחם</b>, <b>DVT/PE</b>, גלי חום; קונטרא: היסטוריה של תרומבואמבוליזם; מעכבי CYP2D6 חזקים (Paroxetine) מפחיתים הפעלה</td></tr>
+  <tr><td>Anastrozole / Letrozole (Arimidex/Femara)</td><td>מעכבי ארומטאז</td><td>ER+, <b>אחרי מנופאוזה</b></td><td>חוסם ייצור אסטרוגן פריפרי (שומן) — המקור העיקרי אחרי מנופאוזה</td><td><b>אוסטאופורוזיס</b> (DEXA), כאבי מפרקים; <b>לא יעיל לבד בטרום-מנופאוזה</b> (השחלות ממשיכות לייצר) — רק עם דיכוי שחלתי</td></tr>
+  <tr><td>Trastuzumab (Herceptin) ± Pertuzumab</td><td>נוגדנים חד-שבטיים נגד HER2</td><td>HER2+</td><td>חוסם את הקולטן המוגבר + ADCC</td><td><b>קרדיוטוקסיות</b> (ירידת EF, הפיכה לרוב) → אקו כל 3 חודשים; זהירות עם אנתרציקלינים</td></tr>
+  <tr><td>Doxorubicin + Cyclophosphamide → Paclitaxel (AC-T)</td><td>כימותרפיה ציטוטוקסית</td><td>טריפל-נגטיב, HER2+, Luminal B סיכון גבוה</td><td>הורג תאים מתחלקים מהר (כולל מיקרו-גרורות)</td><td>Doxorubicin → קרדיומיופתיה תלוית מינון; Paclitaxel → נוירופתיה; דיכוי מח עצם</td></tr>
+  <tr><td>Olaparib (Lynparza)</td><td>מעכב PARP</td><td>נשאיות BRCA עם מחלה בסיכון גבוה/גרורתית</td><td>סינתטיק לטליות — תא ללא BRCA וללא PARP לא מתקן DNA</td><td>אנמיה, דיכוי מח עצם</td></tr>
+  <tr><td>Pembrolizumab (Keytruda)</td><td>מעכב PD-1</td><td>טריפל-נגטיב (ניאו-אדג'ובנטי, KEYNOTE-522)</td><td>משחרר את הבלמים של תאי T נגד הגידול</td><td>תופעות אימוניות (irAE): תירואידיטיס, קוליטיס, פנאומוניטיס</td></tr>
+</table>
+<p><b>Oncotype DX</b> (פאנל 21 גנים) ב-ER+/HER2− מוקדם — מנבא אם תוספת כימו תועיל (ציון גבוה) או שהורמונלי מספיק (ציון נמוך, TAILORx).</p>
+
+<div class="surgery">
+  <h4>לפני הניתוח</h4>
+  <p>ביופסיית Core עם קולטנים והנחת <b>קליפס</b> במקום הגידול (חיוני אם תינתן ניאו-אדג'ובנטית — הגידול עלול להיעלם); <b>סימון</b> נגע לא נמוש (חוט/זרע רדיואקטיבי/מגנטי); בירור גנטי בהתאם; דיון בצוות רב-תחומי; שיחה על שחזור.</p>
+  <h4>שלבי הניתוח</h4>
+  <p><b>Lumpectomy</b>: חתך מעל הנגע → כריתה עם שוליים של רקמה נורמלית → <b>סימון אוריינטציה</b> לפתולוג (תפרים ארוך/קצר) → צילום רנטגן של הדגימה (לוודא שהסימון/ההסתיידויות הוצאו) → קליפסים למיטת הגידול להכוונת ההקרנה. <b>SLNB</b>: הזרקת רדיואיזוטופ ו/או צבע כחול תת-עורית/פרי-אראולרית → חתך קטן בבית השחי → זיהוי קשריות "חמות"/כחולות בעזרת גמא-פרוב → הוצאת כל קשרית חמה/כחולה/נמושה חשודה.</p>
+  <h4>נקודות קריטיות</h4>
+  <p>שוליים חיוביים הם הסיבה השכיחה לניתוח חוזר (~15–20%) — אוריינטציה נכונה מאפשרת כריתה חוזרת <b>רק</b> של השוליים המעורבים. בדיסקציה — לזהות ולשמור את <b>long thoracic</b> ו-<b>thoracodorsal</b>; צבע כחול → סיכון נדיר לאנפילקסיס, ושתן/עור כחלחל חולף.</p>
+  <h4>החלמה וסיבוכים</h4>
+  <p>לרוב ניתוח יום/לילה. סרומה (שכיח אחרי ALND → שאיבה), זיהום, המטומה. <b>לימפדמה של הזרוע</b>: ~5% אחרי SLNB מול ~20–30% אחרי ALND (+הקרנה) → זיהוי מוקדם ופיזיותרפיה; אזהרה: זרוע נפוחה/אדומה/חמה = צלוליטיס שדורש אנטיביוטיקה.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tF3IkPSH4wg" title="Surgery - Lumpectomy with Lymph Node Biopsy" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת לומפקטומי עם ביופסיית קשרית לימפה — שימי לב לשלבים: סימון, כריתה עם שוליים וזיהוי הקשרית בבית השחי. מקור: YouTube.</p>
+<p><b>סיכון גבוה / BRCA</b>: מעקב MRI+ממוגרפיה שנתיים מגיל 25–30; <b>כריתת שד מניעתית דו-צדדית</b> מורידה סיכון ב-~90%+; <b>כריתת שחלות וחצוצרות</b> (BSO) סביב 35–40 (BRCA1) / 40–45 (BRCA2) — מורידה גם סרטן שחלות וגם שד. <b>סרטן שד בגבר</b>: ~1%, כמעט תמיד ER+, קשור ל-BRCA2 ולתסמונת קליינפלטר → כריתת שד + SLNB + Tamoxifen.</p>
+<p><b>סרטן שד בהריון</b>: אבחון ב-US וביופסיה; ניתוח בטוח בכל שליש; <b>כימו מותרת מהשליש השני</b>; <b>אסורים בהריון</b>: הקרנה, Tamoxifen, Trastuzumab (אוליגוהידרמניוס); צבע כחול — נמנעים (טכנציום מותר).</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>התוויות-נגד לשימור שד — "PRIMS"</h3>
+  <p><b>P</b> — Pregnancy (הריון שמחייב הקרנה במהלכו)<br>
+  <b>R</b> — prior Radiation לשד/לחזה<br>
+  <b>I</b> — Inflammatory breast cancer<br>
+  <b>M</b> — Multicentric disease / Margins חיוביים מתמשכים<br>
+  <b>S</b> — Scleroderma/SLE פעיל (קולגן-וסקולרי) / Size — גידול גדול ביחס לשד</p>
+  <p style="font-size:14px;color:#4b5563">ראשי תיבות מקוריים שנבנו לסיכום זה.</p>
+</div>
+<div class="mnemonic">
+  <h3>סיפור: "מפעל האסטרוגן והשומר BRCA"</h3>
+  <p>בשד יש <b>מפעל</b> (TDLU). כל חודש מגיע <b>משאית דלק — אסטרוגן</b> — והמכונות עובדות (חלוקה). <b>BRCA הוא איש התחזוקה</b> שמתקן כל בורג שבור. אצל נשאית יש רק איש תחזוקה אחד — וכשהוא חולה, תקלות מצטברות. <b>HER2</b> הוא דוושת גז שנתקעה. בהתחלה הבלגן נשאר בתוך הצינורות (<b>DCIS — גדר שלמה</b>); כשהגדר נפרצת, העובדים בורחים דרך <b>השער הראשון — קשרית הזקיף</b>. <b>טמוקסיפן</b> = מנעול על פתח הדלק; <b>מעכב ארומטאז</b> = סוגר את <b>תחנת הדלק בשומן</b> (רק אחרי מנופאוזה, כשהשחלות כבר סגורות); <b>Trastuzumab</b> = מלחציים על הדוושה.</p>
+</div>
+<svg class="diagram" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>סיפור המפעל</title>
+  <rect x="250" y="50" width="180" height="100" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="340" y="80" text-anchor="middle" font-weight="700">🏭 מפעל TDLU</text>
+  <text x="340" y="105" text-anchor="middle">🔧 BRCA = איש תחזוקה</text>
+  <text x="340" y="128" text-anchor="middle">🦶 HER2 = דוושה תקועה</text>
+  <rect x="490" y="70" width="170" height="60" rx="10" fill="#fffbeb" stroke="#b45309"/>
+  <text x="575" y="95" text-anchor="middle" font-weight="700">⛽ משאית אסטרוגן</text>
+  <text x="575" y="115" text-anchor="middle">🔒 טמוקסיפן = מנעול</text>
+  <line x1="490" y1="100" x2="440" y2="100" stroke="#b45309" stroke-width="2"/><polygon points="434,100 442,95 442,105" fill="#b45309"/>
+  <rect x="20" y="70" width="170" height="60" rx="10" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="105" y="95" text-anchor="middle" font-weight="700">🚪 שער ראשון</text>
+  <text x="105" y="115" text-anchor="middle">קשרית זקיף</text>
+  <line x1="250" y1="100" x2="200" y2="100" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5,4"/><polygon points="194,100 202,95 202,105" fill="#b91c1c"/>
+  <text x="222" y="90" text-anchor="middle" fill="#b91c1c" font-size="11">פריצת גדר</text>
+  <text x="575" y="160" text-anchor="middle" fill="#4b5563">🛢️ תחנת דלק בשומן ← מעכב ארומטאז</text>
+</svg>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/kYZXILvxKwQ" title="Benign breast conditions: pathology review | Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — מחלות שד שפירות: פיברואדנומה, שינויים פיברו-ציסטיים, פפילומה, פילודס, מסטיטיס ונמק שומן. מקור: YouTube.</p>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=OW0qQnT5GoA" target="_blank">Osmosis — Anatomy of the breast</a><div class="desc">אנטומיה של השד: אונות, צינורות, רצועות קופר וניקוז לימפטי.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK482286/" target="_blank">StatPearls — Breast Cancer</a><div class="desc">סקירה מקיפה: אפידמיולוגיה, גורמי סיכון, אבחנה וטיפול.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK553076/" target="_blank">StatPearls — Breast Cancer Surgery</a><div class="desc">סוגי הניתוחים, התוויות והתוויות-נגד לשימור שד.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK553184/" target="_blank">StatPearls — Axillary Sentinel Lymph Node Biopsy</a><div class="desc">טכניקת הסמן הכפול וניהול קשרית זקיף חיובית.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK567766/" target="_blank">StatPearls — DCIS</a><div class="desc">DCIS: הדמיה, שוליים, הקרנה וטיפול הורמונלי.</div></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6822003/" target="_blank">PMC — BRCA1/BRCA2 Breast Cancer: Treatment and Prevention</a><div class="desc">מעקב, ניתוחים מניעתיים ו-PARP inhibitors בנשאיות.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Mammogram_showing_breast_cancer.jpg" target="_blank">Wikimedia — Mammogram showing breast cancer</a><div class="desc">קישור גיבוי לתמונת הממוגרפיה הפתולוגית.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Normal_mammogram.jpg" target="_blank">Wikimedia — Normal mammogram</a><div class="desc">קישור גיבוי לממוגרפיה התקינה.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>מקרה</h3>
+  <p>אישה בת 58, אחרי מנופאוזה, BMI 32, מגיעה אחרי ממוגרפיית סקר: <b>מסה ספיקולרית 1.8 ס"מ ברביע העליון-חיצוני של שד שמאל</b>, BI-RADS 5. בבדיקה: גוש קשה, לא כואב, מעט מקובע; <b>הפנמת עור קלה</b> מעליו; בית שחי ללא קשריות נמושות. US של בית השחי תקין. ביופסיית Core: <b>קרצינומה דוקטלית חודרנית</b>, ER+ PR+, HER2 שלילי (IHC 1+), Ki-67 נמוך. עברה לומפקטומי עם שוליים נקיים ו-SLNB: <b>1 מתוך 3 קשריות זקיף חיובית</b> (מקרו-גרורה, ללא התפשטות חוץ-קשרית).</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה ההמשך המתאים בבית השחי?</div>
+  <button class="opt" data-i="0">דיסקציית בית שחי רמות I–III</button>
+  <button class="opt" data-i="1">דיסקציית בית שחי רמות I–II, כי כל קשרית חיובית מחייבת ALND</button>
+  <button class="opt" data-i="2">ללא ניתוח נוסף בבית השחי — הקרנת שד שלם וטיפול סיסטמי</button>
+  <button class="opt" data-i="3">PET-CT ואז החלטה</button>
+  <div class="explain">נכון (3): זה בדיוק פרופיל ACOSOG Z0011 — T1-2, cN0, שימור שד + הקרנה, 1–2 קשריות זקיף חיוביות → ALND לא משפרת הישרדות ומוסיפה לימפדמה. (1)(2) ALND שמורה ל-3+ קשריות, בית שחי חיובי קלינית, או כשלא ניתנת הקרנת שד שלם. (4) PET לא מוסיף בשלב מוקדם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה טיפול הורמונלי מתאים ביותר לה, ולמה?</div>
+  <button class="opt" data-i="0">Tamoxifen, כי הוא מגן על העצם</button>
+  <button class="opt" data-i="1">מעכב ארומטאז (Letrozole), כי אחרי מנופאוזה עיקר האסטרוגן נוצר בשומן ע"י ארומטאז</button>
+  <button class="opt" data-i="2">Trastuzumab, כי יש הפנמת עור</button>
+  <button class="opt" data-i="3">אין צורך בטיפול הורמונלי כי Ki-67 נמוך</button>
+  <div class="explain">נכון (2): מעכבי ארומטאז עדיפים מעט על Tamoxifen אחרי מנופאוזה — וה-BMI הגבוה מדגיש את מקור האסטרוגן בשומן. דרוש מעקב DEXA. (1) Tamoxifen אכן אגוניסט בעצם, אבל אינו הבחירה המועדפת אחרי מנופאוזה ומעלה סיכון לסרטן רחם ו-DVT. (3) HER2 שלילי. (4) ER+ = טיפול הורמונלי 5+ שנים תמיד.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה המנגנון של המיקרו-הסתיידויות הלינאריות-המסתעפות שמאפיינות DCIS בממוגרפיה?</div>
+  <button class="opt" data-i="0">נמק של תאים במרכז הצינור הממולא (comedo), שמסתייד ומשרטט את צורת הצינור</button>
+  <button class="opt" data-i="1">שקיעת סידן מהיפרקלצמיה סיסטמית</button>
+  <button class="opt" data-i="2">הסתיידות של דופן העורקים בשד</button>
+  <button class="opt" data-i="3">תגובה דסמופלסטית לחדירה לסטרומה</button>
+  <div class="explain">נכון (1): התאים הממאירים ממלאים את הצינור; המרכז רחוק מאספקת הדם ונמקי (comedo necrosis) → סידן שוקע בדטריטוס ו"יוצק" את מבנה הצינור המסתעף. (2) לא קשור לסידן בדם. (3) הסתיידות וסקולרית היא "מסילות רכבת" שפירות. (4) דסמופלזיה יוצרת ספיקולות — סימן של חדירה, לא של DCIS.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. אישה בת 44, לא מניקה, עם אודם, חום מקומי ו"קליפת תפוז" על יותר משליש השד שהתפתחו תוך 5 שבועות, ולא השתפרו אחרי 10 ימי Cephalexin. מה הצעד הבא?</div>
+  <button class="opt" data-i="0">החלפה לאנטיביוטיקה רחבת-טווח IV</button>
+  <button class="opt" data-i="1">ניקוז מורסה בחתך</button>
+  <button class="opt" data-i="2">לומפקטומי + SLNB</button>
+  <button class="opt" data-i="3">ביופסיית עור + ביופסיית Core של הרקמה, לחשד לסרטן שד דלקתי</button>
+  <div class="explain">נכון (4): "מסטיטיס" שלא מגיבה אצל אישה שאינה מניקה = סרטן שד דלקתי עד שיוכח אחרת; ביופסיית עור מדגימה אמבולי גידול בלימפטיקה הדרמלית. (1) דחיית אבחנה. (2) אין מורסה. (3) גם כשמאובחן — הטיפול הוא כימו ניאו-אדג'ובנטית → MRM + ALND → הקרנה; SLNB ושימור שד אסורים.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. אישה בת 29, נשאית BRCA1, עם גידול 2.5 ס"מ ER−/PR−/HER2−. מה נכון?</div>
+  <button class="opt" data-i="0">הגידול יגיב היטב לטמוקסיפן</button>
+  <button class="opt" data-i="1">מתאים ל-PARP inhibitor במחלה בסיכון גבוה, בזכות סינתטיק לטליות עם פגם ברקומבינציה הומולוגית</button>
+  <button class="opt" data-i="2">Trastuzumab הוא הבסיס לטיפול</button>
+  <button class="opt" data-i="3">לא נדרש ייעוץ גנטי למשפחה כי היא כבר חולה</button>
+  <div class="explain">נכון (2): BRCA1 טיפוסית טריפל-נגטיב בגיל צעיר; תאים ללא BRCA תלויים ב-PARP → Olaparib (OlympiA) משפר הישרדות. (1)(3) אין קולטן ER/HER2 כמטרה. (4) ייעוץ וסקר לבני משפחה קריטיים; ויש לדון בכריתת שד דו-צדדית ו-BSO.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. אישה בת 45 עם גוש בשד שגדל מ-3 ל-7 ס"מ בתוך 4 חודשים, חלק ונייד. ביופסיה: רכיב סטרומלי צפוף עם מבנה "דמוי עלים". מה הטיפול?</div>
+  <button class="opt" data-i="0">מעקב, כי זו פיברואדנומה</button>
+  <button class="opt" data-i="1">כריתת שד + דיסקציית בית שחי</button>
+  <button class="opt" data-i="2">כריתה רחבה עם שוליים של ~1 ס"מ, ללא ניתוח בבית השחי</button>
+  <button class="opt" data-i="3">טמוקסיפן ניאו-אדג'ובנטי</button>
+  <div class="explain">נכון (3): גידול פילודס — מקור סטרומלי, גדילה מהירה; הסיכון העיקרי הוא חזרה מקומית → שוליים רחבים. (1) פיברואדנומה לא גדלה כך בגיל 45. (2) פילודס ממאיר מתפשט המטוגנית (כמו סרקומה), לא לימפטית → אין ALND; כריתת שד רק אם אין דרך להשיג שוליים. (4) רכיב סטרומלי, לא אפיתל ER-תלוי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>מנגנון</b>: חשיפה מצטברת לאסטרוגן (חלוקה ב-TDLU) + פגם בתיקון DNA (BRCA1 → טריפל-נגטיב; BRCA2 → ER+, גברים) + HER2 מוגבר → ADH → DCIS → חודרני → קשרית זקיף.</li>
+    <li><b>סימנים</b>: גוש קשה/מקובע, הפנמת עור (Cooper), פטמה מופנמת חדשה, קליפת תפוז (חסימה לימפטית), פג'ט = פריחה על הפטמה → ביופסיה.</li>
+    <li><b>בירור</b>: הערכה משולשת (קליניקה + הדמיה + Core biopsy) ותאימות; מתחת ל-30 → US; 30+ → ממוגרפיה + US; BI-RADS 4–5 → ביופסיה.</li>
+    <li><b>שפירים</b>: פיברואדנומה (צעירה, ניידת), ציסטה (שאיבה; דם → ציטולוגיה), פפילומה (הפרשה דמית חד-צדדית), פילודס (גדל מהר → שוליים 1 ס"מ, ללא בית שחי).</li>
+    <li><b>DCIS</b> = פרה-קנצרוזה → כריתה + RT, ללא ALND. <b>LCIS</b> = סמן סיכון דו-צדדי (E-cadherin−).</li>
+    <li><b>שד</b>: BCS + RT = כריתת שד בהישרדות; no ink on tumor; התוויות-נגד PRIMS.</li>
+    <li><b>בית שחי</b>: cN0 → SLNB; Z0011: 1–2 חיוביות + BCS + RT → ללא ALND; דלקתי → Neoadjuvant → MRM + ALND → RT.</li>
+    <li><b>סיסטמי</b>: ER+ → Tamoxifen (טרום; רחם/DVT) או מעכב ארומטאז (אחרי; עצם); HER2+ → Trastuzumab (לב); TNBC → כימו ± Pembrolizumab; BRCA → Olaparib.</li>
+    <li><b>עצבים</b>: long thoracic (שכמה מכונפת), thoracodorsal (latissimus), intercostobrachial (תחושה).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
