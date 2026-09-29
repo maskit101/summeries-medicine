@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>שכבות העור, חיבורים אפיתליאליים ומינוח נגעי עור</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .video-path-list{display:flex; flex-direction:column; gap:10px; margin:12px 0}
+  .video-path-item{border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fafafa}
+  .vpi-head{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--crimson); margin-bottom:2px}
+  .video-path-item .d{font-size:13.5px; color:var(--sub); margin-bottom:8px}
+  .vpi-path-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .vpi-path{direction:ltr; unicode-bidi:isolate; font-family:'Consolas','Courier New',monospace; font-size:12.5px; background:#fff; border:1px solid var(--line); border-radius:6px; padding:6px 10px; flex:1; min-width:220px; overflow-wrap:anywhere; color:#374151}
+  .copy-btn{border:1px solid var(--crimson); background:#fff; color:var(--crimson); border-radius:6px; padding:6px 12px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap}
+  .copy-btn:hover{background:var(--crimson-bg)}
+  .copy-btn.copied{background:var(--crimson); color:#fff}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>שכבות העור, חיבורים אפיתליאליים ומינוח נגעי עור <span class="term" dir="ltr">(Skin Layers, Junctions &amp; Lesion Terminology)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section III — Musculoskeletal, Skin, and Connective Tissue &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 481-483) — רלוונטיות קריטית לכירורגיה פלסטית</div>
+
+<p>יחידה זו עוברת על סקלרודרמה (Systemic sclerosis) ותסמונת CREST כהמשך טבעי מעמ' 480, שלוש שכבות העור וחמש תתי-השכבות של האפידרמיס, ששת סוגי החיבורים האפיתליאליים (tight junction, adherens junction, desmosome, gap junction, hemidesmosome, integrins) והמחלות האוטואימוניות הנובעות מפגיעה בהם, שלושת סוגי בלוטות האקסוקריניות (מרוקרינית/אפוקרינית/הולוקרינית), וטבלאות המינוח הדרמטולוגי המקרוסקופי והמיקרוסקופי המלאות. זהו הבסיס האנטומי-מילולי לכל תיאור נגע עורי, פצע, או ניתוח פלאפ/גריפט בכירורגיה פלסטית.</p>
+
+<h2><span class="num">1</span> סקלרודרמה (Systemic Sclerosis) ותסמונת CREST</h2>
+<div class="mechanism">
+  <p class="chain">
+    סקלרודרמה (Systemic sclerosis) היא מחלה בעלת שלישיית מנגנון: <b>אוטואימוניות</b>, <b>וסקולופתיה לא-דלקתית</b>, ו<b>שקיעת קולגן עם פיברוזיס</b>. הביטוי השכיח ביותר הוא סקלרוזיס של העור, המתבטא כעור נפוח ומתוח (puffy, taut) ללא קמטים, עם פיטינג בקצות האצבעות (fingertip pitting). 75% מהחולים הן נשים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    המחלה עלולה לערב מערכות נוספות: כליה (scleroderma renal crisis — מטופל במעכבי ACE), ריאה (פיברוזיס אינטרסטיציאלי, יתר לחץ דם ריאתי), מערכת עיכול (↓ פריסטלטיקה וטונוס ה-LES → דיספגיה, צרבת), וקרדיווסקולרי.
+  </p>
+</div>
+
+<table class="keytable">
+  <thead><tr><th>סוג</th><th>מאפיינים</th><th>נוגדנים</th></tr></thead>
+  <tbody>
+    <tr><td>Diffuse scleroderma</td><td>מעורבות עורית נרחבת, התקדמות מהירה, מעורבות איברים פנימיים מוקדמת</td><td>Anti-Scl-70 (anti-DNA topoisomerase I), Anti-RNA polymerase III</td></tr>
+    <tr><td>Limited scleroderma</td><td>מעורבות עורית מוגבלת לאצבעות ולפנים. מהלך קליני שפיר יותר</td><td>Anti-Centromere antibody; חלק מתסמונת CREST</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — CREST syndrome (limited scleroderma)</h4>
+  <p><b>C</b>alcinosis cutis — <b>R</b>aynaud phenomenon — <b>E</b>sophageal dysmotility — <b>S</b>clerodactyly — <b>T</b>elangiectasia. חמשת הרכיבים הקלאסיים של הגרסה המוגבלת של סקלרודרמה.</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — CREST, Raynaud וניתוחי יד/מיקרו-כירורגיה</h4>
+  <p>Raynaud phenomenon וסקלרודקטיליה (sclerodactyly) בתסמונת CREST הן בעלות משמעות ישירה לכירורג היד והמיקרו-כירורג: וסקולופתיה כרונית באצבעות מגבירה סיכון לאיסכמיה של קצות אצבעות, קשיי ריפוי פצע לאחר ניתוחי יד, וסיכון מוגבר לכישלון פלאפ מיקרו-וסקולרי עקב פגיעה בזרימת הדם הפריפרית - יש להתחשב בכך בתכנון ניתוחי שחזור יד/אצבע במטופלות עם סקלרודרמה.</p>
+</div>
+
+<h2><span class="num">2</span> שכבות העור וחמש תתי-השכבות של האפידרמיס</h2>
+<div class="mechanism">
+  <p class="chain">
+    לעור <b>3 שכבות</b>: <b>אפידרמיס</b> (epidermis), <b>דרמיס</b> (dermis), ו<b>תת-עור</b> (subcutaneous fat, hypodermis/subcutis).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    שכבות האפידרמיס עצמו (משטחי לעמוק, מנמוניקה "Come, Let's Get Sun Burned"): <b>Stratum corneum</b> → <b>Stratum lucidum</b> → <b>Stratum granulosum</b> → <b>Stratum spinosum</b> → <b>Stratum basale</b> — ומתחת לאפידרמיס: הדרמיס.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 1000 560" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>שכבות העור — אפידרמיס, דרמיס, תת-עור</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">שכבות העור — אפידרמיס (5 שכבות), דרמיס, תת-עור (היפודרמיס)</text>
+<text x="500" y="45" font-size="10.5" text-anchor="middle" fill="#4b5563">מנמוניקה (שטחי→עמוק): "Come, Let's Get Sun Burned"</text>
+
+<rect x="60" y="65" width="430" height="330" rx="8" fill="#fff7ed" stroke="#9a3412" stroke-width="1.5"/>
+<text x="275" y="88" font-size="12.5" font-weight="700" text-anchor="middle" fill="#7c2d12">אפידרמיס (Epidermis)</text>
+
+<rect x="80" y="100" width="390" height="48" rx="6" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="120" font-size="11.5" font-weight="700" text-anchor="middle" fill="#78350f">Stratum Corneum</text>
+<text x="275" y="136" font-size="9" text-anchor="middle" fill="#78350f">תאים מתים, קרטין — מחסום מים/חיידקים ("Come")</text>
+
+<rect x="80" y="152" width="390" height="40" rx="6" fill="#fcd34d" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="170" font-size="11" font-weight="700" text-anchor="middle" fill="#78350f">Stratum Lucidum</text>
+<text x="275" y="184" font-size="8.5" text-anchor="middle" fill="#78350f">רק בעור עבה (כף יד/רגל) ("Let's")</text>
+
+<rect x="80" y="196" width="390" height="44" rx="6" fill="#fbbf24" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="216" font-size="11" font-weight="700" text-anchor="middle" fill="#78350f">Stratum Granulosum</text>
+<text x="275" y="231" font-size="8.5" text-anchor="middle" fill="#78350f">גרגירי קרטוהיאלין — התחלת קרטיניזציה ("Get")</text>
+
+<rect x="80" y="244" width="390" height="48" rx="6" fill="#f59e0b" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="264" font-size="11" font-weight="700" text-anchor="middle" fill="#78350f">Stratum Spinosum</text>
+<text x="275" y="280" font-size="8.5" text-anchor="middle" fill="#78350f">דסמוזומים ("קוצים") מחברים קרטינוציטים ("Sun")</text>
+
+<rect x="80" y="296" width="390" height="60" rx="6" fill="#d97706" stroke="#78350f" stroke-width="1.5"/>
+<text x="275" y="318" font-size="11.5" font-weight="700" text-anchor="middle" fill="#fff7ed">Stratum Basale</text>
+<text x="275" y="335" font-size="8.5" text-anchor="middle" fill="#fff7ed">שכבה גרמינטיבית — תאי גזע מתחלקים,</text>
+<text x="275" y="348" font-size="8.5" text-anchor="middle" fill="#fff7ed">מקור לגריפט עור מפוצל (split-thickness)</text>
+
+<rect x="80" y="362" width="390" height="26" rx="4" fill="#fed7aa" stroke="#9a3412" stroke-width="1"/>
+<text x="275" y="379" font-size="9" font-weight="700" text-anchor="middle" fill="#7c2d12">קרום בסיס (Basement Membrane) ↓ חיבור להמידסמוזומים</text>
+
+<rect x="520" y="65" width="420" height="170" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="730" y="90" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">דרמיס (Dermis)</text>
+<text x="730" y="112" font-size="9.5" text-anchor="middle" fill="#1e3a8a">קולגן (I&gt;III) + אלסטין + כלי דם/עצבים</text>
+<text x="730" y="130" font-size="9.5" text-anchor="middle" fill="#1e3a8a">זקיקי שיער, בלוטות זיעה/חלב</text>
+<text x="730" y="152" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">בגריפט עור מלא (full-thickness)</text>
+<text x="730" y="168" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1e3a8a">נלקחת האפידרמיס + כל הדרמיס</text>
+<text x="730" y="190" font-size="9" text-anchor="middle" fill="#1e3a8a">סקלרודרמה: פיברוזיס/עיבוי הדרמיס</text>
+<text x="730" y="208" font-size="9" text-anchor="middle" fill="#1e3a8a">→ עור מתוח, נוקשה, ללא קמטים</text>
+
+<rect x="520" y="245" width="420" height="150" rx="8" fill="#fef9c3" stroke="#a16207" stroke-width="1.5"/>
+<text x="730" y="270" font-size="12.5" font-weight="700" text-anchor="middle" fill="#713f12">תת-עור / היפודרמיס (Hypodermis, Subcutis)</text>
+<text x="730" y="292" font-size="9.5" text-anchor="middle" fill="#713f12">רקמת שומן — בידוד תרמי, אגירת אנרגיה,</text>
+<text x="730" y="308" font-size="9.5" text-anchor="middle" fill="#713f12">ריפוד מכני</text>
+<text x="730" y="330" font-size="9.5" font-weight="700" text-anchor="middle" fill="#713f12">רלוונטי לתכנון פלאפים (fasciocutaneous/</text>
+<text x="730" y="346" font-size="9.5" font-weight="700" text-anchor="middle" fill="#713f12">adipofascial) ולעובי הרקמה בסגירת פצע</text>
+
+<rect x="520" y="410" width="420" height="90" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="730" y="432" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">עומק גריפט עור — הבסיס האנטומי לניתוח פלסטי</text>
+<text x="730" y="452" font-size="9" text-anchor="middle" fill="#1f2937">Split-thickness graft: אפידרמיס + חלק מהדרמיס</text>
+<text x="730" y="468" font-size="9" text-anchor="middle" fill="#1f2937">(משאיר stratum basale במקור לריפוי ספונטני)</text>
+<text x="730" y="486" font-size="9" text-anchor="middle" fill="#1f2937">Full-thickness graft: אפידרמיס + כל הדרמיס (ללא ריפוי מקור)</text>
+
+<rect x="60" y="410" width="430" height="90" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="275" y="432" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">3 שכבות העור בסך הכל</text>
+<text x="275" y="452" font-size="9" text-anchor="middle" fill="#1f2937">1. אפידרמיס (5 תת-שכבות) → 2. דרמיס → </text>
+<text x="275" y="468" font-size="9" text-anchor="middle" fill="#1f2937">3. תת-עור (היפודרמיס/סאבקוטיס)</text>
+<text x="275" y="486" font-size="9" text-anchor="middle" fill="#1f2937">stratum basale = מקור אבחיה, קובע "graft take"</text>
+
+<rect x="60" y="515" width="880" height="35" rx="8" fill="#111827"/>
+<text x="500" y="538" font-size="10.5" font-weight="700" text-anchor="middle" fill="#f9fafb">חשוב לכירורגיה פלסטית: גבול אפידרמיס-דרמיס הוא בדיוק קו החיתוך שמגדיר עומק כל גריפט עור</text>
+</svg>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — 5 שכבות האפידרמיס</h4>
+  <p>"Come, Let's Get Sun Burned" = <b>C</b>orneum → <b>L</b>ucidum → <b>G</b>ranulosum → <b>S</b>pinosum → <b>B</b>asale (מהשטחי ביותר לעמוק ביותר).</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — עומק גריפט עור וגבול אפידרמיס-דרמיס</h4>
+  <p>ההבחנה בין <b>Split-thickness skin graft (STSG)</b> (אפידרמיס + חלק מהדרמיס בלבד, משאיר את ה-stratum basale ותוספי העור בדרמיס העמוק במקום התורם כדי לאפשר ריפוי ספונטני שם) לבין <b>Full-thickness skin graft (FTSG)</b> (אפידרמיס + כל הדרמיס, מקום התורם דורש סגירה ראשונית) היא הבסיס האנטומי-מילולי לכל דיון בבחירת גריפט. שרידות ה-stratum basale (השכבה הגרמינטיבית, מקור תאי הגזע) בגריפט/במקום התורם היא שקובעת אם וכיצד יתרחש "graft take" ואפיתליזציה מחדש.</p>
+</div>
+
+<h2><span class="num">3</span> חיבורי תא אפיתליאליים (Epithelial Cell Junctions)</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>Tight junctions</b> (zonula occludens) — מונעים תנועה פארא-תאית של מומסים; מורכבים מ-claudins ו-occludins. הכי אפיקליים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Adherens junction</b> (belt desmosome, zonula adherens) — יוצרים "חגורה" המחברת את שלדי האקטין של תאים סמוכים באמצעות cadherins (חלבוני הדבקה תלויי Ca²⁺). אובדן E-cadherin מקדם גרורות (metastasis).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Desmosome</b> (spot desmosome, macula adherens) — תמיכה מבנית דרך אינטראקציות של פילמנטים ביניימיים. אוטואנטיגופים ל-desmoglein 3 (±desmoglein 1) ← Pemphigus vulgaris.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Gap junction</b> — חלבוני תעלה בשם connexons מאפשרים תקשורת חשמלית וכימית בין תאים.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Hemidesmosome</b> — מחבר קרטין בתאים הבזאליים לקרום הבסיס שמתחת. אוטואנטיגופים ← Bullous pemphigoid (מנמוניקה: "Hemidesmosomes are down 'bullow'").
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Integrins</b> — חלבוני ממברנה השומרים על שלמות הממברנה הבזו-לטרלית דרך קשירה לקולגן, למינין ופיברונקטין ב-ECM/קרום הבסיס.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 1000 640" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>קומפלקס חיבורי התא האפיתליאלי — מאפיקלי לבזאלי</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">חיבורי תא אפיתליאלי — מאפיקלי (עליון) לבזאלי (תחתון)</text>
+<text x="500" y="45" font-size="10.5" text-anchor="middle" fill="#4b5563">שני תאים אפיתליאליים סמוכים; ה-lumen האפיקלי למעלה, קרום הבסיס למטה</text>
+
+<line x1="330" y1="70" x2="330" y2="560" stroke="#9ca3af" stroke-width="3"/>
+<line x1="670" y1="70" x2="670" y2="560" stroke="#9ca3af" stroke-width="3"/>
+<text x="150" y="95" font-size="10.5" font-weight="700" fill="#4b5563">תא A</text>
+<text x="850" y="95" font-size="10.5" font-weight="700" fill="#4b5563">תא B</text>
+<text x="500" y="63" font-size="10" text-anchor="middle" fill="#4b5563">↑ Lumen (אפיקלי)</text>
+
+<rect x="270" y="80" width="460" height="70" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<rect x="300" y="95" width="60" height="14" fill="#1e3a8a"/>
+<rect x="640" y="95" width="60" height="14" fill="#1e3a8a"/>
+<text x="500" y="105" font-size="12" font-weight="700" text-anchor="middle" fill="#1e3a8a">Tight Junction (Zonula Occludens)</text>
+<text x="500" y="122" font-size="9.5" text-anchor="middle" fill="#1e3a8a">הכי אפיקלי — חוסם תנועה פארא-תאית; מורכב מ-claudins ו-occludins</text>
+<text x="500" y="138" font-size="9" text-anchor="middle" fill="#1e3a8a">(מעכב מעבר חופשי של מומסים בין התאים)</text>
+
+<rect x="270" y="165" width="460" height="70" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+<rect x="300" y="180" width="60" height="14" fill="#065f46"/>
+<rect x="640" y="180" width="60" height="14" fill="#065f46"/>
+<text x="500" y="190" font-size="12" font-weight="700" text-anchor="middle" fill="#065f46">Adherens Junction (Zonula Adherens, Belt Desmosome)</text>
+<text x="500" y="207" font-size="9.5" text-anchor="middle" fill="#065f46">"חגורה" המחברת שלד אקטין בין תאים דרך cadherins (תלויי Ca²⁺)</text>
+<text x="500" y="223" font-size="9" text-anchor="middle" fill="#065f46">אובדן E-cadherin ← מקדם גרורות (metastasis)</text>
+
+<rect x="270" y="250" width="460" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+<circle cx="330" cy="285" r="12" fill="#4c1d95"/>
+<circle cx="670" cy="285" r="12" fill="#4c1d95"/>
+<text x="500" y="273" font-size="12" font-weight="700" text-anchor="middle" fill="#4c1d95">Desmosome (Spot Desmosome, Macula Adherens)</text>
+<text x="500" y="290" font-size="9.5" text-anchor="middle" fill="#4c1d95">תמיכה מבנית דרך אינטראקציית פילמנטים ביניימיים (keratin)</text>
+<text x="500" y="306" font-size="9" text-anchor="middle" fill="#4c1d95">אוטואנטיגוף ל-desmoglein 3 (±1) ← Pemphigus vulgaris</text>
+
+<rect x="270" y="335" width="460" height="65" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+<rect x="310" y="358" width="20" height="20" fill="#7f1d1d"/>
+<rect x="670" y="358" width="20" height="20" fill="#7f1d1d"/>
+<line x1="330" y1="368" x2="670" y2="368" stroke="#7f1d1d" stroke-width="4"/>
+<text x="500" y="352" font-size="12" font-weight="700" text-anchor="middle" fill="#7f1d1d">Gap Junction</text>
+<text x="500" y="390" font-size="9.5" text-anchor="middle" fill="#7f1d1d">תעלות קונקסון מאפשרות תקשורת חשמלית וכימית ישירה בין תאים</text>
+
+<text x="500" y="422" font-size="11" font-weight="700" text-anchor="middle" fill="#1f2937">↓ צד בזאלי — חיבור לקרום הבסיס</text>
+
+<rect x="270" y="435" width="460" height="90" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+<circle cx="360" cy="470" r="11" fill="#92400e"/>
+<circle cx="500" cy="470" r="11" fill="#92400e"/>
+<circle cx="640" cy="470" r="11" fill="#92400e"/>
+<text x="500" y="453" font-size="12" font-weight="700" text-anchor="middle" fill="#92400e">Hemidesmosome + Integrins</text>
+<text x="500" y="495" font-size="9.5" text-anchor="middle" fill="#78350f">Hemidesmosome: קושר קרטין בתא בזאלי לקרום הבסיס</text>
+<text x="500" y="510" font-size="8.5" text-anchor="middle" fill="#78350f">אוטואנטיגוף ← Bullous pemphigoid ("down bullow")</text>
+
+<rect x="270" y="530" width="460" height="30" rx="6" fill="#d97706"/>
+<text x="500" y="550" font-size="9.5" font-weight="700" text-anchor="middle" fill="#fff7ed">Basement Membrane / ECM — קולגן, למינין, פיברונקטין (נקשר ע"י Integrins)</text>
+
+<rect x="40" y="578" width="920" height="55" rx="8" fill="#111827"/>
+<text x="500" y="600" font-size="10" font-weight="700" text-anchor="middle" fill="#f9fafb">רלוונטיות לכירורגיה פלסטית: פגיעה בדסמוזום/המידסמוזום = בלות ("blistering") מתחת לתחבושת/פלאפ</text>
+<text x="500" y="618" font-size="9.5" text-anchor="middle" fill="#f9fafb">Pemphigus vulgaris (תוך-אפידרמלי, Nikolsky חיובי) לעומת Bullous pemphigoid (תת-אפידרמלי, יציב יותר)</text>
+</svg>
+
+<div class="key-box">
+  שני החיבורים החשובים ביותר לזיהוי מהיר בבחינה: <b>Desmosome</b> (keratin-keratin, פגיעה ← <b>Pemphigus vulgaris</b>, תוך-אפידרמלי) מול <b>Hemidesmosome</b> (keratin-קרום בסיס, פגיעה ← <b>Bullous pemphigoid</b>, תת-אפידרמלי) — הבדל אנטומי קטן עם השלכה קלינית עצומה על עומק הבלה ועל חומרת התסמונת.
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — זיהוי מחלות בלה לפני ניתוח אלקטיבי</h4>
+  <p>כירורג פלסטי חייב לזהות Pemphigus vulgaris ו-Bullous pemphigoid <b>לפני</b> ניתוח אלקטיבי — מחלות בלה פעילות הן התווית נגד יחסית לניתוח אלקטיבי (סיכון לפריצת פצע, זיהום, וכשל ריפוי), ותחת תחבושת/פלאפ עלולות להיות מוסתרות ומאובחנות באיחור. ההבדל האנטומי (Pemphigus — תוך-אפידרמלי, Nikolsky sign חיובי, בלות שבירות; Bullous pemphigoid — תת-אפידרמלי, בלות מתוחות ויציבות יותר) קובע גם את דחיפות ההערכה הדרמטולוגית וגם את תכנון הפצע הניתוחי.</p>
+</div>
+
+<h2><span class="num">4</span> בלוטות אקסוקריניות (Exocrine Glands)</h2>
+<div class="mechanism">
+  <p class="chain">
+    בלוטות אקסוקריניות מייצרות חומרים שאינם הורמונים (בניגוד לבלוטות אנדוקריניות, המפרישות הורמונים) המשתחררים דרך צינוריות (ducts) אל פני שטח הגוף. שלושה סוגים:
+  </p>
+</div>
+<table class="keytable">
+  <thead><tr><th>סוג הפרשה</th><th>מנגנון</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td>Merocrine</td><td>אקסוציטוזה של שלפוחית הפרשה — התא נשאר שלם</td><td>בלוטות רוק, בלוטות זיעה</td></tr>
+    <tr><td>Apocrine</td><td>חלק "נצבט" מהתא (ציטופלזמה אפיקלית) משתחרר יחד עם ההפרשה</td><td>בלוטות חלב</td></tr>
+    <tr><td>Holocrine</td><td>התא כולו מתפרק כדי לשחרר את ההפרשה</td><td>בלוטות חלב (sebaceous)</td></tr>
+  </tbody>
+</table>
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — סוגי הפרשה אקסוקרינית</h4>
+  <p>"מרוקרין נשאר שלם, אפוקרין נצבט, הולוקרין מתפרק כולו" — דרגת חומרה עולה של פירוק התא: Merocrine (התא שלם) → Apocrine (חלק מהתא) → Holocrine (כל התא).</p>
+</div>
+
+<h2><span class="num">5</span> מונחים דרמטולוגיים מקרוסקופיים (Macroscopic Lesion Terms)</h2>
+<table class="keytable">
+  <thead><tr><th>נגע</th><th>מאפיינים</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td>Macule</td><td>נגע שטוח, גבול חד, שינוי צבע עור &lt;1 ס"מ</td><td>נמש (ephelis), macule שפתי</td></tr>
+    <tr><td>Patch</td><td>Macule &gt;1 ס"מ</td><td>ויטיליגו</td></tr>
+    <tr><td>Papule</td><td>נגע מוצק מוגבה &lt;1 ס"מ</td><td>נוירופיברומה, אקנה</td></tr>
+    <tr><td>Plaque</td><td>Papule &gt;1 ס"מ</td><td>פסוריאזיס</td></tr>
+    <tr><td>Vesicle</td><td>בועית קטנה מלאת נוזל &lt;1 ס"מ</td><td>אבעבועות רוח (varicella), שלבקת חוגרת (zoster)</td></tr>
+    <tr><td>Bulla</td><td>בועה גדולה מלאת נוזל &gt;1 ס"מ</td><td>Bullous pemphigoid</td></tr>
+    <tr><td>Pustule</td><td>Vesicle המכיל מוגלה</td><td>פסוריאזיס פוסטולרי</td></tr>
+    <tr><td>Wheal</td><td>Papule/plaque חלק וחולף</td><td>אורטיקריה (חרלת)</td></tr>
+    <tr><td>Scale</td><td>קילוף של stratum corneum</td><td>אקזמה, פסוריאזיס, SCC</td></tr>
+    <tr><td>Crust</td><td>אקסודט יבש</td><td>אימפטיגו</td></tr>
+    <tr><td>Ulcer</td><td>אובדן אפידרמיס עם חשיפת קרום הבסיס והמבנים שמתחתיו (דרמיס, שריר, עצם, גיד)</td><td>כיב עורקי, כיב לחץ, צרעת</td></tr>
+    <tr><td>Erosion</td><td>אובדן חלקי/מלא של האפידרמיס <b>ללא</b> חשיפת קרום הבסיס</td><td>HSV, VZV, Pemphigus vulgaris, SJS/TEN</td></tr>
+  </tbody>
+</table>
+
+<div class="key-box">
+  ההבחנה הקריטית <b>Erosion מול Ulcer</b>: Erosion = אובדן אפידרמיס בלבד, קרום הבסיס עדיין שלם ולא נחשף. Ulcer = אובדן האפידרמיס <b>עם</b> חשיפת קרום הבסיס והרקמות שמתחתיו. Erosion צפוי להחלים ללא צלקת (מאחר וקרום הבסיס שלם ומאפשר אפיתליזציה מחדש); Ulcer עמוק יותר ועלול להשאיר צלקת.
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — מינוח מדויק בתיעוד קליני ובתכנון ניתוח</h4>
+  <p>מונחי macule/papule/plaque/vesicle/bulla/ulcer/erosion הם אוצר המילים הבסיסי של כל תיעוד פצע וגידול עור בכירורגיה פלסטית — דיוק בתיאור (למשל "ulcer" לעומת "erosion") משפיע ישירות על תכנון הטיפול: erosion עשוי להחלים שמרנית, בעוד ulcer עמוק (חושף דרמיס/שריר/עצם) עשוי לחייב דיברידמנט, פלאפ, או גריפט. הבחנה זו קריטית גם בתיאור כוויות ופצעי לחץ (decubitus ulcer) לפי עומק.</p>
+</div>
+
+<h2><span class="num">6</span> מונחים דרמטולוגיים מיקרוסקופיים (Microscopic Lesion Terms)</h2>
+<table class="keytable">
+  <thead><tr><th>מונח</th><th>מאפיינים</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td>Dyskeratosis</td><td>קרטיניזציה מוקדמת חריגה</td><td>קרצינומת תאי קשקש (SCC)</td></tr>
+    <tr><td>Hyperkeratosis</td><td>↑ עובי ה-stratum corneum</td><td>פסוריאזיס, יבלות (calluses)</td></tr>
+    <tr><td>Parakeratosis</td><td>שימור גרעינים ב-stratum corneum</td><td>פסוריאזיס, keratosis actinic</td></tr>
+    <tr><td>Hypergranulosis</td><td>↑ עובי ה-stratum granulosum</td><td>Lichen planus</td></tr>
+    <tr><td>Spongiosis</td><td>הצטברות נוזל בצקתי במרווחים הבין-תאיים באפידרמיס</td><td>דרמטיטיס אקזמטית</td></tr>
+    <tr><td>Acantholysis</td><td>הפרדה של תאי האפידרמיס</td><td>Pemphigus vulgaris</td></tr>
+    <tr><td>Acanthosis</td><td>היפרפלזיה אפידרמלית (↑ spinosum)</td><td>Acanthosis nigricans, פסוריאזיס</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Acantholysis מול Acanthosis</h4>
+  <p><b>Acantho-lysis</b> ("lysis" = פירוק) = <b>הפרדה</b> בין תאים (Pemphigus). <b>Acanthosis</b> (ללא "lysis") = <b>עיבוי</b>/היפרפלזיה של שכבת ה-spinosum. שני מונחים דומים בצליל עם משמעות הפוכה כמעט — הבדל קריטי לזכור נפרד.</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — Acantholysis כממצא פתולוגי מאשר ב-Pemphigus</h4>
+  <p>Acantholysis (הפרדת קרטינוציטים עקב איבוד תפקוד desmosome) הוא הממצא ההיסטופתולוגי המאשר את האבחנה של Pemphigus vulgaris בביופסיית עור — ידע זה מקשר ישירות בין הפתולוגיה המיקרוסקופית (סעיף זה) למנגנון החיבור התאי (סעיף 3, פגיעה בדסמוזום) ולהחלטה הכירורגית-פלסטית (לדחות ניתוח אלקטיבי עד לאבחון/טיפול במחלה הבולוזית הפעילה).</p>
+</div>
+
+<h2><span class="num">7</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 62 מגיעה עם בלות מתוחות ויציבות בעור הגו והגפיים, ללא מעורבות רירית. בביופסיה: הפרדה תת-אפידרמלית (subepidermal separation), עם אפידרמיס שלם מעליה. סימן Nikolsky שלילי.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. איזו אבחנה מתאימה ביותר, ואיזה חיבור תאי פגוע?</div>
+  <button class="opt" data-i="0">Pemphigus vulgaris — פגיעה בדסמוזום, הפרדה תוך-אפידרמלית, Nikolsky חיובי</button>
+  <button class="opt" data-i="1">Bullous pemphigoid — פגיעה בהמידסמוזום, הפרדה תת-אפידרמלית, בלות יציבות, Nikolsky שלילי</button>
+  <button class="opt" data-i="2">Pemphigus vulgaris — פגיעה ב-gap junction, ללא קשר להפרדה אפידרמלית</button>
+  <button class="opt" data-i="3">CREST syndrome — פגיעה ב-tight junction, מלווה בטלנגיאקטזיות</button>
+  <div class="explain">נכון: Bullous pemphigoid נגרם מאוטואנטיגופים כנגד ההמידסמוזום — המחבר בין קרטין בתאים הבזאליים לקרום הבסיס. הפגיעה יוצרת הפרדה <b>תת-אפידרמלית</b> (מתחת לכל האפידרמיס), ולכן הבלות יציבות ומתוחות (עמוקות יותר), וסימן Nikolsky (הפרדת עור בלחיצה) שלילי. לעומת זאת, Pemphigus vulgaris נובע מפגיעה בדסמוזום (desmoglein 3±1), יוצר הפרדה תוך-אפידרמלית שטחית יותר, בלות שבירות שקל לקרוע, ו-Nikolsky חיובי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופל עם כוויה מגיע עם אזור בו אובדן מלא של האפידרמיס אך קרום הבסיס עדיין נראה שלם בבדיקה. מהו המונח הדרמטולוגי המדויק לתיאור הנגע, ומה המשמעות הקלינית?</div>
+  <button class="opt" data-i="0">Ulcer — אובדן אפידרמיס עם חשיפת המבנים שמתחת לקרום הבסיס</button>
+  <button class="opt" data-i="1">Bulla — בועה גדולה מלאת נוזל מעל 1 ס"מ</button>
+  <button class="opt" data-i="2">Erosion — אובדן אפידרמיס ללא חשיפת קרום הבסיס; פרוגנוזה טובה לריפוי ספונטני ללא צלקת</button>
+  <button class="opt" data-i="3">Scale — קילוף של stratum corneum בלבד</button>
+  <div class="explain">נכון: כאשר האפידרמיס אבד אך קרום הבסיס (basement membrane) עצמו נשאר שלם ולא נחשף, המונח המדויק הוא Erosion, לא Ulcer. ההבדל הוא קריטי: Erosion (קרום בסיס שלם) צפוי להחלים באפיתליזציה מחדש ללא צלקת, בעוד Ulcer (קרום בסיס חשוף, עם אובדן דרמיס/רקמות עמוקות יותר) עמוק יותר ועלול לדרוש דיברידמנט/גריפט ולהשאיר צלקת.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. באיזה מבנה תאי תלויה שרידות "graft take" (קליטת גריפט עור מפוצל) במקום התורם, ומדוע?</div>
+  <button class="opt" data-i="0">Stratum corneum — שכבת המגן החיצונית ביותר, האחראית על מחסום המים</button>
+  <button class="opt" data-i="1">Gap junctions — המאפשרים תקשורת חשמלית מהירה בין קרטינוציטים</button>
+  <button class="opt" data-i="2">Adherens junctions — המחברים את שלד האקטין בין תאים סמוכים</button>
+  <button class="opt" data-i="3">Stratum basale — השכבה הגרמינטיבית המכילה תאי גזע מתחלקים, המאפשרת אפיתליזציה מחדש במקום התורם</button>
+  <div class="explain">נכון: ה-stratum basale הוא השכבה העמוקה ביותר של האפידרמיס, המכילה את תאי הגזע המתחלקים המולידים את כל שאר שכבות האפידרמיס. ב-split-thickness skin graft, נלקחים האפידרמיס וחלק מהדרמיס, אך ה-stratum basale (ותוספי העור העמוקים בדרמיס) נשארים במקום התורם ומאפשרים אפיתליזציה מחדש ספונטנית שם — זהו הבסיס האנטומי המאפשר לקחת גריפט חוזר מאותו אזור תורם לאחר החלמה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">8</span> סיכום של הסיכום</h2>
+  <h4>סקלרודרמה ושכבות העור</h4>
+  <ul>
+    <li>סקלרודרמה: אוטואימוניות + וסקולופתיה + פיברוזיס. Diffuse (anti-Scl-70/anti-RNA pol III, מהיר) מול Limited/CREST (anti-centromere, שפיר יותר).</li>
+    <li>3 שכבות עור: אפידרמיס → דרמיס → תת-עור (היפודרמיס). 5 שכבות אפידרמיס: "Come, Let's Get Sun Burned" = Corneum-Lucidum-Granulosum-Spinosum-Basale.</li>
+    <li>Stratum basale = מקור תאי גזע, קובע "graft take" ב-split-thickness graft.</li>
+  </ul>
+  <h4>חיבורי תא, בלוטות ומינוח נגעים</h4>
+  <ul>
+    <li>6 חיבורים אפיתליאליים (אפיקלי→בזאלי): Tight junction → Adherens junction → Desmosome (→Pemphigus vulgaris) → Gap junction → Hemidesmosome (→Bullous pemphigoid) + Integrins.</li>
+    <li>3 סוגי הפרשה אקסוקרינית: Merocrine (תא שלם) / Apocrine (חלק מהתא) / Holocrine (כל התא).</li>
+    <li>מקרוסקופי: Macule/Patch, Papule/Plaque, Vesicle/Bulla, Pustule, Wheal, Scale, Crust, Ulcer (חושף קרום בסיס) מול Erosion (לא חושף).</li>
+    <li>מיקרוסקופי: Dyskeratosis, Hyperkeratosis, Parakeratosis, Hypergranulosis, Spongiosis, Acantholysis (הפרדה, Pemphigus) מול Acanthosis (עיבוי).</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
