@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>שחזור שד (Breast Reconstruction) — שתלים, מתלים וכשלים</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 36 בהרצה זו (uploads נגישים רק עד פרק 19) - הסיכום מבוסס על מחקר במקורות מהימנים (NCBI/StatPearls: Breast Reconstruction, Implant-Based Breast Reconstruction, Breast Reconstruction Free Flaps, Perforator Flaps, TRAM flap; PMC: BIA-ALCL reviews, Management of the Failing Flap, prepectoral vs subpectoral/ADM; ASPS BIA-ALCL summary) + Wikimedia Commons (Blausen) ו-YouTube. -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>שחזור שד <span class="term" dir="ltr">(Breast Reconstruction)</span> — שתלים, מתלים וכשלים</h1>
+<div class="subtitle">פרק 36 בספר Sabiston/Schwartz's Principles of Surgery — תזמון (מיידי/מאוחר), שחזור מבוסס-שתל (מרחיב רקמות, מול/מתחת לשריר החזה), שחזור עצמי (LD, TRAM, DIEP), השפעת הקרנה, ניטור מתלה חופשי, קופסית מתכווצת ו-BIA-ALCL</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>אחרי כריתת שד <span class="term" dir="ltr">(mastectomy)</span> — טיפולית או מונעת (נשאיות BRCA) — לכל אישה צריך <b>להציע</b> שחזור, והיום רוב השחזורים נעשים <b>מיידית, באותו ניתוח</b> עם כריתת השד. שחזור מיידי <b>אינו מעכב גילוי חזרה מקומית ואינו פוגע בהישרדות</b> — ומשפר איכות חיים ודימוי גוף. השאלות של הכירורג: <b>מתי</b> (מיידי/מאוחר, ומה עם הקרנה), <b>ממה</b> (שתל או רקמה עצמית), ו<b>איך מזהים ומטפלים בסיבוכים</b> — מתלה שנכשל, נמק של עור כריתת השד, קופסית מתכווצת, ולימפומה סביב שתל.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain"><b>1. הבעיה אחרי כריתה = חוסר נפח + חוסר "מעטפת" עור, ועור עם אספקת דם שבירה</b>: בכריתת שד חוסכת-עור <span class="term" dir="ltr">(skin-sparing / nipple-sparing mastectomy)</span> מסירים את כל רקמת הבלוטה אבל משאירים את העור. העור הזה ניזון עכשיו רק מ<b>המקלעת התת-עורית</b> <span class="term" dir="ltr">(subdermal plexus)</span> — כמו "מתלה אקראי" ארוך ודק. אם המתלים דקים מדי, ארוכים מדי, או שהמטופלת <b>מעשנת</b> (ניקוטין → כיווץ כלים; CO → פחות חמצן), הקצוות עוברים <b>איסכמיה → נמק של עור הכריתה</b> — הסיבוך שחושף שתל ומוביל לאיבודו.</p>
+  <p class="chain"><b>2. שתל = גוף זר → קופסית (capsule)</b>: הגוף עוטף כל שתל ב<b>קופסית פיברוטית</b> — תגובת גוף-זר תקינה. כשהתגובה מוגזמת, <b>מיופיברובלסטים</b> בקופסית <b>מתכווצים</b> וסוחטים את השתל → שד קשה, מעוות, כואב = <b>קופסית מתכווצת</b> <span class="term" dir="ltr">(capsular contracture)</span>. מה מגביר? <b>ביופילם חיידקי תת-קליני</b> על פני השתל (בעיקר <span class="term" dir="ltr">Staphylococcus epidermidis</span> — ולכן זו דלקת כרונית "כמעט סטרילית" ולא מורסה), דם/המטומה סביב השתל, ובעיקר <b>הקרנה</b>.</p>
+  <p class="chain"><b>3. הקרנה = "צלקת שמתכווצת לנצח"</b>: קרינה פוגעת באנדותל של כלי דם קטנים → <b>endarteritis obliterans</b> (היצרות כלים) → היפוקסיה כרונית; ובמקביל מפעילה <span class="term" dir="ltr">TGF-β</span> → פיברובלסטים מייצרים קולגן → <b>פיברוזיס</b>. התוצאה: עור <b>נוקשה, לא נמתח ולא מחלים טוב</b>. לכן אחרי הקרנה: מרחיב רקמות לא מצליח למתוח, שתלים מסתבכים (זיהום, קופסית, חשיפה, <b>כשל שחזור</b> בשיעור גבוה בהרבה), ו<b>רקמה עצמית עם אספקת דם משלה</b> היא הפתרון המועדף — היא מביאה כלי דם בריאים לאזור ה"מורעב".</p>
+  <p class="chain"><b>4. מתלה עצמי = להעביר רקמה יחד עם הצינור שלה</b>: עור ושומן שורדים רק אם מגיע אליהם דם. <b>מתלה מבוסס-גבעול</b> <span class="term" dir="ltr">(pedicled flap)</span> נשאר מחובר לכלי הדם המקוריים ומסובב לחזה (LD על כלי ה-thoracodorsal; TRAM על ה-superior epigastric). <b>מתלה חופשי</b> <span class="term" dir="ltr">(free flap)</span> מנותק לגמרי ו<b>מחובר מחדש במיקרוכירורגיה</b> לכלי דם בחזה (לרוב <b>internal mammary</b>). ב-<b>DIEP</b> מבודדים את <b>הפרפורטורים</b> — ענפים קטנים שעוברים <b>דרך</b> שריר הישר — וחוסכים את השריר עצמו → <b>פחות חולשה/בקע בדופן הבטן</b> מאשר ב-TRAM.</p>
+  <p class="chain"><b>5. למה מתלה נכשל?</b> חיבור מיקרו-וסקולרי יכול להיסתם ב<b>פקקת</b>: <b>ורידית</b> (שכיחה יותר — דופן הווריד דקה, לחץ נמוך, קל לקפל/ללחוץ) → הדם נכנס ולא יוצא → המתלה <b>נפוח, כחלחל, מילוי קפילרי מהיר</b>; או <b>עורקית</b> → לא נכנס דם → המתלה <b>חיוור, קר, ללא מילוי קפילרי</b>. רוב הפקקות קורות ב-<b>24–72 השעות הראשונות</b>, ורק <b>חזרה מהירה לחדר ניתוח</b> (תוך שעות) מצילה את המתלה. אזור הרקמה <b>הרחוק ביותר מהגבעול</b> (<b>Zone IV</b> לפי Hartrampf) מקבל הכי מעט דם → שם מופיע <b>נמק שומן</b> <span class="term" dir="ltr">(fat necrosis)</span>.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 280" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>עץ ההחלטה בשחזור שד והמנגנון של כל מסלול</title>
+  <rect x="240" y="12" width="200" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="34" text-anchor="middle" font-weight="700">כריתת שד (חוסכת-עור)</text>
+  <text x="340" y="53" text-anchor="middle">חסר נפח + עור על מקלעת תת-עורית</text>
+  <line x1="300" y1="62" x2="170" y2="95" stroke="#374151" stroke-width="2"/><polygon points="164,97 172,90 175,99" fill="#374151"/>
+  <line x1="380" y1="62" x2="510" y2="95" stroke="#374151" stroke-width="2"/><polygon points="516,97 505,99 508,90" fill="#374151"/>
+  <rect x="430" y="100" width="230" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="545" y="122" text-anchor="middle" font-weight="700">שתל / מרחיב רקמות</text>
+  <text x="545" y="142" text-anchor="middle">גוף זר → קופסית → מיופיברובלסטים</text>
+  <text x="545" y="160" text-anchor="middle">+ ביופילם / הקרנה → התכווצות</text>
+  <rect x="20" y="100" width="230" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="135" y="122" text-anchor="middle" font-weight="700">מתלה עצמי (LD / TRAM / DIEP)</text>
+  <text x="135" y="142" text-anchor="middle">רקמה חיה עם כלי דם משלה</text>
+  <text x="135" y="160" text-anchor="middle">מתאים גם לחזה מוקרן</text>
+  <rect x="265" y="100" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="340" y="122" text-anchor="middle" font-weight="700">הקרנה (PMRT)</text>
+  <text x="340" y="142" text-anchor="middle">Endarteritis + TGF-β</text>
+  <text x="340" y="160" text-anchor="middle">→ פיברוזיס, היפוקסיה</text>
+  <line x1="415" y1="135" x2="425" y2="135" stroke="#b91c1c" stroke-width="2"/><polygon points="430,135 422,130 422,140" fill="#b91c1c"/>
+  <line x1="545" y1="170" x2="545" y2="200" stroke="#b45309" stroke-width="2"/><polygon points="545,206 540,197 550,197" fill="#b45309"/>
+  <rect x="430" y="208" width="230" height="58" rx="8" fill="#fff7ed" stroke="#b45309"/>
+  <text x="545" y="230" text-anchor="middle" font-weight="700">קופסית מתכווצת (Baker III–IV)</text>
+  <text x="545" y="250" text-anchor="middle">זיהום, חשיפה, איבוד שתל</text>
+  <line x1="135" y1="170" x2="135" y2="200" stroke="#047857" stroke-width="2"/><polygon points="135,206 130,197 140,197" fill="#047857"/>
+  <rect x="20" y="208" width="230" height="58" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="135" y="230" text-anchor="middle" font-weight="700">סיכון: פקקת באנסטומוזה</text>
+  <text x="135" y="250" text-anchor="middle">ורידית (כחול, נפוח) › עורקית (חיוור)</text>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/VEcY5C6x9CI" title="DIEP Flap | Breast Reconstruction Overview" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">DIEP Flap — סקירה: העברת עור ושומן מהבטן התחתונה לחזה <b>בלי</b> שריר, דרך פרפורטורים. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> אנטומיה ופיזיולוגיה</h2>
+<ul>
+  <li><b>כיס לשתל</b>: <b>תת-שרירי/תת-חזי</b> <span class="term" dir="ltr">(subpectoral)</span> — מתחת לשריר החזה הגדול (כיסוי טוב, פחות "גלים" נראים, אבל <b>תזוזה עם כיווץ השריר</b> — "animation deformity" — וכאב רב יותר); או <b>טרום-חזי</b> <span class="term" dir="ltr">(prepectoral)</span> — מעל השריר, עטוף לעתים ב<b>מטריצה דרמלית א-תאית</b> <span class="term" dir="ltr">(ADM, Acellular Dermal Matrix)</span> — פחות כאב ואין תזוזה, אבל <b>דורש עור כריתה עבה ובריא</b> (במחקרים — יותר סרומה).</li>
+  <li><b>Latissimus dorsi (LD)</b>: עורק ו-וריד <b>thoracodorsal</b> (ענף של ה-subscapular). מתלה אמין מאוד; לרוב דורש שתל בנוסף כי נפחו קטן. <b>פגיעה בכלי ה-thoracodorsal בדיסקציית בית השחי</b> פוגעת באפשרות הזו.</li>
+  <li><b>TRAM מבוסס-גבעול</b>: ניזון מ-<b>superior epigastric artery</b> — המשך של ה-<b>internal mammary (internal thoracic)</b> — שנכנס לשריר הישר מלמעלה. הרקמה מקבלת דם "הפוך", דרך קשרים עם ה-deep inferior epigastric, ולכן פחות אמין.</li>
+  <li><b>DIEP / free TRAM</b>: ניזון מ-<b>deep inferior epigastric artery</b> (ענף של ה-<b>external iliac</b>) — אספקת הדם <b>הדומיננטית</b> לעור הבטן התחתונה. הכלים הקולטים בחזה: <b>internal mammary</b> (ברווח הבין-צלעי 2–4) או thoracodorsal.</li>
+  <li><b>חלופות כשאין בטן</b> (רזות, בטן מנותחת): <span class="term" dir="ltr">PAP</span> (profunda artery perforator — ירך אחורית), <span class="term" dir="ltr">TUG</span> (ירך פנימית), <span class="term" dir="ltr">SGAP/IGAP</span> (עכוז). <span class="term" dir="ltr">SIEA</span> — מבוסס על ה-superficial inferior epigastric, בלי לפתוח את הפאשיה כלל, אבל הכלי קיים ומתאים רק אצל חלק מהנשים.</li>
+</ul>
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0140_BreastReconstruction_TRAM.png?width=400" alt="שחזור שד במתלה TRAM">
+    <figcaption class="media-cap">מתלה TRAM: עור ושומן מהבטן התחתונה עם שריר הישר, מועברים לחזה. מקור: <a href="https://commons.wikimedia.org/wiki/File:Blausen_0140_BreastReconstruction_TRAM.png" target="_blank">Wikimedia Commons (Blausen Medical)</a></figcaption>
+  </figure>
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0141_BreastReconstruction_TRAM_PostOp.png?width=400" alt="מצב אחרי שחזור TRAM">
+    <figcaption class="media-cap">אחרי שחזור TRAM: צלקת רוחבית בבטן התחתונה (כמו "אבדומינופלסטיה") והשד המשוחזר. מקור: <a href="https://commons.wikimedia.org/wiki/File:Blausen_0141_BreastReconstruction_TRAM_PostOp.png" target="_blank">Wikimedia Commons (Blausen Medical)</a></figcaption>
+  </figure>
+</div>
+<div class="key-box"><b>TRAM מבוסס-גבעול</b> = superior epigastric (מה-internal mammary), <b>DIEP/free TRAM</b> = deep inferior epigastric (מה-external iliac), <b>LD</b> = thoracodorsal. שאלה קלאסית: "אילו כלים מזינים את המתלה?"</div>
+
+<h2><span class="num">4</span> ביטוי קליני, בחירת מטופלת ובדיקה</h2>
+<h3>גורמים שמשפיעים על הבחירה</h3>
+<table>
+  <tr><th>גורם</th><th>למה זה משנה</th><th>נטייה</th></tr>
+  <tr><td><b>הקרנה</b> (קודמת או מתוכננת, PMRT)</td><td>פיברוזיס ואיסכמיה → סיבוכי שתל גבוהים</td><td>רקמה עצמית; או מרחיב זמני ושחזור עצמי מאוחר</td></tr>
+  <tr><td><b>עישון</b></td><td>כיווץ כלים, היפוקסיה → נמק עור/מתלה, זיהום</td><td>הפסקה ≥4 שבועות לפני; שחזור מאוחר אם אפשר</td></tr>
+  <tr><td><b>BMI גבוה</b>, סוכרת</td><td>יותר סיבוכי פצע, נמק ובקע</td><td>ייעוץ, אופטימיזציה, לעתים דחייה</td></tr>
+  <tr><td><b>נפח בטן / צלקות בטן</b></td><td>צלקת תת-צלעית/Chevron עלולה לחתוך את כלי הדם</td><td>CTA לפני ניתוח; חלופות (PAP/GAP/LD)</td></tr>
+  <tr><td><b>שחזור דו-צדדי, רזה, רוצה החלמה קצרה</b></td><td>אין מספיק רקמה תורמת; ניתוח קצר יותר</td><td>שתלים</td></tr>
+</table>
+<h3>סימני מתלה בסכנה — בדיקה ליד המיטה</h3>
+<table>
+  <tr><th>ממצא</th><th>תקין</th><th>פקקת ורידית (גודש)</th><th>פקקת עורקית (איסכמיה)</th></tr>
+  <tr><td>צבע</td><td>ורוד</td><td><b>כחלחל-סגול</b></td><td><b>חיוור/לבן</b></td></tr>
+  <tr><td>מילוי קפילרי</td><td>~2 שניות</td><td><b>מהיר</b> (מתחת לשנייה)</td><td><b>איטי/אין</b></td></tr>
+  <tr><td>מרקם</td><td>רך</td><td><b>נפוח, מתוח</b></td><td>רפוי, "מקומט"</td></tr>
+  <tr><td>טמפרטורה</td><td>חמים</td><td>חמים/קריר</td><td><b>קר</b></td></tr>
+  <tr><td>דקירה בסיכה</td><td>דם אדום בהיר, לאט</td><td><b>דם כהה, מהר</b></td><td><b>אין דימום</b></td></tr>
+  <tr><td>דופלר</td><td>אות עורקי + ורידי</td><td>אות ורידי חסר/חלש</td><td>אות עורקי חסר</td></tr>
+</table>
+<p>ניטור: בדיקה קלינית כל 1–2 שעות ב-24–48 השעות הראשונות, דופלר ידני/מושתל, ובמרכזים רבים <b>ספקטרוסקופיית אינפרא-אדום קרוב</b> <span class="term" dir="ltr">(NIRS)</span> שמזהה ירידה ברוויית החמצן ברקמה — טובה במיוחד לזיהוי מוקדם של <b>גודש ורידי</b>.</p>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>לפני ניתוח</h3>
+<p><b>CT אנגיוגרפיה של הבטן</b> <span class="term" dir="ltr">(CTA)</span> לפני DIEP: ממפה את <b>הפרפורטורים</b> (קוטר, מיקום ביחס לטבור, מהלך דרך השריר) ובוחרת את הדומיננטי — מקצרת את הניתוח ומפחיתה פגיעה בשריר.</p>
+<h3>סיבוכים מאוחרים — איך מבדילים</h3>
+<table>
+  <tr><th>מצב</th><th>מתי</th><th>הממצא המבדיל</th><th>בירור / טיפול</th></tr>
+  <tr><td><b>קופסית מתכווצת</b></td><td>חודשים–שנים</td><td>שד קשה, מעוות, "כדורי", כואב; <b>דירוג Baker</b>: I רך וטבעי; II מעט מוצק אך נראה תקין; III מוצק <b>ומעוות</b>; IV קשה, <b>כואב</b> ומעוות</td><td>III–IV → כריתת קופסית <span class="term" dir="ltr">(capsulectomy)</span> + החלפת שתל, או מעבר למתלה עצמי</td></tr>
+  <tr><td><b>BIA-ALCL</b></td><td><b>מעל שנה</b> (לרוב 7–10 שנים)</td><td><b>סרומה מאוחרת חד-צדדית</b> / נפיחות סביב <b>שתל מחוספס</b> <span class="term" dir="ltr">(textured)</span>; לעתים מסה בקופסית</td><td>US → שאיבת נוזל → <b>CD30 IHC</b> + ציטולוגיה + flow; טיפול: <b>הוצאת שתל + כריתת קופסית שלמה en bloc</b></td></tr>
+  <tr><td><b>נמק שומן</b> במתלה</td><td>שבועות–חודשים</td><td>גוש קשה במתלה, לרוב בשוליים (Zone IV); US/ממוגרפיה: ציסטות שמן/הסתיידויות</td><td>US; <b>ביופסיה אם לא טיפוסי</b> — לשלול חזרת סרטן</td></tr>
+  <tr><td><b>חזרה מקומית</b> של סרטן</td><td>כל זמן</td><td>גוש/עיבוי בעור או בדופן החזה, לרוב <b>בעור ובתת-עור</b> (לא מאחורי השתל)</td><td>ביופסיה; שחזור <b>לא מסתיר</b> זיהוי חזרה</td></tr>
+  <tr><td><b>זיהום שתל</b></td><td>ימים–שבועות</td><td>אודם, חום, כאב, הפרשה; לעתים חשיפת שתל</td><td>אנטיביוטיקה IV; לא משתפר/חשוף → <b>הוצאת שתל</b></td></tr>
+  <tr><td><b>סרומה מוקדמת</b></td><td>שבועות ראשונים</td><td>נוזל שקוף, <b>ללא</b> סימני זיהום</td><td>ניקוזים, שאיבה</td></tr>
+</table>
+<div class="key-box"><b>סרומה חדשה יותר משנה אחרי שתל מחוספס = BIA-ALCL עד שיוכח אחרת</b>. זו לימפומת תאי T, <b>CD30+ ו-ALK−</b>, שנובעת מגירוי דלקתי כרוני של פני השתל. ברוב המקרים מוגבלת לנוזל/קופסית, ו<b>כריתת קופסית שלמה מרפאת</b> לרוב — בלי כימותרפיה.</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>תזמון</h3>
+<ul>
+  <li><b>מיידי</b> — באותו ניתוח: מעטפת העור נשמרת, תוצאה אסתטית טובה, ניתוח אחד פחות. מתאים כשלא צפויה הקרנה, או עם תכנון מותאם.</li>
+  <li><b>מאוחר</b> — חודשים אחרי סיום הטיפול (ובמיוחד <b>≥6 חודשים אחרי הקרנה</b>): מאפשר להקרין חזה "שטוח" ולהביא אחר כך רקמה בריאה.</li>
+  <li><b>"מיידי-מאוחר"</b> <span class="term" dir="ltr">(delayed-immediate)</span>: מרחיב רקמות בזמן הכריתה לשמירת מעטפת העור, ואחרי שמתברר אם צריך הקרנה — שחזור סופי (לרוב עצמי אם הוקרן).</li>
+</ul>
+<h3>האפשרויות</h3>
+<table>
+  <tr><th>שיטה</th><th>אספקת דם / עיקרון</th><th>יתרון</th><th>חיסרון/סיבוך אופייני</th></tr>
+  <tr><td><b>מרחיב רקמות → שתל</b> (שני שלבים)</td><td>מרחיב סיליקון עם פתח מילוי; ממלאים סליין כל 1–2 שבועות ומותחים עור; מחליפים לשתל קבוע</td><td>השיטה השכיחה; ניתוח קצר, אין אתר תורם</td><td>קופסית, זיהום, חשיפה; <b>גרוע עם הקרנה</b>; שתל לא לכל החיים</td></tr>
+  <tr><td><b>שתל ישיר</b> <span class="term" dir="ltr">(direct-to-implant)</span></td><td>שתל קבוע כבר בכריתה, לרוב עם ADM</td><td>ניתוח אחד</td><td>דורש עור כריתה בריא ועבה</td></tr>
+  <tr><td><b>Latissimus dorsi</b> ± שתל</td><td>גבעול thoracodorsal</td><td>אמין מאוד, גם בחזה מוקרן</td><td>סרומה בגב (שכיח), נפח קטן</td></tr>
+  <tr><td><b>TRAM מבוסס-גבעול</b></td><td>superior epigastric</td><td>ללא מיקרוכירורגיה</td><td><b>חולשה/בקע בדופן הבטן</b>, נמק שומן</td></tr>
+  <tr><td><b>DIEP</b> (מתלה חופשי)</td><td>פרפורטורים של deep inferior epigastric → internal mammary</td><td><b>"תקן הזהב" של שחזור עצמי</b>; חוסך שריר; רקמה טבעית שמשתנה עם המשקל ולאורך החיים</td><td>ניתוח ארוך, מיקרוכירורגיה, <b>כשל מתלה ~1–3%</b></td></tr>
+</table>
+<p><b>שלבים משלימים</b>: שחזור פטמה (מתלה מקומי) ו<b>קעקוע עטרה</b> (אחרי ~3 חודשים), <b>השתלת שומן</b> <span class="term" dir="ltr">(fat grafting)</span> לתיקון שקעים (ומשפרת גם עור מוקרן), והליך <b>סימטריה</b> בשד השני. אחרי <b>ניתוח משמר שד</b> — <b>ניתוח אונקופלסטי</b> (הקטנה/סידור רקמה מחדש באותו ניתוח) מונע עיוות.</p>
+
+<h3>תרופות ותכשירים רלוונטיים</h3>
+<table>
+  <tr><th>תכשיר</th><th>סוג/מנגנון</th><th>נגד מה</th><th>איך זה עוזר כאן</th><th>זהירות</th></tr>
+  <tr><td><span class="term" dir="ltr">Cefazolin</span> (Kefzol) IV לפני חתך</td><td>צפלוספורין דור 1 — מעכב בניית דופן תא</td><td>גראם-חיוביים (<b>S. aureus</b>, <b>S. epidermidis</b>)</td><td>מונע זיהום שתל/פצע; פלורת העור היא המקור העיקרי</td><td>אלרגיה חמורה לפניצילין → Clindamycin/Vancomycin</td></tr>
+  <tr><td><span class="term" dir="ltr">Enoxaparin</span> (Clexane)</td><td>הפרין במשקל מולקולרי נמוך — מעכב Xa</td><td>—</td><td>מניעת DVT/PE בניתוח ארוך (Caprini גבוה)</td><td>דימום/המטומה סביב המתלה; אי-ספיקת כליות</td></tr>
+  <tr><td><span class="term" dir="ltr">Heparin</span> (בחדר ניתוח, בהצלת מתלה)</td><td>מפעיל אנטיתרומבין</td><td>—</td><td>אחרי פינוי פקקת באנסטומוזה — מונע היווצרות מחדש</td><td>HIT, דימום</td></tr>
+  <tr><td><b>עלוקות רפואיות</b> <span class="term" dir="ltr">(Hirudo medicinalis)</span></td><td>מוצצות דם ומפרישות <b>הירודין</b> (מעכב תרומבין ישיר)</td><td>—</td><td>גודש ורידי כשאי אפשר לתקן את הווריד (למשל בפטמה/קצה מתלה) — "וריד חיצוני" זמני</td><td>חובה מניעה נגד <span class="term" dir="ltr"><b>Aeromonas hydrophila</b></span> (במעי העלוקה): <b>Ciprofloxacin</b> או TMP-SMX; אנמיה → עירויים</td></tr>
+</table>
+
+<div class="surgery">
+  <h4>מהלך הניתוח — מתלה DIEP (דוגמה)</h4>
+  <p><b>הכנה</b>: הפסקת עישון ≥4 שבועות, CTA למיפוי פרפורטורים, סימון בעמידה (אליפסה בבטן התחתונה, קפל תת-שדי), Cefazolin, מניעת פקקת, חימום המטופלת ונוזלים מספקים (היפותרמיה והיפוולמיה → כיווץ כלים במתלה). נמנעים ככל האפשר ממכווצי כלים.</p>
+  <p><b>שלבים</b>: (1) חתך אליפטי בבטן והרמת עור ושומן מהצד עד הפרפורטורים הנבחרים; (2) פתיחת הפאשיה ו<b>הפרדת הפרפורטור מתוך השריר בלי לחתוך אותו</b> עד ל-deep inferior epigastric; (3) בחזה — חשיפת <b>כלי ה-internal mammary</b> (לרוב הסרת קטע סחוס צלע 3); (4) ניתוק המתלה ו<b>אנסטומוזה מיקרוכירורגית</b> — עורק בתפרים דקים, וריד לרוב עם <span class="term" dir="ltr">coupler</span>; (5) עיצוב המתלה, הסרת <b>Zone IV</b> שמדממת פחות; (6) סגירת הפאשיה והבטן כמו באבדומינופלסטיה, עם מיקום מחדש של הטבור.</p>
+  <p><b>הנקודה הקריטית</b>: <b>הגבעול</b> — לא לסובב, לא לקפל ולא ללחוץ על הווריד (תחבושת הדוקה, המטומה). רוב הכשלים נובעים מבעיה טכנית/מכנית בגבעול ב-72 השעות הראשונות.</p>
+  <p><b>החלמה</b>: ניטור מתלה צמוד (כל 1–2 שעות), שכיבה עם ברכיים כפופות (להוריד מתח מתפר הבטן), ניידות מוקדמת, אשפוז ~2–4 ימים; ללא הרמת משקל כ-6 שבועות. <b>סימני אזהרה</b>: שינוי צבע/נפיחות של המתלה, נפיחות חד-צדדית (המטומה), חום/אודם, הפרשה מפצע הבטן.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/1izMgytKENY" title="Breast Reconstruction - DIEP procedure Narration and Animation by Cal Shipley, M.D." allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה מוסברת של ניתוח DIEP: הרמת המתלה, בידוד הפרפורטור וחיבור לכלי החזה. מקור: YouTube (Cal Shipley, M.D.).</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>מה הורג מתלה? — "SMOKE"</h3>
+  <p><b>S</b> — Smoking (עישון: כיווץ כלים + CO)<br>
+  <b>M</b> — Mechanical (קיפול/סיבוב/לחץ על הגבעול, המטומה, תחבושת הדוקה)<br>
+  <b>O</b> — Obesity (השמנה, סוכרת)<br>
+  <b>K</b> — "Kold" & dry — היפותרמיה והיפוולמיה → כיווץ כלים<br>
+  <b>E</b> — Exposure to radiation (הקרנה: endarteritis obliterans ופיברוזיס)</p>
+  <p style="font-size:14px;color:#4b5563">ראשי תיבות מקוריים שנבנו לסיכום זה.</p>
+</div>
+<div class="mnemonic">
+  <h3>סיפור: "הבית החדש על המגרש השרוף"</h3>
+  <p>אחרי שהבית הישן (השד) נהרס, נשאר <b>מגרש עם גדר דקה</b> (עור הכריתה שניזון מהמקלעת התת-עורית). אפשר להביא <b>קרוואן מוכן</b> (שתל) — מהיר, אבל האדמה מתייחסת אליו כזר ובונה סביבו <b>חומה</b> (קופסית) שמתהדקת; אם <b>המגרש נשרף</b> (הקרנה) — האדמה קשה ויבשה והחומה נסגרת עוד יותר. לכן על מגרש שרוף מעבירים <b>בית עץ חי עם צנרת משלו</b> (מתלה עצמי): חותכים אותו מהבטן יחד עם <b>צינור המים</b> (DIEP) ומחברים את הצינור לברז בחזה (<b>internal mammary</b>). אם <b>צינור הביוב</b> (הווריד) נסתם — הבית מוצף ונהיה <b>כחול ונפוח</b>; אם <b>צינור המים</b> (העורק) נסתם — הבית <b>יבש, חיוור וקר</b>. ואם אחרי שנים מופיעה <b>שלולית מוזרה ליד קרוואן מחוספס</b> — זו לא סתם נזילה, בודקים אותה (CD30) — BIA-ALCL.</p>
+</div>
+<svg class="diagram" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>סיפור המגרש: קרוואן מול בית חי עם צנרת</title>
+  <rect x="470" y="40" width="190" height="110" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="565" y="68" text-anchor="middle" font-weight="700">🚐 קרוואן = שתל</text>
+  <text x="565" y="92" text-anchor="middle">🧱 חומה = קופסית</text>
+  <text x="565" y="116" text-anchor="middle">🔥 מגרש שרוף = הקרנה</text>
+  <text x="565" y="138" text-anchor="middle">💧 שלולית מאוחרת = ALCL?</text>
+  <rect x="245" y="40" width="190" height="110" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="340" y="68" text-anchor="middle" font-weight="700">🏡 בית חי = מתלה</text>
+  <text x="340" y="92" text-anchor="middle">🚰 צינור מים = עורק</text>
+  <text x="340" y="116" text-anchor="middle">🚽 ביוב = וריד</text>
+  <text x="340" y="138" text-anchor="middle">🔌 ברז בחזה = IMA</text>
+  <rect x="20" y="30" width="190" height="60" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="115" y="55" text-anchor="middle" font-weight="700">ביוב סתום 🔵</text>
+  <text x="115" y="75" text-anchor="middle">כחול, נפוח, דם כהה</text>
+  <rect x="20" y="110" width="190" height="60" rx="10" fill="#f9fafb" stroke="#6b7280"/>
+  <text x="115" y="135" text-anchor="middle" font-weight="700">מים סתומים ⚪</text>
+  <text x="115" y="155" text-anchor="middle">חיוור, קר, לא מדמם</text>
+  <line x1="245" y1="75" x2="218" y2="62" stroke="#374151" stroke-width="2"/><polygon points="212,59 222,58 219,66" fill="#374151"/>
+  <line x1="245" y1="115" x2="218" y2="135" stroke="#374151" stroke-width="2"/><polygon points="212,139 216,130 222,136" fill="#374151"/>
+</svg>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/jjVqm2yay3s" title="Immediate vs Delayed Breast Reconstruction | DIEP Flap, Scars, Recovery &amp; Radiotherapy Explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מנתחת פלסטית מסבירה שחזור מיידי מול מאוחר, צלקות, החלמה והשפעת הקרנה. מקור: YouTube.</p>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=gnwzTR6Hcxk" target="_blank">DIEP Flap Breast Reconstruction Basics Explained</a><div class="desc">סרטון בסיסי על עקרונות ה-DIEP ומי מתאימה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=esHztsX-uFE" target="_blank">How does a Tissue Expander for Breast Reconstruction Work</a><div class="desc">הדגמה של מרחיב רקמות ומילוי הדרגתי.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK470317/" target="_blank">StatPearls — Breast Reconstruction</a><div class="desc">סקירה כללית: שתלים מול רקמה עצמית, תזמון, סיבוכים.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK431062/" target="_blank">StatPearls — Implant-Based Breast Reconstruction</a><div class="desc">מרחיבים, כיסים, ADM, קופסית והקרנה.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK541048/" target="_blank">StatPearls — Breast Reconstruction Free Flaps</a><div class="desc">DIEP, SIEA, GAP — אנטומיה וניטור.</div></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9911216/" target="_blank">PMC — Management of the Failing Flap</a><div class="desc">זיהוי גודש ורידי מול איסכמיה, הצלה בחדר ניתוח ועלוקות.</div></li>
+  <li><a href="https://www.plasticsurgery.org/patient-safety/breast-implant-safety/bia-alcl-summary" target="_blank">ASPS — BIA-ALCL Summary</a><div class="desc">הסתמנות, בירור CD30 וטיפול ב-BIA-ALCL.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Blausen_0138_BreastReconstruction_Expander.png" target="_blank">Wikimedia — Blausen: Breast reconstruction with expander</a><div class="desc">איור מרחיב רקמות מתחת לשריר החזה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Blausen_0140_BreastReconstruction_TRAM.png" target="_blank">Wikimedia — Blausen: TRAM</a><div class="desc">קישור גיבוי לאיור ה-TRAM.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Blausen_0141_BreastReconstruction_TRAM_PostOp.png" target="_blank">Wikimedia — Blausen: TRAM post-op</a><div class="desc">קישור גיבוי לאיור המצב אחרי TRAM.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>מקרה</h3>
+  <p>אישה בת 46, מעשנת 15 סיגריות ביום, BMI 29, אובחנה עם סרטן שד שמאל שלב IIIA (4 קשריות חיוביות) ותוכננה לכריתת שד + <b>הקרנה אחרי הניתוח (PMRT)</b>. יש לה צלקת <b>Pfannenstiel</b> מניתוח קיסרי. היא מבקשת "שד טבעי ככל האפשר". הוצע לה מרחיב רקמות בזמן הכריתה ו<b>שחזור DIEP מאוחר</b> אחרי ההקרנה, בתנאי שתפסיק לעשן. 8 חודשים אחרי סיום ההקרנה עברה DIEP לכלי ה-internal mammary. <b>12 שעות אחרי הניתוח</b> האחות מדווחת: המתלה <b>כחלחל ונפוח</b>, מילוי קפילרי <b>מהיר מאוד</b>, ובדקירת סיכה יוצא <b>דם כהה במהירות</b>.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה האבחנה הסבירה ומה הצעד הבא?</div>
+  <button class="opt" data-i="0">איסכמיה עורקית — הגבהת החזה ומעקב דופלר כל שעה</button>
+  <button class="opt" data-i="1">פקקת ורידית (גודש) — חזרה דחופה לחדר ניתוח לבדיקת האנסטומוזה</button>
+  <button class="opt" data-i="2">המטומה קטנה צפויה — קומפרסים חמים והמשך מעקב</button>
+  <button class="opt" data-i="3">זיהום מוקדם — Cefazolin IV</button>
+  <div class="explain">נכון (2): כחול + נפוח + מילוי קפילרי מהיר + דם כהה שיוצא מהר = הדם נכנס ולא יוצא → פקקת ורידית. ההצלה תלויה בזמן — חזרה מיידית לחדר ניתוח (תרומבקטומיה, תיקון אנסטומוזה, הפרין). (1) איסכמיה עורקית = חיוור, קר, מילוי איטי, אין דימום. (3) המטומה יכולה ללחוץ על הווריד, אבל גם אז הטיפול הוא פינוי בחדר ניתוח — לא מעקב. (4) 12 שעות — מוקדם מדי לזיהום, ואין סימני דלקת.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. למה הוחלט לא לשחזר אותה בשתל קבוע בלבד?</div>
+  <button class="opt" data-i="0">כי שתלים מעלים את הסיכון לחזרת הסרטן</button>
+  <button class="opt" data-i="1">כי שתל מסתיר חזרה מקומית בבדיקה גופנית</button>
+  <button class="opt" data-i="2">כי אסור להכניס שתל אחרי כימותרפיה</button>
+  <button class="opt" data-i="3">כי הקרנה גורמת ל-endarteritis obliterans ופיברוזיס — שיעורי קופסית מתכווצת, זיהום וכשל שתל גבוהים</button>
+  <div class="explain">נכון (4): הקרנה פוגעת בכלים הקטנים ומפעילה פיברוזיס (TGF-β) → עור נוקשה ומורעב — הסביבה הגרועה ביותר לשתל. מתלה עצמי מביא כלי דם בריאים. (1)(2) שחזור, כולל שתלים, אינו מעלה חזרה ואינו מסתיר אותה — רוב החזרות בעור/תת-עור. (3) כימותרפיה אינה התווית-נגד לשתל.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מאילו כלים ניזון מתלה ה-DIEP, ובמה הוא עדיף על TRAM מבוסס-גבעול?</div>
+  <button class="opt" data-i="0">Deep inferior epigastric (מה-external iliac); חוסך את שריר הישר → פחות חולשה ובקע בבטן</button>
+  <button class="opt" data-i="1">Superior epigastric (מה-internal mammary); לא דורש מיקרוכירורגיה</button>
+  <button class="opt" data-i="2">Thoracodorsal; אמין יותר בחזה מוקרן</button>
+  <button class="opt" data-i="3">Superficial inferior epigastric; לא פותחים פאשיה בכלל</button>
+  <div class="explain">נכון (1): DIEP מבוסס על פרפורטורים של ה-deep inferior epigastric, שמבודדים מתוך השריר בלי לחתוך אותו. (2) זה ה-TRAM מבוסס-הגבעול — בו לוקחים את השריר, ולכן יותר בקע/חולשה. (3) Thoracodorsal = LD. (4) זה SIEA — מתלה אחר, שקיים רק בחלק מהנשים.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. אישה בת 55, 9 שנים אחרי שחזור בשתל <b>מחוספס</b>, עם נפיחות חד-צדדית ללא כאב וללא חום. ב-US: הצטברות נוזל סביב השתל. מה הצעד הבא?</div>
+  <button class="opt" data-i="0">אנטיביוטיקה אמפירית והערכה חוזרת בעוד שבועיים</button>
+  <button class="opt" data-i="1">כריתת קופסית ודירוג Baker</button>
+  <button class="opt" data-i="2">שאיבת הנוזל בהנחיית US ושליחה ל-CD30, ציטולוגיה ו-flow cytometry</button>
+  <button class="opt" data-i="3">ממוגרפיה והחלפת השתל לשתל חלק</button>
+  <div class="explain">נכון (3): סרומה מאוחרת (מעל שנה) סביב שתל מחוספס = חשד ל-BIA-ALCL (לימפומת T, CD30+, ALK−). קודם מאבחנים מהנוזל; אם חיובי → PET-CT, ואז הוצאת שתל + כריתת קופסית שלמה en bloc. (1) אין סימני זיהום. (2) Baker מדרג קופסית מתכווצת (קשיות) — לא סרומה. (4) להחליף בלי אבחנה ובלי כריתת קופסית שלמה משאיר את המחלה.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. על מתלה עם גודש ורידי שלא ניתן לתקן כירורגית הוחלט להשתמש בעלוקות רפואיות. איזו תרופה חובה לתת במקביל, ולמה?</div>
+  <button class="opt" data-i="0">Vancomycin — נגד MRSA מעור המטופלת</button>
+  <button class="opt" data-i="1">Ciprofloxacin (או TMP-SMX) — נגד Aeromonas hydrophila שחי במעי העלוקה</button>
+  <button class="opt" data-i="2">Metronidazole — נגד אנאירובים מהעלוקה</button>
+  <button class="opt" data-i="3">Warfarin — כדי להאריך את הדימום אחרי שהעלוקה נופלת</button>
+  <div class="explain">נכון (2): Aeromonas hydrophila, מתג גראם-שלילי שחי בסימביוזה במעי העלוקה, עלול לגרום לזיהום מתלה קשה → מניעה בפלואורוקווינולון או TMP-SMX. ההירודין שבעלוקה הוא שמאריך את הדימום — אין צורך בוורפרין (4). (1)(3) לא מכסים את החיידק הספציפי.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>שחזור מיידי</b> בטוח אונקולוגית: לא מעכב זיהוי חזרה ולא פוגע בהישרדות.</li>
+    <li><b>שתל/מרחיב</b> (השכיח ביותר): תת-חזי או טרום-חזי + ADM; סיבוכים: קופסית מתכווצת (Baker I–IV), זיהום, חשיפה.</li>
+    <li><b>הקרנה</b> = endarteritis obliterans + פיברוזיס → שתלים נכשלים → מתלה עצמי, או מרחיב ושחזור מאוחר ≥6 חודשים אחרי ההקרנה.</li>
+    <li><b>כלים</b>: LD = thoracodorsal; TRAM מבוסס-גבעול = superior epigastric (מה-IMA); DIEP = deep inferior epigastric → אנסטומוזה ל-internal mammary.</li>
+    <li><b>DIEP</b> = תקן הזהב העצמי, חוסך שריר (פחות בקע מ-TRAM); CTA לפני ניתוח; Zone IV → נמק שומן.</li>
+    <li><b>מתלה בסכנה</b>: ורידי (שכיח) = כחול, נפוח, מילוי מהיר, דם כהה; עורקי = חיוור, קר, אין דימום → <b>חדר ניתוח מיד</b> (24–72 שעות קריטיות).</li>
+    <li><b>עלוקות</b> לגודש ורידי + מניעה נגד <b>Aeromonas</b> (Cipro/TMP-SMX).</li>
+    <li><b>BIA-ALCL</b>: סרומה מאוחרת מעל שנה, שתל מחוספס → שאיבה, CD30+/ALK− → הוצאת שתל + כריתת קופסית en bloc.</li>
+    <li>גורמי סיכון לכשל — <b>SMOKE</b>: עישון, בעיה מכנית, השמנה/סוכרת, קור והיפוולמיה, הקרנה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
