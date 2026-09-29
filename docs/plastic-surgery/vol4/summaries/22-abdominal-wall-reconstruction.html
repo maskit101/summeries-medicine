@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 22: שחזור דופן הבטן</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 22: שחזור דופן הבטן <span class="term" dir="ltr">Abdominal Wall Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity, מהדורה 5, פרק 13 | Gregory A. Dumanian</div>
+
+<p>דופן הבטן היא "איבר": מגינה על הקרביים ומייצרת <b>גליל בלחץ</b> שעליו נשענים הגו, הגפיים העליונות והראש, ושמאפשר הליכה. <b class="key">11–23% מסגירות הלפרוטומיה מפתחות בקע חתך (incisional hernia), ועד 40% בקבוצות סיכון</b> (השמנה חולנית, מפרצת אבי העורקים הבטני); שיעור הניתוח החוזר בפועל תוך 5 שנים ~3.8%. הפרק מציג את גישת המחבר: אנטומיה, פרפוזיה, ובעיקר <b>פיזור כוחות כדי למנוע קריעת תפר (suture pull-through)</b>.</p>
+
+<h2><span class="num">1</span> פיזיולוגיה: הבטן כגליל בלחץ</h2>
+<div class="mechanism">
+  <p class="chain">אגן = תחתית הגליל · רטרופריטונאום = דופן אחורית קשיחה · סרעפת = בוכנה · שיעול/ולסלווה → לחץ ↑ → הקרביים הניידים נדחפים החוצה (צנטריפוגלית) → הדופן מחזירה כוח צנטריפטלי: <b>סטטי</b> (פאסיה) + <b>אקטיבי</b> (כיווץ שריר).</p>
+  <p><b>בקע נוצר כשהכוחות הצנטריפטליים כבר לא מספיקים.</b> מכיוון שהלחץ שבחוץ נמוך, הבקע <b>גדל עם הזמן</b>, ובמקרה הקיצוני מתפתח <span class="term" dir="ltr">loss of domain</span> – חלל הבטן מאבד היענות ולא מסוגל "לקבל בחזרה" את תוכן הבקע.</p>
+  <p><b>חוק לפלס (<span class="term" dir="ltr">Laplace</span>):</b> מתח הדופן עולה עם הרדיוס. רדיוס הגליל קטן מהאפיגסטריום להיפוגסטריום → <b>פחות מתח ליד הסימפיזה</b>. זה מסביר למה חתך <span class="term" dir="ltr">Pfannenstiel</span> כמעט לא מפתח בקע, בעוד תיקון אפיגסטרי עם דיאסטזיס קשה. וגם: המתמחה "מחזיק" את החתך בזמן אקסטובציה – שיעול מגדיל את הרדיוס → מתח ↑ → dehiscence.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת היווצרות בקע חתך</title>
+  <rect x="700" y="30" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="775" y="58" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">מתח בתפר</text>
+  <text x="775" y="78" font-size="11" text-anchor="middle" fill="#1e3a8a">&gt; חוזק ממשק תפר-רקמה</text>
+  <rect x="530" y="30" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="600" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">Pull-through</text>
+  <text x="600" y="78" font-size="11" text-anchor="middle" fill="#7f1d1d">חוזק מינימלי כמה ימים אחרי</text>
+  <rect x="360" y="30" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="58" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">פער &gt;12 מ"מ</text>
+  <text x="430" y="78" font-size="11" text-anchor="middle" fill="#78350f">ביום 30</text>
+  <rect x="190" y="30" width="140" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="260" y="58" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">צלקת דקה</text>
+  <text x="260" y="78" font-size="11" text-anchor="middle" fill="#4c1d95">מתעצבת ונמתחת</text>
+  <rect x="20" y="30" width="140" height="70" rx="8" fill="#fee2e2" stroke="#7f1d1d"/>
+  <text x="90" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">בקע חתך</text>
+  <text x="90" y="78" font-size="11" text-anchor="middle" fill="#7f1d1d">גדל עם הזמן</text>
+  <line x1="700" y1="65" x2="680" y2="65" stroke="#374151" stroke-width="2"/><polygon points="670,65 680,59 680,71" fill="#374151"/>
+  <line x1="530" y1="65" x2="510" y2="65" stroke="#374151" stroke-width="2"/><polygon points="500,65 510,59 510,71" fill="#374151"/>
+  <line x1="360" y1="65" x2="340" y2="65" stroke="#374151" stroke-width="2"/><polygon points="330,65 340,59 340,71" fill="#374151"/>
+  <line x1="190" y1="65" x2="170" y2="65" stroke="#374151" stroke-width="2"/><polygon points="160,65 170,59 170,71" fill="#374151"/>
+  <rect x="190" y="130" width="660" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="520" y="152" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">הפתרון: לפזר כוחות – small bites (5–8 מ"מ), רשת כ"פיגום צלקת", שחרור שרירים, Botox, mesh suture</text>
+  <text x="520" y="170" font-size="11" text-anchor="middle" fill="#065f46">"The die is cast at the time of laparotomy closure" – מה שקורה ב-30 הימים הראשונים קובע</text>
+</svg>
+<p class="figcap">איור 1: מנגנון היווצרות בקע חתך – אירוע מכני מוקדם, לא רק "ריפוי ביולוגי חלש".</p>
+
+<h2><span class="num">2</span> אנטומיה</h2>
+<table>
+  <thead><tr><th>מבנה</th><th>נקודות מפתח</th></tr></thead>
+  <tbody>
+    <tr><td>8 שרירים</td><td>2 רקטוס (סימפיזה → קסיפואיד), ו-3 לטרליים בכל צד: אובליק חיצוני, אובליק פנימי (סיבים ב-~90° זה לזה – כמו צמיג bias-ply), טרנסברסוס אבדומיניס (מגביר לחץ תוך-בטני, תומך בקרביים)</td></tr>
+    <tr><td>Tendinous inscriptions</td><td>3 בכל רקטוס (בטבור, בקסיפואיד, ובאמצע) → "שמונה-פק" ולא שש; מונעות bowstringing (כמו פולי בגידי כופפי האצבעות)</td></tr>
+    <tr><td>Linea alba</td><td>"הגיד המרכזי" – מחזיק את השרירים באורך סרקומרי אופטימלי. ~1.1 ס"מ ברוחב בנוליפרה, &gt;2 ס"מ אחרי לידה; דיאסטזיס משמעותי – 8–10 ס"מ</td></tr>
+    <tr><td>Semilunar lines</td><td>בין הרקטוס לשרירים הלטרליים, מצלע 9 לפקעת הפוביס</td></tr>
+    <tr><td>אספקת דם</td><td>DIEA ו-SEA לרקטוס + ענפים עם העצבים הבין-צלעיים; הלטרליים – בין-צלעיים ולומבריים + ענף עולה של DCIA. עור תחתון: פרפורטורים של DIEA, SIEA, בין-צלעיים, DCIA. <b>ההריון "משהה" (delay) את העור התחתון</b> ופותח choke vessels → מאפשר undermining רחב באבדומינופלסטיה</td></tr>
+    <tr><td>עצבוב</td><td>T7–T11 (thoracoabdominal), T12 (subcostal) – מוטורי+תחושתי; L1 (iliohypogastric, ilioinguinal, genitofemoral) – תחושתי בלבד. <b>ACNES</b> = לחץ על ענפי העור הקדמיים. חתך ניצב לדרמטומים (Kocher) מדנרב; הסימן: רקטוס דק יותר ב-CT</td></tr>
+  </tbody>
+</table>
+<p class="key-box"><b>"Denervation bulge" בחתך צדי</b> הוא בדרך כלל בקע אמיתי של האובליק הפנימי והטרנסברסוס <b>עם אובליק חיצוני שלם</b> – ולא דנרבציה אמיתית.</p>
+<p><b>פיזיולוגיית שריר (עקומת <span class="term" dir="ltr">Starling</span>):</b> בקע משחרר את כל 8 השרירים מהלינאה אלבה → הם מתקצרים → חפיפת סרקומרים → כוח מרבי נמוך. בנוסף הכיווץ הופך מ<b>איזומטרי</b> (כוח ללא שינוי אורך) ל<b>איזוטוני</b> (השריר מתקצר, הקרביים בורחים לשק) → צריכת אנרגיה גבוהה. <b>תיקון ראשוני</b> מחזיר אורך שריר; <b>גישור ברשת</b> ("tension-free") מבטל את התנועה אך משאיר את השריר קצר וחלש.</p>
+
+<h2><span class="num">3</span> סגירת לפרוטומיה אופטימלית</h2>
+<ul>
+  <li><b>חוזק התיקון מינימלי כמה ימים אחרי הניתוח</b> (דלקת, נויטרופילים, מטאלופרוטאינאזות). Pull-through מוקדם = dehiscence; מאוחר יותר (ב-30 יום) = gap. <b>17 מ-18 מטופלים עם פער &gt;12 מ"מ ביום 30 פיתחו בקע</b>, לעומת 5% עם פער קטן.</li>
+  <li>גם בתנאים אופטימליים לפרוטומיה תפורה מגיעה ל-~70% מהחוזק המקורי אחרי 6–9 חודשים.</li>
+  <li><b>Small bites</b>: נגיסות 5–8 מ"מ והתקדמות 5–8 מ"מ (לעומת 1 ס"מ/1 ס"מ) ויחס אורך תפר:אורך פצע <b>4:1</b> → פי 2 נקודות אחיזה, חצי כוח לכל נקודה → <b>ירידה של ~50% בבקע חתך</b> (וגם SSI). עדיין לא סטנדרט (הביקורת: BMI ≤27 במחקר).</li>
+  <li>מתח התפר – עקומה פרבולית: רפוי מדי = פער; הדוק מדי = איסכמיה, פחות פרפוזיה וחוזק.</li>
+  <li><b>חומר התפר לא משנה את שיעור הבקע</b> (הבקע מתחיל מוקדם). בוחרים מונופילמנט נספג לאט (PDS) כי יש <b>פחות סינוסים מפרישים כרוניים</b> לעומת קבוע.</li>
+  <li><b>PMA</b> (primary mesh augmentation – רשת רטרו-רקטלית או onlay בסגירה) מפחיתה בקע בכמעט חצי; onlay → יותר סרומות.</li>
+  <li><b>Prehabilitation</b> (נשימה ופעילות), ירידה במשקל ו<b>בוטוקס טרום-ניתוחי</b> בהנחיית US מפחיתים מתח.</li>
+</ul>
+
+<h2><span class="num">4</span> בקע טבורי/אפיגסטרי ודיאסטזיס</h2>
+<p>בקע &lt;2 ס"מ: תפר – 5.6% חזרה ב-21 חודשים; רשת – 2.2% ניתוח חוזר. רשת = פחות חזרות, יותר סרומות וזיהומים. בזמן אבדומינופלסטיה: פתיחת השק במקביל לגבעול הטבור, כריתת שומן פרה-פריטונאלי, תפר בודד בנגיסה קטנה, ואז <b>פליקציית דיאסטזיס מעל ומתחת</b> שמורידה עומס מהתיקון. חלופות: IPOM לפרוסקופי (חשש לקפל ברשת אחרי פליקציה), "ציפת" הטבור, EMILOS, "mesh abdominoplasty" עם רשת רטרו-רקטלית.</p>
+
+<h2><span class="num">5</span> בקע חתך בקו האמצע – רשתות</h2>
+<p class="key-box">תפרים לבד אינם מספיקים: RCT – 42% חזרה בתפר מול 24% ברשת (עד 6 ס"מ, 3 שנים); ב-10 שנים 63% מול 32%. בניגוד לאורתופדיה, אין "גבס" לבטן (חוץ אולי מבוטוקס).</p>
+<table>
+  <thead><tr><th>סוג רשת</th><th>דוגמאות</th><th>תכונות</th></tr></thead>
+  <tbody>
+    <tr><td>קבועה מקרופורוזית</td><td>פוליפרופילן, פוליאסטר, PVDF</td><td>נקבוביות <b>&gt;1 מ"מ</b> מגבילה "גישור" צלקת והתכווצות; משמשת כ<b>פיגום צלקת</b>. הנפוצה ביותר</td></tr>
+    <tr><td>מיקרופורוזית</td><td>e-PTFE</td><td>לא משתלבת אלא <b>נעטפת בקפסולה</b>, מתקמטת; <b>בזיהום חובה להוציא אותה</b></td></tr>
+    <tr><td>נספגת לאט (סינתטית)</td><td>Phasix (P4HB – שנים), BioA (6–7 חודשים), TIGR</td><td>מעבירה עומס בהדרגה לרקמה; אין אקסטרוזיה/פיסטולה ארוכת טווח; החוזק עשוי "לחזור" ל-70%. להעריך חזרה 1–2 שנים אחרי הספיגה</td></tr>
+    <tr><td>ביולוגית</td><td>חזיר, בקר, אדם; fascia lata עצמית (~10×18 ס"מ)</td><td>היקרה ביותר; לא מגשרת לצמיתות; "סלחנית" יותר בזיהום; אפשר להניח מול מעי</td></tr>
+  </tbody>
+</table>
+<h3>מיקום הרשת</h3>
+<table>
+  <thead><tr><th>מיקום</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td>Intraperitoneal (IPOM)</td><td>זעיר-פולשני, פחות כאב וזיהום</td><td>צריך ציפוי בצד המעי (הידבקויות, פרפורציה); משתלב רק מצד אחד → פחות עמיד; ציוד יקר</td></tr>
+    <tr><td>Onlay (על הפאסיה הקדמית)</td><td>ללא מגע במעי, ללא ציפוי</td><td>דורש הרמת רקמה רחבה → <b>סרומות</b> ובעיות פצע</td></tr>
+    <tr><td><b>Retrorectus (sublay)</b> – המועדף</td><td>"סנדוויץ'" בין הרקטוס לשכבה האחורית → שילוב פיברו-וסקולרי מהיר; רשת לא מצופה עובדת טוב</td><td>רשת מצופה בחלל זה = <b>יותר סיבוכים</b></td></tr>
+  </tbody>
+</table>
+<p><b>העיקרון:</b> התוצאות הטובות ביותר – <b>סגירה ראשונית של הפגם + רשת תומכת</b>. <b>Bridging</b> (גישור שבו הרשת לא מכוסה ברקמה) = יותר סיבוכים וחזרות. אם יש בקע בחתך – כל החתך "חשוד" ויש לשחזר את כולו (במיוחד עם דיאסטזיס), לא "תיקון נקודתי".</p>
+
+<h2><span class="num">6</span> טכניקה – בקע נקי בקו האמצע (שיטת המחבר)</h2>
+<ol>
+  <li><b>CT טרום-ניתוחי</b>: רוחב הפגם, דיאסטזיס, בקעים לטרליים נסתרים.</li>
+  <li>כניסה לשק, ניתוק מעי ואומנטום מהדופן (נשארים "דו-ממדיים", בלי לשחרר הידבקויות אם אין בעיית מעי).</li>
+  <li>חשיפת 4 ס"מ פאסיה קדמית; פתיחת החלל הרטרו-רקטלי מהקסיפואיד עד מתחת לטבור; <b>שמירה על העצבים הבין-צלעיים ועל ענפי DIEA לטבור ולשכבה האחורית</b>.</li>
+  <li>סגירת השכבה האחורית; <b>רשת פוליפרופילן לא-מצופה צרה, 7.5 ס"מ</b>, שטוחה ומתוחה, תפרים טרנס-פאסיאליים 4 ס"מ מהגבול המדיאלי של הרקטוס; "לשון" רשת לחלל Retzius ללא קיבוע (להגן על DIEA). כל התפרים מונחים ורק אז נקשרים.</li>
+  <li>סגירת הרקטוס מעל הרשת = <b>תיקון נתמך (לא bridging)</b>; כריתת שק ועודף רקמה; נקזים עד &lt;30 סמ"ק.</li>
+</ol>
+<p><b>תוצאות:</b> 0% חזרה ב-2 שנים, SSO/SSI 8%.</p>
+
+<h2><span class="num">7</span> בקע תחת מתח – שחרור רכיבים</h2>
+<p><b>דופן היענית</b> (אחרי ירידה במשקל, הריונות, דיאליזה פריטונאלית, מיימת) – אפשר להדק בתפרים. <b>דופן קשיחה</b> (אחרי ספסיס, חתכים צדיים, בקע ותיק, קרינה) – נוטה ל-pull-through. כשהמרחק בין הרקטוסים &gt;6–8 ס"מ: טרום-ניתוח – ירידה במשקל, <b>Botox (Onabotulinumtoxin A) 150 יחידות לכל צד</b> ע"י רדיולוגיה פולשנית, <b>פנאומופריטונאום</b> להחזרת domain.</p>
+<table>
+  <thead><tr><th></th><th>Anterior components release (עם שימור פרפורטורים)</th><th>Posterior components release – <span class="term" dir="ltr">TAR</span></th></tr></thead>
+  <tbody>
+    <tr><td>מה חותכים</td><td>האובליק החיצוני + פאסיה, לטרלית ל-semilunar line, דרך חתך רוחבי 6 ס"מ בתחתית קשת הצלעות (מעל הצלעות עד מתחת ל-ASIS; מנהרה סופרה-פובית לשחרור מלא)</td><td>פיתוח החלל הרטרו-רקטלי והמשך לטרלית מעבר ל-semilunar line, ניתוק הטרנסברסוס אבדומיניס – "דיסקציה של עצב פריפרי"</td></tr>
+    <tr><td>זמן/קושי</td><td>מהיר – 10–15 דקות</td><td>ארוך, טכני, סיכון לבקע לטרלי</td></tr>
+    <tr><td>עור</td><td>מקדם עור לקו האמצע → אפשר לכרות צלקת; החתכים הרוחביים נסגרים מעצמם. <b>בלי שימור פרפורטורים – נמק עור מלא</b> (במיוחד אחרי ניתוח מפרצת אבי העורקים עם אובדן כלי לומבריים)</td><td>ללא הרמת מתלי עור; אפשר זעיר-פולשני/רובוטי</td></tr>
+    <tr><td>יציבות</td><td>לא מערער את ה-semilunar lines; אפשר לסגור אפילו בלי רשת; בד"כ רשת 7.5 ס"מ (~225 סמ"ר לבטן 30 ס"מ)</td><td>מחליש את ה-semilunar lines → <b>רשת ענקית (עד 1200 סמ"ר)</b> מקו בית שחי אמצעי לאמצעי; קיבוע מינימלי (חיכוך) → פחות כאב; תנועה מדיאלית גדולה יותר</td></tr>
+    <tr><td>צורה</td><td>טבעית יותר</td><td>בטן "מעוגלת" בחתך רוחב</td></tr>
+    <tr><td>שימוש מיוחד</td><td>—</td><td><b>בליטה תחתונה אחרי DIEP/TRAM</b></td></tr>
+  </tbody>
+</table>
+<p>אחרי הניתוח: ההיענות המוגברת מגבילה עליית לחץ תוך-בטני → פחות <b>תסמונת מדור בטני</b>. ההעדפה בין השיטות שנויה במחלוקת.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Mkg3jbMVMYs" title="Transverse Abdominis Release (TAR) Technique - Dr John P. Fischer" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Dr. John P. Fischer (מנתח פלסטי, Penn) מדגים את טכניקת ה-TAR – שחרור רכיבים אחורי והנחת רשת רטרו-רקטלית רחבה.</p>
+
+<h2><span class="num">8</span> שדה מזוהם (CDC 2–4) – החלק השנוי ביותר במחלוקת</h2>
+<table>
+  <thead><tr><th>אפשרות</th><th>נתונים ושיקולים</th></tr></thead>
+  <tbody>
+    <tr><td>בטן פתוחה (open abdomen)</td><td>לספסיס, second-look, טראומה, תסמונת מדור. כיסוי זמני: עור, רשת פוליגלקטין, שקית אינפוזיה, VAC. סגירה סדרתית בתפר כשהבצקת יורדת; ביולוגית כגשר (בקע צפוי, אבל "לא שורפים גשרים")</td></tr>
+    <tr><td>תפר ± anterior release</td><td>מינימום פתיחת מישורים, פרפוזיה מיטבית; אך ללא תמיכה – 23% חזרה ב-14 חודשים</td></tr>
+    <tr><td>רשת קבועה רטרו-רקטלית</td><td>402 מטופלים (52% CDC2, 42% CDC3, 6% CDC4): SSI 14.2%, הוצאת רשת ~1%, בקע 15.2%. <b>הבעיה: יכולת הצלה גרועה</b> אם צריך להוציא</td></tr>
+    <tr><td>ביולוגית</td><td>VHWG המליצה בדרגות 2–4 (עמידות לקולוניזציה); בקע 8.3%–48% בין מרכזים; יקר, יותר SSO → שימוש ירד</td></tr>
+    <tr><td>נספגת (BioA/Phasix)</td><td>COBRA (BioA): בקע 17%, SSI 18%. Phasix: SSI 15.2%, חזרה 6.1% (33 מטופלים בלבד)</td></tr>
+    <tr><td><b>Mesh suture</b> (המצאת המחבר)</td><td>רצועות רשת משמשות כתפר – מפזרות כוח ומונעות pull-through, בלי לפתוח מישורים; אם מזדהם – הקשר מתחת לחתך → <b>הוצאה במרפאה</b>. SSO 27%, בקע 6% ב-11.8 חודשים</td></tr>
+  </tbody>
+</table>
+<p><b>בקעי מותן (flank):</b> לרוב בקע של האובליק הפנימי והטרנסברסוס עם אובליק חיצוני שלם (לא "דנרבציה"). תיקון ראשוני ב-mesh suture; אם יש ניתוק מהמקור – קיבוע לציצת הכסל <b>דרך חורי קידוח</b> (לא עוגני עצם).</p>
+
+<h2><span class="num">9</span> ניהול רקמה רכה ופצעים</h2>
+<ul>
+  <li><b>קודם לסגור את כל הפצעים</b> → הרקמות מתרככות → AWR בשדה נקי CDC 1.</li>
+  <li>סינוס מפריש כרוני – CT לאיתור מעי, ואז הוצאת גוף זר (לעיתים במרפאה).</li>
+  <li>רשת חשופה מזוהמת – הוצאה עם הכנה לכריתת מעי.</li>
+  <li>פצעים כרוניים – דברידמנט ו<b>שתל עור (STSG)</b>; מתלים מקומיים מפתים אך מסכנים <b>פיסטולה אנטרו-קוטנית</b>. סביב פיסטולה – שתל עור כדי שיתאים לשקית סטומה.</li>
+  <li>בטן תחתונה ללא עור לטרלי זמין: <b>ALT פדיקולרי עם fascia lata</b> (קשירת ענף rectus femoris מה-profunda להגדלת טווח).</li>
+  <li>אפיגסטריום – הקשה ביותר: <b>מרחיבי רקמה</b> מעל כלוב הצלעות ורשת מגשרת; מתלה חופשי קשה (אין כלי מקבלים).</li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/-6g6BAnIRI0" title="Fixing Big Hernias: Component Separation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הסבר על component separation לבקעים גדולים – השוואת גישה קדמית ואחורית.</p>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"SPREAD"</span> – פיזור כוחות נגד pull-through</h3>
+  <p><b>S</b> – <span class="term" dir="ltr">Small bites</span> (5–8 מ"מ, יחס 4:1).<br>
+  <b>P</b> – <span class="term" dir="ltr">Prehab &amp; weight loss</span>.<br>
+  <b>R</b> – <span class="term" dir="ltr">Retrorectus mesh</span> (המיקום המועדף).<br>
+  <b>E</b> – <span class="term" dir="ltr">External oblique release</span> / TAR – רק כשיש מתח.<br>
+  <b>A</b> – <span class="term" dir="ltr">A-Botox</span> (150 יח' לצד).<br>
+  <b>D</b> – <span class="term" dir="ltr">Direct (supported) closure</span> – לא bridging.</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני חבית מים (הבטן) עם בוכנה למעלה (הסרעפת). כל פעם שמישהו משתעל – הבוכנה דוחפת והמים לוחצים על דופן החבית. החבית עשויה מלוחות עץ (שרירים) שקשורים בחבל אחד באמצע (linea alba). אם קושרים את החבל בכמה קשרים גדולים ורחוקים – הם קורעים את העץ (pull-through). אם קושרים הרבה קשרים קטנים וצפופים (small bites) – כל קשר נושא חצי מהעומס. וכשהלוחות קצרים מדי מלהגיע לאמצע – מנסר לאורך חגורה חיצונית (anterior release) או פנימית (TAR), ומדביקים מאחור מדבקת רשת (retrorectus). והכי חשוב: החבית הכי רחבה למעלה (אפיגסטריום) – שם המתח הכי גדול (לפלס), ולכן פפננשטיל למטה כמעט אף פעם לא נקרע.</p>
+  <svg class="diagram" viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
+    <title>חבית הלחץ</title>
+    <rect x="160" y="20" width="200" height="22" rx="4" fill="#9ca3af"/>
+    <text x="260" y="36" font-size="11" text-anchor="middle" fill="#111827" font-weight="700">בוכנה = סרעפת</text>
+    <path d="M150,50 L370,50 L340,200 L180,200 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <line x1="260" y1="50" x2="260" y2="200" stroke="#b45309" stroke-width="3"/>
+    <g fill="#b45309"><circle cx="260" cy="70" r="3"/><circle cx="260" cy="85" r="3"/><circle cx="260" cy="100" r="3"/><circle cx="260" cy="115" r="3"/><circle cx="260" cy="130" r="3"/><circle cx="260" cy="145" r="3"/><circle cx="260" cy="160" r="3"/><circle cx="260" cy="175" r="3"/></g>
+    <text x="430" y="70" font-size="11" text-anchor="middle" fill="#b91c1c" font-weight="700">רחב = מתח ↑</text>
+    <text x="430" y="190" font-size="11" text-anchor="middle" fill="#047857" font-weight="700">צר = מתח ↓</text>
+    <text x="90" y="130" font-size="11" text-anchor="middle" fill="#78350f">קשרים קטנים</text>
+    <text x="90" y="146" font-size="11" text-anchor="middle" fill="#78350f">וצפופים</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=Mkg3jbMVMYs" target="_blank">TAR Technique – Dr John P. Fischer</a><span class="tag">YouTube</span><div class="desc">הדגמה ניתוחית של posterior component separation.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=kqAsaq7BrGQ" target="_blank">Transversus abdominis release: Technical tips (SAGES)</a><span class="tag">YouTube</span><div class="desc">טיפים טכניים להרצאה של SAGES.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=-6g6BAnIRI0" target="_blank">Fixing Big Hernias: Component Separation</a><span class="tag">YouTube</span><div class="desc">הסבר מושגי של שחרור רכיבים.</div></li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58, BMI 34, 18 חודשים אחרי לפרוטומיה בקו האמצע לכריתת מעי דק, מתלונן על בליטה גדלה ועצירות חדשה. CT: פגם של 12.7 ס"מ בין הגבולות המדיאליים של הרקטוסים, דיאסטזיס לכל אורך החתך, ללא בקעים לטרליים. אין פצעים פתוחים, אין סטומה. היסטוריה של ניתוח מפרצת אבי העורקים הבטני לפני 5 שנים.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה המיקום המועדף לרשת בתיקון הבקע שלו?</div>
+  <button class="opt" data-i="0">Intraperitoneal (IPOM) עם רשת מצופה</button>
+  <button class="opt" data-i="1">Retrorectus עם רשת פוליפרופילן מקרופורוזית לא מצופה</button>
+  <button class="opt" data-i="2">Onlay מעל הפאסיה הקדמית</button>
+  <button class="opt" data-i="3">רשת e-PTFE מגשרת</button>
+  <div class="explain">הרטרו-רקטלי הוא "סנדוויץ'" שמזרז שילוב פיברו-וסקולרי; רשת מצופה בחלל זה מעלה סיבוכים. IPOM משתלב רק מצד אחד, onlay → סרומות, ו-e-PTFE נעטף ומתקמט, ו-bridging מגדיל חזרות.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. בגלל הפגם של 12.7 ס"מ והדופן הקשיחה נדרש שחרור רכיבים. מה החשש המיוחד בשחרור קדמי קלאסי אצלו?</div>
+  <button class="opt" data-i="0">פגיעה בעצב הפמורלי</button>
+  <button class="opt" data-i="1">בקע לטרלי מיידי בכל מקרה</button>
+  <button class="opt" data-i="2">צורך ברשת של 1200 סמ"ר</button>
+  <button class="opt" data-i="3">נמק עור מלא בגלל הרמת מתלים רחבה, במיוחד אחרי ניתוח מפרצת עם אובדן כלי לומבריים – לכן שחרור עם שימור פרפורטורים או TAR</button>
+  <div class="explain">הפרק מביא דוגמה של נמק עור מלא אחרי anterior release ללא שימור פרפורטורים. רשת ענקית אופיינית ל-TAR, לא לקדמי.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה צעד טרום-ניתוחי מפחית את המתח בסגירה?</div>
+  <button class="opt" data-i="0">Onabotulinumtoxin A ~150 יחידות לכל צד בשרירים הלטרליים בהנחיית הדמיה</button>
+  <button class="opt" data-i="1">מתן סטרואידים סיסטמיים</button>
+  <button class="opt" data-i="2">דיאטה עתירת חלבון בלבד</button>
+  <button class="opt" data-i="3">חגורת בטן הדוקה לחודש</button>
+  <div class="explain">בוטוקס מרפה זמנית את השרירים הלטרליים (מעכב שחרור אצטילכולין) ומאריך אותם; יחד עם ירידה במשקל ופנאומופריטונאום (להחזרת domain) הוא מפחית pull-through.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. לפי המחקר המצוטט, מה מנבא בקע חתך אחרי לפרוטומיה?</div>
+  <button class="opt" data-i="0">סוג חומר התפר (נספג מול קבוע)</button>
+  <button class="opt" data-i="1">הופעת בקע אחרי שנה בלבד</button>
+  <button class="opt" data-i="2">פער של יותר מ-12 מ"מ בין הרקטוסים ביום 30 (17/18 פיתחו בקע)</button>
+  <button class="opt" data-i="3">שיעור SSI בלבד</button>
+  <div class="explain">"The die is cast" – אירועים מכניים ב-30 הימים הראשונים. חומר התפר לא משנה שיעור בקע (אך PDS מפחית סינוסים). SSI הוא גורם סיכון, אבל הפער הוא המנבא הישיר שתואר.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. למה small bites (5–8 מ"מ) מפחיתות בקע ב-~50%?</div>
+  <button class="opt" data-i="0">כי הן חוסמות זיהום</button>
+  <button class="opt" data-i="1">כי הן מכפילות את נקודות האחיזה ומחלקות את הכוח לכל נקודה בחצי – פחות pull-through</button>
+  <button class="opt" data-i="2">כי הן תופסות יותר שריר</button>
+  <button class="opt" data-i="3">כי הן מקצרות את זמן הניתוח</button>
+  <div class="explain">אותו עיקרון כמו ריבוי גדילים בתיקון גיד כופף. היחס תפר:פצע 4:1 הוא חלק מהפרוטוקול.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">6. מטופלת עם בליטה בבטן התחתונה אחרי שחזור שד ב-DIEP דו-צדדי. איזו גישה מתאימה במיוחד לפי הפרק?</div>
+  <button class="opt" data-i="0">ליפוסקשן בלבד</button>
+  <button class="opt" data-i="1">Onlay ביולוגי</button>
+  <button class="opt" data-i="2">Posterior components release (TAR) עם רשת, תוך שימוש בחתך הרוחבי הקודם לתפרים טרנס-פאסיאליים</button>
+  <button class="opt" data-i="3">מעקב בלבד – לעולם לא מתקנים</button>
+  <div class="explain">הפרק מציין שה-TAR שימושי במיוחד לבליטות אחרי שחזור שד מבוסס בטן; החתך הרוחבי מאפשר גישה לקצה הרשת ולמשוך את האובליקים חזרה לקו האמצע.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>בטן = גליל בלחץ; בקע כשהכוחות הצנטריפטליים נכשלים; גדל עם הזמן → loss of domain. לפלס: מתח גבוה באפיגסטריום.</li>
+    <li>בקע חתך 11–23%; מנגנון מכני: pull-through → פער &gt;12 מ"מ ביום 30 → בקע.</li>
+    <li>סגירה: small bites 5–8 מ"מ, יחס 4:1 (−50% בקע); PDS (פחות סינוסים); PMA.</li>
+    <li>בקע חתך: תפר לבד נכשל (63% מול 32% ב-10 שנים) → סגירה ראשונית + רשת תומכת; לא bridging.</li>
+    <li>רשת מועדפת: פוליפרופילן מקרופורוזי (&gt;1 מ"מ) לא מצופה ב-retrorectus (אצל המחבר – 7.5 ס"מ).</li>
+    <li>מתח (&gt;6–8 ס"מ): Botox 150 יח'/צד, ירידה במשקל, פנאומופריטונאום; anterior release עם שימור פרפורטורים (מהיר) או TAR (רשת ענקית, מתאים לבליטה אחרי DIEP).</li>
+    <li>מזוהם: אין תשובה אחת – קבועה (SSI 14%, בקע 15%), ביולוגית, נספגת, mesh suture (בקע 6%).</li>
+    <li>פצעים: קודם לסגור (STSG); להיזהר מפיסטולה; ALT פדיקולרי לבטן התחתונה; מרחיבים לאפיגסטריום.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

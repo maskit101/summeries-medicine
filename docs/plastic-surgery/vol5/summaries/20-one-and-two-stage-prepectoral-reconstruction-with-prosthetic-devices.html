@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 20: שחזור שד פרה-פקטורלי בשלב אחד ובשני שלבים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 20: שחזור שד פרה-פקטורלי בשלב אחד ובשני שלבים עם שתלים <span class="term" dir="ltr">One- and Two-Stage Prepectoral Reconstruction with Prosthetic Devices</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast, מהדורה 5, פרק 20 | Rancati, Angrigiani, Nava, Thekkinkattil, Vidya, Irigo, Rancati, Gabriel, Maxwell</div>
+
+<p>שחזור מבוסס שתל הוא השיטה המובילה לשחזור מיידי אחרי כריתת שד, עם מגמה ל<b>שתל ישיר (<span class="term" dir="ltr">DTI – direct-to-implant</span>)</b>. באופן מסורתי השתל הונח <b>מתחת</b> לפקטורליס מייג'ור; היום, בזכות שורה של התקדמויות, חוזרים ומניחים אותו <b>מעל השריר – במישור הפרה-פקטורלי</b>. הפרק מחולק לשניים: DTI בשלב אחד (עם סיווג כיסוי הרקמה BTCC) ושחזור בשני שלבים (מרחיב → שתל) עם ADM.</p>
+
+<h2><span class="num">1</span> "מעגל מלא" – למה חזרנו מעל השריר</h2>
+<div class="mechanism">
+  <p class="chain">שנות ה-60: שתל תת-עורי מתחת למתלה דק (אחרי כריתה רדיקלית) → bottoming out, נדידה, rippling, נמק עור, התכווצות קופסית → נטישה → מעבר לתת-שרירי/dual plane → בעיות חדשות (animation, כאב, עוויתות, פגיעה תפקודית) → <b>חזרה לפרה-פקטורלי מודרני</b>.</p>
+  <p><b>חמש ההתקדמויות שאפשרו את החזרה:</b></p>
+  <ol>
+    <li>כריתות חוסכות עור ופטמה (SSM/NSM) → מתלים מאוורים טובים יותר.</li>
+    <li>מכשירי הערכת פרפוזיה בזמן אמת (ICG angiography, למשל SPY).</li>
+    <li>ADM ורשתות – שכבת כיסוי ותמיכה נוספת.</li>
+    <li>שתלי ג'ל בעלי לכידות גבוהה (<span class="term" dir="ltr">highly cohesive / form-stable</span>) – פחות rippling.</li>
+    <li>השתלת שומן עצמי – מסווה rippling ונראות.</li>
+  </ol>
+  <p><b>למה פרה-פקטורלי?</b> שומר על שלמות הפקטורליס → <b>מבטל כמעט לגמרי animation deformity</b>, פחות כאב ועוויתות, שימור אדוקציה/רוטציה פנימית של הזרוע, ומיקום אנטומי כמו השד הטבעי (שנמצא <i>מעל</i> השריר). ניתוח קצר יותר, לעיתים שחרור אחרי 1–2 שעות או לילה-שניים.</p>
+</div>
+
+<h2><span class="num">2</span> אנטומיה: למה המתלה הוא הכל</h2>
+<div class="mechanism">
+  <p class="chain">מקלעת כלי הדם שמזינה את המתלה ואת ה-NAC עוברת <b>בין רצועות Cooper לעור</b> (שומן תת-עורי + דרמיס) → לחץ השתל, מתח בסגירה, נזק תרמי או מתלה דק מדי → דחיסת המקלעת → איסכמיה בקצוות → נמק → חשיפת שתל, זיהום, כישלון.</p>
+  <p>בפרה-פקטורלי <b>אין שריר בין השתל לעור</b> – לכן איכות המתלה היא "הדרישה החשובה ביותר". דווחו שיעורי נמק עור/פטמה עד 38% ב-NSM.</p>
+</div>
+<table>
+  <thead><tr><th>כלי דם</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>פרפורטור בין-צלעי 2 (מ-IMA)</td><td>דומיננטי ב-&gt;60% – מגיע ל-NAC</td></tr>
+    <tr><td>פרפורטור בין-צלעי קדמי 5 (<span class="term" dir="ltr">AICAP</span>)</td><td>חשוב ל-NAC ולעור התחתון</td></tr>
+    <tr><td>Lateral thoracic artery</td><td>אספקה לטרלית בתת-עור</td></tr>
+  </tbody>
+</table>
+<p><b>חתך:</b> פריאריאולרי = גורם סיכון לנמק פטמה ב-NSM; <b>IMF או לטרלי – פחות נמק</b>. המלצת המחברים: שד קטן בלי גידול ברביע העליון-חיצוני → IMF; אחרת → לטרלי. <b>אם הפטמה נמקה – אין יתרון ל-NSM.</b></p>
+
+<h2><span class="num">3</span> שלב אחד (DTI) – סיווג BTCC</h2>
+<p>ממוגרפיה <b>דיגיטלית</b> (בניגוד לפילם) מבדילה בין צפיפות הבלוטה לשכבת הכיסוי (עור + שומן עד רצועות Cooper) – ומאפשרת למדוד את עובי הכיסוי <b>לפני</b> הניתוח. הכיסוי <b>אינו תלוי בנפח השד</b> – שד גדול יכול להיות עם כיסוי דל ולהיפך.</p>
+<table>
+  <thead><tr><th>BTCC</th><th>עובי כיסוי</th><th>המלצה</th></tr></thead>
+  <tbody>
+    <tr><td>Type 1</td><td>&lt;1 ס"מ – דל</td><td>כיסוי נוסף: ADM/רשת, מיקום רטרו-פקטורלי, השתלת שומן מאוחרת</td></tr>
+    <tr><td>Type 2</td><td>1–2 ס"מ – בינוני</td><td>שני שלבים (מרחיב → שתל) כדי למנוע מתח בסגירה</td></tr>
+    <tr><td>Type 3</td><td>&gt;2 ס"מ – טוב</td><td><b>DTI פרה-פקטורלי בשלב אחד, אפשר ללא רשת</b></td></tr>
+  </tbody>
+</table>
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>החלטה לפי BTCC</title>
+  <rect x="680" y="75" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="765" y="103" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">ממוגרפיה דיגיטלית</text>
+  <text x="765" y="123" font-size="11" text-anchor="middle" fill="#1e3a8a">עור ← רצועות Cooper</text>
+  <line x1="680" y1="110" x2="560" y2="40" stroke="#374151" stroke-width="2"/><polygon points="552,35 564,34 558,45" fill="#374151"/>
+  <line x1="680" y1="110" x2="560" y2="110" stroke="#374151" stroke-width="2"/><polygon points="550,110 560,104 560,116" fill="#374151"/>
+  <line x1="680" y1="110" x2="560" y2="180" stroke="#374151" stroke-width="2"/><polygon points="552,185 558,175 564,186" fill="#374151"/>
+  <rect x="300" y="12" width="250" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="425" y="33" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">Type 1: &lt;1 ס"מ</text>
+  <text x="425" y="51" font-size="11" text-anchor="middle" fill="#7f1d1d">ADM/רשת · רטרו-פקטורלי · שומן</text>
+  <rect x="300" y="85" width="250" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="425" y="106" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">Type 2: 1–2 ס"מ</text>
+  <text x="425" y="124" font-size="11" text-anchor="middle" fill="#78350f">שני שלבים: מרחיב ← שתל</text>
+  <rect x="300" y="158" width="250" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="425" y="179" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">Type 3: &gt;2 ס"מ</text>
+  <text x="425" y="197" font-size="11" text-anchor="middle" fill="#065f46">DTI פרה-פקטורלי, גם בלי רשת</text>
+  <text x="140" y="100" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">+ תמיד: אישור פרפוזיה</text>
+  <text x="140" y="120" font-size="12" text-anchor="middle" fill="#374151">בחדר הניתוח (קליני/ICG)</text>
+</svg>
+<p class="figcap">איור 1: עץ החלטה לפי Breast Tissue Coverage Classification (החיצים מימין לשמאל).</p>
+<h3>אינדיקציות וטכניקה (DTI)</h3>
+<ul>
+  <li>אינדיקציות = כמו ב-DTI תת-פקטורלי: עור איכותי, פרפוזיה מצוינת, פטוזיס וגודל קלים-בינוניים; בשדיים גדולים ופטוטיים – skin-reducing mastectomy בזהירות.</li>
+  <li>דיסקציה במישור ה-<b>Scarpa/fascia superficialis</b> במספריים קהות אחרי <b>הזרקת Klein</b> (~250 סמ"ק לשד) – <b>הידרודיסקציה</b> מונעת נזק תרמי ומשמרת את המקלעת; רק אז קאוטר להפרדת הבלוטה מהפקטורליס.</li>
+  <li><b>הידרודיסקציה מתחת ל-NAC</b> – מאפשרת הסרה מלאה של רקמה ודוקטים (חשוב ב-BRCA); <b>ביופסיה רטרו-אריאולרית</b> – חובה לבטיחות אונקולוגית.</li>
+  <li>שקילת הבלוטה → בחירת שתל (לרוב אנטומי) בנפח דומה.</li>
+</ul>
+<h3>רשתות ב-DTI</h3>
+<table>
+  <thead><tr><th>שיטה</th><th>פרטים</th></tr></thead>
+  <tbody>
+    <tr><td>עטיפה מלאה ברשת מעוצבת – <span class="term" dir="ltr">Braxon</span></td><td>ADM חזירי לא-מוצלב, 0.6 מ"מ, לשתלים עד 500 סמ"ק; עוטפים ותופרים (Vicryl 2-0), מניחים על הפקטורליס ומעגנים אפיקלית, מדיאלית, לטרלית. <b>iBAG audit: 1450 פרוצדורות, 6 שנים – איבוד שתל 6.1%, התכווצות קופסית 2.1%</b></td></tr>
+    <tr><td>עטיפה מלאה ביריעה שטוחה</td><td>360° סביב השתל (יריעה אחת או שתיים), כיס מעוגן לדופן ול-IMF – שליטה בצורה ובפטוזיס</td></tr>
+    <tr><td>עטיפה קדמית בלבד</td><td>אפשרית, מעט נתונים</td></tr>
+  </tbody>
+</table>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/UYLXE12wb4U" title="Braxon Acellular Dermal Matrix (ADM) for mastectomy & breast implant reconstruction" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הדגמת Braxon – מטריצה דרמלית מעוצבת שעוטפת את השתל לפני הנחתו במישור הפרה-פקטורלי.</p>
+
+<h2><span class="num">4</span> בחירת מטופלות – התוויות נגד (Sigalove/Maxwell)</h2>
+<table>
+  <thead><tr><th></th><th>התוויות נגד מוחלטות לשחזור פרה-פקטורלי מיידי</th><th>התוויות נגד "שאלה"</th></tr></thead>
+  <tbody>
+    <tr><td>שחזורי</td><td><b>מתלים איסכמיים/לא מאוורים · HbA1c &gt;7.5% · עישון פעיל</b> (שלושתם פוגעים במתלה)</td><td>BMI &gt;40 <b>עם</b> תחלואה נלווית (BMI לבד אינו התווית נגד) · קרינה קודמת לשד · חוסר אתרי תרומת שומן</td></tr>
+    <tr><td>אונקולוגי</td><td><b>אי יכולת להשיג שוליים נקיים · מעורבות עור נרחבת · מעורבות דופן בית החזה · סרטן דלקתי</b></td><td>קשריות בית שחי נמושות/מודבקות · שלב III/IV · סיכון גבוה לחזרה</td></tr>
+  </tbody>
+</table>
+<p class="key-box"><b>קרינה קודמת</b> (לפני השחזור) – בד"כ לא מציעים שחזור מיידי בשתל (פיברוזיס, הרחבה = פריצת עור). <b>PMRT</b> (קרינה אחרי כריתה) <b>אינה</b> התווית נגד – אך יותר סיבוכים קצרים וארוכי טווח.</p>
+<p><b>דחיית שחזור:</b> לאפשר למתלה להחלים; <b>לשפר HbA1c ל-≤7.5%</b>; <b>הפסקת עישון לפחות חודשיים</b>; טיפול נאו-אדג'ובנטי. אחרי קרינה בלי רצון במתלה חופשי – latissimus + מרחיב פרה-פקטורלי בשני שלבים.</p>
+
+<h2><span class="num">5</span> שני שלבים – טכניקה צעד אחר צעד</h2>
+<h3>א. הערכת המתלה בחדר ניתוח</h3>
+<ul>
+  <li>אובייקטיבית: <b>ICG angiography</b> – זרימה עורקית ורידית בזמן אמת; כריתת אזורים לא מאוורים.</li>
+  <li>קלינית: דימום עורקי <b>וורידי</b> בשולי החתך + שכבת שומן סבירה מתחת לעור (= מקלעת תת-דרמלית שמורה). <b>דרמיס נראה לעין</b> מתחת למתלה = מתלה דק מדי.</li>
+  <li><b>עובי אינו תחליף לחיוּת</b> – חשוב במיוחד בשמנות עם מתלים עבים.</li>
+</ul>
+<h3>ב. ניהול הכיס</h3>
+<ul>
+  <li>השתל חייב <b>להתאים בדיוק</b> לכיס: קטן מדי → חלל מת (סרומה) ועודף עור (rippling); גדול מדי → לחץ על המתלה → נמק.</li>
+  <li>סימון "טביעת רגל" (גבולות מדיאלי/לטרלי ו-IMF) מבחוץ ומבפנים.</li>
+  <li>בשמנות: <b>קיבוע שומן לטרלי לקו בית השחי הקדמי</b> וקיבוע השומן העליון כלפי מטה → מקטין חלל מת וסרומה, ויוצר מעבר חלק לקוטב העליון (יתרון ייחודי לפרה-פקטורלי; ב-dual plane מתעלמים מהאזור העליון).</li>
+</ul>
+<h3>ג. ADM</h3>
+<ul>
+  <li>ה-ADM <b>מחליף את תפקיד הפקטורליס</b> – מכסה את כל הפנים הקדמיות; מפחית bottoming out, extrusion, IMF malposition, rippling, נראות, ולאורך זמן גם התכווצות קופסית ומיקום לקוי. (שימוש ב-ADM בשד – off-label ב-FDA; מבנים "עטופים" מוכנים מראש לא מאושרים ב-FDA.)</li>
+  <li>יריעה מחוררת ~16×20 ס"מ לכל שד. חתך IMF/לטרלי: מקבעים לפקטורליס מלמעלה ויורדים, לטרלית לפאסיית הסראטוס; השתל נכנס מתחת ומקובע לפקטורליס ב-suture tabs; <b>"שרוול" 3–4 ס"מ</b> מתחת לשתל שמעוגן לדופן ויוצר את ה-IMF ומונע bottoming out.</li>
+</ul>
+<h3>ד. מרחיב</h3>
+<ul>
+  <li>מילוי חלקי <b>50–70%</b> בסליין או <b>אוויר</b> (off-label, מועדף על המחבר – קל יותר, פחות לחץ על המתלה התחתון ופחות pull-through). בסוף ההרחבה מחליפים לסליין.</li>
+  <li>לא ליצור חלל מת – <b>מגע בין ה-ADM לעור הכרחי</b> לרה-וסקולריזציה ואינטגרציה; ADM לא מתוח (מרווח להרחבה). בשלב אחד – ADM מתוח.</li>
+  <li>בסיס המרחיב <b>0.5–2 ס"מ צר יותר</b> מהשתל הסופי.</li>
+</ul>
+<h3>ה. נקזים, עור, אספסיס</h3>
+<ul>
+  <li>2 נקזים בין ה-ADM לעור; הוצאה כש-&lt;30 סמ"ק/24 ש' (עד 1–2 שבועות).</li>
+  <li>עודף עור בשמנות: סגירה אופקית ארוכה – פחות אסתטית; עדיף <b>גישה "מסטופקסית"</b>: כריתה פריאריאולרית עם הסרת NAC, tailor-tacking אנכי, והפיכה ל-T הפוך אם הסגירה האנכית &gt;9–10 ס"מ; <b>מתלה דרמלי תחתון מדה-אפיתל</b> מעל ה-ADM – שכבה נוספת שמגינה על המרחיב אם יש dehiscence.</li>
+  <li><b>שטיפה משולשת</b>: Cefazolin 1 ג' + Gentamicin 80 מ"ג + Bacitracin 50,000 IU ב-500 סמ"ק סליין; שוטפים את הכיס (פעמיים) ואת השתל; החלפת כפפות; מזעור מגע בשתל; אנטיביוטיקה סביב הניתוח.</li>
+</ul>
+<h3>ו. שתל והחלפה</h3>
+<ul>
+  <li>שתל <b>form-stable, highly cohesive או high-fill</b> – פחות rippling.</li>
+  <li>החלפה ~<b>3 חודשים</b> (ללא קרינה) או <b>3–6 חודשים אחרי קרינה</b>; גישה עדיפה דרך IMF.</li>
+  <li>אחרי ניתוח: NPWT על החתך (וגם על ה-NAC ב-NSM), חזייה לוחצת 4–6 שבועות, הרחבה שבועית אחרי הוצאת נקזים, ללא מאמץ 6 שבועות.</li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/lv8w0dj3k-4" title="Direct To Implant Prepectoral Breast Reconstruction Using AlloMend Dermal Matrix" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">שחזור פרה-פקטורלי DTI עם מטריצה דרמלית – הדגמת עטיפת השתל והנחתו מעל הפקטורליס.</p>
+
+<h2><span class="num">6</span> סיבוכים – "סף התערבות נמוך"</h2>
+<p>בפרה-פקטורלי אין שריר מגן → סיכון גבוה יותר ל-extrusion מנמק עור. לכן מתערבים <b>מוקדם ובאגרסיביות</b>.</p>
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם שד אדום</title>
+  <rect x="720" y="70" width="130" height="50" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="785" y="100" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">שד אדום</text>
+  <line x1="720" y1="95" x2="660" y2="95" stroke="#374151" stroke-width="2"/><polygon points="650,95 660,89 660,101" fill="#374151"/>
+  <rect x="530" y="70" width="120" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="590" y="100" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">US</text>
+  <line x1="530" y1="95" x2="470" y2="45" stroke="#374151" stroke-width="2"/><polygon points="462,38 474,39 467,49" fill="#374151"/>
+  <line x1="530" y1="95" x2="470" y2="145" stroke="#374151" stroke-width="2"/><polygon points="462,152 467,141 474,151" fill="#374151"/>
+  <rect x="270" y="15" width="190" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="365" y="36" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">סרומה +</text>
+  <text x="365" y="54" font-size="11" text-anchor="middle" fill="#78350f">ניקוז (IR) + אנטיביוטיקה PO</text>
+  <rect x="270" y="125" width="190" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="365" y="146" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">סרומה −</text>
+  <text x="365" y="164" font-size="11" text-anchor="middle" fill="#78350f">אנטיביוטיקה PO</text>
+  <line x1="270" y1="95" x2="230" y2="95" stroke="#374151" stroke-width="2"/><polygon points="220,95 230,89 230,101" fill="#374151"/>
+  <text x="365" y="100" font-size="11" text-anchor="middle" fill="#374151">הערכה אחרי 48 ש'</text>
+  <rect x="10" y="55" width="210" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="78" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">שיפור → להמשיך PO</text>
+  <text x="115" y="98" font-size="11" text-anchor="middle" fill="#4c1d95" font-weight="700">ללא שיפור → IV + ניתוח:</text>
+  <text x="115" y="118" font-size="10" text-anchor="middle" fill="#4c1d95">הוצאת שתל+ADM, שטיפה, מרחיב "עירום"</text>
+</svg>
+<p class="figcap">איור 2: אלגוריתם "שד אדום" (Sigalove 2017). ה-ADM מוצא כולו – מקור אפשרי לביופילם; ADM חדש יוכנס רק בשלב השני.</p>
+<ul>
+  <li><b>נמק עור</b> – כל דרגה מטופלת בדחיפות: קל/בינוני – במרפאה (דברידמנט/כריתה, שטיפה משולשת, סגירה); חמור – בחדר ניתוח עם החלפת שתל. בזכות הטיפול האגרסיבי בקל – חמור נדיר.</li>
+  <li>סיבוכים ייחודיים שכיחים: נמק NAC, <b>rippling</b>.</li>
+</ul>
+
+<h2><span class="num">7</span> השתלת שומן – "חלק בלתי נפרד"</h2>
+<ul>
+  <li>הפרוצדורה המשלימה השכיחה ביותר: נפח, קונטור, הסוואת rippling ונראות בקוטב העליון, שיפור "גלישה" של הכיס. גם שמנות צריכות לעיתים (מדרגה בקוטב העליון).</li>
+  <li>בשני שלבים – בד"כ <b>כשלב שלישי</b> (אחרי שהכיס והקפסולוטומיות התייצבו), אפשר בשלב השני אם לא נגעו בכיס. ב-DTI – תמיד בשלב נפרד.</li>
+  <li>אחרי קרינה על שתל – בד"כ 3–6 חודשים אחרי; אבל נתונים מראים ש<b>השתלה מוקדמת (למשל 6 שבועות אחרי קרינת מרחיב)</b> מנעה כיבים וחשיפת שתל – לפני שהפיברוזיס מתקדם.</li>
+</ul>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: התוויות נגד מוחלטות – <span dir="ltr">"FISH"</span> + <span dir="ltr">"MICE"</span></h3>
+  <p><b>שחזורי – FISH:</b> <b>F</b>laps ischemic · <b>I</b>nsulin/HbA1c &gt;7.5 · <b>S</b>moking · (<b>H</b> – "Hold: delay!")<br>
+  <b>אונקולוגי – MICE:</b> <b>M</b>argins not clear · <b>I</b>nflammatory cancer · <b>C</b>hest wall involvement · <b>E</b>xtensive skin involvement</p>
+  <h3>BTCC: "1-2-3 = מגן-מרחיב-מיד"</h3>
+  <p>Type <b>1</b> → צריך <b>מגן</b> (ADM/שריר/שומן) · Type <b>2</b> → <b>מרחיב</b> · Type <b>3</b> → <b>מיד</b> (DTI).</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שמיכת פוך (מתלה הכריתה) מעל כרית אוויר (השתל). פעם הכרית הונחה מתחת למזרן (השריר) – אבל כל פעם שישנה התהפכה, המזרן זז והכרית קפצה (animation). היום שמים את הכרית מעל המזרן, מתחת לשמיכה. אבל: אם השמיכה דקה (Type 1) – רואים כל קפל בכרית (rippling), אז עוטפים אותה בציפה (ADM) ומוסיפים פוך (שומן). אם הכרית גדולה מדי – השמיכה נקרעת (נמק). ואם השמיכה מתחילה להאדים – לא מחכים! שולפים את הכרית והציפה ושוטפים הכל בשלושה שמפו (cefazolin, gentamicin, bacitracin).</p>
+  <svg class="diagram" viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg">
+    <title>כרית מעל המזרן</title>
+    <rect x="40" y="140" width="440" height="30" rx="6" fill="#fca5a5" stroke="#b91c1c"/>
+    <text x="260" y="160" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">מזרן = פקטורליס (לא נוגעים)</text>
+    <ellipse cx="260" cy="115" rx="130" ry="26" fill="#e0e7ff" stroke="#4338ca" stroke-width="2"/>
+    <text x="260" y="120" font-size="12" text-anchor="middle" fill="#312e81" font-weight="700">כרית = שתל בציפת ADM</text>
+    <path d="M110,110 Q260,40 410,110" fill="none" stroke="#b45309" stroke-width="10" stroke-linecap="round" opacity="0.7"/>
+    <text x="260" y="45" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">שמיכה = מתלה (עבה? → DTI)</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=lv8w0dj3k-4" target="_blank">Direct To Implant Prepectoral Breast Reconstruction Using AlloMend</a><span class="tag">YouTube</span><div class="desc">DTI פרה-פקטורלי עם ADM.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=UYLXE12wb4U" target="_blank">Braxon ADM for mastectomy &amp; implant reconstruction</a><span class="tag">YouTube</span><div class="desc">עטיפה מלאה במטריצה מעוצבת.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9605327/" target="_blank">Prepectoral Breast Reconstruction without ADM: Have We Come Full Circle? (PMC)</a><div class="desc">סקירה על השימוש (ואי-השימוש) ב-ADM בפרה-פקטורלי.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 45, נשאית BRCA1, DCIS בשד שמאל, מתוכננת ל-NSM דו-צדדית. שדיים בגודל C, פטוזיס קל. לא מעשנת, HbA1c 5.6%. ממוגרפיה דיגיטלית: כיסוי תת-עורי 2.4 ס"מ דו-צדדית. אין קרינה קודמת. בחדר הניתוח, אחרי הכריתה דרך חתך IMF, ה-ICG מראה פרפוזיה טובה. בשבוע השני – אודם וחום בשד ימין.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. לפי BTCC, מהו השחזור המתאים לה?</div>
+  <button class="opt" data-i="0">שני שלבים עם מרחיב, כי השד בגודל C</button>
+  <button class="opt" data-i="1">שחזור תת-פקטורלי בלבד</button>
+  <button class="opt" data-i="2">Type 3 (&gt;2 ס"מ) – DTI פרה-פקטורלי בשלב אחד, אפשר אף ללא רשת</button>
+  <button class="opt" data-i="3">דחיית שחזור</button>
+  <div class="explain">כיסוי 2.4 ס"מ = Type 3. ההחלטה לפי עובי הכיסוי ולא לפי נפח השד (מסיח 1). אין התוויות נגד לדחייה.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. מדוע הממוגרפיה הדיגיטלית חשובה כאן יותר מנפח השד?</div>
+  <button class="opt" data-i="0">כי היא מודדת את המרחק עור–רצועות Cooper, שבו עוברת המקלעת שמזינה את המתלה, והוא אינו תלוי בנפח</button>
+  <button class="opt" data-i="1">כי היא מאתרת BRCA</button>
+  <button class="opt" data-i="2">כי היא מחליפה את ה-ICG בחדר הניתוח</button>
+  <button class="opt" data-i="3">כי ממוגרפיית פילם טובה יותר לכך</button>
+  <div class="explain">הכיסוי והנפח הם גורמים בלתי תלויים; פילם אינו מבדיל היטב את שכבת הכיסוי. ההערכה התוך-ניתוחית עדיין נחוצה.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. בשבוע השני: שד ימין אדום. US מראה סרומה. מה הצעד הבא?</div>
+  <button class="opt" data-i="0">מעקב בלבד</button>
+  <button class="opt" data-i="1">הוצאה מיידית של השתל ללא ניסיון שמרני</button>
+  <button class="opt" data-i="2">אנטיביוטיקה IV בלבד ללא ניקוז</button>
+  <button class="opt" data-i="3">ניקוז (בהנחיית IR) + אנטיביוטיקה PO, והערכה חוזרת אחרי 48 שעות</button>
+  <div class="explain">לפי אלגוריתם השד האדום. אם אין שיפור ב-48 ש' → IV + ניתוח: הוצאת שתל ו-ADM (ביופילם), שטיפה משולשת, מרחיב "עירום".</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. איזו מהבאות היא התווית נגד מוחלטת לשחזור פרה-פקטורלי מיידי?</div>
+  <button class="opt" data-i="0">BMI 42 ללא תחלואה נלווית</button>
+  <button class="opt" data-i="1">HbA1c 8.1%</button>
+  <button class="opt" data-i="2">צורך צפוי ב-PMRT</button>
+  <button class="opt" data-i="3">חוסר אתרי תרומת שומן</button>
+  <div class="explain">HbA1c &gt;7.5% – מוחלטת (יחד עם עישון פעיל ומתלים איסכמיים). BMI &gt;40 רק עם תחלואה נלווית, וחוסר שומן – "שאלה". PMRT אינה התווית נגד.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. למה המחבר מעדיף למלא את המרחיב באוויר בשלב הראשון?</div>
+  <button class="opt" data-i="0">כי אוויר מאושר FDA למטרה זו</button>
+  <button class="opt" data-i="1">כי אוויר מונע התכווצות קופסית לצמיתות</button>
+  <button class="opt" data-i="2">אוויר קל מסליין – פחות לחץ על המתלה התחתון ופחות pull-through; מוחלף לסליין בסוף ההרחבה</button>
+  <button class="opt" data-i="3">כי אין צורך בהרחבה נוספת</button>
+  <div class="explain">מילוי באוויר הוא off-label. המרחיב ממולא ל-50–70% בלבד כדי להפחית לחץ על המתלה, אך בלי ליצור חלל מת בין ה-ADM לעור.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. מה תפקיד "השרוול" של 3–4 ס"מ ADM מתחת לשתל?</div>
+  <button class="opt" data-i="0">לחזק ולהגדיר את ה-IMF, לייצב את השתל ולמנוע bottoming out</button>
+  <button class="opt" data-i="1">לנקז סרומה</button>
+  <button class="opt" data-i="2">להחליף את הצורך בנקזים</button>
+  <button class="opt" data-i="3">לכסות את ה-NAC</button>
+  <div class="explain">השרוול מקובע לדופן בית החזה ויוצר את הקפל; הנקזים (2) עדיין נחוצים, במיוחד עם יריעות ADM גדולות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>פרה-פקטורלי = "מעגל מלא"; אפשרי בזכות NSM/SSM, ICG, ADM, שתלים קוהסיביים, השתלת שומן. מבטל animation, פחות כאב.</li>
+    <li>המקלעת בין Cooper לעור → המתלה הוא הכל. פרפורטור בין-צלעי 2 (&gt;60%), AICAP 5, lateral thoracic. חתך IMF/לטרלי עדיף על פריאריאולרי.</li>
+    <li>BTCC (ממוגרפיה דיגיטלית): &lt;1 ס"מ ADM/שריר/שומן · 1–2 שני שלבים · &gt;2 DTI בלי רשת. לא תלוי בנפח.</li>
+    <li>התוויות נגד מוחלטות: מתלה איסכמי, HbA1c &gt;7.5%, עישון; שוליים, סרטן דלקתי, דופן, עור נרחב. PMRT אינה התווית נגד; קרינה קודמת – בד"כ כן.</li>
+    <li>Braxon: iBAG – איבוד 6.1%, קונטרקטורה 2.1%.</li>
+    <li>שני שלבים: ADM ~16×20, שרוול 3–4 ס"מ ל-IMF; מרחיב 50–70% (אוויר), בסיס צר ב-0.5–2 ס"מ; 2 נקזים (&lt;30 סמ"ק); שטיפה משולשת Cefazolin/Gentamicin/Bacitracin; החלפה ~3 חו' (3–6 אחרי קרינה).</li>
+    <li>שד אדום → US → ניקוז+PO / PO → 48 ש' → אין שיפור: IV + הוצאת שתל ו-ADM, מרחיב עירום.</li>
+    <li>שומן – כמעט תמיד, לרוב שלב שלישי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
