@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 10: CT ו-MRI של המוח</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 10: CT ו-MRI של המוח <span class="term" dir="ltr">Computed Tomography and Magnetic Resonance Imaging of the Brain</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 4 - Overview of Radiology | מאת Aleksandrs Uldis Kalnins, Robert W. Prost, Thomas A. Kim</div>
+
+<p>שתי המכונות שהנוירוכירורג "חי" בהן: <span dir="ltr" class="term">CT</span> - מהיר, זמין, <b>הבדיקה הראשונה והטובה ביותר לדם חריף ולשברים</b>; ו-<span dir="ltr" class="term">MRI</span> - ניגודיות רקמה עדיפה, רב-מישורי, ועם רצפים מתקדמים (<span dir="ltr" class="term">DWI, Perfusion, MRS, fMRI, DTI</span>) שנותנים <b>פיזיולוגיה</b> ולא רק אנטומיה. הפרק עובר מהפיזיקה הבסיסית (למה מימן? מה זה T1 ו-T2?) אל היישום הקליני: גידולים, זיהומים, שבץ, טראומה, מלפורמציות וסקולריות ואפילפסיה.</p>
+
+<h2><span class="num">1</span> מנגנון: איך נוצרת התמונה - מקרן רנטגן ומפרוטון מסתובב</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>CT - הנחתה (Attenuation):</b> קרן רנטגן מסתובבת סביב הראש → גלאים מודדים כמה קרינה "נבלעה" בכל כיוון → מחשב משחזר מפה של צפיפות ביחידות <span dir="ltr" class="term">Hounsfield (HU)</span>: אוויר -1000, שומן כ-100-, מים 0, מוח 30-40, <b>דם חריף 50-70</b>, עצם 1000+. <br>
+    → <b>למה דם טרי לבן (היפרדנסי)?</b> כי קריש מרוכז בחלבון (<b>גלובין</b>) והמטוקריט גבוה - יותר אלקטרונים בולעים קרינה. עם הזמן החלבון מתפרק → הדם הופך <b>איזודנסי (≈שבוע 1-3)</b> ואז <b>היפודנסי (כרוני)</b>.<br><br>
+    <b>MRI - תהודה מגנטית (NMR):</b><br>
+    <b>שלב 1 - יישור:</b> מגנט חזק (<span dir="ltr" class="term">B0</span>, בדרך כלל 1.5 או 3 טסלה, מגנט על-מוליך) גורם לעודף קטן של פרוטוני מימן להתיישר לאורכו → מגנטיזציה אורכית (<span dir="ltr" class="term">Mz</span>).<br>
+    <b>שלב 2 - עירור:</b> פולס רדיו (<span dir="ltr" class="term">RF 90°</span>) בתדר התהודה "מפיל" את המגנטיזציה למישור הרוחבי (<span dir="ltr" class="term">Mxy</span>) - שם היא מסתובבת ומשרה אות בסליל.<br>
+    <b>שלב 3 - הרפיה:</b> שני תהליכים במקביל - <b>T1</b> = חזרת המגנטיזציה האורכית (הפרוטונים מוסרים אנרגיה לסביבה; קצר בשומן, ארוך במים/CSF); <b>T2</b> = אובדן הסנכרון בין הפרוטונים (dephasing; ארוך במים חופשיים). <span dir="ltr" class="term">T2*</span> = T2 + אי-אחידות שדה - תמיד קצר יותר מ-T2.<br>
+    <b>שלב 4 - בחירת "משקל":</b> ה-<span dir="ltr" class="term">TR</span> (זמן בין עירורים) קובע כמה T1 משפיע; ה-<span dir="ltr" class="term">TE</span> (זמן עד קריאת ההד) קובע כמה T2 משפיע.<br>
+    <b>שלב 5 - מיקום:</b> גרדיאנטים מגנטיים מקודדים תדר ופאזה → מרחב <span dir="ltr" class="term">k-space</span> → התמרת פורייה → תמונה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת יצירת האות ב-MRI</title>
+  <desc>חמישה שלבים: יישור ב-B0, עירור RF, הרפיית T1 ו-T2, בחירת TR/TE, קידוד מרחבי ותמונה.</desc>
+  <defs><marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+  <rect x="560" y="30" width="125" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="622" y="60" font-size="13" text-anchor="middle" font-weight="700" fill="#1e3a8a">1. יישור</text>
+  <text x="622" y="82" font-size="11" text-anchor="middle" fill="#1e3a8a">B0 → Mz</text>
+  <text x="622" y="98" font-size="11" text-anchor="middle" fill="#1e3a8a">פרוטוני מימן</text>
+  <line x1="558" y1="70" x2="512" y2="70" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar)"/>
+  <rect x="385" y="30" width="125" height="80" rx="10" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+  <text x="447" y="60" font-size="13" text-anchor="middle" font-weight="700" fill="#713f12">2. עירור</text>
+  <text x="447" y="82" font-size="11" text-anchor="middle" fill="#713f12">RF 90° → Mxy</text>
+  <text x="447" y="98" font-size="11" text-anchor="middle" fill="#713f12">אות בסליל</text>
+  <line x1="383" y1="70" x2="337" y2="70" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar)"/>
+  <rect x="160" y="20" width="175" height="100" rx="10" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="247" y="45" font-size="13" text-anchor="middle" font-weight="700" fill="#7f1d1d">3. הרפיה</text>
+  <text x="247" y="68" font-size="11" text-anchor="middle" fill="#7f1d1d">T1: חזרת Mz (ארוך ב-CSF)</text>
+  <text x="247" y="88" font-size="11" text-anchor="middle" fill="#7f1d1d">T2: אובדן סנכרון (ארוך במים)</text>
+  <text x="247" y="108" font-size="11" text-anchor="middle" fill="#7f1d1d">T2* &lt; T2 (אי-אחידות שדה)</text>
+  <line x1="247" y1="122" x2="247" y2="162" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar)"/>
+  <rect x="120" y="165" width="255" height="110" rx="10" fill="#ede9fe" stroke="#6d28d9" stroke-width="2"/>
+  <text x="247" y="190" font-size="13" text-anchor="middle" font-weight="700" fill="#4c1d95">4. בחירת TR / TE</text>
+  <text x="247" y="213" font-size="11" text-anchor="middle" fill="#4c1d95">TR קצר + TE קצר = T1 (CSF שחור)</text>
+  <text x="247" y="233" font-size="11" text-anchor="middle" fill="#4c1d95">TR ארוך + TE ארוך = T2 (CSF לבן)</text>
+  <text x="247" y="253" font-size="11" text-anchor="middle" fill="#4c1d95">TR ארוך + TE קצר = Proton density</text>
+  <line x1="377" y1="220" x2="440" y2="220" stroke="#2563eb" stroke-width="2.5" marker-end="url(#ar)"/>
+  <rect x="445" y="170" width="235" height="100" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="562" y="198" font-size="13" text-anchor="middle" font-weight="700" fill="#14532d">5. קידוד ותמונה</text>
+  <text x="562" y="222" font-size="11" text-anchor="middle" fill="#14532d">גרדיאנטים → k-space</text>
+  <text x="562" y="242" font-size="11" text-anchor="middle" fill="#14532d">התמרת פורייה → פיקסלים</text>
+</svg>
+<p class="figcap">איור סכמטי: מפרוטון מיושר לתמונה - הבחירה ב-TR/TE קובעת איזו תכונה של הרקמה "תראה" בתמונה.</p>
+
+<div class="key-box"><b>למה דווקא מימן?</b> (1) לגרעין המימן המומנט המגנטי הגדול מכל הגרעינים - הכי קל לגלות; (2) הוא הנפוץ ביותר בגוף (מים ושומן); (3) כל רקמה עשירה בו. גרעינים אחרים (<span dir="ltr">31P, 13C, 23Na</span>) אפשריים אך דורשים חומרה נוספת.</div>
+
+<h2><span class="num">2</span> CT של המוח: טכניקה, דימומים, CTA ו-Perfusion CT</h2>
+<p><b>שנות ה-70</b>, <span dir="ltr" class="term">Sir Godfrey Hounsfield</span> באנגליה - ההתקדמות החשובה ביותר בהדמיה מאז רנטגן. CT שגרתי: <b>חתכים צירים של 5 מ"מ</b> מבסיס הגולגולת עד הקודקוד, ללא ניגוד, ולפי הצורך סדרה נוספת לאחר כ-100 מ"ל ניגוד יודי (IV 18-20G). סורקים מרובי-גלאים מאפשרים שחזור תת-מילימטרי ורפורמציה סגיטלית/קורונלית ו-3D כמעט באיכות סריקה ישירה. <b>שיקולי קרינה</b> - במיוחד בילדים ובסריקות חוזרות: שחזור איטרטיבי (מ-2008) הוריד מינונים ב-25%-98%, במחיר מסוים באיכות. קיים גם CT נייד ליד המיטה בטיפול נמרץ.</p>
+<p><b>למה CT הוא הבדיקה הראשונה במצב חריף?</b> זמינות, מהירות, ו<span class="key">רגישות וסגוליות גבוהות מ-MRI לדימום חריף ולשברים</span>. הוא מראה גודל חדרים, בצקת, אפקט מסה, הסטת קו אמצע, איסכמיה מתפתחת, שברים ומחלת עצם.</p>
+
+<div class="table-scroll"><table>
+<tr><th>סוג דימום</th><th>צורה ב-CT</th><th>מקור טיפוסי</th><th>מה מגביל את התפשטותו</th></tr>
+<tr><td><b>אפידורלי (EDH)</b></td><td><b>דו-קמור (עדשה, biconvex)</b></td><td>שבר החוצה ענפי עורק מנינגאלי (לרוב <span dir="ltr">MMA</span>); לעתים ורידי</td><td><b>לא חוצה תפרים</b> (הדורה צמודה בתפרים); <b>כן יכול לחצות קו אמצע</b> קדמית לתפר הקורונלי</td></tr>
+<tr><td><b>סאבדורלי (SDH)</b></td><td><b>סהרוני</b> - גבול פנימי קעור לפי קמירות המוח</td><td>ורידים מגשרים (bridging veins); שכיח יותר, במיוחד בקשישים</td><td><b>חוצה תפרים</b>; <b>לא חוצה קו אמצע</b> (פלקס)</td></tr>
+<tr><td><b>תת-עכבישי (SAH)</b></td><td>דם בסיסטרנות ובחריצים; חוזר לחדרים</td><td><b>טראומה - הסיבה השכיחה ביותר</b>; לא-טראומטי: מפרצת שנקרעה</td><td>מתפשט חופשי; גורם להידרוצפלוס (חסימת ספיגת CSF)</td></tr>
+<tr><td><b>תוך-פרנכימלי</b></td><td>מוקד היפרדנסי בתוך המוח</td><td>יתר ל"ד (תלמוס, גרעינים בסיסיים), AVM, קברנומה, גידול, אוטם, זיהום, וסקוליטיס</td><td>פרוגנוזה לפי גורם, מספר, נפח ואפקט מסה</td></tr>
+</table></div>
+<div class="key-box">צפיפות SDH משתנה עם הזמן: <b>היפרדנסי (חריף) → איזודנסי (תת-חריף, קל לפספס!) → היפודנסי (כרוני)</b>. חריג: SDH היפר-חריף או דימום בחולה עם <b>קואגולופתיה</b> עלול להיראות איזו/היפודנסי כבר בהתחלה (דם שלא נקרש).</div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Traumatic_acute_epidual_hematoma.jpg?width=500" alt="CT of traumatic acute epidural hematoma">
+<p class="media-cap">CT ללא ניגוד: המטומה אפידורלית חריפה טראומטית - אוסף היפרדנסי דו-קמור (עדשה). מקור: Wikimedia Commons.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Trauma_subdural_arrows.jpg?width=500" alt="CT of subdural hematoma with arrows">
+<p class="media-cap">CT ללא ניגוד: המטומה סאבדורלית (חצים) - צורת סהר העוטפת את קמירות ההמיספרה ללא הגבלה בתפרים. השווי לצורת העדשה למעלה. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KW_kD_wGAUM" title="Subdural vs Epidural Hematoma/Hemorrhage [CT Scan Findings]" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סאבדורלי מול אפידורלי ב-CT: צורה, תפרים, קו אמצע ומקור הדימום. מקור: YouTube.</p>
+
+<h3>CT אנגיוגרפיה (CTA)</h3>
+<p>בולוס ניגוד יודי דרך וריד רחב (18G), חתכים תת-מילימטריים, רפורמציות 2D ו-3D (הפענוח מבוסס בעיקר על הצירים והרפורמציות 2D). <b>רגישות וסגוליות דומות לאנגיוגרפיה צנתרית</b> - בלי סיכון דיסקציה ותסחיף יאטרוגני. שימושים: מפרצות (ACom), וזוספאזם, AVM, דיסקציה טראומטית, היצרות קרוטיד/ורטברלי. <b>מגבלה</b>: ארטיפקט קליפסים וסלילים מקשה לשלול שארית/רה-קנליזציה של מפרצת מטופלת.</p>
+
+<h3>Perfusion CT (pCT)</h3>
+<p>בולוס 4-5 מ"ל/שנייה וסריקות חוזרות כדקה → עקומות צפיפות-זמן לכל ווקסל → מפות צבע <b>כמותיות</b>: <span dir="ltr" class="term">CBF</span> (מ"ל/100 גר'/דקה), <span dir="ltr" class="term">CBV</span> (מ"ל/100 גר'), <span dir="ltr" class="term">MTT</span> (שניות). מאומת מול Xenon-CT ו-PET.</p>
+<div class="mechanism"><p class="chain"><b>למה המפות מבדילות ליבה מפנומברה?</b> כשעורק גדול נחסם, הלחץ בפרפוזיה יורד → <b>MTT מתארך</b> (הדם מגיע באיחור דרך קולטרלים) → בפנומברה ה-autoregulation מרחיב כלי דם → <b>CBV נשמר או עולה</b> על אף ש-CBF יורד. בליבת האוטם ה-autoregulation קרס → <b>גם CBF וגם CBV נמוכים</b>. <span class="key">אי-התאמה (mismatch) = רקמה בסיכון שניתנת להצלה</span>.</p></div>
+<p>שימוש עיקרי: <b>שבץ מחסימת כלי גדול</b> (לרוב <span dir="ltr">NIHSS ≥10</span>; ICA סופרה-קלינואידי או M1) לבחירת חולים ל<b>טרומבקטומיה</b> - מחקרים אקראיים ב-2015 וב-2018 הראו שיפור ב-<span dir="ltr">mRS</span> <b>עד 24 שעות</b> מהפעם האחרונה שנראה תקין. שימוש נוסף: <b>וזוספאזם לאחר SAH</b> - pCT מזהה אזורי סיכון לפני אוטם, כשל-CT רגיל ו-TCD יש מגבלות.</p>
+
+<h2><span class="num">3</span> פיזיקה של MRI: רצפים שכל נוירוכירורג צריך להכיר</h2>
+<p>1946: <span dir="ltr" class="term">Bloch</span> (מים) ו-<span dir="ltr" class="term">Purcell</span> (פרפין) גילו תהודה של גרעין המימן; Purcell תיאר את T1/T2. השם "MRI" (בלי "Nuclear") נבחר כדי לא להפחיד מטופלים. סוגי מגנטים: התנגדותי, קבוע, ו<b>על-מוליך (הנפוץ ביותר)</b>.</p>
+
+<div class="table-scroll"><table>
+<tr><th>רצף</th><th>איך עובד</th><th>מה נותן / למה משתמשים</th></tr>
+<tr><td><b>Spin Echo (SE)</b></td><td>90° ואז <b>180°</b> שמבטל את השפעת אי-אחידות השדה (Hahn, 1950) → הד</td><td>"סוס העבודה"; בחירת TR/TE נותנת T1 / T2 / PD. ללא ה-180° הדעיכה היא T2*</td></tr>
+<tr><td><b>Fast Spin Echo (FSE)</b></td><td>כמה שורות k-space בכל TR (<span dir="ltr">echo train length</span>); ETL 4 = 25% מהזמן</td><td>חוסך זמן או משפר SNR; שכיח ביותר ב-CNS. מחיר: טשטוש</td></tr>
+<tr><td><b>Inversion Recovery / FLAIR</b></td><td>פולס 180° ראשוני, קריאה ב"נקודת האפס" של רקמה מסוימת</td><td><b>FLAIR מאפס את CSF</b> → נגעים ליד חדרים, קורטקס ו-SAH/מנינגיטיס בולטים</td></tr>
+<tr><td><b>Gradient Echo (GRE) / SWI</b></td><td>ללא 180°; TR עד 6 ms; זווית היפוך קטנה (5-20°) = T2*, גדולה (40-90°) = T1</td><td>מהיר, MRA, ו<b>רגיש ביותר להמוסידרין/פריטין</b> (מיקרו-דימומים, DAI, קברנומה)</td></tr>
+<tr><td><b>Echo Planar (EPI)</b></td><td>כל k-space בעירור אחד (~40 ms), מטריצה 64-128</td><td>בסיס ל-<b>DWI, Perfusion, fMRI</b>; עמיד לתנועה</td></tr>
+<tr><td><b>Gadolinium</b></td><td>כלאט פרמגנטי שמקצר T1 של מים סמוכים</td><td>לא עובר BBB תקין → <b>האדרה = פריצת BBB</b> (גידול, זיהום, טראומה, אוטם). תמיד קוראים ב-T1</td></tr>
+</table></div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Normal_axial_T2-weighted_MR_image_of_the_brain.jpg?width=500" alt="Normal axial T2-weighted MR image of the brain">
+<p class="media-cap">MRI תקין במשקל T2 (צירי): CSF לבן, חומר לבן כהה יותר מאפור - הבסיס להשוואה לכל ממצא פתולוגי. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/7MN18gg1g_Y" title="T1, T2 and Proton Density Weighting explained - MRI physics" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">משקלי T1, T2 ו-PD: איך TR ו-TE קובעים את הניגודיות. מקור: YouTube.</p>
+
+<h3>רצפים פיזיולוגיים</h3>
+<div class="table-scroll"><table>
+<tr><th>טכניקה</th><th>מה נמדד</th><th>למה זה עובד</th><th>שימוש נוירוכירורגי</th></tr>
+<tr><td><b>DWI / ADC</b></td><td>תנועה בראונית של מים</td><td>באיסכמיה משאבת <span dir="ltr">Na/K-ATPase</span> כושלת → מים נכנסים לתאים (בצקת ציטוטוקסית) → המרחב החוץ-תאי מצטמצם → <b>דיפוזיה מוגבלת: DWI בהיר, ADC כהה</b></td><td>שבץ תוך 30-60 דק'; <b>מורסה (ADC נמוך) מול גידול נמקי (ADC גבוה)</b></td></tr>
+<tr><td><b>Perfusion (DSC)</b></td><td>rCBV, MTT</td><td>בולוס גדוליניום גורם לנפילת אות T2* במעבר דרך הקפילרות</td><td>דרגת גידול, <b>הישנות מול נמק קרינתי</b>, פנומברה</td></tr>
+<tr><td><b>MRS</b></td><td>מטבוליטים (chemical shift)</td><td>מולקולות שונות מהדהדות בתדר מעט שונה (מים-שומן ≈3.5 ppm)</td><td>גידול: <b>Cho↑, NAA↓</b>; לקטט = מטבוליזם אנאירובי; TLE: NAA↓ בהיפוקמפוס</td></tr>
+<tr><td><b>fMRI (BOLD)</b></td><td>יחס אוקסי/דאוקסי-המוגלובין</td><td>פעילות → זרימה עודפת → פחות דאוקסי-Hb (פרמגנטי) → T2* מתארך → אות עולה (&lt;6% ב-1.5T)</td><td>מיפוי קורטקס מוטורי/שפה לפני ניתוח</td></tr>
+<tr><td><b>DTI</b></td><td>כיווניות (אניזוטרופיה) של דיפוזיה</td><td>באקסונים מים נעים לאורך הסיב; מפת FA ומפת צבע (אדום = ימין-שמאל, ירוק = קדמי-אחורי, כחול = עליון-תחתון)</td><td>טרקטוגרפיה - תכנון מסלול סביב מסלולים קורטיקוספינליים</td></tr>
+</table></div>
+<p style="font-size:14.5px;color:#4b5563">הערה: בטקסט הפרק מנוסח שדאוקסי-המוגלובין "פחות פרמגנטי" מאוקסי-המוגלובין; בפיזיולוגיה המקובלת ההפך - <b>דאוקסי-Hb פרמגנטי ואוקסי-Hb דיאמגנטי</b>, וזה מה שיוצר את אות ה-BOLD. המסקנה הקלינית (שינוי ב-T2* ברקמה פעילה) זהה.</p>
+<p>ב-MRS, ריכוז המטבוליטים נמוך מהמים פי 5,000-10,000 → נדרשים ווקסלים גדולים (~2 סמ"ק לעומת 1 ממ"ק ב-MRI). שתי שיטות: <b>single-voxel</b> ו-<b>chemical shift imaging</b> (רב-ווקסלי, מפות צבע). מטבוליטים: <b>NAA</b> (בריאות נוירונלית), <b>Cho</b> (תחלופת ממברנות), <b>Cr</b> (מאגר אנרגיה), <b>Glx</b>, <b>מיו-אינוזיטול</b>, <b>לקטט</b> (דאבלט).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DTI_Brain_Tractographic_Image_Set.jpg?width=600" alt="DTI brain tractographic image set">
+<p class="media-cap">טרקטוגרפיית DTI: שחזור מסלולי חומר לבן לפי כיווניות הדיפוזיה - כלי תכנון טרום-ניתוחי. מקור: Wikimedia Commons (A. G. Filler).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tcJa9cJeoEY" title="Diffusion Weighted Imaging EXPLAINED (DWI Trace, ADC, B-Values)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">DWI, ADC וערכי b - כולל למה חייבים להסתכל על מפת ה-ADC כדי לא ליפול ב-T2 shine-through. מקור: YouTube.</p>
+
+<h2><span class="num">4</span> MRI קליני: סריקת סקר מול בדיקה "תפורה"</h2>
+<p><b>סקר שגרתי</b>: לוקלייזר סגיטלי → DWI צירי, T1, T2, <b>FLAIR</b> ו-<b>GRE/SWI</b> (דימומים ישנים); חתכים 5 מ"מ, סגיטלי 4-5 מ"מ. לפי המרכז - גדוליניום שגרתי או לפי שיקול. <b>T1 תלת-ממדי ברזולוציה 1 מ"מ לאחר ניגוד</b> לזיהוי גרורות ולניווט ניתוחי.</p>
+<p><b>בדיקה תפורה (Tailored)</b>: כשהחשד הקליני גבוה - למשל מנינגיומה בסינוס הקברנוזי: T1 קורונלי דק (3 מ"מ) לפני ואחרי ניגוד ליחס לכיאזמה, לאינפונדיבולום, ל-Meckel cave ולקודקוד הארובה. <span class="key">דורש תקשורת ישירה בין הנוירוכירורג לנוירורדיולוג</span>.</p>
+
+<h2><span class="num">5</span> גידולים ב-MRI</h2>
+<div class="table-scroll"><table>
+<tr><th>גידול</th><th>מאפייני MRI</th><th>פנינים</th></tr>
+<tr><td><b>אסטרוציטומה בדרגה נמוכה</b></td><td>T1 היפו, T2/FLAIR היפר, <b>הומוגני</b>, תחום, בצקת מינימלית</td><td>תת-סוגים היסטולוגיים לא ניתנים להבחנה; <b>נגע "כמו CSF" ב-MRI לא בהכרח ציסטי</b> (מיקרו-ציסטות)</td></tr>
+<tr><td><b>גליובלסטומה / דרגה גבוהה</b></td><td>הטרוגני, חודרני, נמק, האדרה טבעתית עבה, <b>בצקת וזוגנית ניכרת</b></td><td>האדרה לבדה <b>אינה</b> קובעת דרגה; MRI מוגבל בהגדרת חדירה מיקרוסקופית בשוליים</td></tr>
+<tr><td><b>Diffuse midline glioma</b> (לשעבר גליומת גזע מוח)</td><td>פונס מוגדל בצורה מפושטת, גדילה אקסופיטית</td><td>ילדים; <b>עוטפת את עורק הבזילרי</b>. Gliomatosis cerebri כבר אינה ישות נפרדת</td></tr>
+<tr><td><b>אוליגודנדרוגליומה</b></td><td>תחומה, T2 היפר, ללא בצקת משמעותית</td><td>עשור 4-6; <b>הסתיידויות</b>: ~70% היסטולוגית, 30-40% ב-CT; <span dir="ltr">IDH-mutant + 1p/19q codeleted</span> = פרוגנוזה טובה</td></tr>
+<tr><td><b>אפנדימומה</b></td><td>"פרוטאית": T1 היפו, T2 היפר, הטרוגנית</td><td>חדר רביעי (יוצאת דרך <b>פורמן Luschka</b>) או חדרים לטרליים</td></tr>
+<tr><td><b>פפילומה של כורואיד פלקסוס</b></td><td>לובולרית ("כרובית"), <b>האדרה בולטת</b></td><td>ילדים - אטריום של חדר לטרלי; מבוגרים - חדר רביעי; <b>הידרוצפלוס מתקשר</b> (ייצור יתר + חסימת גרנולציות)</td></tr>
+<tr><td><b>מנינגיומה</b></td><td><b>איזואינטנסית לאפור ב-T1 ו-T2</b> (עלולה להתפספס בלי ניגוד!) → <b>האדרה הומוגנית חזקה</b>, dural tail</td><td>T2 היפר = גידול רך יותר; גודל, נמק, צורה לא-כדורית → דרגה II-III; dural tail לא ספציפי</td></tr>
+<tr><td><b>אדנומה של ההיפופיזה</b></td><td>T1 + גדוליניום, קורונלי 2-3 מ"מ, <b>דינמי</b> למיקרואדנומה</td><td>מיקרואדנומה (&lt;1 ס"מ) = <b>מתאדרת לאט יותר מהבלוטה → נראית היפואינטנסית</b>; הסטת גבעול לצד הנגדי. מקרו (&gt;1 ס"מ) - קשר לכיאזמה, לסינוס הקברנוזי ול-ICA</td></tr>
+<tr><td><b>גרורות</b></td><td>לרוב מרובות, <b>בגבול אפור-לבן</b>, בצקת לא פרופורציונלית לגודל</td><td>MRI+Gd = הרגיש ביותר; דימומיות: <b>מלנומה, כליה, תירואיד, כוריוקרצינומה</b>; ציסטיות: אדנוקרצינומה (ריאה/שד/מעי)</td></tr>
+<tr><td><b>שוונומה וסטיבולרית</b></td><td>מרכזה ב-<b>porus acusticus</b>, "גלידה בגביע"; T2 היפר, האדרה חזקה (הטרוגנית כשגדולה)</td><td>~75% מנגעי CPA. מנינגיומה ב-CPA: T2 בינוני, <b>אקסצנטרית ל-porus</b>, dural tail</td></tr>
+<tr><td><b>גידולים עובריים</b> (מדולובלסטומה)</td><td>תאים קטנים עגולים, צפופים → T1/T2 איזו, <b>דיפוזיה מוגבלת</b>, האדרה בינונית-חזקה</td><td>ילדים - גג החדר הרביעי; מבוגרים צעירים - צידי ההמיספרה הצרבלרית. "PNET" הוחלף ב-"Embryonal tumors" (WHO 2016)</td></tr>
+</table></div>
+<div class="key-box"><b>הישנות מול נמק קרינתי</b>: ב-MRS - <b>Cho עולה ביחס ל-Cr/NAA = הישנות</b>; שומנים ולקטט בלי עליית Cho = נמק קרינתי/שינויים לאחר ניתוח. ב-Perfusion - <b>rCBV גבוה = גידול</b>, נמוך = נמק.</div>
+
+<h2><span class="num">6</span> זיהומים</h2>
+<p><b>מנינגיטיס</b>: MRI בעל רגישות גבולית - <b>MRI תקין לא שולל מנינגיטיס</b>, נדרשת ניקור מותני. תפקיד ה-MRI: סיבוכים (אנצפליטיס, אוטם, מורסה, אמפיאמה). ויראלית - האדרה מנינגאלית מפושטת; <b>הרפס</b> - אונה טמפורלית קדמית-מדיאלית, T2 היפר, לעתים דימום. חיידקית - סיבוכים: אמפיאמה סאבדורלית, אוטם, מורסה.</p>
+<div class="mechanism"><p class="chain"><b>מורסה מול גידול נמקי - למה DWI מכריע?</b> חלל המורסה מלא <b>מוגלה צמיגה</b> - נויטרופילים, חיידקים, חלבונים ודטריט → מים כמעט לא זזים → <b>DWI בהיר, ADC נמוך</b>. בחלל נמקי של גידול יש נוזל דליל יחסית → <b>ADC גבוה</b>. בנוסף, דופן המורסה <b>דקה יותר בצד המדיאלי/העמוק</b> (פחות אספקת דם ופיברובלסטים מהחומר הלבן) - ולכן גם מורסות נוטות להתפוצץ לתוך החדר. הבצקת קטנה יותר מבגליובלסטומה. ב-MRS שני המצבים מראים לקטט ושומנים - אך <b>חומצות אמינו</b> (ואלין, לאוצין) רומזות למורסה.</p></div>
+<p><b>שחפת</b>: מנינגיטיס בזאלית, התפשטות למרווחי Virchow-Robin בגרעינים הבסיסיים → אוטמים לקונריים; טוברקולומות. <b>פטרייתי</b>: מסינוסים/ארובה/מסטואיד או המטוגני, בסוכרתיים ומדוכאי חיסון; <b>אספרגילוס פולש לכלי דם</b> → מוקדים דמומיים. <b>ציסטיצרקוזיס</b> (שרשור החזיר): ציסטות בגבול אפור-לבן, הסתיידויות נקודתיות, צורה רצמוזית בחללים התת-עכבישיים; התגובה לטפיל <b>המת</b> יוצרת בצקת והאדרה.</p>
+
+<h2><span class="num">7</span> שבץ ומחלות כלי דם</h2>
+<div class="table-scroll"><table>
+<tr><th>זמן</th><th>ממצא</th></tr>
+<tr><td>דקות (בחיות) / <b>30-60 דק'</b> (באדם)</td><td><b>DWI בהיר + ADC כהה</b> - הסימן המוקדם ביותר</td></tr>
+<tr><td>מוקדם</td><td>אובדן flow void בעורק, אות היפר בכלים קורטיקליים (זרימה איטית)</td></tr>
+<tr><td><b>6-12 שעות</b> (עד 24)</td><td>T2 / FLAIR היפר, מחיקת חריצים</td></tr>
+<tr><td>1-2 שבועות</td><td>שיא בצקת ציטוטוקסית; DWI נשאר בהיר ~שבועיים</td></tr>
+<tr><td>אחרי שבועיים</td><td>DWI בהיר קלות בגלל <b>T2 shine-through</b> (לא הגבלת דיפוזיה אמיתית - ADC לא נמוך)</td></tr>
+<tr><td>כרוני</td><td>אובדן נפח, הרחבת חריצים וחדרים; המוסידרין אם היה דימום</td></tr>
+</table></div>
+<p><b>פנומברה ב-MRI</b> = <span class="key">אזור פרפוזיה חריגה פחות אזור דיפוזיה חריגה (PWI-DWI mismatch)</span>. MRS: לקטט ↑ ו-NAA ↓ באזור איסכמי. <b>MRA</b>: 3D TOF (עם magnetization transfer) לעורקים תוך-גולגולתיים - מדויק לעורקים גדולים וקרובים, <b>מוגבל בכלים בינוניים וקטנים</b> (שם - אנגיוגרפיה). <b>MRV</b> (TOF/phase contrast) לפקקת סינוסים. MRA עם בולוס גדוליניום (3D spoiled GRE) - <b>עדיף לזיהוי רה-קנליזציה של מפרצת לאחר קוילינג</b> מ-CTA (ארטיפקט) ומ-TOF רגיל.</p>
+
+<h2><span class="num">8</span> טראומה</h2>
+<p><b>שבר ודימום חריף → CT ללא ניגוד</b> נשאר הבחירה. אבל MRI עדיף: בנגעים קטנים (T2, FLAIR, GRE), בגומה האחורית (אין beam hardening), ב-SDH תת-חריף איזודנסי ב-CT (בהיר ב-T1 וב-T2 ב-MRI), וב<b>פגיעה אקסונלית מפושטת (DAI)</b> - נגעי גזירה (shear) קטנים ב<b>גבול אפור-לבן, בקורפוס קלוסום ובגזע המוח העליון</b>; GRE/SWI הוא הרצף הרגיש ביותר. <span class="key">חולה עם CT כמעט תקין וחסר נוירולוגי עמוק → MRI (לחפש DAI/גזע מוח)</span>. דיסקציה טראומטית: אובדן flow void, <b>T1 עם דיכוי שומן מראה מתהמוגלובין בלומן הכוזב</b> (סימן סהר).</p>
+
+<h3>גיל הדם ב-MRI</h3>
+<div class="table-scroll"><table>
+<tr><th>שלב</th><th>תוצר</th><th>T1</th><th>T2</th></tr>
+<tr><td>היפר-חריף (&lt;24 ש')</td><td>אוקסי-Hb תוך-תאי</td><td>איזו</td><td>בהיר</td></tr>
+<tr><td>חריף (1-3 ימים)</td><td>דאוקסי-Hb תוך-תאי</td><td>איזו/כהה</td><td><b>כהה</b></td></tr>
+<tr><td>תת-חריף מוקדם (3-7 ימים)</td><td>מתהמוגלובין תוך-תאי</td><td><b>בהיר</b></td><td>כהה</td></tr>
+<tr><td>תת-חריף מאוחר (1-2 שבועות+)</td><td>מתהמוגלובין <b>חוץ-תאי</b> (תאים נקרעו)</td><td>בהיר</td><td>בהיר</td></tr>
+<tr><td>כרוני</td><td>המוסידרין/פריטין במקרופאגים</td><td>כהה</td><td><b>כהה מאוד</b> (susceptibility)</td></tr>
+</table></div>
+<p style="font-size:14.5px;color:#4b5563">טבלת גיל הדם היא הסכמה המקובלת בנוירורדיולוגיה; הפרק מתאר אותה בקיצור (חריף: T1 איזו-היפו, T2 היפו; תת-חריף: T1 ו-T2 היפר; כרוני: T1 היפו, T2 היפו מאוד). <b>יוצא מן הכלל</b>: SDH כרוני/היגרומה נראים כמו CSF (T1 כהה, T2 בהיר).</p>
+
+<h2><span class="num">9</span> מלפורמציות וסקולריות ואפילפסיה</h2>
+<div class="table-scroll"><table>
+<tr><th>מלפורמציה</th><th>מבנה</th><th>MRI</th><th>משמעות</th></tr>
+<tr><td><b>AVM</b></td><td>נידוס ללא קפילרות; עורקים מזינים ↔ ורידים ישירות; אין מוח תקין בתוכו</td><td>סבך <b>flow voids</b>; המוסידרין; גליוזיס; נמק לאמינרי קורטיקלי מ-<b>steal</b></td><td>מפרצות בעורקים המזינים / varix; ניטור לאחר רדיוכירורגיה</td></tr>
+<tr><td><b>קברנומה</b></td><td>ערוצים ורידיים גדולים, זרימה איטית</td><td>"פופקורן": מרכז הטרוגני + <b>טבעת המוסידרין כהה</b>; GRE רגיש ביותר</td><td><b>לא נראית באנגיוגרפיה</b> → MRI = בדיקת הבחירה; מרובות בתסמונות משפחתיות</td></tr>
+<tr><td><b>DVA</b></td><td>וריאנט תקין - ורידים עמוקים מתנקזים לווריד גדול</td><td>"<b>ראש מדוזה</b>", הכי טוב ב-T1+Gd</td><td><b>לא לגעת!</b> מנקזת מוח תקין. דימום ליד DVA = חפשי קברנומה נלווית</td></tr>
+<tr><td><b>טלאנגיאקטזיה קפילרית</b></td><td>קפילרות מורחבות</td><td>לרוב לא נראית; T2 היפר עדין, האדרה קלה</td><td>אבחנה היסטולוגית; מרובות ב-<span dir="ltr">ataxia-telangiectasia</span></td></tr>
+</table></div>
+<p><b>אפילפסיה</b>: פרכוס ראשון → CT (לרוב מספיק לשבץ/דימום/גידול/מורסה). אפילפסיה חוזרת → <b>MRI תפור</b>: T1 תלת-ממדי (spoiled GRE, 1 מ"מ) להבחנה אפור-לבן והטרוטופיות; סלילי משטח (phased-array) לשיפור SNR (פחות יעיל למבנים עמוקים); <b>קורונלי ניצב לציר ההיפוקמפוס</b> (2-4 מ"מ). <b>טרשת מזיאלית טמפורלית</b>: <span class="key">אטרופיה של ההיפוקמפוס + T2/FLAIR היפר + אובדן ארכיטקטורה פנימית + הרחבת הקרן הטמפורלית</span>. כימות: וולומטריה, T2 relaxometry, MRS (<b>NAA/Cr ↓</b>). <b>ממצא MRI מלטרל = שיעור חופש מפרכוסים גבוה יותר לאחר ניתוח</b>.</p>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>גיל הדם ב-MRI: <span dir="ltr">"It Be, Iddy Biddy, BaBy, Doo Doo"</span></h3>
+  <p>זו מנמוניקה מוכרת ברדיולוגיה: כל זוג אותיות = <b>T1 ואז T2</b>; <b>I</b> = Isointense, <b>B</b> = Bright, <b>D</b> = Dark.<br>
+  <b>I</b>t <b>B</b>e = היפר-חריף (איזו / בהיר) → <b>I</b>ddy = חריף (איזו / כהה) → <b>B</b>iddy = תת-חריף מוקדם (בהיר / כהה) → <b>B</b>a<b>B</b>y = תת-חריף מאוחר (בהיר / בהיר) → <b>D</b>oo <b>D</b>oo = כרוני (כהה / כהה).</p>
+  <h3>משקל התמונה: "קצר-קצר = אחד, ארוך-ארוך = שניים"</h3>
+  <p>TR ו-TE קצרים = <b>T1</b> (CSF שחור, "אנטומיה"); ארוכים = <b>T2</b> (CSF לבן, "פתולוגיה" - "World War 2" = Water White ב-T2). TR ארוך + TE קצר = PD.</p>
+  <h3>אפידורלי מול סאבדורלי: "עדשה עוצרת בתפר; סהר עוצר בפלקס"</h3>
+  <h3>סיפור דמיוני: "התינוק בחדר הדימום"</h3>
+  <p>במחלקת ילדים נולד "תינוק דם". ביום הראשון הוא <b>שקט ורגוע</b> (<i>It Be</i> - איזו/בהיר). ביום השני הוא <b>נרדם בחושך</b> (<i>Iddy</i> - איזו/כהה, דאוקסי). ביום החמישי <b>מדליקים לו מנורה אחת</b> (<i>Biddy</i> - T1 בהיר). בשבוע השני הוא יוצא מהעריסה (התאים נקרעים - חוץ-תאי) ו<b>כל האורות דולקים</b> (<i>BaBy</i> - בהיר/בהיר). חודשים אחר כך נשארים רק <b>חיתולים חומים-כהים</b> של המוסידרין בפינה (<i>Doo Doo</i> - כהה/כהה).</p>
+  <svg class="diagram" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg">
+    <title>איור מטאפורי: התינוק בחדר הדימום</title>
+    <desc>חמישה חדרים לפי זמן: שקט, חושך, מנורה אחת, כל האורות, חיתולים כהים.</desc>
+    <rect x="10" y="30" width="115" height="110" rx="10" fill="#f3f4f6" stroke="#6b7280" stroke-width="2"/>
+    <text x="67" y="60" font-size="12" text-anchor="middle" font-weight="700" fill="#374151">It Be</text>
+    <circle cx="67" cy="90" r="14" fill="#fde68a"/>
+    <text x="67" y="128" font-size="11" text-anchor="middle" fill="#374151">&lt;24 ש' · I/B</text>
+    <rect x="135" y="30" width="115" height="110" rx="10" fill="#374151" stroke="#111827" stroke-width="2"/>
+    <text x="192" y="60" font-size="12" text-anchor="middle" font-weight="700" fill="#fff">Iddy</text>
+    <circle cx="192" cy="90" r="14" fill="#6b7280"/>
+    <text x="192" y="128" font-size="11" text-anchor="middle" fill="#fff">1-3 ימים · I/D</text>
+    <rect x="260" y="30" width="115" height="110" rx="10" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+    <text x="317" y="60" font-size="12" text-anchor="middle" font-weight="700" fill="#713f12">Biddy</text>
+    <circle cx="302" cy="90" r="12" fill="#facc15"/><circle cx="334" cy="90" r="12" fill="#6b7280"/>
+    <text x="317" y="128" font-size="11" text-anchor="middle" fill="#713f12">3-7 ימים · B/D</text>
+    <rect x="385" y="30" width="115" height="110" rx="10" fill="#fef9c3" stroke="#ca8a04" stroke-width="2"/>
+    <text x="442" y="60" font-size="12" text-anchor="middle" font-weight="700" fill="#713f12">BaBy</text>
+    <circle cx="427" cy="90" r="12" fill="#facc15"/><circle cx="459" cy="90" r="12" fill="#facc15"/>
+    <text x="442" y="128" font-size="11" text-anchor="middle" fill="#713f12">1-2 שב' · B/B</text>
+    <rect x="510" y="30" width="120" height="110" rx="10" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+    <text x="570" y="60" font-size="12" text-anchor="middle" font-weight="700" fill="#fff">Doo Doo</text>
+    <rect x="552" y="80" width="36" height="22" rx="5" fill="#451a03"/>
+    <text x="570" y="128" font-size="11" text-anchor="middle" fill="#fff">כרוני · D/D</text>
+  </svg>
+  <p class="figcap">איור מטאפורי: "התינוק בחדר הדימום" - כל חדר = שלב בגיל הדם (T1/T2).</p>
+</div>
+
+<h2><span class="num">11</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Traumatic_acute_epidual_hematoma.jpg" target="_blank">Traumatic acute epidural hematoma (CT)</a><span class="tag">Wikimedia</span><div class="desc">CT - המטומה אפידורלית בצורת עדשה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Trauma_subdural_arrows.jpg" target="_blank">Trauma subdural arrows (CT)</a><span class="tag">Wikimedia</span><div class="desc">CT - המטומה סאבדורלית בצורת סהר.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Normal_axial_T2-weighted_MR_image_of_the_brain.jpg" target="_blank">Normal axial T2-weighted MR image of the brain</a><span class="tag">Wikimedia</span><div class="desc">MRI T2 תקין להשוואה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:DTI_Brain_Tractographic_Image_Set.jpg" target="_blank">DTI Brain Tractographic Image Set</a><span class="tag">Wikimedia</span><div class="desc">דוגמת טרקטוגרפיה קלינית.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=KW_kD_wGAUM" target="_blank">Subdural vs Epidural Hematoma [CT Scan Findings]</a><span class="tag">YouTube</span><div class="desc">הבחנה ב-CT בין EDH ל-SDH.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=7MN18gg1g_Y" target="_blank">T1, T2 and Proton Density Weighting explained</a><span class="tag">YouTube</span><div class="desc">פיזיקת משקלי MRI.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=tcJa9cJeoEY" target="_blank">Diffusion Weighted Imaging EXPLAINED (DWI Trace, ADC, B-Values)</a><span class="tag">YouTube</span><div class="desc">DWI, ADC ו-T2 shine-through.</div></li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 נפגע בראשו (רקה שמאלית) במשחק כדורגל, איבד הכרה לזמן קצר, התעורר ודיבר כרגיל ("מרווח צלול"). כעבור שלוש שעות - הקאות, ישנוניות ואישון שמאלי מורחב. <b>CT ללא ניגוד</b>: שבר בעצם הטמפורלית ואוסף היפרדנסי <b>דו-קמור</b> שאינו חוצה את התפר הלמבדואידי. לאחר פינוי ניתוחי מופיע בחדר ההתאוששות חסר מוטורי ימני שאינו מוסבר; ב-<b>DWI</b> נראה אזור בהיר עם <b>ADC נמוך</b> בטריטוריית ה-PCA השמאלי. חודשים לאחר מכן הוא מופנה למרפאה עם פרכוסים חוזרים. במקביל במחלקה: אישה בת 55 עם נגע מתאדר טבעתי פריאטלי - מורסה או גליובלסטומה?</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה מסביר את צורת האוסף ואת העובדה שאינו חוצה את התפר?</div>
+  <button class="opt" data-i="0">דימום מוורידים מגשרים המוגבל על ידי הפלקס</button>
+  <button class="opt" data-i="1">דימום תת-עכבישי שמתפשט בחריצים</button>
+  <button class="opt" data-i="2">דימום עורקי (MMA) שמפריד את הדורה מהעצם, והדורה צמודה חזק בתפרים</button>
+  <button class="opt" data-i="3">דימום תוך-פרנכימלי יתר-לחצי</button>
+  <div class="explain">התשובה הנכונה: EDH נובע לרוב משבר החוצה ענף של העורק המנינגאלי; לחץ עורקי "מקלף" את הדורה מהעצם ויוצר עדשה, ונעצר בתפרים שם הדורה צמודה. 0 - זה SDH (סהר, חוצה תפרים, נעצר בפלקס). 1 - SAH אינו אוסף תחום. 3 - דימום יתר-לחצי הוא עמוק (תלמוס/גרעינים בסיסיים).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. אוטם ה-PCA שהתגלה לאחר הניתוח מוסבר ככל הנראה על ידי:</div>
+  <button class="opt" data-i="0">תסחיף מהלב במהלך ההרדמה</button>
+  <button class="opt" data-i="1">דחיסה של ה-PCA מול שולי הטנטוריום על ידי ההמטומה (הרניאציה)</button>
+  <button class="opt" data-i="2">וזוספאזם לאחר SAH מפרצתי</button>
+  <button class="opt" data-i="3">T2 shine-through ולא אוטם אמיתי</button>
+  <div class="explain">התשובה הנכונה: בפרק מוצג בדיוק מקרה כזה (איור 10.1B) - EDH גדול גרם להרניאציה ולדחיסת ה-PCA. 0 - אפשרי אך לא המנגנון המתואר. 2 - אין SAH מפרצתי. 3 - ADC נמוך מוכיח הגבלת דיפוזיה אמיתית; ב-shine-through ה-ADC אינו נמוך.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. למה ה-DWI בהיר וה-ADC כהה באוטם חריף?</div>
+  <button class="opt" data-i="0">גדוליניום דולף דרך מחסום דם-מוח פגוע</button>
+  <button class="opt" data-i="1">בצקת וזוגנית מגדילה את המרחב החוץ-תאי</button>
+  <button class="opt" data-i="2">המוסידרין גורם לאפקט susceptibility</button>
+  <button class="opt" data-i="3">כשל Na/K-ATPase → נפיחות תאים (בצקת ציטוטוקסית) → צמצום המרחב החוץ-תאי → תנועת מים מוגבלת</button>
+  <div class="explain">התשובה הנכונה: ההגבלה נובעת מבצקת ציטוטוקסית. 0 - DWI הוא ללא ניגוד. 1 - בצקת וזוגנית מגבירה דיפוזיה (ADC גבוה). 2 - המוסידרין רלוונטי ל-GRE/SWI ולשלב הכרוני.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. באישה עם הנגע המתאדר טבעתית, איזה ממצא תומך יותר במורסה מאשר בגליובלסטומה?</div>
+  <button class="opt" data-i="0">הגבלת דיפוזיה (ADC נמוך) בחלל המרכזי, ודופן דקה יותר בצד המדיאלי</button>
+  <button class="opt" data-i="1">בצקת וזוגנית נרחבת מאוד סביב הנגע</button>
+  <button class="opt" data-i="2">rCBV גבוה בדופן ועליית כולין ב-MRS</button>
+  <button class="opt" data-i="3">דופן עבה ולא סדירה עם נודולים</button>
+  <div class="explain">התשובה הנכונה: מוגלה צמיגה מגבילה דיפוזיה, ודופן המורסה דקה בצד העמוק. 1 - בצקת נרחבת אופיינית יותר לגליובלסטומה. 2 - rCBV גבוה ו-Cho מוגבר מרמזים על גידול. 3 - דופן עבה ונודולרית אופיינית לגידול נמקי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בחשד למיקרואדנומה מפרישה, מה המראה הצפוי ב-MRI דינמי עם גדוליניום?</div>
+  <button class="opt" data-i="0">מוקד מתאדר חזק ומהיר יותר מהבלוטה</button>
+  <button class="opt" data-i="1">מוקד איזואינטנסי שנראה רק ב-T2</button>
+  <button class="opt" data-i="2">מוקד היפואינטנסי, שמתאדר לאט יותר מהבלוטה התקינה, עם הסטת הגבעול לצד הנגדי</button>
+  <button class="opt" data-i="3">האדרה מנינגאלית עם dural tail</button>
+  <div class="explain">התשובה הנכונה: הבלוטה התקינה (ללא BBB) מתאדרת מהר והומוגנית; המיקרואדנומה מתאדרת לאט - לכן נראית כהה בתמונות המוקדמות. 0 - הפוך. 1 - רצף המפתח הוא T1+Gd קורונלי דק. 3 - dural tail רומז למנינגיומה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. הצעיר עם הפרכוסים החוזרים ממקור טמפורלי. איזה ממצא ב-MRI מתאים לטרשת מזיאלית טמפורלית ומנבא תוצאה ניתוחית טובה?</div>
+  <button class="opt" data-i="0">האדרה קורטיקלית דו-צדדית ב-T1</button>
+  <button class="opt" data-i="1">היפוקמפוס קטן חד-צדדי, T2/FLAIR בהיר, אובדן ארכיטקטורה פנימית והרחבת הקרן הטמפורלית באותו צד</button>
+  <button class="opt" data-i="2">עליית NAA בהיפוקמפוס ב-MRS</button>
+  <button class="opt" data-i="3">מוקד "ראש מדוזה" בחומר הלבן הטמפורלי</button>
+  <div class="explain">התשובה הנכונה: אלה ממצאי MTS, ו-MRI מלטרל מנבא שיעור גבוה יותר של חופש מפרכוסים לאחר כריתה. 0 - לא אופייני. 2 - ב-MTS ה-NAA יורד (אובדן נוירונים). 3 - זו DVA, וריאנט שפיר.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>CT</b> = בדיקה ראשונה במצב חריף; הטוב ביותר ל<b>דם חריף ולשברים</b>. דם: היפר → איזו (שבוע 1-3) → היפו.</li>
+    <li><b>EDH</b> - עדשה, עורקי (MMA), לא חוצה תפרים (חוצה קו אמצע קדמית לתפר הקורונלי). <b>SDH</b> - סהר, ורידים מגשרים, חוצה תפרים, נעצר בפלקס.</li>
+    <li>SAH: טראומה = הסיבה השכיחה; לא-טראומטי = מפרצת. <b>CTA ≈ אנגיוגרפיה צנתרית</b> ברגישות.</li>
+    <li><b>pCT/PWI</b>: CBF, CBV, MTT; ליבה = CBV↓, פנומברה = MTT↑ + CBV שמור → בחירה לטרומבקטומיה עד 24 ש'.</li>
+    <li>MRI: מימן; <b>T1</b> = TR+TE קצרים (CSF שחור), <b>T2</b> = ארוכים (CSF לבן); FLAIR מאפס CSF; <b>GRE/SWI</b> = דם ישן; Gd = פריצת BBB.</li>
+    <li><b>DWI בהיר + ADC כהה</b> = בצקת ציטוטוקסית (שבץ תוך 30-60 דק'; מורסה). T2 shine-through = DWI בהיר עם ADC לא נמוך.</li>
+    <li>MRS: גידול/הישנות = <b>Cho↑ NAA↓</b>; נמק קרינתי = לקטט/שומן בלי Cho↑; MTS = NAA↓.</li>
+    <li>fMRI (BOLD) למיפוי קורטקס; <b>DTI</b> לטרקטוגרפיה (אדום L-R, ירוק A-P, כחול S-I).</li>
+    <li>מנינגיומה = איזו ל-T1/T2, האדרה חזקה + dural tail. מיקרואדנומה = היפו-מתאדרת בדינמי. גרורות = גבול אפור-לבן, דימומיות: מלנומה, כליה, תירואיד, כוריו.</li>
+    <li>שוונומה וסטיבולרית = ~75% מ-CPA, מרכז ב-porus; מנינגיומה ב-CPA אקסצנטרית.</li>
+    <li>MRI תקין <b>לא שולל</b> מנינגיטיס. DAI → MRI (GRE/SWI).</li>
+    <li>גיל הדם: <b>It Be, Iddy Biddy, BaBy, Doo Doo</b>.</li>
+    <li>AVM = flow voids; <b>קברנומה = MRI (לא נראית באנגיו)</b>; DVA = ראש מדוזה, לא לגעת.</li>
+    <li>אפילפסיה: MRI תפור, קורונלי ניצב להיפוקמפוס; MTS מלטרל = תוצאה ניתוחית טובה יותר.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
