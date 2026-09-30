@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 22: תיקון ושחזור עצבים פריפריים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 22: תיקון ושחזור עצבים פריפריים <span class="term" dir="ltr">Peripheral Nerve Repair and Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | Simon Farnebo, Johan Thorfinn, Lars B. Dahlin</div>
+
+<p>פגיעת עצב פריפרי בגפה העליונה היא פגיעה "קטנה" בגודל ו"ענקית" בהשלכות: עצבים הם רק כ-<b>3% מפגיעות היד</b>, אבל כמעט תמיד פוגעים בתפקוד – תחושה, כוח, מיומנות, רגישות לקור וכאב. הנפגע הטיפוסי הוא <b>גבר צעיר</b> (גיל חציוני 29, עד 75% גברים), והעלות לחברה עצומה: כ-70,000$ לפגיעת עצב מדיאני וכ-45,000$ לאולנרי, <b>87% מהן בגלל אובדן תפוקה</b>. הפרק עוסק בשאלה אחת מרכזית: <b class="key">איך, מתי ובמה לחבר עצב קטוע כך שהאקסונים יגיעו בזמן ליעד הנכון</b>.</p>
+
+<h2><span class="num">1</span> אנטומיה – מה בדיוק אנחנו תופרים</h2>
+<h3>מבנה גס: מהמקלעת לעצב</h3>
+<p>השורשים הקדמיים (מוטוריים, גופי תא בחוט השדרה) והאחוריים (תחושתיים, גופי תא ב-<span class="term" dir="ltr">dorsal root ganglion</span>) מתאחדים לעצב שדרתי. הענפים הקדמיים של <b>C5–T1</b> יוצרים את המקלעת הזרועית: C5–C6 גזע עליון, C7 אמצעי, C8–T1 תחתון. החלוקות הקדמיות יוצרות את ה-cord הלטרלי והמדיאלי (מכופפים), והאחוריות את ה-cord האחורי (מיישרים – העצב הרדיאלי והאקסילרי).</p>
+<p><b>וריאציות אנטומיות חשובות</b> (מסבירות למה בדיקה קלינית "לא מסתדרת" לפעמים):</p>
+<table>
+  <thead><tr><th>וריאציה</th><th>בין מה למה</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Martin–Gruber</span></td><td>באמה – בעיקר AIN (מדיאני) → אולנרי; עד <b>15%</b> מהאנשים</td><td>פגיעה "אולנרית" גבוהה עם שרירים אינטרינזיים שמורים חלקית</td></tr>
+    <tr><td><span class="term" dir="ltr">Riche–Cannieu</span></td><td>בכף היד – ענף מוטורי אולנרי ↔ ענף תנרי של המדיאני</td><td>שרירי תנר מתפקדים למרות פגיעה מדיאנית</td></tr>
+    <tr><td><span class="term" dir="ltr">Berrettini</span></td><td>בכף היד – ענף מקשר תחושתי מדיאני ↔ אולנרי (שכיח)</td><td>שונות באזור התחושה של האצבעות</td></tr>
+  </tbody>
+</table>
+
+<h3>מבנה מיקרוסקופי: "כבל חשמל" עם שלוש שכבות בידוד</h3>
+<p>כל אקסון עטוף ב<b>תאי שוואן</b> (<span class="term" dir="ltr">Schwann cells</span>). בסיב ממוילן, סדרת תאי שוואן יוצרת מעטפת מיאלין והרווח ביניהם הוא <span class="term" dir="ltr">node of Ranvier</span> – ולכן ההולכה "קופצת" מצומת לצומת (<span class="term" dir="ltr">saltatory conduction</span>) ומהירה. בסיב לא-ממוילן, תא שוואן אחד עוטף כמה אקסונים דקים. קוטר: 0.4–1.25 מיקרון (לא ממוילן) מול 2–22 מיקרון (ממוילן). עם הגיל נעלמים עד <b>26% מהסיבים</b> (בין העשור ה-2 ל-8) – אחד ההסברים לכך שגיל הוא גורם פרוגנוסטי.</p>
+<table>
+  <thead><tr><th>שכבה</th><th>מה היא עוטפת</th><th>למה זה חשוב בניתוח</th></tr></thead>
+  <tbody>
+    <tr><td><b>Endoneurium</b> + <span class="term" dir="ltr">basal lamina</span></td><td>סיב עצב בודד (אקסון + שוואן)</td><td>ה"צינור" (endoneurial tube) שמכוון את האקסון המתחדש; שלם בדרגה 2 → אין בלבול יעדים</td></tr>
+    <tr><td><b>Perineurium</b></td><td>קבוצת סיבים = <b>פסיקול</b> (<span class="term" dir="ltr">fascicle</span>)</td><td>מחסום דיפוזיה; בתוכו לחץ נוזל אנדונוריאלי חיובי קל. תפירה פסיקולרית עוברת דרכו</td></tr>
+    <tr><td><b>Epineurium</b></td><td>כל הפסיקולים + רקמת חיבור רופפת</td><td>שכבת התפירה הסטנדרטית; עבה יותר מעל מפרקים ובעצבים שטחיים; כלי הדם האפינוריאליים משמשים <b>סימן יישור</b></td></tr>
+    <tr><td><b>Mesoneurium</b></td><td>רקמה אראולרית מחוץ לאפינוריום</td><td>מאפשרת גלישה (<span class="term" dir="ltr">excursion</span>) של העצב בתנועה</td></tr>
+  </tbody>
+</table>
+
+<h3>אספקת דם</h3>
+<p>העצב מקבל <b>כלי דם סגמנטליים</b> שמתפצלים לרשתות באפינוריום, בפרינוריום ובאנדונוריום (נימים שחודרים את הפרינוריום באלכסון). יש <b>רזרבה גדולה</b> – ולכן אפשר לגייס (mobilize) עצב לאורך רב בלי לפגוע בזרימה, וכלי הדם הסמוכים מפותלים כדי לאפשר גלישה. כלי הדם האפינוריאליים רגישים יותר לטראומה, ולכן בצקת אפינוריאלית מופיעה בקלות רבה יותר מאנדונוריאלית.</p>
+
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>חתך רוחב של עצב פריפרי ודרגות סנדרלנד</title>
+  <circle cx="190" cy="150" r="120" fill="#fffbeb" stroke="#b45309" stroke-width="3"/>
+  <circle cx="140" cy="115" r="42" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="240" cy="120" r="38" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="190" cy="205" r="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/>
+  <circle cx="128" cy="105" r="9" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="152" cy="126" r="9" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="150" cy="98" r="8" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="230" cy="112" r="9" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="252" cy="132" r="8" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="180" cy="198" r="9" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="202" cy="215" r="9" fill="#fde68a" stroke="#047857" stroke-width="2"/>
+  <circle cx="176" cy="175" r="4" fill="#b91c1c"/>
+  <circle cx="92" cy="185" r="4" fill="#b91c1c"/>
+  <text x="190" y="292" font-size="12" text-anchor="middle" fill="#374151">נקודות אדומות = כלי דם אפינוריאליים (סימני יישור)</text>
+
+  <rect x="400" y="20" width="440" height="42" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="820" y="46" font-size="13" text-anchor="end" fill="#065f46"><tspan font-weight="700">דרגה 1 (Neurapraxia):</tspan> רק מיאלין/הולכה – אין ניוון</text>
+  <rect x="400" y="70" width="440" height="42" rx="6" fill="#fde68a" stroke="#b45309"/>
+  <text x="820" y="96" font-size="13" text-anchor="end" fill="#78350f"><tspan font-weight="700">דרגה 2:</tspan> אקסון נקרע, endoneurium שלם → ניוון ולרי</text>
+  <rect x="400" y="120" width="440" height="42" rx="6" fill="#fef3c7" stroke="#b45309"/>
+  <text x="820" y="146" font-size="13" text-anchor="end" fill="#78350f"><tspan font-weight="700">דרגה 3:</tspan> + endoneurium – צלקת תוך-פסיקולרית</text>
+  <rect x="400" y="170" width="440" height="42" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="820" y="196" font-size="13" text-anchor="end" fill="#1e3a8a"><tspan font-weight="700">דרגה 4:</tspan> + perineurium – רק epineurium שלם (נוירומה)</text>
+  <rect x="400" y="220" width="440" height="42" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="820" y="246" font-size="13" text-anchor="end" fill="#7f1d1d"><tspan font-weight="700">דרגה 5:</tspan> + epineurium – חיתוך מלא</text>
+  <text x="620" y="285" font-size="12" text-anchor="middle" fill="#374151">כל דרגה = השכבה הבאה "מבפנים החוצה" נקרעת (דרגה 6 = תערובת)</text>
+</svg>
+<p class="figcap">חתך רוחב סכמטי: epineurium (כתום), פסיקולים עם perineurium (כחול), סיבים בודדים עם endoneurium (ירוק/צהוב). דרגות סנדרלנד מתקדמות מהמרכז החוצה.</p>
+
+<h2><span class="num">2</span> מנגנון – מה קורה אחרי שעצב נחתך, ולמה הזמן הוא האויב</h2>
+<div class="mechanism">
+  <p class="chain">חיתוך ← איטום הקצה הפרוקסימלי (תלוי סידן) ← אות רטרוגרדי לגוף התא ("ממצב תחזוקה למצב הישרדות וצמיחה") ← פירוק האקסון והמיאלין בקטע הדיסטלי (ניוון ולרי) ← תאי שוואן מתרבים ויוצרים <span class="term" dir="ltr">bands of Büngner</span> ומפרישים גורמי גדילה ← חרוט צמיחה (growth cone) "מגשש" ומתקדם 1–3 מ"מ ליום ← הגעה לאיבר המטרה.</p>
+  <p><b>גוף התא (הפרוקסימלי):</b> האקסון נאטם בקצהו ונסוג מעט. מקצה האקסון נשלחים אותות (דרך <b>הובלה אקסונלית רטרוגרדית</b> לאורך מיקרוטובולים) אל הגרעין, שמשנה שעתוק ותרגום – מייצור נוירוטרנסמיטרים לייצור חלבוני שלד ומבנה לצמיחה. בפגיעה פרוקסימלית (קרובה לגוף התא) ה"מכה" לנוירון קשה יותר ושיעור <b>מוות נוירונלי</b> גבוה יותר – זו אחת הסיבות שפגיעות פרוקסימליות מסתיימות גרוע יותר.</p>
+  <p><b>הקטע הדיסטלי – ניוון ולרי (<span class="term" dir="ltr">Wallerian degeneration</span>):</b> האקסון, שנותק ממקור החלבונים שלו, מתפרק; תאי שוואן משילים את המיאלין. <b>מקרופאגים ותאי שוואן "מנקים את השטח"</b> – זו לא דלקת זיהומית אלא ניקוי סטרילי שנועד לפנות מקום לאקסונים החדשים. תאי השוואן המופעלים מתרבים <i>בתוך</i> ה-basal lamina שלהם ויוצרים עמודות – <b>bands of Büngner</b> – "מסילות" מוליכות. הם מייצרים גורמים נוירוטרופיים: <span class="term" dir="ltr">NGF, BDNF</span>, β-FGF, <span class="term" dir="ltr">CNTF, LIF</span>, IGF, TGF ואינטרלאוקינים.</p>
+  <p><b>חרוט הצמיחה:</b> בתוך שעות יוצאים מקצה כל אקסון נבטים רבים (<span class="term" dir="ltr">sprouts</span>), ובקצה כל אחד "יד קטנה" עם אצבעות (<span class="term" dir="ltr">filopodia</span>) שמגששות את הסביבה. ההתקדמות מבוססת פילמור אקטין; חלבוני מטריקס – <b>laminin</b> (דרך קולטני <span class="term" dir="ltr">integrin</span>), fibronectin, tenascin, קולגן – מושכים ומכוונים אותו.</p>
+  <p><b class="key">למה עיכוב בתיקון מזיק?</b> ככל שעובר זמן, יותר תאי שוואן בקטע הדיסטלי עוברים <b>אפופטוזיס</b> (מסלול פנימי-מיטוכונדריאלי או חיצוני דרך Fas/TNFR1), הם מייצרים פחות גורמי גדילה, קצוות העצב נסוגים ונלכדים בצלקת, ו<b>לוחיות הקצה המוטוריות בשריר מתנוונות באופן בלתי הפיך</b>. האקסון אמנם ממשיך לצמוח, אבל מגיע ל"בית ריק".</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ניוון והתחדשות עצב</title>
+  <rect x="700" y="20" width="150" height="72" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חיתוך העצב</text>
+  <text x="775" y="68" font-size="11.5" text-anchor="middle" fill="#7f1d1d">איטום קצה (Ca²⁺)</text>
+  <text x="775" y="84" font-size="11.5" text-anchor="middle" fill="#7f1d1d">אות רטרוגרדי לגרעין</text>
+
+  <rect x="490" y="20" width="160" height="72" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="570" y="48" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">ניוון ולרי דיסטלי</text>
+  <text x="570" y="68" font-size="11.5" text-anchor="middle" fill="#78350f">מקרופאגים + שוואן</text>
+  <text x="570" y="84" font-size="11.5" text-anchor="middle" fill="#78350f">מפנים מיאלין</text>
+
+  <rect x="280" y="20" width="160" height="72" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="360" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">Bands of Büngner</text>
+  <text x="360" y="68" font-size="11.5" text-anchor="middle" fill="#1e3a8a">שוואן מתרבים בצינור</text>
+  <text x="360" y="84" font-size="11.5" text-anchor="middle" fill="#1e3a8a">NGF, BDNF, CNTF</text>
+
+  <rect x="20" y="20" width="210" height="72" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="125" y="48" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">Growth cone + laminin</text>
+  <text x="125" y="68" font-size="11.5" text-anchor="middle" fill="#065f46">1–3 מ"מ ליום</text>
+  <text x="125" y="84" font-size="11.5" text-anchor="middle" fill="#065f46">עד איבר המטרה</text>
+
+  <line x1="700" y1="56" x2="662" y2="56" stroke="#374151" stroke-width="2"/>
+  <polygon points="650,56 662,50 662,62" fill="#374151"/>
+  <line x1="490" y1="56" x2="452" y2="56" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,56 452,50 452,62" fill="#374151"/>
+  <line x1="280" y1="56" x2="242" y2="56" stroke="#374151" stroke-width="2"/>
+  <polygon points="230,56 242,50 242,62" fill="#374151"/>
+
+  <rect x="20" y="130" width="830" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="435" y="158" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">השעון מתקתק: עיכוב ← אפופטוזיס של תאי שוואן + פחות גורמי גדילה + צלקת ונסיגת קצוות</text>
+  <text x="435" y="180" font-size="12" text-anchor="middle" fill="#4c1d95">← לוחיות קצה מוטוריות מתנוונות באופן בלתי הפיך (למשל שרירים אינטרינזיים בפגיעה אולנרית גבוהה)</text>
+  <line x1="360" y1="92" x2="360" y2="118" stroke="#6d28d9" stroke-width="2"/>
+  <polygon points="360,130 354,118 366,118" fill="#6d28d9"/>
+</svg>
+<p class="figcap">שרשרת האירועים אחרי חיתוך עצב (קריאה מימין לשמאל), והסיבה הביולוגית שבגללה תיקון מוקדם עדיף.</p>
+
+<p class="key-box">ניוון ולרי לוקח זמן בבני אדם – ולכן הקטע הדיסטלי ממשיך להוליך בגירוי חשמלי ימים רבים אחרי החיתוך. <b>נוירוגרפיה/EMG אמינה רק אחרי 3–4 שבועות</b> (סימני דנרבציה ברורים לעיתים רק אחרי 4–6 שבועות) – ואסור שהמתנה לבדיקה תעכב אקספלורציה כשיש אינדיקציה ברורה לניתוח.</p>
+
+<h2><span class="num">3</span> סיווג הפגיעה: Seddon, Sunderland, Mackinnon</h2>
+<table>
+  <thead><tr><th>Seddon</th><th>Sunderland / Mackinnon</th><th>מה נפגע</th><th>Tinel</th><th>פרוגנוזה / טיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>Neurapraxia</b></td><td>1</td><td>חסימת הולכה פיזיולוגית (לחץ חיצוני, מתיחה ניתוחית, איסכמיה מקומית), ללא ניוון</td><td><b>שלילי</b></td><td>החלמה מלאה בתוך ימים עד 3–4 חודשים; שמרני</td></tr>
+    <tr><td rowspan="2"><b>Axonotmesis</b></td><td>2</td><td>אקסון נקרע, endoneurium ו-basal lamina שלמים → ניוון ולרי</td><td>חיובי, מתקדם</td><td>התחדשות בתוך הצינור המקורי (1–3 מ"מ ליום), <b>אין אי-התאמת יעדים</b>; החלמה מלאה</td></tr>
+    <tr><td>3</td><td>+ נזק ל-endoneurium; פסיקולים שלמים</td><td>חיובי, מתקדם</td><td>צלקת תוך-פסיקולרית, אי-התאמה (בעיקר פרוקסימלית – פסיקולים מעורבים); החלמה משתנה; ניתוח לא תמיד מועיל</td></tr>
+    <tr><td rowspan="2"><b>Neurotmesis</b></td><td>4</td><td>רק epineurium שלם; שיבוש פנימי מלא</td><td>חיובי <b>במקום</b>, לא מתקדם</td><td>נוירומה; אין החלמה ללא ניתוח – כריתה ותיקון, לרוב שתל</td></tr>
+    <tr><td>5</td><td>חיתוך מלא של גזע העצב</td><td>—</td><td>תיקון ניתוחי מוקדם; לרוב עם פגיעה בגידים/כלי דם/עצם</td></tr>
+    <tr><td>—</td><td><b>6</b> (Mackinnon)</td><td>פגיעה מעורבת – <span class="term" dir="ltr">neuroma-in-continuity</span> (מתיחה סגורה, ירי, דקירה)</td><td>משתנה</td><td>אקספלורציה + <b>אלקטרופיזיולוגיה תוך-ניתוחית</b> להבחנה בין פסיקולים מתאוששים (II–III) לכאלה שדורשים שתל (IV–V)</td></tr>
+  </tbody>
+</table>
+<p>הכלל התוך-ניתוחי: אם נרשם פוטנציאל פעולה (<span class="term" dir="ltr">NAP</span>) מעבר לאזור הצלקת → דרגה II/III, צפויה החלמה ספונטנית; אין פוטנציאל → דרגה IV/V → כריתה ושתל.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה</h2>
+<ul>
+  <li><b class="key">כל מטופל עם תפקוד עצבי לקוי ופצע מעל מהלך העצב – נחשב כבעל עצב קטוע עד שיוכח אחרת.</b></li>
+  <li><b>מוטורי:</b> חוסר תנועה אקטיבית נגד התנגדות מיד אחרי חיתוך מלא; כוח צביטה ואחיזה, חולשה ואטרופיה של שרירים בודדים. בחולה לא משתף, חסר מוטורי קטן יכול להתפספס כשהחסר התחושתי בולט יותר.</li>
+  <li><b>תחושתי:</b> בודקים כשהמטופל לא רואה; באקוטי – כאב (פינצטה), הבחנה חד/קהה (תחושה מגינה), <span class="term" dir="ltr">two-point discrimination</span>.</li>
+  <li><b>סימפתטי:</b> שיתוק ואזומוטורי וסודומוטורי ← אין הזעה ← עור <b>אדום, יבש ו"מבריק"</b> באזור העצב (שימושי בילד/בחולה לא משתף).</li>
+  <li><b>Tinel</b> – ניקוש לאורך העצב מעורר עקצוץ בקצה האקסונים המתחדשים; התקדמות דיסטלית = התחדשות. כאב קשה ומתמשך באזור הפגיעה מרמז על פגיעה חמורה יותר.</li>
+</ul>
+
+<h2><span class="num">5</span> קבלת החלטות: מתי לחקור, מתי לחכות</h2>
+<table>
+  <thead><tr><th>סוג פגיעה</th><th>EMG/נוירוגרפיה</th><th>אקספלורציה</th><th>תיקון/שחזור</th></tr></thead>
+  <tbody>
+    <tr><td>חיתוך חד (<span class="term" dir="ltr">sharp transection</span>)</td><td>—</td><td>מיידית</td><td><b>מיידי</b></td></tr>
+    <tr><td>פצע פתוח עם ריסוק עצב</td><td>4–6 שבועות</td><td>מיידית</td><td>מיידי אם יש נתק מאקרוסקופי (אחרי רוויזיות לפצע נקי); מושהה אם העצב ברציפות</td></tr>
+    <tr><td>פצע ירי</td><td>4–6 שבועות</td><td>מיידית</td><td>כנ"ל</td></tr>
+    <tr><td>פגיעת מתיחה סגורה</td><td>4–6 שבועות</td><td>מושהית</td><td><b>3–4 חודשים</b> אם אין סימני התחדשות</td></tr>
+  </tbody>
+</table>
+<ul>
+  <li><b>פגיעה סגורה:</b> שמרני 4–6 שבועות ← אם אין החלמה מלאה – EMG ← אם <b>אין שום החלמה ב-3 חודשים</b> – אקספלורציה; אם יש החלמה חלקית – מעקב עד 3 חודשים נוספים. השאלה המכרעת: האם יש החלמה <i>כלשהי</i>.</li>
+  <li><b>פצע פתוח עם חסר עצבי – תמיד חוקרים</b>. עצב ברציפות בחקירה ← מטפלים בו כבפגיעה סגורה.</li>
+  <li><b>מצב הפצע:</b> פצע נקי ← תיקון מוקדם; פצע "מלוכלך"/מרוסק ← הטרייה (לעיתים חוזרת), כיסוי רקמה חיה (רצוי <b>תוך 3 שבועות</b>), ותיקון עצב שניוני – אז אזור הפגיעה מוגדר טוב יותר. העצב המתוקן צריך "מיטה" מדממת היטב (שריר/שומן); לעיתים דרוש פלאפ ליצירת משטח גלישה.</li>
+</ul>
+
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <title>ציר זמן לתיקון עצב</title>
+  <line x1="40" y1="80" x2="830" y2="80" stroke="#374151" stroke-width="3"/>
+  <polygon points="30,80 44,73 44,87" fill="#374151"/>
+  <circle cx="800" cy="80" r="9" fill="#047857"/>
+  <text x="800" y="55" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">0–48 שעות</text>
+  <text x="800" y="112" font-size="12" text-anchor="middle" fill="#065f46">תיקון ראשוני מיידי</text>
+  <text x="800" y="130" font-size="12" text-anchor="middle" fill="#065f46">(התוצאה הטובה ביותר)</text>
+  <circle cx="590" cy="80" r="9" fill="#2563eb"/>
+  <text x="590" y="55" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עד 2–3 שבועות</text>
+  <text x="590" y="112" font-size="12" text-anchor="middle" fill="#1e3a8a">תיקון "מושהה" אחרי ריפוי פצע</text>
+  <text x="590" y="130" font-size="12" text-anchor="middle" fill="#1e3a8a">כיסוי רקמה רך תוך 3 שבועות</text>
+  <circle cx="380" cy="80" r="9" fill="#b45309"/>
+  <text x="380" y="55" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">&gt; 3 שבועות</text>
+  <text x="380" y="112" font-size="12" text-anchor="middle" fill="#78350f">צלקת + נסיגת קצוות</text>
+  <text x="380" y="130" font-size="12" text-anchor="middle" fill="#78350f">← לרוב דרוש שתל</text>
+  <circle cx="170" cy="80" r="9" fill="#b91c1c"/>
+  <text x="170" y="55" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">3 חודשים</text>
+  <text x="170" y="112" font-size="12" text-anchor="middle" fill="#7f1d1d">פגיעה סגורה ללא החלמה</text>
+  <text x="170" y="130" font-size="12" text-anchor="middle" fill="#7f1d1d">← אקספלורציה</text>
+  <text x="435" y="172" font-size="12" text-anchor="middle" fill="#374151">הזמן זורם מימין לשמאל; בכל שלב "רמת התחדשות" של שוואן ולוחיות הקצה יורדת</text>
+</svg>
+
+<h2><span class="num">6</span> טכניקה ניתוחית – תיקון ראשוני</h2>
+<h3>גישה</h3>
+<ul>
+  <li><b>תמיד חוסם עורקים</b> (<span class="term" dir="ltr">tourniquet</span>), הגדלה (לופות/מיקרוסקופ) ומכשור מיקרוכירורגי.</li>
+  <li>חתכים לפי עקרונות פלסטיים (למשל <span class="term" dir="ltr">modified Bruner</span> באצבע) – להימנע מהתכווצויות וצלקות באזורי תחושה מרבית.</li>
+  <li>חשיפה רחבה והרחבת הפצע פרוקסימלית ודיסטלית – <b>"מהידוע אל הלא-ידוע"</b>: להגיע לעצב מרקמה בריאה אל אזור הפגיעה.</li>
+</ul>
+<h3>ארבעת העקרונות</h3>
+<ol>
+  <li><b>הטרייה עד רקמה בריאה:</b> חותכים בסכין/מספריים מיקרוכירורגיים (בהדרגה) עד שמופיע <b class="key">"mushrooming"</b> – הפסיקולים הבריאים "בולטים" מעל האפינוריום הנסוג. זה סימן לאקסונים חיים שיכולים לנבוט. אם מתכננים שחזור שניוני – "מתייגים" את הקצוות בתפר לא נספג ומקבעים אותם, כדי למנוע נסיגה ולהקל על זיהוי.</li>
+  <li><b>ללא מתח:</b> מתיחה של <b>8%</b> מורידה זרימת דם בעצב בכ-50% (מתאוששת תוך 30 דקות), ו-<b>15%</b> – בכ-80% כמעט ללא התאוששות ← איסכמיה של תאי שוואן בקצוות. מבחן פרקטי: <b>אם צריך לכופף מפרק כדי לקרב את הקצוות – המתח גבוה מדי</b> ← גיוס נוסף או שתל. אפשר להפחית מתח בגיוס עצב (הרזרבה הסגמנטלית מאפשרת) או בהעתקה (<span class="term" dir="ltr">anterior transposition</span> של האולנרי במרפק). יש להוסיף לחישוב את גלישת העצב: <b>כ-1.5 ס"מ</b> למדיאני ולאולנרי בשורש כף היד בין יישור לכיפוף מלא.</li>
+  <li><b>סיבוב ויישור:</b> מתאימים פסיקולים, ענפים ו<b>כלי הדם האפינוריאליים האורכיים</b> בשני הקצוות – מפחית אי-התאמה של קבוצות אקסונים.</li>
+  <li><b>קואפטציה:</b> תפרים בודדים <b>9-0 או 10-0 ניילון</b>, מינימום תפרים; לא להדק מדי (פסיקולים "מתקמטים"). פסיקולים שבולטים החוצה – גוזמים. <span class="term" dir="ltr">Fibrin glue</span> – תוספת או חלופה: טובה כמו תפר בידיים מנוסות ועדיפה אצל מנתח לא מנוסה (במודלים בחולדות).</li>
+</ol>
+<p class="key-box">מעל 80% מהפגיעות ניתנות לתפירה ראשונית קצה-לקצה. הקריטריון הקלאסי: <b>תפר 9-0 יחיד מחזיק את הקצוות</b> בלי שייפרדו ובלי שהאפינוריום ייקרע.</p>
+
+<h3>אפינוריאלי מול פסיקולרי</h3>
+<table>
+  <thead><tr><th>שיטה</th><th>יתרון</th><th>חיסרון</th><th>מתי</th></tr></thead>
+  <tbody>
+    <tr><td><b>אפינוריאלי</b> (ברירת מחדל)</td><td>פחות דיסקציה, שומר על אספקת דם</td><td>פחות "ספציפיות" פסיקולרית</td><td>כל עוד אפשרי טכנית; בעיקר דיסטלית</td></tr>
+    <tr><td><b>פסיקולרי קבוצתי</b> (<span class="term" dir="ltr">group fascicular</span>)</td><td>שומר על ספציפיות מוטורי/תחושתי</td><td>דיסקציה עמוקה – סיכון לכלי דם</td><td>כשהקבוצות נפרדות היטב – <b>אולנרי בשורש כף היד</b> (מוטורי ותחושתי נפרדים)</td></tr>
+    <tr><td><b>קצה-לצד</b> (<span class="term" dir="ltr">end-to-side</span>)</td><td>אין צורך בשתל; מקצר מרחק</td><td>תוצאות מעורבות; נביטה דורשת פגיעה אקסונלית בתורם</td><td>אין גדם פרוקסימלי / פגיעה פרוקסימלית גבוהה; שימושי יותר למוטורי</td></tr>
+  </tbody>
+</table>
+
+<h3>סגירה וקיבוע</h3>
+<ul>
+  <li>תפרים בודדים; הרדמה מקומית <b>דרך קנולה קהה</b> בין התפרים (לא מחט חדה – סכנה לעצב שטחי).</li>
+  <li><b>עצב דיגיטלי:</b> שורש כף יד <b>30° כיפוף</b>, MCP <b>70°</b>, הסד עד מעט אחרי ה-PIP (מונע יתר-יישור), <b>3 שבועות</b>. גזעים גדולים – הגנה על קו התפר עד <b>6 שבועות</b>.</li>
+</ul>
+
+<h2><span class="num">7</span> שחזור – כשיש פער</h2>
+<h3>שתל עצמי (<span class="term" dir="ltr">autograft</span>) – תקן הזהב</h3>
+<p><b>למה הוא עובד:</b> השתל מספק "פיגום" ביולוגי מלא – תאי שוואן עם basal lamina, גורמי גדילה ומולקולות אדהזיה (laminin, fibronectin) – ומבטל כל מתח בתפר. <b>למה עצב דק עדיף:</b> השתל שורד בהתחלה על דיפוזיה מהמיטה עד שנימים חודרים מהפריפריה ומהקצוות; שתל עבה → <b>נמק מרכזי וצלקת</b>. לכן עצב גדול מגושר בכמה "כבלים" (<span class="term" dir="ltr">cable grafts</span>) דקים, מונחים ברפיון ולא צמודים זה לזה.</p>
+<ul>
+  <li>מודדים את הפער <b>בטווח התנועה המקסימלי</b> המתוכנן (מפרקים ביישור מלא), ומוסיפים <b>~15%</b> אורך (השתל מתכווץ).</li>
+  <li><b>הופכים את השתל</b> (reversed) – כדי שאקסונים לא "יברחו" דרך ענפים צדדיים חתוכים.</li>
+  <li>שתל נשמר לח בגזה עם סליין; מסירים מ"מ של אפינוריום מהקצוות; 1–2 תפרים 9-0/10-0 + דבק פיברין.</li>
+</ul>
+<table>
+  <thead><tr><th>עצב תורם</th><th>אורך</th><th>חסר תחושתי</th><th>הערות</th></tr></thead>
+  <tbody>
+    <tr><td><b>Sural</b></td><td>30–40 ס"מ</td><td>גב השוק וצד לטרלי של כף הרגל</td><td>התורם העיקרי. יוצא מה-tibial מאחורי הברך + ענפים מקשרים מה-peroneal (לחתוך לפני משיכה). חתך בין המלאולוס הלטרלי לאכילס, ליד ה-small saphenous vein; לחתוך מתחת לפאסיה (פחות נוירומה)</td></tr>
+    <tr><td><b>MABC</b> (medial antebrachial cutaneous)</td><td>10–12 (מעל מרפק) / 8–10 (מתחת)</td><td>אמה מדיאלית</td><td>ליד ה-basilic vein; מתפצל ל-3 ענפים בגודל עצב דיגיטלי; מורבידיות קטנה</td></tr>
+    <tr><td><b>LABC</b> (lateral antebrachial cutaneous)</td><td>10–12 ס"מ</td><td>אמה לטרלית</td><td>סיום ה-musculocutaneous, לטרלית לגיד הביספס לאורך ה-cephalic vein; מטריד יותר מ-MABC</td></tr>
+    <tr><td><b>PIN – ענף סופי</b></td><td>4–5 ס"מ (1–3 פסיקולים)</td><td><b>אין</b></td><td>על הממברנה הבין-גרמית, דורסלית פרוקסימלית לשורש כף היד; מצוין לפער דיגיטלי קטן</td></tr>
+    <tr><td><b>SRN</b> (superficial radial)</td><td>25 ס"מ</td><td>גב כף היד הרדיאלי</td><td>נוטה ל<b>נוירומות כואבות</b> – בעיקר בפגיעות מקלעת; קונטרה-אינדיקציה יחסית כשיש פגיעה מדיאנית/אולנרית</td></tr>
+    <tr><td>Saphenous / Lateral femoral cutaneous</td><td>40 / 20 ס"מ</td><td>—</td><td>Saphenous – מקלעת ושתל מדומם; LFCN – ברירה אחרונה (חסר גדול, נוירומות)</td></tr>
+  </tbody>
+</table>
+
+<h3>חלופות לשתל עצמי</h3>
+<table>
+  <thead><tr><th>חלופה</th><th>מה זה</th><th>נתוני מפתח</th><th>גבול שימוש</th></tr></thead>
+  <tbody>
+    <tr><td><b>צינורות מתכלים</b> (collagen, PGA, PLCL, chitosan)</td><td>צינור ריק; נוצרת בו מטריקס פיברין אורכית</td><td>Boeckstyns (RCT): collagen שקול לתפר ישיר בפער ≤6 מ"מ ב-24 חודשים (אך ב-12 חודשים מוטורי טוב יותר בתפר); דיגיטלי – טוב יותר בפער &lt;10 מ"מ</td><td><b>&lt;10 מ"מ</b>; קוטר מעט גדול מהעצב (אחרת לחץ עם בצקת/ניוון ולרי)</td></tr>
+    <tr><td>צינור סיליקון (לא מתכלה)</td><td>בידוד ביולוגי מצלקת</td><td>RCT במדיאני/אולנרי: ללא הבדל מתפר, פחות רגישות לקור ב-5 שנים</td><td>לא מתאים כשיש פער</td></tr>
+    <tr><td><b>Processed nerve allograft</b> (PNA)</td><td>עצב אדם מעובד בדטרגנט – ללא תאים, "ניוון ולרי מוקדם" שמפרק מעכבי גדילה; שומר מבנה פסיקולים ו-laminin</td><td>RANGER: ≥82% החלמה משמעותית (S3/M3); גפה עליונה 83% מול תחתונה 53%; מוטורי – נמוך יותר (36% כללי, 67% בפער &lt;30 מ"מ)</td><td><b>&lt;30 מ"מ</b>, בעיקר תחושתי דיסטלי (דיגיטלי)</td></tr>
+    <tr><td>Muscle-in-vein</td><td>וריד ממולא שריר – הסיבים האורכיים מכוונים אקסונים, הווריד לא קורס</td><td>פערים דיגיטליים עד 6 ס"מ – דומה לשתל עצמי</td><td>אין מורבידיות תחושתית בתורם</td></tr>
+  </tbody>
+</table>
+<p><b>מילויים (fillers)</b> לצינורות: רמזים <b>הפטוטקטיים</b> (מגע – laminin, fibronectin, קולגן) ו<b>כמוטקטיים</b> (מתפזרים – NGF, GDNF, NT-3), ותאים (שוואן, תאי גזע) – עדיין מחקרי. <b>גירוי חשמלי</b> תוך-ניתוחי מאיץ את חציית האקסונים את קו התפר ומשפר דיוק יעד.</p>
+
+<h3>העברות עצב (nerve transfers)</h3>
+<p>מקריבים עצב מוטורי "פחות חשוב" ומנתבים אותו לעצב חשוב קרוב ליעד. דוגמת הדגל: <b>פגיעה אולנרית גבוהה</b> – תוצאות גרועות כי לוחיות הקצה של השרירים האינטרינזיים מתנוונות לפני שהאקסונים מגיעים. הפתרון: <b class="key">SETS – supercharged end-to-side</b> מה-<b>AIN</b> (הענף לפרונטור קוודרטוס) אל הענף המוטורי האולנרי – "Martin-Gruber מלאכותי". בסקירה (78 מטופלים): 92% החזירו תפקוד אינטרינזי, אחיזה +202%, key pinch +179%.</p>
+
+<svg class="diagram" viewBox="0 0 860 170" xmlns="http://www.w3.org/2000/svg">
+  <title>סולם גישור פער עצבי</title>
+  <rect x="640" y="20" width="200" height="90" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="740" y="48" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">ללא פער / ללא מתח</text>
+  <text x="740" y="70" font-size="12" text-anchor="middle" fill="#065f46">תפר קצה-לקצה</text>
+  <text x="740" y="90" font-size="12" text-anchor="middle" fill="#065f46">(תמיד עדיף)</text>
+  <rect x="430" y="20" width="180" height="90" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="520" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">פער &lt; 10 מ"מ</text>
+  <text x="520" y="70" font-size="12" text-anchor="middle" fill="#1e3a8a">צינור מתכלה</text>
+  <text x="520" y="90" font-size="12" text-anchor="middle" fill="#1e3a8a">(או שתל)</text>
+  <rect x="220" y="20" width="180" height="90" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="310" y="48" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">פער &lt; 30 מ"מ</text>
+  <text x="310" y="70" font-size="12" text-anchor="middle" fill="#78350f">אלוגרפט מעובד</text>
+  <text x="310" y="90" font-size="12" text-anchor="middle" fill="#78350f">(בעיקר תחושתי)</text>
+  <rect x="20" y="20" width="170" height="90" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="105" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פער ארוך / מוטורי</text>
+  <text x="105" y="70" font-size="12" text-anchor="middle" fill="#7f1d1d">שתל עצמי (sural)</text>
+  <text x="105" y="90" font-size="12" text-anchor="middle" fill="#7f1d1d">± העברת עצב</text>
+  <line x1="640" y1="65" x2="622" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="610,65 622,59 622,71" fill="#374151"/>
+  <line x1="430" y1="65" x2="412" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="400,65 412,59 412,71" fill="#374151"/>
+  <line x1="220" y1="65" x2="202" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="190,65 202,59 202,71" fill="#374151"/>
+  <text x="430" y="145" font-size="12" text-anchor="middle" fill="#374151">שתל עצמי נשאר תקן הזהב; פער נמדד בטווח תנועה מלא + 15% אורך לשתל</text>
+</svg>
+
+<h2><span class="num">8</span> טיפול אחרי ניתוח ושיקום תחושתי</h2>
+<ul>
+  <li><b>הרמת היד</b> בשבוע הראשון; סד גבי ~3 שבועות עם תנועה עדינה מוגנת (מקבע מוחלט = הידבקות העצב בצלקת וכאב בתנועה; תנועה חופשית = מתח בתפר). הסרת תפרים וגבס ב-3 שבועות; הגנה מיישור יתר של שורש כף היד עד 6 שבועות.</li>
+  <li>המנתח עוקב אחר <b>התקדמות Tinel</b> וחזרת תפקוד שרירים.</li>
+</ul>
+<div class="mechanism">
+  <p class="chain">למה המוח צריך "שיעורי לשון"?</p>
+  <p>אחרי החיתוך נוצר "אזור שקט" בקליפת המוח הסומטוסנסורית, ואזורים שכנים <b>משתלטים עליו מיד</b> (הסרת עיכוב של סינפסות קיימות). כשהאקסונים חוזרים, הם נכנסים ברובם <b>לצינורות הלא-נכונים</b> – המפה הקורטיקלית של היד הופכת ל"פסיפס" שבו אצבעות חופפות ונעלמות: <b class="key">"היד מדברת שפה חדשה אל המוח"</b>.</p>
+  <p><b>שלב 1</b> (לפני הרה-עצבוב, כבר בשבוע הראשון): שמירה על ייצוג היד – דמיון תחושתי/מוטורי, צפייה בנגיעה ביד (תאי מראה, אינטראקציה חזותית-מישושית), <b>כפפת חיישנים</b> עם מיקרופונים באצבעות – "להקשיב למה שהיד מרגישה". <b>שלב 2</b> (אחרי תחילת רה-עצבוב): אימון לוקליזציה וזיהוי צורות ומרקמים בעיניים פתוחות וסגורות. <b>EMLA על האמה</b> (הרדמה עורית חוזרת) מצמצמת את ייצוג האמה ו"נותנת ליד יותר מקום במוח" – משפר גנוזיס מישושי.</p>
+</div>
+
+<h2><span class="num">9</span> תוצאות ופרוגנוזה</h2>
+<p>הערכה סופית רק אחרי סיום השיקום – <b>12–24 חודשים</b> (יש הממליצים 3 שנים). הסולם המקובל: <b>BMRC (Highet 1954)</b>, שנמתח על ביקורת בגלל סובייקטיביות; <b>Rosen score</b> משלב תחושה, מוטוריקה וכאב/אי-נוחות ומתאם עם ADL. "החלמה משמעותית" = <b>S3 או M3 ומעלה</b>.</p>
+<table>
+  <thead><tr><th>מוטורי</th><th>משמעות</th><th>תחושתי</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>M0</td><td>אין</td><td>S0</td><td>אין</td></tr>
+    <tr><td>M1</td><td>התכווצות בשרירים פרוקסימליים</td><td>S1</td><td>תחושה עורית עמוקה</td></tr>
+    <tr><td>M2</td><td>פרוקסימליים + דיסטליים</td><td>S2</td><td>כאב שטחי וקצת מגע (S2+ עם היפרסטזיה)</td></tr>
+    <tr><td><b>M3</b></td><td>נגד כוח משיכה</td><td><b>S3</b></td><td>כאב ומגע ללא היפרסטזיה (S3+ עם לוקליזציה וקצת 2PD)</td></tr>
+    <tr><td>M4</td><td>נגד התנגדות</td><td>S4</td><td>החלמה מלאה עם 2PD תקין</td></tr>
+    <tr><td>M5</td><td>החלמה מלאה</td><td colspan="2"></td></tr>
+  </tbody>
+</table>
+<table>
+  <thead><tr><th>גורם</th><th>השפעה</th><th>ההסבר המנגנוני</th></tr></thead>
+  <tbody>
+    <tr><td><b>גיל</b> (החשוב ביותר)</td><td>&lt;16 שנים – סיכוי פי 4 להחלמה מוטורית משביעת רצון; ילדים בעיקר בילדות (לא בגיל ההתבגרות)</td><td>בעיקר <b>פלסטיות מוחית</b> – ילדים עם נוירוגרפיה גרועה ובכל זאת תפקוד קליני מצוין</td></tr>
+    <tr><td>עיכוב בתיקון</td><td>משפיע גם מוטורי וגם תחושתי</td><td>אפופטוזיס שוואן, ניוון לוחיות קצה</td></tr>
+    <tr><td>גובה הפגיעה</td><td>פרוקסימלי גרוע יותר</td><td>מוות נוירונלי + מרחק ארוך</td></tr>
+    <tr><td>העצב</td><td>מוטורי: <b>מדיאני &gt; רדיאלי &gt; אולנרי</b>; תחושתי – אין הבדל</td><td>האולנרי מעצבב שרירים אינטרינזיים עדינים שדורשים דיוק</td></tr>
+    <tr><td>סוג התיקון</td><td>אולנרי: תפר 72% &gt; שתל 67% (נוירוליזה 92%)</td><td>שני קווי תפר + מתח/איסכמיה</td></tr>
+    <tr><td>סוג הפגיעה</td><td>ריסוק ברציפות &gt; חיתוך</td><td>צינורות אנדונוריאליים שמורים</td></tr>
+  </tbody>
+</table>
+<p><b>עצב דיגיטלי:</b> 37–68% "תקין/מצוין/טוב" (S2PD תקין ≤5 מ"מ; מצוין 7–10 מ"מ) – בערך <b>מחצית</b> משיגים תחושה תקינה או סבירה.</p>
+
+<h2><span class="num">10</span> סיבוכים ותלונות שאריות</h2>
+<ul>
+  <li><b>רגישות לקור</b> – נחשבת <b class="key">הסימפטום המגביל ביותר</b>; ~59% ממטופלי מדיאני/אולנרי; קשורה הפוך להחלמה התחושתית; מנבאים: פגיעה בכלי דם גדולים, ריסוק, כאב מוקדם, גובה הפגיעה; שכיחה יותר בנשים; <b>לא משתפרת עם הזמן</b> (מצב קבוע). אין טיפול ספציפי (ניסיון: התניה פבלובית).</li>
+  <li>תלונות נוספות: נימול (80%), נוקשות (77%), חולשה (72%), כאב (63%), שינוי צבע (50%), נפיחות (33%). עומס פוסט-טראומטי דומה לשורדי אסונות.</li>
+  <li><b>CRPS</b>: סוג 1 – ללא פגיעת עצב; <b>סוג 2 – עם פגיעת עצב ידועה</b>. כאב שורף לא פרופורציונלי + הפרעה אוטונומית, בצקת, נוקשות, שינויי עור/ציפורניים/שיער/טמפרטורה. גורמי סיכון: עישון, נשים, גיל ~45. עצבים "מסוכנים" בניתוח: <b>ענף דורסלי של האולנרי, ענף עורי פלמרי של המדיאני, ענף שטחי של הרדיאלי</b>. כמחצית מהלא-מטופלים מעל שנה – נכות שארית. טיפול: gabapentin/pregabalin ועוד.</li>
+  <li>נוירומה (בעיקר אחרי SRN או חיתוך לא מתחת לפאסיה בקציר sural), נמק מרכזי בשתל עבה, לחץ מצינור צר מדי.</li>
+</ul>
+
+<h2><span class="num">11</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>סנדרלנד "מבפנים החוצה": <span dir="ltr">M-A-E-P-E</span></h3>
+  <p>
+    <b>1 – M</b>yelin (רק הולכה) · <b>2 – A</b>xon · <b>3 – E</b>ndoneurium · <b>4 – P</b>erineurium · <b>5 – E</b>pineurium · (<b>6</b> = Mixed).<br>
+    כל דרגה = השכבה הבאה החוצה נקרעת. Tinel: שלילי ב-1, מתקדם ב-2–3, תקוע ב-4.
+  </p>
+  <h3>המספרים שחוזרים: "48 – 3 – 3"</h3>
+  <p><b>48</b> שעות – תיקון מיידי אידיאלי · <b>3</b> שבועות – אחריהם לרוב שתל (ו-3 שבועות קיבוע דיגיטלי) · <b>3</b> חודשים – פגיעה סגורה בלי שום החלמה → אקספלורציה.<br>
+  ועוד: <b>8%</b> מתח = -50% זרימה, <b>15%</b> מתח = -80%; שתל ארוך ב-<b>15%</b>; צינור &lt;<b>10</b> מ"מ; אלוגרפט &lt;<b>30</b> מ"מ.</p>
+  <h3>סיפור דמיוני: מסילת הרכבת</h3>
+  <p>העצב הוא מסילת רכבת שקרסה בגשר. <b>צוותי ניקיון</b> (מקרופאגים ושוואן) מפנים את ההריסות מהמסילה הישנה, ו<b>פועלי השוואן</b> פורשים מסילות חדשות (bands of Büngner) ומדליקים פנסים (NGF). <b>הקטר</b> (growth cone) מגשש בידיים קטנות (filopodia) ונוסע רק <b>מילימטר ביום</b>. אם הגשר נבנה מהר (תפר מוקדם, בלי מתח – חבל מתוח נקרע) – הקטר חוצה. אם מחכים חודשים – הפועלים מתעייפים והולכים הביתה (אפופטוזיס), והתחנה הסופית (לוחית הקצה) נסגרת לצמיתות. וגשר חלופי? עדיף מהחומר של העיר עצמה (sural), קצת ארוך מהפער, ומונח הפוך – שהקטר לא יסטה לפסי צד.</p>
+  <svg class="diagram" viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg">
+    <title>מסילת העצב</title>
+    <line x1="10" y1="120" x2="200" y2="120" stroke="#6b7280" stroke-width="4"/>
+    <line x1="320" y1="120" x2="510" y2="120" stroke="#6b7280" stroke-width="4"/>
+    <line x1="10" y1="135" x2="200" y2="135" stroke="#6b7280" stroke-width="4"/>
+    <line x1="320" y1="135" x2="510" y2="135" stroke="#6b7280" stroke-width="4"/>
+    <path d="M200,128 Q260,95 320,128" stroke="#b45309" stroke-width="4" fill="none" stroke-dasharray="8 5"/>
+    <text x="260" y="88" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">גשר = שתל (+15%)</text>
+    <rect x="400" y="92" width="70" height="26" rx="5" fill="#2563eb"/>
+    <circle cx="415" cy="120" r="6" fill="#111827"/>
+    <circle cx="455" cy="120" r="6" fill="#111827"/>
+    <text x="435" y="84" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">קטר = growth cone</text>
+    <text x="435" y="160" font-size="11" text-anchor="middle" fill="#1e3a8a">1 מ"מ ליום</text>
+    <rect x="20" y="70" width="60" height="45" rx="4" fill="#ecfdf5" stroke="#047857"/>
+    <text x="50" y="97" font-size="11" text-anchor="middle" fill="#065f46" font-weight="700">תחנה</text>
+    <text x="50" y="160" font-size="11" text-anchor="middle" fill="#065f46">לוחית קצה – נסגרת עם הזמן</text>
+    <circle cx="150" cy="105" r="7" fill="#fde68a" stroke="#b45309"/>
+    <circle cx="175" cy="105" r="7" fill="#fde68a" stroke="#b45309"/>
+    <text x="162" y="180" font-size="11" text-anchor="middle" fill="#78350f">פועלי שוואן + פנסי NGF</text>
+  </svg>
+</div>
+
+<h2><span class="num">12</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK549848/" target="_blank">Peripheral Nerve Injury – StatPearls (NCBI Bookshelf)</a><span class="tag">StatPearls</span>
+    <div class="desc">סקירה קלינית של פגיעות עצב פריפרי: סיווג Seddon/Sunderland, אבחנה וטיפול, כולל איור סוגי הפגיעה.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK562304/" target="_blank">Axonotmesis – StatPearls (NCBI Bookshelf)</a><span class="tag">StatPearls</span>
+    <div class="desc">העמקה בדרגות 2–4, ניוון ולרי וקצב ההתחדשות.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK560501/" target="_blank">Neurapraxia – StatPearls (NCBI Bookshelf)</a><span class="tag">StatPearls</span>
+    <div class="desc">דרגה 1: מנגנון חסימת ההולכה והפרוגנוזה.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Wallerian_degeneration" target="_blank">Wallerian degeneration – Wikipedia</a>
+    <div class="desc">רקע ביולוגי על ניוון ולרי, תפקיד מקרופאגים ותאי שוואן.</div>
+  </li>
+</ul>
+
+<h2><span class="num">13</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 28, נגר, נחתך מזכוכית בצד הוולרי-אולנרי של שורש כף היד לפני 5 שעות. בבדיקה: פצע נקי וחד, <b>אובדן תחושה בזרת ובצד האולנרי של הקמיצה</b>, חולשה בפישוק האצבעות, והעור בזרת <b>יבש ו"מבריק"</b>. אין חשד לפגיעת כלי דם. בניתוח (תחת חוסם עורקים ומיקרוסקופ) נמצא העצב האולנרי קטוע לחלוטין; לאחר הטרייה עד הופעת <b>mushrooming</b> נותר פער קטן, והקצוות מתקרבים בתפר 9-0 יחיד בלי שיפרדו – אך רק כששורש כף היד בכיפוף. הקבוצות המוטורית והתחושתית נראות נפרדות היטב.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. באיזו דרגת סנדרלנד פגיעת העצב של המטופל, ומה המשמעות?</div>
+  <button class="opt" data-i="0">דרגה 1 – צפויה החלמה ספונטנית תוך שבועות</button>
+  <button class="opt" data-i="1">דרגה 3 – יש להמתין 3 חודשים ולבצע EMG</button>
+  <button class="opt" data-i="2">דרגה 5 – נדרש תיקון ניתוחי, רצוי מיידי</button>
+  <button class="opt" data-i="3">דרגה 6 – neuroma-in-continuity הדורשת אלקטרופיזיולוגיה תוך-ניתוחית</button>
+  <div class="explain">התשובה הנכונה: חיתוך מלא של גזע העצב (כולל epineurium) = דרגה 5 (neurotmesis), ואין החלמה בלי ניתוח; בחיתוך חד ונקי – תיקון מיידי (אידיאלית תוך 48 שעות). דרגה 1 (א) היא חסימת הולכה ללא נתק ויש בה Tinel שלילי. דרגה 3 (ב) היא פגיעה ברציפות, ובפצע פתוח עם חיתוך אין מקום להמתנה. דרגה 6 (ד) היא פגיעה מעורבת ברציפות – לא חיתוך מלא.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. הקצוות מתקרבים רק כששורש כף היד מכופף. מה ההחלטה הנכונה?</div>
+  <button class="opt" data-i="0">לתפור בכיפוף ולקבע את שורש כף היד ב-60° לשישה שבועות</button>
+  <button class="opt" data-i="1">המתח גבוה מדי – גיוס נוסף של העצב, ואם אין די בכך שתל עצב</button>
+  <button class="opt" data-i="2">להוסיף תפרים רבים יותר כדי לפזר את המתח</button>
+  <button class="opt" data-i="3">להשאיר את העצב ללא תיקון ולבצע העברת עצב לאחר שנה</button>
+  <div class="explain">התשובה הנכונה: הכלל בפרק – אם צריך לכופף מפרק כדי לקרב את הקצוות, המתח גבוה מדי. מתיחה של 15% מורידה את זרימת הדם בעצב בכ-80% כמעט ללא התאוששות, ותאי השוואן בקצוות נפגעים. פותרים בגיוס (הרזרבה הסגמנטלית מאפשרת) או בשתל. קיבוע בכיפוף (א) רק דוחה את המתח לרגע שבו המטופל מיישר. תפרים רבים (ג) מגבירים צלקת וקימוט פסיקולים – ממליצים על מספר מינימלי. ויתור על תיקון (ד) מבזבז את חלון הזמן הביולוגי.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזו שיטת קואפטציה מתאימה במיוחד לעצב זה במיקום זה?</div>
+  <button class="opt" data-i="0">תפר קצה-לצד לעצב המדיאני</button>
+  <button class="opt" data-i="1">צינור סיליקון</button>
+  <button class="opt" data-i="2">תפר אפינוריאלי בלבד ללא התייחסות לפסיקולים</button>
+  <button class="opt" data-i="3">תיקון פסיקולרי קבוצתי – חיבור נפרד של הקבוצה המוטורית והתחושתית</button>
+  <div class="explain">התשובה הנכונה: באולנרי בגובה שורש כף היד הקבוצה המוטורית (לענף העמוק) והתחושתית נפרדות אנטומית, ולכן group fascicular repair שומר על ספציפיות היעד. תפר אפינוריאלי (ג) הוא ברירת המחדל הכללית, אבל כאן מפספס את היתרון. קצה-לצד (א) שמור למצב שבו אין גדם פרוקסימלי. צינור סיליקון (ב) אינו מתאים כשיש פער ואינו מתכלה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">4. הוחלט לגשר על פער של 25 מ"מ בשתל עצמי. מה נכון לגבי השתל?</div>
+  <button class="opt" data-i="0">להשתמש בכמה כבלים דקים (למשל sural), ארוכים בכ-15% מהפער, מונחים הפוך וברפיון</button>
+  <button class="opt" data-i="1">להשתמש בשתל עבה אחד כדי לשמור על מספר אקסונים מרבי</button>
+  <button class="opt" data-i="2">למדוד את הפער כשהמפרקים בכיפוף מלא</button>
+  <button class="opt" data-i="3">לקצור את הענף השטחי של העצב הרדיאלי כברירה ראשונה</button>
+  <div class="explain">התשובה הנכונה: השתל שורד בהתחלה על דיפוזיה, ולכן כבלים דקים מתחדשים (revascularize) היטב, בעוד שתל עבה (ב) נוטה לנמק מרכזי וצלקת. אורך +15% בגלל התכווצות השתל, והיפוך מונע בריחת אקסונים דרך ענפים חתוכים. את הפער מודדים ביישור מלא של המפרקים (ג הפוך). SRN (ד) נוטה לנוירומות כואבות ונחשב קונטרה-אינדיקציה יחסית כשיש פגיעה מדיאנית/אולנרית.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. שנה לאחר הניתוח התחושה בזרת חזרה חלקית, אבל המטופל מתלונן בעיקר שידו "קופאת" בחורף. מה נכון?</div>
+  <button class="opt" data-i="0">זה סימן ל-CRPS סוג 1 ומחייב חקירה מחודשת</button>
+  <button class="opt" data-i="1">התלונה צפויה להיעלם לחלוטין תוך שנה-שנתיים נוספות</button>
+  <button class="opt" data-i="2">רגישות לקור היא מהתלונות המגבילות ביותר, קשורה להחלמה תחושתית חלקית ונוטה להישאר יציבה</button>
+  <button class="opt" data-i="3">הטיפול המקובל הוא ניתוח חוזר ושתל</button>
+  <div class="explain">התשובה הנכונה: הפרק מציין שרגישות לקור נחשבת לסימפטום המגביל ביותר אחרי תיקון עצב, שכיחותה כ-59%, היא בקורלציה הפוכה להחלמה התחושתית, ו<b>אינה משתנה עם הזמן</b> (ב שגויה). CRPS סוג 1 (א) מוגדר ללא פגיעת עצב, וזו לא התמונה (כאב שורף לא פרופורציונלי + הפרעה אוטונומית). אין טיפול ניתוחי ספציפי לרגישות לקור (ד).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מדוע פגיעה אולנרית <b>גבוהה</b> (במרפק) מסתיימת לרוב גרוע, ומה הפתרון המודרני?</div>
+  <button class="opt" data-i="0">האולנרי אינו מתחדש כלל; מבצעים העברת גידים בלבד</button>
+  <button class="opt" data-i="1">המרחק ארוך ולוחיות הקצה של השרירים האינטרינזיים מתנוונות לפני שהאקסונים מגיעים – SETS מה-AIN לענף המוטורי האולנרי</button>
+  <button class="opt" data-i="2">האולנרי רגיש לקור; מטפלים בהתניה פבלובית</button>
+  <button class="opt" data-i="3">תיקון פסיקולרי אינו אפשרי במרפק; משתמשים בצינור מתכלה</button>
+  <div class="explain">התשובה הנכונה: ב-1–3 מ"מ ליום, מהמרפק לכף היד לוקח חודשים רבים – ולוחיות הקצה מתנוונות באופן בלתי הפיך, וגם יש סיכון לאי-התאמה סנסומוטורית. Supercharged end-to-side מה-AIN (ענף לפרונטור קוודרטוס) לענף המוטורי העמוק של האולנרי יוצר "Martin-Gruber מלאכותי" קרוב ליעד (92% החזרת תפקוד אינטרינזי בסקירה). האולנרי כן מתחדש (א). רגישות לקור (ג) אינה ההסבר. צינור (ד) מוגבל לפערים &lt;10 מ"מ.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">14</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שכבות: endoneurium (סיב) ← perineurium (פסיקול) ← epineurium (גזע) ← mesoneurium (גלישה). אספקת דם סגמנטלית עם רזרבה – מאפשרת גיוס.</li>
+    <li>אחרי חיתוך: ניוון ולרי דיסטלי, ניקוי ע"י מקרופאגים ושוואן, bands of Büngner, growth cone, 1–3 מ"מ ליום. עיכוב ← אפופטוזיס שוואן וניוון לוחיות קצה.</li>
+    <li>Sunderland 1–5 מבפנים החוצה (+6 מעורב). 1 – Tinel שלילי; 4–5 – ניתוח.</li>
+    <li>פצע + חסר עצבי = עצב קטוע עד שיוכח אחרת; פצע פתוח – תמיד חוקרים. סגור – שמרני, EMG אחרי 4–6 שבועות, אקספלורציה ב-3 חודשים אם אין החלמה.</li>
+    <li>תיקון מיידי (&lt;48 ש') עדיף; &gt;3 שבועות – לרוב שתל. ללא מתח (כיפוף מפרק = יותר מדי), mushrooming, יישור לפי כלי דם אפינוריאליים, 9-0/10-0, מעט תפרים ± דבק פיברין.</li>
+    <li>אפינוריאלי = ברירת מחדל; פסיקולרי קבוצתי – אולנרי בשורש כף היד.</li>
+    <li>שתל עצמי = תקן זהב (sural 30–40 ס"מ), כבלים דקים, +15%, הפוך. צינור &lt;10 מ"מ; אלוגרפט &lt;30 מ"מ (תחושתי).</li>
+    <li>אולנרי גבוה – SETS מה-AIN. קיבוע דיגיטלי: שורש 30°, MCP 70°, 3 שבועות.</li>
+    <li>שיקום תחושתי בשני שלבים ("היד מדברת שפה חדשה"); EMLA על האמה.</li>
+    <li>פרוגנוזה: גיל (פלסטיות מוחית) &gt; עיכוב, גובה, עצב (מדיאני &gt; רדיאלי &gt; אולנרי מוטורית), תפר &gt; שתל. רגישות לקור – מגבילה וקבועה; CRPS סוג 2.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

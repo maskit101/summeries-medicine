@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 21: שחזור שד בשלב אחד במישור כפול עם שתלים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 21: שחזור שד בשלב אחד במישור כפול עם שתלים <span class="term" dir="ltr">One-stage dual-plane reconstruction with prosthetic devices</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | Section II – Reconstructive Breast Surgery, מאת Brittany L. Vieira ו-Amy S. Colwell</div>
+
+<p>הפרק מציג את הגישה של <b>שחזור ישיר לשתל</b> (<span class="term" dir="ltr">DTI – direct-to-implant</span>): מיד אחרי כריתת השד מניחים <b>שתל קבוע בגודל מלא</b> בכיס "דו-מישורי" (<span class="term" dir="ltr">dual-plane</span>) – החלק העליון-המדיאלי של השתל מכוסה בשריר הפקטורליס מז'ור (Pectoralis major), והחלק התחתון-הצדדי במטריקס דרמלי חסר תאים (<span class="term" dir="ltr">ADM – acellular dermal matrix</span>). היתרון: <b>ניתוח אחד</b> במקום שני שלבים (מרחיב רקמה ← החלפה לשתל), ללא הרחבות רבות בקליניקה. המחיר: הצלחה תלויה כמעט כולה ב<b>איכות ואספקת הדם של דש העור</b> לאחר הכריתה ובטכניקה מדויקת.</p>
+
+<h2><span class="num">1</span> רקע: למה חוזרים ל-DTI, ולמה לא היה בטוח קודם</h2>
+<div class="mechanism">
+  <p class="chain">שרשרת ההתפתחות: שתל תת-עורי (נמק דש, איבוד שתל, קפסולה) &#8592; כיסוי תת-שרירי מלא (בטוח יותר, אך כיס הדוק שמעוות צורה וגבולות גודל) &#8592; מרחיב רקמה תת-שרירי (שני שלבים, גודל גדול יותר) &#8592; <b>ADM + כריתה משמרת עור/פטמה</b> שאפשרו כיס גדול מספיק לשתל מלא בשלב אחד.</p>
+</div>
+<p>שני שינויים שהחזירו את ה-DTI: (1) <b>ריפוי:</b> ADM מרחיב את הכיס וייצר כיסוי חלקי-שרירי עם קוטב תחתון טוב יותר; (2) <b>אונקולוגיה:</b> מעבר לכריתה משמרת עור (<span class="term" dir="ltr">SSM</span>) ומשמרת פטמה (<span class="term" dir="ltr">NSM</span>) הותיר דש עור מסופק דם טוב יותר וכיס שיכול להכיל נפח שתל שלם ללא הרחבה.</p>
+<p>מטא-אנליזה מ-2016 של המחקרים המוקדמים מצאה אסתטיקה דומה אך <b>יותר סיבוכים ואיבוד שתל</b> ב-DTI. מאז התוצאות השתפרו בעקביות – <b class="key">עקומת למידה משמעותית</b>: במרכז המחברים שיעור הסיבוכים ירד בחצי אחרי השנה הראשונה, ועם ניסיון אין הבדל בסיבוכים או בשיעור רוויזיות בין DTI לשני שלבים. יתרונות נוספים: עלות כוללת נמוכה יותר בניתוחי עלות-תועלת, וחזרה מהירה לחיים המקצועיים והאישיים.</p>
+
+<h2><span class="num">2</span> מנגנון: למה הצלחה תלויה בדש העור, ואיך ה-Dual-plane פותר את בעיית הכיס</h2>
+<div class="mechanism">
+  <p class="chain">כריתה ← ירידה חדה בזילוף העור (נתק ממקורות ההזנה של רקמת השד) ← שתל בנפח מלא מעלה את <b>הלחץ והמתיחה</b> על הדש ← אם אספקת הדם גבולית: <b>איסכמיה ← נמק עור/פטמה ← חשיפת שתל/זיהום</b>. לכן בודקים את הדש לפני שמחליטים על נפח.</p>
+  <p>נוסף על הנקודה הזו: <b>הפקטורליס לבדו קטן מדי</b> לכיסוי שתל מלא (פרט לשדיים קטנים מאוד); הוא מכסה את הקוטב העליון והמדיאלי בלבד. חסרים השליטה בקפל התת-שדי (<span class="term" dir="ltr">IMF – inframammary fold</span>) והגבול הצידי. ה-ADM משמש כ"המשך" של השריר: מגדיר את הגבול התחתון והצדדי של הכיס, מגדיל אותו, משפר הקרנת קוטב תחתון, ובחומרים לא נספגים מונע גם התכווצות שריר ו-"window-shading" (השריר מתכנס כמו וילון).</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת החלטה ב-DTI</title>
+  <rect x="700" y="20" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="47" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כריתה משמרת עור</text>
+  <text x="770" y="67" font-size="12" text-anchor="middle" fill="#7f1d1d">דש עור = "עדשה"</text>
+  <rect x="470" y="20" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="47" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">הערכת דש</text>
+  <text x="550" y="67" font-size="12" text-anchor="middle" fill="#1e3a8a">צבע, מילוי, sizer</text>
+  <rect x="240" y="20" width="160" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="320" y="47" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">כיס דו-מישורי</text>
+  <text x="320" y="67" font-size="12" text-anchor="middle" fill="#065f46">שריר + ADM</text>
+  <rect x="20" y="20" width="160" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="100" y="47" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שתל מלא</text>
+  <text x="100" y="67" font-size="12" text-anchor="middle" fill="#4c1d95">בשלב אחד</text>
+  <polygon points="660,55 700,49 700,61" fill="#374151"/>
+  <line x1="700" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="430,55 470,49 470,61" fill="#374151"/>
+  <line x1="470" y1="55" x2="430" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,55 240,49 240,61" fill="#374151"/>
+  <line x1="240" y1="55" x2="200" y2="55" stroke="#374151" stroke-width="2"/>
+  <rect x="470" y="130" width="370" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="655" y="156" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">דש חלש / איסכמי ← מרחיב רקמה (או דחייה)</text>
+  <text x="655" y="176" font-size="12" text-anchor="middle" fill="#78350f">ההחלטה הסופית תוך-ניתוחית</text>
+  <polygon points="550,130 544,110 556,110" fill="#b45309"/>
+  <line x1="550" y1="130" x2="550" y2="110" stroke="#b45309" stroke-width="2"/>
+</svg>
+<p class="key-box">ההחלטה הסופית על סוג השחזור מתקבלת תוך-ניתוחית. המטופלת מסכימה מראש הן לשתל קבוע והן למרחיב רקמה (ואף לאפשרות של אי-שחזור מיידי).</p>
+
+<h2><span class="num">3</span> אנטומיה של הכיס והמישור הכפול</h2>
+<svg class="diagram" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+  <title>חתך צדדי סכמטי של כיס Dual-plane</title>
+  <rect x="470" y="30" width="30" height="190" fill="#e5e7eb" stroke="#6b7280"/>
+  <text x="485" y="242" font-size="12" text-anchor="middle" fill="#374151">דופן החזה</text>
+  <path d="M470,40 Q300,30 200,90" stroke="#b91c1c" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="330" y="40" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פקטורליס מז'ור</text>
+  <path d="M200,90 Q140,160 210,205 L470,215" stroke="#047857" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="14,5"/>
+  <text x="150" y="235" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">ADM (קוטב תחתון + לרוחב)</text>
+  <ellipse cx="350" cy="140" rx="115" ry="60" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+  <text x="350" y="145" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">שתל</text>
+  <text x="580" y="130" font-size="12" text-anchor="middle" fill="#374151">IMF ↙</text>
+</svg>
+<p class="figcap">איור סכמטי: שריר בקוטב העליון-מדיאלי, ADM (קו מקווקו) בקוטב התחתון והצדדי. אין כאן קנה מידה אמיתי.</p>
+<ul>
+<li><b>פקטורליס מז'ור:</b> גבול עליון ומדיאלי של הכיס. משוחרר בקצהו התחתון (כ-1 ס"מ מעל הקצה התחתון אם ה-IMF שלם) עד סימן 4 או 8 בשעון על דופן החזה; קשרי הסטרנום הנותרים נשמרים.</li>
+<li><b>שחרור מדיאלי לא מספק ← נדידה לרוחב של השתל.</b> שחרור מורחב ל-3/9 בשעון מקל על מדיאליזציה, אך מגדיל נסיגת שריר ומפחית כיסוי רקמה בקוטב התחתון.</li>
+<li><b>החיבור לפקטורליס מינור</b> (בצד הלרוחבי) מצוי מדיאלי לגבול הצדדי של השתל ויש לשחרר אותו כדי למנוע שקע.</li>
+<li><b>ADM:</b> גבול תחתון וצדדי; נתפר לדופן החזה (לעתים ל-IMF שלם) ליצירת קפל, מניעת "נפילת" השתל ( <span class="term" dir="ltr">bottoming out</span> ) ושקעים בקוטב העליון.</li>
+<li>שרירי serratus anterior ו-latissimus: הגבול הצידי של הכריתה מגיע לעתים ללטיסימוס, ולכן מקרבים ב-ADM, בדש serratus או בתפירת דש העור לדופן.</li>
+</ul>
+
+<h2><span class="num">4</span> בחירת מטופלת (מבחן ומחשבה)</h2>
+<table>
+  <thead><tr><th>גורם</th><th>מתאים ל-DTI</th><th>עדיף שני שלבים / דחייה</th></tr></thead>
+  <tbody>
+    <tr><td>גודל שד</td><td>100–900 גרם, רצון לשמור על גודל או לגדול מעט (הגדלה בדרך כלל 50–100 סמ"ק)</td><td>&lt;100 גרם או &gt;900 גרם; רצון בשינוי משמעותי; אסימטריה משמעותית</td></tr>
+    <tr><td>סוג כריתה</td><td>NSM (מומלץ בפטוזיס דרגה 1–2) או SSM/skin-reducing</td><td>NSM בפטוזיס 3 בדרך כלל דורש שלבים, או SSM</td></tr>
+    <tr><td>אספקת דם</td><td>עור בריא, דימום בקצה הדרמיס, עובי אחיד</td><td>סוכרת לא מאוזנת, עישון פעיל/עדכני, דיכוי חיסוני ממושך, עור באיכות ירודה = התוויות נגד</td></tr>
+    <tr><td>גיל, השמנה, צלקות קודמות</td><td>אינם התוויית נגד (גם ניתוחי הקטנה/הגדלה/כריתה חלקית קודמת)</td><td>—</td></tr>
+    <tr><td>כימותרפיה</td><td>בטוחה לשחזור מיידי (ביחס לסיבוכים וכישלון)</td><td>—</td></tr>
+    <tr><td>קרינה</td><td>קרינה קודמת קלה-בינונית: לעתים ניתן, עדיף שתל בנפח שמרני על פני מרחיב</td><td>קרינה מעלה תמיד סיבוכים (ניוון, פיברוזיס, פגיעה בכלי דם ובריפוי)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">במרכז של המחברים, ב-DTI עם קרינה אחרי-כריתה נצפו פחות סיבוכים וכישלונות מאשר בשני שלבים (מעקב 2–10 שנים), וזוהי הבחירה שם; יש הבדלים בין מוסדות והנושא שנוי במחלוקת. <b>Boost</b> של דופן החזה קשור לזיהום, נמק, חשיפת שתל וכישלון – ללא תועלת בבקרה מקומית.</div>
+
+<h2><span class="num">5</span> תכנון: כריתה, חתך ומישור</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>חתך</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td>Inferolateral IMF</td><td>קוסמטיקה מעולה; צלקת חבויה; מעט סיבוכים עם ניסיון</td><td>עור בין הפטמה לחתך עלול להיפגע בתחילת הדרך (משיכת דש)</td></tr>
+    <tr><td>אנכי (Vertical)</td><td>ממקם ומרים פטמה בשד גדול</td><td>יותר סטרס איסכמי לעור ← פחות סיכוי ל-DTI</td></tr>
+    <tr><td>פריאריאולרי</td><td>גישה מוכרת לכירורג האונקולוגי</td><td>סיכון גבוה יותר לנמק פטמה וסיבוכים; מלא-עובי בדרך כלל נמנע</td></tr>
+    <tr><td>לרוחבי (Lateral)</td><td>שימור מירבי של אספקת דם לפטמה; הכי בטוח</td><td>צלקת בולטת; נטייה למשוך פטמה לרוחב</td></tr>
+    <tr><td>הארכת צלקת קיימת</td><td>פחות צלקות חדשות</td><td>מיקום לא אופטימלי; להימנע מצלקת לומפקטומיה מוקרנת</td></tr>
+  </tbody>
+</table></div>
+<p>הכריתה נעשית ברמת <b>הפאשיה השטחית של השד</b> (<span class="term" dir="ltr">superficial breast fascia</span>) – מקסימום כריתה אונקולוגית עם מינימום נזק לכלי הדם התת-עוריים, וביצוע עדין ללא משיכה מוגזמת. חשוב לשמר את "טביעת הרגל" של השד ואת ה-IMF.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>מישור</th><th>Subpectoral (Dual-plane)</th><th>Prepectoral</th></tr></thead>
+  <tbody>
+    <tr><td>כיסוי רקמה רכה</td><td>כיסוי עליון טוב, קווי מתאר חלקים</td><td>שתל נראה יותר; קווים לא סדירים ו-rippling בקוטב העליון</td></tr>
+    <tr><td>הרמה (Uplift)</td><td>הרמה טובה יותר; השתל יושב גבוה יותר</td><td>פחות הרמה; מתאים יותר לשד נגדי עם פטוזיס</td></tr>
+    <tr><td>Animation</td><td>יש (בדרך כלל קלה)</td><td>אין או מינימלית</td></tr>
+    <tr><td>כאב</td><td>יותר בשבוע הראשון (אין הבדל ארוך-טווח)</td><td>פחות; פחות כאב אחרי קרינה כשהשריר מוחרג</td></tr>
+    <tr><td>עלות חומר</td><td>נמוכה יותר</td><td>גבוהה יותר</td></tr>
+    <tr><td>שתל</td><td>עד 800 סמ"ק</td><td>עד 800 סמ"ק</td></tr>
+    <tr><td>מדיאליזציה</td><td>מצוינת (פרט לסטרנליס רחב)</td><td>מצוינת בכל המקרים; יותר סיכון ל-symmastia</td></tr>
+  </tbody>
+</table></div>
+<p>כלל אצבע של המחברים: <b>בשחזור דו-צדדי – תת-שרירי</b> (הרמה וקווי מתאר חלקים); <b>בשחזור חד-צדדי</b> – פרה-פקטורלי מתאים לשד נגדי עם פטוזיס, ותת-שרירי מתאים לפטוזיס מינימלי. בציפייה לקרינה שוקלים פרה-פקטורלי. (השוו לפרק 20 בכרך.)</p>
+
+<h2><span class="num">6</span> חומרי תמיכה ובחירת שתל</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>חומר</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td>ADM אנושי (Alloderm וכו')</td><td>גמיש, חזק, משתלב ברקמה (<span class="term" dir="ltr">biointegration</span>), עשוי להפחית capsular contracture – חשוב בקרינה קודמת/צפויה</td><td>עלות גבוהה</td></tr>
+    <tr><td>ADM חזירי/בקרי (Artia וכו')</td><td>חלופה ביולוגית</td><td>עלות</td></tr>
+    <tr><td>סינתטי נספג (Vicryl, PDS)</td><td>זול, זמין, נוח, תגובה דלקתית מזערית, עמידות לביופילם (תיאורטית)</td><td>תמיכה ארוכת טווח לא צפויה ← bottoming out או קפסולה</td></tr>
+    <tr><td>סינתטי לא נספג (Prolene, Marlex, פוליפרופילן מצופה טיטניום)</td><td>תמיכה ויציבות</td><td>אין נתוני בטיחות ארוכי טווח לחשיפה בזיהום או בקרינה; אין כיסוי רקמה, זילוף מחדש או השתלבות</td></tr>
+  </tbody>
+</table></div>
+<p><b>שתל:</b> נבחר לפי גודל, הקרנה, קוטר בסיס וחומר מילוי. עקב הקשר בין <b>BIA-ALCL</b> לשתלים מרקמים, רוב המנתחים בארה"ב מציעים <b>שתלים חלקים ועגולים</b> בלבד. סיליקון מועדף על מלח (מראה ותחושה טבעיים, בטיחות ארוכת טווח דומה, העדפת מטופלות ב-BREAST-Q). ADM לפי גודל: בינוני עד ~400 סמ"ק, גדול עד ~600, גדול-מאוד מעל 600 (וגם בשריר קטן).</p>
+
+<h2><span class="num">7</span> מהלך הניתוח – שלב אחר שלב</h2>
+<h3>הכנה</h3>
+<ul>
+<li>סימון בישיבה: IMF בשני הצדדים, טביעת השד, הגבול הצידי בקו בית השחי הקדמי; זיהוי אסימטריות קיימות.</li>
+<li>חסם פראוורטברלי (משכך 24–36 שעות); אנטיביוטיקה IV 30 דקות לפני הניתוח (צפלוספורין דור 1, ולעתים תוספת Gram-negative); לעתים Hibiclens 3 ימים לפני; שיתוק (paralysis) להקלת יצירת הכיס.</li>
+<li>תנוחה: פרקדן, ידיים על משענות בזווית 80–85° לגישה לבלוטות בית שחי, אך אפשרות לשבת בזווית 90° לבדיקת הכיס; חיטוי בכלורהקסידין; <b>כפפות כפולות</b> לטיפול סטרילי בחומרי השתל; שקילת פרוסות הכריתה בכל צד.</li>
+</ul>
+<h3>בדיקת הדש והחלטה</h3>
+<p>בדיקה: צבע, חום, מילוי קפילרי, דימום בקצה הדרמיס, עובי ואחידות; סימן טוב = צבע תקין ו"נקודות" שומן על צד פנים העור. טכנולוגיות הערכת זילוף (פרק 18) מפחיתות נמק דש, בעיקר לכירורג פחות מנוסה. אחר כך <b>sizer</b>: קובע אם אפשר בכלל שתל מלא ואיזה נפח הכיס יכיל. ב-NSM צריך גם לבחור שילוב שממרכז את הפטמה. דש מפוקפק ← שני שלבים, ובחומרה קשה ← שחזור מאוחר.</p>
+<h3>יצירת הכיס</h3>
+<ol>
+<li>שחרור פקטורליס: הרחקת השריר וחיתוך רקמה אראולרית תת-שרירית מלרוחב למדיאלי (רטרקטור משונן מואר, לא על הדש). כלי דם תת-שריריים (גדולים, נסוגים לדופן) – לאחוז ב-2 מקומות ולצרוב לפני חיתוך.</li>
+<li>שחרור תחתון עד 4/8 בשעון; ב-IMF שלם – 1 ס"מ מעל קצה השריר, כדי לא להוריד את הקפל.</li>
+<li>אם ה-IMF נפגע בכריתה – משחזרים בתפרים ו/או ADM.</li>
+<li>ADM: שטיפה והרטבה לפי היצרן; רוחב הכיס מסומן ~1 ס"מ צר מקוטר השתל; תפירה במדיאלי בתפר קלוע לא נספג (0-0 Ethibond) – קודם לשולי השריר המשוחרר, ואז לדש התחתון-מדיאלי ולא לדופן החזה (למניעת הגבלה מדיאלית). המחברים מעדיפים לתפור תחילה תחתונית לדופן החזה כדי ליצור את הקפל ולמנוע bottoming out; לאחר מכן: תפרים נספגים בין ה-ADM לשריר לשמירת צורת הכיס התלת-ממדית, עם חלון מרכזי פתוח להכנסת ה-sizer והשתל.</li>
+</ol>
+<div class="key-box">הכיס מעט צר וההידוק בצדדים הוא מה שמונע malposition תחתי-צדדי, ומשאיר את השריר מתוח כך שהצומת ADM–שריר פחות נראית.</div>
+<p><b>פתרון תקלות:</b> ADM קצר בהיקף ← תפירה לשולי דש serratus שהורם לרוחב הרצוי (יתרון: מכסה חתך IMF-צדדי בפירוק/קרינה; חיסרון: כאב ותחלואה); או להתחיל את התפירה מלרוחב ולהשאיר אזור קטן מדיאלי ללא כיסוי (בדרך כלל לא נראה).</p>
+<h3>שתל וסגירה</h3>
+<ul>
+<li>בדיקת מידה: sizer זמני, סיכות זמניות לעור, ישיבה לבדיקת מיקום; חזרה לפרקדן והוצאת ה-sizer.</li>
+<li><b>מניעת ביופילם:</b> השקיה בבטדין (1:1 עם מלח), אחריה 2 מחזורים של תמיסת אנטיביוטיקה (צפאזולין 1 גרם + גנטמיצין 80 מ"ג לליטר); החלפת כפפות חיצוניות; הכנסת שתל ב"מגע מינימלי" (רטרקטורים, אפשר Keller funnel).</li>
+<li>כוונון מתח הפקטורליס וקיצוץ/קיפול ה-ADM; סגירה הדוקה לרוחב; סגירת הכיס ב-figure-of-eight <b>נספג</b> (2-0 Vicryl) – לא קבוע, כי קשרים קבועים ניתנים למישוש ועלולים לעורר חשש לסרטן.</li>
+<li>שני <b>דרנז'ים</b> בעלי קוטר 15 בקרות (round): אחד בכיס לאורך ה-IMF, אחד בבית השחי; יציאה בקו בית שחי קדמי ברמת ה-IMF; מנהרה 1–2 ס"מ תת-עורית לפני כניסה לכיס כדי לעודד קריסת רקמה בעת ההסרה. תפקיד: הוצאת נוזל, מניעת חלל מת, הצמדת העור ל-ADM.</li>
+<li>עור: קיצוץ/דה-אפיתליזציה 2–3 מ"מ, בדיקת דימום בקצה; שלוש שכבות (3-0 Monocryl); דבק Dermabond, Tegaderm, Biopatch סביב הדרנז'ים; סרט Microfoam צדדי/תחתי לייצוב שתל ופטמה.</li>
+</ul>
+
+<h2><span class="num">8</span> טיפול לאחר הניתוח</h2>
+<table>
+<thead><tr><th>נושא</th><th>פרטים</th></tr></thead>
+<tbody>
+<tr><td>אשפוז</td><td>שחרור לרוב באותו יום לאחר 3 שעות השגחה; ERAS: Tylenol + Gabapentin + חסם פראוורטברלי</td></tr>
+<tr><td>חבישה/חזייה</td><td>נשארות עד ביקור שבוע אחד; להימנע מלבוש לוחץ (מגביר איסכמיה בדש). מקלחת אחרי 48 שעות עם Tegaderm</td></tr>
+<tr><td>Nitroglycerin</td><td>משחה במינון נמוך על הדש אם חיוניות העור/הפטמה מוטלת בספק: פחות נמק (3.8% לעומת 23.8% בחבישה רגילה). לא ליישם בלחץ דם נמוך</td></tr>
+<tr><td>דרנז'ים</td><td>הסרה כשפלט &lt;30 סמ"ק/יום ל-2 ימים; לרוב אחד אחרי שבוע, אחד אחרי שבועיים; לא יותר מ-4 שבועות</td></tr>
+<tr><td>אנטיביוטיקה</td><td>בדרך כלל עד הוצאת הדרנז'ים, אך מחקרים מטילים ספק בהועלתה מעבר ל-24 שעות</td></tr>
+<tr><td>פעילות</td><td>הליכה מיידית; פעילות קלה אחרי 6 שבועות; מאמץ וטבילה בבריכה/ים – 3 חודשים; עיסוי מדיאלי עדין מחודש אחד (שתלים חלקים) למניעת capsular contracture</td></tr>
+<tr><td>מה לצפות</td><td>קווי מתאר לא סדירים ו-bruising (מחמיר בשבוע הראשון); פטמה כהה או קשקשת – נצפית 3–4 שבועות לפני הסרת נמק מתמשך; משחת אנטיביוטיקה</td></tr>
+</tbody></table>
+<div class="key-box">שיעורי סיבוכים חריפים בסדרת Colwell (331 שחזורים): <b>נמק עור ~9%, זיהום ~3%, הוצאת שתל ~1.5%, סרום ~1.5%</b>.</div>
+
+<h2><span class="num">9</span> סיבוכים וניהולם</h2>
+<div class="table-scroll"><table>
+<thead><tr><th>סיבוך</th><th>מנגנון</th><th>ניהול</th></tr></thead>
+<tbody>
+<tr><td><b>נמק עור</b> (הסיבוך הקצר-טווח השכיח ביותר)</td><td>איסכמיה מהכריתה ו/או לחץ מהשתל עצמו</td><td>נמק קל (2–5 מ"מ) – דברידמן וסגירה בהרדמה מקומית; נרחב – הקטנת שתל, המרה למרחיב, או הוצאת שתל ללא החלפה. נמק חייב מעקב הדוק, בלי שיפור מהיר – ניתוח למניעת חשיפה</td></tr>
+<tr><td><b>זיהום</b></td><td>ירידה בזילוף העור לאחר כריתה ← רגישות; ביופילם על השתל</td><td>אנטיביוטיקה פה או IV (כיסוי מתיצילין-עמידים, MRSA, ו-Gram-negative); כישלון ← שטיפה והוצאת שתל עם/בלי החלפה; שיעור הצלת שתל 37.3% באשפוז. ב"זיהום פריפרותטי" – הוצאה וסגירה על דרנז'ים. זהירות בהחלפה לפני כימו/קרינה. לשקול Gram stain תוך-ניתוחי</td></tr>
+<tr><td><b>סרום</b></td><td>נוזל שמפעיל לחץ על הדש ויכול להזדהם</td><td>ניקוז מיידי בהנחיית US; אם נמשך – שטיפה וניקוי בחדר ניתוח ותרבית</td></tr>
+<tr><td>המטומה, malposition, contour</td><td>—</td><td>ניקוז/רוויזיה, קפסולורפיה, החלפת שתל</td></tr>
+<tr><td><b>Capsular contracture</b></td><td>קפסולה מתכווצת סביב השתל</td><td>MRI לשלול קרע במחלה מאוחרת; קל – עיסוי ו-Singulair; חמור/קרע – קפסולקטומיה מלאה או חלקית והחלפה</td></tr>
+<tr><td>Animation deformity</td><td>התכווצות פקטורליס</td><td>בדרך כלל קלה; חמורה – המרה לפרה-פקטורלי</td></tr>
+</tbody></table></div>
+<h3>רוויזיות ושיפורים</h3>
+<ul>
+<li>רוויזיות ב-10–30% מ-DTI (דומה לשני שלבים); 5 שנים במרכז המחברים: 20.9%. ממוצע פרוצדורות ב-NSM עם DTI: <b>1.31</b>, נמוך משתי הפרוצדורות המחויבות בשני שלבים.</li>
+<li>השתלת שומן לקווי מתאר (בעיקר סופרו-מדיאלית) – לפחות 3 חודשים אחרי הניתוח; פחות נדרשת בתת-שרירי מאשר בפרה-פקטורלי.</li>
+<li>Malposition ← קפסולורפיה/החלפת שתל; רקמה חלשה ← גשר ADM.</li>
+<li>פטמה: אם הפתולוגיה חיובית – כריתה עם שולי אראולה 2–3 מ"מ שלושה שבועות עד כמה חודשים מאוחר יותר; שחזור פטמה 3 חודשים אחרי הסרה; ניקוי נמק פטמה/אראולה אחרי 3–4 שבועות כדי שהגבולות יתבהרו; תיקון מיקום בעזרת mastopexy (circumvertical/crescent) או שינוי שתל.</li>
+<li>תוצאות מדווחות (BREAST-Q): דומות לשני שלבים, ובריאות מינית טובה יותר ב-DTI.</li>
+</ul>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-I-Z-E</span> – האם מתאימה ל-DTI?</h3>
+  <p>
+  <b>S</b> – <span class="term" dir="ltr">Skin flap</span>: זילוף וחוזק דש העור (צבע, מילוי קפילרי, דימום בקצה).<br>
+  <b>I</b> – <span class="term" dir="ltr">Inflate the sizer</span>: בדיקת sizer – אדום-עמוק/כחול-אפור = איסכמיה ← מרחיב.<br>
+  <b>Z</b> – <span class="term" dir="ltr">Zone of size</span>: שד 100–900 גרם, שינוי גודל עד 50–100 סמ"ק.<br>
+  <b>E</b> – <span class="term" dir="ltr">Expectations</span>: הסכמה מראש לשתל או למרחיב; ההחלטה הסופית בחדר הניתוח.
+  </p>
+  <h3>סיפור דמיוני: האוהל וערסל</h3>
+  <p>דמיינו אוהל שבנוי כך: <b>הגג הוא השריר</b> (פקטורליס) שמכסה את הקוטב העליון, ו<b>ערסל חזק</b> (ה-ADM) תלוי בתחתית ומחזיק את "האורח" (השתל). אם הערסל רפוי מדי – האורח צונח לרצפה (bottoming out); אם הוא הדוק ומתוח – האורח יושב במקום. ואם הדש (הבד של האוהל) דק ומרוט – אסור להכניס אורח כבד מדי, כי יקרע.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>האוהל והערסל</title>
+    <rect x="0" y="170" width="500" height="10" fill="#a3a3a3"/>
+    <path d="M60,150 L250,30 L440,150" stroke="#b91c1c" stroke-width="8" fill="#fef2f2" stroke-linejoin="round"/>
+    <text x="250" y="24" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">גג = פקטורליס</text>
+    <path d="M110,130 Q250,190 390,130" stroke="#047857" stroke-width="6" fill="none" stroke-dasharray="10,4"/>
+    <ellipse cx="250" cy="118" rx="42" ry="22" fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+    <text x="250" y="122" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">שתל</text>
+    <text x="250" y="195" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">ערסל = ADM</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> תמונות ומקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7886728/" target="_blank">Dual-Plane Retro-pectoral Versus Pre-pectoral DTI Breast Reconstruction: An Italian Multicenter Experience – PMC</a>
+  <div class="desc">מאמר עמיתים (PMC) המשווה בין DTI דו-מישורי לפרה-פקטורלי.</div></li>
+  <li><a href="https://gs.amegroups.org/article/view/21988/html" target="_blank">The use of acellular dermal matrix in breast reconstruction: evolution of techniques over 2 decades – Gland Surgery</a>
+  <div class="desc">סקירה על התפתחות השימוש ב-ADM בשחזור שד.</div></li>
+</ul>
+<p class="figcap">לא הוטמע סרטון: לא אומת סרטון מתאים ממקור מהימן.</p>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 43 נשאית BRCA, עם שד 350 גרם ופטוזיס דרגה 1, עוברת כריתת שד דו-צדדית משמרת פטמה בחתך IMF תחתי-צדדי. היא מעוניינת לשמור על גודל דומה, בניתוח אחד. אחרי הכריתה הדש בצבע ורוד תקין עם דימום בקצה הדרמיס; ה-sizer מנופח ל-350 סמ"ק ללא שינוי צבע. הכיס נוצר תת-שרירית עם ADM גדול, והשריר משוחרר עד 4 ו-8 בשעון; מונחים שתלים חלקים ועגולים. ביום 5 אחרי הניתוח מופיע נמק קשקשי של 3 מ"מ בשולי החתך.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה התנאי המרכזי שקובע במהלך הניתוח אם אפשר לבצע שחזור ישיר לשתל (DTI) או שיש לעבור לחוסם רקמה?</div>
+  <button class="opt" data-i="0">גודל השד לפני הניתוח בלבד – שד מעל 500 גרם מחייב תמיד מרחיב רקמה</button>
+  <button class="opt" data-i="1">הערכה תוך-ניתוחית של חיוניות וחוזק דש העור לאחר הכריתה, כולל בדיקת מדד (sizer)</button>
+  <button class="opt" data-i="2">מספר הצינורות (drains) שהוחלט להניח בסוף הניתוח</button>
+  <button class="opt" data-i="3">העדפת המטופלת בלבד, כפי שנקבעה בייעוץ</button>
+  <div class="explain">נכון: הפרק מדגיש שהתוכנית הסופית נקבעת תוך-ניתוחית – חוזק וחיוניות הדש (צבע, מילוי קפילרי, דימום בקצה הדרמיס, עובי אחיד) ובדיקת ה-sizer קובעים אם הדש יעמוד בלחץ של שתל מלא. גודל שד (100–900 גרם) קובע מועמדות אך אינו מחייב מרחיב בכל שד גדול (א). ה-drains (ג) הם תוצאה ולא קריטריון. העדפת המטופלת (ד) נלקחת בחשבון אך היא מסכימה מראש לשתי האפשרויות, והבחירה הסופית נעשית לפי הדש.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. בבדיקת ה-sizer המנופח בכיס, העור הופך אדום-עמוק או כחלחל-אפור. מה המשמעות והפעולה הנכונה?</div>
+  <button class="opt" data-i="0">ממצא תקין המעיד על פרפוזיה טובה – ממשיכים לשתל קבוע</button>
+  <button class="opt" data-i="1">סימן לזיהום ביופילם – יש לשטוף במי בטדין ולהמשיך</button>
+  <button class="opt" data-i="2">סימן לסרום – יש להניח דרנז' שלישי</button>
+  <button class="opt" data-i="3">איסכמיה יחסית בנפח הנתון – יש להימנע מ-DTI, בדרך כלל להניח מרחיב רקמה עם מילוי מינימלי</button>
+  <div class="explain">נכון: אדום-עמוק/כחול-אפור בנפח נתון מעיד על איסכמיה של הדש תחת הלחץ (איור 21.9: מטופלת אחרי רדוקציית שד – הונח מרחיב במילוי מינימלי והחלימה ללא נמק). (א) הפוך: זה ממצא חריג. (ב) זיהום לא מתבטא כך תוך-ניתוחית. (ג) סרום הוא תופעה שלאחר הניתוח ואינו משנה את צבע העור בזמן בדיקת ה-sizer.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו תפקיד ה-ADM במישור הכפול (Dual-plane), ולמה רוחב הכיס מסומן כ-1 ס"מ צר יותר מקוטר השתל?</div>
+  <button class="opt" data-i="0">ה-ADM מהווה המשך של הפקטורליס להגדרת הקצה התחתון-לרוחבי של הכיס; הוא נמתח ולכן הכיס מסומן צר במעט כדי להשיג התאמה הדוקה</button>
+  <button class="opt" data-i="1">ה-ADM מחליף לחלוטין את הפקטורליס ומאפשר כיס פרה-פקטורלי</button>
+  <button class="opt" data-i="2">ה-ADM נועד להפחית כאב בלבד; רוחב הכיס אינו קריטי</button>
+  <button class="opt" data-i="3">ה-ADM משמש רק כשהשריר מנותק לגמרי מהסטרנום</button>
+  <div class="explain">נכון: השריר לבדו לא מכסה את הכיס כולו, וה-ADM משלים את הקוטב התחתון והצד, מגדיר IMF ומונע window-shading; מכיוון ש-ADM אנושי נמתח, מסמנים 1 ס"מ צר יותר לקבלת כיס הדוק (בחומר קשיח יותר – קרוב לקוטר השתל). (ב) מתאר שחזור פרה-פקטורלי, שהוא שיטה אחרת. (ג) התפקיד הוא תמיכה ומבנה, לא הפחתת כאב, ודיוק הכיס קריטי לתוצאה. (ד) הפקטורליס משוחרר תחתונית, אך קשרי הסטרנום נשמרים ברובם.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. איזו אסטרטגיית תפרים נכונה בסגירת הכיס בין ה-ADM לפקטורליס, ולמה?</div>
+  <button class="opt" data-i="0">תפרים קבועים (Prolene) כדי להבטיח שלא יהיה נדידה של השתל</button>
+  <button class="opt" data-i="1">סגירה ללא תפרים, הרקמה תידבק לבדה</button>
+  <button class="opt" data-i="2">תפרים נספגים מצולבים (figure-of-eight, 2-0 Vicryl), כי קשרים קבועים ניתנים למישוש ועלולים לעורר חשש לגידול</button>
+  <button class="opt" data-i="3">סיכות עור בלבד, כדי לחסוך זמן ניתוח</button>
+  <div class="explain">נכון: הפרק מציין במפורש שקשרי תפרים קבועים ניתנים למישוש בשד ועלולים להטריד בהקשר של חשש לסרטן, ולכן משתמשים בתפרים נספגים. (א) שגוי – בסגירת הכיס מעדיפים נספגים (ה-ADM נתפר לדופן החזה בתפר קלוע לא נספג, אך זו נקודה אחרת). (ב) אין סגירה עצמונית של הכיס, וסגירה הדוקה נחוצה למניעת malposition. (ד) הסיכות משמשות זמנית לעור בבדיקת ה-sizer, לא לסגירת הכיס.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">5. מטופלת בת 45 עם שד בגודל 700 גרם ותפיסה של טיפול בקרינה אחרי כריתה. איזה משפט משקף את הגישה בפרק?</div>
+  <button class="opt" data-i="0">קרינה אחרי-כריתה אינה משפיעה על הסיכון לסיבוכים בשחזור תותבתי</button>
+  <button class="opt" data-i="1">הגברת ה-boost לדופן החזה תשפר את הבקרה המקומית ולכן מומלצת שגרתית</button>
+  <button class="opt" data-i="2">שד גדול מ-900 גרם וקטן מ-100 גרם הם המועמדים האידיאליים ל-DTI</button>
+  <button class="opt" data-i="3">קרינה מעלה סיבוכים (ניוון, פיברוזיס, פגיעה בכלי דם ובריפוי); בציפייה לקרינה שוקלים יותר פרה-פקטורלי, וה-boost קשור בסיכון גבוה יותר ללא תועלת בבקרה</button>
+  <div class="explain">נכון: לפי הפרק קרינה מעלה סיבוכים באופן אוניברסלי; בציפייה לקרינה מעדיפים יותר פרה-פקטורלי (פחות כאב אחרי-קרינה), ו-boost של דופן החזה נקשר ליותר זיהום, נמק, חשיפת שתל וכישלון – ללא יתרון בבקרה מקומית. (א) שגוי. (ב) שגוי – הפרק מראה ההפך. (ג) שד <100 גרם או >900 גרם הם דווקא מועמדים טובים יותר לשני שלבים; האידיאל הוא 100–900 גרם.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. במטופלת מהווינייטה מופיע ביום 5 נמק קשקשי של 3 מ"מ בשולי החתך, ללא סימני זיהום. מה הטיפול המתאים ביותר?</div>
+  <button class="opt" data-i="0">הוצאה מיידית של השתלים בשני הצדדים</button>
+  <button class="opt" data-i="1">דברידמן וסגירה בהרדמה מקומית, עם מעקב הדוק</button>
+  <button class="opt" data-i="2">המרה מיידית לשחזור אוטולוגי</button>
+  <button class="opt" data-i="3">התעלמות – נמק בשולי החתך אינו דורש התערבות לעולם</button>
+  <div class="explain">נכון: נמק שולי עור קל (2–5 מ"מ) מטופל בדרך כלל בדברידמן וסגירה בהרדמה מקומית, עם מעקב, כדי למנוע חשיפת שתל. (א) והוצאה מיידית שמורה לנמק נרחב או זיהום שלא מגיב. (ג) אינה טיפול לנמק שולי. (ד) שגוי – נמק שלא משתפר עלול להוביל לחשיפת שתל וזיהום, לכן דורש מעקב וטיפול פעיל.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>DTI</b> = שתל קבוע בגודל מלא מיד לאחר הכריתה, בכיס <b>דו-מישורי</b>: פקטורליס (עליון-מדיאלי) + ADM (תחתון-לרוחבי).</li>
+    <li>המפתח: <b>אספקת דם של דש העור</b>. הערכה קלינית + sizer (אדום-עמוק/כחול-אפור = איסכמיה) ← מרחיב רקמה.</li>
+    <li>מועמדת אידיאלית: שד 100–900 גרם, אותו גודל או גדול במעט (50–100 סמ"ק), NSM עם פטוזיס 1–2. התוויות נגד: סוכרת לא מאוזנת, עישון, דיכוי חיסוני, עור ירוד.</li>
+    <li>ניתוח: שחרור פקטורליס עד 4/8 בשעון, ADM נתפר לדופן (כיס ~1 ס"מ צר מהשתל), השקיה בבטדין+צפאזולין/גנטמיצין, תפרי סגירה נספגים, 2 דרנז'ים.</li>
+    <li>בציפייה לקרינה: שוקלים פרה-פקטורלי; קרינה מעלה סיבוכים; boost = יותר סיבוכים ללא תועלת.</li>
+    <li>סיבוכים: נמק עור ~9%, זיהום ~3%, הוצאת שתל ~1.5%, סרום ~1.5%; רוויזיות 10–30% (דומה לשני שלבים).</li>
+    <li>ניטרוגליצרין מקומי: נמק 3.8% לעומת 23.8%. שתלים חלקים עגולים בלבד (BIA-ALCL); סיליקון מועדף.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
