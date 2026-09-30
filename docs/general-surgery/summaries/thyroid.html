@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>בלוטת התריס (Thyroid) — קשרית, סרטן, יתר-פעילות וכריתה</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+
+<!-- מקור: לא נמצא PDF של פרק 37 בהרצה זו (uploads נגישים רק עד פרק 19) - הסיכום מבוסס על מחקר במקורות מהימנים (NCBI/StatPearls: Thyroidectomy, Thyroid Storm, Thyrotoxicosis, Diffuse Toxic Goiter, Medullary Thyroid Cancer, MEN2; PMC: The 2023 Bethesda System ROM, WHO 2022/Bethesda update review, RLN variations) + Wikimedia Commons ו-YouTube (Osmosis). -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>בלוטת התריס <span class="term" dir="ltr">(Thyroid)</span> — קשרית, סרטן, יתר-פעילות וכריתה</h1>
+<div class="subtitle">פרק 37 בספר Sabiston/Schwartz's Principles of Surgery — אנטומיה כירורגית (עצבי הגרון, יותרות התריס), פיזיולוגיה של הורמוני התריס, בירור קשרית (US + FNA + Bethesda), סוגי הסרטן (פפילרי, פוליקולרי, מדולרי, אנפלסטי), מחלת Graves ו-toxic goiter, וסיבוכי כריתת תריס</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>הכירורג פוגש את בלוטת התריס בשלושה תרחישים עיקריים: <b>קשרית</b> <span class="term" dir="ltr">(thyroid nodule)</span> — נמצאת במישוש ב-~5% מהאנשים ובאולטרסאונד ביותר ממחצית המבוגרים, אבל רק <b>~5–10% ממאירות</b>; <b>סרטן</b> — ברובו פפילרי עם פרוגנוזה מצוינת; ו<b>יתר-פעילות או זפק גדול</b> <span class="term" dir="ltr">(goiter)</span> שלוחץ או לא נשלט תרופתית. בכל אחד מהם השאלה המרכזית היא: <b>מי צריך ניתוח, כמה לכרות, ואיך לא לפגוע בעצב הגרון החוזר וביותרות התריס.</b></p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+<div class="mechanism">
+  <p class="chain"><b>1. מפעל ההורמון — ולמה TSH הוא "דוושת הגז"</b>: תאי הזקיק <span class="term" dir="ltr">(follicular cells)</span> קולטים <b>יוד</b> מהדם דרך משאבת <span class="term" dir="ltr">NIS (Na⁺/I⁻ symporter)</span>, האנזים <b>TPO</b> <span class="term" dir="ltr">(thyroid peroxidase)</span> מחמצן אותו ו"מדביק" אותו לשיירי טירוזין על <b>תירוגלובולין</b> בקולואיד, ומצמד אותם ל-<b>T4</b> (רוב התוצר) ומעט <b>T3</b> (הפעיל). בפריפריה, <b>דה-יודינאזות</b> הופכות T4 ל-T3. ההיפופיזה מפרישה <b>TSH</b>, שמגביר <b>גם</b> ייצור הורמון <b>וגם</b> גדילת תאים — ולכן כל מה שמעלה TSH לאורך זמן (חוסר יוד, תת-פעילות) מגדיל את הבלוטה → <b>זפק</b>.</p>
+  <p class="chain"><b>2. Graves = נוגדן שלוחץ על הדוושה בלי הפסקה</b>: נוגדני <span class="term" dir="ltr">TRAb / TSI</span> (IgG) נקשרים ל<b>קולטן ה-TSH</b> ו<b>מפעילים</b> אותו כמו TSH — אבל בלי משוב שלילי. התוצאה: בלוטה <b>מוגדלת באופן דיפוזי</b>, <b>וסקולרית מאוד</b> (אוושה מעליה), קליטת יוד <b>מוגברת ואחידה</b>, ו-TSH בדם <b>מדוכא</b> (כי T4/T3 גבוהים מדכאים את ההיפופיזה). אותם נוגדנים מפעילים גם קולטני TSH ב<b>פיברובלסטים שמאחורי העין</b> → גליקוזאמינוגליקנים ובצקת → <b>בלט עיניים</b> <span class="term" dir="ltr">(exophthalmos)</span>.</p>
+  <p class="chain"><b>3. למה יתר-פעילות מרגישה כמו "אדרנלין בלי סוף"</b>: T3 מגביר את <b>מספר הקולטנים הבטא-אדרנרגיים</b> ואת פעילות משאבת Na/K-ATPase → דופק מהיר, <b>פרפור פרוזדורים</b>, רעד, חום-יתר, ירידה במשקל. לכן <b>Propranolol</b> משפר את התסמינים מהר — הוא לא מוריד הורמון, אלא חוסם את ה"מגבר" (וגם מעכב מעט המרת T4→T3).</p>
+  <p class="chain"><b>4. סרטן — אילו תאים ואילו מוטציות</b>: מתאי הזקיק יוצאים הסרטנים <b>הממוינים</b> <span class="term" dir="ltr">(differentiated thyroid cancer, DTC)</span>: <b>פפילרי</b> (~85%; מוטציה ב-<b>BRAF V600E</b> או סידור מחדש <b>RET/PTC</b>; קשר חזק ל<b>קרינה בילדות</b>) שמתפשט <b>בלימפה</b> לבלוטות הצוואר, ו<b>פוליקולרי</b> (מוטציות <b>RAS</b>, PAX8-PPARγ; קשור ל<b>חוסר יוד</b>) שמתפשט <b>בדם</b> (עצמות, ריאות). כי הם זוכרים את "המקצוע" של תא הזקיק — <b>קולטים יוד ומייצרים תירוגלובולין</b> — אפשר לטפל בהם ב<b>יוד רדיואקטיבי</b> ולעקוב אחריהם עם <b>תירוגלובולין</b>. מתאי <b>C הפרא-זקיקיים</b> <span class="term" dir="ltr">(parafollicular C cells)</span>, שמקורם ב<b>ציצה העצבית</b> ומפרישים <b>קלציטונין</b>, יוצא ה<b>מדולרי</b> (מוטציית <b>RET</b> — ב-~25% תורשתית, MEN2) — שאינו קולט יוד בכלל. ה<b>אנפלסטי</b> הוא סרטן זקיקי שאיבד כל מיון (מוטציות <b>TP53</b>, לעתים BRAF) — גדל תוך שבועות.</p>
+  <p class="chain"><b>5. למה פוליקולרי לא מאובחן ב-FNA</b>: בפפילרי האבחנה היא לפי <b>גרעיני התא</b> (גרעינים "ריקים" — Orphan Annie eyes, חריצים, פסאודו-הכללות) — אפשר לראות בציטולוגיה. בפוליקולרי התאים <b>נראים כמו אדנומה</b>; מה שמגדיר ממאירות הוא <b>חדירה דרך הקופסית או לכלי דם</b> — וזה נראה <b>רק ברקמה שלמה</b>. לכן FNA של "follicular neoplasm" (Bethesda IV) → <b>כריתת אונה אבחנתית</b>.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>מקור התאים בבלוטת התריס וסוגי הסרטן</title>
+  <rect x="190" y="12" width="300" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="34" text-anchor="middle" font-weight="700">בלוטת התריס — שני סוגי תאים</text>
+  <text x="340" y="53" text-anchor="middle">TSH → NIS קולט יוד → TPO → T4/T3</text>
+  <line x1="280" y1="62" x2="170" y2="92" stroke="#374151" stroke-width="2"/><polygon points="164,95 172,87 175,96" fill="#374151"/>
+  <line x1="400" y1="62" x2="510" y2="92" stroke="#374151" stroke-width="2"/><polygon points="516,95 505,96 508,87" fill="#374151"/>
+  <rect x="20" y="98" width="300" height="56" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="170" y="120" text-anchor="middle" font-weight="700">תא זקיק (Follicular)</text>
+  <text x="170" y="140" text-anchor="middle">קולט יוד, מייצר תירוגלובולין</text>
+  <rect x="380" y="98" width="280" height="56" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="520" y="120" text-anchor="middle" font-weight="700">תא C (ציצה עצבית)</text>
+  <text x="520" y="140" text-anchor="middle">מפריש קלציטונין · לא קולט יוד</text>
+  <rect x="20" y="180" width="95" height="100" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="67" y="202" text-anchor="middle" font-weight="700">פפילרי</text>
+  <text x="67" y="222" text-anchor="middle">~85%</text>
+  <text x="67" y="242" text-anchor="middle">BRAF</text>
+  <text x="67" y="262" text-anchor="middle">→ לימפה</text>
+  <rect x="122" y="180" width="95" height="100" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="170" y="202" text-anchor="middle" font-weight="700">פוליקולרי</text>
+  <text x="170" y="222" text-anchor="middle">~10%</text>
+  <text x="170" y="242" text-anchor="middle">RAS</text>
+  <text x="170" y="262" text-anchor="middle">→ דם</text>
+  <rect x="224" y="180" width="96" height="100" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="272" y="202" text-anchor="middle" font-weight="700">אנפלסטי</text>
+  <text x="272" y="222" text-anchor="middle">&lt;2%</text>
+  <text x="272" y="242" text-anchor="middle">TP53</text>
+  <text x="272" y="262" text-anchor="middle">קטלני</text>
+  <rect x="400" y="180" width="240" height="100" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="520" y="202" text-anchor="middle" font-weight="700">מדולרי (~2–4%)</text>
+  <text x="520" y="222" text-anchor="middle">RET · MEN2A/2B</text>
+  <text x="520" y="242" text-anchor="middle">סמנים: קלציטונין + CEA</text>
+  <text x="520" y="262" text-anchor="middle">יוד רדיואקטיבי לא עובד</text>
+  <line x1="120" y1="154" x2="70" y2="176" stroke="#047857" stroke-width="2"/><polygon points="65,179 70,170 74,178" fill="#047857"/>
+  <line x1="170" y1="154" x2="170" y2="174" stroke="#047857" stroke-width="2"/><polygon points="170,179 165,171 175,171" fill="#047857"/>
+  <line x1="220" y1="154" x2="268" y2="176" stroke="#047857" stroke-width="2"/><polygon points="273,179 264,178 268,170" fill="#047857"/>
+  <line x1="520" y1="154" x2="520" y2="174" stroke="#6d28d9" stroke-width="2"/><polygon points="520,179 515,171 525,171" fill="#6d28d9"/>
+</svg>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/eZ0Q5auQc0w" title="Thyroid Nodule and Thyroid Cancer | Pathology Review | Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — קשרית וסרטן תריס: סוגי הסרטן, מוטציות, בירור וטיפול. מקור: YouTube (Osmosis).</p>
+
+<h2><span class="num">3</span> אנטומיה כירורגית ופיזיולוגיה</h2>
+<ul>
+  <li><b>מבנה</b>: שתי אונות מחוברות ב<b>מיצר</b> <span class="term" dir="ltr">(isthmus)</span> מעל טבעות קנה 2–4; לעתים <b>אונה פירמידלית</b> — שארית של <b>צינור התירוגלוסלי</b> <span class="term" dir="ltr">(thyroglossal duct)</span>. הבלוטה עטופה בפאשיה הקדם-קנית ונעה עם הבליעה.</li>
+  <li><b>אספקת דם</b>: <b>עורק התריס העליון</b> — ענף ראשון של ה-<b>external carotid</b>; <b>עורק התריס התחתון</b> — מה-<b>thyrocervical trunk</b> (ענף של ה-subclavian); ולעתים <b>thyroidea ima</b> מקשת האאורטה/brachiocephalic. הוורידים: עליון ואמצעי → jugular פנימי; תחתון → brachiocephalic.</li>
+  <li><b>עצב הגרון החוזר</b> <span class="term" dir="ltr">(RLN, recurrent laryngeal nerve)</span>: משמאל עוקף את <b>קשת האאורטה</b>, מימין את <b>עורק התת-בריח</b>, ועולה ב<b>חריץ הקנה-ושט</b> <span class="term" dir="ltr">(tracheoesophageal groove)</span>; נכנס לגרון ליד <b>רצועת Berry</b> ומעצבב את <b>כל שרירי הגרון הפנימיים חוץ מה-cricothyroid</b>. חוצה את עורק התריס התחתון — שם הוא בסכנה. <b>עצב גרון לא-חוזר</b> <span class="term" dir="ltr">(non-recurrent)</span> — כמעט רק <b>מימין</b> (~0.5–1%), כשקיים <b>עורק תת-בריח ימני אברנטי</b>.</li>
+  <li><b>הענף החיצוני של עצב הגרון העליון</b> <span class="term" dir="ltr">(EBSLN)</span>: רץ צמוד ל<b>כלי התריס העליונים</b> ומעצבב את ה-<b>cricothyroid</b> (מותח את מיתרי הקול). פגיעה → <b>אובדן טונים גבוהים ועייפות קול</b> ("עצב של Amelita Galli-Curci" — הזמרת). לכן קושרים את כלי הקוטב העליון <b>צמוד לבלוטה</b>.</li>
+  <li><b>יותרות התריס</b> <span class="term" dir="ltr">(parathyroids)</span>: העליונות (מכיס לוע 4) — קבועות יחסית, <b>אחורי</b> ל-RLN ליד הצומת הקריקו-תירואידי; התחתונות (מכיס לוע 3, יורדות עם התימוס) — מיקום משתנה, <b>קדמי</b> ל-RLN. ניזונות בעיקר מ<b>עורק התריס התחתון</b> — ולכן קושרים את ענפיו <b>קרוב לבלוטה</b> ולא את הגזע.</li>
+</ul>
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Arterial_supply_of_the_thyroid_gland.png?width=420" alt="אספקת הדם העורקית לבלוטת התריס">
+    <figcaption class="media-cap">אספקת הדם העורקית: עורק התריס העליון (מה-external carotid) והתחתון (מה-thyrocervical trunk). מקור: <a href="https://commons.wikimedia.org/wiki/File:Arterial_supply_of_the_thyroid_gland.png" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Histology_thyroid_gland.jpg?width=420" alt="היסטולוגיה של בלוטת תריס תקינה">
+    <figcaption class="media-cap"><span class="label normal">תקין</span> היסטולוגיה תקינה: זקיקים מלאים בקולואיד (ורוד) מרופדים בתאי זקיק שטוחים-קוביתיים. מקור: <a href="https://commons.wikimedia.org/wiki/File:Histology_thyroid_gland.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+<div class="key-box">RLN נמצא ב<b>חריץ הקנה-ושט</b>, מעצבב את כל שרירי הגרון הפנימיים <b>חוץ מ-cricothyroid</b>. פגיעה חד-צדדית → <b>צרידות</b>; דו-צדדית → מיתרים בתנוחה פרא-מדיאנית → <b>סטרידור ומצוקה נשימתית</b> מיד אחרי האקסטובציה. EBSLN → <b>אובדן טונים גבוהים</b>.</div>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<h3>קשרית — מה מחשיד לממאירות בסיפור ובבדיקה</h3>
+<ul>
+  <li><b>גיל</b> &lt;20 או &gt;70, <b>מין זכר</b> (קשרית בגבר — פחות שכיחה, יותר ממאירה).</li>
+  <li><b>קרינה לצוואר בילדות</b> (לימפומה, צ'רנוביל) — מעלה סיכון לפפילרי.</li>
+  <li><b>היסטוריה משפחתית</b>: סרטן תריס ממוין, <b>MEN2</b> (מדולרי + פאוכרומוציטומה ± היפרפאראתירואידיזם), FAP, Cowden.</li>
+  <li><b>גדילה מהירה</b>, קשרית <b>קשה ומקובעת</b>, <b>צרידות</b> (חדירה ל-RLN), <b>בלוטות לימפה צוואריות</b>, דיספגיה/סטרידור.</li>
+</ul>
+<h3>יתר-פעילות — Graves מול זפק רב-קשרי טוקסי מול אדנומה טוקסית</h3>
+<table>
+  <tr><th>מצב</th><th>בדיקה גופנית</th><th>נוגדנים</th><th>מיפוי (קליטת יוד)</th><th>הממצא המבדיל</th></tr>
+  <tr><td><b>Graves</b></td><td>בלוטה מוגדלת <b>דיפוזית</b>, רכה, <b>אוושה</b>; בלט עיניים; מיקסדמה קדם-שוקית</td><td><b>TRAb/TSI חיוביים</b></td><td><b>מוגברת ואחידה</b></td><td>עיניים + עור = רק ב-Graves</td></tr>
+  <tr><td><b>זפק רב-קשרי טוקסי</b> <span class="term" dir="ltr">(Plummer)</span></td><td>בלוטה <b>גבשושית</b>, לעתים ענקית/תת-חזית</td><td>שליליים</td><td><b>כתמים חמים וקרים</b> ("patchy")</td><td>קשיש, זפק ותיק; לפעמים מתעורר אחרי חשיפה ליוד (Jod-Basedow)</td></tr>
+  <tr><td><b>אדנומה טוקסית</b></td><td>קשרית <b>בודדת</b> מוחשת</td><td>שליליים</td><td>קשרית <b>"חמה" אחת</b>, שאר הבלוטה מדוכאת</td><td>קשרית חמה כמעט אף פעם לא ממאירה → <b>לא צריך FNA</b></td></tr>
+  <tr><td><b>דלקת תריס תת-חריפה</b> (de Quervain)</td><td>בלוטה <b>כואבת</b> ורגישה אחרי זיהום ויראלי</td><td>שליליים</td><td><b>נמוכה מאוד</b></td><td>שקיעת דם גבוהה; זו דליפה, לא ייצור → <b>לא ניתוח</b></td></tr>
+</table>
+<div class="figure-pair">
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Proptosis_and_lid_retraction_from_Graves%27_Disease.jpg?width=420" alt="בלט עיניים ונסיגת עפעפיים ב-Graves">
+    <figcaption class="media-cap">Graves: <b>בלט עיניים</b> ו<b>נסיגת עפעף עליון</b> (לובן נראה מעל הקשתית). מקור: <a href="https://commons.wikimedia.org/wiki/File:Proptosis_and_lid_retraction_from_Graves%27_Disease.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+  <figure>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Goiter.JPG?width=420" alt="זפק">
+    <figcaption class="media-cap">זפק <span class="term" dir="ltr">(goiter)</span> גדול — שימי לב לגודל ולאפשרות של לחץ על הקנה והוושט. מקור: <a href="https://commons.wikimedia.org/wiki/File:Goiter.JPG" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>אלגוריתם הקשרית — הסדר חשוב</h3>
+<ol>
+  <li><b>TSH ראשון.</b> אם <b>נמוך</b> → <b>מיפוי יוד (I-123)</b>: קשרית <b>חמה</b> (קולטת) = אוטונומית, כמעט תמיד שפירה → <b>ללא FNA</b>. אם TSH תקין/גבוה → ממשיכים.</li>
+  <li><b>אולטרסאונד צוואר</b> — ההדמיה המרכזית. מאפיינים מחשידים: <b>היפואקואי</b> מאוד, <b>גבוה-מרוחב</b> <span class="term" dir="ltr">(taller-than-wide)</span>, <b>שוליים לא סדירים</b>/חודרניים, <b>מיקרו-הסתיידויות</b> (= גופי psammoma של פפילרי), חדירה מחוץ לבלוטה, בלוטות לימפה חריגות. מאפיינים מרגיעים: <b>ציסטי טהור</b>, <b>ספוגי</b> <span class="term" dir="ltr">(spongiform)</span>. דירוג: ATA או <span class="term" dir="ltr">ACR TI-RADS</span>.</li>
+  <li><b>FNA</b> לפי דרגת החשד והגודל (ATA): חשד גבוה/בינוני → <b>≥1 ס"מ</b>; חשד נמוך → <b>≥1.5 ס"מ</b>; חשד נמוך מאוד (ספוגי) → ≥2 ס"מ או מעקב; ציסטה טהורה → לא.</li>
+  <li><b>קלציטונין</b> — כשיש חשד למדולרי או היסטוריה משפחתית; <b>תירוגלובולין לא משמש לאבחנה</b> (עולה גם בשפיר) — רק למעקב אחרי כריתה מלאה.</li>
+</ol>
+<h3>דירוג Bethesda (2023) — הסיכון לממאירות וההמשך</h3>
+<table>
+  <tr><th>קטגוריה</th><th>שם</th><th>סיכון לממאירות (משוער)</th><th>המשך טיפוסי</th></tr>
+  <tr><td>I</td><td>לא-אבחנתי</td><td>~13%</td><td>FNA חוזר בהנחיית US</td></tr>
+  <tr><td>II</td><td><b>שפיר</b></td><td>~4%</td><td>מעקב US</td></tr>
+  <tr><td>III</td><td>אטיפיה בעלת משמעות לא ברורה (AUS)</td><td>~22%</td><td>FNA חוזר / <b>בדיקה מולקולרית</b> / אונה</td></tr>
+  <tr><td>IV</td><td><b>ניאופלזמה פוליקולרית</b></td><td>~30%</td><td>בדיקה מולקולרית או <b>כריתת אונה אבחנתית</b></td></tr>
+  <tr><td>V</td><td>חשוד לממאירות</td><td>~74%</td><td>ניתוח</td></tr>
+  <tr><td>VI</td><td><b>ממאיר</b></td><td>~97%</td><td>ניתוח (היקף לפי סוג וסיכון)</td></tr>
+</table>
+<p style="font-size:14px;color:#4b5563">המספרים מהגרסה של 2023 הם ממוצעים עם טווחים רחבים בין מרכזים — לזכור את הסדר והמגמה, לא את הספרה המדויקת.</p>
+<h3>ציטולוגיה/היסטולוגיה של פפילרי מול תקין</h3>
+<div class="figure-pair">
+  <figure>
+    <span class="label normal">תקין</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Histology_thyroid_gland.jpg?width=400" alt="תריס תקין">
+    <figcaption class="media-cap">זקיקים עגולים מלאים בקולואיד, גרעינים קטנים וכהים. מקור: <a href="https://commons.wikimedia.org/wiki/File:Histology_thyroid_gland.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+  <figure>
+    <span class="label abnormal">פפילרי</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Papillary_Carcinoma_of_the_Thyroid.jpg?width=400" alt="סרטן פפילרי של התריס - ציטולוגיה">
+    <figcaption class="media-cap">פפילרי: גרעינים <b>גדולים, בהירים</b>, עם <b>חריצים</b> <span class="term" dir="ltr">(nuclear grooves)</span> ו<b>פסאודו-הכללות</b> — אלה המאפיינים שמאפשרים אבחנה ב-FNA. מקור: <a href="https://commons.wikimedia.org/wiki/File:Papillary_Carcinoma_of_the_Thyroid.jpg" target="_blank">Wikimedia Commons</a></figcaption>
+  </figure>
+</div>
+<h3>ארבעת סוגי הסרטן — השוואה</h3>
+<table>
+  <tr><th>סוג</th><th>מקור / גנטיקה</th><th>התפשטות</th><th>אבחנה</th><th>סמן למעקב</th><th>פרוגנוזה</th></tr>
+  <tr><td><b>פפילרי</b></td><td>זקיק; BRAF V600E, RET/PTC; קרינה</td><td><b>לימפטית</b> (צוואר מרכזי)</td><td>FNA — גרעינים, psammoma</td><td>תירוגלובולין</td><td>מצוינת (&gt;95% ל-10 שנים ברוב המקרים)</td></tr>
+  <tr><td><b>פוליקולרי</b></td><td>זקיק; RAS; חוסר יוד</td><td><b>המטוגנית</b> (עצם, ריאה)</td><td><b>רק היסטולוגיה</b> (חדירה לקופסית/כלי דם)</td><td>תירוגלובולין</td><td>טובה</td></tr>
+  <tr><td><b>מדולרי</b></td><td>תאי C; <b>RET</b> (MEN2A/2B, משפחתי)</td><td>לימפטית מוקדמת + דם</td><td>FNA + <b>קלציטונין</b>; עמילואיד בסטרומה</td><td><b>קלציטונין + CEA</b></td><td>בינונית; לא מגיב ל-RAI</td></tr>
+  <tr><td><b>אנפלסטי</b></td><td>זקיק שאיבד מיון; TP53, BRAF</td><td>מקומית אגרסיבית</td><td>גוש צוואר שגדל תוך <b>שבועות</b> בקשיש; ביופסיה</td><td>—</td><td>גרועה מאוד (חודשים); כל מקרה = שלב IV</td></tr>
+</table>
+<div class="key-box">לפני ניתוח <b>מדולרי</b>: בדיקת <b>RET</b> ו<b>שלילת פאוכרומוציטומה</b> (מטאנפרינים בפלזמה/שתן). פאוכרומוציטומה לא מאובחנת → משבר יתר לחץ דם בהרדמה. <b>אם יש — מנתחים אותה קודם.</b></div>
+
+<h2><span class="num">6</span> טיפול</h2>
+<h3>סרטן ממוין (פפילרי/פוליקולרי) — כמה לכרות</h3>
+<ul>
+  <li><b>מיקרו-קרצינומה</b> (&lt;1 ס"מ, ללא בלוטות/חדירה): <b>מעקב פעיל</b> <span class="term" dir="ltr">(active surveillance)</span> או כריתת אונה.</li>
+  <li><b>1–4 ס"מ, ללא חדירה חוץ-תריסית וללא בלוטות</b>: <b>כריתת אונה</b> <span class="term" dir="ltr">(lobectomy)</span> <b>או</b> כריתה מלאה — שתיהן מקובלות לפי ATA 2015 (שינוי מהגישה הישנה של "כולם כריתה מלאה").</li>
+  <li><b>&gt;4 ס"מ, חדירה מחוץ לבלוטה, בלוטות לימפה, גרורות, קרינה בעבר</b>: <b>כריתה מלאה</b> <span class="term" dir="ltr">(total thyroidectomy)</span> ± <b>דיסקציית צוואר מרכזית</b> (level VI) טיפולית; בלוטות צידיות מוכחות → <b>דיסקציה צידית</b> (levels II–V).</li>
+  <li><b>יוד רדיואקטיבי</b> <span class="term" dir="ltr">(RAI, I-131)</span> אחרי כריתה מלאה בסיכון בינוני/גבוה: הורס שאריות תריס ומיקרו-גרורות. דורש TSH גבוה (הפסקת תירוקסין או <b>rhTSH</b>) כדי שהתאים "ירעבו" ויקלטו.</li>
+  <li><b>דיכוי TSH</b> בתירוקסין בסיכון גבוה (TSH גבוה מגרה גדילת תאי סרטן ממוין). מעקב: <b>תירוגלובולין + נוגדני תירוגלובולין</b> + US.</li>
+</ul>
+<h3>מדולרי, אנפלסטי ולימפומה</h3>
+<ul>
+  <li><b>מדולרי</b>: <b>כריתה מלאה + דיסקציה מרכזית</b> (תמיד — המחלה לרוב דו-צדדית ומתפשטת מוקדם לבלוטות). נשאי RET: <b>כריתה מונעת</b> — עיתוי לפי המוטציה (MEN2B/M918T בסיכון הגבוה ביותר → בשנה הראשונה לחיים; MEN2A — לרוב עד גיל 5, לפי רמת הקלציטונין). מחלה מתקדמת: <b>Selpercatinib / Pralsetinib</b> (מעכבי RET סלקטיביים), Vandetanib, Cabozantinib.</li>
+  <li><b>אנפלסטי</b>: בדיקת <b>BRAF V600E</b> דחופה → <b>Dabrafenib + Trametinib</b>; ניתוח רק כשהמחלה נכרתת; הבטחת נתיב אוויר; הקרנה. החלטות מהירות — זמן הכפלה של ימים.</li>
+  <li><b>לימפומה של התריס</b> (על רקע <b>Hashimoto</b>, זפק שגדל מהר באישה מבוגרת): אבחנה בביופסיית core/פתוחה → <b>כימותרפיה (R-CHOP) + הקרנה, לא ניתוח</b>.</li>
+</ul>
+<h3>יתר-פעילות — הכנה לניתוח ותרופות</h3>
+<table>
+  <tr><th>תרופה</th><th>סוג/מנגנון</th><th>איך זה עוזר כאן</th><th>זהירות / קונטרא-אינדיקציות</th></tr>
+  <tr><td><span class="term" dir="ltr">Methimazole</span> (Tapazole)</td><td>תיונאמיד — <b>מעכב TPO</b> → פחות ייצור T4/T3</td><td>קו ראשון להשגת מצב אותירואידי לפני ניתוח/RAI</td><td><b>אגרנולוציטוזיס</b> (חום + כאב גרון → ספירה!), הפטוטוקסיות; <b>טרימסטר 1 — אסור</b> (טרטוגני: aplasia cutis)</td></tr>
+  <tr><td><span class="term" dir="ltr">Propylthiouracil (PTU)</span></td><td>מעכב TPO <b>+ מעכב המרה פריפרית T4→T3</b></td><td>ב<b>סערת תריס</b> (מוריד T3 מהר יותר) וב<b>טרימסטר ראשון</b></td><td><b>הפטוטוקסיות קשה</b> (אי-ספיקת כבד) → לא לשימוש שגרתי; אגרנולוציטוזיס</td></tr>
+  <tr><td><span class="term" dir="ltr">Propranolol</span></td><td>חוסם β לא-סלקטיבי; מעכב מעט T4→T3</td><td>שולט בדופק/רעד/חרדה; ממשיכים עד ואחרי הניתוח</td><td>אסתמה (לשקול β1-סלקטיבי), אי-ספיקת לב מפוצלת</td></tr>
+  <tr><td><b>יוד לא-רדיואקטיבי</b> — <span class="term" dir="ltr">SSKI / Lugol</span></td><td>עודף יוד חוסם שחרור הורמון ואת ארגונו (<b>Wolff-Chaikoff</b>)</td><td>לפני ניתוח Graves (~7–10 ימים): <b>מקטין את הווסקולריות</b> → פחות דימום</td><td>לתת <b>רק ≥1 שעה אחרי התיונאמיד</b> — אחרת היוד משמש "חומר גלם" להורמון נוסף</td></tr>
+  <tr><td><span class="term" dir="ltr">Hydrocortisone</span></td><td>גלוקוקורטיקואיד</td><td>בסערת תריס: מעכב T4→T3 ומכסה אי-ספיקת אדרנל יחסית</td><td>היפרגליקמיה</td></tr>
+  <tr><td><span class="term" dir="ltr">Cholestyramine</span></td><td>קושר חומצות מרה</td><td>קוטע מחזור אנטרו-הפטי של הורמון התריס</td><td>מפריע לספיגת תרופות אחרות</td></tr>
+</table>
+<p><b>מתי ניתוח ב-Graves?</b> זפק גדול/לוחץ, <b>אופתלמופתיה בינונית-קשה</b> (RAI עלול להחמיר אותה), קשרית חשודה, הריון שבו תרופות נכשלו (טרימסטר שני), רצון להריון קרוב (RAI מחייב המתנה), או כשל/סירוב לטיפול תרופתי. הניתוח: <b>כריתה מלאה/כמעט-מלאה</b> (כריתה חלקית → חזרת יתר-פעילות).</p>
+
+<div class="surgery">
+  <h4>מהלך הניתוח — כריתת תריס מלאה</h4>
+  <p><b>הכנה</b>: מצב <b>אותירואידי</b> (ב-Graves — Methimazole + SSKI); <b>לרינגוסקופיה</b> לפני ניתוח (בעיקר עם צרידות, ניתוח צוואר קודם או סרטן פולשני — לתעד תפקוד מיתרים); US של הבלוטות; ב-MTC — RET, קלציטונין/CEA ושלילת פאוכרומוציטומה; בזפק תת-חזי — CT.</p>
+  <p><b>שלבים</b>: (1) חתך קולר <span class="term" dir="ltr">(Kocher)</span> בקפל עור ~2 אצבעות מעל עצם החזה; (2) הרמת מתלי platysma והפרדת <b>שרירי הרצועה</b> <span class="term" dir="ltr">(strap muscles)</span> בקו האמצע; (3) קשירת <b>הווריד האמצעי</b> וסיבוב האונה מדיאלית; (4) קשירת <b>כלי הקוטב העליון צמוד לבלוטה</b> (הגנה על EBSLN); (5) <b>זיהוי RLN</b> בחריץ הקנה-ושט (ובאזור Berry) ו<b>זיהוי ושימור היותרות</b> עם אספקת הדם שלהן; (6) ניתוק האונה מרצועת Berry; (7) חזרה בצד השני; <b>ניטור עצבים תוך-ניתוחי</b> <span class="term" dir="ltr">(IONM)</span> במרכזים רבים — אם אות העצב אובד בצד הראשון, <b>שוקלים לעצור ולדחות</b> את הצד השני (למנוע שיתוק דו-צדדי).</p>
+  <p><b>הנקודה הקריטית</b>: האזור של <b>רצועת Berry</b> והצומת עם עורק התריס התחתון — שם ה-RLN הכי קרוב לבלוטה. יותרת שנכרתה בטעות או נראית לא-חיונית → <b>השתלה עצמית</b> <span class="term" dir="ltr">(autotransplantation)</span> לשריר ה-sternocleidomastoid.</p>
+  <p><b>החלמה</b>: אשפוז קצר (לעתים יום אחד). מדידת <b>PTH</b> ו<b>סידן</b> אחרי הניתוח: PTH נמוך מאוד → סידן פומי (± קלציטריול) מונע. <b>תסמיני אזהרה</b>: <b>נימול סביב הפה ובאצבעות</b>, התכווצויות (<b>Chvostek</b>/<b>Trousseau</b>) → היפוקלצמיה; <b>נפיחות צוואר, קוצר נשימה, סטרידור</b> → <b>המטומה</b> — פתיחת הפצע <b>ליד המיטה</b> ופינוי מיידי (לחץ על הקנה + בצקת גרון), לא לחכות ל-CT. צרידות מתמשכת → לרינגוסקופיה. אחרי כריתה מלאה — <b>Levothyroxine לכל החיים</b>.</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/O0WPYuHz2lc" title="Complications After Thyroid Surgery | Hematoma | Hypoparathroidism | Recurrent Laryngeal Nerve Injury" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סיבוכי כריתת תריס: המטומה, היפופאראתירואידיזם ופגיעה ב-RLN — זיהוי וטיפול. מקור: YouTube.</p>
+
+<h3>סערת תריס <span class="term" dir="ltr">(Thyroid storm)</span></h3>
+<p>החמרה מסכנת חיים של יתר-פעילות, מעוררת ע"י <b>ניתוח (בעיקר בחולה לא מוכן)</b>, זיהום, לידה או עומס יוד: <b>חום גבוה, טכיקרדיה/פרפור, בלבול, הקאות ושלשולים, אי-ספיקת לב</b>. הסדר: <b>(1) β-בלוקר</b> → <b>(2) PTU</b> (או Methimazole) → <b>(3) יוד — שעה לפחות אחרי התיונאמיד</b> → <b>(4) Hydrocortisone</b> → קירור, נוזלים, טיפול בגורם; Cholestyramine כתוספת. לא לתת <b>אספירין</b> להורדת חום — מפקיע T4 מחלבונים הנושאים.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>סוגי הסרטן — "Papillary = Popular, Palpable nodes, Psammoma, Positive prognosis"</h3>
+  <p>ראשי תיבות ידועים ונפוצים (4P): <b>P</b>opular — הכי שכיח; <b>P</b>alpable lymph nodes — התפשטות לימפטית; <b>P</b>sammoma bodies — מיקרו-הסתיידויות ב-US; <b>P</b>ositive prognosis. ובהמשך: <b>F</b>ollicular = <b>F</b>ar away (דם, עצם); <b>M</b>edullary = <b>M</b>EN2 + calcitonin; <b>A</b>naplastic = <b>A</b>ged, <b>A</b>ggressive.</p>
+  <p style="font-size:14px;color:#4b5563">שיטת זכירה מקובלת בהוראה; ההרחבה ל-F/M/A מקורית לסיכום זה.</p>
+</div>
+<div class="mnemonic">
+  <h3>סערת תריס — "BPIS" (סדר הפעולות)</h3>
+  <p><b>B</b> — Beta-blocker (Propranolol)<br>
+  <b>P</b> — PTU (חוסם ייצור והמרה)<br>
+  <b>I</b> — Iodine — <b>רק אחרי</b> ה-P ("Block before you Iodine")<br>
+  <b>S</b> — Steroids (Hydrocortisone)</p>
+  <p style="font-size:14px;color:#4b5563">ראשי תיבות מקוריים שנבנו לסיכום זה.</p>
+</div>
+<div class="mnemonic">
+  <h3>סיפור: "המפעל, השומרים והחוטים"</h3>
+  <p>בלוטת התריס היא <b>מפעל פרפר</b> שמייצר "דלק" (T4/T3) לעיר. המנהל <b>TSH</b> שולח הוראות "יותר!" — וב-Graves נכנס <b>מתחזה</b> (TSI) עם מפתח מזויף שלוחץ על הכפתור כל הזמן; המתחזה גם דוחף את <b>העיניים</b> של השכנים החוצה. לידי המפעל עוברים <b>שני חוטי טלפון</b> דקים (RLN) בתעלה שבין הצינורות (חריץ הקנה-ושט) — חותכים אחד והקול נשמע <b>צרוד</b>, חותכים שניים והטלפון של הנשימה <b>מושתק</b>. מאחורי המפעל עומדים <b>ארבעה שומרים קטנים</b> (יותרות) שמחזיקים את <b>הסידן</b> — אם בטעות פינית אותם עם המפעל, תוך יום העיר מתחילה <b>לעקצץ</b> סביב הפה. ואם יש <b>נזילה</b> (המטומה) — המים לוחצים על צינור האוויר, ולא מחכים לשרברב: <b>פותחים את הקיר מיד</b>.</p>
+</div>
+<svg class="diagram" viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>סיפור המפעל: המתחזה, חוטי הטלפון והשומרים</title>
+  <rect x="250" y="30" width="180" height="90" rx="40" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+  <text x="340" y="65" text-anchor="middle" font-weight="700">🏭 מפעל פרפר</text>
+  <text x="340" y="88" text-anchor="middle">= בלוטת התריס</text>
+  <rect x="470" y="30" width="190" height="60" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="565" y="55" text-anchor="middle" font-weight="700">🕵️ מתחזה = TSI</text>
+  <text x="565" y="75" text-anchor="middle">לוחץ "יותר!" + עיניים בולטות</text>
+  <line x1="470" y1="62" x2="440" y2="70" stroke="#b91c1c" stroke-width="2"/><polygon points="434,72 441,64 444,73" fill="#b91c1c"/>
+  <rect x="20" y="30" width="200" height="60" rx="10" fill="#fffbeb" stroke="#b45309"/>
+  <text x="120" y="55" text-anchor="middle" font-weight="700">☎️ חוטי טלפון = RLN</text>
+  <text x="120" y="75" text-anchor="middle">אחד: צרידות · שניים: סטרידור</text>
+  <rect x="20" y="120" width="200" height="60" rx="10" fill="#ecfdf5" stroke="#047857"/>
+  <text x="120" y="145" text-anchor="middle" font-weight="700">💂 4 שומרים = יותרות</text>
+  <text x="120" y="165" text-anchor="middle">נעלמו → עקצוץ (Ca↓)</text>
+  <rect x="470" y="120" width="190" height="60" rx="10" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="565" y="145" text-anchor="middle" font-weight="700">💧 נזילה = המטומה</text>
+  <text x="565" y="165" text-anchor="middle">פותחים את הקיר מיד!</text>
+  <line x1="250" y1="75" x2="228" y2="65" stroke="#374151" stroke-width="2"/><polygon points="222,62 232,61 229,69" fill="#374151"/>
+  <line x1="260" y1="110" x2="228" y2="140" stroke="#374151" stroke-width="2"/><polygon points="222,145 225,135 232,141" fill="#374151"/>
+  <line x1="420" y1="110" x2="462" y2="140" stroke="#374151" stroke-width="2"/><polygon points="468,144 458,143 463,135" fill="#374151"/>
+</svg>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/GEO8yTbx1Zw" title="Hyperthyroidism | Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — יתר-פעילות של בלוטת התריס: Graves, זפק רב-קשרי טוקסי ואדנומה טוקסית, מנגנונים וטיפול. מקור: YouTube (Osmosis).</p>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=_da398XLoyw" target="_blank">Surgical Anatomy of Recurrent laryngeal nerve for Thyroid gland surgeries</a><div class="desc">האנטומיה הכירורגית של ה-RLN ביחס לבלוטה ולעורק התריס התחתון.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=ewV9xHCg9vM" target="_blank">Osmosis — Thyroid cancer: causes, symptoms, diagnosis, treatment, pathology</a><div class="desc">סקירה ותיקה ומקיפה של סוגי סרטן התריס.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/sites/books/NBK563279/" target="_blank">StatPearls — Thyroidectomy</a><div class="desc">התוויות, מהלך הניתוח וסיבוכים.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK448095/" target="_blank">StatPearls — Thyroid Storm</a><div class="desc">אבחנה (Burch-Wartofsky) וסדר הטיפול.</div></li>
+  <li><a href="https://ncbi.nlm.nih.gov/sites/books/NBK557859/" target="_blank">StatPearls — Diffuse Toxic Goiter (Graves)</a><div class="desc">פתופיזיולוגיה וטיפול במחלת Graves.</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK459354/" target="_blank">StatPearls — Medullary Thyroid Cancer</a><div class="desc">RET, MEN2, קלציטונין/CEA וטיפול.</div></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13299025/" target="_blank">PMC — The 2023 Bethesda System and risk of malignancy</a><div class="desc">6 הקטגוריות והסיכון לממאירות בכל אחת.</div></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10948252/" target="_blank">PMC — What's new in thyroid pathology 2024 (WHO + Bethesda)</a><div class="desc">עדכוני סיווג WHO 2022 ו-Bethesda 2023.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Arterial_supply_of_the_thyroid_gland.png" target="_blank">Wikimedia — Arterial supply of the thyroid gland</a><div class="desc">קישור גיבוי לאיור אספקת הדם.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Papillary_Carcinoma_of_the_Thyroid.jpg" target="_blank">Wikimedia — Papillary Carcinoma of the Thyroid</a><div class="desc">קישור גיבוי לתמונת הציטולוגיה (חריצים ופסאודו-הכללות).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Proptosis_and_lid_retraction_from_Graves%27_Disease.jpg" target="_blank">Wikimedia — Proptosis and lid retraction from Graves' Disease</a><div class="desc">קישור גיבוי לתמונת האופתלמופתיה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Goiter.JPG" target="_blank">Wikimedia — Goiter</a><div class="desc">קישור גיבוי לתמונת הזפק.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>מקרה</h3>
+  <p>אישה בת 34 מגיעה בגלל גוש בצוואר שהבחינה בו במקלחת. בילדותה קיבלה <b>הקרנה לצוואר</b> בגלל לימפומת הודג'קין. בבדיקה: קשרית קשה של 2.5 ס"מ באונה הימנית ו<b>בלוטת לימפה מוחשת</b> בצד ימין של הצוואר. <b>TSH תקין</b>. ב-US: קשרית <b>היפואקואית</b>, <b>גבוהה-מרוחבת</b>, עם <b>מיקרו-הסתיידויות</b>, ובלוטה צוואר צידית (level III) חשודה. FNA של הקשרית: <b>Bethesda VI</b> — גרעינים בהירים עם חריצים ופסאודו-הכללות; FNA של הבלוטה חיובי. עברה <b>כריתת תריס מלאה + דיסקציה מרכזית וצידית ימנית</b>. <b>יום אחרי הניתוח</b> היא מתלוננת על <b>עקצוץ סביב הפה ובאצבעות</b>; בהקשה על עצב הפנים מול האוזן — כיווץ של זווית הפה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה האבחנה ומה הצעד הראשון בבירור קשרית בכל מטופלת?</div>
+  <button class="opt" data-i="0">סרטן פוליקולרי; הצעד הראשון — מיפוי יוד</button>
+  <button class="opt" data-i="1">סרטן מדולרי; הצעד הראשון — קלציטונין</button>
+  <button class="opt" data-i="2">סרטן פפילרי; הצעד הראשון — בדיקת TSH (ואז US ו-FNA לפי הצורך)</button>
+  <button class="opt" data-i="3">לימפומה של התריס; הצעד הראשון — ביופסיה פתוחה</button>
+  <div class="explain">נכון (3): גרעינים בהירים עם חריצים ופסאודו-הכללות + מיקרו-הסתיידויות (psammoma) + בלוטות + קרינה בילדות = פפילרי. בכל קשרית מתחילים ב-TSH: אם נמוך → מיפוי לחפש קשרית חמה. (1) פוליקולרי אינו מאובחן ב-FNA, ומיפוי נעשה רק כש-TSH נמוך. (2) המאפיינים הגרעיניים אינם של מדולרי. (4) לימפומה מופיעה על רקע Hashimoto בגוש שגדל מהר, לא עם גרעיני פפילרי.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. מה הסיבה הסבירה לתלונותיה ביום שאחרי הניתוח ומה הבדיקה המכוונת?</div>
+  <button class="opt" data-i="0">היפופאראתירואידיזם (פגיעה/כריתה של יותרות או של אספקת הדם שלהן) → היפוקלצמיה; מדידת PTH וסידן</button>
+  <button class="opt" data-i="1">פגיעה ב-RLN; לרינגוסקופיה</button>
+  <button class="opt" data-i="2">סערת תריס; T4 חופשי</button>
+  <button class="opt" data-i="3">תסמונת "עצם רעבה" (Hungry bone); ALP</button>
+  <div class="explain">נכון (1): עקצוץ סביב הפה + סימן Chvostek אחרי כריתה מלאה = היפוקלצמיה ממחסור ב-PTH. PTH נמוך מאוד מנבא היפוקלצמיה ← סידן פומי ± קלציטריול (ו-IV Ca gluconate אם תסמינים קשים). (2) RLN → צרידות, לא עקצוץ. (3) סערה = חום, טכיקרדיה, בלבול — ומטופלת אותירואידית לא צפויה לפתח. (4) Hungry bone מופיע בעיקר אחרי ניתוח לתירוטוקסיקוזיס/יותרת עם מחלת עצם, ו-PTH שם לא בהכרח נמוך — כאן ההסבר הישיר הוא היותרות.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. שעתיים אחרי כריתת תריס אחרת, מטופל מפתח נפיחות צוואר הולכת וגדלה, קוצר נשימה וסטרידור. מה עושים?</div>
+  <button class="opt" data-i="0">CT צוואר דחוף לאישור המטומה</button>
+  <button class="opt" data-i="1">אינהלציות אדרנלין וסטרואידים ומעקב</button>
+  <button class="opt" data-i="2">אינטובציה אורו-טרכאלית מיידית בלי לגעת בפצע</button>
+  <button class="opt" data-i="3">פתיחת התפרים ופינוי ההמטומה מיד ליד המיטה, ואז חזרה לחדר ניתוח</button>
+  <div class="explain">נכון (4): המטומה אחרי כריתת תריס לוחצת על הוורידים → בצקת גרון ולחץ על הקנה. הפתרון המציל הוא פתיחת הפצע (עור + strap muscles) מיד ליד המיטה. (1) דחיית הטיפול להדמיה מסוכנת. (2) אינה פותרת את הלחץ המכני. (3) אינטובציה דרך גרון בצקתי קשה מאוד — קודם משחררים את הלחץ.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. קשרית של 3 ס"מ עם FNA של "ניאופלזמה פוליקולרית" (Bethesda IV). למה אי אפשר לקבוע ממאירות בציטולוגיה?</div>
+  <button class="opt" data-i="0">כי הקשרית קטנה מדי לדגימה טובה</button>
+  <button class="opt" data-i="1">כי ממאירות פוליקולרית מוגדרת לפי חדירה לקופסית או לכלי דם — רואים אותה רק בהיסטולוגיה של הקשרית כולה</button>
+  <button class="opt" data-i="2">כי סרטן פוליקולרי תמיד ציסטי</button>
+  <button class="opt" data-i="3">כי יש צורך במדידת קלציטונין</button>
+  <div class="explain">נכון (2): בציטולוגיה תאי אדנומה פוליקולרית וקרצינומה פוליקולרית נראים זהים; ההבדל הוא חדירה דרך הקופסית/לכלי דם ← בדיקה מולקולרית או כריתת אונה אבחנתית. (1) 3 ס"מ גדולה מספיק. (3) לא נכון. (4) קלציטונין רלוונטי למדולרי.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. גבר בן 28 עם סרטן מדולרי ואביו נפטר ממשבר יתר לחץ דם בניתוח. מה חובה לפני כריתת התריס?</div>
+  <button class="opt" data-i="0">מיפוי עם I-131 לשלילת גרורות</button>
+  <button class="opt" data-i="1">מדידת תירוגלובולין</button>
+  <button class="opt" data-i="2">בדיקת מטאנפרינים בפלזמה/שתן לשלילת פאוכרומוציטומה (MEN2), ואם יש — אדרנלקטומיה קודם</button>
+  <button class="opt" data-i="3">כריתת יותרות התריס מראש</button>
+  <div class="explain">נכון (3): MTC + סיפור משפחתי של משבר יתר לחץ דם בהרדמה → חשד ל-MEN2 (RET). פאוכרומוציטומה לא מטופלת → משבר קטכולאמינים. מנתחים אותה ראשונה (אחרי חסימת α). (1) MTC אינו קולט יוד. (2) תירוגלובולין הוא סמן לסרטן ממוין, לא למדולרי (שם: קלציטונין + CEA). (4) מטפלים ביותרות רק אם יש היפרפאראתירואידיזם.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. מטופלת עם Graves מתוכננת לכריתת תריס. באיזה סדר ניתנות התרופות לפני הניתוח ולמה?</div>
+  <button class="opt" data-i="0">Methimazole עד מצב אותירואידי, ואז SSKI/Lugol ~7–10 ימים לפני הניתוח — מקטין וסקולריות; יוד רק אחרי חסימת הייצור</button>
+  <button class="opt" data-i="1">SSKI לבד חודש לפני הניתוח</button>
+  <button class="opt" data-i="2">I-131 שבוע לפני הניתוח כדי להקטין את הבלוטה</button>
+  <button class="opt" data-i="3">PTU לכל המטופלות כי הוא בטוח יותר לכבד</button>
+  <div class="explain">נכון (1): קודם חוסמים TPO (Methimazole), ואז יוד (Wolff-Chaikoff) להקטנת זרימת הדם ולפחות דימום. (2) יוד לבד, בלי תיונאמיד → "בריחה" מהחסימה והחמרה. (3) RAI סמוך לניתוח אינו הגיוני ועלול לעורר תירואידיטיס/סערה. (4) PTU הפטוטוקסי יותר — נשמר לסערה ולטרימסטר ראשון.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>קשרית</b>: TSH ← (נמוך → מיפוי; חמה = שפירה, בלי FNA) ← US (היפואקואי, taller-than-wide, מיקרו-הסתיידויות, שוליים לא סדירים) ← FNA (≥1 ס"מ בחשד גבוה/בינוני).</li>
+    <li><b>Bethesda</b>: I לא-אבחנתי · II שפיר (~4%) · III AUS (~22%) · IV פוליקולרי (~30%) · V חשוד (~74%) · VI ממאיר (~97%).</li>
+    <li><b>פפילרי</b> (~85%, BRAF, קרינה, לימפה, psammoma, גרעינים בהירים עם חריצים) · <b>פוליקולרי</b> (RAS, דם, רק היסטולוגיה) · <b>מדולרי</b> (תאי C, RET/MEN2, קלציטונין+CEA, לא RAI) · <b>אנפלסטי</b> (קשיש, שבועות, BRAF → dabrafenib+trametinib).</li>
+    <li><b>היקף</b>: &lt;1 ס"מ → מעקב/אונה; 1–4 ס"מ בלי סיכון → אונה או מלאה; &gt;4 ס"מ/בלוטות/חדירה → מלאה ± דיסקציה; RAI + דיכוי TSH לפי סיכון; מעקב תירוגלובולין.</li>
+    <li><b>MTC</b>: כריתה מלאה + דיסקציה מרכזית; <b>קודם לשלול פאוכרומוציטומה</b>; נשאי RET → כריתה מונעת מוקדמת.</li>
+    <li><b>Graves</b>: TSI מפעיל קולטן TSH; ניתוח בזפק גדול, אופתלמופתיה, הריון/כשל תרופות; הכנה: Methimazole → SSKI.</li>
+    <li><b>סערת תריס</b>: β-בלוקר → PTU → יוד (אחרי ≥1 שעה) → Hydrocortisone.</li>
+    <li><b>אנטומיה</b>: RLN בחריץ הקנה-ושט, מול רצועת Berry, non-recurrent מימין; EBSLN ליד כלי הקוטב העליון (טונים גבוהים); יותרות ניזונות מעורק התריס התחתון.</li>
+    <li><b>סיבוכים</b>: המטומה → פתיחה ליד המיטה · היפוקלצמיה (PTH נמוך, Chvostek/Trousseau) → סידן ± קלציטריול · RLN חד-צדדי = צרידות, דו-צדדי = סטרידור.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
