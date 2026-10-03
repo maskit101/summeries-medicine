@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>חום ופריחה (Fever and Rash)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px; color:var(--ink); line-height:1.75; font-size:17px; background:#fff}
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .tablewrap{overflow-x:auto}
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  @media (max-width:600px){ body{padding:20px 14px 60px; font-size:16px} }
+</style>
+</head>
+<body>
+
+<h1>חום ופריחה <span class="term" dir="ltr">(Fever and Rash)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · פרק 19 · עמ' 174–185 · Elaine T. Kaye, Kenneth M. Kaye</div>
+
+<p>מטופל חולה בחום ופריחה הוא אחד האתגרים האבחנתיים הקלאסיים ברפואה דחופה: מראה הפריחה, <span class="key">בשילוב עם התסמונת הקלינית</span>, מאפשר לעיתים אבחנה מהירה, התחלת טיפול מציל חיים או נקיטת אמצעי בקרת זיהומים (למשל בידוד חצבת). הפרק לא מסביר מחלה אחת, אלא נותן <b>שיטה</b>: להגדיר במדויק את סוג הנגעים ואת התפלגותם, ומשם לצמצם את האבחנה המבדלת.</p>
+
+<h2><span class="num">1</span> אנמנזה ובדיקה גופנית - מה שואלים ומה מסתכלים</h2>
+<p><b>אנמנזה:</b> מצב חיסוני, תרופות בחודש האחרון, היסטוריית נסיעות, מצב חיסונים, חשיפה לחיות בית ולבעלי חיים, נשיכות (כולל פרוקי רגליים כמו קרציות), חשיפה תזונתית, מומים לבביים, חומר פרוסתטי, חשיפה לחולים, חשיפה מינית. בנוסף: <span class="key">היכן הפריחה התחילה, באיזה כיוון ובאיזה קצב התפשטה</span>.</p>
+<p><b>בדיקה:</b> קודם כול להגדיר את סוג הנגע (מורפולוגיה):</p>
+<div class="tablewrap"><table>
+  <thead><tr><th>נגע</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Macule</span></td><td>נגע שטוח, שינוי צבע בלבד (אריתמה שמלבינה בלחיצה)</td></tr>
+    <tr><td><span class="term" dir="ltr">Papule</span></td><td>נגע מוגבה וקשה, קוטר &lt;5 מ"מ</td></tr>
+    <tr><td><span class="term" dir="ltr">Plaque</span></td><td>&gt;5 מ"מ עם משטח שטוח כמו רמה</td></tr>
+    <tr><td><span class="term" dir="ltr">Nodule</span></td><td>&gt;5 מ"מ, צורה עגולה יותר (בולט)</td></tr>
+    <tr><td><span class="term" dir="ltr">Wheal</span> (סרפדת)</td><td>פפולה/פלק ורדרד חיוור, חולף - בסרפדת קלאסית (לא וסקוליטית) נעלם תוך 24 שעות באותו מקום</td></tr>
+    <tr><td><span class="term" dir="ltr">Vesicle / Bulla</span></td><td>נגע מוגבה מלא נוזל; vesicle &lt;5 מ"מ, bulla &gt;5 מ"מ</td></tr>
+    <tr><td><span class="term" dir="ltr">Pustule</span></td><td>נגע מוגבה עם מוגלה</td></tr>
+    <tr><td><span class="term" dir="ltr">Petechiae / Ecchymoses</span></td><td>דימום לעור, שטוח ולא נמוש (<span class="term" dir="ltr">non-palpable purpura</span>); &lt;3 מ"מ = פטכיות, &gt;3 מ"מ = אקימוזות</td></tr>
+    <tr><td><span class="term" dir="ltr">Palpable purpura</span></td><td>מוגבה, נובע מדלקת בדופן כלי הדם (vasculitis) עם דימום בעקבותיה</td></tr>
+    <tr><td><span class="term" dir="ltr">Ulcer / Eschar</span></td><td>כיב = פגם בעור לפחות עד הדרמיס העליון; eschar (tâche noire) = נגע נקרוטי מכוסה גלד שחור</td></tr>
+  </tbody>
+</table></div>
+<p>עוד פרטים חשובים: <b>תצורת הנגעים</b> (טבעתית, "מטרה"), סידורם, והתפלגות (<b>מרכזית</b> מול <b>היקפית</b>).</p>
+
+<h2><span class="num">2</span> המנגנון - למה הפריחה בכלל מופיעה, ולמה ההתפלגות שונה</h2>
+<div class="mechanism">
+  <p class="chain">חומר זר (נגיף/חיידק/תרופה) ← תגובה חיסונית או פגיעה בכלי דם ← שינוי בעור. אותה פריחה נוצרת בשלושה מנגנונים עיקריים:</p>
+  <p><b>(א) פגיעה ישירה של הגורם בעור או בכלי הדם:</b> בריקציות (למשל <span class="term" dir="ltr">Rickettsia</span>) החיידק חודר לתאי האנדותל של כלי הדם הקטנים ומשכפל בהם, ולכן הדלקת והדליפה של כלי הדם מייצרת מקודם אריתמה ואז <span class="key">פטכיות</span> - דימום כשדופן הכלי נפגעת. גם במנינגוקוקמיה הנגעים הפטכיאליים מגיעים מפגיעה בכלי דם ו-<span class="term" dir="ltr">DIC</span> (קרישה מפושטת עם צריכת טסיות וגורמי קרישה).</p>
+  <p><b>(ב) תגובה חיסונית לנגיף (exanthem):</b> התפרצות הפריחה בנגיפים כמו חצבת/אדמת מופיעה דווקא כשמערכת החיסון מגיבה (ייצור נוגדנים ותאי T מגיעים לעור הנגוע), לכן בכמה מחלות הפריחה מופיעה <b>אחרי</b> שהחום יורד (fifth disease, roseola).</p>
+  <p><b>(ג) רעלנים של חיידקים (Toxin-mediated):</b> רעלני <span class="term" dir="ltr">Streptococcus</span> קבוצה A ו-<span class="term" dir="ltr">S. aureus</span> פועלים כסופר-אנטיגנים - מפעילים חלק גדול מתאי ה-T ושחרור המוני של ציטוקינים, ולכן אריתמה מפושטת, ולאחריה קילוף (desquamation) של העור. בנוסף, ב-<span class="term" dir="ltr">SSSS</span> הרעלן פוגע בשכבה שטחית של האפידרמיס ("scalded skin") ולכן ה-cleavage plane שטחי; ב-<span class="term" dir="ltr">TEN</span> (תגובה לתרופה) נמק של כל עובי האפידרמיס.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="אלגוריתם מיון פריחות לפי מורפולוגיה והתפלגות">
+  <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#2563eb"/></marker></defs>
+  <rect x="330" y="10" width="240" height="44" rx="8" fill="#2563eb"/>
+  <text x="450" y="38" text-anchor="middle" fill="#fff" font-size="17" font-weight="700">חום + פריחה</text>
+  <line x1="450" y1="54" x2="450" y2="78" stroke="#2563eb" stroke-width="2" marker-end="url(#ar)"/>
+  <rect x="270" y="80" width="360" height="44" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="450" y="108" text-anchor="middle" font-size="16" fill="#1f2937">1) איזה סוג נגע? 2) איפה? (מרכזי / היקפי)</text>
+  <g font-size="14" text-anchor="middle" fill="#1f2937">
+    <line x1="450" y1="124" x2="90" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <line x1="450" y1="124" x2="240" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <line x1="450" y1="124" x2="390" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <line x1="450" y1="124" x2="540" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <line x1="450" y1="124" x2="690" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <line x1="450" y1="124" x2="830" y2="170" stroke="#2563eb" stroke-width="1.5" marker-end="url(#ar)"/>
+    <rect x="20" y="172" width="140" height="70" rx="6" fill="#ecfdf5" stroke="#047857"/><text x="90" y="196">מרכזית</text><text x="90" y="216">מקולופפולרית</text><text x="90" y="234" font-size="12">חצבת, אדמת, EBV</text>
+    <rect x="170" y="172" width="140" height="70" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="240" y="196">היקפית</text><text x="240" y="216">(אקראל)</text><text x="240" y="234" font-size="12">RMSF, עגבת שנייה</text>
+    <rect x="320" y="172" width="140" height="70" rx="6" fill="#fffbeb" stroke="#b45309"/><text x="390" y="196">אריתמה מפושטת</text><text x="390" y="216">+ קילוף</text><text x="390" y="234" font-size="12">שנית, TSS, SSSS, SJS</text>
+    <rect x="470" y="172" width="140" height="70" rx="6" fill="#f5f3ff" stroke="#6d28d9"/><text x="540" y="196">שלפוחיתית /</text><text x="540" y="216">פוסטולרית</text><text x="540" y="234" font-size="12">VZV, HSV, DRESS</text>
+    <rect x="620" y="172" width="140" height="70" rx="6" fill="#f3f4f6" stroke="#4b5563"/><text x="690" y="196">נודולרית /</text><text x="690" y="216">סרפדת</text><text x="690" y="234" font-size="12">קנדידה, EN, Sweet</text>
+    <rect x="770" y="172" width="120" height="70" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="830" y="196">פורפורית</text><text x="830" y="216">(דחוף!)</text><text x="830" y="234" font-size="12">מנינגוקוק, TTP</text>
+  </g>
+  <rect x="20" y="268" width="860" height="46" rx="8" fill="#fffbeb" stroke="#fcd34d"/>
+  <text x="450" y="296" text-anchor="middle" font-size="15" fill="#92400e" font-weight="600">כלל זהב: כשיש פטכיות/פורפורה + חולה רעיל, חושבים קודם על מנינגוקוקמיה ו-RMSF - לא ממתינים לאישור</text>
+</svg>
+
+<h2><span class="num">3</span> שש הקבוצות - הלב של הפרק</h2>
+
+<h3>3.1 פריחות מקולופפולריות מרכזיות (Centrally distributed maculopapular)</h3>
+<p>הסוג השכיח ביותר; הנגעים בעיקר בגזע.</p>
+<ul>
+  <li><b>חצבת (Rubeola, <span class="term" dir="ltr">measles</span>):</b> פרמיקסו-וירוס. הפריחה מתחילה <span class="key">בקו השיער 2-3 ימים</span> לתוך המחלה, יורדת לאורך הגוף, נגעים נפרדים שהופכים <b>קונפלואנטיים</b>, בדרך כלל חוסכת כפות ידיים ורגליים, נמשכת לפחות 3 ימים. סימנים נלווים: שיעול, דלקת הלחמית, נזלת, תשישות קשה. <span class="key">כתמי Koplik</span> (נקודות לבנות/כחלחלות בקוטר 1-2 מ"מ עם הילה אדומה על רירית הלחי) הם <b>פתוגנומוניים</b>, נראים ב-2 הימים הראשונים. אין לבלבל עם <span class="term" dir="ltr">Fordyce spots</span> (בלוטות שומן אקטופיות, בלי הילה, אצל בריאים).</li>
+  <li><b>אדמת (Rubella):</b> גם היא יורדת מקו השיער, אך <span class="key">נעלמת מהאזורים שבהם התחילה תוך כדי התקדמות</span>, ועשויה לגרד. כתמי Forchheimer (פטכיות בחך) לא ספציפיים (גם ב-EBV, בשנית אדומה וב-Zika). לימפדנופתיה postauricular ו-suboccipital וארתריטיס שכיחים במבוגרים. הסכנה: מומים מולדים בחשיפת נשים בהיריון.</li>
+  <li><b>Erythema infectiosum (המחלה החמישית):</b> פרבוביירוס B19, ילדים 3-12. הפריחה <b>אחרי</b> שהחום חלף: "סטירת לחי" על הלחיים עם חיוורון סביב הפה, למחרת פריחה ברשת (lacy reticular) על הגוף שמתעצמת ונחלשת עם שינויי טמפרטורה במשך כ-3 שבועות. במבוגרים - ארתריטיס; בהיריון - <span class="term" dir="ltr">fetal hydrops</span>.</li>
+  <li><b>Roseola (Exanthem subitum, המחלה השישית):</b> HHV-6 (לעיתים HHV-7), ילדים &lt;3. גם כאן <b>הפריחה אחרי הירידה בחום</b>: מקולות ופפולות ורדרדות 2-3 מ"מ בגזע (חוסכת פנים), נעלמות תוך יומיים. פרכוסי חום אפשריים.</li>
+  <li><b>מונונוקלאוזיס (EBV):</b> פריחה ב-5% בלבד, אבל <span class="key">30-90% כשנותנים אמפיצילין</span>. <b>HIV ראשוני:</b> פריחה מקולופפולרית בבית החזה העליון/פנים עם פרינגיטיס, אדנופתיה, כיבי פה/אברי מין.</li>
+  <li><b>פריחה תרופתית (Exanthematous drug eruption):</b> מגרדת ואדומה יותר מפריחה ויראלית, סימטרית; מופיעה 2-3 ימים אחרי חשיפה אצל מי שכבר רגיש, ובחשיפה ראשונה אחרי 2-3 שבועות. 50-60% מחולי HIV מפתחים פריחה לסולפה. <b>לא אמין</b> להבדיל מוויראלי רק לפי המראה - עוזרים: תרופה חדשה והעדר תשישות.</li>
+  <li><b>ריקציות, לפטוספירוזיס, טיפוס הבטן ודנגי:</b> טיפוס אפידמי (כינים, באזורי מלחמה/אסון), טיפוס אנדמי (פרעושים), scrub typhus (אסקר בנשיכת קרדית). Typhoid: "rose spots" - מקולות חולפות 2-4 מ"מ בגזע. דנגי: פריחה בחצי המחלה מתחילה בגזע ופושה לגפיים ולפנים.</li>
+  <li><b>מחלות עם מראה ייחודי:</b> <span class="term" dir="ltr">Erythema migrans</span> (ליים): נגע טבעתי, קוטר ממוצע 15 ס"מ, ללא טיפול דוהה בתוך חודש אך יכול להישאר שנה. <span class="term" dir="ltr">STARI</span>: דומה אך קטן יותר (~8 ס"מ), פחות נגעים משניים, באזורים ללא ליים. <span class="term" dir="ltr">Erythema marginatum</span> (קדחת שגרונית): נגעים טבעתיים חולפים, מופיעים ונעלמים בתוך שעות. <b>SLE:</b> פריחת פרפר חדה בלחיים. <b>Still:</b> פריחה "סלמון" חולפת בשיאי החום. <b>Zika:</b> פריחה מגרדת עם קוניונקטיביטיס.</li>
+</ul>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Koplik_spots,_measles_6111_lores.jpg?width=700" alt="כתמי Koplik ברירית הלחי בחצבת">
+  <figcaption>כתמי Koplik (נקודות לבנות-כחלחלות עם הילה אדומה בלחי) - סימן פתוגנומוני לחצבת בימים הראשונים. מקור: <a href="https://commons.wikimedia.org/wiki/File:Koplik_spots,_measles_6111_lores.jpg" target="_blank" rel="noopener">Wikimedia Commons</a></figcaption>
+</figure>
+
+<h3>3.2 פריחות היקפיות (Peripheral)</h3>
+<ul>
+  <li><b><span class="term" dir="ltr">Rocky Mountain spotted fever</span> (RMSF):</b> <span class="key">המחלה החשובה ביותר בקבוצה</span> - <b>אבחנה וטיפול מוקדמים קריטיים</b> בגלל פרוגנוזה גרועה ללא טיפול (תמותה עד 40%). הנגעים מתחילים <b>בפרקי הידיים והקרסוליים</b>, מתפשטים צנטריפטלית, מגיעים לכפות ידיים/רגליים רק מאוחר; אבולוציה ממקולות פטכיות. אך הפריחה לא תמיד אקראלית, ולעיתים אין פריחה בכלל.</li>
+  <li><b>עגבת שנייה:</b> פריחה פפולרית קשקשית בצבע נחושת, מפושטת, בולטת <b>בכפות ידיים ורגליים</b>, <b>לעולם לא שלפוחיתית במבוגרים</b>; condyloma latum, כתמים ברירית, התקרחות. להתחשב בדיפרנציאלי של pityriasis rosea אצל פעילים מינית.</li>
+  <li><b>צ'יקונגוניה:</b> פריחה + ארתראלגיה קשה ונודדת במפרקים קטנים (ידיים, קרסוליים). <b>Hand-foot-and-mouth:</b> שלפוחיות כואבות בפה, בידיים וברגליים (Coxsackie A16, EV71; A6 - צורה אטיפית נרחבת, גם אצל מבוגרים צעירים, onychomadesis - נשירת ציפורניים 1-2 חודשים אחרי).</li>
+  <li><b>Erythema multiforme:</b> נגעי "מטרה" סימטריים (ברכיים, מרפקים, כפות), HSV או Mycoplasma כגורמים, ותרופות (סולפה, פניטואין, פניצילין). EM major - מעורבות ריריות, אבל <b>ללא קילוף נרחב</b> כמו SJS.</li>
+  <li><b>אנדוקרדיטיס:</b> <span class="term" dir="ltr">Osler nodes</span> (כואבים, בכריות אצבעות) ו-<span class="term" dir="ltr">splinter hemorrhages</span> ופטכיות בתת-חריף; <span class="term" dir="ltr">Janeway lesions</span> (חסרי כאב, כפות) בחריף (S. aureus).</li>
+  <li><b>COVID-19:</b> Pernio (בקל/אסימפטומטי, ברגליים בעיקר), שלפוחיות/סרפדת/מקולופפולרי בבינוני-קשה, retiform purpura בקשה; MIS-C דומה ל-Kawasaki.</li>
+</ul>
+
+<h3>3.3 אריתמה מפושטת עם קילוף (Confluent desquamative erythemas)</h3>
+<p>אריתמה מפושטת ואחריה קילוף - <b>מבוססת רעלן</b> (strep קבוצה A או S. aureus).</p>
+<ul>
+  <li><b>Scarlet fever:</b> אחרי דלקת גרון סטרפטוקוקלית. סומק בפנים, <b>חיוורון סביב הפה</b>, לשון תות, מרקם "נייר זכוכית", <span class="term" dir="ltr">Pastia's lines</span> (פטכיות מודגשות בקפלי עור), קילוף בשבוע שני.</li>
+  <li><b>Kawasaki:</b> ילדים &lt;8, סדקים בשפתיים, לשון תות, קוניונקטיביטיס, אדנופתיה, בצקת ידיים/רגליים, <b>וסקוליטיס בעורקים הכליליים</b> (פוטנציאל לנזק לבבי).</li>
+  <li><b>Streptococcal TSS:</b> לחץ דם נמוך, כשל רב-מערכתי, לעיתים בהקשר זיהום חמור (necrotizing fasciitis); תמותה ~30%. <b>Staphylococcal TSS:</b> גם כן, אבל בדרך כלל רק colonization עם S. aureus מייצר טוקסין (TSST-1) - לא זיהום חמור; חום &gt;39°C, אריתמה בכפות ובריריות, קילוף 7-10 ימים.</li>
+  <li><b>SSSS:</b> ילדים &lt;10 (Ritter's disease ביילודים) או מבוגרים עם ליקוי כלייתי (לא מפנים את הרעלן). רגישות עור קיצונית, <span class="key">Nikolsky's sign</span> (שלפוחית נוצרת בלחץ צידי עדין), בנוסף <b>אין לשון תות או חיוורון פריאורלי</b>, בניגוד לשנית. ה-cleavage plane <b>שטחי</b> באפידרמיס.</li>
+  <li><b>SJS/TEN:</b> תרופות ב-80% (אלופורינול, נוגדי פרכוסים, אנטיביוטיקה), צורות נמק של האפידרמיס; SJS &lt;10%, חפיפה 10-30%, TEN &gt;30%. ריריות מעורבות, Nikolsky חיובי, תמותה עד 30%, סכנה: התייבשות וספסיס מאובדן מחסום העור. <b>DRESS:</b> דומה בתחילה לפריחה תרופתית, עם בצקת פנים בולטת, ליקוי כבד, אאוזינופיליה, לימפוציטים אטיפיים; תמותה ~10%, נראה כמו ספסיס. <b>Exfoliative erythroderma:</b> מפסוריאזיס/אקזמה/תרופה/mycosis fungoides, קושי בוויסות חום.</li>
+</ul>
+
+<h3>3.4 שלפוחיתיות ופוסטולריות</h3>
+<ul>
+  <li><b>אבעבועות רוח (VZV):</b> מדבקת מאוד, נגעים <span class="key">בשלבי התפתחות שונים בו-זמנית</span> (מקולה ← פפולה ← שלפוחית "טיפת טל על עלה ורד" ← פוסטולה ← גלד), בגל, מגרדת, בעיקר בגזע. בחולים מדוכאי חיסון שלפוחיות עלולות להיות דימומיות וללא בסיס אדום.</li>
+  <li><b>Variola (אבעבועות שחורות):</b> נגעים <b>כולם באותו שלב</b>, בולטים בפנים ובגפיים (לעומת גזע ב-VZV). <b>HSV:</b> שלפוחיות מקובצות על בסיס אדום; ראשוני עם חום ורעילות, חוזר - קל יותר. <b>Rickettsialpox:</b> עירוני, אסקר בנשיכת קרדית עכברים ובסיס פפולרי לכל שלפוחית. <b>Hot-tub folliculitis:</b> Pseudomonas, בהתפרצויות אחרי ג'קוזי, באזורים מכוסים בבגד ים.</li>
+  <li><b>AGEP</b> (תרופות), <b>Vibrio vulnificus / ecthyma gangrenosum</b> (Pseudomonas) בחולים מדוכאי חיסון עם ספסיס ובולות דימומיות, <b>MIRM</b> (Mycoplasma) בילדים - נגעים דלילים עם מוקוזיטיס בולטת.</li>
+</ul>
+
+<h3>3.5 נודולריות וסרפדת</h3>
+<ul>
+  <li><b>נודולרית במדוכאי חיסון</b> = לרוב זיהום מופץ: קנדידה (טריאדה: חום + מיאלגיה + נודולים), קריפטוקוקוזיס (דומה ל-molluscum), נמק בנודולים → חשד לאספרגילוזיס/מוקורמיקוזיס. <b>Erythema nodosum:</b> נודולים כואבים מאוד בשוקיים. <b>Sweet syndrome:</b> פלקים בצקתיים שנראים כמו שלפוחיות; נלווה לזיהום, IBD, ממאירות או תרופות.</li>
+  <li><b>סרפדת:</b> רגילה - בלי חום. סרפדת <b>עם חום</b> = בדרך כלל <span class="key">urticarial vasculitis</span>: כל נגע נמשך 3-5 ימים (לא 24 שעות). סיבות: serum sickness (פניצילין, סולפה, ברביטורטים), SLE/Sjögren, זיהום (HBV, אנטרוו), לימפומה.</li>
+</ul>
+
+<h3>3.6 פורפוריות (הדחוף ביותר)</h3>
+<ul>
+  <li><b>מנינגוקוקמיה חריפה:</b> בילדים קלאסית פטכיות, אך הנגעים הראשונים עשויים להיות מקולות מלבינות או סרפדת. <span class="key">Echovirus 9 עלול לחקות מנינגוקוקמיה - מטפלים כבספסיס בקטריאלי</span> כי לא ניתן להבדיל ביניהם מיד. <b>Purpura fulminans</b> = אקימוזות נרחבות מ-DIC חמור. <b>מנינגוקוקמיה כרונית:</b> נגעים מגוונים (גם נודולים פורפוריים ברגליים דמויי EN אך בלי כאב). <b>גונוקוקמיה מופצת:</b> פוסטולות דימומיות ספורות וניתנות לספירה (&lt;40) סמוך למפרקים.</li>
+  <li><b>קדחות דימומיות ויראליות</b> (אם נסיעה מתאימה), <b>TTP/HUS</b> (סיבות לא זיהומיות לחום + פטכיות), <b>וסקוליטיס של כלי דם קטנים (LCV)</b> - פורפורה נמושה בגפיים תחתונות.</li>
+</ul>
+
+<h3>3.7 כיבים ואסקרים</h3>
+<p>אסקר או כיב בהקשר פריחה מפושטת הוא רמז אבחנתי חשוב: scrub typhus, rickettsialpox, קדחות מנומרות אחרות (למשל <i>R. conorii</i>, <i>R. africae</i>), tularemia (ulceroglandular) ו-anthrax (לפעמים הביטוי העורי היחיד: פפולה מגרדת ← כיב ללא כאב ← אסקר).</p>
+
+<h2><span class="num">4</span> אבחנה מבדלת - הטבלה שכדאי להכיר</h2>
+<div class="tablewrap"><table>
+  <thead><tr><th>מחלה</th><th>אפיון הפריחה</th><th>רמז מבדל</th></tr></thead>
+  <tbody>
+    <tr><td>חצבת</td><td>מקו השיער למטה, קונפלואנטית</td><td>Koplik, שיעול, דלקת הלחמית, תשישות</td></tr>
+    <tr><td>אדמת</td><td>מקו השיער למטה, נעלמת בתנועה</td><td>לימפדנופתיה אחורית, ארתריטיס, מום מולד</td></tr>
+    <tr><td>Scarlet fever</td><td>אריתמה מפושטת "נייר זכוכית"</td><td>Pastia, לשון תות, חיוורון פריאורלי</td></tr>
+    <tr><td>SSSS</td><td>אריתמה כואבת + בולות/קילוף</td><td>Nikolsky חיובי, אין לשון תות</td></tr>
+    <tr><td>SJS/TEN</td><td>מקולות פורפוריות/מטרה ← קילוף</td><td>ריריות + תרופה חדשה; פגיעה בכל האפידרמיס ב-TEN</td></tr>
+    <tr><td>RMSF</td><td>מפרקי ידיים/קרסוליים ← צנטריפטלית</td><td>קרצית, כאב ראש, מיאלגיה</td></tr>
+    <tr><td>מנינגוקוקמיה</td><td>פטכיות/אקימוזות, purpura fulminans</td><td>חולה רעיל, DIC, לא להמתין</td></tr>
+    <tr><td>גונוקוקמיה</td><td>פוסטולות דימומיות ספורות סמוך למפרקים</td><td>טנוסינוביטיס, פעילות מינית</td></tr>
+    <tr><td>עגבת שנייה</td><td>פפולות נחושת קשקשיות</td><td>כפות ידיים/רגליים, לא שלפוחיתית</td></tr>
+    <tr><td>VZV מול Variola</td><td>VZV: שלבים שונים, גזע. Variola: שלב אחד, פנים וגפיים</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<p>מבחנים וגישה: הפרק עצמו אינו מפרט בדיקות מעבדה (הוא מפנה לפרקי המחלות הספציפיות). בפועל: ספירת דם (טסיות, לויקוציטים), קרישה, תרביות דם, סרולוגיה/PCR לפי חשד, ביופסיית עור במצבים בעייתיים.</p>
+
+<h2><span class="num">5</span> טיפול - עקרונות</h2>
+<p>הפרק עוסק בעיקר באבחנה, ו"הטיפול" הוא <b>התאמה למחלה הספציפית</b>. מה שמודגש בו: <b>התחלת טיפול מיידית</b> במצבים מסכני חיים (RMSF, מנינגוקוקמיה/ספסיס), והטיפול כמו בספסיס בקטריאלי כשלא ניתן להבדיל מ-echovirus 9. ידע כללי שמעבר לפרק (לא ממנו): doxycycline הוא הטיפול בקו הראשון ב-RMSF ובריקציוזות; ceftriaxone במנינגוקוקמיה; הפסקת תרופה חשודה ב-SJS/TEN/DRESS וטיפול תומך (נוזלים, טיפול בפצעים) כמו בכוויות. יש לוודא מול הפרקים הספציפיים במהדורה.</p>
+<div class="key-box">בידוד: חשד לחצבת/VZV מצריך בידוד אוויר מיד - בלי לחכות לאישור מעבדה. זו אחת הסיבות שהפרק מדגיש כי מראה הפריחה מאפשר "בקרת זיהומים קריטית".</div>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות - "פריחות היקפיות שאסור לפספס": <span class="term" dir="ltr">RMSF-SS-EM</span></h3>
+  <p><b>R</b>ocky Mountain spotted fever · <b>S</b>econdary syphilis · <b>E</b>ndocarditis · <b>M</b>ultiforme (erythema), בנוסף Hand-foot-mouth ו-Chikungunya. <b>הכלל:</b> אם הפריחה בכפות ידיים/רגליים → "RMS" - Rickettsia, Meningococcus, Syphilis.</p>
+  <h3>הסיפור הדמיוני - "המחלק ברחוב"</h3>
+  <p>דמייני שומר שמחלק מכתבים (פריחות) ברחוב. <b>חצבת</b> מתחילה בבית הראשון (קו השיער), עוברת לאורך הרחוב ומשאירה זבל שלא נעלם (קונפלואנטית). <b>אדמת</b> אותה דרך, אבל מנקה אחריה. <b>RMSF</b> מתחיל לחלק מהסוף - מהפרקים (ידיים/רגליים), הולך פנימה, ואם לא מגיעים אליו בזמן המחלה קטלנית - ולכן הוא דחוף. <b>הרעלנים</b> (strep/staph) הם צבעי ספריי - צובעים את כל הרחוב אדום ואז הצבע מתקלף. <b>הפורפורה</b> היא מכבי האש: אם הם הגיעו - רצים, לא שואלים.</p>
+  <svg class="diagram" viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="איור הרחוב והמחלק">
+    <rect x="0" y="130" width="520" height="14" fill="#d1d5db"/>
+    <g font-size="12" text-anchor="middle" fill="#1f2937">
+      <rect x="20" y="60" width="70" height="70" fill="#fecaca"/><text x="55" y="100">קו שיער</text><text x="55" y="116">(חצבת)</text>
+      <rect x="110" y="60" width="70" height="70" fill="#fde68a"/><text x="145" y="100">גזע</text><text x="145" y="116">(אדמת)</text>
+      <rect x="300" y="60" width="70" height="70" fill="#bbf7d0"/><text x="335" y="100">פרק יד</text><text x="335" y="116">(RMSF)</text>
+      <rect x="390" y="60" width="70" height="70" fill="#ddd6fe"/><text x="425" y="100">כף יד</text><text x="425" y="116">(עגבת)</text>
+    </g>
+    <circle cx="240" cy="110" r="14" fill="#2563eb"/><text x="240" y="115" text-anchor="middle" fill="#fff" font-size="12">מחלק</text>
+    <path d="M200 40 L250 40" stroke="#b91c1c" stroke-width="3"/><text x="260" y="44" font-size="12" fill="#b91c1c">מכבי אש = פורפורה, רצים!</text>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> סרטונים ומקורות נוספים</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/EBT28aY8mk8" title="Diagnosis of Rocky Mountain Spotted Fever and other rickettsial tickborne diseases" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אבחון RMSF ומחלות ריקציה אחרות מועברות בקרציות (הרצאה, אפריל 2022).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/frdd_AvA5lo" title="Rickettsia rickettsii and other Rickettsia species - Osmosis preview" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Rickettsia rickettsii וריקציות אחרות - תצוגה מקדימה של Osmosis (מנגנון, קליניקה).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/DaGCURym_7Q" title="Pediatric Rashes" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">פריחות בילדים - סקירה של הסוגים הנפוצים (לא אומתה זהות הערוץ; לשימוש משלים בלבד).</p>
+<ul class="resource-list">
+  <li><a href="https://www.osmosis.org/learn/Viral_exanthems_of_childhood:_Pathology_review" target="_blank" rel="noopener">Osmosis - Viral exanthems of childhood</a><div class="desc">מצגת/סרטון על חצבת, אדמת, fifth/sixth disease ועוד.</div></li>
+  <li><a href="https://www.osmosis.org/learn/Stevens-Johnson_syndrome_and_toxic_epidermal_necrolysis:_Clinical_sciences" target="_blank" rel="noopener">Osmosis - SJS ו-TEN</a><div class="desc">מנגנון ההפרדה האפידרמלית ודרגות החומרה.</div></li>
+  <li><a href="https://phil.cdc.gov/Details.aspx?pid=1962" target="_blank" rel="noopener">CDC Public Health Image Library - RMSF</a><div class="desc">תמונת פריחת RMSF במאגר התמונות של ה-CDC.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Koplik_spots,_measles_2019.jpg" target="_blank" rel="noopener">Wikimedia Commons - Koplik spots</a><div class="desc">תמונה נוספת של כתמי Koplik.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Nikolsky's_sign" target="_blank" rel="noopener">Nikolsky's sign - Wikipedia</a><div class="desc">הסבר על הסימן ועל הבדלים בין SSSS ל-pemphigus ו-SJS.</div></li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>ילד בן 8 מגיע בחודש יולי עם חום 39.5°C ל-4 ימים, כאב ראש חזק ומיאלגיות, אחרי טיול משפחתי בדרום-מזרח ארה"ב. ביום הרביעי מופיעה פריחה: מקולות אדומות על פרקי הידיים והקרסוליים, שהופכות לפטכיות ומתפשטות צנטריפטלית, ובשלב מאוחר כפות הרגליים נפגעות. אין כתמי Koplik, אין שיעול. הוא נראה רעיל. אמו מספרת שהוציאה קרציה משיער הראש לפני שבוע.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה הסבירה ביותר ומה הצעד המיידי?</div>
+  <button class="opt" data-i="0">חצבת - בידוד והמתנה לסרולוגיה</button>
+  <button class="opt" data-i="1">Rocky Mountain spotted fever - התחלת טיפול אמפירי מיידית</button>
+  <button class="opt" data-i="2">אדמת - טיפול תומך</button>
+  <button class="opt" data-i="3">Erythema infectiosum - הרגעה והמתנה</button>
+  <div class="explain">נכון: RMSF. פריחה היקפית שמתחילה בפרקי הידיים/קרסוליים, אבולוציה לפטכיות, קרציה וחולה רעיל. מתחילים טיפול (doxycycline) <b>לפני אישור</b> כי התמותה ללא טיפול עד 40%. חצבת - הפריחה מקו השיער ויש Koplik/שיעול. אדמת - גם מקו השיער, וקלה יחסית. Erythema infectiosum - הפריחה אחרי שהחום חלף, "סטירת לחי".</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. איזה ממצא פתוגנומוני לחצבת?</div>
+  <button class="opt" data-i="0">Forchheimer spots</button>
+  <button class="opt" data-i="1">Pastia's lines</button>
+  <button class="opt" data-i="2">Koplik's spots</button>
+  <button class="opt" data-i="3">Fordyce spots</button>
+  <div class="explain">Koplik - נקודות לבנות/כחלחלות עם הילה אדומה בלחי. Forchheimer לא ספציפי (אדמת, EBV, שנית אדומה, Zika). Pastia's lines - שנית. Fordyce - בלוטות שומן בריאות, בלי הילה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. תינוק עם שכבה עליונה של העור שנקרעת בלחץ צידי קל, ללא לשון תות או חיוורון פריאורלי. מה האבחנה ומה ה-cleavage plane?</div>
+  <button class="opt" data-i="0">SSSS - שכבה שטחית באפידרמיס (Nikolsky חיובי)</button>
+  <button class="opt" data-i="1">TEN - כל עובי האפידרמיס, סיבה תרופתית</button>
+  <button class="opt" data-i="2">Scarlet fever - נייר זכוכית</button>
+  <button class="opt" data-i="3">Kawasaki - וסקוליטיס כלילית</button>
+  <div class="explain">SSSS בילדים &lt;10 עם הרעלן שפוגע בשכבה שטחית. TEN - נמק כל האפידרמיס (בדרך כלל תרופה, ולא בגיל זה). Scarlet fever - חיוורון פריאורלי ולשון תות. Kawasaki - שפתיים סדוקות, לשון תות, קוניונקטיביטיס.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. פריחה דמויית סרפדת שנמשכת 4 ימים באותו מקום, עם חום וארתרלגיה. מה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">סרפדת אלרגית רגילה</button>
+  <button class="opt" data-i="1">Erythema marginatum</button>
+  <button class="opt" data-i="2">Roseola</button>
+  <button class="opt" data-i="3">Urticarial vasculitis</button>
+  <div class="explain">סרפדת קלאסית נעלמת בתוך 24 שעות ובלי חום. נגעים שנמשכים 3-5 ימים עם חום = urticarial vasculitis (serum sickness, SLE, זיהום). Erythema marginatum - נגעים טבעתיים חולפים בשעות. Roseola - ילד &lt;3, פריחה אחרי החום.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. אדם בן 22 עם דלקת גרון, לימפדנופתיה ותשישות קיבל אמפיצילין ופיתח פריחה מפושטת. מה האבחנה הסבירה?</div>
+  <button class="opt" data-i="0">אלרגיה אמיתית לפניצילין בלבד</button>
+  <button class="opt" data-i="1">Mononucleosis (EBV) עם פריחה לאחר אמפיצילין</button>
+  <button class="opt" data-i="2">חצבת</button>
+  <button class="opt" data-i="3">HIV ראשוני בלבד</button>
+  <div class="explain">ב-EBV, 30-90% מפתחים פריחה אחרי אמפיצילין (לעומת 5% ללא). זה לא בהכרח אלרגיה אמיתית. HIV ראשוני אפשרי בדיפרנציאל אבל התרחיש מתאים יותר ל-EBV; חצבת - אין Koplik/שיעול.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>גישה: הגדירי סוג נגע + התפלגות (מרכזית/היקפית) + אנמנזה (נסיעות, נשיכות, תרופות, חיסונים, חיסון)</li>
+    <li>שש קבוצות: מקולופפולרית מרכזית · היקפית · אריתמה מפושטת+קילוף · שלפוחיתית/פוסטולרית · נודולרית/סרפדת · פורפורית · (כיבים/אסקרים)</li>
+    <li>חצבת: Koplik + מקו השיער למטה, קונפלואנטית, חוסכת כפות; אדמת: נעלמת תוך התקדמות, מום מולד</li>
+    <li>Fifth disease ו-roseola: פריחה <b>אחרי</b> החום</li>
+    <li>EBV + אמפיצילין = פריחה 30-90%</li>
+    <li>RMSF: מפרקי ידיים/קרסוליים ← צנטריפטלי, טיפול מוקדם קריטי (תמותה עד 40%)</li>
+    <li>עגבת שנייה: כפות ידיים/רגליים, נחושת, לעולם לא שלפוחיתית</li>
+    <li>רעלנים: scarlet (Pastia, תות), TSS (לחץ דם), SSSS (Nikolsky, שטחי), SJS/TEN (תרופה, כל האפידרמיס)</li>
+    <li>VZV: שלבים שונים, גזע; variola: שלב אחד, פנים וגפיים</li>
+    <li>סרפדת + חום &gt;24 שעות = vasculitis; פורפורה + חולה רעיל = מנינגוקוקמיה עד שהוכח אחרת</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else { btn.classList.add('wrong'); q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct'); }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
