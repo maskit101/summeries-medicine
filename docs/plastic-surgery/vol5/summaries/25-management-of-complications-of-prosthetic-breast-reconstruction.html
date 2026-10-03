@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 25: ניהול סיבוכים בשחזור שד מבוסס שתל</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 25: ניהול סיבוכים בשחזור שד מבוסס שתל <span class="term" dir="ltr">Management of complications of prosthetic breast reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | מאת Nima Khavanin ו-John Y.S. Kim</div>
+
+<p>שחזור שד מבוסס שתל משפר איכות חיים לאחר מסטקטומיה, אך סיבוך אחד יכול למחוק את התועלת: עיכוב בטיפול משלים, תוצאה אסתטית פגועה, ולעיתים הוצאת השתל (<span class="term" dir="ltr">explantation</span>). הפרק עוסק בזיהוי מוקדם, בטיפול ובמניעה של הסיבוכים השכיחים, וביסוד כל אלה: שיחה מבוססת ראיות על סיכון כבר בייעוץ הראשון.</p>
+
+<h2><span class="num">1</span> חיזוי סיכון וציר הזמן של הסיבוכים</h2>
+<p>שיעורי הסיבוכים נעים בין 2% ל-49% ויותר, בהתאם למחלות רקע, עיתוי השחזור, הקרנה קודמת, בחירת שתל וכיס ושימוש ב-<span class="term" dir="ltr">ADM</span>. כדי לתרגם נתוני אוכלוסייה למטופלת הבודדת פותח <b><span class="term" dir="ltr">BRA Score</span></b> (<span class="term" dir="ltr">Breast Reconstruction Risk Assessment</span>), מחשבון סיכון מבוסס רישומים לאומיים. הוא מאפשר לדון בגורמי סיכון הניתנים לשינוי (עישון, BMI) ובגורמים שאינם (הקרנה), ואף בשחזור מושהה או בהימנעות משחזור.</p>
+<div class="mechanism">
+<p class="chain">הלקח המרכזי של הפרק: <b class="key">סיבוך לא מטופל מוליד את הבא אחריו.</b> המסטקטומיה יוצרת פלאפים עוריים היפו-וסקולריים (נותק האספקה הצירית), ולכן המטומה או סרומה מעמיסות עליהם, נמק פותח את הדרך לחשיפת שתל וזיהום, ובסוף הוצאת השתל. כלומר זיהוי מוקדם הוא עצם הטיפול.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 120" xmlns="http://www.w3.org/2000/svg"><title>שרשרת</title>
+<rect x="690" y="25" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+<text x="765" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">מסטקטומיה</text>
+<text x="765" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">פלאפים היפו-וסקולריים</text>
+<line x1="690" y1="60" x2="684" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="672,60 686,54 686,66" fill="#374151"/>
+<rect x="522" y="25" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="598" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">המטומה / סרומה</text>
+<text x="598" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">(חודרים לכיס)</text>
+<line x1="522" y1="60" x2="517" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="505,60 519,54 519,66" fill="#374151"/>
+<rect x="355" y="25" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+<text x="430" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">נמק פלאפ</text>
+<text x="430" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">ופתיחת תפר</text>
+<line x1="355" y1="60" x2="350" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="338,60 352,54 352,66" fill="#374151"/>
+<rect x="188" y="25" width="150" height="70" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="262" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">חשיפת שתל</text>
+<text x="262" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">(Exposure)</text>
+<line x1="188" y1="60" x2="182" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="170,60 184,54 184,66" fill="#374151"/>
+<rect x="20" y="25" width="150" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="95" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">זיהום ← הוצאת שתל</text>
+<text x="95" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">(Explant)</text>
+</svg>
+<p class="figcap">שרשרת הסיבוכים המוקדמים (סכמה מקורית על פי Fig. 25.2 בפרק)</p>
+<p>בשלבים מאוחרים (שנים עד עשורים) צפויים קרע בשתל, התכווצות קפסולרית וסיבוכים אסתטיים (אדוות, מלפוזיציה, אסימטריה).</p>
+
+<h2><span class="num">2</span> המטומה (<span class="term" dir="ltr">Hematoma</span>)</h2>
+<div class="mechanism">
+<p><b>למה זה קורה:</b> המסטקטומיה משאירה חלל גדול עם משטח גולמי וכלי דם רבים, זמן ניתוח ארוך מאפשר תנודות לחץ דם, והצורך בשני צוותי ניתוח מוסיף לכך. שכיחות: 1%-7% מהשחזורים המיידיים.</p>
+<p><b>למה זה מסוכן:</b> ההמטומה מלחיצה את הפלאפים (פרפוזיה ירודה), היא מצע גידול לחיידקים, ותורמת להתכווצות קפסולרית וחשיפת שתל.</p>
+</div>
+<ul>
+<li><b>מניעה:</b> טכניקת <span class="term" dir="ltr">Tumescent</span> (כוללת 1 מ"ל אפינפרין 1%) לא הראתה עלייה בהמטומה במחקרים ובמטא-אנליזה; גם <span class="term" dir="ltr">Ketorolac</span> לא הראה עלייה (אך רבים נמנעים ממנו). חומצה טרנקסמית (<span class="term" dir="ltr">TXA</span>) הורידה את השיעור ל-0.46% לעומת 2.9% (מחקר רטרוספקטיבי). מומלץ נקז בעל קוטר רחב.</li>
+<li><b>הצגה:</b> אקימוזה, התרחבות פלוקטואנטית, פליטה דמית מוגברת בנקז, ולעיתים חוסר יציבות המודינמית.</li>
+<li><b>טיפול:</b> ייצוב, המוגלובין, גישה ורידית ומתן נוזלים/דם. המטומה קטנה: דחיסה עדינה ומעקב (בזהירות מפני פגיעה בפרפוזיה). אולטרסאונד ± שאיבה לאבחנה במצבים לא ברורים. המטומה מתרחבת: <b>חזרה דחופה לחדר ניתוח</b>, פינוי קרישים, שטיפה מרובה בנוזל חם ובקרת כל כלי הדם המדממים. אפילו המטומה פחות חמורה נוטה להצדיק ניתוח.</li>
+</ul>
+
+<h2><span class="num">3</span> סרומה (<span class="term" dir="ltr">Seroma</span>)</h2>
+<div class="mechanism">
+<p><b>מנגנון:</b> פגיעת הניתוח בניקוז הלימפתי, נזק רקמתי ושברי רקמה לא-חיה/שומן מפעילים דלקת; תגובת גוף זר לשתל ול-ADM וביופילם תת-קליני מחמירים אותה. כאשר ייצור הנוזל עולה על ספיגתו לאחר הוצאת הנקז, נוצרת סרומה, בעיקר אצל נשים עם BMI גבוה (פלאפים גדולים ומרחב מת גדול, בעיקר בגוטר הצידי).</p>
+</div>
+<ul>
+<li><b>שכיחות:</b> 0.2%-20% (הגדרות שונות). גורמי סיכון: BMI גבוה ו-ADM (סיכון יחסי 2.7 במטא-אנליזה).</li>
+<li><b>מניעה:</b> נקזים (ללא ראיות לגבי מספר/משך), מילוי נכון של המרחיב או בחירת נפח שתל שממלאים את המרחב המת (באיזון מול נמק פלאפ), לחץ חיצוני בחזייה, מרחיבים עם שתי יציאות לשאיבה, קביעת "קוטביות" נכונה של ה-ADM ושרייתו מראש. תפרי Quilting ודבק פיברין לא נחקרו מספיק בשחזור שד.</li>
+<li><b>למה זה חשוב:</b> כמעט אחת מכל חמש נשים עם סרומה מפתחת זיהום מג'ורי; יחס הסיכויים לזיהום ולהוצאת שתל גדול מ-4. קשה לקבוע אם הסרומה גורמת או רק מסמנת ריפוי לקוי או זיהום סמוי.</li>
+<li><b>טיפול:</b> סרומה קלה-בינונית: שאיבה והרחבת המרחיב; שאיבה מונחית אולטרסאונד אם אין גישה בטוחה; אם חוזרת: ניקוז פתוח ± כריתת קפסולת הסרומה; אם התפתח זיהום פריפרוסטטי: שטיפה והוצאה/החלפה של השתל.</li>
+<li><b>סרומה מאוחרת</b> (חודשים-שנים): נדירה (0.4%-0.6%), נגרמת מכוחות גזירה בין שתל מחוספס לקפסולה או מזיהום/ביופילם תת-קליני, <b class="key">וחובה לשלול ממאירות כולל BIA-ALCL.</b></li>
+</ul>
+
+<h2><span class="num">4</span> נמק פלאפ מסטקטומיה (<span class="term" dir="ltr">Mastectomy flap necrosis</span>)</h2>
+<p>הפלאפים העוריים נשארים בלי אספקה צירית ולכן נמק מתפתח ב-3%-33% מהמקרים. בשחזור שתל זו בעיה מרכזית: נמק גורר דהיסנציה וחשיפת השתל.</p>
+<table>
+<thead><tr><th>גורמי סיכון (פרפוזיה ירודה)</th><th>הערכה וניהול</th></tr></thead>
+<tbody><tr><td>פלאפים דקים או לא אחידים, פגיעה בפלקסוס התת-דרמלי, פלאפים ארוכים בשד גדול ושמוט, מילוי יתר של מרחיב או שתל גדול (לחץ על העור), גיל, BMI, עישון, הקרנה קודמת, טכניקת Tumescent</td><td>בדיקה קלינית (צבע, חום, מילוי נימי, דימום בקצה העור, אורך ועובי הפלאפ) וכריתה של רקמה מפוקפקת. אנגיוגרפיה (<span class="term" dir="ltr">ICG</span>, פלואורסצאין) או ספקטרוסקופיה (<span class="term" dir="ltr">NIRS</span>) מבטיחות אך אינן מושלמות. שיעורי נמק עדיין 4%-40%, גם בסף נמוך לכריתה (עד 27%)</td></tr></tbody>
+</table>
+<ul>
+<li><b>חשש לנמק, ללא נמק מוכח:</b> שטח קטן בקצה הפלאפ: כריתה של הרקמה האיסכמית. שטח גדול או איסכמיה של הפטמה: מעקב צמוד, שקילת משחת <b>ניטרוגליצרין</b> מקומית (RCT הראה הפחתת סיכון מוחלטת של כ-20%) ו/או חמצן היפרברי (סדרות מקרים, 10+ מפגשים לאורך שבועות, נגישות מוגבלת).</li>
+<li><b>נמק גלוי לפי עומק:</b> שטחי (שינוי צבע/אפידרמוליזה) יחלוף לרוב; עובי בינוני (אסכרה): דברידמן במרפאה וטיפול מקומי; עובי מלא: כריתה וסגירה ראשונית או בפלאפ, רצוי לפני דהיסנציה/חשיפה/זיהום, וההחלטה אם להשאיר את המרחיב/השתל נקבעת לגופו של מקרה. חשוב במיוחד בשחזור <b>פרה-פקטורלי</b>, כי שריר הפקטורליס לא מגן במקרה של נמק עור.</li>
+<li>אם נדרשים כימותרפיה/הקרנה בזמן קצוב, שקלו האצת דברידמן וסגירה כדי למנוע עיכוב.</li>
+</ul>
+
+<h2><span class="num">5</span> זיהום (<span class="term" dir="ltr">Infection</span>)</h2>
+<p>שכיחות 3%-7% בדרך כלל (עד 35% בדיווחים); כמעט מחצית מהזיהומים מופיעים אחרי יותר מ-30 יום. <b>מיקרוביולוגיה:</b> בעיקר פלורת עור: <span class="term" dir="ltr">S. epidermidis</span>, <span class="term" dir="ltr">S. aureus</span>, <span class="term" dir="ltr">E. coli</span>, <span class="term" dir="ltr">Pseudomonas aeruginosa</span>, <span class="term" dir="ltr">Propionibacterium</span>, <span class="term" dir="ltr">Corynebacterium</span>; לאחרונה גם <span class="term" dir="ltr">Serratia</span>, <span class="term" dir="ltr">Enterococcus</span>, <span class="term" dir="ltr">Enterobacter</span>, <span class="term" dir="ltr">Group B Streptococcus</span>, <span class="term" dir="ltr">Morganella</span>.</p>
+<ul>
+<li><b>מניעה:</b> הקפדה על הנחיות CDC, פתיחת מיכל השתל רק כשהכיס מוכן, טכניקת No-touch, חיתול סטרילי חד-פעמי (RCT: פחות זיהומים), שטיפה בתמיסות אנטיביוטיות (Bacitracin, Gentamicin, Cefazolin או Povidone-iodine, Vancomycin, Chlorhexidine; הדיון על יעילותן נמשך; החשש מהחלשת קליפת השתל מ-Povidone-iodine נדחה ברובו).</li>
+<li><b>ADM:</b> קשור לשיעורי זיהום גבוהים יותר; ה-FDA פרסם הודעת בטיחות, ה-ADM אינו מאושר לשימוש זה, ויש לדון בסיכונים עם המטופלת.</li>
+<li><b>אנטיביוטיקה:</b> הנחיות SCIP להימנע ממנה לאחר הניתוח בשחזור שתל הכפילו את שיעור הזיהום; ללא אנטיביוטיקה היקפית 14.4% לעומת 5.8% עם 24 שעות. הראיות תומכות ב-24 שעות; RCT נוסף: אין הבדל בין 24 שעות למשך הנקז.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 860 120" xmlns="http://www.w3.org/2000/svg"><title>שרשרת</title>
+<rect x="690" y="25" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+<text x="765" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">חשד לזיהום</text>
+<text x="765" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">כאב, אריתמה, חום</text>
+<line x1="690" y1="60" x2="684" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="672,60 686,54 686,66" fill="#374151"/>
+<rect x="522" y="25" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="598" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">אי-יציבות / ספסיס?</text>
+<text x="598" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">כן: אשפוז, ניקוז, הוצאה</text>
+<line x1="522" y1="60" x2="517" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="505,60 519,54 519,66" fill="#374151"/>
+<rect x="355" y="25" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+<text x="430" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">אולטרסאונד</text>
+<text x="430" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">נוזל פריפרוסטטי?</text>
+<line x1="355" y1="60" x2="350" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="338,60 352,54 352,66" fill="#374151"/>
+<rect x="188" y="25" width="150" height="70" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="262" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">שאיבה + תרבית</text>
+<text x="262" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">מוגלה / חיובית?</text>
+<line x1="188" y1="60" x2="182" y2="60" stroke="#374151" stroke-width="2"/>
+<polygon points="170,60 184,54 184,66" fill="#374151"/>
+<rect x="20" y="25" width="150" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="95" y="55" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">הוצאת שתל</text>
+<text x="95" y="73" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="400">או ניקוז לפי תרבית</text>
+</svg>
+<p class="figcap">אלגוריתם 25.2 בקיצור (סכמה מקורית)</p>
+<table>
+<thead><tr><th>מצב</th><th>הניהול</th></tr></thead>
+<tbody>
+<tr><td>לא יציבה/ספסיס</td><td>אשפוז, אנטיביוטיקה תוך-ורידית, תרביות דם, נוזלים, שקילת שטיפה דחופה והוצאת שתל</td></tr>
+<tr><td>יציבה, ללא נוזל באולטרסאונד</td><td>צלוליטיס משוערת: אנטיביוטיקה פומית/תוך-ורידית לפי חומרה, ניטור</td></tr>
+<tr><td>נוזל פריפרוסטטי</td><td>שאיבה מונחית אולטרסאונד (גרם ותרבית; שקילת צביעות/תרביות לפטריות ו-AFB). אנטיביוטיקה רק אחרי לקיחת תרבית</td></tr>
+<tr><td>מוגלה או תרבית חיובית</td><td>שטיפה והוצאת שתל (± החלפה במקרים קלים נבחרים); אנטיביוטיקה מותאמת כ-2 שבועות (ארוך יותר בהחלפה מיידית או חיידק לא טיפוסי)</td></tr>
+<tr><td>תרבית שלילית, ללא מוגלה</td><td>ניסיון אנטיביוטיקה ומעקב; אם החמרה או נוזל מתמיד: שטיפה ± הוצאה</td></tr>
+</tbody></table>
+<p>הכיסוי האמפירי כולל גרם-חיוביים וגרם-שליליים, כולל MRSA, עד לצמצום לפי תרבית, בהתייעצות עם מומחי מחלות זיהומיות. מצגת מאוחרת/חריגה מחשידה לחיידקים לא טיפוסיים (<span class="term" dir="ltr">Mycobacterium</span>, פטריות) שעשויים לדרוש כ-20 שבועות.</p>
+<p>אחרי הוצאת שתל אפשר לבחור בשחזור דו-שלבי מאוחר, מעבר לשחזור עצמוני או בלי שחזור.</p>
+
+<h2><span class="num">6</span> חשיפת שתל (<span class="term" dir="ltr">Implant exposure</span>)</h2>
+<p>0.25%-8%. פלאפים היפו-וסקולריים גורמים לדהיסנציה, נמק וחשיפה. היסטורית כיסו את המרחיב לגמרי תת-שרירי (פקטורליס עם סראטוס/פשיה של הרקטוס), מה שיצר מצע מוזן היטב ושכבת הגנה שנייה. עם כניסת ה-ADM (1995) עברו לכיסוי חלקי: פקטורליס בחלק העליון ו-ADM בחלק התחתון, ולאחרונה, בגלל אנימציה וכאב, לשחזור פרה-פקטורלי מלא, שחושף את השתל בעיקר בסיכון גבוה ובהקרנה.</p>
+<ul>
+<li><b>הנחת יסוד:</b> השתל החשוף מזוהם אם לא מזוהם כבר. סיכויי ההצלה תלויים בחומרת הזיהום ובזמינות רקמה רכה.</li>
+<li><b>טיפול:</b> כיסוי אנטיביוטי, ניתוח להוצאת שתל ± כריתת קפסולה ושטיפה מרובה; ללא זיהום חמור וברקמה מספקת: החלפה מיידית. עם אובדן עור משמעותי: שתל קטן יותר. מרחיב שנחשף מאוחר, כשהעור הושג והכיס נקי: המרה לשתל קבוע.</li>
+<li><b>אין מספיק רקמה:</b> קידום רקמת אינפרה-ממרית מהבטן העליונה (Ryan, 1985) ושחזור ה-IMF; פלאפ לטיסימוס דורסי למקרים גדולים; או חלופות חסכוניות בשריר כמו פלאפ פרפורטור של העורק התורקו-דורסלי.</li>
+<li>זיהום חמור שאינו ניתן להצלה: שחזור עצמוני, שחזור דו-שלבי מאוחר או ללא שחזור.</li>
+</ul>
+
+<h2><span class="num">7</span> קרע בשתל (<span class="term" dir="ltr">Implant rupture</span>)</h2>
+<p>קרע בקליפה: בשתל מלח הנוזל נספג וחלה התרוקנות (דפלציה), ואילו בשתל סיליקון הקרע <b>שקט</b> לרוב ופוטנציאלית עם השלכות מחוץ לשד. <b>תוך-קפסולרי:</b> הג'ל כלוא בקפסולה; <b>חוץ-קפסולרי:</b> הג'ל חודר לרקמות ולעיתים לבלוטות מרוחקות. ככל שהשתל ותיק יותר, הקרע סביר יותר (דיווחים 3% עד מעל 35% לפי המכשיר והמעקב).</p>
+<ul>
+<li><b>אבחנה:</b> תסמינים (גושים, שינויי עור, לימפדנופתיה) רק בהתפשטות חוץ-קפסולרית. <b>MRI</b> היא הבדיקה המועדפת לסקר ואבחנה; אולטרסאונד ברזולוציה גבוהה חלופה זולה וקלה אך תלויה במפעיל.</li>
+<li><b>טיפול תמיד כירורגי:</b> בקרע תוך-קפסולרי של סיליקון: <b>כריתת קפסולה מלאה בלי לפרוץ אותה</b> (אם אי אפשר: כמה שאפשר בבטחה). שטיפה וניגוב של הכיס, ולעיתים ממס סיליקון (Shur-Clens) בעיקר בחוץ-קפסולרי. שתל מלח: הוצאת הקליפה; כריתת קפסולה לא הכרחית בלי התכווצות. בדרך כלל מציעים החלפה בשתל מודרני.</li>
+</ul>
+
+<h2><span class="num">8</span> סיבוכים אסתטיים</h2>
+<h3>דפורמציית אנימציה (<span class="term" dir="ltr">Animation deformity</span>) ואדוות</h3>
+<div class="mechanism"><p><b>מנגנון:</b> בשחזור תת-שרירי, השריר הפקטורליס נצמד בצלקת לעור, ולכן ההתכווצות מושכת את העור ומזיזה את הפטמה. מופיעה ב-75%-100% מהשחזורים התת-פקטורליים. הגורם העיקרי בניתוח: <b>חיתוך ההיצמדויות הסטרנליות התחתונות</b> של השריר.</p></div>
+<table>
+<thead><tr><th>דרגה</th><th>קריטריון</th></tr></thead>
+<tbody>
+<tr><td>דרגה 1</td><td>הזזת פטמה פחות מ-2 ס"מ ואדוות בפחות מ-25% מגוש השד</td></tr>
+<tr><td>דרגה 3</td><td>הזזת פטמה מעל 2 ס"מ <b>וגם</b> אדוות מעל 25% מהשד</td></tr>
+<tr><td>דרגה 2</td><td>כל השאר</td></tr>
+</tbody></table>
+<p>דרגה 3 (או מצוקה משמעותית): תיקון כירורגי: מעבר לכיס פרה-פקטורלי; כיס תת-שרירי חלקי עם פיצול השריר (השליש התחתון נחתך לאורך הסיבים והשתל תחת שני השלישים העליונים); חיתוך עצבי הפקטורליס מדיאלי/לטרלי; או הזרקת בוטולינום (זמני).</p>
+<h3>מעטפת רקמה דקה ובעיות הקשורות בשתל</h3>
+<ul>
+<li><b>מעטפת דקה:</b> פלאפים דקים לא מסווים את השתל (פער בקוטב העליון, קצוות נראים/נמששים, אדוות), בעיקר בפרה-פקטורלי. טיפול מועדף: <b>העברת שומן עצמית</b> (מפגש אחד או יותר), חלופה: ADM בין העור לשתל, או החלפה לכיס תת-שרירי (באיזון מול אנימציה).</li>
+<li><b>קשור בשתל:</b> שתל פחות קוהסיבי מתקמט יותר: מלח הכי הרבה, סיליקון "גומי" (Gummy bear) הכי פחות. פתרונות: מעבר לסיליקון או לג'ל קוהסיבי יותר, מילוי יתר של שתל מלח, או שתל סיליקון Overfilled.</li>
+</ul>
+<h3>מלפוזיציה של שתל</h3>
+<p>שכיחה מאוד, ושכיחות הניתוח החוזר בשל כך מעל 10% בתקופה של 5-6 שנים. הכיוון השכיח: לטרלי או תחתון. BMI נמוך מעדיף תזוזה תחתונה; הקרנה אחרי מסטקטומיה מפחיתה תזוזה לטרלית. <b>טיפול קו ראשון: Capsulorrhaphy</b> (Capsulotomy עליונה/מדיאלית ליצירת מקום, ותפירת אליפסה של הקפסולה לעצמה לטרלית/תחתונה להידוק הכיס ולהעלאת ה-IMF); הקפסולה בין התפרים נצרבת או מטופלת בשיטת "Popcorn" ליצירת משטח גולמי; במקרה של קפסולה דקה או ניתוחים חוזרים מחזקים ב-ADM או רשת.</p>
+<h3>מיקום פטמה, גודל והקרנה</h3>
+<ul>
+<li><b>פטמה:</b> הטיפול הטוב ביותר הוא לעשות נכון מההתחלה. אם היא החלימה במיקום לא טוב: כריתת עור פרי-אראולרית היא הנפוצה; חלופות מחליפות צלקות; Mastopexy עורי-בלבד רק בפלאפ עבה ובזהירות מפגיעה בדם לפטמה. פטמה לטרלית עקב בסיס שתל צר: Capsulotomy לטרלית והחלפה לבסיס רחב.</li>
+<li><b>נפח חסר:</b> נפוץ אחרי Direct-to-implant. תיקון: שתל גדול יותר, שומן, או שילוב (תוספת של 50 סמ"ק ומעלה בנקל). חסר קיצוני: דו-שלבי. <b>הקרנה בעיה במיוחד:</b> היעדר קוניות, פלאפים שמתכווצים שטוחים על השתל. פתרון: Capsulorrhaphy לטרלית, חריצת הקפסולה הקדמית לשחרור, שתל בהקרנה גבוהה יותר, לעיתים Overfilled או קוהסיבי יותר.</li>
+</ul>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>ראשי תיבות מקורי: <span dir="ltr">S-H-I-N-E</span></h3>
+<p>
+<b>S</b> – <span class="term" dir="ltr">Seroma</span> (מקדים זיהום)<br>
+<b>H</b> – <span class="term" dir="ltr">Hematoma</span> (חזרה דחופה לחדר ניתוח אם מתרחבת)<br>
+<b>I</b> – <span class="term" dir="ltr">Infection</span> (אולטרסאונד ← שאיבה ← תרבית לפני אנטיביוטיקה)<br>
+<b>N</b> – <span class="term" dir="ltr">Necrosis</span> (של הפלאפ: ניטרוגליצרין/HBO/דברידמן לפי עומק)<br>
+<b>E</b> – <span class="term" dir="ltr">Exposure</span> (השתל החשוף נחשב מזוהם)
+</p>
+<h3>סיפור דמיוני</h3>
+<p>דמייני אוהל (העור) דק שנמתח מעל בלון (השתל). אם מתחתיו מצטבר נוזל (סרומה) או דם (המטומה), האוהל נמתח, מתחיל להשחיר בקצוות (נמק) ונקרע (חשיפה), ואז חיידקים נכנסים ו"האור כבה" (זיהום והוצאה). רק מי שמתקן מוקדם שומר על האוהל.</p>
+<svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg"><title>האוהל והבלון</title>
+<rect x="0" y="150" width="500" height="10" fill="#a3a3a3"/>
+<circle cx="250" cy="110" r="38" fill="#fbcfe8" stroke="#9d174d" stroke-width="2"/>
+<text x="250" y="115" font-size="12" text-anchor="middle" fill="#831843" font-weight="700">שתל</text>
+<path d="M120,150 Q250,10 380,150" fill="none" stroke="#2563eb" stroke-width="5"/>
+<text x="250" y="32" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">עור (אוהל דק)</text>
+<path d="M150,150 Q130,120 170,110" stroke="#0ea5e9" stroke-width="3" fill="none"/>
+<text x="95" y="175" font-size="12" text-anchor="middle" fill="#0369a1">נוזל = סרומה</text>
+<text x="405" y="175" font-size="12" text-anchor="middle" fill="#b91c1c">דם = המטומה</text>
+<text x="250" y="178" font-size="12" text-anchor="middle" fill="#374151">אוהל נקרע = חשיפה</text></svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=prosthetic+breast+reconstruction+complications" target="_blank">PubMed: Prosthetic breast reconstruction complications</a><div class="desc">חיפוש בספרות מקצועית מהימנה (NIH/NLM) על סיבוכי שחזור שד מבוסס שתל.</div></li>
+<li><a href="https://www.fda.gov/medical-devices/breast-implants" target="_blank">FDA – Breast Implants</a><div class="desc">מידע רשמי על שתלי שד, כולל הודעות בטיחות על ADM ועל מעקב MRI.</div></li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>וינייטה</h3>
+<p>אישה בת 52, BMI 33, מעשנת, עברה מסטקטומיה דו-צדדית ושחזור מיידי עם מרחיבי רקמה מתחת לשריר + ADM. ביום 10 מתלוננת על כאב, אדמומיות וחום בשד שמאל. מבחינת היציבות היא יציבה המודינמית. אולטרסאונד מראה נוזל פריפרוסטטי, השאיבה מניבה נוזל מוגלתי. הצוות בוחר שטיפה והוצאת מרחיב לאחר לקיחת תרבית, עם אנטיביוטיקה מותאמת.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מטופלת לאחר שחזור מיידי עם מרחיב רקמה: בצקת מתוחה וכואבת בשד, פתח הנקז מדמם, ירידה בהמוגלובין. מה הטיפול הנכון?</div>
+  <button class="opt" data-i="0">דחיסה עדינה ומעקב בלבד, ללא חזרה לחדר ניתוח</button>
+  <button class="opt" data-i="1">שאיבה עיוורת במחט בחדר המיון ושחרור הביתה</button>
+  <button class="opt" data-i="2">חזרה דחופה לחדר ניתוח: פתיחת החתך, פינוי קרישים, שטיפה מרובה ובקרת כלי דם מדמימים</button>
+  <button class="opt" data-i="3">מתן אנטיביוטיקה פומית ומעקב מחר</button>
+  <div class="explain">הנכון (ג): המטומה מתרחבת במהירות מחייבת התערבות כירורגית דחופה. היא מלחיצה את הפלאפים ההיפו-וסקולריים, משמשת מצע גידול לחיידקים ותורמת להתכווצות קפסולרית. (א) מתאימה רק להמטומות קטנות ויציבות. (ב) אולטרסאונד/שאיבה שימושיים לאבחנה במקרה לא ברור, אך לא מטפלים כך בהמטומה מתרחבת. (ד) אינה מטפלת בדימום.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. איזה גורם נבדק בפרק ונמצא בקשר להורדה מובהקת של שיעור ההמטומה בשחזור מבוסס שתל (0.46% לעומת 2.9%)?</div>
+  <button class="opt" data-i="0">חומצה טרנקסמית (TXA)</button>
+  <button class="opt" data-i="1">הוספת אפינפרין בטכניקת Tumescent</button>
+  <button class="opt" data-i="2">מתן Ketorolac תוך-ורידי</button>
+  <button class="opt" data-i="3">שימוש ב-ADM בכל מקרה</button>
+  <div class="explain">הנכון (א): TXA מעכבת פירוק פיברין ושומרת טסיות לצורך יצירת קריש. (ב) ו-(ג): מחקרים, כולל מטא-אנליזה, לא הראו עלייה בהמטומה עם Tumescent או Ketorolac. (ד) ADM קשור דווקא בסרומה וזיהום.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופלת מציגה נוזל סביב שתל חודשים עד שנים לאחר שחזור. איזו קביעה נכונה לגבי סרומה מאוחרת?</div>
+  <button class="opt" data-i="0">שכיחותה גבוהה (כ-20%) ולכן אינה מחייבת בירור</button>
+  <button class="opt" data-i="1">היא תמיד תוצאה של המטומה ישנה</button>
+  <button class="opt" data-i="2">הטיפול היחיד הוא ניקוז קבוע</button>
+  <button class="opt" data-i="3">נדירה (כ-0.4%-0.6%), קשורה לכוחות גזירה בשתל מחוספס או לביופילם תת-קליני, ויש לשלול ממאירות כולל BIA-ALCL</button>
+  <div class="explain">הנכון (ד). סרומה מאוחרת נדירה וחשודה, ולכן שולחים את הנוזל לבירור מתאים. (א) 0.2%-20% היא טווח הסרומה המוקדמת. (ב) ו-(ג) אינן נתמכות בפרק.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. במסטקטומיה עם היווצרות אסכרה בעובי בינוני בפלאפ העור, מה הניהול המומלץ?</div>
+  <button class="opt" data-i="0">כריתה חדה מיידית וסגירה בפלאפ מקומי תמיד</button>
+  <button class="opt" data-i="1">דברידמן במרפאה וטיפול מקומי בפצע</button>
+  <button class="opt" data-i="2">הוצאת השתל מיד</button>
+  <button class="opt" data-i="3">אין צורך בטיפול כלל, כמו בנמק שטחי</button>
+  <div class="explain">הנכון (ב). נמק שטחי (שינוי צבע, אפידרמוליזה) חולף לרוב לבד; עובי בינוני עם אסכרה מטופל בדברידמן במרפאה וטיפול מקומי; נמק בעובי מלא, במיוחד עם שתל, מחייב ניתוח, רצוי לפני דהיסנציה/חשיפה/זיהום.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. מטופלת עם חשד לזיהום בשחזור שתל, יציבה המודינמית. אולטרסאונד מראה נוזל פריפרוסטטי. מה השלב הבא?</div>
+  <button class="opt" data-i="0">אנטיביוטיקה אמפירית ושחרור ללא דגימה</button>
+  <button class="opt" data-i="1">הוצאת שתל מיידית בלי בדיקות</button>
+  <button class="opt" data-i="2">שאיבה מונחית אולטרסאונד לצביעת גרם ותרבית, ובהתאם לתוצאה: מוגלה/תרבית חיובית מובילה לשטיפה והוצאה, ושלילית בלי מוגלה מאפשרת אנטיביוטיקה וניטור</button>
+  <button class="opt" data-i="3">ממתינים עוד חודש להתפתחות</button>
+  <div class="explain">הנכון (ג) לפי אלגוריתם 25.2. חשוב להתחיל אנטיביוטיקה רק לאחר לקיחת תרבית כדי להימנע מתרבית שלילית כוזבת. (א) מחמיצה אבחנה ותרבית. (ב) שמורה לאי-יציבות/ספסיס. (ד) מסכנת את השתל.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">12</span> סיכום של הסיכום</h2>
+<ul>
+<li>שרשרת: פלאפים היפו-וסקולריים &#8592; המטומה/סרומה &#8592; נמק &#8592; חשיפה &#8592; זיהום &#8592; הוצאה. זיהוי מוקדם מונע את ההמשך.</li>
+<li>BRA Score: חיזוי סיכון אישי ושיחה על גורמים הניתנים לשינוי.</li>
+<li>המטומה: מתרחבת = חדר ניתוח דחוף; TXA מפחיתה (0.46% מול 2.9%); Tumescent ו-Ketorolac לא מעלים.</li>
+<li>סרומה: BMI גבוה ו-ADM (RR 2.7); כ-1 מ-5 מפתחות זיהום; מאוחרת = לשלול BIA-ALCL.</li>
+<li>נמק פלאפ (3%-33%): ניטרוגליצרין (~20% הפחתה), HBO; טיפול לפי עומק; מסוכן במיוחד בפרה-פקטורלי.</li>
+<li>זיהום (3%-7%): פלורת עור; אולטרסאונד ± שאיבה; אנטיביוטיקה אחרי תרבית; 24 שעות פרופילקסיה; ADM מעלה סיכון.</li>
+<li>חשיפה: השתל מזוהם; הצלה לפי זיהום ורקמה (החלפה, שתל קטן, Ryan, לטיסימוס).</li>
+<li>קרע: שקט בסיליקון; MRI; כריתת קפסולה מלאה ללא פריצה.</li>
+<li>אנימציה: אדוות/הזזת פטמה (דרגה 3: &gt;2 ס"מ ו-&gt;25%); פיצול שריר, פרה-פקטורלי, בוטולינום; מעטפת דקה: שומן; מלפוזיציה: Capsulorrhaphy.</li>
+</ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
