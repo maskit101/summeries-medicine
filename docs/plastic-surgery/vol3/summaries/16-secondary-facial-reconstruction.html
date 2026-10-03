@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 16: שחזור פנים משני</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 16: שחזור פנים משני <span class="term" dir="ltr">Secondary Facial Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck | מאת Afaaf Shakir ו-Lawrence J. Gottlieb</div>
+
+<p>בשחזור פנים מורכב כמעט אף פעם לא מסיימים בניתוח אחד: רקמה שמועברת ממרחק מגיעה "חיה אבל לא יפה" – בצבע לא מתאים, עבה מדי, בלי תמיכה מבנית. הפרק עוסק ב<b>ניתוחים המשניים</b> שהופכים רקמה שנקלטה לפנים שנראים ומתפקדים כמו פנים: איך מתכננים אותם, איך מסבירים אותם למטופל, אילו עקרונות מנחים אותם (העקרונות של Gillies בגרסה מודרנית), ואילו מלכודות חוזרות (עידון מוקדם מדי, חוסר התאמת צבע, ציפיות לא ריאליות). שלושה מקרים קליניים ארוכים מדגימים את העקרונות.</p>
+
+<h2><span class="num">1</span> עקרון על: מ"סולם שחזורי" ל"מעלית שחזורית"</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>סולם שחזורי (<span class="term" dir="ltr">reconstructive ladder</span>):</b> עולים מהפשוט למורכב – סגירה ראשונית &#8592; שתל עור &#8592; פלאפ מקומי &#8592; פלאפ אזורי &#8592; פלאפ חופשי.<br>
+    <b>מעלית שחזורית (<span class="term" dir="ltr">reconstructive elevator</span>):</b> קופצים ישר לקומה הנכונה – האפשרות ה"הכי טובה" לשחזור החלק החסר, גם אם היא מסובכת.
+  </p>
+  <p>ההבחנה תלויה ב<b>מטרה</b>: <b class="key">סגירת פצע</b> (<span class="term" dir="ltr">closing a wound</span>) – למשל מטופל עם מחלות רקע קשות, או "החזקה" עד לשחזור סופי – מצדיקה את הדרך הפשוטה והמהירה (סולם). לעומת זאת <b class="key">שחזור חלק</b> (<span class="term" dir="ltr">reconstructing a part</span>) מצדיק מעלית. ומכיוון שהעברת רקמה מרוחקת כמעט תמיד מצריכה ניתוח משני מתוכנן, המנתח חייב לחשוב קדימה, כמו שחמטאי או בנאי שבונה קודם יסודות ואחר כך קירות וגג.</p>
+</div>
+
+<h2><span class="num">2</span> סיווג הפרוצדורות המשניות</h2>
+<svg class="diagram" viewBox="0 0 860 330" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם שחזור פגם או עיוות בפנים</title>
+  <rect x="320" y="10" width="220" height="48" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="430" y="40" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">פגם / עיוות בפנים</text>
+  <rect x="470" y="105" width="360" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="650" y="127" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">יותר מניתוח אחד</text>
+  <text x="650" y="145" font-size="12" text-anchor="middle" fill="#065f46">משני צפוי (Anticipated)</text>
+  <rect x="30" y="105" width="300" height="50" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="180" y="127" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">ניתוח אחד</text>
+  <text x="180" y="145" font-size="12" text-anchor="middle" fill="#7f1d1d">אך ייתכן משני בלתי צפוי (Unanticipated)</text>
+  <rect x="640" y="215" width="200" height="60" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="740" y="238" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">אינטגרלי (Integral)</text>
+  <text x="740" y="257" font-size="11.5" text-anchor="middle" fill="#4c1d95">חלק מהטכניקה עצמה</text>
+  <rect x="440" y="215" width="190" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="535" y="238" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מתוכנן (Planned)</text>
+  <text x="535" y="257" font-size="11.5" text-anchor="middle" fill="#78350f">רצוי אך לא הכרחי</text>
+  <!-- vertical arrows (head at larger y) -->
+  <line x1="480" y1="58" x2="650" y2="93" stroke="#374151" stroke-width="2"/>
+  <polygon points="650,105 640,92 658,91" fill="#374151"/>
+  <line x1="380" y1="58" x2="180" y2="93" stroke="#374151" stroke-width="2"/>
+  <polygon points="180,105 172,91 190,92" fill="#374151"/>
+  <line x1="700" y1="155" x2="740" y2="203" stroke="#374151" stroke-width="2"/>
+  <polygon points="740,215 731,202 748,201" fill="#374151"/>
+  <line x1="600" y1="155" x2="535" y2="203" stroke="#374151" stroke-width="2"/>
+  <polygon points="535,215 531,201 545,205" fill="#374151"/>
+  <text x="430" y="312" font-size="12" text-anchor="middle" fill="#7f1d1d">בכל מסלול ייתכן משני בלתי צפוי &#8592; אם נכשל: שחזור שלישוני (Tertiary) או חשיבה מחדש על המטרות</text>
+</svg>
+<p class="figcap">איור 1 – אלגוריתם הפרק (Algorithm 14.1), בגרסה סכמטית.</p>
+<table>
+  <thead><tr><th>סוג</th><th>הגדרה</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td><b>צפוי – אינטגרלי</b></td><td>שלב שני שהוא חלק בלתי נפרד מהטכניקה; בלעדיו השחזור לא הושלם</td><td>מרחיב רקמה (<span class="term" dir="ltr">tissue expander</span>) – מעצם הגדרתו דו-שלבי; חלוקה והשתלה של פדיקל בפלאפ מצח פרה-מדיאני; חלוקת פלאפ טרסו-קונג'ונקטיבלי חוצה-עפעף</td></tr>
+    <tr><td><b>צפוי – מתוכנן</b></td><td>שלב שמזהים מראש שיידרש לתוצאה אופטימלית – רצוי אך לא בהכרח קשור לראשון</td><td>סגירה בפלאפ ואחר כך עידון (<span class="term" dir="ltr">thinning</span>) או החלפת עור (<span class="term" dir="ltr">resurfacing</span>)</td></tr>
+    <tr><td><b>בלתי צפוי</b></td><td>ניתוח לתיקון סיבוך, תוצאה גרועה מהצפוי, או עיוות/אבחנה שהתגלו רק אחרי הניתוח הראשון</td><td>כריתת עור פלאפ שהתפתחה בו דמרקציה; תיקון אקטרופיון אחרי שחזור עפעף תחתון</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">3</span> הערכת המטופל והציפיות</h2>
+<h3>מה בודקים (אנטומיה ותפקוד)</h3>
+<table>
+  <thead><tr><th>תחום</th><th>מה להעריך</th></tr></thead>
+  <tbody>
+    <tr><td>היקף הפגם</td><td>האם חוצה יחידות אסתטיות (<span class="term" dir="ltr">aesthetic units</span>); אילו שכבות חסרות/מעוותות – עור, שומן, שריר, סחוס, רירית, עצם</td></tr>
+    <tr><td>עיוות וצלקות</td><td>עיוות של חלקים ניידים (עפעף, שפה, אף); מיקום ואיכות צלקות; גבולות בין תת-יחידות וקמטים במנוחה ובתנועה</td></tr>
+    <tr><td>השוואה</td><td>לצד הבריא ולקו האמצע – תוך הדגשה שאין פנים סימטריים לגמרי</td></tr>
+    <tr><td>תפקוד</td><td>בדיקת עצב הפנים המלאה (במנוחה ובתנועה)</td></tr>
+    <tr><td>עור</td><td>צבע, מרקם, איכות, גמישות, קווי שיער (קו שיער, פאות, גבות, שפם/זקן)</td></tr>
+    <tr><td>רקמות עמוקות</td><td>נפח תת-עורי, תפקוד שרירי, מבנה ועיצוב העצם; ליקויים בבטנה מיוחדת (עפעפיים, רירית אף/פה, שפתיים)</td></tr>
+    <tr><td>קרינה</td><td>שינויים ברקמה הרכה ובעצם</td></tr>
+  </tbody>
+</table>
+<h3>הערכה פסיכולוגית וייעוץ</h3>
+<p>רמת חרדה; <b>ציפיות ריאליות</b>; הבנה שהתהליך ארוך ורב-שלבי; הבנה ש<b class="key">הפנים עלולים להיראות גרוע יותר בשלבי הביניים</b>; ושלמות כמעט לא מושגת. ראוי לתת למטופל לנסח בעצמו מה מפריע לו ("צלקת בולטת" בעיני המנתח אולי לא מפריעה לו כלל). תמונות סטנדרטיות לפני/אחרי חובה (עם הסכמה בכתב). תמונות ישנות של המטופל הן "חרב פיפיות": עוזרות בתכנון אך עלולות ליצור הבנה שהמנתח מבטיח לשחזר את המצב הקודם.</p>
+<p class="key-box">כשהמטופל הגיע מניתוח של מנתח אחר – דוחות ניתוח לא תמיד זמינים, ויש להסיק מהבדיקה מה בוצע. "כמעט כל מטופל ישוחזר שוב בשלב כלשהו, גם בלי תכנון מראש". שיעור הסיבוכים בניתוחים מורכבים כאלה "קרוב ל-100%", רובם קלים – ולכן המטופל חייב לתת אמון בשיקול דעת המנתח.</p>
+
+<h2><span class="num">4</span> עקרונות הטיפול – "הלב" של הפרק</h2>
+<p>הפרק מעדכן את עקרונות Gillies (1957). המשפט המכונן: <b class="key">"כירורגיה פלסטית היא מאבק מתמיד בין אספקת דם ליופי"</b>. 24 העקרונות מקובצים כאן לפי נושא:</p>
+<table>
+  <thead><tr><th>קבוצה</th><th>עקרון</th><th>למה זה חשוב (המנגנון)</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="4"><b>אבחון ותכנון</b></td><td>תצפית היא בסיס האבחנה; אבחנו לפני שמטפלים (חסר? ממוקם לא נכון? מעוות? צלקת/קרינה? זיהום – ביופסיית רקמה כמותית)</td><td>CT תלת-ממדי הוא עזר תכנוני, אך <b>אינו מפורט מספיק</b> לצרכי אבחון</td></tr>
+    <tr><td>תכנית ואז תבנית (<span class="term" dir="ltr">template</span> תלת-ממדית בעובי הרקמה)</td><td>בפלאפ פרפורטור – מיקום נקודת הציר; בפלאפ חופשי – כלי מקבל, אורך פדיקל, שתלי ורידים</td></tr>
+    <tr><td>תיעוד; סימון בעמידה ובערות; קעקוע נקודות ציון בכחול מתילן</td><td>סימון קו אמצע, גבולות יחידות, קמטים, הצד הבריא; כחול מתילן ממפה מסלולי סינוס ומנחה כריתה של רקמה נגועה</td></tr>
+    <tr><td>"תמיד שיהיה לך סירת הצלה" (<span class="term" dir="ltr">lifeboat</span>)</td><td>פלאפ פרפורטור מוגבל בתנועה, כלי דם נסתמים, רקמה מתה – תכנית ב' וג'</td></tr>
+    <tr><td rowspan="4"><b>רקמה וצבע</b></td><td>החזר את הנורמלי למקומו; שחרר צלקות מתכווצות; Z-plasty לשבירת קווי מתח</td><td>צלקות מעוותות את הרקמה הסמוכה</td></tr>
+    <tr><td>החלף "כמו בכמו" (<span class="term" dir="ltr">like with like</span>)</td><td>דק בדק, עור עבה בעבה, עצם בעצם, עור שעיר בשעיר (Gonzalez-Ulloa – יחידות אסתטיות)</td></tr>
+    <tr><td>הסתר צלקות בקווי תת-יחידות/קמטים; אחרת סגירה לא-סדירה או micro Z-plasties</td><td>הצלקת נבלעת בקו שממילא קיים</td></tr>
+    <tr><td>התאמת צבע: עור מפלאפ חופשי תמיד שונה; השתמשו בפלאפ מקומי; אפשר החלפה משנית</td><td>"טלאי" בצבע/מרקם שונה בפנים בולט מאוד</td></tr>
+    <tr><td rowspan="4"><b>מבנה וסוג הפלאפ</b></td><td>תמיכה מבנית מוקדמת (רצוי מווסקולרית)</td><td>יסוד יציב מונע קריסת הרקמה הרכה</td></tr>
+    <tr><td>פלאפים חופשיים לעתים קלים יותר ממקומיים; אל תהססו להשתמש בשתלי ורידים</td><td>אפשר לקצור במקביל לכריתה, להתאים גודל/צורה/הרכב, והחדרה קלה; שתל ורידים מתוכנן לא פוגע בהצלחה</td></tr>
+    <tr><td>פלאפ כימרי (<span class="term" dir="ltr">chimeric</span>) – "אל תתנו לשיטות שגרתיות להיות אדוניכם"</td><td>רכיבים עצמאיים להתאמה מדויקת לפגם מורכב</td></tr>
+    <tr><td>אל תזרקו כלום עד שבטוח שלא צריך (מילוי/תמיכה/החלפת עור); שחזרו יחידות/תת-יחידות שלמות</td><td>רקמה "מיותרת" משמשת לעתים כשתל בהמשך</td></tr>
+    <tr><td rowspan="5"><b>עיתוי, עידון וטיפול</b></td><td>טיפול לאחר הניתוח חשוב כמו התכנון (48 שעות ראשונות קריטיות, במיוחד בפלאפ חופשי)</td><td>Gillies: "כמה חסר טעם לאבד פלאפ מחוסר ניטור"</td></tr>
+    <tr><td>צפו לתיקונים (הסרת חומרה, עיצוב, ליפוסקציה, שתל שומן)</td><td>שומן אפשר להוסיף או להסיר</td></tr>
+    <tr><td><b>אל תעדנו מהר או חזק מדי</b></td><td>בצקת נמשכת עד שנתיים; אחריה הרקמה "נצמדת" למבנה התומך – <b>"shrink wrap"</b></td></tr>
+    <tr><td>היזהרו מכיווץ אלסטי מאוחר של רקמה מורחבת</td><td>מרחיב ליד הפלאפ (לא תחתיו) – משתמשים באזור המורחב לסגירת אתר התורם ומונעים כיווץ משני</td></tr>
+    <tr><td>טיפול פליאטיבי דורש לעתים ניתוח נרחב יותר מהשחזור הראשוני</td><td>יש להסיר רקמה מוקרנת/נגועה/צלקתית כדי להבטיח ריפוי – מגביל ניתוח "קטן" גורם להתפרקות הפצע</td></tr>
+    <tr><td rowspan="3"><b>מטופל</b></td><td>אי אפשר לתקן מטופל אסימפטומטי</td><td>אם העיוות לא מפריע – אל תשפרו</td></tr>
+    <tr><td>"אין סיכון כמו אין סיכון"</td><td>כמעט לכל מטופל בניתוח משני יהיו סיבוכים</td></tr>
+    <tr><td>רוב אי-שביעות הרצון נובעת מציפיות לא ריאליות ותפיסה שגויה</td><td>הבינו את הפסיכודינמיקה: איך המטופל תופס את עצמו ואת מבט האחרים</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> עיתוי, בצקת וסיבוכים</h2>
+<div class="mechanism">
+  <p class="chain">כל ניתוח &#8592; דלקת וצלקת &#8592; פגיעה בניקוז לימפתי/ורידי (גם בגלל ניתוח צוואר, קרינה, פצעים פתוחים) &#8592; <b>בצקת</b> שנפתרת באיטיות. אם מעדנים רקמה בעודה נפוחה, אחרי שהבצקת חולפת הרקמה נצמדת לשלד ומתקבל עיוות קונטור (shrink wrap).</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
+  <title>ציר הזמן של הבצקת</title>
+  <rect x="680" y="30" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="760" y="58" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">שיא הבצקת</text>
+  <text x="760" y="80" font-size="13" text-anchor="middle" fill="#7f1d1d">~36 שעות</text>
+  <rect x="470" y="30" width="160" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="550" y="58" font-size="14" text-anchor="middle" fill="#78350f" font-weight="700">ירידה ראשונה</text>
+  <text x="550" y="80" font-size="13" text-anchor="middle" fill="#78350f">~10 ימים</text>
+  <rect x="260" y="30" width="160" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="58" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">ירידה נוספת</text>
+  <text x="340" y="80" font-size="13" text-anchor="middle" fill="#1e3a8a">~3 חודשים</text>
+  <rect x="30" y="30" width="170" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="115" y="58" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">פתרון מרבי</text>
+  <text x="115" y="80" font-size="13" text-anchor="middle" fill="#065f46">1–2 שנים</text>
+  <line x1="680" y1="65" x2="642" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="630,65 644,58 644,72" fill="#374151"/>
+  <line x1="470" y1="65" x2="432" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,65 434,58 434,72" fill="#374151"/>
+  <line x1="260" y1="65" x2="222" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="200,65 224,58 224,72" fill="#374151"/>
+  <text x="430" y="132" font-size="12.5" text-anchor="middle" fill="#374151">מרווח מינימלי בין שלבים: 2–3 שבועות לניתוח קטן (חלוקת פלאפ מצח), 3 חודשים לתיקון גדול</text>
+</svg>
+<p class="figcap">איור 2 – ציר הזמן של הבצקת הפוסט-ניתוחית (הזמנים מהפרק).</p>
+<p>גורמים שקובעים את היקף ומשך הבצקת: מספר ההתערבויות, כמות הדלקת והצלקות, קרינה, הסרה/פגיעה בבלוטות לימפה, פתיחות ורידים מנקזים, ופצעים/פיסטולות פתוחים. התפשרות היא בלתי נמנעת, כי אי אפשר להמתין שנתיים בין כל שלב.</p>
+<h3>טיפול לאחר הניתוח ו"ניתוק גשרים"</h3>
+<ul>
+  <li>אישי לכל פרוצדורה: אנטיביוטיקה פרי-אופרטיבית וטופיקלית, ניטור פלאפ, חבישות, ראש מורם, קירור פלאפ.</li>
+  <li>תמיד תכנית A, B, C. "אל תשרפו גשרים" – אך אל תגבילו את עצמכם אם חייבים לשרוף גשר.</li>
+</ul>
+
+<h2><span class="num">6</span> שלושה מקרים מייצגים – השוואה</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th></th><th>מקרה 1 – גבר בן 71</th><th>מקרה 2 – גבר בן 58 (60 בתיאור האיורים)</th><th>מקרה 3 – אישה בת 68</th></tr></thead>
+  <tbody>
+    <tr><td><b>אבחנה</b></td><td>SCC חוזר של הלחי השמאלית (חדירה לדופן האף, תעלת דמעות, עפעפיים)</td><td>SCC מובחן-גרוע של המצח הימני עם חדירה לגולגולת ולאורביטה; קרינה נדחתה; הישנות במצח</td><td>קרצינומה אדנוציסטית של צינור הדמעות עם חדירה למקסילה; פיסטולות נזאו-עוריות וזיהום MRSA</td></tr>
+    <tr><td><b>בעיה מרכזית</b></td><td>שחזור שלוש שכבות ומילוי; עור ירך אינו תואם צבע</td><td>אי-התאמת צבע של פלאפ ירך; חומרה חשופה (טיטניום) בשדה מוקרן</td><td>זיהום, אוסטאומיאליטיס, חלל מת ופיסטולה בשדה מוקרן</td></tr>
+    <tr><td><b>שחזור ראשוני</b></td><td>פלאפ טרסו-קונג'ונקטיבלי חוצה-עפעף (למעטפת האחורית); <b>פלאפ ספטלי סחוסי-רירי צירי</b> (hinged septal chondromucosal) לדופן האף; <b>ALT חופשי</b> לכיסוי</td><td>רשת טיטניום מותאמת + ALT חופשי (בבית חולים אחר)</td><td>פלאפ חופשי <b>כימרי</b> ממערכת התורקודורסלית: קצה סקפולה + פאשיית סראטוס + TdAP</td></tr>
+    <tr><td><b>ניתוחים משניים</b></td><td>5 – כולל דמרקציה של ה-ALT בחוץ, פלאפ מצח פרה-מדיאני נגדי, חלוקת פלאפ העפעף, פלאפ צווארי-פנים (Schrudde)</td><td>6 (3 מתוכננים, 3 בלתי צפויים): פלאפ cervicofacial, STSG מקרקפת שעירה, צניחת גבה ועפעף עליון, blepharoplasty ו-brow lift</td><td>ליפקטומיה, cervicofacial, ניתוח אף שניוני, מתיחת פנים נגדית</td></tr>
+    <tr><td><b>מה לקחת</b></td><td>תכנון רב-שלבי שהופרע ע"י סיבוך; החלפת עור ירך בעור מקומי</td><td>מבחן אזור קטן לפני החלפת עור גדולה; ניצול העור מעפעף; הסוואה</td><td>כחול מתילן לאיתור וכריתת רקמה נגועה; הכנה לפרוסתזה; המטופלת בחרה במטלית עין</td></tr>
+  </tbody>
+</table></div>
+
+<h3>פרטי מקרה 1 – למה כל שלב נבחר</h3>
+<ul>
+  <li><b>שכבה אחורית של עפעף תחתון:</b> פלאפ טרסו-קונג'ונקטיבלי מהעפעף העליון, חלוקה אחרי מספר שבועות.</li>
+  <li><b>דופן האף:</b> פלאפ ספטלי סחוסי-רירי (hinged septal chondromucosal) – צירי בחלקו העליון (בטנה וסחוס לדופן האף), ופלאפ רירית-קרום סחוס (mucoperichondral) מועבר מתחתיו לשחזור המחיצה.</li>
+  <li><b>כיסוי:</b> ALT חופשי (muscle-sparing). סיבוך: דמרקציה בשוליים למרות פדיקל פתוח – הוסרה ביום 6, והפצע נסגר בפלאפ מצח פרה-מדיאני מהצד השני (לפני המועד שתוכנן).</li>
+  <li><b>סיום:</b> עור הירך הוחלף בעור לחי מקומי ע"י פלאפ cervicofacial שנחשף בהדרגה ("מחשש לדחוף את אספקת הדם יותר מדי"). הפדיקל של פלאפ המצח נשאר 5 חודשים; הניתוח האחרון הוא חלוקה והחדרה סופית.</li>
+</ul>
+<h3>פרטי מקרה 2 – הצבע כבעיה המרכזית</h3>
+<ul>
+  <li>המטופל נמנע מלצאת מהבית בלי כובע ומשקפי שמש – הבעיה העיקרית אינה אונקולוגית אלא <b>צבע</b>.</li>
+  <li>המטרה: להזיז את קו המעבר לצבע ל<b>מסגרת המשקפיים</b> – פלאפ cervicofacial מקדים; ואז <b>אזור מבחן</b> של STSG דק מקרקפת שעירה סמוכה לפני שמחליטים להחליף עור שלם (dermabrasion + שתל).</li>
+  <li>חומרה חשופה בשדה מוקרן: כריתה, הסרת הטיטניום, חירור העצם וסגירה בפלאפ frontalis מיוקוטני בעיצוב V–Y (+STSG להפחתת מתח).</li>
+  <li>ניתוח בלתי צפוי: צניחת גבה ועפעף עליון (חסימת שדה ראייה) – blepharoplasty + brow lift; <b>עור העפעף שהוסר שימש כ-FTSG</b> להחלפת עור באורביטה הנגדית ("אל תזרקו כלום").</li>
+</ul>
+<h3>פרטי מקרה 3 – כימרי בשדה נגוע</h3>
+<ol>
+  <li>עדיפות: שליטה בזיהום &#8592; סגירת פיסטולה &#8592; עצם מווסקולרת (לשיקום עם שתל מעוגן-עצם) &#8592; הופעה נורמלית. <b>הפסקת עישון</b> לפני הניתוח.</li>
+  <li>כחול מתילן בפיסטולה חשף חתיכת מקסילה נגועה (<span class="term" dir="ltr">sequestrum</span>) – נותחה והוסרה.</li>
+  <li>פלאפ כימרי עם 3 רכיבים על 3 עורקים עצמאיים: <b>סראטוס פאשיה</b> (בטנה לאף; תהפוך לרירית מהרירית הסובבת), <b>קצה סקפולה</b> (אורביטה + חיזוק הסגירה), <b>TdAP אדיפוצוטנאי</b> (מילוי חלל מת וסגירת עור). תבנית תלת-ממדית לתכנון.</li>
+  <li>תיקונים: ליפוסקציה של הפלאפ ו-cervicofacial לשימור perforator של ה-transverse facial artery; לאחר קריסת נתיב אוויר באף – שתל עצם מהסקפולה לדופן + שתל סחוס אפרכסת (conchal) לאלה; מתיחת פנים בצד הנגדי לאיזון. בסוף: מטלית עין (בחירת המטופלת).</li>
+</ol>
+
+<h2><span class="num">7</span> השתלת פנים (<span class="term" dir="ltr">Vascularized Composite Allotransplantation – VCA</span>)</h2>
+<table>
+  <thead><tr><th></th><th>שחזור אוטולוגי</th><th>השתלת פנים (VCA)</th></tr></thead>
+  <tbody>
+    <tr><td><b>מתי</b></td><td>הרוב המכריע של המטופלים, במיוחד צעירים ובמקרי סרטן</td><td>מעטים נבחרים: כוויות &gt;90% BSA ללא אתרים תורמים; מספר תת-יחידות; חוסר בשתי השפתיים או שני העפעפיים</td></tr>
+    <tr><td><b>יתרון</b></td><td>ללא דיכוי חיסוני; מתאים לרוב</td><td>צורה ותפקוד שלא ניתנים להשגה באוטולוגי</td></tr>
+    <tr><td><b>חיסרון</b></td><td>מספר שלבים, התאמת צבע</td><td>דיכוי חיסוני לכל החיים – סכנת הישנות סרטן; ניסיון עדיין צעיר</td></tr>
+  </tbody>
+</table>
+<p class="key-box">שחזור אוטולוגי צריך להיחשב <b>לפני</b> שמחייבים מטופל לדיכוי חיסוני לכל החיים.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-T-A-G-E-S</span> – שלבי שחזור משני</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Symptoms</span>: שמעו מה מפריע למטופל; "אי אפשר לתקן מטופל אסימפטומטי".<br>
+    <b>T</b> – <span class="term" dir="ltr">Template &amp; Tattoo</span>: תבנית תלת-ממדית וכחול מתילן לסימון.<br>
+    <b>A</b> – <span class="term" dir="ltr">Aesthetic units</span>: הסתרת צלקות בקווי תת-יחידות.<br>
+    <b>G</b> – <span class="term" dir="ltr">Graft/flap like-with-like</span>: צבע, עובי ומרקם תואמים; פלאפ מקומי לצבע.<br>
+    <b>E</b> – <span class="term" dir="ltr">Edema</span>: חכו לבצקת – אל תעדנו מהר מדי (shrink wrap).<br>
+    <b>S</b> – <span class="term" dir="ltr">Structure &amp; Spare plan</span>: תמיכה מבנית מוקדמת ו"סירת הצלה" (lifeboat).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני בנייה של בית: קודם יסודות (תמיכה מבנית), אחר כך קירות, ורק בסוף צבע (התאמת צבע). לא צובעים טיח לח – ממתינים שהבצקת תתייבש (shrink wrap), אחרת הצבע יתקלף. ותמיד חונה ליד הבית סירת הצלה למקרה שהמים עולים.</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>בית השחזור המשני</title>
+    <rect x="0" y="160" width="500" height="10" fill="#a3a3a3"/>
+    <rect x="60" y="140" width="200" height="20" fill="#6d28d9"/>
+    <text x="160" y="155" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">יסודות = עצם/תמיכה</text>
+    <rect x="70" y="80" width="180" height="60" fill="#fde68a" stroke="#b45309"/>
+    <text x="160" y="115" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">קירות = רקמה רכה</text>
+    <polygon points="60,80 160,35 260,80" fill="#ef4444"/>
+    <text x="160" y="68" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">צבע = התאמה</text>
+    <path d="M330,150 Q380,185 440,150 Z" fill="#2563eb"/>
+    <text x="385" y="145" font-size="11" text-anchor="middle" fill="#1e3a8a" font-weight="700">סירת הצלה</text>
+    <circle cx="450" cy="40" r="22" fill="#fbbf24"/>
+    <text x="450" y="76" font-size="11" text-anchor="middle" fill="#78350f">זמן = שנתיים</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות ומאמרי יסוד (מתוך רשימת המקורות של הפרק)</h2>
+<ul class="resource-list">
+  <li><b>Gillies H, Millard DR Jr. <i>The Principles and Art of Plastic Surgery</i>. 1957</b><div class="desc">מקור העקרונות ("מאבק בין אספקת דם ליופי", "lifeboats", חשיבות הטיפול הבתר-ניתוחי).</div></li>
+  <li><b>Gottlieb LJ, Krieger LM. From the reconstructive ladder to the reconstructive elevator. Plast Reconstr Surg 1994;93:1503</b><div class="desc">המאמר שהציע את המעלית במקום הסולם.</div></li>
+  <li><b>Gonzalez-Ulloa M. Br J Plast Surg 1956 ; Burget GC, Menick FJ. Plast Reconstr Surg 1985</b><div class="desc">יחידות אסתטיות ועקרון תת-היחידה בשחזור האף.</div></li>
+  <li><b>Dorafshar AH et al. Guided surgical debridement: staining tissues with methylene blue. J Burn Care Res 2010</b><div class="desc">הטכניקה לכריתה מונחית בכחול מתילן.</div></li>
+  <li><b>Inbal A et al. Bridging the gap: vein grafts for free flap reconstruction. Plast Reconstr Surg 2018</b><div class="desc">20 שנות ניסיון בשתלי ורידים – ללא פגיעה בהצלחה.</div></li>
+  <li><b>Walton RL et al. Epidermal overgrafting improves coloration in remote flaps. Plast Reconstr Surg 2008</b><div class="desc">בסיס לשימוש בשתל עור דק להתאמת צבע.</div></li>
+  <li><b>Kantar RS et al. Plast Reconstr Surg 2021;147:1022e ; Gottlieb L, Agarwal S. J Reconstr Microsurg 2012</b><div class="desc">השתלת פנים ואלטרנטיבות אוטולוגיות.</div></li>
+</ul>
+<p class="figcap">הערה: לא הוטמעו סרטונים או תמונות חיצוניים שלא אומתו; הפרק עצמו מכיל איורי ניתוח מפורטים (Figs. 14.1–14.32).</p>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 63 עבר לפני שנה כריתה של SCC בלחי ימין ושחזור בפלאפ ALT חופשי. הפלאפ נקלט, אך עורו צהבהב ועבה, ובולט מול עור הפנים הסמוך. המטופל מסרב לצאת בלי כובע ומשקפיים. הוא מבקש "שייראה כמו קודם". בבדיקה: אין זיהום, אין חומרה חשופה, ויש ריפוי מלא. קרינה לא ניתנה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. חלוקה והחדרה של פדיקל פלאפ המצח הפרה-מדיאני מסווגת כ:</div>
+  <button class="opt" data-i="0">ניתוח משני בלתי צפוי</button>
+  <button class="opt" data-i="1">ניתוח משני מתוכנן (planned) בלבד</button>
+  <button class="opt" data-i="2">ניתוח משני צפוי אינטגרלי – חלק בלתי נפרד מהטכניקה</button>
+  <button class="opt" data-i="3">שחזור שלישוני</button>
+  <div class="explain">נכון: בפלאפ מצח הפדיקל נחלק ומוחדר בשלב שני שבלעדיו השחזור אינו שלם – אינטגרלי. "בלתי צפוי" הוא לתיקון סיבוך. "מתוכנן" משמעו רצוי אך לא קשור בהכרח (עידון, resurfacing). "שלישוני" הוא כשהמשני נכשל.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. מטופל עם מחלות רקע קשות שמטרת הניתוח היא "לסגור פצע" בלבד. איזו גישה מתאימה לפי הפרק?</div>
+  <button class="opt" data-i="0">הפשוטה והמהירה – עולים בסולם השחזורי</button>
+  <button class="opt" data-i="1">מעלית שחזורית אל הפלאפ החופשי המורכב ביותר</button>
+  <button class="opt" data-i="2">השתלת פנים</button>
+  <button class="opt" data-i="3">דחיית הטיפול עד לפתרון מלא של הבצקת</button>
+  <div class="explain">נכון: בסגירת פצע (למשל זמן ניתוח מינימלי או "החזקה" עד שחזור סופי) בוחרים בפשוט. כשהמטרה היא שחזור חלק – משתמשים במעלית. פלאפ חופשי מורכב בחולה חולה מגדיל סיכון; VCA שמורה למעטים; ההמתנה אינה מטרה בפני עצמה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהו המרווח המינימלי המקובל בין שלבים לפי הפרק, ולמה אין מעדנים פלאפ מוקדם מדי?</div>
+  <button class="opt" data-i="0">24 שעות; כי הבצקת שוככת מיד</button>
+  <button class="opt" data-i="1">שנתיים לכל שלב; כי הצלקת מבשילה רק אז</button>
+  <button class="opt" data-i="2">6 שבועות לכל שלב; כי הפדיקל חייב להישאר</button>
+  <button class="opt" data-i="3">2–3 שבועות לניתוח קטן ו-3 חודשים לתיקון גדול; כי עידון בעודו נפוח מוביל אחר כך ל-shrink wrap ועיוות קונטור</button>
+  <div class="explain">נכון: הבצקת נמשכת 1–2 שנים, ולכן חייבים להתפשר, אך עידון מוקדם מדי יוצר לאחר שוך הבצקת עיוות. 24 שעות מוקדם מדי (שיא הבצקת ב-36 שעות); שנתיים אינו מעשי; 6 שבועות אינו המספר בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. במקרה 3 (פיסטולה נזאו-עורית בשדה מוקרן), איזה רכיב בפלאפ הכימרי שימש לבטנת האף?</div>
+  <button class="opt" data-i="0">קצה הסקפולה</button>
+  <button class="opt" data-i="1">פאשיית סראטוס, שתתמרק מהרירית הסובבת</button>
+  <button class="opt" data-i="2">העור של ה-TdAP</button>
+  <button class="opt" data-i="3">שרירי הלטיסימוס</button>
+  <div class="explain">נכון: פאשיית סראטוס שימשה לבטנה. קצה הסקפולה – אורביטה וחיזוק סגירת הפיסטולה; הרכיב האדיפוצוטנאי (TdAP) – מילוי חלל מת וסגירת עור. הלטיסימוס לא היה רכיב.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בווינייטה – מה הצעד הנכון להתאמת הצבע, לפי המקרה השני?</div>
+  <button class="opt" data-i="0">עידון אגרסיבי של הפלאפ בלבד</button>
+  <button class="opt" data-i="1">STSG מיידי על כל הפלאפ בלי מבחן</button>
+  <button class="opt" data-i="2">בניית פלאפ מקומי (cervicofacial) להחלפת העור, ו/או אזור מבחן קטן של STSG דק מקרקפת שעירה לפני החלפה נרחבת</button>
+  <button class="opt" data-i="3">לא לעשות דבר, כי אי אפשר לתקן צבע</button>
+  <div class="explain">נכון: עור מפלאפ חופשי תמיד שונה בצבע, ולכן מחליפים בעור מקומי; מבחן קטן מאפשר להעריך תועלת וסיכון לפני התחייבות. עידון לא פותר צבע; STSG על כל הפלאפ בלי מבחן מסוכן; ויש מה לעשות – המטופל סימפטומטי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. מתי השתלת פנים (VCA) היא אפשרות, ומהו המחיר העיקרי?</div>
+  <button class="opt" data-i="0">במקרים נבחרים (כוויות נרחבות ללא אתרים תורמים, חוסר שתי שפתיים/עפעפיים); המחיר – דיכוי חיסוני לכל החיים וסיכון להישנות סרטן</button>
+  <button class="opt" data-i="1">כקו ראשון לכל מטופל עם צלקת פנים; המחיר – עלות בלבד</button>
+  <button class="opt" data-i="2">במטופלים צעירים עם SCC; המחיר – צבע לא תואם</button>
+  <button class="opt" data-i="3">רק כשכל פלאפ חופשי נכשל, ללא קשר למספר תת-יחידות</button>
+  <div class="explain">נכון: VCA שמורה למעטים, ובמרבית המטופלים – במיוחד צעירים ובמחלה ממארת – עדיפה אוטולוגית. דיכוי חיסוני עלול לגרום להישנות סרטן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>שחזור משני: <b>צפוי</b> (אינטגרלי / מתוכנן) לעומת <b>בלתי צפוי</b> (סיבוך/תוצאה גרועה).</li>
+    <li>סגירת פצע = סולם; שחזור חלק = <b>מעלית</b> שחזורית.</li>
+    <li>"מאבק מתמיד בין אספקת דם ליופי" (Gillies); תמיד <b>lifeboat</b>.</li>
+    <li>אבחנו לפני שמטפלים; תבנית; סימון בעמידה; <b>כחול מתילן</b> לכריתה מונחית.</li>
+    <li>החלף <b>כמו בכמו</b>; יחידות אסתטיות; הסתר צלקות; תמיכה מבנית מוקדמת.</li>
+    <li>עור פלאפ חופשי = צבע לא תואם &#8592; החלפה בעור מקומי (cervicofacial / שתל), מבחן קטן קודם.</li>
+    <li>בצקת: שיא ~36 שעות, ירידות ב-10 ימים ו-3 חודשים, פתרון 1–2 שנים; מרווח 2–3 שבועות / 3 חודשים; <b>shrink wrap</b>.</li>
+    <li>"אי אפשר לתקן מטופל אסימפטומטי"; ציפיות; סיבוכים ~100%.</li>
+    <li>VCA – מעטים נבחרים; אוטולוגי תחילה (דיכוי חיסוני וסכנת סרטן).</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
