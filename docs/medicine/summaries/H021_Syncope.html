@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עילפון (Syncope)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px; color:var(--ink); line-height:1.75; font-size:17px; background:#fff}
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .tablewrap{overflow-x:auto}
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  @media (max-width:600px){ body{padding:20px 14px 60px; font-size:16px} }
+</style>
+</head>
+<body>
+<h1>עילפון <span class="term" dir="ltr">(Syncope)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · פרק 21 · עמ' 193–199 · Roy Freeman</div>
+
+<p>עילפון הוא <span class="key">אובדן הכרה חולף, קצר, עם החלמה ספונטנית מלאה, עקב ירידה חדה בזרימת הדם הכללית למוח</span>. השאלה הקלינית המרכזית אינה "מה הסיבה" אלא קודם כול: <b>האם זה בכלל עילפון (ולא פרכוס וכד'), ואם כן - האם הסיבה לבבית (מסוכנת) או לא</b>.</p>
+
+<h2><span class="num">1</span> הגדרה, שלוש הקטגוריות ואפידמיולוגיה</h2>
+<p>הפרודרום (<span class="term" dir="ltr">presyncope</span>): סחרחורת, חולשה, עייפות, הפרעות ראייה ושמיעה - אך אובדן הכרה יכול לקרות גם ללא אזהרה. מצבים אחרים של אובדן הכרה חולף שיש להבדיל: פרכוסים, איסכמיה ורטברובזילרית, היפוקסמיה והיפוגליקמיה.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>קטגוריה</th><th>מהות</th><th>פרוגנוזה</th></tr></thead>
+<tbody>
+<tr><td><b>Neurally mediated</b> (רפלקסי / וזובגלי)</td><td>רפלקסים תקינים שמווסתים לחץ דם "מתפוצצים" באופן זמני: וזודילטציה + ברדיקרדיה + ירידת תפוקה. דורש מערכת אוטונומית <b>תקינה</b></td><td>מצוינת בצעירים</td></tr>
+<tr><td><b>Orthostatic hypotension</b></td><td>כשל <b>כרוני</b> ברפלקסים (כשל אוטונומי, תרופות, התייבשות)</td><td>תמותה גבוהה יותר (גיל ומחלות רקע)</td></tr>
+<tr><td><b>Cardiac</b></td><td>הפרעת קצב או מחלה מבנית שמורידה תפוקת לב</td><td>סיכון מוגבר ל-SCD ולתמותה</td></tr>
+</tbody></table></div>
+<p><b>אפידמיולוגיה:</b> ~3% מביקורי המיון ו-1% מהאשפוזים; עלות אשפוז בארה"ב ~2.4 מיליארד $ בשנה; שכיחות מצטברת לאורך החיים עד 35%. שיא בצעירים בגיל 10-30 (חציון ~15), כמעט תמיד neurally mediated; <b>שכיח יותר בנשים</b>, ולעיתים היסטוריה משפחתית בקרובים מדרגה ראשונה. אחרי גיל 70 עלייה חדה. הסיבה השכיחה השנייה היא לבבית (בעיקר במיון ובמבוגרים). אורתוסטטיזם עולה עם הגיל: ירידה ברגישות הברורפלקס, ירידה בהתרחבות הלב, החלשת הרפלקס הווסטיבולו-סימפתטי, פחות שתייה ותרופות.</p>
+
+<h2><span class="num">2</span> פתופיזיולוגיה - למה מתעלפים</h2>
+<div class="mechanism">
+<p class="chain">עמידה ← 500-1000 מ"ל דם נאגרים ברגליים, בישבן ובמערכת הספלנכנית ← החזר ורידי ↓ ← מילוי חדרי ↓ ← תפוקת לב ולחץ דם ↓ ← הברורצפטורים (סינוס קרוטידי וקשת אבי העורקים) נפרקים ← <b>סימפתטי ↑ ווגאלי ↓</b> ← התנגדות היקפית, החזר ורידי ותפוקה עולים ← לחץ דם נשמר. <b>אם התגובה נכשלת ← היפופרפוזיה מוחית ← עילפון.</b></p>
+</div>
+<svg class="diagram" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="מנגנון העילפון">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2563eb"/></marker></defs>
+<g font-family="Segoe UI,Arial" font-size="14" text-anchor="middle">
+<rect x="620" y="20" width="125" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="682" y="45">עמידה</text><text x="682" y="65">איגום דם ברגליים</text>
+<rect x="470" y="20" width="125" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="532" y="45">החזר ורידי ↓</text><text x="532" y="65">תפוקת לב ↓ · BP ↓</text>
+<rect x="320" y="20" width="125" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="382" y="45">ברורצפטורים</text><text x="382" y="65">נפרקים</text>
+<rect x="170" y="20" width="125" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="232" y="45">סימפתטי ↑</text><text x="232" y="65">וגאלי ↓ (תקין)</text>
+<rect x="20" y="20" width="125" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="82" y="45">BP נשמר</text><text x="82" y="65">אין עילפון</text>
+<path d="M618,50 L597,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><path d="M468,50 L447,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><path d="M318,50 L297,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><path d="M168,50 L147,50" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+<rect x="170" y="130" width="300" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="320" y="155">הרפלקס נכשל: OH (כרוני) / וזובגלי (חולף)</text><text x="320" y="175">SBP ≈ 50 mmHg ← היפופרפוזיה מוחית ← עילפון</text>
+<path d="M232,82 L270,128" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#a)"/>
+</g></svg>
+<h3>למה המוח כל כך רגיש - אוטורגולציה</h3>
+<p>זרימת דם מוחית תקינה: <b>50-60 מ"ל/דקה/100 גרם</b>, יציבה בלחצי זילוף <b>50-150 mmHg</b> (בזכות גורמים מיוגניים, מטבוליטים מקומיים ובמידה קטנה שליטה אוטונומית; זמן השהיה של האוטורגולציה 5-10 שניות). <span class="key">הפסקת זרימה ל-6-8 שניות מספיקה לאובדן הכרה; ירידה ל-25 מ"ל/דקה/100 גרם פוגעת בהכרה</span>. קלינית: SBP של ~50 mmHg ומטה גורם לעילפון.</p>
+<p>לחץ דם = תפוקת לב × התנגדות סיסטמית, ולכן עילפון נובע מירידה בתפוקה ו/או בהתנגדות. <b>תפוקה ↓:</b> ירידת נפח אפקטיבי, עלייה בלחץ התוך-חזי, תסחיף ריאתי מסיבי, הפרעות קצב, מחלת מסתמים, כשל שריר הלב. <b>התנגדות ↓:</b> מחלות אוטונומיות מרכזיות והיקפיות, תרופות סימפתוליטיות, ורפלקס וזובגלי חולף. בנוסף, <b>התנגדות מוחית ↑</b> (בעיקר היפוקרבניה מהיפרוונטילציה ← כיווץ כלי מוח) יכולה לתרום.</p>
+<h3>אלקטרואנצפלוגרפיה</h3>
+<p>שני דפוסים: <b>"slow-flat-slow"</b> - גלי דלתא איטיים בעלי אמפליטודה גבוהה, אחר כך שיטוח פתאומי (סמן להיפופרפוזיה חמורה יותר), ואז חזרה לגלים איטיים ולנורמה; ו"slow pattern" - רק עליה וירידה בפעילות איטית. <b>אין פריקות אפילפטיות</b> גם כשיש מיוקלונוס. בטילט-טסט מוצג שהאטת ה-EEG מתחילה כש-SBP ≈ 50 mmHg, ושיטוח ה-EEG מגיע מעט אחרי אסיסטולה.</p>
+<div class="key-box">הברורפלקס: ירידת לחץ ← פחות קלט ממקלטי המתיחה בסינוס הקרוטידי ובקשת אבי העורקים (עצבי IX ו-X) ← NTS במדולה ← פחות ווגאלי דרך nucleus ambiguus; יותר סימפתטי דרך CVLM ← RVLM (בעיקר <b>דה-אינהיביציה</b>). ירידה ממושכת בלחץ ← גם שחרור ואזופרסין (A1 ← PVN/SON בהיפותלמוס).</div>
+
+<h2><span class="num">3</span> עילפון נוירוגני (Neurally mediated)</h2>
+<p>המסלול הסופי של קשת רפלקס מרכזית והיקפית: עלייה בפעילות פרא-סימפתטית + עיכוב סימפתטי ← <b>ברדיקרדיה, וזודילטציה / ירידה בטונוס מכווץ הכלים (vasodepressor) וירידת תפוקה</b>. הטריגר האפרנטי משתנה ומתכנס ברשת האוטונומית המרכזית במדולה.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>סוג</th><th>טריגר</th></tr></thead>
+<tbody>
+<tr><td><b>Vasovagal</b> (ה"עילפון הרגיל")</td><td>פחד, כאב, חרדה, רגש עז, מראה דם, ריחות/מראות לא נעימים, עמידה ממושכת</td></tr>
+<tr><td>ריאתי</td><td>שיעול, נגינה בכלי נשיפה, הרמת משקולות, התעטשות, "mess trick" (היפרוונטילציה ~דקה ואז לחיצת חזה), "fainting lark" (~20 נשימות בכריעה, עמידה מהירה ו-Valsalva), אינסטרומנטציה של דרכי אוויר</td></tr>
+<tr><td>אורוגניטלי</td><td>אחרי מתן שתן (post-micturition), אינסטרומנטציה, עיסוי פרוסטטה</td></tr>
+<tr><td>גסטרואינטסטינלי</td><td>בליעה, נוירלגיה גלוסופרינגאלית, גירוי ושט, בדיקה רקטלית, עילפון בעת יציאות</td></tr>
+<tr><td>לבבי</td><td>Bezold-Jarisch, חסימה במוצא הלב</td></tr>
+<tr><td>סינוס קרוטידי</td><td>רגישות יתר, עיסוי הסינוס</td></tr>
+<tr><td>עיני</td><td>לחץ על העין, בדיקה, ניתוח</td></tr>
+</tbody></table></div>
+<p><b>חלוקה לפי המסלול האפרנטי:</b> <span class="term" dir="ltr">vasodepressor</span> (כשל סימפתטי מכווץ כלים), <span class="term" dir="ltr">cardioinhibitory</span> (ברדיקרדיה/אסיסטולה מווגאלי ↑), ו-<span class="term" dir="ltr">mixed</span> - אך מסלול היציאה (n. vagus + סימפתטי) דומה בכולם.</p>
+<h3>ביטוי קליני</h3>
+<p>פרודרום אוטונומי: <b>הזעה, חיוורון, פלפיטציות, בחילה, היפרוונטילציה, פיהוק</b>. במהלך האירוע: <b>מיוקלונוס</b> (לא קצבי, מולטיפוקלי, קצר, עד ~90% מהאירועים) שמזכיר פרכוס; עיניים פקוחות ובדרך כלל סוטות כלפי מעלה; אישונים רחבים; גניחות וקולות נשימה; <b>אי-שליטה בשתן אפשרית, בצואה נדירה מאוד</b>; בלבול פוסט-איקטלי נדיר; לעיתים הזיות או חוויות "יציאה מהגוף". גורמים מגבירים: עמידה ללא תנועה, חום, התייבשות, אלכוהול, היפוקסמיה, אנמיה, כאב. למה סף העילפון שונה בין אנשים? לא ידוע; ייתכן בסיס גנטי אך לא זוהה גן.</p>
+<h3>טיפול</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>התערבות</th><th>מנגנון / הערה</th></tr></thead>
+<tbody>
+<tr><td>הרגעה, חינוך, הימנעות מטריגרים</td><td>אבן יסוד</td></tr>
+<tr><td>הרחבת נפח: נוזלים ומלח</td><td>מעלה נפח דם מרכזי</td></tr>
+<tr><td><b>תמרוני Counterpressure איזומטריים</b> (כיווץ בטן ורגליים, אחיזת יד, הצלבת רגליים)</td><td>מעלים נפח מרכזי ותפוקה; <b>כיווץ שרירי בטן הכי יעיל</b>; מועיל כשיש פרודרום ארוך; נתמך ב-RCT</td></tr>
+<tr><td>Fludrocortisone, מכווצי כלי דם, חוסמי β</td><td>בשימוש רחב אצל מומחים בחולים עקשניים, אך <b>אין הוכחה עקבית מ-RCT</b></td></tr>
+<tr><td>קוצב לב</td><td>נדיר שמועיל (הגורם העיקרי הוא וזודילטציה וירידת נפח, לא ברדיקרדיה). <b>חריגים:</b> גיל >40 עם ≥3 אפיזודות עם אסיסטולה ב-ILR (≥3 שנ' עם עילפון או ≥6 שנ' עם פרהסינקופה), או קרדיואינהיביציה בולטת בתסמונת סינוס קרוטידי (dual-chamber)</td></tr>
+</tbody></table></div>
+
+<h2><span class="num">4</span> היפוטנסיה אורתוסטטית (Orthostatic Hypotension)</h2>
+<div class="mechanism"><p class="chain"><b>הגדרה:</b> ירידה של ≥20 mmHg בלחץ סיסטולי או ≥10 mmHg בדיאסטולי אחרי 3 דקות עמידה או טילט. ביטוי של <b>כשל סימפתטי מכווץ כלים</b>; לרוב אין עלייה מפצה בדופק.</p></div>
+<ul>
+<li><b>Delayed OH:</b> אחרי יותר מ-3 דקות - ייתכן סימן מוקדם/קל לחוסר סימפתטי אדרנרגי.</li>
+<li><b>Initial OH:</b> בתוך 15 שניות מעמידה - חוסר התאמה זמני בין תפוקה להתנגדות, <b>אינו כשל אוטונומי</b>.</li>
+<li><b>תסמינים:</b> סחרחורת, פרהסינקופה; לעיתים רק חולשה, עייפות, האטה קוגניטיבית, כריעת רגליים, כאב ראש. טשטוש ראייה (איסכמיה רשתית/אוקסיפיטלית), <b>"coat-hanger headache"</b> (כאב צוואר ושכמות, איסכמיה של שרירי צוואר), קוצר נשימה אורתוסטטי (V/Q mismatch בקודקודי ריאה), אנגינה גם בלי מחלה כלילית. החמרה: מאמץ, עמידה ממושכת, חום, ארוחות.</li>
+<li><b>יתר לחץ דם בשכיבה</b> (supine hypertension): >50% מחולי כשל אוטונומי; קשור לדיסfunction ברורפלקס עם פלט סימפתטי שיורי.</li>
+</ul>
+<h3>סיבות</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>קבוצה</th><th>דוגמאות</th></tr></thead>
+<tbody>
+<tr><td>כשל אוטונומי ראשוני (<b>סינוקלאופתיות</b>, צבירת α-synuclein)</td><td>Parkinson, Lewy body dementia, Pure autonomic failure, <b>MSA (Shy-Drager)</b> - ב-MSA הצבר בגליה, בשאר בנוירונים</td></tr>
+<tr><td>כשל אוטונומי משני (נוירופתיות)</td><td>סוכרת, עמילואידוזיס (תורשתי ו-AL), HSAN (בעיקר type III - dysautonomia משפחתית), נוירופתיה אוטואימונית, Sjögren, פרא-ניאופלסטית, HIV, חסר B12, רעלנים, פורפיריה</td></tr>
+<tr><td>פוסטפרנדיאלי</td><td>ארוחות גדולות, עתירות פחמימות, אלכוהול (מנגנון לא ברור)</td></tr>
+<tr><td>איאטרוגני</td><td>חוסמי α (HTN, BPH), נוגדי יתר לחץ דם, ניטרטים/וזודילטורים, טריציקליים, פנותיאזינים; משתנים; דימום, הקאות, שלשול, שתייה מופחתת</td></tr>
+</tbody></table></div>
+<h3>טיפול</h3>
+<p><b>1)</b> הסרת גורמים הפיכים (בעיקר תרופות). <b>2)</b> לא תרופתי: מעבר מדורג משכיבה לעמידה, הימנעות מארוחות גדולות, תמרוני counterpressure, הגבהת ראש המיטה (מפחית supine HTN ודיורזיס לילי), הגברת נוזלים ומלח. <b>3)</b> תרופתי: <b>fludrocortisone</b> ומכווצי כלים - <b>midodrine</b>, L-DOPS. <b>4)</b> עקשנים: pyridostigmine, atomoxetine, yohimbine, octreotide, desmopressin (DDAVP), erythropoietin.</p>
+
+<h2><span class="num">5</span> עילפון לבבי (Cardiac Syncope)</h2>
+<p>הפרעות קצב ומחלה מבנית (לרוב יחד - מחלה מבנית הופכת את הלב לפגיע חשמלית). <span class="key">זה הסוג המסוכן.</span></p>
+<h3>הפרעות קצב</h3>
+<ul>
+<li><b>ברדיארריתמיות:</b> תפקוד לקוי של SA (sinus arrest, SA block), חסם AV (Mobitz II, מתקדם, מלא). לעיתים יחד עם טכיארריתמיה אטריאלית = <b>תסמונת טכי-ברדי</b>; <b>הפסקה ממושכת בסיום טכיקרדיה</b> היא גורם שכיח לעילפון. גם תרופות. עילפון מברדיקרדיה/אסיסטולה = <b>Stokes-Adams attack</b>.</li>
+<li><b>VT:</b> סבירות עילפון תלויה בקצב (קצבים &lt;200 לדקה פחות גורמים). סיבות ההפרעה ההמודינמית: התכווצות לא יעילה, מילוי דיאסטולי מקוצר, אובדן סינכרוניה AV ואיסכמיה.</li>
+<li><b>תעלופתיות תורשתיות:</b> <b>Long QT</b> (גנים של תעלות K+ α ו-β, Na+ ו-ankyrin B/ANK2) ← <b>Torsades de pointes</b> המתנוון ל-VF; <b>Brugada</b> (VF אידיופתי + ECG חדר ימין ללא מחלה מבנית, בעיקר SCN5A); <b>CPVT</b> (VT מאמץ/מתח). QT ארוך נרכש - בעיקר מתרופות.</li>
+</ul>
+<h3>מחלה מבנית</h3>
+<p>מסתמים (בעיקר AS), איסכמיה, קרדיומיופתיה היפרטרופית ואחרות, גידולי לב (myxoma), תפליט פריקרד - מפחיתים תפוקה. יכולים גם לתרום למנגנונים אחרים: הפרעות קצב, התייבשות/וזודילטציה מטיפול אגרסיבי בכשל לב, ו<b>וזודילטציה רפלקסיבית לא-הולמת</b> ב-AS ו-HCM (אולי מתכווצות יתר של החדר).</p>
+<p><b>טיפול:</b> לפי המחלה: קוצב ל-sinus node disease ו-AV block; אבלציה, תרופות אנטי-אריתמיות ו-ICD לטכיארריתמיות. מומלץ טיפול ע"י מומחים.</p>
+
+<h2><span class="num">6</span> אבחנה מבדלת - לא כל אובדן הכרה הוא עילפון</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>מצב</th><th>מה מבדיל מעילפון</th></tr></thead>
+<tbody>
+<tr><td><b>פרכוס</b></td><td>אאורה (ריח לא נעים, פחד, בטן); אובדן הכרה &gt;5 דקות; <b>בלבול ודמדום פוסט-איקטלי ממושך</b> (בעילפון - התארגנות כמעט מיידית); כאבי שרירים חזקים וארוכים יותר; לא מופעל בדרך כלל ע"י רגש/כאב; בעילפון מיוקלונוס קצר (&lt;30 שנ'), לא קצבי. אי-שליטה בשתן בשניהם, <b>בצואה נדירה בעילפון</b></td></tr>
+<tr><td>אפילפסיה אוטונומית</td><td>אאורות לא-אוטונומיות מצביעות עליה; עלולה לגרום לטכי/ברדיקרדיה משמעותית</td></tr>
+<tr><td><b>היפוגליקמיה</b></td><td>רעד, פלפיטציות, חרדה, הזעה, <b>רעב</b> (לא טיפוסי לפרודרום של עילפון), פרסתזיות; <i>תיתכן אי-ספיקה של התרעה</i> בשליטה הדוקה (חזרות)</td></tr>
+<tr><td><b>Cataplexy</b></td><td>איבוד טונוס פתאומי בעקבות כעס/צחוק, <b>ההכרה נשמרת</b>, 30 שניות-2 דקות, בלי פרודרום; 60-75% ממחלי narcolepsy</td></tr>
+<tr><td>נפילות (וסטיבולרי, צרבלום, אקסטרפירמידי)</td><td>אנמנזה ועדי ראייה</td></tr>
+<tr><td>פסיכיאטרי (חרדה, פאניקה, דיכאון, סומטיזציה)</td><td>עילפונות תכופים בלי פרודרום; <b>כמעט אין פציעות</b>; אין שינוי המודינמי (בעילפון וזובגלי יש יתר לחץ/ברדיקרדיה). טילט-טסט עם תסמינים ללא שינוי המודינמי</td></tr>
+</tbody></table></div>
+
+<h2><span class="num">7</span> הערכה ראשונית ואבחון</h2>
+<p>מטרות: לוודא שזה עילפון, לזהות סיבה, ולהעריך סיכון. <b>אנמנזה מפורטת, עדי ראייה, בדיקה גופנית ונוירולוגית; BP ודופק בשכיבה ואחרי 3 דקות עמידה.</b> ההערכה הראשונית מזהה סיבה בכ-<b>50%</b> ומסייעת בריבוד סיכון.</p>
+<div class="key-box"><b>סימני סיכון גבוה (Table 21-1) - אשפוז/הערכה מוגברת:</b> כאב חזה איסכמי, סימני CHF, מחלת מסתמים או לב מבנית בינונית/קשה, איסכמיה ב-ECG, VT בעבר, QT &gt;500 ms, SA block חוזר/הפסקות, ברדיקרדיה מתמשכת, חסם דו/תלת-fascicular או QRS ≥120, AF, NSVT, היסטוריה משפחתית של מוות פתאומי, preexcitation, Brugada, פלפיטציות בזמן העילפון, <b>עילפון במנוחה או במאמץ</b>.</div>
+<ul>
+<li><b>היסטוריה מסוכנת:</b> כאב חזה/בטן/קוצר נשימה/כאב ראש חדשים; עילפון במאמץ או בשכיבה; פלפיטציות פתאומיות לפני העילפון; מחלה כלילית/מבנית קשה.</li>
+<li><b>בדיקה מסוכנת:</b> SBP &lt;90 ללא הסבר; חשד לדימום GI; ברדיקרדיה מתמשכת &lt;40; אוושה סיסטולית לא מאובחנת.</li>
+<li><b>ECG</b> אם חשד לארריתמיה/מחלת לב. <b>בדיקות דם</b> לעיתים נדירות מועילות - רק לחשד ספציפי (MI, אנמיה, כשל אוטונומי משני).</li>
+<li><b>ניטור:</b> בבית חולים אם סיכון גבוה לארריתמיה מסכנת חיים. <b>Holter</b> אם אפיזודות תכופות (≥1 בשבוע). <b>Loop recorder</b> - חיצוני (&gt;1 בחודש) או משתל (פחות תכוף), לחשד לארריתמיה בסיכון נמוך ל-SCD.</li>
+<li><b>אקו</b> אם מחלת לב/ממצא ב-ECG או בבדיקה (AS, HCM, גידולים, דיסקציה, טמפונדה; גם לריבוד לפי EF). <b>מבחן מאמץ</b> אם עילפון במאמץ. <b>EPS</b> - רק במחלה מבנית + ECG חריג כשבדיקות לא פולשניות נכשלו; רגישות וסגוליות נמוכות, כמעט לא מבוצע.</li>
+<li><b>בדיקות אוטונומיות וטילט-טסט:</b> מבדילים OH מכשל אוטונומי (ירידת לחץ הדרגתית בלי עליית דופק, Fig. 21-4) מתגובה היפוטנסיבית-ברדיקרדית פתאומית של עילפון נוירוגני (Fig. 21-3); מזהים גם OH מיידי או מאוחר.</li>
+<li><b>עיסוי סינוס קרוטידי:</b> לחשד לתסמונת סינוס קרוטידי ובגיל &gt;40 עם עילפון חוזר לא מוסבר; <b>רק עם ניטור ECG ולחץ דם רציף, ולהימנע באוושות/פלאק/היצרות קרוטידית</b>.</li>
+<li><b>הערכה פסיכיאטרית</b> בעילפון חוזר לא מוסבר.</li>
+</ul>
+<div class="tablewrap"><table>
+<thead><tr><th>מאפיין</th><th>Neurally mediated</th><th>OH</th><th>Cardiac</th></tr></thead>
+<tbody>
+<tr><td>גיל טיפוסי</td><td>צעירים</td><td>מבוגרים</td><td>מבוגרים/מחלת לב</td></tr>
+<tr><td>דופק בעת ההיפוטנסיה</td><td>ברדיקרדיה/אסיסטולה</td><td>אין עלייה מפצה</td><td>תלוי בהפרעה</td></tr>
+<tr><td>פרודרום</td><td>אוטונומי (הזעה, חיוורון, בחילה)</td><td>סחרחורת בקימה</td><td>לעיתים ללא; פלפיטציות</td></tr>
+<tr><td>טריגר</td><td>רגש, כאב, עמידה, מצבים</td><td>קימה, ארוחה, תרופה</td><td>מאמץ / שכיבה</td></tr>
+<tr><td>סיכון</td><td>נמוך</td><td>בינוני</td><td>גבוה</td></tr>
+</tbody></table></div>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>ראשי תיבות: <span dir="ltr">"SYNCOPE"</span> - שלוש הקטגוריות</h3>
+<p>(חופשי, לשימוש לימודי) <b>N</b>eural (רפלקסי) · <b>O</b>rthostatic · <b>C</b>ardiac. ובבדיקת סיכון: <b>"EXERCISE-LYING"</b> - עילפון במאמץ או בשכיבה = חשוד לבבי עד שיוכח אחרת.</p>
+<p><b>סיפור:</b> דמיינו שומר ארמון (הברורפלקס) שעומד בראש מגדל גבוה (המוח). בעמידה, כל המים (הדם) יורדים לבורות בתחתית המגדל. השומר מזעיק צוות כיבוי סימפתטי (לחץ ↑) ומרגיע את הוואגוס. <b>וזובגל</b> = השומר נבהל מדם ומוציא פקודת "שחרר את כל הצינורות והאט את המשאבה". <b>OH</b> = השומר זקן והטלפון קטוע (אין קו) - הוא לא מגיב בכלל. <b>לבבי</b> = המשאבה עצמה מקולקלת (קצב, מסתם).</p>
+</div>
+<svg class="diagram" viewBox="0 0 700 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="סיפור זכירה">
+<g font-family="Segoe UI,Arial" font-size="14" text-anchor="middle">
+<rect x="20" y="20" width="200" height="140" rx="10" fill="#f5f3ff" stroke="#6d28d9"/><text x="120" y="50">וזובגל</text><text x="120" y="80">🩸 השומר נבהל</text><text x="120" y="110">צינורות נפתחים</text><text x="120" y="135">+ משאבה איטית</text>
+<rect x="250" y="20" width="200" height="140" rx="10" fill="#fffbeb" stroke="#b45309"/><text x="350" y="50">אורתוסטטי</text><text x="350" y="80">📞 הקו נותק</text><text x="350" y="110">אין תגובה</text><text x="350" y="135">הדופק לא עולה</text>
+<rect x="480" y="20" width="200" height="140" rx="10" fill="#fef2f2" stroke="#b91c1c"/><text x="580" y="50">לבבי</text><text x="580" y="80">⚙️ המשאבה מקולקלת</text><text x="580" y="110">קצב / מסתם</text><text x="580" y="135">מסוכן!</text>
+</g></svg>
+
+<h2><span class="num">9</span> מקורות להרחבה</h2>
+<ul class="resource-list">
+<li><a href="https://www.youtube.com/results?search_query=syncope+vasovagal+orthostatic+cardiac+osmosis" target="_blank" rel="noopener">חיפוש YouTube: סרטוני הסבר על עילפון</a><div class="desc">סרטונים חינוכיים (למשל Osmosis, Ninja Nerd) על סוגי העילפון. לא הוטמע סרטון ספציפי כדי לא להמציא מזהה שלא אומת.</div></li>
+<li><a href="https://academic.oup.com/eurheartj/article/39/21/1883/4939241" target="_blank" rel="noopener">2018 ESC Guidelines for syncope (Brignole et al.)</a><div class="desc">ההנחיה האירופית המצוטטת בפרק.</div></li>
+<li><a href="https://www.ahajournals.org/doi/10.1161/CIR.0000000000000499" target="_blank" rel="noopener">2017 ACC/AHA/HRS Syncope Guideline (Shen et al.)</a><div class="desc">ההנחיה האמריקאית המצוטטת בפרק.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3>
+<p>בת 17 עומדת בטקס ארוך בחום, חשה חום, בחילה והזעה קרה, מתחילה לראות כתמים ונופלת. עדים מדווחים על כמה עוויתות קצרות ולא קצביות; העיניים היו פקוחות, והיא התעוררה תוך כחצי דקה, צלולה, חיוורת. ללא בלבול. ECG תקין, BP בשכיבה 115/70 ובעמידה 112/72 אחרי 3 דקות, ללא עלייה בדופק מופרזת. אמה התעלפה בעבר.</p></div>
+<div class="quiz" data-answer="2">
+  <div class="q">מה האבחנה הסבירה ביותר?</div>
+  <button class="opt" data-i="0">פרכוס טוני-קלוני</button>
+  <button class="opt" data-i="1">Orthostatic hypotension מכשל אוטונומי</button>
+  <button class="opt" data-i="2">עילפון וזובגלי (neurally mediated)</button>
+  <button class="opt" data-i="3">Long QT</button>
+  <button class="opt" data-i="4">היפוגליקמיה</button>
+  <div class="explain">פרודרום אוטונומי, טריגר ברור (חום, עמידה), עוויתות קצרות לא קצביות, החלמה מהירה ללא בלבול, ECG ו-BP תקינים והיסטוריה משפחתית = וזובגלי. פרכוס היה נותן בלבול ממושך; OH מוגדר ע"י ירידת BP בעמידה; QT ארוך - ECG חריג; היפוגליקמיה - רעב ורעד ולא החלמה מיידית.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">איזה ממצא הכי מצדיק אשפוז וניטור?</div>
+  <button class="opt" data-i="0">עילפון אחרי מראה דם</button>
+  <button class="opt" data-i="1">עילפון במהלך ריצה עם אוושה סיסטולית</button>
+  <button class="opt" data-i="2">סחרחורת אחרי קימה בבוקר</button>
+  <button class="opt" data-i="3">עילפון אחרי מתן שתן</button>
+  <button class="opt" data-i="4">עילפון בעמידה ממושכת בחום</button>
+  <div class="explain">עילפון במאמץ + אוושה = חשד ל-AS/HCM (סיכון גבוה). שאר האפשרויות הן טריגרים נוירוגניים/אורתוסטטיים טיפוסיים.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">איזה תמרון counterpressure הכי יעיל בעילפון נוירוגני?</div>
+  <button class="opt" data-i="0">הצלבת רגליים בלבד</button>
+  <button class="opt" data-i="1">אחיזת יד</button>
+  <button class="opt" data-i="2">שכיבה מיידית עם רגליים למטה</button>
+  <button class="opt" data-i="3">כיווץ שרירי בטן</button>
+  <button class="opt" data-i="4">היפרוונטילציה</button>
+  <div class="explain">לפי הפרק, כיווץ שרירי בטן הוא היעיל ביותר. היפרוונטילציה מחמירה (היפוקרבניה ← וזוקונסטריקציה מוחית).</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">למה קוצב אינו מועיל בדרך כלל בעילפון וזובגלי?</div>
+  <button class="opt" data-i="0">כי המנגנון הדומיננטי הוא וזודילטציה וירידת נפח/תפוקה, לא ברדיקרדיה</button>
+  <button class="opt" data-i="1">כי אין ברדיקרדיה כלל</button>
+  <button class="opt" data-i="2">כי קוצבים מחמירים OH</button>
+  <button class="opt" data-i="3">כי הסיכון לזיהום גבוה</button>
+  <button class="opt" data-i="4">כי הוא נחוץ רק אחרי ICD</button>
+  <div class="explain">ברדיקרדיה/אסיסטולה קיימת בחלק, אבל ברוב החולים הוזודילטציה הדומיננטית. חריגים: מעל גיל 40 עם ≥3 אפיזודות אסיסטולה ב-ILR, וקרדיואינהיביציה בולטת בסינוס קרוטידי.</div>
+</div>
+<div class="quiz" data-answer="4">
+  <div class="q">מה הסדר הנכון בטיפול ב-OH נוירוגני?</div>
+  <button class="opt" data-i="0">Midodrine ← הסרת תרופות ← נוזלים</button>
+  <button class="opt" data-i="1">Fludrocortisone ← ניתוח</button>
+  <button class="opt" data-i="2">Erythropoietin בקו ראשון</button>
+  <button class="opt" data-i="3">קוצב קבוע</button>
+  <button class="opt" data-i="4">הסרת גורמים הפיכים ← לא-תרופתי (מלח, נוזלים, ראש מיטה מוגבה) ← fludrocortisone/midodrine ← תוספות</button>
+  <div class="explain">כך בדיוק בפרק. EPO, pyridostigmine, atomoxetine וכד' שמורים לעקשנים.</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">11</span> סיכום של הסיכום</h2>
+<ul>
+<li>עילפון: אובדן הכרה חולף עקב היפופרפוזיה מוחית כללית; החלמה מהירה ומלאה</li>
+<li>3 סוגים: נוירוגני (שכיח, צעירים), OH, לבבי (מסוכן)</li>
+<li>מנגנון: עמידה ← איגום 500-1000 מ"ל ← ברורפלקס; כשל ← SBP ≈ 50 ← עילפון; 6-8 שנ' ללא זרימה מספיקות</li>
+<li>EEG: slow-flat-slow, ללא פריקות אפילפטיות</li>
+<li>OH: ↓≥20/10 mmHg אחרי 3 דקות; ללא עליית דופק = כשל אוטונומי; initial OH (15 שנ') אינו כשל</li>
+<li>סינוקלאופתיות: PD, LBD, PAF, MSA; משניים: סוכרת, עמילואידוזיס, B12; מיותר: תרופות</li>
+<li>לבבי: ברדי (SSS, AV block), VT, Long QT/Brugada/CPVT, AS, HCM, myxoma, טמפונדה</li>
+<li>סיכון גבוה: מאמץ/שכיבה, פלפיטציות, SBP&lt;90, QT&gt;500, מחלה מבנית, היסטוריה משפחתית SCD</li>
+<li>הערכה: אנמנזה + עדים + BP שכיבה/עמידה + ECG (50% אבחנה); Holter/Loop, אקו, מאמץ, טילט, CSM (&gt;40, בטוח)</li>
+<li>טיפול נוירוגני: חינוך, נוזלים/מלח, counterpressure (בטן הכי טוב); קוצב רק בחריגים</li>
+<li>טיפול OH: להפסיק תרופות ← נוזלים/מלח/ראש מוגבה ← fludrocortisone/midodrine</li>
+</ul>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else { btn.classList.add('wrong'); q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct'); }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
