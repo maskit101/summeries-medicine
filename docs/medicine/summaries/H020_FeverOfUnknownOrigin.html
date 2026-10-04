@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>חום ממקור לא ידוע (Fever of Unknown Origin - FUO)</title>
+<style>
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Assistant',Arial,sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px; color:var(--ink); line-height:1.75; font-size:17px; background:#fff}
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .tablewrap{overflow-x:auto}
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  @media (max-width:600px){ body{padding:20px 14px 60px; font-size:16px} }
+</style>
+</head>
+<body>
+<h1>חום ממקור לא ידוע <span class="term" dir="ltr">(Fever of Unknown Origin - FUO)</span></h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · פרק 20 · עמ' 186–192 · Bleeker-Rovers, Mulders-Manders, van der Meer</div>
+
+<p>FUO הוא <span class="key">אתגר של סבלנות ושיטתיות, לא של בדיקות נדירות</span>: חולה עם חום שנמשך שבועות, ואחרי בירור ראשוני סביר עדיין אין הסבר. המסר המרכזי של הפרק: <b>FUO נגרם הרבה יותר מצגה לא-טיפוסית של מחלה שכיחה מאשר ממחלה נדירה</b>, והמפתח לאבחנה הוא חיפוש חוזר אחר "רמזים אבחנתיים" ולא "מטח בדיקות".</p>
+
+<h2><span class="num">1</span> הגדרה - ארבעה תנאים מצטברים</h2>
+<div class="mechanism">
+<p class="chain">חום ≥38.3°C (≥101°F) לפחות בשתי הזדמנויות + מחלה ≥3 שבועות + אין מצב מדוכא חיסון ידוע + אבחנה לא ברורה אחרי אנמנזה, בדיקה גופנית והבדיקות ה"חובה".</p>
+</div>
+<p><b>היסטוריה:</b> ההגדרה המקורית (Petersdorf & Beeson, 1961) דרשה גם <b>שבוע אשפוז לצורך בירור</b>. כיום אין צורך בכך - רוב החולים מאושפזים רק אם מצבם דורש, וה"שבוע" הוחלף בקריטריון <b>איכותני</b>: רשימת בדיקות חובה שחייבות להתבצע. הסיבה: להשוות בין אזורים גיאוגרפיים ובין מרכזים בצורה אחידה. <b>חולים מדוכאי חיסון הוצאו מההגדרה</b> כי הבירור והטיפול בהם שונים לחלוטין (פתוגנים אופורטוניסטיים).</p>
+<h3>בדיקות החובה (Obligatory)</h3>
+<p><span class="key">ESR ו-CRP</span>, ספירת טסיות, לויקוציטים ודיפרנציאל, המוגלובין, אלקטרוליטים, קריאטינין, חלבון כללי, <b>אלקטרופורזה של חלבונים</b>, ALP, ALT, AST, LDH, CK, <b>פריטין</b>, ANA, RF, בדיקת שתן, <b>3 תרביות דם</b>, תרבית שתן, צילום חזה, <b>אולטרסאונד בטן</b>, ו-TST או IGRA.</p>
+<h3>IUO - Inflammation of Unknown Origin</h3>
+<p>אותה הגדרה, אבל <b>בלי חום</b>: סמני דלקת (CRP או ESR) מוגברים בכמה הזדמנויות לפחות <b>3 שבועות</b> אצל חולה עם חיסון תקין וטמפרטורה תקינה. הסיבות והבירור זהים ל-FUO, ולכן הפרק מתייחס לשניהם כ-FUO.</p>
+<div class="key-box"><b>חום חוזר (recurrent fever)</b> = אפיזודות חום עם מרווחים נטולי חום של ≥שבועיים ונסיגה לכאורה של המחלה. הסיכוי להגיע לאבחנה אטיולוגית הוא <b>&lt;50%</b>.</div>
+
+<h2><span class="num">2</span> אטיולוגיה ואפידמיולוגיה - למה התמונה השתנתה</h2>
+<p>ההתפלגות של הגורמים השתנתה מאז 1961 בגלל שלושה כוחות: <b>(1)</b> שינוי בספקטרום המחלות (למשל HIV חריף שלא היה מוכר), <b>(2)</b> שימוש נרחב באנטיביוטיקה, <b>(3)</b> טכניקות אבחון חדשות. התוצאה: אבצסים תוך-בטניים וגידולים הפכו נדירים יותר כגורם FUO כי <b>CT ואולטרסאונד מזהים אותם מוקדם</b>; אנדוקרדיטיס פחות שכיחה כי תרביות דם ואקו משופרים. מצד שני, חולים מגיעים לרופא מוקדם ורוב מחלות החום מתבררות לפני שבוע 3 - ולכן <b>רק המקרים הקשים ביותר נשארים FUO</b>. זו הסיבה לכך שבמערב <span class="key">יותר משליש מה-FUO נשארים בלי אבחנה</span> (הרבה יותר מבעבר), אבל הם בדרך כלל מסתדרים טוב.</p>
+<div class="tablewrap"><table>
+<thead><tr><th>אזור</th><th>זיהומים</th><th>NIID</th><th>ממאירות</th><th>שונות</th><th>ללא אבחנה</th></tr></thead>
+<tbody>
+<tr><td>מערב אירופה</td><td>17%</td><td>25%</td><td>10%</td><td>10%</td><td><b>37%</b></td></tr>
+<tr><td>שאר אירופה + טורקיה</td><td>38%</td><td>25%</td><td>14%</td><td>6%</td><td>16%</td></tr>
+<tr><td>המזרח התיכון</td><td><b>66%</b></td><td>15%</td><td>7%</td><td>1%</td><td>8%</td></tr>
+<tr><td>אסיה</td><td>42%</td><td>20%</td><td>13%</td><td>9%</td><td>18%</td></tr>
+</tbody></table></div>
+<p>(חציוני אחוזים מטבלה 20-1, מחקרים 1999-2019. NIID = <span class="term" dir="ltr">Non-Infectious Inflammatory Disease</span>: אוטואימוני, אוטואינפלמטוריים, גרנולומטוזיים ווסקוליטיס.)</p>
+<div class="mechanism"><p class="chain">מערב: NIID הם הקבוצה המאובחנת השכיחה ביותר (&gt;שליש) · מחוץ למערב: זיהומים שולטים, ועד <b>חצי מהזיהומים הם שחפת (M. tuberculosis)</b>.</p>
+<p>למה NIID לא יירדו בקרוב? כי <b>החום עשוי להקדים את הביטויים הטיפוסיים או את הממצאים המעבדתיים במחלה במשך חודשים</b>, ורבים מהם ניתנים לאבחנה רק אחרי התבוננות ממושכת והוצאת מחלות אחרות.</p></div>
+
+<h2><span class="num">3</span> אבחנה מבדלת - עקרון "מחלה שכיחה, ביטוי נדיר"</h2>
+<svg class="diagram" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ארבע קבוצות גורמי FUO">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4b5563"/></marker></defs>
+<rect x="290" y="10" width="180" height="46" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="380" y="38" text-anchor="middle" font-size="16" font-weight="700">FUO</text>
+<rect x="10" y="120" width="170" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="95" y="145" text-anchor="middle" font-size="14" font-weight="700">זיהומים</text><text x="95" y="167" text-anchor="middle" font-size="12">אנדוקרדיטיס, דיברטיקוליטיס,</text><text x="95" y="184" text-anchor="middle" font-size="12">אוסטאומיאליטיס חולייתי, TB</text>
+<rect x="195" y="120" width="170" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/><text x="280" y="145" text-anchor="middle" font-size="14" font-weight="700">NIID</text><text x="280" y="167" text-anchor="middle" font-size="12">Still בוגרים, GCA/PMR,</text><text x="280" y="184" text-anchor="middle" font-size="12">SLE, סרקואידוזיס</text>
+<rect x="380" y="120" width="170" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="465" y="145" text-anchor="middle" font-size="14" font-weight="700">ממאירות</text><text x="465" y="167" text-anchor="middle" font-size="12">לימפומה (הכי שכיחה)</text><text x="465" y="184" text-anchor="middle" font-size="12">סרטן כליה/כבד/ריאה...</text>
+<rect x="565" y="120" width="185" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="657" y="145" text-anchor="middle" font-size="14" font-weight="700">שונות</text><text x="657" y="167" text-anchor="middle" font-size="12">חום תרופתי, hyperthermia</text><text x="657" y="184" text-anchor="middle" font-size="12">במאמץ, חום מלאכותי</text>
+<path d="M340,56 L120,118" stroke="#4b5563" marker-end="url(#ar)" fill="none"/><path d="M360,56 L280,118" stroke="#4b5563" marker-end="url(#ar)" fill="none"/><path d="M400,56 L465,118" stroke="#4b5563" marker-end="url(#ar)" fill="none"/><path d="M420,56 L640,118" stroke="#4b5563" marker-end="url(#ar)" fill="none"/>
+</svg>
+<h3>זיהומים</h3>
+<p>הנפוצים: <b>אנדוקרדיטיס, דיברטיקוליטיס, אוסטאומיאליטיס חולייתי, שחפת חוץ-ריאתית</b>. שתי נקודות מיוחדות:</p>
+<ul>
+<li><b>אנדוקרדיטיס עם תרביות שליליות</b> (Chap. 128): חיידקים קשי-גידול - <span class="term" dir="ltr">HACEK</span> (Haemophilus, Aggregatibacter, Cardiobacterium, Eikenella, Kingella), <span class="term" dir="ltr">Coxiella burnetii</span>, <span class="term" dir="ltr">Tropheryma whipplei</span>, <span class="term" dir="ltr">Bartonella</span>. בנוסף <b>אנדוקרדיטיס מרנטית (marantic)</b> - סטרילית, תרומבוטית, פראנאופלסטית (בעיקר אדנוקרצינומות), וכן ב-SLE ובתסמונת אנטי-פוספוליפידית.</li>
+<li><b>Q fever</b> (חשיפה לבעלי חיים): סרולוגיה ב-IFA כשהחולה גר באזור כפרי או יש מחלת מסתם, מפרצת אאורטה או פרוטזה וסקולרית. <b>Whipple</b>: PCR כשיש תסמינים של מערכת עצבים, מערכת עיכול או מפרקים. נסיעה לאזורים טרופיים/דרום-מערב ארה"ב ← לשקול מלריה, ליישמניאזיס, היסטופלזמוזיס, קוקסידיואידומיקוזיס.</li>
+</ul>
+<h3>NIID</h3>
+<p>שכיחים: <b>Still בוגרים, vasculitis של כלי דם גדולים (GCA), polymyalgia rheumatica, SLE, סרקואידוזיס</b>. התסמונות האוטואינפלמטוריות התורשתיות <b>נדירות</b> (חוץ מ-<span class="term" dir="ltr">FMF</span> באזורים מסוימים) ומופיעות בצעירים. <b>Schnitzler</b> (סרפדת + כאבי עצמות + גמופתיה מונוקלונלית) - נדיר אך קל לאבחון כשחושבים עליו.</p>
+<h3>ממאירות</h3>
+<p>רוב הגידולים יכולים לגרום לחום, אבל <span class="key">לימפומה היא הכי שכיחה</span> - לפעמים החום קודם ללימפאדנופתיה שנמששת. מהגידולים הסולידיים: שד, קולון, HCC, ריאה, לבלב, RCC.</p>
+<h3>שונות</h3>
+<ul>
+<li><b>חום תרופתי</b> - כמעט כל תרופה, גם אחרי שימוש ארוך. מלווה לעיתים באאוזינופיליה ולימפאדנופתיה (<span class="term" dir="ltr">DRESS</span>). שכיחים: allopurinol, carbamazepine, lamotrigine, phenytoin, sulfasalazine, furosemide, אנטימיקרוביאליים (סולפונמידים, minocycline, vancomycin, β-לקטמים, isoniazid), quinidine, nevirapine.</li>
+<li><b>Hyperthermia במאמץ</b> - ללא עלייה ב-CRP/ESR, והחולה <b>מזיע</b> (בניגוד לחום אמיתי).</li>
+<li><b>Factitious fever</b> (החולה גורם לחום, למשל הזרקה IV של מים מזוהמים; שכיח בנשים צעירות בצוותי רפואה) מול <b>Fraudulent fever</b> (החולה נורמותרמי ומתעסק בטרמומטר). הרמז: <b>מדידה בו-זמנית בכמה אתרים</b> (פי הטבעת/אוזן/פה) ו<b>דיסוציאציה בין דופק לטמפרטורה</b>.</li>
+</ul>
+<h3>קשישים</h3>
+<p>סיכוי למצוא סיבה <b>גבוה יותר</b>. הנפוצים: <b>GCA ו-PMR</b>; השחפת היא הזיהום השכיח, הרבה יותר מאשר בצעירים.</p>
+
+<h2><span class="num">4</span> הגישה לחולה - שלב ראשון: חיפוש רמזים (PDCs)</h2>
+<div class="mechanism"><p class="chain">הצעד החשוב ביותר: חיפוש <b>Potentially Diagnostic Clues (PDCs)</b> = כל סימן/תסמין/ממצא מקומי שעשוי להצביע על אבחנה - דרך אנמנזה ובדיקה גופנית <span class="key">מלאות וחוזרות</span> + בדיקות החובה.</p></div>
+<p><b>אנמנזה:</b> דפוס החום (רציף/חוזר) ומשכו, תרופות כעת וחדשות, היסטוריה משפחתית, מינית, ארץ מוצא, נסיעות, חשיפות סביבתיות/תחביבים ובעלי חיים. <b>בדיקה:</b> דגש על עיניים, בלוטות לימפה, עורקי הרקה, כבד, טחול, אתרי ניתוח קודמים, כל העור והריריות.</p>
+<div class="key-box">לפני כל בדיקה נוספת - <b>להפסיק אנטיביוטיקה וגלוקוקורטיקואידים</b>: הם מסתירים מחלות (תרביות לא אמינות; בלוטות מצטמקות על סטרואידים בלי קשר לסיבה).</div>
+<h3>למה "בדיקות חובה" זולות ופשוטות?</h3>
+<p>אולטרסאונד בטן ו-CXR מפיקים הרבה תוצאות חיוביות-שקריות ורגישות נמוכה, <b>ובכל זאת חובה</b> - הם מפרידים בין מקרים שמתאבחנים בקלות לאלה שלא. אולטרסאונד מועדף על CT כבדיקת חובה בגלל <b>עלות נמוכה, ללא קרינה וללא תופעות לוואי</b>.</p>
+<h3>מה לא לעשות</h3>
+<ul>
+<li>ביוכימיה/אימונולוגיה מעבר לחובה ← תפוקה נמוכה, יותר חיוביים-שקריים מאשר אמיתיים, <b>אלא אם יש PDC</b>. יוצא דופן: <b>קריוגלובולינים</b> - ערך כבדיקת סינון.</li>
+<li><b>יותר מ-3 תרביות דם או יותר מתרבית שתן אחת</b> - חסר תועלת בלי PDC. חזרה על תרבית רק אם נלקחה תחת אנטיביוטיקה או עד שבוע אחריה.</li>
+<li>סרולוגיה מיקרוביולוגית, אקו, צילום סינוסים, בדיקות GI, ברונכוסקופיה - <b>תפוקה נמוכה ללא PDC</b>, לא כסינון.</li>
+</ul>
+<p>דגשים לתרבית דם: לתת לדגימות זמן גידול ארוך (HACEK), <b>להודיע למעבדה</b> על חשד לאורגניזמים נדירים, מצעים מיוחדים ל-Histoplasma/Legionella.</p>
+<h3>FUO עם כאב ראש</h3>
+<p>לבדוק CSF: HSV (בעיקר סוג 2), <span class="term" dir="ltr">Cryptococcus neoformans</span>, <span class="term" dir="ltr">M. tuberculosis</span>. ב-TB של ה-CNS: חלבון <b>100-500 mg/dL</b>, גלוקוז <b>&lt;45 mg/dL ב-80%</b>, פלאוציטוזיס <b>מונונוקלארי 100-500 תאים/μL</b>.</p>
+<h3>שחפת - מלכודת הבדיקה</h3>
+<p>TST/IGRA עלולים להיות <b>שליליים</b> במיליארית, תת-תזונה ודיכוי חיסון. IGRA פחות מושפע מחיסון BCG ומ-NTM, אבל הרגישות דומה ל-TST - <span class="key">שלילי לא שולל</span>. מיליארית קשה לאבחון; גרנולומות בביופסיית כבד/מח עצם ← לחשוב מחדש על TB. עם חשד: <b>ביופסיית כבד</b> (AFB, תרבית, PCR) - התפוקה הגבוהה ביותר.</p>
+<h3>לפני הדמיה: להוציא את ה"רעשים"</h3>
+<p>לשלול זיוף חום (במיוחד בלי סימני דלקת במעבדה). להפסיק <b>כל</b> התרופות (כולל ללא מרשם ותוספים); <b>אם חום נמשך מעבר ל-72 שעות אחרי הפסקת תרופה חשודה - היא כנראה לא האשמה</b>. פונדוסקופיה אצל רופא עיניים ← ווסקוליטיס רטינלי.</p>
+
+<h2><span class="num">5</span> חום חוזר - גישה שונה</h2>
+<p>אותה שיטה (אנמנזה, בדיקה, בדיקות חובה), עם חיפוש PDCs התואמים <b>תסמונות חוזרות ידועות</b> (טבלה 20-3). <span class="key">לבקש מהחולה לחזור בזמן אפיזודת חום</span> כדי לחזור על אנמנזה, בדיקה ומעבדה בשלב סימפטומטי, והדמיה מתקדמת (PET/CT, סינטיגרפיה) <b>רק בזמן אפיזודה או כשהסמנים הדלקתיים חריגים</b>, כי בין האפיזודות עלולים להיות ממצאים תקינים. אם החום החוזר נמשך <b>&gt;2 שנים</b> - נדיר שהסיבה זיהום או ממאירות; בדיקות נוספות רק עם PDCs לזיהומים/ווסקוליטיס/ממאירות או בהחמרה קלינית.</p>
+
+<h2><span class="num">6</span> FDG-PET/CT - מה בפועל קורה בבדיקה</h2>
+<div class="mechanism"><p class="chain">מזריקים גלוקוז מסומן רדיואקטיבית (<span class="term" dir="ltr">18F-FDG</span>) ← נקלט בתאים עם <b>קצב גליקוליזה גבוה</b> (תאים ממאירים <b>וגם לויקוציטים מופעלים</b>) ← "נתקע" בתא (לא ממשיך מטבוליזם) ← ה-PET מצלם איפה נצבר, וה-CT נותן אנטומיה.</p></div>
+<p><b>יתרונות מול סינטיגרפיה קלאסית:</b> רזולוציה גבוהה, רגישות גבוהה לזיהומים כרוניים בעוצמה נמוכה, דיוק בשלד המרכזי, ועלייה בספיגה בכלי דם בווסקוליטיס.</p>
+<p><b>מגבלה מרכזית:</b> אינו מבדיל בין זיהום, דלקת סטרילית וממאירות - אבל כולן סיבות ל-FUO, ולכן הוא <b>מכוון בדיקות מדויקות</b> (ביופסיה ממוקדת). ספיגה פיזיולוגית מטשטשת מוח, לב, מעי, כליות ושלפוחית. <b>דיאטה דלת פחמימות לפני הבדיקה</b> מפחיתה ספיגה בלב (שיעזור לראות אנדוקרדיטיס). מח עצם נראה לעיתים "דלוק" באופן לא ספציפי בחום (ציטוקינים מעלים ביטוי של טרנספורטרי גלוקוז).</p>
+<div class="tablewrap"><table>
+<thead><tr><th>בדיקה</th><th>ערכים מהפרק</th></tr></thead>
+<tbody>
+<tr><td>PET/CT</td><td>רגישות ~85%, סגוליות ~50%, תפוקה אבחנתית ~50% (PET לבד ~40%)</td></tr>
+<tr><td>גליום (<sup>67</sup>Ga) סינטיגרפיה</td><td>תפוקה 21-54%; מאתרת מקור ב~שליש</td></tr>
+<tr><td>סינטיגרפיה עם לויקוציטים מסומנים (<sup>111</sup>In/<sup>99m</sup>Tc)</td><td>תפוקה 8-31%; גורם מזוהה בכחמישית</td></tr>
+<tr><td>CT חזה/בטן (סינון בשלב מאוחר)</td><td>תפוקה ~20%; סגוליות חזה ~80%, בטן 63-80%</td></tr>
+</tbody></table></div>
+<div class="key-box"><b>תזמון קריטי:</b> לבצע PET/CT כשהחולה <b>בחום או כש-CRP/ESR מוגברים</b>; אם שניהם תקינים - אין חום - התועלת נמוכה. <b>גלוקוקורטיקואידים לעצור/לדחות עד אחרי הבדיקה</b>: הם "מנקים" ספיגה פתולוגית במהירות (ווסקוליטיס, לימפומה). אם בוצע בתנאים נכונים ולא תרם - חזרה לא כדאית אלא אם הופיעו PDC חדשים.</div>
+<p><b>המקרה בספר (איור 20-2):</b> אישה בת 72 עם חום נמוך ועייפות 3 חודשים, בדיקה גופנית (כולל עורקי רקה) תקינה, אנמיה נורמוציטית, CRP 43 mg/L, ESR 87 mm/h, היפואלבומינמיה קלה. אין PDC ← PET/CT: ספיגה מוגברת בכל העורקים הגדולים וברקמה הרכה סביב כתפיים, ירכיים וברכיים = <b>GCA + PMR</b>. פרדניזון 60 מ"ג ליום ← החלמה תוך שבוע.</p>
+<svg class="diagram" viewBox="0 0 760 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="מנגנון FDG-PET">
+<defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#4b5563"/></marker></defs>
+<rect x="10" y="30" width="130" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="75" y="63" text-anchor="middle" font-size="14">הזרקת FDG</text>
+<rect x="190" y="30" width="170" height="56" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="275" y="55" text-anchor="middle" font-size="13">תאים עם גליקוליזה</text><text x="275" y="73" text-anchor="middle" font-size="13">גבוהה (גידול, לויקוציט)</text>
+<rect x="410" y="30" width="150" height="56" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="485" y="55" text-anchor="middle" font-size="13">FDG נתקע בתא</text><text x="485" y="73" text-anchor="middle" font-size="13">ונצבר</text>
+<rect x="610" y="30" width="140" height="56" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="680" y="55" text-anchor="middle" font-size="13">PET: "נקודה חמה"</text><text x="680" y="73" text-anchor="middle" font-size="13">+ CT: מיקום</text>
+<path d="M140,58 L188,58" stroke="#4b5563" marker-end="url(#ar2)"/><path d="M360,58 L408,58" stroke="#4b5563" marker-end="url(#ar2)"/><path d="M560,58 L608,58" stroke="#4b5563" marker-end="url(#ar2)"/>
+</svg>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KR3flre6vLI" title="An Approach to Fever of Unknown Origin (FUO)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">סרטון הרצאה על הגישה ל-FUO (תוצאת חיפוש YouTube; יש לבדוק התאמה למינוח של הריסון 21).</p>
+
+<h2><span class="num">7</span> בדיקות בשלב מאוחר ויצירת האבחנה</h2>
+<ul>
+<li><b>ביופסיה לאישור</b> ממצא הדמיה (פתולוגיה/תרבית). <b>לימפאדנופתיה ← ביופסיית בלוטה</b> גם אם קשה להגיע או שקודמת לא הייתה אבחנתית; <b>נגע עורי ← ביופסיית עור</b>.</li>
+<li><b>CT חזה ובטן</b> - כסינון מאוחר (לא פולשני, רגישות גבוהה).</li>
+<li><b>מח עצם</b> - נדיר שמועיל ללא PDC להמטולוגיה; עם PET/CT ערכו יורד עוד.</li>
+<li><b>GCA:</b> שכיח ב-FUO בקשישים (עד 17%). PET/CT מזהה בכלי דם גדולים, אבל <b>ביופסיית עורק רקה עדיין מומלצת מגיל 55</b> כי PET/CT לא יראה ווסקוליטיס מוגבל לעורקי הרקה (קוטר קטן + ספיגת FDG גבוהה במוח).</li>
+<li><b>ביופסיית כבד</b> - לא לסינון; רק עם PDC לכבד או מיליארית (בשתי מחקרים עזרה בחולה אחד בלבד; פולשנית עם סיכון תמותה).</li>
+</ul>
+<div class="mechanism"><p class="chain">אחרי כל זה אין אבחנה? <b>לחזור על אנמנזה ובדיקה</b>, לסקור מעבדה והדמיה (גם מבתי חולים אחרים). עיכוב באבחנה נובע לרוב מ<span class="key">אי-זיהוי PDC שכבר קיים במידע</span>. עדיף <b>לחכות ל-PDC חדשים</b> מאשר להזמין עוד סינון; רק בהחמרה ללא PDC חדשים - המשך בירור.</p></div>
+<h3>חוות דעת שנייה במרכז מומחה</h3>
+<p>במחקר היחיד: <b>57.3%</b> קיבלו אבחנה; מתוך שנשארו ללא אבחנה, <b>10.9%</b> נעלמו להם החום בטיפול אמפירי ← תוצאה טובה ב-<b>68.2%</b>.</p>
+
+<h2><span class="num">8</span> טיפול - ההפך מאינטואיציה: לא ממהרים</h2>
+<div class="key-box"><b>ניסויי טיפול אמפיריים</b> (אנטיביוטיקה, סטרואידים, אנטי-שחפתי) <b>נמנעים</b>, אלא אם מצב החולה מידרדר במהירות אחרי שהבירור נכשל.</div>
+<div class="tablewrap"><table>
+<thead><tr><th>טיפול</th><th>מתי כן</th><th>למה בזהירות</th></tr></thead>
+<tbody>
+<tr><td><b>אנטיביוטיקה / אנטי-שחפתי</b></td><td>חוסר יציבות המודינמית או נויטרופניה (אנטיביוטיקה); TST/IGRA חיובי, או מחלה גרנולומטוזית עם אנרגיה כשסרקואידוזיס לא סביר ← ניסוי TB. אם אין תגובה אחרי 6 שבועות ← אבחנה אחרת</td><td>עלולים לפגוע <b>באופן בלתי הפיך</b> ביכולת לגדל חיידקים קשי-גידול ומיקובקטריות</td></tr>
+<tr><td><b>קולכיצין</b> (<span class="term" dir="ltr">Colchicine</span>)</td><td>חשד ל-FMF, בעיקר ממוצא מאזור שכיח; יעיל במניעת התקפים (שבועות עד חודשים), פחות בהתקף עצמו</td><td>תגובה אינה אבחנתית מלאה בשלב החריף</td></tr>
+<tr><td><b>NSAIDs</b></td><td>תמיכתי בחום מתמשך אחרי בירור מאוחר. <b>Still בוגרים - תגובה דרמטית</b></td><td>מסתירים חום וגורמים להתפשטות זיהום/לימפומה</td></tr>
+<tr><td><b>גלוקוקורטיקואידים</b></td><td>GCA/PMR - תגובה מרשימה</td><td>מורידים סיכוי לאבחנה של לימפומה (שדורשת טיפול ספציפי ומציל חיים); רק כשזיהום ולימפומה נשללו במידה רבה והמחלה הדלקתית סבירה וחמורה</td></tr>
+<tr><td><b>Anakinra</b> (IL-1Ra רקומביננטי, חוסם IL-1α ו-IL-1β)</td><td>תסמונות אוטואינפלמטוריות (FMF, CAPS, TRAPS, HIDS, Schnitzler, Still בוגרים) ועוד; ניסוי לאחר בדיקות מאוחרות</td><td>אלטרנטיבה לסטרואידים בלי תופעות לוואי מטבוליות, אימונולוגיות ו-GI</td></tr>
+</tbody></table></div>
+<p><b>למה IL-1?</b> IL-1 הוא ציטוקין מפתח בדלקת מקומית וסיסטמית ובתגובת החום (פירוגן אנדוגני). חסימתו מדכאת את מחולל החום ישירות, ולכן הוא יעיל בתסמונות שבהן הפגם הוא עודף הפעלה של האינפלמזום.</p>
+<h3>פרוגנוזה</h3>
+<p>FUO ללא אבחנה - <b>פרוגנוזה טובה</b>. מחקר 1: 436 חולים, 168 ללא אבחנה, 4 (2.4%) מתו (כולם באשפוז; 2 אובחנו בנתיחה - לימפומה תוך-וסקולרית ודלקת ריאות דו-צדדית). מחקר 2: 131 חולים ללא הסבר, 9 (6.9%) מתו בחציון 5 שנים, ב-5 מ-6 שידוע גורם המוות לא היה קשור לחום. תמותה קשורת FUO יורדת עם השנים.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>ארבעת תנאי ההגדרה: "38-3-חיסון-בדיקות"</h3>
+<p><b>38.3 / 3 שבועות / ללא דיכוי חיסון / בירור חובה</b> - "שלוש-שמונה-שלוש" (38.3°C, 3 שבועות) ואז "חיסון" ו"חובה".</p>
+<h3>גורמי FUO - ראשי תיבות I-N-N-M</h3>
+<p>זיהומים · NIID (אוטואימוני/וסקוליטיס/גרנולומה/אוטואינפלמטורי) · ממאירות · שונות. באנגלית <b>"I-N-N-M"</b>: <b>I</b>nfection, <b>N</b>IID, <b>N</b>eoplasm, <b>M</b>iscellaneous.</p>
+<h3>סיפור דמיוני: "הבלש עם הפנס"</h3>
+<p>בלש (הרופא) חוקר <b>עלמה שחום עולה בה</b> (FUO). לפני הכול הוא <b>מכבה את מי הפרחים המטשטשים</b> (עוצר אנטיביוטיקה וסטרואידים). הוא ממלא <b>תיק חובה</b> (בדיקות החובה), ומחפש <b>עקבות</b> (PDC). אם אין עקבות - לא רץ לפרוץ לכל דלת (לא מסננים בלי הבחנה) אלא <b>מדליק פנס FDG</b> שנדלק על "המקומות החמים" - אבל רק כשהחום בחוץ (CRP/ESR גבוהים). את הלימפומה לא "מרדים" בסטרואידים, כי אז הפנס כבה.</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="הבלש עם הפנס">
+<rect x="10" y="20" width="160" height="90" rx="10" fill="#fffbeb" stroke="#b45309"/><text x="90" y="55" text-anchor="middle" font-size="26">🕵️</text><text x="90" y="85" text-anchor="middle" font-size="13">1. תיק חובה + עקבות</text>
+<rect x="200" y="20" width="160" height="90" rx="10" fill="#fef2f2" stroke="#b91c1c"/><text x="280" y="55" text-anchor="middle" font-size="26">🚫💊</text><text x="280" y="85" text-anchor="middle" font-size="13">2. עוצרים תרופות</text>
+<rect x="390" y="20" width="160" height="90" rx="10" fill="#eff6ff" stroke="#2563eb"/><text x="470" y="55" text-anchor="middle" font-size="26">🔦</text><text x="470" y="85" text-anchor="middle" font-size="13">3. פנס FDG בזמן חום</text>
+<rect x="580" y="20" width="170" height="90" rx="10" fill="#ecfdf5" stroke="#047857"/><text x="665" y="55" text-anchor="middle" font-size="26">🔬</text><text x="665" y="85" text-anchor="middle" font-size="13">4. ביופסיה ממוקדת</text>
+</svg>
+
+<h2><span class="num">10</span> סרטונים והעשרה</h2>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/3vJKuS88ISI" title="Fever of Unknown Origin (FUO) Part 1: Definitions, Evolution, and Differential Diagnosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">חלק 1: הגדרות, התפתחות והאבחנה המבדלת של FUO (תוצאת חיפוש YouTube).</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/zzQLm9TFezs" title="Fever Of Unknown Origin: Definition, causes and approach" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">הגדרה, גורמים וגישה ל-FUO (תוצאת חיפוש YouTube).</p>
+<ul class="resource-list">
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4607773/" target="_blank" rel="noopener">FDG PET-CT in the Diagnosis of Takayasu Arteritis Presenting as FUO (PMC)</a><div class="desc">תיאור מקרה עם תמונות PET/CT - דוגמה ל-FUO שפוענח ע"י ווסקוליטיס של כלי דם גדולים.</div></li>
+<li><a href="https://pubmed.ncbi.nlm.nih.gov/30554247/" target="_blank" rel="noopener">GCA without cranial manifestations presenting as FUO: diagnostic value of 18F-FDG PET/CT (PubMed)</a><div class="desc">GCA ללא ביטוי קרניאלי שזוהה ב-PET/CT.</div></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5786984/" target="_blank" rel="noopener">Symptomatic lower limb large vessel vasculitis presenting as FUO (PMC)</a><div class="desc">ווסקוליטיס של גפיים תחתונות כמקור FUO, אותר ב-PET/CT.</div></li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>המקרה</h3>
+<p>אישה בת 68 עם חום 38.5°C לסירוגין ועייפות כבר 4 שבועות. מדווחת על כאבי שרירים בכתפיים ובחגורת האגן בבוקר. בבדיקה גופנית - תקינה, כולל עורקי הרקה. אין נסיעות, אין תרופות. מעבדה: אנמיה נורמוציטית, <b>CRP 45 mg/L, ESR 90 mm/h</b>. תרביות דם x3, תרבית שתן, CXR ואולטרסאונד בטן - תקינים. TST שלילי. אין PDC ממוקד.</p></div>
+<div class="quiz" data-answer="1">
+  <div class="q">מה השלב הבא המתאים ביותר?</div>
+  <button class="opt" data-i="0">התחלת פרדניזון אמפירי מיד</button>
+  <button class="opt" data-i="1">FDG-PET/CT (כשסמני הדלקת מוגברים), לפני כל טיפול סטרואידי</button>
+  <button class="opt" data-i="2">ביופסיית כבד לסינון</button>
+  <button class="opt" data-i="3">אנטיביוטיקה אמפירית רחבת טווח לשלושה שבועות</button>
+  <button class="opt" data-i="4">לחזור על תרביות דם 5 פעמים</button>
+  <div class="explain">אין PDC ← FDG-PET/CT, כשיש CRP/ESR מוגברים, ולפני סטרואידים (שיכולים "לנקות" את הממצאים ולהסתיר לימפומה). פרדניזון אמפירי מוקדם מוריד סיכוי לאבחנה; ביופסיית כבד לא לסינון; אנטיביוטיקה אמפירית נמנעת אלא אם המצב מידרדר; &gt;3 תרביות חסר תועלת בלי PDC.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">ה-PET/CT הראה ספיגה מוגברת בכל העורקים הגדולים ובמפרקי כתפיים וירכיים. מה האבחנה?</div>
+  <button class="opt" data-i="0">Large-vessel GCA + PMR</button>
+  <button class="opt" data-i="1">אנדוקרדיטיס</button>
+  <button class="opt" data-i="2">לימפומה</button>
+  <button class="opt" data-i="3">Hyperthermia במאמץ</button>
+  <button class="opt" data-i="4">חום פיקטיבי</button>
+  <div class="explain">ספיגה בעורקים הגדולים + רקמה רכה סביב כתפיים/ירכיים = GCA ו-PMR (בדיוק כמו המקרה בספר). לימפומה תיראה כמוקדי ספיגה בבלוטות/איברים; אנדוקרדיטיס - לב; hyperthermia במאמץ - אין CRP גבוה; פיקטיבי - אין סמני דלקת.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">מדוע ביופסיית עורק רקה עדיין מומלצת מגיל 55 גם אחרי PET/CT?</div>
+  <button class="opt" data-i="0">כי PET/CT אינו רגיש לכלי דם בכלל</button>
+  <button class="opt" data-i="1">כי ווסקוליטיס המוגבלת לעורקי הרקה לא נראית ב-PET/CT (קוטר קטן + ספיגת FDG גבוהה במוח)</button>
+  <button class="opt" data-i="2">כי ביופסיה זולה יותר</button>
+  <button class="opt" data-i="3">כי ביופסיה מזהה גם לימפומה</button>
+  <button class="opt" data-i="4">כי PET/CT לא זמין</button>
+  <div class="explain">עורקי הרקה דקים ויושבים ליד המוח שבו ספיגת FDG פיזיולוגית גבוהה, ולכן PET/CT מפספס GCA מוגבל לרקות. ב-GCA של כלי דם גדולים PET/CT דווקא מצוין.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">איזה מהבאים הוא סימן לחום פיקטיבי/מלאכותי?</div>
+  <button class="opt" data-i="0">דיסוציאציה בין דופק לטמפרטורה ומדידה שונה במקומות שונים</button>
+  <button class="opt" data-i="1">זיעה רבה במאמץ</button>
+  <button class="opt" data-i="2">אאוזינופיליה</button>
+  <button class="opt" data-i="3">ESR גבוה מאוד</button>
+  <button class="opt" data-i="4">לימפאדנופתיה</button>
+  <div class="explain">חום בלתי-אמיתי: טמפרטורה שונה בין פי הטבעת/אוזן/פה והיעדר עלייה מתאימה בדופק. זיעה במאמץ - hyperthermia בריא; אאוזינופיליה - חום תרופתי; ESR גבוה מצביע על דלקת אמיתית.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">חולה ממזרח הים התיכון, בן 25, עם התקפי חום חוזרים, כאבי בטן וכאבי חזה, ובין ההתקפים בריא. איזה טיפול מונע התקפים?</div>
+  <button class="opt" data-i="0">Colchicine</button>
+  <button class="opt" data-i="1">Rifampicin</button>
+  <button class="opt" data-i="2">Ceftriaxone</button>
+  <button class="opt" data-i="3">Prednisone ארוך טווח</button>
+  <button class="opt" data-i="4">Allopurinol</button>
+  <div class="explain">חשד ל-FMF: קולכיצין יעיל מאוד במניעת התקפים. הוא פחות יעיל בהתקף פעיל. אם לא מגיבים: anakinra (IL-1Ra).</div>
+</div>
+
+<div class="tldr">
+<h2><span class="num">12</span> סיכום של הסיכום</h2>
+<ul>
+<li>FUO: חום ≥38.3 ×2 + ≥3 שבועות + חיסון תקין + אבחנה לא ברורה אחרי בדיקות חובה (ESR/CRP, 3 תרביות דם, CXR, US בטן, TST/IGRA וכו')</li>
+<li>IUO: אותו דבר בלי חום, סמני דלקת מוגברים ≥3 שבועות</li>
+<li>סיבות: זיהומים (שחפת באזורים לא-מערביים), NIID (מערב - הכי שכיח), ממאירות (לימפומה), שונות (חום תרופתי); &gt;שליש במערב ללא אבחנה</li>
+<li>מחלה שכיחה בהצגה לא-טיפוסית: אנדוקרדיטיס, דיברטיקוליטיס, אוסטאומיאליטיס חולייתי, TB, GCA/PMR, Still, SLE, סרקואידוזיס</li>
+<li>שלב 1: חיפוש PDCs בהיסטוריה ובדיקה חוזרות; לעצור אנטיביוטיקה/סטרואידים; לשלול חום פיקטיבי וחום תרופתי (72 שעות)</li>
+<li>אין PDC: קריוגלובולינים, פונדוסקופיה, ואז FDG-PET/CT בזמן חום/CRP גבוה, לפני סטרואידים</li>
+<li>PET/CT לא מבדיל זיהום/דלקת/ממאירות - מכוון ביופסיה; רגישות ~85%, סגוליות ~50%</li>
+<li>שלב מאוחר: CT חזה/בטן, ביופסיית בלוטה/עור, ביופסיית עורק רקה מגיל 55; כבד רק עם PDC</li>
+<li>טיפול: להימנע מניסוי אמפירי; קולכיצין (FMF), NSAIDs (Still), סטרואידים (GCA/PMR), anakinra</li>
+<li>חוות דעת שנייה: 57.3% מקבלים אבחנה; פרוגנוזה של FUO ללא אבחנה - טובה</li>
+</ul>
+</div>
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else { btn.classList.add('wrong'); q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct'); }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
