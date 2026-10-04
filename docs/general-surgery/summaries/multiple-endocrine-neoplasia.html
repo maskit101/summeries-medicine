@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>תסמונות ניאופלזיה אנדוקרינית מרובה (MEN) — MEN1, MEN2A, MEN2B</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .book-box{background:#eef2ff; border:1px solid #c7d2fe; border-right:5px solid #4f46e5; border-radius:8px; padding:14px 18px; margin:16px 0}
+  .book-box h3{margin:12px 0 6px; color:#3730a3; font-size:16px}
+  .book-box h3:first-child{margin-top:0}
+  .book-badge{display:inline-block; background:#4f46e5; color:#fff; border-radius:999px; padding:3px 12px; font-size:13px; font-weight:600; margin:0 0 12px}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF של פרק 41 מתוך book/ שימש מקור ראשי (Sabiston, The Multiple Endocrine Neoplasia Syndromes, חולץ עם pdftotext, 2026-10-04). השלמות מהרשת: תמונות Wikimedia Commons וסרטוני YouTube שנמצאו בחיפוש אמיתי; עדכונים קצרים מעבר לספר מסומנים כ"עדכון" (מעכבי RET סלקטיביים, הערה על כריתת תימוס טרנס-צווארית). -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>תסמונות ניאופלזיה אנדוקרינית מרובה <span class="term" dir="ltr">(Multiple Endocrine Neoplasia, MEN)</span> — MEN1, MEN2A, MEN2B</h1>
+<div class="subtitle">פרק 41 בספר Sabiston — גנטיקה (מנין מול RET), שתי "מכות" מול מוטציה מפעילה, יתר-פעילות של בלוטת יותרת התריס בריבוי בלוטות, גסטרינומה ותסמונת זולינגר-אליסון, אינסולינומה, גידולי לבלב נוירואנדוקריניים לא-תפקודיים, היפופיזה וקרצינואיד של התימוס; MEN2 — סרטן מדולרי של התריס, קטגוריות סיכון ATA וכריתת תריס מונעת, פאוכרומוציטומה וכריתה חוסכת קליפה, PHPT ב-MEN2A</div>
+<div class="book-badge">📖 נכתב לפי הספר (Sabiston, פרק 41) — 2026-10-04</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>תסמונות MEN הן מחלות תורשתיות <b>אוטוזומליות דומיננטיות</b> שבהן מוטציה אחת בתאי הנבט גורמת לגידולים <b>בכמה בלוטות אנדוקריניות</b> — לעיתים קרובות <b>בכמה מוקדים באותה בלוטה</b> ולאורך כל החיים. יש שתי משפחות עיקריות: <b>MEN1</b> <span class="term" dir="ltr">(Wermer syndrome)</span> — מוטציה בגן מדכא הגידול <b>MEN1 (מנין, Menin)</b>; ו-<b>MEN2</b> (2A, 2B ו-FMTC) — מוטציה מפעילה בפרוטו-אונקוגן <b>RET</b>.</p>
+<p>למה זה חשוב לכירורג? כי ההבנה של הגנטיקה <b>משנה את הניתוח</b>: ב-MEN1 בלוטות יותרת התריס חולות <b>כולן</b>, ולכן ניתוח ממוקד של בלוטה אחת נכשל; ב-MEN2 <b>כמעט 100%</b> מהנשאים יפתחו סרטן מדולרי של התריס — ולכן כורתים את התריס <b>לפני</b> שהסרטן מופיע, בגיל שנקבע לפי <b>הקודון</b> שבו נמצאת המוטציה.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+
+<h3>MEN1 — "מעצור שבור": גן מדכא גידול ושתי מכות</h3>
+<div class="mechanism">
+<p class="chain">מוטציה תורשתית בעותק אחד של <b>MEN1</b> (כרומוזום <b>11q13</b>) ← כל תאי הגוף "בסיכון" אבל עדיין תקינים (העותק השני עובד) ← <b>מכה שנייה</b> סומטית בעותק התקין באחד התאים ← <b>אובדן הטרוזיגוטיות</b> <span class="term" dir="ltr">(Loss of heterozygosity)</span> ← אין מנין תפקודי ← התא מתחלק בלי בקרה ← גידול.</p>
+<p><b>מנין</b> הוא חלבון גרעיני בן 610 חומצות אמינו שמשתתף בבקרת תעתיק (כמדכא או כמפעיל-שותף), בתיקון DNA, באיתות תאי, בחלוקה ובהידבקות תאים. כשהוא חסר — "הבלמים" של התא נעלמים. זו <b>היפותזת שתי המכות של קנודסון</b> <span class="term" dir="ltr">(Knudson two-hit hypothesis)</span>.</p>
+<p><b>למה הגידולים מרובים?</b> כי המכה השנייה היא אירוע אקראי שיכול לקרות <b>בכל תא</b> בכל בלוטה — ולכן ב-MEN1 יש <b>היפרפלזיה לא-סימטרית של כל ארבע בלוטות יותרת התריס</b>, וגסטרינומות קטנות ומרובות בתריסריון. בנתיחות לאחר המוות כמעט כל הרקמה האנדוקרינית מעורבת.</p>
+<p><b>אין מתאם גנוטיפ-פנוטיפ</b> ב-MEN1 (מוטציות פזורות לאורך כל הגן: ~42% frameshift, ~20%–25% missense ועוד) — לכן הבדיקה הגנטית אומרת "יש/אין", אבל <b>לא</b> צופה את מהלך המחלה. 10%–20% מהמשפחות החדשות — בלי מוטציה מזוהה; חלקן <b>MEN4</b> (מוטציה ב-<span class="term" dir="ltr">CDKN1B</span>).</p>
+</div>
+
+<h3>MEN2 — "דוושת גז תקועה": אונקוגן ומוטציה מפעילה</h3>
+<div class="mechanism">
+<p class="chain">מוטציית <b>missense</b> (החלפת חומצת אמינו אחת) ב-<b>RET</b> (כרומוזום <b>10q11.2</b>) ← הקולטן — <b>טירוזין קינאז ממברנלי</b> — פעיל כל הזמן גם בלי ליגנד <span class="term" dir="ltr">(Gain-of-function)</span> ← איתות קבוע לצמיחה ולהישרדות ← <b>היפרפלזיה</b> ← גידול.</p>
+<p><b>למה מספיקה מכה אחת?</b> כי באונקוגן העותק הפגום <b>דומיננטי ברמת התא</b> — דוושת גז אחת תקועה מספיקה כדי שהמכונית תדהר, גם אם הדוושה השנייה תקינה. לכן ה<b>חדירות</b> <span class="term" dir="ltr">(Penetrance)</span> של סרטן מדולרי של התריס (MTC) מגיעה <b>כמעט ל-100%</b>, ו<b>היפרפלזיה של תאי C קודמת לסרטן</b> — יש "חלון זמן" שבו כריתת התריס מונעת את הסרטן.</p>
+<p><b>למה דווקא האיברים האלה?</b> RET מתבטא ברקמות שמוצאן <b>ברכס העצבי</b> <span class="term" dir="ltr">(Neural crest)</span>: תאי C פאראפוליקולריים בתריס, תאי כרומפין בלשד האדרנל, גנגליונים של מערכת העיכול ועצבים. מכאן MTC, פאוכרומוציטומה, נוירומות ריריות וגנגליונוירומטוזיס של המעי.</p>
+<p><b>הפרדוקס של הירשפרונג</b> <span class="term" dir="ltr">(Hirschsprung disease)</span>: מוטציה <b>מאבדת תפקוד</b> ב-RET ← נוירונים של מערכת העיכול לא נודדים ← אגנגליוניות של המעי הדיסטלי ← מגה-קולון. ובכל זאת הירשפרונג מופיע גם ב-MEN2A (קודונים <b>609, 618, 620</b>) — שם המוטציה מפעילה, אבל מפחיתה את כמות הקולטן על פני התא. כ-7% מחולי MEN2A, ו-2%–5% מחולי הירשפרונג נושאים MEN2A.</p>
+<p><b>יש מתאם גנוטיפ-פנוטיפ חזק</b> — הקודון קובע את גיל ההופעה ואת האגרסיביות (למשל <b>M918T</b> ← MEN2B, MTC כבר בינקות; <b>C634</b> ← MEN2A עם סיכון גבוה לפאוכרומוציטומה ו-PHPT). זה הבסיס לטבלת ATA (סעיף 6).</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>מנגנון: שתי מכות ב-MEN1 מול מוטציה מפעילה ב-RET ב-MEN2</title>
+  <desc>צד ימין: MEN1 — עותק פגום תורשתי, מכה שנייה, אובדן מנין, גידול. צד שמאל: MEN2 — מוטציה אחת ב-RET, קינאז פעיל תמיד, היפרפלזיה של תאי C, MTC</desc>
+  <rect x="350" y="10" width="320" height="30" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="510" y="30" text-anchor="middle" fill="#1e3a8a" font-weight="700">MEN1 — מדכא גידול (מנין, 11q13)</text>
+  <rect x="10" y="10" width="320" height="30" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="170" y="30" text-anchor="middle" fill="#991b1b" font-weight="700">MEN2 — אונקוגן (RET, 10q11.2)</text>
+  <rect x="380" y="55" width="260" height="40" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="510" y="80" text-anchor="middle">עותק פגום תורשתי + עותק תקין</text>
+  <polygon points="504,100 516,100 510,112" fill="#2563eb"/>
+  <rect x="380" y="115" width="260" height="40" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="510" y="140" text-anchor="middle">"מכה שנייה" סומטית (LOH)</text>
+  <polygon points="504,160 516,160 510,172" fill="#2563eb"/>
+  <rect x="380" y="175" width="260" height="40" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="510" y="200" text-anchor="middle">אין מנין ← אין "בלמים"</text>
+  <polygon points="504,220 516,220 510,232" fill="#2563eb"/>
+  <rect x="380" y="235" width="260" height="50" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="510" y="256" text-anchor="middle" font-weight="700">גידולים מרובים, אקראיים</text>
+  <text x="510" y="275" text-anchor="middle" font-size="12">פאראתירואיד ×4 · לבלב/תריסריון · היפופיזה</text>
+  <rect x="40" y="55" width="260" height="40" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="170" y="80" text-anchor="middle">missense אחת ב-RET (עותק אחד מספיק)</text>
+  <polygon points="164,100 176,100 170,112" fill="#b91c1c"/>
+  <rect x="40" y="115" width="260" height="40" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="170" y="140" text-anchor="middle">טירוזין קינאז פעיל תמיד</text>
+  <polygon points="164,160 176,160 170,172" fill="#b91c1c"/>
+  <rect x="40" y="175" width="260" height="40" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="170" y="200" text-anchor="middle">היפרפלזיה של תאי C (חלון למניעה!)</text>
+  <polygon points="164,220 176,220 170,232" fill="#b91c1c"/>
+  <rect x="40" y="235" width="260" height="50" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="170" y="256" text-anchor="middle" font-weight="700">MTC ב~100% · רב-מוקדי, דו-צדדי</text>
+  <text x="170" y="275" text-anchor="middle" font-size="12">+ פאוכרומוציטומה ± PHPT (רכס עצבי)</text>
+  <line x1="340" y1="50" x2="340" y2="290" stroke="#e5e7eb" stroke-width="2" stroke-dasharray="4 4"/>
+</svg>
+
+<h3>זולינגר-אליסון ב-MEN1 — למה יש כיבים, ולמה הסידן מחמיר אותם</h3>
+<div class="mechanism">
+<p class="chain">גסטרינומה (בעיקר <b>בדופן התריסריון</b>) ← עודף <b>גסטרין</b> ← גירוי מתמיד של התאים הפריאטליים ושל תאי ה-ECL (שמפרישים היסטמין) ← <b>הפרשת חומצה מסיבית</b> ← כיבים מרובים, במקומות לא טיפוסיים (תריסריון דיסטלי, ג'ג'ונום), עמידים לטיפול, + שלשול (החומצה מנטרלת אנזימי לבלב ופוגעת ברירית המעי) ודלקת וושט.</p>
+<p><b>סידן מגרה הפרשת גסטרין</b> — לכן <b>יתר-הפעילות של יותרת התריס</b> (PHPT) "מדליקה" את הגסטרינומה. תיקון ה-PHPT בניתוח <b>מוריד את רמת הגסטרין בצום ואת הפרשת החומצה הבסיסית</b>. לכן ב-MEN1 עם PHPT ו-ZES — <b>מנתחים קודם את יותרת התריס</b>.</p>
+<p>עודף גסטרין כרוני גורם גם להיפרפלזיה של תאי ה-ECL ← <b>קרצינואידים של הקיבה</b> (עד שליש מחולי ZES; הספר מכנה אותם "סוג 1", אבל בסיווג המקובל קרצינואיד על רקע ZES-MEN1 נקרא בדרך כלל <b>סוג 2</b> — סוג 1 הוא על רקע גסטריטיס אטרופית). מנוהלים במעקב וכריתה אנדוסקופית.</p>
+</div>
+
+<h3>MTC — למה קלציטונין, ולמה לא יוד רדיואקטיבי</h3>
+<p>MTC נוצר מ<b>תאי C (פאראפוליקולריים)</b>, לא מתאי הזקיק. תאי C מייצרים <b>קלציטונין</b> — ולכן קלציטונין הוא סמן רגיש מאוד לנוכחות רקמת MTC ולהישנות. מאותה סיבה, תאי C <b>לא קולטים יוד</b> ו<b>לא תלויים ב-TSH</b> ← <b>יוד רדיואקטיבי ודיכוי TSH חסרי תועלת</b> ב-MTC (בניגוד לסרטן פפילרי/פוליקולרי). <b>CEA</b> — סמן נוסף, פחות טוב לאבחנה אבל טוב למעקב ולהערכת מסת הגידול. שלשול והסמקה בגרורות כבד נובעים מקלציטונין ומ-CGRP.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/inzv8Qt39rA" title="Multiple endocrine neoplasia - causes, symptoms, diagnosis, treatment, pathology (Osmosis)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — Multiple endocrine neoplasia: סקירה של MEN1 (גן MEN1) מול MEN2A/2B (RET), הגידולים האופייניים לכל תסמונת, אבחנה וטיפול. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופתולוגיה</h2>
+<h3>יותרת התריס ב-MEN1 — מחלה של כל הבלוטות</h3>
+<p>בניגוד ל-PHPT ספורדי (ב~85% אדנומה בודדת), ב-MEN1 <b>כל ארבע הבלוטות</b> מעורבות, אבל <b>באופן לא-סימטרי</b> — בלוטה אחת יכולה להיות גדולה מאוד ואחרת כמעט תקינה בעין. זה מסביר למה בדיקות הדמיה "מראות אדנומה אחת" ומטעות, ולמה ניתוח ממוקד נכשל. הבלוטות כמעט תמיד שפירות (קרצינומה נדירה ביותר). בלוטות אקטופיות (בתימוס, בעומק הצוואר) שכיחות — ולכן ספי-סקן (Sestamibi) משמש בעיקר לחיפוש בלוטות אקטופיות.</p>
+<div class="figure-pair">
+  <figure>
+    <span class="label normal">תקין</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Parathyroid_gland_high_mag.jpg?width=600" alt="רקמת יותרת התריס תקינה">
+    <p class="media-cap">רקמת יותרת התריס תקינה בהגדלה גבוהה — תאים ראשיים לצד <b>תאי שומן</b> (ברקמה היפרפלסטית/אדנומטית השומן כמעט נעלם). מקור: Wikimedia Commons.</p>
+  </figure>
+  <figure>
+    <span class="label abnormal">פתולוגי</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0533_Parathyroid_adenoma.png?width=600" alt="איור של בלוטת יותרת התריס מוגדלת">
+    <p class="media-cap">איור: בלוטת יותרת תריס מוגדלת על הדופן האחורית של התריס. ב-MEN1 התמונה האמיתית היא <b>כמה בלוטות מוגדלות בגדלים שונים</b>, לא אחת. מקור: Blausen Medical / Wikimedia Commons.</p>
+  </figure>
+</div>
+
+<h3>גידולי מערכת העיכול והלבלב (Enteropancreatic NETs)</h3>
+<ul>
+  <li><b>גסטרינומות</b> — ב-MEN1 הן בעיקר <b>בתריסריון</b>, קטנות (מ"מ), <b>מרובות</b>, בתת-רירית. <b>עד 90% ממאירות</b> ויותר ממחציתן עם גרורות לבלוטות לימפה כבר באבחנה; גרורות כבד נדירות כשהגידול &lt;2 ס"מ.</li>
+  <li><b>אינסולינומות</b> — מתאי β; אדמדמות, יכולות להיות <b>מרובות ובכל הלבלב</b>; ~10% ממאירות.</li>
+  <li><b>לא-תפקודיים</b> — הסוג השכיח ביותר ב-MEN1. מדרגים לפי <b>Ki-67 ומספר מיטוזות</b>.</li>
+  <li>גלוקגונומה, VIPoma — בעיקר <b>בזנב הלבלב</b>, לרוב ממאירות.</li>
+</ul>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Insulinoma.jpg?width=700" alt="מראה מקרוסקופי של אינסולינומה">
+<p class="media-cap">אינסולינומה — מראה מקרוסקופי עם הצבע ה<b>אדום-חום</b> הטיפוסי של הגידול (כמו בתמונה בספר, איור 41.5). מקור: Wikimedia Commons.</p>
+
+<h3>התריס ב-MEN2 — MTC</h3>
+<p>MTC משפחתי הוא <b>רב-מוקדי ודו-צדדי</b> בכמעט 90% (כל תא C נושא את המוטציה), ולכן <b>כריתת תריס מלאה היא המינימום</b>. בהיסטולוגיה — תאים עגולים/מוארכים בקבוצות, עם <b>עמילואיד</b> בסטרומה (שבנוי ממולקולות קלציטונין; נצבע ב-Congo red), וצביעה חיובית לקלציטונין. תאי C ממוקמים בעיקר <b>בשליש העליון-אמצעי של האונות</b>.</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Medullary_thyroid_carcinoma_-_2_-_high_mag.jpg?width=700" alt="היסטולוגיה של סרטן מדולרי של התריס">
+<p class="media-cap">סרטן מדולרי של התריס בהגדלה גבוהה (H&amp;E) — תאים נוירואנדוקריניים עם כרומטין "מלח-פלפל" וסטרומה ורודה-הומוגנית (עמילואיד). מקור: Wikimedia Commons.</p>
+
+<h3>יותרת הכליה ב-MEN2</h3>
+<p>תחילה <b>היפרפלזיה של הלשד</b> (Adrenal medullary hyperplasia), ואחר כך פאוכרומוציטומה — <b>דו-צדדית בכמחצית</b>, בגיל צעיר ב~10 שנים מהספורדית, <b>כמעט תמיד שפירה</b> (ממאירות &lt;5%), ומפרישה בעיקר <b>אפינפרין</b> (מטנפרין).</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<table>
+  <tr><th>תסמונת</th><th>גן</th><th>מרכיבים עיקריים (שכיחות)</th><th>סימנים מיוחדים</th></tr>
+  <tr><td><b>MEN1</b> (Wermer)</td><td>MEN1 (מנין), 11q13 — מדכא גידול</td><td><b>יותרת התריס ~95%</b> (ראשון ב-90%); <b>לבלב/תריסריון 30%–80%</b> (גסטרינומה ~50% מהם); <b>היפופיזה 15%–50%</b> (פרולקטינומה בעיקר)</td><td>קרצינואיד תימוס/סימפונות/קיבה, אדנומות אדרנל (~20%), אנגיופיברומות בפנים, קולגנומות, ליפומות, מנינגיומות; סיכון מוגבר לסרטן שד</td></tr>
+  <tr><td><b>MEN2A</b> (Sipple)</td><td>RET (בעיקר קודון 634, exon 10/11)</td><td><b>MTC &gt;90%</b>; <b>פאוכרומוציטומה 50%–60%</b>; <b>PHPT עד 30%</b></td><td>מראה גוף תקין; <b>עמילואידוזיס ליכנואידית של העור</b> (CLA — גרד ופלאקים בגב, קודון 634); הירשפרונג (~7%)</td></tr>
+  <tr><td><b>FMTC</b></td><td>RET</td><td>MTC בלבד (וריאנט של 2A)</td><td>MTC מאוחר יותר (~גיל 40–50) ופחות אגרסיבי; <b>זהירות</b> — סיווג שגוי עלול להחמיץ פאוכרומוציטומה</td></tr>
+  <tr><td><b>MEN2B</b></td><td>RET <b>M918T</b> (exon 16) ב-95%; A883F פחות מ-5%</td><td><b>MTC ~100% כבר בינקות, אגרסיבי</b>; פאוכרומוציטומה ~50%; <b>אין PHPT</b></td><td><b>נוירומות ריריות</b> בשפתיים ובלשון (שפתיים "עבות"), <b>גוף מרפנואידי</b>, פנים מוארכות, עפעפיים הפוכים, פקטוס אקסקווטום, סקוליוזיס, <b>גנגליונוירומטוזיס של המעי</b> (עצירות, נפיחות, שלשול). ~50% <b>מוטציה חדשה</b> (de novo)</td></tr>
+</table>
+<div class="key-box">ב-MEN1 התסמין הראשון כמעט תמיד הוא <b>היפרקלצמיה</b> (גיל 20–25 לעומת 55 בספורדי, יחס נשים:גברים <b>1:1</b> לעומת 3:1). צעיר/ה עם PHPT, או PHPT עם כיבים חוזרים — חושבים על MEN1. ב-MEN2B, ילד עם <b>"גבשושיות" בשפתיים ובלשון ועצירות</b> — צריך לחשוב על MTC לפני שהוא מתגלה.</div>
+<h3>ביטויים לפי איבר</h3>
+<ul>
+  <li><b>PHPT</b>: לרוב א-תסמיני; אבנים בכליות, אוסטאופורוזיס, עייפות, פוליאוריה ופולידיפסיה, עצירות.</li>
+  <li><b>גסטרינומה (ZES)</b>: כיבים מרובים, חוזרים, במקומות לא טיפוסיים, עמידים לטיפול; כאב בטן; דלקת וושט; שלשול.</li>
+  <li><b>אינסולינומה</b>: <b>שלישיית וויפל</b> <span class="term" dir="ltr">(Whipple triad)</span> — גלוקוז &lt;50 מ"ג/ד"ל, תסמיני היפוגליקמיה (הזעה, סחרחורת, בלבול, עילפון), והקלה עם מתן גלוקוז.</li>
+  <li><b>גלוקגונומה</b>: <b>אריתמה נודדת נמקית</b> <span class="term" dir="ltr">(Necrolytic migratory erythema)</span>, ירידה במשקל, אנמיה, סטומטיטיס. <b>VIPoma</b>: שלשול מימי קשה, היפוקלמיה, אכלורהידריה (WDHA), חמצת, הסמקה, תת-לחץ. <b>סומטוסטטינומה</b>: אבני מרה, סוכרת, סטאטוריאה.</li>
+  <li><b>היפופיזה</b>: עודף הורמון (פרולקטין, GH, ACTH) או לחץ מקומי — <b>הפרעות בשדה הראייה</b>.</li>
+  <li><b>MTC</b>: גוש בצוואר, לימפאדנופתיה, צרידות/קשיי בליעה מפלישה; שלשול/הסמקה בגרורות.</li>
+  <li><b>פאוכרומוציטומה</b>: הזעה, רעד, כאב ראש, הסמקה, דפיקות לב, חרדה, יתר לחץ דם.</li>
+</ul>
+
+<h2><span class="num">5</span> אבחנה</h2>
+<h3>מתי זה MEN1? — אבחנה קלינית, משפחתית או גנטית</h3>
+<ul>
+  <li><b>קלינית</b>: שני גידולים אופייניים ל-MEN1 או יותר (מתוך יותרת התריס / לבלב-תריסריון / היפופיזה).</li>
+  <li><b>משפחתית</b>: גידול אחד אופייני + קרוב מדרגה ראשונה עם MEN1.</li>
+  <li><b>גנטית</b>: נשא מוטציה, גם בלי ביטוי קליני.</li>
+</ul>
+<p>בדיקה גנטית מומלצת לחולה האינדקס ולכל <b>קרובי מדרגה ראשונה</b> (סיכוי 50% לרשת) — כולל ילדים א-תסמיניים, כי הביטוי יכול להתחיל כבר <b>בגיל 5</b>. תוצאה שלילית במשפחה עם מוטציה ידועה <b>חוסכת מעקב של כל החיים</b>.</p>
+
+<h3>סקר ומעקב ב-MEN1 (לפי האלגוריתם בספר)</h3>
+<table>
+  <tr><th>מגיל</th><th>איבר</th><th>מה בודקים</th><th>אם חריג</th></tr>
+  <tr><td><b>5</b></td><td>היפופיזה</td><td>פרולקטין (ו-IGF-1) שנתי; MRI כל 3 שנים</td><td>MRI</td></tr>
+  <tr><td><b>8</b></td><td>יותרת התריס</td><td>סידן ו-PTH שנתי</td><td>US צוואר + ספי-סקן לקראת ניתוח</td></tr>
+  <tr><td><b>10–20</b></td><td>לבלב/תריסריון</td><td>גסטרין, גלוקוז בצום/אינסולין, כרומוגרנין A, פוליפפטיד לבלבי, גלוקגון, VIP כל 6–12 חודשים; הדמיה (CT/MRI/EUS)</td><td>גסטרין ← ZES; פרואינסולין ← צום מבוקר; ממצא בהדמיה ← EUS/<span dir="ltr">⁶⁸Ga-DOTATATE PET</span></td></tr>
+  <tr><td>—</td><td>תימוס/סימפונות</td><td>CT או MRI כל 1–2 שנים</td><td>ניתוח כשאפשר</td></tr>
+</table>
+<p style="font-size:14.5px;color:#4b5563">הערה: בגוף הטקסט הספר כותב שסקר הלבלב מתחיל <b>בגיל 10</b>, ובאיור האלגוריתם (41.2) — <b>בגיל 20</b>. ההנחיות של 2012 ממליצות על גיל 10 לבדיקות הביוכימיות; כדאי לזכור את שני המספרים ואת הסיבה לפער.</p>
+
+<h3>גסטרינומה — איך מאבחנים</h3>
+<div class="mechanism">
+<p class="chain"><b>גסטרין בצום &gt;פי 10 מהנורמה</b>, אחרי <b>הפסקת PPI לשבועיים לפחות</b> (PPI עצמו מעלה גסטרין — הקיבה "רעבה לחומצה" ומגבירה הפרשת גסטרין משוב). אם לא אבחנתי ← <b>מבחן גירוי בסקרטין</b> <span class="term" dir="ltr">(Secretin stimulation test)</span> — רגיש וספציפי יותר מגירוי בסידן.</p>
+<p><b>למה סקרטין?</b> בתאי G תקינים סקרטין <b>מעכב</b> הפרשת גסטרין, אבל תאי גסטרינומה מבטאים קולטני סקרטין שגורמים <b>לעלייה פרדוקסלית</b> בגסטרין. עלייה כזו = גסטרינומה.</p>
+</div>
+<p>20% מחולי הגסטרינומה הם חולי MEN1 — ולכן <b>בכל ZES מודדים סידן ו-PTH</b>.</p>
+
+<h3>אינסולינומה — צום מבוקר</h3>
+<p>בעבר צום של 72 שעות; היום <b>48 שעות מספיקות ומדויקות באותה מידה</b>. מודדים גלוקוז, אינסולין ו-C-פפטיד כל 6 שעות. <b>אינסולין גבוה בזמן גלוקוז נמוך = אבחנה</b> (C-פפטיד גבוה מבדיל מאינסולין חיצוני; שוללים סולפונילאוריאה — לכן בודקים נוכחות תרופות היפוגליקמיות). <b>איתור</b>: CT, MRI, EUS — רגישות פחות מ-50% כל אחד; <b>גירוי עורקי בסידן</b> <span class="term" dir="ltr">(Selective arterial calcium stimulation)</span> — מזריקים סידן לעורקים שמספקים את אזורי הלבלב ודוגמים אינסולין בווריד הכבד — רגישות <b>&gt;90%</b> לאזור. בניתוח — <b>אולטרסאונד תוך-ניתוחי</b> (הצלחה 86%) ובדיקת אינסולין מהירה מנוזל שנשאב מהנגע.</p>
+
+<h3>הדמיה של NETs — מה עושה כל בדיקה</h3>
+<table>
+  <tr><th>בדיקה</th><th>מה קורה בפועל</th><th>יתרון</th><th>חיסרון</th></tr>
+  <tr><td><b>CT בפאזה עורקית מוקדמת</b></td><td>הגידול שווה-צפיפות לפני ניגוד, <b>נצבע בעוצמה בפאזה העורקית</b> (עשיר בכלי דם) ונשטף בפאזה הפורטלית</td><td>הכי נפוץ; היחס לכלי הדם — לתכנון ניתוח</td><td>קרינה מצטברת במעקב של שנים</td></tr>
+  <tr><td><b>MRI עם גדוליניום</b></td><td>היפו/איזו ב-T1, <b>בהיר ב-T2</b>, נצבע אחרי ניגוד</td><td>אין קרינה — עדיף למעקב ארוך; טוב לכבד</td><td>—</td></tr>
+  <tr><td><b>EUS + FNA</b></td><td>אולטרסאונד מתוך הקיבה/תריסריון; דגימה ל-Ki-67 ודירוג</td><td>נגעים קטנים בלבלב; יחס ל-SMA</td><td>לא רואה גרורות רחוקות; <b>גסטרינומות בתריסריון קשות לראות</b> (אנדוסקופיה רגילה עדיפה)</td></tr>
+  <tr><td><b>SRS (Octreoscan)</b></td><td>אוקטראוטיד מסומן באינדיום נקשר לקולטני סומטוסטטין</td><td>כל הגוף; ספציפיות ~100%</td><td>רזולוציה נמוכה, מחמיץ &lt;1 ס"מ</td></tr>
+  <tr><td><b><span dir="ltr">⁶⁸Ga-DOTATATE PET/CT</span></b></td><td>אנלוג סומטוסטטין מסומן בגליום-68</td><td>רגישות ~80%, ספציפיות 90% (~100% לגרורות); מוצא יותר נגעים מ-SRS; <b>קליטה = צפי תגובה לאנלוגי סומטוסטטין</b></td><td>תוצאות חיוביות כוזבות — <b>הפרוססוס האונצינטוס</b> ודלקת</td></tr>
+</table>
+
+<h3>MEN2 — בדיקה גנטית קודם, ואז סמנים</h3>
+<p>תקן הזהב: <b>ריצוף גן RET</b> (האזורים הרלוונטיים לקודון המשפחתי). למי מציעים?</p>
+<ul>
+  <li>כל צאצאי משפחה ידועה — <b>רצוי כבר בינקות</b>; קרובי מדרגה ראשונה של FMTC.</li>
+  <li><b>כל חולה עם MTC "ספורדי"</b> — עד 7% נושאים מוטציית RET בתאי הנבט (גם בלי היסטוריה משפחתית — מוטציות de novo).</li>
+  <li>פאוכרומוציטומה "ספורדית" — כרבע עם מוטציה תורשתית, ~5% מהן RET.</li>
+  <li>תינוקות/ילדים עם <b>הירשפרונג</b>; הורים לילד עם פנוטיפ MEN2B; חולים עם <b>CLA</b>.</li>
+</ul>
+<p><b>סמנים</b>: <b>קלציטונין</b> (הבדיקה המעוררת בפנטגסטרין כבר לא זמינה בארה"ב) ו-<b>CEA</b>. <b>הדמיה</b>: <b>US צוואר</b> — הרגיש ביותר לבלוטת התריס ולמדורים הצידיים (רגישות 83.5%, ספציפיות 97.7% לצידי), פחות רגיש למדור המרכזי (התריס "מסתיר"). CT צוואר עם ניגוד — מותר (אין חשש לחומר ניגוד יודי כי לא נותנים יוד רדיואקטיבי) למחלה גדולה. <b>קלציטונין &gt;500 pg/mL</b> ← חיפוש גרורות רחוקות (MRI/CT עם פאזה עורקית ופורטלית, MRI לכבד).</p>
+<div class="key-box">לפני <b>כל</b> ניתוח תריס ב-MTC או בנשא RET — <b>מטנפרינים בפלזמה או בשתן 24 שעות</b>. פאוכרומוציטומה לא מאובחנת בזמן הרדמה = משבר יתר לחץ דם ומוות. ב-34% הפאוכרומוציטומה מתגלה <b>בו-זמנית</b> עם ה-MTC.</div>
+
+<h3>אבחנה מבדלת — טבלה מרכזת</h3>
+<table>
+  <tr><th>מצב</th><th>PHPT</th><th>MTC</th><th>פאוכרומוציטומה</th><th>הממצא המבדיל</th></tr>
+  <tr><td>MEN1</td><td>~95%, ריבוי בלוטות</td><td>לא</td><td>לא (אדנומות קליפה כן)</td><td>NET של לבלב/תריסריון + היפופיזה</td></tr>
+  <tr><td>MEN2A</td><td>עד 30%</td><td>&gt;90%</td><td>50%–60%</td><td>גוף תקין; CLA; הירשפרונג</td></tr>
+  <tr><td>MEN2B</td><td><b>אין</b></td><td>~100%, בינקות</td><td>~50%</td><td>נוירומות ריריות, מרפנואידי, M918T</td></tr>
+  <tr><td>FMTC</td><td>אין</td><td>כן, מאוחר</td><td>אין</td><td>רק MTC במשפחה</td></tr>
+  <tr><td>MEN4</td><td>כן</td><td>לא</td><td>לא</td><td>פנוטיפ MEN1 בלי מוטציה ב-MEN1 (CDKN1B)</td></tr>
+  <tr><td>PHPT ספורדי</td><td>אדנומה בודדת ~85%</td><td>—</td><td>—</td><td>גיל ~55, נשים 3:1</td></tr>
+</table>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/X7kvPbFE85E" title="Multiple Endocrine Neoplasia Syndromes: MEN1 (revised)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Multiple Endocrine Neoplasia Syndromes: MEN1 (revised) — הרצאה ממוקדת על MEN1: הגן מנין, "3 P", ביטויים, סקר וטיפול. מקור: YouTube.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+<p>המטרות: <b>שליטה בעודף ההורמון</b> ו<b>מניעת התפשטות ממאירה</b>, תוך זכירה שהמחלה <b>חוזרת</b> ושצפויים ניתוחים חוזרים — ולכן כל ניתוח מתוכנן כך שיהיה קל לחזור (למשל השתלה עצמית באמה, לא בצוואר).</p>
+
+<h3>MEN1 — יותרת התריס</h3>
+<ul>
+  <li><b>ניתוח הוא הטיפול</b>. גישה: <b>חקירה דו-צדדית פתוחה</b> של הצוואר וזיהוי כל ארבע הבלוטות (הנחיות MEN1 2012) — <b>לא ניתוח ממוקד</b>.</li>
+  <li><b>כריתה תת-שלמה (3.5 בלוטות)</b> — פחות היפוקלצמיה מוקדמת; הישנות/התמדה <b>20%–30%</b> תוך 10–12 שנים; היפופאראתירואידיזם 26%–45%.</li>
+  <li><b>כריתה מלאה + השתלה עצמית</b> בשריר <b>הברכיורדיאליס באמה</b> — הישנות נמוכה יותר (4%–20%), אבל היפופאראתירואידיזם קבוע 40%–60%. השתל באמה: תפקוד מלא בשליש ותפקוד חלקי בעוד 20%.</li>
+  <li>בשתי הגישות ריפוי ביוכימי ראשוני ~98% בידיים מנוסות; במחקר אקראי (32 חולים) — הישנות, היפופאראתירואידיזם וניתוח חוזר דומים. <b>אבל כולם יחזרו בסוף</b> — PHPT ב-MEN1 "לא נרפא".</li>
+  <li><b>הקפאת רקמה</b> (Cryopreservation) בניתוח הראשון — כשל קבוע? משתילים בהמשך: ~60% מראים תפקוד, 40% בלי תוספי סידן/ויטמין D.</li>
+  <li><b>PTH תוך-ניתוחי</b> לכוון את היקף הכריתה; <b>קלצימימטיקה</b> (Cinacalcet) — אפשרות אחרונה.</li>
+  <li><b>כריתת תימוס טרנס-צווארית מונעת — לא מומלצת לפי הספר</b> (בסדרה שבה בוצעה — לא נמצאו קרצינואידים). <i>הערה/עדכון:</i> בהנחיות MEN1 2012 ובמקורות רבים כן ממליצים לשקול כריתת תימוס צווארית בזמן הכריתה (לבלוטות עודפות/אקטופיות) — יש כאן מחלוקת אמיתית.</li>
+</ul>
+
+<h3>MEN1 — גסטרינומה, אינסולינומה ו-NET לא-תפקודי</h3>
+<table>
+  <tr><th>גידול</th><th>טיפול</th><th>נקודות מפתח</th></tr>
+  <tr><td><b>גסטרינומה</b></td><td><b>PPI</b> לשליטה בתסמינים; <b>אין הסכמה</b> לגבי ניתוח. אם מנתחים: גסטרודואודנוסקופיה, <b>דואודנוטומיה וחקירה טרנס-דואודנלית</b> (מישוש הדופן), כריתת בלוטות לימפה חשודות</td><td>תיקון PHPT קודם מוריד גסטרין; ריפוי ביוכימי ארוך-טווח נדיר; הישרדות ~100% ב-15 שנים — אבל <b>52% עם גרורות כבד</b>; גישה פרטנית לפי החולה</td></tr>
+  <tr><td><b>אינסולינומה</b></td><td><b>ניתוח</b> — לרוב <b>אנוקלאציה</b>; כריתה אנטומית לגדולים/פולשניים</td><td>איתור: גירוי עורקי בסידן + US תוך-ניתוחי; לא נתיח ← אנלוגי סומטוסטטין/כימותרפיה</td></tr>
+  <tr><td><b>NET לא-תפקודי</b></td><td><b>&lt;2 ס"מ — מעקב בהדמיה</b>; <b>&gt;2 ס"מ</b> — שוקלים ניתוח (סיכון גרורות עולה); <b>&gt;3 ס"מ</b> — ניתוח (התבוננות = יותר תמותה וגרורות)</td><td>גרורות לפי גודל: &lt;1 ס"מ <b>4%</b>, 1.1–2 <b>10%</b>, 2.1–3 <b>18%</b>, &gt;3 <b>43%</b>; גם גדילה משמעותית או גרורות ← ניתוח</td></tr>
+  <tr><td>גלוקגונומה / VIPoma / סומטוסטטינומה</td><td>ניתוח כשאפשר</td><td>גלוקגונומה: 50%–80% גרורות באבחנה; VIPoma כמעט תמיד ממאירה</td></tr>
+  <tr><td>היפופיזה</td><td>כמו בגידול ספורדי — תרופתי (קברגולין לפרולקטינומה) או ניתוחי</td><td>לרוב שפירה וחד-מוקדית; אולי חמורה יותר מספורדית</td></tr>
+  <tr><td>קרצינואיד תימוס</td><td>ניתוח כשאפשר</td><td><b>הכי אגרסיבי</b>; פי 2 בגברים, קשר לעישון; הישרדות 10 שנים 45%</td></tr>
+  <tr><td>גידולי אדרנל</td><td>כמו גידול מקרי: ≥4 ס"מ, מראה חשוד, מפריש, או גדילה ב-6 חודשים ← ניתוח</td><td>ACC ואלדוסטרוניזם שכיחים יותר מבאוכלוסייה</td></tr>
+</table>
+
+<h3>MEN2 — כריתת תריס מונעת לפי קטגוריית ATA (2015)</h3>
+<table>
+  <tr><th>קטגוריה</th><th>קודון</th><th>מתי כורתים את התריס</th><th>סקר פאוכרו׳ מגיל</th><th>PHPT</th></tr>
+  <tr><td><b>ATA-HST</b> (הגבוה ביותר, לשעבר D)</td><td><b>M918T</b> (MEN2B)</td><td><b>בשנה הראשונה לחיים</b>; דיסקציה מרכזית לפי בלוטות חשודות ויכולת לשמר את יותרות התריס</td><td>11</td><td>אין</td></tr>
+  <tr><td><b>ATA-H</b> (גבוה, לשעבר C)</td><td><b>C634</b>, <b>A883F</b></td><td><b>בגיל 5 או קודם</b> (לפי קלציטונין); דיסקציה מרכזית לפי קלציטונין ובדיקה תוך-ניתוחית</td><td>11</td><td>כן — סידן/PTH מגיל 11</td></tr>
+  <tr><td><b>ATA-MOD</b> (בינוני, לשעבר A+B)</td><td>כל השאר (609, 611, 618, 620, 804, 891...)</td><td><b>לפי קלציטונין</b> — סקר מגיל 5 (בדיקה, US, קלציטונין כל 6–12 חודשים); לעיתים TT בלבד</td><td>16</td><td>חלק — מגיל 16</td></tr>
+</table>
+<p>קלציטונין <b>&lt;30 pg/mL</b> בזמן הניתוח — בסדרה אחת לא הייתה מחלה מתמידה/חוזרת. ב-ATA-MOD המעקב נמשך שנים ויש סיכון ל"נשירה" — שוקלים זאת בתזמון.</p>
+
+<h3>MEN2 — MTC קליני</h3>
+<ul>
+  <li><b>מינימום: כריתת תריס מלאה + דיסקציה מרכזית דו-צדדית (מדור VI)</b> מכוונת-מדור, גם אם הבלוטות נראות תקינות (שיעור גרורות למדור VI <b>50%–80%</b>; בדיקה עינית של המנתח: רגישות 65%, ספציפיות 47% בלבד).</li>
+  <li>גבולות מדור VI: <b>עצם ההיואיד</b> למעלה, <b>וריד אינומינטה</b> למטה, <b>עטיפות הקרוטיד</b> מהצדדים; קדמית לקנה, לעצבים החוזרים ולשכבת הפסציה העמוקה.</li>
+  <li><b>מדוע בפעם הראשונה?</b> ניתוח חוזר במדור VI = יותר פגיעה בעצב החוזר והיפופאראתירואידיזם קבוע.</li>
+  <li><b>מדורים צידיים (II–V)</b> — גישה מותאמת אישית לפי US, גודל הגידול, מעורבות המדור המרכזי, קלציטונין ו-CEA.</li>
+  <li>שמירה על יותרות התריס במקומן; אם לא ניתן — השתלה עצמית ב<b>סטרנוקליידומסטואיד</b> (MEN2B/FMTC — סיכון נמוך ל-PHPT) או ב<b>ברכיורדיאליס</b> (MEN2A — אם תתפתח PHPT, קל לגשת לאמה).</li>
+  <li>מעקב: קלציטונין ו-CEA <b>כל 3 חודשים</b>; אם בלתי מדידים — כל 6–12 חודשים; תחליף תירוקסין <b>פיזיולוגי</b> (לא מדכא).</li>
+  <li><b>מחלה חוזרת/גרורתית</b> (~50% מתמידה/חוזרת): חזרה מקומית ← ניתוח חוזר מכוון-מדור; <b>אין יוד רדיואקטיבי</b>; קרינה חיצונית — מעט תועלת בצוואר, תפקיד בפליאציה של גרורות עצם; כימותרפיה — תגובה נמוכה; <b>מעכבי טירוזין קינאז</b> — <b>Vandetanib</b> (מאושר FDA, משפר הישרדות ללא התקדמות). <i>עדכון מעבר לספר:</i> גם Cabozantinib, ומעכבי RET סלקטיביים — <b>Selpercatinib</b> ו-<b>Pralsetinib</b> — אושרו ל-MTC עם מוטציית RET.</li>
+  <li>פרוגנוזה: הישרדות 10 שנים — MEN2A <b>94%</b>, ספורדי 80.4%, <b>MEN2B 60%</b>; עם גרורות — 26% ב-5 שנים.</li>
+</ul>
+
+<h3>MEN2 — פאוכרומוציטומה ו-PHPT</h3>
+<ul>
+  <li><b>סקר</b>: מטנפרינים ונורמטנפרינים חופשיים בפלזמה או בשתן 24 שעות — לפחות שנתי, מגיל 11 (HST/H) או 16 (MOD); חריג ← CT/MRI בטן.</li>
+  <li><b>סדר הניתוחים</b>: אם יש פאוכרומוציטומה — <b>כריתת אדרנל קודם</b>, ורק אחר כך התריס.</li>
+  <li><b>הכנה</b>: <b>חוסם α</b> (Phenoxybenzamine/Doxazosin) או חוסם תעלות סידן.</li>
+  <li><b>גישה</b>: לפרוסקופית או רטרופריטונאוסקופית (שקולות; לפי ניסיון המנתח); פתוחה אם יש פלישה.</li>
+  <li><b>כריתה חוסכת קליפה</b> <span class="term" dir="ltr">(Cortical-sparing adrenalectomy)</span> — כי המחלה דו-צדדית/חוזרת; ~90% נשארים <b>ללא תלות בסטרואידים</b>. במיוחד כשהאדרנל הנגדי כבר הוסר, או בגידול קטן עם רקמה תקינה. מחיר: סיכון להישנות ברקמה שנשארה.</li>
+  <li><b>PHPT ב-MEN2A</b> (בעיקר C634): כריתת <b>הבלוטות שנראות חולות בלבד</b> עם PTH תוך-ניתוחי (ההתפתחות בשנים האחרונות); אלטרנטיבות — תת-שלמה או מלאה + השתלה באמה. <b>שונה מ-MEN1</b> — שם כורתים 3.5 בלוטות.</li>
+</ul>
+
+<h3>טבלת תרופות</h3>
+<table>
+  <tr><th>תרופה</th><th>סוג/מנגנון</th><th>לאיזו בעיה ולמה זה עוזר</th><th>קונטרא-אינדיקציות/זהירות</th></tr>
+  <tr><td><b>Omeprazole</b> / Pantoprazole (PPI)</td><td>מעכב בלתי הפיך של משאבת H⁺/K⁺-ATPase בתא הפריאטלי</td><td>ZES — חוסם את <b>השלב האחרון</b> של הפרשת החומצה, ולכן עובד גם כשהגסטרין ממשיך לגרות; במינונים גבוהים</td><td>להפסיק ≥שבועיים לפני מדידת גסטרין (בזהירות — סיכון לסיבוכי כיב); חסר B12/מגנזיום בשימוש ממושך</td></tr>
+  <tr><td><b>Octreotide</b> / Lanreotide</td><td>אנלוג סומטוסטטין — נקשר ל-SSTR2/5 ומעכב הפרשת הורמונים</td><td>תסמינים של NET (VIPoma, גלוקגונומה, גסטרינומה), השפעה אנטי-שגשוגית; קליטה ב-⁶⁸Ga-PET מנבאת תגובה</td><td>אבני מרה, היפרגליקמיה; <b>באינסולינומה</b> יכול להחמיר היפוגליקמיה (מדכא גם גלוקגון)</td></tr>
+  <tr><td><b>Diazoxide</b> (עדכון — לא בספר)</td><td>פותח תעלות K-ATP בתאי β ← מעכב שחרור אינסולין</td><td>אינסולינומה לא נתיחה/עד ניתוח</td><td>אצירת נוזלים, הירסוטיזם</td></tr>
+  <tr><td><b>Cinacalcet</b></td><td>קלצימימטיקה — מגביר רגישות קולטן הסידן (CaSR) ← ↓PTH</td><td>PHPT חוזר אחרי כשלון ניתוחי או כשאי אפשר לנתח</td><td>היפוקלצמיה, בחילה</td></tr>
+  <tr><td><b>Cabergoline</b></td><td>אגוניסט דופמין D2</td><td>פרולקטינומה — דופמין הוא המעכב הטבעי של פרולקטין</td><td>מחלת מסתמים במינונים גבוהים</td></tr>
+  <tr><td><b>Phenoxybenzamine</b> / Doxazosin</td><td>חוסם α (לא סלקטיבי בלתי הפיך / α1 סלקטיבי)</td><td>הכנה לכריתת פאוכרומוציטומה — מונע כיווץ כלי דם קטכולאמיני ומשבר בזמן מניפולציה</td><td><b>β-חוסם רק אחרי α</b>; תת-לחץ תנוחתי</td></tr>
+  <tr><td><b>Vandetanib</b>, Cabozantinib; Selpercatinib, Pralsetinib</td><td>מעכבי טירוזין קינאז (רב-מטרתיים: RET/VEGFR; או RET סלקטיביים)</td><td>MTC גרורתי/מתקדם — חוסמים ישירות את הקינאז הפעיל-תמיד שהוא <b>שורש המחלה</b> (סעיף 2)</td><td>Vandetanib: <b>הארכת QT</b>; יתר לחץ דם, שלשול, דימום/פקקת</td></tr>
+</table>
+
+<div class="surgery">
+  <h4>🔪 מהלך הניתוח — כריתת תריס מלאה + דיסקציה מרכזית (מדור VI) בנשא RET / MTC</h4>
+  <h4>הכנה לפני הניתוח</h4>
+  <ul>
+    <li><b>שלילת פאוכרומוציטומה</b> (מטנפרינים) — אם יש, כריתת אדרנל קודם עם הכנת α.</li>
+    <li>קלציטונין ו-CEA בסיסיים (להשוואה אחרי הניתוח); <b>סידן ו-PTH</b> (PHPT ב-MEN2A — מטפלים באותו ניתוח).</li>
+    <li>US צוואר כולל מדורים צידיים; קלציטונין &gt;500 ← הדמיה לגרורות רחוקות.</li>
+    <li>בדיקת מיתרי קול (בסיס) לפי נוהל המחלקה.</li>
+  </ul>
+  <h4>שלבים עיקריים</h4>
+  <ol>
+    <li>חתך רוחבי בקפל עור בצוואר התחתון; הרמת דשי פלטיזמה; הפרדת שרירי הסטרפ בקו האמצע.</li>
+    <li>שחרור הקוטב העליון וקשירת כלי בלוטת התריס <b>צמוד לבלוטה</b> (שמירה על הענף החיצוני של עצב הגרון העליון).</li>
+    <li><b>זיהוי העצב החוזר</b> ושמירה על <b>יותרות התריס עם אספקת הדם שלהן</b>; הוצאת שתי האונות והאיסתמוס.</li>
+    <li><b>דיסקציה מרכזית en bloc</b> — כל הרקמה הלימפטית בין ההיואיד, וריד אינומינטה ושתי עטיפות הקרוטיד, משני הצדדים, תוך שמירה על העצבים החוזרים.</li>
+    <li>בלוטת יותרת תריס שאיבדה אספקת דם ← <b>השתלה עצמית</b> (SCM או ברכיורדיאליס, לפי הסיכון ל-PHPT).</li>
+    <li>לפי הצורך — דיסקציה צידית (II–V).</li>
+  </ol>
+  <h4>⚠️ דגשים קריטיים</h4>
+  <ul>
+    <li><b>פאוכרומוציטומה לא מאובחנת</b> = מוות על שולחן הניתוחים — הטעות הכי מסוכנת.</li>
+    <li>בילדים קטנים יותרות התריס זעירות ושקופות — <b>היפופאראתירואידיזם</b> הוא הסיבוך המשמעותי; ב-HST מבצעים דיסקציה מרכזית רק אם אפשר לזהות ולשמר אותן.</li>
+    <li>פגיעה בעצב החוזר — צרידות (חד-צדדי) או מצוקה נשימתית (דו-צדדי).</li>
+    <li>לעשות את המדור המרכזי <b>נכון בפעם הראשונה</b> — ניתוח חוזר שם מסוכן בהרבה.</li>
+  </ul>
+  <h4>החלמה</h4>
+  <p>מעקב סידן (ו-PTH) ב-24–48 השעות הראשונות; <b>נימול סביב הפה ובאצבעות, עוויתות</b> ← היפוקלצמיה (סידן ± קלציטריול). <b>המטומה בצוואר</b> עם קוצר נשימה — חירום (פתיחת הפצע). תירוקסין לכל החיים; קלציטונין/CEA כל 3 חודשים בהתחלה.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/M4UDc2jUYmE" title="Total Thyroidectomy with Central Neck Dissection" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Total Thyroidectomy with Central Neck Dissection — הדגמה ניתוחית של כריתת תריס מלאה ודיסקציה של מדור VI, כולל זיהוי העצב החוזר ויותרות התריס (תוכן ניתוחי גרפי). מקור: YouTube.</p>
+
+<div class="book-box" id="book-points">
+<h3>📖 דגשים מהספר (Sabiston, פרק 41)</h3>
+<ul>
+<li><b>MEN1</b>: 1:30,000; ב-1%–18% מחולי PHPT; ביטוי עד גיל 29; הישרדות 30 שנה 82%; 50% מתים עד גיל 50 ללא טיפול (NET של לבלב/תריסריון וקרצינואיד תימוס).</li>
+<li><b>מוטציות MEN1 סומטיות</b> בגידולים ספורדיים: גלוקגונומה 60%, VIPoma 57%, NET לא-תפקודי 44%, גסטרינומה 38%.</li>
+<li><b>PHPT ב-MEN1</b>: 20–25 מול 55 שנה; 1:1 מול 3:1; תת-שלמה — הישנות 20%–30%, היפופארא 26%–45%; מלאה + השתלה — הישנות 4%–20%, היפופארא 40%–60%; ריפוי ראשוני 98%.</li>
+<li><b>ZES</b>: גסטרין &gt;×10 אחרי שבועיים בלי PPI; סקרטין עדיף על סידן; עד 90% ממאירות ב-MEN1; 20% מחולי גסטרינומה עם MEN1; גרורות כבד ← הישרדות 52%.</li>
+<li><b>אינסולינומה</b>: עד 30% מ-PNETs ב-MEN1; 4% מחולי אינסולינומה עם MEN1; צום 48 שעות; גירוי עורקי בסידן &gt;90%; IOUS 86%; ~10% ממאירות.</li>
+<li><b>NET לא-תפקודי</b>: גרורות 4% / 10% / 18% / 43% (&lt;1 / 1–2 / 2–3 / &gt;3 ס"מ); &lt;2 ס"מ — מעקב.</li>
+<li><b>היפופיזה</b>: 15%–50%, גיל 20–40; סקר מגיל 5, MRI כל 3 שנים.</li>
+<li><b>MEN2</b>: 1:35,000; RET 10q11.2; MEN2A — MTC &gt;90%, פאוכרו׳ 50%–60%, PHPT עד 30%; MEN2B — M918T, 50% de novo.</li>
+<li><b>MTC</b>: &lt;2% מסרטני התריס; 25% משפחתי; ~90% רב-מוקדי בצורה המשפחתית; מדור VI 50%–80%; קלציטונין &gt;500 ← הדמיה רחוקה.</li>
+<li><b>ATA</b>: HST (M918T) &lt;שנה; H (C634, A883F) ≤5 שנים; MOD לפי קלציטונין (סקר מגיל 5); סקר פאוכרו׳/PHPT מגיל 11/11/16.</li>
+<li><b>פאוכרו׳ ב-MEN2</b>: חדירות C634 — 25% עד גיל 30, 52% עד 50, 88% עד 77; כל נשאי 918 עד גיל 56; חוסכת קליפה — 90% בלי סטרואידים.</li>
+</ul>
+</div>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>🔤 ראשי תיבות ומשפטים מקובלים</h3>
+  <p><b>"MEN1 = 3P, MEN2A = 2P, MEN2B = 1P"</b> (מקובל):</p>
+  <ul>
+    <li><b>MEN1</b>: <b>P</b>ituitary · <b>P</b>arathyroid · <b>P</b>ancreas — שלושה P.</li>
+    <li><b>MEN2A</b>: <b>P</b>heochromocytoma · <b>P</b>arathyroid — שני P (+ MTC).</li>
+    <li><b>MEN2B</b>: <b>P</b>heochromocytoma — P אחד (+ MTC + <b>M</b>ucosal neuromas + <b>M</b>arfanoid).</li>
+  </ul>
+  <p><b>כרומוזומים</b>: MEN<b>1</b> ← כרומוזום <b>11</b> ("אחד-אחד"); MEN<b>2</b> ← RET על כרומוזום <b>10</b> ("RET" = "TEN" הפוך בערך: R-E-T ↔ T-E-N).</p>
+  <p><b>"מנין מבלם, RET מאיץ"</b>: מדכא גידול צריך שתי מכות (שני בלמים שבורים); אונקוגן — מכה אחת (גז תקוע).</p>
+  <h3>🔢 מספרים לזכור</h3>
+  <p><b>5 / 8 / 10</b> — סקר MEN1: היפופיזה מגיל <b>5</b>, יותרת התריס מגיל <b>8</b>, לבלב מגיל <b>10</b> (באיור — 20).</p>
+  <p><b>1 / 5 / קלציטונין</b> — כריתת תריס ב-MEN2: HST <b>לפני גיל שנה</b>, H <b>עד גיל 5</b>, MOD <b>לפי קלציטונין</b>.</p>
+  <p><b>11 / 11 / 16</b> — גיל תחילת סקר פאוכרומוציטומה ב-HST / H / MOD.</p>
+  <p><b>2 / 3</b> — NET לא-תפקודי: &lt;<b>2</b> ס"מ מעקב, &gt;<b>3</b> ס"מ מנתחים.</p>
+  <p><b>×10 / 2 שבועות</b> — גסטרין פי <b>10</b> אחרי <b>שבועיים</b> בלי PPI.</p>
+  <h3>📖 סיפור דמיוני: "שתי מכוניות במשפחה"</h3>
+  <p>במשפחת <b>מנין</b> כל מכונית יוצאת מהמפעל עם <b>שני בלמים</b> — אבל אחד שבור כבר מהלידה. כל עוד הבלם השני עובד, המכונית נוסעת לאט ובזהירות. אבל לאורך השנים, <b>אבנים קטנות בדרך</b> (מכות סומטיות אקראיות) שוברות את הבלם השני — פעם בגלגל אחד, פעם בגלגל אחר. לכן התאונות קורות <b>בכמה גלגלים, בזמנים שונים</b>: קודם ארבעת הפנסים הקטנים בצוואר (<b>ארבע יותרות התריס</b>, כולם מתפרקים אבל לא באותה מידה), אחר כך <b>המנוע</b> (הלבלב) ובסוף <b>הצופר על הגג</b> (ההיפופיזה). המוסכניק יודע: אין טעם להחליף פנס אחד — מחליפים <b>שלושה וחצי</b>.</p>
+  <p>במשפחת <b>RET</b> הבעיה הפוכה: <b>דוושת הגז תקועה</b> מהיום הראשון. לא צריך שום אבן בדרך — המכונית <b>תמיד</b> תדהר. הדוושה מחוברת לכבלים שמגיעים ממקום אחד במפעל (<b>הרכס העצבי</b>): <b>המנורה בצוואר</b> (תאי C ← MTC) ו<b>מכלי הדלק מעל הגלגלים האחוריים</b> (יותרת הכליה ← פאוכרומוציטומה). מה עושים? <b>מפרקים את המנורה לפני שהיא נשרפת</b> (כריתת תריס מונעת) — וכמה מוקדם? לפי <b>מספר הדגם</b> (הקודון): דגם 918 — מיד אחרי הלידה, דגם 634 — עד גן חובה. ולפני שמפרקים משהו — <b>בודקים שמכלי הדלק לא דולפים</b> (מטנפרינים!), אחרת הניצוץ הראשון בחדר הניתוח מפוצץ הכל.</p>
+  <svg class="diagram" viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+    <title>שתי מכוניות במשפחה: בלמים שבורים מול דוושת גז תקועה</title>
+    <desc>מכונית כחולה עם שני בלמים שאחד שבור ואבנים בדרך (MEN1), ומכונית אדומה עם דוושת גז תקועה ומנורה בצוואר ומכלי דלק (MEN2)</desc>
+    <rect x="360" y="70" width="280" height="80" rx="20" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="410" cy="155" r="20" fill="#1f2937"/><circle cx="590" cy="155" r="20" fill="#1f2937"/>
+    <text x="500" y="100" text-anchor="middle" fill="#1e3a8a" font-weight="700">משפחת מנין (MEN1)</text>
+    <text x="500" y="122" text-anchor="middle" fill="#1e3a8a">🛑 בלם 1 שבור · 🛑 בלם 2 עובד...</text>
+    <polygon points="380,200 392,185 404,200" fill="#9ca3af"/><polygon points="450,205 460,192 470,205" fill="#9ca3af"/><polygon points="540,200 552,186 564,200" fill="#9ca3af"/>
+    <text x="500" y="230" text-anchor="middle" fill="#4b5563" font-size="12">אבנים בדרך = מכות סומטיות ← 4 פנסים, מנוע, צופר</text>
+    <rect x="40" y="70" width="280" height="80" rx="20" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <circle cx="90" cy="155" r="20" fill="#1f2937"/><circle cx="270" cy="155" r="20" fill="#1f2937"/>
+    <text x="180" y="100" text-anchor="middle" fill="#991b1b" font-weight="700">משפחת RET (MEN2)</text>
+    <text x="180" y="122" text-anchor="middle" fill="#991b1b">⛽ דוושת גז תקועה — תמיד</text>
+    <text x="180" y="45" text-anchor="middle" fill="#b45309" font-weight="700">💡 מנורה (תאי C) — לפרק מוקדם לפי הדגם</text>
+    <text x="180" y="205" text-anchor="middle" fill="#b91c1c" font-weight="700">🛢️ מכלי דלק (אדרנל) — לבדוק דליפה קודם!</text>
+    <text x="180" y="230" text-anchor="middle" fill="#4b5563" font-size="12">918 ← מיד · 634 ← עד גיל 5 · שאר ← לפי קלציטונין</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Medullary_thyroid_carcinoma_-_2_-_high_mag.jpg" target="_blank">סרטן מדולרי של התריס — היסטולוגיה (Wikimedia Commons)</a><div class="desc">התמונה שהוטמעה בסעיף 3 — קישור גיבוי.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Insulinoma.jpg" target="_blank">אינסולינומה — מראה מקרוסקופי (Wikimedia Commons)</a><div class="desc">התמונה מסעיף 3 — קישור גיבוי.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Pancreatic_insulinoma_(2).JPG" target="_blank">אינסולינומה — היסטופתולוגיה (Wikimedia Commons)</a><div class="desc">גידול נוירואנדוקריני של הלבלב במיקרוסקופ — משלים למראה המקרוסקופי.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Parathyroid_gland_high_mag.jpg" target="_blank">יותרת התריס תקינה (Wikimedia Commons)</a><div class="desc">תמונת ההשוואה התקינה מסעיף 3 — קישור גיבוי.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Blausen_0533_Parathyroid_adenoma.png" target="_blank">איור בלוטת יותרת תריס מוגדלת — Blausen (Wikimedia Commons)</a><div class="desc">האיור מסעיף 3 — קישור גיבוי.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=inzv8Qt39rA" target="_blank">Osmosis — Multiple endocrine neoplasia (YouTube)</a><div class="desc">סקירה כללית — מוטמעת בסעיף 2.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=X7kvPbFE85E" target="_blank">Multiple Endocrine Neoplasia Syndromes: MEN1 (revised) (YouTube)</a><div class="desc">הרצאה על MEN1 — מוטמעת בסעיף 5.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=M4UDc2jUYmE" target="_blank">Total Thyroidectomy with Central Neck Dissection (YouTube)</a><div class="desc">סרטון ניתוח — מוטמע בסעיף 6.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=Y0Ryc9zEzJs" target="_blank">MEN 1, MEN 2A &amp; MEN 2B — Easy Mnemonics (YouTube)</a><div class="desc">סרטון קצר עם דרכי זכירה ל-3 התסמונות — טוב לחזרה מהירה לפני מבחן.</div></li>
+  <li><a href="https://jomi.com/article/463/parathyroidectomy-and-four-gland-exploration-for-hyperparathyroidism" target="_blank">JOMI — Parathyroidectomy and Four-Gland Exploration</a><div class="desc">סרטון ניתוח מקצועי של חקירת ארבע בלוטות — הגישה הנדרשת ב-MEN1 (ייתכן שדורש מנוי).</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>🩺 המקרה</h3>
+  <p>גבר בן 31 מתקבל עם <b>כיב שלישי בשנתיים</b>, הפעם ב<b>חלק השלישי של התריסריון</b>, למרות טיפול ב-PPI. מתלונן על <b>שלשול כרוני</b> וצרבת, ועבר לפני שנה <b>אבן בכליה</b>. אביו נותח "בבלוטה במוח" ונפטר בגיל 52 מ"גידול בלבלב".</p>
+  <p>מעבדה: <b>סידן 11.3 מ"ג/ד"ל</b>, <b>PTH 112 pg/mL</b> (גבוה/לא מדוכא), <b>גסטרין בצום פי 14 מהנורמה</b> (נמדד אחרי הפסקת PPI לשבועיים, תחת חוסם H2), פרולקטין מעט מוגבר. במבחן סקרטין — <b>עלייה פרדוקסלית בגסטרין</b>. ב-EUS: שני נגעים תת-ריריים של 5–7 מ"מ בדופן התריסריון, ו<b>נגע של 1.4 ס"מ בגוף הלבלב</b> (Ki-67 נמוך). ב-US צוואר: בלוטה אחת מוגדלת מימין למטה. הבדיקה הגנטית: מוטציה ב-<b>MEN1</b>.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו המנגנון שבגללו בחולה הזה יש <b>כמה</b> גידולים בתריסריון ובכמה בלוטות יותרת תריס?</div>
+  <button class="opt" data-i="0">מוטציה מפעילה בקולטן טירוזין קינאז שמספיק עותק אחד שלה</button>
+  <button class="opt" data-i="1">עודף גסטרין שגורם להיפרפלזיה של כל הרקמות האנדוקריניות</button>
+  <button class="opt" data-i="2">מוטציה תורשתית בעותק אחד של גן מדכא גידול, ו"מכה שנייה" אקראית בכל תא שהופך לגידול</button>
+  <button class="opt" data-i="3">היפרקלצמיה כרונית שמגרה צמיחה של תאים נוירואנדוקריניים</button>
+  <div class="explain">נכון (3): מנין הוא מדכא גידול — כל התאים נושאים עותק פגום, וכל תא שסופג מכה שנייה (LOH) מתחיל לגדול. כיוון שהמכה השנייה אקראית, הגידולים מרובים ובזמנים שונים. (1) מתאר את RET ב-MEN2. (2) גסטרין גורם להיפרפלזיה של תאי ECL בקיבה (קרצינואידים), לא של יותרת התריס. (4) סידן מגרה הפרשת גסטרין, אבל אינו הגורם לגידולים.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. יש לחולה PHPT וגם ZES. מה הצעד הניתוחי הראשון המועדף, ולמה?</div>
+  <button class="opt" data-i="0">ניתוח יותרת התריס קודם — תיקון ההיפרקלצמיה מוריד את הגסטרין ואת הפרשת החומצה</button>
+  <button class="opt" data-i="1">כריתת לבלב-תריסריון (ויפל) קודם — כי הגסטרינומה ממאירה</button>
+  <button class="opt" data-i="2">כריתת קיבה מלאה — כדי להעלים את איבר המטרה של הגסטרין</button>
+  <button class="opt" data-i="3">אין צורך בניתוח יותרת התריס — PPI מטפל גם בהיפרקלצמיה</button>
+  <div class="explain">נכון (1): סידן מגרה תאי גסטרינומה; לפי הספר תיקון ה-PHPT מוריד את הגסטרין בצום ואת הפרשת החומצה הבסיסית. (2) ניתוח לבלב גדול כרוך בתחלואה גבוהה, ותפקיד הניתוח ב-ZES של MEN1 שנוי במחלוקת (ריפוי ביוכימי נדיר). (3) כריתת קיבה הייתה טיפול היסטורי לפני עידן ה-PPI. (4) PPI לא משפיע על PTH או סידן.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. ב-US רואים בלוטה אחת מוגדלת. איזה ניתוח מתאים לפי הנחיות MEN1?</div>
+  <button class="opt" data-i="0">כריתה ממוקדת של הבלוטה המוגדלת עם PTH תוך-ניתוחי</button>
+  <button class="opt" data-i="1">כריתת הבלוטה המוגדלת והבלוטה הסמוכה לה באותו צד</button>
+  <button class="opt" data-i="2">מעקב — PHPT ב-MEN1 שפיר ולא דורש ניתוח</button>
+  <button class="opt" data-i="3">חקירה דו-צדדית פתוחה וזיהוי כל 4 הבלוטות, ואז כריתה תת-שלמה (3.5 בלוטות) או מלאה + השתלה לאמה</button>
+  <div class="explain">נכון (4): ב-MEN1 כל הבלוטות חולות (היפרפלזיה לא-סימטרית), ולכן ההדמיה מטעה. בשתי האפשרויות ריפוי ראשוני ~98%; תת-שלמה — פחות היפוקלצמיה, מלאה + השתלה — פחות הישנות. (1) ניתוח ממוקד מתאים לאדנומה ספורדית — כאן הוא ייכשל. (2) כריתה חלקית מדי. (3) יש לו אבני כליה וכיבים — יש התוויה.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מה עושים עם הנגע הלא-תפקודי בגודל 1.4 ס"מ בגוף הלבלב?</div>
+  <button class="opt" data-i="0">כריתת לבלב דיסטלית עם כריתת טחול — כל NET הוא בעל פוטנציאל ממאיר</button>
+  <button class="opt" data-i="1">מעקב בהדמיה במרווחים קבועים; ניתוח אם יגדל משמעותית, יופיעו גרורות או יעבור 2 ס"מ (בוודאי מעל 3)</button>
+  <button class="opt" data-i="2">טיפול באוקטראוטיד לכל החיים</button>
+  <button class="opt" data-i="3">אנוקלאציה מיידית כי הוא קרוב לצינור הלבלב</button>
+  <div class="explain">נכון (2): לפי הקונצנזוס, NET לא-תפקודי &lt;2 ס"מ ב-MEN1 נשאר במעקב — סיכון הגרורות 10% ב-1–2 ס"מ ואין יתרון ברור לניתוח, בעוד שניתוחי לבלב חוזרים כרוכים בתחלואה. מעל 3 ס"מ (43% גרורות) מנתחים. (1) ו-(4) ניתוח מוקדם מדי. (3) אוקטראוטיד אינו טיפול סטנדרטי לנגע קטן לא-תפקודי.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. (שאלת השוואה) ילדה בת 3 שאמה חולת MEN2A, נמצאה נשאית <b>RET C634</b>. מתכננים כריתת תריס. מה חייבים לעשות <b>לפני</b> הניתוח, ומתי לנתח?</div>
+  <button class="opt" data-i="0">יוד רדיואקטיבי לסריקה; לנתח רק כשיופיע גוש</button>
+  <button class="opt" data-i="1">שום דבר מיוחד; לנתח בגיל 16</button>
+  <button class="opt" data-i="2">לשלול פאוכרומוציטומה (מטנפרינים) ולמדוד קלציטונין/CEA; כריתת תריס מלאה עד גיל 5 (מוקדם יותר לפי קלציטונין)</button>
+  <button class="opt" data-i="3">כריתת אדרנל דו-צדדית מונעת, ואז כריתת תריס בשנה הראשונה לחיים</button>
+  <div class="explain">נכון (3): C634 = ATA-H ← כריתת תריס עד גיל 5. סקר פאוכרומוציטומה שגרתי מתחיל בגיל 11, אבל <b>לפני כל ניתוח</b> חובה לשלול פאוכרומוציטומה, וקלציטונין/CEA קובעים את ההיקף ומשמשים בסיס למעקב. (1) תאי C לא קולטים יוד. (2) גיל 16 קשור לסקר ב-ATA-MOD. (4) אין כריתת אדרנל מונעת; "שנה ראשונה" מיועדת ל-M918T.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. תינוק עם הירשפרונג. למה מומלץ לבדוק אצלו (או במשפחה) RET, ומה הקשר?</div>
+  <button class="opt" data-i="0">הירשפרונג נגרם מאובדן תפקוד של RET, אבל מוטציות מסוימות ב-MEN2A (קודונים 609/618/620) גורמות לשניהם — ונשא כזה בסיכון ל-MTC</button>
+  <button class="opt" data-i="1">הירשפרונג נגרם מעודף קלציטונין שמשתק את המעי</button>
+  <button class="opt" data-i="2">הירשפרונג הוא חלק מ-MEN1 ומחייב סקר יותרת התריס</button>
+  <button class="opt" data-i="3">אין קשר — הבדיקה נועדה לשלול סיסטיק פיברוזיס</button>
+  <div class="explain">נכון (1): RET חיוני לנדידת נוירונים לדופן המעי — אובדן תפקוד ← אגנגליוניות. ב-MEN2A עם קודונים 609/618/620 כ-20% מהמשפחות סובלות מהירשפרונג, ולכן הספר ממליץ לבדוק RET בילדים עם הירשפרונג. (2) קלציטונין לא גורם לאגנגליוניות. (3) הירשפרונג אינו חלק מ-MEN1. (4) סיסטיק פיברוזיס קשורה לאילאוס מקוניום, לא לבדיקת RET.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>MEN1</b>: מנין (11q13), מדכא גידול, שתי מכות; <b>3P</b> — יותרת התריס ~95% (ראשון), לבלב/תריסריון 30%–80%, היפופיזה 15%–50%; + קרצינואיד תימוס (הכי אגרסיבי), אדרנל, אנגיופיברומות. אין מתאם גנוטיפ-פנוטיפ.</li>
+    <li><b>אבחנה MEN1</b>: ≥2 גידולים / 1 + קרוב מדרגה ראשונה / מוטציה. סקר: היפופיזה 5, יותרת התריס 8, לבלב 10 (איור: 20).</li>
+    <li><b>PHPT ב-MEN1</b>: צעירים, 1:1, כל הבלוטות ← <b>חקירה דו-צדדית</b> + <b>3.5 בלוטות</b> או <b>4 + השתלה לברכיורדיאליס</b>; תמיד חוזר.</li>
+    <li><b>ZES</b>: גסטרינומות קטנות ומרובות בתריסריון; גסטרין &gt;×10 אחרי שבועיים בלי PPI; סקרטין ← עלייה פרדוקסלית; PPI; <b>קודם יותרת התריס</b>; ניתוח שנוי במחלוקת.</li>
+    <li><b>אינסולינומה</b>: וויפל; צום 48 שעות; גירוי עורקי בסידן; IOUS; אנוקלאציה. <b>NET לא-תפקודי</b>: &lt;2 ס"מ מעקב, &gt;3 ס"מ ניתוח.</li>
+    <li><b>MEN2</b>: RET (10q11.2), gain-of-function, מכה אחת, רכס עצבי; <b>מתאם גנוטיפ-פנוטיפ חזק</b>. 2A — MTC + פאוכרו׳ + PHPT (+CLA, הירשפרונג); 2B — MTC + פאוכרו׳ + נוירומות + מרפנואידי, <b>בלי PHPT</b>, M918T, 50% de novo.</li>
+    <li><b>MTC</b>: תאי C, קלציטונין + CEA, אין יוד/דיכוי TSH; <b>TT + דיסקציה מרכזית (VI)</b>; צידי — מותאם; TKI (Vandetanib; עדכון: Selpercatinib/Pralsetinib).</li>
+    <li><b>ATA</b>: HST (M918T) &lt;שנה; H (C634/A883F) ≤5; MOD לפי קלציטונין. סקר פאוכרו׳ 11/11/16.</li>
+    <li><b>לפני כל ניתוח תריס — מטנפרינים</b>; פאוכרו׳ ← אדרנל קודם, α-חוסם, לפרוסקופי, <b>חוסכת קליפה</b> (90% בלי סטרואידים).</li>
+    <li><b>PHPT ב-MEN2A</b>: כורתים רק בלוטות חולות + PTH תוך-ניתוחי (לא 3.5 כמו ב-MEN1).</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
