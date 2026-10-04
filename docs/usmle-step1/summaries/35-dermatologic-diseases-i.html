@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>מחלות עור - קבוצה ראשונה (זיהומים/דלקתיות)</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+    --crimson:#be123c; --crimson-bg:#fff1f2;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--crimson); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--crimson); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18.5px; margin:26px 0 8px; color:#9f1239}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+  .keytable th{background:#fde68a}
+  .keytable{border:2px solid var(--amber)}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h4{margin-top:0; margin-bottom:6px; color:var(--green); font-size:16px}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+  .tldr h4{color:#fca5a5; margin:16px 0 4px}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+
+  .video-path-list{display:flex; flex-direction:column; gap:10px; margin:12px 0}
+  .video-path-item{border:1px solid var(--line); border-radius:8px; padding:12px 14px; background:#fafafa}
+  .vpi-head{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--crimson); margin-bottom:2px}
+  .video-path-item .d{font-size:13.5px; color:var(--sub); margin-bottom:8px}
+  .vpi-path-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .vpi-path{direction:ltr; unicode-bidi:isolate; font-family:'Consolas','Courier New',monospace; font-size:12.5px; background:#fff; border:1px solid var(--line); border-radius:6px; padding:6px 10px; flex:1; min-width:220px; overflow-wrap:anywhere; color:#374151}
+  .copy-btn{border:1px solid var(--crimson); background:#fff; color:var(--crimson); border-radius:6px; padding:6px 12px; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap}
+  .copy-btn:hover{background:var(--crimson-bg)}
+  .copy-btn.copied{background:var(--crimson); color:#fff}
+</style>
+</head>
+<body>
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🎯 USMLE Step 1 — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#be123c;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:var(--crimson); font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>מחלות עור - קבוצה ראשונה (זיהומים/דלקתיות) <span class="term" dir="ltr">(Dermatologic Diseases I)</span></h1>
+<div class="subtitle">First Aid for the USMLE Step 1 2026 &middot; Section III — Musculoskeletal, Skin, and Connective Tissue &middot; יחידה בתוכנית לימוד ממוקדת (מבוססת First Aid, עמ' 484-487) — רלוונטיות קריטית לכירורגיה פלסטית</div>
+
+<p>יחידה זו עוברת על הפרעות פיגמנטציה של העור (אלבינוס, מלזמה, ויטיליגו, תסמונת Waardenburg) ודרמטיטיס סבוראית, מחלות עור שכיחות (אקנה, דרמטיטיס אטופית ואלרגית-קונטקטית, קרטוזיס פילריס, נגע מלנוציטי, פסאודופוליקוליטיס, פסוריאזיס, רוזציאה, קרטוזיס סבוראית, יבלות ואורטיקריה), גידולי כלי דם של העור, וזיהומי עור חיידקיים וויראליים. זהו הבסיס הקליני-אבחנתי לכל פנייה דרמטולוגית בכירורגיה פלסטית — מהערכה טרום-ניתוחית ועד תכנון כריתת נגע עורי.</p>
+
+<h2><span class="num">1</span> הפרעות פיגמנטציה ודרמטיטיס סבוראית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>Albinism</b> — מספר נורמלי של מלנוציטים עם <b>↓ ייצור מלנין</b>, עקב ↓ פעילות טירוזינאז או הפרעה בהעברת טירוזין (לא מחסור במלנוציטים עצמם!). ↑ סיכון לסרטן עור (אין הגנת מלנין מ-UV).
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Melasma (Chloasma)</b> — היפרפיגמנטציה נרכשת הקשורה להיריון ("מסכת ההיריון") או שימוש בגלולות למניעת היריון. שכיח יותר בעלות גוון עור כהה יותר.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Vitiligo</b> — אזורי דה-פיגמנטציה מלאה בלתי-סדירים, הנגרמים מהרס מלנוציטים (משוער אוטואימוני). קשור למחלות אוטואימוניות נוספות.
+  </p>
+  <p class="chain" style="margin-top:10px">
+    <b>Waardenburg syndrome</b> — דה-פיגמנטציה מנוקדת של העור, השיער והאיריסים, שעלולה להיות קשורה לחרשות. נגרם מפגמים בהתמיינות תאי הקרסט העצבי (neural crest) למלנוציטים.
+  </p>
+</div>
+
+<div class="key-box">
+  <b>Albinism מול Vitiligo</b> — הבדל קריטי: ב-Albinism <b>מספר המלנוציטים תקין</b> אך הם לא מייצרים מלנין (פגם אנזימטי/תעבורתי). ב-Vitiligo המלנוציטים עצמם <b>נהרסים</b> (תהליך אוטואימוני). שתי המחלות מציגות עור בהיר/לבן, אך המנגנון הפוך לחלוטין — ייצור כושל מול הרס תאי.
+</div>
+
+<h3>Seborrheic dermatitis</h3>
+<p>פלאקים אריתמטוטיים גבוליים-חדים עם קשקשת שמנונית-צהובה באזורים עשירים בבלוטות חלב (קרקפת, פנים, אזור periocular). שכיח בתינוקות ("cradle cap") ובמבוגרים. מחלה נרחבת עלולה להיות קשורה לזיהום HIV ולמחלת פרקינסון. בלוטות החלב עצמן אינן מודלקות, אך משחקות תפקיד בהתפתחות המחלה. קשורה אפשרית ל-<i>Malassezia</i> spp. טיפול: אנטיפונגלים טופיקליים וגלוקוקורטיקואידים.</p>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — הפרעות פיגמנטציה בתכנון ניתוחי</h4>
+  <p>הבחנה בין Vitiligo (הרס מלנוציטים, לא קשור לחשיפת שמש) ל-Melasma (היפרפיגמנטציה הורמונלית, מחמירה בחשיפת UV) חשובה בתכנון כריתת נגעים ותכנון flap/graft: אזורי עור עם היפר- או היפו-פיגמנטציה עלולים ליצור "mismatch" צבעוני בולט בין רקמת התורם לנמען. בניתוחי פנים אסתטיים, Melasma פעיל מחייב הגנת שמש קפדנית פוסט-אופרטיבית כדי למנוע החמרה של ההיפרפיגמנטציה בצלקת.</p>
+</div>
+
+<h2><span class="num">2</span> מחלות עור שכיחות (Common Skin Disorders)</h2>
+<table class="keytable">
+  <thead><tr><th>מחלה</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td>Acne</td><td>אטיולוגיה רב-גורמית — ↑ ייצור סבום/אנדרוגנים, דסקוומציה לא-תקינה של קרטינוציטים, קולוניזציה של <i>Cutibacterium acnes</i> ביחידה הפילוסבצאית (קומדונים), ודלקת (פפולות/פוסטולות, נודולות, ציסטות). טיפול: רטינואידים, בנזויל פרוקסיד, אנטיביוטיקה.</td></tr>
+    <tr><td>Atopic dermatitis (eczema)</td><td>פריחה פרוריטית הקשורה ל-ichthyosis vulgaris ומחלות אטופיות נוספות (אסתמה, נזלת אלרגית, אלרגיות מזון); ↑ IgE בסרום. מופיעה לעיתים קרובות בפנים בינקות, ואז על פני שטחים כפופים בילדים ומבוגרים.</td></tr>
+    <tr><td>Allergic contact dermatitis</td><td>תגובת רגישות מושהית טיפוס IV (Type IV hypersensitivity) משנית לאלרגן מגע (למשל ניקל, poison ivy, ניומיצין).</td></tr>
+    <tr><td>Keratosis pilaris</td><td>פפולות מבוססות-זקיק הנובעות מסתימת קרטין, בעיקר על פני שטחים מרחיבים (extensor) של זרועות וירכיים.</td></tr>
+    <tr><td>Melanocytic nevus</td><td>שומה שכיחה. שפירה, אך מלנומה יכולה להתפתח בשומות מולדות או אטיפיות. נגעים תוך-עוריים (intradermal) הם פפולריים; נגעים ג'ונקציונליים (junctional) הם macules שטוחים.</td></tr>
+    <tr><td>Pseudofolliculitis barbae</td><td>תגובה דלקתית לשיער החודר לעור, המאופיינת בפפולות ופוסטולות קשות וכואבות/פרוריטיות. מתרחשת בדרך כלל סמוך לקו הלסת כתוצאה מגילוח ("razor bumps"), שכיחה יותר בשיער מתולתל בטבעו.</td></tr>
+    <tr><td>Psoriasis</td><td>פפולות ופלאקים עם קשקשת כסופה, בעיקר על הברכיים והמרפקים. אקנתוזיס עם קשקשת פאראקרטוטית (גרעינים נשארים ב-stratum corneum), Munro microabscesses. ↑ stratum spinosum, ↓ stratum granulosum. סימן Auspitz (דימום נקודתי מחשיפת papillae דרמליות בעת גירוד קשקשים). קשורה ל-nail pitting ולדלקת מפרקים פסוריאטית.</td></tr>
+    <tr><td>Rosacea</td><td>הפרעת עור פנים דלקתית המאופיינת בפפולות ופוסטולות אריתמטוטיות, אך ללא קומדונים. עלולה להיות קשורה לפלאשינג פנים בתגובה לגורמים חיצוניים (למשל אלכוהול, חום). סיבוכים כוללים מעורבות עינית ו-rhinophyma (עיוות בולבוסי של האף).</td></tr>
+    <tr><td>Seborrheic keratosis</td><td>פרוליפרציה סקוואמוזית-אפיתליאלית שפירה, מתוחמת-היטב, ורוקוזית, של קרטינוציטים לא-בשלים עם ציסטות מלאות קרטין (horn cysts). נראית "דבוקה". סימן Leser-Trélat — הופעה מהירה של ריבוי keratoses סבוראיות, מצביעה על מלגנות אפשרית (למשל אדנוקרצינומה של GI).</td></tr>
+    <tr><td>Verrucae</td><td>יבלות; נגרמות מזני HPV בסיכון נמוך. פפולות רכות, בצבע חום-בהיר, דמויות-כרובית. היפרפלזיה אפידרמלית, היפרקרטוזיס, קויילוציטוזיס. Condyloma acuminatum באזור האנוס או באיברי המין.</td></tr>
+    <tr><td>Urticaria</td><td>חרלת (hives). פלאקים פרוריטיים (wheals) שנוצרים אחרי דה-גרנולציה של mast cells. מאופיינת בבצקת דרמלית שטחית ודילטציה של תעלות לימפטיות.</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Acanthosis מול Hyperkeratosis בפסוריאזיס</h4>
+  <p>בפסוריאזיס: ↑ <b>stratum spinosum</b> (acanthosis) + ↓ <b>stratum granulosum</b> + <b>parakeratosis</b> (שימור גרעינים ב-corneum). שלושה ממצאים היסטולוגיים משולבים שמבדילים פסוריאזיס מדרמטוזות אחרות - "התאים מתרבים מהר מכדי להבשיל כראוי".</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — אבחון נגעי עור שפירים לפני כריתה</h4>
+  <p>ההבחנה בין Melanocytic nevus שפיר לנגע אטיפי (אפשרי מלנומה מתפתחת) קריטית לפני כל כריתת נגע עורי קוסמטית — כל שומה עם שינוי אסימטרי, גבולות לא-אחידים, שינוי צבע, קוטר מתרחב, או התפתחות (ABCDE) מחייבת ביופסיה אקסציזיונלית עם שולי בטיחות, ולא "shave excision" קוסמטי בלבד. גם Seborrheic keratosis, המדמה קלינית נגעים ממאירים, נכרת לעיתים למטרות אסתטיות — אך סימן Leser-Trélat (הופעה מהירה מרובה) מחייב בדיקת גידול פנימי טרם כריתה שגרתית.</p>
+</div>
+
+<h2><span class="num">3</span> גידולי כלי דם של העור (Vascular Tumors of Skin)</h2>
+<table class="keytable">
+  <thead><tr><th>גידול</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td>Angiosarcoma</td><td>ממאירות כלי-דם נדירה המופיעה בטיפוסי באזורי ראש, צוואר וחזה. בדרך כלל במבוגרים, באזורים חשופי-שמש. קשורה לטיפול בקרינה ולימפאדמה כרונית פוסט-מסטקטומית. <b>Stewart-Treves syndrome</b> — אנגיוסרקומה עורית המתפתחת לאחר לימפאדמה כרונית. אנגיוסרקומה הפטית קשורה לחשיפה לכלוריד וינייל וארסן. אגרסיבית מאוד וקשה לכריתה עקב איחור באבחנה.</td></tr>
+    <tr><td>Bacillary angiomatosis</td><td>פפולות קפילריות עוריות שפירות המופיעות בחולי AIDS. נגרמות מזיהומי <i>Bartonella</i>. מתבלבלות בתדירות גבוהה עם קפוסי סרקומה, אך עם תסנין נויטרופילי (לעומת לימפוציטי בקפוסי).</td></tr>
+    <tr><td>Cherry angioma</td><td>המנגיומה קפילרית שפירה, שכיחה במבוגרים בגיל העמידה. לא נוסגת. תדירות ↑ עם הגיל.</td></tr>
+    <tr><td>Glomus tumor</td><td>גידול שפיר, כואב, אדום-כחול, שכיח מתחת לציפורניים. נובע מתאי שריר חלק משונים של ה-glomus body התרמורגולטורי.</td></tr>
+    <tr><td>Kaposi sarcoma</td><td>ממאירות אנדותליאלית הפוגעת בעיקר בעור, פה, GI, דרכי נשימה. נראית קלאסית בגברים ממוצא מזרח-אירופאי מבוגרים, חולי AIDS, ומושתלי איברים. קשורה ל-HHV-8 ו-HIV. תסנין לימפוציטי, בשונה מ-bacillary angiomatosis.</td></tr>
+    <tr><td>Pyogenic granuloma</td><td>המנגיומה קפילרית פוליפואידית-לובולרית שעלולה להתכייב ולדמם. קשורה לטראומה ולהיריון.</td></tr>
+    <tr><td>Infantile hemangioma</td><td>המנגיומה קפילרית שפירה של ינקות (1/200 לידות); מופיעה בשבועות הראשונים לחיים; בתחילה צומחת במהירות, ואז עוברת involution מגיל שנה. Infantile hemangiomas עוברות involution ספונטנית; cherry angiomas לא.</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Bacillary angiomatosis מול Kaposi sarcoma</h4>
+  <p>שניהם בחולי HIV/AIDS עם נגעים כלי-דמיים עוריים, אך <b>"Bacteria bring Neutrophils, Kaposi brings Lymphocytes"</b> — bacillary angiomatosis (זיהום חיידקי Bartonella) ← תסנין נויטרופילי; Kaposi sarcoma (ממאירות, HHV-8) ← תסנין לימפוציטי.</p>
+</div>
+
+<h2><span class="num">4</span> זיהומי עור חיידקיים ועומק הזיהום</h2>
+<div class="mechanism">
+  <p class="chain">
+    זיהומי עור/רקמה רכה מסווגים לפי <b>עומק האנטומי</b> המעורב — ככל שעומק הזיהום גדל, כך גוברת החמירות והדחיפות הכירורגית.
+  </p>
+</div>
+<table class="keytable">
+  <thead><tr><th>זיהום</th><th>עומק/אורגניזם</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td>Impetigo</td><td>אפידרמיס שטחי. <i>S aureus</i> או <i>S pyogenes</i></td><td>מידבק מאוד. קרוסטה בצבע דבש. Bullous impetigo (בולות, <i>S aureus</i>).</td></tr>
+    <tr><td>Erysipelas</td><td>דרמיס עליון ולימפטיקה שטחית. בד"כ <i>S pyogenes</i></td><td>תיחום מורם, מוגדר-היטב בין עור נגוע לתקין.</td></tr>
+    <tr><td>Cellulitis</td><td>דרמיס עמוק ותת-עור. <i>S pyogenes</i> או <i>S aureus</i></td><td>זיהום כאוב, מתפשט, חריף. מתחיל לעיתים משבר בעור מטראומה/זיהום אחר.</td></tr>
+    <tr><td>Abscess</td><td>שכבות עמוקות של העור, מוקף-קפסולה</td><td>אוסף מוגלה. האורגניזם הפוגע הוא כמעט תמיד <i>S aureus</i>.</td></tr>
+    <tr><td>Necrotizing fasciitis</td><td>פציה עמוקה. אנאירוביים, <i>S pyogenes</i>, או <i>S aureus</i> (כולל MRSA)</td><td>פציה חיוורת, פריאבילית, איסכמית; הפרשה אפורה-מלוכלכת ומסריחה; כאב מוגזם ביחס לבדיקה. קרפיטוס ממתאן ו-CO2. "חיידקים אוכלי בשר". גורמת לבולות ונמק עור — צבע סגלגל (violaceous) של בולות ועור מקיף. חירום כירורגי.</td></tr>
+    <tr><td>Staphylococcal scalded skin syndrome</td><td>אקסוטוקסין ברמת stratum granulosum</td><td>אקסוטוקסין הורס את חיבורי הקרטינוציטים ב-stratum granulosum <b>בלבד</b> (בניגוד ל-TEN, שהורס את הצומת אפידרמלי-דרמלי). ללא מעורבות רירית. חום ופריחה אריתמטוטית מפושטת עם קילוף שכבות העור העליונות, שמחלים לחלוטין. סימן Nikolsky חיובי. שכיח בילודים וילדים/מבוגרים עם אי-ספיקת כליות.</td></tr>
+  </tbody>
+</table>
+
+<svg class="diagram" viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>עומק זיהומי עור/רקמה רכה</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">עומק זיהומי עור ורקמה רכה — מהשטחי לעמוק</text>
+<text x="500" y="45" font-size="10.5" text-anchor="middle" fill="#4b5563">כל שכבה נחתכת ברוחב מלא כדי להמחיש את העומק האנטומי של כל אבחנה</text>
+
+<rect x="60" y="65" width="880" height="38" rx="4" fill="#fef9c3" stroke="#a16207" stroke-width="1.5"/>
+<text x="500" y="89" font-size="11.5" font-weight="700" text-anchor="middle" fill="#713f12">אפידרמיס — Impetigo (קרוסטה דבשית, S aureus/S pyogenes)</text>
+
+<rect x="60" y="107" width="880" height="42" rx="4" fill="#fed7aa" stroke="#9a3412" stroke-width="1.5"/>
+<text x="500" y="133" font-size="11.5" font-weight="700" text-anchor="middle" fill="#7c2d12">דרמיס עליון + לימפטיקה שטחית — Erysipelas (תיחום חד, S pyogenes)</text>
+
+<rect x="60" y="153" width="880" height="48" rx="4" fill="#fdba74" stroke="#9a3412" stroke-width="1.5"/>
+<text x="500" y="182" font-size="11.5" font-weight="700" text-anchor="middle" fill="#7c2d12">דרמיס עמוק + תת-עור — Cellulitis (מתפשט, S pyogenes/S aureus)</text>
+
+<rect x="60" y="205" width="880" height="48" rx="4" fill="#fb923c" stroke="#9a3412" stroke-width="1.5"/>
+<text x="500" y="234" font-size="11.5" font-weight="700" text-anchor="middle" fill="#fff7ed">שכבות עמוקות, מוקף-קפסולה — Abscess (מוגלה, S aureus)</text>
+
+<rect x="60" y="257" width="880" height="56" rx="4" fill="#7f1d1d" stroke="#450a0a" stroke-width="1.5"/>
+<text x="500" y="283" font-size="11.5" font-weight="700" text-anchor="middle" fill="#fef2f2">פציה — Necrotizing Fasciitis (כאב מוגזם, קרפיטוס, חירום כירורגי)</text>
+<text x="500" y="300" font-size="9" text-anchor="middle" fill="#fecaca">אנאירוביים / S pyogenes / S aureus (MRSA) — "flesh-eating bacteria"</text>
+
+<rect x="60" y="328" width="880" height="72" rx="8" fill="#f8fafc" stroke="#9ca3af" stroke-width="1"/>
+<text x="500" y="350" font-size="10.5" font-weight="700" text-anchor="middle" fill="#1f2937">חוק אצבע: עומק הזיהום ↑ ← חומרה ↑ ← דחיפות התערבות כירורגית ↑</text>
+<text x="500" y="370" font-size="9.5" text-anchor="middle" fill="#1f2937">כאב "מוגזם ביחס לבדיקה הגופנית" הוא הדגל האדום הקלאסי ל-necrotizing fasciitis</text>
+<text x="500" y="388" font-size="9.5" text-anchor="middle" fill="#1f2937">(העצבים נהרסים לפני שהעור נראה חריג — ייתכן מראה חיצוני מטעה)</text>
+</svg>
+
+<div class="mechanism">
+  <p class="chain">
+    <b>SSSS מול TEN</b> — מנגנון זהה-לכאורה (קילוף אפידרמיס נרחב), אך עומק שונה לחלוטין: ב-<b>Staphylococcal scalded skin syndrome</b>, אקסוטוקסין חיידקי (exfoliative toxin) נקשר ישירות ל-<b>desmoglein 1</b> ומבקע אותו <b>בתוך stratum granulosum בלבד</b> — הפרדה שטחית. ב-<b>Toxic epidermal necrolysis (TEN)</b>, מנגנון אפופטוטי חיסוני (תגובת תרופה) הורס את <b>כל האפידרמיס</b> ועד לצומת אפידרמלי-דרמלי — הפרדה עמוקה בהרבה.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" direction="ltr">
+<title>SSSS מול TEN — מנגנון ועומק ההפרדה</title>
+<text x="500" y="26" font-size="14" font-weight="700" text-anchor="middle" fill="#1f2937">SSSS מול TEN — אותו ביטוי קליני, עומק הפרדה הפוך</text>
+<text x="500" y="45" font-size="10.5" text-anchor="middle" fill="#4b5563">שני פאנלים: תחילה האפידרמיס השלם, לאחר מכן האזור בו מתרחשת ההפרדה</text>
+
+<rect x="55" y="70" width="430" height="20" fill="none"/>
+<text x="270" y="88" font-size="12.5" font-weight="700" text-anchor="middle" fill="#9f1239">Staphylococcal Scalded Skin Syndrome</text>
+
+<rect x="80" y="105" width="390" height="32" rx="4" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="125" font-size="10" text-anchor="middle" fill="#78350f">Stratum Corneum</text>
+
+<rect x="80" y="139" width="390" height="30" rx="4" fill="#fcd34d" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="157" font-size="10" text-anchor="middle" fill="#78350f">Stratum Lucidum</text>
+
+<rect x="80" y="171" width="390" height="34" rx="4" fill="#dc2626" stroke="#7f1d1d" stroke-width="2.5"/>
+<text x="275" y="192" font-size="10.5" font-weight="700" text-anchor="middle" fill="#fff">⚡ הפרדה כאן — Stratum Granulosum</text>
+
+<rect x="80" y="207" width="390" height="30" rx="4" fill="#f59e0b" stroke="#92400e" stroke-width="1.5"/>
+<text x="275" y="225" font-size="10" text-anchor="middle" fill="#78350f">Stratum Spinosum</text>
+
+<rect x="80" y="239" width="390" height="34" rx="4" fill="#d97706" stroke="#78350f" stroke-width="1.5"/>
+<text x="275" y="259" font-size="10" text-anchor="middle" fill="#fff7ed">Stratum Basale (נשאר שלם)</text>
+
+<rect x="80" y="277" width="390" height="24" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+<text x="275" y="293" font-size="9.5" text-anchor="middle" fill="#1e3a8a">דרמיס — ללא מעורבות</text>
+
+<rect x="80" y="310" width="390" height="100" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="275" y="332" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">מנגנון: אקסוטוקסין (exfoliative toxin)</text>
+<text x="275" y="350" font-size="9" text-anchor="middle" fill="#7f1d1d">נקשר ומבקע desmoglein 1</text>
+<text x="275" y="366" font-size="9" text-anchor="middle" fill="#7f1d1d">בתוך stratum granulosum בלבד</text>
+<text x="275" y="384" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">הפרדה שטחית — ללא מעורבות רירית</text>
+<text x="275" y="400" font-size="9" text-anchor="middle" fill="#7f1d1d">מחלים לחלוטין, Nikolsky חיובי</text>
+
+<rect x="520" y="70" width="420" height="20" fill="none"/>
+<text x="730" y="88" font-size="12.5" font-weight="700" text-anchor="middle" fill="#9f1239">Toxic Epidermal Necrolysis (TEN) — להשוואה</text>
+
+<rect x="540" y="105" width="390" height="165" rx="4" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+<text x="735" y="190" font-size="10.5" font-weight="700" text-anchor="middle" fill="#78350f">כל האפידרמיס (5 שכבות)</text>
+<text x="735" y="208" font-size="9" text-anchor="middle" fill="#78350f">נמק אפופטוטי נרחב של קרטינוציטים</text>
+<text x="735" y="224" font-size="9" text-anchor="middle" fill="#78350f">(תגובה חיסונית לתרופה, לא טוקסין חיידקי)</text>
+
+<rect x="540" y="273" width="390" height="38" rx="4" fill="#dc2626" stroke="#7f1d1d" stroke-width="2.5"/>
+<text x="735" y="296" font-size="10.5" font-weight="700" text-anchor="middle" fill="#fff">⚡ הפרדה כאן — צומת אפידרמלי-דרמלי</text>
+
+<rect x="540" y="310" width="390" height="100" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+<text x="735" y="332" font-size="10" font-weight="700" text-anchor="middle" fill="#7f1d1d">מנגנון: אפופטוזיס חיסוני של קרטינוציטים</text>
+<text x="735" y="350" font-size="9" text-anchor="middle" fill="#7f1d1d">(תגובת יתר לתרופה — Stevens-Johnson/TEN spectrum)</text>
+<text x="735" y="368" font-size="9" font-weight="700" text-anchor="middle" fill="#7f1d1d">הפרדה עמוקה — כל האפידרמיס מנותק</text>
+<text x="735" y="386" font-size="9" text-anchor="middle" fill="#7f1d1d">מעורבות רירית נפוצה, תמותה גבוהה יותר</text>
+
+<rect x="60" y="430" width="880" height="38" rx="8" fill="#111827"/>
+<text x="500" y="453" font-size="10.5" font-weight="700" text-anchor="middle" fill="#f9fafb">שני המצבים נראים דומים קלינית (קילוף עור נרחב) — אך SSSS שטחי ומחלים לגמרי, TEN עמוק וקשה הרבה יותר</text>
+</svg>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — עומק זיהום ודיברידמנט</h4>
+  <p>הבחנה מהירה בין cellulitis (טיפול אנטיביוטי בלבד) ל-necrotizing fasciitis (דיברידמנט כירורגי דחוף, לעיתים אמפוטציה) יכולה להציל חיים — "כאב מוגזם ביחס לבדיקה" הוא הסימן הקליני החשוב ביותר לחשד. ב-SSSS, בשל ההפרדה השטחית (stratum granulosum בלבד), הטיפול הוא תומך (ללא צורך בדיברידמנט) ומחלים ללא צלקת; לעומת TEN, ההפרדה העמוקה (כל האפידרמיס) עלולה לדרוש טיפול דמוי-כוויה עם דיברידמנט ולעיתים גריפט.</p>
+</div>
+
+<h2><span class="num">5</span> זיהומי עור ויראליים</h2>
+<table class="keytable">
+  <thead><tr><th>זיהום</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td>Herpes</td><td>זיהומי נגיף הרפס (HSV-1 ו-HSV-2) של העור יכולים להתרחש בכל מקום מפני שטח ריריים ועד עור תקין. אלה כוללים herpes labialis, herpes genitalis, herpetic whitlow (אצבע).</td></tr>
+    <tr><td>Molluscum contagiosum</td><td>פפולות אומביליקליות הנגרמות מפוקסווירוס. אף שנראה בתדירות גבוהה בילדים, יכול להיות מועבר מינית במבוגרים.</td></tr>
+    <tr><td>Varicella zoster</td><td>גורם ל-varicella (אבעבועות רוח) ו-zoster (שלבקת חוגרת). Varicella מציגה מספר "יבולים" (crops) של נגעים בשלבים שונים מבועיות לקרוסטות. Zoster היא ריאקטיבציה של הנגיף בתפוצה דרמטומלית (אלא אם הוא מפושט).</td></tr>
+    <tr><td>Hairy leukoplakia</td><td>פלאקים לבנים, לא-כואבים, לא-סדירים על הלשון הצדית שלא ניתן לגרד. בתיווך EBV. מתרחשת בחולים החיים עם HIV, מושתלי איברים. בניגוד ל-thrush (ניתן לגירוד) ו-leukoplakia (קדם-סרטני).</td></tr>
+  </tbody>
+</table>
+
+<div class="mnemonic">
+  <h4>🔤 טכניקת זכירה — Hairy leukoplakia מול Thrush מול Leukoplakia</h4>
+  <p>שלושת הממצאים הלבנים בפה: <b>Hairy leukoplakia</b> (EBV, לא-ניתן-לגרד, שולי לשון, HIV) — <b>Thrush</b> (קנדידה, <u>ניתן</u> לגרד) — <b>Leukoplakia</b> (קדם-סרטני, לא-ניתן-לגרד, קשור לעישון/HPV). "אם אפשר לגרד — זה פטרייה (thrush); אם לא אפשר לגרד — צריך להבדיל EBV (hairy) מקדם-סרטני (leukoplakia)."</p>
+</div>
+
+<div class="surgery">
+  <h4>🔪 תרגום קליני לכירורגיה פלסטית — זיהומים ויראליים לפני ניתוח אלקטיבי בפה/פנים</h4>
+  <p>Herpetic whitlow (הרפס באצבע) הוא סיכון תעסוקתי מוכר לכירורגים (חדירה מפצע עורי קטן בעת מגע עם הפרשות חולה) — שימוש בכפפות הוא קריטי. Hairy leukoplakia ו-thrush בבדיקת פה טרום-ניתוחית (למשל לפני ניתוח פלסטי בפה/לסת) מעלים חשד לכשל חיסוני בסיסי (HIV, מושתל) המחייב בירור נוסף והתאמת סיכון זיהומי טרום-ניתוחי.</p>
+</div>
+
+<h2><span class="num">6</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוקת בת 3 חודשים מגיעה עם חום ופריחה אריתמטוטית מפושטת ברוב הגוף, עם קילוף שכבות עור עליונות בלחיצה עדינה. אין נגעים ריריים. ביופסיה: הפרדה תוך-אפידרמלית בתוך stratum granulosum בלבד.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה האבחנה, ומה ההבדל ממצב דומה הנגרם מתגובה חיסונית לתרופה?</div>
+  <button class="opt" data-i="0">Toxic epidermal necrolysis — תגובה אפופטוטית לתרופה, הפרדה בצומת אפידרמלי-דרמלי העמוק</button>
+  <button class="opt" data-i="1">Staphylococcal scalded skin syndrome — אקסוטוקסין חיידקי מבקע desmoglein 1 ב-stratum granulosum בלבד; TEN (לעומת זאת) הורס את כל האפידרמיס עד לצומת הדרמלי</button>
+  <button class="opt" data-i="2">Bullous pemphigoid — אוטואנטיגופים כנגד hemidesmosome, הפרדה תת-אפידרמלית</button>
+  <button class="opt" data-i="3">Pemphigus vulgaris — אוטואנטיגופים כנגד desmoglein 3, הפרדה תוך-אפידרמלית גבוהה יותר</button>
+  <div class="explain">נכון: גיל צעיר (ינקות), חום, פריחה מפושטת, קילוף שכבות עור עליונות ללא מעורבות רירית מתאימים ל-Staphylococcal scalded skin syndrome. האקסוטוקסין החיידקי (exfoliative toxin) מבקע ישירות את desmoglein 1 בתוך ה-stratum granulosum בלבד — הפרדה שטחית שמחלימה לחלוטין. בניגוד לכך, TEN (תגובה אימונולוגית לתרופה) הורס קרטינוציטים בכל עובי האפידרמיס עד לצומת האפידרמלי-דרמלי — הפרדה עמוקה בהרבה, עם מעורבות רירית שכיחה ותמותה גבוהה יותר.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מטופל מגיע עם כאב קיצוני בשוק, הרבה יותר מהנראה בבדיקה הגופנית, קרפיטוס במישוש, והפרשה אפורה-מלוכלכת מפצע קטן. מהי האבחנה הדחופה ביותר שיש לשלול, ומה המנגנון?</div>
+  <button class="opt" data-i="0">Erysipelas — זיהום בדרמיס העליון עם תיחום חד, טיפול אנטיביוטי אמבולטורי</button>
+  <button class="opt" data-i="1">Cellulitis — זיהום בדרמיס העמוק ותת-העור, טיפול אנטיביוטי מערכתי</button>
+  <button class="opt" data-i="2">Necrotizing fasciitis — זיהום פציה עמוק (אנאירוביים/S pyogenes/S aureus) עם כאב מוגזם ביחס לבדיקה, קרפיטוס ממתאן/CO2 — חירום כירורגי המחייב דיברידמנט דחוף</button>
+  <button class="opt" data-i="3">Impetigo — זיהום אפידרמלי שטחי עם קרוסטה דבשית, טיפול טופיקלי</button>
+  <div class="explain">נכון: כאב "מוגזם ביחס לבדיקה הגופנית" הוא הדגל האדום הקלאסי ל-necrotizing fasciitis — הזיהום העמוק בפציה הורס עצבים לפני שהעור נראה חריג מבחוץ. קרפיטוס נובע מייצור מתאן ו-CO2 על-ידי אנאירוביים. זהו חירום כירורגי המחייב דיברידמנט מהיר — עיכוב באבחון/טיפול עלול להיות קטלני ("flesh-eating bacteria").</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהו ההבדל המרכזי במנגנון בין Albinism ל-Vitiligo, ששתיהן מציגות עור/שיער בהיר?</div>
+  <button class="opt" data-i="0">שתיהן נגרמות מהרס אוטואימוני מלא של מלנוציטים</button>
+  <button class="opt" data-i="1">שתיהן נגרמות ממספר מלנוציטים מופחת מלידה</button>
+  <button class="opt" data-i="2">Albinism נגרמת מזיהום ויראלי כרוני; Vitiligo היא הפרעה גנטית מבודדת</button>
+  <button class="opt" data-i="3">Albinism — מספר מלנוציטים תקין אך ייצור מלנין פגום (↓ פעילות טירוזינאז); Vitiligo — הרס (משוער אוטואימוני) של מלנוציטים קיימים</button>
+  <div class="explain">נכון: ב-Albinism המלנוציטים קיימים במספר תקין, אך הפגם הוא תפקודי — ↓ פעילות האנזים טירוזינאז (או הפרעה בהעברת טירוזין) מונעת ייצור מלנין. ב-Vitiligo, לעומת זאת, המלנוציטים עצמם נהרסים (תהליך המשוער כאוטואימוני), ולכן יש אובדן מוחלט של תאים מייצרי-פיגמנט באזורים הפגועים. ההבדל קריטי קלינית: Vitiligo קשורה למחלות אוטואימוניות נוספות ועלולה להתפתח בכל שלב בחיים, בעוד Albinism היא מצב מולד-קבוע.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">7</span> סיכום של הסיכום</h2>
+  <h4>פיגמנטציה ומחלות עור שכיחות</h4>
+  <ul>
+    <li>Albinism: מלנוציטים תקינים, ↓ ייצור מלנין (↓ טירוזינאז). Vitiligo: הרס מלנוציטים (אוטואימוני). Waardenburg: פגם בהתמיינות neural crest → מלנוציטים, עלול לכלול חרשות.</li>
+    <li>11 מחלות עור שכיחות (אקנה→אורטיקריה) — כל אחת עם פתוגנזה ואבחנה אופיינית; Psoriasis עם 3 ממצאים היסטולוגיים משולבים (acanthosis/↓granulosum/parakeratosis) וסימן Auspitz.</li>
+  </ul>
+  <h4>גידולי כלי דם וזיהומי עור</h4>
+  <ul>
+    <li>7 גידולי כלי דם עוריים — Bacillary angiomatosis (נויטרופילים, Bartonella) מול Kaposi sarcoma (לימפוציטים, HHV-8); Stewart-Treves syndrome = אנגיוסרקומה אחרי לימפאדמה כרונית.</li>
+    <li>עומק זיהום עור/רקמה רכה קובע חמירות: Impetigo (אפידרמיס) → Erysipelas (דרמיס עליון) → Cellulitis (דרמיס עמוק+תת-עור) → Necrotizing fasciitis (פציה, חירום כירורגי).</li>
+    <li>SSSS (אקסוטוקסין מבקע desmoglein 1 ב-stratum granulosum בלבד, שטחי, מחלים לגמרי) מול TEN (אפופטוזיס תרופתי, הורס כל האפידרמיס, עמוק, מעורבות רירית).</li>
+    <li>זיהומים ויראליים: Herpes, Molluscum contagiosum (פוקסווירוס), VZV (varicella/zoster), Hairy leukoplakia (EBV, HIV, לא-ניתן-לגרד).</li>
+  </ul>
+</div>
+
+<h2><span class="num">8</span> הסרטונים שלי (ספרייה אישית)</h2>
+<p style="font-size:14.5px; color:var(--sub)">הדפדפן <b>חוסם ניווט אוטומטי</b> מדף מאובטח (https, כמו האתר הזה) לקובץ מקומי (<span class="term" dir="ltr">file:///D:\...</span>) — זו הגנת אבטחה של הדפדפן עצמו, ולכן הקישורים למטה אינם לחיצים. במקום זה: לחצי על <b>"העתק נתיב"</b>, פתחי חלון סייר קבצים חדש (מקש <span class="term" dir="ltr">Win+E</span>) או לשונית דפדפן חדשה, והדביקי (<span class="term" dir="ltr">Ctrl+V</span>) בשורת הכתובת. הנתיבים האלה עובדים <b>רק על המחשב שלך</b>; מי שרוצה לצפות בסרטונים האלה יכול לרכוש גישה אליהם ישירות מ-<span class="term" dir="ltr">Osmosis</span>.</p>
+<div class="video-path-list">
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">אלבינוס (Albinism) — Osmosis</span></div>
+    <div class="d">מנגנון ↓ ייצור מלנין ומספר מלנוציטים תקין — הנושא עליו מבוסס סעיף 1 למעלה</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Albinism.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Albinism.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">אקנה (Acne vulgaris) — Osmosis</span></div>
+    <div class="d">פתוגנזה רב-גורמית של אקנה — הרחבה ישירה על סעיף 2 למעלה</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Acne vulgaris.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Acne vulgaris.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">דרמטיטיס אטופית (Atopic dermatitis) — Osmosis</span></div>
+    <div class="d">אקזמה, קשר ל-IgE ולמחלות אטופיות — הרחבה על סעיף 2</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Atopic dermatitis.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Atopic dermatitis.mp4">📋 העתק נתיב</button></div>
+  </div>
+  <div class="video-path-item">
+    <div class="vpi-head"><span class="ico">🎥</span><span class="t">פסוריאזיס (Psoriasis) — Osmosis</span></div>
+    <div class="d">שלושת הממצאים ההיסטולוגיים וסימן Auspitz — הרחבה על סעיף 2</div>
+    <div class="vpi-path-row"><code class="vpi-path">D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Psoriasis.mp4</code><button class="copy-btn" data-copy="D:\AI\סרטונים\אוסמוזיס\osmosis\Dermatology (14 Videos)\Psoriasis.mp4">📋 העתק נתיב</button></div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var text = btn.getAttribute('data-copy');
+    var done = function(){
+      var old = btn.textContent;
+      btn.textContent = '✓ הועתק!';
+      btn.classList.add('copied');
+      setTimeout(function(){ btn.textContent = old; btn.classList.remove('copied'); }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function(){
+        fallbackCopy(text); done();
+      });
+    } else {
+      fallbackCopy(text); done();
+    }
+  });
+});
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
