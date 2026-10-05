@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הוושט — הפרעות תנועתיות, דיברטיקולות, פרפורציה וסרטן הוושט</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .book-box{background:#eef2ff; border:1px solid #c7d2fe; border-right:5px solid #4f46e5; border-radius:8px; padding:14px 18px; margin:16px 0}
+  .book-box h3{margin:12px 0 6px; color:#3730a3; font-size:16px}
+  .book-box h3:first-child{margin-top:0}
+  .book-badge{display:inline-block; background:#4f46e5; color:#fff; border-radius:999px; padding:3px 12px; font-size:13px; font-weight:600; margin:0 0 12px}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF של פרק 42 מתוך book/ שימש מקור ראשי (Sabiston, Esophagus, חולץ עם pdftotext, 2026-10-05). השלמות מהרשת: תמונות Wikimedia Commons וסרטוני YouTube שנמצאו בחיפוש אמיתי; עדכונים קצרים מעבר לספר מסומנים כ"עדכון" (Chicago v4.0, ניבולומאב אדג'ובנטי – CheckMate 577, ניסוי ESOPEC). GERD ובקע סרעפתי מורחבים בפרק 43 הנפרד. -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>הוושט <span class="term" dir="ltr">(Esophagus)</span> — הפרעות תנועתיות, דיברטיקולות, פרפורציה, גידולים וסרטן הוושט</h1>
+<div class="subtitle">פרק 42 בספר Sabiston — אנטומיה ופיזיולוגיה של הבליעה, מנומטריה וסיווג שיקגו, אכלזיה (Heller/POEM/הרחבה פנאומטית), DES ו-Nutcracker, צנקר ודיברטיקולות אפיפרניות, פרפורציה ובורהאבה, בליעת חומר צורב, גבעות שצקי, גידולים שפירים (ליומיומה), ברט ודיספלזיה, שלבי TNM, EMR/RFA, CROSS ואזופגקטומיה</div>
+<div class="book-badge">📖 נכתב לפי הספר (Sabiston, פרק 42) — 2026-10-05</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>הוושט הוא <b>צינור שרירי באורך 25–30 ס"מ</b> שמתחיל בבסיס הלוע בגובה <b>C6</b> ומסתיים בקרדיה של הקיבה בגובה <b>T11</b>. הוא עובר בשלושה חללי גוף (צוואר, בית חזה, בטן) ומעבר מלחץ אטמוספרי ללחץ שלילי בחזה וחזרה ללחץ חיובי בבטן. לכן כל ליקוי קטן בתיאום — סוגר שלא נפתח, גל שלא מתקדם, דופן שנקרעת — מתבטא מהר ב<b>קושי בבליעה (Dysphagia)</b>, בהחזרת מזון, בכאב בחזה או בזיהום מדיאסטינלי מסכן חיים.</p>
+<p>לכירורג חשובים כאן ארבעה תחומים: <b>הפרעות תנועתיות</b> (אכלזיה בראשן), <b>דיברטיקולות</b>, <b>מצבים חריפים</b> (פרפורציה, חומר צורב, גוף זר) ו<b>סרטן הוושט</b> — מברט ועד אזופגקטומיה אחרי כימו-קרינה.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+
+<h3>הפיזיולוגיה התקינה — שני "שערים" וגל אחד</h3>
+<div class="mechanism">
+<p class="chain">בליעה רצונית ← שלב אורו-לועי רפלקסיבי (≈1.5 שנ', 6 אירועים: הרמת הלשון, דחיפתה לאחור, הרמת החך הרך, הרמת עצם הלשון, הרמת הגרון, הטיית האפיגלוטיס) ← <b>הסוגר העליון (UES)</b> נרפה ← הגל נע במהירות <b>2–4 ס"מ/שנ'</b> ← <b>הרפיה וגאלית</b> של <b>הסוגר התחתון (LES)</b> 1.5–2.5 שנ' אחרי הבליעה, למשך 4–6 שנ' ← הבולוס עובר לקיבה ← כיווץ שלאחר ההרפיה סוגר את השער.</p>
+<p><b>UES</b> = שריר ה-<b>Cricopharyngeus</b>, באורך 4–5 ס"מ, לחץ מנוחה ~<b>60 מ"מ כספית</b> — מונע בליעת אוויר. <b>LES</b> אינו סוגר אנטומי אמיתי אלא אזור לחץ גבוה באורך 2–5 ס"מ ולחץ <b>6–26 מ"מ כספית</b>; כדי שיתפקד צריך <b>אורך כולל ≥2 ס"מ ולפחות 1 ס"מ תוך-בטני</b> (הלחץ החיובי בבטן "לוחץ" עליו מבחוץ).</p>
+<p><b>שלושה סוגי כיווצים:</b> <b>ראשוניים</b> — גל מתקדם שמתחיל בבליעה (40–80 מ"מ כספית); <b>משניים</b> — גל מתקדם שמתחיל ממתיחה/גירוי מקומי כדי לנקות שאריות; <b>שלישוניים</b> — כיווצים <b>לא מתקדמים, סימולטניים</b>, לא מתואמים — הם הבסיס ל<b>עווית ("corkscrew")</b>.</p>
+</div>
+
+<h3>אכלזיה — "השער שלא נפתח"</h3>
+<div class="mechanism">
+<p class="chain">הרס (אידיופתי/זיהומי-נוירוגני; בדרום אמריקה — <b>מחלת שאגאס</b>, <span class="term" dir="ltr">Trypanosoma cruzi</span>) של <b>הנוירונים המעכבים</b> במקלעת אאורבך (Auerbach) ב-LES ← אין שחרור של המתווכים המרפים (NO, VIP) ← ה-LES נשאר <b>היפרטוני ולא נרפה בבליעה</b> ← מזון ונוזל מצטברים מעל ← לחץ בגוף הוושט ← <b>התרחבות</b> ← בשלב משני ניוון הנוירומוסקולרי של גוף הוושט ← <b>אובדן פריסטלטיקה</b>.</p>
+<p><b>למה הדיספגיה מתחילה בנוזלים?</b> בניגוד לחסימה מכנית (גידול), שבה מוצקים נתקעים ראשונים, באכלזיה הבעיה היא בתזמון — גם נוזל לא עובר בלי הרפיה. המטופלים לומדים "לשטוף" את המזון בהרבה מים: עמוד המים יוצר לחץ ← כאב רטרו-סטרנלי ← ברגע שהלחץ גובר על ה-LES — הקלה מהירה.</p>
+<p><b>למה אין בועת אוויר בקיבה?</b> כי ה-LES הסגור לא מעביר אוויר בלוע לקיבה. <b>למה יש סיכון לסרטן?</b> מזון שנשאר ומתסס בוושט המורחב מגרה את הרירית שנים ← <b>SCC</b> (עד ~8% ב-20 שנה), והסיכון <b>נמשך גם אחרי טיפול</b> — לכן מעקב אנדוסקופי ארוך.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 270" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>מנגנון אכלזיה מול תקין</title>
+  <desc>צד ימין: ושט תקין עם גל פריסטלטי ו-LES שנרפה. צד שמאל: אכלזיה — ושט מורחב, אין גל, LES סגור בצורת מקור ציפור</desc>
+  <rect x="360" y="8" width="310" height="28" rx="6" fill="#ecfdf5" stroke="#047857"/>
+  <text x="515" y="27" text-anchor="middle" fill="#065f46" font-weight="700">תקין</text>
+  <rect x="10" y="8" width="330" height="28" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="175" y="27" text-anchor="middle" fill="#991b1b" font-weight="700">אכלזיה</text>
+  <!-- normal esophagus -->
+  <rect x="500" y="50" width="30" height="150" rx="10" fill="#fde68a" stroke="#b45309"/>
+  <ellipse cx="515" cy="110" rx="18" ry="10" fill="#d97706" opacity="0.7"/>
+  <polygon points="555,95 567,95 561,125" fill="#047857"/>
+  <text x="575" y="112" fill="#065f46">גל פריסטלטי ↓</text>
+  <path d="M500 200 L505 215 L525 215 L530 200" fill="none" stroke="#047857" stroke-width="3"/>
+  <ellipse cx="515" cy="240" rx="55" ry="22" fill="#fee2e2" stroke="#b45309"/>
+  <text x="515" y="245" text-anchor="middle">קיבה + בועת אוויר</text>
+  <text x="595" y="212" fill="#065f46">LES נפתח</text>
+  <!-- achalasia -->
+  <path d="M150 50 C100 80 90 150 140 185 L170 205 L200 185 C250 150 240 80 190 50 Z" fill="#fde68a" stroke="#b45309"/>
+  <text x="170" y="120" text-anchor="middle" font-weight="700">מזון + נוזל</text>
+  <text x="170" y="138" text-anchor="middle">ושט מורחב, בלי גל</text>
+  <polygon points="160,200 180,200 170,218" fill="#b91c1c"/>
+  <text x="235" y="214" fill="#991b1b" font-weight="700">"מקור ציפור" — LES סגור</text>
+  <ellipse cx="170" cy="245" rx="55" ry="18" fill="#fee2e2" stroke="#b45309"/>
+  <text x="170" y="250" text-anchor="middle">קיבה — אין בועה</text>
+  <text x="40" y="70" fill="#991b1b">אובדן נוירונים</text>
+  <text x="40" y="86" fill="#991b1b">מעכבים (NO/VIP)</text>
+</svg>
+
+<h3>דיברטיקולות — "לחיצה" מול "משיכה"</h3>
+<div class="mechanism">
+<p class="chain"><b>Pulsion (דחיפה) — דיברטיקולה כוזבת:</b> הפרעת תנועתיות/סוגר שלא נרפה ← לחץ תוך-לומני גבוה ← <b>רירית ותת-רירית בלבד</b> בוקעות דרך נקודה חלשה בשריר. כך נוצרים <b>צנקר</b> (מעל UES שלא נרפה — "אכלזיה קריקופרינגיאלית") ו<b>אפיפרני</b> (מעל LES/DES).</p>
+<p class="chain"><b>Traction (משיכה) — דיברטיקולה אמיתית:</b> בלוטות לימפה מדיאסטינליות מודלקות (TB, היסטופלזמוזיס) נצמדות לוושט ← בריפוין הן מתכווצות ומושכות ← <b>כל שכבות הדופן</b> נמשכות החוצה ← דיברטיקולה <b>אמצע-ושטית</b>, לרוב סביב הקרינה.</p>
+<p><b>המסר הכירורגי:</b> כמעט כל דיברטיקולה היא <b>סימפטום של חסימה בהמשך</b> — לכן בכל תיקון חובה גם <b>מיוטומיה</b> שמשחררת את החסימה, אחרת הדליפה/החזרה מובטחות.</p>
+</div>
+
+<h3>ריפלוקס, ברט וסרטן — שרשרת אחת</h3>
+<div class="mechanism">
+<p class="chain">LES לא כשיר (קצר, לחץ נמוך, אסימטרי) + פינוי ושטי ירוד + ריקון קיבה איטי ← חשיפה חוזרת של הרירית הקשקשית לחומצה ומרה ← דלקת ← <b>מטפלזיה מעייתית</b> (אפיתל גלילי עם תאי גביע — <b>ברט</b>) — "התאמה" לסביבה עוינת ← דיספלזיה נמוכה ← גבוהה ← <b>אדנוקרצינומה</b> בוושט הדיסטלי/GEJ.</p>
+<p><b>SCC</b> הולך בדרך אחרת: <b>עישון + אלכוהול (סינרגיזם)</b>, אכלזיה, בליעת חומר צורב (סיכון ×1000), פלאמר-וינסון, טילוזיס — גירוי כרוני של האפיתל הקשקשי, בעיקר <b>בוושט העליון והאמצעי</b>.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/coHQ3UPqvkw" title="Achalasia (Year of the Zebra) — Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — אכלזיה: אובדן נוירונים מעכבים, LES שלא נרפה, "מקור ציפור" ואפשרויות טיפול. מקור: Osmosis / YouTube.</p>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופתולוגיה</h2>
+<ul>
+  <li><b>שכבות:</b> רירית (אפיתל קשקשי, קרום בסיסי, למינה פרופריה, Muscularis mucosae) ← תת-רירית (כלי דם, לימפה, <b>מקלעת מייסנר</b>) ← שריר עצמי (פנימי מעגלי, חיצוני אורכי; <b>מקלעת אאורבך</b> ביניהם) ← אדבנטיציה. <span class="key">לוושט אין סרוזה</span> — לכן השקות "חלשות" יותר וגידול מתפשט מהר למדיאסטינום.</li>
+  <li><b>שריר:</b> השליש העליון <b>מפוספס</b>, שני השלישים התחתונים <b>חלק</b> — לכן מחלות שריר-שלד (פוליומיוזיטיס, מיאסתניה) פוגעות למעלה, וסקלרודרמה פוגעת למטה.</li>
+  <li><b>קו Z:</b> המעבר מאפיתל קשקשי לגלילי, 1–2 ס"מ דיסטלית. סימני GEJ: אנדוסקופית — קו Z וסוף הקפלים החלקים/תחילת הקפלים הקיבתיים; חיצונית — <b>Collar of Helvetius</b> וכרית השומן של ה-GEJ.</li>
+  <li><b>שלוש היצרויות ("שעון חול"):</b> הקריקופרינגאוס (<b>14 מ"מ — המקום הצר ביותר בכל מערכת העיכול</b>), הברונכו-אאורטית (T4, 15–17 מ"מ), הסרעפתית (16–19 מ"מ) — שם נתקעים גופים זרים.</li>
+  <li><b>משולש קיליאן (Killian):</b> אזור חלש בין הסיבים האלכסוניים של ה-Thyropharyngeus לסיבים האופקיים של ה-Cricopharyngeus — <b>מקום הצנקר</b> (אחורי, ויורד לרוב <b>שמאלה</b>).</li>
+  <li><b>אספקת דם:</b> צווארי — עורקי <b>התריס התחתונים</b>; חזי — 4–6 ענפים ישירים מהאאורטה + ענפים ברונכיאליים; בטני — <b>עורק הקיבה השמאלי</b> ועורקים פרניים תחתונים. רשת נימים תת-רירית לכל האורך — "רשת ביטחון" שמאפשרת לנתק את הוושט מאספקתו בניתוח.</li>
+  <li><b>ורידים:</b> צווארי ← ורידי התריס; חזי ← <b>אזיגוס/המיאזיגוס</b>; בטני ← <b>וריד הקיבה השמאלי (Coronary) — פורטלי</b> (הבסיס לדליות ושט ביתר לחץ פורטלי).</li>
+  <li><b>לימפה:</b> שתי מקלעות (תת-רירית ושרירית) שזורמות <b>לאורך</b> הדופן; בשני השלישים העליונים הזרימה למעלה, בשליש התחתון למטה (לצליאק). <b>"כביש מהיר לגרורות"</b> — גם גידול T1b שולח בלוטות.</li>
+  <li><b>עצבים:</b> הנרבים החוזרים (Recurrent laryngeal) בחריץ הקנה-ושט — פגיעה ← צרידות ואספירציה. הוואגוס יוצר מקלעת ומתלכד 2 ס"מ מעל הסרעפת ל<b>וואגוס שמאלי = קדמי</b> ו<b>ימני = אחורי</b> (LARP).</li>
+</ul>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Histopathology_of_Barrett's_esophagus,_annotated.jpg?width=700" alt="היסטולוגיה של ברט מול אפיתל קשקשי תקין">
+  <p class="media-cap">היסטולוגיה של ושט ברט (מסומן): בצד אחד <b>אפיתל קשקשי תקין</b> של הוושט, ובצד השני <b>אפיתל גלילי "מעייתי" עם תאי גביע</b> — ההגדרה ההיסטולוגית של ברט. מקור: Wikimedia Commons.</p>
+</figure>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<table>
+  <tr><th>מצב</th><th>מי</th><th>התלונה האופיינית</th><th>רמז מבדיל</th></tr>
+  <tr><td><b>אכלזיה</b></td><td>צעירים, נשים; 6/100,000</td><td><b>טריאדה: דיספגיה + החזרה + ירידה במשקל</b>; דיספגיה מתחילה ב<b>נוזלים</b></td><td>שותים הרבה מים; החזרת מזון לא מעוכל וריחני; שיעול לילי, אספירציה, דלקות ריאה</td></tr>
+  <tr><td><b>DES (עווית דיסטלית)</b></td><td>נשים, ריבוי תלונות</td><td><b>כאב לוחץ בחזה</b> (מחקה אנגינה, מקרין ללסת ולגב) + דיספגיה</td><td>מוחמר במתח ובנוזלים קרים; ריפלוקס לא בולט — <b>קודם שוללים מקור לבבי</b></td></tr>
+  <tr><td><b>Nutcracker / Jackhammer</b></td><td>כל גיל, 1:1</td><td>הכאב <b>הקשה ביותר</b> מבין הפרעות התנועתיות; אודינופגיה</td><td>הפרעת יתר-תנועתיות השכיחה ביותר</td></tr>
+  <tr><td><b>צנקר</b></td><td>קשישים (עשור 7)</td><td>"משהו תקוע בגרון", החזרת מזון לא מעוכל, <b>הליטוזיס</b>, שיעול</td><td>גרגור בצוואר; סיכון לדלקת ריאה אספירטיבית ומורסה</td></tr>
+  <tr><td><b>סרטן הוושט</b></td><td>גברים ×3–4</td><td>דיספגיה <b>מתקדמת — ממוצקים לנוזלים</b> + ירידה במשקל</td><td>צרידות (מעורבות עצב חוזר), שיעול בשתייה (פיסטולה), בלוטה סופרה-קלביקולרית</td></tr>
+  <tr><td><b>פרפורציה</b></td><td>אחרי אנדוסקופיה / הקאות עזות</td><td>כאב חזה/אפיגסטרי, כאב צוואר, דיספגיה</td><td><b>קרפיטציות</b> בצוואר/חזה (אמפיזמה תת-עורית), חום, טכיקרדיה</td></tr>
+</table>
+<div class="key-box">דיספגיה <b>לנוזלים ולמוצקים מההתחלה</b> = הפרעת תנועתיות; דיספגיה <b>שמתחילה במוצקים ומתקדמת</b> = חסימה מכנית (סרטן/היצרות) עד שהוכח אחרת — ו<b>כל מטופל עם דיספגיה עובר אנדוסקופיה</b>, גם אם הבליעה הבריומית "נראית כמו אכלזיה".</div>
+
+<h2><span class="num">5</span> אבחנה</h2>
+
+<h3>הכלים — מה כל אחד באמת עושה</h3>
+<ul>
+  <li><b>בליעת בריום (Esophagram)</b> — "מפת הדרכים": מבנה (היצרות, דיברטיקולה, בקע, גידול) ותפקוד. <b>Timed barium</b> (צילומים ב-1, 2 ו-5 דקות) מודד ריקון — שימושי באכלזיה. לצנקר — <b>חובה מבט צידי</b> כי הכיס אחורי.</li>
+  <li><b>מנומטריה ברזולוציה גבוהה (HRM)</b> — קטטר עם עד 36 חיישנים במרווח ≤1 ס"מ שמודד לחץ לכל אורך הוושט בזמן 10 בליעות מים, ומצייר "מפה טופוגרפית" של לחצים. <b>תקן הזהב לאבחנת אכלזיה</b>. שני מדדים מרכזיים:
+    <ul>
+      <li><b>IRP</b> (Integrated Relaxation Pressure) — הלחץ הממוצע ב-4 השניות של ההרפיה המיטבית של ה-GEJ. <b>&gt;15 מ"מ כספית = ה-GEJ לא נרפה</b>.</li>
+      <li><b>DCI</b> (Distal Contractile Integral) — עוצמה × משך × אורך של הכיווץ הדיסטלי. <b>&lt;450</b> = בליעה לא יעילה; <b>&gt;8000</b> = היפרקונטרקטילי (Jackhammer).</li>
+    </ul></li>
+  <li><b>אנדוסקופיה</b> — לשלול <b>פסאודו-אכלזיה</b> (גידול GEJ שמחקה אכלזיה), דלקת, היצרות; ביופסיות. בברט — <b>קריטריוני פראג</b> (אורך היקפי C ומקסימלי M) ו<b>פרוטוקול סיאטל</b> (ביופסיות ב-4 רבעים כל 1 ס"מ + כל נגע נראה).</li>
+  <li><b>ניטור pH (24–48 שעות)</b> — לפני ניתוח אנטי-ריפלוקס; <b>DeMeester &gt;14.72</b> מאשר GERD פתולוגי (להפסיק PPI 5 ימים–שבועיים לפני).</li>
+  <li><b>CT / PET-CT / EUS</b> — לשלבי סרטן (ראה בהמשך).</li>
+</ul>
+
+<h3>סיווג שיקגו (Chicago v3.0, כפי שבספר)</h3>
+<table>
+  <tr><th>אבחנה</th><th>IRP</th><th>גוף הוושט</th></tr>
+  <tr><td><b>אכלזיה סוג I</b> (קלאסית)</td><td>&gt;15</td><td>100% פריסטלטיקה כושלת, כמעט בלי לחץ בגוף</td></tr>
+  <tr><td><b>אכלזיה סוג II</b></td><td>&gt;15</td><td>100% כושלת + <b>לחץ בכל הוושט (Panesophageal pressurization)</b> ב-≥20% מהבליעות — <b>מגיבה הכי טוב לטיפול</b></td></tr>
+  <tr><td><b>אכלזיה סוג III</b> (ספסטית)</td><td>&gt;15</td><td>כיווצים ספסטיים (DCI &gt;450) ב-≥20% — כאב חזה; מתאים ל-<b>POEM</b> (מיוטומיה ארוכה)</td></tr>
+  <tr><td><b>EGJ outflow obstruction</b> (לשעבר LES היפרטנסיבי)</td><td>&gt;15</td><td>יש פריסטלטיקה — "אכלזיה בהתהוות"</td></tr>
+  <tr><td><b>עווית דיסטלית (DES)</b></td><td>תקין</td><td>≥20% כיווצים מוקדמים עם DCI &gt;450</td></tr>
+  <tr><td><b>היפרקונטרקטילי (Jackhammer/Nutcracker)</b></td><td>תקין</td><td>≥2 בליעות עם DCI &gt;8000</td></tr>
+  <tr><td><b>היעדר כיווציות</b></td><td>תקין</td><td>100% כושלת (סקלרודרמה)</td></tr>
+  <tr><td><b>IEM</b> (תנועתיות לא יעילה)</td><td>תקין</td><td>≥50% בליעות לא יעילות (DCI &lt;450); קשור ל-GERD</td></tr>
+</table>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> Chicago v4.0 (2021) שמרה על העקרונות אך מחייבת סימפטומים מתאימים ובדיקה משלימה (Timed barium / FLIP) לפני אבחנת EGJOO, ו-"Nutcracker" כבר לא ישות נפרדת — רק Hypercontractile.</p>
+
+<h3>ממצאי הדמיה אופייניים</h3>
+<ul>
+  <li><b>אכלזיה:</b> ושט מורחב, עמוד בריום שנשאר, <b>"מקור ציפור" (Bird's beak)</b> דיסטלי חלק, <b>אין בועת אוויר בקיבה</b>; בשלב מתקדם — <b>מגה-ושט סיגמואידי</b>.</li>
+  <li><b>DES:</b> <b>"חולץ פקקים" (Corkscrew)</b> / פסאודו-דיברטיקולוזיס מכיווצים שלישוניים.</li>
+  <li><b>סרטן:</b> היצרות לא סדירה ופתאומית, כיב; "Apple-core" רק כשההיצרות היקפית וסימטרית; התרחבות ומפלס נוזל מעל.</li>
+  <li><b>גידול שפיר תת-רירי (ליומיומה):</b> <b>פגם מילוי חלק</b> עם רירית תקינה מעליו.</li>
+  <li><b>פרפורציה:</b> בצילום — אוויר מדיאסטינלי/צווארי, תפליט פלאורלי (לרוב שמאלי בבורהאבה); <b>בליעת חומר ניגוד</b> (או CT עם ניגוד פומי) מוכיחה דליפה.</li>
+</ul>
+
+<div class="figure-pair">
+  <figure>
+    <span class="label abnormal">אכלזיה</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Acha.JPG?width=600" alt="בליעת בריום באכלזיה">
+    <p class="media-cap">בליעת בריום באכלזיה: <b>ושט מורחב</b> עם עמוד בריום שנשאר, ו<b>היצרות דיסטלית חלקה בצורת מקור ציפור</b> ב-GEJ. בוושט תקין העמוד מתרוקן תוך שניות והקוטר ~2.5 ס"מ. מקור: Farrokhi & Vaezi, Orphanet J Rare Dis 2007 / Wikimedia Commons.</p>
+  </figure>
+  <figure>
+    <span class="label abnormal">סרטן (ברט)</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Esophageal_cancer-2626-02.jpg?width=600" alt="סרטן ושט אנדוסקופי">
+    <p class="media-cap">מראה אנדוסקופי של סרטן בוושט התחתון על רקע ברט: גוש <b>שביר, לא סדיר ומכויב</b>. לנגעים קטנים/נודולריים — <b>EMR</b> לשלב מדויק. מקור: Wikimedia Commons.</p>
+  </figure>
+</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Barretts_esophagus.jpg?width=700" alt="ברט באנדוסקופיה">
+<p class="media-cap">ושט ברט באנדוסקופיה: "לשונות" של <b>רירית אדמדמה-חומה (סלמון)</b> שעולות מעל ה-GEJ אל תוך הרירית הקשקשית החיוורת (הורודה-אפרפרה) התקינה. מקור: Wikimedia Commons (נחלת הכלל).</p>
+
+<h3>שלבי סרטן הוושט (AJCC מהדורה 8)</h3>
+<table>
+  <tr><th>T</th><th>עומק</th><th>משמעות טיפולית</th></tr>
+  <tr><td>Tis</td><td>דיספלזיה גבוהה (לא חודרת את הקרום הבסיסי)</td><td>EMR ± אבלציה (RFA)</td></tr>
+  <tr><td><b>T1a</b></td><td>למינה פרופריה / Muscularis mucosae</td><td><b>EMR</b> (סיכון בלוטות &lt;2% עד &gt;15% לפי גודל, דרגה, LVI)</td></tr>
+  <tr><td><b>T1b</b></td><td>תת-רירית</td><td>רוב — <b>אזופגקטומיה</b> (SM2/3: בלוטות ~40%); SM1 אדנו' בסיכון נמוך — אפשר אנדוסקופי</td></tr>
+  <tr><td>T2</td><td>שריר עצמי</td><td>cT2N0 — מחלוקת (לרוב מתת-/ מעל-שלבי)</td></tr>
+  <tr><td>T3</td><td>אדבנטיציה</td><td>טרימודלי (כימו-קרינה ← ניתוח)</td></tr>
+  <tr><td>T4a / T4b</td><td>מבנים נכרתים (פלאורה, פריקרד, סרעפת, אזיגוס) / לא נכרתים (אאורטה, חוליה, קנה)</td><td>T4b — לא נכרת</td></tr>
+</table>
+<p><b>N</b> לפי <b>מספר</b> בלוטות: N1 = 1–2, N2 = 3–6, N3 = ≥7. מיקום (צווארי 15–20 ס"מ מהשיניים, עליון עד אזיגוס 20–25, אמצעי עד וריד ריאתי תחתון 25–30, תחתון &gt;30) משפיע על השלב הפתולוגי רק ב-<b>SCC</b>. <b>Siewert III</b> (מרכז 2–5 ס"מ מתחת ל-GEJ) מסווג כ<b>קיבה</b>.</p>
+<div class="key-box">סדר הבירור: אנדוסקופיה + ביופסיות מרובות ← <b>CT חזה-בטן + PET-CT</b> (קודם, כדי לחסוך EUS אם יש גרורות ולכוון FNA) ← <b>EUS ± FNA</b> (הטוב ביותר ל-T ול-N, מדויק במיוחד לבלוטות צליאק) ← ברונכוסקופיה בגידולים עליונים/אמצעיים. לגידולים שטחיים (T1a–T2) <b>EUS לא מדויק — EMR הוא כלי השלב</b>.</div>
+
+<h2><span class="num">6</span> טיפול</h2>
+
+<h3>אכלזיה — כל הטיפולים פליאטיביים (מטפלים ב-LES, לא בגוף)</h3>
+<table>
+  <tr><th>טיפול</th><th>מנגנון</th><th>יעילות לפי הספר</th><th>חסרונות / קונטרא</th></tr>
+  <tr><td><b>ניטרטים / חוסמי סידן</b> (Isosorbide dinitrate, Nifedipine) תת-לשוני לפני ארוחה</td><td>ניטרט ← NO ← הרפיית שריר חלק; Nifedipine חוסם תעלות סידן מסוג L בשריר החלק של ה-LES</td><td>הקלה של שעות, בשלב מוקדם</td><td>כאב ראש, תת-לחץ דם; לא עמיד</td></tr>
+  <tr><td><b>בוטולינום (Botox)</b> לתוך ה-LES</td><td>חוסם שחרור <b>אצטילכולין</b> מקצות העצבים המעוררים ← ה-LES נרפה (מאזן את חסרון המעכבים)</td><td>הפוגה ב-38% בשנה; <b>&gt;50% חוזרים תוך 6 חודשים</b></td><td>מתאים לקשישים/חולים בסיכון גבוה; פיברוזיס שמקשה על ניתוח עתידי</td></tr>
+  <tr><td><b>הרחבה פנאומטית</b></td><td>בלון שקורע את סיבי השריר</td><td>89% בשנה; ב-RCT האירופי <b>שווה ל-Heller</b> (86% מול 90% בשנתיים), אך <b>25% צריכים הרחבה חוזרת</b></td><td><b>פרפורציה ~4%</b></td></tr>
+  <tr><td><b>Heller לפרוסקופי + Dor</b></td><td>חיתוך השריר המעגלי של ה-LES (~6 ס"מ על הוושט + 2–3 ס"מ על הקיבה) + עטיפה קדמית 180°</td><td><b>ניתוח הבחירה</b>, עמיד</td><td>קרע רירי (~12%, מתוקן בניתוח); ריפלוקס ← מכאן ה-Dor/Toupet</td></tr>
+  <tr><td><b>POEM</b></td><td>מיוטומיה דרך מנהרה תת-רירית באנדוסקופ</td><td>שווה ל-Heller בטווח הקצר; טוב לסוג III (מיוטומיה ארוכה) ואף לסיגמואידי</td><td><b>אין עטיפה ← ריפלוקס</b> שכיח יותר</td></tr>
+  <tr><td><b>אזופגקטומיה</b></td><td>הסרת הוושט החולה</td><td>למגה-ושט/סיגמואידי, &gt;1 מיוטומיה שנכשלה, היצרות ריפלוקס</td><td>מורכבת; טרנס-תורקלית בטוחה יותר במגה-ושט</td></tr>
+</table>
+
+<div class="surgery">
+<h4>מהלך הניתוח — Heller לפרוסקופי עם Dor</h4>
+<p><b>הכנה:</b> אנדוסקופיה לשלילת פסאודו-אכלזיה; דיאטה נוזלית 24–48 שעות לפני (הוושט מלא שאריות — סכנת אספירציה בהרדמה, אינטובציה ברצף מהיר); מנומטריה לתיעוד הסוג.</p>
+<p><b>שלבים:</b> חיתוך הליגמנט הגסטרו-הפטי ← חשיפת ה-GEJ וכרית השומן ← זיהוי ושימור <b>שני הוואגוסים</b> ← מיוטומיה של שכבות השריר האורכי והמעגלי עד הרירית, לאורך ~6 ס"מ על הוושט ו-2–3 ס"מ אל הקיבה ← בדיקת שלמות הרירית (אנדוסקופ/אוויר) ← <b>Dor</b>: הפונדוס נתפר קדמית מעל המיוטומיה (180°–200°) — מגן מפני ריפלוקס ו"מכסה" את הרירית החשופה.</p>
+<p><b>נקודות קריטיות:</b> מיוטומיה <b>לא מספיק דיסטלית</b> (על הקיבה) = הסיבה השכיחה לכישלון; <b>קרע רירי</b> — לזהות ולתפור בניתוח; עטיפה מלאה (Nissen) <b>אסורה</b> — הוושט חסר פריסטלטיקה ולא יגבר עליה ← דיספגיה.</p>
+<p><b>החלמה:</b> בליעת חומר ניגוד לפי הצורך, דיאטה רכה; חום, כאב חזה ודופק מהיר ← לחשוד בדליפה. מעקב ארוך טווח (ריפלוקס, חזרה, <b>סרטן</b>).</p>
+</div>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/qPdIe4I3hJQ" title="Heller Myotomy with Dor Fundoplication — surgical footage and animation" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">אנימציה וצילום ניתוחי של Heller לפרוסקופי עם Dor: חשיפת ה-GEJ, חיתוך שכבות השריר עד הרירית והעטיפה הקדמית. מקור: YouTube.</p>
+
+<h3>DES ו-Nutcracker</h3>
+<p>בעיקר <b>שמרני</b>: בירור פסיכיאטרי והרגעה, הימנעות מטריגרים (קפאין, קר/חם), PPI אם יש ריפלוקס, <b>ניטרטים, חוסמי סידן, נוגדי כולין, מנטה</b>; הרחבה בבוז'י 50–60 Fr (70%–80% ב-DES). ניתוח — <b>מיוטומיה ארוכה</b> (בגובה כל האזור הפגוע במנומטריה, עד ה-LES) + <b>Dor</b>, או <b>POEM</b> (תגובה 93% בסדרה של 73 חולים). EGJOO — בוטוקס/הרחבה, ואז Heller + עטיפה חלקית.</p>
+
+<h3>דיברטיקולות</h3>
+<table>
+  <tr><th>סוג</th><th>טיפול</th></tr>
+  <tr><td><b>צנקר</b></td><td>תמיד <b>מיוטומיה של הקריקופרינגאוס</b>. &lt;2 ס"מ — מיוטומיה לבד; 2–5 ס"מ — <b>אנדוסקופי (Dohlman / סטפלר / Needle-knife)</b> — חיתוך הדופן המשותפת, נוזלים למחרת; &lt;3 ס"מ — סיכון למיוטומיה חלקית בסטפלר; &gt;5 ס"מ — <b>כריתה פתוחה דרך צוואר שמאל</b> (או Diverticulopexy — תפירה <b>ללוע האחורי</b>, לא לפאסיה הפרה-ורטברלית). אבחנה בבליעת בריום בלבד — אין צורך במנומטריה/אנדוסקופיה.</td></tr>
+  <tr><td><b>אמצע-ושט</b></td><td>טיפול בגורם (TB/היסטופלזמה); &lt;2 ס"מ ואסימפטומטי — מעקב; ≥2 ס"מ או סימפטומטי — Diverticulopexy לפאסיה החולייתית / כריתה; + מיוטומיה ארוכה אם יש הפרעת תנועתיות. לרוב <b>בצד ימין</b>; שיעול כרוני ← לחשוד ב<b>פיסטולה ברונכו-ושטית</b>.</td></tr>
+  <tr><td><b>אפיפרני</b> (≤10 ס"מ מה-GEJ)</td><td>כריתה בסטפלר <b>על בוז'י</b> (שלא יצר את הלומן) + <b>מיוטומיה ארוכה בצד הנגדי עד ה-LES</b> + תיקון בקע אם קיים. חובה לשחרר את החסימה — אחרת דליפה/חזרה.</td></tr>
+</table>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/KTFkFxtpkOE" title="Zenker's Diverticulum: Expert Insights from Mayo Clinic" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Mayo Clinic — צנקר: מנגנון הכיס במשולש קיליאן, תסמינים ואפשרויות תיקון אנדוסקופי מול פתוח. מקור: YouTube.</p>
+
+<h3>פרפורציה של הוושט</h3>
+<p>תמותה היסטורית <b>15%–30%</b>; הגורמים השכיחים — <b>יאטרוגני (אנדוסקופיה)</b> ו<b>בורהאבה</b> (הקאה עזה). <b>המפתח: התערבות תוך 24 שעות</b>. חומרה לפי <b>ציון פיטסבורג</b> (0–18): גיל &gt;75, טכיקרדיה, לויקוציטוזיס, תפליט, חום, דליפה לא-מוכלת, מצוקה נשימתית, אבחנה &gt;24 שעות, סרטן, תת-לחץ דם.</p>
+<p><b>4 עקרונות:</b> (1) טיפול בזיהום — <b>אנטיביוטיקה רחבת טווח + אנטי-פטרייתי</b> (למשל Piperacillin-tazobactam לכיסוי גראם שליליים, אנאירובים וחיידקי הפה + Fluconazole לקנדידה מהרוק/קיבה); (2) <b>ניקוז רחב</b> (נקזי חזה, VATS/דקורטיקציה); (3) שליטה במקור — <b>סטנט מכוסה</b>, קליפס, <b>EVT (ספוג בוואקום)</b>, או ניתוח: תיקון ראשוני דו-שכבתי + <b>מתלה רקמתי</b> (שריר בין-צלעי, אומנטום), T-tube לפיסטולה מבוקרת, או <b>Exclusion</b> (אזופגוסטומיה צווארית + גסטרוסטומיה); (4) <b>גישה תזונתית</b> (J-tube). גישה: צווארי — צוואר שמאל; אמצעי — <b>תורקוטומיה ימנית</b>; דיסטלי — <b>תורקוטומיה שמאלית</b>. <span class="key">חסימה דיסטלית (אכלזיה, היצרות, גידול) חייבת להיפתר באותו ניתוח</span> — אחרת הפרפורציה לא תיסגר (באכלזיה — מיוטומיה בצד הנגדי).</p>
+
+<h3>בליעת חומר צורב, גוף זר, פיסטולה ושצקי</h3>
+<ul>
+  <li><b>חומר צורב:</b> ילדים — כמות קטנה בטעות; מבוגרים — ניסיון אובדני בכמות גדולה. נתיב אוויר (סטרידור, ריור, צרידות) ← <b>אינטובציה בהנחיית ברונכוסקופ</b> עם הכנה לקריקותירוטומיה; <b>לא מחדירים זונדה בעיוורון</b>; CT עם ניגוד ← <b>אנדוסקופיה תוך 48 שעות</b> (אחרי כן סכנת פרפורציה עולה) לפי <b>סיווג Zargar</b>; אנטיביוטיקה; <b>סטרואידים כבר לא בשגרה</b>. בהמשך — היצרויות, פיסטולות ו<b>סיכון לסרטן ×1000</b>.</li>
+  <li><b>גוף זר:</b> אנדוסקופיה בהרדמה כללית; <b>לא לדחוף בכוח לקיבה</b>; Over-tube, רשתות/לסו; בליעה חוזרת או לשם פגיעה עצמית — הערכה פסיכיאטרית.</li>
+  <li><b>פיסטולה קנה-ושט שפירה:</b> חולה מונשם עם טרכאוסטומיה + זונדה — הפרשות מרה/רוק מהטרכאוסטומיה, דלקות ריאה חוזרות. עקרונות: הסרת הגורם (שרוול ארוך/ללא בלון), Exclusion/סטנט, תיקון כשהחולה יציב עם מתלה רקמתי. "Kissing stents" — רק לחולים הקשים ביותר.</li>
+  <li><b>טבעת שצקי:</b> עיבוי פיברוטי היקפי ב-GEJ (קשקשי מעל, גלילי מתחת), לרוב עם בקע סרעפתי; דיספגיה ל"חתיכת בשר" ← <b>הרחבה + ביופסיה</b>.</li>
+</ul>
+
+<h3>גידולים שפירים ונדירים</h3>
+<ul>
+  <li><b>ליומיומה</b> — הגידול השפיר <b>השכיח ביותר</b>, ז:נ 2:1, מהשריר העצמי (<b>שכבה 4 ב-EUS</b>, היפואקואי, גבולות סדירים), בוושט האמצעי-תחתון. <span class="key">לא לבצע ביופסיה</span> כשה-EUS אופייני — מצלקת ומקשה על <b>אנוקלאציה</b> (VATS או מנהרה תת-רירית עד 5.5 ס"מ).</li>
+  <li><b>GIST</b> — <b>CD117 (c-kit) ו-CD34 חיוביים</b>, גדול יותר, קולט ניגוד ו-PET; אנוקלאציה אם שוליים נקיים, אחרת אזופגקטומיה; <b>Imatinib</b> ל-&gt;3 ס"מ או סיכון גבוה (מעכב את טירוזין קינאז KIT). פרוגנוזה גרועה מ-GIST קיבתי.</li>
+  <li><b>Granular cell tumor</b> — מתאי שוואן, <b>S100+</b>, גרנולות אאוזינופיליות, בשליש הדיסטלי; ביופסיה רגילה לא אבחנתית. <b>ליפומה</b> — היפראקואית, כמעט אף פעם לא כורתים. <b>פוליפ פיברו-וסקולרי</b> — צווארי, על גבעול, יכול לצנוח ולחסום את דרכי האוויר. <b>פפילומה קשקשית</b> — HPV, כריתה.</li>
+  <li><b>נדירים ממאירים:</b> Small cell (0.6%), מלנומה ראשונית (0.1%–0.2%), ליומיוסרקומה — כולם מתגלים מאוחר.</li>
+</ul>
+
+<h3>סרטן הוושט — לפי שלב</h3>
+<table>
+  <tr><th></th><th>אדנוקרצינומה</th><th>SCC</th></tr>
+  <tr><td>שכיחות</td><td><b>הסוג השכיח במערב</b>, עולה (השמנה, GERD)</td><td>יורד במערב (פחות עישון); שכיח במזרח התיכון, מרכז אסיה וסין</td></tr>
+  <tr><td>מיקום</td><td><b>ושט דיסטלי / GEJ</b></td><td><b>עליון ואמצעי</b></td></tr>
+  <tr><td>גורמי סיכון</td><td>GERD ממושך, <b>ברט</b>, השמנה, גבר לבן</td><td>עישון × אלכוהול, אכלזיה, חומר צורב, פלאמר-וינסון, טילוזיס, פנקוני</td></tr>
+  <tr><td>תגובה לכימו-קרינה (CROSS)</td><td>pCR 29%</td><td><b>pCR 49%</b></td></tr>
+</table>
+<ul>
+  <li><b>ברט ודיספלזיה:</b> סיכון שנתי לסרטן נמוך (0.12%–0.39% ללא דיספלזיה; 0.77% בנמוכה). <b>דיספלזיה נמוכה</b> — טיפול ארדיקציה אנדוסקופי (או מעקב שנתי) לפי ACG; <b>דיספלזיה גבוהה — תמיד טיפול אנדוסקופי</b>. <b>RFA</b> (אנרגיה בתדר רדיו שמחממת ומשמידה את השכבה השטחית, מתחדשת "רירית ניאו-קשקשית"): ב-AIM-II היעלמות דיספלזיה ב-81% (גבוהה) ו-90% (נמוכה). <b>קריותרפיה</b> (חנקן נוזלי, ‎−196°C) — חלופה/הצלה. אחרי אבלציה — <b>PPI במינון גבוה</b> ומעקב (3 חודשים בדיספלזיה גבוהה); סכנת <b>"בלוטות קבורות"</b> מתחת לרירית החדשה.</li>
+  <li><b>EMR</b> — נגע נודולרי/מורם ← EMR (ולא אבלציה) כי הוא נותן <b>פתולוגיה ועומק</b>. Tis/T1a — <b>EMR ± אבלציה עדיפים על אזופגקטומיה</b> (NCCN); ESD להוצאה בשלמות של נגעים גדולים.</li>
+  <li><b>אזופגקטומיה כטיפול יחיד:</b> T1b (מלבד SM1 בסיכון נמוך), T1a בסיכון גבוה (גדול, LVI), רב-מוקדי/מכויב. <b>Transhiatal</b> (Orringer) — פחות תחלואה; <b>Transthoracic עם בלוטות en-bloc</b> — מגמה לשרידות טובה יותר (≥23 בלוטות). <b>Ivor Lewis היברידי</b> (בטן לפרוסקופית + תורקוטומיה ימנית) — כמחצית מהסיבוכים הגדולים לעומת פתוח. נתוני STS: תמותה 30 יום 3.4%, תחלואה גדולה 33%, דליפת השקה 12.9%, דלקת ריאה 12.2%.</li>
+  <li><b>מקומי-מתקדם (T3 או N+):</b> <b>טרימודלי — ניסוי CROSS</b>: <b>קרבופלטין + פקליטקסל</b> שבועי עם <b>41.4 Gy</b> (23 מנות) ← ניתוח תוך 4–6 שבועות. R0: 92% מול 69%; חציון שרידות 49.4 מול 24 חודשים; 5 שנים 47% מול 34%. קרבופלטין — פלטינום שיוצר קישורים צולבים ב-DNA; פקליטקסל — מייצב מיקרוטובולים ועוצר מיטוזה; שניהם גם <b>מרגישים את הגידול לקרינה</b> (רדיוסנסיטיזציה). כימותרפיה טרום-ניתוחית לבד (MRC: 5 שנים 23% מול 17%; MAGIC — בעיקר קיבה) — חלופה.</li>
+  <li><b>כימו-קרינה מוגדרת (50.4 Gy)</b> — אפשרות בעיקר ב-SCC; <b>אזופגקטומיית הצלה</b> למחלה שנותרה/חזרה (תחלואה גבוהה יותר). מעקב 3–6 חודשים — 98% מההישנויות המקומיות בתוך 36 חודשים.</li>
+  <li><b>פליאציה:</b> סטנט, קרינה, כימו, הזנה; <b>מעכבי Checkpoint</b> — תוצאות מבטיחות.</li>
+</ul>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> ניסוי <b>CheckMate 577</b> (2021) — <b>ניבולומאב אדג'ובנטי שנה</b> אחרי CROSS + ניתוח כשנותרה מחלה פתולוגית הכפיל את השרידות ללא מחלה, ונכנס להנחיות. ניסוי <b>ESOPEC</b> (2024) — באדנוקרצינומה, כימותרפיה פרי-אופרטיבית <b>FLOT</b> הראתה שרידות טובה יותר מ-CROSS, ולכן במרכזים רבים FLOT הפך לברירת המחדל לאדנוקרצינומה; ב-SCC — CROSS נשאר הסטנדרט.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/8c8UkAqvZxk" title="Esophageal Cancer (Year of the Zebra) — Osmosis" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Osmosis — סרטן הוושט: SCC מול אדנוקרצינומה, גורמי סיכון (עישון/אלכוהול מול GERD/ברט), תסמינים ואבחנה. מקור: YouTube.</p>
+
+<h3>ניתוח אנטי-ריפלוקס (בקצרה — מורחב בפרק 43)</h3>
+<p>בירור: pH (DeMeester &gt;14.72), מנומטריה, בליעת וידאו, אנדוסקופיה. <b>5 עקרונות:</b> שימור מישורים, <b>שימור שני הוואגוסים</b>, זיהוי ה-GEJ האמיתי, <b>2–3 ס"מ ושט תוך-בטני</b>, שחזור זווית His. <b>Nissen</b> 360° על בוז'י 50–54 Fr; <b>Toupet</b> 270° אחורי; <b>Dor</b> 180° קדמי (עם מיוטומיה). פריסטלטיקה חלשה/דיספגיה מוקדמת ← <b>עטיפה חלקית</b>. ושט מקוצר ← <b>Collis</b> (המשך PPI). <b>LINX</b> — טבעת חרוזים מגנטיים. השמנה/מרה ← Roux-en-Y.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>🔤 ראשי תיבות ומשפטים</h3>
+  <ul>
+    <li><b>אכלזיה = "3D"</b> — <b>D</b>ysphagia (גם לנוזלים) · <b>D</b>istal bird's beak · <b>D</b>ilated esophagus (בלי בועת קיבה). (משפט מקורי)</li>
+    <li><b>מספרי השיקגו: "15 – 450 – 8000"</b> — IRP &gt;15 = שער סגור; DCI &lt;450 = גל חלש (IEM), &gt;450 מוקדם = עווית; &gt;8000 = Jackhammer.</li>
+    <li><b>LARP</b> (מקובל) — <b>L</b>eft vagus = <b>A</b>nterior, <b>R</b>ight = <b>P</b>osterior (הקיבה מסתובבת ימינה בעובר).</li>
+    <li><b>Pulsion = Pseudo (False)</b>: צנקר ואפיפרני — שניהם P; <b>Traction = True</b>: אמצע-ושט — שניהם T. (מקובל)</li>
+    <li><b>CROSS = "קרב-פקל 41"</b> — <b>קרב</b>ופלטין + <b>פקל</b>יטקסל + <b>41</b>.4 Gy ← ניתוח.</li>
+    <li><b>גישה לפרפורציה: "צוואר-שמאל, אמצע-ימין, למטה-שמאל"</b> (הוושט האמצעי ימני לאאורטה; התחתון פונה שמאלה).</li>
+  </ul>
+</div>
+<div class="mnemonic">
+  <h3>📖 סיפור: "הבניין עם המעלית התקועה"</h3>
+  <p>הוושט הוא <b>חדר מדרגות</b> בבניין בן 25 קומות (25 ס"מ). בכניסה העליונה עומד <b>שומר קשוח</b> (UES, 60 מ"מ) שלא נותן לאוויר להיכנס; בשער התחתון יש <b>דלת מסתובבת</b> (LES) שנפתחת בדיוק כשהדייר (הבולוס) מגיע.</p>
+  <p>באכלזיה, <b>השרת שאמור לפתוח את הדלת פוטר</b> (אובדן נוירונים מעכבים). הדיירים מצטופפים בחדר המדרגות, הקירות נמתחים (ושט מורחב), ומלמטה הדלת נראית כמו <b>מקור של ציפור</b>. בקומת הקרקע (הקיבה) אין אף פעם "בועת אוויר" — אף אחד לא מגיע. מנסים לפרוץ: <b>בוטוקס</b> = מרדים את השומר לכמה חודשים; <b>בלון</b> = פורצים את הדלת בכוח (לפעמים נשבר הקיר — פרפורציה); <b>Heller</b> = מסירים את הדלת ובונים <b>גגון קדמי</b> (Dor) שלא ייכנס גשם (ריפלוקס).</p>
+  <p>ובקומה העליונה, אצל הקשישים, השומר הקשוח לא זז — אז הלחץ דוחף את הקיר האחורי דרך <b>חלון רעוע</b> (משולש קיליאן) ונוצר <b>מחסן סודי</b> מלא שאריות מסריחות — <b>צנקר</b>.</p>
+  <svg class="diagram" viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+    <title>סיפור: חדר מדרגות עם דלת תקועה</title>
+    <desc>חדר מדרגות אנכי, שומר בכניסה העליונה, מחסן סודי אחורי למעלה (צנקר), דיירים מצטופפים מעל דלת תקועה בצורת מקור ציפור</desc>
+    <rect x="290" y="20" width="100" height="160" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+    <circle cx="340" cy="38" r="12" fill="#1e3a8a"/>
+    <text x="410" y="42" fill="#1e3a8a" font-weight="700">שומר קשוח (UES)</text>
+    <rect x="225" y="45" width="60" height="38" rx="10" fill="#fde68a" stroke="#b45309"/>
+    <text x="140" y="68" fill="#92400e" font-weight="700">מחסן סודי = צנקר</text>
+    <circle cx="315" cy="120" r="9" fill="#f59e0b"/><circle cx="340" cy="128" r="9" fill="#f59e0b"/><circle cx="365" cy="118" r="9" fill="#f59e0b"/>
+    <circle cx="328" cy="148" r="9" fill="#f59e0b"/><circle cx="352" cy="150" r="9" fill="#f59e0b"/>
+    <text x="410" y="135" fill="#92400e">דיירים מצטופפים (מזון)</text>
+    <polygon points="300,180 380,180 340,205" fill="#b91c1c"/>
+    <text x="410" y="200" fill="#991b1b" font-weight="700">דלת תקועה = "מקור ציפור"</text>
+    <rect x="270" y="208" width="140" height="18" rx="6" fill="#f3f4f6" stroke="#6b7280"/>
+    <text x="340" y="221" text-anchor="middle" fill="#374151">קומת קרקע — אין בועה</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Acha.JPG" target="_blank">Wikimedia Commons — Acha.JPG</a><div class="desc">בליעת בריום באכלזיה ("מקור ציפור") — קישור ישיר לתמונה המוטמעת למעלה.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Barretts_esophagus.jpg" target="_blank">Wikimedia Commons — Barretts esophagus.jpg</a><div class="desc">ברט אנדוסקופי — "לשונות" סלמון מעל ה-GEJ.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Esophageal_cancer-2626-02.jpg" target="_blank">Wikimedia Commons — Esophageal cancer-2626-02.jpg</a><div class="desc">סרטן ושט תחתון על רקע ברט — מראה אנדוסקופי.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Histopathology_of_Barrett's_esophagus,_annotated.jpg" target="_blank">Wikimedia Commons — Histopathology of Barrett's esophagus (annotated)</a><div class="desc">היסטולוגיה מסומנת: אפיתל קשקשי מול מטפלזיה מעייתית עם תאי גביע.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/Category:Zenker's_diverticulum" target="_blank">Wikimedia Commons — קטגוריית Zenker's diverticulum</a><div class="desc">צילומי בליעת בריום של צנקר (מבט צידי — כיס אחורי מתחת לקריקופרינגאוס).</div></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK551654/" target="_blank">StatPearls (NCBI) — Zenker Diverticulum</a><div class="desc">סקירה מלאה כולל תמונת בליעת בריום, אנטומיית משולש קיליאן ואפשרויות טיפול.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=coHQ3UPqvkw" target="_blank">Osmosis — Achalasia (Year of the Zebra)</a><div class="desc">מוטמע בסעיף 2 — מנגנון ואבחנה של אכלזיה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=qPdIe4I3hJQ" target="_blank">Heller Myotomy with Dor Fundoplication — footage and animation</a><div class="desc">מוטמע בסעיף 6 — הניתוח צעד אחר צעד.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=KTFkFxtpkOE" target="_blank">Mayo Clinic — Zenker's Diverticulum</a><div class="desc">מוטמע בסעיף 6 — צנקר וטיפול אנדוסקופי.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=8c8UkAqvZxk" target="_blank">Osmosis — Esophageal Cancer (Year of the Zebra)</a><div class="desc">מוטמע בסעיף 6 — SCC מול אדנוקרצינומה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=XnDp0BOFzOs" target="_blank">Endoscopic Staple Diverticulostomy (Zenker)</a><div class="desc">השלמה: כך נראה התיקון האנדוסקופי בסטפלר — חיתוך הדופן המשותפת.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>🩺 המקרה</h3>
+<p>אישה בת 38 מתלוננת על קושי בבליעה <b>של מים ושל לחם</b> כבר שנתיים, שמחמיר בהדרגה. היא אוכלת לאט, "שוטפת" כל ביס בכוס מים, ולפעמים חשה לחץ חזק מאחורי עצם החזה שחולף בבת אחת. בלילה היא מתעוררת משיעול ומוצאת על הכרית מזון לא מעוכל. ירדה 7 ק"ג. אק"ג ואקו לב תקינים.</p>
+<p><b>בליעת בריום:</b> ושט מורחב עם עמוד בריום שנשאר אחרי 5 דקות, היצרות דיסטלית חלקה ו<b>אין בועת אוויר בקיבה</b>. <b>מנומטריה:</b> IRP חציוני 28 מ"מ כספית, 100% פריסטלטיקה כושלת, ולחץ בכל אורך הוושט ב-40% מהבליעות. <b>אנדוסקופיה:</b> שאריות מזון, רירית תקינה, ה-GEJ עובר בלחץ קל, ללא גוש.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה המנגנון הבסיסי של המחלה שלה?</div>
+  <button class="opt" data-i="0">היפרטרופיה של השריר החלק בגוף הוושט שגורמת לכיווצים בעוצמה גבוהה</button>
+  <button class="opt" data-i="1">אובדן נוירונים מעכבים במקלעת אאורבך ← אין הרפיה של ה-LES בבליעה, ובהמשך אובדן פריסטלטיקה</button>
+  <button class="opt" data-i="2">היצרות פיברוטית של ה-GEJ כתוצאה מריפלוקס כרוני</button>
+  <button class="opt" data-i="3">חוסר תפקוד של ה-UES שלא נרפה בבליעה</button>
+  <div class="explain">נכון (2): זו אכלזיה — הרס הנוירונים המעכבים (NO/VIP) משאיר את ה-LES סגור, והגוף מאבד פריסטלטיקה בשלב משני. (1) מתאר Jackhammer/Nutcracker — שם ה-IRP תקין. (3) היצרות פפטית/שצקי — דיספגיה למוצקים בעיקר והאנדוסקופ לא "עובר בלחץ קל" אלא נתקע בטבעת. (4) UES שלא נרפה — הבסיס לצנקר, עם דיספגיה גבוהה בצוואר.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. לפי סיווג שיקגו, איזה סוג אכלזיה זה, ומה המשמעות?</div>
+  <button class="opt" data-i="0">סוג I — הפרוגנוזה הטובה ביותר</button>
+  <button class="opt" data-i="1">סוג III — מתאים במיוחד ל-POEM</button>
+  <button class="opt" data-i="2">EGJ outflow obstruction — אין צורך בטיפול</button>
+  <button class="opt" data-i="3">סוג II — לחץ בכל הוושט ב-≥20% מהבליעות; הסוג שמגיב הכי טוב לכל הטיפולים</button>
+  <div class="explain">נכון (4): IRP &gt;15 + 100% כשל + Panesophageal pressurization ב-40% = סוג II, בעל התגובה הטובה ביותר. (1) בסוג I אין לחץ משמעותי בגוף. (2) סוג III מחייב כיווצים ספסטיים (DCI &gt;450) — ואז POEM עם מיוטומיה ארוכה יתרון. (3) EGJOO מחייב פריסטלטיקה שמורה — אצלה 100% כושלת.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. למה היה חובה לבצע אנדוסקופיה לפני טיפול, למרות שהבריום והמנומטריה "קלאסיים"?</div>
+  <button class="opt" data-i="0">לשלול פסאודו-אכלזיה — גידול ב-GEJ שמחקה את התמונה הרדיולוגית והמנומטרית</button>
+  <button class="opt" data-i="1">לאבחן ברט, שהוא הגורם השכיח לאכלזיה</button>
+  <button class="opt" data-i="2">כי המנומטריה לא יכולה לאבחן אכלזיה בלי ביופסיה</button>
+  <button class="opt" data-i="3">כדי להזריק בוטוקס באותה פעולה כטיפול קו ראשון לכל מטופל</button>
+  <div class="explain">נכון (1): גידול GEJ (בעיקר בקשישים עם ירידה מהירה במשקל) יכול לייצר מקור ציפור ו-IRP גבוה; לכן הספר דורש אנדוסקופיה בכל חשד לאכלזיה. (2) ברט אינו גורם לאכלזיה. (3) המנומטריה היא תקן הזהב — אין צורך בביופסיה לאבחנה. (4) בוטוקס שמור בעיקר למי שלא מתאים לניתוח.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. היא בריאה ורוצה טיפול עמיד. מה ההמלצה, ולמה מוסיפים עטיפה חלקית ולא Nissen?</div>
+  <button class="opt" data-i="0">Nissen לבד — כי הבעיה העיקרית היא ריפלוקס</button>
+  <button class="opt" data-i="1">בוטוקס חוזר כל 6 חודשים — בטוח יותר מניתוח</button>
+  <button class="opt" data-i="2">Heller לפרוסקופי + Dor — המיוטומיה פותחת את ה-LES, והעטיפה החלקית מונעת ריפלוקס בלי לחסום ושט שאין לו כוח פריסטלטי לגבור על עטיפה מלאה</button>
+  <button class="opt" data-i="3">אזופגקטומיה — כדי למנוע סרטן בעתיד</button>
+  <div class="explain">נכון (3): Heller-Dor הוא ניתוח הבחירה (הרחבה פנאומטית ו-POEM — חלופות סבירות). עטיפה של 360° בוושט חסר פריסטלטיקה = דיספגיה קשה. (1) Nissen לבד מחמיר את החסימה. (2) בוטוקס — &gt;50% חוזרים תוך 6 חודשים ויוצר פיברוזיס. (4) אזופגקטומיה שמורה למגה-ושט סיגמואידי/כשל חוזר.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. שבוע אחרי הרחבה פנאומטית (בתרחיש חלופי) — כאב חזה, חום 38.8, דופק 118, קרפיטציות בצוואר ותפליט שמאלי. בליעת חומר ניגוד: דליפה לא מוכלת מהוושט הדיסטלי. מה העיקרון הניתוחי שאסור לשכוח?</div>
+  <button class="opt" data-i="0">לתפור את הקרע בלבד ולהשאיר את ה-LES כמו שהוא, כדי לא להוסיף פצע</button>
+  <button class="opt" data-i="1">לנקז רחב ולתקן את הקרע עם מתלה רקמתי — ובנוסף לבצע מיוטומיה בצד הנגדי, כי חסימה דיסטלית שלא שוחררה תמנע ריפוי</button>
+  <button class="opt" data-i="2">טיפול שמרני בצום ואנטיביוטיקה בלבד, ללא ניקוז</button>
+  <button class="opt" data-i="3">גישה דרך תורקוטומיה ימנית, כי זו הגישה לכל פרפורציה</button>
+  <div class="explain">נכון (2): ניקוז, אנטיביוטיקה + אנטי-פטרייתי, תיקון דו-שכבתי עם מתלה, J-tube — ו<b>שחרור החסימה הדיסטלית</b> (מיוטומיה נגדית) באותו ניתוח. (1) בלי מיוטומיה התיקון יידלף. (3) דליפה לא מוכלת עם סימני ספסיס (ציון פיטסבורג גבוה, &gt;24 שעות) מחייבת ניקוז ושליטה במקור. (4) פרפורציה דיסטלית ניגשת לרוב משמאל.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>אנטומיה</b>: C6–T11, 25–30 ס"מ, <b>אין סרוזה</b>; עליון מפוספס, 2/3 תחתונים חלק; קריקופרינגאוס 14 מ"מ = הצר ביותר; משולש קיליאן = צנקר; LARP; לימפה לאורך הדופן.</li>
+    <li><b>פיזיולוגיה</b>: UES 60 מ"מ, LES 6–26 מ"מ, ≥2 ס"מ (≥1 תוך-בטני); גל 2–4 ס"מ/שנ'; שלישוניים = עווית.</li>
+    <li><b>שיקגו</b>: IRP &gt;15 = GEJ לא נרפה; אכלזיה I/II/III; DES (≥20% מוקדמים, DCI &gt;450); Jackhammer (DCI &gt;8000); IEM (≥50% DCI &lt;450).</li>
+    <li><b>אכלזיה</b>: נוירונים מעכבים; דיספגיה גם לנוזלים + החזרה + ירידה במשקל; מקור ציפור, אין בועה; <b>מנומטריה = תקן זהב</b>; <b>אנדוסקופיה לשלול פסאודו-אכלזיה</b>; Heller לפרוסקופי + Dor (או POEM / בלון — פרפורציה 4%); סיכון SCC.</li>
+    <li><b>DES/Nutcracker</b>: כאב חזה דמוי אנגינה; טיפול שמרני; מיוטומיה ארוכה/POEM.</li>
+    <li><b>דיברטיקולות</b>: Pulsion = כוזבת (צנקר, אפיפרני); Traction = אמיתית (אמצע). תמיד <b>מיוטומיה</b>. צנקר: בריום צידי; &lt;2 מיוטומיה, 2–5 אנדוסקופי, &gt;5 כריתה מצוואר שמאל.</li>
+    <li><b>פרפורציה</b>: יאטרוגני/בורהאבה; &lt;24 שעות; ציון פיטסבורג; אנטיביוטיקה+אנטי-פטרייתי, ניקוז, סטנט/EVT/תיקון עם מתלה, הזנה; <b>לשחרר חסימה דיסטלית</b>.</li>
+    <li><b>חומר צורב</b>: נתיב אוויר בברונכוסקופ, בלי זונדה עיוורת, אנדוסקופיה &lt;48 שעות, בלי סטרואידים, סרטן ×1000.</li>
+    <li><b>ליומיומה</b>: הכי שכיח שפיר, שכבה 4, <b>בלי ביופסיה</b>, אנוקלאציה. GIST: CD117/CD34, Imatinib &gt;3 ס"מ.</li>
+    <li><b>סרטן</b>: אדנו' (דיסטלי, ברט, השמנה) מול SCC (עליון-אמצעי, עישון+אלכוהול); דיספגיה מתקדמת; CT+PET ← EUS; N לפי מספר (1–2/3–6/≥7).</li>
+    <li><b>טיפול לפי שלב</b>: HGD/T1a — EMR ± RFA; T1b — אזופגקטומיה; T3/N+ — <b>CROSS</b> (קרבופלטין+פקליטקסל+41.4 Gy ← ניתוח; 5 שנים 47% מול 34%); עדכון: ניבולומאב אדג'ובנטי, FLOT באדנו' (ESOPEC).</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
