@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 43: מדדי תוצאה מדווחי-מטופל</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 43: מדדי תוצאה מדווחי-מטופל בכירורגיה פלסטית <span class="term" dir="ltr">Patient-Reported Outcomes</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles, מהדורה 5 | מאת Voineskos, Young-Afat, Gregorowitsch, Nelson, Klassen ו-Pusic (פרק 12 בכרך)</div>
+
+<p>פרק עקרונות (לא קליני-ניתוחי, ולכן אין בו אנטומיה או טכניקה): הוא עונה על השאלה <b>איך מודדים אם הניתוח "הצליח" מנקודת מבטה של המטופלת</b> – ואיך בונים כלי מדידה שאפשר לסמוך עליו. זה הבסיס המתודולוגי שמאחורי ה-BREAST-Q וה-FACE-Q, וחומר קלאסי לשאלות על מושגי ליבה (validity, reliability, MID, Rasch).</p>
+
+<h2><span class="num">1</span> למה בכלל PROMs? הרציונל</h2>
+<div class="mechanism"><p class="chain">
+רוב הניתוחים הפלסטיים אינם מצילי חיים &#8592; מטרתם לשפר <b>איכות חיים</b>, תפקוד, סימפטומים ומראה &#8592; מדדים "קשים" (הישרדות פלאפ, זיהום, ניתוח חוזר, ימי אשפוז) <b>לא בהכרח משקפים</b> את מה שהמטופלת חווה ביום-יום &#8592; לכן צריך למדוד את הדברים <b>ישירות מהמטופלת</b>, בלי שרופא או אדם אחר יפרש את תשובתה &#8592; כך נולדו ה-PROMs.</p></div>
+<p>הגדרת ה-FDA: PRO הוא <b class="key">"כל דיווח על מצב בריאותה של המטופלת שמגיע ישירות ממנה, ללא פירוש של קלינאי או כל אדם אחר"</b>. PROM הוא שאלון מתוכנן מדעית שאוסף ומכמת זאת: איכות חיים הקשורה לבריאות (<span class="term" dir="ltr">HRQL</span>), שביעות רצון (מהתוצאה או מהמידע לפני הניתוח), מראה, ותסמינים (כאב, עייפות).</p>
+<p><b>הקשר ל-VBHC:</b> במערכות בריאות מבוססות-ערך (פרק 41) ערך = תוצאות מול עלות. ה-PROM הוא "המונה" שמייצג את קול המטופלת. הפרק מדגיש שהשימוש ב-PROMs בטיפול שגרתי קשור (באונקולוגיה) לדיאלוג טוב יותר רופא-מטופל, HRQL טוב יותר והישרדות ארוכה יותר, והאקדמיה הלאומית לרפואה בארה"ב רואה בהם מרכיב חיוני בטיפול ממוקד-אדם.</p>
+
+<h2><span class="num">2</span> התפתחות ה-PROMs: מ"אד-הוק" ל-Rasch</h2>
+<p>למה לא להסתפק בשאלון "שנראה הגיוני"? כי שאלון לא מבוסס יכול לתת מסקנה שגויה: ייתכן שהטיפול לא נכשל – השאלון פשוט <b>שואל שאלות לא נכונות או לא מזהה שינוי</b>.</p>
+<table>
+<thead><tr><th>דור</th><th>איך נבנה</th><th>חולשה / חוזק</th><th>שימוש מתאים</th></tr></thead>
+<tbody>
+<tr><td><b>שאלוני אד-הוק</b> (<span class="term" dir="ltr">ad hoc</span>)</td><td>שאלות שנראו רלוונטיות למומחים; כמעט בלי הערכה פסיכומטרית ובלי קלט מטופלות</td><td>שאלות לא מובנות או לא רלוונטיות; ביצועים לא עקביים</td><td>רק חקר ראשוני. <b>לא</b> להנחיות, יעילות טיפול או החזר כספי</td></tr>
+<tr><td><b>תיאוריית מבחן קלאסית</b> (<span class="term" dir="ltr">CTT</span>, שאלוני "legacy")</td><td>פותחו לרוב בלי קלט מטופלות; ציון כולל אחד</td><td>טובים לזיהוי הבדלים גדולים <b>בין קבוצות</b>, לא שינוי קטן <b>בתוך מטופלת</b>; מושגים לא ברורים, לעיתים כמה מושגים בסקאלה אחת; לעיתים חייבים למלא <b>כל</b> הפריטים</td><td>נעשה בהם שימוש רב ויש נתוני עבר להשוואה</td></tr>
+<tr><td><b>תיאוריית תגובת פריט</b> (<span class="term" dir="ltr">IRT</span>), בעיקר <b>Rasch (RMT)</b></td><td>מבוססים ראיונות מטופלות ו"מונחי-מושג"; כל סקאלה מודדת מושג יחיד</td><td>מדידה ברמת <b>אינטרוול</b> ("סרגל"), רגישות לשינוי ברמת מטופלת בודדת, אפשרות ל-CAT</td><td>תקן נוכחי: BREAST-Q, FACE-Q, CLEFT-Q, HAND-Q</td></tr>
+</tbody></table>
+<div class="mechanism"><p class="chain">
+למה אינטרוול חשוב? בסרגל, ההפרש בין 12 ל-13 ס"מ שווה להפרש בין 14 ל-15 &#8592; ב-RMT הפריטים "מסדרים את עצמם" על רצף יחיד (<b>חד-ממדי, unidimensional</b>) לפי קושי &#8592; המספר שיוצא הוא <b>מדידה אמיתית</b>, "כמעט כמו סרגל", ולא רק ספירת נקודות &#8592; אפשר להשוות מטופלות גם אם ענו על פריטים שונים.</p></div>
+
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <title>ארבעת שלבי פיתוח PROM</title>
+  <rect x="690" y="30" width="150" height="110" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="765" y="55" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלב 1</text>
+  <text x="765" y="78" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">השערת מסגרת</text>
+  <text x="765" y="100" font-size="11" text-anchor="middle" fill="#1e3a8a">סקירה שיטתית</text>
+  <text x="765" y="118" font-size="11" text-anchor="middle" fill="#1e3a8a">מומחים, אוכלוסייה</text>
+
+  <rect x="480" y="30" width="150" height="110" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="555" y="55" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שלב 2</text>
+  <text x="555" y="78" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">התאמה + טיוטה</text>
+  <text x="555" y="100" font-size="11" text-anchor="middle" fill="#4c1d95">ראיונות עד רוויה</text>
+  <text x="555" y="118" font-size="11" text-anchor="middle" fill="#4c1d95">cognitive debriefing</text>
+
+  <rect x="270" y="30" width="150" height="110" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="345" y="55" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">שלב 3</text>
+  <text x="345" y="78" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אישוש + field-test</text>
+  <text x="345" y="100" font-size="11" text-anchor="middle" fill="#065f46">מדגם גדול ושונה</text>
+  <text x="345" y="118" font-size="11" text-anchor="middle" fill="#065f46">validity, reliability</text>
+
+  <rect x="60" y="30" width="150" height="110" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="135" y="55" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">שלב 4</text>
+  <text x="135" y="78" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">סיום הכלי</text>
+  <text x="135" y="100" font-size="11" text-anchor="middle" fill="#78350f">ניתוח RMT, צמצום פריטים</text>
+  <text x="135" y="118" font-size="11" text-anchor="middle" fill="#78350f">תרגום והתאמה תרבותית</text>
+
+  <line x1="690" y1="85" x2="642" y2="85" stroke="#374151" stroke-width="2"/>
+  <polygon points="630,85 642,79 642,91" fill="#374151"/>
+  <line x1="480" y1="85" x2="432" y2="85" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,85 432,79 432,91" fill="#374151"/>
+  <line x1="270" y1="85" x2="222" y2="85" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,85 222,79 222,91" fill="#374151"/>
+</svg>
+<div class="figcap">תהליך איטרטיבי רב-שלבי לפיתוח PROM (המלצת ה-FDA); לרוב נמשך שנים</div>
+
+<h3>מה קורה בכל שלב ולמה</h3>
+<ul>
+<li><b>שלב 1 – השערת מסגרת מושגית:</b> קובעים מטרה, אוכלוסייה ואופן יישום. <b>קודם סקירה שיטתית</b> – אולי כבר קיים PROM. (ב-BREAST-Q נמצאו 7 כלים קיימים ונבחנה איכותם.)</li>
+<li><b>שלב 2 – ראיונות חצי-מובנים עם מטופלות:</b> קלט מטופלות הוא <b>מקור תוקף התוכן</b>. מדגם הטרוגני (גיל, מין, מצב, טיפול, גיאוגרפיה). ממשיכים עד <b>רוויה</b> (<span class="term" dir="ltr">saturation</span>) – כשאין מידע חדש. ראיונות מוקלטים, מתומללים, מקודדים שורה-שורה &#8592; מאגר פריטים (item pool) &#8592; סקאלות. אחר כך <b>cognitive debriefing</b>: 7-10 מטופלות מסבירות במילים שלהן מה כל פריט שואל. רמת קריאה לא מעל <b>כיתה ו'</b>.</li>
+<li><b>שלב 3 – field-test:</b> מדגם גדול והטרוגני (רצוי בינלאומי) ממלא את ה-PROM; לבדיקת test-retest ממלאים פעמיים בהפרש <b>3-14 ימים</b> ומוציאים מהניתוח מי ששינתה מצבה.</li>
+<li><b>שלב 4 – סיום:</b> ניתוח Rasch מסלק פריטים שאינם מתנהגים כמצופה; לאחר מכן תרגום והתאמה תרבותית לפי ISPOR (BREAST-Q שחזור: 45 שפות). שינוי אופן מילוי (נייר &#8592; דיגיטלי) עשוי לדרוש מחקר איכותני נוסף.</li>
+</ul>
+
+<h2><span class="num">3</span> סוגי PROMs: כללי מול ייעודי</h2>
+<table>
+<thead><tr><th>מאפיין</th><th>כללי (<span class="term" dir="ltr">Generic</span>)</th><th>ייעודי למצב (<span class="term" dir="ltr">Condition-specific</span>)</th></tr></thead>
+<tbody>
+<tr><td>דוגמאות</td><td>SF-36, PROMIS-29, EQ-5D</td><td>BREAST-Q, FACE-Q, CLEFT-Q, HAND-Q, Michigan Hand, DASH, Boston Carpal Tunnel</td></tr>
+<tr><td>יתרון</td><td>אפשר להשוות בין מחלות, התערבויות ואוכלוסיות (דלקת מפרקים מול קטרקט מול מחלת כלי דם היקפית)</td><td>רגיש לשינויים קטנים אך חשובים בתוצאה של ההתערבות הספציפית</td></tr>
+<tr><td>חיסרון</td><td>לא רגיש מספיק לשינוי במצב מסוים (למשל אחרי שחזור אוטולוגי של שד)</td><td>אי אפשר להשוות בין מחלות שונות</td></tr>
+</tbody></table>
+<div class="key-box">במחקר קליני מומלץ לשלב <b>גם כללי וגם ייעודי</b>.</div>
+<table>
+<thead><tr><th>כלי</th><th>תחום וזיכרון מהיר</th></tr></thead>
+<tbody>
+<tr><td><b>BREAST-Q</b> (Pusic 2008)</td><td>שחזור, הקטנה, הגדלה, שימור שד; סקאלות 0-100. מודולים נפרדים לכל התערבות</td></tr>
+<tr><td><b>FACE-Q</b> (2013)</td><td>הליכים אסתטיים בפנים: שביעות מהמראה, HRQL, תוצאות שליליות, שביעות מהטיפול</td></tr>
+<tr><td><b>CLEFT-Q</b> (2018)</td><td>גיל 8-29, שפה/חך שסועים: 12 סקאלות ב-3 תחומים (מראה פנים, תפקוד, HRQL)</td></tr>
+<tr><td><b>HAND-Q</b></td><td>כל מצב מולד/נרכש בכף יד: 14 סקאלות ב-4 תחומים</td></tr>
+<tr><td><b>SF-36</b></td><td>36 פריטים, 8 תחומים; ציון מתחת ל-50 = תוצאה גרועה</td></tr>
+<tr><td><b>PROMIS-29</b></td><td>7 תחומים (כאב, עייפות, דיכאון, חרדה, שינה, תפקוד פיזי, תפקוד מיני) + סולם כאב 0-10</td></tr>
+<tr><td><b>EQ-5D</b></td><td>5 ממדים (ניידות, טיפול עצמי, פעילות יומיומית, כאב/מצוקה, דיכאון/חרדה) + סולם ויזואלי</td></tr>
+</tbody></table>
+
+<h2><span class="num">4</span> תכונות מדידה: תוקף, מהימנות, רגישות לשינוי</h2>
+<p>שאלון טוב הוא <b>בעל משמעות קלינית</b> (שואל מה שחשוב למטופלות ולמנתחים) ו<b>איתן מדעית</b> (validity, reliability, responsiveness). ההבדל המרכזי: אי אפשר להניח שאחד גורר את השני.</p>
+<table>
+<thead><tr><th>מושג</th><th>השאלה שהוא עונה עליה</th><th>איך בודקים</th><th>נקודות למבחן</th></tr></thead>
+<tbody>
+<tr><td><b>תוקף תוכן</b> (<span class="term" dir="ltr">Content validity</span>)</td><td>האם הפריטים משקפים את <b>כל</b> ההיבטים הרלוונטיים של המושג?</td><td>ראיונות מטופלות, ספרות, מומחים – בשלב האיכותני המוקדם</td><td><b>החשוב ביותר</b> מבין סוגי התוקף</td></tr>
+<tr><td><b>תוקף מבנה</b> (<span class="term" dir="ltr">Construct</span>)</td><td>האם הציונים מתיישבים עם ההשערות התיאורטיות (קשרים פנימיים, קשר לכלים אחרים, הבדלים בין קבוצות)?</td><td>ניתוח RMT, known-group, convergent/discriminant</td><td>תהליך מתמשך, לא בדיקה חד-פעמית</td></tr>
+<tr><td><b>תוקף קריטריון</b> (<span class="term" dir="ltr">Criterion</span>)</td><td>האם הציון משקף "סטנדרט זהב"?</td><td>מתאם עם הכלי הקיים הטוב ביותר</td><td>לעיתים אין סטנדרט זהב &#8592; משווים לגרסה קצרה/ארוכה של אותו כלי</td></tr>
+<tr><td><b>מהימנות פנימית</b> (<span class="term" dir="ltr">Internal consistency</span>)</td><td>האם הפריטים בסקאלה מודדים אותו מושג?</td><td><b>Cronbach's alpha</b> (טוב: מעל <b>0.70</b>); ב-RMT המקביל הוא <span class="term" dir="ltr">Person Separation Index</span></td><td>רלוונטי לסקאלות מרובות פריטים</td></tr>
+<tr><td><b>Test-retest</b></td><td>האם אותה תוצאה כשהמצב יציב?</td><td>מילוי פעמיים בהפרש <b>3-14 ימים</b>; ICC לפחות <b>0.70</b> ב-<b>50 מטופלות</b> לפחות</td><td>קצר מדי &#8592; זכירת התשובה; ארוך מדי &#8592; המצב הקליני השתנה</td></tr>
+<tr><td><b>Inter-observer</b></td><td>האם משקיפים שונים מסכימים?</td><td>Pearson r, ICC</td><td>כך נמדדת repeatability</td></tr>
+<tr><td><b>רגישות לשינוי</b> (<span class="term" dir="ltr">Responsiveness</span>)</td><td>האם הכלי מזהה שינוי קליני משמעותי לאורך זמן?</td><td>לפני ואחרי התערבות: paired t-test, effect size, <span class="term" dir="ltr">SRM</span></td><td>Cohen: <b>0.2 קטן, 0.5 בינוני, 0.8 גדול</b></td></tr>
+</tbody></table>
+
+<svg class="diagram" viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg">
+  <title>מהימנות מול תוקף</title>
+  <!-- target 1 right: reliable not valid -->
+  <circle cx="730" cy="110" r="70" fill="#fff" stroke="#374151" stroke-width="2"/>
+  <circle cx="730" cy="110" r="45" fill="#fff" stroke="#374151"/>
+  <circle cx="730" cy="110" r="20" fill="#fecaca" stroke="#b91c1c"/>
+  <circle cx="765" cy="140" r="5" fill="#1d4ed8"/><circle cx="770" cy="146" r="5" fill="#1d4ed8"/><circle cx="761" cy="147" r="5" fill="#1d4ed8"/><circle cx="768" cy="136" r="5" fill="#1d4ed8"/>
+  <text x="730" y="206" font-size="14" text-anchor="middle" font-weight="700">מהימן, לא תקף</text>
+  <text x="730" y="226" font-size="12" text-anchor="middle" fill="#4b5563">עקבי, אך מחטיא את המטרה</text>
+  <!-- target 2 mid: valid not reliable -->
+  <circle cx="430" cy="110" r="70" fill="#fff" stroke="#374151" stroke-width="2"/>
+  <circle cx="430" cy="110" r="45" fill="#fff" stroke="#374151"/>
+  <circle cx="430" cy="110" r="20" fill="#fecaca" stroke="#b91c1c"/>
+  <circle cx="400" cy="85" r="5" fill="#1d4ed8"/><circle cx="462" cy="90" r="5" fill="#1d4ed8"/><circle cx="440" cy="150" r="5" fill="#1d4ed8"/><circle cx="395" cy="125" r="5" fill="#1d4ed8"/>
+  <text x="430" y="206" font-size="14" text-anchor="middle" font-weight="700">תקף, לא מהימן</text>
+  <text x="430" y="226" font-size="12" text-anchor="middle" fill="#4b5563">ממוצע נכון, פיזור גדול</text>
+  <!-- target 3 left: both -->
+  <circle cx="130" cy="110" r="70" fill="#fff" stroke="#374151" stroke-width="2"/>
+  <circle cx="130" cy="110" r="45" fill="#fff" stroke="#374151"/>
+  <circle cx="130" cy="110" r="20" fill="#fecaca" stroke="#b91c1c"/>
+  <circle cx="126" cy="106" r="5" fill="#1d4ed8"/><circle cx="134" cy="108" r="5" fill="#1d4ed8"/><circle cx="130" cy="115" r="5" fill="#1d4ed8"/><circle cx="123" cy="113" r="5" fill="#1d4ed8"/>
+  <text x="130" y="206" font-size="14" text-anchor="middle" font-weight="700">מהימן ותקף</text>
+  <text x="130" y="226" font-size="12" text-anchor="middle" fill="#4b5563">המטרה: עקבי ופוגע</text>
+</svg>
+<div class="figcap">איור 12.4 בפרק: מהימנות = קבוצת חיצים צפופה; תוקף = חיצים במרכז</div>
+
+<h3>MID – ההפרש המינימלי שחשוב למטופלת</h3>
+<p><b class="key">MID (Minimal Important Difference)</b> = ההפרש הקטן ביותר בציון שמטופלות תופסות כמועיל, ושהיה מצדיק שינוי בניהול הטיפול (בהיעדר תופעות לוואי ועלות מוגזמת).</p>
+<table>
+<thead><tr><th></th><th>מבוסס-התפלגות (<span class="term" dir="ltr">Distribution-based</span>)</th><th>מבוסס-עוגן (<span class="term" dir="ltr">Anchor-based</span>)</th></tr></thead>
+<tbody>
+<tr><td>עיקרון</td><td>קשר בין גודל האפקט לשונות הנתונים (effect size, SRM)</td><td>משווים את שינוי הציון לעוגן חיצוני מובן למטופלת (מדד חומרה, שאלת שינוי גלובלית)</td></tr>
+<tr><td>נקודת מבט המטופלת?</td><td><b>לא</b> – רק סטטיסטיקה של המדגם</td><td><b>כן</b></td></tr>
+<tr><td>המלצה</td><td>תמיכה, או כשאין עוגן</td><td><b>מועדף</b></td></tr>
+</tbody></table>
+<p><b>Responder analysis:</b> במקום להשוות ממוצעי שינוי, סופרים איזה <b>אחוז</b> מכל קבוצה השתפר ביותר מה-MID; מכאן אפשר לחשב <span class="term" dir="ltr">NNT</span>.</p>
+
+<h2><span class="num">5</span> CAT – בדיקה אדפטיבית ממוחשבת</h2>
+<div class="mechanism"><p class="chain">
+פריטי Rasch עצמאיים זה מזה וממפים היררכיה קלינית &#8592; לכן אפשר לדעת מיקום על ה"סרגל" גם מתת-קבוצת שאלות &#8592; האלגוריתם בוחר שאלה ראשונה (זהה לכולן) &#8592; מעריך ציון &#8592; בוחר את השאלה הבאה האינפורמטיבית ביותר לפי התשובה הקודמת &#8592; חוזר עד שמתקיים <b>כלל עצירה</b> (רמת דיוק מוגדרת). מטופלות שונות עונות על שאלות שונות, אך הציונים ניתנים להשוואה.</p></div>
+<p><b>תוצאה:</b> בקיצור משך מילוי; ב-BREAST-Q Satisfaction with Breasts (שחזור) הקיצור היה <b>38-75%</b> עם שמירה על מהימנות. <b>לא מתאים</b> לכלים שכבר קצרים (למשל Sexual Well-being ב-BREAST-Q, 6 פריטים).</p>
+
+<h2><span class="num">6</span> איך בוחרים PROM? ישימות ונטל</h2>
+<ul>
+<li><b>שאלות מפתח:</b> האם פותח ואומת לאוכלוסייה הרלוונטית? האם מטופלות היו מעורבות? אילו תחומים נמדדים? האם עומד בקריטריונים בינלאומיים (COSMIN)?</li>
+<li><b>ישימות</b> (<span class="term" dir="ltr">feasibility</span>): קלות היישום – עלות, זמן. <b>לא</b> תכונה פסיכומטרית אלא מעשית.</li>
+<li><b>נטל</b> (<span class="term" dir="ltr">burden</span>): זמן ומאמץ על המשיבה (respondent burden) או על הצוות (administrative burden). שאלון ארוך או תכוף מדי, בעיקר בחולות מאוד חולות/פליאטיביות, <b>מפחית איכות ושלמות נתונים</b>.</li>
+<li><b>קבילות:</b> אם שאלות נראות לא רלוונטיות &#8592; הטיה בתשובות ושיעור היענות נמוך. חולות סרטן עשויות להיות בעלות מוטיבציה גבוהה יותר (רצון בטיפול אופטימלי ובתקשורת עם הצוות).</li>
+</ul>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>ראשי תיבות: H-A-C-F לארבעת שלבי הפיתוח</h3>
+<p><b>H</b>ypothesize &#8592; <b>A</b>djust &#8592; <b>C</b>onfirm &#8592; <b>F</b>inalize. אפשר לקרוא כ-"<b>HACF</b>" ("האק-אף") או לזכור: <b>"הרופאה אומרת, המטופלת מתקנת, השטח מאשר, הסטטיסטיקה חותמת"</b>.</p>
+<h3>סיפור: הסרגל והחייט</h3>
+<p>חייט (שואל שאלות) רוצה למדוד חליפה למטופלת. <b>אד-הוק</b> = חייט שמנחש מידות לפי העין. <b>CTT</b> = סרגל מקופל בלי מספרים אחידים. <b>Rasch</b> = סרגל מדויק שבו כל סנטימטר שווה לסנטימטר אחר. <b>תוקף</b> = האם מדד בכלל את הגוף (ולא את הכובע). <b>מהימנות</b> = האם מדד אותה מידה פעמיים. <b>Responsiveness</b> = האם הסרגל מרגיש כשהיא רזתה בס"מ אחד. <b>MID</b> = כמה ס"מ צריכים להשתנות כדי שהמטופלת תרגיש שהחליפה באמת יושבת אחרת.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
+  <title>סרגל Rasch</title>
+  <rect x="60" y="50" width="740" height="46" rx="4" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+  <g stroke="#78350f" stroke-width="2">
+    <line x1="800" y1="50" x2="800" y2="80"/><line x1="720" y1="50" x2="720" y2="70"/><line x1="640" y1="50" x2="640" y2="80"/>
+    <line x1="560" y1="50" x2="560" y2="70"/><line x1="480" y1="50" x2="480" y2="80"/><line x1="400" y1="50" x2="400" y2="70"/>
+    <line x1="320" y1="50" x2="320" y2="80"/><line x1="240" y1="50" x2="240" y2="70"/><line x1="160" y1="50" x2="160" y2="80"/><line x1="80" y1="50" x2="80" y2="70"/>
+  </g>
+  <text x="430" y="125" font-size="14" text-anchor="middle" fill="#78350f" font-weight="700">מרווחים שווים: כל נקודה = אותו הפרש אמיתי (interval-level)</text>
+  <text x="430" y="30" font-size="13" text-anchor="middle" fill="#374151">"סרגל" ה-Rasch: פריטים לפי קושי על רצף אחד</text>
+</svg>
+<div class="figcap">המטאפורה של הפרק: ציון Rasch הוא מדידה אמיתית, כמו סרגל</div>
+
+<h2><span class="num">8</span> עתיד: PROs בטיפול השגרתי</h2>
+<ol>
+<li><b>שילוב בקבלת ההחלטות</b> – מעבר מהעדפות המנתח (עד שנות ה-80) להחלטה משותפת; שילוב מדדים אובייקטיביים (תמותה, זיהום, ימי אשפוז) עם PROMs.</li>
+<li><b>שילוב ב-EHR</b> – פורטלים למטופלת, איסוף מרחוק, <b>PRO Dashboard</b> עם ערכי ייחוס. משאבים חינמיים: ISOQOL (מדריך יישום) ו-PCORI (מדריך שילוב ב-EHR).</li>
+<li><b>שיפור איכות</b> – "<b>measure once, cut twice</b>": אותו מידע משרת גם טיפול וגם מחקר השוואתי/שיפור איכות. נדרשת <b>התאמת סיכון</b> (case-mix) להשוואה הוגנת בין מנתחים ומוסדות; יעילות השימוש ב-PRO להוזלת עלויות עדיין לא נחקרה לעומק.</li>
+</ol>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>מנהלת יחידת שחזור שד רוצה להחליף שאלון פנימי שפיתחו המנתחים ("האם את מרוצה מהשד?", בלי ראיונות עם מטופלות) בכלי מבוסס. היא בוחרת BREAST-Q ומוסיפה SF-36 לעוקבה. צוות המחקר מתכנן לחלק את השאלון פעמיים בהפרש של 6 חודשים כדי "לבדוק מהימנות". בנוסף, כדי לקצר מילוי בטאבלט במרפאה, הם שוקלים CAT. לבסוף הם רוצים לדעת מהו שינוי בציון שאותו מטופלות באמת מרגישות.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע שאלון אד-הוק של המנתחים אינו מתאים לקביעת יעילות טיפול או החזר כספי?</div>
+  <button class="opt" data-i="0">כי הוא ארוך מדי תמיד</button>
+  <button class="opt" data-i="1">כי נבנה ללא קלט מטופלות ובדיקה פסיכומטרית, ועלול לשאול שאלות לא נכונות או לא לזהות שינוי באופן עקבי</button>
+  <button class="opt" data-i="2">כי הוא תמיד כולל רק שאלות פתוחות</button>
+  <button class="opt" data-i="3">כי אסור להשתמש בשאלונים בכירורגיה פלסטית</button>
+  <div class="explain">נכון: הפרק מציין שאלוני אד-הוק רק לחקר ראשוני; מסקנה שגויה יכולה לנבוע מכך שהשאלון עצמו פגום. התשובות האחרות לא מופיעות בפרק.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. מהו הפער בתכנון המדידה החוזרת (בהפרש 6 חודשים), ומהו הטווח המומלץ?</div>
+  <button class="opt" data-i="0">אין פער; 6 חודשים הם הטווח המקובל</button>
+  <button class="opt" data-i="1">צריך לבדוק יום אחד אחרי; הטווח 24 שעות</button>
+  <button class="opt" data-i="2">צריך לבדוק רק פעם אחת; test-retest אינו נחוץ</button>
+  <button class="opt" data-i="3">מרווח ארוך מדי: מצב המטופלת עלול להשתנות והכלי ימדוד את השינוי; הטווח המומלץ 3-14 ימים בהיעדר שינוי קליני</button>
+  <div class="explain">נכון: במרווח קצר מדי המטופלת זוכרת את תשובתה, ובמרווח ארוך מדי מצבה משתנה. 3-14 ימים, עם הוצאת מי ששינתה מצבה, ו-ICC לפחות 0.70 ב-50 מטופלות לפחות.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה ההבדל בין תוקף למהימנות?</div>
+  <button class="opt" data-i="0">תוקף = האם הכלי מודד את מה שנועד למדוד; מהימנות = האם התוצאות עקביות וניתנות לשחזור. כלי יכול להיות מהימן ולא תקף</button>
+  <button class="opt" data-i="1">שני המושגים זהים</button>
+  <button class="opt" data-i="2">מהימנות מבטיחה תוקף</button>
+  <button class="opt" data-i="3">תוקף מתייחס רק לעלות הכלי</button>
+  <div class="explain">נכון: שני מושגים נפרדים (איור 12.4: חיצים צפופים רחוק ממרכז = מהימן ולא תקף). האפשרויות האחרות סותרות את הפרק.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. מדוע CAT מתאים ל-Satisfaction with Breasts אך פחות ל-Sexual Well-being ב-BREAST-Q?</div>
+  <button class="opt" data-i="0">כי Sexual Well-being לא עבר ניתוח Rasch</button>
+  <button class="opt" data-i="1">כי CAT מתאים רק למודולי שחזור</button>
+  <button class="opt" data-i="2">כי CAT מבוסס על בנק פריטים עצמאיים על רצף Rasch ומקצר את הכלי הארוך (38-75%); סקאלה של 6 פריטים כבר קצרה ולא תרוויח</button>
+  <button class="opt" data-i="3">כי CAT מוסיף שאלות לכלים קצרים</button>
+  <div class="explain">נכון: CAT בוחר את השאלה הבאה לפי התשובה הקודמת ועוצר ברמת דיוק מוגדרת; יתרונו בסקאלות ארוכות. האחרות שגויות.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. איזו שיטה להערכת MID מועדפת, ולמה?</div>
+  <button class="opt" data-i="0">מבוססת-התפלגות, כי היא מבוססת על נקודת מבט המטופלת</button>
+  <button class="opt" data-i="1">מבוססת-עוגן, כי משווה את שינוי הציון לעוגן חיצוני רלוונטי למטופלת; ההתפלגות משמשת תמיכה או כשאין עוגן</button>
+  <button class="opt" data-i="2">אף אחת, כי MID אינו ניתן להערכה</button>
+  <button class="opt" data-i="3">מבוססת-התפלגות, כי היא פשוטה יותר ולכן מדויקת יותר</button>
+  <div class="explain">נכון: השיטה המבוססת-התפלגות מסתמכת רק על סטטיסטיקה של הנתונים ואינה כוללת נקודת מבט המטופלת. אפשרות 1 הפוכה לאמת.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. מהו היתרון של שילוב SF-36 לצד BREAST-Q?</div>
+  <button class="opt" data-i="0">הכלי הכללי מאפשר השוואה בין מצבים שונים, והייעודי רגיש לשינוי הספציפי; מומלץ לשלב שניהם במחקר</button>
+  <button class="opt" data-i="1">SF-36 מחליף את הצורך בכלי ייעודי</button>
+  <button class="opt" data-i="2">BREAST-Q הוא כלי כללי</button>
+  <button class="opt" data-i="3">אין יתרון, שני הכלים זהים</button>
+  <div class="explain">נכון: כללי = השוואה בין מצבים אך פחות רגיש; ייעודי = רגיש לשינוי קטן אך לא ניתן להשוואה בין מחלות. אפשרויות 2-4 שגויות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>PRO</b> = דיווח ישיר מהמטופלת בלי פירוש (FDA); PROM = שאלון מדעי למדידתו. חיוני כי רוב הניתוחים הפלסטיים הם לשיפור איכות חיים.</li>
+    <li>התפתחות: <b>אד-הוק</b> (חקר בלבד) &#8592; <b>CTT</b> (legacy, ציון כולל) &#8592; <b>IRT/Rasch</b> (אינטרוול, חד-ממדי, רגיש ברמת הפרט).</li>
+    <li>4 שלבי פיתוח: השערת מסגרת &#8592; ראיונות + cognitive debriefing (רוויה, 7-10 ראיונות, כיתה ו') &#8592; field-test (test-retest 3-14 ימים) &#8592; ניתוח RMT, תרגום (ISPOR).</li>
+    <li><b>כללי</b> (SF-36, PROMIS-29, EQ-5D) מול <b>ייעודי</b> (BREAST-Q, FACE-Q, CLEFT-Q, HAND-Q): מומלץ לשלב.</li>
+    <li>תוקף (תוכן החשוב ביותר, מבנה, קריטריון); מהימנות (Cronbach &gt; 0.70, ICC &#8805; 0.70 ב-50 מטופלות); responsiveness (Cohen 0.2/0.5/0.8).</li>
+    <li><b>MID</b>: עוגן עדיף על התפלגות; responder analysis ו-NNT. <b>CAT</b> מקצר 38-75% ב-BREAST-Q. עתיד: החלטה משותפת, EHR, שיפור איכות ("measure once, cut twice").</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>
