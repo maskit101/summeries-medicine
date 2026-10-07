@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head><meta charset="UTF-8"><title>H023 Fatigue</title><style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  /* בלוק מנגנון/פתופיזיולוגיה */
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  /* הדגשת נקודה חשובה לזכור */
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  /* תמונות/הדמיות - כולל זוג תקין/פתולוגי זה-לצד-זה */
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  /* טבלאות (תרופות, אבחנה מבדלת) */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  /* טכניקות זכירה */
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  /* מהלך ניתוח */
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  /* קישורים חיצוניים */
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  /* מקרה קליני ושאלות תרגול */
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  /* שאלון אינטראקטיבי - לחיצה על תשובה, לא details סטטי. עובד בקובץ נייד ובארטיפקט כאחד. */
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  /* כרטיס-קישור לתמונה/סרטון - להשתמש בזה במקום <img> כשהפלט הוא ארטיפקט ב-Cowork
+     (שם תמונות מקישור חיצוני לא נטענות כי הרשת חסומה בתוך ה-iframe המבודד).
+     בקובץ HTML נייד רגיל, במקום זאת מטמיעים <img src="..."> ישירות - ראו bloc "תמונות/הדמיות". */
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  /* סיכום של הסיכום */
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style></head><body>
+<h1>עייפות (Fatigue) – הריסון פרק 23</h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · עמ' 203–205 · Cardinal Manifestations</div>
+
+<p>עייפות היא אחד התסמינים השכיחים ביותר ברפואה: <span class="key">קושי להתחיל או להמשיך פעילות רצונית, נפשית או גופנית</span>. כמעט כולנו חווינו אותה בזיהום ויראלי; היא מגיעה לרופא כשסיבתה לא ברורה, אינה חולפת, או חריפה ביחס לטריגר. המשימה הקלינית: לזהות את הגורם התת-מקומי, לבנות <b>ברית טיפולית</b> ולחסוך מהמטופל בירורים יקרים וחסרי תוצאה.</p>
+
+<h2><span class="num">1</span> הגדרה והבחנה ממצבים דומים</h2>
+<div class="key-box">עייפות ≠ חולשת שריר (Weakness) ≠ ישנוניות (Somnolence) ≠ קוצר נשימה במאמץ. מטופלים משתמשים במילה "עייף" לכולם – תפקיד האנמנזה להפריד.</div>
+<table><thead><tr><th>מצב</th><th>מה זה</th><th>איך מבדילים</th></tr></thead><tbody>
+<tr><td>עייפות</td><td>תשישות גופנית/נפשית, אנרגיה נמוכה</td><td>בבדיקה הכוח תקין ברוב המקרים</td></tr>
+<tr><td>חולשה (Weakness)</td><td>ירידה אובייקטיבית בכוח עצבי-שרירי</td><td>בדיקה נוירולוגית – יש לאתר: CNS / PNS / צומת עצב-שריר / שריר</td></tr>
+<tr><td>ישנוניות (Somnolence)</td><td>נטייה להירדם, הפרעה בפיזיולוגיית שינה-ערות</td><td>Epworth, פוליסומנוגרפיה</td></tr>
+<tr><td>קוצר נשימה במאמץ</td><td>תסמין לבבי/ריאתי</td><td>קשר למאמץ, בדיקת לב וריאות</td></tr></tbody></table>
+
+<h2><span class="num">2</span> אפידמיולוגיה</h2>
+<p>הגדרות וכלי סקר שונים מקשים על הערכה מדויקת. בסקר אמריקאי גדול של NIMH: שכיחות נקודתית <b>6.7%</b>, שכיחות לאורך החיים <b>25%</b>. בטיפול ראשוני באירופה ובארה"ב 10–25% מדווחים על עייפות ממושכת (&gt;חודש) או כרונית (&gt;6 חודשים) – אך רק במיעוט זו הסיבה לפנייה. בנשים בהודו 12% דיווחו על עייפות כרונית. לעומת זאת שכיחות <span dir="ltr" class="term">CFS</span> לפי הגדרת ה-CDC נמוכה. עייפות קשורה לתמותה מכל סיבה מוגברת (EPIC-Norfolk), בעיקר מסיבות קרדיווסקולריות.</p>
+
+<h2><span class="num">3</span> מנגנון – "למה זה קורה"</h2>
+<div class="mechanism"><p class="chain">הביולוגיה של העייפות <b>לא מובנת היטב</b> – לא ברור איך המערכת העצבית מזהה ומרשמת אותה. ההשערה המובילה: <b>ציטוקינים פרו-דלקתיים</b> (<span dir="ltr" class="term">IL-1α, IL-1β, TNF-α</span>) משפיעים על ה-CNS ויוצרים "התנהגות מחלה" (Sickness behavior): עייפות, ירידת מוטיבציה, נטייה לנוח – תגובה אדפטיבית בזיהום, שבמחלות דלקתיות כרוניות הופכת לעייפות מתמשכת. מכאן ההיגיון בגורמים: דלקת כרונית (SLE, RA, IBD), זיהום, ממאירות (ציטוקינים + תחרות מטבולית), אנמיה (פחות אספקת חמצן), הורמונלי (תירואיד/אדרנל – ויסות מטבולי), אורמיה/כשל כבד (רעלנים), ופסיכיאטרי (שינוי תפיסת מאמץ ואנרגיה).</p></div>
+<svg class="diagram" viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="15" direction="rtl">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2563eb"/></marker></defs>
+<rect x="690" y="60" width="190" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="785" y="90" text-anchor="middle">טריגר: זיהום / דלקת</text><text x="785" y="112" text-anchor="middle">ממאירות / רקמה פגועה</text>
+<rect x="400" y="60" width="200" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="500" y="90" text-anchor="middle">IL-1, TNF-α</text><text x="500" y="112" text-anchor="middle">(ציטוקינים)</text>
+<rect x="110" y="60" width="200" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="210" y="90" text-anchor="middle">CNS → עייפות</text><text x="210" y="112" text-anchor="middle">(Sickness behavior)</text>
+<line x1="690" y1="95" x2="602" y2="95" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><line x1="400" y1="95" x2="312" y2="95" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+<text x="450" y="170" text-anchor="middle" fill="#6b7280">עוד: אנמיה, אנדוקרינופתיה, אורמיה, תרופות, שינה, דיכאון</text></svg>
+<p>חשוב: ניסויים עם <b>נוגדי ציטוקינים</b> (ביולוגיים) הראו תועלת ראשונית אך ברובם <b>לא שיפרו</b> עייפות כנקודת קצה ראשית – עדיין תחום מחקר.</p>
+
+<h2><span class="num">4</span> אבחנה מבדלת (הגורמים לפי מערכת)</h2>
+<table><thead><tr><th>קבוצה</th><th>דוגמאות ורמזים</th></tr></thead><tbody>
+<tr><td>פסיכיאטרי</td><td>דיכאון, חרדה, סומטופורמי. סימפטומים פסיכיאטריים ב-&gt;75% מעייפות כרונית בלתי מוסברת – <b>הגורם השכיח ביותר</b></td></tr>
+<tr><td>נוירולוגי</td><td>MS (~90% מדווחים עייפות; לא בהכרח מתואם ל-MRI), פרקינסון, ALS, אחרי שבץ, TBI, מיגרנה (פרודרום), מיאסטניה (<b>Fatigability</b> אמיתי)</td></tr>
+<tr><td>שינה</td><td><span dir="ltr" class="term">OSA</span> (נחירות, השמנה → פוליסומנוגרפיה), חוסר שינה</td></tr>
+<tr><td>אנדוקריני/מטבולי</td><td>היפותירואידיזם (שיער, עור יבש, אי-סבילות לקור, עצירות, עלייה במשקל), היפרתירואידיזם, אי-ספיקת אדרנל (אנורקסיה, ירידה במשקל, היפונתרמיה, היפרקלמיה, היפרפיגמנטציה), היפרקלצמיה, סוכרת/היפוגליקמיה, Cushing, היפוגונדיזם, חוסר ויטמין D</td></tr>
+<tr><td>כבד/כליה</td><td>כשל כבד כרוני; CKD – &gt;80% מהמודיאליזה</td></tr>
+<tr><td>לב/ריאה</td><td>CHF, COPD</td></tr>
+<tr><td>המטולוגי</td><td>אנמיה כרונית; <b>פריטין נמוך גם ללא אנמיה</b> – מגיב לברזל</td></tr>
+<tr><td>ממאירות</td><td>במיוחד עם ירידה לא מוסברת במשקל; 40% בזמן האבחנה ו-&gt;80% בהמשך. סרטן נדיר כגורם לעייפות כרונית מבודדת</td></tr>
+<tr><td>זיהום</td><td>TB, HIV, צהבת כרונית, אנדוקרדיטיס; מונונוקלאוזיס (שבועות–חודשים); Post-infectious (COVID-19, SARS-1, אבולה)</td></tr>
+<tr><td>אימונולוגי</td><td>SLE, PMR, RA, IBD, ANCA vasculitis, סרקואידוזיס, Sjögren; ליקויי חיסון ראשוניים</td></tr>
+<tr><td>תרופות</td><td>נוגדי דיכאון, אנטי-פסיכוטיים, אנקסיוליטיים, אופיאטים, נוגדי ספסטיות, נוגדי פרכוסים, <b>חוסמי בטא</b>; גמילה ואלכוהול</td></tr>
+<tr><td>אחרים</td><td>השמנה (בלי קשר ל-OSA), חוסר פעילות גופנית, תת-תזונה, היריון ולאחר לידה</td></tr>
+<tr><td>לא ברורה</td><td><span dir="ltr" class="term">ME/CFS</span>, פיברומיאלגיה, Chronic multisymptom illness (Gulf War), Idiopathic chronic fatigue (ללא קריטריונים מלאים ל-ME/CFS)</td></tr></tbody></table>
+
+<h2><span class="num">5</span> גישה למטופל – אנמנזה</h2>
+<p>להגדיר את התסמונת: האם זו באמת עייפות; חריפה/כרונית; בעיקר נפשית, גופנית או שילוב; איכות, דפוס, מהלך, תסמינים נלווים, גורמים מקלים. <span class="key">חום, צמרמורות, הזעות לילה, ירידה במשקל</span> → חשד לזיהום סמוי/ממאירות. סקירת תרופות (מרשם, OTC, צמחים, סמים, אלכוהול), נסיבות הופעה, <b>היסטוריה חברתית</b> (לחצים, שעות עבודה, תמיכה, אלימות בין בני זוג), היגיינת שינה והשפעה על התפקוד.</p>
+
+<h2><span class="num">6</span> בדיקה גופנית – ההבדל בין עייפות לחולשה אמיתית</h2>
+<p>בדיקת סטטוס מנטלי מפורטת (דיכאון/חרדה) – <b>התפוקה גבוהה ביותר</b>: מגלה הסבר ב-75–80% מהמקרים (לעומת ~2% מהבדיקה הגופנית הכללית). בדיקה נוירולוגית קובעת אם יש חולשה אובייקטיבית. דפוסי "חולשה":</p>
+<table><thead><tr><th>סוג</th><th>איך זה נראה בבדיקה</th><th>משמעות</th></tr></thead><tbody>
+<tr><td><b>Breakaway weakness</b></td><td>כוח מלא לרגע ואז "נכנע" בבת אחת; לעיתים עם כאב</td><td>אופייני לעייפות; נדרש מאמץ נפשי רב</td></tr>
+<tr><td>חולשה מנגנונית (UMN/LMN)</td><td>ההתנגדות נעקפת בצורה חלקה ורציפה, לעולם לא כוח מלא</td><td>נגע במסלולים מוטוריים/יחידה מוטורית תחתונה</td></tr>
+<tr><td>Fatigable weakness</td><td>כוח מלא בבדיקה ראשונה, נחלש בחזרות בלי מנוחה</td><td>הפרעה בהולכה עצבית-שרירית (מיאסטניה); <b>אין</b> breakaway פתאומי</td></tr></tbody></table>
+<p>אם לא ניתן להכריע – EMG עם NCS. בנוסף: סקר סימני מחלה לב-ריאה, ממאירות, לימפאדנופתיה, הפטוספלנומגליה, זיהום, כשל כבד/כליה, תת-תזונה, אנדוקרינים, מחלת רקמת חיבור; נקודות רגישות לפיברומיאלגיה. גם אם התפוקה נמוכה – בדיקה מלאה בונה אמון.</p>
+
+<h2><span class="num">7</span> בדיקות מעבדה</h2>
+<div class="key-box">מעבדה מזהה גורם ב-~5% בלבד מהעייפות הכרונית. בדיקות רחבות → ממצאים אקראיים ומעקב מיותר. עדיף מעקב קליני תכוף.</div>
+<p>סקר סביר: <span dir="ltr" class="term">CBC + differential</span> (אנמיה/זיהום/ממאירות), אלקטרוליטים (Na, K, Ca), גלוקוז, תפקודי כליה, כבד ותירואיד; לשקול HIV ותפקוד אדרנל. הנחיות CFS ממליצות על ESR (להוצאת "מחקים"), אך ערך נמוך-בינוני לא מבהיר. <b>ANA</b> כסקר בודד אינו מועיל (חיובי בטיטר נמוך בבריאים). <b>אין</b> הדמיית גוף שלמה ללא אינדיקציה.</p>
+
+<h2><span class="num">8</span> טיפול</h2>
+<p>עדיפות ראשונה: <b>טיפול בגורם</b> – מרפא לעיתים, מקל לעיתים. במחלות כרוניות העייפות עשויה להיות עמידה, אך חשוב לחפש תורמים נוספים (מולטיפקטוריאלי).</p>
+<table><thead><tr><th>טיפול</th><th>מתי / עדות</th><th>הסתייגויות</th></tr></thead><tbody>
+<tr><td>נוגדי דיכאון (SSRI וכו')</td><td>כשיש תסמיני דיכאון; יעילים כחלק מגישה רב-מערכתית</td><td>יכולים לגרום עייפות – להפסיק אם לא יעילים</td></tr>
+<tr><td><span dir="ltr" class="term">CBT</span></td><td>הוכח ב-ME/CFS ועייפות הקשורה לסרטן</td><td></td></tr>
+<tr><td><span dir="ltr" class="term">Graded exercise therapy</span></td><td>הליכה מדורגת עם יעד דופק, למניעת מאמץ יתר; שיפור מתון בזמני הליכה ובדיווח עצמי, נשמר ~2.5 שנים (PACE)</td><td>מרכיב שנוי במחלוקת בקהילת ME/CFS</td></tr>
+<tr><td>פסיכוסטימולנטים (Amphetamines, Modafinil, Armodafinil)</td><td>מעלים ערנות וריכוז, מפחיתים ישנוניות יתר, מעט מטופלים נהנים</td><td>לא עזרו בניסויים אקראיים ב-TBI, פרקינסון, סרטן, MS</td></tr>
+<tr><td>ויטמין D</td><td>בחסר – השלמה עשויה לשפר</td><td></td></tr>
+<tr><td>נוגדי ציטוקינים</td><td>אפשרות עתידית</td><td>ברוב הניסויים לא שיפרו כנקודת קצה ראשית</td></tr></tbody></table>
+
+<h2><span class="num">9</span> פרוגנוזה</h2>
+<p>עייפות חריפה שדורשת הערכה – סביר יותר שתזוהה סיבה רפואית/נוירולוגית/פסיכיאטרית. עייפות כרונית בלתי מוסברת – לרוב מסתיימת באבחנה פסיכיאטרית או נשארת בלתי מוסברת; גילוי מחלה קשה שלא אובחנה <b>נדיר</b>. החלמה מלאה נדירה בטווח קצר, אך גישה רב-תחומית משפרת איכות חיים.</p>
+
+<h2><span class="num">10</span> טכניקות זכירה</h2>
+<div class="mnemonic"><h3>ראשי תיבות – "TIRED-MD"</h3>
+<p><b>T</b>hyroid / endocrine · <b>I</b>nfection &amp; inflammation · <b>R</b>enal/hepatic · <b>E</b>lectrolytes &amp; anemia · <b>D</b>rugs &amp; depression · <b>M</b>alignancy · <b>D</b>isordered sleep (OSA).</p>
+<h3>סיפור דמיוני – "הסוללה המדמיעה"</h3>
+<p>דמיינו טלפון עם סוללה (אנרגיה) ושלושה גנבים: <b>ציטוקינים</b> (אפליקציות ברקע שמרוקנות), <b>דיכאון</b> (מסך שנשאר דולק) ו-<b>שינה גרועה</b> (מטען תקול). הבדיקה הגופנית: אם הכפתור "נופל" פתאום – breakaway (תוכנה); אם הוא דועך בלחיצות חוזרות – מיאסטניה (חומרה).</p>
+<svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="14" direction="rtl"><rect x="190" y="30" width="120" height="140" rx="14" fill="#f3f4f6" stroke="#374151" stroke-width="3"/><rect x="205" y="120" width="90" height="35" fill="#ef4444"/><text x="250" y="90" text-anchor="middle">15%</text><text x="60" y="60" text-anchor="middle">ציטוקינים</text><text x="60" y="110" text-anchor="middle">דיכאון</text><text x="440" y="60" text-anchor="middle">שינה גרועה</text><path d="M110 60 L185 80 M110 110 L185 100 M390 60 L315 80" stroke="#b45309" stroke-width="2"/></svg></div>
+
+<h2><span class="num">11</span> מקורות להרחבה</h2>
+<ul class="resource-list">
+<li><a href="https://hospitalhandbook.ucsf.edu/node/1681" target="_blank">UCSF Hospital Handbook – Approach to Fatigue</a><div class="desc">סיכום קליני תמציתי של הגישה לעייפות.</div></li>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC1402370" target="_blank">PMC – מאמר סקירה בנושא עייפות</a><div class="desc">סקירה אקדמית בגישה רפואית; מומלץ לפני הדגשת מקורות עדכניים.</div></li>
+<li><a href="https://www.jucm.com/urgent-care-evaluation-of-fatigue/" target="_blank">JUCM – Evaluation of Fatigue in urgent care</a><div class="desc">איך להתמודד עם עייפות בהקשר של רפואה דחופה.</div></li></ul>
+<p class="media-cap">הערה: לא נמצאו בחיפוש סרטוני YouTube/תמונות מהימנים ספציפיים לפרק זה, ולכן לא הוטמעו כאלה (ללא המצאת קישורים).</p>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3><p>אישה בת 38, מורה, מתלוננת על עייפות כבר 8 חודשים. אין חום או ירידה במשקל. מדווחת על מצב רוח ירוד, קשיי הירדמות, ועל "תחושת חולשה". בבדיקה: כוח מלא לרגע ואז "נכנעת" בבת אחת בבדיקה מול התנגדות; ללא נחלשות בחזרות. סימנים חיוניים, לב, ריאות, בלוטת התריס ובדיקה נוירולוגית אחרת תקינים. CBC, אלקטרוליטים, גלוקוז, כליות, כבד ו-TSH תקינים.</p></div>
+<div class="quiz" data-answer="0">
+  <div class="q">1. איזה ממצא בבדיקה גופנית מתאים ביותר לעייפות ולא לחולשה נוירולוגית?</div>
+  <button class="opt" data-i="0">Breakaway weakness</button>
+  <button class="opt" data-i="1">חולשה חלקה שמתגברים עליה בהדרגה</button>
+  <button class="opt" data-i="2">כוח שנחלש בחזרות בלי מנוחה</button>
+  <button class="opt" data-i="3">רפלקסים מוגברים</button>
+  <div class="explain">נכון: כוח מלא שנכנע פתאום (breakaway). ב': חולשת UMN/LMN. ג': Fatigable – צומת עצב-שריר. ד': נגע CNS.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. איזו בדיקה בעלת התפוקה הגבוהה ביותר לזיהוי הסיבה לעייפות כרונית?</div>
+  <button class="opt" data-i="0">הערכת סטטוס מנטלי מפורטת</button>
+  <button class="opt" data-i="1">סריקת גוף שלמה</button>
+  <button class="opt" data-i="2">ANA</button>
+  <button class="opt" data-i="3">בדיקה גופנית כללית בלבד</button>
+  <div class="explain">נכון: מגלה הסבר ב-75–80%. ב': לא מומלצת. ג': חיובי בטיטר נמוך בבריאים. ד': ~2%.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה השכיח ביותר כגורם לעייפות כרונית בלתי מוסברת?</div>
+  <button class="opt" data-i="0">מחלה פסיכיאטרית</button>
+  <button class="opt" data-i="1">סרטן סמוי</button>
+  <button class="opt" data-i="2">EBV</button>
+  <button class="opt" data-i="3">היפותירואידיזם</button>
+  <div class="explain">נכון: &gt;75% עם תסמינים פסיכיאטריים; סרטן ו-EBV נדירים; תירואיד נבדק בסקר אך פחות שכיח.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזה טיפול נתמך בעדויות ב-ME/CFS?</div>
+  <button class="opt" data-i="0">CBT ו-Graded exercise</button>
+  <button class="opt" data-i="1">Modafinil</button>
+  <button class="opt" data-i="2">נוגדי TNF</button>
+  <button class="opt" data-i="3">סטרואידים</button>
+  <div class="explain">נכון (PACE). Modafinil לא הוכיח יעילות עקבית; נוגדי TNF – לא; סטרואידים אינם טיפול מקובל.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">5. מה הצעד הראשון ביותר חשוב בטיפול בעייפות?</div>
+  <button class="opt" data-i="0">טיפול בהפרעה הבסיסית</button>
+  <button class="opt" data-i="1">התחלת SSRI לכולם</button>
+  <button class="opt" data-i="2">הדמיית CT</button>
+  <button class="opt" data-i="3">ויטמין D לכולם</button>
+  <div class="explain">נכון. SSRI רק כשיש דיכאון; CT לא מומלץ; ויטמין D רק בחסר.</div>
+</div>
+<div class="tldr"><h2><span class="num">13</span> סיכום של הסיכום</h2><ul>
+<li>עייפות = קושי ליזום/להמשיך פעילות; לא חולשה, לא ישנוניות.</li>
+<li>מנגנון לא ברור; ציטוקינים (IL-1, TNF) כנראה מתווכים.</li>
+<li>הגורם השכיח בכרוני: פסיכיאטרי. סקר: CBC, אלקטרוליטים, גלוקוז, כליות, כבד, TSH.</li>
+<li>Breakaway = עייפות; Fatigable = מיאסטניה.</li>
+<li>טיפול: הגורם; CBT, GET, SSRI בדיכאון; סטימולנטים כמעט לא מועילים.</li></ul></div><script>
+// שאלון לחיץ - עובד בקובץ נייד ובארטיפקט כאחד, בלי ספרייה חיצונית.
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+
+</script></body></html>
