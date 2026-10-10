@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>דופן הבטן, הצפק, המזנטריום והרטרופריטונאום — טבור, מיימת ו-SBP, דסמואיד, HIPEC, בקעים פנימיים</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .book-box{background:#eef2ff; border:1px solid #c7d2fe; border-right:5px solid #4f46e5; border-radius:8px; padding:14px 18px; margin:16px 0}
+  .book-box h3{margin:12px 0 6px; color:#3730a3; font-size:16px}
+  .book-box h3:first-child{margin-top:0}
+  .book-badge{display:inline-block; background:#4f46e5; color:#fff; border-radius:999px; padding:3px 12px; font-size:13px; font-weight:600; margin:0 0 12px}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF של פרק 44 מתוך book/ שימש מקור ראשי (Sabiston, Abdominal Wall, Umbilicus, Peritoneum, Mesenteries, Omentum and Retroperitoneum, חולץ עם pdftotext, 2026-10-10). השלמות מהרשת: תמונות Wikimedia Commons וסרטוני YouTube שנמצאו בחיפוש אמיתי; עדכונים מעבר לספר מסומנים כ"עדכון" (AASLD 2021 ל-SBP, Nirogacestat לדסמואיד, STRASS, PRODIGE 7). -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>דופן הבטן, הטבור, הצפק, המזנטריום, האומנטום והרטרופריטונאום</h1>
+<div class="subtitle">פרק 44 בספר Sabiston — תשע שכבות דופן הבטן וקו הקשת, שרידי חבל הטבור (מקל, אורכוס), המטומה של נדן הרקטוס, גידולי דסמואיד וסרקומה, כאב ויסצרלי מול פריאטלי מול מושלך, פיזיולוגיית הצפק, מיימת ו-SAAG, SBP, דלקת צפק שחפתית ובדיאליזה צפקית, מיימת כילוסית, Pseudomyxoma peritonei ו-HIPEC, מזותליומה, תסביב אומנטום, לימפדניטיס מזנטריאלית, מזנטריטיס טרשתית, בקעים פנימיים, ומחלות הרטרופריטונאום (מורסה, המטומה, פיברוזיס, סרקומה)</div>
+<div class="book-badge">📖 נכתב לפי הספר (Sabiston, פרק 44) — 2026-10-10</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>זה פרק "גבולות" — הוא עוסק במה ש<b>עוטף</b> את איברי הבטן: <b>דופן הבטן</b> (דרכה נכנסים לכל ניתוח), <b>הצפק (Peritoneum)</b> שמצפה את החלל ומגיב לכל זיהום, <b>המזנטריום והאומנטום</b> שנושאים את כלי הדם, ו<b>הרטרופריטונאום (Retroperitoneum)</b> — המרחב שמאחורי הצפק. אין כאן "מחלה אחת", אלא אוסף של מצבים שכיחים במבחנים: <span class="key">SAAG ו-SBP, שרידי חבל הטבור, המטומה של נדן הרקטוס, דסמואיד, בקע פרא-דואודנלי, ופיברוזיס רטרופריטונאלית</span>.</p>
+<p>החוט המקשר: <b>האנטומיה מכתיבה את הקליניקה</b> — איפה נגמר הנדן האחורי, לאן זורם נוזל הצפק, דרך איזה עצב עובר הכאב — ולכן כדאי להבין קודם את המבנה, ואז כל מחלה "נופלת למקום".</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+
+<h3>א. נדן הרקטוס וקו הקשת — למה המטומה מתחת לטבור "מתפשטת" ולמה בקע ספיגלי נסתר</h3>
+<div class="mechanism">
+<p class="chain">שלושת השרירים השטוחים (<b>אלכסוני חיצוני, אלכסוני פנימי, רוחבי</b>) הופכים מדיאלית לאפונורוזות שעוטפות את שריר הישר (<span class="term" dir="ltr">Rectus abdominis</span>) ויוצרות את <b>נדן הרקטוס (Rectus sheath)</b>. <b>מעל קו הקשת</b> (<span class="term" dir="ltr">Semicircular/Arcuate line of Douglas</span>) — האלכסוני הפנימי מתפצל: חציו לפני השריר וחציו מאחוריו, יחד עם הרוחבי, ולכן יש <b>נדן קדמי וגם אחורי</b>. <b>מתחת לקו הקשת</b> — <span class="key">כל האפונורוזות עוברות לפני השריר</span>, ומאחוריו נשארים רק <b>הפאסציה הרוחבית (Transversalis fascia)</b>, שומן פרה-פריטונאלי וצפק.</p>
+<p><b>משמעות קלינית:</b> מעל קו הקשת המטומה "כלואה" במדור סגור (ומוגבלת גם ע"י 3–5 <b>הצמדות גידיות — Tendinous inscriptions</b> שמחברות את השריר <b>לנדן הקדמי בלבד</b>). מתחת לקו הקשת אין מחסום אחורי — הדם יכול לפרוץ למרחב <b>הפרה-וזיקלי והפרה-פריטונאלי</b>, ולכן שם ההמטומות גדולות יותר וההמטוקריט עלול לרדת.</p>
+<p><b>למה הפאסציה הרוחבית כל כך חשובה?</b> זו השכבה שנותנת לדופן את <b>השלמות המבנית</b> ומחזקת אזורים חלשים. <span class="key">בהגדרה, בקע (Hernia) הוא פגם בפאסציה הרוחבית</span>. לכן <b>Diastasis recti</b> (הידלדלות קו האמצע — Linea alba — באפיגסטריום) <b>אינו בקע</b>: הפאסציה שלמה, אין "צוואר" ואין סכנת חניקה — הטיפול הוא הרגעה.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="13">
+  <title>נדן הרקטוס מעל ומתחת לקו הקשת</title>
+  <desc>שני חתכי רוחב: מימין מעל קו הקשת — אפונורוזות לפני ואחרי השריר; משמאל מתחת לקו הקשת — כל האפונורוזות לפני השריר, מאחור רק פאסציה רוחבית וצפק</desc>
+  <rect x="350" y="8" width="320" height="28" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="510" y="27" text-anchor="middle" fill="#1e3a8a" font-weight="700">מעל קו הקשת (מעל הטבור)</text>
+  <rect x="10" y="8" width="320" height="28" rx="6" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="170" y="27" text-anchor="middle" fill="#991b1b" font-weight="700">מתחת לקו הקשת</text>
+  <!-- above -->
+  <text x="660" y="62" text-anchor="end" fill="#6b7280" font-size="11">קדמי (עור) ↑</text>
+  <line x1="380" y1="80" x2="640" y2="80" stroke="#b45309" stroke-width="4"/>
+  <text x="380" y="74" fill="#92400e" font-size="11.5">אלכסוני חיצוני + חצי מהפנימי</text>
+  <ellipse cx="510" cy="130" rx="85" ry="34" fill="#fecaca" stroke="#b91c1c"/>
+  <text x="510" y="135" text-anchor="middle" fill="#7f1d1d" font-weight="700">Rectus</text>
+  <line x1="380" y1="182" x2="640" y2="182" stroke="#7c3aed" stroke-width="4"/>
+  <text x="380" y="200" fill="#5b21b6" font-size="11.5">חצי מהפנימי + רוחבי = נדן אחורי</text>
+  <line x1="380" y1="222" x2="640" y2="222" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="380" y="240" fill="#1e40af" font-size="11.5">פאסציה רוחבית + צפק</text>
+  <!-- below -->
+  <text x="320" y="62" text-anchor="end" fill="#6b7280" font-size="11">קדמי (עור) ↑</text>
+  <line x1="40" y1="74" x2="300" y2="74" stroke="#b45309" stroke-width="4"/>
+  <line x1="40" y1="82" x2="300" y2="82" stroke="#b45309" stroke-width="4"/>
+  <line x1="40" y1="90" x2="300" y2="90" stroke="#7c3aed" stroke-width="4"/>
+  <text x="40" y="66" fill="#92400e" font-size="11.5">כל 3 האפונורוזות — לפני השריר</text>
+  <ellipse cx="170" cy="140" rx="85" ry="34" fill="#fecaca" stroke="#b91c1c"/>
+  <text x="170" y="145" text-anchor="middle" fill="#7f1d1d" font-weight="700">Rectus</text>
+  <line x1="40" y1="190" x2="300" y2="190" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="40" y="208" fill="#1e40af" font-size="11.5">רק פאסציה רוחבית + שומן + צפק</text>
+  <text x="40" y="250" fill="#991b1b" font-size="12" font-weight="700">אין נדן אחורי ⇐ המטומה פורצת</text>
+  <text x="40" y="270" fill="#991b1b" font-size="12">למרחב הפרה-וזיקלי (ירידת Hct)</text>
+  <polygon points="170,215 162,232 178,232" fill="#b91c1c"/>
+</svg>
+
+<h3>ב. שלושה סוגי כאב בטני — למה אפנדיציטיס מתחיל בטבור</h3>
+<div class="mechanism">
+<ul>
+  <li><b>כאב ויסצרלי (Visceral)</b>: גירוי נוציספטורים של האיבר עצמו ע"י <b>מתיחה, דלקת או איסכמיה</b>. עמום, לא ממוקם, <b>בקו האמצע</b> — כי האיברים שולחים סיבים סנסוריים סימפתטיים <b>לשני צידי חוט השדרה</b>, העצבוב רב-סגמנטלי ודליל ברצפטורים. המיקום נקבע לפי <b>המוצא העוברי</b>: <span class="key">מעי קדמי (קיבה, תריסריון, דרכי מרה) ← אפיגסטריום; מעי אמצעי (מעי דק, תוספתן, מעי גס ימני עד 2/3 הרוחבי) ← טבור; מעי אחורי (רוחבי דיסטלי, שמאלי, רקטום) ← היפוגסטריום</span>. מלווה הזעה, בחילה, חיוורון (תגובה אוטונומית).</li>
+  <li><b>כאב סומטו-פריאטלי (Somatoparietal)</b>: דלקת של <b>הצפק הפריאטלי</b> — מועבר בעצבים הסומטיים (דרמטומים <b>T6–L1</b>), עז וממוקם, <b>לצד אחד</b> כי רק צד אחד של מערכת העצבים מעצבב כל אזור.</li>
+  <li><b>כאב מושלך (Referred)</b>: התכנסות סיבים ויסצרליים וסומטיים <b>על אותו נוירון מסדר שני</b> בחוט השדרה — המוח "מייחס" את הכאב לעור. דוגמאות: <b>כתף</b> בגירוי סרעפת, <b>שכמה</b> במחלת דרכי מרה, <b>אשך/שפתיים</b> בדלקת רטרופריטונאלית.</li>
+</ul>
+<p class="chain">אפנדיציטיס: מתיחה ודלקת של התוספתן (מעי אמצעי) ← כאב ויסצרלי עמום <b>סביב הטבור</b> ← הדלקת מגיעה לצפק הפריאטלי ← כאב סומטי חד ב-<b>McBurney</b>.</p>
+</div>
+
+<h3>ג. פיזיולוגיית הצפק — "המשאבה הסרעפתית" ולמה ספסיס בטני מתפתח כל כך מהר</h3>
+<div class="mechanism">
+<p>הצפק = שכבה אחת של <b>מזותל (Mesothelium)</b> קשקשי על סטרומה דקה, בשטח של <b>1.0–1.7 מ"ר</b> (≈ שטח הגוף). זו <b>ממברנה דו-כיוונית חדירה-למחצה</b>; בחלל יש בדרך כלל <b>פחות מ-100 מ"ל</b> נוזל סטרילי. אצל נשים החלל <b>פתוח</b> לחוץ דרך פתחי החצוצרות.</p>
+<p class="chain"><b>המשאבה הסרעפתית (Diaphragmatic pump):</b> בצפק שמתחת לסרעפת יש <b>פתחים (Stomata)</b> שמתחברים ללימפטיקה של הסרעפת. <b>בנשיפה</b> הסרעפת נרפית ← הפתחים נפתחים, והלחץ השלילי בחזה <b>שואב נוזל, חלקיקים וחיידקים</b> פנימה ← <b>בשאיפה</b> הסרעפת מתכווצת ודוחפת את הלימפה למדיאסטינום ← <b>Thoracic duct</b> ← מחזור הדם. התוצאה: נוזל הצפק זורם <b>כלפי מעלה</b> (צפלדית).</p>
+<p>זה מסביר שתי עובדות: (1) <span class="key">ספסיס מופיע מהר מאוד בזיהום בטני מפושט</span> — חיידקים מגיעים לדם תוך זמן קצר דרך הלימפה; (2) <b>Fitz-Hugh–Curtis</b> — דלקת סביב הכבד (Perihepatitis) בדלקת חצוצרות, כי הנוזל מהאגן עולה לאזור התת-סרעפתי.</p>
+<p><b>חמש תגובות הצפק לזיהום</b> (מה הופך דלקת כימית לזיהומית ואיך הגוף נלחם):</p>
+<ol>
+  <li><b>פינוי מהיר</b> של חיידקים דרך הפתחים הסרעפתיים והלימפה.</li>
+  <li><b>מקרופאגים צפקיים</b> משחררים מתווכים פרו-דלקתיים ← <b>גיוס לויקוציטים</b> מהמיקרו-וסקולטורה.</li>
+  <li><b>פירוק תאי פיטום (Mast cells)</b> ← היסטמין ← הרחבת כלים ודליפת נוזל <b>עשיר בחלבון</b> (משלים ואימונוגלובולינים) לחלל.</li>
+  <li><b>אופסוניזציה</b>: החלבון בנוזל + המשלים מסמנים חיידקים לבליעה ע"י נויטרופילים ומקרופאגים.</li>
+  <li><b>כליאה בפיברין</b> ← יצירת <b>מורסה</b> שמגבילה את הפיזור.</li>
+</ol>
+<p>שימו לב לנקודה 4 — היא המפתח להבנת SBP: <span class="key">מיימת דלת-חלבון לא מסוגלת לבצע אופסוניזציה</span>, ולכן היא "קרקע פורייה" לזיהום.</p>
+</div>
+
+<h3>ד. מיימת (Ascites) — שני מנגנונים מרכזיים, ו-SAAG שמבדיל ביניהם</h3>
+<div class="mechanism">
+<p><b>שחמת (Cirrhosis)</b> אחראית ל-<b>~85%</b> מהמיימת בארה"ב; כ-<b>50%</b> מהשחמתיים המפוצים יפתחו מיימת תוך 10 שנים, והופעתה היא <b>נקודת מפנה פרוגנוסטית</b> (SBP, אי-ספיקת כליות, תמותה תוך 2–5 שנים).</p>
+<p class="chain"><b>בשחמת — שני מנגנונים שפועלים יחד:</b><br>
+(1) <b>יתר לחץ דם פורטלי</b>: קולגן בכבד ← חסימה <b>פוסט-סינוסואידלית</b> ← לחץ הידרוסטטי גבוה בסינוסואידים ובכלים הספלנכניים ← נוזל יוצא לחלל ← כשהלימפטיקה לא מצליחה לפנות — מיימת.<br>
+(2) <b>אגירת נתרן ומים בכליה</b>: שחרור חריג של <b>תחמוצת חנקן (NO)</b> בכלים הספלנכניים ← הרחבת כלים ← ירידה ב<b>נפח הדם האפקטיבי</b> ← הגוף "חושב" שהוא מיובש ← הפעלת <b>RAAS ומערכת סימפתטית</b> ← ספיגת נתרן באבובית הפרוקסימלית והדיסטלית.</p>
+<p><b>למה SAAG עובד?</b> אלבומין הוא מולקולה גדולה. כשהנוזל "נדחף" החוצה <b>בלחץ</b> (יתר לחץ פורטלי) — דופן הכלי מסננת אותו והנוזל דל אלבומין ⇐ <b>פער גדול</b> בין הדם לנוזל. כשהנוזל נוצר מ<b>דליפה</b> של צפק חולה (קרצינומטוזיס, שחפת, לבלב) — הנוזל עשיר בחלבון ⇐ <b>פער קטן</b>.</p>
+<p><span class="key">SAAG = אלבומין בסרום פחות אלבומין במיימת. ≥1.1 g/dL = יתר לחץ דם פורטלי</span> (דיוק ~97%); &lt;1.1 = סיבה אחרת. SAAG החליף את חלוקת "טרנסודט/אקסודט" הישנה.</p>
+<p><b>מנגנונים נוספים:</b> אי-ספיקת לב (לחץ + וזופרסין + RAAS), Budd-Chiari / פקקת וריד פורטלי (לחץ), ובממאירות — שלושה מנגנונים: גרורות כבד מרובות (יתר לחץ פורטלי), <b>קרצינומטוזיס</b> (דליפה עשירת חלבון), וחסימת לימפה רטרופריטונאלית (לימפומה) ← <b>מיימת כילוסית</b>. וגם דליפת מיץ לבלב, מרה או לימפה אחרי פגיעה.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 270" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>SAAG: מיימת בלחץ מול מיימת מדליפה</title>
+  <desc>מימין: לחץ פורטלי מסנן נוזל דל אלבומין, SAAG גבוה. משמאל: צפק חולה דולף נוזל עשיר חלבון, SAAG נמוך</desc>
+  <rect x="350" y="10" width="320" height="250" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="510" y="34" text-anchor="middle" fill="#1e3a8a" font-weight="700">SAAG ≥ 1.1 — "נדחף בלחץ"</text>
+  <rect x="420" y="50" width="180" height="40" rx="6" fill="#fff" stroke="#2563eb"/>
+  <text x="510" y="75" text-anchor="middle">כלי דם: אלבומין 3.5</text>
+  <polygon points="502,95 518,95 510,112" fill="#2563eb"/>
+  <text x="525" y="108" fill="#1e40af" font-size="11.5">לחץ הידרוסטטי ↑ — "מסננת"</text>
+  <rect x="420" y="118" width="180" height="40" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="510" y="143" text-anchor="middle">מיימת: אלבומין 1.0</text>
+  <text x="510" y="180" text-anchor="middle" fill="#1e3a8a" font-weight="700">פער = 2.5</text>
+  <text x="510" y="205" text-anchor="middle" font-size="11.5">שחמת, אי-ספיקת לב, Budd-Chiari,</text>
+  <text x="510" y="223" text-anchor="middle" font-size="11.5">פקקת וריד פורטלי, גרורות כבד מסיביות</text>
+  <rect x="10" y="10" width="320" height="250" rx="10" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="170" y="34" text-anchor="middle" fill="#991b1b" font-weight="700">SAAG &lt; 1.1 — "דולף מצפק חולה"</text>
+  <rect x="80" y="50" width="180" height="40" rx="6" fill="#fff" stroke="#b91c1c"/>
+  <text x="170" y="75" text-anchor="middle">כלי דם: אלבומין 3.0</text>
+  <polygon points="162,95 178,95 170,112" fill="#b91c1c"/>
+  <text x="185" y="108" fill="#991b1b" font-size="11.5">צפק "פרוץ" — חלבון עובר</text>
+  <rect x="80" y="118" width="180" height="40" rx="6" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="170" y="143" text-anchor="middle">מיימת: אלבומין 2.5</text>
+  <text x="170" y="180" text-anchor="middle" fill="#991b1b" font-weight="700">פער = 0.5</text>
+  <text x="170" y="205" text-anchor="middle" font-size="11.5">קרצינומטוזיס, שחפת, לבלב, מרה,</text>
+  <text x="170" y="223" text-anchor="middle" font-size="11.5">נפרוטי, דליפת לימפה, סרוזיטיס</text>
+</svg>
+
+<h3>ה. SBP — מתי זה "חיידקי" ולמה דווקא בשחמת</h3>
+<div class="mechanism">
+<p><b>Spontaneous bacterial peritonitis (SBP)</b> = זיהום חיידקי של נוזל המיימת <b>בלי מקור תוך-בטני</b> (פרפורציה, מורסה, לבלב, כיס מרה). כאן אין שלב "כימי" — זה זיהום מלכתחילה, והשאלה היא איך החיידקים הגיעו.</p>
+<p class="chain">תנועתיות מעי לקויה בשחמת ← שגשוג ושינוי בפלורה ← <b>טרנסלוקציה</b> של חיידקים דרך דופן המעי ללימפה המזנטריאלית ולדם ← מערכת חיסון מקומית וסיסטמית חלשה לא מפנה אותם ← הם מגיעים לנוזל ← <b>חלבון נמוך במיימת = אין אופסוניזציה</b> ← מקרופאגים ונויטרופילים לא "רואים" את החיידקים ← זיהום.</p>
+<p><b>החיידקים:</b> במבוגרים — <b>אירובים אנטריים: E. coli ו-Klebsiella pneumoniae</b>. בילדים עם מיימת נפרוטית/כבדית — <b>Streptococcus גרופ A, S. aureus, S. pneumoniae</b>. <span class="key">אנאירובים כמעט אף פעם</span> — הם לא מצליחים לעבור טרנסלוקציה, והדופן עשירה בחמצן. לכן <b>חיידק אחד</b> בתרבית = SBP; <b>כמה חיידקים (במיוחד אנאירובים/גראם-שליליים מעורבים) = חשד לפריטוניטיס שניונית</b> (פרפורציה!). SBP <b>נדיר מאוד</b> במיימת עשירת חלבון (למשל קרצינומטוזיס).</p>
+<p><b>חום ולויקוציטוזיס כאן</b> — תגובה מערכתית לאנדוטוקסין של גראם-שליליים (שחרור IL-1, IL-6, TNF). אבל אצל שחמתי הסימנים יכולים להיות עדינים: <b>אנצפלופתיה, החמרה בתפקוד הכליות, חמצת או לחץ דם נמוך</b> בלי כאב בטן — ולכן <b>כל אשפוז של שחמתי עם מיימת = פרצנטזיס</b>.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/Igb1rta3-c4" title="Spontaneous Bacterial Peritonitis Visually Explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">SBP בהסבר ויזואלי — פתופיזיולוגיה (טרנסלוקציה), ביטוי קליני, פרצנטזיס וטיפול. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופתולוגיה</h2>
+
+<h3>תשע שכבות דופן הבטן (מבחוץ פנימה)</h3>
+<p><b>עור ← רקמה תת-עורית ← פאסציה שטחית ← אלכסוני חיצוני ← אלכסוני פנימי ← רוחבי ← פאסציה רוחבית ← שומן פרה-פריטונאלי ← צפק</b>. ברקמה התת-עורית: <b>Camper</b> (שומנית, שטחית) ו-<b>Scarpa</b> (סיבית, עמוקה, ממשיכה ל-Fascia lata בירך) — <b>תפירת Scarpa</b> בחתכים תחתונים מיישרת את שולי העור.</p>
+<ul>
+  <li><b>אלכסוני חיצוני</b> — הגדול; סיבים "ידיים בכיסים" (למעלה-לרוחב ← למטה-למדיאלי). שולו התחתון המגולגל = <b>רצועה מפשעתית (Inguinal/Poupart ligament)</b> מ-ASIS עד Pubic tubercle. <span class="key">בקע פמורלי עובר מאחורי/מתחת לרצועה; בקע מפשעתי — מעליה ולפניה</span>.</li>
+  <li><b>אלכסוני פנימי</b> — סיבים בכיוון הפוך; הסיבים התחתונים מלווים את חבל הזרע לשק האשכים כ<b>שריר Cremaster</b>.</li>
+  <li><b>רוחבי (Transversus abdominis)</b> — הקטן; הקשת האפונורוטית שלו מעל <b>משולש Hesselbach</b> — ציון דרך בתיקוני Bassini ו-Cooper.</li>
+  <li><b>משולש Hesselbach</b> (אתר הבקע <b>הישיר</b>): למטה — רצועה מפשעתית; מדיאלית — שול הרקטוס; לטרלית — <b>כלי אפיגסטריק תחתון</b>; רצפה — פאסציה רוחבית.</li>
+  <li><b>Linea alba</b> — רחבה מעל הטבור, צרה מתחתיו; מאפשרת חתך אמצעי בלי להיכנס לנדן.</li>
+</ul>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray398.png?width=700" alt="Gray 398 - קו הקשת של נדן הרקטוס">
+  <p class="media-cap">Gray's Anatomy (1918), איור 398: הדופן הקדמית מבפנים — רואים את <b>קו הקשת (Linea semicircularis)</b> שמתחתיו הנדן האחורי נעלם, ואת <b>הכלים האפיגסטריים התחתונים</b> שנכנסים לנדן בגובה זה. מקור: Wikimedia Commons (נחלת הכלל).</p>
+</figure>
+
+<h3>אספקת דם, ניקוז ועצבוב — מה שחשוב קלינית</h3>
+<ul>
+  <li><b>עורקים</b>: 6 בין-צלעיים אחרונים + 4 מותניים, <b>אפיגסטרי עליון</b> (המשך של <b>Internal mammary</b>, נכנס דרך הפתח הקוסטו-קסיפואידלי) שמתחבר בתוך הנדן עם <b>אפיגסטרי תחתון</b> (מ-<b>External iliac</b>), ו-Deep circumflex iliac. העורקים והעצבים רצים <b>בין האלכסוני הפנימי לרוחבי</b> (המישור של חסם TAP).</li>
+  <li><b>ורידים</b>: מעל הטבור ← SVC; מתחת ← דרך Saphenous ← IVC; האנסטומוזות = מעקף בחסימת אחת מהן. <b>הוריד הפרא-אומבליקלי</b> רץ לאורך <b>ligamentum teres</b> מענף שמאלי של הוריד הפורטלי לטבור ← ביתר לחץ דם פורטלי הוא נפתח ומנקז לוורידי הדופן = <b>Caput medusae</b>.</li>
+  <li><b>לימפה</b>: מעל הטבור ← בלוטות בית השחי; מתחת ← מפשעתיות שטחיות. לימפטיקה מהכבד לאורך ligamentum teres לטבור ← כך סרטן (קיבה, לבלב, שחלה, כבד) יכול להופיע כגוש בטבור — <span class="key">Sister Mary Joseph nodule</span>.</li>
+  <li><b>עצבים</b>: <b>T10 = עור הטבור</b>, T12 = היפוגסטריום. <b>Iliohypogastric ו-Ilioinguinal</b> (T12–L1) ו<b>ענף גניטלי של Genitofemoral</b> — נתקלים בהם בתיקון בקע מפשעתי (ה-Ilioinguinal רץ <b>עם חבל הזרע</b> ומעצבב את עור המפשעה והאשך/שפה).</li>
+</ul>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Caput_medusae.jpg?width=600" alt="Caput medusae - ורידים מורחבים סביב הטבור">
+  <p class="media-cap"><b>Caput medusae</b>: ורידים שטחיים מורחבים שמקרינים מהטבור — הדם הפורטלי "בורח" דרך הוריד הפרא-אומבליקלי שנפתח מחדש אל ורידי הדופן בלחץ נמוך. סימן ליתר לחץ דם פורטלי — רמז לכך שמיימת שתמצאו תהיה עם SAAG ≥1.1. מקור: Wikimedia Commons (Yang &amp; Chen, NEJM).</p>
+</figure>
+
+<h3>הטבור — מה עובר בו בעובר ומה נשאר במבוגר</h3>
+<table>
+  <tr><th>מבנה עוברי</th><th>שריד במבוגר</th><th>אם לא נסגר</th></tr>
+  <tr><td>וריד טבורי (1)</td><td>Ligamentum teres (בשול החופשי של ה-Falciform) ← ענף שמאלי של וריד פורטלי</td><td>נפתח מחדש ביתר לחץ פורטלי ← Caput medusae</td></tr>
+  <tr><td>עורקי טבור (2)</td><td>Medial umbilical ligaments</td><td>—</td></tr>
+  <tr><td>Allantois / Urachus</td><td><b>Median</b> umbilical ligament (שלפוחית ← טבור)</td><td><b>שתן מהטבור</b> (פיסטולה וזיקו-קוטנית), ציסטה אורכלית (גוש בבטן התחתונה), סינוס עם ריר; <b>כריתה</b> — כולל סיכון להתמרה ממאירה</td></tr>
+  <tr><td>Omphalomesenteric (Vitelline) duct</td><td>נעלם לחלוטין</td><td>ראו למטה ⇩</td></tr>
+</table>
+<p><b>שרידי הצינור האומפלו-מזנטרי</b> (מעי ← טבור):</p>
+<ul>
+  <li><b>הקצה המעיי נשאר</b> ← <b>Meckel diverticulum</b> — דיברטיקולום <b>אמיתי</b> בשול <b>האנטי-מזנטרי</b> של האילאום. "<b>חוק ה-2</b>": ~2% מהאוכלוסייה, 2 רגל מהמסתם האילאו-צקאלי, ~2 אינץ', 2 סוגי רירית אקטופית (<b>קיבתית ולבלבית</b>). דימום — מ<b>כיב פפטי ברירית הסמוכה</b> בגלל חומצה מתאי קודקוד אקטופיים; חסימה — אינטוסוספציה או וולבולוס סביב פס סיבי לטבור.</li>
+  <li><b>כל הצינור פתוח</b> ← פיסטולה אנטרו-קוטנית: <b>מקוניום וריר מהטבור</b> בימים הראשונים ← <b>לפרוטומיה מיידית</b> (סכנת וולבולוס).</li>
+  <li><b>הקצה הדיסטלי נשאר</b> ← <b>פוליפ טבורי</b> (רירית בטבור) — דומה לגרנולומה טבורית אבל <b>לא נעלם אחרי צריבה בכסף חנקתי (Silver nitrate)</b> ⇐ רמז לצינור/סינוס מתחת ← כריתה. סינוס טבורי — מתואר ב-Sinogram וכורתים.</li>
+  <li><b>ריר מצטבר בקטע כלוא</b> ← ציסטה (מחוברת בפס סיבי) ← כריתה.</li>
+</ul>
+
+<h3>בקעים טבוריים — שלושה סוגים שונים לגמרי</h3>
+<ul>
+  <li><b>Omphalocele</b>: אי-איחוד שרירי הדופן בקו האמצע ← האיברים בבסיס חבל הטבור, <b>מכוסים בצפק ואמניון</b> (אין עור); כבד וטחול יכולים להיות בשק. <span class="key">50–60% עם מומים נלווים</span> (שלד, מעי, עצבים, שתן, לב-ריאה).</li>
+  <li><b>Gastroschisis</b>: קרע של הממברנה הטבורית ברחם; הפגם <b>כמעט תמיד מימין לחבל הטבור</b>, המעי <b>חשוף לגמרי</b>; מעי לא עבר סיבוב וקיבוע ← סכנת <b>וולבולוס</b>. מומים נלווים ~10% בלבד.</li>
+  <li><b>בקע טבורי של תינוקות</b>: מכוסה עור, בשול העליון, בולט בבכי, <b>רוב נסגרים עד גיל שנתיים</b>; ניתוח אם נמשך מעבר לגיל <b>3–4</b>. חניקה נדירה.</li>
+  <li><b>בקע טבורי נרכש (מבוגרים)</b>: היחלשות הצלקת שסוגרת את הטבעת — הריון, לידה, <b>מיימת</b>. <b>לא נסגר מעצמו</b>, גדל; הטבעת הסיבית הצפופה בצוואר ← <b>סכנת חניקה</b> של מעי/אומנטום.</li>
+</ul>
+
+<h3>הצפק — מחיצות ומרחבים</h3>
+<p><b>11 רצועות ומזנטריות</b> (Coronary, Gastrohepatic, Hepatoduodenal, Falciform, Gastrocolic, Duodenocolic, Gastrosplenic, Splenorenal, Phrenicocolic, Transverse mesocolon, מזנטריום המעי הדק) מחלקות את הבטן ל-<b>9 מרחבים פוטנציאליים</b>: תת-סרעפתי ימני ושמאלי, תת-כבדי, סופרא- ואינפרא-מזנטריאלי, מרזבים פאראקוליים ימני ושמאלי, אגן, ו-Lesser sac. הם קובעים לאן נוזל זורם: <b>כיב תריסריון מנוקב ← תת-כבדי, מרזב ימני, אגן</b> (לכן כאב "אפנדיקולרי" בכיב מנוקב). צפק ויסצרלי — כלי דם ספלנכניים; פריאטלי — בין-צלעיים, מותניים, איליאקים.</p>
+<p><b>אומנטום קטן</b> = שריד המזנטריום הוונטרלי (Gastrohepatic + Hepatoduodenal); שולו הימני החופשי הוא הגבול הקדמי של <b>Foramen of Winslow</b> ומכיל את <b>ה-CBD, וריד פורטלי ועורק כבדי</b>. <b>אומנטום גדול</b> = מה-Dorsal mesogastrium, "סינר" מהעקמומיות הגדולה; מקבל דם מ-<b>Gastroepiploic ימני ושמאלי</b>, עשיר במקרופאגים, ו<b>נדבק למוקדי דלקת</b> (אפנדיציטיס, דיברטיקוליטיס) ומונע פריטוניטיס מפושטת — "שוטר הבטן". שורש המזנטריום — מצומת דואודנו-ג'ג'ונלי משמאל ל-L2 ועד הפוסה האיליאקית הימנית.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+
+<h3>המטומה של נדן הרקטוס (Rectus sheath hematoma)</h3>
+<p><b>מי:</b> יותר נשים ומבוגרים; בסדרת Mayo — <span class="key">~70% קיבלו נוגדי קרישה</span>, 48% חבלה לא-ניתוחית, 29% שיעול; בצעירות — הריון. המנגנון: קרע של <b>ענף אפיגסטרי</b> או של סיבי שריר בכיווץ חזק (שיעול) בחולה שלא קורש.</p>
+<p><b>ביטוי:</b> כאב בטן <b>פתאומי</b> שמחמיר בכיווץ שרירי הבטן, רגישות מעל הנדן, <b>גוש בדופן (63%)</b>, לפעמים הכאב מחקה פריטוניטיס. באיחור — <b>Cullen</b> (שטף דם סביב הטבור) ו-<b>Grey Turner</b> (כחלון במותניים). <b>Fothergill sign</b> (לא מהספר, אבל קלאסי): הגוש <b>לא חוצה את קו האמצע ונשאר מוחש כשהחולה מכווץ את הבטן</b> — כי הוא בדופן ולא בחלל.</p>
+
+<h3>בקעים בדופן הקדמית</h3>
+<ul>
+  <li><b>אפיגסטרי</b>: דרך פתחים בהם כלים ועצבים חוצים את ה-Linea alba; קטנים אבל <b>כואבים מאוד</b> — הלחץ על העצב שיוצא באותו פתח.</li>
+  <li><b>ספיגלי (Spigelian)</b>: בקו ה-<b>Semilunar line</b>; כאב ורגישות מקומיים; השק <b>כמעט לא מוחש</b> כי הוא קטן ונשאר <b>מתחת לאפונורוזת האלכסוני החיצוני</b> ⇐ <b>US או CT בחתכים דקים</b>; טיפול — סגירה ניתוחית.</li>
+</ul>
+
+<h3>גידולי דופן — מה מבדיל דסמואיד מסרקומה מגרורה</h3>
+<ul>
+  <li><b>דסמואיד</b>: גוש <b>מוצק, לא כואב, לא רגיש</b> אצל צעירים/גיל-ביניים, יותר נשים (2:1 בספורדי); קשר לטראומה, <b>הריון, גלולות</b> ו<b>ניתוח קודם</b>.</li>
+  <li><b>סרקומה</b>: גוש מוצק, ללא כאב, <b>גבולות לא חדים, מקובע לשריר ולפאסציה</b>; גורמי סיכון — קרינה, NF1, Li-Fraumeni.</li>
+  <li><b>גרורה</b>: כמעט תמיד במחלה מתקדמת — ריאה, מעי גס, כליה, <b>מלנומה</b> (המטוגני), או השתלה במסלול ביופסיה/ניתוח (~1% אחרי כריתת מעי גס, לפרוסקופית ופתוחה בשיעור דומה).</li>
+</ul>
+
+<h3>מיימת — מה מוצאים בבדיקה</h3>
+<p>בטן מלאה ובולטת עם <b>עמימות במותניים (Flank dullness)</b> בניקוש — <span class="key">צריך כ-1.5 ליטר כדי לשמוע עמימות</span>. מחפשים סימני שחמת: <b>Palmar erythema, Spider angiomas, ורידי דופן מורחבים</b>; במיימת לבבית — <b>גודש ורידי צוואר</b> בולט.</p>
+
+<h3>תמונות קליניות של מחלות הצפק — טבלת "מי זה?"</h3>
+<table>
+  <tr><th>מצב</th><th>מי / מתי</th><th>הסימן המכוון</th></tr>
+  <tr><td>SBP</td><td>שחמתי עם מיימת</td><td>חום, כאב — או רק אנצפלופתיה/החמרה כלייתית</td></tr>
+  <tr><td>פריטוניטיס שחפתית</td><td>HIV, דיכוי חיסוני, שחמת אלכוהולית, אי-ספיקת כליות, מהגרים</td><td>תפיחה (&gt;80%), כאב עמום, חום נמוך + הזעות לילה + ירידה במשקל (~60%), שבועות-חודשים</td></tr>
+  <tr><td>פריטוניטיס בדיאליזה צפקית (CAPD)</td><td>~פעם ב-1–3 שנים</td><td>כאב, חום, <b>דיאליזט עכור</b> עם &gt;100 לויקוציטים/מ"מ³</td></tr>
+  <tr><td>מיימת כילוסית</td><td>לימפומה, אחרי ניתוח אאורטה/RPLND, טראומה</td><td>תפיחה <b>ללא כאב</b>, תת-תזונה וקוצר נשימה ב-50%</td></tr>
+  <tr><td>Pseudomyxoma peritonei</td><td>גיל 40–50, שני המינים</td><td>"הידרדרות כללית", בקע חדש, <b>עמימות שלא זזה</b> (ריר, לא נוזל)</td></tr>
+  <tr><td>מזותליומה צפקית</td><td>גיל חציוני 50; אסבסט רק ב-~1/3</td><td>כאב, ירידה במשקל, מיימת עקשנית, גוש אפיגסטרי (אומנטום)</td></tr>
+  <tr><td>תסביב אומנטום</td><td>גברים ×2, עשור 4–5</td><td>כאב חריף <b>בצד ימין</b>, ללא חום, בחילה לא בולטת</td></tr>
+  <tr><td>לימפדניטיס מזנטריאלית</td><td>ילדים וצעירים (Yersinia)</td><td>בדיוק כמו אפנדיציטיס — טבור ← RLQ, חום, WBC</td></tr>
+</table>
+
+<h3>הרטרופריטונאום</h3>
+<ul>
+  <li><b>מורסה רטרופריטונאלית</b>: כאב בטן/מותן (60–75%), חום וצמרמורות (30–90%), חולשה, ירידה במשקל; <b>יותר משבוע</b>; ב<b>מורסת פסואס</b> — כאב מושלך <b>לירך, למפשעה או לברך</b>. רקע: אבנים בכליה, סוכרת, HIV, ממאירות.</li>
+  <li><b>המטומה רטרופריטונאלית</b> (נוגדי קרישה, צנתור עורקי, פיברינוליזה, המופיליה): כאב בטן/מותן <b>שמקרין למפשעה, לשפתיים או לשק האשכים</b>, ירידת Hct, איליאוס, גוש — ו-<span class="key">20–30% נוירופתיה של העצב הפמורלי</span> (לחץ בתוך מדור הפסואס), המטוריה מיקרוסקופית.</li>
+  <li><b>פיברוזיס רטרופריטונאלית</b>: גברים ×2–3, גיל 50–60; כאב גב/מותן/בטן, <b>בצקת רגליים</b>, נפיחות אשכים, <b>וריקוצלה/הידרוצלה</b>; עייפות, חום נמוך, ירידה במשקל; <b>אזוטמיה</b> (מעורבות שופכנים ב-80–100%); ESR/CRP מוגברים ב-80–100%.</li>
+  <li><b>סרקומה רטרופריטונאלית</b>: <b>גוש בטני גדול</b>, כאב ב-~50%, לחץ על איברים (שובע מוקדם, עצירות, בצקת רגל), חוסר תחושה/חולשה ברגל.</li>
+</ul>
+
+<h2><span class="num">5</span> אבחנה</h2>
+
+<h3>פרצנטזיס ובדיקת נוזל המיימת</h3>
+<p><b>מתי:</b> כל מיימת <b>חדשה</b>, וכל שחמתי עם מיימת עם <b>כאב, חום, אנצפלופתיה, לחץ דם נמוך, אי-ספיקת כליות, חמצת או לויקוציטוזיס</b>. <b>איפה:</b> בבטן התחתונה, <b>RLQ פחות מועדף מ-LLQ</b> (הצפק שמאלי דק יותר והצקום עלול להיות מורחב מימין); US באנשים שמנים או עם צלקות. <b>קואגולופתיה קלה אינה התווית נגד</b> — רק <b>DIC פעיל או פיברינוליזה קלינית</b> (Runyon: 229 פרצנטזות, אפס דימומים לחלל, המטומות בדופן 2%).</p>
+<table>
+  <tr><th>ממצא</th><th>פירוש</th></tr>
+  <tr><td>צהבהב, שקוף</td><td>תקין (&lt;1,000 תאים ≈ צלול; &gt;5,000 ⇐ עכור)</td></tr>
+  <tr><td>דמי שקורש מהר</td><td>דקירה טראומטית</td></tr>
+  <tr><td>דמי שלא קורש</td><td>דימום אמיתי בחלל — גורמי הקרישה כבר נצרכו</td></tr>
+  <tr><td>חלבי-אופלסצנטי; שכבה שומנית אחרי 48–72 שעות במקרר</td><td>כילוס — <b>טריגליצרידים פי 2–8 מהפלזמה</b>, SAAG &lt;1.1</td></tr>
+  <tr><td><b>נויטרופילים &gt;250/מ"מ³</b></td><td><b>SBP</b> (עד שיוכח אחרת) — בשחמת לא מסובכת: &lt;250 לויקוציטים, כמחציתם PMN</td></tr>
+  <tr><td>חיידק אחד בתרבית</td><td>SBP</td></tr>
+  <tr><td>כמה חיידקים (גראם-שליליים מעורבים/אנאירובים)</td><td><b>פריטוניטיס שניונית</b> — לחפש פרפורציה</td></tr>
+  <tr><td>לימפוציטים + SAAG &lt;1.1 + ADA גבוה</td><td>פריטוניטיס שחפתית</td></tr>
+</table>
+<p><b>אל תחכי לתרבית</b> — צביעת גראם כמעט לא מראה חיידקים, ועיכוב אנטיביוטיקה עלול להיות קטלני. מקלוני Leukocyte esterase ליד המיטה — שנויים במחלוקת.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/JRjcTjqqwp0" title="Ascites &amp; SAAG Explained" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מיימת ו-SAAG בהסבר מובנה — למה הפער באלבומין מבדיל בין "לחץ" ל"דליפה" ואילו מחלות נופלות בכל קבוצה. מקור: YouTube.</p>
+
+<div class="figure-pair">
+  <figure>
+    <span class="label abnormal">פתולוגי — מיימת ב-US</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Ascites_ultrasound_2.JPG?width=500" alt="מיימת באולטרסאונד">
+    <p class="media-cap">US: נוזל <b>אנאקואי (שחור)</b> סביב כבד שחמתי עם שוליים לא חלקים. נוזל "נקי" = טרנסודט; משקעים/מחיצות מעלים חשד לזיהום, שחפת או ממאירות. מקור: Wikimedia Commons.</p>
+  </figure>
+  <figure>
+    <span class="label abnormal">פתולוגי — CT של מעקף פורטו-סיסטמי</span>
+    <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Caput_medusae_CT_sag_002.jpg?width=500" alt="CT סגיטלי של caput medusae">
+    <p class="media-cap">CT סגיטלי: הוריד הפרא-אומבליקלי שנפתח מחדש וורידי דופן מורחבים — "מפה" של המעקף הפורטו-סיסטמי. בבטן תקינה אין כלי כזה בקו האמצע. מקור: Wikimedia Commons.</p>
+  </figure>
+</div>
+
+<h3>טבלת SAAG (לפי הספר)</h3>
+<table>
+  <tr><th>SAAG גבוה ≥1.1 g/dL</th><th>SAAG נמוך &lt;1.1 g/dL</th></tr>
+  <tr><td>שחמת, הפטיטיס אלכוהולית, אי-ספיקת לב, גרורות כבד מסיביות, אי-ספיקת כבד פולמיננטית, Budd-Chiari, פקקת וריד פורטלי, <b>מיקסדמה</b></td><td>קרצינומטוזיס, פריטוניטיס שחפתית, מיימת לבלבית, מיימת מרה, נפרוטי, דליפת לימפה אחרי ניתוח, סרוזיטיס במחלת רקמת חיבור</td></tr>
+</table>
+
+<h3>פריטוניטיס שחפתית — למה צריך לפרוסקופיה</h3>
+<ul>
+  <li>מבחן טוברקולין חיובי ברוב; <b>צילום חזה חריג רק ב-~50%</b> (רק ~17% עם מחלה ריאתית פעילה — רוב המקרים <b>ריאקטיבציה</b> של מוקד צפקי שנזרע בדם).</li>
+  <li>נוזל: SAAG &lt;1.1, אריתרוציטים ו<b>לימפוציטים</b>; <b>ADA (Adenosine deaminase)</b> רגיש וספציפי מאוד; PCR.</li>
+  <li>AFB בנוזל &lt;3%, תרבית חיובית &lt;20% ולוקחת עד 8 שבועות. US — סיבים/משקע בנוזל; CT — מזנטריום מעובה ונודולרי, בלוטות, אומנטום מעובה.</li>
+  <li><b>אבחנה — לפרוסקופיה עם ביופסיה מכוונת</b>: ב-&gt;90% <b>נודולים לבנים קטנים (&lt;5 מ"מ)</b> על הצפק + הידבקויות; היסטולוגיה — <b>גרנולומות עם נמק קזאוזי</b>. המראה זהה לקרצינומטוזיס/סרקואידוזיס/קרוהן — ולכן ביופסיה חובה.</li>
+</ul>
+
+<h3>דסמואיד — הדמיה וביופסיה</h3>
+<p><b>MRI</b> היא בדיקת הבחירה: T1 — הומוגני, <b>איזואינטנסי לשריר</b>; T2 — היפראינטנסי והטרוגני, מעט פחות מבהיק משומן. אבחנה ב<b>ביופסיית מחט עבה (Core needle)</b>: צרורות תאי <b>פלך (Spindle)</b> מובחנים עם הרבה קולגן, ו<b>β-catenin גרעיני</b>.</p>
+
+<h3>סרקומה של הדופן ושל הרטרופריטונאום</h3>
+<p>CT/MRI (MRI מגדיר רקמה רכה טוב יותר) + <b>CT חזה</b> לגרורות ריאה; אבחנה ב-<b>Core needle</b> (ב-CT לעמוקים). <span class="key">אין ביופסיה פתוחה</span> — חתך בכיוון לא נכון, הרמת מתלים או המטומה מזהמים רקמה ומסכנים את הכריתה המרפאת; אם חייבים — ע"י המנתח שיבצע את הכריתה. ברטרופריטונאום — מראה ב-CT לרוב מספיק בלי ביופסיה (ליפוסרקומה = אזורי <b>צפיפות שומן</b>; לאיומיוסרקומה = היפרדנסית והטרוגנית); גוש גדול ותחום ש<b>דוחק ולא חודר</b>. <b>אבחנה מבדלת חובה</b>: לימפומה (חום, הזעות, ירידה במשקל, בלוטות פריפריות) ו<b>גידול אשך</b> — <b>בדיקת אשכים + AFP ו-β-hCG</b> בכל גבר.</p>
+
+<h3>מזנטריום ובקעים פנימיים</h3>
+<ul>
+  <li><b>מזנטריטיס טרשתית (Sclerosing mesenteritis / Mesenteric panniculitis)</b> — CT קלאסי: גוש שומני בבסיס המזנטריום עם <b>Pseudocapsule</b>, <b>Fat ring sign</b> (שומן תקין סביב הכלים), כלים תקינים עוברים דרכו, דוחק לולאות בלי לחדור. אבחנה סופית — ביופסיה.</li>
+  <li><b>בקע פרא-דואודנלי</b> — חסימה חריפה/כרונית של מעי דק; בריום — מעי דק "דחוס" לצד אחד; CT — תזוזת כלי המזנטריום.</li>
+  <li><b>לימפדניטיס מזנטריאלית</b> — <b>US</b>: בלוטות מוגדלות ו<b>תוספתן תקין</b> ⇐ חוסך ניתוח מיותר.</li>
+</ul>
+
+<h3>רטרופריטונאום — CT מבדיל בין מורסה, המטומה ופיברוזיס</h3>
+<table>
+  <tr><th>מצב</th><th>CT</th></tr>
+  <tr><td>מורסה</td><td>גוש <b>בצפיפות נמוכה</b> עם דלקת מסביב; <b>גז עד 1/3</b></td></tr>
+  <tr><td>המטומה</td><td>גוש <b>בצפיפות גבוהה</b> עם Stranding במישורים</td></tr>
+  <tr><td>פיברוזיס</td><td>"שרוול" הומוגני סביב <b>אאורטה תחתונה ועורקי כסל</b>, איזודנסי לשריר; מתחיל בביפורקציה ומתפשט מעלה; MRI — T2 גבוה בשלב פעיל, נמוך בשלב בוגר. <b>לא דוחק את האאורטה קדימה</b> (בניגוד ללימפומה — הבחנה קלאסית, לא מהספר)</td></tr>
+</table>
+
+<h2><span class="num">6</span> טיפול</h2>
+
+<h3>מיימת בשחמת — שלבים</h3>
+<ol>
+  <li><b>הגבלת נתרן 88 mEq (2 גרם) ליום</b>. היענות: נתרן בשתן 24 שעות — מי שמפריש <b>&gt;78 mmol/יום</b> ונענה לדיאטה יורד במשקל.</li>
+  <li><b>משתנים ביחס 100:40</b>: <b>ספירונולקטון 100 מ"ג + פורוסמיד 40 מ"ג</b>; מעלים יחד באותו יחס.</li>
+  <li><b>פרצנטזיס בנפח גדול (&gt;5 ליטר)</b> במיימת עמידה (&lt;10%) + <b>אלבומין IV 6–8 גרם לכל ליטר שהוצא</b>.</li>
+  <li><b>TIPS</b> ובסוף <b>השתלת כבד</b>.</li>
+</ol>
+<table>
+  <tr><th>תרופה</th><th>מנגנון</th><th>למה עוזרת במיימת</th><th>זהירות / התוויות נגד</th></tr>
+  <tr><td><b>Spironolactone</b> (Aldactone)</td><td>אנטגוניסט אלדוסטרון באבובית דיסטלית/צינור מאסף</td><td>תוקפת ישירות את <b>יתר האלדוסטרון</b> שמניע את אגירת הנתרן בשחמת</td><td>היפרקלמיה, גינקומסטיה, אי-ספיקת כליות</td></tr>
+  <tr><td><b>Furosemide</b> (Fusid/Lasix)</td><td>מעכב Na-K-2Cl בלולאת הנלה</td><td>מוסיף נטריאורזיס; <b>מאזן את האשלגן</b> (מאבד K מול הספירונולקטון שאוגר) — לכן היחס 100:40</td><td>היפוקלמיה, היפונתרמיה, פגיעה כלייתית, אנצפלופתיה</td></tr>
+  <tr><td><b>Albumin</b> 20–25%</td><td>מרחיב נפח אונקוטי</td><td>מונע ירידת נפח אפקטיבי ואי-ספיקת כליות אחרי ניקוז גדול; ב-SBP מפחית תסמונת הפטורנלית</td><td>עומס נוזלים באי-ספיקת לב</td></tr>
+</table>
+
+<h3>SBP</h3>
+<ul>
+  <li><b>מיד</b> (בלי לחכות לתרבית): <b>צפלוספורין דור 3</b> — <b>Cefotaxime</b> או <b>Ceftriaxone (Rocephin)</b>: בטא-לקטם שמעכב בניית דופן; מכסה <b>~95%</b> מהמחוללים (גראם-שליליים אנטריים — E. coli, Klebsiella — וגם סטרפטוקוקים). מצמצמים לפי רגישות. התווית נגד — אלרגיה חמורה לבטא-לקטמים.</li>
+  <li>אין צורך בפרצנטזיס חוזר אם יש שיפור טיפוסי; <b>חוזרים</b> אם התגובה לא טיפוסית — לחפש פריטוניטיס שניונית.</li>
+  <li><b>אלבומין</b> מפחית תסמונת הפטורנלית ותמותה בבית החולים.</li>
+  <li>פרוגנוזה: התמותה המיידית נמוכה, אבל <span class="key">SBP = ציון דרך: הישרדות ~30% בשנה ו-~20% בשנתיים</span> (דימום, תסמונת הפטורנלית).</li>
+</ul>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> לפי הנחיות <b>AASLD 2021</b>, אלבומין ב-SBP ניתן במינון <b>1.5 גרם/ק"ג ביום 1 ו-1 גרם/ק"ג ביום 3</b> (בעיקר כשיש קריאטינין/בילירובין גבוהים), ולאחר אפיזודה — <b>מניעה שניונית</b> ארוכת טווח (למשל Ciprofloxacin או TMP-SMX). המינונים המדויקים — לפי פרוטוקול המחלקה.</p>
+
+<h3>מצבים צפקיים אחרים</h3>
+<ul>
+  <li><b>שחפת צפקית</b>: כמו שחפת ריאתית — למשל <b>Isoniazid + Rifampin יומי ל-9 חודשים</b> (במשטרים מודרניים לרוב מתחילים ב-4 תרופות — RIPE); זהירות ב<b>רעילות כבדית</b> בשחמתי.</li>
+  <li><b>CAPD</b>: אנטיביוטיקה <b>תוך-צפקית</b>, לרוב <b>צפלוספורין דור 1</b> (75% גראם-חיוביים; <b>S. epidermidis 30–50%</b>). ריפוי בלי הוצאת קטטר: CoNS ~90%, S. aureus 66%, גראם-שליליים 56%, <b>פטריות 0%</b> ⇐ זיהום פטרייתי/חוזר/עמיד = <b>הוצאת קטטר + מעבר להמודיאליזה</b>.</li>
+  <li><b>מיימת כילוסית</b>: תזונה + הפחתת זרימת כילוס + טיפול בסיבה. <b>דיאטה עתירת חלבון, דלת שומן עם MCT</b> + משתנים, או צום + TPN ± <b>סומטוסטטין</b>. למה MCT? <span class="key">שומן ארוך-שרשרת נארז לכילומיקרונים ועובר בלימפה; MCT נספג ישירות לדם הפורטלי</span> — כך הלימפה "נחה". פרצנטזות חוזרות ⇐ תת-תזונה; שאנט פריטונאו-ורידי — מאכזב; ניתוח רק בכישלון (לעיתים עם דבק פיברין).</li>
+</ul>
+
+<h3>ממאירויות הצפק — ציטורדוקציה ו-HIPEC</h3>
+<div class="surgery">
+<h4>Pseudomyxoma peritonei (PMP)</h4>
+<p>ריר ושתלים צפקיים, לרוב מ<b>גידול רירי מנוקב של התוספתן</b>; מצטבר באגן, מרזבים, אומנטום ותת-סרעפתי (מסלול זרימת הנוזל!) ו<b>חוסך יחסית את המעי הדק</b>. CT: מיימת, נוזל מחולק, <b>Scalloping של שולי הכבד</b>, אומנטום מעובה. <b>קולונוסקופיה</b> מבדילה מקור תוספתני ממעי גס. דירוג (PSOGI): low-grade, high-grade, adenocarcinoma רירית — הישרדות 5 שנים 75% (adenomucinosis) מול 14% (mucinous carcinomatosis).</p>
+<p><b>מצאתם ריר במפתיע בלפרוטומיה?</b> — לאבחן בדרך הכי פחות פולשנית, לשחרר חסימה אם יש, <b>ולהפנות למרכז מומחה</b>. לא "לנקות" חלקית.</p>
+<h4>מהלך הניתוח — CRS + HIPEC</h4>
+<p><b>הכנה:</b> מצב תפקודי טוב (Performance status), CT חזה-בטן-אגן להערכת מעורבות המעי הדק ושער הכבד (הם שמגבילים ציטורדוקציה מלאה), קולונוסקופיה.</p>
+<p><b>שלבים:</b> כריתת <b>אומנטום קטן וגדול</b>, <b>קילוף הצפק הפריאטלי</b> המעורב (Peritonectomy), כריתת איברים מעורבים, <b>אפנדקטומיה או Ileocolectomy</b>. מטרה: <span class="key">אין מחלה נראית, או לפחות אין נודול &gt;2 מ"מ</span> — כי הכימותרפיה החמה חודרת רק כמה מילימטרים. אז <b>HIPEC</b> — <b>Mitomycin C</b> או <b>Oxaliplatin</b> בחום: בטכניקה <b>פתוחה</b> (פיזור טוב) או <b>סגורה</b> (קל לשמור על החום) עם צנתרי כניסה/יציאה וחיישני חום.</p>
+<p><b>נקודה קריטית:</b> השלמות הציטורדוקציה היא הגורם הפרוגנוסטי העיקרי — ניתוח חלקי לא מועיל כמעט.</p>
+<p><b>החלמה וסיבוכים:</b> תמותה 2–3%; סיבוך חמור ב-25–35% — <b>איליאוס ממושך וסיבוכים ריאתיים</b>; גם דימום, זיהום, <b>פיסטולה אנטרו-קוטנית</b>, פנקראטיטיס, <b>דיכוי מח עצם</b> (מהכימותרפיה). <b>תוצאות:</b> low-grade עם ציטורדוקציה מלאה — הישרדות 5 שנים <b>60–90%</b>; high-grade — עד 50%.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/OmbA0cnhWPE" title="Cytoreductive surgery and HIPEC in pseudomyxoma peritonei by dr Sugarbaker" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Dr. Sugarbaker (מחלוצי השיטה) על ציטורדוקציה ו-HIPEC ב-Pseudomyxoma peritonei — עקרונות הפריטונקטומיה והכימותרפיה התוך-צפקית. מקור: YouTube.</p>
+
+<ul>
+  <li><b>קרצינומטוזיס ממעי גס</b> (~8% מחולי CRC, במחציתם רק בצפק): CRS+HIPEC בחולים נבחרים — יתרון מול כימותרפיה סיסטמית במחקר ההולנדי (Verwaal). <b>PRODIGE 7</b>: חציון הישרדות <b>41 חודשים בשתי הזרועות</b> — <span class="key">HIPEC עם Oxaliplatin לא הוסיף על ציטורדוקציה לבד</span>; הציטורדוקציה היא העיקר.</li>
+  <li><b>מזותליומה צפקית</b>: הגידול הראשוני השכיח של הצפק; תת-סוגים אפיתליואידי (השכיח והטוב), סרקומטואידי, ביפאזי. בניגוד ל-PMP — <b>חודרת לאיברים ועוטפת את המעי הדק</b> (חסימה). פרצנטזיס בעל תפוקה נמוכה ⇐ ביופסיה מכוונת/לפרוסקופיה. CRS+HIPEC (<b>Cisplatin</b>) — חציון 30–60 חודשים; ציטורדוקציה מלאה ב-67%, הישרדות 5 שנים 42%. סרקומטואידי/ביפאזי — יש הרואים בהם התווית נגד. לא-מנותחים — <b>Cisplatin + Pemetrexed</b>.</li>
+</ul>
+
+<h3>דסמואיד — "המתנה פעילה" היא ברירת המחדל</h3>
+<div class="mechanism">
+<p><b>המנגנון המולקולרי:</b> בספורדי — מוטציה סומטית ב-<b>CTNNB1</b> ← β-catenin "מיוצב" ולא מפורק ← מצטבר בגרעין ← הפעלת מסלול <b>Wnt</b> ← שעתוק אונקוגנים. ב-FAP — מוטציית <b>APC</b> בתאי הנבט: APC תקין משתתף בזרחון, יוביקוויטינציה ופירוק של β-catenin בפרוטאזום; APC קטוע ← אותה הצטברות. <b>10–15% מחולי FAP</b> מפתחים דסמואיד, <b>~80% מהם תוך-בטני</b> (מזנטריום) — במיוחד ב-<b>Gardner</b>. <b>ניתוח קודם</b> הוא גורם סיכון עצמאי: אחרי פרוקטוקולקטומיה מונעת <b>4% בלפרוסקופיה מול 16% בפתוח</b>.</p>
+<p><b>אין גרורות</b>, אבל חודר מקומית לאורך מישורי רקמה ושרירים. עמדת הספר:</p>
+<ul>
+  <li><span class="key">"Watchful waiting" עם MRI ובדיקה</span> — הישרדות ללא התקדמות ~50% ב-5 שנים, <b>נסיגה ספונטנית עד 30%</b>; כריתה רחבה ישנה הובילה לכריתות ענק ולהישנות שכיחה.</li>
+  <li>כריתה מלאה — רק בהתקדמות או סיבוך. קרינה — אדג'ובנטית בשוליים חיוביים/צמודים או בהישנות (סכנת סרקומה משנית בצעירים).</li>
+  <li>סיסטמי: <b>Tamoxifen ± NSAID</b> (קו ראשון, רעילות נמוכה, זול), <b>Methotrexate + Vinblastine/Vinorelbine</b> במינון נמוך, <b>Doxorubicin</b> לאגרסיביים, <b>TKI — Imatinib, Sorafenib</b> (PFS שנה ~66%).</li>
+  <li>תוך-בטני — קטלני יותר (חסימה, איסכמיה, הידרונפרוזיס, כלי דם); כריתה עלולה להשאיר <b>מעי קצר</b>; הישרדות 10 שנים 60–70%.</li>
+</ul>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> ב-2023 אושר <b>Nirogacestat</b> (מעכב γ-secretase, מחקר DeFi) — הטיפול הראשון שאושר ספציפית לדסמואיד מתקדם; ו-Sorafenib נבדק במחקר אקראי. ההנחיות העדכניות ממשיכות להמליץ על מעקב פעיל כצעד ראשון.</p>
+</div>
+
+<h3>סרקומות</h3>
+<ul>
+  <li><b>דופן</b>: כריתה עם <b>שוליים נקיים מיקרוסקופית</b> (בפועל ~2 ס"מ), <b>בלי בלוטות</b> (&lt;5% גרורות לימפטיות), שחזור במתלה מיו-קוטני או רשת. הישנות מקומית 10–15%; גורמים: עומק, גודל, שוליים חיוביים, דרגה גבוהה.</li>
+  <li><b>רטרופריטונאום</b> (~15% מהסרקומות; ליפוסרקומה ולאיומיוסרקומה): <b>כריתה en bloc</b> של כל המחלה הנראית עם איברים צמודים, במרכז מומחה; הרחבה לאיברים <b>לא מעורבים</b> = יותר תחלואה בלי יתרון ברור. כריתה מלאה ב-50–67%. <span class="key">R2 = כמו לא נתיח — רק פליאטיבי, חוץ מליפוסרקומה מובחנת</span> (שם כריתה חלקית יכולה להאריך חיים). הישנות מקומית 25–50%; הישנות מבודדת — לכרות שוב (DSS 5 שנים 60% מול 18%).</li>
+</ul>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> המחקר האקראי <b>STRASS</b> (EORTC, 2020) — שהספר מזכיר כ"מתמשך" — <b>לא הראה יתרון</b> לקרינה טרום-ניתוחית ב-RPS באופן כללי; ייתכן יתרון בתת-קבוצת ליפוסרקומה/low-grade, ולכן אין היום קרינה שגרתית.</p>
+
+<h3>המטומה של נדן הרקטוס</h3>
+<p>US או CT מאשרים ומראים שהגוש <b>בדופן</b>. <b>~90% מטופלים שמרנית</b>: מנוחה, משככי כאבים, עירוי דם לפי צורך; <b>תיקון קואגולופתיה</b> (בחלק מהמטופלים שוקלים להמשיך נוגדי קרישה לפי ההתוויה וחומרת הדימום). התרחבות ← <b>אמבוליזציה אנגיוגרפית</b> של הכלי המדמם; לעיתים רחוקות — פינוי ניתוחי.</p>
+
+<h3>אומנטום ומזנטריום</h3>
+<ul>
+  <li><b>ציסטת אומנטום</b> (חסימה לימפטית, מצופה אנדותל לימפטי — כמו Lymphangioma): גוש נייד, חלק, לא רגיש; ילדים — תסביב/זיהום/קרע. <b>כריתה מקומית מרפאת</b>.</li>
+  <li><b>תסביב אומנטום</b>: ראשוני (לרוב <b>צד ימין</b>) או שניוני (בקע, גידול, הידבקות). CT — גוש אומנטלי דלקתי; לפרוסקופיה — אומנטום גדוש, נוזל סרו-המורגי ⇐ <b>כריתת החלק המעורב</b> וטיפול בגורם.</li>
+  <li><b>ציסטה מזנטריאלית (מזותליאלית)</b> — 60% מעי דק, 40% מעי גס; נשים ×2, גיל ~45. <b>Enucleation</b> מרפא (לא דבוקה לכלים); <b>שאיבה לבד — הישנות גבוהה</b>; אם לא נכרתה כולה — לבדוק את הדופן לשלול ממאירות.</li>
+  <li><b>לימפדניטיס מזנטריאלית</b> — חולפת מעצמה; האבחנה ב-US חוסכת אפנדקטומיה.</li>
+  <li><b>מזנטריטיס טרשתית</b> (גברים ×2, עשור 5; פיברוזיס, נמק שומן, מקרופאגים עמוסי שומן, הסתיידויות; מקצרת את המזנטריום בלי חדירה): רוב מתרפאים מעצמם; אחרת <b>סטרואידים</b>/מדכאי חיסון; ניתוח — רק לספק אבחנתי או חסימה.</li>
+  <li><b>שתל אומנטלי (Omental pedicle flap)</b> — על בסיס Gastroepiploic: כיסוי פצעי חזה/מדיאסטינום, "מדף" שמונע ירידת מעי דק לאגן לפני קרינה, ו-<b>Graham patch</b> לכיב תריסריון מנוקב.</li>
+</ul>
+
+<h3>בקעים פנימיים — כאן הטעות הניתוחית קטלנית</h3>
+<div class="surgery">
+<h4>שלושה מנגנונים מולדים</h4>
+<p>(1) קיבוע רטרופריטונאלי חריג (<b>בקע מזוקולי/פרא-דואודנלי</b>); (2) פתחים גדולים מהרגיל (<b>Foramen of Winslow</b>, סופרא-וזיקלי); (3) פתח במזנטריום (<b>בקע מזנטריאלי</b> — לרוב ליד המעבר האילאו-צקאלי).</p>
+<h4>בקע פרא-דואודנלי (מזוקולי)</h4>
+<ul>
+  <li><b>שמאלי (~75%)</b>: המעי הדק נכנס מאחורי המזוקולון היורד, בין <b>הוריד המזנטריאלי התחתון (IMV)</b> לצפק האחורי; <b>IMA ו-IMV בדופן השק</b>. <b>תיקון:</b> חיתוך הצפק וההידבקויות <b>מימין ל-IMV</b> (מישור ללא כלים), הוצאת המעי, החזרת הוריד למקומו משמאל לבסיס המזנטריום, סגירת הצוואר בתפירת הצפק ליד הוריד לרטרופריטונאום.</li>
+  <li><b>ימני</b>: הגפה ה"פרה-עורקית" של לולאת המעי האמצעי <b>לא הסתובבה סביב ה-SMA</b> ← רוב המעי הדק נשאר מימין, והצקום שהסתובב כרגיל "כולא" אותו מאחורי מזנטריום המעי הגס הימני. <b>Ileocolic, right colic ו-middle colic בדופן הקדמית של השק, ה-SMA בשול המדיאלי של הצוואר</b>.</li>
+  <li><span class="key">בבקע ימני — לא חותכים את צוואר השק!</span> זה יפגע ב-SMA/SMV ולא ישחרר את המעי. במקום זה: חותכים את <b>ההצמדות הצפקיות הלטרליות</b> של המעי הגס הימני ומעבירים אותו ואת הצקום <b>שמאלה</b> — המעי כולו מגיע למצב שמדמה <b>אי-סיבוב (Nonrotation)</b>.</li>
+</ul>
+<h4>בקעים פנימיים נרכשים</h4>
+<p>מסגירה לא מספקת/פתיחה של פגמים במזנטריום אחרי גסטרו-ג'ג'ונוסטומיה, סטומה או כריתת מעי. <b>אחרי כריתת מעי גס לפרוסקופית — ~1%, ולכן לרוב לא סוגרים</b>; <b>אחרי RYGB לפרוסקופי — עד 9% (בקע Petersen), ולכן סוגרים</b>. טיפול: החזרה וסגירת הפגם.</p>
+</div>
+
+<h3>רטרופריטונאום — טיפול</h3>
+<ul>
+  <li><b>גישה רטרופריטונאלית</b> (אדרנלקטומיה, נפרקטומיה, השתלת כליה, אאורטה): פחות איליאוס ושחרור מהיר, <b>אין הידבקויות תוך-בטניות</b>, פחות איבוד נוזלים באידוי ותזוזות נוזלים, פחות אטלקטזיס ודלקת ריאות.</li>
+  <li><b>מורסה</b>: אנטיביוטיקה + <b>ניקוז מונחה CT</b>; ניקוז ניתוחי בגישה רטרופריטונאלית אם לא מתאים/נכשל. חיידקים: מקור כלייתי — <b>חד-חיידקי, גראם-שליליים (Proteus mirabilis, E. coli)</b>; מקור מעי — <b>רב-חיידקי (E. coli, Enterobacter, Enterococcus, Bacteroides)</b>; המטוגני — <b>סטפילוקוקים</b>; <b>שחפת עמוד שדרה</b> — באזורים מסוימים המחולל השני בשכיחותו. התמותה נקבעת בעיקר על ידי המחלות הנלוות.</li>
+  <li><b>המטומה מנוגדי קרישה</b>: החזרת נפח ותיקון קואגולופתיה; לעיתים נדירות — אמבוליזציה או ניתוח.</li>
+  <li><b>פיברוזיס רטרופריטונאלית</b>: 70% אידיופתית (<b>Ormond</b>), 30% משנית — <b>אלקלואידים של ארגוט, אגוניסטים דופמינרגיים</b>, זיהומים, טראומה, קרינה, ניתוחים, ממאירות. חלק מהאידיופתיים קשורים ל<b>מפרצת אאורטה דלקתית</b> — "Chronic periaortitis"; קשר ל-<b>HLA-DRB1*03</b> ולמחלות אוטואימוניות. טיפול: <b>סטרואידים</b> (מדכאים ציטוקינים ומעכבים סינתזת קולגן) — שיפור מהיר בתסמינים, בגוש ובחסימת השופכנים; ללא תגובה — MMF, ציקלופוספמיד, אזתיופרין, MTX, ציקלוספורין, טמוקסיפן. <span class="key">חסימת שופכנים: סטנטים זמניים + טיפול תרופתי</span>; <b>Ureterolysis</b> פתוחה עם העברת השופכנים לתוך הצפק ועטיפה באומנטום — רק בעמידות. עם מפרצת — תיקון מעל <b>4.5–5 ס"מ</b>.</li>
+</ul>
+<p style="font-size:14.5px; color:#4b5563"><b>עדכון (מעבר לספר):</b> חלק ניכר מהמקרים ה"אידיופתיים" מסווגים היום כ<b>מחלה הקשורה ל-IgG4 (IgG4-related disease)</b> — לכן בודקים IgG4 בסרום ובביופסיה; Rituximab משמש במקרים עמידים.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/7ZyUOuvR2Kk" title="Muscles of the Anterior Abdominal Wall and Rectus Sheath" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">שרירי הדופן הקדמית ונדן הרקטוס — כיווני הסיבים, האפונורוזות וקו הקשת (חזרה אנטומית לפני ניתוחי דופן ובקעים). מקור: YouTube.</p>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>🔤 ראשי תיבות ו"חוקים"</h3>
+<ul>
+  <li><b>"חוק ה-2" של Meckel</b> (מקובל): 2% · 2 רגל · 2 אינץ' · 2 סוגי רירית (קיבתית + לבלבית) · (ותוספת מקובלת: <b>תסמינים לפני גיל 2</b>).</li>
+  <li><b>SAAG "גבוה = לחץ"</b>: אם יש <b>לחץ</b> בוורידים (כבד, לב, Budd-Chiari, פקקת פורטלית) — הפער גבוה. כל מה ש"<b>דולף</b>" (סרטן, שחפת, לבלב, מרה, נפרוטי) — הפער נמוך.</li>
+  <li><b>ספירונו-פורו "100:40"</b> — "מאה ספירו, ארבעים פורו, אשלגן נשאר במקום".</li>
+  <li><b>SBP — "250 ו-1"</b>: מעל <b>250</b> נויטרופילים, חיידק <b>1</b>. יותר מחיידק אחד ⇐ "יש חור" (פריטוניטיס שניונית).</li>
+  <li><b>מעל הקשת "סנדוויץ'", מתחת לקשת "הכל קדימה"</b>.</li>
+  <li><b>פרא-דואודנלי ימני: "לא חותכים את הצוואר — מזיזים את הקולון"</b>.</li>
+</ul>
+</div>
+
+<div class="mnemonic">
+<h3>📖 סיפור לזכירה: "המרתף והמשאבה"</h3>
+<p>דמייני בניין (הבטן) עם <b>מרתף</b> (חלל הצפק) ו<b>משאבת ביוב בתקרה</b> (הסרעפת) ששואבת מים למעלה בכל נשימה — לכן כל לכלוך במרתף מגיע מהר לצנרת העירונית (<b>ספסיס מהיר</b>), ואפילו לכבד שבקומה העליונה (<b>Fitz-Hugh–Curtis</b>).</p>
+<p>כשהצנרת הראשית של הבניין סתומה (<b>שחמת</b>), המים נדחפים החוצה דרך <b>מסננת</b> — מים צלולים, בלי "גושים" של אלבומין (<b>SAAG גבוה</b>). כשהקירות עצמם סדוקים (<b>קרצינומטוזיס/שחפת</b>) — הכל שופך פנימה, כולל הגושים (<b>SAAG נמוך</b>).</p>
+<p>במרתף המוצף של בניין השחמת, מים צלולים בלי "שומרים" (חלבון/אופסונינים) — אז פולש <b>אחד</b> (E. coli) שזוחל דרך קיר המטבח (טרנסלוקציה) מצליח להשתלט: <b>SBP</b>. אם נכנסת <b>חבורה</b> שלמה — כנראה שמישהו פרץ את הקיר (פרפורציה).</p>
+<p>ובחוץ, על הקיר החיצוני, השכן מצייר "ראש מדוזה" מצינורות שעוקפים את הסתימה (<b>Caput medusae</b>).</p>
+<svg class="diagram" viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>המרתף והמשאבה</title>
+  <desc>בניין עם משאבה בתקרה, מרתף מוצף, מסננת, פולש בודד וראש מדוזה על הקיר</desc>
+  <rect x="140" y="20" width="400" height="190" rx="8" fill="#f8fafc" stroke="#374151"/>
+  <rect x="250" y="20" width="180" height="26" rx="6" fill="#dbeafe" stroke="#2563eb"/>
+  <text x="340" y="38" text-anchor="middle" fill="#1e3a8a" font-weight="700">משאבה = סרעפת ⇧</text>
+  <polygon points="332,60 348,60 340,48" fill="#2563eb"/>
+  <polygon points="402,60 418,60 410,48" fill="#2563eb"/>
+  <polygon points="262,60 278,60 270,48" fill="#2563eb"/>
+  <rect x="160" y="130" width="360" height="70" rx="6" fill="#bfdbfe" stroke="#2563eb"/>
+  <text x="340" y="155" text-anchor="middle" fill="#1e3a8a" font-weight="700">מרתף מוצף = מיימת</text>
+  <text x="340" y="178" text-anchor="middle" fill="#1e3a8a" font-size="11.5">מים צלולים, בלי "שומרים" (חלבון נמוך)</text>
+  <circle cx="480" cy="165" r="10" fill="#b91c1c"/>
+  <text x="480" y="169" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">1</text>
+  <text x="530" y="225" text-anchor="end" fill="#991b1b" font-size="11.5">פולש אחד (E. coli) = SBP</text>
+  <rect x="200" y="80" width="120" height="30" rx="4" fill="#fff" stroke="#6b7280" stroke-dasharray="4 3"/>
+  <text x="260" y="100" text-anchor="middle" font-size="11.5">מסננת (SAAG גבוה)</text>
+  <g stroke="#7c3aed" stroke-width="3" fill="none">
+    <path d="M90 110 q-30 -30 -50 -10"/><path d="M90 110 q-35 0 -55 20"/><path d="M90 110 q-25 30 -40 50"/><path d="M90 110 q0 -40 -10 -70"/><path d="M90 110 q20 40 10 80"/>
+  </g>
+  <circle cx="90" cy="110" r="8" fill="#7c3aed"/>
+  <text x="70" y="215" text-anchor="middle" fill="#5b21b6" font-size="11.5">ראש מדוזה</text>
+  <text x="600" y="90" fill="#047857" font-size="11.5">⇧ לכבד:</text>
+  <text x="600" y="108" fill="#047857" font-size="11.5">Fitz-Hugh–Curtis</text>
+</svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gray398.png" target="_blank">Wikimedia Commons — Gray398.png</a><div class="desc">קו הקשת ונדן הרקטוס מבפנים (מוטמע בסעיף 3).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gray399.svg" target="_blank">Wikimedia Commons — Gray399.svg</a><div class="desc">חתך רוחב של נדן הרקטוס מעל קו הקשת — השוואה לאיור הסכמטי בסעיף 2.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Caput_medusae.jpg" target="_blank">Wikimedia Commons — Caput medusae.jpg</a><div class="desc">ורידי דופן מורחבים ביתר לחץ דם פורטלי (סעיף 3).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Caput_medusae_CT_sag_002.jpg" target="_blank">Wikimedia Commons — Caput medusae CT sag</a><div class="desc">CT סגיטלי של הוריד הפרא-אומבליקלי (סעיף 5); <a href="https://commons.wikimedia.org/wiki/Category:CT_images_of_caput_medusae" target="_blank">קטגוריה מלאה</a>.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Ascites_ultrasound_2.JPG" target="_blank">Wikimedia Commons — Ascites ultrasound 2</a><div class="desc">מיימת ב-US סביב כבד שחמתי (סעיף 5).</div></li>
+  <li><a href="https://www.youtube.com/watch?v=Igb1rta3-c4" target="_blank">Spontaneous Bacterial Peritonitis Visually Explained</a><div class="desc">מוטמע בסעיף 2.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=JRjcTjqqwp0" target="_blank">Ascites &amp; SAAG Explained</a><div class="desc">מוטמע בסעיף 5.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=OmbA0cnhWPE" target="_blank">Cytoreductive surgery and HIPEC in pseudomyxoma peritonei — Dr. Sugarbaker</a><div class="desc">מוטמע בסעיף 6.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=7ZyUOuvR2Kk" target="_blank">Muscles of the Anterior Abdominal Wall and Rectus Sheath</a><div class="desc">מוטמע בסעיף 6 — חזרה אנטומית.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=pSPh_FYOxPE" target="_blank">Treatment of Spontaneous Bacterial Peritonitis (SBP)</a><div class="desc">השלמה: טיפול ב-SBP — אנטיביוטיקה ואלבומין.</div></li>
+  <li><a href="https://www.osmosis.org/learn/Spontaneous_bacterial_peritonitis:_Clinical_sciences" target="_blank">Osmosis — Spontaneous bacterial peritonitis: Clinical sciences</a><div class="desc">סקירה קלינית של SBP (באתר Osmosis).</div></li>
+  <li><a href="https://www.ninjanerd.org/lecture/ascites" target="_blank">Ninja Nerd — Ascites (lecture)</a><div class="desc">הרצאה מלאה על מיימת: מנגנונים, SAAG, SBP וטיפול.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>🩺 המקרה</h3>
+<p>גבר בן 58 עם <b>שחמת אלכוהולית</b>, מוכר עם מיימת, מגיע עם <b>בלבול</b> שהחל לפני יומיים ו<b>כאב בטן מפושט קל</b>. חום 37.9°C, ל"ד 98/60. בבדיקה: בטן תפוחה עם <b>עמימות במותניים</b>, <b>Spider angiomas</b>, <b>Palmar erythema</b>, ורידים מורחבים סביב הטבור, אסטריקסיס. מעבדה: קריאטינין 1.8 (היה 1.0), בילירובין 4.2, INR 1.7, טסיות 70,000, אלבומין בסרום <b>2.6 g/dL</b>.</p>
+<p><b>פרצנטזיס ב-LLQ:</b> נוזל מעט עכור; לויקוציטים 900/מ"מ³, <b>נויטרופילים 620/מ"מ³</b>; אלבומין במיימת <b>0.9 g/dL</b>; חלבון כללי 0.8 g/dL; גראם — ללא חיידקים. כעבור יומיים: <b>E. coli</b> בלבד בתרבית.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה ה-SAAG שלו ומה הוא אומר?</div>
+  <button class="opt" data-i="0">0.9 — מיימת ממקור צפקי (דליפה)</button>
+  <button class="opt" data-i="1">1.7 — מיימת על רקע יתר לחץ דם פורטלי</button>
+  <button class="opt" data-i="2">3.5 — ערך לא אמין כי האלבומין בסרום נמוך</button>
+  <button class="opt" data-i="3">1.7 — מיימת ממאירה (קרצינומטוזיס)</button>
+  <div class="explain">נכון (2): 2.6 − 0.9 = 1.7 ≥ 1.1 ⇐ יתר לחץ דם פורטלי (דיוק ~97%), תואם שחמת וגם את ה-Caput medusae. (1) 0.9 הוא האלבומין במיימת, לא הפער. (3) SAAG נשאר אמין גם כשהאלבומין בסרום נמוך — זה בדיוק היתרון שלו על "טרנסודט/אקסודט". (4) קרצינומטוזיס נותנת SAAG נמוך (דליפה של נוזל עשיר בחלבון).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. למה לחולה הזה סיכון גבוה במיוחד ל-SBP, ולמה התרבית "מתאימה"?</div>
+  <button class="opt" data-i="0">כי מיימת עשירה בחלבון מזינה חיידקים; צפוי זיהום רב-חיידקי</button>
+  <button class="opt" data-i="1">כי אנאירובים עוברים בקלות את דופן המעי השחמתי</button>
+  <button class="opt" data-i="2">כי הקואגולופתיה מאפשרת לחיידקים לחדור דרך דקירות קודמות</button>
+  <button class="opt" data-i="3">חלבון נמוך במיימת = מעט אופסונינים ומשלים, ולכן חיידקים שעברו טרנסלוקציה מהמעי לא מפונים; SBP הוא זיהום של חיידק אנטרי אירובי אחד</button>
+  <div class="explain">נכון (4): טרנסלוקציה + חיסון חלש + <b>אין אופסוניזציה</b> במיימת דלת חלבון. E. coli/Klebsiella בודד = SBP. (1) הפוך — SBP נדיר במיימת עשירת חלבון; רב-חיידקי מרמז על פריטוניטיס שניונית. (2) אנאירובים <b>לא</b> מצליחים לעבור טרנסלוקציה והדופן עשירה בחמצן. (3) אין זה המנגנון; פרצנטזיס בטוח גם בקואגולופתיה קלה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה הטיפול הנכון עכשיו?</div>
+  <button class="opt" data-i="0">Ceftriaxone/Cefotaxime מיד (בלי לחכות לתרבית) + אלבומין IV</button>
+  <button class="opt" data-i="1">להמתין לתרבית כי בגראם אין חיידקים</button>
+  <button class="opt" data-i="2">לפרוטומיה דחופה לחיפוש פרפורציה</button>
+  <button class="opt" data-i="3">פרצנטזיס בנפח גדול של 8 ליטר ללא אלבומין כדי להוריד את מקור הזיהום</button>
+  <div class="explain">נכון (1): נויטרופילים &gt;250 בהקשר קליני מתאים = SBP ⇐ צפלוספורין דור 3 מיד (מכסה ~95%), ואלבומין מפחית תסמונת הפטורנלית ותמותה (הקריאטינין כבר עולה!). (2) גראם כמעט תמיד שלילי; עיכוב = סכנת מוות. (3) חיידק אחד ותגובה טיפוסית לא מצדיקים ניתוח — הוא עלול להיות קטלני בשחמתי. (4) ניקוז גדול בלי אלבומין יחמיר את הכליות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. אישה בת 70 על Apixaban מתעוררת עם כאב חד בבטן התחתונה אחרי התקף שיעול; יש גוש רגיש מתחת לטבור מימין שלא חוצה את קו האמצע ונשאר מוחש כשהיא מרימה את הראש. Hct ירד ב-5 נקודות, ל"ד יציב. מה נכון?</div>
+  <button class="opt" data-i="0">ככל הנראה בקע ספיגלי כלוא — לניתוח מיידי</button>
+  <button class="opt" data-i="1">ההמטומה תישאר קטנה כי מתחת לקו הקשת יש נדן אחורי חזק</button>
+  <button class="opt" data-i="2">המטומה של נדן הרקטוס; מתחת לקו הקשת אין נדן אחורי ולכן הדם יכול להתפשט פרה-וזיקלית; טיפול ראשון — שמרני (מנוחה, משככים, תיקון קרישה, דם לפי צורך), ואמבוליזציה אם מתרחבת</button>
+  <button class="opt" data-i="3">פריטוניטיס — צריך לפרוטומיה כי הכאב מחקה בטן חריפה</button>
+  <div class="explain">נכון (3): נוגדי קרישה + שיעול + גוש בדופן (Fothergill) = המטומה. מתחת לקו הקשת יש רק פאסציה רוחבית מאחורי השריר, לכן ההמטומה גדולה יותר ו-Hct יורד. ~90% מטופלים שמרנית. (1) בקע ספיגלי לרוב לא מוחש ויושב בקו הסמילונרי, לא תוך-רקטלי. (2) הפוך — הנדן האחורי נעדר מתחת לקו. (4) הכאב יכול לחקות פריטוניטיס, אבל CT/US יראו שזה בדופן.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. בלפרוסקופיה בגלל חסימת מעי דק חוזרת אצל בן 30 מוצאים את רוב המעי הדק כלוא מאחורי מזנטריום המעי הגס הימני, וה-SMA רץ לאורך שפת צוואר השק. מה הצעד הנכון?</div>
+  <button class="opt" data-i="0">להרחיב את צוואר השק בחיתוך ולשלוף את המעי</button>
+  <button class="opt" data-i="1">לחתוך את ההצמדות הצפקיות הלטרליות של הקולון הימני ולהעביר אותו ואת הצקום שמאלה, כך שהמעי יגיע למצב של אי-סיבוב</button>
+  <button class="opt" data-i="2">לחתוך מימין ל-IMV ולסגור את הצוואר</button>
+  <button class="opt" data-i="3">לסגור את הפתח ברשת בלי להוציא את המעי</button>
+  <div class="explain">נכון (2): זה בקע פרא-דואודנלי <b>ימני</b> — כלי Ileocolic/right/middle colic בדופן הקדמית וה-SMA בשפת הצוואר. מזיזים את הקולון, לא חותכים את הצוואר. (1) חיתוך הצוואר יפגע ב-SMA/SMV ולא ישחרר את המעי. (3) זה התיקון של הבקע <b>השמאלי</b> (IMV בדופן). (4) המעי נשאר כלוא — החסימה לא נפתרת.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. אישה בת 32 עם FAP, שנה אחרי פרוקטוקולקטומיה פתוחה, עם גוש מוצק לא כואב של 4 ס"מ במזנטריום, יציב ב-MRI חוזר וללא תסמינים. ביופסיה: תאי פלך עם קולגן ו-β-catenin גרעיני. מה נכון?</div>
+  <button class="opt" data-i="0">כריתה רחבה מיידית עם שוליים של 2 ס"מ — גידול גרורתי</button>
+  <button class="opt" data-i="1">קרינה ראשונית — טיפול הבחירה בצעירים</button>
+  <button class="opt" data-i="2">דסמואיד (מוטציית APC בתאי נבט ← הצטברות β-catenin); מעקב פעיל ב-MRI, ובהתקדמות — Tamoxifen + NSAID או טיפול סיסטמי אחר</button>
+  <button class="opt" data-i="3">סרקומה רטרופריטונאלית — כריתה en bloc בלי ביופסיה</button>
+  <div class="explain">נכון (3): דסמואיד ב-FAP (~80% תוך-בטני), הניתוח הקודם (במיוחד פתוח) הוא גורם סיכון. אין גרורות; נסיגה ספונטנית עד 30% ⇐ מעקב פעיל. (1) אינו גרורתי, וכריתה במזנטריום עלולה להשאיר מעי קצר. (2) קרינה בצעירים — סכנת סרקומה משנית; שמורה לשוליים חיוביים/הישנות. (4) ההיסטולוגיה וה-β-catenin מכוונים לדסמואיד, והגוש במזנטריום.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>9 שכבות</b>; הפאסציה הרוחבית = השלמות; <b>בקע = פגם בה</b>; Diastasis recti ≠ בקע.</li>
+    <li><b>קו הקשת</b>: מתחתיו אין נדן אחורי ⇐ המטומות גדולות, פרה-וזיקליות. Hesselbach: רצועה מפשעתית / רקטוס / כלי אפיגסטריק תחתון.</li>
+    <li><b>שרידי טבור</b>: Meckel (חוק ה-2, רירית קיבתית ← דימום), צינור פתוח (מקוניום ← ניתוח), פוליפ (לא נעלם בכסף חנקתי), אורכוס (שתן מהטבור ← כריתה). Sister Mary Joseph; Caput medusae.</li>
+    <li><b>Omphalocele</b> — מכוסה, 50–60% מומים; <b>Gastroschisis</b> — מימין, חשוף, 10% מומים, וולבולוס. בקע טבורי של תינוק נסגר עד 2 (ניתוח מעל 3–4); נרכש — לא נסגר, חניקה.</li>
+    <li><b>המטומה של הרקטוס</b>: 70% נוגדי קרישה; US/CT; 90% שמרני; אמבוליזציה.</li>
+    <li><b>כאב</b>: ויסצרלי (קו אמצע, לפי מקור עוברי), פריאטלי (T6–L1, ממוקם), מושלך (נוירון מסדר 2).</li>
+    <li><b>צפק</b>: 1–1.7 מ"ר, &lt;100 מ"ל; <b>משאבה סרעפתית</b> ⇐ ספסיס מהיר, Fitz-Hugh–Curtis; 5 תגובות לזיהום.</li>
+    <li><b>מיימת</b>: 85% שחמת (לחץ פורטלי + RAAS/NO); עמימות מ-1.5 ל'; <b>SAAG ≥1.1 = פורטלי</b>. טיפול: Na 2 גרם, <b>ספירונולקטון:פורוסמיד 100:40</b>, ניקוז &gt;5 ל' + אלבומין 6–8 גרם/ל', TIPS, השתלה.</li>
+    <li><b>SBP</b>: PMN &gt;250, חד-חיידקי (E. coli, Klebsiella), מיימת דלת חלבון; <b>צפלוספורין דור 3 מיד + אלבומין</b>; הישרדות שנה ~30%. רב-חיידקי = שניונית.</li>
+    <li><b>שחפת צפקית</b>: לימפוציטים, SAAG נמוך, ADA; לפרוסקופיה — נודולים לבנים, גרנולומות קזאוזיות. <b>CAPD</b>: &gt;100 WBC, S. epidermidis, צפלוספורין דור 1 תוך-צפקי; פטרייתי = הוצאת קטטר.</li>
+    <li><b>כילוסית</b>: לימפומה/ניתוח; TG פי 2–8; דיאטה דלת שומן + MCT, TPN ± סומטוסטטין.</li>
+    <li><b>PMP</b>: גידול רירי של התוספתן; <b>CRS + HIPEC</b> (שאריות ≤2 מ"מ, MMC/Oxaliplatin) — 5 שנים 60–90% ב-low grade. מזותליומה — חודרת, Cisplatin. CRC — PRODIGE 7: HIPEC לא הוסיף.</li>
+    <li><b>דסמואיד</b>: CTNNB1 (ספורדי) / APC (FAP), β-catenin; MRI + Core; <b>מעקב פעיל</b>; Tamoxifen+NSAID, MTX/Vinblastine, TKI.</li>
+    <li><b>סרקומה</b>: Core, לא ביופסיה פתוחה, אין בלוטות; RPS — en bloc במרכז מומחה; R2 = פליאטיבי (חוץ מליפוסרקומה).</li>
+    <li><b>אומנטום/מזנטריום</b>: תסביב (צד ימין, כריתה), ציסטות (כריתה/Enucleation), לימפדניטיס (Yersinia, US), מזנטריטיס טרשתית (Fat ring sign, סטרואידים), Graham patch.</li>
+    <li><b>בקעים פנימיים</b>: פרא-דואודנלי שמאלי 75% (חותכים מימין ל-IMV); <b>ימני — לא לחתוך צוואר, להזיז קולון</b>; Petersen אחרי RYGB עד 9% ⇐ סוגרים.</li>
+    <li><b>רטרופריטונאום</b>: מורסה (CT נמוך-צפיפות, גז; ניקוז מונחה CT), המטומה (צפיפות גבוהה, <b>נוירופתיה פמורלית 20–30%</b>), <b>פיברוזיס</b> (Ormond, ארגוט, שופכנים, סטרואידים + סטנטים).</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
