@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head><meta charset="UTF-8"><title>H024 Neurologic Causes of Weakness and Paralysis</title><style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  /* בלוק מנגנון/פתופיזיולוגיה */
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  /* הדגשת נקודה חשובה לזכור */
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  /* תמונות/הדמיות - כולל זוג תקין/פתולוגי זה-לצד-זה */
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  /* טבלאות (תרופות, אבחנה מבדלת) */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  /* טכניקות זכירה */
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  /* מהלך ניתוח */
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  /* קישורים חיצוניים */
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  /* מקרה קליני ושאלות תרגול */
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  /* שאלון אינטראקטיבי - לחיצה על תשובה, לא details סטטי. עובד בקובץ נייד ובארטיפקט כאחד. */
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  /* כרטיס-קישור לתמונה/סרטון - להשתמש בזה במקום <img> כשהפלט הוא ארטיפקט ב-Cowork
+     (שם תמונות מקישור חיצוני לא נטענות כי הרשת חסומה בתוך ה-iframe המבודד).
+     בקובץ HTML נייד רגיל, במקום זאת מטמיעים <img src="..."> ישירות - ראו bloc "תמונות/הדמיות". */
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  /* סיכום של הסיכום */
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style></head><body>
+<h1>סיבות נוירולוגיות לחולשה ולשיתוק (Weakness and Paralysis) – הריסון פרק 24</h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · עמ' 206–208 (עמ' 165–167 בדפוס) · Cardinal Manifestations</div>
+
+<p>חולשה היא <span class="key">ירידה בכוח שניתן להפעיל בשריר אחד או יותר</span>. המשימה הקלינית: להחליט <b>איפה בציר העצבי-שרירי</b> נמצא הנגע – קליפת המוח, חומר לבן, גזע, חוט שדרה, קרן קדמית, שורש, מקלעת, עצב היקפי, צומת עצב-שריר או השריר עצמו – ורק אחר כך לשאול "מה המחלה".</p>
+
+<h2><span class="num">1</span> הגדרות והבחנה ממצבים דומים</h2>
+<div class="key-box">חולשה ≠ עייפות (Fatigability) ≠ הגבלה מכאב/נוקשות מפרקים ≠ אובדן פרופריוספציה ≠ ברדיקינזיה ≠ אפרקסיה.</div>
+<table><thead><tr><th>מצב</th><th>מה זה</th><th>למה זו לא חולשה אמיתית</th></tr></thead><tbody>
+<tr><td>עייפות (Fatigability)</td><td>חוסר יכולת לשמר ביצוע פעילות</td><td>הכוח הרגעי תקין; הירידה בחזרות מחשידה ל-NMJ</td></tr>
+<tr><td>כאב / נוקשות מפרקית</td><td>הגבלה תפקודית</td><td>הכוח השרירי עצמו שמור</td></tr>
+<tr><td>אובדן פרופריוספציה חמור</td><td>אין משוב על כיוון וכוח התנועה</td><td>הבעיה בכניסה החושית, לא בפלט המוטורי</td></tr>
+<tr><td>ברדיקינזיה (<span dir="ltr" class="term">Bradykinesia</span>)</td><td>איטיות בהגעה לכוח מלא</td><td>הכוח מושג, רק לאט (פרקינסון)</td></tr>
+<tr><td>אפרקסיה (<span dir="ltr" class="term">Apraxia</span>)</td><td>הפרעה בתכנון/יזימת תנועה נלמדת</td><td>אין ליקוי מוטורי/חושי משמעותי</td></tr></tbody></table>
+<p>מינוח: <b>פלגיה</b> (<span dir="ltr" class="term">-plegia</span>) = שיתוק מלא; <b>פרזיס</b> (<span dir="ltr" class="term">paresis</span>) = חולשה חלקית. <span dir="ltr" class="term">Hemi-</span> חצי גוף, <span dir="ltr" class="term">para-</span> שתי רגליים, <span dir="ltr" class="term">quadri-</span> ארבע גפיים.</p>
+
+<h2><span class="num">2</span> מנגנון – "למה זה קורה": הנתיב המוטורי</h2>
+<div class="mechanism"><p class="chain">קליפת המוח המוטורית (שכבה V של <span dir="ltr" class="term">Brodmann area 4</span>, וגם אזור 6 הפרה-מוטורי) שולחת אקסונים דרך החומר הלבן, <span dir="ltr" class="term">posterior limb of internal capsule</span>, פדונקל מוחי, פונס ופירמידות המדולה. בצומת הצווארי-מדולרי רוב הסיבים <b>חוצים</b> (decussation) לצד הנגדי של המוח ויורדים כ-<span dir="ltr" class="term">lateral corticospinal tract</span>; 10–30% נשארים באותו צד (קדמי). חלק מהסיבים, במיוחד אל שרירי היד, יוצרים <b>סינפסה מונוסינפטית ישירה</b> עם הנוירון המוטורי התחתון – לכן היד היא המקום של תנועות עדינות נלמדות ונפגעת קשה בנגע UMN. מערכת מקבילה, "החוץ-פירמידלית" (בולבוספינלית: רטיקולוספינלית, וסטיבולוספינלית, טקטוספינלית, רובראוספינלית), שולטת בטונוס, יציבה ושרירי ציר.</p></div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="14" direction="rtl">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2563eb"/></marker></defs>
+<rect x="740" y="50" width="150" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="815" y="85" text-anchor="middle">קליפה מוטורית</text><text x="815" y="107" text-anchor="middle">(UMN)</text>
+<rect x="520" y="50" width="160" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="600" y="80" text-anchor="middle">קפסולה פנימית ←</text><text x="600" y="102" text-anchor="middle">גזע ← פירמידות (חצייה)</text>
+<rect x="300" y="50" width="160" height="80" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="380" y="85" text-anchor="middle">קרן קדמית (LMN)</text><text x="380" y="107" text-anchor="middle">α + γ</text>
+<rect x="90" y="50" width="160" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="170" y="85" text-anchor="middle">עצב ← NMJ ←</text><text x="170" y="107" text-anchor="middle">שריר</text>
+<line x1="740" y1="90" x2="682" y2="90" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><line x1="520" y1="90" x2="462" y2="90" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/><line x1="300" y1="90" x2="252" y2="90" stroke="#2563eb" stroke-width="2" marker-end="url(#a)"/>
+<text x="450" y="175" text-anchor="middle" fill="#6b7280">נגע בכל חוליה = חולשה, אבל "חתימת" הסימנים שונה</text></svg>
+
+<h3>נוירון מוטורי עליון (<span dir="ltr" class="term">UMN</span>)</h3>
+<p>נגע באקסונים היורדים מפחית את <b>ההפעלה</b> של הנוירונים התחתונים. הכוח יורד אך מספר סיבי השריר והחיבור שלהם שמורים, ולכן: אין ניוון משמעותי (מופיע רק ניוון מחוסר שימוש מאוחר), אין פסיקולציות. <b>חולשה פירמידלית:</b> הגפה העליונה – מיישרים ו-abductors; התחתונה – מכופפים. סיבת הדפוס: אלה השרירים שהמערכת הפירמידלית מפעילה במיוחד, בעוד שהמערכת החוץ-פירמידלית "משחררת" את שרירי האנטי-גרביטציה. חולשה דיסטלית חמורה מהפרוקסימלית, שרירי הציר נשמרים אלא אם הנגע חמור ודו-צדדי.</p>
+<p><b>ספסטיות</b> (<span dir="ltr" class="term">Spasticity</span>): תלוית מהירות, "סכין מתקפלת" (<span dir="ltr" class="term">clasp-knife</span>) – התנגדות עד שיא ואז שחרור פתאומי; מעדיפה מכופפי יד ומיישרי רגל. מנגנון: אובדן ההשפעה המעכבת של מסלולים יורדים על רפלקס המתיחה, כך שנוירוני α מופעלים ביתר ע"י אפרנטים של הכישור (<span dir="ltr" class="term">muscle spindle</span>). בנגע חריף ייתכנו <b>שלב "הלם"</b> – היפוטוניה ואריפלקסיה זמנית – לפני הספסטיות.</p>
+<p><b>רפלקסים מוגברים</b> + איבוד רפלקסים עוריים (בטן שטחיים) + <b>בבינסקי</b> (<span dir="ltr" class="term">extensor plantar</span>). הפרעה קורטיקובולברית: חולשה בפנים התחתונות ובלשון; עיניים, פנים עליונות, לוע ולסת נחסכים (עצבוב דו-צדדי קורטיקלי). נגע קורטיקובולברי דו-צדדי = <b>פסאודובולברי</b> (<span dir="ltr" class="term">pseudobulbar palsy</span>): דיזרטריה, דיספגיה, דיספוניה, רגשנות יתר, רפלקס לסת מוגבר. ב-EMG: תדירות פריקה מרבית נמוכה של יחידות מוטוריות.</p>
+
+<h3>נוירון מוטורי תחתון (<span dir="ltr" class="term">LMN</span>)</h3>
+<p>נגע בגרעיני גזע מוטוריים, בקרן הקדמית או באקסונים ההיקפיים. <b>יחידה מוטורית</b> = נוירון α אחד + כל סיבי השריר שהוא מעצבב. אובדן נוירוני α או ניתוק מהשריר מקטין את מספר הסיבים הפעילים → חולשה, והסיבים המנותקים מאבדים טרופיות → <b>ניוון בולט</b>. נוירוני γ (מעצבבים את סיבי ה-intrafusal של הכישור) – אובדנם <i>אינו</i> גורם לחולשה אלא מפחית מתח בכישור → <b>טונוס נמוך ורפלקס מתיחה מוחלש</b>. רפלקס נעדר מרמז על פגיעה באפרנטי הכישור. <b>פסיקולציות</b> (<span dir="ltr" class="term">fasciculations</span>): פריקה ספונטנית של יחידה מוטורית חולה (נראה/מורגש כעוויתות); פריקות בודדות של סיבי שריר מנותקים הן <b>פיברילציות</b>, נראות רק ב-EMG. כאן קיבוץ ו"גיוס" יחידות לקוי או מאוחר.</p>
+<svg class="diagram" viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="14" direction="rtl">
+<defs><marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#b45309"/></marker></defs>
+<rect x="700" y="20" width="180" height="50" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="790" y="50" text-anchor="middle">נקישה בגיד</text>
+<rect x="470" y="20" width="180" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="560" y="43" text-anchor="middle">כישור מתוח ← אפרנט Ia</text>
+<rect x="240" y="20" width="180" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="330" y="43" text-anchor="middle">סינפסה ב-α בחוט השדרה</text>
+<rect x="20" y="20" width="180" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="110" y="50" text-anchor="middle">התכווצות קצרה</text>
+<line x1="700" y1="45" x2="652" y2="45" stroke="#b45309" stroke-width="2" marker-end="url(#b)"/><line x1="470" y1="45" x2="422" y2="45" stroke="#b45309" stroke-width="2" marker-end="url(#b)"/><line x1="240" y1="45" x2="202" y2="45" stroke="#b45309" stroke-width="2" marker-end="url(#b)"/>
+<text x="450" y="115" text-anchor="middle" fill="#6b7280">קשת הרפלקס דורשת את כל החוליות: אפרנט, α, γ (טונוס הכישור), שריר.</text>
+<text x="450" y="145" text-anchor="middle" fill="#b91c1c">נגע LMN = קשת נפגעת ← רפלקס נעלם. נגע UMN = קשת תקינה בלי עיכוב ← רפלקס מוגבר.</text></svg>
+
+<h3>צומת עצב-שריר (<span dir="ltr" class="term">NMJ</span>)</h3>
+<p>דרגת החולשה ופיזורה משתנים, כי מספר סיבי השריר שמופעלים משתנה בזמן, לפי מצב המנוחה של הצמתים. חולשה <b>נחלשת בפעילות חוזרת</b> (<span dir="ltr" class="term">fatigable weakness</span>) – בולטת במיאסטניה גרביס (מצבור פעילות מקטין כוח). שים לב לרפלקסים: ב-<b>Lambert-Eaton</b> רפלקס נמוך <i>מתחזק</i> לאחר התכווצות רצונית קודמת (facilitation), ובמיאסטניה גרביס רפלקס תקין <i>נחלש</i> אחריה.</p>
+
+<h3>חולשה מיופתית</h3>
+<p>ירידה במספר או בכוח ההתכווצות של סיבי שריר בתוך יחידות מוטוריות. בדיסטרופיות, מיופתיות דלקתיות ונמק סיבים – מספר הסיבים ביחידה קטן ← <b>אמפליטודה של פוטנציאל היחידה המוטורית קטנה</b> ב-EMG, וגיוס מהיר יותר מהרגיל להשגת אותו כוח. מיופתיות שפוגעות בכוח ההתכווצות או סלקטיבית בסיבי type II (מהירים) עשויות לא לשנות אמפליטודה – תגלית: פער בין פעילות חשמלית לכוח. חולשה בדרך כלל <b>פרוקסימלית וסימטרית</b>, ניוון קל, רפלקסים תקינים עד נחלשים בשלב מתקדם.</p>
+
+<h3>חולשה פסיכוגנית</h3>
+<p>משתנה, לא עקבית, לא מתאימה לאנטומיה נוירולוגית ולא לתפקוד היומיומי. בבדיקה פורמלית הנוגדים (אנטגוניסטים) מתכווצים כשהמטופל אמור להפעיל את האגוניסט.</p>
+
+<h2><span class="num">3</span> טבלת אבחנה מבדלת לפי סוג חולשה (Table 24-1)</h2>
+<table><thead><tr><th>סימן</th><th>UMN</th><th>LMN</th><th>מיופתי</th><th>פסיכוגני</th></tr></thead><tbody>
+<tr><td>ניוון</td><td>אין</td><td>חמור</td><td>קל</td><td>אין</td></tr>
+<tr><td>פסיקולציות</td><td>אין</td><td>שכיחות</td><td>אין</td><td>אין</td></tr>
+<tr><td>טונוס</td><td>ספסטי</td><td>מופחת</td><td>תקין/מופחת</td><td>משתנה / paratonia</td></tr>
+<tr><td>התפלגות</td><td>פירמידלית/אזורית</td><td>דיסטלית/סגמנטלית</td><td>פרוקסימלית</td><td>משתנה, לא עקבית</td></tr>
+<tr><td>רפלקס מתיחה</td><td>מוגבר</td><td>מופחת/נעדר</td><td>תקין/מופחת</td><td>תקין</td></tr>
+<tr><td>בבינסקי</td><td>קיים</td><td>אין</td><td>אין</td><td>אין</td></tr></tbody></table>
+<div class="key-box"><b>טונוס:</b> ספסטיות – תלוית מהירות, clasp-knife, מכופפי יד ומיישרי רגל. <b>קשיחות</b> (<span dir="ltr" class="term">rigidity</span>) – לאורך כל טווח התנועה ("צינור עופרת"), מכופפים ומיישרים כאחד, לעיתים cogwheel (פרקינסון). <b>פרטוניה / Gegenhalten</b> – משתנה באופן לא סדיר, מנגד לרמת ההרפיה, מנגע בפרונטליים. <b>דיסטלי = סביר נוירופתי; פרוקסימלי סימטרי = סביר מיופתי.</b> פסיקולציות וניוון מוקדם = נוירופתי.</div>
+
+<h2><span class="num">4</span> התפלגות החולשה – הגישה האנטומית</h2>
+<h3>המיפרזיס (<span dir="ltr" class="term">Hemiparesis</span>)</h3>
+<p>נגע UMN מעל חוט השדרה האמצע-צווארי, ברוב המקרים מעל ה-<span dir="ltr" class="term">foramen magnum</span>. סימנים נלווים ממקמים: <b>הפרעות שפה</b> ← קליפה; <b>הפרעות שדה ראייה הומונימיות</b> ← קליפה/תת-קליפה; <b>"Pure motor" פנים-יד-רגל</b> ← נגע קטן בקפסולה הפנימית (<span dir="ltr" class="term">posterior limb</span>), פדונקל או פונס עליון; <b>"Crossed paralysis"</b> (עצבי גולגולת ipsilateral + המיפרזיס contralateral) ← גזע. היעדר סימני עצבי גולגולת/פנים ← חשוד חוט שדרה צווארי גבוה, במיוחד עם <b>Brown-Séquard</b>: אובדן תחושת מיקום ורטט <i>באותו צד</i> של החולשה, ואובדן כאב וטמפרטורה בצד <i>הנגדי</i> (הסיבה: העמודה האחורית עולה ipsilateral וחוצה במדולה, ואילו הספינותלמי חוצה בחוט עצמו, קרוב לרמת הכניסה).</p>
+<table><thead><tr><th>קצב</th><th>סיבות אופייניות</th></tr></thead><tbody>
+<tr><td>חריף/אפיזודי</td><td>נגעים מבניים: בעיקר <b>וסקולריים</b> (אוטם/דימום), נגעים מתרחבים מהר, תהליך דלקתי</td></tr>
+<tr><td>תת-חריף (ימים–שבועות)</td><td>המטומה סאב-דורלית; מורסה מוחית, גרנולומה פטרייתית, דלקת קרום, טפילים, MS, סרקואידוזיס; גידול ראשוני/גרורתי. ב-AIDS: <b>טוקסופלזמה</b> או <b>לימפומה ראשונית של ה-CNS</b></td></tr>
+<tr><td>כרוני (חודשים)</td><td>גידול או מום וסקולרי, המטומה סאב-דורלית כרונית, מחלה ניוונית</td></tr></tbody></table>
+<p><b>בירור:</b> חריף ← CT ראש + מעבדה; אם תקין, או בתת-חריף/כרוני ← MRI של המוח ו/או עמוד שדרה צווארי (כולל ה-foramen magnum), לפי הקליניקה.</p>
+
+<h3>פרפרזיס (<span dir="ltr" class="term">Paraparesis</span>)</h3>
+<p><b>חריף</b> – הסיבה השכיחה: נגע <b>תוך-שדרתי</b>, אבל המקור לא תמיד מוכר בתחילה אם הרגליים רפויות ואריפלקסיות (שלב ההלם). רמזים לחוט שדרה: <b>רמה חושית</b> בגזע, <b>אובדן חושי מנותק</b> (כאב וטמפרטורה בלי מגע/מיקום/רטט ← <span dir="ltr" class="term">central cord</span>), או רפלקסים מוגברים ברגליים ותקינים בידיים. <b>הדמיה:</b> MRI חוט שדרה – לחץ (compressive), אוטם (<b>פרופריוספציה נשמרת</b>, כי העמודה האחורית מוזנת ממערכת עורקית אחרת), פיסטולות עורקיות-ורידיות, <b>myelitis טרנסברסלי</b>.</p>
+<p>מקורות מוחיים לפרפרזיס חריף: איסכמיה של <b>עורק מוחי קדמי</b> (כולל פגיעה בהרמת כתפיים), פקקת של ה-<span dir="ltr" class="term">superior sagittal sinus</span>/ורידים קורטיקליים, הידרוצפלוס חריף. <b>Cauda equina</b> (טראומה למותן, בקע דיסק מדיאלי, גידול תוך-שדרתי): הסוגרים נפגעים לעיתים קרובות, כיפוף ירך נחסך, והתחושה על הירך הקדמית-לטרלית נשמרת. נדיר: מחלת קרן קדמית חריפה (פוליו, West Nile), נוירופתיה (<b>Guillain-Barré</b>), מיופתיה.</p>
+<p><b>תת-חריף/כרוני</b>: פרפרזיס ספסטי = מחלת UMN. עם אובדן חושי ברגליים והסוגרים ← מחלת חוט שדרה כרונית. עם סימנים ההמיספריים ← <b>מנינגיומה פרא-סגיטלית</b> או <b>הידרוצפלוס כרוני</b>. היעדר ספסטיות בפרפרזיס ממושך ← LMN או מיופתיה. <b>בירור:</b> MRI שדרה; MRI מוח אם יש ישנוניות, בלבול, פרכוסים. אלקטרופיזיולוגיה כשחשד לבעיה עצבית-שרירית.</p>
+
+<h3>קוודריפרזיס וחולשה כללית (<span dir="ltr" class="term">Quadriparesis / generalized weakness</span>)</h3>
+<p>קונבנציה: "quadriparesis" כשחושדים בגורם UMN; "generalized weakness" כשחושדים במחלת יחידה מוטורית. <b>גורם CNS</b>: שינוי בהכרה/הכרה, ספסטיות, רפלקסים מוגברים, הפרעות תחושה. <b>גורם עצבי-שרירי</b> (רוב המקרים): הכרה תקינה, היפוטוניה, רפלקסים מופחתים. תלונה של עייפות כללית בלי חולשה אובייקטיבית ← חשד ל-<b>תסמונת עייפות כרונית</b> (פרק 450).</p>
+<table><thead><tr><th>התחלה</th><th>סיבות</th></tr></thead><tbody>
+<tr><td>דקות</td><td><b>UMN</b>: אנוקסיה, היפוטנסיה, איסכמיה של גזע/צוואר, טראומה, הפרעות מטבוליות סיסטמיות. <b>שריר</b>: הפרעות אלקטרוליטים, הפרעות בחילוף אנרגיה, רעלנים, <b>שיתוק תקופתי</b></td></tr>
+<tr><td>שעות עד שבועות</td><td>כל הנ"ל ובנוסף <b>LMN</b> כמו <b>Guillain-Barré</b></td></tr></tbody></table>
+<p><b>בירור:</b> חולה מנומנם ← CT/MRI מוח. סימני UMN בחולה ער ← MRI צוואר. חולשה LMN/מיופתית/לא ברורה ← מעבדה (<b>אנזימי שריר CK, אלקטרוליטים</b>) + <b>EMG ו-NCS</b>.</p>
+<svg class="diagram" viewBox="0 0 900 230" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="14" direction="rtl">
+<rect x="350" y="10" width="200" height="40" rx="8" fill="#f3f4f6" stroke="#374151"/><text x="450" y="35" text-anchor="middle">חולשה – מה התפלגות?</text>
+<rect x="30" y="90" width="230" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="145" y="115" text-anchor="middle">סימני UMN</text><text x="145" y="135" text-anchor="middle">(ספסטי, היפר-רפלקס, Babinski)</text>
+<rect x="335" y="90" width="230" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="450" y="115" text-anchor="middle">סימני LMN</text><text x="450" y="135" text-anchor="middle">(ניוון, פסיקולציות, היפו-רפלקס)</text>
+<rect x="640" y="90" width="230" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="755" y="115" text-anchor="middle">מיופתי</text><text x="755" y="135" text-anchor="middle">(פרוקסימלי, רפלקס תקין)</text>
+<text x="145" y="190" text-anchor="middle">MRI מוח / שדרה</text><text x="450" y="190" text-anchor="middle">EMG + NCS</text><text x="755" y="190" text-anchor="middle">CK + EMG</text>
+<path d="M450 50 L145 90 M450 50 L450 90 M450 50 L755 90" stroke="#6b7280" stroke-width="2"/></svg>
+<p class="media-cap">איור סכמטי עצמאי המבוסס על האלגוריתם של Fig. 24-3 בפרק.</p>
+
+<h2><span class="num">5</span> טכניקות זכירה</h2>
+<div class="mnemonic"><h3>ראשי תיבות – "SPAT-FR"</h3>
+<p>לזכור נגע UMN: <b>S</b>pasticity · <b>P</b>yramidal pattern · <b>A</b>trophy absent · <b>T</b>endon reflexes up · <b>F</b>asciculations absent · <b>R</b>eflex Babinski (extensor plantar). LMN הוא הפוך בכל סעיף: הכל "ירד".</p>
+<h3>סיפור דמיוני – "המנהל והפועל"</h3>
+<p>המנהל (UMN) יושב במשרד בקליפה ושולח הוראות בטלפון (אקסון) לפועל (LMN) בשטח. אם <b>המנהל נעלם</b> – הפועל משתולל ללא פיקוח (ספסטיות, רפלקסים מוגברים) אך עדיין חזק ושרירי. אם <b>הפועל נעלם</b> – אין מי שיעבוד: השרירים מתכווצים ונרזים (ניוון), ופה ושם נשארים עוויתות (פסיקולציות). אם <b>הטלפון ביניהם תקול</b> (NMJ) – ההוראות עוברות בהתחלה וקוטעות אחרי כמה פעמים (עייפות). אם <b>הציוד של הפועל חלש</b> (מיופתיה) – הוא עוד נוכח, אבל הכלים שלו חלשים, ובעיקר הגדולים (פרוקסימליים).</p>
+<svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="14" direction="rtl"><circle cx="90" cy="50" r="22" fill="#eff6ff" stroke="#2563eb"/><text x="90" y="90" text-anchor="middle">מנהל (UMN)</text><path d="M112 50 Q250 10 388 50" stroke="#6b7280" stroke-width="3" fill="none"/><text x="250" y="22" text-anchor="middle">טלפון (אקסון/NMJ)</text><circle cx="410" cy="50" r="22" fill="#fffbeb" stroke="#b45309"/><text x="410" y="90" text-anchor="middle">פועל (LMN)</text><rect x="360" y="120" width="100" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="410" y="150" text-anchor="middle">שריר = כלים</text></svg></div>
+
+<h2><span class="num">6</span> מקורות להרחבה</h2>
+<ul class="resource-list">
+<li><a href="https://ninjanerd.org/lecture/upper-motor-neuron-vs-lower-motor-neuron-lesion-umn-vs-lmn-lesion" target="_blank">Ninja Nerd – Upper vs Lower Motor Neuron Lesion</a><div class="desc">הרצאה על ההבדל בין נגע UMN ל-LMN.</div></li>
+<li><a href="https://geekymedics.com/upper-vs-lower-motor-neurone-lesions/" target="_blank">Geeky Medics – Upper vs Lower Motor Neurone Lesions</a><div class="desc">סיכום קליני עם טבלת סימנים.</div></li>
+<li><a href="https://litfl.com/brown-sequard-syndrome" target="_blank">LITFL – Brown-Séquard Syndrome</a><div class="desc">מנגנון ודפוס החסר החושי/מוטורי.</div></li>
+<li><a href="https://www.osmosis.org/learn/Brown-Séquard_syndrome:_Year_of_the_Zebra" target="_blank">Osmosis – Brown-Séquard syndrome</a><div class="desc">סרטון/הסבר מנגנוני.</div></li></ul>
+<p class="media-cap">הערה: בחיפוש לא נמצאו מזהי סרטוני YouTube מאומתים, ולכן לא הוטמעו סרטונים (ללא המצאת קישורים); הקישורים לעיל נמצאו בתוצאות חיפוש בפועל.</p>
+
+<h2><span class="num">7</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3><p>גבר בן 58, יתר לחץ דם ועישון, התעורר עם חולשה בצד שמאל של הגוף. בבדיקה: חולשה בפנים התחתונות משמאל (המצח נחסך), חולשת יד ורגל שמאל מהמטייבות בעיקר בפשטי יד ובכופפי רגל, טונוס מוגבר ורפלקסים מוגברים בצד שמאל, בבינסקי חיובי משמאל, בלי ניוון ובלי פסיקולציות. הכרה וראייה תקינות, ללא הפרעת שפה. CT ראש חריף ללא דימום.</p></div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי הרמה האנטומית הסבירה ביותר של הנגע?</div>
+  <button class="opt" data-i="0">קרן קדמית של חוט השדרה</button>
+  <button class="opt" data-i="1">הקפסולה הפנימית (posterior limb) ימנית</button>
+  <button class="opt" data-i="2">שריר</button>
+  <button class="opt" data-i="3">עצב היקפי</button>
+  <div class="explain">נכון: "Pure motor hemiparesis" פנים-יד-רגל ללא הפרעת שפה/שדה ראייה/תחושה = נגע קטן בקפסולה הפנימית. א': היה LMN עם פסיקולציות וניוון. ג': הייתה חולשה פרוקסימלית סימטרית. ד': היה LMN דיסטלי עם היפורפלקסיה.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">2. מדוע לא נראים פסיקולציות וניוון בחולה זה?</div>
+  <button class="opt" data-i="0">כי הבדיקה מוקדמת מדי בלבד ובהמשך כן יופיעו</button>
+  <button class="opt" data-i="1">כי γ motor neurons נפגעו</button>
+  <button class="opt" data-i="2">כי הנוירון המוטורי התחתון והיחידה המוטורית שלמים, רק ההפעלה שלהם ירדה</button>
+  <button class="opt" data-i="3">כי יש מיופתיה מקבילה</button>
+  <div class="explain">נכון: ב-UMN הקשר לשריר שמור, ולכן אין ניוון מניוון (רק ניוון מחוסר שימוש מאוחר) ואין פריקה ספונטנית. א': אפילו בכרוני לא יופיעו פסיקולציות. ב': אובדן γ גורם להיפוטוניה, לא ספסטיות. ד': לא רלוונטי.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. חולה אחר: אובדן תחושת רטט ומיקום בצד ימין, חולשה ימנית ואובדן כאב וטמפרטורה בצד שמאל, ללא סימני עצבי גולגולת. מהי האבחנה?</div>
+  <button class="opt" data-i="0">Brown-Séquard (המי-חתך בחוט צווארי גבוה)</button>
+  <button class="opt" data-i="1">Central cord syndrome</button>
+  <button class="opt" data-i="2">Cauda equina</button>
+  <button class="opt" data-i="3">Crossed paralysis מגזע</button>
+  <div class="explain">נכון: עמודה אחורית ו-corticospinal חולפים ipsilateral, ואילו ספינותלמי חוצה ברמת החוט. ב': אובדן חושי מנותק דו-צדדי בידיים. ג': פרפרזיס עם סוגרים ו-LMN. ד': עצבי גולגולת ipsilateral + המיפרזיס נגדי.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">4. מטופל עם פרפרזיס חריף, רפלקסים נעדרים, רמה חושית בגזע ושליטה סוגרים לקויה. מה הצעד האבחנתי הראשון?</div>
+  <button class="opt" data-i="0">EMG בלבד</button>
+  <button class="opt" data-i="1">CT ראש</button>
+  <button class="opt" data-i="2">ביופסיית שריר</button>
+  <button class="opt" data-i="3">MRI של חוט השדרה, בדחיפות</button>
+  <div class="explain">נכון: רמה חושית = נגע תוך-שדרתי (חשד לחץ/אוטם/myelitis); שלב הלם מסביר רפלקסים נעדרים. א': תימדד בהמשך. ב': לא מסביר. ג': לא רלוונטי חריף.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. אישה עם ptosis ודיפלופיה, כוח שנחלש בחזרות על תנועות ומשתפר במנוחה. מהו הדפוס הנכון?</div>
+  <button class="opt" data-i="0">UMN</button>
+  <button class="opt" data-i="1">בעיה בצומת עצב-שריר (למשל מיאסטניה גרביס)</button>
+  <button class="opt" data-i="2">מיופתיה דלקתית</button>
+  <button class="opt" data-i="3">פסיכוגנית</button>
+  <div class="explain">נכון: Fatigable weakness אופייני ל-NMJ. א': ספסטיות ורפלקסים מוגברים. ג': פרוקסימלית קבועה. ד': חולשה לא עקבית ולא אנטומית.</div>
+</div>
+<div class="tldr"><h2><span class="num">8</span> סיכום של הסיכום</h2><ul>
+<li>קודם מקמו את הנגע: UMN / LMN / NMJ / שריר / פסיכוגני.</li>
+<li>UMN: ספסטיות, רפלקסים↑, בבינסקי, בלי ניוון/פסיקולציות, דפוס פירמידלי.</li>
+<li>LMN: ניוון, פסיקולציות, טונוס↓, רפלקס↓/נעדר, דיסטלי/סגמנטלי.</li>
+<li>שריר: חולשה פרוקסימלית סימטרית, רפלקסים תקינים; NMJ: חולשה עם עייפות בחזרות.</li>
+<li>המיפרזיס: מוח (שפה, שדה ראייה) / קפסולה פנימית (pure motor) / גזע (crossed) / שדרה צווארית (Brown-Séquard).</li>
+<li>פרפרזיס חריף: MRI שדרה; cauda equina = סוגרים + הירך הקדמית שמורה.</li>
+<li>קוודריפרזיס: CT/MRI אם ירידה בהכרה; אחרת MRI צוואר לפי סימני UMN, או CK + אלקטרוליטים + EMG/NCS.</li></ul></div>
+<script>
+// שאלון לחיץ - עובד בקובץ נייד ובארטיפקט כאחד, בלי ספרייה חיצונית.
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+
+</script></body></html>
