@@ -76,10 +76,36 @@
     h1{font-size:24px}
     h2{font-size:19px}
   }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
 </style>
 </head>
 <body>
-<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
 
 <h1>פרק 19: פמיניזציה של הפנים <span class="term" dir="ltr">Facial Feminization</span></h1>
 <div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 17 בכרך, מאת Capitán, Simon ו-Capitán-Cañadas</div>
@@ -124,6 +150,7 @@
 </svg>
 <p class="figcap">שרשרת סיבתית: ההבחנה בין מבני (לניתוח) למשני (להורמונים) קובעת את סדר הטיפול.</p>
 
+<figure class="bookfig"><img src="../images/19/fig1.jpg" alt="האזורים המגדריים בגולגולת ובצוואר" loading="lazy" style="max-width:420px"><figcaption>האזורים העיקריים שקשורים לזהות מגדרית (מלמעלה למטה): מצח וחלל fronto-naso-orbital, המעבר הפרונטו-נזלי, אף, אזור הלחי, הלסת התחתונה וסחוס התירואיד — <span dir="ltr">Neligan 5th ed., Fig. 17.2</span></figcaption></figure>
 <h2><span class="num">2</span> אנטומיה – מה גברי בכל אזור</h2>
 <table>
   <thead><tr><th>אזור</th><th>המאפיין הגברי</th><th>הערה חשובה</th></tr></thead>
@@ -150,6 +177,7 @@
   </tbody>
 </table></div>
 
+<figure class="bookfig"><img src="../images/19/fig2.jpg" alt="סוגי קו שיער טרנס-פמיניני" loading="lazy"><figcaption>סוגי קו שיער טרנס-פמיניני (Type I ואילך) – הבסיס לתכנון הנמכת קו השיער — <span dir="ltr">Neligan 5th ed., Fig. 17.6</span></figcaption></figure>
 <h2><span class="num">3</span> הערכה, אבחון ותכנון</h2>
 <ul>
   <li><b>צילום 2D/3D</b> (סטריאופוטוגרמטריה, דיוק &lt;1 מ"מ), <b>CT עם שחזור 3D</b> (קריטי לבדיקת הסינוס הפרונטלי), <b>תכנון וירטואלי + הדפסת 3D</b> (מודלים ומדריכי חיתוך – cutting guides).</li>
@@ -158,8 +186,10 @@
 </ul>
 <div class="key-box">קריטריונים לבחירת מטופלת: כשירות לניתוח גדול, מוכנות נפשית, ציפיות ריאליות, הבנת הפרוצדורות והחלופות, הסכמה מדעת, ו<b>רצוי לפחות שנה של HT והסרת שיער פנים</b>.</div>
 
+<figure class="bookfig"><img src="../images/19/fig3.jpg" alt="מקרה לפני ואחרי FGCS עם סריקת 3D-CT" loading="lazy"><figcaption>מקרה לפני ואחרי ניתוח אישור מגדר בפנים (FGCS) עם 3D-CT: שחזור מצח, השתלת שיער, ריינופלסטיקה וקונטורינג של הלסת והסנטר — <span dir="ltr">Neligan 5th ed., Fig. 17.8</span></figcaption></figure>
 <h2><span class="num">4</span> השליש העליון – שיחזור מצח וקו שיער</h2>
 <p><b>שיחזור מצח</b> (<span class="term" dir="ltr">Forehead Reconstruction, FR</span>) הוא אחת הפרוצדורות הבסיסיות. מטרות: לפתוח את הזווית הפרונטו-נאזלית, להזיז לאחור את כל המצח כולל הדופן הקדמית של הסינוס הפרונטלי בצורה עגולה, לפתוח את ארובות העיניים, לרכך את המשטח, ולהחזיר את הגבות מעל הרכס החדש.</p>
+<figure class="bookfig"><img src="../images/19/fig4.jpg" alt="גישות fronto-naso-orbital" loading="lazy"><figcaption>שלוש גישות: קורונלית דרך קו השיער, קורונלית מותאמת ברמה הטמפורו-פריאטלית, וקורונלית אחורית — <span dir="ltr">Neligan 5th ed., Fig. 17.12</span></figcaption></figure>
 <h3>טכניקת FR – שלבים</h3>
 <ol>
   <li><b>גישה:</b> coronal מותאם (קדמי/אחורי) או דרך קו השיער. חתך אלכסוני בזווית 35–45° משמר זקיקים, כך ששיער צומח דרך הצלקת. החתך מאפשר הסרת אליפסת קרקפת עודפת.</li>
@@ -173,6 +203,7 @@
 </ol>
 <p class="key-box">לפני האוסטאוטומיה בודקים ב-CT: עובי הדופן הקדמית, נפח הסינוס, התפשטות לצדדים ולתקרת הארובה, והקרנה. אלה קובעים אם השיחזור פשוט (ברגים ולוחיות) או מורכב (ברגים + רשת). יש חולות <b>ללא סינוס</b> (אגנזיס) – גם הן מטופלות באותה גישה.</p>
 
+<figure class="bookfig"><img src="../images/19/fig5.jpg" alt="Upper forehead setback" loading="lazy" style="max-width:420px"><figcaption>הסטה אחורה של המצח העליון (upper setback): לפני, בשלב הביניים (עם סימון הקו) ואחרי — <span dir="ltr">Neligan 5th ed., Fig. 17.16</span></figcaption></figure>
 <h3>קו שיער: השתלה, הנמכה והשתלה סימולטנית</h3>
 <table>
   <thead><tr><th>שיטה</th><th>מהות</th><th>הערות</th></tr></thead>
@@ -212,6 +243,7 @@
   <li><b>הגדלת לחיים:</b> שתל קשיח מקובע בברגים (גישה תוך-פומית, יציב אך עלול להיראות מלאכותי אם הנפח לא מחושב), או <b>השתלת שומן</b> (עד 50–65% נספג, לעיתים דרושים כמה מפגשים, ובנוסף משפר את איכות העור).</li>
 </ul>
 
+<figure class="bookfig"><img src="../images/19/fig6.jpg" alt="תכנון הרמת שפה ותוצאה" loading="lazy" style="max-width:440px"><figcaption>תכנון הרמת שפה עליונה (lip lift) ותוצאה לאחר הניתוח — <span dir="ltr">Neligan 5th ed., Fig. 17.41</span></figcaption></figure>
 <h3>לסת תחתונה וסנטר (<span class="term" dir="ltr">Lower Jaw Contouring</span>)</h3>
 <p>מטרות: הקטנת הממד האנכי/רוחבי, ריכוך הזוויות הגוניאליות, עיצוב קו הלסת ושינוי נפח, צורה ומיקום של הסנטר. <b>לא נועד לטפל באוקלוזיה.</b> הכלים: קדחים מהירים ו<b>אולטרסאונד</b> (במיוחד באזורים קשי גישה, חיתוכים בעקמומיות, ובעיקר ליד רקמות רגישות).</p>
 <ol>
@@ -223,6 +255,8 @@
 </ol>
 <div class="key-box">אחרי קונטורינג נרחב עלולה להופיע או להחמיר צניחת רקמות רכות (jowls). בחולות מעל גיל 45 עם הסרה &gt;5 מ"מ מהגבול – מיידעים על אפשרות להרמת פנים וצוואר 9–12 חודשים אחר כך. חלופות פחות פולשניות: HIFU, רדיו-תדר.</div>
 
+<figure class="bookfig"><img src="../images/19/fig7.jpg" alt="Triple approach מול degloving" loading="lazy"><figcaption>גישת triple (שמאל) מול degloving (ימין, דיסקציה בגופה): חשיפת עצב הסנטר מוגברת ב-degloving — <span dir="ltr">Neligan 5th ed., Fig. 17.51</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/19/fig8.jpg" alt="הנמכת הסנטר בפיזיוסורגריה" loading="lazy" style="max-width:560px"><figcaption>צמצום גובה אנכי של הסנטר בעזרת אולטרסאונד/פיזיוסורגריה — <span dir="ltr">Neligan 5th ed., Fig. 17.58</span></figcaption></figure>
 <h3>קונטורינג תפוח אדם (<span class="term" dir="ltr">Adam's Apple / Tracheal Shave</span>)</h3>
 <ul>
   <li><b>חתך קטן (&le;2 ס"מ) מתחת לסנטר (submental)</b>, רחוק מהסחוס – מונע צלקת ודבקות.</li>
@@ -231,6 +265,7 @@
   <li><b>סיכון קריטי:</b> פגיעה בהיאחזות הקדמית של מיתרי הקול (שינוי קול) – מכאן הגבלת הדיסקציה לאזורים בטוחים.</li>
 </ul>
 
+<figure class="bookfig"><img src="../images/19/fig9.jpg" alt="קונטורינג תפוח אדם" loading="lazy" style="max-width:420px"><figcaption>מבנה הקנה וחתך תת-סנטרי (17.60) וסימון החתך לניתוח תפוח האדם (17.61) — <span dir="ltr">Neligan 5th ed., Fig. 17.60, 17.61</span></figcaption></figure>
 <h2><span class="num">6</span> תזמון, סדר ניתוחים והחלמה</h2>
 <table>
   <thead><tr><th>נושא</th><th>המלצה</th></tr></thead>
@@ -400,6 +435,87 @@ document.querySelectorAll('table').forEach(function(t){
   t.parentNode.insertBefore(wrap, t);
   wrap.appendChild(t);
 });
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
 </script>
 </body>
 </html>

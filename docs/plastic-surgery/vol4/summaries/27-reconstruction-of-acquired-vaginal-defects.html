@@ -76,11 +76,37 @@
     h1{font-size:24px}
     h2{font-size:19px}
   }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
 </style>
 </head>
 <body>
 
-<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
 
 <h1>פרק 27: שחזור פגמים נרתיקיים נרכשים <span class="term" dir="ltr">Reconstruction of Acquired Vaginal Defects</span></h1>
 <div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: גו וגפה תחתונה | חלק II: Trunk, Perineum, and Transgender | פרק 15 בספר, מאת Jazayeri, Pusic ו-Cordeiro</div>
@@ -149,6 +175,7 @@
 </svg>
 <p class="figcap">בחירת הפלאפ נגזרת מהסיווג, והמטרות הן חמש: פצע, חלל מת, רצפת אגן, גוף, מין.</p>
 
+<figure class="bookfig"><img src="../images/27/fig2.jpg" alt="סיווג פגמים נרכשים בנרתיק" loading="lazy" style="max-width:460px"><figcaption>סיווג הפגמים: סוג I חלקי (IA – דופן קדמית/צדית, IB – דופן אחורית) וסוג II היקפי (IIA – שני-שלישים עליונים, IIB – כולל). מעל: שרטוט הנרתיק (A קדמי, P אחורי) — <span dir="ltr">Neligan 5th ed., Fig. 15.1, 15.2</span></figcaption></figure>
 <h2><span class="num">3</span> התכנון לפני הניתוח</h2>
 <p>הצלחה תלויה ב<b>גישה רב-תחומית</b>: מנתח אונקולוגי ומשחזר (תכנון הפגם הצפוי ומיקום הסטומה), הרדמה (עומס המודינמי), רדיותרפיה (ההקרנה משפיעה גם על אתר המקבל וגם על התורם), אונקולוגיה רפואית (תזמון כימותרפיה מול ריפוי פצע), ובמקרים רבים גם <b>פסיכיאטר ומטפל מיני</b>. חשוב להגדיר עם המטופלת ובני משפחתה את המטרות בפירוט.</p>
 <div class="key-box"><b>ההבדל בין שחזור אנטומי לתפקוד מיני:</b> במחקר של Ratliff (שחזור בגרסיליס), ב-70% נמצא נרתיק תקין פיזית, אך פחות מ-50% חזרו לפעילות מינית. הסיבות: חוסר הנאה (37%), יובש (32%), הפרשות עודפות (27%), מבוכה מהסטומה (40%) ומעירום מול בן/בת הזוג (30%). הקביעה החשובה: <b>הגורם המנבא החשוב ביותר לפעילות מינית אחרי הניתוח הוא פעילות מינית קודמת</b>, ולא סוג השחזור.</div>
@@ -157,6 +184,7 @@
 <h3>4.1 פלאפ סינגפור מותאם (<span class="term" dir="ltr">Singapore / pudendal thigh flap</span>) – סוג IA</h3>
 <p>פלאפ פסציוקוטנאי, אמין וגמיש, המתאים יפה לפני השטח של הגליל הנרתיקי. <b>אספקת דם:</b> העורקים הלביאליים האחוריים; <b>עצבוב:</b> ענפים פרינאליים של העצב העורי האחורי של הירך. מתוכנן בקפל הירך, לרוחב לביה מג'ורה חסרות השיער, בגודל 9×4 עד 15×6 ס"מ. מסמנים את השוליים האחוריים ברמת ה-<span class="term" dir="ltr">posterior fourchette</span>; מרימים עור, תת-עור, פאשיה עמוקה ואפימיזיום של שרירי האדוקטור. אפשר פלאפ חד-צדדי או דו-צדדי; הפלאפ מוכנס דרך מנהרה מתחת ללביה או בחיתוך הלביה, ואתר התורם נסגר ראשונית.</p>
 
+<figure class="bookfig"><img src="../images/27/fig3.jpg" alt="הפלאפ הפאשיוקוטנאי של סינגפור (מותאם)" loading="lazy" style="max-width:460px"><figcaption>הפלאפ של סינגפור המותאם: סימון, הרמה והחדרת הפלאפ לפגם (A–D) — <span dir="ltr">Neligan 5th ed., Fig. 15.3</span></figcaption></figure>
 <h3>4.2 פלאפ רקטוס מיוקוטנאי פדיקלי (<span class="term" dir="ltr">VRAM</span>) – סוג IB</h3>
 <p>נפח גדול + שטח עור גדול: העור מחליף את כל הדופן האחורית, והשריר והתת-עור מביאים רקמה מושקית <b>שממלאת את החלל המת ומפרידה בין תוכן הבטן לאזור הפגיעה</b>. אספקת דם: כלי האפיגסטריקה התחתונים העמוקים (<span class="term" dir="ltr">DIEA/V</span>), הנכנסים לשריר בדופנו האחורית-צדדית <b>6–7 ס"מ מעל נקודת ההיצמדות שלו לעצם הערווה (pubis)</b>.</p>
 <ul>
@@ -167,6 +195,7 @@
   <li><b>לפרוסקופי/רובוטי:</b> אפשרי; הנדן הקדמי נשאר שלם.</li>
 </ul>
 
+<figure class="bookfig"><img src="../images/27/fig4.jpg" alt="פלאפ רקטוס מיוקוטנאי פדיקלי" loading="lazy" style="max-width:460px"><figcaption>פלאפ רקטוס אבדומיניס מיוקוטנאי פדיקלי (אנכי): האי הפדיקלי מועבר מהבטן אל האגן — <span dir="ltr">Neligan 5th ed., Fig. 15.5</span></figcaption></figure>
 <h3>4.3 סוג IIA – רקטוס מגולגל, סיגמואיד או ג'ג'ונום</h3>
 <p>מעדיפים רקטוס על פני גרסיליס דו-צדדי, כי שרירי רצפת האגן והערווה שביניהם מונעים העברת הגרסיליס אל הפגם. <b>העור "מגולגל" לצינור</b> (מעדיפים אי עור רוחבי – קל יותר לתמרון ופדיקל ארוך מעט יותר): רוחב 12–15 ס"מ נותן ניאו-וגינה בקוטר 4 ס"מ, ותופרים לשארית הנרתיק מלמעלה. כשהרקטוס אינו זמין:</p>
 <table>
@@ -180,6 +209,7 @@
 <h3>4.4 סוג IIB – גרסיליס דו-צדדי</h3>
 <p>נדרש אי עור גדול. הפלאפים המחוברים נותנים נפח ומילוי לחלל האגן. <b>אספקת דם:</b> העורק הצירקומפלקסי הפמורלי המדיאלי, הנכנס לשריר 7–10 ס"מ מתחת לפקעת הערווה. אי עור אליפטי בערך 6×20 ס"מ במרכז שני שלישים פרוקסימליים, עם גבול קדמי על הקו שבין פקעת הערווה לגיד ה-semitendinosus. הפלאפים עוברים בתעלה תת-עורית, נתפרים באמצע ליצירת שק ניאו-וגינלי, והקצוות הפרוקסימליים נתפרים לפתח. הפלאפ עשוי לשמר תחושת לחץ דרך ענפי העצב האובטורטורי.</p>
 
+<figure class="bookfig"><img src="../images/27/fig5.jpg" alt="שני פלאפי גרסיליס לסוג IIB" loading="lazy"><figcaption>שני פלאפי גרסיליס דו-צדדיים לפגם מסוג IIB: אנטומיה, תכנון, הרמה והחדרה (A–F) — <span dir="ltr">Neligan 5th ed., Fig. 15.8</span></figcaption></figure>
 <h3>4.5 שיקולים מותאמי מטופלת</h3>
 <table>
   <thead><tr><th>מצב</th><th>התאמה</th></tr></thead>
@@ -358,6 +388,87 @@ document.querySelectorAll('table').forEach(function(t){
   t.parentNode.insertBefore(wrap, t);
   wrap.appendChild(t);
 });
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
 </script>
 </body>
 </html>

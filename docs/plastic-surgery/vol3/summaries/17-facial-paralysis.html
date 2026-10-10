@@ -76,11 +76,37 @@
     h1{font-size:24px}
     h2{font-size:19px}
   }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
 </style>
 </head>
 <body>
 
-<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
 
 <h1>פרק 17: שיתוק עצב הפנים <span class="term" dir="ltr">Facial Paralysis</span></h1>
 <div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck Surgery and Pediatric Plastic Surgery | פרק 15 בספר, מאת Daeschler, Zuker ו-Borschel</div>
@@ -112,6 +138,8 @@
   </tbody>
 </table>
 
+<figure class="bookfig"><img src="../images/17/fig1.jpg" alt="דפוס ההסתעפות של עצב הפנים" loading="lazy"><figcaption>דפוס טיפוסי של הסתעפות עצב הפנים (VII), כולל מסלול תוך-גולגולתי, ענפים והשרירים שהוא מעצבב — <span dir="ltr">Neligan 5th ed., Fig. 15.1</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/17/fig2.jpg" alt="שרירי הבעת הפנים בשתי שכבות" loading="lazy"><figcaption>שרירי הבעת הפנים מסודרים בשתי שכבות (העמוקה כוללת buccinator, depressor labii inferioris, levator anguli oris ו-corrugator) — <span dir="ltr">Neligan 5th ed., Fig. 15.2</span></figcaption></figure>
 <h2><span class="num">2</span> מה קורה כשהעצב נפגע: ביטוי קליני ו"למה"</h2>
 <div class="mechanism">
   <p class="chain"><b>עין:</b> חולשת ה-orbicularis oculi &#8592; סגירה חלקית (<span class="term" dir="ltr">lagophthalmos</span>) וניקוז/פיזור דמעות לקוי &#8592; חשיפת הקרנית והתייבשות &#8592; גירוי ריפלקסיבי של דמעות, שאין כוח לנקז &#8592; <b class="key">דמעת יתר (epiphora) למרות "עין יבשה"</b>, בעיקר בהטיית הראש קדימה. עם הזמן מרפיון הרקמה והכבידה העפעף התחתון נשמט (<span class="term" dir="ltr">scleral show</span>) ומתהפך (<span class="term" dir="ltr">ectropion</span>) &#8592; הפונקטום מתרחק מהעין, הניקוז נפגע עוד ושכיחות החשיפה עולה: מעגל קסמים.</p>
@@ -199,9 +227,11 @@
 <h3>משקולת זהב (<span class="term" dir="ltr">gold weight</span>) – הפרטים שחשוב לדעת</h3>
 <p>מטרת המשקולת לאזן את ה-levator במשקל. <b>זהב 24K</b> (אינרטי; אלרגיה נדירה – אלטרנטיבה פלטינה), משקל 0.8–1.8 גרם, בדרך כלל <b>0.8–1.2 גרם</b>. הבחירה: הדבקת משקולות ניסיון על ה-tarsal plate בחולה ער ובחירת <b>הקלה ביותר</b> שמביאה את העפעף העליון ל-2–4 מ"מ מהתחתון ומכסה את הקרנית. <b>כלל 5 מ"מ</b>: אם חשיפת עור מעל הריסים בעיניים פקוחות &gt;5 מ"מ, המשקולת תהיה נראית; פחות מ-5 מ"מ &#8592; תוסתר בקפל. קיבוע בתפרים קבועים דרך החצי העליון של ה-tarsal plate, בלי לפגוע בהיצמדות Müller. הסגירה איטית – על החולה להרפות את ה-levator 1–2 שניות. סיבוכים: extrusion, קפסולה, גירוי (הוצאה ב-2%, תיקון ב-8%). כ-50% משתפרים טוב, אך עד שני שלישים זקוקים גם ל-<b>sling תחתון</b>; השילוב בניתוח אחד מביא שיפור סימפטומטי ב-<b class="key">95%</b>.</p>
 
+<figure class="bookfig"><img src="../images/17/fig4.jpg" alt="השתלת משקולת זהב בעפעף העליון" loading="lazy"><figcaption>משקולת זהב: מונחת מעל הקרנית בחצי העליון של ה-tarsal plate (A) ותפורה כשהקשרים מופנים הרחק מהעור (B) — <span dir="ltr">Neligan 5th ed., Fig. 15.8</span></figcaption></figure>
 <h3>עפעף תחתון ו-tendon sling</h3>
 <p>Tendon sling (palmaris longus או plantaris, רצועה ברוחב 1.5 מ"מ) נתפר ל-orbital rim מעל תפר zygomaticofrontal, מועבר תת-עורית לאורך העפעף 1.5–2 מ"מ מתחת ל-<span class="term" dir="ltr">gray line</span> ומוצמד ל-medial canthal ligament. מיקום נמוך מדי מחמיר ectropion; גבוה/שטחי בקשישים &#8592; entropion. מועדף על fascia lata (עמיד יותר מפני מתיחה); ניתן לכוונון עד שבוע. בתכנון משפיע ה<b>-vector</b>: ב-vector שלילי (עפעף ולחי מאחורי מישור הגלובוס) ה-sling מתקן ectropion אך לא בהכרח scleral show.</p>
 
+<figure class="bookfig"><img src="../images/17/fig5.jpg" alt="סלינג סטטי לתמיכה בעפעף התחתון" loading="lazy"><figcaption>סלינג סטטי לעפעף התחתון: חתכים (A), חיבור לרצועה הקנטלית המדיאלית ולפריוסט שפת הארובה הצדדית (B), ולאחר קיבוע (C) — <span dir="ltr">Neligan 5th ed., Fig. 15.14</span></figcaption></figure>
 <h2><span class="num">7</span> שחזור הפרצוף התחתון: עקרונות החייאה</h2>
 <div class="mechanism">
   <p class="chain">אסטרטגיה לפי שלושה משתנים: <b>(1)</b> האם העצב ניתן לתיקון? <b>(2)</b> האם השריר עדיין ניתן להחייאה (דנרבציה &lt;18 חודש, EMG fibrillations)? <b>(3)</b> האם העצב הבריא הנגדי זמין והאם החולה מתאים/מוכן לשריר חופשי? כל החייאה (תיקון עצב או העברת עצב) מסתמכת על הגעת אקסונים לשריר חי לפני שהוא מתנוון.</p>
@@ -217,9 +247,11 @@
   </tbody>
 </table>
 
+<figure class="bookfig"><img src="../images/17/fig7.jpg" alt="הערכת חיוך לפני ניתוח" loading="lazy"><figcaption>הערכת חיוך לפני ניתוח: וקטור התנועה של זוית הפה והשפה העליונה (A) וסימון הקפל הנזו-לביאלי בצד הבריא (N) והעתקתו לצד המשותק (P) (B) — <span dir="ltr">Neligan 5th ed., Fig. 15.19</span></figcaption></figure>
 <h3>העברת עצב ו-"babysitter"</h3>
 <p>עצב <b>CFNG</b> מנצל את העיצוב הסימטרי של שני צדי הפנים. כדי למנוע ניוון של השריר בזמן שאקסוני העצב הנגדי מתקדמים (לאט) לאורך הגרפט, מוסיפים <b>עצב ipsilateral</b> – "בייביסיטר" (masseter או hypoglossal): תוך 2–3 חודשים הוא מחדש חלקית את העצבוב, השריר מקבל טונוס ומתחיל לפעול בתנועת "מסה"; כשאקסוני ה-VII הנגדי מגיעים התנועה הופכת ספונטנית ועדינה יותר. <b>Supercharging</b> = הוספת עצב חזק לענף קטן אך ספציפי; <b>dual innervation</b> = שילוב איכותי (למשל hypoglossal לטונוס + masseter לתנועה).</p>
 
+<figure class="bookfig"><img src="../images/17/fig6.jpg" alt="ניתוח ה-babysitter" loading="lazy" style="max-width:420px"><figcaption>ניתוח ה-babysitter: עצב ה-masseter מועבר לענפי עצב הפנים באמצעות שתלי עצב (ירוק) לשימור השריר, בעוד שתלי cross-face (אדום) מחכים לחידוש עצבוב מהצד הבריא — <span dir="ltr">Neligan 5th ed., Fig. 15.16</span></figcaption></figure>
 <h3>טרנספוזיציה של שריר</h3>
 <p>Temporalis ו-masseter מעוצבים ע"י V ולכן נדרשת <b>הידוק שיניים</b> כדי לחייך; חיוך ספונטני כמעט לא חוזר, והתזוזה בדרך כלל נמוכה יותר משריר חופשי. יתרון: תוצאה מיידית, ניתוח פשוט ללא מיקרווסקולרי – מתאים לקשישים או למחלות קרישה. ב-<b>turnover</b> הבליטה מעל הקשת הזיגומטית והחלל הטמפורלי; <b>Labbé lengthening myoplasty</b> משחרר את השריר מהפוסה, מזיז את גיד ה-temporalis מ-<span class="term" dir="ltr">coronoid process</span> לזווית הפה דרך חתך nasolabial ללא fascia graft (נמנע מהתארכות הגרפט). Masseter: קל לשליטה סטטית אך <b>חסר excursion</b>, וקטור אופקי, חלל מעל זווית הלסת; ניתן לשלב temporalis (שפה עליונה ולחי) עם masseter (זווית ושפה תחתונה).</p>
 
@@ -244,6 +276,8 @@
 <p><b>שלב ראשון CFNG:</b> חשיפת ענפי VII הבריא דרך חתך pre-auricular עם הרחבה תת-לסתית, <b>functional nerve mapping</b> לזיהוי ענף שמפעיל רק את זווית הפה (בדרך כלל 2–4 ענפים דומים &#8592; אפשר לקחת אחד בלי נזק), תפירה לגרפט sural (לרוב) והנחה תת-עורית מעבר לקו האמצע – "מאוחסן" בסולקוס הבוקלי העליון. <b>שלב שני</b>: השתלת gracilis וחיבור עצבי לקצה הדיסטלי שחודש. <b>הגרפט מומלץ במצב הפוך (reversed)</b> כדי להכווין את האקסונים ולהפחית דליפה לענפים חתוכים. כמות אקסונים משפיעה: כ-900 אקסונים מיאלינים כ"סף" שמעליו תוצאות טובות; הטווח בין ענפים 150–3000. בחירת ענף בקוטר גדול ובטעינת אקסונים גבוהה משפרת תוצאה.</p>
 <p><b>ניתוח חד-שלבי עם cross-face</b> אפשרי אך מוגבל לענפים דיסטליים קטנים; לכן המחברים מעדיפים דו-שלבי.</p>
 
+<figure class="bookfig"><img src="../images/17/fig8.jpg" alt="הוצאת שריר gracilis" loading="lazy" style="max-width:420px"><figcaption>הוצאת שריר ה-gracilis: הכנה בירך (A) ופיצול אורכי של החצי הקדמי של השריר (B) — <span dir="ltr">Neligan 5th ed., Fig. 15.20</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/17/fig9.jpg" alt="שריר חופשי לשחזור חיוך" loading="lazy" style="max-width:420px"><figcaption>שריר חופשי להחייאת הפנים: חיבור כלי הדם לעורק ולווריד הפנים, חיבור העצב לשתל cross-face, וקיבוע השריר סביב הפה — <span dir="ltr">Neligan 5th ed., Fig. 15.23</span></figcaption></figure>
 <h3>Static slings ושפה תחתונה</h3>
 <p>Slings נועדו לסימטריה במנוחה ללא תנועה, כתוספת מיידית. מועדפים אוטולוגיים (tendon: palmaris longus/plantaris/EDL) על Gore-Tex. כ-3 slings, תיקון יתר מעט (למתיחה ולטונוס הצד הבריא), קיבוע ל-temporal fascia או zygoma. הידוק יתר בשפה העליונה עלול לפגוע בהחזקת פה. לשפה תחתונה: <b>כריתת <span class="term" dir="ltr">depressor labii inferioris</span> בצד הבריא</b> (myectomy ולא myotomy – תוצאות קבועות; ניתן להקדים הזרקת בוטוקס או חומר הרדמה ארוך טווח כמבחן לפני הכריתה). כ-75% מדווחים על שיפור סימטריית שפה בחיוך, כמחצית – סימטרי לגמרי; הדיבור ללא שינוי ב-75% ומשתפר ב-25%; כ-90% מדווחים שהשליטה בפה לא השתנתה או השתפרה.</p>
 
@@ -409,6 +443,87 @@ document.querySelectorAll('table').forEach(function(t){
   t.parentNode.insertBefore(wrap, t);
   wrap.appendChild(t);
 });
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
 </script>
 </body>
 </html>

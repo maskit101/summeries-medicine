@@ -76,11 +76,37 @@
     h1{font-size:24px}
     h2{font-size:19px}
   }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
 </style>
 </head>
 <body>
 
-<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
 
 <h1>פרק 32: ניתוח עפעפיים משני <span class="term" dir="ltr">Secondary blepharoplasty</span></h1>
 <div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: Aesthetic Surgery | פרק 14 בכרך, מאת Seth Z. Aschen ו-Henry M. Spinelli</div>
@@ -104,6 +130,7 @@
 </tbody></table>
 <p class="key-box">כל מרכיבי הרטינקולום הלטרלי חייבים להיות מטופלים <b>לפני</b> הזזת הקנתוס; ובמדיאלי יש להזיז את <b>כל</b> המבנה כיחידה ולשמור על ה-canaliculi.</p>
 
+<figure class="bookfig"><img src="../images/32/fig1.jpg" alt="אזורי העפעפיים והאזור הפריאוקולרי" loading="lazy"><figcaption>חמשת האזורים: I עפעף עליון, II עפעף תחתון, III מבנים מדיאליים (מערכת הניקוז הדמעתי), IV קנטוס צידי, V האזור הפריאוקולרי (גבה, לחי, רקות) שנותן תמיכה לעפעף — <span dir="ltr">Neligan 5th ed., Fig. 14.1</span></figcaption></figure>
 <h3>הזדקנות</h3>
 <p>רפיון ה-orbicularis והרצועות + כוח הכבידה &#8658; <b>ירידת הקנתוס הצדדי</b>, קיצור המרחק הבין-קנתלי, רפיון הספטום, פריצת שומן צדדי (<span class="term" dir="ltr">pseudoherniation</span>), ו-scleral show/ectropion/entropion. גם הגבה יורדת (<span class="term" dir="ltr">brow ptosis</span>) והקשר בין כל חלקי המישור הפרי-אורביטלי קובע שחובה להעריך <b>גבה ולחי</b> ולא רק את העפעף. בעפעף האסייתי (levator נקשר לעור נמוך יותר) קפל נמוך הוא אנטומי תקין.</p>
 
@@ -112,6 +139,7 @@
 <svg class="diagram" viewBox="0 0 860 120" xmlns="http://www.w3.org/2000/svg"><title>שרשרת כשל העפעף התחתון</title><rect x="700" y="20" width="140" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="770" y="45" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כריתת עור/שריר יתר</text><text x="770" y="65" font-size="12" text-anchor="middle" fill="#7f1d1d">ו/או הרפיית canthus</text><rect x="470" y="20" width="160" height="64" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="550" y="45" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">צלקת + קיצור למלה</text><text x="550" y="65" font-size="12" text-anchor="middle" fill="#78350f">(קדמית/אמצעית)</text><rect x="240" y="20" width="160" height="64" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="320" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">וקטור משיכה כלפי מטה</text><text x="320" y="65" font-size="12" text-anchor="middle" fill="#1e3a8a">גובר על התמיכה</text><rect x="20" y="20" width="160" height="64" rx="8" fill="#f5f3ff" stroke="#6d28d9"/><text x="100" y="45" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">Scleral show</text><text x="100" y="65" font-size="12" text-anchor="middle" fill="#4c1d95">ectropion, chemosis</text><line x1="700" y1="50" x2="630" y2="50" stroke="#374151" stroke-width="2"/><polygon points="630,50 644,44 644,56" fill="#374151"/><line x1="470" y1="50" x2="400" y2="50" stroke="#374151" stroke-width="2"/><polygon points="400,50 414,44 414,56" fill="#374151"/><line x1="240" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/><polygon points="180,50 194,44 194,56" fill="#374151"/></svg>
 <p class="figcap">כשל התמיכה בעפעף התחתון</p>
 
+<figure class="bookfig"><img src="../images/32/fig2.jpg" alt="שינויי הקנטוס הצידי עם הגיל" loading="lazy"><figcaption>ירידת הקנטוס הצידי: מזווית חיובית (+10–15°) דרך אפס לשלילית (−10–15°) – מייצרת scleral show, ectropion/entropion וירידה בניקוז הדמעות — <span dir="ltr">Neligan 5th ed., Fig. 14.5</span></figcaption></figure>
 <h2><span class="num">4</span> הערכה לפני ניתוח משני</h2>
 <h3>אנמנזה</h3>
 <p>מחלת בלוטת התריס (Graves – פרופטוזיס, retraction), עיניים יבשות, עדשות מגע, ניתוח רפרקטיבי, blepharitis, הרפס זוסטר, ניתוחי עיניים/עפעפיים קודמים (תאריך, גישה, חומרים). חשוב להבחין בין <b>רצון אסתטי</b> למציאות פיזיולוגית – טעות להגדיל חשיפת קרנית בחולה עם עין יבשה.</p>
@@ -127,6 +155,7 @@
 </tbody></table>
 <div class="key-box">בדיקת "שתי אצבעות": הרימי את הקנתוס באצבע – אם התיקון מספיק, <b>קנתופקסי/קנתופלסטי בלבד</b>. אם צריך אצבע שנייה שמרימה את הלחי &#8658; <b>midface suspension</b>. אם שניהם נכשלים &#8658; <b>spacer graft</b>. לא משתמשים בעפעף התחתון כדי לתמוך בלחי.</div>
 
+<figure class="bookfig"><img src="../images/32/fig3.jpg" alt="תמיכת הלחי: טובה מול חסרה" loading="lazy"><figcaption>תמיכת לחי: ב-A אפשר canthopexy לבדו; ב-B (ירידת רקמת הלחי) נדרשת גם suspension של האמצע-פנים — <span dir="ltr">Neligan 5th ed., Fig. 14.6</span></figcaption></figure>
 <h2><span class="num">5</span> ניתוחי תיקון בעפעף העליון</h2>
 <ul>
 <li><b>Levator dehiscence / ptosis</b> – הסיבוך השכיח בניתוח משני: ניתוק האפונורוזיס תוך כדי כריתת שומן רטרו-ספטלי או נתיחה. דרגות: קל 1-2 מ"מ, בינוני 2-3, חמור &gt;4. סימנים: קפל גבוה/נעלם, חלל שקוע. טיפול: <b>levator advancement</b> (בהרדמה מקומית ליצירת קפל; ניתן לשלב את העור ב-supratarsal fixation).</li>
@@ -136,6 +165,7 @@
 <li>לפני תיקון קובעים אם בעיית ה-malposition היא בעפעף או ב-<b>globe dystopia</b> (פרופטוזיס ב-Graves, enophthalmos אחרי שבר) – שני אלה אינם מתוקנים בניתוח עפעף.</li>
 </ul>
 
+<figure class="bookfig"><img src="../images/32/fig4.jpg" alt="סימון וכריתת עור בעפעף העליון" loading="lazy"><figcaption>סימוני קפל העפעף ושלבי כריתת עור ושריר מהעפעף העליון, עם שימור ה-levator ואיתור הספטום האורביטלי — <span dir="ltr">Neligan 5th ed., Fig. 14.21</span></figcaption></figure>
 <h2><span class="num">6</span> ניתוחי תיקון בעפעף התחתון</h2>
 <table><thead><tr><th>גישה / טכניקה</th><th>מתאים ל</th><th>הערות</th></tr></thead><tbody>
 <tr><td>Transconjunctival (preseptal עדיף; retroseptal אפשרי)</td><td>מטופל צעיר ללא ptosis של midface</td><td>פחות סיכון ל-retraction; תפר conjunctiva יחיד צדדי נגד cysts / גירוי</td></tr>
@@ -147,6 +177,7 @@
 </tbody></table>
 <p>לצד זאת: ב-involutional entropion הסיבה היא dehiscence של מכווצי העפעף + override של ה-septal orbicularis על הטרסוס, ולכן העפעף מתגלגל פנימה בעת מצמוץ.</p>
 
+<figure class="bookfig"><img src="../images/32/fig5.jpg" alt="בלפרופלסטיקה תחתונה טרנסקוטנית" loading="lazy"><figcaption>בלפרופלסטיקה תחתונה: חתך בגובה הקפל, פתיחת מישור פרה-סיפטלי, וטיפול בכריות השומן המדיאלית, המרכזית והצידית — <span dir="ltr">Neligan 5th ed., Fig. 14.23</span></figcaption></figure>
 <h2><span class="num">7</span> סיבוכים וניהולם</h2>
 <table><thead><tr><th>סיבוך</th><th>עיקר</th><th>טיפול</th></tr></thead><tbody>
 <tr><td><b>Retrobulbar hematoma</b></td><td>שכיחות כ-1:2000; אובדן ראייה כ-1:22,000. כאב, proptosis, ירידת חדות, מצב אישון, ירידה בתנועתיות, גלובוס קשה. דימום מהשומן השטחי המחובר לעמוק דרך מחיצות; יתר לחץ דם, aspirin, ויטמין E, הרדמה</td><td>חירום: <b>canthotomy + cantholysis</b> (קודם התחתון), סטרואידים, hyperosmolar (mannitol), acetazolamide, טיפות (timolol, dorzolamide, brimonidine); לא מכסים עין עם פצע; במקרים קשים דקומפרסיה של דופן אורביטלית תחתונה / paracentesis</td></tr>
@@ -157,6 +188,7 @@
 <tr><td>Chemosis</td><td>אחרי ניתוח / עם retraction</td><td>שמרני תחילה (טיפות, מניעת גירוי), לאחר מכן tarsorrhaphy / הדבקה זמנית</td></tr>
 </tbody></table>
 
+<figure class="bookfig"><img src="../images/32/fig6.jpg" alt="אלגוריתם לסיבוכי בלפרופלסטיקה לפי זמן" loading="lazy"><figcaption>אלגוריתם סיבוכים נפוצים לפי זמן מהניתוח: עד שבוע, 1–8 שבועות, 8 שבועות ואילך — <span dir="ltr">Neligan 5th ed., Fig. Algorithm 14.1</span></figcaption></figure>
 <h2><span class="num">8</span> טכניקת זכירה</h2>
 <div class="mnemonic">
 <h3>"קנ-מי-ספ": סולם התיקון של העפעף התחתון</h3>
@@ -263,6 +295,87 @@ document.querySelectorAll('table').forEach(function(t){
   t.parentNode.insertBefore(wrap, t);
   wrap.appendChild(t);
 });
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
 </script>
 </body>
 </html>

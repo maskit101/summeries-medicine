@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 31: שחזור כוויות בגפיים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 31: שחזור כוויות בגפיים <span class="term" dir="ltr">Extremity Burn Reconstruction</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | חלק Burn Surgery (פרק 19 בספר), מאת Sabapathy, Shanmugakrishnan ו-Muthukumar</div>
+
+<p>הפרק עוסק בשאלה "מה עושים עם הגפה במהלך כוויה ואחריה": איך מונעים את המחיר התפקודי כבר בשלב החריף (בצקת, פיצול, שחרור eschar, כריתה מוקדמת), ואיך מתקנים את <b>עיוותי ההמשך</b> (קונטרקטורות, סינדקטיליה, אובדן אצבעות, <span class="term" dir="ltr">HO</span>) ביד, בזרוע, בכתף ובגפה התחתונה. עיקרון העל: <b class="key">מטרת השחזור היא תפקוד (צביטה, אחיזה, הליכה), לא טווח תנועה של מפרק בודד</b>.</p>
+
+<h2><span class="num">1</span> השלב החריף – למה כוויה ביד "מתעמקת" ולמה היד נתקעת</h2>
+<div class="mechanism"><p class="chain">כוויה עמוקה &#8592; <b>אזור סטזיס</b> (זילוח איטי) &#8592; החייאה מאוחרת/היפוטנציה/וזופרסורים/זיהום &#8592; <b>המרה (conversion)</b> לאזור קרישה &#8592; עומק גדול יותר &#8592; יותר צלקת וקונטרקטורה. במקביל: eschar עבה וחסר גמישות &#8592; בצקת מתפתחת מתחתיו &#8592; לחץ עולה &#8592; <b>איסכמיה דיסטלית</b> &#8592; נדרשת <b>escharotomy</b>.</p></div>
+<p>היד היא רק 2–3% מה-TBSA אך מעורבת ביותר מ-90% מהכוויות הקשות, ופגיעה בה פוגעת ישירות בפרנסה. שלושת אזורי <span class="term" dir="ltr">Jackson</span>: קרישה (לא ברת-קיימא) – סטזיס (ניתן להצלה; הופך לקרישה בהחייאה לא מספקת/זיהום) – היפרמיה (מחלים).</p>
+<h3>Escharotomy – מתי ואיך</h3>
+<ul>
+  <li><b>סימנים לצורך:</b> אובדן הדרגתי של אות Doppler בקשת הפלמרית ושל אות ה-pulse oximetry בקצות האצבעות, והיד נעשית קרה. דופק במישוש קשה להרגשה ביד בצקתית, לכן משתמשים ב-Doppler.</li>
+  <li><b>טכניקה:</b> חתכים אורכיים בזרוע ובאמה ועל פני המרווחים הבין-מטקרפליים בגב היד, עם electrocautery מדויק; יש להגיע לעור תקין. eschar של full-thickness אינו כואב, אך עדיף הרדמה אזורית; יש להכין המוסטזיס.</li>
+  <li><b>אצבעות:</b> רק אם שחרור פרוקסימלי לא הספיק ויש כוויה היקפית. חתך <b>mid-lateral בצד הרחוק ממגע רגיל</b>: רדיאלי באגודל ובזרת, אולנרי באצבע מורה, אמצעית וטבעת. יש להיזהר מפגיעה על ידי הניתוח עצמו.</li>
+  <li><b>Escharotomy מול fasciotomy:</b> escharotomy שטחי לפני הפאשיה (כוויית להבה היקפית); fasciotomy מפרק לחץ תת-פאשיאלי ושכיח בכוויות חשמל.</li>
+</ul>
+
+<h2><span class="num">2</span> בצקת – "דבק רקמות" ולמה מפצלים את היד בתנוחה מוגנת</h2>
+<div class="mechanism"><p class="chain">בצקת בגב היד (העור שם רופף; עור כף היד קשור בעוגנים סיביים) &#8592; <b>היפר-אקסטנציה של MCP</b> &#8592; מתיחת מכופפים &#8592; <b>כיפוף IP</b> &#8592; <b>claw</b>. בנוסף: בצקת עשירה בחלבון "דביקה" &#8592; פיברוזיס &#8592; הידבקות גידים &#8592; קשיחות.</p></div>
+<svg class="diagram" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת היווצרות claw ביד כוויה</title>
+  <rect x="700" y="30" width="140" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">בצקת גב היד</text>
+  <text x="770" y="78" font-size="12" text-anchor="middle" fill="#7f1d1d">+ שורש כף כפוף</text>
+  <rect x="490" y="30" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="560" y="58" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">MCP בהיפר-</text>
+  <text x="560" y="78" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">אקסטנציה</text>
+  <rect x="280" y="30" width="140" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="350" y="58" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">מתיחת מכופפים</text>
+  <text x="350" y="78" font-size="12" text-anchor="middle" fill="#1e3a8a">IP מתכופפים</text>
+  <rect x="70" y="30" width="140" height="70" rx="8" fill="#f3f4f6" stroke="#374151"/>
+  <text x="140" y="58" font-size="13" text-anchor="middle" fill="#111827" font-weight="700">Claw קבוע</text>
+  <text x="140" y="78" font-size="12" text-anchor="middle" fill="#111827">+ boutonnière</text>
+  <line x1="700" y1="65" x2="650" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="630,65 650,59 650,71" fill="#374151"/>
+  <line x1="490" y1="65" x2="440" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="420,65 440,59 440,71" fill="#374151"/>
+  <line x1="280" y1="65" x2="230" y2="65" stroke="#374151" stroke-width="2"/>
+  <polygon points="210,65 230,59 230,71" fill="#374151"/>
+</svg>
+<p class="figcap">מנגנון ה-claw: בצקת בגב היד היא נקודת ההתחלה</p>
+<p><b>למה MCP בכיפוף ו-IP בהארכה?</b> במצב היפר-אקסטנציה של MCP נוצר מגע מינימלי בין משטחי המפרק ויש מקום לנוזל להצטבר &#8592; פיברוזיס וקשיחות; בכיפוף המגע גדל והמקום נעלם. ב-IP יש קונגרואנטיות בשני המצבים, ולכן מיישרים כדי למנוע התכווצות הקפסולה הוולרית. כיפוף IP עם כוויה בגב מותח את האקסטנסורים &#8592; סובלוקסציה וולרית של ה-lateral bands ושחיקת ה-central slip &#8592; <b>boutonnière</b>.</p>
+<p class="key-box"><b>תנוחת פיצול:</b> שורש כף ~20° אקסטנציה, MCP ~80° כיפוף, IP באקסטנציה, והגבהה מעל הלב מרגע הקבלה. בלי פיצול: שורש כף בכיפוף &#8592; MCP בהיפר-אקסטנציה &#8592; claw.</p>
+<p><b>זיהום:</b> ממיר כוויה שטחית לעמוקה ועלול להסתיים בספסיס. כריתה והשתלה מוקדמות מורידות זיהום, משך אשפוז ותמותה; כשהריפוי נמשך &gt;21 יום הסיכון לצלקת היפרטרופית וקונטרקטורה מגיע ל-<b>~80%</b>.</p>
+
+<h2><span class="num">3</span> כריתה ניתוחית של הכוויה – Tangential מול Fascial</h2>
+<table>
+  <thead><tr><th></th><th>Tangential excision</th><th>Fascial excision</th></tr></thead>
+  <tbody>
+    <tr><td><b>עומק מתאים</b></td><td>Deep dermal: העור לבן-חיוור, אינו מפתח שלפוחיות (או מאוחר), אינו מלבין או שהצבע חוזר לאט מאוד; ריפוי צפוי &gt;3 שבועות</td><td>Full-thickness עמוקה, ספסיס; כשחשיפת השומן יוצרת מצע גרוע להשתלה</td></tr>
+    <tr><td><b>עיקרון</b></td><td>הסרה בשכבות עד דרמיס חי (דימום נקודתי); כיסוי מיידי ב-STSG דק (התייבשות הדרמיס החשוף = אובדנו)</td><td>כריתה עד הפאשיה; השתלה על הפאשיה</td></tr>
+    <tr><td><b>יתרונות</b></td><td>שימור קונטור וגמישות; חזרה מהירה לעבודה (Janzekovic, יוגוסלביה שנות ה-60: 2615 חולים)</td><td>המוסטזיס קל (רק perforators גדולים), פתרון בספסיס</td></tr>
+    <tr><td><b>חסרונות</b></td><td>דימום; דורש מיומנות ותזמון</td><td>עיוות קונטור בלתי נמנע; <b>לימפאדמה</b> דיסטלית (בגדי לחץ)</td></tr>
+    <tr><td><b>תזמון/טכניקה</b></td><td>ימים 3–5 אחרי הכוויה, לפני זיהום; תחת חוסם עורקים עם dermatome ידני; אחרי שחרור החוסם רואים דימום נקודתי, ואזורים ללא דימום נכרתים שוב. המוסטזיס עם פדים ספוגי אדרנלין; החלפת חבישה אחרי שבוע, ריפוי בכשבועיים</td><td>כשמצב החולה/פרפוזיה מכתיבים: בספסיס נמק איסכמי של העור והשומן מזין זיהום פולשני</td></tr>
+  </tbody>
+</table>
+<p><b>למה STSG אחרי כריתה מלאה לא מספיק?</b> גמישות ועמידות השתל תלויות בעובי הדרמיס. כריתה עמוקה + STSG משאירה משטח נוקשה. <b>Integra</b> (Burke &amp; Yannas, 1981): שכבה חיצונית סילסטית (מונעת אידוי) ושכבה עמוקה של קולגן–chondroitin sulfate; רקמה צומחת פנימה תוך 2–3 שבועות, ואז מוסרים את הסיליקון ומניחים STSG דק; NPWT משפר take. מגבלה: מחיר, לכן בעיקר כוויות קטנות וביד. בשלב אחד השתל יציב ב-5–7 ימים; בשני שלבים נדרשת אימוביליזציה עד שבועיים (סכנה לקשיחות).</p>
+<h3>כוויה מדרגה רביעית (עד עצם)</h3>
+<ul>
+  <li>אצל אפילפטיים (בזמן פרכוס) ובחבלה תעשייתית; כדאי שחזור מדורג כשה-TBSA הכולל קטן.</li>
+  <li>כוויה בגב ה-IP: לשמור IP באקסטנציה, ב-<b>K-wires אלכסוניים</b> למניעת boutonnière ונמק של מצע האקסטנסור; אובדן מרוכב כולל אקסטנסורים: debridement וכיסוי ב-flap מפדיקל. מפרקים פתוחים מקובעים ב-K-wire בנייטרלי לפני ה-flap.</li>
+  <li>ארתרודזיס <b>לא</b> בשלב ראשוני; רק אחרי התייצבות ה-flap, אם המפרק נשאר לא יציב. יד משוחזרת עדיפה תפקודית על קטיעה עם תותב.</li>
+</ul>
+
+<h2><span class="num">4</span> עקרונות שחזור עיוותי היד</h2>
+<ul>
+  <li><b>פונקציה לפני טווח:</b> לשחזר צביטה (pinch), אחיזה חזקה ואחיזת חפץ גדול: <b>pulp-to-pulp של האגודל</b>, first web מספיק, ו-MCP שמאפשרים לאגודל לפגוש את האצבעות. ביד עם קונטרקטורה מעורבים בממוצע לפחות 10 מפרקים. לעיתים עדיף ארתרודזיס PIP בעמדה נכונה מאשר שחזור מורכב של swan neck.</li>
+  <li><b>הערכה לפי רקמה:</b> עור, גידים, מפרקים, כלי דם, עצבים. קונטרקטורת <b>כיפוף קשה יותר מהארכה</b> כי שחרור כיפוף מותח כלי דם ועצבים (סיכון לכלי הדם של האצבע), בהארכה אין סיכון זה.</li>
+  <li><b>התיקון שמושג בניתוח הוא המקסימום</b>; הפיזיותרפיה רק שומרת. הישנות נובעת בעיקר מ<b>שחרור לא מספק</b>; היקף השחרור חשוב יותר מסוג הכיסוי. אין צורך לכרות כל צלקת היפרטרופית בין החתכים – היא מתרככת בלחץ וטיפול.</li>
+  <li><b>לא לאפשר לאזורים גולמיים נקודתיים להחלים בעצמם:</b> זה מאריך חבישות, מעכב טיפול בצלקת ואחד הגורמים להישנות &#8592; להשתיל שוב.</li>
+  <li><b>סדר:</b> בגפה עליונה כולה משחררים מפרוקסימלי לדיסטלי (מבית השחי); ביד – קודם ההליכים בעלי התועלת המרבית (first web וכיפוף MCP).</li>
+  <li><b>תזמון:</b> בדרך כלל כשהצלקת בשלה (חיוורת, ללא אינדורציה, כשנה), אך <b>מוקדם יותר בילדים</b> ובעיוות חמור: מתפתחת התקצרות מסתגלת של יחידות שריר-גיד, ומפרק שנשאר מנותק מאבד את סחוסו.</li>
+  <li>אסתטיקה (Z-plasty לשבירת צלקת, לייזר) וטיפול מקיף "תחת קורת גג אחת" לשיפור היענות.</li>
+</ul>
+<table>
+  <thead><tr><th>McCauley</th><th>תיאור</th></tr></thead>
+  <tbody>
+    <tr><td>Grade I</td><td>מתיחות סימפטומטית ללא הגבלת טווח, ארכיטקטורה תקינה</td></tr>
+    <tr><td>Grade II</td><td>ירידה קלה בטווח, ללא השפעה על ADL וללא עיוות ארכיטקטורה</td></tr>
+    <tr><td>Grade III</td><td>ליקוי תפקודי, שינוי מוקדם בארכיטקטורה</td></tr>
+    <tr><td>Grade IV</td><td>אובדן תפקוד עם עיוות ארכיטקטורה ניכר</td></tr>
+  </tbody>
+</table>
+<p>בדרגות III–IV מוסיפים תת-סיווג: <b>A</b> = כיפוף, <b>B</b> = הארכה, <b>C</b> = שילוב.</p>
+
+<h2><span class="num">5</span> עיוותים ספציפיים ביד</h2>
+<h3>קונטרקטורת גב היד (Dorsal)</h3>
+<p>שכיחה כי הגב נפגע לרוב ובגלל הבצקת; MCP בהיפר-אקסטנציה, קשתות כף היד שטוחות, IP מכופפים (בעיקר זרת וטבעת), לרוב עם first web מכווץ.</p>
+<ul>
+  <li><b>מטרה:</b> כיפוף MCP מלא ו-IP ישרים ככל האפשר.</li>
+  <li><b>סדר חשוב:</b> קודם מתקנים כיפוף IP קבוע; אחרת שחרור MCP יקבור את קצות האצבעות בכף היד. אם הצד הוולרי דורש flap – עושים אותו קודם, ואת גב היד בשלב נפרד (כדי לא לסכן אספקת דם וניקוז ורידי). מקבעים IP זמנית ב-K-wire בנייטרלי.</li>
+  <li><b>חתך:</b> רוחבי כמה ס"מ פרוקסימלית לקו ה-MCP כדי שהדש הדיסטלי יחליק ויכסה את המפרקים; קפסולוטומיה של MCP מתחת לדש.</li>
+  <li><b>מלכודת:</b> בקונטרקטורה ותיקה, כיס הקפסולה הוולרית נעלם ויש הידבקויות, ובניסיון כיפוף המפרק <b>יוצא ממקומו</b>. בפעולה "סגורה" זה לא יזוהה &#8592; הישנות. פתרון: שחרור הידבקויות בכלי מעוקל, יצירת כיס וולרי וקיבוע.</li>
+  <li><b>הדוק של extensor ארוך:</b> שחרור הדרגתי, הארכה (מהשורש עד ה-juncturae), ובמקרים קיצוניים חיתוך פרוקסימלי בשורש כף (להשאיר גדם להעברות עתידיות).</li>
+  <li><b>כיסוי:</b> לרוב flap; מועדף מרוחק – <b>groin flap</b> (אזור שנחסך גם בכוויות גדולות).</li>
+</ul>
+<h3>קונטרקטורות וולריות</h3>
+<p>שכיחות בילדים (אוחזים חפץ חם); גב נפוץ יותר במבוגרים. קשות יותר לתיקון. חתכים רוחביים והשחרור עד שכלי הדם והעצבים נחשפים והם מגבילים את ההרפיה. אחרי שחרור מקסימלי: K-wire אלכסוני, שחרור חוסם העורקים ובדיקת צבע האצבע.</p>
+<div class="key-box">אם קצה האצבע נשאר חיוור יותר מ-<b>5 דקות</b> – משחררים את ה-K-wire ומכופפים עד שהוורדרדות חוזרת. זו מידת השחרור המותרת, ומשם מחדירים שוב את החוט.</div>
+<ul>
+  <li><b>כיסוי:</b> אם המצע מקבל השתל: full-thickness או STSG עבה. חשיפת גידים/צרור נוירווסקולרי באצבע אחת: <b>cross-finger flap</b>; באצבעות סמוכות: flap מרוחק נפרד לכל אצבע. כף היד: <b>שתלים עבים</b> עדיפים על flaps (flap מגושם מונע cupping ואחיזה).</li>
+</ul>
+<h3>First web ואגודל</h3>
+<ul>
+  <li>קונטרקטורת המרחב הראשון מגבילה את התפקוד קשות וגורמת לסיבוב האגודל לגב. קל: Z-plasty (<b>אגף ארוך = העמקה גדולה; Z-plasty קטנות ומרובות = אורך ללא העמקה</b>).</li>
+  <li>קשה: חתך אורכי במרחב המורחב עד CMC וולרי, עד שה-pulp פוגש את האצבעות; קיבוע ב-K-wire מ-MC1 ל-MC2 כשהאגודל <b>באבדוקציה מלאה ובפרונציה</b>, בקו הרדיאלי של האצבע המורה. טעות שכיחה: להשאיר את האגודל בהארכה (דורש פחות flap, אך לא יפגוש אצבעות).</li>
+  <li>כיסוי: <b>PIA flap</b> (posterior interosseous) אם האמה לא צלקתית; קלאסי <b>groin flap</b>; <b>split hypogastric flap</b> לפגמים לא סמוכים (העור לפגם אחד, השומן מתחת ל-Scarpa לפגם אחר עם STSG).</li>
+</ul>
+<h3>עיוותי האצבעות – טבלת השוואה</h3>
+<table>
+  <thead><tr><th>עיוות</th><th>מנגנון בכוויה</th><th>תפקוד</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>Swan neck</b></td><td>(1) כוויה עמוקה בגב האצבע שהחלימה משנית; (2) כוויה ב-DIP &#8592; אובדן insertion של extensor &#8592; mallet &#8592; swan neck; (3) התכווצות אינטרינזית (compartment syndrome בבצקת חריפה)</td><td><b>לא פונקציונלי – יש לתקן תמיד</b></td><td>חוסר עור בגב: חתכים רוחביים פרוקסימליים ודיסטליים ל-PIP + שתל. מקובע: ארתרודזיס PIP בזווית פונקציונלית (מורה ~25–30° עד זרת ~40–50°)</td></tr>
+    <tr><td><b>Boutonnière</b></td><td>כוויה בגב PIP: איסכמיה של ה-central slip הלחוץ בין eschar לראש הפלנגה. מניעה: פיצול PIP באקסטנציה בכוויה עמוקה</td><td>משתמרת תפקוד סביר</td><td>מתקנים רק אם יש נמק עור על PIP או היפראקסטנציה קיצונית של DIP/MCP. לרוב ארתרודזיס IP; איזון גידים לרוב לא אפשרי</td></tr>
+    <tr><td><b>Syndactyly</b></td><td>כוויה היקפית עמוקה שהחלימה ללא השתלה; web creep גבוה</td><td>הגבלת תנועה צדדית</td><td>הפרדה אורכית (אין עור תקין ל-web flap כמו בסינדקטיליה מולדת); חיתוך סיבים, full-thickness graft ב-web, STSG עבה בצדדים; רצועת silicone צמודה ב-web נגד creep</td></tr>
+    <tr><td><b>Little finger</b></td><td>האצבע החשופה ביותר בתנוחת הגנה, כוויה היקפית; שילוב כיפוף וסיבוב</td><td>הכי שכיח והכי חמור</td><td>להוציאה מכף היד ולתקן הצד החיצוני; אם קבורה והאחרות משוחזרות – קטיעה ב-MCP (אוסטאוטומיה אלכסונית, משאירים MC5 כי ממנו יוצאים שרירי ההיפותנר)</td></tr>
+  </tbody>
+</table>
+<h3>אובדן אצבעות</h3>
+<ul>
+  <li><b>האפשרות האידיאלית לאגודל:</b> toe transfer (אך בכוויות גדולות גם הרגליים נפגעות).</li>
+  <li>אובדן אורך בכל האצבעות: <b>העמקת first web</b> במקום הארכת אצבע בודדת. <b>Distraction osteogenesis</b> של MC1/MC2 (אוסטאוטומיה + Hoffmann מיני; ה-distraction מתחיל אחרי שבועיים; ייצוב 2–4 שבועות) – דורש MC1 שלם ורקמה רכה מספקת בגדם.</li>
+  <li><b>Pollicization:</b> של אינדקס פגוע; בכוויה העור בגב פגוע וניקוז ורידי לא מספיק (ורידים נלווים מועטים) &#8592; <b>לכלול רצועת עור וולרית</b> להישרדות.</li>
+</ul>
+
+<h2><span class="num">6</span> Heterotopic Ossification – היווצרות עצם במקום לא נכון</h2>
+<ul>
+  <li>שכיחות 0.2–4%; <b>המרפק</b> הכי שכיח, עם סיכון ל-<b>הלכדות עצב אולנרי</b>. תסמין: טווח תנועה יורד עם "חסימה קשה" (non-yielding block) וכאב; בצילום – עצם ברקמה רכה.</li>
+  <li>גורמי סיכון: TBSA גדול, כוויות עמוקות, ICU וניפוח, השתלה מאוחרת, ריפוי מאוחר, ניתוחים רבים, אימוביליזציה ממושכת וגם תנועה אגרסיבית מדי. המנגנון המדויק לא ברור (סמני דלקת גבוהים).</li>
+  <li><b>טיפול:</b> ניתוח; ממתינים להבשלה (ללא התקדמות ברדיוגרפיה וללא כאב); פועלים בערך <b>6 חודשים</b> מהתסמינים ומוקדם יותר בסימני לחץ על עצב. בניתוח מזהים את האולנרי מוקדם, משחררים ו<b>מעבירים קדמית</b>. תנועה מוקדמת <b>48 שעות</b> אחרי.</li>
+</ul>
+
+<h2><span class="num">7</span> כוויות חשמל בגפה העליונה</h2>
+<div class="mechanism"><p class="chain">חום עולה עם ההתנגדות. עור יבש מתנגד מאוד (20,000–30,000 ohm/cm&sup2;; כף יד עבה 2–3 מיליון), רטוב עד ~500. עצם מתנגדת הכי הרבה ושומרת חום זמן רב &#8592; <b>הרקמה סביב העצם נפגעת הכי הרבה ולאורך זמן</b>. הזרם עובר דרך הנפח המוליך הגדול (שריר, עצבים, כלי דם), ולכן בזרוע/אמה פרוקסימלית נוצר פחות חום. ב<b>שורש כף, מרפק, בית שחי</b> שבהם חלק גדול מהחתך הוא עצם וגידים &#8592; יותר חום &#8592; הנזק החמור באזור השורש והאמה הדיסטלית.</p></div>
+<table>
+  <thead><tr><th></th><th>מתח נמוך (&lt;1000V)</th><th>מתח גבוה (&gt;1000V)</th></tr></thead>
+  <tbody>
+    <tr><td>מקום</td><td>בבית; מקומי, פחות השפעה סיסטמית</td><td>שורש, מרפק, בית שחי; נזק שרירי עמוק</td></tr>
+    <tr><td>מאפיין</td><td>יד/אצבעות; בצקת קשה, הקהיית תחושה</td><td>נמק שריר מעורב ("איים"), חשיפת גידים/עצם, סכנת <b>blow-out</b> של כלי</td></tr>
+    <tr><td>פעולה חריפה</td><td>בדיקת זילוח (oximetry, Doppler בקשת); <b>הקהיית תחושה = שחרור carpal tunnel + Guyon</b> דרך אותו חתך; שחרור אינטרוסאי דרך חתכים בגב ביד במרווחים 2 ו-4 ובקפל כף היד הפרוקסימלי לשרירי התנר</td><td>fasciotomy של האמה (4 תאים: מכופפים שטחי+עמוק, אקסטנסורים, mobile wad); <b>להגן על העצב המדיאני</b> מחשיפה; חיתוך האפימיסיום; כריתת שריר נמקי וקידום ההחייאה</td></tr>
+  </tbody>
+</table>
+<p>בלי שחרור: שיתוק אינטרינזי ו-claw; עם איסכמיה: התכווצות אינטרינזית ו-swan neck.</p>
+<h3>כיסוי רקמות רכות בחשמל</h3>
+<ul>
+  <li><b>תזמון:</b> רק כשבטוחים בניקוי. סימני חיוניות השריר (צבע, עקביות, התכווצות, דימום) <b>אינם אמינים</b> – שריר מעורב במקטעים שונים; נראה כ"נמק מתקדם" ומחייב debridement חוזר, לעיתים עם אובדן מקטעי גיד-שריר/עצב.</li>
+  <li><b>Blow-out:</b> קרע חלקי של כלי, ושרירי הדופן מרחיבים את הפתח &#8592; דימום קטסטרופלי. טיפול: קשירה <b>הרחק</b> ממקום הקרע; אם כלי אחד נקרע – לכסות מוקדם כדי למנוע חשיפה וקרע של הנוסף.</li>
+  <li><b>Free flap:</b> סטנדרט הזהב בטראומה, אך בחשמל כשל <b>19%</b> (לעומת 10% בלהבה ופחות מ-2% באלקטיבי), בגלל נזק ל-tunica media ולאנדותל, תרומבוזה, אנוריזמות, היצרות וצפיפות נימים נמוכה. אנגיוגרפיה לא עוזרת; החלטה קלינית (כלי שמנותח בקלות, ללא בצקת, מזנק דם). אנסטומוזה הרחק מאזור הפגיעה.</li>
+  <li><b>מועדפים flaps מפדיקל מהבטן התחתונה:</b> flap מבוסס-על paraumbilical perforators לעור הוולרי של השורש/אמה. נדרש <b>פיצול האמה בסופינציה</b> מההתחלה ("כף היד כלפי הפנים"). לתכנן flap נדיב לאורך נתיב שתלי הגיד והעצב, ו"לשון" flap בחתך ה-carpal tunnel.</li>
+  <li><b>שחזור גידים ועצבים:</b> נעשה בו-זמנית (שלבים נפרדים פוגעים בתיקון הקודם). <b>Fascia lata</b> לשתלי גיד (רצועות 5–7 מ"מ), חיבור <b>Pulvertaft weave</b>; שתלי העצב במסלול מעוקל הרחק משתלי הגיד. מתעדים בפרוטוקול ובצילום. תנאים לביצוע: אגודל נע ב-CMC, first web טוב ו-MCP נעים כדי שהאגודל יפגוש אצבעות; נוקשות מסוימת מקובלת.</li>
+</ul>
+
+<h2><span class="num">8</span> כתף, מרפק ועור</h2>
+<table>
+  <thead><tr><th>אזור</th><th>מנגנון / סיווג</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>בית שחי</b></td><td>מניעה: אבדוקציה בפיצול ופיזיותרפיה. כיפת בית השחי נפגעת פחות (אדוקציה מגינה). <b>Kurtzman:</b> 1a קדמי; 1b אחורי; 2 קדמי+אחורי עם חיסכון הכיפה; 3 סוג 2 + הכיפה</td><td>Type 1/ליניארי: Z-plasty; Type 2 בינוני: local flaps/הרחבת רקמה; Type 3 חמור: scapular/parascapular, עור גב או שתל. <b>לשמור על העור השעיר של הכיפה</b></td></tr>
+    <tr><td><b>מרפק</b></td><td>קונטרקטורת <b>כיפוף</b> שכיחה וקשה מהארכה; לעיתים התקצרות דו-ראשי, צרור נוירווסקולרי, HO. <b>התקצרות הצרור הנוירווסקולרי היא הגורם המגביל</b></td><td>Band: Z-plasty (עם שתל בחמורה); חתכים רוחביים מעל ומתחת לחתך הקוביטלי עם "fish-tail" כדי שהצלקת תכסה את הצרור. חמורה: flap, free flap עם end-to-side לברכיאלית פרוקסימלית; פיצול באקסטנציה עד הבשלת השתל</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">9</span> תחליפי עור, Marjolin וטיפול בצלקות</h2>
+<ul>
+  <li><b>תחליפי דרמיס:</b> מיועדים גם לשלב החריף וגם לתיקון צלקות/קונטרקטורות. ביד, אלה שטופלו ב-DRT הצליחו יותר מבחינת גמישות וטווח מ-STSG בלבד.</li>
+  <li><b>Marjolin ulcer:</b> SCC (הכי שכיח), אחריו BCC, על צלקת/פצע כרוני. בצלקות כוויה שהחלימו משנית <b>0.7–2%</b>. מנגנונים: צלקת לא יציבה, גירוי חוזר, פגיעה חיסונית, ירידת Langerhans, הרס לימפה והיפו-וסקולריות. <b>ביופסיה מהקצה</b>; ניתוח: כריתה רחבה עם שוליים שליליים תלת-ממדיים; Mohs ביד/כף רגל; קטיעה בשלב מתקדם. גרורות עד <b>27%</b> (לעומת 3% ב-SCC אחר); הישנות עד 50% ב-5 שנים. מניעה: כריתה והשתלה מוקדמות.</li>
+</ul>
+<table>
+  <thead><tr><th>שיטה לטיפול בצלקת</th><th>פרטים ומנגנון</th><th>מגבלות</th></tr></thead>
+  <tbody>
+    <tr><td><b>בגדי לחץ</b></td><td>12–18 חודשים, 23 שעות ביום, <b>15–25 mmHg</b> (מתחת ל-15 או מעל 40 אין אפקט). מגבילים זרימה/חמצן (הבשלה) ומיישרים סיבי קולגן</td><td>נוחות, מראה; נשירה 30–59%</td></tr>
+    <tr><td><b>סיליקון</b></td><td>הידרציה/חסימה, חימום ~1.7°C (&#8593; קולגנאז), אולי שדה סטטי</td><td>לא נוח באזורים רחבים/מפרקים/פנים</td></tr>
+    <tr><td><b>ממרחים</b></td><td>הפחתת אובדן מים טרנס-אפידרמלי (TEWL), שמגרה קרטינוציטים וקולגן</td><td>היענות</td></tr>
+    <tr><td><b>עיסוי</b></td><td>דיסטלי לפרוקסימלי; תנועות עיגוליות; עדין בצלקת צעירה</td><td>הימנעות מחיכוך</td></tr>
+    <tr><td><b>זריקות תוך-נגעיות</b></td><td>Triamcinolone כל 4–6 שבועות (אטרופיה, טלנגיאקטזיות, שינוי פיגמנט) ו-5-FU (חוסם קולגן/פיברובלסטים; כואב)</td><td>הרדמה מקומית לפני</td></tr>
+    <tr><td><b>לייזר</b></td><td>CO<sub>2</sub> 10,600 nm ו-Er:YAG 2940 nm אבלטיביים; <b>fractional</b> מקטין תופעות לוואי; 2–8 מפגשים כל 6–8 שבועות; laser-assisted drug delivery</td><td>אריתמה, שינוי פיגמנט, הרפס</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">10</span> גפה תחתונה</h2>
+<ul>
+  <li>35–40% מהמאושפזים בכוויות; שליש מה-TBSA; <b>מקור התורמים הטוב ביותר</b> לשתלים.</li>
+  <li><b>מניעה:</b> ילדים נוטים לשמור ירך וברך מכופפות; מפצלים ירך וברך באקסטנציה והקרסול בנייטרלי למניעת equinus (גם בלי כוויה בקרסול).</li>
+  <li><b>חריף:</b> escharotomy בלהבה, fasciotomy מוקדם בחשמל; <b>מיוגלובינוריה</b> &#8592; נוזלים וביקרבונט למניעת גבישי מיוגלובין ו-ATN. חשיפת עצם הטיביה: local/muscle/myocutaneous flaps, לעיתים free.</li>
+  <li><b>ירך:</b> קונטרקטורת כיפוף ואדוקציה נכה ובדרך כלל מלווה בברך; משחררים יחד. כלי המפשעה שטחיים &#8592; flap (ALT מפדיקל). "סינר" עור על איברי המין – כריתה ושתל.</li>
+  <li><b>ברך:</b> ממושכת &#8592; התקצרות כלי דם ועצבים: <b>distraction הדרגתי</b> (חתכים רוחביים) וכיסוי בשתל לאורך חודשים.</li>
+  <li><b>קרסול:</b> שכיח בילדים; הגדילה מחמירה. מטרה: <b>רגל plantigrade</b>. דורסלי: חיתוך extensor + שתל; פלנטרי: הארכת Achilles, קפסולוטומיה אחורית, ולעיתים wedge/arthrodesis; flap חיוני: <b>lateral calcaneal artery flap</b> לקטן או <b>free gracilis</b> לגדול.</li>
+</ul>
+
+<h2><span class="num">11</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>"בצקת = דבק" – תנוחת הפיצול 20-80-0</h3>
+  <p>זכרו <b>"20-80-0"</b>: שורש כף ~<b>20</b>° אקסטנציה, MCP ~<b>80</b>° כיפוף, IP ב-<b>0</b> (ישר). סיפור: היד היא "מגש מלצר" – כף היד למעלה, האצבעות ישרות, בסיס האצבעות כפוף כמו מדף. אם הבצקת (הדבק) נשפכת על גב היד, האצבעות מתכרבלות ל"טופר" (claw).</p>
+  <p><b>סדר בתיקון קונטרקטורת גב:</b> "<b>IP לפני MCP</b>" – קודם מיישרים את כיפוף ה-IP, ורק אז משחררים MCP, אחרת קצות האצבעות נקברות בכף. <b>First web:</b> "אגודל באבדוקציה, בפרונציה, בקו האצבע המורה".</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 190" xmlns="http://www.w3.org/2000/svg">
+  <title>טכניקת זכירה: מגש המלצר</title>
+  <rect x="520" y="110" width="300" height="16" rx="6" fill="#d1fae5" stroke="#047857" stroke-width="2"/>
+  <text x="670" y="148" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">כף היד = המגש (שורש 20&deg;)</text>
+  <rect x="540" y="62" width="20" height="48" rx="6" fill="#fde68a" stroke="#b45309"/>
+  <rect x="580" y="62" width="20" height="48" rx="6" fill="#fde68a" stroke="#b45309"/>
+  <rect x="620" y="62" width="20" height="48" rx="6" fill="#fde68a" stroke="#b45309"/>
+  <text x="610" y="48" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">IP ישרים (0)</text>
+  <text x="740" y="90" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">MCP כפוף 80&deg;</text>
+  <line x1="490" y1="100" x2="430" y2="100" stroke="#374151" stroke-width="2"/>
+  <polygon points="410,100 430,94 430,106" fill="#374151"/>
+  <text x="450" y="82" font-size="12" text-anchor="middle" fill="#374151">בצקת (דבק)</text>
+  <rect x="60" y="110" width="300" height="16" rx="6" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <path d="M110 110 Q100 60 130 55 M160 110 Q150 55 180 52 M210 110 Q200 58 230 56" stroke="#b91c1c" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <text x="210" y="148" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">המגש נשפך: טופר (claw)</text>
+</svg>
+<p class="figcap">מימין: תנוחת הפיצול התקינה; משמאל: מה שקורה בלי פיצול</p>
+<div class="mnemonic">
+  <h3>שחזור חשמל – "לשחרר מוקדם, לנקות הרבה, לכסות בבטן"</h3>
+  <p>לשחרר מוקדם (carpal tunnel + Guyon + fasciotomy), לנקות הרבה (debridement חוזר כי חיוניות השריר מטעה), לכסות ב-flap מפדיקל מהבטן (free flap נכשל ב-19%), ורק אחר כך לחבר גידים ועצבים יחד.</p>
+</div>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>ילד בן 6, 8 חודשים אחרי כוויית להבה עמוקה בזרוע שמאל שהחלימה בלי השתלה. כעת: MCP של אצבעות 4–5 בהיפר-אקסטנציה, PIP מכופפים, האגודל מוצמד לכף ו-first web צר. המרפק עומד בכיפוף קבוע של 90° עם "חסימה קשה" בקצה התנועה; בצילום – מסה גרמית סביב המרפק. התחושה באצבע הקטנה מופחתת. הוא מופנה לשחזור.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה הסדר הנכון בתיקון הקונטרקטורה של גב היד ביד זו?</div>
+  <button class="opt" data-i="0">שחרור MCP לפני תיקון כיפוף ה-IP, כדי להחזיר את הקשת</button>
+  <button class="opt" data-i="1">קודם לתקן כיפוף IP קבוע, ורק אז לשחרר את קונטרקטורת ההארכה ב-MCP</button>
+  <button class="opt" data-i="2">אין חשיבות לסדר כל עוד נעשה כיסוי</button>
+  <button class="opt" data-i="3">שחרור MCP בלבד וסדין סיליקון</button>
+  <div class="explain">נכון (1): אם ה-IP נשארים מכופפים ו-MCP מכופף, קצות האצבעות נקברים בכף ופגיעת התפקוד מחמירה. (0) הפוך. (2) הסדר קריטי. (3) לא מספיק.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. מה ההסבר המנגנוני להיפר-אקסטנציה של MCP וכיפוף IP בהיעדר פיצול?</div>
+  <button class="opt" data-i="0">שיתוק עצב רדיאלי</button>
+  <button class="opt" data-i="1">התכווצות שרירי כף היד בלבד</button>
+  <button class="opt" data-i="2">כוויה בכף היד הגורמת לכיווץ</button>
+  <button class="opt" data-i="3">בצקת הנצברת בגב היד (עור רופף) מושכת את MCP להארכה, מותחת מכופפים וכופפת IP</button>
+  <div class="explain">נכון (3): עור הכף קשור בסיבים והבצקת מצטברת בגב. (0) אין שיתוק. (1) לא העיקר. (2) הכוויה כאן בגב.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. המסה הגרמית סביב המרפק עם חסימה קשה והקהיית תחושה. מה האבחנה ומה הטיפול הנכון?</div>
+  <button class="opt" data-i="0">Heterotopic ossification; כריתה אחרי הבשלה/סימני לחץ על עצב, זיהוי והעברה קדמית של האולנרי, ותנועה מוקדמת ~48 שעות</button>
+  <button class="opt" data-i="1">Marjolin ulcer; כריתה והקרנה</button>
+  <button class="opt" data-i="2">קונטרקטורת עור בלבד; Z-plasty</button>
+  <button class="opt" data-i="3">מניפולציה חזקה בהרדמה כדי "לשבור" את העצם</button>
+  <div class="explain">נכון (0): HO שכיח במרפק עם הלכדות אולנרי. (1) לא Marjolin. (2) יש מסה גרמית. (3) מניפולציה אגרסיבית מחמירה HO.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. נדרש לשחרר first web חמור עם פגם גדול. מהו הנוהל המועדף?</div>
+  <button class="opt" data-i="0">שחרור עם האגודל בהארכה כדי להקטין את ה-flap</button>
+  <button class="opt" data-i="1">Z-plasty קטן אחד ללא K-wire</button>
+  <button class="opt" data-i="2">שחרור מלא, האגודל באבדוקציה ופרונציה מקובע ב-K-wire, וכיסוי ב-flap (למשל groin או PIA)</button>
+  <button class="opt" data-i="3">להשאיר להחלמה משנית</button>
+  <div class="explain">נכון (2): נדרש flap גדול יותר אך זה מאפשר pulp-to-pulp. (0) טעות שכיחה. (1) לא מספיק בקשה. (3) מוביל להישנות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. בחולה אחר עם חשמל במתח גבוה: מדוע הנזק החמור ביותר בשורש כף ובמרפק?</div>
+  <button class="opt" data-i="0">הזרם נכנס רק שם</button>
+  <button class="opt" data-i="1">שם חלק גדול מהחתך הוא עצם וגידים (התנגדות גבוהה), ולכן נוצר יותר חום מאשר באזורים עתירי שריר</button>
+  <button class="opt" data-i="2">העור שם דק יותר ולכן מוליך טוב יותר</button>
+  <button class="opt" data-i="3">כלי הדם שם צרים</button>
+  <div class="explain">נכון (1): חום עולה עם ההתנגדות; שריר/עצב/כלי דם מתנגדים מעט. (0) לא נכון. (2) לא המנגנון. (3) לא המנגנון.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">6. מהו ההבדל הנכון בין escharotomy ל-fasciotomy?</div>
+  <button class="opt" data-i="0">שניהם זהים</button>
+  <button class="opt" data-i="1">Fasciotomy שטחי ואילו escharotomy עמוק</button>
+  <button class="opt" data-i="2">Escharotomy אך ורק בגפה תחתונה</button>
+  <button class="opt" data-i="3">Escharotomy משחרר eschar שטחי בכוויה היקפית; fasciotomy מפרק לחץ תת-פאשיאלי, אופייני בכוויות חשמל</button>
+  <div class="explain">נכון (3): בחשמל הלחץ עמוק לפאשיה. (0) שונים. (1) הפוך. (2) בכל גפה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>סטזיס &#8592; החייאה לא מספקת/זיהום &#8592; קרישה. eschar היקפי &#8592; escharotomy (mid-lateral באצבעות); חשמל &#8592; fasciotomy.</li>
+    <li>בצקת ביד = "דבק"; פיצול <b>20-80-0</b> + הגבהה מרגע הקבלה, אחרת claw/boutonnière.</li>
+    <li>כריתה: tangential ימים 3–5 (שימור קונטור) / fascial (ספסיס; לימפאדמה). Integra לגמישות; מחיר מגביל. ריפוי &gt;21 יום &#8592; ~80% צלקת.</li>
+    <li>שחזור: פונקציה (pinch/grip), שחרור מקסימלי, בלי ריפוי משני; IP לפני MCP; flap בגב; בכף היד – שתלים.</li>
+    <li>First web: אבדוקציה+פרונציה+K-wire; groin / PIA / split hypogastric flap. Swan neck תמיד מתוקן; boutonnière סביר. אצבע קטנה – הכי נפגעת.</li>
+    <li>HO: מרפק, אולנרי; כריתה אחרי הבשלה/~6 חודשים; תנועה אחרי 48 שעות.</li>
+    <li>חשמל: חום בעצם/שורש; שחרור CTR+Guyon; debridement חוזר; free flap כשל ~19%, מועדף flap בטן מפדיקל; fascia lata + Pulvertaft.</li>
+    <li>Marjolin: SCC, 0.7–2%, גרורות עד 27%. צלקות: לחץ 15–25 mmHg 12–18 חודש, סיליקון, triamcinolone/5-FU, לייזר.</li>
+    <li>גפה תחתונה: מניעת equinus, distraction בברך, plantigrade; lateral calcaneal / gracilis.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

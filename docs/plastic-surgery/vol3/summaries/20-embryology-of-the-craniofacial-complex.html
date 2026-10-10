@@ -76,11 +76,37 @@
     h1{font-size:24px}
     h2{font-size:19px}
   }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
 </style>
 </head>
 <body>
 
-<div class="topnav"><a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
 
 <h1>פרק 20: עוברולוגיה של המתחם הקרניופציאלי <span class="term" dir="ltr">Embryology of the craniofacial complex</span></h1>
 <div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | מאת Jingtao Li ו-Jill A. Helms (בספר: פרק 18)</div>
@@ -104,6 +130,7 @@
 בשולי הקפלים העצביים תאי אפיתל עמודיים מתנתקים ועוברים <b>EMT</b> (<span class="term" dir="ltr">epithelial-to-mesenchymal transition</span>) &#8592; הופכים למזנכימה נודדת. הם חולקים עם תאי גרורה סרטניים את ה-EMT ואת היכולת הפולשנית; הגורם <span class="term" dir="ltr">Slug</span> פעיל בנדידה ומושתק אחריה, ובגידולים פולשניים הוא נשאר פעיל. לכן הביולוגיה של ציצת העצב מסבירה גם גרורות.
 </p></div>
 <p>בראש, ציצת העצב נותנת: עצם וסחוס של הפנים, שיניים (אודונטובלסטים), רקמות חיבור, מלנוציטים, פריציטים של כלי דם, שומן ושרירים תוך-עיניים. בגזע היא נותנת נוירונים תחושתיים וגליה, כולל מערכת העצבים של המעי. התאים מתמיינים לפי "חתימות" אפיגנטיות של אנהנסרים.</p>
+<figure class="bookfig"><img src="../images/20/fig1.jpg" alt="נדידת תאי ציצת העצב בעובר עכבר" loading="lazy" style="max-width:400px"><figcaption>נדידת תאי ציצת העצב בעובר עכבר: מתהליך הספציפיקציה (A) דרך תחילת הנדידה (B) ועד התאים שהגיעו לבליטה הפרונטלית ולקשתות הלוע (C,D) — <span dir="ltr">Neligan 5th ed., Fig. 18.2</span></figcaption></figure>
 <h3>נוירוקריסטופתיות (<span class="term" dir="ltr">neurocristopathies</span>)</h3>
 <p>כשל ביצירה, נדידה או התמיינות של ציצת העצב. דוגמאות: Treacher Collins, מחיקת 22q11.2, מחלת Hirschsprung, נוירובלסטומה, נוירופיברומטוזיס. שני גנים לדוגמה:</p>
 <ul>
@@ -121,7 +148,8 @@
 </tbody></table>
 <p>השסעים (clefts) והכיסים: שסע 1 &#8592; חלק מהאוזן התיכונה והעור של עור התוף; שסע 2 &#8592; חלק מהאוזן התיכונה ושקד הלוע; 3 &#8592; פארה-תירואיד תחתון וטימוס; 4 &#8592; פארה-תירואיד עליון וטימוס (ולצד שסע 6, שרירי וסחוסי גרון). לשונית: ה-2/3 הקדמיים של הלשון מקשת 1, שורש הלשון, אפיגלוטיס ותירואיד מקשת 3.</p>
 
-<div class="mnemonic"><h3>זיכרון: Chew – Smile – Swallow – Speak</h3>
+<div class="mnemonic"><figure class="bookfig"><img src="../images/20/fig2.jpg" alt="התמיינות ציצת העצב ונדידתה לקשתות" loading="lazy"><figcaption>התמיינות ציצת העצב הקרניאלית לעצם, סחוס, גנגליונים, תאי שוואן ועוד (18.3), ודפוס הנדידה מה-rhombomeres לקשתות הלוע (18.4) — <span dir="ltr">Neligan 5th ed., Fig. 18.3, 18.4</span></figcaption></figure>
+<h3>זיכרון: Chew – Smile – Swallow – Speak</h3>
 <p><b>קשת 1 &#8592; לעיסה (V), קשת 2 &#8592; חיוך (VII), קשת 3 &#8592; בליעה (IX), קשת 4+6 &#8592; דיבור (X).</b> דמייני פנים של ילד שלועס פיצה, מחייך אל המצלמה, בולע ואז מדבר. שרירי העצב קשורים לפעולה של הקשת.</p></div>
 <svg class="diagram" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg"><title>Chew Smile Swallow Speak</title><rect x="700" y="30" width="120" height="90" rx="10" fill="#fef2f2" stroke="#b91c1c"/><text x="760" y="62" font-size="15" text-anchor="middle" fill="#b91c1c" font-weight="700">Chew</text><text x="760" y="86" font-size="12.5" text-anchor="middle" fill="#b91c1c">קשת 1 | V</text><rect x="520" y="30" width="120" height="90" rx="10" fill="#eff6ff" stroke="#2563eb"/><text x="580" y="62" font-size="15" text-anchor="middle" fill="#2563eb" font-weight="700">Smile</text><text x="580" y="86" font-size="12.5" text-anchor="middle" fill="#2563eb">קשת 2 | VII</text><rect x="340" y="30" width="120" height="90" rx="10" fill="#ecfdf5" stroke="#047857"/><text x="400" y="62" font-size="15" text-anchor="middle" fill="#047857" font-weight="700">Swallow</text><text x="400" y="86" font-size="12.5" text-anchor="middle" fill="#047857">קשת 3 | IX</text><rect x="160" y="30" width="120" height="90" rx="10" fill="#f5f3ff" stroke="#6d28d9"/><text x="220" y="62" font-size="15" text-anchor="middle" fill="#6d28d9" font-weight="700">Speak</text><text x="220" y="86" font-size="12.5" text-anchor="middle" fill="#6d28d9">קשת 4+6 | X</text><line x1="700" y1="75" x2="654" y2="75" stroke="#374151" stroke-width="2"/><polygon points="642,75 656,69 656,81" fill="#374151"/><line x1="520" y1="75" x2="474" y2="75" stroke="#374151" stroke-width="2"/><polygon points="462,75 476,69 476,81" fill="#374151"/><line x1="340" y1="75" x2="294" y2="75" stroke="#374151" stroke-width="2"/><polygon points="282,75 296,69 296,81" fill="#374151"/><text x="430" y="142" font-size="12.5" text-anchor="middle" fill="#4b5563">לעיסה, חיוך, בליעה, דיבור: ארבע קשתות בארבע מילים</text></svg>
 <p class="figcap">הקשתות בסדר ההופעה: מימין לשמאל, קשת 1 עד 4+6.</p>
@@ -144,6 +172,7 @@
 <tr><td><b>מנדיבולרית</b> (קשת 1)</td><td>לחי תחתונה, שפה תחתונה, מנדיבולה, רצפת הפה, הסנטר, חלק מהאוזן התיכונה, 2/3 קדמיים של הלשון. החריץ באמצע נסגר בהתרבות מזנכימה</td></tr>
 </tbody></table>
 
+<figure class="bookfig"><img src="../images/20/fig3.jpg" alt="בליטות הפנים ונגזרותיהן" loading="lazy"><figcaption>בליטות הפנים: פרונטונזלית (צהוב), לטרלית-נזלית (ירוק), מקסילרית (כחול) ומנדיבולרית (אדום) – לעובר, עובר מפותח וילוד — <span dir="ltr">Neligan 5th ed., Fig. 18.5</span></figcaption></figure>
 <h2><span class="num">6</span> איחוי ושסעים – מה נשבר באיזה מקום</h2>
 <div class="mechanism"><p class="chain">
 כשהבליטות נוגעות, האפיתל שמכסה אותן עובר <b>הידבקות</b> ואז <b>איחוי</b>: השכבות העליונות של האקטודרם "מתקלפות" (מוות תאי מתוכנן) ונשארת שכבה בזלית, והחיבורים מתחזקים בדסמוזומים. אם הצמיחה או האיחוי נכשלים &#8592; שסע. מוטציה ב-<b>IRF6</b> גורמת להידבקויות לא תקינות בין מדפי החיך ללשון ולשסעי חיך.
@@ -156,12 +185,14 @@
 </tbody></table>
 <p>שסעי קו אמצע (שפה עליונה או תחתונה) נדירים.</p>
 
+<figure class="bookfig"><img src="../images/20/fig4.jpg" alt="שסעי פנים לפי הבליטות שלא התאחו" loading="lazy"><figcaption>סוגי שסעי פנים לפי הבליטות שלא התאחו: שפה שסועה (A), שסע אלכסוני (B), שסע alar (C), שסע רוחבי (D) — <span dir="ltr">Neligan 5th ed., Fig. 18.6</span></figcaption></figure>
 <h2><span class="num">7</span> פלטוגנזה – החיך המשני</h2>
 <p>החיך המשני נוצר ממדפי החיך (<span class="term" dir="ltr">palatal shelves</span>) של הבליטות המקסילריות. תאי ציצת עצב מתעבים בתוכם ועוברים אוסיפיקציה אינטרממברנוזית. המדפים נמצאים תחילה <b>אנכית משני צדי הלשון</b>, אחר כך <b>מסתובבים לאופקי מעל הלשון</b> ומתאחדים. כדי להתאחד צריך להסיר אפיתל <b>רק</b> מהקצה המדיאלי: זה ה-<span class="term" dir="ltr">MEE</span> (<span class="term" dir="ltr">medial edge epithelium</span>); כשהמדפים נוגעים הוא נקרא <span class="term" dir="ltr">MES</span> (<span class="term" dir="ltr">midline epithelial seam</span>), ומוסר בתהליך <b>MET</b> (מזנכימה לאפיתל, ההפך מ-EMT) ובמוות תאי, כך שהמזנכימה של שני המדפים מתחברת.</p>
 <svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg"><title>שרשרת פלטוגנזה</title><rect x="700" y="20" width="140" height="64" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="770.0" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">1. מדפים אנכיים</text><text x="770.0" y="65" font-size="12" text-anchor="middle" fill="#1e3a8a">משני צדי הלשון</text><rect x="500" y="20" width="140" height="64" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="570.0" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">2. סיבוב אופקי</text><text x="570.0" y="65" font-size="12" text-anchor="middle" fill="#065f46">מעל הלשון</text><rect x="300" y="20" width="140" height="64" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="370.0" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">3. מגע: MEE → MES</text><text x="370.0" y="65" font-size="12" text-anchor="middle" fill="#78350f">"תפר" אפיתליאלי באמצע</text><rect x="100" y="20" width="140" height="64" rx="8" fill="#f5f3ff" stroke="#6d28d9"/><text x="170.0" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">4. הסרת התפר</text><text x="170.0" y="65" font-size="12" text-anchor="middle" fill="#4c1d95">MET + אפופטוזיס → איחוי</text><line x1="700" y1="52" x2="654" y2="52" stroke="#374151" stroke-width="2"/><polygon points="642,52 656,46 656,58" fill="#374151"/><line x1="500" y1="52" x2="454" y2="52" stroke="#374151" stroke-width="2"/><polygon points="442,52 456,46 456,58" fill="#374151"/><line x1="300" y1="52" x2="254" y2="52" stroke="#374151" stroke-width="2"/><polygon points="242,52 256,46 256,58" fill="#374151"/><rect x="100" y="120" width="740" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c"/><text x="470" y="148" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כשל מוקדם (צמיחה/סיבוב) = שסע שלם בגלל חוסר רקמה</text><text x="470" y="168" font-size="12" text-anchor="middle" fill="#7f1d1d">כשל מאוחר (הסרת ה-MES, IRF6) = שסע חלקי / רקמה רכה בלבד</text></svg>
 <p class="figcap">שרשרת הפלטוגנזה, מימין לשמאל, והקשר בין מועד הכשל לחומרת השסע.</p>
 <p class="key-box"><b>ככל שהכשל מוקדם יותר, השסע שלם וחמור יותר</b>. פרוליפרציה נמוכה במקסילה &#8592; מדפים קטנים &#8592; שסע שלם (חוסר רקמה). מדפים בגודל תקין עם הסרה לקויה של ה-MEE &#8592; שסע חלקי או של רקמה רכה בלבד.</p>
 
+<figure class="bookfig"><img src="../images/20/fig5.jpg" alt="התפתחות החיך המשני" loading="lazy" style="max-width:460px"><figcaption>התפתחות החיך המשני: מדף חיך אנכי, דרך סיבוב לאופקי, ועד איחוי – שרטוט וחתכים היסטולוגיים (PS = palatal shelf, T = tongue) — <span dir="ltr">Neligan 5th ed., Fig. 18.7</span></figcaption></figure>
 <h2><span class="num">8</span> בסיס הגולגולת והקודקוד – שני מוצאים שונים</h2>
 <table><thead><tr><th></th><th>בסיס הגולגולת (basicranium)</th><th>קודקוד (calvarium)</th></tr></thead><tbody>
 <tr><td>עצמות</td><td>ספנואיד, אתמואיד, חלקי טמפורלי (מסטואיד, פטרוס), בסיס העורף</td><td>7 עצמות: frontal, squamosal, parietal (זוגיות), occipital</td></tr>
@@ -177,6 +208,8 @@
 <li><b>AXIN2</b> (מטרת WNT): יותר איתות WNT &#8592; התמיינות מוקדמת לאוסטאובלסטים &#8592; חיבור מוקדם של התפר המטופי וחוטם קצר (בעכבר).</li>
 </ul>
 
+<figure class="bookfig"><img src="../images/20/fig6.jpg" alt="תפרי הגולגולת" loading="lazy" style="max-width:480px"><figcaption>תפרי הקרניום: frontal (סגול), lambdoid (תכלת), sagittal (צהוב), coronal (אדום) וה-fontanelle (ירוק) — <span dir="ltr">Neligan 5th ed., Fig. 18.8</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/20/fig7.jpg" alt="איזון שגשוג–התמיינות בתפרים" loading="lazy"><figcaption>איזון בין שגשוג להתמיינות באתרי התפר: כשההתמיינות גוברת – craniosynostosis, וכשהשגשוג גובר – cranium bifidum occultum — <span dir="ltr">Neligan 5th ed., Fig. 18.9</span></figcaption></figure>
 <h2><span class="num">9</span> מקרה קליני ותרגול</h2>
 <div class="case"><h3>וינייטה</h3>
 <p>יילוד עם שסע שפה וחיך דו-צדדי, מומי לב, וקושי בשליטה בסידן בימים הראשונים. בבדיקה אוזניים מעט נמוכות וקטנות. בבירור: מחיקה 22q11.2. במקביל, תינוק אחר עם עיניים קרובות מאוד, אף חסר וחותך מרכזי יחיד, וילדה שלישית עם היפופלזיה בצד ימין של הלסת והאוזן, תוספות עור מול האוזן ואוזן קטנה, ושאר פנים בצד שמאל תקין.</p></div>
@@ -269,6 +302,87 @@ document.querySelectorAll('table').forEach(function(t){
   t.parentNode.insertBefore(wrap, t);
   wrap.appendChild(t);
 });
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
 </script>
 </body>
 </html>

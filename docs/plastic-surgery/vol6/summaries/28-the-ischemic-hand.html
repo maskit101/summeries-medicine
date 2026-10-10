@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 28: היד האיסכמית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 28: היד האיסכמית <span class="term" dir="ltr">The ischemic hand</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | חלק V – Challenging Disorders, מאת Ahn, Yoon ו-Jones</div>
+
+<p>איסכמיה של היד (<span class="term" dir="ltr">hand ischemia</span>) היא מצב שבו מערכת כלי הדם אינה מסוגלת להעביר דם ביעילות בגלל טראומה, היצרות, חסימה או עווית כלי דם (<span class="term" dir="ltr">vasospasm</span>). בניגוד לגפה התחתונה, הביטוי בגפה העליונה מגוון והאבחון מוחמץ לעיתים קרובות. בלי טיפול נכון המסלול הוא נמק רקמות ולבסוף קטיעה. הפרק בנוי סביב שאלה אחת: <b>מהו המנגנון שגרם לאיסכמיה</b>, כי הוא קובע את הטיפול.</p>
+
+<h2><span class="num">1</span> פתופיזיולוגיה – חמישה מנגנונים ושכבות דופן העורק</h2>
+<div class="mechanism">
+<p class="chain">Jones חילק את האיסכמיה של היד לפי מנגנון, לא לפי שם המחלה: <b>תסחיף (emboli)</b>, <b>פקיקה (thrombosis)</b>, <b>מחלה חוסמת (occlusive) / היצרות תוך-דפנית</b>, <b>עווית (vasospasm)</b> ו<b>זרימה נמוכה (low flow, "sludging")</b>. הרעיון הקליני: חסימה מכנית דורשת פתיחה או עקיפה של הכלי, ועווית דורשת הפחתת הטונוס הסימפתטי. טיפול ב"עווית" בכלי חסום (או הפוך) נכשל.</p>
+</div>
+<p>דופן העורק בנויה משלוש שכבות, ולכל אחת פתולוגיה אופיינית:</p>
+<table>
+<thead><tr><th>שכבה</th><th>מה קורה בה</th><th>דוגמאות</th></tr></thead>
+<tbody>
+<tr><td>אינטימה (<span class="term" dir="ltr">intima</span>)</td><td>פגיעה באנדותל חושפת משטח פרו-תרומבוטי: פקיקה והתנתקות תסחיפים; היפרפלזיה אינטימלית מצרה את הלומן</td><td>טרשת עורקים, hypothenar hammer, פגיעת צנתור</td></tr>
+<tr><td>מדיה (<span class="term" dir="ltr">media</span>)</td><td>שריר חלק, סיבים אלסטיים. איבוד שלמות הדופן ← התרחבות מפושטת (ectasia) או מקומית (aneurysm)</td><td>אנאורית אולנרית, טרשת</td></tr>
+<tr><td>אדוונטיציה (<span class="term" dir="ltr">adventitia</span>)</td><td>מעורבת בתהליכים מפושטים: דלקת כלי דם; גם נושאת את הסיבים הסימפתטיים (הנימוק לסימפתקטומיה פריארטריאלית)</td><td>arteritis, Buerger</td></tr>
+</tbody></table>
+
+<h3>למה הרייקנו מתרחש – מקור הקר ועד "האצבע הלבנה"</h3>
+<div class="mechanism">
+<p class="chain">קור או סטרס ← שחרור נוראדרנלין מהעצב הסימפתטי ← קולטני α2 על תאי שריר חלק ← התכווצות. בעור האצבעות יש צפיפות גבוהה של <b>אנסטומוזות עורקיות-ורידיות (AV anastomoses)</b> לוויסות חום, ולכן עווית שם סוגרת את "המעקף התרמורגולטורי". באדם בריא האנדותל מאזן עם <b>NO ו-prostacyclin</b> (מרחיבים) והזרימה התזונתית (הנימית) נשמרת. ב-<b>Raynaud שניוני</b> (למשל סקלרודרמה) יש <b>דיספונקציה אנדותליאלית</b>: פחות NO ויותר <b>endothelin-1</b> (מכווץ חזק) ← גם הזרימה התזונתית נחסמת ← נזק רקמה, כיבים וגנגרנה.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 240" xmlns="http://www.w3.org/2000/svg">
+<title>מנגנון Raynaud ראשוני מול שניוני</title>
+<rect x="650" y="20" width="190" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+<text x="745" y="44" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קור / סטרס</text>
+<text x="745" y="63" font-size="12" text-anchor="middle" fill="#1e3a8a">נוראדרנלין ← קולטני α2</text>
+<rect x="400" y="20" width="190" height="56" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="495" y="44" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">התכווצות עורקיקים + AV</text>
+<text x="495" y="63" font-size="12" text-anchor="middle" fill="#7f1d1d">"סוגר" חלון תרמורגולציה</text>
+<rect x="150" y="20" width="190" height="56" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="245" y="44" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">לבן ← כחול ← אדום</text>
+<text x="245" y="63" font-size="12" text-anchor="middle" fill="#4c1d95">איסכמיה, דה-אוקסיגנציה, היפרמיה</text>
+<line x1="650" y1="48" x2="602" y2="48" stroke="#374151" stroke-width="2"/><polygon points="592,48 606,42 606,54" fill="#374151"/>
+<line x1="400" y1="48" x2="352" y2="48" stroke="#374151" stroke-width="2"/><polygon points="342,48 356,42 356,54" fill="#374151"/>
+<rect x="400" y="110" width="440" height="52" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="620" y="133" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">ראשוני: אנדותל תקין (NO, prostacyclin)</text>
+<text x="620" y="152" font-size="12" text-anchor="middle" fill="#065f46">הזרימה התזונתית נשמרת ← פרוגנוזה שפירה</text>
+<rect x="400" y="176" width="440" height="52" rx="8" fill="#fffbeb" stroke="#b45309"/>
+<text x="620" y="199" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">שניוני: פחות NO, יותר endothelin-1 + פיברוזיס אינטימלי</text>
+<text x="620" y="218" font-size="12" text-anchor="middle" fill="#78350f">גם הזרימה התזונתית נחסמת ← כיבים וגנגרנה</text>
+</svg>
+<p class="figcap">הפער בין הראשוני לשניוני הוא בבריאות האנדותל והעורק, לא בעוצמת העווית.</p>
+<p>בהקשר זה: בקצות האצבעות 80–90% מהזרימה עוברת במיטת התרמורגולציה ורק 10–20% בנימים תזונתיים. לכן עווית "מבזבזת" דם דווקא שם, ורק כשהאנדותל פגוע נפגעת גם הזרימה התזונתית. כמו כן, <b>חוק Hagen–Poiseuille</b> (זרימה תלויה בקוטר ובצמיגות, באורך ובפער הלחצים) מסביר למה עורקי אצבע גדולים נושאים יותר דם ולמה היצרות קלה בקוטר משפיעה מאוד.</p>
+
+<h2><span class="num">2</span> אנטומיה כירורגית של אספקת הדם ליד</h2>
+<ul>
+<li><b>עובר:</b> עורק מדיאני, אולנרי ורדיאלי יוצאים מה-brachial; המדיאני נסוג ברוב המקרים.</li>
+<li><b>Superficial palmar arch:</b> לרוב שלם (≈81%), בעיקר ע"י אנסטומוזה רדיו-אולנרית (≈72%). <b>מלא (complete)</b> = יש אנסטומוזה בין הכלים; <b>לא שלם (incomplete)</b> = אין, או שהאולנרי אינו מגיע לאגודל ולמורה. סיווג Gellman A–E (A: רדיוס+אולנר; B: אולנר בלבד, גם לאגודל; C: מדיאני+אולנר; D: שלושתם; E: ענף מה-deep arch).</li>
+<li><b>Deep palmar arch:</b> עקבי יותר; הרדיאלי חודר בין שני ראשי ה-1st dorsal interosseous. <b>קשר הפוך:</b> כשהשטחי מפותח, העמוק פחות מפותח, ולהפך.</li>
+<li><b>סימוני ניתוח:</b> ה-superficial וה-deep arch נמצאים ~15 ו~7 מ"מ דיסטלית ל-<span class="term" dir="ltr">Kaplan's cardinal line</span>, ~52 ו~40 מ"מ דיסטלית לקפל שורש כף היד.</li>
+<li><b>אגודל:</b> מקבל אספקה ממקורות רבים (princeps pollicis, 1st dorsal metacarpal ועוד) ולכן סובל איסכמיה היטב. בנוסף: עורקי אצבע אולנריים גדולים יותר באגודל ובמורה, רדיאליים גדולים יותר בענבל ובזרת.</li>
+<li><b>עורק אולנרי ב-Guyon's canal:</b> נוטה לפגיעה כי ה-<span class="term" dir="ltr">hook of hamate</span> לוחץ על ענפו השטחי. זו הסיבה לכך שהוא מקום הפקיקה הנפוץ ביותר בגפה העליונה.</li>
+</ul>
+
+<h2><span class="num">3</span> סיבות לאיסכמיה – חדה וכרונית</h2>
+<table>
+<thead><tr><th>קבוצה</th><th>מצב</th><th>מנגנון / נקודה למבחן</th></tr></thead>
+<tbody>
+<tr><td rowspan="4">חדה</td><td>טראומה</td><td>חתך עורקי; נקע כתף, נקע אחורי של המרפק, שבר <span class="term" dir="ltr">supracondylar</span>; frostbite. <b>קיום דופק דיסטלי אינו אמין</b> לשלילת פגיעה כלי</td></tr>
+<tr><td>תסחיף</td><td>מהלב (AF, MI). 5 P: pallor, pain, coolness, paresthesia, pulselessness. תסחיף פרוקסימלי לשרירי האמה גורם שיתוק, דיסטלי לא</td></tr>
+<tr><td>איאטרוגני</td><td>צנתור רדיאלי/ברכיאלי, הזרקה תוך-עורקית, shunt לדיאליזה. צנתור: נזק אנדותל ← <b>כריתה ושחזור בשתל</b> עדיף על Fogarty</td></tr>
+<tr><td>הזרקה תוך-עורקית</td><td>אנדרטריטיס כימית, גבישי חומצה, הפעלת קרישה, ועווית משנית ← פקיקה נרחבת</td></tr>
+<tr><td rowspan="5">כרונית</td><td>Hypothenar hammer (HHS)</td><td>טראומה חוזרת ל-ulnar artery ב-Guyon: צלקת פריאדוונטיציאלית, נזק למדיה, קרע ב-internal elastic lamina, המטומה תת-אינטימלית ← פקיקה או אנאוריזמה. ספורטאים ועובדי כפיים</td></tr>
+<tr><td>Vibration white finger</td><td>כלי רטט (מקדחה, מסור שרשרת). פקיקה של עורקי אצבע, לרוב באצבע המורה. הרטט משפיע על תגובת עצבים וקולטנים סימפתטיים</td></tr>
+<tr><td>Buerger (<span class="term" dir="ltr">thromboangiitis obliterans</span>)</td><td>דלקת כלי דם בינוניים וקטנים, מעשנים צעירים (&lt;50), גם גפה תחתונה ו-migratory phlebitis, בלי גורמי סיכון טרשתיים אחרים. עקיפות אינן יעילות כי המחלה דיסטלית מאוד</td></tr>
+<tr><td>מחלות רקמת חיבור</td><td>סקלרודרמה (systemic sclerosis), SLE, דרמטומיוזיטיס, Sjögren, RA, MCTD. כ-37% מחולי Raynaud ראשוני פיתחו בהמשך מחלת רקמת חיבור. אולנרי מעורב לעיתים</td></tr>
+<tr><td>אחרות</td><td>אנאוריזמה (אמיתית/שקרית/מיקוטית), polycythemia, cryoglobulinemia, גידולים המטולוגיים, בלוטת התריס, תרופות (ergotamine, clonidine, amphetamines, sympathomimetics)</td></tr>
+</tbody></table>
+<div class="key-box"><b>Steal מ-AV fistula לדיאליזה:</b> מופיע ב-2–4% מהפיסטולות. הפיסטולה "גונבת" דם מהיד: אנסטומוזה radiocephalic מעבירה זרימה פרוקסימלית (גם הגורם לפגיעת האגודל), ו-end-to-end מחמיר את הנזק העצבי והאיסכמי. טיפול: distal revascularization-interval ligation (DRIL) בשיעור הצלחה של מעל 90%. צמצום הפיסטולה ב-band נכשל בגלל פקיקה שכיחה של הפיסטולה.</div>
+
+<h2><span class="num">4</span> Raynaud – אבחנה והבדל בין ראשוני לשניוני</h2>
+<p>תופעת Raynaud היא אבחנה קלינית: התקפי איסכמיה חולפת באצבעות מקור/סטרס, עם שינוי צבע ב-<b>3 שלבים: לבן ← כחול ← אדום</b> (כשני שלישים מהמטופלים). שכיחות 3–5% באוכלוסייה. קריטריוני קונצנזוס (2013) בשלושה צעדים: <b>(1)</b> שאלת סינון: אצבעות רגישות לקור? <b>(2)</b> שינוי צבע דו-שלבי (לבן וכחול)? <b>(3)</b> ציון: לפחות 3 מתוך 7 קריטריונים (גירוי שאינו קור, דו-צדדי, נימול/paresthesia, גבול חד, תצלום תומך, אתרים נוספים כמו אף/אוזניים/בהונות, שינוי תלת-שלבי).</p>
+<table>
+<thead><tr><th>מאפיין</th><th>Raynaud ראשוני</th><th>Raynaud שניוני</th></tr></thead>
+<tbody>
+<tr><td>גיל</td><td>צעיר (15–30), בעיקר נשים</td><td>מבוגר יותר</td></tr>
+<tr><td>התקדמות / ממצאים טרופיים</td><td>איטית; אין כיבים/גנגרנה</td><td>מהירה; כיבים וגנגרנה שכיחים</td></tr>
+<tr><td>אגודל</td><td>לרוב נחסך</td><td>עשוי להיות מעורב</td></tr>
+<tr><td>סימטריה</td><td>דו-צדדי סימטרי</td><td>אסימטרי שכיח</td></tr>
+<tr><td>Allen test</td><td>תקין</td><td>חריג שכיח</td></tr>
+<tr><td>ANA / כימיה</td><td>שלילי או נמוך (≤1:40); תקין</td><td>לרוב חריג</td></tr>
+<tr><td>Capillaroscopy</td><td>תקין</td><td>חריג (נימים מורחבים &gt;50 מיקרון, דימומים, איבוד נימים, אזורים אבסקולריים)</td></tr>
+<tr><td>אנגיוגרפיה</td><td>תקינה</td><td>חריגה</td></tr>
+<tr><td>דופן עורק / אנדותל</td><td>תקינים</td><td>פגיעה אנדותליאלית, פיברוזיס</td></tr>
+<tr><td>פרוגנוזה</td><td>שפירה; לא נדרשת בנייה מחדש</td><td>תלויה במחלה הבסיסית</td></tr>
+</tbody></table>
+
+<h2><span class="num">5</span> בירור – היסטוריה, בדיקה ואבחנה</h2>
+<p><b>אנמנזה:</b> אי-סבילות לקור, תדירות הכאב, עישון, עיסוק (רטט/פטישים), מחלות מערכתיות, תרופות. <b>Raynaud חד-צדדי חשוד במיוחד</b> לחסימה עורקית באותו צד. <b>בדיקה:</b> צלקות, צבע, טמפרטורה, כיבים, בדיקת שלושת העצבים, דפקים (ברכיאלי, רדיאלי, אולנרי), <span class="term" dir="ltr">Allen test</span> (גם דיגיטלי). מומלץ שהמטופל יביא תצלומי התקף.</p>
+<table>
+<thead><tr><th>בדיקה</th><th>מה מודדת / ממצא</th><th>יתרון / מגבלה</th></tr></thead>
+<tbody>
+<tr><td>Pencil Doppler</td><td>פתיחות רדיאלי, אולנרי, DPA, common/proper digital. אינדקסים RBI / DBI: ≤0.7 = ירידה בזרימה</td><td>הפשוט והמיידע ביותר לפי Jones; חסימה ברדיאלי/אולנרי = קריטריון לאנגיוגרפיה</td></tr>
+<tr><td>Duplex</td><td>זרימה בזמן אמת, אנאוריזמות</td><td>לא פולשני וחוזר</td></tr>
+<tr><td>Cold stress test</td><td>טמפרטורת אצבע / pulse volume לפני ואחרי קור (4°C)</td><td>ירידה שמשתפרת עם חסם מקומי מעידה על עווית (vasospasm)</td></tr>
+<tr><td>Infrared thermography / LSCI</td><td>טמפרטורת עור / פרפוזיה</td><td>לא פולשני; תלוי בטמפרטורת החדר, לא מראה אתר היצרות</td></tr>
+<tr><td>Nail-fold capillaroscopy</td><td>מבנה נימים</td><td>מבדיל Raynaud ראשוני משניוני למחלת רקמת חיבור</td></tr>
+<tr><td>אנגיוגרפיה קונבנציונלית</td><td>חסימה, היצרות, ectasia, coiling, אנאוריזמה, מהירות זרימה. סימן "corkscrew" ב-HHS</td><td>הסטנדרט המדויק; פולשנית; <b>הקונטרסט עצמו גורם לעווית</b> ← מבצעים תחת חסם plexus או מזריקים 4 mg phentolamine תוך-עורקי. MRA/CTA פחות מדויקות בעורקי האצבע</td></tr>
+</tbody></table>
+<div class="key-box"><b>קריטריוני Jones לאנגיוגרפיה:</b> (1) Raynaud חד-צדדי; (2) כיב או גנגרנה מתקדמים למרות טיפול רפואי טוב; (3) כיבים חוזרים; (4) ממצא Doppler של חסימת עורק inflow ראשי; (5) הופעה חדה של איסכמיה.</div>
+<p>סיווג אנגיוגרפי של Raynaud לששה סוגים: I (27%) חסימה מלאה של רדיאלי/אולנרי; II (26%) חסימה חלקית; IIIa (27%) כלי אצבע מפותלים וצרים; IIIb (1.4%) אצבע מורה אחרי רטט; IV (14%) היצרות מפושטת עד אצבעות; V (4%) הקשה ביותר, מעט מאוד כלים וזרימה.</p>
+
+<h2><span class="num">6</span> טיפול – שלב אחרי שלב</h2>
+<svg class="diagram" viewBox="0 0 860 210" xmlns="http://www.w3.org/2000/svg">
+<title>סולם הטיפול ביד איסכמית</title>
+<rect x="690" y="20" width="150" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="765" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">1. סביבה</text>
+<text x="765" y="66" font-size="12" text-anchor="middle" fill="#065f46">הפסקת עישון, קור, תרופות</text>
+<rect x="470" y="20" width="150" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+<text x="545" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">2. תרופות</text>
+<text x="545" y="66" font-size="12" text-anchor="middle" fill="#1e3a8a">CCB, PDE5, Botox</text>
+<rect x="250" y="20" width="150" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+<text x="325" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">3. סימפתקטומיה</text>
+<text x="325" y="66" font-size="12" text-anchor="middle" fill="#78350f">אין חסימה ← פריארטריאלית</text>
+<rect x="30" y="20" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="105" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">4. בנייה מחדש</text>
+<text x="105" y="66" font-size="12" text-anchor="middle" fill="#7f1d1d">חסימה ← שתל / angioplasty</text>
+<line x1="690" y1="55" x2="632" y2="55" stroke="#374151" stroke-width="2"/><polygon points="622,55 636,49 636,61" fill="#374151"/>
+<line x1="470" y1="55" x2="412" y2="55" stroke="#374151" stroke-width="2"/><polygon points="402,55 416,49 416,61" fill="#374151"/>
+<line x1="250" y1="55" x2="192" y2="55" stroke="#374151" stroke-width="2"/><polygon points="182,55 196,49 196,61" fill="#374151"/>
+<rect x="30" y="120" width="810" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="435" y="147" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מוצא אחרון: ארטריאליזציה ורידית, fat grafting, קטיעה</text>
+<text x="435" y="168" font-size="12" text-anchor="middle" fill="#4c1d95">מקרים של התקף חוזר אחרי ניתוח או כשאין כלים דיסטליים פתוחים</text>
+</svg>
+<p class="figcap">מדרגה לפי חומרה: כל שלב מוצדק רק אם הקודם נכשל (ובחסימה מוכחת מזרזים את הניתוח).</p>
+
+<h3>טיפול שמרני</h3>
+<ul>
+<li><b>סביבה:</b> הפסקת עישון (ניקוטין מכווץ ומשנה קרישה; מדבקות ניקוטין אינן פוגעות בזרימה תזונתית), הימנעות מקור וסטרס, שימוש בכפפות מחוממות, הימנעות מ-sympathomimetics, amphetamines, clonidine, ergotamine.</li>
+<li><b>Biofeedback:</b> מועיל בעיקר ב-Raynaud ראשוני; לא בשניוני; לא עדיף על nifedipine.</li>
+</ul>
+<table>
+<thead><tr><th>תרופה</th><th>מנגנון</th><th>למה זה עוזר כאן</th><th>הערות</th></tr></thead>
+<tbody>
+<tr><td><b>Nifedipine</b> (dihydropyridine CCB; 30–60 מ"ג/יום בשחרור ממושך)</td><td>חוסם תעלות סידן בשריר חלק</td><td>מונע כניסת Ca ← מרפה את ההתכווצות הסימפתטית</td><td>קו ראשון</td></tr>
+<tr><td><b>Sildenafil</b> (PDE5i; 20 מ"ג ×3)</td><td>שימור cGMP ← NO</td><td>מרחיב כלי דם ומשפר רפרפוזיה</td><td>קו שני, יעיל בינוני בשניוני</td></tr>
+<tr><td>Nitroglycerin מקומי</td><td>תורם NO</td><td>מרחיב מקומית ומקל על כאב כיב</td><td>—</td></tr>
+<tr><td>Prostacyclin IV (iloprost, PGE1)</td><td>מרחיב, מעכב טסיות</td><td>מעכב vasoconstriction, פקיקה ו-remodeling</td><td>איסכמיה קשה; הפה פחות יעיל</td></tr>
+<tr><td><b>Bosentan</b></td><td>חוסם קולטני endothelin</td><td>מטפל בדיסבלנס האנדותל ב-SSc</td><td>מפחית כיבים חדשים; אינו מרפא קיימים</td></tr>
+<tr><td>Prazosin, SSRI, ARB, pentoxifylline, cilostazol, NAC, aspirin</td><td>שונים</td><td>משלימים</td><td>α-blockers לא נסבלים בקלות</td></tr>
+<tr><td><b>Thrombolysis</b> (rt-PA, streptokinase) + heparin</td><td>ליזה של קריש</td><td>תסחיף טרי בכלי קטן; מקומי תוך 36 שעות</td><td>גם הכנה ל-repair</td></tr>
+<tr><td><b>Botulinum toxin A</b> (25 U ליד, ~14 נקודות; נקודה נפוצה: צרורות נוירווסקולריים ליד A1 pulley)</td><td>חוסם שחרור acetylcholine ו-norepinephrine, ומבטל גיוס α2c</td><td>מפחית עווית וכאב; גם מדכא substance P</td><td>לפני החורף; לא בהריון/זיהום</td></tr>
+</tbody></table>
+
+<h3>ניתוח: סימפתקטומיה</h3>
+<div class="mechanism">
+<p class="chain">הרעיון: סיבים סימפתטיים לא עוברים רק דרך ה-sympathetic trunk. <b>חלקם עוקפים אותו ונודדים עם עצבים סומטיים ואחר כך באדוונטיציה של העורק</b> (עצב Henle ליד האולנרי). זו הסיבה לכך ש-<b>cervicothoracic sympathectomy נכשלת</b> (הישנות גבוהה ואין תועלת ב-CTD) והמוקד עבר לרמת העורק עצמו.</p>
+</div>
+<table>
+<thead><tr><th>סוג</th><th>מה עושים</th><th>למי</th></tr></thead>
+<tbody>
+<tr><td>Cervicothoracic</td><td>כריתת גנגליון</td><td>כמעט נזנחה</td></tr>
+<tr><td>Leriche</td><td>כריתת מקטע חסום ללא בנייה מחדש; מנתקת את השליטה הסימפתטית ומשפרת זרימה דרך כלים מקבילים (collaterals)</td><td>כשיש זרימה מקבילה מספקת</td></tr>
+<tr><td><b>Classic periarterial</b> (Flatt/Koman)</td><td>הסרת אדוונטיציה מרדיאלי, אולנרי (4 ס"מ ב-wrist) ו-common digital; עם מיקרוסקופ; חתך palmar crease</td><td>Raynaud ראשוני עקשן, ללא חסימה</td></tr>
+<tr><td><b>Extended / radical</b> (Jones)</td><td>הרחבה: גם ל-proper digital (עד PIP), כל ה-superficial arch, ולעיתים ענף dorsal radial; מסיר גם רקמה פיברוטית מכווצת</td><td>CTD (SSc), vibration white finger</td></tr>
+</tbody></table>
+<p>טיפ: הסרת ה-<span class="term" dir="ltr">venae comitantes</span> עלולה לגרום לבצקת; חתך לאורך קפל פלמרי נותן צלקת פחות בולטת. Koman הראה שהמהלך מעלה את <b>היחס בין זרימה תזונתית לכוללת</b> ולכן מרפא כיבים.</p>
+
+<h3>בנייה מחדש עורקית</h3>
+<p>מתי: חסימה מקטעית באנגיוגרפיה עם <b>run-off</b> טוב ב-common digital. לפני כן יש לוודא אינטימה תקינה בקצוות. שתלים: ורידים (cephalic, basilic, saphenous דיסטלי; להוסיף ~20% אורך; הפיכת הכיוון או כריתת מסתמים), או <b>עורק DIEA</b> (גודל תואם ל-ulnar הפרוקסימלי, וענפיו תואמים ל-common digital ← anastomosis end-to-end). גיבוי: LCFA, TDA. ורידי שורש כף היד (volar wrist veins) מתאימים ל-proper digital.</p>
+<table>
+<thead><tr><th>סוג Jones</th><th>תיאור</th></tr></thead>
+<tbody>
+<tr><td>I</td><td>חסימה קצרה של אולנרי ב-Guyon: שתל end-to-end מאולנרי באמה אל אולנרי דיסטלי, לפני ה-superficial arch</td></tr>
+<tr><td>II</td><td>חסימת רדיאלי דיסטלי: שתל (cephalic) אל deep arch / princeps pollicis</td></tr>
+<tr><td>III</td><td>מעורבות ה-superficial arch כשה-common digital חופשיים: שתל מהאולנרי + anastomoses end-to-side (או DIEA end-to-end). שכיח ב-Raynaud שניוני</td></tr>
+<tr><td>IV</td><td>שני שתלים: אולנרי ← superficial arch/common digitals; רדיאלי ← deep arch / princeps</td></tr>
+</tbody></table>
+<p><b>דקומפרסיה:</b> משחררים את Guyon (אולנרי) ואת האזור שבין ה-trapezium לגידי APL/EPB/EPL (רדיאלי), ומניחים את השתל <b>שטחית</b> אליהם למניעת חסימה חוזרת.</p>
+<p><b>אפשרויות נוספות:</b> <span class="term" dir="ltr">balloon angioplasty</span> (PTCA; 6 atm ל-40 שניות; מתאים להיצרות &lt;3 ס"מ או חסימה חלקית עד 15 ס"מ; בכלי אצבע מסוכן: קרע), <span class="term" dir="ltr">venous arterialization</span> (הפיכת זרימה ורידית כשאין כלים פתוחים; cephalic), <span class="term" dir="ltr">fat grafting</span> (~30 מ"ל; מנגנון משוער: תאי גזע ADSC ← VEGF ← אנגיוגנזה), קטיעה שמרנית (שמירת אורך) במקרה של גנגרנה מבוססת, אוסטאומיאליטיס או אלח מפרק.</p>
+
+<h3>טיפול באנאוריזמה ובתסחיף חד</h3>
+<ul>
+<li><b>אנאוריזמה אולנרית (HHS):</b> מסה לא כואבת; אמיתית = 3 שכבות, שקרית = ללא אנדותל (לאחר חדירה). כריתה מוקדמת למניעת תסחיף דיסטלי; אפשרויות: ligation, patch, end-to-end, interposition. ממצא <b>DBI &lt;0.7</b> אחרי הכריתה ← יש לשחזר זרימה. אנאוריזמה מיקוטית (שימוש בסמים): כריתה + ligation, או bypass אם העורק קריטי. אל תבצעו I&amp;D על "מורסה" מעל עורק.</li>
+<li><b>תסחיף גדול (ברכיאלי):</b> embolectomy עם Fogarty 2–3 Fr; אנגיוגרפיה השלמה אם הדופק לא חוזר.</li>
+</ul>
+
+<h2><span class="num">7</span> מעקב, סיבוכים ופרוגנוזה</h2>
+<ul>
+<li><b>אחרי revascularization:</b> bolus הפרין (1000–2400 IU) לפני שחרור קלמפים, והמשך 7 ימים; aspirin 81 מ"ג עד 3 חודשים; ניטור כמו replantation (צבע, מילוי נימי, ירידה &gt;2°C בשעה, Doppler); סד ביד; ללא עישון וקפאין; drain 12–36 שעות.</li>
+<li><b>סיבוכים:</b> פקיקת anastomosis, אי-ריפוי חתך, זיהום, נוקשות אצבעות.</li>
+<li><b>תוצאות (סקירה מערכתית):</b> sympathectomy/bypass/arterialization: הקלת כאב 89/100/100%, ריפוי פצע 74/93/75%.</li>
+<li><b>פרוגנוזה גרועה:</b> סוכרת, מחלת כליות, טרשת. ב-SSc: הישנות כיבים כעבור 2 שנים בשל התקדמות המחלה. ה-<b>יד היא "איבר מטרה"</b> (כמו הלב והמוח), כך שהאיסכמיה עשויה לשקף מחלה כללית.</li>
+</ul>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>ראשי תיבות וסיפור</h3>
+<p><b>חמשת המנגנונים של Jones:</b> <b>E</b>mboli, <b>T</b>hrombosis, <b>O</b>cclusive disease (intimal), <b>V</b>asospasm, <b>L</b>ow flow = <b>"ETOVL"</b> (ראשי תיבות מקומי). אפשר לדמיין ש-E (תסחיף) תמיד מגיע <i>מהלב</i>.</p>
+<p><b>Buerger = "SMOKE":</b> <b>S</b>moker, <b>M</b>an צעיר, <b>O</b>nset &lt;50, <b>E</b>xtremities (עליונות ותחתונות), ללא גורמי סיכון אחרים.</p>
+<p><b>Raynaud:</b> "לבן-כחול-אדום" כמו דגל צרפת (Raynaud היה צרפתי): לבן = עווית ואיסכמיה, כחול = דה-אוקסיגנציה, אדום = היפרמיה תגובתית וכאב.</p>
+<p><b>סיפור:</b> היד היא ארמון עם <b>שני שערים</b> (רדיאלי ואולנרי) וחצר פנימית (ה-arch). עווית = שומרי השערים נסגרים מקור. חסימה = עץ שנפל על השער. במקרה של עווית בלבד משחררים את השומרים (סימפתקטומיה); בחסימה בונים גשר עוקף (שתל). כשכל השערים סגורים, נכנסים דרך הדלת האחורית (ארטריאליזציה ורידית).</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 230" xmlns="http://www.w3.org/2000/svg">
+<title>החלטה לפי ממצא אנגיוגרפי</title>
+<rect x="320" y="14" width="220" height="44" rx="8" fill="#111827" stroke="#111827"/>
+<text x="430" y="42" font-size="14" text-anchor="middle" fill="#fff" font-weight="700">אנגיוגרפיה של היד</text>
+<rect x="640" y="100" width="200" height="56" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="740" y="124" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אין חסימה (עווית)</text>
+<text x="740" y="143" font-size="12" text-anchor="middle" fill="#065f46">סימפתקטומיה פריארטריאלית</text>
+<rect x="330" y="100" width="200" height="56" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="430" y="124" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">חסימה מקטעית + run-off</text>
+<text x="430" y="143" font-size="12" text-anchor="middle" fill="#7f1d1d">שתל + סימפתקטומיה</text>
+<rect x="20" y="100" width="200" height="56" rx="8" fill="#fffbeb" stroke="#b45309"/>
+<text x="120" y="124" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">היצרות קצרה (&lt;3 ס"מ)</text>
+<text x="120" y="143" font-size="12" text-anchor="middle" fill="#78350f">angioplasty + סימפתקטומיה</text>
+<line x1="500" y1="58" x2="740" y2="94" stroke="#374151" stroke-width="2"/><polygon points="740,100 733,88 746,90" fill="#374151"/>
+<line x1="430" y1="58" x2="430" y2="92" stroke="#374151" stroke-width="2"/><polygon points="430,100 424,88 436,88" fill="#374151"/>
+<line x1="360" y1="58" x2="120" y2="94" stroke="#374151" stroke-width="2"/><polygon points="120,100 114,88 127,90" fill="#374151"/>
+<rect x="20" y="180" width="820" height="40" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+<text x="430" y="205" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">אין כלי דיסטלי פתוח ← ארטריאליזציה ורידית / fat graft / קטיעה</text>
+</svg>
+<p class="figcap">אלגוריתם מקוצר לפי Algorithm 28.1.</p>
+
+<h2>מקורות נוספים</h2>
+<ul class="resource-list">
+<li><span class="desc">מקור הסיכום: פרק 28 ב-Plastic Surgery (Neligan), 5th ed., כרך 6. הפרק כולל סרטוני ניתוח באתר Elsevier eBooks+ (Video 28.1–28.3: סימפתקטומיה מורחבת, שחזור רדיאלי, שחזור אולנרי עם DIEA).</span></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3>
+<p>נגר בן 47, מעשן, עם כאב וכיבים חוזרים בקצות האצבעות הרביעית והחמישית ביד ימין, ורגישות לקור. הוא מספר שבמשך שנים השתמש בכף ידו כפטיש. בבדיקה: Allen test מראה מילוי אולנרי חלש, וב-pencil Doppler אין אות באולנרי הדיסטלי. באנגיוגרפיה: חסימה של העורק האולנרי עם מראה "תולעת פקק" (corkscrew), זרימה תקינה ב-common digital. הטיפול השמרני נכשל והכיבים חוזרים.</p></div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מהי האבחנה והמנגנון המסתבר?</div>
+  <button class="opt" data-i="0">Raynaud ראשוני עקב עווית סימפתטית ללא נזק בדופן</button>
+  <button class="opt" data-i="1">Hypothenar hammer syndrome: טראומה חוזרת ל-ulnar artery ב-Guyon's canal ע"י hook of hamate ← נזק בדופן ופקיקה</button>
+  <button class="opt" data-i="2">Buerger disease בגלל גיל מעל 40</button>
+  <button class="opt" data-i="3">תסחיף ממקור לבבי</button>
+  <div class="explain">נכון: היסטוריה של פטישה בקצה הידית, היעדר אות באולנרי, ומראה corkscrew הם הקלאסיקה של HHS. Raynaud ראשוני היה מציג אנגיוגרפיה תקינה; Buerger נדרש לו גיל &lt;50 וגפה תחתונה; תסחיף היה חד ולא מתפתח לאורך שנים.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזה ממצא מבדיל Raynaud שניוני מראשוני?</div>
+  <button class="opt" data-i="0">שינוי צבע דו-שלבי</button>
+  <button class="opt" data-i="1">כיבים/גנגרנה, ANA חיובי או capillaroscopy חריג (נימים מורחבים, איבוד נימים)</button>
+  <button class="opt" data-i="2">התחלה בגיל 20</button>
+  <button class="opt" data-i="3">שיפור עם חימום</button>
+  <div class="explain">נכון: ממצאים טרופיים, ANA חריג ו-capillaroscopy חריג מרמזים על שניוני. שינוי צבע דו-שלבי מופיע בשניהם; גיל צעיר ושיפור בחימום אופייניים לראשוני.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה המגבלה הייחודית של אנגיוגרפיה קונבנציונלית ביד איסכמית, וכיצד מתגברים?</div>
+  <button class="opt" data-i="0">הקונטרסט גורם לעווית כלי דם; מבצעים תחת חסם plexus או עם phentolamine 4 מ"ג תוך-עורקי</button>
+  <button class="opt" data-i="1">היא אינה מראה את העורק האולנרי</button>
+  <button class="opt" data-i="2">אין בה צורך כי MRA מדויק יותר בעורקי האצבע</button>
+  <button class="opt" data-i="3">קשה לבצע בגלל מסתמים ורידיים</button>
+  <div class="explain">נכון: vasospasm שנגרם מהחומר מטשטש את התמונה. MRA/CTA אינן מדויקות בעורקי האצבע, והמסתמים הוריים אינם רלוונטיים.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. מה הטיפול המתאים למטופל לאחר כישלון טיפול שמרני?</div>
+  <button class="opt" data-i="0">Cervicothoracic sympathectomy</button>
+  <button class="opt" data-i="1">קטיעת האצבעות מיידית</button>
+  <button class="opt" data-i="2">כריתת הקטע החסום ושחזור האולנרי בשתל (ורידי או DIEA) אל ה-superficial arch/common digital, עם סימפתקטומיה ושחרור Guyon</button>
+  <button class="opt" data-i="3">Bosentan בלבד</button>
+  <div class="explain">נכון: חסימה מקטעית עם run-off טוב ← microsurgical reconstruction (Jones type I/III) + דקומפרסיה. Cervicothoracic sympathectomy נכשלת (סיבים עוקפים); קטיעה היא מוצא אחרון; bosentan מיועד לכיבי SSc.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">5. מהם יתרונות עורק DIEA כשתל לעורק האולנרי ו-superficial arch?</div>
+  <button class="opt" data-i="0">אין צורך באנסטומוזה מיקרוסקופית</button>
+  <button class="opt" data-i="1">הוא גדול בהרבה מכל כלי ביד</button>
+  <button class="opt" data-i="2">הוא נקצר מאותו חתך של האמה</button>
+  <button class="opt" data-i="3">קוטרו תואם לאולנרי הפרוקסימלי, וענפיו (שהולכים ונהיים דקים) תואמים ל-common digital, כך שאפשר end-to-end במקום end-to-side עם ורידים (ופחות turbulence)</button>
+  <div class="explain">נכון. DIEA נקצר מהבטן ולא מהאמה, ועדיין נדרשת אנסטומוזה; הגודל דווקא תואם, לא "גדול בהרבה".</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>חמישה מנגנונים (Jones): תסחיף, פקיקה, חסימה/היצרות תוך-דפנית, עווית, זרימה נמוכה.</li>
+    <li>Raynaud: לבן-כחול-אדום; ראשוני = אנדותל תקין, ANA שלילי, capillaroscopy תקין, שפיר; שניוני = CTD (SSc), כיבים, אסימטרי, חריג בבדיקות. ב-SSc: פחות NO, יותר endothelin-1.</li>
+    <li>HHS: ulnar artery ב-Guyon נפגע מ-hook of hamate; corkscrew באנגיוגרפיה; כריתה ושחזור.</li>
+    <li>בירור: Allen, pencil Doppler (RBI/DBI &le;0.7), duplex, cold stress, capillaroscopy; אנגיוגרפיה בקריטריוני Jones; הקונטרסט גורם לעווית (phentolamine / חסם).</li>
+    <li>שמרני: עישון, קור, CCB (nifedipine) קו ראשון, PDE5, nitroglycerin, prostacyclin IV, bosentan (כיבי SSc), Botox, thrombolysis בתסחיף.</li>
+    <li>ניתוח: סימפתקטומיה פריארטריאלית (classic / extended) לעווית; שחזור עורקי (Jones I–IV, DIEA/ורידים) לחסימה מקטעית עם run-off; angioplasty להיצרות קצרה; מוצא אחרון: ארטריאליזציה, fat graft, קטיעה.</li>
+    <li>אחרי ניתוח: הפרין 7 ימים, aspirin עד 3 חודשים, ניטור כמו replantation. פרוגנוזה גרועה בסוכרת ובטרשת; יד = איבר מטרה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>
