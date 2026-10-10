@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סיכומי כירורגיה פלסטית - כרך 1: עקרונות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  html,body{height:100%; margin:0}
+  body{font-family:'Segoe UI','Arial Hebrew',sans-serif; background:#f3f4f6; color:#1f2937; display:flex; flex-direction:column}
+  .layout{display:flex; flex:1; min-height:0}
+  .sidebar{width:340px; flex-shrink:0; background:#111827; color:#f9fafb; padding:22px 18px; overflow-y:auto; position:relative; transition:width .22s ease, max-height .22s ease}
+  .sidebar-toggle{position:sticky; top:0; width:34px; height:34px; border-radius:8px; background:#374151; color:#fff; border:none; cursor:pointer; font-size:16px; margin-bottom:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:2}
+  .sidebar-toggle:hover{background:#4b5563}
+  .sidebar.collapsed{width:52px; padding:14px 9px}
+  .sidebar.collapsed .sidebar-inner{display:none}
+  .sidebar h2{font-size:16px; margin:0 0 4px}
+  .sidebar .progress-wrap{background:#374151; border-radius:6px; height:8px; margin:10px 0 4px; overflow:hidden}
+  .sidebar .progress-bar{background:#22c55e; height:100%; width:100%}
+  .sidebar .progress-text{font-size:12.5px; color:#9ca3af; margin-bottom:16px}
+  .ch-list{list-style:none; padding:0; margin:0}
+  .ch-item{margin-bottom:4px}
+  .ch-btn{display:flex; gap:10px; padding:10px 6px; border-radius:8px; width:100%; text-align:start; background:#1f2937; border:none; cursor:pointer; font-family:inherit; color:inherit}
+  .ch-btn:hover{background:#28344a}
+  .ch-item.done.active .ch-btn{background:#22c55e; color:#052e16}
+  .ch-item.done.active .ch-btn .ch-num{background:#052e16; color:#22c55e}
+  .ch-item.done.active .ch-links span{color:#052e16}
+  .ch-item.pending{display:flex; gap:10px; padding:10px 6px; border-radius:8px; opacity:.55}
+  .ch-num{width:24px; height:24px; border-radius:50%; background:#374151; color:#fff; font-size:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+  .ch-item.done .ch-num{background:#22c55e; color:#052e16}
+  .ch-title{font-size:13.5px; line-height:1.4}
+  .ch-links{margin-top:4px; display:flex; gap:10px}
+  .ch-links span{color:#93c5fd; font-size:12.5px}
+  .ch-status{font-size:11.5px; color:#6b7280; margin-top:2px}
+  .top-links{display:flex; flex-direction:column; gap:8px; margin-bottom:18px}
+  .top-links a{color:#f9fafb; background:#1f2937; border-radius:8px; padding:9px 12px; font-size:13px; text-decoration:none; font-weight:600; display:block}
+  .top-links a:hover{background:#374151}
+  .top-links a.flashcards{background:#028090}
+  .top-links a.flashcards:hover{background:#026e7a}
+  .top-links a.home{background:transparent; border:1px solid #374151; color:#9ca3af; font-weight:400}
+
+  main{flex:1; display:flex; flex-direction:column; min-width:0}
+  .content-nav{display:none; align-items:center; justify-content:space-between; gap:10px; padding:10px 20px; background:#fff; border-bottom:1px solid #e5e7eb}
+  .content-nav.show{display:flex}
+  .content-nav .nav-title{font-size:13.5px; font-weight:700; color:#1f2937; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .content-nav button{background:#f3f4f6; border:1px solid #e5e7eb; border-radius:8px; padding:8px 14px; font-size:13px; font-family:inherit; cursor:pointer; color:#1f2937; flex-shrink:0}
+  .content-nav button:hover:not(:disabled){background:#e5e7eb}
+  .content-nav button:disabled{opacity:.4; cursor:default}
+  .content-frame{flex:1; border:none; display:none; background:#fff}
+
+  .empty-wrap{flex:1; padding:40px 44px; max-width:760px; overflow-y:auto}
+  .empty-wrap h1{font-size:28px; margin:0 0 8px}
+  .empty-wrap .sub{color:#6b7280; margin-bottom:28px}
+  .stat-cards{display:flex; gap:14px; margin-bottom:28px; flex-wrap:wrap}
+  .stat-card{background:#fff; border-radius:10px; padding:16px 22px; box-shadow:0 1px 3px rgba(0,0,0,.08); min-width:120px}
+  .stat-card b{display:block; font-size:26px}
+  .stat-card span{font-size:13px; color:#6b7280}
+  .latest{background:#fff; border-radius:10px; padding:20px 24px; box-shadow:0 1px 3px rgba(0,0,0,.08); margin-bottom:20px}
+  .latest h3{margin-top:0}
+  .latest button.link-btn{background:none; border:none; padding:0; color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:6px 0; font-size:14.5px; cursor:pointer; font-family:inherit; text-align:start}
+  .latest button.link-btn:hover{text-decoration:underline}
+  .latest a{color:#2563eb; font-weight:600; text-decoration:none; display:block; margin:6px 0}
+  .empty{color:#6b7280}
+  @media (max-width:800px){
+    .layout{flex-direction:column}
+    .sidebar{width:100%; max-height:320px}
+    .sidebar.collapsed{width:100%; max-height:52px; padding:9px}
+    .content-nav button{padding:10px 14px; font-size:13.5px}
+    .empty-wrap{padding:24px 18px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" title="קפל/הרחב תפריט פרקים" aria-label="קפל/הרחב תפריט פרקים">&#9776;</button>
+    <div class="sidebar-inner">
+      <h2>כרך 1: עקרונות</h2>
+      <div class="progress-wrap"><div class="progress-bar"></div></div>
+      <div class="progress-text">43 / 43 פרקים הושלמו (100%)</div>
+      <div class="top-links">
+        <a class="home" href="../index.html" target="_top">🏠 לדף הראשי</a>
+        <a class="home" href="index.html">&#8592; עמוד כירורגיה פלסטית</a>
+        <a class="flashcards" href="flashcards.html">🗂️ כל הכרטיסיות (מאגר מאוחד)</a>
+      </div>
+      <ul class="ch-list" id="chList">
+        
+            <li class="ch-item done" data-n="1">
+              <button class="ch-btn" data-n="1">
+                <div class="ch-num">1</div>
+                <div class="ch-body">
+                  <div class="ch-title">כירורגיה פלסטית וחדשנות ברפואה</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="2">
+              <button class="ch-btn" data-n="2">
+                <div class="ch-num">2</div>
+                <div class="ch-body">
+                  <div class="ch-title">היסטוריה של כירורגיה משחזרת ואסתטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="3">
+              <button class="ch-btn" data-n="3">
+                <div class="ch-num">3</div>
+                <div class="ch-body">
+                  <div class="ch-title">היבטים פסיכולוגיים של ניתוחים קוסמטיים וטיפולים זעיר-פולשניים</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="4">
+              <button class="ch-btn" data-n="4">
+                <div class="ch-num">4</div>
+                <div class="ch-body">
+                  <div class="ch-title">תפקיד האתיקה בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="5">
+              <button class="ch-btn" data-n="5">
+                <div class="ch-num">5</div>
+                <div class="ch-body">
+                  <div class="ch-title">עקרונות עסקיים לכירורג פלסטי</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="6">
+              <button class="ch-btn" data-n="6">
+                <div class="ch-num">6</div>
+                <div class="ch-body">
+                  <div class="ch-title">היבטים משפטיים-רפואיים בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="7">
+              <button class="ch-btn" data-n="7">
+                <div class="ch-num">7</div>
+                <div class="ch-body">
+                  <div class="ch-title">הדמיה דיגיטלית בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="8">
+              <button class="ch-btn" data-n="8">
+                <div class="ch-num">8</div>
+                <div class="ch-body">
+                  <div class="ch-title">בטיחות המטופל בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="9">
+              <button class="ch-btn" data-n="9">
+                <div class="ch-num">9</div>
+                <div class="ch-body">
+                  <div class="ch-title">הרדמה וניהול כאב בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="10">
+              <button class="ch-btn" data-n="10">
+                <div class="ch-num">10</div>
+                <div class="ch-body">
+                  <div class="ch-title">רפואה מבוססת-ראיות ומחקר שירותי בריאות בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="11">
+              <button class="ch-btn" data-n="11">
+                <div class="ch-num">11</div>
+                <div class="ch-body">
+                  <div class="ch-title">עקרונות בטיפול בסרטן</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="12">
+              <button class="ch-btn" data-n="12">
+                <div class="ch-num">12</div>
+                <div class="ch-body">
+                  <div class="ch-title">תאי גזע ורפואה רגנרטיבית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="13">
+              <button class="ch-btn" data-n="13">
+                <div class="ch-num">13</div>
+                <div class="ch-body">
+                  <div class="ch-title">ריפוי פצעים</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="14">
+              <button class="ch-btn" data-n="14">
+                <div class="ch-num">14</div>
+                <div class="ch-body">
+                  <div class="ch-title">מניעה, טיפול ותיקון של צלקות</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="15">
+              <button class="ch-btn" data-n="15">
+                <div class="ch-num">15</div>
+                <div class="ch-body">
+                  <div class="ch-title">השתלת עור</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="16">
+              <button class="ch-btn" data-n="16">
+                <div class="ch-num">16</div>
+                <div class="ch-body">
+                  <div class="ch-title">הנדסת רקמות</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="17">
+              <button class="ch-btn" data-n="17">
+                <div class="ch-num">17</div>
+                <div class="ch-body">
+                  <div class="ch-title">תיקון, השתלה והנדסת סחוס</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="18">
+              <button class="ch-btn" data-n="18">
+                <div class="ch-num">18</div>
+                <div class="ch-body">
+                  <div class="ch-title">שיקום והשתלת עצם</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="19">
+              <button class="ch-btn" data-n="19">
+                <div class="ch-num">19</div>
+                <div class="ch-body">
+                  <div class="ch-title">שיקום והשתלת עצב היקפי</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="20">
+              <button class="ch-btn" data-n="20">
+                <div class="ch-num">20</div>
+                <div class="ch-body">
+                  <div class="ch-title">השתלת שומן ותיקון רקמת שומן</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="21">
+              <button class="ch-btn" data-n="21">
+                <div class="ch-num">21</div>
+                <div class="ch-body">
+                  <div class="ch-title">טריטוריות וסקולריות (אנגיוזומים)</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="22">
+              <button class="ch-btn" data-n="22">
+                <div class="ch-num">22</div>
+                <div class="ch-body">
+                  <div class="ch-title">פיזיולוגיה, סיווג ויישומים של פלאפים</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="24">
+              <button class="ch-btn" data-n="24">
+                <div class="ch-num">24</div>
+                <div class="ch-body">
+                  <div class="ch-title">עקרונות וטכניקות בכירורגיה מיקרווסקולרית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="25">
+              <button class="ch-btn" data-n="25">
+                <div class="ch-num">25</div>
+                <div class="ch-body">
+                  <div class="ch-title">הרחבת רקמה ושתלים</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="26">
+              <button class="ch-btn" data-n="26">
+                <div class="ch-num">26</div>
+                <div class="ch-body">
+                  <div class="ch-title">עקרונות הטיפול בקרינה</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="27">
+              <button class="ch-btn" data-n="27">
+                <div class="ch-num">27</div>
+                <div class="ch-body">
+                  <div class="ch-title">פתופיזיולוגיה ומדע בסיס של לימפדמה</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="28">
+              <button class="ch-btn" data-n="28">
+                <div class="ch-num">28</div>
+                <div class="ch-body">
+                  <div class="ch-title">גידולים שפירים וממאירים לא-מלנוציטיים של העור והרקמות הרכות</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="29">
+              <button class="ch-btn" data-n="29">
+                <div class="ch-num">29</div>
+                <div class="ch-body">
+                  <div class="ch-title">מלנומה</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="30">
+              <button class="ch-btn" data-n="30">
+                <div class="ch-num">30</div>
+                <div class="ch-body">
+                  <div class="ch-title">שתלים וביומטריאלים</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="31">
+              <button class="ch-btn" data-n="31">
+                <div class="ch-num">31</div>
+                <div class="ch-body">
+                  <div class="ch-title">פרוטזות פנים בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="32">
+              <button class="ch-btn" data-n="32">
+                <div class="ch-num">32</div>
+                <div class="ch-body">
+                  <div class="ch-title">השתלות בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="33">
+              <button class="ch-btn" data-n="33">
+                <div class="ch-num">33</div>
+                <div class="ch-body">
+                  <div class="ch-title">חדשנות טכנולוגית בכירורגיה פלסטית: מדריך מעשי למנתח-ממציא</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="34">
+              <button class="ch-btn" data-n="34">
+                <div class="ch-num">34</div>
+                <div class="ch-body">
+                  <div class="ch-title">רובוטיקה בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="35">
+              <button class="ch-btn" data-n="35">
+                <div class="ch-num">35</div>
+                <div class="ch-body">
+                  <div class="ch-title">טלרפואה וסימולציה בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="36">
+              <button class="ch-btn" data-n="36">
+                <div class="ch-num">36</div>
+                <div class="ch-body">
+                  <div class="ch-title">טכנולוגיה דיגיטלית בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="37">
+              <button class="ch-btn" data-n="37">
+                <div class="ch-num">37</div>
+                <div class="ch-body">
+                  <div class="ch-title">שיפור אסתטי באמצעות טכנולוגיות לא פולשניות</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="38">
+              <button class="ch-btn" data-n="38">
+                <div class="ch-num">38</div>
+                <div class="ch-body">
+                  <div class="ch-title">חינוך והוראה בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="39">
+              <button class="ch-btn" data-n="39">
+                <div class="ch-num">39</div>
+                <div class="ch-body">
+                  <div class="ch-title">כירורגיה פלסטית גלובלית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="40">
+              <button class="ch-btn" data-n="40">
+                <div class="ch-num">40</div>
+                <div class="ch-body">
+                  <div class="ch-title">ניתוחי אישור מגדר</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="41">
+              <button class="ch-btn" data-n="41">
+                <div class="ch-num">41</div>
+                <div class="ch-body">
+                  <div class="ch-title">בריאות מבוססת-ערך</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="42">
+              <button class="ch-btn" data-n="42">
+                <div class="ch-num">42</div>
+                <div class="ch-body">
+                  <div class="ch-title">הדמיה טרום-ניתוחית ותוך-ניתוחית בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="43">
+              <button class="ch-btn" data-n="43">
+                <div class="ch-num">43</div>
+                <div class="ch-body">
+                  <div class="ch-title">מדדי תוצאה מדווחי-מטופל בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+            <li class="ch-item done" data-n="44">
+              <button class="ch-btn" data-n="44">
+                <div class="ch-num">44</div>
+                <div class="ch-body">
+                  <div class="ch-title">מחקר שירותי בריאות בכירורגיה פלסטית</div>
+                  <div class="ch-links"><span>📄 סיכום</span></div>
+                </div>
+              </button>
+            </li>
+      </ul>
+    </div>
+  </nav>
+  <main>
+    <div class="content-nav" id="contentNav">
+      <button id="prevBtn">&#9664; הקודם</button>
+      <div class="nav-title" id="navTitle"></div>
+      <button id="nextBtn">הבא &#9654;</button>
+    </div>
+    <iframe id="contentFrame" class="content-frame"></iframe>
+    <div class="empty-wrap" id="emptyWrap">
+      <h1>סיכומי כירורגיה פלסטית</h1>
+      <div class="sub">Plastic Surgery, Neligan – כרך 1: עקרונות (Vol 1 - Principles) &middot; סיכום + כרטיסיות תרגול לכל פרק, בעברית</div>
+
+      <div class="stat-cards">
+        <div class="stat-card"><b>43</b><span>סה"כ פרקים</span></div>
+        <div class="stat-card"><b>43</b><span>הושלמו</span></div>
+        <div class="stat-card"><b>0</b><span>ממתינים</span></div>
+      </div>
+
+      <div class="latest">
+        <h3>הפרקים האחרונים שנוספו</h3>
+        <div id="latestList"></div>
+        <a href="flashcards.html" style="margin-top:6px">🗂️ כל הכרטיסיות של כל הפרקים — מאגר מאוחד אחד</a>
+      </div>
+
+      <p style="color:#6b7280; font-size:14px">כל בוקר מתווסף כאן סיכום וחבילת כרטיסיות לפרק הבא בספר, לפי הסדר. השתמשי בתפריט הצד או בכפתורי "הבא/הקודם" כדי לעבור בין הפרקים שכבר הושלמו — התפריט נשאר גלוי כל הזמן.</p>
+    </div>
+  </main>
+</div>
+
+<script>
+var CHAPTERS = [{"n": 1, "title": "כירורגיה פלסטית וחדשנות ברפואה", "file": "summaries/01-plastic-surgery-and-innovation-in-medicine.html"}, {"n": 2, "title": "היסטוריה של כירורגיה משחזרת ואסתטית", "file": "summaries/02-history-of-reconstructive-and-aesthetic-surgery.html"}, {"n": 3, "title": "היבטים פסיכולוגיים של ניתוחים קוסמטיים וטיפולים זעיר-פולשניים", "file": "summaries/03-psychological-aspects-of-cosmetic-surgical-and-minimally-invasive-treatments.html"}, {"n": 4, "title": "תפקיד האתיקה בכירורגיה פלסטית", "file": "summaries/04-the-role-of-ethics-in-plastic-surgery.html"}, {"n": 5, "title": "עקרונות עסקיים לכירורג פלסטי", "file": "summaries/05-business-principles-for-plastic-surgeons.html"}, {"n": 6, "title": "היבטים משפטיים-רפואיים בכירורגיה פלסטית", "file": "summaries/06-medico-legal-issues-in-plastic-surgery.html"}, {"n": 7, "title": "הדמיה דיגיטלית בכירורגיה פלסטית", "file": "summaries/07-digital-imaging-in-plastic-surgery.html"}, {"n": 8, "title": "בטיחות המטופל בכירורגיה פלסטית", "file": "summaries/08-patient-safety-in-plastic-surgery.html"}, {"n": 9, "title": "הרדמה וניהול כאב בכירורגיה פלסטית", "file": "summaries/09-anesthesia-and-pain-management-in-plastic-surgery.html"}, {"n": 10, "title": "רפואה מבוססת-ראיות ומחקר שירותי בריאות בכירורגיה פלסטית", "file": "summaries/10-evidence-based-medicine-and-health-services-research-in-plastic-surgery.html"}, {"n": 11, "title": "עקרונות בטיפול בסרטן", "file": "summaries/11-principles-of-cancer-management.html"}, {"n": 12, "title": "תאי גזע ורפואה רגנרטיבית", "file": "summaries/12-stem-cells-and-regenerative-medicine.html"}, {"n": 13, "title": "ריפוי פצעים", "file": "summaries/13-wound-healing.html"}, {"n": 14, "title": "מניעה, טיפול ותיקון של צלקות", "file": "summaries/14-scar-prevention-treatment-and-revision.html"}, {"n": 15, "title": "השתלת עור", "file": "summaries/15-skin-grafting.html"}, {"n": 16, "title": "הנדסת רקמות", "file": "summaries/16-tissue-engineering.html"}, {"n": 17, "title": "תיקון, השתלה והנדסת סחוס", "file": "summaries/17-repair-grafting-and-engineering-of-cartilage.html"}, {"n": 18, "title": "שיקום והשתלת עצם", "file": "summaries/18-repair-and-grafting-of-bone.html"}, {"n": 19, "title": "שיקום והשתלת עצב היקפי", "file": "summaries/19-repair-and-grafting-of-peripheral-nerve.html"}, {"n": 20, "title": "השתלת שומן ותיקון רקמת שומן", "file": "summaries/20-repair-and-grafting-fat-and-adipose-tissue.html"}, {"n": 21, "title": "טריטוריות וסקולריות (אנגיוזומים)", "file": "summaries/21-vascular-territories.html"}, {"n": 22, "title": "פיזיולוגיה, סיווג ויישומים של פלאפים", "file": "summaries/22-flap-physiology-classification-and-applications.html"}, {"n": 24, "title": "עקרונות וטכניקות בכירורגיה מיקרווסקולרית", "file": "summaries/24-principles-and-techniques-of-microvascular-surgery.html"}, {"n": 25, "title": "הרחבת רקמה ושתלים", "file": "summaries/25-tissue-expansion-and-implants.html"}, {"n": 26, "title": "עקרונות הטיפול בקרינה", "file": "summaries/26-principles-of-radiation-therapy.html"}, {"n": 27, "title": "פתופיזיולוגיה ומדע בסיס של לימפדמה", "file": "summaries/27-lymphedema-pathophysiology-and-basic-science.html"}, {"n": 28, "title": "גידולים שפירים וממאירים לא-מלנוציטיים של העור והרקמות הרכות", "file": "summaries/28-benign-and-malignant-nonmelanocytic-tumors-of-the-skin-and-soft-tissue.html"}, {"n": 29, "title": "מלנומה", "file": "summaries/29-melanoma.html"}, {"n": 30, "title": "שתלים וביומטריאלים", "file": "summaries/30-implants-and-biomaterials.html"}, {"n": 31, "title": "פרוטזות פנים בכירורגיה פלסטית", "file": "summaries/31-facial-prosthetics-in-plastic-surgery.html"}, {"n": 32, "title": "השתלות בכירורגיה פלסטית", "file": "summaries/32-transplantation-in-plastic-surgery.html"}, {"n": 33, "title": "חדשנות טכנולוגית בכירורגיה פלסטית: מדריך מעשי למנתח-ממציא", "file": "summaries/33-technology-innovation-in-plastic-surgery-a-practical-guide-for-the-surgeon-innovator.html"}, {"n": 34, "title": "רובוטיקה בכירורגיה פלסטית", "file": "summaries/34-robotics-in-plastic-surgery.html"}, {"n": 35, "title": "טלרפואה וסימולציה בכירורגיה פלסטית", "file": "summaries/35-telemedicine-and-simulation-in-plastic-surgery.html"}, {"n": 36, "title": "טכנולוגיה דיגיטלית בכירורגיה פלסטית", "file": "summaries/36-digital-technology-in-plastic-surgery.html"}, {"n": 37, "title": "שיפור אסתטי באמצעות טכנולוגיות לא פולשניות", "file": "summaries/37-aesthetic-improvement-through-noninvasive-technologies.html"}, {"n": 38, "title": "חינוך והוראה בכירורגיה פלסטית", "file": "summaries/38-education-and-teaching-in-plastic-surgery.html"}, {"n": 39, "title": "כירורגיה פלסטית גלובלית", "file": "summaries/39-global-plastic-surgery.html"}, {"n": 40, "title": "ניתוחי אישור מגדר", "file": "summaries/40-gender-affirming-surgery.html"}, {"n": 41, "title": "בריאות מבוססת-ערך", "file": "summaries/41-value-based-healthcare.html"}, {"n": 42, "title": "הדמיה טרום-ניתוחית ותוך-ניתוחית בכירורגיה פלסטית", "file": "summaries/42-pre-and-intra-operative-imaging-for-plastic-surgery.html"}, {"n": 43, "title": "מדדי תוצאה מדווחי-מטופל בכירורגיה פלסטית", "file": "summaries/43-patient-reported-outcomes-in-plastic-surgery.html"}, {"n": 44, "title": "מחקר שירותי בריאות בכירורגיה פלסטית", "file": "summaries/44-health-services-research-in-plastic-surgery.html"}];
+
+var latestList = document.getElementById('latestList');
+if(CHAPTERS.length === 0){
+  latestList.innerHTML = '<p class="empty">עדיין לא נוסף אף סיכום.</p>';
+} else {
+  CHAPTERS.slice(-3).reverse().forEach(function(c){
+    var btn = document.createElement('button');
+    btn.className = 'link-btn';
+    btn.textContent = 'פרק ' + c.n + ': ' + c.title + ' — סיכום';
+    btn.addEventListener('click', function(){ openChapter(c.n); });
+    latestList.appendChild(btn);
+  });
+}
+
+var frame = document.getElementById('contentFrame');
+var emptyWrap = document.getElementById('emptyWrap');
+var contentNav = document.getElementById('contentNav');
+var navTitle = document.getElementById('navTitle');
+var prevBtn = document.getElementById('prevBtn');
+var nextBtn = document.getElementById('nextBtn');
+var currentN = null;
+
+function indexOfN(n){ return CHAPTERS.findIndex(function(c){ return c.n === n; }); }
+
+function openChapter(n){
+  var idx = indexOfN(n);
+  if(idx === -1) return;
+  currentN = n;
+  var c = CHAPTERS[idx];
+  frame.src = c.file;
+  frame.style.display = 'block';
+  emptyWrap.style.display = 'none';
+  contentNav.classList.add('show');
+  navTitle.textContent = 'פרק ' + c.n + ': ' + c.title;
+  prevBtn.disabled = (idx === 0);
+  nextBtn.disabled = (idx === CHAPTERS.length - 1);
+
+  document.querySelectorAll('.ch-item').forEach(function(li){ li.classList.remove('active'); });
+  var activeLi = document.querySelector('.ch-item[data-n="' + n + '"]');
+  if(activeLi) activeLi.classList.add('active');
+}
+
+prevBtn.addEventListener('click', function(){
+  var idx = indexOfN(currentN);
+  if(idx > 0) openChapter(CHAPTERS[idx - 1].n);
+});
+nextBtn.addEventListener('click', function(){
+  var idx = indexOfN(currentN);
+  if(idx < CHAPTERS.length - 1) openChapter(CHAPTERS[idx + 1].n);
+});
+
+document.querySelectorAll('.ch-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){ openChapter(parseInt(btn.getAttribute('data-n'), 10)); });
+});
+
+// --- collapsible sidebar (for reading comfortably on a phone) ---
+var sidebarEl = document.getElementById('sidebar');
+var sidebarToggle = document.getElementById('sidebarToggle');
+var COLLAPSE_KEY = 'ps_sidebar_collapsed';
+
+function setSidebarCollapsed(v){
+  sidebarEl.classList.toggle('collapsed', v);
+  try{ localStorage.setItem(COLLAPSE_KEY, v ? '1' : '0'); }catch(e){}
+}
+
+sidebarToggle.addEventListener('click', function(){
+  setSidebarCollapsed(!sidebarEl.classList.contains('collapsed'));
+});
+
+(function initSidebarState(){
+  var saved = null;
+  try{ saved = localStorage.getItem(COLLAPSE_KEY); }catch(e){}
+  if(saved !== null){ setSidebarCollapsed(saved === '1'); }
+  else if(window.innerWidth < 700){ setSidebarCollapsed(true); }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כרטיסיות | פרק 2: היסטוריה של כירורגיה משחזרת ואסתטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Arial Hebrew',sans-serif; background:#f3f4f6; margin:0; padding:20px; color:#1f2937}
+  .wrap{max-width:920px; margin:0 auto}
+  .topnav{margin-bottom:14px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  header{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px}
+  h1{font-size:22px; margin:0}
+  .sub{color:#6b7280; font-size:14px}
+  button{cursor:pointer; font-family:inherit}
+  .lang-btn{background:#1f2937; color:#fff; border:none; border-radius:6px; padding:8px 14px; font-size:14px}
+
+  .stats{background:#fff; border-radius:10px; padding:14px 18px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.08); display:flex; flex-wrap:wrap; gap:18px; font-size:14px}
+  .stats .item b{display:block; font-size:20px}
+  .stats .reset{margin-inline-start:auto; background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:6px; padding:6px 12px; font-size:13px}
+
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
+  .filters select, .filters input{padding:7px 10px; border:1px solid #d1d5db; border-radius:6px; font-size:13.5px; font-family:inherit}
+  .filters input{flex:1; min-width:160px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px}
+  .card{background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,.08); cursor:pointer; border-inline-start:6px solid #ccc; transition:transform .1s}
+  .card:hover{transform:translateY(-2px)}
+  .card .badge{display:inline-block; font-size:11px; font-weight:700; color:#fff; border-radius:4px; padding:2px 8px; margin-bottom:8px}
+  .card .q{font-size:14.5px; font-weight:600; line-height:1.5}
+  .card .meta{margin-top:8px; font-size:12px; color:#9ca3af; display:flex; justify-content:space-between}
+  .card .status{font-size:11px; font-weight:700; border-radius:4px; padding:1px 6px}
+  .status.correct{background:#ecfdf5; color:#047857}
+  .status.wrong{background:#fef2f2; color:#b91c1c}
+  .status.unrated{background:#f3f4f6; color:#6b7280}
+
+  .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; align-items:flex-start; justify-content:center; padding:30px 14px; overflow:auto; z-index:10}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff; border-radius:12px; max-width:680px; width:100%; padding:26px 28px; position:relative}
+  .modal .close{position:absolute; top:14px; left:14px; background:#f3f4f6; border:none; border-radius:50%; width:30px; height:30px; font-size:16px}
+  .modal .badge{display:inline-block; font-size:12px; font-weight:700; color:#fff; border-radius:4px; padding:3px 10px; margin-bottom:10px}
+  .modal .q{font-size:18px; font-weight:700; margin:6px 0 16px; line-height:1.6}
+  .opt{display:block; width:100%; text-align:right; padding:10px 14px; margin:7px 0; border:1px solid #e5e7eb; border-radius:8px; background:#fff; font-size:15px; color:#1f2937}
+  .opt:hover{background:#f8fafc}
+  .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:700}
+  .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .opt[disabled]{cursor:default}
+
+  .answer-block{display:none; margin-top:18px; border-top:2px dashed #e5e7eb; padding-top:16px}
+  .answer-block.show{display:block}
+  .a-lines{margin:10px 0}
+  .a-line{display:flex; align-items:flex-start; gap:8px; padding:4px 0; font-size:15px}
+  .a-line .dot{width:10px; height:10px; border-radius:50%; margin-top:6px; flex-shrink:0}
+  .box{border-radius:8px; padding:12px 14px; margin:10px 0; font-size:14.5px}
+  .box.def{background:#eff6ff}
+  .box.story{background:#fdf4ff}
+  .box.why{background:#fffbeb}
+  .box.mnemonic{background:#ecfdf5}
+  .box h4{margin:0 0 6px; font-size:13.5px}
+  .box .known{font-size:11px; background:#d1fae5; color:#065f46; border-radius:4px; padding:1px 6px; margin-inline-start:6px}
+  .diagram-wrap{margin:12px 0; text-align:center}
+  .diagram-wrap svg{max-width:100%; border:1px solid #e5e7eb; border-radius:8px}
+  .video-link{display:inline-flex; align-items:center; gap:6px; background:#fef2f2; color:#b91c1c; border-radius:6px; padding:8px 12px; text-decoration:none; font-size:14px; font-weight:600; margin-top:8px}
+  .key-terms{margin-top:10px}
+  .key-terms span{display:inline-block; background:#f3f4f6; border-radius:12px; padding:3px 10px; font-size:12.5px; margin:2px}
+  .rate-row{display:flex; gap:10px; margin-top:16px}
+  .rate-row button{flex:1; padding:10px; border-radius:8px; border:1px solid #d1d5db; font-size:14px; background:#fff}
+  .rate-row .known-btn{background:#ecfdf5; border-color:#047857; color:#047857; font-weight:700}
+  .rate-row .review-btn{background:#fffbeb; border-color:#b45309; color:#b45309; font-weight:700}
+  .back-btn{background:#f3f4f6; border:none; border-radius:6px; padding:8px 14px; font-size:13.5px; margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav"><a href="../index.html">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../index.html">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+  <header>
+    <div>
+      <h1 id="pageTitle">כרטיסיות תרגול | פרק 2: היסטוריה של כירורגיה משחזרת ואסתטית</h1>
+      <div class="sub" id="pageSub">8 כרטיסיות · לחצי על כרטיסייה כדי להתחיל</div>
+    </div>
+    <button class="lang-btn" id="langBtn">EN / עברית</button>
+  </header>
+
+  <div class="stats" id="statsPanel"></div>
+
+  <div class="filters">
+    <input type="text" id="searchBox" placeholder="חיפוש חופשי...">
+    <select id="catFilter"><option value="">כל הנושאים</option></select>
+    <select id="diffFilter">
+      <option value="">כל הרמות</option>
+      <option value="low">בסיסי</option>
+      <option value="medium">בינוני</option>
+      <option value="high">מתקדם</option>
+    </select>
+    <select id="statusFilter">
+      <option value="">הכל</option>
+      <option value="unrated">לא נענה</option>
+      <option value="review">לסמן לחזרה</option>
+      <option value="known">ידוע</option>
+    </select>
+  </div>
+
+  <div class="grid" id="cardGrid"></div>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="close" id="closeBtn">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+var PALETTE = {
+  "definitions":"#028090", "history":"#B85042", "principles":"#21295C",
+  "societies":"#2C5F2D", "case-study":"#1C7293"
+};
+var CAT_NAMES_HE = {"definitions":"הגדרות יסוד","history":"היסטוריה ודמויות","principles":"עקרונות ומנגנון","societies":"אגודות וכתבי עת","case-study":"מקרה בוחן"};
+var CAT_NAMES_EN = {"definitions":"Core Definitions","history":"History & Figures","principles":"Principles & Mechanism","societies":"Societies & Journals","case-study":"Case Study"};
+
+var CARDS = [
+{
+  id:"c001", type:"qa", difficulty:"low", topic_category:"definitions",
+  correct_index:1, has_image:false,
+  he:{
+    question:"בשנת 1597 נתן Gaspare Tagliacozzi הגדרה מכוננת לכירורגיה פלסטית. מה הייתה ההגדרה, ומה ההדגשה המרכזית בה?",
+    options:["\"יצירת יופי מושלם ואחיד לכל המטופלים\" — דגש אסתטי טהור","\"להשיב את מה שהטבע נתן והמזל לקח\" — מטרתה העיקרית אינה שחזור היופי המקורי אלא שיקום התפקוד של האזור הפגוע","\"תיקון פגמים מולדים בלבד, ללא התייחסות לפציעות\" — הגדרה מצומצמת למומים מלידה","\"אמנות דתית שרק כמרים רשאים לבצע\" — הגדרה בעלת אופי טקסי"],
+    answer_lines:[
+      {t:"המקור: \"restore what Nature has given and chance has taken away\"", icon:"🔵", c:"1C7293"},
+      {t:"ההדגשה המפורשת: לא שחזור היופי המקורי, אלא שיקום התפקוד (rehabilitation) של האזור הפגוע", icon:"🟢", c:"2C5F2D"},
+      {t:"המילה \"פלסטי\" מקורה ביוונית πλαστικός (plasticós) — \"ניתן לעיצוב\"", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (2) מצוטטת כמעט מילולית מהפרק, כולל ההדגשה המפורשת על תפקוד ולא רק יופי. תשובה 1 הפוכה — הפרק שולל דגש אסתטי בלעדי. תשובה 3 שגויה כי ההגדרה כוללת מפורשות גם מה ש\"המזל לקח\" (כלומר פגיעות נרכשות, לא רק מולדות). תשובה 4 אינה מבוססת בטקסט כלל.",
+    term_definition:{term:"Plasticós (πλαστικός)", text:"מילה יוונית שפירושה \"ניתן לעיצוב/גמיש\" — מקור השם \"כירורגיה פלסטית\", שאין לו קשר לחומר הפלסטיק המודרני."},
+    story:"תארי לעצמך פסל שמקבל גוש חומר פגום ומעצב אותו מחדש — לא כדי ליצור יצירת אמנות מושלמת יש מאין, אלא כדי להחזיר לחומר את הצורה והתפקוד שהיו לו לפני שנשבר. זה בדיוק מה שתגליאקוצי התכוון אליו ב'פלסטי'.",
+    why_question:{q:"למה תגליאקוצי הדגיש דווקא תפקוד ולא רק יופי, כבר ב-1597?", a:"כי רוב המטופלים שהגיעו אליו איבדו איברים (בעיקר אף) עקב פציעות מלחמה, עונשים או מחלות (כמו עגבת) — והבעיה המיידית שלהם לא הייתה חוסר יופי אלא נכות תפקודית וחברתית קשה (נשימה, דיבור, סטיגמה). ההגדרה שיקפה את הצורך הקליני האמיתי שעמד לנגד עיניו."},
+    key_terms:["Tagliacozzi","הגדרת כירורגיה פלסטית","plasticós"]
+  },
+  en:{
+    question:"In 1597 Gaspare Tagliacozzi gave a foundational definition of plastic surgery. What was it, and what was its central emphasis?",
+    options:["\"Creating uniform, perfect beauty for every patient\" — a purely aesthetic emphasis","\"To restore what Nature has given and chance has taken away\" — its main purpose is not restoring original beauty but rehabilitating the affected part's function","\"Correcting congenital defects only, not injuries\" — a definition limited to birth defects","\"A religious art only clergy may perform\" — a ceremonial definition"],
+    answer_lines:[
+      {t:"Source quote: \"restore what Nature has given and chance has taken away\"", icon:"🔵", c:"1C7293"},
+      {t:"Explicit emphasis: not restoring original beauty, but rehabilitating (rehabilitation) the affected part's function", icon:"🟢", c:"2C5F2D"},
+      {t:"\"Plastic\" derives from Greek πλαστικός (plasticós) — \"moldable\"", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (2) is near-verbatim from the chapter, including the explicit emphasis on function over beauty. Option 1 is the reverse. Option 3 is wrong since the definition explicitly covers what \"chance has taken away\" — i.e. acquired, not just congenital, defects. Option 4 has no textual basis.",
+    term_definition:{term:"Plasticós (πλαστικός)", text:"Greek word meaning \"moldable/formable\" — the origin of \"plastic surgery,\" unrelated to modern plastic material."},
+    story:"Picture a sculptor handed a damaged block of material — not to create a flawless artwork from nothing, but to reshape the material back to the form and function it had before it broke. That is exactly what Tagliacozzi meant by 'plastic.'",
+    why_question:{q:"Why did Tagliacozzi emphasize function rather than just beauty, already in 1597?", a:"Because most of his patients had lost body parts (mainly the nose) to war injuries, punishment, or disease (like syphilis) — their immediate problem wasn't a lack of beauty but severe functional and social disability (breathing, speech, stigma). The definition reflected the real clinical need he faced."},
+    key_terms:["Tagliacozzi","Definition of plastic surgery","plasticós"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c002", type:"vignette", difficulty:"medium", topic_category:"history",
+  correct_index:2, has_image:false,
+  he:{
+    question:"בהודו העתיקה נהגו לכרות את אפם של נואפים, גנבים ושבויי מלחמה כעונש והשפלה. איך התפתחות זו הובילה בסופו של דבר לניתוח פלאפ המצח המודרני הראשון בעולם המערבי (Carpue, 1814)?",
+    options:["רופא הודי היגר לאנגליה במאה ה-18 ולימד את קרפיו ישירות","קרפיו קרא את ה-Samhita של Sushruta בסנסקריט המקורי","שחזור אף התפתח בהודו (Sushruta Samhita, כ-600 לפנה\"ס) על ידי הכת הנמוכה של ה-Koomas; ב-1794 פורסם באנגליה מכתב אנונימי חתום 'BL' שתיאר ניתוח שבוצע בהודו על נהג עגלה בשם Cowasjee — וזה הגיע לידיו של קרפיו, שיישם את הטכניקה ב-1814","הטכניקה הומצאה באופן עצמאי לגמרי על ידי קרפיו ב-1814, ללא כל קשר להודו"],
+    answer_lines:[
+      {t:"הודו העתיקה: כריתת אף כעונש חברתי יצרה ביקוש קבוע לשחזור (Koomas — כת כמרים/קדרים נמוכה)", icon:"🔴", c:"B85042"},
+      {t:"1794: מכתב אנונימי ('BL') ל-Gentleman's Magazine מתאר את ניתוח Cowasjee — נהג עגלה שאיבד אפו", icon:"🔵", c:"1C7293"},
+      {t:"1814: Joseph Constantine Carpue מבצע את ניתוח פלאפ המצח המודרני הראשון בעולם המערבי, בהשראת התיאור", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"התשובה הנכונה (3) עוקבת אחרי שרשרת התיעוד המדויקת שהפרק מתאר: מקור קליני-חברתי בהודו → תיעוד מקרה בודד (Cowasjee) → פרסום מכתב אנונימי בעיתון אנגלי → יישום מעשי על ידי קרפיו כמעט 20 שנה מאוחר יותר. תשובה 1 ממציאה קשר אישי שלא מוזכר. תשובה 2 שגויה — קרפיו לא קרא סנסקריט; המידע הגיע דרך תרגום/תיווך אנגלי. תשובה 4 מתעלמת מהקשר המפורש שהפרק מתעד.",
+    term_definition:{term:"Forehead Flap (פלאפ מצח)", text:"פלאפ מבוסס-רקמה שמקורו בעור המצח, המשמש לשחזור אף — הטכניקה ה'הודית' המקורית, בניגוד לפלאפ הזרוע האיטלקי (Tagliacozzi)."},
+    story:null,
+    why_question:{q:"למה בדיוק ההודים (ולא, למשל, היוונים או הרומאים) פיתחו את פלאפ המצח באופן שיטתי כל כך מוקדם?", a:"כי בהודו הייתה תופעה חברתית קבועה וחוזרת — כריתת אף כעונש — שיצרה ביקוש מתמשך וגדול לפתרון אמין. כאשר בעיה קלינית חוזרת על עצמה בהיקף גדול, זה בדיוק התנאי שמניע שכלול שיטתי של טכניקה (השוו לפרק 1: מלחמה כמאיץ חדשנות)."},
+    key_terms:["Sushruta Samhita","Cowasjee","Carpue","forehead flap"]
+  },
+  en:{
+    question:"In ancient India, adulterers, thieves, and prisoners of war had their noses amputated as punishment and humiliation. How did this ultimately lead to the first modern forehead-flap rhinoplasty in the Western world (Carpue, 1814)?",
+    options:["An Indian physician emigrated to England in the 18th century and taught Carpue directly","Carpue read Sushruta's Samhita in the original Sanskrit","Nasal reconstruction developed in India (Sushruta Samhita, c. 600 BC) performed by the low-caste Koomas; in 1794 an anonymous letter signed 'BL' was published in England describing an operation performed in India on a bullock driver named Cowasjee — which reached Carpue, who applied the technique in 1814","The technique was invented entirely independently by Carpue in 1814, with no connection to India"],
+    answer_lines:[
+      {t:"Ancient India: nasal amputation as social punishment created steady demand for reconstruction (Koomas — a low caste of priests/potters)", icon:"🔴", c:"B85042"},
+      {t:"1794: anonymous letter ('BL') to the Gentleman's Magazine describes the Cowasjee case — a bullock driver who lost his nose", icon:"🔵", c:"1C7293"},
+      {t:"1814: Joseph Constantine Carpue performs the first modern forehead-flap operation in the Western world, inspired by the account", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"Correct answer (3) follows the exact documentation chain the chapter describes: social-clinical origin in India → single-case documentation (Cowasjee) → anonymous letter published in an English magazine → practical application by Carpue nearly 20 years later. Option 1 invents a personal link not mentioned. Option 2 is wrong — Carpue didn't read Sanskrit; the information reached him through English mediation. Option 4 ignores the explicit link the chapter documents.",
+    term_definition:{term:"Forehead Flap", text:"A tissue flap based on forehead skin, used for nasal reconstruction — the original 'Indian' technique, as opposed to the Italian arm flap (Tagliacozzi)."},
+    story:null,
+    why_question:{q:"Why did Indians specifically (rather than, say, Greeks or Romans) develop the forehead flap so systematically, so early?", a:"Because India had a recurring, widespread social phenomenon — nasal amputation as punishment — creating sustained large-scale demand for a reliable solution. When a clinical problem recurs at scale, that's exactly the condition that drives systematic technique refinement (compare Chapter 1: war as an innovation accelerator)."},
+    key_terms:["Sushruta Samhita","Cowasjee","Carpue","forehead flap"]
+  },
+  mnemonic:null,
+  video_link:{title:"The Crazy True Story Of The First Plastic Surgery In History", url:"https://www.youtube.com/watch?v=3ej0CBiIFJM"},
+  diagram_ref:true, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c003", type:"qa", difficulty:"medium", topic_category:"history",
+  correct_index:2, has_image:false,
+  he:{
+    question:"כיצד בפועל 'דלף' הסוד המשפחתי של שחזור האף בפלאפ הזרוע ממשפחת Vianeo האיטלקית (המאה ה-16) אל העולם הרחב?",
+    options:["המשפחה פרסמה חוברת הדרכה מודפסת לציבור הרחב","האפיפיור הורה למשפחה לחשוף את הטכניקה במצוותו","המנתח הצבאי Leonardo Fioravanti התחזה לצופה חסר-אומץ שמסב את מבטו מהניתוח, אך למעשה צפה בכל שלב 'מבעד לאצבעות' ופרסם דיווח מפורט ב-Il Tesoro della Vita Humana (1570), שכנראה הגיע לידי Tagliacozzi","נכדו של Antonio Branca מכר את הזכויות לטכניקה לתגליאקוצי בתמורה לכסף"],
+    answer_lines:[
+      {t:"משפחת Vianeo (Pietro ו-Paolo) הפעילה קליניקה מצליחה בטרופיאה, קלבריה — הידע נשמר בעל-פה בלבד", icon:"🔴", c:"B85042"},
+      {t:"Fioravanti מספר בעצמו: 'העמדתי פנים שאין לי אומץ להסתכל... אך עיניי ראו הכול'", icon:"🔵", c:"1C7293"},
+      {t:"פרסם דיווח מפורט ב-1570 — קדם בכ-27 שנה לספרו השיטתי של תגליאקוצי (1597)", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"התשובה הנכונה (3) מבוססת על ציטוט ישיר מהפרק מתוך כתביו של Fioravanti עצמו. תשובות 1, 2, 4 אינן מבוססות כלל בטקסט — להפך, הפרק מדגיש שהידע נשמר כ'סוד משפחתי' שעבר אך ורק בעל-פה, בדיוק כמו אצל משפחת Branca לפניה שהטכניקה שלה 'נעלמה' ב-1460 עם מות אנטוניו.",
+    term_definition:{term:"Il Tesoro della Vita Humana", text:"'אוצר חיי האדם' — ספרו של Leonardo Fioravanti, מנתח צבאי מבולוניה, שפורסם בוונציה ב-1570 וכלל את התיאור הראשון בכתב של טכניקת פלאפ הזרוע של משפחת Vianeo."},
+    story:null,
+    why_question:{q:"למה משפחות כמו Branca ו-Vianeo בחרו לשמור את הטכניקה בסוד, במקום לפרסם אותה ולזכות בקרדיט?", a:"כי במאות ה-15–16 לא היה עדיין מושג של 'פרסום מדעי' כדרך לצבור מוניטין מקצועי — ידע מעשי מיוחד היה נכס כלכלי משפחתי (כמו סוד מסחרי), שהעברתו לזרים הייתה מאיימת על פרנסת המשפחה על פני דורות."},
+    key_terms:["Vianeo","Fioravanti","Branca","סוד משפחתי"]
+  },
+  en:{
+    question:"How did the Italian Vianeo family's (16th century) secret arm-flap nasal reconstruction technique actually 'leak' to the wider world?",
+    options:["The family published a printed instructional pamphlet for the public","The Pope ordered the family to disclose the technique","The military surgeon Leonardo Fioravanti pretended to be a squeamish onlooker who turned his face away from the operation, while actually watching every step 'through his fingers,' then published a detailed account in Il Tesoro della Vita Humana (1570), which likely reached Tagliacozzi","Antonio Branca's grandson sold the rights to the technique to Tagliacozzi for money"],
+    answer_lines:[
+      {t:"The Vianeo family (Pietro and Paolo) ran a successful clinic in Tropea, Calabria — knowledge kept purely oral", icon:"🔴", c:"B85042"},
+      {t:"Fioravanti's own account: 'I pretended I had not the courage to look... yet my eyes saw perfectly'", icon:"🔵", c:"1C7293"},
+      {t:"Published a detailed report in 1570 — about 27 years before Tagliacozzi's systematic book (1597)", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"Correct answer (3) is based on a direct quote from the chapter, from Fioravanti's own writing. Options 1, 2, 4 have no textual basis — on the contrary, the chapter stresses the knowledge was kept as a purely oral 'family secret,' just like the Branca family's technique before it, which 'disappeared' in 1460 upon Antonio's death.",
+    term_definition:{term:"Il Tesoro della Vita Humana", text:"'The Treasure of Human Life' — a book by Leonardo Fioravanti, a military surgeon from Bologna, published in Venice in 1570, containing the first written description of the Vianeo family's arm-flap technique."},
+    story:null,
+    why_question:{q:"Why did families like Branca and Vianeo choose to keep the technique secret rather than publish it and gain credit?", a:"Because in the 15th–16th centuries there was no concept yet of 'scientific publication' as a path to professional reputation — specialized practical knowledge was a family economic asset (like a trade secret), and passing it to outsiders threatened the family's livelihood across generations."},
+    key_terms:["Vianeo","Fioravanti","Branca","family secret"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c004", type:"qa", difficulty:"low", topic_category:"history",
+  correct_index:1, has_image:false,
+  he:{
+    question:"מה קרה לפרקטיקה של שחזור אף באירופה בשני המאות שאחרי מותו של Tagliacozzi (1599), ומה 'החייה' אותה מחדש?",
+    options:["הפרקטיקה המשיכה להתפתח באופן רציף ושיטתי ללא הפרעה","הניתוח — שהיה קשה טכנית לביצוע — כמעט נעלם, ומנתחים כמו Fallopio ו-Camper המליצו במקומו על תותבות עשויות עץ או כסף; רק מכתב אנונימי מ-1794 ('BL') על מקרה Cowasjee בהודו הצית את תחייתו, וב-1814 Carpue ביצע את הניתוח המודרני הראשון", "האינקוויזיציה אסרה על ביצוע הניתוח מטעמים דתיים", "מגפת הדבר השחור מחקה את כל הידע הרפואי מהתקופה"],
+    answer_lines:[
+      {t:"אחרי תגליאקוצי: כמעט 200 שנות ירידה — הניתוח נחשב קשה מדי לביצוע באופן שגרתי", icon:"🔴", c:"B85042"},
+      {t:"פתרון חלופי שהיה נפוץ בתקופה: תותבות עשויות עץ או כסף (Fallopio, Camper ואחרים)", icon:"🔵", c:"1C7293"},
+      {t:"1794: מכתב 'BL' על מקרה Cowasjee → 1814: Carpue מחייה את הניתוח בלונדון, St. Bartholomew's Hospital", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"התשובה הנכונה (2) משקפת במדויק את מה שהפרק מתאר: תקופת ירידה ארוכה, פתרון תותבת כתחליף נחות, ותחייה בזכות מקרה בודד שתועד והתפרסם. תשובות 1, 3, 4 אינן מבוססות כלל בטקסט — הפרק אינו מזכיר אינקוויזיציה או מגפה כגורמים.",
+    term_definition:{term:"Prosthesis Era (עידן התותבות)", text:"תקופה (המאות 17–18) שבה נחשבה תותבת חיצונית (מעץ, כסף) פתרון עדיף על ניתוח מורכב לשחזור אף — משקפת את חוסר האמון בטכניקה הכירורגית שנשכחה."},
+    story:null,
+    why_question:{q:"למה בכלל טכניקה שכבר תועדה בספר מודפס (1597) יכולה 'להישכח' למשך כמעט 200 שנה?", a:"כי הניתוח היה קשה טכנית לביצוע (שלב ביניים ארוך שבו הזרוע מקובעת לפנים, סיכון זיהום גבוה, כאב רב ללא הרדמה) — כך שגם עם תיעוד כתוב זמין, מעטים המנתחים שהעזו או ידעו לבצע אותו בהצלחה, עד שנוצר תמריץ חדש (המכתב מ-1794) שהחזיר אליו תשומת לב."},
+    key_terms:["ירידת הכירורגיה הפלסטית","תותבות","Carpue","תחייה"]
+  },
+  en:{
+    question:"What happened to nasal reconstruction practice in Europe in the two centuries after Tagliacozzi's death (1599), and what revived it?",
+    options:["Practice continued to develop steadily and systematically without interruption","The operation — technically difficult to perform — nearly disappeared, and surgeons like Fallopio and Camper recommended wood or silver prostheses instead; only an anonymous 1794 letter ('BL') about the Cowasjee case in India sparked its revival, and in 1814 Carpue performed the first modern operation", "The Inquisition banned the operation on religious grounds", "The Black Death wiped out all medical knowledge from the era"],
+    answer_lines:[
+      {t:"After Tagliacozzi: nearly 200 years of decline — the operation was considered too difficult to perform routinely", icon:"🔴", c:"B85042"},
+      {t:"A common alternative of the era: wood or silver prostheses (Fallopio, Camper, and others)", icon:"🔵", c:"1C7293"},
+      {t:"1794: the 'BL' letter about the Cowasjee case → 1814: Carpue revives the operation in London, St. Bartholomew's Hospital", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"Correct answer (2) accurately reflects what the chapter describes: a long decline, prosthesis as an inferior substitute, and revival thanks to a single documented and published case. Options 1, 3, 4 have no basis in the text — the chapter mentions neither the Inquisition nor a plague as factors.",
+    term_definition:{term:"Prosthesis Era", text:"A period (17th–18th centuries) when an external prosthesis (wood, silver) was considered preferable to complex surgery for nasal reconstruction — reflecting the loss of confidence in the forgotten surgical technique."},
+    story:null,
+    why_question:{q:"How could a technique already documented in a printed book (1597) be 'forgotten' for nearly 200 years?", a:"Because the operation was technically difficult (a long intermediate stage with the arm fixed to the face, high infection risk, severe pain without anesthesia) — so even with written documentation available, few surgeons dared or knew how to perform it successfully, until a new incentive (the 1794 letter) brought renewed attention."},
+    key_terms:["Decline of plastic surgery","Prosthesis","Carpue","Revival"]
+  },
+  mnemonic:null,
+  video_link:{title:"GCSE History: Harold Gillies - 'The father of plastic surgery'", url:"https://www.youtube.com/watch?v=_nZ8f6zHufg"},
+  diagram_ref:false, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c005", type:"qa", difficulty:"medium", topic_category:"principles",
+  correct_index:0, has_image:true,
+  he:{
+    question:"במאה ה-19 הוכח לראשונה ששתל עור 'חופשי' (חתוך לגמרי מאספקת הדם המקורית) יכול לשרוד. מהו הסדר הכרונולוגי-מנגנוני הנכון של פורצי הדרך והמנגנון הביולוגי שמאפשר לשתל 'לתפוס'?",
+    options:["Baronio הוכיח את העיקרון בכבש (1804) → Reverdin ביצע שתל אנושי מוצלח ראשון (1869) → Ollier הרחיב לעובי-חלקי → Wolfe/Thiersch שכללו לעובי-מלא; מנגנונית: ספיגה (imbibition) ← חיבור כלי דם קיימים (inosculation) ← נאואנגיוגנזה (neovascularization)","Reverdin ← Baronio ← Wolfe ← Ollier, מנגנונית: נאואנגיוגנזה מיידית בלבד ללא שלבי ביניים","Wolfe (1804) ← Ollier ← Baronio ← Reverdin, מנגנונית: השתל שורד רק דרך אספקת חמצן ישירה מהאוויר","הסדר אינו ידוע וללא משמעות קלינית"],
+    answer_lines:[
+      {t:"שלב 1 (0–48 שעות): ספיגה (imbibition) — השתל 'שותה' פלזמה מהמצע כמו ספוג, שמירה זמנית בלבד", icon:"🔵", c:"1C7293"},
+      {t:"שלב 2 (יום 2–4): inosculation — קצוות כלי דם קיימים במצע ובשתל 'נפגשים' ומתחברים", icon:"🟢", c:"2C5F2D"},
+      {t:"שלב 3 (מיום 4–7): נאואנגיוגנזה — נבטים חדשים של כלי דם צומחים לתוך השתל, אספקת דם יציבה", icon:"🟠", c:"D99A2B"},
+      {t:"BROW: Baronio (1804, כבש) → Reverdin (1869, אדם) → Ollier (עובי-חלקי) → Wolfe/Thiersch (עובי-מלא)", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"התשובה הנכונה (1) משלבת נכון גם את הסדר הכרונולוגי המדויק שמופיע בפרק וגם את המנגנון הביולוגי התלת-שלבי שמסביר למה בכלל שתל חופשי שורד. תשובה 2 הופכת את הסדר ומדלגת על שלבי הביניים החיוניים. תשובה 3 שגויה גם בתאריך (Wolfe אינו 1804 — זו שנת Baronio) וגם במנגנון (אין ספיגת חמצן ישירה מהאוויר). תשובה 4 שגויה כי לסדר יש משמעות קלינית ישירה — הוא משקף את ההתקדמות מעקרון בסיסי לטכניקה מדויקת (הבחנה בין עובי חלקי למלא).",
+    term_definition:{term:"Inosculation", text:"שלב אמצעי בהשרשת שתל עור: חיבור פיזי-מכני בין קצוות כלי דם קטנים שנחתכו בשתל לבין קצוות כלי דם במצע הפצע, עוד לפני צמיחת כלי דם חדשים לגמרי."},
+    story:"תארי שתל עור כמו צמח קטוף שמנסים להשריש מחדש באדמה: קודם הוא 'שותה' לחות מהאדמה כדי לא להתייבש (ספיגה), אחר כך השורשים הקטומים שלו 'נפגשים' עם נימי מים קיימים באדמה (inosculation), ורק בסוף צומחים לו שורשים חדשים לגמרי שמעגנים אותו לצמיתות (נאואנגיוגנזה).",
+    why_question:{q:"למה בכלל שתל עור חייב מצע עם אספקת דם טובה (כמו שריר), ולא יכול 'לתפוס' על עצם חשופה?", a:"כי כל שלושת השלבים תלויים בקרבה פיזית של כלי דם פעילים במצע — עצם קורטיקלית חשופה (ללא פריוסטאום) כמעט חסרת כלי דם משלה, ולכן אין ממה 'לספוג', עם מה 'להתחבר' ומאיפה 'לצמוח' כלי דם חדשים."},
+    key_terms:["Baronio","Reverdin","Ollier","Wolfe","imbibition","inosculation"]
+  },
+  en:{
+    question:"In the 19th century it was first proven that a 'free' skin graft (fully cut off from its original blood supply) can survive. What is the correct chronological-mechanistic order of the pioneers and the biological mechanism enabling the graft to 'take'?",
+    options:["Baronio proved the principle in a ram (1804) → Reverdin performed the first successful human graft (1869) → Ollier extended to split-thickness → Wolfe/Thiersch refined to full-thickness; mechanistically: imbibition ← inosculation ← neovascularization","Reverdin ← Baronio ← Wolfe ← Ollier, mechanistically: immediate neovascularization only, with no intermediate stages","Wolfe (1804) ← Ollier ← Baronio ← Reverdin, mechanistically: the graft survives only via direct oxygen uptake from air","The order is unknown and clinically meaningless"],
+    answer_lines:[
+      {t:"Stage 1 (0–48h): imbibition — the graft 'drinks' plasma from the bed like a sponge, temporary survival only", icon:"🔵", c:"1C7293"},
+      {t:"Stage 2 (day 2–4): inosculation — cut vessel ends in the bed and graft 'meet' and link up", icon:"🟢", c:"2C5F2D"},
+      {t:"Stage 3 (from day 4–7): neovascularization — new vessel sprouts grow into the graft, stable blood supply", icon:"🟠", c:"D99A2B"},
+      {t:"BROW: Baronio (1804, ram) → Reverdin (1869, human) → Ollier (split-thickness) → Wolfe/Thiersch (full-thickness)", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"Correct answer (1) correctly combines the exact chronology from the chapter with the three-stage biological mechanism explaining why a free graft survives at all. Option 2 reverses the order and skips essential intermediate stages. Option 3 is wrong both on the date (Wolfe isn't 1804 — that's Baronio) and the mechanism (no direct oxygen uptake from air). Option 4 is wrong because the order has direct clinical meaning — it reflects progress from basic principle to precise technique (split vs full thickness).",
+    term_definition:{term:"Inosculation", text:"An intermediate stage of graft take: the physical-mechanical joining of small cut vessel ends in the graft with vessel ends in the wound bed, before entirely new vessels have grown."},
+    story:"Picture a skin graft like a cut plant being replanted in soil: first it 'drinks' moisture from the soil to avoid drying out (imbibition), then its cut roots 'meet' existing water capillaries in the soil (inosculation), and only afterward does it grow entirely new roots that anchor it permanently (neovascularization).",
+    why_question:{q:"Why does a skin graft need a bed with good blood supply (like muscle), and can't 'take' on exposed bone?", a:"Because all three stages depend on physical proximity to active vessels in the bed — exposed cortical bone (without periosteum) has almost no vessels of its own, so there's nothing to 'imbibe' from, nothing to 'link up' with, and nowhere for new vessels to 'grow' from."},
+    key_terms:["Baronio","Reverdin","Ollier","Wolfe","imbibition","inosculation"]
+  },
+  mnemonic:{text:"BROW — סדר פורצי דרך שתל העור החופשי", source:"original", breakdown:{he:["B – Baronio (1804, כבש)","R – Reverdin (1869, אדם)","O – Ollier (עובי-חלקי)","W – Wolfe/Thiersch (עובי-מלא)"], en:["B – Baronio (1804, ram)","R – Reverdin (1869, human)","O – Ollier (split-thickness)","W – Wolfe/Thiersch (full-thickness)"]}},
+  video_link:null, diagram_ref:true, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c006", type:"vignette", difficulty:"high", topic_category:"case-study",
+  correct_index:2, has_image:false,
+  he:{
+    question:"חייל בריטי נפגע קשות בפנים בקרב הסום (1916). תעלות החפירה הגנו על גופו אך לא על ראשו. הוא מגיע לטיפול במרכז מוביל באנגליה, שם צוות משולב של מנתח פלסטי ורופא שיניים מטפל בו יחד. מהו המודל הארגוני שהתפתח כאן, מי חלוץ אותו, ומי אימץ והפך אותו לשיטתי?",
+    options:["המודל פותח על ידי Erich Lexer בגרמניה והופץ דרך כתבי עת בלבד","המודל פותח על ידי Vilray Blair בארה\"ב ולא היה לו קשר לאירופה","Hippolyte Morestin (מנתח פלסטי) ו-Charles Valadier (רופא שיניים) בפריז היו הראשונים לשלב מנתח פלסטי לרקמות רכות עם רופא שיניים לייצוב שברי לסת בעזרת מכשור דנטלי; Harold Gillies התרשם מהמודל בביקורו ב-1915 ואימץ/שיטת אותו ב-Queen's Hospital, Sidcup (1917), עם William Fry ו-Henry Pickerill כרופאי שיניים בצוותו","המודל הומצא במקור בארה\"ב והועבר לאירופה רק לאחר מלחמת העולם השנייה"],
+    answer_lines:[
+      {t:"תעלות: הגנו על הגו, חשפו ראש וצוואר — יצרו מספר עצום של מומי פנים חדשים (כמעט 500,000 נפגעים בריטים בסום)", icon:"🔴", c:"B85042"},
+      {t:"Morestin + Valadier, Hôpital Val-de-Grâce, פריז: מודל הצוות הרב-תחומי הראשון (רקמות רכות + ייצוב שלד דנטלי)", icon:"🔵", c:"1C7293"},
+      {t:"Gillies מבקר ב-1915, מתרשם, וב-1917 מקים את Queen's Hospital Sidcup — מרכז ההפניה האירופי המוביל", icon:"🟢", c:"2C5F2D"},
+      {t:"בצוות גיליס: William Fry ו-Henry Pickerill כרופאי שיניים, קבוצת מרדימים מיומנים — שיטתה נהלים כמו הפלאפ הצינורי", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (3) משקפת במדויק את שרשרת ההעברה שהפרק מתאר: חדשנות ארגונית נולדה בפריז אצל מורסטן וולדייה, ואומצה ושוכללה על ידי גיליס באנגליה. תשובות 1, 2, 4 מייחסות את המודל לגורמים ובמקומות שגויים — לקסר עסק בשחזור פנים-לסת בגרמניה אך לא תואר כמחדש המודל הצוותי; בלייר בארה\"ב הוכשר ב-Sidcup (כלומר קיבל את המודל, לא המציא אותו); לא היה קשר למלחמת העולם השנייה.",
+    term_definition:{term:"Queen's Hospital, Sidcup", text:"מרכז ייעודי לשיקום פנים שהקים Gillies ב-1917, עם למעלה מ-1,000 מיטות — הפך למרכז ההפניה האירופי המוביל לפציעות פנים-לסת במלה\"ע 1."},
+    story:null,
+    why_question:{q:"למה שילוב מנתח פלסטי עם רופא שיניים היה כה קריטי דווקא בפציעות פנים-לסת, יותר מאשר בפציעות אחרות?", a:"כי בפגיעה בלסת יש שני צרכים שונים לגמרי בו-זמנית: תיקון הרקמה הרכה (עור, שריר) שדורש מיומנות כירורגית פלסטית, ויציבות השלד (הלסת התחתונה/העליונה) שדורשת מכשור והבנה דנטלית ייחודית — בלי ייצוב שלד תקין, גם התיקון הכי טוב של הרקמה הרכה ייכשל כי אין לו על מה 'לשבת'."},
+    key_terms:["Morestin","Valadier","Gillies","Sidcup","קרב הסום"]
+  },
+  en:{
+    question:"A British soldier is severely wounded in the face at the Battle of the Somme (1916). Trench warfare protected his body but not his head. He receives treatment at a leading British center where a combined team of a plastic surgeon and a dentist treats him together. What organizational model developed here, who pioneered it, and who adopted and systematized it?",
+    options:["The model was developed by Erich Lexer in Germany and spread only through journals","The model was developed by Vilray Blair in the US and had no connection to Europe","Hippolyte Morestin (plastic surgeon) and Charles Valadier (dentist) in Paris were the first to combine a plastic surgeon for soft tissue with a dentist for stabilizing jaw fractures using dental appliances; Harold Gillies was impressed by the model on his 1915 visit and adopted/systematized it at Queen's Hospital, Sidcup (1917), with William Fry and Henry Pickerill as his dental surgeons", "The model originated in the US and was transferred to Europe only after WWII"],
+    answer_lines:[
+      {t:"Trenches protected the trunk, exposed the head and neck — creating a massive number of new facial injuries (nearly 500,000 British casualties at the Somme)", icon:"🔴", c:"B85042"},
+      {t:"Morestin + Valadier, Hôpital Val-de-Grâce, Paris: the first multidisciplinary team model (soft tissue + dental skeletal stabilization)", icon:"🔵", c:"1C7293"},
+      {t:"Gillies visits in 1915, is impressed, and in 1917 establishes Queen's Hospital Sidcup — the leading European referral center", icon:"🟢", c:"2C5F2D"},
+      {t:"Gillies's team: William Fry and Henry Pickerill as dental surgeons, a skilled anesthesia team — he systematized procedures like the tubed flap", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (3) accurately reflects the transmission chain the chapter describes: organizational innovation was born in Paris with Morestin and Valadier, and adopted and refined by Gillies in England. Options 1, 2, 4 attribute the model to the wrong people/places — Lexer worked on facial/jaw reconstruction in Germany but isn't described as pioneering the team model; Blair in the US trained at Sidcup (i.e. received the model, didn't invent it); there's no WWII connection.",
+    term_definition:{term:"Queen's Hospital, Sidcup", text:"A dedicated facial-reconstruction center established by Gillies in 1917, with over 1,000 beds — became the leading European referral center for maxillofacial injuries in WWI."},
+    story:null,
+    why_question:{q:"Why was combining a plastic surgeon with a dentist so critical specifically for maxillofacial injuries, more than other injuries?", a:"Because a jaw injury creates two entirely different simultaneous needs: soft-tissue repair (skin, muscle) requiring plastic surgical skill, and skeletal stability (upper/lower jaw) requiring dental appliances and expertise — without proper skeletal stabilization, even the best soft-tissue repair fails because it has nothing stable to 'sit' on."},
+    key_terms:["Morestin","Valadier","Gillies","Sidcup","Battle of the Somme"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c007", type:"cloze", difficulty:"medium", topic_category:"societies",
+  correct_index:0, has_image:false,
+  he:{
+    question:"השלימי את ציר הזמן: האגודה המקצועית הראשונה בעולם הוקמה ב-___ בארה\"ב על ידי Truman Brophy; האגודה האמריקאית לכירורגיה פלסטית הוקמה ב-___ על ידי Jacques Maliniak; והאגודה הבין-לאומית-אירופית הראשונה הוקמה ב-___ בבריסל.",
+    options:["1921 (American Association of Oral and Plastic Surgeons) / 1931 (American Society of Plastic Surgeons) / 1936 (Société Européenne de Chirurgie Structive)","1900 / 1920 / 1930","1931 / 1921 / 1946","1945 / 1950 / 1960"],
+    answer_lines:[
+      {t:"1921: Truman Brophy מקים את American Association of Oral and Plastic Surgeons — דרש תארי MD ו-DDS", icon:"🔵", c:"1C7293"},
+      {t:"1931: Jacques Maliniak מקים את American Society of Plastic Surgeons", icon:"🟢", c:"2C5F2D"},
+      {t:"1936: Maurice Coelst (בלגי) מקים את Société Européenne de Chirurgie Structive — האגודה הבין-לאומית הראשונה", icon:"🟠", c:"D99A2B"},
+      {t:"מקביל: כתב העת הראשון בתחום, Revue de Chirurgie Plastique, הוקם ב-1931 גם כן על ידי Coelst", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"התשובה הנכונה (1) משקפת את שלושת התאריכים המדויקים והמייסדים המדויקים כפי שמופיעים בפרק. שאר האפשרויות מציגות תאריכים שגויים שאינם תואמים את הטקסט.",
+    term_definition:{term:"Société Européenne de Chirurgie Structive", text:"האגודה הבין-לאומית הראשונה בתחום, שהוקמה ב-1936 בבריסל. המונח 'structive' טבע Johannes Esser, שחשב שהוא מתאים יותר מ'פלסטי' כי הוא מדגיש את עקרון השחזור (construct/restructure)."},
+    story:null,
+    why_question:{q:"למה בכלל נדרשו אגודות מקצועיות ורגולציה בתחום, ולא רק כישרון כירורגי אישי?", a:"כי בתקופה הזו (בין שתי מלחמות העולם) פעלו לצד המנתחים המוסמכים גם 'רופאי יופי' ושרלטנים ללא הכשרה מספקת, שהזיקו למוניטין התחום כולו. אגודות מקצועיות עם קריטריוני קבלה (כמו דרישת MD+DDS אצל ברופי) נועדו ליצור חיץ בין מנתחים מוסמכים לציבור הרחב, ולהגן על החולים."},
+    key_terms:["Truman Brophy","Jacques Maliniak","Maurice Coelst","אגודות מקצועיות"]
+  },
+  en:{
+    question:"Complete the timeline: the world's first professional society was founded in ___ in the US by Truman Brophy; the American Society of Plastic Surgeons was founded in ___ by Jacques Maliniak; and the first international European society was founded in ___ in Brussels.",
+    options:["1921 (American Association of Oral and Plastic Surgeons) / 1931 (American Society of Plastic Surgeons) / 1936 (Société Européenne de Chirurgie Structive)","1900 / 1920 / 1930","1931 / 1921 / 1946","1945 / 1950 / 1960"],
+    answer_lines:[
+      {t:"1921: Truman Brophy founds the American Association of Oral and Plastic Surgeons — required both MD and DDS degrees", icon:"🔵", c:"1C7293"},
+      {t:"1931: Jacques Maliniak founds the American Society of Plastic Surgeons", icon:"🟢", c:"2C5F2D"},
+      {t:"1936: Maurice Coelst (Belgian) founds the Société Européenne de Chirurgie Structive — the first international society", icon:"🟠", c:"D99A2B"},
+      {t:"In parallel: the field's first journal, Revue de Chirurgie Plastique, was also founded in 1931 by Coelst", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"Correct answer (1) reflects the exact three dates and founders as they appear in the chapter. The other options present incorrect dates that don't match the text.",
+    term_definition:{term:"Société Européenne de Chirurgie Structive", text:"The first international society in the field, founded in 1936 in Brussels. The term 'structive' was coined by Johannes Esser, who considered it more appropriate than 'plastic' as it emphasizes the repair/reconstruction principle."},
+    story:null,
+    why_question:{q:"Why were professional societies and regulation needed at all, rather than just individual surgical talent?", a:"Because during this era (between the world wars), unqualified 'beauty doctors' and charlatans operated alongside trained surgeons, damaging the entire field's reputation. Professional societies with admission criteria (like Brophy's MD+DDS requirement) aimed to create a barrier between qualified surgeons and the public, protecting patients."},
+    key_terms:["Truman Brophy","Jacques Maliniak","Maurice Coelst","Professional societies"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-09"
+},
+{
+  id:"c008", type:"vignette", difficulty:"high", topic_category:"principles",
+  correct_index:1, has_image:false,
+  he:{
+    question:"בין שתי מלחמות העולם פרחו בארה\"ב ובאירופה 'רופאי יופי' כמו Charles C. Miller (שהזריק פרפין, ולאחר מכן גומי גולמי טחון, לתיקון שקעים בעור) ו-Henry Schireson (שכונה 'מלך השרלטנים'). במקביל, Jacques Joseph בברלין קידד רינופלסטיקה אסתטית שיטתית שנשמרה כמעט ללא שינוי כמעט 100 שנה. מה ההבדל המהותי בין שתי הגישות, ולמה זה חשוב היסטורית?",
+    options:["אין הבדל מהותי — שני הצדדים היו כירורגים מוסמכים באותה מידה","הבדל שיטתי-מדעי: Joseph קידד רצף פרוצדורלי קבוע, מתועד ומבוסס-אנטומיה שניתן ללמד ולשחזר; רופאי היופי הציעו פתרונות מהירים ולא-מבוססים (חומרים כמו פרפין וגומי שגרמו לסיבוכים קשים כמו פרפינומות ותסחיף ריאתי), ומכאן שהיווצרות אגודות מקצועיות ורגולציה (ראו כרטיסייה קודמת) הייתה תגובה ישירה לצורך להבדיל בין השניים","רופאי היופי היו מדויקים יותר טכנית כי עבדו מהר יותר","ההבדל היחיד היה מחיר הטיפול"],
+    answer_lines:[
+      {t:"Jacques Joseph: רצף פרוצדורלי מתועד ושיטתי, בר-שחזור ולימוד — הבסיס לרינופלסטיקה המודרנית", icon:"🟢", c:"2C5F2D"},
+      {t:"Miller: הזרקות פרפין (paraffinomas, תסחיף ריאתי, phlebitis), ולאחר מכן גומי גולמי טחון — חומרים לא-מבוססים וללא בסיס מדעי", icon:"🔴", c:"B85042"},
+      {t:"Schireson: תביעות רשלנות רפואית, רישיון נשלל זמנית, כונה 'מלך השרלטנים' ב-Time (1944)", icon:"🟠", c:"D99A2B"},
+      {t:"תוצאה: אגודות מקצועיות (1921, 1931, 1936) הוקמו חלקית כדי ליצור חיץ מקצועי-רגולטורי מול התופעה הזו", icon:"🔵", c:"1C7293"}
+    ],
+    explanation:"התשובה הנכונה (2) מזהה נכון את ההבדל המהותי: שיטתיות מדעית מתועדת מול פתרונות מהירים ומסוכנים, ומקשרת זאת נכון להקמת המסגרת המקצועית שתוארה בכרטיסייה הקודמת. תשובה 1 שגויה עובדתית — הפרק מבחין בבירור בין השניים. תשובה 3 הפוכה מהעובדות (מהירות לא שוות ערך לדיוק, ולרוב ההפך). תשובה 4 מצמצמת בטעות סוגיה של בטיחות ומדעיות לשאלה כלכלית בלבד.",
+    term_definition:{term:"Beauty Doctors (רופאי יופי)", text:"כינוי לפרקטיקנים (לא תמיד מוסמכים ברפואה) שפעלו בעיקר בין שתי מלחמות העולם, פרסמו בעיתונים ומגזינים הבטחות למראה משופר במהירות ובזול, ולעיתים גרמו נזק חמור בשל שימוש בחומרים לא-מבוססים."},
+    story:null,
+    why_question:{q:"למה דווקא פרפין (ולאחר מכן גומי) נראה כמו 'פתרון טוב' בזמנו, לפני שהתגלו הסיבוכים?", a:"כי בהיעדר שתלים ביו-תואמים מודרניים, פרפין נראה כמילוי פשוט וזול לתיקון שקעים — אבל בפועל הגוף מגיב לחומר זר לא-ביולוגי בתגובה דלקתית כרונית שיוצרת גושים קשים (פרפינומות) שיכולים לנדוד דרך זרם הדם ולגרום לתסחיף ריאתי — סיבוך שלא ניתן היה לצפות בלי הבנה מדויקת של תגובת רקמה לגוף זר."},
+    key_terms:["Jacques Joseph","Charles Miller","beauty doctors","פרפינומה"]
+  },
+  en:{
+    question:"Between the world wars, 'beauty doctors' such as Charles C. Miller (who injected paraffin, then ground crude rubber, to fix skin depressions) and Henry Schireson (dubbed 'king of quacks') flourished in the US and Europe. Meanwhile, Jacques Joseph in Berlin codified a systematic aesthetic rhinoplasty sequence that remained nearly unchanged for almost 100 years. What is the essential difference between the two approaches, and why does it matter historically?",
+    options:["There's no essential difference — both sides were equally qualified surgeons","A systematic-scientific difference: Joseph codified a fixed, documented, anatomy-based procedural sequence that could be taught and reproduced; beauty doctors offered fast, unfounded solutions (materials like paraffin and rubber that caused severe complications like paraffinomas and pulmonary embolism) — and this is precisely why professional societies and regulation (see previous card) arose as a direct response to the need to distinguish between the two","Beauty doctors were technically more precise because they worked faster","The only difference was the price of treatment"],
+    answer_lines:[
+      {t:"Jacques Joseph: a documented, systematic procedural sequence, reproducible and teachable — the basis of modern rhinoplasty", icon:"🟢", c:"2C5F2D"},
+      {t:"Miller: paraffin injections (paraffinomas, pulmonary embolism, phlebitis), later ground crude rubber — unfounded materials with no scientific basis", icon:"🔴", c:"B85042"},
+      {t:"Schireson: malpractice lawsuits, license revoked temporarily, dubbed 'king of quacks' by Time (1944)", icon:"🟠", c:"D99A2B"},
+      {t:"Result: professional societies (1921, 1931, 1936) were founded partly to create a professional-regulatory barrier against this phenomenon", icon:"🔵", c:"1C7293"}
+    ],
+    explanation:"Correct answer (2) correctly identifies the essential difference: documented scientific systematicity versus fast, dangerous solutions, and correctly links this to the establishment of the professional framework described in the previous card. Option 1 is factually wrong — the chapter clearly distinguishes between the two. Option 3 reverses the facts (speed isn't equivalent to precision, usually the opposite). Option 4 wrongly reduces a safety and scientific issue to a purely economic question.",
+    term_definition:{term:"Beauty Doctors", text:"A term for practitioners (not always medically qualified) who operated mainly between the world wars, advertised fast and cheap appearance improvements in newspapers and magazines, and sometimes caused serious harm through unfounded materials."},
+    story:null,
+    why_question:{q:"Why did paraffin (and later rubber) seem like a 'good solution' at the time, before complications were discovered?", a:"In the absence of modern biocompatible implants, paraffin seemed like a simple, cheap filler for depressions — but the body actually responds to a non-biological foreign material with a chronic inflammatory reaction forming hard lumps (paraffinomas) that could migrate through the bloodstream and cause pulmonary embolism — a complication that couldn't be anticipated without precise understanding of tissue response to foreign bodies."},
+    key_terms:["Jacques Joseph","Charles Miller","beauty doctors","paraffinoma"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-09"
+}
+];
+
+var DIAGRAMS = {
+  c002: '<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg"><rect x="330" y="15" width="130" height="55" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="395" y="38" font-size="11" text-anchor="middle" fill="#7f1d1d">הודו העתיקה</text><text x="395" y="55" font-size="10" text-anchor="middle" fill="#7f1d1d">Sushruta, כריתת אף כעונש</text><rect x="170" y="15" width="130" height="55" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="235" y="38" font-size="11" text-anchor="middle" fill="#1e3a8a">מכתב 1794</text><text x="235" y="55" font-size="10" text-anchor="middle" fill="#1e3a8a">מקרה Cowasjee</text><rect x="10" y="15" width="130" height="55" rx="6" fill="#ecfdf5" stroke="#047857"/><text x="75" y="38" font-size="11" text-anchor="middle" fill="#065f46">Carpue 1814</text><text x="75" y="55" font-size="10" text-anchor="middle" fill="#065f46">ניתוח מודרני ראשון</text><line x1="330" y1="42" x2="300" y2="42" stroke="#374151" stroke-width="2"/><polygon points="330,42 310,36 310,48" fill="#374151"/><line x1="170" y1="42" x2="140" y2="42" stroke="#374151" stroke-width="2"/><polygon points="170,42 150,36 150,48" fill="#374151"/></svg>',
+  c005: '<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg"><rect x="330" y="15" width="130" height="55" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="395" y="38" font-size="11" text-anchor="middle" fill="#7f1d1d">ספיגה</text><text x="395" y="55" font-size="10" text-anchor="middle" fill="#7f1d1d">0–48 שעות</text><rect x="170" y="15" width="130" height="55" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="235" y="38" font-size="11" text-anchor="middle" fill="#1e3a8a">Inosculation</text><text x="235" y="55" font-size="10" text-anchor="middle" fill="#1e3a8a">יום 2–4</text><rect x="10" y="15" width="130" height="55" rx="6" fill="#ecfdf5" stroke="#047857"/><text x="75" y="38" font-size="11" text-anchor="middle" fill="#065f46">נאואנגיוגנזה</text><text x="75" y="55" font-size="10" text-anchor="middle" fill="#065f46">מיום 4–7</text><line x1="330" y1="42" x2="300" y2="42" stroke="#374151" stroke-width="2"/><polygon points="330,42 310,36 310,48" fill="#374151"/><line x1="170" y1="42" x2="140" y2="42" stroke="#374151" stroke-width="2"/><polygon points="170,42 150,36 150,48" fill="#374151"/><text x="240" y="110" font-size="11" text-anchor="middle" fill="#6b7280">שלבי השרשת שתל עור חופשי &#8592;</text></svg>'
+};
+
+var langIsHe = true;
+var state = JSON.parse(localStorage.getItem('psFlashcardsState_ch02') || '{}');
+function saveState(){ localStorage.setItem('psFlashcardsState_ch02', JSON.stringify(state)); }
+
+function catList(){
+  var s = {};
+  CARDS.forEach(function(c){ s[c.topic_category] = true; });
+  return Object.keys(s);
+}
+
+function populateFilters(){
+  var sel = document.getElementById('catFilter');
+  catList().forEach(function(cat){
+    var o = document.createElement('option');
+    o.value = cat;
+    o.textContent = (langIsHe ? CAT_NAMES_HE[cat] : CAT_NAMES_EN[cat]) || cat;
+    sel.appendChild(o);
+  });
+}
+
+function renderStats(){
+  var total = CARDS.length;
+  var answered = 0, correct = 0, known = 0, review = 0;
+  CARDS.forEach(function(c){
+    var st = state[c.id];
+    if(st && st.answered){ answered++; if(st.correct) correct++; }
+    if(st && st.rating === 'known') known++;
+    if(st && st.rating === 'review') review++;
+  });
+  var acc = answered ? Math.round(100*correct/answered) : 0;
+  var el = document.getElementById('statsPanel');
+  var L = langIsHe ? {tot:"סה\"כ כרטיסיות",ans:"נענו",acc:"דיוק",kn:"ידועות",rv:"לחזרה",rs:"איפוס"} :
+                       {tot:"Total cards",ans:"Answered",acc:"Accuracy",kn:"Known",rv:"To review",rs:"Reset"};
+  el.innerHTML =
+    '<div class="item"><b>'+total+'</b>'+L.tot+'</div>'+
+    '<div class="item"><b>'+answered+'/'+total+'</b>'+L.ans+'</div>'+
+    '<div class="item"><b>'+acc+'%</b>'+L.acc+'</div>'+
+    '<div class="item"><b>'+known+'</b>'+L.kn+'</div>'+
+    '<div class="item"><b>'+review+'</b>'+L.rv+'</div>'+
+    '<button class="reset">'+L.rs+'</button>';
+  el.querySelector('.reset').addEventListener('click', function(){
+    if(confirm(langIsHe ? 'לאפס את כל ההתקדמות?' : 'Reset all progress?')){
+      state = {}; saveState(); renderAll();
+    }
+  });
+}
+
+function cardMatchesFilters(c){
+  var cat = document.getElementById('catFilter').value;
+  var diff = document.getElementById('diffFilter').value;
+  var status = document.getElementById('statusFilter').value;
+  var q = document.getElementById('searchBox').value.trim().toLowerCase();
+  if(cat && c.topic_category !== cat) return false;
+  if(diff && c.difficulty !== diff) return false;
+  var st = state[c.id];
+  if(status === 'unrated' && st && st.rating) return false;
+  if(status === 'known' && (!st || st.rating !== 'known')) return false;
+  if(status === 'review' && (!st || st.rating !== 'review')) return false;
+  if(q){
+    var text = (c.he.question+' '+c.en.question+' '+(c.he.key_terms||[]).join(' ')).toLowerCase();
+    if(text.indexOf(q) === -1) return false;
+  }
+  return true;
+}
+
+function renderGrid(){
+  var grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+  CARDS.filter(cardMatchesFilters).forEach(function(c){
+    var d = langIsHe ? c.he : c.en;
+    var color = PALETTE[c.topic_category] || '#666';
+    var catName = (langIsHe ? CAT_NAMES_HE[c.topic_category] : CAT_NAMES_EN[c.topic_category]);
+    var st = state[c.id];
+    var statusHtml = '';
+    if(st && st.answered){
+      statusHtml = '<span class="status '+(st.correct?'correct':'wrong')+'">'+(st.correct ? (langIsHe?'נכון':'correct') : (langIsHe?'טעות':'wrong'))+'</span>';
+    } else {
+      statusHtml = '<span class="status unrated">'+(langIsHe?'חדש':'new')+'</span>';
+    }
+    var div = document.createElement('div');
+    div.className = 'card';
+    div.style.borderInlineStartColor = color;
+    div.innerHTML = '<span class="badge" style="background:'+color+'">'+catName+'</span>'+
+      '<div class="q">'+d.question+'</div>'+
+      '<div class="meta"><span>'+c.difficulty+'</span>'+statusHtml+'</div>';
+    div.addEventListener('click', function(){ openCard(c.id); });
+    grid.appendChild(div);
+  });
+}
+
+function renderAll(){
+  renderStats();
+  renderGrid();
+  document.getElementById('pageSub').textContent = (langIsHe ? CARDS.length+' כרטיסיות · לחצי על כרטיסייה כדי להתחיל' : CARDS.length+' cards · click a card to start');
+  document.getElementById('pageTitle').textContent = langIsHe ? 'כרטיסיות תרגול | פרק 2: היסטוריה של כירורגיה משחזרת ואסתטית' : 'Flashcards | Chapter 2: History of Reconstructive & Aesthetic Surgery';
+}
+
+var currentCardId = null;
+function openCard(id){
+  currentCardId = id;
+  var c = CARDS.find(function(x){ return x.id === id; });
+  var d = langIsHe ? c.he : c.en;
+  var color = PALETTE[c.topic_category] || '#666';
+  var catName = (langIsHe ? CAT_NAMES_HE[c.topic_category] : CAT_NAMES_EN[c.topic_category]);
+
+  var optsHtml = d.options.map(function(opt,i){
+    return '<button class="opt" data-i="'+i+'">'+opt+'</button>';
+  }).join('');
+
+  var linesHtml = d.answer_lines.map(function(l){
+    return '<div class="a-line"><span class="dot" style="background:#'+l.c+'"></span><span>'+l.icon+' '+l.t+'</span></div>';
+  }).join('');
+
+  var defHtml = d.term_definition ? '<div class="box def"><h4>'+(langIsHe?'הגדרת מונח':'Term definition')+': '+d.term_definition.term+'</h4>'+d.term_definition.text+'</div>' : '';
+  var storyHtml = d.story ? '<div class="box story"><h4>'+(langIsHe?'סיפור לזכירה':'Story to remember')+'</h4>'+d.story+'</div>' : '';
+  var whyHtml = d.why_question ? '<div class="box why"><h4>'+(langIsHe?'שאלי את עצמך: למה?':'Ask yourself: why?')+'</h4><p><b>'+d.why_question.q+'</b></p><p>'+d.why_question.a+'</p></div>' : '';
+  var mnemHtml = '';
+  if(c.mnemonic){
+    var mLines = (langIsHe ? c.mnemonic.breakdown.he : c.mnemonic.breakdown.en).map(function(x){return '<div>'+x+'</div>';}).join('');
+    mnemHtml = '<div class="box mnemonic"><h4>'+(langIsHe?'טכניקת זכירה':'Mnemonic')+': '+c.mnemonic.text+'<span class="known">'+(c.mnemonic.source==='known'?(langIsHe?'מוכר':'known'):(langIsHe?'מקורי':'original'))+'</span></h4>'+mLines+'</div>';
+  }
+  var diagHtml = DIAGRAMS[c.id] ? '<div class="diagram-wrap">'+DIAGRAMS[c.id]+'</div>' : '';
+  var videoHtml = c.video_link ? '<a class="video-link" href="'+c.video_link.url+'" target="_blank">&#9654; '+c.video_link.title+'</a>' : '';
+  var termsHtml = d.key_terms ? '<div class="key-terms">'+d.key_terms.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>' : '';
+
+  var body =
+    '<span class="badge" style="background:'+color+'">'+catName+'</span>'+
+    '<div class="q">'+d.question+'</div>'+
+    '<div id="optsWrap">'+optsHtml+'</div>'+
+    '<div class="answer-block" id="answerBlock">'+
+      '<div class="a-lines">'+linesHtml+'</div>'+
+      '<p style="font-size:14.5px; color:#374151">'+d.explanation+'</p>'+
+      defHtml + storyHtml + whyHtml + mnemHtml + diagHtml + videoHtml + termsHtml +
+      '<div class="rate-row">'+
+        '<button class="known-btn" id="rateKnown">&#10003; '+(langIsHe?'ידעתי':'Got it')+'</button>'+
+        '<button class="review-btn" id="rateReview">&#8635; '+(langIsHe?'לחזור על זה':'Review again')+'</button>'+
+      '</div>'+
+    '</div>'+
+    '<button class="back-btn" id="backToQ" style="display:none">'+(langIsHe?'&#8592; חזרה לשאלה':'&#8592; Back to question')+'</button>';
+
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modalBg').classList.add('show');
+
+  var optsWrap = document.getElementById('optsWrap');
+  var answerBlock = document.getElementById('answerBlock');
+  var st = state[c.id] || {};
+
+  function lockOptions(chosenIdx){
+    optsWrap.querySelectorAll('.opt').forEach(function(btn){
+      btn.disabled = true;
+      var i = parseInt(btn.getAttribute('data-i'),10);
+      if(i === c.correct_index) btn.classList.add('correct');
+      else if(i === chosenIdx) btn.classList.add('wrong');
+    });
+  }
+
+  if(st.answered){
+    lockOptions(st.chosenIndex);
+    answerBlock.classList.add('show');
+    document.getElementById('backToQ').style.display = 'inline-block';
+  }
+
+  optsWrap.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'),10);
+      var isCorrect = (i === c.correct_index);
+      if(!state[c.id] || !state[c.id].answered){
+        state[c.id] = state[c.id] || {};
+        state[c.id].answered = true;
+        state[c.id].correct = isCorrect;
+        state[c.id].chosenIndex = i;
+        saveState();
+        renderStats();
+      }
+      lockOptions(i);
+      answerBlock.classList.add('show');
+      document.getElementById('backToQ').style.display = 'inline-block';
+    });
+  });
+
+  document.getElementById('backToQ').addEventListener('click', function(){
+    answerBlock.classList.remove('show');
+    document.getElementById('backToQ').style.display = 'none';
+  });
+
+  document.getElementById('rateKnown') && document.getElementById('rateKnown').addEventListener('click', function(){
+    state[c.id] = state[c.id] || {};
+    state[c.id].rating = 'known';
+    saveState(); renderGrid();
+  });
+  document.getElementById('rateReview') && document.getElementById('rateReview').addEventListener('click', function(){
+    state[c.id] = state[c.id] || {};
+    state[c.id].rating = 'review';
+    saveState(); renderGrid();
+  });
+}
+
+document.getElementById('closeBtn').addEventListener('click', function(){
+  document.getElementById('modalBg').classList.remove('show');
+  renderGrid();
+});
+document.getElementById('modalBg').addEventListener('click', function(e){
+  if(e.target.id === 'modalBg'){ document.getElementById('modalBg').classList.remove('show'); renderGrid(); }
+});
+document.getElementById('langBtn').addEventListener('click', function(){
+  langIsHe = !langIsHe;
+  document.body.setAttribute('dir', langIsHe ? 'rtl' : 'ltr');
+  document.getElementById('catFilter').innerHTML = '<option value="">'+(langIsHe?'כל הנושאים':'All topics')+'</option>';
+  populateFilters();
+  renderAll();
+  if(currentCardId) openCard(currentCardId);
+});
+['searchBox','catFilter','diffFilter','statusFilter'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', renderGrid);
+  document.getElementById(id).addEventListener('change', renderGrid);
+});
+
+populateFilters();
+renderAll();
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 36: טכנולוגיה דיגיטלית בכירורגיה פלסטית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 36: טכנולוגיה דיגיטלית בכירורגיה פלסטית <span class="term" dir="ltr">Digital Technology in Plastic Surgery</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 1: Principles, מהדורה 5 (פרק 35 בספר המודפס) | Lynn Jeffers, Hatem Abou-Sayed, Haley M. Jeffers</div>
+
+<p>פרק עקרונות/ניהול: הוא לא עוסק במחלה אלא ב"מסע המטופל" הדיגיטלי – מהרגע שהמטופלת מחפשת בגוגל ועד המעקב ארוך הטווח – ובכלים שמלווים את המנתח בכל שלב: רשומה רפואית אלקטרונית (<span class="term" dir="ltr">EHR</span>), ניהול תמונות, סימולציה תלת-ממדית, הדפסה תלת-ממדית, ניטור מרחוק, רישומים (<span class="term" dir="ltr">registries</span>) ו-<span class="term" dir="ltr">Big Data</span>. הרעיון המארגן: <b class="key">כל כלי דיגיטלי צריך לחסוך הקלדה כפולה, לשפר בטיחות ותיעוד, ולא להסיח מהמטופל.</b></p>
+
+<h2><span class="num">1</span> ציר הזמן – איפה נכנסת הטכנולוגיה</h2>
+<div class="mechanism">
+  <p class="chain">לפני הביקור → בביקור → סביב הניתוח → בין ביקורים/מעקב → מחקר, השכלה ורישומים</p>
+  <p>הפרק בנוי לפי השלבים האלה. <b>למה זה חשוב?</b> כי מטופלת "מחוברת" מגיעה לייעוץ אחרי שכבר חקרה את המנתח (אתר, ביקורות, גלריות לפני/אחרי, מחירים), מילאה טפסים בפורטל – ולכן הייעוץ עצמו יעיל וממוקד יותר. מחקר שהובא בפרק הראה ש<b class="key">מטופלות שידעו את המחיר לפני הייעוץ נטו יותר לקבוע ניתוח כבר בביקור הראשון</b>.</p>
+</div>
+<svg class="diagram" viewBox="0 0 860 170" xmlns="http://www.w3.org/2000/svg">
+  <title>מסע המטופל הדיגיטלי</title>
+  <rect x="700" y="30" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="58" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">לפני הייעוץ</text>
+  <text x="775" y="78" font-size="11" text-anchor="middle" fill="#7f1d1d">אתר, ביקורות, טלרפואה</text>
+  <rect x="530" y="30" width="140" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="600" y="58" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">בביקור</text>
+  <text x="600" y="78" font-size="11" text-anchor="middle" fill="#1e3a8a">EHR, תמונות, סימולציה 3D</text>
+  <rect x="360" y="30" width="140" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="430" y="58" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">פריאופרטיבי</text>
+  <text x="430" y="78" font-size="11" text-anchor="middle" fill="#065f46">הדפסת 3D, Doppler, RFID</text>
+  <rect x="190" y="30" width="140" height="70" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="260" y="58" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מעקב</text>
+  <text x="260" y="78" font-size="11" text-anchor="middle" fill="#78350f">wearables, צ'אט מאובטח</text>
+  <rect x="20" y="30" width="140" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="90" y="58" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">מחקר ורישומים</text>
+  <text x="90" y="78" font-size="11" text-anchor="middle" fill="#4c1d95">TOPS, NBIR, Big Data</text>
+  <line x1="700" y1="65" x2="680" y2="65" stroke="#374151" stroke-width="2"/><polygon points="670,65 680,59 680,71" fill="#374151"/>
+  <line x1="530" y1="65" x2="510" y2="65" stroke="#374151" stroke-width="2"/><polygon points="500,65 510,59 510,71" fill="#374151"/>
+  <line x1="360" y1="65" x2="340" y2="65" stroke="#374151" stroke-width="2"/><polygon points="330,65 340,59 340,71" fill="#374151"/>
+  <line x1="190" y1="65" x2="170" y2="65" stroke="#374151" stroke-width="2"/><polygon points="160,65 170,59 170,71" fill="#374151"/>
+  <text x="430" y="140" font-size="12" text-anchor="middle" fill="#374151">מטרה בכל שלב: פחות הקלדה כפולה · יותר תיעוד מובנה · פרטיות (HIPAA) · אינטגרציה בין מערכות</text>
+</svg>
+<p class="figcap">איור 1: מסע המטופל – חמשת השלבים שבהם הפרק ממקם כלים דיגיטליים (החצים מימין לשמאל).</p>
+
+<h2><span class="num">2</span> לפני הייעוץ: מידע, מוניטין וטלרפואה</h2>
+<ul>
+  <li><b>מידע ובחירת מנתח:</b> אתרים (plasticsurgery.org), גלריות לפני/אחרי (לעיתים רק מאחורי פורטל עם סיסמה), אתרי ביקורות (RealSelf, Yelp, Healthgrades). <b>המוניטין הדיגיטלי מעצב את "המותג" של המנתח</b> – ולכן מומלץ לנטר אותו (שירות צד-ג' או Google Alerts).</li>
+  <li><b>טלרפואה (<span class="term" dir="ltr">telemedicine</span>):</b> ב-2019 66% היו מוכנים לייעוץ וידאו אך רק 8% ניסו; ב-COVID זינוק של פי 63 בשימוש ב-Medicare (מ-840 אלף ל-52.7 מיליון). מאפשרת לסנן מועמדים לא מתאימים לפני שהם נוסעים, ולבצע מעקב לאחר ניתוח.</li>
+  <li><b>מלכודות משפטיות:</b> מתי נוצר יחסי רופא-מטופל, ו<b class="key">עיסוק ברפואה בין-מדינתי ללא רישיון</b> באותה מדינה (במיוחד כשהוויתורים של תקופת הקורונה מוסרים). ה-FSMB מפרסם חקיקת מודל.</li>
+</ul>
+
+<figure class="bookfig"><img src="../images/36/fig1.jpg" alt="פורטל מטופל" loading="lazy"><figcaption>תפריט פורטל המטופל עם תוכן חינוכי וגלריות לפני ואחרי — <span dir="ltr">Neligan 5th ed., Fig. 35.1</span></figcaption></figure>
+<h2><span class="num">3</span> בביקור: רשומה רפואית אלקטרונית (EHR)</h2>
+<p>חוק <span class="term" dir="ltr">HITECH</span> (2009) נתן תמריצים ל"שימוש משמעותי" (<span class="term" dir="ltr">Meaningful Use</span>) ברשומה מאושרת ע"י ה-<span class="term" dir="ltr">ONC</span>, וקנסות של עד 5% מ-2015 – ולכן האימוץ זינק. הבעיה: רוב המערכות נבנו לרופא ראשוני, ולא כוללות צרכים של מנתח פלסטי (הצעות מחיר קוסמטיות, מלאי ומכירת מוצרים, מקדמות, ארכיון תמונות עשיר).</p>
+<table>
+  <thead><tr><th>מודל אירוח</th><th>מי מחזיק את השרת/הגיבויים</th><th>יתרון</th><th>חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td>שרת במשרד</td><td>הרופא</td><td>שליטה מלאה בנתונים</td><td>עלות חומרה ו-IT, עדכונים ידניים, <b>פגיע יותר לכופרה (ransomware)</b></td></tr>
+    <tr><td>שרת חיצוני (off-site)</td><td>ספק צד-ג' (הרופא שוכר מקום)</td><td>אחריות לגיבוי/ביטוח עוברת לספק</td><td>עדכונים עדיין ידניים</td></tr>
+    <tr><td><span class="term" dir="ltr">SaaS</span> (ענן, מנוי)</td><td>ספק ה-EHR</td><td>עלות התחלתית נמוכה, עדכון אוטומטי, גישה מכל מקום, הצפנה במנוחה ובתנועה</td><td>ייתכן שהחוזה מעניק לספק גישה/בעלות על נתונים מותממים; עלות חילוץ נתונים במעבר ספק</td></tr>
+  </tbody>
+</table>
+<div class="key-box">בהטמעת EHR צפי <b>ירידה של כ-50% בפרודוקטיביות</b> (משרד + רופא) לחודשים עד שנה; מחקר אחד: ~611 שעות הכנה ו-134 שעות למידה למשתמשי קצה. למרות ירידת היקף הקליניקה – ההכנסות לעיתים <b>עלו</b> בזכות קידוד וחיוב מדויקים יותר.</div>
+<h3>שאלות חוזה שחייבים לשאול (עו"ד!)</h3>
+<p>מי <b>הבעלים של הנתונים</b>? האם לספק מותר לגשת/למכור נתונים מותממים? משך חוזה ומה מהווה הפרה (השבתה, אובדן הסמכת ONC)? תהליך ועלות פענוח והעברת הנתונים בעזיבה? אחוז השבתה מרבי? ממשקים (API פתוח, PACS/DICOM, מעבדות)? עלות לכל משתמש/רופא/עמדה?</p>
+<h3>שימוש יעיל</h3>
+<ul>
+  <li><b>פורטל מטופלים</b> (חובה ב-EHR מאושר) – קליטת נתונים לפני הביקור; שינויים שהמטופל הזין דורשים אימות צוות.</li>
+  <li><b>תבניות</b> (templates) לביקורים שכיחים; תיעוד ויזואלי על תרשים אנטומי (למשל נקודות הזרקת בוטולינום).</li>
+  <li><b>Scribes</b> – במקום או מרחוק (גם דרך Google Glass), ומערכות "האזנה" שממירות שיחה לרשומה מובנית בעזרת AI/NLP.</li>
+  <li><b>התראות</b> – אינטראקציות תרופתיות, "אישה מעל 50 בלי ממוגרפיה בשנה האחרונה".</li>
+  <li><b>ניהול פרקטיקה (PM)</b>: בדיקת זכאות ביטוחית, מחשבון E/M, "ניקוי" תביעות (<span class="term" dir="ltr">claims scrubbing</span>) לפני הגשה, <b>"סגירה קשיחה" יומית</b> של הספרים למניעת מעילה, מלאי לפי SKU, ו-<span class="term" dir="ltr">CRM</span> לתזכורות ושיווק אוטומטי.</li>
+  <li><b>אבטחה</b>: ביטוח סייבר, אימות דו-שלבי רק על מכשירי החברה, רישום מכשירים שנמסרו לעובדים והחזרתם בעזיבה, מיילים ומספרים בניהול הארגון.</li>
+</ul>
+
+<h2><span class="num">4</span> תמונות – הכלי הקליני והמשפטי החשוב ביותר</h2>
+<div class="mechanism">
+  <p><b>למה צריך מערכת ייעודית?</b> ארכיון תמונות עם תגיות (<span class="term" dir="ltr">metatags</span>) – גיל, ניתוח, גודל שתל, שלב (לפני/תוך/אחרי) – מאפשר חיפוש כמו "כל תמונות 6 חודשים אחרי הקטנת שד באישה בת 28–40 עם כריתה מעל 600 גרם". סימון על התמונה בזמן אמת (אסימטריה, קו חתך) הוא גם <b>כלי חינוך וגם כלי ניהול סיכונים</b>.</p>
+  <p><b class="key">הסכנה: metadata.</b> שם, תאריך לידה וניתוח נשארים "צמודים" לקובץ וקריאים למנוע חיפוש. חברה שמגגלת את שם חברתה עלולה להגיע לגלריית הגדלת השד שלה → הפרת HIPAA, תביעה, אובדן מטופלים. קעקוע מזהה מגדיל את הסיכון. <b>הסכמה לפרסום ניתנת לביטול</b> – והסרה ממנועי חיפוש מסובכת; יש לתאם ציפיות מראש.</p>
+</div>
+
+<figure class="bookfig"><img src="../images/36/fig2.jpg" alt="איור מוער למטופל" loading="lazy"><figcaption>איורים שאפשר להעיר ולשמור לפורטל המטופל — <span dir="ltr">Neligan 5th ed., Fig. 35.5</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/36/fig3.jpg" alt="צילום ושחזור תלת-ממדי" loading="lazy"><figcaption>צילום בשלושה מבטים והעלאה לשחזור תלת-ממדי אוטומטי — <span dir="ltr">Neligan 5th ed., Fig. 35.6</span></figcaption></figure>
+<h2><span class="num">5</span> סימולציה דיגיטלית ותלת-ממד</h2>
+<p>מערכות כמו Crisalix/Vectra יוצרות מודל תלת-ממדי משלוש תמונות (חזית, צד ימין, צד שמאל) או מסורק על iPad. שימושים מרכזיים: בחירת שתל (עגול מול אנטומי, גודל, מיקום כיס), <b>הדגמת 500 גרם כריתה שהביטוח דורש</b> מול הקטנה מצומצמת בתשלום עצמי, הדגמת הצורך במסטופקסיה בנוסף לשתל, "חיסור" נפח שד שלם לתכנון שחזור ישיר-לשתל.</p>
+<p class="key-box">כל תמונה מדומה חייבת לשאת <b>הצהרה שאינה הבטחה לתוצאה</b> – גם כהגנה משפטית וגם לתיאום ציפיות.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/AQiqYwRMJs4" title="3D Modeling for Surgical Prep | Virtual Surgical Planning at Penn Medicine" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Penn Medicine: מודלים תלת-ממדיים ותכנון ניתוחי וירטואלי (VSP) לפני ניתוח – הדגמה של מה שהפרק מתאר בחלק הפריאופרטיבי.</p>
+
+<figure class="bookfig"><img src="../images/36/fig4.jpg" alt="שחזור תלת-ממדי של השדיים" loading="lazy"><figcaption>שחזור תלת-ממדי של השדיים לבחירת שתל, נפח וצורה — <span dir="ltr">Neligan 5th ed., Fig. 35.8</span></figcaption></figure>
+<h2><span class="num">6</span> סביב הניתוח</h2>
+<table>
+  <thead><tr><th>שלב</th><th>כלים שהפרק מזכיר</th></tr></thead>
+  <tbody>
+    <tr><td>טרום-ניתוח</td><td>הצעות מחיר והסכמה מדעת דיגיטליות (DocuSign – חשש לגבי הבנה ואותנטיות ללא עד; אימות דו-שלבי, בעתיד blockchain); מרשם אלקטרוני (Surescripts); מחשבוני סיכון: <b>Caprini</b> (DVT), ASA, Fitzpatrick, <b>BRA Score</b> (סיבוכי שחזור שד על בסיס NSQIP/TOPS/MROC); שפת <span class="term" dir="ltr">HL7</span> לאינטגרציה</td></tr>
+    <tr><td>מידול</td><td>אנגיוגרפיה דיגיטלית לפלאפי פרפורטור; <b>CAD/CAM והדפסת 3D</b> לשתלים בהתאמה אישית (טיטניום, PMMA, הידרוקסיאפטיט, <span class="term" dir="ltr">PEEK</span>), פלטות מנדיבולה</td></tr>
+    <tr><td>חדר ניתוח</td><td><b>RFID לספירת פדים</b>; data fusion ומציאות רבודה (למשל שיקוף הצד הבריא בטראומת פנים); מצלמות POV (GoPro) להוראה; <b>Doppler מושתל</b> לבדיקת פתיחות אנסטומוזה; הדמיית פרפוזיה (SPY); אולטרסאונד נייד (Clarius, Butterfly) ל-TAP block באבדומינופלסטיה</td></tr>
+    <tr><td>אחרי הניתוח</td><td>Doppler להמשך ניטור פלאפ, מדדים חיוניים לסמארטפון, אפליקציות צ'אט מאובטחות עם שליחת תמונות פצע (עם גבולות ברורים), פרוטוקולי ERAS עם תזכורות אוטומטיות</td></tr>
+  </tbody>
+</table>
+<p><b class="key">אזהרה חוזרת בפרק: כלי הזרמה/צילום בחדר הניתוח אסור שיסיחו מהעדיפות העליונה – המטופל.</b></p>
+
+<h2><span class="num">7</span> מעקב, קהילה, חינוך ומחקר</h2>
+<ul>
+  <li><b>Wearables</b>: מדרסים חכמים ללחץ כף רגל בסוכרתיים, חיישני פצע (לחץ, זיהום, התאמת לחץ שלילי), בעתיד חיישנים בתוך שתלים וחבישות.</li>
+  <li><b>קהילות מקוונות</b> (crowdsourcing, RealSelf) – משפיעות על מוניטין ו-SEO; לשמור על פרטיות.</li>
+  <li><b>חינוך</b>: סימולטורי VR (Oculus), סימולציה עם נתוני CT ומשוב מישושי, אטלסים דיגיטליים שכבתיים, ספריית וידאו POV, כנסים היברידיים (מאז COVID).</li>
+  <li><b>רישומים</b>: <b>TOPS</b> (ASPS), <b>NBIR</b> (National Breast Implant Registry), <b>PROFILE</b> (BIA-ALCL), <b>GRAFT</b> (השתלת שומן) – שלושת האחרונים בשיתוף PSF ו-FDA; העברה ישירה מה-EHR דרך <span class="term" dir="ltr">FHIR</span>.</li>
+  <li><b>Big Data</b> → מעבר מרפואה מבוססת-ראיות ל<b>רפואה מדויקת</b> (precision medicine); מסייע להוכיח יעילות/בטיחות מול משלמים במודל value-based, ו<b>למנוע "פאניקה" לא מבוססת</b> – או לזהות בעיית בטיחות לפני משבר לאומי.</li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tD-WaGuR638" title="Using AI and 3D Printing for Better Plastic Surgery Outcomes" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מנתח פלסטי ילדים מסביר איך בינה מלאכותית והדפסה תלת-ממדית משפרות תוצאות – חיבור בין Big Data, מידול ותכנון ניתוחי.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">"PHOTO"</span> – מה בודקים לפני שמעלים תמונה לרשת</h3>
+  <p><b>P</b> – <span class="term" dir="ltr">Permission</span>: הסכמה כתובה לפרסום (וניתנת לביטול).<br>
+  <b>H</b> – <span class="term" dir="ltr">HIPAA</span>: אין פרטים מזהים.<br>
+  <b>O</b> – <span class="term" dir="ltr">Obvious identifiers</span>: קעקועים, שומות, פנים.<br>
+  <b>T</b> – <span class="term" dir="ltr">Tags/metadata</span>: למחוק שם, ת"ל ותאריך מהקובץ.<br>
+  <b>O</b> – <span class="term" dir="ltr">Ownership</span>: בחוזה – למי שייכות התמונות.</p>
+  <h3>ראשי תיבות לבחירת EHR: <span dir="ltr">"CODES"</span></h3>
+  <p><b>C</b>ertification (ONC) · <b>O</b>wnership of data · <b>D</b>owntime limits · <b>E</b>xit (העברת נתונים בעזיבה) · <b>S</b>upport &amp; integration (API).</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני את מטופלת "דיגי" שמגיעה לקליניקה עם תיק גב שקוף. בתיק היא נושאת את כל מה שגוגל אמר לה (ביקורות, מחירים). בכניסה פקידה-רובוט מעבירה את התיק ל"כספת בענן" (SaaS) עם מנעול כפול (אימות דו-שלבי). בחדר המנתח מקרין הולוגרמה של השד החדש, ועליה חותמת אדומה "לא הבטחה!". אחרי הניתוח דיגי מקבלת שעון חכם שמצפצף למנתח, ובסוף הנתונים שלה נופלים לתוך "אגם נתונים" ענק (Big Data) שממנו המנתחים לומדים. אבל – ליד האגם עומד שומר בשם HIPAA, שמוחק מכל תמונה את התווית עם שמה לפני שהיא נכנסת למים.</p>
+  <svg class="diagram" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg">
+    <title>האגם והשומר</title>
+    <ellipse cx="150" cy="120" rx="130" ry="35" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="150" y="125" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">אגם Big Data</text>
+    <rect x="330" y="40" width="70" height="90" rx="10" fill="#fef3c7" stroke="#b45309"/>
+    <text x="365" y="90" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">HIPAA</text>
+    <rect x="430" y="60" width="70" height="50" rx="6" fill="#fff" stroke="#374151"/>
+    <text x="465" y="82" font-size="11" text-anchor="middle" fill="#374151">📷</text>
+    <text x="465" y="100" font-size="10" text-anchor="middle" fill="#b91c1c">שם: מחוק</text>
+    <line x1="430" y1="85" x2="410" y2="85" stroke="#374151" stroke-width="2"/><polygon points="400,85 410,79 410,91" fill="#374151"/>
+    <line x1="330" y1="100" x2="290" y2="110" stroke="#374151" stroke-width="2"/><polygon points="280,112 289,104 292,116" fill="#374151"/>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=AQiqYwRMJs4" target="_blank">Penn Medicine – Virtual Surgical Planning</a><span class="tag">YouTube</span><div class="desc">מידול והדפסה תלת-ממדית לפני ניתוח.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=HNj_cTTwb-M" target="_blank">3D Planning for Facial Plastic Surgery</a><span class="tag">YouTube</span><div class="desc">תכנון 3D בניתוחי לסת, קרניופציאלי ורינופלסטיה.</div></li>
+  <li><a href="https://www.thepsf.org/research/registries/nbir" target="_blank">National Breast Implant Registry (PSF)</a><div class="desc">רישום השתלים הלאומי שמוזכר בפרק.</div></li>
+  <li><a href="https://www.hhs.gov/hipaa/index.html" target="_blank">HHS – HIPAA</a><div class="desc">כללי פרטיות ואבטחת מידע רפואי בארה"ב.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה ותרגול</h2>
+<div class="case">
+  <h3>תרחיש</h3>
+  <p>ד"ר ל', מנתחת פלסטית בפרקטיקה פרטית, עוברת ל-EHR בענן. חודש לאחר ההטמעה מספר המטופלים היומי ירד בחצי. מטופלת לשעבר מתלוננת שכאשר חיפשה את שמה בגוגל הופיעה תמונה שלה מגלריית "הגדלת שד" באתר הקליניקה. במקביל, מטופלת חדשה מבקשת לראות סימולציה של שתל 350 סמ"ק ושואלת אם "כך זה ייראה בדיוק".</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה ההסבר הסביר ביותר לכך שהתמונה הופיעה בחיפוש על שם המטופלת?</div>
+  <button class="opt" data-i="0">גוגל מזהה פנים אוטומטית בכל תמונה</button>
+  <button class="opt" data-i="1">המטופלת עצמה העלתה את התמונה</button>
+  <button class="opt" data-i="2">נתוני metadata (שם, תאריך, ניתוח) נשארו צמודים לקובץ וקריאים למנוע החיפוש</button>
+  <button class="opt" data-i="3">מערכת ה-SaaS מוכרת תמונות לצד ג'</button>
+  <div class="explain">הפרק מדגיש שתגיות metadata נשארות בקובץ ונקראות ע"י מנועי חיפוש – יש להסירן לפני העלאה. זיהוי פנים אינו המנגנון שתואר; העלאה עצמית ומכירת נתונים אינן מתאימות לתרחיש.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. ירידת פרודוקטיביות של ~50% אחרי הטמעת EHR:</div>
+  <button class="opt" data-i="0">מעידה על מערכת פגומה שיש להחליף מיד</button>
+  <button class="opt" data-i="1">צפויה, יכולה להימשך חודשים עד שנה, ולעיתים ההכנסות אף עולות בזכות חיוב מדויק</button>
+  <button class="opt" data-i="2">קורה רק במערכות שרת-משרד</button>
+  <button class="opt" data-i="3">נגרמת בעיקר מקנסות Meaningful Use</button>
+  <div class="explain">הפרק מצטט המלצת מומחים לצפות לירידה של 50% בתקופת ההטמעה, ומציין שלמרות זאת ההכנסות עלו בחלק מהמחקרים. החלפת מערכת היא יקרה ומזיקה; הירידה אינה תלויה במודל האירוח; הקנסות אינם הסיבה.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מה נכון לגבי סימולציה תלת-ממדית שמוצגת למטופלת?</div>
+  <button class="opt" data-i="0">מדויקת עד 95% ולכן אפשר להבטיח תוצאה</button>
+  <button class="opt" data-i="1">מחייבת תמיד חדר צילום ייעודי</button>
+  <button class="opt" data-i="2">משמשת רק לשיווק ולא לתכנון</button>
+  <button class="opt" data-i="3">יש לצרף הצהרה שאינה הבטחה לתוצאה – גם בתיק וגם בכל תמונה שיוצאת מהמשרד</button>
+  <div class="explain">הפרק ממליץ במפורש להדפיס disclaimer על כל תמונה מדומה. יש מערכות שעובדות עם iPad/טלפון בלבד, והסימולציה משמשת גם לתכנון (בחירת שתל, נפח כריתה).</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. איזו טכנולוגיה מוזכרת בפרק למניעת השארת פדים בגוף?</div>
+  <button class="opt" data-i="0">RFID</button>
+  <button class="opt" data-i="1">Doppler מושתל</button>
+  <button class="opt" data-i="2">FHIR</button>
+  <button class="opt" data-i="3">HL7</button>
+  <div class="explain">RFID משמש למעקב אחר פדי לפרוטומיה. Doppler מושתל – לניטור אנסטומוזה; FHIR ו-HL7 הם תקני העברת מידע בין מערכות.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. איזה רישום נועד במיוחד לחקר BIA-ALCL?</div>
+  <button class="opt" data-i="0">GRAFT</button>
+  <button class="opt" data-i="1">TOPS</button>
+  <button class="opt" data-i="2">PROFILE</button>
+  <button class="opt" data-i="3">MROC</button>
+  <div class="explain">PROFILE (Patient Registry and Outcomes For breast Implants and anaplastic large cell Lymphoma Etiology) – PSF+FDA. GRAFT = השתלת שומן, TOPS = תוצאות כלליות של ASPS, MROC = קונסורציום תוצאות שחזור שד.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. מה היתרון המרכזי של מודל SaaS מבחינת אבטחה לפי הפרק?</div>
+  <button class="opt" data-i="0">הרופא שולט פיזית בשרת</button>
+  <button class="opt" data-i="1">הצפנה במנוחה ובתנועה והגנה טובה יותר מכופרה לעומת שרת מקומי</button>
+  <button class="opt" data-i="2">אין צורך בביטוח סייבר</button>
+  <button class="opt" data-i="3">הנתונים לעולם אינם נגישים לספק</button>
+  <div class="explain">שרתים מקומיים פגיעים יותר לכופרה. ביטוח סייבר מומלץ בכל מקרה, ובחלק מחוזי SaaS דווקא יש לספק גישה לנתונים מותממים – יש לבדוק.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>מסע דיגיטלי: לפני ייעוץ (אתרים, ביקורות, מחירים, טלרפואה) → ביקור (EHR, תמונות, סימולציה) → פריאופ' (3D, RFID, Doppler) → מעקב (wearables) → רישומים ו-Big Data.</li>
+    <li>HITECH 2009 + Meaningful Use (ONC) → אימוץ EHR; קנס עד 5%.</li>
+    <li>שלושה מודלים: שרת במשרד / שרת חיצוני / SaaS (ענן – פחות כופרה, עדכון אוטומטי).</li>
+    <li>הטמעה: ירידה ~50% בפרודוקטיביות, חודשים–שנה.</li>
+    <li>חוזה: בעלות על נתונים, השבתה, יציאה, API.</li>
+    <li>תמונות: מחיקת metadata, הסכמה ניתנת לביטול, disclaimer על סימולציה.</li>
+    <li>מחשבונים: Caprini, ASA, BRA Score. תקנים: HL7, FHIR.</li>
+    <li>רישומים: TOPS, NBIR, PROFILE (ALCL), GRAFT.</li>
+    <li>טלרפואה: זהירות מעיסוק בין-מדינתי ללא רישיון.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

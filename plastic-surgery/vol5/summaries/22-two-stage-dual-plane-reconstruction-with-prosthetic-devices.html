@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 22: שחזור שד דו-שלבי במישור כפול עם שתלים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .bookfig{margin:18px auto; text-align:center; max-width:100%}
+  .bookfig img{max-width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; background:#fff}
+  .bookfig figcaption{font-size:13.5px; color:#6b7280; margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+
+<h1>פרק 22: שחזור שד דו-שלבי במישור כפול (Dual-plane) עם שתלים <span class="term" dir="ltr">Two-stage dual-plane reconstruction with prosthetic devices</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast (מהדורה 5) | פרק 22, מאת Ara A. Salibian ו-Nolan S. Karp</div>
+
+<p>שחזור דו-שלבי (<span class="term" dir="ltr">two-stage</span>) במישור כפול הוא הניתוח "הקלאסי" של שחזור שד בשתלים: בשלב הראשון, מיד אחרי הכריתה, מכניסים <b>מרחיב רקמות</b> (<span class="term" dir="ltr">tissue expander, TE</span>) מתחת לשריר החזה הגדול בקוטב העליון ומעל "ערסל" של <b>מטריצה דרמלית א-תאית</b> (<span class="term" dir="ltr">ADM – acellular dermal matrix</span>) בקוטב התחתון. אחרי הרחבה הדרגתית במרפאה, בשלב השני מחליפים את המרחיב בשתל קבוע. גם בעידן של שחזור פרה-פקטורלי (<span class="term" dir="ltr">prepectoral</span>) ושתל ישיר (<span class="term" dir="ltr">DTI</span>), הטכניקה נשארת כלי מרכזי כי היא <b class="key">בטוחה לדשי המסטקטומיה וגמישה בקביעת הגודל והצורה הסופיים</b>.</p>
+
+<h2><span class="num">1</span> ההיגיון – למה שני שלבים ולמה מישור כפול</h2>
+<div class="mechanism">
+  <p class="chain">דש מסטקטומיה דק וחלש &#8592; לא יכול לשאת מיד שתל גדול ומתוח &#8592; מכניסים מרחיב מנופח חלקית (לחץ מינימלי על הדש) &#8592; הדש מחלים ומקבל זילוח &#8592; מרחיבים בהדרגה עד לגודל הרצוי &#8592; מחליפים לשתל קבוע ומתקנים כיס, קפל ועור.</p>
+  <p><b>למה שני שלבים?</b> העור שנשאר אחרי כריתה (ובמיוחד אחרי <span class="term" dir="ltr">NSM – nipple-sparing mastectomy</span>) ניזון רק מהזילוח השטחי של תת-העור (<span class="term" dir="ltr">subdermal plexus</span>), כי הכריתה חתכה את כל הפרפורטורים מהשריר ומהבלוטה. כל מתח על הדש לוחץ על כלי הדם הקטנים האלה וגורם לאיסכמיה. מרחיב שמנופח רק חלקית בניתוח "קונה זמן" לדש להחלים. בהמשך ההרחבה מאפשרת <b>שליטה מדויקת בגודל</b> (מטופלת שרוצה שד גדול יותר מהקיים, או שלא החליטה), תיקון צורה בשד עם מורפולוגיה קשה, והתאמה לשד הנגדי בשחזור חד-צדדי. בספרות נמצא <b class="key">יותר סיבוכים איסכמיים ב-NSM עם שחזור חד-שלבי לעומת דו-שלבי</b> – כנראה בגלל המתח על מעטפת העור.</p>
+  <p><b>למה מישור כפול?</b> השריר החזה הגדול (<span class="term" dir="ltr">pectoralis major</span>) מספק שכבה מזוּלחת מעל הקוטב העליון – שם תת-העור לרוב הכי דק, ולכן שם רואים הכי הרבה קפלים (<span class="term" dir="ltr">rippling</span>) ו"מדרגה". אבל שריר בקוטב התחתון מגביל את ההתרחבות, ולכן במקום שריר שמים ADM כערסל תחתון-צידי (<span class="term" dir="ltr">inferolateral sling</span>, Breuing ו-Warren, 2005) – הוא נמתח, מאפשר קוטב תחתון מלא וצנוח טבעי, <b>מגדיר את הקפל התת-שדי</b> (<span class="term" dir="ltr">IMF</span>) ואת הגבול הצידי, ומאיץ את ההרחבה.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת השחזור הדו-שלבי</title>
+  <rect x="690" y="20" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="47" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">מסטקטומיה</text>
+  <text x="770" y="67" font-size="12" text-anchor="middle" fill="#7f1d1d">דש דק, זילוח שטחי בלבד</text>
+
+  <rect x="480" y="20" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="565" y="47" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלב 1: TE + ADM</text>
+  <text x="565" y="67" font-size="12" text-anchor="middle" fill="#1e3a8a">ניפוח חלקי, לחץ מינימלי</text>
+
+  <rect x="270" y="20" width="170" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="355" y="47" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">הרחבה במרפאה</text>
+  <text x="355" y="67" font-size="12" text-anchor="middle" fill="#065f46">מ-2 שב', 30–60 מ"ל כל 1–2 שב'</text>
+
+  <rect x="10" y="20" width="220" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="120" y="47" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">שלב 2: החלפה לשתל</text>
+  <text x="120" y="67" font-size="12" text-anchor="middle" fill="#4c1d95">~3 חודשים (6+ עם קרינה)</text>
+
+  <line x1="690" y1="55" x2="660" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="650,55 662,49 662,61" fill="#374151"/>
+  <line x1="480" y1="55" x2="450" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="440,55 452,49 452,61" fill="#374151"/>
+  <line x1="270" y1="55" x2="240" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="230,55 242,49 242,61" fill="#374151"/>
+
+  <rect x="10" y="120" width="840" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="430" y="145" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">בכל שלב: סיבוך בפצע / זיהום / איסכמיה ← עוצרים הרחבה ומטפלים לפני שממשיכים</text>
+  <text x="430" y="166" font-size="12" text-anchor="middle" fill="#78350f">בשלב 2: קפסולוטומיה, תיקון IMF, קפסולורפיה, sizer בישיבה, השתלת שומן לקוטב העליון</text>
+</svg>
+<p class="figcap">איור 1 – השרשרת הסיבתית: מהגנה על הדש בשלב הראשון עד עיצוב סופי בשלב השני.</p>
+
+<h2><span class="num">2</span> אנטומיה – מבנה הכיס במישור כפול</h2>
+<p>בכיס הדו-מישורי יש שלוש "קומות" מעל המרחיב: <b>עור ותת-עור</b> (דש המסטקטומיה) בחוץ, <b>השריר החזה הגדול</b> מעל הקוטב העליון והאמצעי, ו-<b>ADM</b> שתפור מהשפה התחתונה החתוכה של השריר אל הקפל התת-שדי ואל קו בית השחי הקדמי (<span class="term" dir="ltr">anterior axillary line</span>). השריר החזה הקטן (<span class="term" dir="ltr">pectoralis minor</span>) נשאר על דופן בית החזה.</p>
+
+<svg class="diagram" viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg">
+  <title>חתך סגיטלי סכמטי של כיס במישור כפול</title>
+  <desc>דופן בית החזה משמאל, מרחיב באמצע, שריר חזה מעל הקוטב העליון ו-ADM מעל הקוטב התחתון, ועור מבחוץ</desc>
+  <rect x="60" y="20" width="40" height="260" fill="#e5e7eb" stroke="#6b7280"/>
+  <text x="80" y="150" font-size="12" text-anchor="middle" fill="#374151" transform="rotate(-90 80 150)">דופן בית החזה + צלעות</text>
+  <path d="M100,40 C230,40 300,110 310,160" stroke="#b91c1c" stroke-width="14" fill="none"/>
+  <path d="M310,160 C310,230 220,262 100,262" stroke="#047857" stroke-width="6" fill="none" stroke-dasharray="10 5"/>
+  <path d="M100,70 C200,75 280,120 285,165 C285,215 210,245 100,240 Z" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="195" y="165" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">מרחיב (TE)</text>
+  <path d="M100,20 C260,18 350,100 350,165 C350,245 250,285 100,285" stroke="#d97706" stroke-width="5" fill="none"/>
+  <line x1="245" y1="70" x2="470" y2="50" stroke="#b91c1c" stroke-width="1"/>
+  <text x="560" y="54" font-size="12" text-anchor="middle" fill="#b91c1c" font-weight="700">Pectoralis major – קוטב עליון</text>
+  <line x1="290" y1="225" x2="480" y2="245" stroke="#047857" stroke-width="1"/>
+  <text x="560" y="249" font-size="12" text-anchor="middle" fill="#047857" font-weight="700">ADM – ערסל הקוטב התחתון</text>
+  <line x1="345" y1="140" x2="470" y2="145" stroke="#d97706" stroke-width="1"/>
+  <text x="560" y="149" font-size="12" text-anchor="middle" fill="#b45309" font-weight="700">דש מסטקטומיה (עור + תת-עור)</text>
+  <circle cx="310" cy="160" r="5" fill="#374151"/>
+  <line x1="310" y1="160" x2="485" y2="195" stroke="#374151" stroke-width="1"/>
+  <text x="560" y="199" font-size="12" text-anchor="middle" fill="#374151">תפר: שפת השריר ↔ ADM</text>
+  <text x="80" y="297" font-size="12" text-anchor="middle" fill="#374151">IMF</text>
+</svg>
+<p class="figcap">איור 2 – חתך סכמטי: השריר מחפה את הקוטב העליון, ה-ADM "מחזיק" את הקוטב התחתון ומגדיר את ה-IMF.</p>
+
+<p class="key-box">משמרים את <b>הצמדות השריר לעצם החזה</b> (מדיאלית) כדי למנוע <span class="term" dir="ltr">window-shading</span> (השריר "מתקפל למעלה" כמו וילון בהתכווצות). משמרים את <b>פרפורטורי העורק הפנימי של החזה</b> (<span class="term" dir="ltr">internal mammary perforators</span>) – פגיעה בהם גורמת לדימום קשה לשליטה ופוגעת בזילוח המעטפת, וחיתוך-יתר מדיאלי גורם גם ל-<span class="term" dir="ltr">symmastia</span>.</p>
+
+<h2><span class="num">3</span> הערכה טרום-ניתוחית ובחירת מועמדות</h2>
+<h3>אנמנזה ובדיקה</h3>
+<ul>
+  <li><b>מחלות רקע</b>: סוכרת ו-BMI גבוה – גורמי סיכון לסיבוכים. <b>עישון</b> – גורם סיכון מוכח לריפוי מאוחר ולזיהום; מעשנות לשעבר עם <b>פחות מ-10 שנות-קופסה ויותר מ-5 שנים מהפסקה</b> – תוצאות כמו לא-מעשנות ב-NSM.</li>
+  <li><b>אונקולוגיה</b>: שלב, סוג, גודל ומיקום הגידול; כימותרפיה (לרוב נסבלת, אך ייתכן שמעלה סיבוכים); <b>קרינה קודמת או מתוכננת</b> – משמעותית במיוחד בגלל קונטרקטורה קפסולרית וכשל שחזור.</li>
+  <li><b>אורח חיים</b>: מטופלות צעירות ופעילות/ספורטאיות – לשקול פרה-פקטורלי כדי להימנע מ<b>עיוות תנועה</b> (<span class="term" dir="ltr">animation deformity</span>).</li>
+  <li><b>בדיקה</b>: מסות וקרבתן לפטמה; מעורבות ה-NAC (הפרשה, נסיגה); צלקות קודמות; מורפולוגיה – טביעת רגל (<span class="term" dir="ltr">footprint</span>), גודל, צניחה (<span class="term" dir="ltr">ptosis</span>), מיקום IMF; מדידות SN–N, N–IMF, רוחב בסיס; <b>pinch test</b> לקוטב העליון להערכת עובי תת-העור.</li>
+  <li><b>MRI</b> טרום-ניתוחי מאפשר למדוד עובי תת-העור מעל קפסולת השד; ירידה יחסית בעובי אחרי הכריתה לעומת לפניה קשורה לסיבוכים איסכמיים.</li>
+</ul>
+
+<h3>עץ ההחלטות (Algorithm 22.1)</h3>
+<table>
+  <thead><tr><th>החלטה</th><th>מטה לכיוון…</th><th>מטה לכיוון…</th></tr></thead>
+  <tbody>
+    <tr><td><b>חד-שלבי מול דו-שלבי</b></td><td>חד-שלבי: רוצה גודל <b>זהה/קטן</b> מהקיים, ללא גורמי סיכון, שד קטן-בינוני בלי צניחה משמעותית</td><td><b>דו-שלבי</b>: רוצה גודל <b>גדול יותר</b> או לא החליטה; שד גדול מאוד, צניחה משמעותית, עור באיכות ירודה; קרינה קודמת/מתוכננת; דש גרוע תוך-ניתוחית</td></tr>
+    <tr><td><b>פרה-פקטורלי מול מישור כפול</b></td><td>פרה-פקטורלי: לא מעשנת, ללא מחלות רקע, <b>תת-עור עבה</b>, צעירה ופעילה; צפויה קרינה משלימה (מונע עיוות מפיברוזיס של השריר)</td><td><b>מישור כפול</b>: <b>תת-עור מינימלי</b>, מחלות רקע משמעותיות/מעשנת פעילה, <b>גידול קרוב לדופן בית החזה</b>, קרינה קודמת</td></tr>
+    <tr><td><b>מעבר ל-Total submuscular</b></td><td colspan="2">החלטה תוך-ניתוחית: <b>דש מסטקטומיה גרוע</b> או שריר חזה פגוע. כיס תת-שרירי מלא (pectoralis + serratus fascia) הוא "המישור הבטוח ביותר", ובדרך כלל מחייב מרחיב כי אין בו מקום לשתל מלא מיידי</td></tr>
+  </tbody>
+</table>
+<p>למה גידול קרוב לדופן החזה מטה לתת-שרירי? כי יש בו סיכון מוגבר לחזרה בדופן החזה – שתל מתחת לשריר <b>מקל על הדמיה ומעקב</b> ועל מתן קרינה לשריר עצמו אם יידרש.</p>
+
+<h3>טכניקת המסטקטומיה והחתך</h3>
+<ul>
+  <li>הפרק משתמש ב-<b>מרחק גידול–פטמה של 1 ס"מ</b> כסף למועמדות ל-NSM (נצפתה מגמה לחזרה גבוהה מתחת ל-1 ס"מ; מסורתית נדרשו 2 ס"מ).</li>
+  <li>שד גדול מאוד / צניחה קשה – אפשר לשקול <b>הקטנת שד מדורגת לפני NSM</b>, שהוכחה כמפחיתה סיבוכים איסכמיים.</li>
+</ul>
+<table>
+  <thead><tr><th>חתך</th><th>יתרון</th><th>חיסרון / הערה</th></tr></thead>
+  <tbody>
+    <tr><td><b>IMF</b> (מועדף ע"י המחברים ל-NSM)</td><td>שומר זילוח מעטפת, צלקת מוסתרת בקפל</td><td>שיעור סיבוכים נמוך יותר בניסיון המחברים</td></tr>
+    <tr><td>צידי / רדיאלי אנכי</td><td>גישה טובה, צלקת סבירה; רדיאלי – אולי פחות פוגע בזילוח</td><td>–</td></tr>
+    <tr><td>T הפוך</td><td>גישה רחבה ועיצוב מעטפת</td><td>יותר איסכמיה ב<b>צומת ה-T</b></td></tr>
+    <tr><td>פרי-אראולרי</td><td>–</td><td>נמנעים אצל המחברים – שיעור גבוה של <b>נמק NAC</b></td></tr>
+    <tr><td>אליפטי כולל NAC (SSM)</td><td>מסיר עור מעל גידול שטחי</td><td>למרכז את החתך בין ארבעת גבולות השד כדי לשמור זילוח לשולי החתך</td></tr>
+  </tbody>
+</table>
+
+<h3>בחירת מרחיב וחומר תמיכה</h3>
+<ul>
+  <li>הערכה ראשונית: תכנון דו-ממדי (<span class="term" dir="ltr">biodimensional</span>) לפי <b>רוחב בסיס השד</b>; <b>לא לבחור מרחיב רחב מהשד הטבעי</b>. הבחירה הסופית – תוך-ניתוחית, לפי רוחב הכיס מהגבול המדיאלי של חלל הכריתה עד קו בית השחי הקדמי, ובמקום שני לפי משקל התכשיר.</li>
+  <li>העדפת המחברים: <b>מרחיבים חלקים עם לשוניות</b> (<span class="term" dir="ltr">tabs</span>) לקיבוע לדופן.</li>
+  <li><b>ADM</b>: הכי נחקר; בטיחות סבירה אך <b>יותר סרומה וזיהום</b> במחקרים גדולים. תכשירים <b>סטריליים "מוכנים לשימוש"</b> (היום הסטנדרט) – פחות זיהומים מתכשירים אספטיים. העדפה: ADM <b>דק ומחורר</b> (<span class="term" dir="ltr">fenestrated</span>) – משפר התמזגות וניקוז דו-כיווני.</li>
+  <li><b>רשת סינתטית נספגת</b> (<span class="term" dir="ltr">Polyglactin 910 / Vicryl</span>): חלופה זולה, שיעורי סיבוכים נמוכים; נספגת מהר, והשפעתה ארוכת הטווח על קונטרקטורה עדיין לא ברורה.</li>
+</ul>
+
+<figure class="bookfig"><img src="../images/22/fig1.jpg" alt="עץ החלטות לשחזור מבוסס שתל" loading="lazy"><figcaption>עץ החלטות לשחזור מבוסס שתל — <span dir="ltr">Neligan 5th ed., Algorithm 22.1</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/22/fig2.jpg" alt="מקרה שחזור דו-שלבי" loading="lazy"><figcaption>מקרה: מסטקטומיה משמרת פטמה ומרחיב, לפני ואחרי — <span dir="ltr">Neligan 5th ed., Fig. 22.1</span></figcaption></figure>
+<figure class="bookfig"><img src="../images/22/fig4.jpg" alt="מקרה שחזור חד-צדדי" loading="lazy"><figcaption>מקרה: שחזור חד-צדדי עם סימטריזציה של הצד הנגדי — <span dir="ltr">Neligan 5th ed., Fig. 22.3</span></figcaption></figure>
+
+<h2><span class="num">4</span> טכניקה – שלב ראשון (מרחיב)</h2>
+<h3>הכנה</h3>
+<p>סימון בעמידה (sternal notch, קו אמצע, IMF, גבולות עליון וצידי, חתכים). שכיבה על הגב, ידיים ב-75–90°, <b>אגן וכתפיים ישרים</b> (למנוע עיוות סימטריה), חבישות דביקות בשולי השדה. הזרקה של תמיסה מדוללת עם אדרנלין ומאלחש מקומי להקלת הדיסקציה ולהפחתת דימום.</p>
+
+<h3>מסטקטומיה והערכת הדש</h3>
+<p>דיסקציה <b>אנטומית במישור שמעל קפסולת השד</b>, ששומרת את תת-העור – חשוב לשמור <b>מישור</b> ולא עובי קבוע, כי עובי תת-העור משתנה בין אזורים. <b>גישה צוותית</b>: המנתח הפלסטי נוכח בתחילת הניתוח לסימון, הזרקה ותכנון. לאחר הכריתה בודקים:</p>
+<ul>
+  <li>המוסטזיס (במיוחד בבית השחי אחרי SLNB/דיסקציה).</li>
+  <li>עובי ודיממות שולי הדש, <span class="term" dir="ltr">capillary refill</span>, אכימוזה, דרמיס חשוף, <b>כוויות צריבה</b>, חדירת צבע כחול.</li>
+  <li><b>ICG angiography</b> כעזר – אך <b class="key">יעילותה מוגבלת כשהוזרקה תמיסה עם אדרנלין</b> (כיווץ כלי דם מדמה היפופרפוזיה).</li>
+  <li>SSM – כורתים אזורים פגועים כל עוד לא נפגעת הסגירה. NSM עם זילוח מדאיג – <b>מעבר לתת-שרירי מלא או דחיית השחזור</b>.</li>
+</ul>
+
+<h3>דיסקציית הכיס</h3>
+<ol>
+  <li>זיהוי השפה הצידית של ה-pectoralis major, חיתוך הפאסיה והרמת השריר מדיאלית מעל הצלעות, <b>משאירים את pectoralis minor על הדופן</b>.</li>
+  <li><b>ניתוק מוקדם של השפה התחתונה</b> של השריר מהצלעות, מדיאלית – אבל <b>שומרים את ההצמדות לסטרנום</b> (מניעת window-shading). לא תמיד צריך לנתק את כל השפה התחתונה כי ה-ADM מכסה תחתון-צידית.</li>
+  <li>כיס תת-שרירי בגודל המרחיב – <b>בלי חיתוך-יתר מדיאלי</b> (פרפורטורים, ריפוי מאוחר, symmastia).</li>
+</ol>
+
+<h3>הכנסת מרחיב ו-ADM</h3>
+<ul>
+  <li>שטיפת הכיס בתמיסה אנטיביוטית, <b>החלפת כפפות לכל הצוות</b>, מינימום מגע – הכל כדי להפחית חיידקים/ביופילם ולכן קונטרקטורה.</li>
+  <li>המרחיב: מנתח אחד מטפל בו, מוציאים אוויר, שוטפים ב-<b>Betadine</b> מדולל, מפשקים חדשים; מיקום מדיאלי ואוריינטציה נכונה; קיבוע הלשוניות ב-2–3 נקודות ב-<b>2-0 PDS</b> (לא-נספג אם המרחיב יישאר זמן רב).</li>
+  <li>ה-ADM: "אין להתייחס אליו אחרת מהשתל" – <b>גוף זר לא מזוּלח</b>. נתפר קודם לשפה התחתונה של ה-IMF ולדופן, ואז תחתון-צידית עד קו בית השחי הקדמי (2-0 Vicryl) במתח קל; אחרי ניפוח המרחיב – קוטמים את שפתו העליונה ותופרים לשפת השריר החתוכה.</li>
+  <li>ניפוח <b>זהיר</b> במלח – מילוי מסוים בלי לחץ על הדש.</li>
+</ul>
+
+<h3>סגירה וטיפול לאחר הניתוח</h3>
+<ul>
+  <li>נקז גדול (fluted) תת-עורי דרך חתך נפרד ב-IMF הצידי; ב-NSM – קיבוע ה-NAC לשריר בתפר נספג מהיר; סגירה ברבדים <b>אטומה למים</b>; מאלחש ארוך-טווח דרך הנקזים.</li>
+  <li>לילה באשפוז; <b>3 מנות אנטיביוטיקה IV</b>, ואז פומית עד הוצאת נקזים (גוף זר בכיס); משכך כאב מולטימודלי; <b>מרפה שרירים פומי</b> לעוויתות השריר המורם.</li>
+  <li><b>הוצאת נקזים: פחות מ-30 מ"ל ליומיים רצופים</b>. חבישות שבוע. תרגילי מתיחה אחרי הוצאת הנקזים.</li>
+</ul>
+
+<h3>ההרחבה</h3>
+<p>מתחילים <b>לא לפני שבועיים</b>, <b>30–60 מ"ל בביקור, כל 1–2 שבועות</b>. כל חשד לבעיית ריפוי/זיהום – <b>עוצרים</b> (לחץ נוסף מחמיר איסכמיה) ומטפלים לפני חידוש. מתעדים כל מילוי ואת הנפח המצטבר.</p>
+
+<figure class="bookfig"><img src="../images/22/fig3.jpg" alt="תפירת ADM והחדרת מרחיב" loading="lazy"><figcaption>תפירת ה-ADM לקפל התת-שדי והתאמתו לאחר מילוי המרחיב — <span dir="ltr">Neligan 5th ed., Fig. 22.10–22.11</span></figcaption></figure>
+
+<h2><span class="num">5</span> קרינה ותזמון</h2>
+<table>
+  <thead><tr><th>קרינה על…</th><th>הסיכון העיקרי</th></tr></thead>
+  <tbody>
+    <tr><td><b>מרחיב</b></td><td>שיעור גבוה יותר של <b>כשל שחזור</b></td></tr>
+    <tr><td><b>שתל קבוע</b></td><td>יותר <b>קונטרקטורה קפסולרית</b> ותוצאה אסתטית פחות טובה</td></tr>
+  </tbody>
+</table>
+<ul>
+  <li>הפרוטוקולים משתנים; יש שדורשים <b>ריקון המרחיב לפני קרינה</b> (במיוחד בהקרנת בלוטות internal mammary).</li>
+  <li>המחברים: <b>ניפוח מהיר לפני הקרינה</b>, ריקון חלקי לפי צורך לתכנון הקרינה; החלפה כשהרקמות נרגעו ו<b>לפחות 3 חודשים אחרי סיום הקרינה</b>.</li>
+  <li>ללא קרינה – החלפה <b>כ-3 חודשים</b> אחרי הכנסת המרחיב; עם קרינה – <b>6 חודשים ומעלה</b>.</li>
+</ul>
+
+<h2><span class="num">6</span> שלב שני – החלפה לשתל קבוע</h2>
+<h3>הערכה ובחירת שתל</h3>
+<ul>
+  <li>בודקים מיקום המרחיב, סימטריה, צורה, מיקום ה-IMF; מאל-פוזיציה אנכית (לרוב <b>עליונה</b>) – ומבררים סיבה (IMF מורם, קונטרקטורה, עיוות עור); אופקית – צורך בקפסולורפיה/קפסולוטומיה; אזורי עור דקים – להשתלת שומן; ב-NSM – מיקום הפטמה; בחד-צדדי – ניתוח סימטריה נגדי.</li>
+  <li><b>שתלים חלקים עגולים בכל המקרים</b> – בגלל הקשר בין שתלים מחוספסים ל-<span class="term" dir="ltr">BIA-ALCL</span>.</li>
+  <li>נפח השתל <b>מעט גדול מנפח המרחיב</b> – למלא את הכיס ולמנוע rippling; לרוב פרופיל בינוני או מלא. <b>סגירה ללא מתח</b> – אם יש מתח, מקטינים נפח/פרופיל.</li>
+  <li>לכידות (<span class="term" dir="ltr">cohesivity</span>): שתל לכיד/יציב-צורה מתאים לצורך במלאות קוטב עליון ולמעטפת דקה עם סיכון rippling – במחיר <b>נמישות וקשיחות</b> גבוהות יותר.</li>
+</ul>
+
+<h3>מהלך הניתוח (Box 22.4 + Algorithm 22.2)</h3>
+<ol>
+  <li>סימון בעמידה (IMF – קשה להעריך בשכיבה); הכנת כל בית החזה.</li>
+  <li>כניסה דרך הצלקת, הרמת דשי שומן-עור של 1 ס"מ – כניסה לכיס <b>במפלס שונה מחתך העור</b>.</li>
+  <li>הוצאת המרחיב ובדיקתו; שאיבת נוזל; בדיקת הקפסולה וביופסיה לפי צורך; <b>הסרת ADM שלא התמזג</b> (מוקד לזיהום וסרומה).</li>
+  <li><b>קפסולוטומיה בבסיס הכיס כמעט תמיד</b>, 1 ס"מ מעל דופן החזה, מ-11 עד 5 (זהירות מדיאלית – פרפורטורים ו-symmastia); רדיאליות לפי צורך. <b>האזור עם ה-ADM המתמזג עבה ומגביל הקרנה</b> – לכן לעיתים נדרשת קפסולוטומיה נרחבת של הקוטב התחתון (רדיאלית ומעגלית) עד שהקפסולה "משתחררת".</li>
+  <li><b>תיקון IMF</b>: הרמה – קפסולורפיה תחתונה בתפרי 8 (0-Ethibond), בדיקה חוזרת בישיבה; הורדה – קפסולוטומיה לכל אורך השפה התחתונה, דיסקציה תת-עורית לקפל החדש וקיבוע מחדש לדופן; תמיכה ב-ADM/רשת לפי הצורך.</li>
+  <li>מאל-פוזיציה אופקית: לרוב צריך <b>הרחבה מדיאלית</b> – קפסולוטומיה מדיאלית (cross-hatching / קפסולקטומיה בעמידות) + <b>קפסולורפיה צידית</b> לסגירת מרחב מת צידי.</li>
+  <li><b>Sizers</b> (מלח – מתכוונן ומדויק), סיכות זמניות, <b>הושבה ל-90°</b> להערכת גודל, צורה וסימטריה.</li>
+  <li>שטיפה, הכנה מחדש של העור, החלפת כפפות, הכנסת השתל (אפשר עם <span class="term" dir="ltr">insertion funnel</span>), הושבה נוספת, סגירה ברבדים.</li>
+  <li><b>השתלת שומן</b> (בזמן ההחלפה או בנפרד) – בעיקר לקוטב העליון למניעת "מדרגה"; שאיבה בליפוסקשן ממונע, שטיפה, הזרקה במנות קטנות בקנולות Coleman; <b>Rigotomy</b> (שחרור צלקת במחט 18G) שימושי במיוחד אחרי קרינה; להיזהר מכניסה לכיס השתל.</li>
+</ol>
+<p>אחרי הניתוח: שחרור באותו יום, <b>24 שעות אנטיביוטיקה פומית</b> (פלורת עור), מקלחת אחרי 48 שעות, הסרת חבישות אחרי 4–7 ימים, עיסוי שתל ומתיחות מכשבוע.</p>
+
+<h2><span class="num">7</span> סיבוכים</h2>
+<p>שיעור סיבוכים כולל בשחזור דו-שלבי במישור כפול עם ADM במטא-אנליזות – <b>כ-15%</b>.</p>
+<table>
+  <thead><tr><th>סיבוך</th><th>למה קורה</th><th>מה עושים</th></tr></thead>
+  <tbody>
+    <tr><td><b>המטומה</b> (הכי חריף, שיעור נמוך)</td><td>פרפורטורים חתוכים, בית שחי</td><td>טיפול אגרסיבי: גדולה – שטיפה ניתוחית דחופה; גם קטנה – שקול פינוי (לחץ על הדש, עיוות, קונטרקטורה)</td></tr>
+    <tr><td><b>סרומה</b></td><td>"גוף זר" מוגבר + ADM לא מזוּלח</td><td>מניעה: שטיפה, קיטום ADM, חירור, נקזים עד תפוקה נמוכה. חשד – הדמיה ו<b>שאיבה מונחית</b></td></tr>
+    <tr><td><b>זיהום</b></td><td>זריעה חיצונית (דהיסנס/נמק), זיהום השתל, המטוגני, סרומה</td><td>קל – ניסיון אנטיביוטיקה פומית, סף נמוך ל-IV ושטיפה; עם דהיסנס/נמק/סרומה גדולה – <b>הוצאת השתל</b>, אנטיביוטיקה ממושכת, החזרה מאוחרת</td></tr>
+    <tr><td><b>נמק דש / NAC</b> (7–11% כולל חלקי)</td><td>זילוח שטחי בלבד, מתח, צריבה</td><td>חלקי – טיפול פצעים ומעקב; מלא – <b>הטריה מוקדמת</b>; היפופרפוזיה – <b>חמצן היפרברי, משחת ניטרוגליצרין</b>. <b>ADM הוא גורם סיכון להוצאת שתל</b> כשיש איסכמיה (גוף זר מתחת לרקמה איסכמית)</td></tr>
+    <tr><td><b>קונטרקטורה קפסולרית</b> (הסיבוך הארוך-טווח השכיח)</td><td>זיהום חיידקי / ביופילם → דלקת → פיברוזיס</td><td>מניעה: סטריליות. ADM <b>מפחית</b> שיעורים (מפחית דלקת). Baker III/IV – קפסולקטומיה, החלפת שתל ושינוי כיס; קפסולקטומיה אחורית רק בקפסולה עבה מאוד (סכנת חדירה לחזה)</td></tr>
+    <tr><td><b>מאל-פוזיציה של הפטמה</b> (7.4% תיקונים ביותר מ-1000 NSM)</td><td>שינוי המעטפת בהרחבה</td><td>&lt;2 ס"מ – כריתת עור סהרונית; חמור – מסטופקסי + שינויי קפסולה</td></tr>
+    <tr><td><b>עיוות תנועה</b> (animation deformity)</td><td>התכווצות השריר מעל השתל</td><td>קשה – <b>המרה לכיס פרה-פקטורלי</b> (אם תת-העור מספיק): שחרור השריר ותפירתו חזרה לדופן, השתלת שומן</td></tr>
+  </tbody>
+</table>
+<p>בשלב השני הסיבוכים החריפים (המטומה, סרומה, זיהום, נמק) <b>נדירים יותר</b> – ניתוח קטן יותר ומעטפת יציבה.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>קוד המספרים: <span dir="ltr">2 – 30/60 – 30×2 – 3/6</span></h3>
+  <p>
+    <b>2</b> – שבועיים לפחות עד תחילת ההרחבה.<br>
+    <b>30–60</b> – מ"ל בכל ביקור הרחבה (כל 1–2 שבועות).<br>
+    <b>30 × 2</b> – הנקז יוצא בפחות מ-30 מ"ל ליומיים רצופים.<br>
+    <b>3 / 6</b> – חודשים עד החלפה: 3 בלי קרינה, 6+ עם קרינה (ולפחות 3 חודשים אחרי סיום הקרינה).
+  </p>
+  <h3>שלב ההחלפה: <span dir="ltr">"B-C-F-S-I-F"</span> – Biopsy, Capsulotomy, Fold, Side, Implant, Fat</h3>
+  <p>ביופסיה/בדיקת קפסולה והסרת ADM לא מתמזג ← קפסולוטומיה (בסיס + רדיאלית) ← תיקון הקפל (IMF) ← תיקון צד (קפסולורפיה צידית/קפסולוטומיה מדיאלית) ← sizer בישיבה ובחירת שתל חלק עגול ← שומן לקוטב העליון.</p>
+  <h3>סיפור דמיוני: הדלעת בערסל</h3>
+  <p>גנן מגדל דלעת ענקית (השתל) בחממה שהגג שלה עשוי קרשים קשיחים (השריר החזה) – טובים כדי שלא ייראו "גלים" מלמעלה, אבל הם לא נמתחים. לכן בחלק התחתון הוא תולה <b>ערסל רך</b> (ה-ADM) שמאפשר לדלעת לשקוע ולהתעגל כמו שד טבעי. הוא לא שותל מיד דלעת ענקית – הקירות (העור) עדיין חלשים – אלא מתחיל בזרע קטן ומשקה <b>קצת בכל שבוע</b> (הרחבה). אחרי שלושה חודשים הוא מחליף אותה בדלעת "אמיתית" מעט גדולה יותר, ומסדר את הערסל שהתקשה (קפסולוטומיה).</p>
+  <svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <title>הדלעת בערסל</title>
+    <rect x="40" y="20" width="16" height="170" fill="#a3a3a3"/>
+    <rect x="444" y="20" width="16" height="170" fill="#a3a3a3"/>
+    <line x1="56" y1="40" x2="300" y2="40" stroke="#b91c1c" stroke-width="10"/>
+    <text x="178" y="30" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">גג קרשים = שריר החזה</text>
+    <path d="M300,40 Q380,190 56,170" stroke="#047857" stroke-width="4" fill="none" stroke-dasharray="8 4"/>
+    <text x="370" y="175" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">ערסל = ADM</text>
+    <ellipse cx="200" cy="110" rx="80" ry="50" fill="#fdba74" stroke="#c2410c" stroke-width="2"/>
+    <text x="200" y="115" font-size="13" text-anchor="middle" fill="#7c2d12" font-weight="700">דלעת = שתל</text>
+    <path d="M400,60 L380,80 L395,80 L375,105" stroke="#2563eb" stroke-width="3" fill="none"/>
+    <text x="415" y="55" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">השקיה = הרחבה</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות מהימנים</h2>
+<ul class="resource-list">
+  <li><b>Salibian AA, Karp NS.</b> Two-stage dual-plane reconstruction with prosthetic devices. In: Neligan PC, ed. <i>Plastic Surgery</i>, 5th ed., Vol 5, Ch 22. Elsevier.<span class="tag">מקור עיקרי</span>
+    <div class="desc">הפרק שעליו מבוסס הסיכום, כולל Algorithms 22.1–22.2 ו-Boxes 22.1–22.4.</div></li>
+  <li><b>Breuing KH, Warren SM.</b> Immediate bilateral breast reconstruction with implants and inferolateral AlloDerm slings. <i>Ann Plast Surg</i> 2005;55:232–239.
+    <div class="desc">המאמר שהכניס את ה-ADM כערסל תחתון-צידי לשחזור ראשוני – הבסיס לטכניקה.</div></li>
+  <li><b>Cordeiro PG, Albornoz CR, McCormick B, et al.</b> What is the optimum timing of postmastectomy radiotherapy in two-stage prosthetic reconstruction? <i>Plast Reconstr Surg</i> 2015;135:1509–1517.
+    <div class="desc">קרינה על מרחיב (כשל שחזור) מול קרינה על שתל (קונטרקטורה).</div></li>
+  <li><b>Frey JD, Choi M, Salibian AA, Karp NS.</b> Comparison of outcomes with tissue expander, immediate implant, and autologous breast reconstruction in greater than 1000 nipple-sparing mastectomies. <i>Plast Reconstr Surg</i> 2017;139:1300–1310.
+    <div class="desc">יותר סיבוכים איסכמיים בחד-שלבי לעומת דו-שלבי ב-NSM.</div></li>
+  <li><b>Kim JY, Davila AA, Persing S, et al.</b> A meta-analysis of human acellular dermis and submuscular tissue expander breast reconstruction. <i>Plast Reconstr Surg</i> 2012;129:28–41.
+    <div class="desc">שיעורי סיבוכים כוללים (~15%), סרומה וזיהום עם ADM.</div></li>
+  <li><b>Weichman KE, Wilson SC, Saadeh PB, et al.</b> Sterile "ready-to-use" AlloDerm decreases postoperative infectious complications. <i>Plast Reconstr Surg</i> 2013;132:725–736.
+    <div class="desc">ADM סטרילי מול אספטי – ירידה בזיהומים.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 46 עם קרצינומה דוקטלית בשד שמאל, 3 ס"מ מהפטמה, מתוכננת ל-NSM דו-צדדית. היא רוצה שד <b>גדול מעט</b> מהנוכחי. BMI 20, ב-pinch test ובקוטב העליון ב-MRI – <b>תת-עור דק</b>. אינה מעשנת. בניתוח, אחרי הזרקת תמיסה עם אדרנלין והכריתה, הדשים נראים סבירים עם דימום שוליים תקין. מוכנס מרחיב חלק עם לשוניות מתחת ל-pectoralis major עם ערסל ADM תחתון-צידי, מנופח חלקית. אחרי שבועיים מתחילים הרחבה. בפתולוגיה – בלוטות חיוביות, ומומלצת קרינה משלימה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע נבחר אצלה שחזור דו-שלבי במישור כפול ולא שתל ישיר פרה-פקטורלי?</div>
+  <button class="opt" data-i="0">כי מטופלות מעל גיל 40 אינן מתאימות לשחזור פרה-פקטורלי</button>
+  <button class="opt" data-i="1">כי ADM אסור לשימוש בשחזור פרה-פקטורלי</button>
+  <button class="opt" data-i="2">היא רוצה שד גדול מהקיים (→ דו-שלבי) ותת-העור דק (→ כיסוי שרירי לקוטב העליון)</button>
+  <button class="opt" data-i="3">כי גידול במרחק 3 ס"מ מהפטמה מחייב כיסוי שרירי</button>
+  <div class="explain">הנכון: לפי Algorithm 22.1, רצון בגודל גדול יותר מכוון לדו-שלבי, ותת-עור מינימלי מכוון למישור כפול – השריר מוסיף שכבה מזוּלחת ומונע rippling ו"מדרגה" בקוטב העליון. גיל אינו הקריטריון (צעירות ופעילות דווקא מועדפות לפרה-פקטורלי); ADM משמש גם בפרה-פקטורלי; מרחק 3 ס"מ מהפטמה רלוונטי למועמדות ל-NSM (סף 1 ס"מ), וכיסוי שרירי מועדף בגידול קרוב <b>לדופן החזה</b>, לא לפטמה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. במהלך הרמת השריר, המנתח מנתק את השפה התחתונה אך משאיר את ההצמדות לעצם החזה. מה המטרה העיקרית?</div>
+  <button class="opt" data-i="0">למנוע window-shading – נסיגה כלפי מעלה של השריר בהתכווצותו</button>
+  <button class="opt" data-i="1">לשמור את העצבוב של pectoralis minor</button>
+  <button class="opt" data-i="2">לאפשר מיקום צידי יותר של המרחיב</button>
+  <button class="opt" data-i="3">למנוע פגיעה בעצב thoracodorsal</button>
+  <div class="explain">הנכון: הפרק מציין במפורש ששמירת ההצמדות המדיאליות לסטרנום מפחיתה window-shading. pectoralis minor נשאר על הדופן ממילא ואינו קשור לשאלה; מיקום המרחיב צריך להיות <b>מדיאלי</b>, לא צידי; thoracodorsal נמצא בבית השחי/latissimus ואינו רלוונטי לניתוק מהסטרנום.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. במהלך הניתוח שוקלים ICG angiography להערכת הדש. מה המגבלה שהפרק מציין במקרה זה?</div>
+  <button class="opt" data-i="0">ICG אסור לשימוש כשיש ADM בכיס</button>
+  <button class="opt" data-i="1">ICG אינו מבדיל בין נמק חלקי למלא</button>
+  <button class="opt" data-i="2">ICG מחייב דחיית השחזור ב-24 שעות</button>
+  <button class="opt" data-i="3">יעילותו מוגבלת אחרי הזרקת תמיסה עם אדרנלין, שמכווצת כלי דם ומדמה היפופרפוזיה</button>
+  <div class="explain">הנכון: אדרנלין גורם לכיווץ כלי דם עוריים, כך שהאנגיוגרפיה עלולה להראות זילוח ירוד שאינו אמיתי. לכן ההערכה הקלינית (עובי, דימום שוליים, capillary refill, כוויות, דרמיס חשוף) נשארת מרכזית. שאר התשובות אינן מופיעות בפרק ואינן נכונות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. המטופלת תקבל קרינה משלימה. מה נכון לגבי הקרנת מרחיב לעומת שתל קבוע, ומה גישת המחברים?</div>
+  <button class="opt" data-i="0">הקרנת שתל קבוע קשורה לכשל שחזור; לכן מחליפים לשתל לפני הקרינה</button>
+  <button class="opt" data-i="1">הקרנת מרחיב קשורה ליותר כשל שחזור, הקרנת שתל ליותר קונטרקטורה; המחברים מנפחים מהר לפני קרינה ומחליפים ≥3 חודשים אחרי סיומה</button>
+  <button class="opt" data-i="2">אין הבדל ביניהם; תמיד מרוקנים את המרחיב לחלוטין עד סוף הטיפול</button>
+  <button class="opt" data-i="3">יש להוציא את המרחיב לפני הקרינה ולבצע שחזור עצמי בלבד</button>
+  <div class="explain">הנכון: זו "הדילמה" שהפרק מתאר – מרחיב מוקרן = כשל שחזור, שתל מוקרן = קונטרקטורה ותוצאה אסתטית פחותה. המחברים מעדיפים ניפוח מהיר לפני הקרינה (ריקון חלקי אם הקרינה דורשת), והחלפה כשהרקמות נרגעו ולפחות 3 חודשים אחרי הקרינה (סה"כ לרוב 6+ חודשים). תשובה 1 מחליפה בין הסיכונים; 3 – יש פרוטוקולים שמרוקנים, אך לא "תמיד" ולא בגישת המחברים; 4 – אינה ההמלצה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בשלב ההחלפה, הקוטב התחתון לא "מקרין" למרות שתל בגודל מתאים. מה ההסבר והפתרון לפי הפרק?</div>
+  <button class="opt" data-i="0">השתל חלק; יש להחליף לשתל מחוספס</button>
+  <button class="opt" data-i="1">חסר נפח; יש להוסיף שומן לקוטב התחתון בלבד</button>
+  <button class="opt" data-i="2">הקפסולה באזור ה-ADM המתמזג עבה ומגבילה – נדרשת קפסולוטומיה נרחבת (רדיאלית ומעגלית) של הקוטב התחתון</button>
+  <button class="opt" data-i="3">ה-IMF נמוך מדי; יש לבצע קפסולורפיה תחתונה</button>
+  <div class="explain">הנכון: המחברים מצאו שה-ADM המתמזג יוצר קפסולה עבה בהרבה משאר הכיס, ושהיא מגבילה הקרנה – לכן נדרשת קפסולוטומיה נרחבת עד "שחרור" לתת-העור. שתלים מחוספסים נמנעים בגלל BIA-ALCL; שומן מוזרק בעיקר לקוטב <b>העליון</b>; קפסולורפיה תחתונה מרימה קפל – לא משפרת הקרנה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. שבועיים אחרי השלב הראשון מופיע אריתמה קלה סביב החתך עם אזור נמק עור חלקי קטן, ללא נוזל. מה הצעד הנכון?</div>
+  <button class="opt" data-i="0">לעצור את ההרחבה, טיפול פצעים קפדני ואנטיביוטיקה פומית, עם סף נמוך להסלמה (IV/שטיפה) אם אין שיפור</button>
+  <button class="opt" data-i="1">להרחיב ב-100 מ"ל כדי "למתוח" את העור ולסגור את הפצע</button>
+  <button class="opt" data-i="2">להוציא מיד את המרחיב ואת ה-ADM בכל מקרה</button>
+  <button class="opt" data-i="3">להמשיך הרחבה כרגיל – נמק חלקי אינו משפיע על המרחיב</button>
+  <div class="explain">הנכון: כל בעיית ריפוי – עוצרים הרחבה (לחץ מוסיף איסכמיה). זיהום רקמות רך קל ומבודד – ניסיון אנטיביוטיקה פומית עם סף נמוך להסלמה; נמק חלקי – מעקב וטיפול פצעים. הוצאת השתל שמורה לזיהום עם דהיסנס, נמק נרחב או סרומה גדולה. הרחבה אגרסיבית או המשך כרגיל – מסוכנים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>דו-שלבי = מרחיב מיידי ← הרחבה ← שתל; מגן על הדש (לחץ מינימלי) ונותן שליטה בגודל/צורה. פחות איסכמיה מחד-שלבי ב-NSM.</li>
+    <li>מישור כפול = pectoralis major על הקוטב העליון + ADM כערסל תחתון-צידי (Breuing & Warren) שמגדיר IMF וגבול צידי ומאפשר קוטב תחתון טבעי.</li>
+    <li>מועמדות: רוצה שד גדול יותר / לא החליטה, תת-עור דק, מחלות רקע/עישון, גידול קרוב לדופן, קרינה קודמת. דש גרוע תוך-ניתוחית → תת-שרירי מלא או דחייה.</li>
+    <li>טכניקה: מסטקטומיה במישור מעל הקפסולה; שומרים הצמדות סטרנליות (window-shading) ופרפורטורים IM; סטריליות, Betadine, החלפת כפפות; מרחיב חלק עם לשוניות; ADM דק מחורר סטרילי.</li>
+    <li>מספרים: הרחבה מ-2 שב', 30–60 מ"ל כל 1–2 שב'; נקז &lt;30 מ"ל × 2 ימים; החלפה ~3 חודשים (6+ עם קרינה, ≥3 חודשים אחרי קרינה).</li>
+    <li>קרינה על מרחיב → כשל שחזור; על שתל → קונטרקטורה. ICG מוגבל אחרי אדרנלין.</li>
+    <li>החלפה: הסרת ADM לא מתמזג, קפסולוטומיה בבסיס (+ נרחבת בקוטב התחתון), תיקון IMF, קפסולורפיה צידית, sizer בישיבה, שתל חלק עגול מעט גדול מהמרחיב, שומן לקוטב העליון.</li>
+    <li>סיבוכים ~15%: המטומה (חריף), סרומה וזיהום (קשורים ל-ADM), נמק 7–11%, קונטרקטורה (ADM מפחית), מאל-פוזיציית פטמה 7.4%, עיוות תנועה → המרה לפרה-פקטורלי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+</body>
+</html>

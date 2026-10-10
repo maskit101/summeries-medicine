@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>כרטיסיות | פרק 1: כירורגיה פלסטית וחדשנות</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{font-family:'Segoe UI','Arial Hebrew',sans-serif; background:#f3f4f6; margin:0; padding:20px; color:#1f2937}
+  .wrap{max-width:920px; margin:0 auto}
+  .topnav{margin-bottom:14px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  header{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px}
+  h1{font-size:22px; margin:0}
+  .sub{color:#6b7280; font-size:14px}
+  button{cursor:pointer; font-family:inherit}
+  .lang-btn{background:#1f2937; color:#fff; border:none; border-radius:6px; padding:8px 14px; font-size:14px}
+
+  .stats{background:#fff; border-radius:10px; padding:14px 18px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,.08); display:flex; flex-wrap:wrap; gap:18px; font-size:14px}
+  .stats .item b{display:block; font-size:20px}
+  .stats .reset{margin-inline-start:auto; background:#fee2e2; color:#991b1b; border:1px solid #fecaca; border-radius:6px; padding:6px 12px; font-size:13px}
+
+  .filters{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
+  .filters select, .filters input{padding:7px 10px; border:1px solid #d1d5db; border-radius:6px; font-size:13.5px; font-family:inherit}
+  .filters input{flex:1; min-width:160px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px}
+  .card{background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,.08); cursor:pointer; border-inline-start:6px solid #ccc; transition:transform .1s}
+  .card:hover{transform:translateY(-2px)}
+  .card .badge{display:inline-block; font-size:11px; font-weight:700; color:#fff; border-radius:4px; padding:2px 8px; margin-bottom:8px}
+  .card .q{font-size:14.5px; font-weight:600; line-height:1.5}
+  .card .meta{margin-top:8px; font-size:12px; color:#9ca3af; display:flex; justify-content:space-between}
+  .card .status{font-size:11px; font-weight:700; border-radius:4px; padding:1px 6px}
+  .status.correct{background:#ecfdf5; color:#047857}
+  .status.wrong{background:#fef2f2; color:#b91c1c}
+  .status.unrated{background:#f3f4f6; color:#6b7280}
+
+  .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; align-items:flex-start; justify-content:center; padding:30px 14px; overflow:auto; z-index:10}
+  .modal-bg.show{display:flex}
+  .modal{background:#fff; border-radius:12px; max-width:680px; width:100%; padding:26px 28px; position:relative}
+  .modal .close{position:absolute; top:14px; left:14px; background:#f3f4f6; border:none; border-radius:50%; width:30px; height:30px; font-size:16px}
+  .modal .badge{display:inline-block; font-size:12px; font-weight:700; color:#fff; border-radius:4px; padding:3px 10px; margin-bottom:10px}
+  .modal .q{font-size:18px; font-weight:700; margin:6px 0 16px; line-height:1.6}
+  .opt{display:block; width:100%; text-align:right; padding:10px 14px; margin:7px 0; border:1px solid #e5e7eb; border-radius:8px; background:#fff; font-size:15px; color:#1f2937}
+  .opt:hover{background:#f8fafc}
+  .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:700}
+  .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .opt[disabled]{cursor:default}
+
+  .answer-block{display:none; margin-top:18px; border-top:2px dashed #e5e7eb; padding-top:16px}
+  .answer-block.show{display:block}
+  .a-lines{margin:10px 0}
+  .a-line{display:flex; align-items:flex-start; gap:8px; padding:4px 0; font-size:15px}
+  .a-line .dot{width:10px; height:10px; border-radius:50%; margin-top:6px; flex-shrink:0}
+  .box{border-radius:8px; padding:12px 14px; margin:10px 0; font-size:14.5px}
+  .box.def{background:#eff6ff}
+  .box.story{background:#fdf4ff}
+  .box.why{background:#fffbeb}
+  .box.mnemonic{background:#ecfdf5}
+  .box h4{margin:0 0 6px; font-size:13.5px}
+  .box .known{font-size:11px; background:#d1fae5; color:#065f46; border-radius:4px; padding:1px 6px; margin-inline-start:6px}
+  .diagram-wrap{margin:12px 0; text-align:center}
+  .diagram-wrap svg{max-width:100%; border:1px solid #e5e7eb; border-radius:8px}
+  .video-link{display:inline-flex; align-items:center; gap:6px; background:#fef2f2; color:#b91c1c; border-radius:6px; padding:8px 12px; text-decoration:none; font-size:14px; font-weight:600; margin-top:8px}
+  .key-terms{margin-top:10px}
+  .key-terms span{display:inline-block; background:#f3f4f6; border-radius:12px; padding:3px 10px; font-size:12.5px; margin:2px}
+  .rate-row{display:flex; gap:10px; margin-top:16px}
+  .rate-row button{flex:1; padding:10px; border-radius:8px; border:1px solid #d1d5db; font-size:14px; background:#fff}
+  .rate-row .known-btn{background:#ecfdf5; border-color:#047857; color:#047857; font-weight:700}
+  .rate-row .review-btn{background:#fffbeb; border-color:#b45309; color:#b45309; font-weight:700}
+  .back-btn{background:#f3f4f6; border:none; border-radius:6px; padding:8px 14px; font-size:13.5px; margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav"><a href="../index.html">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../index.html">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+  <header>
+    <div>
+      <h1 id="pageTitle">כרטיסיות תרגול | פרק 1: כירורגיה פלסטית וחדשנות</h1>
+      <div class="sub" id="pageSub">8 כרטיסיות · לחצי על כרטיסייה כדי להתחיל</div>
+    </div>
+    <button class="lang-btn" id="langBtn">EN / עברית</button>
+  </header>
+
+  <div class="stats" id="statsPanel"></div>
+
+  <div class="filters">
+    <input type="text" id="searchBox" placeholder="חיפוש חופשי...">
+    <select id="catFilter"><option value="">כל הנושאים</option></select>
+    <select id="diffFilter">
+      <option value="">כל הרמות</option>
+      <option value="low">בסיסי</option>
+      <option value="medium">בינוני</option>
+      <option value="high">מתקדם</option>
+    </select>
+    <select id="statusFilter">
+      <option value="">הכל</option>
+      <option value="unrated">לא נענה</option>
+      <option value="review">לסמן לחזרה</option>
+      <option value="known">ידוע</option>
+    </select>
+  </div>
+
+  <div class="grid" id="cardGrid"></div>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <button class="close" id="closeBtn">&times;</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+var PALETTE = {
+  "definitions":"#028090", "history":"#B85042", "principles":"#21295C",
+  "regulation":"#990011", "case-study":"#1C7293"
+};
+var CAT_NAMES_HE = {"definitions":"הגדרות יסוד","history":"היסטוריה ודמויות","principles":"עקרונות","regulation":"רגולציה ואתיקה","case-study":"מקרה בוחן"};
+var CAT_NAMES_EN = {"definitions":"Core Definitions","history":"History & Figures","principles":"Principles","regulation":"Regulation & Ethics","case-study":"Case Study"};
+
+var CARDS = [
+{
+  id:"c001", type:"qa", difficulty:"low", topic_category:"definitions",
+  correct_index:1, has_image:true,
+  he:{
+    question:"מה ההבדל המרכזי בין \"מחקר\" (research) ל\"חדשנות\" (innovation) בכירורגיה, לפי הפרק?",
+    options:["מחקר תמיד מקדים חדשנות בפרקטיקה הקלינית","חדשנות היא פתרון מקורי ויעיל יותר שאינו חייב לצמוח ממחקר שיטתי מוקדם — לרוב קורה ההפך","חדשנות מתרחשת רק בתוך ניסוי מבוקר מאושר ב-IRB","אלו שני מונחים זהים בעולם הכירורגי"],
+    answer_lines:[
+      {t:"מחקר = עבודה שיטתית שמטרתה להגדיל את מאגר הידע (מודלים, ניסויים)", icon:"🔵", c:"1C7293"},
+      {t:"חדשנות = פתרון מקורי ויעיל יותר, לא חייב לבוא ממחקר מוקדם", icon:"🟢", c:"2C5F2D"},
+      {t:"ברוב המקרים: קודם מאלתרים פתרון קליני, ורק אח\"כ (אם בכלל) עורכים מחקר שמסביר למה זה עבד", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (2) משקפת את הטענה המרכזית של הפרק: רוב הפריצות הגדולות בכירורגיה הגיעו מחדשנות אד-הוק, לא ממחקר בסיסי מתוכנן. תשובה 1 הפוכה מהעובדות. תשובה 3 מצמצמת חדשנות למסגרת פורמלית בלבד, בעוד שהפרק מדגיש שחדשנות קורית \"תוך כדי תנועה\", לרוב מחוץ למסגרת ניסוי מאושר. תשובה 4 מתעלמת מהבחנה מפורשת שהפרק עושה בין שני המושגים.",
+    term_definition:{term:"Surgical Innovation (חדשנות כירורגית)", text:"שינוי מקורי ויעיל יותר בפרקטיקה הכירורגית — יכול להיות מצטבר (שינוי קטן בטכניקה קיימת) או רדיקלי (כמו הגישה הקרניופציאלית של Tessier)."},
+    story:"תחשבי על טבח שממציא מנה חדשה תוך כדי משמרת עמוסה כי נגמר לו מרכיב מסוים (חדשנות אד-הוק) — לעומת שף שמתכנן ניסוי טעימות שיטתי במשך חודשים כדי לפתח מנה (מחקר). שניהם יכולים להוביל לתפריט חדש, אבל הדרך שונה לגמרי.",
+    why_question:{q:"למה רוב החדשנות הכירורגית ההיסטורית לא נבעה ממחקר מתוכנן מראש?", a:"כי מנתחים נתקלים בבעיות קליניות דחופות (במיוחד במלחמה/אסון) שאין להן פתרון קיים, וחייבים לפעול מיד על בסיס העקרונות שלמדו — אין זמן לתכנן ניסוי מבוקר לפני הטיפול בפצוע שמולם."},
+    key_terms:["חדשנות","מחקר","IDEAL framework"]
+  },
+  en:{
+    question:"What is the key difference between \"research\" and \"innovation\" in surgery, per the chapter?",
+    options:["Research always precedes innovation in clinical practice","Innovation is an original, more effective solution that need not arise from prior systematic research — usually the reverse happens","Innovation only occurs within an IRB-approved controlled trial","These are identical terms in surgery"],
+    answer_lines:[
+      {t:"Research = systematic creative work to increase the stock of knowledge (models, experiments)", icon:"🔵", c:"1C7293"},
+      {t:"Innovation = an original, more effective solution, not necessarily born of prior research", icon:"🟢", c:"2C5F2D"},
+      {t:"Usually: a clinical solution is improvised first, and only later (if at all) is research done to explain why it worked", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (2) reflects the chapter's central claim: most major surgical breakthroughs came from ad-hoc innovation, not planned basic research. Option 1 reverses the facts. Option 3 wrongly restricts innovation to a formal trial setting. Option 4 ignores the chapter's explicit distinction.",
+    term_definition:{term:"Surgical Innovation", text:"An original, more effective change in surgical practice — can be incremental (small technique tweak) or radical (like Tessier's craniofacial approach)."},
+    story:"Picture a cook improvising a new dish mid-shift because an ingredient ran out (ad-hoc innovation) — versus a chef running a months-long systematic tasting trial (research). Both can yield a new menu item, but the path is entirely different.",
+    why_question:{q:"Why does most historical surgical innovation not stem from pre-planned research?", a:"Because surgeons face urgent clinical problems (especially in war/disaster) with no existing solution and must act immediately on learned principles — there's no time to design a controlled trial before treating the patient in front of them."},
+    key_terms:["Innovation","Research","IDEAL framework"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:true, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c002", type:"vignette", difficulty:"medium", topic_category:"history",
+  correct_index:2, has_image:false,
+  he:{
+    question:"מנתח פלסטי שטיפל בכוויות חיילים במלחמת העולם השנייה שם לב שגרפטים של עור מתורם לא-קרוב נדחים לאט יותר מהצפוי. חמש עשרה שנה מאוחר יותר הוא מבצע ניתוח פורץ דרך בכליה. מי הוא, ומה ביצע?",
+    options:["Archibald McIndoe — פיתח את שיטת ה-walking-stalk skin graft","Harold Gillies — ייסד את בית החולים ב-Sidcup","Joseph Murray — ביצע את השתלת הכליה המוצלחת הראשונה בעולם (1954) בין תאומים זהים","Paul Tessier — פיתח כירורגיה קרניופציאלית"],
+    answer_lines:[
+      {t:"Joseph Murray — מנתח פלסטי, לא נפרולוג", icon:"🔴", c:"B85042"},
+      {t:"ניסיון עם שתלי עור בכוויות → עניין בדחייה אימונולוגית", icon:"🔵", c:"1C7293"},
+      {t:"1954: השתלת כליה ראשונה מוצלחת בעולם (בין תאומים זהים, Peter Bent Brigham Hospital)", icon:"🟢", c:"2C5F2D"},
+      {t:"1990: פרס נובל לרפואה, ולאחריו חזר לעסוק בכירורגיה פלסטית ילדים", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Murray הוא התשובה הנכונה — סיפור מובהק של איך ניסיון קליני בתחום אחד (כוויות, כירורגיה פלסטית) הוביל לפריצת דרך בתחום אחר (השתלות איברים). McIndoe ו-Gillies (תשובות 1, 2) עסקו בשיקום פנים וכוויות אך לא בהשתלות איברים. Tessier (תשובה 4) פעל שנים מאוחר יותר ובתחום אחר לגמרי (קרניופציאלי).",
+    term_definition:{term:"Vascularized Composite Allotransplantation (VCA)", text:"השתלה של יחידת רקמה מורכבת (למשל יד, פנים) עם כלי הדם שלה מתורם לנמען — תחום שבו כירורגיה פלסטית שוב במרכז, כפי שהיה בעבודתו המקורית של Murray."},
+    story:null,
+    why_question:{q:"למה דווקא כירורג פלסטי, ולא נפרולוג, ביצע את השתלת הכליה הראשונה?", a:"כי הניסיון המעשי שלו עם שתלי עור על כוויים חשף לו באופן ישיר את תופעת הדחייה האימונולוגית, והוא בחר לעבור למודל 'איבר בודד' (כליה) כדי לחקור ולפתור את הבעיה בצורה מבוקרת יותר."},
+    key_terms:["Joseph Murray","השתלת כליה","VCA","פרס נובל"]
+  },
+  en:{
+    question:"A plastic surgeon treating WWII burn casualties noticed unrelated-donor skin grafts were rejected more slowly than expected. Fifteen years later he performs a groundbreaking kidney operation. Who is he, and what did he do?",
+    options:["Archibald McIndoe — developed the walking-stalk skin graft","Harold Gillies — founded the Sidcup hospital","Joseph Murray — performed the world's first successful kidney transplant (1954) between identical twins","Paul Tessier — developed craniofacial surgery"],
+    answer_lines:[
+      {t:"Joseph Murray — a plastic surgeon, not a nephrologist", icon:"🔴", c:"B85042"},
+      {t:"Burn skin-graft experience → interest in immune rejection", icon:"🔵", c:"1C7293"},
+      {t:"1954: world's first successful kidney transplant (identical twins, Peter Bent Brigham Hospital)", icon:"🟢", c:"2C5F2D"},
+      {t:"1990: Nobel Prize in Medicine; later returned to pediatric plastic surgery", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Murray is correct — a clear case of clinical experience in one field (burns, plastic surgery) driving a breakthrough in another (organ transplantation). McIndoe and Gillies dealt with facial/burn reconstruction, not organ transplants. Tessier worked decades later in an unrelated craniofacial field.",
+    term_definition:{term:"Vascularized Composite Allotransplantation (VCA)", text:"Transplantation of a composite tissue unit (e.g., hand, face) with its vasculature from donor to recipient — a field where plastic surgery is again central, echoing Murray's original work."},
+    story:null,
+    why_question:{q:"Why was it a plastic surgeon, not a nephrologist, who performed the first kidney transplant?", a:"His hands-on experience with skin grafts on burn patients directly exposed him to immune rejection, and he chose to move to a single-organ model (the kidney) to study and solve the problem in a more controlled way."},
+    key_terms:["Joseph Murray","Kidney transplant","VCA","Nobel Prize"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c003", type:"qa", difficulty:"low", topic_category:"history",
+  correct_index:0, has_image:false,
+  he:{
+    question:"באיזה אירוע היסטורי \"נולדה\" הכירורגיה הפלסטית המודרנית כפי שאנו מכירים אותה?",
+    options:["מלחמת העולם הראשונה, בעבודתו של Sir Harold Gillies ב-Aldershot ואחר כך ב-Sidcup","מלחמת קוריאה ופיתוח יחידות MASH","גילוי הפניצילין בשנות ה-40","המצאת המיקרוסקופ הניתוחי בשנות ה-60"],
+    answer_lines:[
+      {t:"Harold Gillies טיפל בפצועי פנים ממלחמת העולם הראשונה", icon:"🔴", c:"B85042"},
+      {t:"הקים מחלקה ייעודית באלדרשוט, ואז את Queen's Hospital בסידקאפ (1917)", icon:"🔵", c:"1C7293"},
+      {t:"למעלה מ-11,000 ניתוחים על יותר מ-5,000 חיילים — פיתוח שיטתי של טכניקות שיקום", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"התשובה הנכונה היא מלחמת העולם הראשונה — הפרק קובע זאת במפורש. יחידות MASH (תשובה 2) מוזכרות בהקשר אחר (טיפול מוקדם בשדה, בסיס לכירורגיה רובוטית מרוחקת), לא כ'לידת' ההתמחות. פניצילין ומיקרוסקופ ניתוחי (תשובות 3, 4) לא מוזכרים כלל כאירוע המכונן.",
+    term_definition:{term:"Queen's Hospital, Sidcup", text:"בית חולים ייעודי לשיקום פנים שהוקם ב-1917 ביוזמת Gillies, עם למעלה מ-1,000 מיטות — נחשב לערש הכירורגיה הפלסטית המודרנית."},
+    story:null,
+    why_question:{q:"למה דווקא מלחמה יוצרת קפיצות חדשנות גדולות יותר מזמן שלום?", a:"כי מספר עצום של פציעות דומות מגיע בבת אחת, מה שכופה על המנתחים לפתח ולשכלל טכניקות שיטתיות במהירות ובקנה מידה שלא נדרש בשגרה."},
+    key_terms:["Harold Gillies","מלחמת העולם הראשונה","Sidcup"]
+  },
+  en:{
+    question:"Which historical event marks the 'birth' of modern plastic surgery as we know it?",
+    options:["World War I, through Sir Harold Gillies's work at Aldershot and then Sidcup","The Korean War and the development of MASH units","The discovery of penicillin in the 1940s","The invention of the operating microscope in the 1960s"],
+    answer_lines:[
+      {t:"Harold Gillies treated WWI facial casualties", icon:"🔴", c:"B85042"},
+      {t:"Set up a dedicated ward at Aldershot, then Queen's Hospital, Sidcup (1917)", icon:"🔵", c:"1C7293"},
+      {t:"Over 11,000 operations on more than 5,000 servicemen — systematic development of reconstructive technique", icon:"🟢", c:"2C5F2D"}
+    ],
+    explanation:"WWI is correct — stated explicitly in the chapter. MASH units (option 2) are mentioned in a different context (early field treatment, precursor to remote robotic surgery), not as the specialty's birth. Penicillin and the operating microscope are not mentioned as the founding event.",
+    term_definition:{term:"Queen's Hospital, Sidcup", text:"A dedicated facial-reconstruction hospital founded in 1917 on Gillies's initiative, with over 1,000 beds — considered the cradle of modern plastic surgery."},
+    story:null,
+    why_question:{q:"Why does war drive bigger leaps in innovation than peacetime?", a:"Because a huge number of similar injuries arrive at once, forcing surgeons to rapidly develop and refine systematic techniques at a scale routine practice never demands."},
+    key_terms:["Harold Gillies","World War I","Sidcup"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c004", type:"qa", difficulty:"medium", topic_category:"history",
+  correct_index:3, has_image:false,
+  he:{
+    question:"מה היה ה-\"Guinea Pig Club\", ומי ייסד אותו בהקשר הכירורגי?",
+    options:["ארגון מחקר לניסויים בבעלי חיים בכירורגיה פלסטית","ועדת רגולציה בריטית לחדשנות כירורגית","קבוצת תמיכה שהוקמה על ידי Harold Gillies לפצועי מלה\"ע 1","מועדן חברתי-שיקומי לטייסים כוויים שהוקם סביב עבודתו של Archibald McIndoe במלה\"ע 2"],
+    answer_lines:[
+      {t:"הוקם ב-Queen Victoria Hospital, East Grinstead, בהובלת Archibald McIndoe", icon:"🔴", c:"B85042"},
+      {t:"החברות דרשה מינימום 10 ניתוחים — עד סוף המלחמה: 649 חברים", icon:"🔵", c:"1C7293"},
+      {t:"מטרתו: שילוב חברתי של הטייסים חזרה לחברה (לא רק שיקום כירורגי)", icon:"🟢", c:"2C5F2D"},
+      {t:"East Grinstead כונתה 'העיר שלא בוהה' (the town that doesn't stare)", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (4) — McIndoe ייסד את המועדון כחלק מגישה חדשנית שראתה בשיקום חברתי חלק בלתי נפרד מהריפוי, לא רק תיקון כירורגי. תשובות 1-2 ממציאות הקשר שלא קיים בפרק. תשובה 3 מייחסת בטעות את המועדון ל-Gillies (מלה\"ע 1) במקום ל-McIndoe (מלה\"ע 2) — בן דודו.",
+    term_definition:{term:"Social Innovation (חדשנות חברתית)", text:"במקרה הזה: לא רק פיתוח טכניקה כירורגית חדשה, אלא גם דרך חדשה לשלב מטופלים בחברה — McIndoe שכנע משפחות מקומיות לקבל את הטייסים כאורחים."},
+    story:null,
+    why_question:{q:"למה McIndoe ראה בשילוב החברתי חלק מהטיפול הרפואי, ולא רק 'תוספת נחמדה'?", a:"כי טיפול בכוויות קשות כלל תהליכי שיקום ארוכים וכואבים, ותחושת בידוד וסטיגמה חברתית עלולה לפגוע קשות בהחלמה הפסיכולוגית — לכן שילוב מחדש בקהילה נחשב חלק אינטגרלי מההחלמה המלאה."},
+    key_terms:["Archibald McIndoe","Guinea Pig Club","East Grinstead"]
+  },
+  en:{
+    question:"What was the 'Guinea Pig Club', and who founded it in the surgical context?",
+    options:["A British research body for animal testing in plastic surgery","A UK regulatory committee for surgical innovation","A support group founded by Harold Gillies for WWI casualties","A social-rehabilitation club for burned aircrew founded around Archibald McIndoe's WWII work"],
+    answer_lines:[
+      {t:"Founded at Queen Victoria Hospital, East Grinstead, led by Archibald McIndoe", icon:"🔴", c:"B85042"},
+      {t:"Membership required a minimum of 10 surgeries — 649 members by war's end", icon:"🔵", c:"1C7293"},
+      {t:"Goal: social reintegration of airmen, not just surgical repair", icon:"🟢", c:"2C5F2D"},
+      {t:"East Grinstead became known as 'the town that doesn't stare'", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (4) — McIndoe founded the club as part of an innovative view that social reintegration is part of healing, not just surgical repair. Options 1-2 invent a context absent from the chapter. Option 3 wrongly attributes the club to Gillies (WWI) instead of his cousin McIndoe (WWII).",
+    term_definition:{term:"Social Innovation", text:"Here: not just a new surgical technique, but a new way to reintegrate patients into society — McIndoe convinced local families to host the airmen as guests."},
+    story:null,
+    why_question:{q:"Why did McIndoe treat social reintegration as part of medical care, not just a nice extra?", a:"Because severe burn treatment involves long, painful rehabilitation, and social isolation/stigma can badly harm psychological recovery — so community reintegration was seen as integral to full healing."},
+    key_terms:["Archibald McIndoe","Guinea Pig Club","East Grinstead"]
+  },
+  mnemonic:null,
+  video_link:{title:"Sir Archibald McIndoe and the Guinea Pig Club", url:"https://www.youtube.com/watch?v=3wUvSEB6Q40"},
+  diagram_ref:false, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c005", type:"qa", difficulty:"medium", topic_category:"principles",
+  correct_index:1, has_image:true,
+  he:{
+    question:"הפרק שואל: אם צריך לבחור נדבך אנטומי אחד כ\"הכי קריטי\" לכירורג פלסטי — מה זה, ולמה?",
+    options:["אנטומיה שלדית — כי היא הבסיס לכל ניתוח פנים","אנטומיה וסקולרית — כי כמעט כל פעולה כרוכה בהעברת רקמה שחייבת לשמור על אספקת דם","אנטומיה עצבית — כי היא קובעת את התוצאה התפקודית","אנטומיה שרירית — כי היא קובעת את חוזק הפלאפ"],
+    answer_lines:[
+      {t:"כל כך הרבה ממה שכירורג פלסטי עושה = סידור מחדש של רקמה (מקומי/אזורי/מרוחק)", icon:"🔵", c:"1C7293"},
+      {t:"כדי שהרקמה תישאר חיה — חייבים לדעת בדיוק מה מזין אותה ולשמר את זה", icon:"🟢", c:"2C5F2D"},
+      {t:"התקדמות היסטורית: מפלאפים 'אקראיים' (random flaps) → זיהוי כלי דם ספציפי → angiosome → פלאפי פרפורטור", icon:"🟡", c:"D99A2B"},
+      {t:"כלים מודרניים: CT/MRI לפני הניתוח, אינדוציאנין ירוק (ICG) לניטור זרימת דם בזמן אמת ('GPS כירורגי')", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"התשובה הנכונה (2) מצוטטת כמעט מילולית מהפרק: 'לדעת מה מחזיק את הרקמה בחיים ולשמר את זה'. אנטומיה שלדית, עצבית ושרירית (תשובות 1, 3, 4) חשובות מאוד לכירורגיה פלסטית אך הפרק מציין באופן מפורש שהאנטומיה הוסקולרית היא ה'ליבה' — כי היא זו שמאפשרת בכלל להעביר רקמה חיה ממקום למקום.",
+    term_definition:{term:"Angiosome", text:"טריטוריית רקמה (עור, שריר, עצם) המוזנת על ידי כלי דם ספציפי אחד — הבסיס התיאורטי שפיתח Ian Taylor להבנת אספקת הדם של פלאפים."},
+    story:"תחשבי על גנן שרוצה להעביר עץ בוגר למקום חדש בגינה: אם הוא לא יודע בדיוק היכן שורשי ההזנה העיקריים, העץ ימות בהעברה — לא משנה כמה יפה יעצב את הצורה שלו. בדיוק כך כירורג פלסטי חייב לדעת את 'שורשי הדם' של כל רקמה שהוא מעביר.",
+    why_question:{q:"למה בדיוק אספקת דם (ולא, למשל, עצבוב) קובעת אם רקמה מועברת 'תשרוד' או לא?", a:"כי בלי זרימת דם, תאי הרקמה מתים תוך שעות ממחסור בחמצן ובחומרי הזנה (נמק איסכמי) — עצבוב חשוב לתפקוד (תחושה, תנועה) אבל לא לשרידות הרקמה עצמה."},
+    key_terms:["אנטומיה וסקולרית","angiosome","פלאפי פרפורטור","ICG"]
+  },
+  en:{
+    question:"The chapter asks: if you had to pick one anatomical pillar as 'most critical' for a plastic surgeon — what is it, and why?",
+    options:["Skeletal anatomy — the basis of all facial surgery","Vascular anatomy — because almost every procedure involves moving tissue that must keep its blood supply","Neural anatomy — it determines the functional outcome","Muscular anatomy — it determines flap strength"],
+    answer_lines:[
+      {t:"So much of what a plastic surgeon does = rearranging tissue (local/regional/distant)", icon:"🔵", c:"1C7293"},
+      {t:"For tissue to stay alive, you must know exactly what feeds it and preserve that", icon:"🟢", c:"2C5F2D"},
+      {t:"Historical progress: 'random' flaps → identifying a specific vessel → angiosome theory → perforator flaps", icon:"🟡", c:"D99A2B"},
+      {t:"Modern tools: pre-op CT/MRI, indocyanine green (ICG) for real-time blood-flow monitoring ('surgical GPS')", icon:"🔴", c:"B85042"}
+    ],
+    explanation:"Correct answer (2) is near-quoted from the chapter: 'know what keeps the tissue alive and preserve it.' Skeletal, neural, and muscular anatomy (1,3,4) matter greatly but the chapter explicitly names vascular anatomy as the core — it's what makes moving living tissue possible at all.",
+    term_definition:{term:"Angiosome", text:"A tissue territory (skin, muscle, bone) supplied by one specific blood vessel — the theoretical basis Ian Taylor developed for understanding flap blood supply."},
+    story:"Picture a gardener moving a mature tree to a new spot: if he doesn't know exactly where the main feeder roots are, the tree dies in transit — no matter how nicely he shapes it. A plastic surgeon must likewise know the 'blood roots' of any tissue moved.",
+    why_question:{q:"Why does blood supply specifically (not, say, innervation) determine whether transferred tissue survives?", a:"Without blood flow, tissue cells die within hours from lack of oxygen and nutrients (ischemic necrosis) — innervation matters for function (sensation, movement) but not for the tissue's own survival."},
+    key_terms:["Vascular anatomy","Angiosome","Perforator flaps","ICG"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:true, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c006", type:"qa", difficulty:"low", topic_category:"principles",
+  correct_index:2, has_image:false,
+  he:{
+    question:"לפי הפרק, מה משלים את עיקרון \"האנטומיה\" כדי ליצור סביבה בטוחה לחדשנות כירורגית?",
+    options:["רק תקציב מחקר גדול יותר", "רק ותק אישי של המנתח", "איזון בין חשיבה נועזת לשמרנות זהירה, ושיתוף פעולה עם תחומים אחרים (מהנדסים, כימאים, תעשייה)", "הימנעות מוחלטת מכל שינוי עד לאישור מחקרי מלא"],
+    answer_lines:[
+      {t:"מחדשים נועזים עובדים הכי טוב כשמשולבים עם עמיתים שמרניים שמרסנים אותם", icon:"🟢", c:"2C5F2D"},
+      {t:"הרבה חדשנות בכיר\"פ מיובאת מתחומים אחרים: הנדסת רקמות, אימונולוגיה, רובוטיקה", icon:"🔵", c:"1C7293"},
+      {t:"פיתוח מיקרו-סוטורה, מכשור, שתלים — אף אחד מהם לא אפשרי בלי שיתוף עם ביו-מהנדסים ותעשייה", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (3) משקפת שני עקרונות משלימים שהפרק מציג לצד האנטומיה: איזון בין נועזות לשמרנות, ושיתוף פעולה רב-תחומי. תשובות 1, 2, 4 אינן מוזכרות כעקרונות המרכזיים בפרק — למעשה תשובה 4 סותרת ישירות את הרעיון שחדשנות לרוב מקדימה מחקר מלא.",
+    term_definition:{term:"Multidisciplinary Collaboration", text:"שיתוף פעולה בין כירורגים למומחים מתחומים לא-רפואיים (הנדסה, כימיה, פיזיקה) שבלעדיו התקדמות טכנית (כמו מיקרוסקופ ניתוחי, שתלים) לא הייתה אפשרית."},
+    story:null,
+    why_question:{q:"למה איזון בין נועזות לשמרנות חשוב יותר מ'רק להיות נועז'?", a:"כי חדשנות בלי ריסון עלולה לסכן מטופלים ולפגוע באובייקטיביות של המנתח (קל לאבד פרספקטיבה על השיטה שאתה בעצמך המצאת) — הריסון השמרני שומר על בטיחות תוך עדיין מאפשר התקדמות."},
+    key_terms:["איזון","שיתוף פעולה","תעשייה"]
+  },
+  en:{
+    question:"Per the chapter, what complements the 'anatomy' principle to create a safe environment for surgical innovation?",
+    options:["Just a bigger research budget","Just the surgeon's personal seniority","Balance between bold thinking and careful conservatism, plus collaboration with other fields (engineers, chemists, industry)","Complete avoidance of any change until full research approval"],
+    answer_lines:[
+      {t:"Bold innovators work best paired with conservative colleagues who rein them in", icon:"🟢", c:"2C5F2D"},
+      {t:"Much plastic-surgery innovation is imported from other fields: tissue engineering, immunology, robotics", icon:"🔵", c:"1C7293"},
+      {t:"Microsuture development, instrumentation, implants — none possible without bioengineers and industry", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (3) reflects two complementary principles the chapter presents alongside anatomy: balance between boldness and conservatism, and multidisciplinary collaboration. Options 1, 2, 4 aren't cited as core principles — option 4 directly contradicts the idea that innovation usually precedes full research.",
+    term_definition:{term:"Multidisciplinary Collaboration", text:"Partnership between surgeons and non-medical experts (engineering, chemistry, physics) without which technical advances (operating microscope, implants) would be impossible."},
+    story:null,
+    why_question:{q:"Why does balancing boldness with conservatism matter more than 'just being bold'?", a:"Unchecked innovation can endanger patients and erode a surgeon's objectivity (easy to lose perspective on a technique you invented yourself) — conservative restraint keeps things safe while still allowing progress."},
+    key_terms:["Balance","Collaboration","Industry"]
+  },
+  mnemonic:{text:"A-B-C של חדשנות בטוחה", source:"original", breakdown:{he:["A – Anatomy (אנטומיה, בעיקר וסקולרית)","B – Balance (איזון בין נועזות לשמרנות)","C – Collaboration (שיתוף פעולה רב-תחומי)"], en:["A – Anatomy (especially vascular)","B – Balance (bold vs. conservative)","C – Collaboration (multidisciplinary)"]}},
+  video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c007", type:"cloze", difficulty:"medium", topic_category:"regulation",
+  correct_index:0, has_image:false,
+  he:{
+    question:"השלימי: הגוף המוסדי שמפקח על חדשנות כירורגית נקרא ___, ומאז 2008 יש המלצה גם על הקמת ___ ייעודיות — אך בפועל רק כ-23% מהמחלקות הקימו כאלה.",
+    options:["IRB (ועדת הלסינקי מוסדית) / SIC (ועדות חדשנות כירורגית)","FDA / ועדות אתיקה ארציות","משרד הבריאות / ביטוח לאומי","חברת הביטוח / עורך דין המוסד"],
+    answer_lines:[
+      {t:"IRB = Institutional Review Board — הגוף הרגולטורי הקיים ביותר מוסדות", icon:"🔵", c:"1C7293"},
+      {t:"SIC = Surgical Innovation Committee — המלצה מ-2008 של Society of University Surgeons", icon:"🟢", c:"2C5F2D"},
+      {t:"רק 23% מהמחלקות הקימו SIC בפועל, וחלק ניכר ממנהלי המחלקות אפילו לא היו מודעים להמלצה", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (1): IRB ו-SIC הם שני הגופים שהפרק מציין במפורש. FDA (תשובה 2) הוא גוף רגולציה אמריקאי לתרופות ומכשור, לא לחדשנות ניתוחית עצמה. תשובות 3, 4 לא מוזכרות כלל בפרק כגורמי רגולציה של חדשנות כירורגית.",
+    term_definition:{term:"IDEAL Recommendations", text:"מסגרת מוצעת (McCulloch ואחרים, Lancet 2009) לתיאור שלבי התפתחות של חדשנות כירורגית מרעיון ועד מחקר מבוקר — מוזכרת בפרק כדוגמה לניסיון להסדיר את התהליך."},
+    story:null,
+    why_question:{q:"למה בכלל יש צורך ברגולציה נפרדת לחדשנות כירורגית, מעבר ל-IRB הרגיל?", a:"כי חדשנות כירורגית לרוב לא עוברת דרך תהליך מחקר קלאסי (עם פרוטוקול, קבוצת ביקורת וכו') אלא קורית 'תוך כדי תנועה' בחדר הניתוח — ולכן צריך מנגנון ייעודי שיפקח דווקא על סוג השינוי הזה, שה-IRB הרגיל לא בהכרח בנוי לתפוס."},
+    key_terms:["IRB","SIC","IDEAL framework"]
+  },
+  en:{
+    question:"Fill in: The institutional body overseeing surgical innovation is called ___, and since 2008 there's also a recommendation to establish dedicated ___ — but only about 23% of departments actually did.",
+    options:["IRB (Institutional Review Board) / SIC (Surgical Innovation Committees)","FDA / national ethics boards","Ministry of Health / national insurance","The insurance company / hospital lawyer"],
+    answer_lines:[
+      {t:"IRB = Institutional Review Board — the pre-existing regulatory body at most institutions", icon:"🔵", c:"1C7293"},
+      {t:"SIC = Surgical Innovation Committee — a 2008 recommendation from the Society of University Surgeons", icon:"🟢", c:"2C5F2D"},
+      {t:"Only 23% of departments actually set up an SIC, and many chairs weren't even aware of the recommendation", icon:"🟠", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (1): IRB and SIC are the two bodies the chapter explicitly names. The FDA (2) regulates drugs/devices in the US, not surgical innovation per se. Options 3, 4 aren't mentioned in the chapter at all.",
+    term_definition:{term:"IDEAL Recommendations", text:"A proposed framework (McCulloch et al., Lancet 2009) describing stages of surgical innovation from idea to controlled trial — cited as an attempt to formalize the process."},
+    story:null,
+    why_question:{q:"Why is a separate regulatory mechanism needed for surgical innovation beyond a standard IRB?", a:"Because surgical innovation usually doesn't go through a classic research process (protocol, control group, etc.) but happens 'on the fly' in the OR — so a dedicated mechanism is needed to oversee this specific kind of change, which a standard IRB isn't necessarily built to catch."},
+    key_terms:["IRB","SIC","IDEAL framework"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-07"
+},
+{
+  id:"c008", type:"vignette", difficulty:"high", topic_category:"case-study",
+  correct_index:3, has_image:false,
+  he:{
+    question:"שלושה רעיונות נפרדים — חזיית ואקום להגדלת שד, השתלת שומן במנות קטנות, וסגירת פצע בוואקום — הצטרפו לשיטה משולבת אחת לשחזור/הגדלת שד. מה מקשר ביניהם מבחינה מנגנונית?",
+    options:["שלושתם מבוססים על קרינה תרפויטית זהה","שלושתם דורשים השתלת תאי גזע ממקור חיצוני","אין קשר מנגנוני אמיתי — זו רק צירוף מקרים שיווקי","הוואקום (Brava) יוצר בצקת/אנגיוגנזה/שגשוג תאים שמכינים 'מצע' נוח, ואז שומן מוזרק לתוכו במנות קטנות עם קליטה טובה יותר"],
+    answer_lines:[
+      {t:"Brava (הרחבה חיצונית): ואקום על העור יוצר בצקת והתרחבות זמנית", icon:"🔴", c:"B85042"},
+      {t:"VAC (וואקום על פצע): לא רק מסלק פסולת — גם מעודד אנגיוגנזה ושגשוג תאים", icon:"🔵", c:"1C7293"},
+      {t:"מנגנונים אלו יוצרים סביבה ('מטריצה') נוחה יותר לקליטת שתל", icon:"🟢", c:"2C5F2D"},
+      {t:"רק אז מזריקים שומן במנות קטנות (טכניקת Coleman) לתוך המצע המוכן — קליטה טובה יותר של נפחים גדולים", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"התשובה הנכונה (4) מתארת בדיוק את שיטת Khouri שהפרק מתאר. תשובה 1 שגויה — אין כאן קרינה. תשובה 2 שגויה — אין דרישה לתאי גזע חיצוניים (אם כי הפרק כן מזכיר שהתופעה מעוררת סקרנות לגבי תאי גזע אנדוגניים). תשובה 3 שגויה כי הפרק מציג הסבר ביולוגי סביר (גם אם לא מוכח סופית) לקשר בין שלושת הרעיונות.",
+    term_definition:{term:"Structural Fat Grafting", text:"טכניקת Coleman להשתלת שומן: הזרקת השומן במנות קטנות מאוד דרך קנולה דקה, המאפשרת לכל טיפת שומן להיות קרובה מספיק לאספקת דם חדשה כדי 'לתפוס' (להשתרש) בהצלחה."},
+    story:null,
+    why_question:{q:"למה החוקרים לא הבינו במלואו את המנגנון לפני שהשיטה כבר עבדה קלינית?", a:"כי זו דוגמה קלאסית לחדשנות שמקדימה מחקר: Khouri שילב שלושה רעיונות קיימים מתוך תצפית קלינית שהתוצאה טובה, ורק אחר כך התחיל מחקר שמנסה להסביר בדיוק איך אנגיוגנזה ושגשוג תאים תורמים לקליטת השומן — בדיוק התבנית שהפרק מתאר בסעיף הראשון."},
+    key_terms:["Brava","Vacuum-Assisted Closure","Structural Fat Grafting","Khouri"]
+  },
+  en:{
+    question:"Three separate ideas — a vacuum breast-enhancement bra, small-aliquot fat grafting, and vacuum-assisted wound closure — merged into one combined breast reconstruction/augmentation method. What links them mechanistically?",
+    options:["All three rely on identical therapeutic radiation","All three require stem cells from an external source","There's no real mechanistic link — it's just marketing coincidence","The vacuum (Brava) creates edema/angiogenesis/cell proliferation that prepares a favorable 'matrix', into which fat is then injected in small aliquots with better graft take"],
+    answer_lines:[
+      {t:"Brava (external expansion): vacuum on skin causes edema and temporary enlargement", icon:"🔴", c:"B85042"},
+      {t:"VAC (wound vacuum): not just removes debris — also promotes angiogenesis and cell proliferation", icon:"🔵", c:"1C7293"},
+      {t:"These mechanisms create a more favorable 'matrix' for graft uptake", icon:"🟢", c:"2C5F2D"},
+      {t:"Only then is fat injected in small aliquots (Coleman technique) into the prepared bed — better uptake of larger volumes", icon:"🟡", c:"D99A2B"}
+    ],
+    explanation:"Correct answer (4) exactly describes Khouri's method as presented in the chapter. Option 1 is wrong — no radiation involved. Option 2 is wrong — no external stem cells required (though the chapter notes the phenomenon raises curiosity about endogenous stem cells). Option 3 is wrong because the chapter offers a plausible (if not fully proven) biological link between the three ideas.",
+    term_definition:{term:"Structural Fat Grafting", text:"Coleman's technique: injecting fat in very small aliquots through a fine cannula, so each droplet stays close enough to a new blood supply to successfully 'take'."},
+    story:null,
+    why_question:{q:"Why wasn't the mechanism fully understood before the method already worked clinically?", a:"Because this is a classic case of innovation preceding research: Khouri combined three existing ideas from clinical observation of good results, and only afterward did research begin to explain exactly how angiogenesis and cell proliferation contribute to fat-graft uptake — exactly the pattern the chapter describes in its opening section."},
+    key_terms:["Brava","Vacuum-Assisted Closure","Structural Fat Grafting","Khouri"]
+  },
+  mnemonic:null, video_link:null, diagram_ref:false, source:"original", date_added:"2026-08-07"
+}
+];
+
+var DIAGRAMS = {
+  c001: '<svg viewBox="0 0 480 160" xmlns="http://www.w3.org/2000/svg"><rect x="330" y="15" width="130" height="50" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="395" y="45" font-size="11" text-anchor="middle" fill="#7f1d1d">בעיה קלינית</text><rect x="170" y="15" width="130" height="50" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="235" y="45" font-size="11" text-anchor="middle" fill="#1e3a8a">חדשנות (אלתור)</text><rect x="10" y="15" width="130" height="50" rx="6" fill="#f5f3ff" stroke="#6d28d9"/><text x="75" y="45" font-size="11" text-anchor="middle" fill="#4c1d95">מחקר (לפעמים, אחר-כך)</text><line x1="330" y1="40" x2="300" y2="40" stroke="#374151" stroke-width="2"/><polygon points="330,40 310,34 310,46" fill="#374151"/><line x1="170" y1="40" x2="140" y2="40" stroke="#374151" stroke-width="2"/><polygon points="170,40 150,34 150,46" fill="#374151"/></svg>',
+  c005: '<svg viewBox="0 0 480 150" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="20" width="130" height="45" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="85" y="47" font-size="11" text-anchor="middle" fill="#7f1d1d">פלאפ אקראי</text><rect x="180" y="20" width="130" height="45" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="245" y="47" font-size="11" text-anchor="middle" fill="#1e3a8a">כלי דם ספציפי</text><rect x="340" y="20" width="130" height="45" rx="6" fill="#ecfdf5" stroke="#047857"/><text x="405" y="41" font-size="11" text-anchor="middle" fill="#065f46">Angiosome /</text><text x="405" y="55" font-size="11" text-anchor="middle" fill="#065f46">פלאפ פרפורטור</text><line x1="150" y1="42" x2="180" y2="42" stroke="#374151" stroke-width="2"/><polygon points="180,42 160,36 160,48" fill="#374151"/><line x1="310" y1="42" x2="340" y2="42" stroke="#374151" stroke-width="2"/><polygon points="340,42 320,36 320,48" fill="#374151"/><text x="245" y="110" font-size="11" text-anchor="middle" fill="#6b7280">התקדמות ידע האנטומיה הוסקולרית לאורך זמן &#8592;</text></svg>'
+};
+
+var langIsHe = true;
+var state = JSON.parse(localStorage.getItem('psFlashcardsState') || '{}');
+function saveState(){ localStorage.setItem('psFlashcardsState', JSON.stringify(state)); }
+
+function catList(){
+  var s = {};
+  CARDS.forEach(function(c){ s[c.topic_category] = true; });
+  return Object.keys(s);
+}
+
+function populateFilters(){
+  var sel = document.getElementById('catFilter');
+  catList().forEach(function(cat){
+    var o = document.createElement('option');
+    o.value = cat;
+    o.textContent = (langIsHe ? CAT_NAMES_HE[cat] : CAT_NAMES_EN[cat]) || cat;
+    sel.appendChild(o);
+  });
+}
+
+function renderStats(){
+  var total = CARDS.length;
+  var answered = 0, correct = 0, known = 0, review = 0;
+  CARDS.forEach(function(c){
+    var st = state[c.id];
+    if(st && st.answered){ answered++; if(st.correct) correct++; }
+    if(st && st.rating === 'known') known++;
+    if(st && st.rating === 'review') review++;
+  });
+  var acc = answered ? Math.round(100*correct/answered) : 0;
+  var el = document.getElementById('statsPanel');
+  var L = langIsHe ? {tot:"סה\"כ כרטיסיות",ans:"נענו",acc:"דיוק",kn:"ידועות",rv:"לחזרה",rs:"איפוס"} :
+                       {tot:"Total cards",ans:"Answered",acc:"Accuracy",kn:"Known",rv:"To review",rs:"Reset"};
+  el.innerHTML =
+    '<div class="item"><b>'+total+'</b>'+L.tot+'</div>'+
+    '<div class="item"><b>'+answered+'/'+total+'</b>'+L.ans+'</div>'+
+    '<div class="item"><b>'+acc+'%</b>'+L.acc+'</div>'+
+    '<div class="item"><b>'+known+'</b>'+L.kn+'</div>'+
+    '<div class="item"><b>'+review+'</b>'+L.rv+'</div>'+
+    '<button class="reset">'+L.rs+'</button>';
+  el.querySelector('.reset').addEventListener('click', function(){
+    if(confirm(langIsHe ? 'לאפס את כל ההתקדמות?' : 'Reset all progress?')){
+      state = {}; saveState(); renderAll();
+    }
+  });
+}
+
+function cardMatchesFilters(c){
+  var cat = document.getElementById('catFilter').value;
+  var diff = document.getElementById('diffFilter').value;
+  var status = document.getElementById('statusFilter').value;
+  var q = document.getElementById('searchBox').value.trim().toLowerCase();
+  if(cat && c.topic_category !== cat) return false;
+  if(diff && c.difficulty !== diff) return false;
+  var st = state[c.id];
+  if(status === 'unrated' && st && st.rating) return false;
+  if(status === 'known' && (!st || st.rating !== 'known')) return false;
+  if(status === 'review' && (!st || st.rating !== 'review')) return false;
+  if(q){
+    var text = (c.he.question+' '+c.en.question+' '+(c.he.key_terms||[]).join(' ')).toLowerCase();
+    if(text.indexOf(q) === -1) return false;
+  }
+  return true;
+}
+
+function renderGrid(){
+  var grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+  CARDS.filter(cardMatchesFilters).forEach(function(c){
+    var d = langIsHe ? c.he : c.en;
+    var color = PALETTE[c.topic_category] || '#666';
+    var catName = (langIsHe ? CAT_NAMES_HE[c.topic_category] : CAT_NAMES_EN[c.topic_category]);
+    var st = state[c.id];
+    var statusHtml = '';
+    if(st && st.answered){
+      statusHtml = '<span class="status '+(st.correct?'correct':'wrong')+'">'+(st.correct ? (langIsHe?'נכון':'correct') : (langIsHe?'טעות':'wrong'))+'</span>';
+    } else {
+      statusHtml = '<span class="status unrated">'+(langIsHe?'חדש':'new')+'</span>';
+    }
+    var div = document.createElement('div');
+    div.className = 'card';
+    div.style.borderInlineStartColor = color;
+    div.innerHTML = '<span class="badge" style="background:'+color+'">'+catName+'</span>'+
+      '<div class="q">'+d.question+'</div>'+
+      '<div class="meta"><span>'+c.difficulty+'</span>'+statusHtml+'</div>';
+    div.addEventListener('click', function(){ openCard(c.id); });
+    grid.appendChild(div);
+  });
+}
+
+function renderAll(){
+  renderStats();
+  renderGrid();
+  document.getElementById('pageSub').textContent = (langIsHe ? CARDS.length+' כרטיסיות · לחצי על כרטיסייה כדי להתחיל' : CARDS.length+' cards · click a card to start');
+  document.getElementById('pageTitle').textContent = langIsHe ? 'כרטיסיות תרגול | פרק 1: כירורגיה פלסטית וחדשנות' : 'Flashcards | Chapter 1: Plastic Surgery & Innovation';
+}
+
+var currentCardId = null;
+function openCard(id){
+  currentCardId = id;
+  var c = CARDS.find(function(x){ return x.id === id; });
+  var d = langIsHe ? c.he : c.en;
+  var color = PALETTE[c.topic_category] || '#666';
+  var catName = (langIsHe ? CAT_NAMES_HE[c.topic_category] : CAT_NAMES_EN[c.topic_category]);
+
+  var optsHtml = d.options.map(function(opt,i){
+    return '<button class="opt" data-i="'+i+'">'+opt+'</button>';
+  }).join('');
+
+  var linesHtml = d.answer_lines.map(function(l){
+    return '<div class="a-line"><span class="dot" style="background:#'+l.c+'"></span><span>'+l.icon+' '+l.t+'</span></div>';
+  }).join('');
+
+  var defHtml = d.term_definition ? '<div class="box def"><h4>'+(langIsHe?'הגדרת מונח':'Term definition')+': '+d.term_definition.term+'</h4>'+d.term_definition.text+'</div>' : '';
+  var storyHtml = d.story ? '<div class="box story"><h4>'+(langIsHe?'סיפור לזכירה':'Story to remember')+'</h4>'+d.story+'</div>' : '';
+  var whyHtml = d.why_question ? '<div class="box why"><h4>'+(langIsHe?'שאלי את עצמך: למה?':'Ask yourself: why?')+'</h4><p><b>'+d.why_question.q+'</b></p><p>'+d.why_question.a+'</p></div>' : '';
+  var mnemHtml = '';
+  if(c.mnemonic){
+    var mLines = (langIsHe ? c.mnemonic.breakdown.he : c.mnemonic.breakdown.en).map(function(x){return '<div>'+x+'</div>';}).join('');
+    mnemHtml = '<div class="box mnemonic"><h4>'+(langIsHe?'טכניקת זכירה':'Mnemonic')+': '+c.mnemonic.text+'<span class="known">'+(c.mnemonic.source==='known'?(langIsHe?'מוכר':'known'):(langIsHe?'מקורי':'original'))+'</span></h4>'+mLines+'</div>';
+  }
+  var diagHtml = DIAGRAMS[c.id] ? '<div class="diagram-wrap">'+DIAGRAMS[c.id]+'</div>' : '';
+  var videoHtml = c.video_link ? '<a class="video-link" href="'+c.video_link.url+'" target="_blank">&#9654; '+c.video_link.title+'</a>' : '';
+  var termsHtml = d.key_terms ? '<div class="key-terms">'+d.key_terms.map(function(t){return '<span>'+t+'</span>';}).join('')+'</div>' : '';
+
+  var body =
+    '<span class="badge" style="background:'+color+'">'+catName+'</span>'+
+    '<div class="q">'+d.question+'</div>'+
+    '<div id="optsWrap">'+optsHtml+'</div>'+
+    '<div class="answer-block" id="answerBlock">'+
+      '<div class="a-lines">'+linesHtml+'</div>'+
+      '<p style="font-size:14.5px; color:#374151">'+d.explanation+'</p>'+
+      defHtml + storyHtml + whyHtml + mnemHtml + diagHtml + videoHtml + termsHtml +
+      '<div class="rate-row">'+
+        '<button class="known-btn" id="rateKnown">&#10003; '+(langIsHe?'ידעתי':'Got it')+'</button>'+
+        '<button class="review-btn" id="rateReview">&#8635; '+(langIsHe?'לחזור על זה':'Review again')+'</button>'+
+      '</div>'+
+    '</div>'+
+    '<button class="back-btn" id="backToQ" style="display:none">'+(langIsHe?'&#8592; חזרה לשאלה':'&#8592; Back to question')+'</button>';
+
+  document.getElementById('modalBody').innerHTML = body;
+  document.getElementById('modalBg').classList.add('show');
+
+  var optsWrap = document.getElementById('optsWrap');
+  var answerBlock = document.getElementById('answerBlock');
+  var st = state[c.id] || {};
+
+  function lockOptions(chosenIdx){
+    optsWrap.querySelectorAll('.opt').forEach(function(btn){
+      btn.disabled = true;
+      var i = parseInt(btn.getAttribute('data-i'),10);
+      if(i === c.correct_index) btn.classList.add('correct');
+      else if(i === chosenIdx) btn.classList.add('wrong');
+    });
+  }
+
+  if(st.answered){
+    lockOptions(st.chosenIndex);
+    answerBlock.classList.add('show');
+    document.getElementById('backToQ').style.display = 'inline-block';
+  }
+
+  optsWrap.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'),10);
+      var isCorrect = (i === c.correct_index);
+      if(!state[c.id] || !state[c.id].answered){
+        state[c.id] = state[c.id] || {};
+        state[c.id].answered = true;
+        state[c.id].correct = isCorrect;
+        state[c.id].chosenIndex = i;
+        saveState();
+        renderStats();
+      }
+      lockOptions(i);
+      answerBlock.classList.add('show');
+      document.getElementById('backToQ').style.display = 'inline-block';
+    });
+  });
+
+  document.getElementById('backToQ').addEventListener('click', function(){
+    answerBlock.classList.remove('show');
+    document.getElementById('backToQ').style.display = 'none';
+  });
+
+  document.getElementById('rateKnown') && document.getElementById('rateKnown').addEventListener('click', function(){
+    state[c.id] = state[c.id] || {};
+    state[c.id].rating = 'known';
+    saveState(); renderGrid();
+  });
+  document.getElementById('rateReview') && document.getElementById('rateReview').addEventListener('click', function(){
+    state[c.id] = state[c.id] || {};
+    state[c.id].rating = 'review';
+    saveState(); renderGrid();
+  });
+}
+
+document.getElementById('closeBtn').addEventListener('click', function(){
+  document.getElementById('modalBg').classList.remove('show');
+  renderGrid();
+});
+document.getElementById('modalBg').addEventListener('click', function(e){
+  if(e.target.id === 'modalBg'){ document.getElementById('modalBg').classList.remove('show'); renderGrid(); }
+});
+document.getElementById('langBtn').addEventListener('click', function(){
+  langIsHe = !langIsHe;
+  document.body.setAttribute('dir', langIsHe ? 'rtl' : 'ltr');
+  document.getElementById('catFilter').innerHTML = '<option value="">'+(langIsHe?'כל הנושאים':'All topics')+'</option>';
+  populateFilters();
+  renderAll();
+  if(currentCardId) openCard(currentCardId);
+});
+['searchBox','catFilter','diffFilter','statusFilter'].forEach(function(id){
+  document.getElementById(id).addEventListener('input', renderGrid);
+  document.getElementById(id).addEventListener('change', renderGrid);
+});
+
+populateFilters();
+renderAll();
+</script>
+</body>
+</html>
