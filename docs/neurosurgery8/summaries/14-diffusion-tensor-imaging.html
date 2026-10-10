@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 14: דימות טנזור דיפוזיה (DTI)</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 14: דימות טנזור דיפוזיה (DTI) <span class="term" dir="ltr">Diffusion Tensor Imaging</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק I: מבוא לנוירוכירורגיה - Aaron G. Filler</div>
+
+<p>MRI רגיל נותן לכל ווקסל <b>מספר אחד</b> (גוון אפור). <b>DTI</b> נותן לכל ווקסל <b>כיוון</b>: הוא מחשב לאן נמתחים האקסונים שעוברים בו. מהכיוונים האלה אפשר "לצעוד" מווקסל לווקסל ולשרטט את מסלולי החומר הלבן (<b>טרקטוגרפיה</b>), או לשאול כמה הדיפוזיה מכוונת (<b>FA - fractional anisotropy</b>). התוצאה הקלינית: אפשר לראות את ה<b>מסלול הפירמידלי</b>, ה<b>arcuate fasciculus</b> וה<b>קרינה האופטית</b> ביחס לגידול לפני הניתוח, לזהות פגיעות בחבלת ראש סגורה ש-CT ו-MRI לא רואים, ולהעריך חוט שדרה ועצבים פריפריים. כותב הפרק, Aaron Filler, הוא גם אחד ממציאי השיטה.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DTI%20Brain%20Tractographic%20Image%20Set.jpg?width=450" alt="DTI brain tractographic image set">
+<p class="media-cap">סט תמונות טרקטוגרפיות של המוח ב-DTI (Aaron G. Filler, Wikimedia Commons, CC BY-SA).</p>
+
+<h2><span class="num">1</span> מנגנון: למה מים "מעדיפים" לנוע לאורך האקסון</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>תנועה בראונית:</b> מולקולות מים מתפזרות כל הזמן בגלל חום. במים חופשיים (CSF) הפיזור שווה בכל הכיוונים - <b>איזוטרופי</b>.<br>
+    → <b>באקסון:</b> קרום ומיאלין מגבילים תנועה רוחבית, ולכן המים נעים בעיקר <b>לאורך</b> האקסון - <b>אניזוטרופי</b>.<br>
+    → <b>גרדיאנט דיפוזיה:</b> מוסיפים שדה מגנטי חזק (פי ~10 מגרדיאנטי המיקום) שמשתנה לאורך הווקסל. פרוטון שזז לאזור שדה חזק יותר מסתובב מהר יותר, ופרוטון שזז לשדה חלש מאט.<br>
+    → <b>איבוד קוהרנטיות:</b> ככל שהמים זזים יותר <u>בכיוון הגרדיאנט</u>, הפאזות מתפזרות והאות דועך מהר יותר.<br>
+    → <b>תלות בכיוון:</b> גרדיאנט <b>ניצב</b> לאקסון → האות נשאר בהיר; גרדיאנט <b>מקביל</b> לאקסון → האות נעשה כהה. רקמה איזוטרופית → דעיכה בינונית וזהה בכל כיוון.<br>
+    → <b>חישוב:</b> מודדים בלפחות <b>6 כיוונים</b> (בפועל ~30, עד 256) ומחשבים בכל ווקסל את הכיוון הראשי ואת מידת האניזוטרופיה.<br>
+    → <b>עיקרון-על:</b> כיוון שבו האות דועך הכי מהר = כיוון האקסונים בווקסל.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>דיפוזיה איזוטרופית מול אניזוטרופית</title>
+  <desc>במים חופשיים ובחומר אפור הדיפוזיה שווה בכל הכיוונים; בחומר לבן המים נעים בעיקר לאורך האקסונים, ולכן עוצמת האות תלויה בכיוון גרדיאנט הדיפוזיה</desc>
+  <defs><marker id="ah14a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1d4ed8"/></marker><marker id="ah14b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#b45309"/></marker></defs>
+  <rect x="10" y="10" width="700" height="310" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="370" y="56" width="320" height="172" rx="10" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="30" y="56" width="320" height="172" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <rect x="30" y="240" width="660" height="72" rx="10" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <circle cx="530" cy="148" r="48" fill="#dbeafe" stroke="#2563eb" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="530" y1="148" x2="570.0" y2="148.0" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="558.3" y2="176.3" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="530.0" y2="188.0" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="501.7" y2="176.3" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="490.0" y2="148.0" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="501.7" y2="119.7" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="530.0" y2="108.0" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <line x1="530" y1="148" x2="558.3" y2="119.7" stroke="#1d4ed8" stroke-width="2.5" marker-end="url(#ah14a)"/>
+  <circle cx="530" cy="148" r="5" fill="#1e3a8a"/>
+  <rect x="52" y="104" width="276" height="16" rx="8" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="52" y="132" width="276" height="16" rx="8" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+  <rect x="52" y="160" width="276" height="16" rx="8" fill="#fde68a" stroke="#b45309" stroke-width="1.5"/>
+  <ellipse cx="190" cy="140" rx="118" ry="20" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="100" y1="140" x2="280" y2="140" stroke="#b45309" stroke-width="3" marker-start="url(#ah14b)" marker-end="url(#ah14b)"/>
+  <line x1="190" y1="140" x2="190" y2="124" stroke="#78350f" stroke-width="2"/>
+  <text x="360" y="36" font-size="16" text-anchor="middle" font-weight="700" fill="#1e293b">דיפוזיה איזוטרופית מול אניזוטרופית</text>
+  <text x="530" y="80" font-size="14" text-anchor="middle" font-weight="700" fill="#1e3a8a">איזוטרופי (CSF, חומר אפור)</text>
+  <text x="190" y="80" font-size="14" text-anchor="middle" font-weight="700" fill="#92400e">אניזוטרופי (חומר לבן / עצב)</text>
+  <text x="530" y="216" font-size="13" text-anchor="middle" fill="#1f2937" direction="ltr" unicode-bidi="embed">λ1 = λ2 = λ3  ·  FA ≈ 0</text>
+  <text x="190" y="216" font-size="13" text-anchor="middle" fill="#1f2937" direction="ltr" unicode-bidi="embed">λ1 ≫ λ2, λ3  ·  FA → 1</text>
+  <text x="360" y="262" font-size="13" text-anchor="middle" fill="#065f46">גרדיאנט <tspan font-weight="700">ניצב</tspan> לאקסון → המים נשארים באותה עוצמת שדה → האות נשאר <tspan font-weight="700">בהיר</tspan></text>
+  <text x="360" y="283" font-size="13" text-anchor="middle" fill="#991b1b">גרדיאנט <tspan font-weight="700">מקביל</tspan> לאקסון → המים "בורחים" לשדות שונים → איבוד קוהרנטיות → אות <tspan font-weight="700">כהה</tspan></text>
+  <text x="360" y="304" font-size="13" text-anchor="middle" fill="#1f2937">רקמה איזוטרופית → דעיכה בינונית, זהה בכל כיוון גרדיאנט</text>
+</svg>
+<p class="figcap">איור סכמטי: אותו גרדיאנט דיפוזיה "רואה" מים שונים לגמרי באקסון לעומת CSF. הכיוון שבו האות דועך הכי מהר מגלה את כיוון הסיבים.</p>
+
+<div class="key-box"><b>Stejskal-Tanner:</b> גרדיאנט הדיפוזיה מופעל <b>פעמיים</b>, פעם לפני פולס ההיפוך של 180° ופעם אחריו. הפולס הראשון "מסמן" את הפרוטונים לפי מיקומם, והשני מודד כמה הם זזו. ב-DWI רגיל לא צריך לדעת את כיוון הדיפוזיה (שבץ = דיפוזיה מוגבלת). ב-DTI הכיוון הוא כל העניין.</div>
+
+<h2><span class="num">2</span> הבעיה הפיזיקלית שעצרה את כולם: cross terms</h2>
+<p>MRI בונה תמונה בעזרת שלושה <b>גרדיאנטי מיקום</b>: z לבחירת פרוסה (slice select), y לקידוד פאזה (phase encode) ו-x לקידוד תדר (frequency encode). כל ווקסל מקבל עוצמת שדה ייחודית, ולכן תדר ופאזה משלו. כדי לחשב טנזור צריך לשלוח גרדיאנטי דיפוזיה גם מ<b>זוויות אלכסוניות</b>. גרדיאנט חזק כזה מתערבב עם גרדיאנטי המיקום, בעיקר עם קידוד הפאזה, והופך את התמונה לבליל. זה נקרא <b>cross terms</b>. עד 1991 כל הקבוצות שעבדו על אניזוטרופיה ידעו שזה המכשול ולא ידעו איך לעקוף אותו.</p>
+<p><b>הפתרון (Howe ו-Filler, 1992):</b> מפצלים את גרדיאנט המיקום שמופעל הכי קרוב בזמן לגרדיאנט הדיפוזיה לשני פולסים <b>הפוכים בקוטביות</b>, מתוזמנים סימטרית כמה מילישניות לפני פולס ה-180° וכמה מילישניות אחריו. כך ה-cross terms כמעט מתבטלים בתוך רכישה אחת (single-shot), ואפשר להפעיל גרדיאנט דיפוזיה <b>מכל זווית</b> בלי להרוס את התמונה. זו הייתה הפריצה שאפשרה את כל DTI, HARDI ו-Q-Ball. הטרקטוגרם הראשון הופק בתוך שבועות ספורים.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Spin%20Echo%20diagram.svg?width=450" alt="Spin echo diagram">
+<p class="media-cap">הד ספין (spin echo): פולס 90° מטה את הספינים, הם מתפזרים בפאזה (T2*), ופולס 180° מקבץ אותם מחדש להד, כמו באיור 14.2 בפרק (Wikimedia Commons, CC BY-SA).</p>
+
+<h2><span class="num">3</span> הטנזור: מאליפסואיד למספרים</h2>
+<p>דיפוזיה ברקמה אניזוטרופית לא נעה בכיוון יחיד. היא יוצרת <b>ענן בצורת אליפסואיד</b> עם ציר ארוך אחד ושני צירים קצרים, ולכן היא <b>גודל טנזורי</b>. ניתוח טנזורים (המתמטיקה שאיינשטיין פיתח ויישם גם לתנועה בראונית) מקבל מדידות מכמה כיוונים ומחזיר את אורכי שלושת הצירים (<b>ערכים עצמיים λ1, λ2, λ3</b>) ואת כיוון הציר הארוך (<b>הווקטור העצמי הראשי e1</b>). אם שלושת הערכים שווים מקבלים כדור (איזוטרופי). אם λ1 גדול בהרבה מהאחרים מקבלים "סיגר" (אניזוטרופי).</p>
+
+<svg class="diagram" viewBox="0 0 720 310" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>אליפסואיד הטנזור והמדדים הנגזרים ממנו</title>
+  <desc>שלושת הצירים של אליפסואיד הדיפוזיה (λ1, λ2, λ3) והנוסחאות של AD, RD, MD ו-FA</desc>
+  <defs><marker id="ah14c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#dc2626"/></marker><marker id="ah14d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/></marker></defs>
+  <rect x="10" y="10" width="700" height="290" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="30" y="56" width="350" height="210" rx="10" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.5"/>
+  <rect x="400" y="60" width="290" height="46" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+  <rect x="400" y="113" width="290" height="46" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1.5"/>
+  <rect x="400" y="166" width="290" height="46" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+  <rect x="400" y="219" width="290" height="46" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5"/>
+  <ellipse cx="205" cy="150" rx="135" ry="44" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <line x1="205" y1="150" x2="332" y2="150" stroke="#dc2626" stroke-width="3" marker-end="url(#ah14c)"/>
+  <line x1="205" y1="150" x2="205" y2="110" stroke="#2563eb" stroke-width="3" marker-end="url(#ah14d)"/>
+  <circle cx="205" cy="150" r="6" fill="#2563eb" stroke="#1e3a8a" stroke-width="1.5"/>
+  <text x="360" y="36" font-size="16" text-anchor="middle" font-weight="700" fill="#1e293b">אליפסואיד הטנזור: שלושה ערכים עצמיים → ארבעה מדדים</text>
+  <text x="262" y="178" font-size="14" font-weight="700" fill="#b91c1c" direction="ltr" unicode-bidi="embed">λ1 (e1)</text>
+  <text x="215" y="102" font-size="14" font-weight="700" fill="#1d4ed8" direction="ltr">λ2</text>
+  <text x="160" y="155" font-size="13" font-weight="700" fill="#1d4ed8" direction="ltr" unicode-bidi="embed">λ3 ⊙</text>
+  <text x="205" y="222" font-size="12.5" text-anchor="middle" fill="#1f2937">e1 = הווקטור העצמי הראשי = כיוון האקסונים</text>
+  <text x="205" y="243" font-size="12.5" text-anchor="middle" fill="#1f2937">משמש כ"וקטור אפקטיבי" שמנחה את הטרקטוגרפיה</text>
+  <text x="545" y="79" font-size="13.5" text-anchor="middle" font-weight="700" fill="#1f2937" direction="ltr" unicode-bidi="embed">AD = λ1</text>
+  <text x="545" y="97" font-size="12" text-anchor="middle" fill="#374151">דיפוזיה צירית: לאורך הציר הארוך</text>
+  <text x="545" y="132" font-size="13.5" text-anchor="middle" font-weight="700" fill="#1f2937" direction="ltr" unicode-bidi="embed">RD = (λ2 + λ3) / 2</text>
+  <text x="545" y="150" font-size="12" text-anchor="middle" fill="#374151">דיפוזיה רדיאלית: מידת האיזוטרופיה</text>
+  <text x="545" y="185" font-size="13.5" text-anchor="middle" font-weight="700" fill="#1f2937" direction="ltr" unicode-bidi="embed">MD = (λ1 + λ2 + λ3) / 3</text>
+  <text x="545" y="203" font-size="12" text-anchor="middle" fill="#374151">ממוצעת; Trace = פי 3; גם בחומר אפור</text>
+  <text x="545" y="238" font-size="13.5" text-anchor="middle" font-weight="700" fill="#1f2937" direction="ltr" unicode-bidi="embed">FA: 0 → 1</text>
+  <text x="545" y="256" font-size="12" text-anchor="middle" fill="#374151">כדור = 0; סְפְּלֵניום עד ~0.85; יורד בפגיעה</text>
+  <text x="360" y="288" font-size="12.5" text-anchor="middle" fill="#374151" direction="ltr" unicode-bidi="embed">FA = √½ · √[(λ1−λ2)² + (λ1−λ3)² + (λ2−λ3)²] / √(λ1² + λ2² + λ3²)</text>
+</svg>
+<p class="figcap">איור סכמטי: מהאליפסואיד מחשבים בכל ווקסל ארבעה מדדים. FA "מוחק" את הכיוון ושואל רק כמה הדיפוזיה מכוונת.</p>
+
+<div class="table-scroll"><table>
+<tr><th>מדד</th><th>נוסחה</th><th>משמעות קלינית</th></tr>
+<tr><td><b>FA</b> (Fractional Anisotropy)</td><td>0 (כדור) עד 1</td><td>המדד הנפוץ ביותר. CSF ≈ 0; הגבוה במוח הוא <b>סְפְּלֵניום של הקורפוס קלוסום</b> (~0.75-0.85). <b>יורד בפגיעה</b>. הנוסחה מורידה את התוצאה לאפס כשהערכים קרובים ומגבירה את ההשפעה של אליפסואיד "שטוח"</td></tr>
+<tr><td><b>AD</b> (Axial Diffusivity)</td><td>λ1</td><td>דיפוזיה לאורך הציר; לא מאוזנת מול הצירים הקצרים</td></tr>
+<tr><td><b>RD</b> (Radial Diffusivity)</td><td>(λ2+λ3)/2</td><td>ביטוי למידת האיזוטרופיה</td></tr>
+<tr><td><b>MD</b> (Mean Diffusivity)</td><td>(λ1+λ2+λ3)/3</td><td>Trace = 3×MD. התעניינות גוברת, וישים גם ל<b>חומר אפור</b></td></tr>
+<tr><td><b>Kurtosis</b></td><td>מודל וקטורי, לפחות 15 כיוונים</td><td>מודד עד כמה מערך הווקטורים בווקסל אחיד או לא אחיד. עוזר להבחין בין מצבים קליניים</td></tr>
+</table></div>
+
+<div class="key-box"><b>חומר אפור:</b> FA נמוך מאוד, ואי אפשר לעשות בו טרקטוגרפיה, כי אין כיוון קוהרנטי אחד בווקסל (דנדריטים, גופי תאים, הסתעפויות). גם ב-7T הווקסל הוא בערך 100 מיקרון לצלע. לכן <b>DTI-FA היא בעיקר שיטה לחומר לבן</b>, ו-MD היא המדד הרלוונטי לחומר אפור.</div>
+
+<h2><span class="num">4</span> טרקטוגרפיה: דטרמיניסטית, הסתברותית ו-CSD</h2>
+<p>טרקטוגרפיה היא בעצם <b>גרסה מתמטית של צביעת הובלה אקסונלית (axonal tracer)</b>. בשנות ה-50 מיפו כך מסלולים בבעלי חיים: הזריקו צבע, חיכו כמה ימים, חתכו את המוח וצבעו. המשתמש בוחר <b>זרע (seed/ROI)</b>, והאלגוריתם בודק אם לשכן יש כיוון דומה, ממשיך לשכן הבא כל עוד אין פנייה חדה מדי וה-FA מספיק גבוה, וכך משרטט מסלול. אפשרות אחרת: ממפים מראש את כל המסלולים במוח ובוחרים תת-קבוצה לפי ROI. כמו אנגיוגרפיה, השיטה <b>סלקטיבית לרקמה</b> ובדרך כלל מציגה מסלול אחד בלבד.</p>
+
+<svg class="diagram" viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>עיקרון הטרקטוגרפיה: צעידה מווקסל לווקסל</title>
+  <desc>אלגוריתם דטרמיניסטי מתחיל בזרע ועובר לשכן בעל כיוון דומה; בווקסל עם סיבים חוצים DTI נעצר ואילו שיטות HARDI/CSD הסתברותיות ממשיכות לשני הענפים</desc>
+  <defs><marker id="ah14e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/></marker></defs>
+  <rect x="10" y="10" width="700" height="300" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="40" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="90" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="140" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="190" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="240" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="290" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="340" y="60" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="390" y="60" width="50" height="50" fill="#ede9fe" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="40" y="110" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="90" y="110" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="140" y="110" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="190" y="110" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="240" y="110" width="50" height="50" fill="#fee2e2" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="290" y="110" width="50" height="50" fill="#fee2e2" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="340" y="110" width="50" height="50" fill="#fde68a" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="390" y="110" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="40" y="160" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="90" y="160" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="140" y="160" width="50" height="50" fill="#fee2e2" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="190" y="160" width="50" height="50" fill="#fee2e2" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="240" y="160" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="290" y="160" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="340" y="160" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="390" y="160" width="50" height="50" fill="#ede9fe" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="40" y="210" width="50" height="50" fill="#bbf7d0" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="90" y="210" width="50" height="50" fill="#fee2e2" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="140" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="190" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="240" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="290" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="340" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="390" y="210" width="50" height="50" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <rect x="465" y="60" width="225" height="46" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+  <rect x="465" y="113" width="225" height="46" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <rect x="465" y="166" width="225" height="46" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1.5"/>
+  <rect x="465" y="219" width="225" height="46" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+  <line x1="65.0" y1="99.0" x2="65.0" y2="71.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="106.6" y1="96.2" x2="123.4" y2="73.8" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="151.5" y1="88.9" x2="178.5" y2="81.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="201.9" y1="80.0" x2="228.1" y2="90.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="257.6" y1="73.1" x2="272.4" y2="96.9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="313.8" y1="98.9" x2="316.2" y2="71.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="355.6" y1="95.4" x2="374.4" y2="74.6" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="52.8" y1="141.8" x2="77.2" y2="128.2" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="101.1" y1="133.1" x2="128.9" y2="136.9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="155.1" y1="125.1" x2="174.9" y2="144.9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="213.1" y1="121.1" x2="216.9" y2="148.9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="251.0" y1="135.0" x2="279.0" y2="135.0" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="301.0" y1="135.0" x2="329.0" y2="135.0" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="353.7" y1="146.3" x2="376.3" y2="123.7" stroke="#b45309" stroke-width="3"/>
+  <line x1="353.7" y1="123.7" x2="376.3" y2="146.3" stroke="#b45309" stroke-width="3"/>
+  <line x1="406.0" y1="124.3" x2="424.0" y2="145.7" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="53.1" y1="177.6" x2="76.9" y2="192.4" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="110.0" y1="171.9" x2="120.0" y2="198.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="151.0" y1="185.0" x2="179.0" y2="185.0" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="205.1" y1="194.9" x2="224.9" y2="175.1" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="251.0" y1="185.0" x2="279.0" y2="185.0" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="303.8" y1="176.6" x2="326.2" y2="193.4" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="361.1" y1="171.5" x2="368.9" y2="198.5" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="51.0" y1="235.0" x2="79.0" y2="235.0" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="105.1" y1="244.9" x2="124.9" y2="225.1" stroke="#991b1b" stroke-width="3" stroke-linecap="round"/>
+  <line x1="151.4" y1="238.1" x2="178.6" y2="231.9" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="202.2" y1="229.3" x2="227.8" y2="240.7" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="258.2" y1="222.8" x2="271.8" y2="247.2" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="313.1" y1="248.9" x2="316.9" y2="221.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="355.1" y1="244.9" x2="374.9" y2="225.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <line x1="401.1" y1="236.9" x2="428.9" y2="233.1" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/>
+  <polyline points="65.0,235.0 115.0,235.0 165.0,185.0 215.0,185.0 265.0,135.0 315.0,135.0 365.0,135.0" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-opacity="0.75"/>
+  <line x1="365.0" y1="135.0" x2="415.0" y2="85.0" stroke="#7c3aed" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ah14e)"/>
+  <line x1="365.0" y1="135.0" x2="415.0" y2="185.0" stroke="#7c3aed" stroke-width="3" stroke-dasharray="6 4" marker-end="url(#ah14e)"/>
+  <text x="360" y="36" font-size="16" text-anchor="middle" font-weight="700" fill="#1e293b">טרקטוגרפיה: צעידה מווקסל לווקסל</text>
+  <text x="577" y="79" font-size="13" text-anchor="middle" font-weight="700" fill="#1f2937">1. זרע (seed / ROI)</text>
+  <text x="577" y="97" font-size="12" text-anchor="middle" fill="#374151">מסומן אנטומית או לפי fMRI</text>
+  <text x="577" y="132" font-size="13" text-anchor="middle" font-weight="700" fill="#1f2937">2. צעד לשכן בכיוון דומה</text>
+  <text x="577" y="150" font-size="12" text-anchor="middle" fill="#374151">לפי e1 בכל ווקסל (FACT)</text>
+  <text x="577" y="185" font-size="13" text-anchor="middle" font-weight="700" fill="#1f2937">3. עצירה: FA מתחת לסף</text>
+  <text x="577" y="203" font-size="12" text-anchor="middle" fill="#374151">או פנייה חדה מדי בין ווקסלים</text>
+  <text x="577" y="238" font-size="13" text-anchor="middle" font-weight="700" fill="#1f2937">4. סיבים חוצים/מתפצלים</text>
+  <text x="577" y="256" font-size="12" text-anchor="middle" fill="#374151">DTI נעצר; HARDI/CSD ממשיך</text>
+  <text x="240" y="284" font-size="12.5" text-anchor="middle" fill="#991b1b">קו אדום = מסלול דטרמיניסטי (נעצר בווקסל הצהוב)</text>
+  <text x="240" y="302" font-size="12.5" text-anchor="middle" fill="#6d28d9">קו סגול מקווקו = המשך הסתברותי/CSD לשני הענפים</text>
+</svg>
+<p class="figcap">איור סכמטי: בווקסל שבו סיבים נחצים, טנזור יחיד "ממצע" את שני הכיוונים, והמסלול הדטרמיניסטי נעצר או סוטה. שיטות וקטוריות מוצאות כמה כיוונים באותו ווקסל.</p>
+
+<div class="table-scroll"><table>
+<tr><th>שיטה</th><th>עיקרון</th><th>יתרון</th><th>חיסרון</th></tr>
+<tr><td><b>DTI + דטרמיניסטי (FACT, Mori)</b></td><td>וקטור אחד בכל ווקסל; צעידה לאורך e1. בשימוש למשל ב-Brainlab FiberTracking</td><td>מהיר ופשוט</td><td>נעצר בפיצול או בחצייה ומשמיט ענפים. חלש בפניות חדות (לולאת Meyer)</td></tr>
+<tr><td><b>HARDI / Q-Ball + הסתברותי</b></td><td>כמה וקטורים בכל ווקסל (מודל "ללא מודל" / וקטורי); למשל איקוסידודקהדרון ובדיקה אילו פאות בהירות</td><td>עוקב אחרי סיבים חוצים ומתפצלים. ב-UCSF הוכח כבטוח ואמין יותר לניתוח</td><td>איטי; מספר עצום של מסלולים אפשריים</td></tr>
+<tr><td><b>CSD (Constrained Spherical Deconvolution) + דטרמיניסטי</b></td><td>עידון של HARDI; מוצא כמה מקסימות לכל ווקסל</td><td>מהירות דטרמיניסטית עם דיוק שמשתווה להסתברותי או עולה עליו. הסטנדרט של פרויקט הקונקטום</td><td>FA בווקסלים עם כמה כיוונים עלול להיות נמוך כוזב</td></tr>
+</table></div>
+
+<p><b>שילוב עם fMRI:</b> כדי לראות רק את סיבי <b>היד</b> במסלול הפירמידלי, המטופל פותח וסוגר את היד בזמן רכישת BOLD. הגירוס המופעל משמש כזרע אחד, וה-crus cerebri (הפדונקל) כזרע שני. המסלול מוקרן על ה-MRI, ואפשר להקרין אותו גם לתצוגת heads-up או למיקרוסקופ הניתוחי בניווט. הדיוק הגבוה ביותר מתקבל כשמעדכנים את הנתונים ב-MRI תוך-ניתוחי, כי המוח זז (brain shift) אחרי פתיחת הגולגולת.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DTI-sagittal-fibers.jpg?width=450" alt="DTI sagittal tractography fibers">
+<p class="media-cap">טרקטוגרפיה סגיטלית: הצבע מסמן את כיוון הסיבים (אדום שמאל-ימין, ירוק קדמי-אחורי, כחול עליון-תחתון) (Thomas Schultz, Wikimedia Commons, CC BY-SA).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/h44z9_xX8ig" title="Diffusion Tensor Imaging (DTI)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">DTI: מהטנזור ועד מפות FA וצבע-כיוון (DIPY - Diffusion Imaging in Python).</p>
+
+<h2><span class="num">5</span> קונקטומיקה, CSD, NODDI</h2>
+<p>ה-NIH השיק את <b>Human Connectome Project</b> ב-2009, בהשראת פרויקט הגנום, ומאז פורסמו יותר מ-4000 מאמרים. הרעיון: לחלק את הקורטקס לאזורים קטנים יותר מ-52 אזורי Brodmann (1909), למשל 165 חלקים אצל Irimia או 360 צמתים, בעזרת fMRI, היסטולוגיה, אנטומיה ונוירוכימיה, ואז למפות את החיבורים ביניהם בטרקטוגרפיה ברזולוציה גבוהה. <b>DTI לא מתאים לקונקטומיקה</b> כי הוא "מוחק" מסלולים שנחצים, מתאחדים או מתפצלים. רוב העבודה נעשתה ב-<b>CSD</b> עם טרקטוגרפיה דטרמיניסטית. כך נזנח בפועל מודל הטנזור לטובת מודלים וקטוריים כדוריים.</p>
+<div class="key-box"><b>הבעיה ב-FA בחבלה:</b> בווקסל עם סיבים חוצים אין כיוון קוהרנטי אחד, ולכן ה-FA יוצא <b>נמוך באופן כוזב</b>. שני פתרונות: (1) להוסיף מדדי צפיפות של <b>NODDI</b> (neurite orientation dispersion and density imaging); (2) למפות את המסלולים ב-CSD (דטרמיניסטי או הסתברותי) ואז למדוד FA רק בווקסלים שיש בהם כיוון אחד.</div>
+
+<h2><span class="num">6</span> היסטוריה: מי המציא את DTI</h2>
+<div class="table-scroll"><table>
+<tr><th>שנה</th><th>אירוע</th></tr>
+<tr><td>1990</td><td><b>Moseley</b> מכניס DWI להדמיית המוח ומדגים דיפוזיה אניזוטרופית במערכת העצבים של חתול. Tsuruda ו-Richards התמחו אצלו. באותה שנה Lisa Tauxe בהרווארד מיישמת ניתוח טנזורים למגנטיות של סלעים (סטרטיגרפיה מגנטית)</td></tr>
+<tr><td>1991</td><td>Filler, אז מתמחה בשנה רביעית בנוירוכירורגיה באוניברסיטת וושינגטון, מגיש בקשת מענק NRSA שנדחית ע"י ה-NIH. בית החולים Atkinson Morley בלונדון (שם נבנה ה-CT הראשון של Hounsfield) מממן את המחקר. בנובמבר Basser מה-NIH מציע במכתב את פתרון הטנזור</td></tr>
+<tr><td>1992</td><td><b>Howe ו-Filler</b> פותרים את בעיית ה-cross terms (Magn Reson Med, ספטמבר 1992). Richards מחשב וקטורים לכל ווקסל, ו-<b>Tsuruda</b> מיישם אלגוריתם connected voxel מ-MR אנגיוגרפיה ומפיק את <b>הטרקטוגרם הראשון של המסלול הפירמידלי</b> (פטנט ארה"ב 5,560,360, הגשה ראשונה בבריטניה במרץ 1992)</td></tr>
+<tr><td>1993-1994</td><td>Basser, Le Bihan ו-Mattiello מגישים פטנט (אוגוסט 1993) ומפרסמים ב-1994 את הבסיס המתמטי. בלי פתרון ל-cross terms הם הדגימו רק סיבוב של נתח בשר חזיר בסורק</td></tr>
+<tr><td>1995</td><td>Mori ו-van Zijl מפרסמים אסטרטגיה כמעט זהה להפחתת ההפרעה</td></tr>
+<tr><td>1996 / 2000</td><td>טרקטוגרם המסלול הפירמידלי של קבוצת Filler מתפרסם (1996); הטרקטוגרם הראשון של קבוצת Basser ו-Pierpaoli (2000)</td></tr>
+</table></div>
+<p>היום יש בתחום יותר מ-20,000 מאמרים, וסורקי 7T ו-3T מתקדמים ממשיכים לשפר את הרזולוציה.</p>
+
+<h2><span class="num">7</span> יישומים בניתוח: גידולים, אפילפסיה, ניתוח פונקציונלי ושבץ</h2>
+<p><b>גליומות:</b> טרקטוגרפיה עוזרת להגיע ל<b>כריתה מקסימלית בטוחה</b>. במחקר מבוקר פרוספקטיבי של <b>Wu ושות' (2007)</b> שכלל 260 ניתוחי גליומה, השימוש בטרקטוגרפיה <b>הפחית את התמותה הקשורה לניתוח ב-43%</b> ואת התחלואה (שיתוק, אילמות, עיוורון) <b>ב-62%</b>. שלושת המסלולים הקריטיים:</p>
+<div class="table-scroll"><table>
+<tr><th>מסלול</th><th>הסיכון</th><th>איך ממפים</th></tr>
+<tr><td><b>מסלול פירמידלי</b> (החלק העליון של המסלולים הקורטיקוספינלי והקורטיקובולברי)</td><td>פרזיס או שיתוק בגידולים ליד הקורטקס המוטורי</td><td>fMRI של תנועת היד בקורטקס המוטורי + ROI בפדונקל</td></tr>
+<tr><td><b>Arcuate fasciculus</b></td><td>אפזיה שוטפת (fluent)</td><td>זרעים מ-fMRI באזור <b>Broca</b> (inferior frontal gyrus) ובאזור <b>Wernicke</b> (superior temporal gyrus)</td></tr>
+<tr><td><b>קרינה אופטית</b> (geniculocalcarine), <b>לולאת Meyer</b></td><td>קוואדרנטנופיה עליונה נגדית אחרי כריתה טמפורלית (גידול או אפילפסיה)</td><td>מה-lateral geniculate body ועד הקורטקס סביב הסולקוס הקלקריני. הלולאה פונה 180° קדימה לתוך האונה הטמפורלית: נקודת חולשה של DTI דטרמיניסטי, ו-HARDI/Q-Ball הסתברותי מתמודד איתה טוב</td></tr>
+</table></div>
+<p><b>ניתוח פונקציונלי:</b> כשהגרעין המטרה קטן ומוקף גרעינים שאסור לפגוע בהם, אפשר לשרטט את <b>המסלול היוצא</b> ממנו ולגרות או לכרות אותו במקום נגיש ובטוח יותר. את המסלולים של הגרעינים השכנים ממפים בנפרד כדי להתרחק מהם (DBS, למשל לגרעין התת-תלמי). טרקטוגרפיה חשובה יותר ויותר גם בפרוצדורות ללא חתך כמו <b>focused ultrasound</b>, שמתבצעות כולן בתוך הסורק. <b>יישומים נוספים:</b> תכנון ניתוחי מפרצת ו-AVM, הערכת vasospasm ב-SAH, טיפולים פסיכיאטריים ונוירואנדוסקופיה.</p>
+<p><b>שבץ סמוי:</b> מטופל עם המיפרזיס, ו-DWI ו-FA לא מראים את היקף האוטם. מניחים זרע במסלול שמתאים לחסר ומקדמים אותו בהדרגה עד שמופיעה <b>נשירה טרקטוגרפית (dropout)</b>. כך מאתרים את מקום החסימה, וזה עוזר להחליט על טיפול התערבותי.</p>
+
+<h2><span class="num">8</span> חבלת ראש סגורה: FA ומסלול לכל תסמין</h2>
+<p>פגיעות מוח טראומטיות שלא מראות ממצא חריף ב-CT או ב-MRI שגרתיים מראות <b>לעיתים קרובות</b> ממצאים אופייניים ב-DTI. מעקב סדרתי אחרי FA מנבא התפתחות של <b>דמנציה ו-CTE</b>, ומחקרי אורך מראים שירידה ב-FA ושינויים ב-MD מתואמים עם חסרים קוגניטיביים. DTI עשוי לזהות מוקדם את 10%-20% מהמטופלים שלא משתפרים כצפוי. אצל ספורטאים, <b>סריקת בסיס לפני פציעה</b> משפרת מאוד את ערך האבחון של סריקות מאוחרות יותר. במחקרים שבהם שחקני פוטבול בתיכון ובמכללה עברו DTI שנתי, השינויים התאימו למספר החבטות ולחומרתן ולליקוי התפקודי.</p>
+<div class="table-scroll"><table>
+<tr><th>תסמין אחרי חבלה</th><th>המסלול לבדוק</th></tr>
+<tr><td>ליקוי בתכנון רב-שלבי ובניווט במפה</td><td>חומר לבן פרונטלי; <b>superior longitudinal fasciculus</b> (עיבוד אינטגרטיבי פרונטו-פריאטלי)</td></tr>
+<tr><td>פגיעה ב<b>יצירת זיכרון חדש</b></td><td><b>Fornix</b> / fimbria fornix-stria terminalis</td></tr>
+<tr><td>זיכרון עבודה מילולי (זיכרון מיידי)</td><td>מסלולים תלמו-פרה-פרונטליים</td></tr>
+<tr><td>קשיי שליפת מילים</td><td>Angular gyrus</td></tr>
+<tr><td>זעם בלתי נשלט <u>או</u> רגש שטוח ואובדן דחף</td><td><b>Uncinate fasciculus</b> (מעביר טון רגשי מהאמיגדלה לאונה הפרונטלית)</td></tr>
+<tr><td>חרדה ודיכאון</td><td>החלק הקדמי של ה-<b>supracallosal cingulum</b></td></tr>
+<tr><td>קשב וריכוז</td><td>Hippocampal cingulum</td></tr>
+<tr><td>פוטופוביה, דיפלופיה, בעיות התאמה (accommodation) וקונברגנציה</td><td><b>Medial lemniscus</b> (סמן לפגיעה במוח התיכון)</td></tr>
+<tr><td><b>ורטיגו מרכזי</b> או אוסצילופסיה עם הערכת אא"ג תקינה</td><td><b>Middle cerebellar peduncle</b></td></tr>
+<tr><td>רעד פרקינסוני פוסט-טראומטי מוקדם</td><td><b>Substantia nigra</b> (עמוק ל-crus cerebri)</td></tr>
+</table></div>
+<div class="key-box"><b>איך מפרשים FA:</b> משווים <b>לצד הנגדי</b> ולנורמות מנבדקי ביקורת. טבלה 14.1 בפרק מסכמת 546 נבדקי ביקורת מ-11 מחקרים, והיא תקפה ל-<b>3T עם b = 1000 s/mm²</b> (וכנראה גם ל-1.5T עם b=1000). אין הבדל בין GE, Philips ו-Siemens ולא בין 1.5T ל-3T, אבל <b>4.7T</b> ו-b של 700 או 3000 לא עקביים איתה. בילדים מגיל 5 עד 18 כמעט אין שינוי בגיל. <b>ROI מרכזי במסלול</b> מתאים לפגיעה מוקדית קטנה. <b>FA אוטומטי של מסלול שלם</b> תמיד נמוך יותר ומתאים לתהליכים מפושטים (DAI).</div>
+<p>יש שטוענים ש-DTI לא יכול "להוכיח" פגיעה אצל מטופל בודד, כי רוב המחקרים קבוצתיים. התשובה של קהילת המחקר הייתה מחקרי אורך רב-מרכזיים גדולים. קיימת גם ספרות רחבה על פגיעות הדף צבאיות.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/LggXrhJWeY4" title="Diffusion Tractography Part 1 - Introduction to Tractography" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מבוא לטרקטוגרפיה: זרעים, קריטריוני עצירה, דטרמיניסטי מול הסתברותי (DIPY).</p>
+
+<h2><span class="num">9</span> חוט השדרה ועצבים פריפריים</h2>
+<p><b>חוט שדרה:</b> אתגר טכני, כי הנפח קטן ותנועות הנשימה מזיזות את החוט. לכן צריך SNR מצוין, ולעיתים קרובות <b>gating נשימתי</b>. משתמשים ב-DTI להערכת פגיעת חוט שדרה ומעקב אחרי החלמה, ובעיקר ב-<b>מיאלופתיה ספונדילוטית צווארית</b>: במטופל עם היצרות בטיפול שמרני, ירידה מתקדמת ב-FA היא נתון אובייקטיבי שמצדיק <b>דקומפרסיה</b>. FA מזהה גם את חומרת הלחץ על שורשים צוואריים.</p>
+<p><b>עצבים פריפריים:</b> DTI מאתר את מקום הפגיעה לאורך העצב, מגדיר את היחס בין עצב לגידול לתכנון ניתוח, ומאפשר לעקוב אחרי מרכיבי ה<b>פלקסוס הברכיאלי</b> בין מישורי הדמיה. ב-<b>תסמונת התעלה הקרפלית</b>, מידת הירידה ב-FA או הנשירה הטרקטוגרפית יכולה להכריע מתי לעבור משמרני לניתוח. DTI עוזר גם באבחון לחץ על עצבים קרניאליים, למשל בנוירלגיה טריגמינלית. כשמסלול העצב ידוע וישר (עצב מדיאני בזרוע), מספיק גרדיאנט מקביל וגרדיאנט ניצב כדי להעריך את בריאותו.</p>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>"ניצב = נשאר, מקביל = מחשיך"</h3>
+  <p>גרדיאנט <b>נ</b>יצב לאקסון → האות <b>נ</b>שאר בהיר. גרדיאנט <b>מ</b>קביל → האות <b>מ</b>חשיך. הכיוון שבו הכי חשוך הוא כיוון הסיבים.</p>
+  <h3>"6-30-256"</h3>
+  <p>מינימום <b>6</b> כיוונים לטנזור (6 נעלמים בטנזור סימטרי), <b>~30</b> בשגרה, עד <b>256</b> במחקר. Kurtosis: לפחות <b>15</b>.</p>
+  <h3>ארבעת הממציאים: "Howe Fills Rich Tsunamis"</h3>
+  <p><b>Howe</b> - רצף הפולסים (פתרון ה-cross terms) | <b>Filler</b> - הרעיון והטנזור | <b>Rich</b>ards - חישוב וקטור בכל ווקסל | <b>Tsu</b>ruda - הצעידה מווקסל לווקסל (טרקטוגרם).</p>
+  <h3>Meyer "עושה פרסה"</h3>
+  <p>לולאת Meyer פונה 180° קדימה לתוך האונה הטמפורלית ופוגעת ב<b>רבע העליון</b> הנגדי ("pie in the sky"). טנזור יחיד לא עומד בפנייה חדה כזו, ולכן משתמשים ב-HARDI/Q-Ball הסתברותי.</p>
+</div>
+
+<h2><span class="num">11</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=h44z9_xX8ig" target="_blank">Diffusion Tensor Imaging (DTI)</a><span class="tag">YouTube</span><div class="desc">DIPY: הסבר על מודל הטנזור, FA ומפות צבע.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=LggXrhJWeY4" target="_blank">Diffusion Tractography Part 1 - Introduction to Tractography</a><span class="tag">YouTube</span><div class="desc">DIPY: עקרונות הטרקטוגרפיה.</div></li>
+  <li><a href="https://mriquestions.com/dti-tensor-imaging.html" target="_blank">MRI Questions - DTI</a><span class="tag">אתר</span><div class="desc">שאלות ותשובות על הפיזיקה של DTI.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Diffusion_MRI" target="_blank">Wikipedia - Diffusion MRI</a><span class="tag">אתר</span><div class="desc">סקירה כללית: DWI, DTI, HARDI וטרקטוגרפיה.</div></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2766906/" target="_blank">Pictorial essay: Neurosurgical application and physics of DTI with 3D fiber tractography</a><span class="tag">מאמר</span><div class="desc">מאמר תמונות על יישומים נוירוכירורגיים (גישה חופשית).</div></li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 45, ימני, עם גליומה בדרגה נמוכה באונה הפרונטלית-אחורית משמאל, צמוד לגירוס הפרה-מרכזי. בהדמיה קדם-ניתוחית ה-fMRI מראה את אזור היד, והטרקטוגרפיה מראה שהמסלול הפירמידלי <b>נדחק</b> מדיאלית על ידי הגידול. אחיו, שחקן הוקי בן 22 שעבר זעזוע מוח שלישי, מתלונן על קושי לזכור דברים חדשים ועל התקפי זעם. ה-CT וה-MRI שלו תקינים. לאחיו יש סריקת DTI בסיס מתחילת העונה.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע הטרקטוגרפיה חשובה במיוחד לתכנון הניתוח של הגבר?</div>
+  <button class="opt" data-i="0">כי היא מראה את פעילות הקורטקס המוטורי בזמן אמת</button>
+  <button class="opt" data-i="1">כי היא מחליפה את הצורך בביופסיה</button>
+  <button class="opt" data-i="2">כי היא מראה את המיקום האמיתי של המסלול הפירמידלי גם כשהגידול דחק אותו, וכך מאפשרת כריתה מקסימלית בטוחה</button>
+  <button class="opt" data-i="3">כי היא מודדת את דרגת הגידול</button>
+  <div class="explain">התשובה הנכונה: הטרקטוגרפיה מציגה את המסלול גם כשהוא מעוות ונדחק על ידי הגידול. במחקר של Wu (2007, 260 גליומות) היא הפחיתה תמותה ב-43% ותחלואה ב-62%. ה-fMRI הוא שמראה פעילות, והטרקטוגרפיה מראה את החיבורים.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. איך יופק טרקטוגרם של סיבי היד בלבד?</div>
+  <button class="opt" data-i="0">זרע אחד בגירוס של היד לפי BOLD-fMRI (פתיחה וסגירה של היד) וזרע שני ב-crus cerebri</button>
+  <button class="opt" data-i="1">זרע אחד בסְפְּלֵניום</button>
+  <button class="opt" data-i="2">זרע באזור Broca בלבד</button>
+  <button class="opt" data-i="3">אין צורך בזרע, מספיקה מפת FA</button>
+  <div class="explain">התשובה הנכונה: שילוב של זרע פונקציונלי (fMRI) וזרע אנטומי (הפדונקל) בוחר רק את חלק היד במסלול הקורטיקוספינלי. אחר כך מקרינים אותו על ה-MRI או למיקרוסקופ הניווט.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מטופל אחר צפוי לעבור כריתה טמפורלית קדמית. איזה מסלול בסיכון, ואיזו שיטה תציג אותו בצורה הטובה ביותר?</div>
+  <button class="opt" data-i="0">Uncinate - DTI דטרמיניסטי</button>
+  <button class="opt" data-i="1">מסלול פירמידלי - FACT</button>
+  <button class="opt" data-i="2">Arcuate - FA בלבד</button>
+  <button class="opt" data-i="3">לולאת Meyer בקרינה האופטית - טרקטוגרפיה הסתברותית עם נתוני HARDI/Q-Ball</button>
+  <div class="explain">התשובה הנכונה: לולאת Meyer פונה 180° קדימה לתוך האונה הטמפורלית. פגיעה בה גורמת לקוואדרנטנופיה עליונה נגדית. DTI דטרמיניסטי נכשל בפנייה כזו, והשיטות הווקטוריות ההסתברותיות מתמודדות איתה טוב.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. איזה מסלול כדאי לבדוק אצל האח בגלל הקושי ליצור זיכרונות חדשים?</div>
+  <button class="opt" data-i="0">Middle cerebellar peduncle</button>
+  <button class="opt" data-i="1">Fornix (fimbria fornix-stria terminalis)</button>
+  <button class="opt" data-i="2">Medial lemniscus</button>
+  <button class="opt" data-i="3">Substantia nigra</button>
+  <div class="explain">התשובה הנכונה: הפורניקס הוא מעגל מרכזי ליצירת זיכרון חדש. ה-MCP קשור לוורטיגו מרכזי, ה-medial lemniscus לפוטופוביה ולבעיות התאמה, ה-substantia nigra לרעד פרקינסוני פוסט-טראומטי.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. התקפי הזעם (או לחלופין רגש שטוח) של האח מרמזים על פגיעה ב-:</div>
+  <button class="opt" data-i="0">Arcuate fasciculus</button>
+  <button class="opt" data-i="1">קרינה אופטית</button>
+  <button class="opt" data-i="2">Uncinate fasciculus - מעביר טון רגשי מהאמיגדלה לאונה הפרונטלית</button>
+  <button class="opt" data-i="3">Splenium בלבד</button>
+  <div class="explain">התשובה הנכונה: פגיעה ב-uncinate מסבירה את ה"פרדוקס ההתנהגותי": זעם בלתי נשלט, או להפך, רגש שטוח, תלוי במנגנון. פגיעה ב-cingulum העליון הקדמי קשורה לחרדה ודיכאון.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. מדוע סריקת הבסיס של האח חשובה, ומה יעשה הרופא עם ה-FA?</div>
+  <button class="opt" data-i="0">היא משפרת מאוד את ערך האבחון. משווים FA ב-ROI מרכזי במסלול לסריקת הבסיס, לצד הנגדי ולנורמות (3T, b=1000)</button>
+  <button class="opt" data-i="1">היא לא חשובה, כי FA לא משתנה בחבלה</button>
+  <button class="opt" data-i="2">משווים רק לנורמות של סורק 4.7T</button>
+  <button class="opt" data-i="3">מודדים FA רק בחומר האפור</button>
+  <div class="explain">התשובה הנכונה: FA יורד בפגיעה. השוואה לבסיס ולצד הנגדי מגבירה מאוד את הרגישות. נורמות טבלה 14.1 תקפות ל-3T (ו-1.5T) עם b=1000, ולא ל-4.7T. FA הוא בעיקר מדד לחומר לבן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>עיקרון:</b> מים נעים מהר יותר לאורך האקסון → גרדיאנט מקביל = אות כהה, ניצב = בהיר → מדידה ב-6 כיוונים לפחות (~30 בשגרה) → טנזור בכל ווקסל.</li>
+    <li><b>הפריצה (1992, Howe ו-Filler):</b> גרדיאנט פאזה מפוצל והפוך סביב פולס 180° מבטל cross terms → אפשר גרדיאנט דיפוזיה מכל זווית. Richards חישב וקטורים, Tsuruda הפיק את הטרקטוגרם הראשון (פטנט 5,560,360). Basser ו-Le Bihan פיתחו במקביל את המתמטיקה (1994).</li>
+    <li><b>מדדים:</b> <span dir="ltr">AD = λ1</span>; <span dir="ltr">RD = (λ2+λ3)/2</span>; MD = ממוצע (גם לחומר אפור); FA בין 0 ל-1, הגבוה בסְפְּלֵניום (~0.75-0.85), יורד בפגיעה. Kurtosis: 15 כיוונים לפחות.</li>
+    <li><b>טרקטוגרפיה:</b> זרע → צעידה לפי e1 → עצירה ב-FA נמוך או בפנייה חדה. FACT דטרמיניסטי נכשל בחצייה ובפיצול. HARDI/Q-Ball הסתברותי ו-CSD דטרמיניסטי (הסטנדרט של פרויקט הקונקטום) מתמודדים איתם.</li>
+    <li><b>ניתוח:</b> מסלול פירמידלי (fMRI של היד + פדונקל), arcuate (Broca ו-Wernicke), לולאת Meyer (קוואדרנטנופיה עליונה). Wu 2007: תמותה ↓43%, תחלואה ↓62%. גם DBS, focused ultrasound ושבץ סמוי (dropout).</li>
+    <li><b>חבלה:</b> fornix → זיכרון חדש; uncinate → זעם או רגש שטוח; cingulum קדמי → חרדה ודיכאון; MCP → ורטיגו מרכזי; medial lemniscus → פוטופוביה; substantia nigra → רעד. משווים לצד הנגדי, לבסיס ולנורמות (3T, b=1000).</li>
+    <li><b>מחוץ למוח:</b> מיאלופתיה צווארית (ירידה ב-FA → דקומפרסיה), פלקסוס ברכיאלי, תעלה קרפלית, עצבים קרניאליים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 13: הדמיה מולקולרית של המוח באמצעות PET</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 13: הדמיה מולקולרית של המוח באמצעות PET <span class="term" dir="ltr">Molecular Imaging of the Brain with Positron Emission Tomography</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק I: מבוא לנוירוכירורגיה - Benjamin M. Ellingson</div>
+
+<p>אם CT ו-MRI (פרקים 10-12) מראים "איך המוח בנוי" ו"כמה דם/מים זזים בו", <b>PET</b> מראה "מה הכימיה עושה": כמה גלוקוז נצרך, כמה דופמין מיוצר, האם יש עמילואיד, אילו קולטנים זמינים. הפרק עובר מהפיזיקה (ציקלוטרון, השמדת פוזיטרון) דרך המודלים הקינטיים, ועד היישומים הקליניים: מחלות תנועה, דמנציה, אפילפסיה, גידולים, שבץ, חבלה ופסיכיאטריה. המסר לנוירוכירורגים: <b>בחירת הטרייסר קובעת איזו שאלה מקבלים תשובה</b>.</p>
+
+<h2><span class="num">1</span> מנגנון: מפרוטון בציקלוטרון ועד תמונה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>ציקלוטרון:</b> פרוטונים מואצים במסלול מעגלי ופוגעים ב"מטרה" יציבה (<span dir="ltr">18O</span> או <span dir="ltr">14N</span>) → נוצר איזוטופ לא-יציב עתיר פרוטונים (<span dir="ltr">18F, 11C</span>).<br>
+    → <b>רדיוכימיה:</b> האיזוטופ נקשר למולקולה פיזיולוגית (גלוקוז, חומצת אמינו, ליגנד לקולטן) בריכוזים ננומולריים - זה ה"טרייסר".<br>
+    → <b>הזרקה IV ודעיכה β+:</b> פרוטון הופך לנויטרון + <b>פוזיטרון</b> + נייטרינו. הפוזיטרון עובר כ-1 מ"מ בלבד.<br>
+    → <b>השמדה (annihilation):</b> הפוזיטרון פוגש אלקטרון ושניהם הופכים לשני פוטוני גמא של <b>511 keV</b> הנעים ב-<b>180°</b> זה מזה.<br>
+    → <b>גילוי בצירוף (coincidence):</b> טבעת גלאים מתעדת שני פוטונים בו-זמניים → "קו צירוף" שעליו נמצא המקור.<br>
+    → <b>שחזור ומודל קינטי:</b> אלגוריתמים (FBP, OSEM, AI) בונים תמונה; מודל תאי (למשל 3 תאים ל-FDG) הופך ספירות ל<b>קצב מטבולי</b>.<br>
+    → <b>עיקרון-על:</b> PET מודד רדיואקטיביות - לכן הוא רגיש ברמה ננומולרית לתהליכים ביוכימיים, אך באיכות מרחבית נמוכה (2.5-10 מ"מ) מ-MRI.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg">
+  <title>השמדת פוזיטרון וגילוי בצירוף</title>
+  <desc>תרשים: פוזיטרון מתנגש באלקטרון ומפיק שני פוטונים של 511 keV ב-180 מעלות, שנקלטים בטבעת גלאים</desc>
+  <rect x="10" y="10" width="700" height="280" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="360" cy="150" r="110" fill="none" stroke="#6b7280" stroke-width="10" stroke-dasharray="14 6"/>
+  <text x="360" y="32" font-size="14" text-anchor="middle" font-weight="700" fill="#1e293b">טבעת גלאי scintillation</text>
+  <circle cx="360" cy="150" r="10" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+  <text x="360" y="154" font-size="9" text-anchor="middle" fill="#7c2d12">β+ e-</text>
+  <line x1="360" y1="150" x2="255" y2="95" stroke="#dc2626" stroke-width="3"/>
+  <line x1="360" y1="150" x2="465" y2="205" stroke="#dc2626" stroke-width="3"/>
+  <rect x="215" y="68" width="50" height="40" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2" transform="rotate(-28 240 88)"/>
+  <rect x="455" y="192" width="50" height="40" rx="6" fill="#dbeafe" stroke="#2563eb" stroke-width="2" transform="rotate(-28 480 212)"/>
+  <text x="170" y="70" font-size="13" font-weight="700" fill="#b91c1c">γ 511 keV</text>
+  <text x="520" y="250" font-size="13" font-weight="700" fill="#b91c1c">γ 511 keV</text>
+  <text x="360" y="280" font-size="12.5" text-anchor="middle" fill="#374151">שני פוטונים ב-180° + זמן הגעה זהה = קו צירוף; הצטברות קווים רבים → שחזור התמונה</text>
+  <text x="600" y="100" font-size="12" text-anchor="middle" fill="#374151">טווח פוזיטרון</text>
+  <text x="600" y="118" font-size="12" text-anchor="middle" fill="#374151">~1 מ"מ</text>
+</svg>
+<p class="figcap">איור סכמטי: השמדת פוזיטרון-אלקטרון וגילוי בצירוף - הבסיס הפיזיקלי של כל בדיקת PET.</p>
+
+<div class="key-box"><b>מספרים לזכור:</b> זמני מחצית - <span dir="ltr">15O ≈ 2 דק', 13N ≈ 10 דק', 11C ≈ 20 דק', 18F ≈ 110 דק'</span>. לכן איזוטופים קצרי-חיים (11C, 15O) דורשים ציקלוטרון באתר, ואילו 18F ניתן להפצה מרוחקת. רזולוציה קלינית טיפוסית 2.5-10 מ"מ.</div>
+
+<h2><span class="num">2</span> הסורק: פרמטרים טכניים שחשוב להכיר</h2>
+<div class="table-scroll"><table>
+<tr><th>מושג</th><th>משמעות</th><th>השלכה קלינית</th></tr>
+<tr><td><b>רגישות (Sensitivity)</b></td><td>שבר האירועים שנקלטים ב-FOV</td><td>רגישות גבוהה → SNR גבוה → איכות תמונה טובה יותר / פחות קרינה</td></tr>
+<tr><td><b>רזולוציה מרחבית</b></td><td>המרחק הקטן ביותר שניתן להבחין בו; תלוי בגודל הגלאים</td><td>סורק קליני 2.5-10 מ"מ (גבול פיזיקלי 1.83 מ"מ)</td></tr>
+<tr><td><b>FWHM</b></td><td>רוחב עקומת ה-point-spread ב-50% מהמקסימום</td><td>מגדיר את הרזולוציה</td></tr>
+<tr><td><b>Partial volume</b></td><td>טעות כימות באזורים קטנים מ-2×FWHM</td><td>מבנה קטן "חם" - ערכו מוערך <b>בחסר</b>; מבנה קטן "קר" - <b>ביתר</b></td></tr>
+<tr><td><b>מצב 2D מול 3D</b></td><td>2D - מחיצות טונגסטן; 3D - בלעדיהן</td><td>3D מגדיל רגישות פי 5-7, במחיר יותר scatter ו-random coincidences</td></tr>
+<tr><td><b>שחזור</b></td><td>FBP (קלאסי), MLEM/OSEM, בייסיאני, למידה עמוקה</td><td>האלגוריתמים המתקדמים מחליפים את FBP</td></tr>
+</table></div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/PET%20scan-normal%20brain-alzheimers%20disease%20brain.PNG?width=450" alt="PET scan of normal brain compared with Alzheimer's disease brain">
+<p class="media-cap">FDG-PET: מוח תקין (שמאל) לעומת מוח עם מחלת אלצהיימר - ירידה מטבולית באונות הרקתית-פריאטלית.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/kklk42Hqs6E" title="Having a PET scan" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">איך נראית בדיקת PET מבחינת המטופל - הכנה, הזרקת הטרייסר וסריקה.</p>
+
+<h2><span class="num">3</span> מודלים קינטיים: מ-FDG ועד FMISO</h2>
+<p><b>FDG (מודל 3 תאים):</b> פלזמה ← (K1/k2 דרך BBB באותו נשא של גלוקוז) ← תא חוץ-תאי ← (k3, <b>הקסוקינאז</b>) ← FDG-6-פוספט. בניגוד לגלוקוז, FDG-6-P <b>אינו ממשיך בגליקוליזה</b> ולכן <b>נלכד</b> ברקמה לפחות שעה (k4 זניח) - הצטברותו פרופורציונית לקצב המטבוליזם: <span dir="ltr">CMRGlc = Cp / [LC·(K1·k3/(k2+k3))]</span>. דרוש "arterial input function" מדגימות פלזמה.</p>
+<p><b>FDOPA:</b> חודר דרך נשא חומצות אמינו נייטרליות גדולות, בנוירונים דופמינרגיים הופך ל-<b>פלואורו-דופמין</b> על ידי AAAD (לכן משקף יכולת סינתזה סינפטית טרום-סינפטית). המודל מורכב כי מטבוליטים (3-OMFD) גם חוצים BBB. <b>FMISO:</b> נגזרת ניטרואימידזול המצטמצמת ונלכדת בתאים <b>היפוקסיים</b> - סמן להיפוקסיה גידולית.</p>
+<div class="key-box"><b>תמונות פרמטריות:</b> התאמת המודל בכל וקסל (ריבועים פחותים לא-ליניאריים) מפיקה מפות של פרמטרים פרמקוקינטיים - לא רק "חמים/קרים".</div>
+
+<h2><span class="num">4</span> טבלה: הטרייסרים המרכזיים ושימושם</h2>
+<div class="table-scroll"><table>
+<tr><th>טרייסר</th><th>מה הוא משקף</th><th>שימוש קליני עיקרי</th></tr>
+<tr><td><b>18F-FDG</b></td><td>קצב מטבוליזם של גלוקוז</td><td>דמנציה (היפומטבוליזם), אפילפסיה (מוקד היפומטבולי בין-פרכוסי), גידולים, פגיעה בראש</td></tr>
+<tr><td><b>18F-FDOPA</b></td><td>סינתזת דופמין טרום-סינפטית + חומצת אמינו</td><td>תסמונות פרקינסוניות (ירידה); גליומות (עלייה)</td></tr>
+<tr><td><b>11C-PIB (עמילואיד)</b></td><td>משקעי עמילואיד-β</td><td>אבחון מוקדם של אלצהיימר</td></tr>
+<tr><td><b>18F-FET, 11C-MET</b></td><td>שיעור העברת חומצות אמינו</td><td>גידולי מוח: הבחנה בין גידול פעיל להשפעת טיפול</td></tr>
+<tr><td><b>18F-FMISO</b></td><td>היפוקסיה</td><td>היפוקסיה גידולית</td></tr>
+<tr><td><b>15O-H2O</b></td><td>זרימת דם מוחית (CBF)</td><td>רקמה בסיכון אחרי שבץ/חבלה; מיפוי תפקודי</td></tr>
+<tr><td><b>11C-Flumazenil</b></td><td>קולטן GABA-A</td><td>לוקליזציית מוקד אפילפטי</td></tr>
+<tr><td><b>11C-Raclopride / SCH23390</b></td><td>קולטני D2 / D1</td><td>מחלת הנטינגטון, פסיכיאטריה, תפוסת קולטנים בתרופות</td></tr>
+<tr><td><b>11C-DASB / McN5652</b></td><td>נשא סרוטונין (SERT)</td><td>דיכאון ומחלות פסיכיאטריות</td></tr>
+</table></div>
+
+<h2><span class="num">5</span> מחלות תנועה: מי מפחית את ה-FDOPA ואיך</h2>
+<p>ב<b>פרקינסון</b> מתנוון ה-substantia nigra pars compacta (בעיקר החלק הוונטרולטרלי המשליך לפוטמן) ולכן <b>18F-FDOPA יורד באופן א-סימטרי בפוטמן הנגדי לצד הסימפטומטי</b> - ואפילו לפני הופעת סימפטומים. ב-<b>MSA ו-PSP</b> הירידה <b>סימטרית, דיפוזית ודו-צדדית</b> בסטריאטום. ב-<b>CBD</b> הירידה א-סימטרית, בפוטמן <u>ובקאודט</u> הנגדיים. ב-<b>Essential tremor</b> אין שינוי דופמינרגי. ב-<b>הנטינגטון</b> יש אובדן נוירוני GABAergic medium spiny - ירידה בקשירת D1/D2 וב-FDG. שילוב FDG + FDOPA מחדד את האבחנה המבדלת.</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/PET%20Alzheimer.jpg?width=450" alt="PET brain scan in Alzheimer's disease">
+<p class="media-cap">PET במחלת אלצהיימר - ירידה באימוץ הטרייסר באזורים הקורטיקליים המעורבים.</p>
+
+<h2><span class="num">6</span> דמנציה, אפילפסיה ופסיכיאטריה</h2>
+<p><b>דמנציה (FDG):</b> <b>אלצהיימר</b> - היפומטבוליזם טמפורו-פריאטלי וב-posterior cingulate/precuneus (עם שימור יחסי של קליפת החישה-מוטורית והעיניים); <b>FTD</b> - פרונטלי וטמפורלי קדמי; <b>DLB</b> - היפומטבוליזם אוקסיפיטלי (עם "cingulate island sign"). טרייסרי <b>עמילואיד (PIB)</b>, טאו ודלקת עצבית (neuroinflammation) מוסיפים ספציפיות מולקולרית.</p>
+<p><b>אפילפסיה:</b> מוקד אפילפטוגני מתבטא בדרך כלל כ<b>היפומטבוליזם בין-פרכוסי</b> ב-FDG (במהלך הפרכוס עצמו - היפרמטבוליזם). 11C-flumazenil (GABA-A) מסייע ללוקליזציה. <b>פסיכיאטריה:</b> PET של קולטני דופמין/סרוטונין מכמת שינויים בהפרעת נוירוטרנסמיטורים ותפוסת קולטנים בטיפול תרופתי; FDG בד"כ עולה בחלק מהמחלות הפסיכיאטריות.</p>
+<div class="key-box"><b>פרכוס מול בין-פרכוסי:</b> FDG-PET שגרתי נעשה <b>בין</b> פרכוסים → <b>היפו</b>מטבוליזם. היפר-מטבוליזם מעיד על פעילות פרכוסית בזמן הקליטה (FDG נלכד ~שעה).</div>
+
+<h2><span class="num">7</span> גידולי מוח, שבץ, חבלה וכאב</h2>
+<p><b>גידולים:</b> בקליפת המוח התקינה יש ספיגת FDG גבוהה (רקע), ולכן <b>טרייסרי חומצות אמינו</b> (FET, MET, FDOPA) מציגים ניגודיות טובה יותר ומבחינים <b>גידול פעיל מהשפעת טיפול</b> (נמק קרינה/pseudoprogression); FDG שימושי בעיקר לבחינת שינויי מטבוליזם בעקבות טיפול. FMISO ממפה היפוקסיה. <b>שבץ וחבלה:</b> <span dir="ltr">15O-H2O</span> מכמת CBF ומזהה רקמה בסיכון (penumbra); בחבלה חריפה FDG עשוי להראות היפרמטבוליזם באזורי נזק (כמו באיור הפתיחה של הפרק). <b>כאב כרוני ומיגרנה:</b> FDG מראה שינויים ברשתות עיבוד הכאב.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/e_8n640AV8A" title="Promise of tau-PET imaging for Alzheimer's disease" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">טאו-PET באלצהיימר - דוגמה לדור החדש של טרייסרים ספציפיים-מולקולריים.</p>
+
+<h2><span class="num">8</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>זמני מחצית: <span dir="ltr">"2-10-20-110"</span> = <span dir="ltr">O-N-C-F</span></h3>
+  <p><b>O</b>-15: 2 דקות | <b>N</b>-13: 10 | <b>C</b>-11: 20 | <b>F</b>-18: 110. זמן המחצית עולה לפי הסדר O → N → C → F. משפט זיכרון: "<b>א</b>ני <b>נ</b>ושם <b>ג</b>ם <b>פ</b>יזיקה" (O, N, C, F).</p>
+  <h3>FDG "נלכד", FDOPA "נוצר", FET "נכנס"</h3>
+  <p><b>FDG</b> - נלכד אחרי הקסוקינאז (גלוקוז מת-דרך) | <b>FDOPA</b> - הופך לדופמין (מראה <b>יצירה</b>) | <b>FET/MET</b> - חומצות אמינו שנכנסות לגידול (מראה <b>צריכה</b> לשגשוג).</p>
+  <h3>"היפו-בין, היפר-בזמן": אפילפסיה</h3>
+  <p>בין פרכוסים - <b>היפו</b>מטבוליזם (מוקד "עייף"); בזמן פרכוס - <b>היפר</b>מטבוליזם.</p>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=kklk42Hqs6E" target="_blank">Having a PET scan</a><span class="tag">YouTube</span><div class="desc">איך נראית בדיקת PET מבחינת המטופל.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=e_8n640AV8A" target="_blank">Promise of tau-PET imaging for Alzheimer's disease</a><span class="tag">YouTube</span><div class="desc">הרצאה על הדמיית טאו.</div></li>
+  <li><a href="https://radiologykey.com/pet-physics-and-instrumentation/" target="_blank">Radiology Key - PET Physics and Instrumentation</a><span class="tag">אתר</span><div class="desc">פיזיקה ואינסטרומנטציה של PET.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Brain_positron_emission_tomography" target="_blank">Wikipedia - Brain positron emission tomography</a><span class="tag">אתר</span><div class="desc">סקירה כללית של PET מוחי.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 62 עם רעד מנוחה ואיטיות בצד ימין במשך שנתיים. PET עם 18F-FDOPA הראה ירידה א-סימטרית בפוטמן השמאלי. שנתיים לאחר מכן הוא מפתח גם ליקוי זיכרון והזיות חזותיות, ו-FDG-PET מראה היפומטבוליזם אוקסיפיטלי. במקביל, בת-זוגו עוברת כריתת גליומה בדרגה גבוהה, ובמעקב מופיע נגע מתאדר חדש - ה-MRI לא מכריע בין הישנות לנמק קרינה. בנם הצעיר עם אפילפסיה עמידה לתרופות ו-MRI תקין מופנה להערכה טרום-ניתוחית.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה משקף הממצא ב-18F-FDOPA של הגבר בשלב הראשון, ומדוע?</div>
+  <button class="opt" data-i="0">ירידה בצריכת גלוקוז - כי FDOPA הוא אנלוג של גלוקוז</button>
+  <button class="opt" data-i="1">ירידה בסינתזה טרום-סינפטית של דופמין בפוטמן הנגדי - כי FDOPA הופך ל-18F-דופמין על ידי AAAD בנוירונים הניגרוסטריאטליים המנוונים</button>
+  <button class="opt" data-i="2">עלייה בקשירת קולטני D2</button>
+  <button class="opt" data-i="3">היפוקסיה באזור הניגרה</button>
+  <div class="explain">התשובה הנכונה: FDOPA נכנס דרך נשא חומצות אמינו ומומר ל-FDA ב-AAAD, ולכן משקף יכולת סינתזה טרום-סינפטית. בפרקינסון הירידה א-סימטרית בפוטמן הנגדי לצד הסימפטומטי (ב-MSA/PSP היא סימטרית).</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. מה ממצא ה-FDG (היפומטבוליזם אוקסיפיטלי) עם ההזיות והירידה הקוגניטיבית מרמז?</div>
+  <button class="opt" data-i="0">אלצהיימר טיפוסי</button>
+  <button class="opt" data-i="1">דמנציה פרונטו-טמפורלית</button>
+  <button class="opt" data-i="2">Essential tremor</button>
+  <button class="opt" data-i="3">דמנציה עם גופיפי לוי (DLB)</button>
+  <div class="explain">התשובה הנכונה: היפומטבוליזם אוקסיפיטלי (עם cingulate island sign) אופייני ל-DLB; אלצהיימר - טמפורו-פריאטלי ו-posterior cingulate; FTD - פרונטלי/טמפורלי קדמי.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה סוג טרייסר עדיף להבחנה בין הישנות גליומה לנמק קרינה, ולמה?</div>
+  <button class="opt" data-i="0">טרייסר חומצות אמינו (FET/MET/FDOPA) - ספיגה נמוכה ברקע המוח התקין, ולכן ניגודיות גבוהה לגידול פעיל</button>
+  <button class="opt" data-i="1">15O-H2O - כי הוא מודד גלוקוז</button>
+  <button class="opt" data-i="2">11C-Flumazenil - כי הוא מסמן גליה</button>
+  <button class="opt" data-i="3">FDG בלבד - כי אין לו ספיגת רקע בקורטקס</button>
+  <div class="explain">התשובה הנכונה: לקורטקס התקין ספיגת FDG גבוהה (רקע) ולכן FDG פחות ניגודי; טרייסרי חומצות אמינו מציגים ניגודיות גבוהה יותר.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. איזה ממצא צפוי ב-FDG-PET בין-פרכוסי של הבן עם האפילפסיה?</div>
+  <button class="opt" data-i="0">היפרמטבוליזם במוקד</button>
+  <button class="opt" data-i="1">אין שינוי - FDG אינו רלוונטי לאפילפסיה</button>
+  <button class="opt" data-i="2">היפומטבוליזם באזור המוקד האפילפטוגני</button>
+  <button class="opt" data-i="3">עלייה בקשירת NAA</button>
+  <div class="explain">התשובה הנכונה: מוקד אפילפטוגני מראה בדרך כלל היפומטבוליזם בין-פרכוסי (היפרמטבוליזם בזמן פרכוס). גם 11C-flumazenil (GABA-A) מסייע בלוקליזציה.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע FDG "נלכד" ברקמה ומאפשר לכמת קצב מטבולי?</div>
+  <button class="opt" data-i="0">כי הוא נקשר לקולטני GABA</button>
+  <button class="opt" data-i="1">כי הוא עובר זרחון ע"י הקסוקינאז ל-FDG-6-P, שאינו מטבוליט להמשך גליקוליזה ומצטבר פרופורציונית לקצב המטבוליזם</button>
+  <button class="opt" data-i="2">כי הוא נבלע בלקטט</button>
+  <button class="opt" data-i="3">כי זמן המחצית שלו 2 דקות</button>
+  <div class="explain">התשובה הנכונה: זה עקרון המודל התלת-תאי (K1, k2, k3, עם k4 זניח).</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. נגע קטן (קטן מ-2×FWHM) עם פעילות טרייסר גבוהה מהסביבה - מה קורה לכימות?</div>
+  <button class="opt" data-i="0">הפעילות מוערכת בחסר (partial volume effect)</button>
+  <button class="opt" data-i="1">הפעילות מוערכת ביתר</button>
+  <button class="opt" data-i="2">אין השפעה - PET אינו תלוי ברזולוציה</button>
+  <button class="opt" data-i="3">הנגע אינו נראה כלל</button>
+  <div class="explain">התשובה הנכונה: מבנה קטן "חם" מוערך בחסר (ו"קר" - ביתר) בגלל "דליפת" אות מהסביבה; ROI נמדד אמינה רק כשגודלו מעל 2×FWHM.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>עיקרון:</b> ציקלוטרון → טרייסר → דעיכה β+ → השמדה → שני פוטוני 511 keV ב-180° → גילוי בצירוף → שחזור → מודל קינטי.</li>
+    <li><b>זמני מחצית:</b> 15O 2 דק', 13N 10, 11C 20, 18F 110. רזולוציה קלינית 2.5-10 מ"מ.</li>
+    <li><b>Partial volume:</b> מבנים קטנים מ-2×FWHM - הערכה בחסר ל"חם", ביתר ל"קר". 3D mode - רגישות פי 5-7 אך יותר scatter/randoms.</li>
+    <li><b>FDG:</b> נלכד כ-FDG-6-P אחרי הקסוקינאז → קצב מטבולי. ↓ בדמנציה ובאפילפסיה (בין-פרכוסי); ↑ בגידול, חבלה, חלק מהפסיכיאטריה.</li>
+    <li><b>FDOPA:</b> סינתזה טרום-סינפטית. PD - ירידה א-סימטרית בפוטמן; MSA/PSP - סימטרית; CBD - א-סימטרית פוטמן+קאודט; ET - תקין; גידול - עלייה.</li>
+    <li><b>דמנציה:</b> AD טמפורו-פריאטלי+PCC; FTD פרונטלי; DLB אוקסיפיטלי. PIB - עמילואיד.</li>
+    <li><b>גידולים:</b> FET/MET/FDOPA מבחינים גידול פעיל מהשפעת טיפול; FMISO - היפוקסיה.</li>
+    <li><b>שבץ/חבלה:</b> 15O-H2O ל-CBF ורקמה בסיכון. <b>קולטנים:</b> flumazenil-GABA-A, raclopride-D2, SCH23390-D1, DASB-SERT.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

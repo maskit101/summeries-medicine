@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 21: תכנון כירורגי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 21: תכנון כירורגי <span class="term" dir="ltr">Surgical Planning</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 1: חדר הניתוח - Gabriel Zada, Frank J. Attenello III, Martin Pham, Saman Sizdahkhani, and Martin H. Weiss</div>
+
+<p>"להיכשל בהכנה זה להתכונן להיכשל" - הציטוט הזה נפתח את הפרק, ולא בכדי: מערכת העצבים סובלת הרבה פחות סבילות לטעות מכל מערכת אחרת בגוף. בניגוד לניתוחים כירורגיים רבים אחרים, כאן אין בדרך כלל "הזדמנות שנייה" תוך-ניתוחית. הפרק הזה הוא לא על טכניקה כירורגית עצמה, אלא על כל מה שקורה <b>לפני</b> שהמנתח בכלל מגיע לחדר הניתוח - מהערכה טרום-ניתוחית שיטתית, עבור בבחירת הדמיה והטכנולוגיה הנכונה, ועד לתכנון מדויק של תנוחת החולה והציוד הספציפי לכל סוג גישה (קרניאלית, ספינלית, או וסקולרית). העיקרון המרכזי: תכנון טוב לא "מבטל" סיבוכים, אבל הוא מה שמאפשר למנתח לזהות ולהגיב אליהם במהירות כשהם קורים.</p>
+
+<div id="orFig">
+<img class="media-img" id="orImg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Surgeons_in_the_operating_room.jpg?width=700" alt="Surgeons in the operating room" onerror="document.getElementById('orFig').style.display='none'">
+<p class="media-cap">צוות כירורגי בחדר ניתוח (Wikimedia Commons) - תכנון כירורגי מוצלח תלוי בתקשורת מוקדמת ושיטתית עם כל הצוות: אנסתזיולוג, סיעוד, וטכנאי הדמיה, הרבה לפני החתך הראשון.</p>
+</div>
+
+<h2><span class="num">1</span> ההערכה הטרום-ניתוחית: למה "רשימת תיוג" ולא זיכרון</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>העיקרון:</b> תהליך שיטתי, חזרתי, ומתועד - לא שיחה אד-הוק עם המטופל - הוא מה שמונע טעויות.<br>
+    → <b>אנמנזה:</b> הגדרת התלונה המובילה, מהלך זמני, "חיוביים" וגם "שליליים" פרטינטיים (לתעד חוסרים ניאורולוגיים טרום-ניתוחיים להשוואה אחרי הניתוח!), צידיות דומיננטית.<br>
+    → <b>בדיקה גופנית:</b> בדיקה נוירולוגית מלאה (מצב מנטלי, דיבור, עצבים קרניאליים כולל ריח, מוטוריקה, תחושה כולל פרופריוספציה, רפלקסים, הליכה/צרבלום) + בדיקה כללית (למשל בדיקה רקטלית לטונוס/בולבוקברנוזוס במחלת חוט שדרה, סקירת צלקות קודמות בחזה/בטן לפני שאנט VP).<br>
+    → <b>מעבדה:</b> ספירת דם ופרופיל מטבולי בכל ניתוח לא-דחוף; טסיות, INR, PTT אם יש חשד לקרישה; טיפוגרפיה והצלבת דם; β-hCG איכותי לכל אישה בגיל הפוריות.<br>
+    → <b>תחלואה נלווית:</b> לב (א.ק.ג + צל"ח, בקרת ל"ד), ריאות (סטורציה &lt;93% מרמזת על אי-ספיקה נשימתית קלה לפחות), תזונה (אלבומין/פרה-אלבומין, HbA1c לסוכרתיים).<br>
+    <b>התוצאה:</b> מערכת אישית, שחזורה, שמכסה את כל חלקי הטיפול - וממנה מתקבלת ההחלטה אם, ומתי, לנתח.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 780 430" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif" direction="ltr">
+  <title>מהערכה טרום-ניתוחית להחלטה על דחיפות הניתוח</title>
+  <desc>תרשים זרימה המתאר כיצד הערכה טרום-ניתוחית (אנמנזה, בדיקה גופנית, הדמיה, מעבדה) מובילה להחלטה אם יש התוויה לניתוח, ואם כן - האם הניתוח דחוף, אורגנטי, או אלקטיבי</desc>
+  <text x="390" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">קביעת דחיפות הניתוח (לפי איור 21.1 בפרק)</text>
+
+  <rect x="40" y="52" width="220" height="86" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="150" y="80" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e3a8a">הערכה טרום-ניתוחית</text>
+  <text x="150" y="100" text-anchor="middle" font-size="10.5" fill="#1e3a8a">אנמנזה · בדיקה גופנית</text>
+  <text x="150" y="116" text-anchor="middle" font-size="10.5" fill="#1e3a8a">הדמיה · מעבדה · תחלואה נלווית</text>
+
+  <defs>
+    <marker id="ah21a" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker>
+  </defs>
+  <line x1="260" y1="95" x2="330" y2="95" stroke="#64748b" stroke-width="1.5" marker-end="url(#ah21a)"/>
+
+  <rect x="335" y="52" width="180" height="86" rx="10" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="425" y="88" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">יש התוויה</text>
+  <text x="425" y="106" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">לניתוח?</text>
+
+  <line x1="425" y1="138" x2="425" y2="178" stroke="#64748b" stroke-width="1.5" marker-end="url(#ah21a)"/>
+  <text x="460" y="162" font-size="11" fill="#4b5563">כן</text>
+  <line x1="390" y1="150" x2="200" y2="178" stroke="#64748b" stroke-width="1.5" marker-end="url(#ah21a)"/>
+  <text x="270" y="158" font-size="11" fill="#4b5563">לא / לא ברור</text>
+
+  <rect x="60" y="182" width="230" height="62" rx="8" fill="#f8fafc" stroke="#64748b" stroke-width="1.5"/>
+  <text x="175" y="206" text-anchor="middle" font-size="11.5" font-weight="700" fill="#334155">מעקב / השלמת בדיקות</text>
+  <text x="175" y="224" text-anchor="middle" font-size="10" fill="#475569">ממצא אגבי, מטופל א-סימפטומטי</text>
+
+  <rect x="330" y="182" width="190" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="425" y="206" text-anchor="middle" font-size="11.5" font-weight="700" fill="#7f1d1d">דחוף/חירום</text>
+  <text x="425" y="224" text-anchor="middle" font-size="10" fill="#7f1d1d">מוות קרוב / תפקוד בסיכון</text>
+
+  <line x1="425" y1="138" x2="620" y2="178" stroke="#64748b" stroke-width="1.5" marker-end="url(#ah21a)"/>
+  <rect x="540" y="182" width="200" height="62" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+  <text x="640" y="206" text-anchor="middle" font-size="11.5" font-weight="700" fill="#78350f">אורגנטי / טראומה</text>
+  <text x="640" y="224" text-anchor="middle" font-size="10" fill="#78350f">הזמן קריטי, אך לא מיידי</text>
+
+  <rect x="260" y="266" width="260" height="70" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="390" y="290" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">אלקטיבי</text>
+  <text x="390" y="308" text-anchor="middle" font-size="10" fill="#065f46">יש זמן לתכנן גישה, לוודא ציוד,</text>
+  <text x="390" y="322" text-anchor="middle" font-size="10" fill="#065f46">ולהשלים בדיקות טרום-ניתוחיות</text>
+  <line x1="390" y1="244" x2="390" y2="266" stroke="#64748b" stroke-width="1.5" marker-end="url(#ah21a)" stroke-dasharray="3,3"/>
+
+  <rect x="40" y="362" width="700" height="54" rx="8" fill="#111827"/>
+  <text x="390" y="384" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">ככל שהניתוח "פחות דחוף" - יש יותר זמן להכין: ציוד, ניווט, התייעצויות בין-תחומיות</text>
+  <text x="390" y="401" text-anchor="middle" font-size="10.5" fill="#d1d5db">ככל שהוא "דחוף יותר" - התכנון מתמקד בבטיחות מיידית בחדר הניתוח</text>
+</svg>
+
+<h2><span class="num">2</span> הדמיה וטכנולוגיה: ממיפוי סטטי לוירטואל ריאליטי ולרובוטיקה</h2>
+<p>לפני כל ניתוח, סדרת ההדמיה הנכונה חייבת להתקבל, להיבחן, ולהיות <b>זמינה תוך-ניתוחית</b> - כי האנטומיה התוך-ניתוחית צריכה תמיד להיות מתואמת עם הצילומים הטרום-ניתוחיים. לצד הדמיה סטטית (CT, MRI, רנטגן), <b>אנגיוגרפיה בקטטר</b> חשובה למחלות עם מרכיב זמן-זרימה (למשל AVM עם מילוי מוקדם/מאוחר) - משהו ש-CTA/MRA הסטטיים לא תמיד תופסים. <b>טרקטוגרפיה</b> (DTI) ממחישה את הקשר בין גידול לרקמה הסובבת; <b>הדפסת תלת-מימד</b> יוצרת רפליקות מוחשיות; <b>וירטואל ריאליטי</b> מדמה ניתוח בזמן-אמת על אנטומיה ריאליסטית. <b>רובוטיקה</b> - פחות שכיחה בנוירוכירורגיה מתחומים אחרים כמו אורולוגיה - מאשרת כיום לטרכטוריות סטריאוטקטיות ולהנחת ברגי פדיקל ספינליים, ומנעלת את הצינור בפלייס, יתרון שקשה להשיג ביד אדם.</p>
+
+<div id="mriFig">
+<img class="media-img" id="mriImg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Normal_axial_T2-weighted_MR_image_of_the_brain.jpg?width=600" alt="Normal axial T2-weighted MR image of the brain" onerror="document.getElementById('mriFig').style.display='none'">
+<p class="media-cap">MRI אקסיאלי T2 תקין של המוח (Wikimedia Commons) - רצפי ההדמיה הנכונים צריכים להיבחר, להיבחן, ולהיות זמינים בחדר הניתוח כך שהאנטומיה התוך-ניתוחית תתואם עם הצילומים הטרום-ניתוחיים.</p>
+</div>
+
+<h2><span class="num">3</span> אנסתזיה והסכמה מדעת: שיחה אחת, לא שתיים</h2>
+<p>תכנון כירורגי חוצה את גבול חדר הניתוח גם לתחום האנסתזיה. המנתח חייב לסקור עם צוות האנסתזיה את מצבו התפקודי של המטופל, תחלואה נלווית, רגישויות, וסוכנים פרמיולוגיים (למשל סוכני שיתוק שמפריעים לניטור נוירופיזיולוגי כמו SEP/MEP). במקרים עם חשד ליציבות עמוד שדרה צווארית, אינטובציה פיברואופטית נדרשת כי היפראקסטנציה הסטנדרטית מסכנת את חוט השדרה. פרוצדורות ייחודיות (ישיבה חצי-יושבת לכריתת גידול בגומה האחורית) מחייבות ניטור ספציפי (דופלר ורידי מרכזי לתסחיף אוויר).</p>
+<p>במקביל, שיחת <b>הסכמה מדעת</b> חייבת לכלול מטרות הניתוח, חלופות (לא-כירורגיות כמו טיפול תרופתי/קרינה, או ניתוח אחר), הסיכונים לכלים תותבים קבועים, סבירות לדימום/עירוי, והסכמה נפרדת לבנקים של רקמות/פרוטוקולי מחקר אם רלוונטי. אבחנות שדורשות שיקול דעת לא-כירורגי - למשל פרולקטינומה (טיפול תרופתי) או לימפומה (לא כירורגית) - חייבות להישקל <b>לפני</b> שמחליטים על ניתוח.</p>
+
+<div class="table-scroll">
+<table>
+<tr><th>תחום</th><th>מה בודקים/מתכננים מראש</th></tr>
+<tr><td>ניטור נוירופיזיולוגי</td><td>SEP, MEP, BAER - לתאם עם צוות האנסתזיה בשל השפעת תרופות הרדמה על האותות</td></tr>
+<tr><td>יציבות ספינלית צווארית</td><td>אינטובציה פיברואופטית במקום אינטובציה סטנדרטית בהיפראקסטנציה</td></tr>
+<tr><td>תנוחה חצי-יושבת</td><td>ניטור דופלר ורידי מרכזי לתסחיף אוויר</td></tr>
+<tr><td>אובדן דם צפוי</td><td>גישה ורידית בקוטר גדול, החזרת דם אוטולוגית, המודילוציה נורמוולמית (עדי יהוה)</td></tr>
+<tr><td>הסכמה מדעת</td><td>מטרות, חלופות, שתלים קבועים, עירויי דם, בנקאות רקמות למחקר</td></tr>
+</table>
+</div>
+
+<h2><span class="num">4</span> שיקולים לפרוצדורות קרניאליות: תנוחה, קיבוע, וציוד ספציפי</h2>
+<p>תנוחת המטופל והקיבוע הקרניאלי חייבים להתאים במדויק לגישה הכירורגית ולזווית הצפייה. צוות הסיעוד וחדר הניתוח חייבים לדעת מראש על ציוד תנוחתי (קיבוע קרניאלי, תמיכת גוף/גפה), ולעתים על צורך בכוח אדם נוסף לתנוחות מורכבות (Park bench, lateral). ניטור נוירופיזיולוגי, מיפוי מוטורי/תחושתי תוך-ניתוחי, ואמצעי "הרפיית מוח" (ונטריקולוסטומיה, ניקוז לומברי) - כולם צריכים להיות מתוכננים ומוכנים מראש. ציוד לקדיחה, מיקרוסקופ/לופות/אנדוסקופ, וחומרי המוסטזיס (קאוטר, ספוג קולגן, תרומבין) - כל אלה נבדקים לפני תחילת הניתוח. אם ננווט בניווט כירורגי, יש לרשום ולאמת דיוק <b>לפני</b> תחילת הפרוצדורה.</p>
+
+<p>בניתוחי גידול מוחי: המטרה (ביופסיה, כריתה חלקית, או מלאה) נקבעת מראש, ועבור גידולים וסקולריים - אמבוליזציה אנדווסקולרית טרום-ניתוחית עשויה לעזור. אם מתוכננת ביופסיה, פתולוגים צריכים להיות נוכחים לאיסוף הדגימה, עם אלגוריתם מראש לפרשנות ביופסיית הקפאה. אם קיים סיכון לדלף CSF בבסיס הגולגולת, הבטן/ירך צריכות להיות מוכנות לקציר שומן/פאשיה (ולהודיע למטופל בהסכמה!).</p>
+
+<p>בניתוחי כלי דם מוחיים (אנוריזמות, AVM): מלאי קליפים (ישרים ומחוררים, גדלים שונים) חייב להיות מוכן. תוכנית למצב של קרע תוך-ניתוחי - קליפים זמניים, חסימת בלון, או חשיפת כלים פרוקסימליים בצוואר - חייבת להיות מוסכמת מראש, כולל תיאום עם צוות האנסתזיה על אסיסטולה זמנית בעזרת אדנוזין או קיצוב חדרי מהיר. בדיקת חסימה בבלון (BTO) נדרשת כשקיימת אפשרות ל"קורבנות" כלי אם.</p>
+
+<h2><span class="num">5</span> שיקולים לפרוצדורות ספינליות: גישה, חשיפה אקסטרה-ספינלית, והתקנה</h2>
+<p>ההחלטה הראשונה בניתוחי עמוד שדרה - גישה קדמית, לטרלית, אחורית, או משולבת - קובעת את רוב ההכנות הבאות. שולחנות רדיולוסנטיים סטנדרטיים, ולעתים אביזרים ייעודיים (מסגרת Wilson לדקומפרסיה למברית, שולחן Jackson שבור לפיוזן למברי לטרלי, התקני Mayfield/halo ליציבות צווארית, ומתאמי מיטה לגישה טובולרית מינימלית-אינוזיבית) - נדרשים מראש. צילומי רנטגן טרום-תנוחה חשובים במיוחד בפיוזן אוקסיפוטו-צווארי ובדפורמציות ספינליות, כדי לוודא ניוטרליות לפני שהמטופל מתהפך על בטנו.</p>
+<p>בצוואר התחתון, הכתפיים עשויות להפריע לדימות הכלים - משיכה ידנית זמנית של שורשי כף היד בכיוון הקאודלי יכולה לפתור זאת, ולכן רצועות ריסון רכות מותקנות מראש. טכנאי רדיולוגיה צריכים להיות זמינים לכל משך הפרוצדורה עבור C-arm/CT תוך-ניתוחי, ואותות SEP/MEP בסיסיים - <b>לפני</b> שהמטופל הופך לתנוחת שכיבה על הבטן - חיוניים לניתוחים לא-יציבים כדי לשלול תזוזת עמוד שדרה פוגעת. אם מתוכנן פיוזן, יש לתכנן מקור השתל (אוטוגרפט מכסל האגן, או אלוגרפט/סינתטי - בתיאום הסכמה, שכן חלק מהמטופלים מתנגדים לחלופות אלו).</p>
+<p>סוג הגידול הספינלי קובע את הגישה: <b>אקסטרה-דורלי</b> דורסלי/דורסו-לטרלי - נגיש בקלות יחסית; וונטרלי - דורש הגנה קפדנית על חוט השדרה. גידולים אקסטרה-דורליים (לרוב מטסטטיים) לא תמיד דורשים כריתה מלאה - "ניתוח הפרדה" (separation surgery) בשילוב קרינה יכול להספיק בגידולים רדיוסנסיטיביים. גידולים <b>אינטרא-דורליים אקסטרה-מדולריים</b> דורשים תכנון תיקון דורלי למניעת דלף CSF; וגידולים <b>אינטרא-מדולריים</b> נושאים סיכון גבוה במיוחד לחסר נוירולוגי חדש - שיחה מוקדמת וכנה עם המטופל היא קריטית.</p>
+
+<div class="key-box">בכל גישה ספינלית, הנוירוכירורג חייב להיות נוח עם אנטומיה חוץ-נוירולוגית שהגישה חולפת בה - וושט, קנה, פלאורה, ריאות, פריטונאום, מעי, שופכנים, וכלי דם גדולים - או לוודא זמינות מנתח-גישה משותף (למשל כירורג כלי חזה/בטן) מראש.</div>
+
+<h2><span class="num">6</span> בינה מלאכותית: מה היא כבר עושה, ומה היא עדיין לא</h2>
+<p>כלים חדשים - בינה מלאכותית בראש ובראשונה - מתפתחים כדי לשפר תוצאות ולסייע בקבלת החלטות: חיזוי מאפייני גידול, זיהוי זיהום באתר הניתוח, חיזוי מוקדים אפילפטוגניים, ובחירת מטופלים לניתוחי אפילפסיה. הפרק מדגיש בבירור: AI <b>אינה</b> סטנדרט טיפול כיום בנוירוכירורגיה - היא כלי משלים בפיתוח פעיל, לא תחליף לשיקול דעת קליני.</p>
+
+<h2><span class="num">7</span> היישום הכירורגי: מסגרת החלטה מעשית</h2>
+<p>הפרק מתרגם למסגרת תכנון מעשית: (1) <b>הערכה שיטתית ומתועדת</b> - לא זיכרון - של היסטוריה, בדיקה גופנית, מעבדה, והדמיה; (2) <b>קביעת דחיפות</b> (אלקטיבי/אורגנטי/דחוף) שמכוונת כמה זמן יש לתכנון; (3) <b>הדמיה הנכונה, זמינה בחדר הניתוח</b> - כולל רצפים מיוחדים לניווט או טרקטוגרפיה; (4) <b>תיאום מוקדם עם אנסתזיה</b> - במיוחד כשניטור נוירופיזיולוגי או תנוחות מיוחדות מעורבים; (5) <b>ציוד ספציפי-לגישה מוכן ומבחן מראש</b> - קליפים, ניווט, חדרי קדיחה, ערכות ביופסיה; (6) <b>תוכנית למצב חירום תוך-ניתוחי</b> (קרע אנוריזמה, חוסר יציבות ספינלית) מוסכמת <b>לפני</b> החתך הראשון; (7) <b>הסכמה מדעת מלאה וכנה</b> הכוללת חלופות לא-כירורגיות.</p>
+
+<h2><span class="num">8</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>"ארבעה H של תכנון: History, Hardware, Hands (אנסתזיה), Hazard-plan"</h3>
+  <p><b>History:</b> אנמנזה+בדיקה+מעבדה+הדמיה שיטתיים לפני כל החלטה. <b>Hardware:</b> הציוד הספציפי-לגישה (קליפים, ניווט, שתלים) נבדק ומוכן מראש. <b>Hands (אנסתזיה):</b> תיאום מראש עם הצוות המרדים על ניטור, תנוחה, ותרופות. <b>Hazard-plan:</b> תוכנית מוסכמת-מראש למצב חירום תוך-ניתוחי - כי אין "הזדמנות שנייה" במערכת העצבים.</p>
+  <p class="key-box" style="margin-top:8px"><b>זכרי:</b> "להיכשל בהכנה זה להתכונן להיכשל" - תכנון טוב לא מבטל סיבוכים, הוא מה שמאפשר לזהות ולהגיב אליהם במהירות.</p>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/results?search_query=preoperative+evaluation+neurosurgery+checklist" target="_blank">Preoperative Evaluation in Neurosurgery</a><span class="tag">YouTube</span><div class="desc">סקירה של עקרונות ההערכה הטרום-ניתוחית השיטתית לפני ניתוח נוירוכירורגי.</div></li>
+  <li><a href="https://www.youtube.com/results?search_query=surgical+navigation+neuronavigation+explained" target="_blank">Neuronavigation Explained</a><span class="tag">YouTube</span><div class="desc">הסבר על מערכות ניווט כירורגי ושימושן בתכנון ובביצוע ניתוחי מוח.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Informed_consent" target="_blank">Wikipedia - Informed Consent</a><span class="tag">אתר</span><div class="desc">רקע על עקרונות ההסכמה מדעת, הרלוונטי לכל שיחה טרום-ניתוחית.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Neuronavigation" target="_blank">Wikipedia - Neuronavigation</a><span class="tag">אתר</span><div class="desc">סקירה על מערכות ניווט תוך-ניתוחי מבוסס-הדמיה.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Robot-assisted_surgery" target="_blank">Wikipedia - Robot-Assisted Surgery</a><span class="tag">אתר</span><div class="desc">רקע על רובוטיקה כירורגית, כולל יישומים בנוירוכירורגיה ספינלית וסטריאוטקטית.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 64 מופנה לניתוח אלקטיבי לכריתת meningioma פרה-סגיטלי בגודל 3 ס"מ, שאובחן באגביות ב-MRI. הוא א-סימפטומטי לחלוטין. הצוות המטפל דן בתזמון הניתוח ובהכנות הנדרשות.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. איזה שלב, לפי מסגרת התכנון של הפרק, חייב לקדום לכל החלטה על תזמון הניתוח במקרה הזה?</div>
+  <button class="opt" data-i="0">קביעת תאריך ניתוח מיידי, כדי "לא לתת לגידול לגדול"</button>
+  <button class="opt" data-i="1">הזמנת חדר ניתוח וציוד ניווט בלבד, בלי בדיקות נוספות</button>
+  <button class="opt" data-i="2">הערכה טרום-ניתוחית שיטתית ומלאה (אנמנזה, בדיקה נוירולוגית, מעבדה, סקירת הדמיה) וקביעת דחיפות - מטופל א-סימפטומטי עם ממצא אגבי נופל בקטגוריית "אלקטיבי", שמאפשרת זמן מלא לתכנון</button>
+  <button class="opt" data-i="3">דילוג ישר על ההסכמה מדעת, כי הגידול אגבי ולא מסכן חיים</button>
+  <div class="explain">התשובה הנכונה (3): לפי איור 21.1 בפרק, ממצא אגבי במטופל א-סימפטומטי הוא דוגמה קלאסית למסלול "אלקטיבי" - הוא מאפשר זמן מלא להשלים הערכה שיטתית (היסטוריה, בדיקה, מעבדה, הדמיה) ולתכנן את הגישה, הציוד, וההסכמה מדעת, בניגוד למסלול דחוף/אורגנטי שבו הזמן קריטי יותר מההשלמה.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. באיזה שלב בתכנון הניתוח חשוב לדון עם צוות האנסתזיה על בחירת סוכני שיתוק והרדמה?</div>
+  <button class="opt" data-i="0">אין צורך לדון בזה כלל - האנסתזיולוג מחליט בעצמו בחדר הניתוח</button>
+  <button class="opt" data-i="1">מראש, לפני הניתוח - משום שסוכני הרדמה רבים מדכאים אותות אלקטרופיזיולוגיים, ולכן אם מתוכנן ניטור נוירופיזיולוגי (SEP/MEP) זה חייב להיות מתואם מראש כדי לא לפגוע באיכות האותות</button>
+  <button class="opt" data-i="2">רק אחרי שהניתוח כבר התחיל, אם מתעורר צורך</button>
+  <button class="opt" data-i="3">זה שיקול שרלוונטי רק בניתוחי עמוד שדרה, לא בניתוחי מוח</button>
+  <div class="explain">התשובה הנכונה (2): הפרק מדגיש שתכנון האנסתזיה הוא חלק אינטגרלי מהתכנון הכירורגי, ובמיוחד כשמתוכנן ניטור נוירופיזיולוגי (SEP, MEP, BAER) - יש לתאם מראש עם צוות האנסתזיה כדי לבחור סוכנים שלא יפגעו באיכות האותות המנוטרים, הן בניתוחי מוח והן בניתוחי עמוד שדרה.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מה ההבדל המרכזי בין גישה לגידול ספינלי אקסטרה-דורלי דורסלי לעומת אינטרא-מדולרי?</div>
+  <button class="opt" data-i="0">אין הבדל - כל הגידולים הספינליים מטופלים באותה שיטה בדיוק</button>
+  <button class="opt" data-i="1">גידול אינטרא-מדולרי קל יותר לגישה מכל גידול אקסטרה-דורלי</button>
+  <button class="opt" data-i="2">גידול אקסטרה-דורלי דורסלי תמיד דורש כריתה מלאה, ללא יוצא מן הכלל</button>
+  <button class="opt" data-i="3">גידול אקסטרה-דורלי דורסלי/דורסו-לטרלי נגיש בקלות יחסית; גידול אינטרא-מדולרי נושא סיכון גבוה במיוחד לחסר נוירולוגי חדש, ולכן דורש שיחה כנה ומוקדמת עם המטופל על הסיכון לחולשה/שיתוק פוסט-ניתוחי</button>
+  <div class="explain">התשובה הנכונה (4): הפרק מבחין בין שלוש קטגוריות של גידולי עמוד שדרה - אקסטרה-דורלי, אינטרא-דורלי אקסטרה-מדולרי, ואינטרא-דורלי אינטרא-מדולרי - כשהגישה והסיכון עולים בהדרגה בין הקטגוריות. אקסטרה-דורלי דורסלי נגיש בקלות יחסית; אינטרא-מדולרי נושא את הסיכון הגבוה ביותר לחסר נוירולוגי חדש בשל המיקום בתוך חוט השדרה עצמו, מה שמחייב שיחת הסכמה מדעת כנה ומפורטת במיוחד.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. מה תפקידה הנוכחי של בינה מלאכותית (AI) בתכנון כירורגי נוירוכירורגי, לפי הפרק?</div>
+  <button class="opt" data-i="0">כלי משלים בפיתוח פעיל (חיזוי מאפייני גידול, זיהוי זיהום, חיזוי מוקדי אפילפסיה) - אך אינו עדיין סטנדרט טיפול, ואינו תחליף לשיקול דעת קליני</button>
+  <button class="opt" data-i="1">תחליף מלא לשיקול הדעת הקליני של המנתח בכל ההחלטות הטרום-ניתוחיות</button>
+  <button class="opt" data-i="2">AI אינו רלוונטי בכלל לנוירוכירורגיה כיום</button>
+  <button class="opt" data-i="3">AI משמש רק לתיעוד אדמיניסטרטיבי, ללא יישום קליני</button>
+  <div class="explain">התשובה הנכונה (1): הפרק מציג דוגמאות ליישומי AI מתפתחים - חיזוי מאפייני גידול, זיהוי זיהום באתר הניתוח, חיזוי מוקדים אפילפטוגניים, ובחירת מטופלים לניתוחי אפילפסיה - אך קובע באופן מפורש שזה "בשום אופן לא הסטנדרט הטיפולי" כיום, אלא כלי עזר בפיתוח פעיל שמטרתו לשפר, לא להחליף, את קבלת ההחלטות הקלינית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>העיקרון המרכזי:</b> "להיכשל בהכנה זה להתכונן להיכשל" - מערכת העצבים לא סולחת על חוסר תכנון, כי אין "הזדמנות שנייה" תוך-ניתוחית.</li>
+    <li><b>הערכה טרום-ניתוחית שיטתית:</b> אנמנזה+בדיקה גופנית מלאה (כולל פרטינטיים שליליים לתיעוד!) + מעבדה + תחלואה נלווית (לב, ריאות, תזונה) - לא זיכרון, אלא תהליך חזרתי ומתועד.</li>
+    <li><b>דחיפות קובעת זמן תכנון:</b> דחוף/חירום → אורגנטי/טראומה → אלקטיבי - ככל שפחות דחוף, יש יותר זמן להכנה מלאה.</li>
+    <li><b>הדמיה וטכנולוגיה:</b> הרצפים הנכונים חייבים להיות זמינים תוך-ניתוחית; טרקטוגרפיה, הדפסת תלת-מימד, VR ורובוטיקה מרחיבים את יכולת התכנון.</li>
+    <li><b>תיאום מוקדם עם אנסתזיה:</b> קריטי כשמתוכנן ניטור נוירופיזיולוגי, תנוחות מיוחדות, או חשד ליציבות ספינלית.</li>
+    <li><b>שיקולים ספציפיים לגישה:</b> קרניאלי (קיבוע, ניטור, ציוד המוסטזיס) מול ספינלי (בחירת גישה, חשיפה אקסטרה-ספינלית, מקור השתל) מול וסקולרי (תוכנית למצב קרע).</li>
+    <li><b>AI:</b> כלי משלים מתפתח, לא עדיין סטנדרט טיפול ולא תחליף לשיקול דעת קליני.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

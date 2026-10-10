@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 12: הערכה פיזיולוגית של המוח ב-MRI</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 12: הערכה פיזיולוגית של המוח ב-MRI <span class="term" dir="ltr">Physiologic Evaluation of the Brain With Magnetic Resonance Imaging</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 4 - Overview of Radiology | מאת Puneet Belani, Vikram K. Sundaram, Clara S. Koo, Bradley N. Delman, Amish H. Doshi</div>
+
+<p>מעבר ל-CT/MRI "אנטומי" (פרק 10), ל-MRI יש כיום ארסנל שלם של רצפים <b>פיזיולוגיים</b> - הם לא רק מראים "מה יש שם" אלא "מה קורה שם": כמה מים זזים (דיפוזיה), לאן הסיבים הולכים (DTI), כמה דם זורם (פרפוזיה/ASL), אילו נוירונים פעילים (fMRI/BOLD), מה ההרכב הכימי (MRS), ואיך הרקמה "מרגישה" מבחינה מכנית (MRE). המסר המרכזי לנוירוכירורג: <b>לבחור את הרצף הנכון לפי השאלה הקלינית</b> - שבץ חריף? DWI. תכנון כריתת גידול ליד מסלול קורטיקוספינלי? DTI+fMRI. הבחנה בין הישנות גידול לנמק קרינה? פרפוזיה +/- MRS +/- PET/MRI.</p>
+
+<h2><span class="num">1</span> מנגנון: מפת הרצפים הפיזיולוגיים</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>DWI:</b> מודד תנועה בראונית אקראית של מולקולות מים. רקמה עם תאיות גבוהה/בצקת ציטוטוקסית (אוטם חריף, מורסה, לימפומה, גידול high-grade) <b>מגבילה</b> דיפוזיה → אות גבוה ב-DWI + <b>ADC נמוך</b> (השילוב הזה, לא DWI לבד, מאשר הגבלה אמיתית - נגד <span dir="ltr">T2 shine-through</span>).<br>
+    <b>DTI/טרקטוגרפיה:</b> אניזוטרופיה - מים בחומר לבן זזים יותר לאורך הסיבים מאשר לרוחבם. חישוב וקטורי דיפוזיה בכל וקסל מאפשר "לצייר" מסלולי סיבים (כמו הקורטיקוספינלי) - קריטי לתכנון ניתוחי גידול.<br>
+    <b>MRA:</b> שלוש שיטות - <span dir="ltr">TOF</span> (רוויה של רקמה סטטית, דם זורם "לא רווי" ובהיר, ללא ניגוד), <span dir="ltr">PC</span> (שיפוע דו-קוטבי לפי VEnc, מודד כיוון ומהירות), <span dir="ltr">CE</span> (בולוס גדוליניום, ניגודיות אנטומית מעולה).<br>
+    <b>פרפוזיה/חדירות:</b> <span dir="ltr">ASL</span> - "מתייגים" מגנטית דם עורקי (ללא ניגוד!) ומודדים CBF ישירות. <span dir="ltr">DSC</span> - בולוס גדוליניום מהיר, רגיש לשדה מגנטי → CBV/CBF/MTT (CBF=CBV/MTT). <span dir="ltr">DCE</span> - מודד דליפת גדוליניום מנימים (Ktrans) = "חדירות" מחסום דם-מוח.<br>
+    <b>fMRI/BOLD:</b> פעילות נוירונלית → עלייה מקומית ב-CBF שעולה על צריכת החמצן → ירידה בדאוקסיהמוגלובין (פרמגנטי) → <b>עלייה</b> חולפת באות T2*. משווים בלוקים "פעיל" מול "מנוחה".<br>
+    <b>MRS:</b> "כימיה בלי ביופסיה" - שינוי זעיר בתדר תהודה לפי סביבה כימית (<span dir="ltr">chemical shift</span>) מזהה מטבוליטים (NAA, כולין, קריאטין, לקטט).<br>
+    <b>MRE:</b> גלי גזירה מוחדרים למוח, נמדדים ב-PC MRI → מפת קשיחות רקמה - "מישוש" בהדמיה.<br>
+    → <b>עיקרון-על:</b> כל רצף "פיזיולוגי" מנצל תופעה פיזיקלית אחרת (דיפוזיה / זרימה / מגנטיות דם / תזוזה כימית / קשיחות מכנית) כדי לחשוף מידע שאין ב-MRI אנטומי.
+  </p>
+</div>
+
+<svg class="diagram" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg">
+  <title>שבע השאלות הפיזיולוגיות ורצף התשובה</title>
+  <desc>תרשים המקשר שאלה קלינית לרצף MRI המתאים: כמה מים זזים - DWI; לאן הסיבים הולכים - DTI; כמה דם זורם בכלי - MRA; כמה דם מגיע לרקמה - פרפוזיה/ASL; אילו נוירונים פעילים - fMRI; מה ההרכב הכימי - MRS; כמה קשיחה הרקמה - MRE.</desc>
+  <rect x="10" y="10" width="700" height="360" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="360" y="36" font-size="15" text-anchor="middle" font-weight="700" fill="#1e293b">מהשאלה הקלינית לרצף הנכון</text>
+
+  <rect x="30" y="56" width="200" height="52" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="130" y="78" font-size="12.5" text-anchor="middle" font-weight="700" fill="#7f1d1d">כמה מים זזים?</text>
+  <text x="130" y="96" font-size="12" text-anchor="middle" fill="#7f1d1d">DWI/ADC - אוטם חריף</text>
+
+  <rect x="260" y="56" width="200" height="52" rx="8" fill="#ffedd5" stroke="#c2410c" stroke-width="2"/>
+  <text x="360" y="78" font-size="12.5" text-anchor="middle" font-weight="700" fill="#7c2d12">לאן הסיבים הולכים?</text>
+  <text x="360" y="96" font-size="12" text-anchor="middle" fill="#7c2d12">DTI/טרקטוגרפיה</text>
+
+  <rect x="490" y="56" width="200" height="52" rx="8" fill="#fef9c3" stroke="#a16207" stroke-width="2"/>
+  <text x="590" y="78" font-size="12.5" text-anchor="middle" font-weight="700" fill="#713f12">כמה דם בכלי?</text>
+  <text x="590" y="96" font-size="12" text-anchor="middle" fill="#713f12">MRA - TOF/PC/CE</text>
+
+  <rect x="30" y="132" width="200" height="52" rx="8" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="130" y="154" font-size="12.5" text-anchor="middle" font-weight="700" fill="#14532d">כמה דם ברקמה?</text>
+  <text x="130" y="172" font-size="12" text-anchor="middle" fill="#14532d">פרפוזיה - ASL/DSC/DCE</text>
+
+  <rect x="260" y="132" width="200" height="52" rx="8" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="360" y="154" font-size="12.5" text-anchor="middle" font-weight="700" fill="#1e3a8a">אילו נוירונים פעילים?</text>
+  <text x="360" y="172" font-size="12" text-anchor="middle" fill="#1e3a8a">fMRI - BOLD</text>
+
+  <rect x="490" y="132" width="200" height="52" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="590" y="154" font-size="12.5" text-anchor="middle" font-weight="700" fill="#4c1d95">מה ההרכב הכימי?</text>
+  <text x="590" y="172" font-size="12" text-anchor="middle" fill="#4c1d95">MRS - NAA/כולין/לקטט</text>
+
+  <rect x="260" y="208" width="200" height="52" rx="8" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/>
+  <text x="360" y="230" font-size="12.5" text-anchor="middle" font-weight="700" fill="#0c4a6e">כמה קשיחה הרקמה?</text>
+  <text x="360" y="248" font-size="12" text-anchor="middle" fill="#0c4a6e">MRE</text>
+
+  <text x="360" y="300" font-size="12.5" text-anchor="middle" fill="#374151">שילוב מספר רצפים (כולל PET/MRI) מוסיף ביטחון אבחנתי</text>
+  <text x="360" y="322" font-size="12.5" text-anchor="middle" fill="#374151">מעבר להדמיה "אנטומית" (מה יש) - להדמיה "פיזיולוגית" (מה קורה)</text>
+  <text x="360" y="350" font-size="11.5" text-anchor="middle" fill="#6b7280">דוגמה קלינית: DWI+פרפוזיה = mismatch = פנומברה בת-הצלה בשבץ חריף</text>
+</svg>
+<p class="figcap">איור סכמטי: בחירת הרצף לפי השאלה הקלינית - הבסיס לחשיבה הרדיולוגית בפרק.</p>
+
+<div class="key-box"><b>עיקרון קליני על-פני-הכל:</b> ב-DWI, אות גבוה בלבד <b>אינו</b> מספיק לאבחנת הגבלת דיפוזיה אמיתית - יש לוודא <b>ADC נמוך</b> תואם (אחרת זה עשוי להיות <span dir="ltr">T2 shine-through</span>, כפי שמודגם בגרורת שד עם ADC גבוה למרות DWI בהיר).</div>
+
+<h2><span class="num">2</span> טבלת השוואה: הרצפים הפיזיולוגיים</h2>
+<div class="table-scroll"><table>
+<tr><th>רצף</th><th>מודד</th><th>ניגוד IV?</th><th>שימוש קליני עיקרי</th></tr>
+<tr><td><b>DWI/ADC</b></td><td>הגבלת תנועת מים</td><td>לא</td><td>שבץ חריף (תוך 30-60 דק'), גידול היפרתאי, מורסה, אפילפסיה</td></tr>
+<tr><td><b>DTI/טרקטוגרפיה</b></td><td>אניזוטרופיה של חומר לבן</td><td>לא</td><td>תכנון כירורגי - יחס גידול למסלולים (קורטיקוספינלי, אופטי)</td></tr>
+<tr><td><b>MRA (TOF/PC/CE)</b></td><td>זרימת דם בכלים גדולים</td><td>TOF/PC - לא; CE - כן</td><td>אנוריזמה, AVM/AVF, סטנוזיס, פקקת ורידית</td></tr>
+<tr><td><b>PC CSF flow</b></td><td>זרימת CSF פועמת</td><td>לא</td><td>NPH, סטנוזיס אקוודוקטלי, Chiari, מעקב ETV</td></tr>
+<tr><td><b>ASL</b></td><td>CBF (כמותי, ישיר)</td><td>לא (תיוג מגנטי)</td><td>גידולים, מויאמויה, MTBI, הבחנת נמק-קרינה מהישנות</td></tr>
+<tr><td><b>DSC</b></td><td>CBV/CBF/MTT יחסיים</td><td>כן (בולוס מהיר)</td><td>דירוג גידולים, פנומברה בשבץ, וזוספזם</td></tr>
+<tr><td><b>DCE (חדירות)</b></td><td>Ktrans - חדירות BBB</td><td>כן</td><td>דירוג גידולים, בעיקר גידולים "דליפים" כמו מנינגיומה</td></tr>
+<tr><td><b>fMRI/BOLD</b></td><td>עומס חמצן דם (עקיף)</td><td>לא</td><td>מיפוי אזורים אלוקוונטיים לפני ניתוח, דומיננטיות שפה</td></tr>
+<tr><td><b>Vessel wall imaging</b></td><td>האדרה/עיבוי דופן כלי</td><td>כן</td><td>אנוריזמה לא-יציבה, וסקוליטיס מול RCVS, דיסקציה</td></tr>
+<tr><td><b>MRS</b></td><td>מטבוליטים (NAA/כולין/לקטט)</td><td>לא</td><td>דירוג גידולים, נמק-קרינה מול הישנות, MTS, AD</td></tr>
+<tr><td><b>MRE</b></td><td>קשיחות מכנית</td><td>לא</td><td>קשיחות גידול טרום-ניתוחית, NPH, שינויים ב-AD</td></tr>
+<tr><td><b>PET/MRI</b></td><td>מטבוליזם + אנטומיה יחד</td><td>רדיואיזוטופ IV</td><td>אפילפסיה MRI-שלילי, הישנות גידול, שבץ (פנומברה)</td></tr>
+</table></div>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/DWE%20MRI%20of%20cerebral%20infarction.png?width=450" alt="DWI MRI of acute cerebral infarction">
+<p class="media-cap">DWI - אוטם חריף: אות גבוה עקב הגבלת דיפוזיה מבצקת ציטוטוקסית - מופיע תוך דקות עד שעה מתחילת האירוע. מקור: Wikimedia Commons.</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/tcJa9cJeoEY" title="Diffusion Weighted Imaging EXPLAINED (DWI Trace, ADC, B-Values)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">DWI, ADC וערכי b - כולל ההבדל בין הגבלת דיפוזיה אמיתית ל-T2 shine-through. מקור: YouTube.</p>
+
+<h2><span class="num">3</span> DWI/DTI: משבץ חריף ועד תכנון גידול</h2>
+<p><b>DWI קלינית:</b> ב-DWI לא נכון להסתמך על אות גבוה בלבד - חובה לוודא <b>ADC נמוך</b> תואם (Fig. 12.1 בספר מדגים בדיוק את המלכודת - גרורת שד עם אות DWI גבוה אך ADC גבוה, כלומר <b>לא</b> הגבלה אמיתית - T2 shine-through). ADC ו-DWI "מתבגרים" בקצב שונה: שניהם חריגים תוך דקות, אך ADC מנרמל תוך 5-14 יום ואז ממשיך לעלות (בהיר לצמיתות), בעוד DWI מנרמל לאט יותר (4-5 שבועות) ולבסוף הופך היפואינטנס באנצפלומלציה כרונית. גידולים תאיים מאוד (לימפומה, מדולובלסטומה, גליומה high-grade) ו<b>ציסטות אפידרמואיד</b> (בניגוד לציסטות ארכנואיד) מראים הגבלת דיפוזיה - סימן אבחנתי חשוב. הבחנה בין <b>מורסה</b> (הגבלה מרכזית) ל<b>נמק</b> (ללא הגבלה מרכזית, "דבריס" פחות מגביל).</p>
+<p><b>DTI/טרקטוגרפיה:</b> "טנזור" = מערך וקטורים בכל וקסל שמתאר עוצמה וכיוון דיפוזיה. <span class="key">אניזוטרופיה שברית (FA)</span> - מידת הסטייה של אליפסואיד הטנזור מכדור; ירידה ב-FA מרמזת על שיבוש סיבים. מפות צבע-קוד סטנדרטיות: <b>אדום = ימין-שמאל, ירוק = קדמי-אחורי, כחול = עליון-תחתון</b>. שימוש קליני עיקרי - קביעת יחס גידול/נגע וסקולרי למסלולים חשובים (קורטיקוספינלי, מסלול ראייה) לתכנון כריתה. טרקטוגרפיה תלוית-אופרטור מאוד (הזרעה ידנית/אוטומטית), רגישה לרעש ותנועה, ומוגבלת כשסיבים חוצים (נפתר חלקית ב-HARDI/Q-ball במחיר SNR וזמן).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/White%20Matter%20Connections%20Obtained%20with%20MRI%20Tractography.png?width=450" alt="DTI Tractography white matter connections">
+<p class="media-cap">טרקטוגרפיה מבוססת DTI: שחזור תלת-ממדי של מסלולי חומר לבן - כלי מרכזי לתכנון ניתוחי גידול ליד מסלולים אלוקוונטיים. מקור: Wikimedia Commons (Human Connectome Project).</p>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/mbpUalR_Z3E" title="Diffusion Tensor Imaging EXPLAINED (DTI, FA, Tractography)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">DTI, אניזוטרופיה שברית וטרקטוגרפיה - כולל מגבלות סיבים חוצים. מקור: YouTube.</p>
+
+<h2><span class="num">4</span> MRA: TOF, PC, CE ופתולוגיה וסקולרית</h2>
+<p><b>שלוש שיטות MRA:</b> <span dir="ltr" class="term">TOF</span> (זרימת דם "בלתי רוויה" נכנסת לנפח רוויה - ללא ניגוד; 3D עדיף על 2D ברזולוציה מרחבית, אך 2D טוב יותר לזרימה איטית ורידית), <span dir="ltr" class="term">PC</span> (שיפוע דו-קוטבי מקודד מהירות לפי VEnc שנבחר מראש - VEnc גבוה מדי/נמוך מדי → <b>aliasing</b>; עורקי בד"כ VEnc&gt;60-80 ס"מ/שנ', ורידי VEnc≤20), <span dir="ltr" class="term">CE</span> (בולוס גדוליניום T1 מקוצר - SNR גבוה יותר, פחות ארטיפקטים מפעימה, אך תלוי בריכוז ניגוד ולא במהירות זרימה אמיתית). <b>DSA</b> נותרה תקן הזהב (רזולוציה מרחבית/זמנית עליונה) אך פולשנית (~1.3% סיכון לאירוע מוחי) - MRA/CTA לרוב מספיקות לסקר ראשוני.</p>
+<p><b>אנוריזמות:</b> 3D TOF MRA - רגישות ~95%, סגוליות ~89% (רגישות גבוהה יותר לאנוריזמות &gt;3 מ"מ - 94% מול 38% לקטנות ב-1.5T; בשדה 3T ניתן לזהות עד 1 מ"מ). מעקב אחר אנוריזמות שטופלו בסלילים - 3D TOF מדמה טוב יותר את הסלילים עצמם, CE MRA עשויה להיות רגישה מעט יותר לזרימה שיורית איטית; DSA נותר תקן הזהב למילוי שייר. <b>AVM/AVF:</b> DSA נותר תקן הזהב (רזולוציה זמנית, אבחון פיסטולות ורידה מוקדמת); MRA (במיוחד time-resolved CE כמו TRICKS/TWIST) מסייעת לתכנון טרום-ניתוחי ולזיהוי עורקים מזינים. <b>ורידים/פקקת סינוסים:</b> 2D TOF (לא 3D) עדיף לזרימה איטית; CE MRV עדיפה משמעותית על TOF (99% מול 75% נראות מבנים ורידיים).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Circle%20of%20Willis%20-%20MRI%2C%20MIP%20-%20Superior%20view.png?width=450" alt="MRA circle of Willis maximum intensity projection">
+<p class="media-cap">MRA (TOF, MIP): מעגל וויליס - הדמיית עורקים תוך-גולגולתיים ללא צורך בניגוד תוך-ורידי. מקור: Wikimedia Commons.</p>
+<div class="key-box"><b>מלכודות ב-MRA:</b> ספין-דה-פייסינג בזרימה סוערת/מורכבת ובסמיכות לרקמות T1 קצר (שומן, המוגלובין תת-אקוטי) → אובדן אות מדומה. <span dir="ltr">MOTSA</span> (מספר slabs חופפים) משפר אות זרימה ב-3D TOF במחיר זמן סריקה. TOF נוטה <b>להעריך יתר על המידה</b> סטנוזיס.</div>
+
+<h2><span class="num">5</span> זרימת CSF (PC MRI) - NPH, Chiari, ETV</h2>
+<p>סריקה <span dir="ltr" class="term">cardiac-gated PC MRI</span> מודדת כמותית זרימת CSF פועמת - בסיסטולה, התרחבות עורקית דוחפת CSF דרך הפורמן מגנום החוצה מהגולגולת; בדיאסטולה - חוזר פנימה. <b>נפח פעימה אקוודוקטלי (stroke volume)</b> תקין ~39.5±18.2 מיקרוליטר/מחזור; מעל 42 מיקרוליטר נקשר לתגובה טובה ל-shunting ב-NPH סימפטומטי (אך לא הוכח כפרמטר מבדיל אמין לחלוטין). <b>Chiari I סימפטומטי:</b> מהירויות סיסטוליות שיא גבוהות דרך הפורמן מגנום/תת-עכבישי. <b>סטנוזיס אקוודוקטלי:</b> PC MRI מדגים היעדר זרימה באקוודוקט בצורה אובייקטיבית יותר מסימנים אנטומיים (הרחבה טריוונטריקולרית) שתלויים בצפייה סובייקטיבית - יכול לכוון להחלטה על <span dir="ltr">endoscopic third ventriculostomy (ETV)</span>, ולאחר הניתוח משמש למעקב אחר פטנטיות ה-ETV.</p>
+<div class="key-box"><b>מלכודת:</b> היעדר פעימת CSF אינו תמיד = חסימה אקוודוקטלית - זרימה איטית כללית (למשל חסימה בפורמן מונרו ע"י ציסטת קולואיד) יכולה "לדמות" חסימה במורד הזרם. גם אחרי ETV מוצלח, ייתכן שלא תיראה זרימה באקוודוקט עצמו.</div>
+
+<h2><span class="num">6</span> פרפוזיה וחדירות: ASL, DSC, DCE</h2>
+<p><b>עיקרון מרכזי:</b> <span dir="ltr">CBF = CBV/MTT</span> - שני נעלמים ניתנים לפתרון כשהשלישי ידוע; כל שיטה מודדת שניים אחרת. <b>ASL</b> - "תיוג" מגנטי של פרוטוני מים בדם עורקי (ללא ניגוד כלל!) - יתרון עצום באי-ספיקת כליות/אלרגיה לניגוד. PCASL (תיוג ממושך 1-3 שנ') עדיף כיום על PASL (פולס קצר) בזכות SNR. <span dir="ltr">postlabel delay</span> ארוך יותר נדרש במבוגרים (2000 מילישנ') מאשר בילדים (1500). ASL מודד CBF ישירות אך <b>לא</b> CBV. <b>DSC</b> - בולוס גדוליניום מהיר, רגיש לשדה מגנטי (T2*) - השיטה הנפוצה ביותר קלינית, מודדת rCBV/rCBF/MTT יחסיים (לא מוחלטים). <b>DCE (permeability MRI)</b> - T1, מודד <b>Ktrans</b> (חדירות נימית x שטח פנים) - שימושי בעיקר בגידולים "דליפים" כמו מנינגיומה.</p>
+<p><b>יישומים קליניים מרכזיים:</b> (1) <b>שבץ:</b> mismatch דיפוזיה-פרפוזיה מגדיר פנומברה בת-הצלה (הליבה = הגבלת דיפוזיה, מנבאת טוב יותר את גודל האוטם הסופי מכל פרמטר פרפוזיוני) - מנחה קבלת החלטה על טיפול אנדווסקולרי. (2) <b>דירוג גידולים:</b> CBV/CBF עולים עם דרגת גליומה (למעט אוליגודנדרוגליומה - יכולה להיות rCBV גבוה גם בדרגה נמוכה). (3) <b>הישנות גידול מול נמק-קרינה:</b> הישנות = CBF/CBV מוגברים; נמק-קרינה = מופחתים - אך <b>חפיפה משמעותית</b> קיימת, כך שפרפוזיה "מרמזת" יותר מ"מאבחנת". ASL הראתה עדיפות על FDG PET ו-DSC (רגישות 94%) בזיהוי הישנות. (4) <span dir="ltr">Acetazolamide stress test</span>: מרחיב כלי דם תקינים (עלייה 20-50% ב-CBF); ב<span dir="ltr">cerebrovascular steal</span> (מויאמויה) כלים כבר מורחבים מקסימלית ואף מראים <b>ירידה</b> פרדוקסלית - מסמן רזרבה וסקולרית מוחית ירודה, רלוונטי לתכנון ניתוחי רה-וסקולריזציה (EDAS).</p>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/CT%20and%20MR%20perfusion%20of%20cerebral%20infarction.png?width=450" alt="Perfusion imaging of cerebral infarction">
+<p class="media-cap">הדמיית פרפוזיה באוטם מוחי - מיפוי CBF/CBV/MTT מזהה את אזור הפנומברה סביב ליבת האוטם. מקור: Wikimedia Commons.</p>
+<div class="key-box"><b>מלכודות פרפוזיה:</b> רגישות קיצונית לאי-הומוגניות שדה מגנטי (תוצרי דם, סידן, מתכת, ממשק אוויר-רקמה ליד תאי מסטואיד). שבירת מחסום דם-מוח (שכיחה בגידולים) עלולה <b>לגרום להערכת חסר</b> של rCBV. שונות בין-מכונות/מפעילים/תוכנה - רצוי סורק ייעודי אחד למעקב.</div>
+
+<h2><span class="num">7</span> fMRI/BOLD: מיפוי אלוקוונטי לפני ניתוח</h2>
+<p>עלייה בפעילות נוירונלית → עלייה מקומית ב-CBF העולה על הצריכה המטבולית → ירידה יחסית בדאוקסיהמוגלובין (פרמגנטי, "משתיק" אות T2* בדרך כלל) → <b>עלייה</b> נטו באות - זהו אות <span dir="ltr">BOLD</span>. פרדיגמות "בלוק" (3-4 מחזורי "פעיל"/"מנוחה") משוות אות בין המצבים ומייצרות מפת הפעלה סטטיסטית, בד"כ מוצגת בצבע על גבי T1 בעל רזולוציה גבוהה. <b>יישום מרכזי לנוירוכירורגים:</b> מיפוי אזורי תנועה, חישה, שפה ושמיעה לפני ניתוח - מפחית צורך ב<span dir="ltr">awake testing</span> תוך-ניתוחי כשהפעילות רחוקה ממיטת הניתוח; שילוב עם DTI - אזור הפעלה משמש "זרע" לטרקטוגרפיה כדי לעקוב אחרי המסלול (למשל קורטיקוספינלי) שיוצא ממנו. שדה מגנטי גבוה יותר (3T מול 1.5T) מגביר SNR משמעותית (36%-44% יותר אות בקורטקס מוטורי/ויזואלי) אך גם מגביר ארטיפקטים של רגישות מגנטית.</p>
+<div class="key-box"><b>מלכודות BOLD:</b> המדידה <b>עקיפה</b> (המודינמית, לא חשמלית) - איטית יותר מהאקטיבציה הנוירונלית עצמה, כך שבאפילפסיה fMRI עלול להדגים מוקד משני/מופץ ולא את המוקד האמיתי. גידול יכול לייצר "הפעלה" מדומה עקב שינויי המודינמיקה מקומיים (<span dir="ltr">neurovascular uncoupling</span>) שאינם קשורים לפרדיגמה - סיכון להטעיה בתכנון ניתוחי.</div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/FMRI%20BOLD%20activation%20in%20an%20emotional%20Stroop%20task.jpg?width=450" alt="fMRI BOLD activation map">
+<p class="media-cap">מפת הפעלה BOLD (fMRI): אזורי אות מוגבר מוצגים בצבע על גבי תמונה אנטומית. מקור: Wikimedia Commons.</p>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/3ict61rqbJM" title="What exactly is the fMRI signal? BOLD signal" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">מנגנון אות ה-BOLD: מהפעלה נוירונלית לשינוי אות MR. מקור: YouTube.</p>
+
+<h2><span class="num">8</span> הדמיית דופן כלי (VWI), MRS, MRE, PET/MRI</h2>
+<p><b>Vessel Wall Imaging:</b> T1 FSE 3D בטסלה 3 (SNR גבוה יותר), pre+post גדוליניום, עם דיכוי אות זרימה. <b>אנוריזמה:</b> האדרת דופן נראית כמעט בכל האנוריזמות הקרועות; אנוריזמות "לא יציבות" נוטות יותר להאדיר - <b>הגורם העצמאי היחיד</b> בניתוח רב-משתנים שנקשר לחוסר יציבות (מעבר לגודל, מיקום, ריבוי, אספירין). <b>וסקוליטיס:</b> עיבוי סימטרי/קונצנטרי + האדרה (לעיתים אקסצנטרית גם היא). <b>RCVS:</b> עיבוי דופן <b>ללא</b> (או עם מעט) האדרה - עקב וזוקונסטריקציה חולפת ולא דלקת. <b>דיסקציה:</b> VWI רגישה יותר (42% מול 16%) בזיהוי flap אינטימלי לעומת הדמיה לומינלית קונבנציונלית.</p>
+<p><b>MRS (ספקטרוסקופיה):</b> <span dir="ltr">NAA</span> (2.0ppm - בריאות/צפיפות עצבית, יורד בגידול/מוות נוירונלי) - <span dir="ltr">Choline</span> (3.2ppm - מחזור ממברנה, עולה בגידולים ובדלקת) - <span dir="ltr">Creatine</span> (3.0/3.94ppm - יציב, בסיס לנרמול יחסים) - <span dir="ltr">Lactate</span> (1.33ppm - גליקוליזה אנאירובית, לא נראה בתקין - אוטם/פרכוס) - <span dir="ltr">Myo-inositol</span> (3.56ppm - סמן גליאלי). "זווית האנטר" התקינה (חיבור קווי NAA-קריאטין-כולין) עולה ב-45-50°; היפוך (כולין&gt;NAA) מרמז על גידול (אך גם על איסכמיה/דלקת/ניוון). שימוש מרכזי - דירוג גליומה (כולין עולה, NAA יורד עם הדרגה - למעט גליובלסטומה עם נמק נרחב שעלולה "להסתיר" כולין גבוה), הבחנת נמק-קרינה מהישנות, לוקליזציה של טרשת טמפורלית מדיאלית (NAA↓, Glx+מיו-אינוזיטול↑).</p>
+<p><b>MRE (אלסטוגרפיה):</b> גלי גזירה חיצוניים (מתקן תחת הראש) או פנימיים (פעימה לבבית) → נמדדים ב-PC MRI → מפת קשיחות (מודול גזירה). <b>מנינגיומה קשיחה</b> שזוהתה טרום-ניתוחית עשויה להנחות אמבוליזציה מקדימה להרככה. ב-NPH נצפית ריכוך גלובלי של המוח; ב-Alzheimer - ירידה בקשיחות (למרות ההשערה ההפוכה על סיבי עמילואיד קשיחים) - תואם ממצאי DTI (אניזוטרופיה ירודה, דיפוזיה מוגברת).</p>
+<p><b>PET/MRI:</b> משלב ניגודיות רקמה רכה מעולה של MRI (כולל DWI/DCE/fMRI/MRS) עם מידע מטבולי כמותי של PET (FDG לרוב) - <b>בו-זמנית</b> (לא רצוף) מאפשר קורלציה מרחבית וזמנית מדויקת. שימושים: <b>אפילפסיה</b> - היפומטבוליזם מקומי ב-FDG PET מזהה מוקד אפילפטוגני גם כש-MRI "שלילי"; <b>אונקולוגיה</b> - PET מזהה רקמת גידול חיה מעבר לאזור ההאדרה (שבירת BBB), תורם להבחנת הישנות מנמק-קרינה; <b>שבץ</b> - יכול להגדיר פנומברה בנוסף להדמיית פרפוזיה MR.</p>
+
+<h2><span class="num">9</span> הדמיית נפח וסימולציה - קדם-ניתוחי</h2>
+<p>רצפי <span dir="ltr" class="term">volumetric</span> (בד"כ T1 עם ניגוד, ולעיתים T2 לזיהוי voids זרימה בפתולוגיה וסקולרית) נרכשים כרצף צירי אמיתי (לא שחזור מסגיטלי) - כך שאין ארטיפקטים משחזור. רצפי <span dir="ltr">simulation</span> ברזולוציה הגבוהה ביותר האפשרית מאפשרים בניית מודלים תלת-ממדיים (גידול, מוח, חדרים, גולגולת) - ניתן להעשיר עם CTA (רזולוציה וסקולרית) ו-CT (רזולוציה עצמית) ולשלב נתוני DTI (מפת סיבים צבעונית). הנתונים ניתנים להטלה ישירה על המטופל בזמן הניתוח - נושא זה מורחב בפרק ייעודי בספר.</p>
+
+<h2><span class="num">10</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>סדר הרצפים: <span dir="ltr">"D-D-M-P-F-S-E"</span> - "דוד דן מבשל פסטה, פוגש ענת"</h3>
+  <p><b>D</b>WI → <b>D</b>TI → <b>M</b>RA/PC-CSF → <b>P</b>erfusion → <b>F</b>MRI → <b>S</b>pectroscopy → <b>E</b>lastography (ואז PET/MRI כשילוב-על). זהו סדר הפרק עצמו - מהמהיר/פשוט ביותר (מים) למורכב ביותר (שילוב מודליות).</p>
+  <h3>NAA-Choline-Lactate: "נוירון-נבנה-נושם"</h3>
+  <p><b>N</b>AA = <b>נ</b>וירון (בריאות עצבית, יורד בגידול) | <b>C</b>holine = <b>נ</b>בנה (ממברנה, עולה בגידול) | <b>L</b>actate = <b>נ</b>ושם (אנאירובי, עולה באיסכמיה/פרכוס).</p>
+  <h3>CBF=CBV/MTT: "משולש הפרפוזיה"</h3>
+  <p>נפח (CBV) חלקי זמן (MTT) = זרימה (CBF) - בדיוק כמו נפח מים חלקי זמן מילוי = קצב זרימה מהברז. כל שיטת פרפוזיה בוחרת שני "פינות" למדוד ופותרת את השלישית.</p>
+  <svg class="diagram" viewBox="0 0 640 200" xmlns="http://www.w3.org/2000/svg">
+    <title>איור מטאפורי: משולש הפרפוזיה</title>
+    <desc>משולש עם שלוש פינות מתויגות CBV, MTT ו-CBF, וקשר נוסחתי מעל המשולש במרווח נפרד.</desc>
+    <text x="320" y="22" font-size="14" text-anchor="middle" font-weight="700" fill="#1f2937">CBF = CBV / MTT</text>
+    <polygon points="320,80 180,170 460,170" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+    <circle cx="320" cy="85" r="34" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="320" y="90" font-size="13" text-anchor="middle" font-weight="700" fill="#1e3a8a">CBV</text>
+    <circle cx="180" cy="170" r="34" fill="#fef3c7" stroke="#a16207" stroke-width="2"/>
+    <text x="180" y="175" font-size="13" text-anchor="middle" font-weight="700" fill="#713f12">MTT</text>
+    <circle cx="460" cy="170" r="34" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+    <text x="460" y="175" font-size="13" text-anchor="middle" font-weight="700" fill="#14532d">CBF</text>
+  </svg>
+</div>
+
+<h2><span class="num">11</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/watch?v=jG2WQpgpnMs" target="_blank">Principles of fMRI: fMRI Signal &amp; BOLD Physiology</a><span class="tag">YouTube</span><div class="desc">קורס מלא על פיזיקת ה-BOLD.</div></li>
+  <li><a href="https://radiopaedia.org/articles/mr-angiography-2" target="_blank">Radiopaedia - MR Angiography</a><span class="tag">אתר</span><div class="desc">סקירת שיטות TOF/PC/CE וארטיפקטים.</div></li>
+  <li><a href="https://radiopaedia.org/articles/mr-spectroscopy" target="_blank">Radiopaedia - MR Spectroscopy</a><span class="tag">אתר</span><div class="desc">מטבוליטים עיקריים ופרשנות קלינית.</div></li>
+</ul>
+
+<h2><span class="num">12</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 58 עם גליובלסטומה שטופל בכריתה, הקרנה וכימותרפיה, מגיע 4 חודשים לאחר סיום הטיפול עם האדרה חדשה וגדלה באזור הכריתה ב-MRI קונבנציונלי - קשה להבחין קלינית בין הישנות לנמק-קרינה. באותו שבוע: אישה בת 45 מתוכננת לכריתת גליומה בלוב הפריאטלי השמאלי הסמוך לאזור מוטורי-חושי, וצריך למפות את מיקום הקורטקס המוטורי והמסלול הקורטיקוספינלי ביחס לגידול לפני הניתוח. במקביל: ילד בן 3 עם הידרוצפלוס לאחר שאנט שהושתל, שעבר ETV - יש לוודא פטנטיות.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. איזה שילוב הדמיה הכי מתאים להבחין בין הישנות גידול לנמק-קרינה במטופל שלנו?</div>
+  <button class="opt" data-i="0">רק MRI אנטומי עם ניגוד - זה מספיק לחלוטין</button>
+  <button class="opt" data-i="1">פרפוזיה (DSC/ASL) +/- MRS - הישנות מראה CBF/CBV/כולין מוגברים; נמק-קרינה - ירודים/lactate-lipid</button>
+  <button class="opt" data-i="2">DTI בלבד</button>
+  <button class="opt" data-i="3">PC MRI של CSF</button>
+  <div class="explain">התשובה הנכונה: פרפוזיה (rCBV/CBF מוגברים בהישנות, מופחתים בנמק) ו/או MRS (כולין↑/NAA↓ בהישנות) הם הכלים המרכזיים, אם כי קיימת חפיפה משמעותית - ולכן פרפוזיה "מרמזת" ולא "מאבחנת" בוודאות. PET/MRI יכול להוסיף ביטחון. 0 - MRI אנטומי אינו מבדיל (שניהם מאדירים). 2,3 - לא רלוונטיים לשאלה זו.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. עבור האישה עם הגליומה הפריאטלית ליד קורטקס מוטורי - איזה שילוב רצפים הכי מתאים לתכנון הניתוח?</div>
+  <button class="opt" data-i="0">MRS בלבד</button>
+  <button class="opt" data-i="1">PC CSF flow בלבד</button>
+  <button class="opt" data-i="2">Vessel wall imaging בלבד</button>
+  <button class="opt" data-i="3">fMRI (BOLD) למיפוי הקורטקס המוטורי + DTI/טרקטוגרפיה למסלול הקורטיקוספינלי, לעיתים עם אזור ההפעלה כ"זרע" לטרקטוגרפיה</button>
+  <div class="explain">התשובה הנכונה: זהו השילוב הקלאסי לתכנון גידולים אלוקוונטיים - fMRI מזהה את מיקום הקורטקס הפעיל, DTI מדמה את המסלול היוצא ממנו, וזה מפחית את הצורך ב-awake testing תוך-ניתוחי. 0,1,2 - אינם נותנים מידע טופוגרפי-פונקציונלי הדרוש כאן.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">3. עבור הילד לאחר ETV - איזו בדיקה הכי מתאימה להערכת פטנטיות ה-ETV?</div>
+  <button class="opt" data-i="0">MRS</button>
+  <button class="opt" data-i="1">DTI</button>
+  <button class="opt" data-i="2">PC MRI - הדגמת זרימת CSF פעימתית דרך ה-ventriculostomy</button>
+  <button class="opt" data-i="3">Vessel wall imaging</button>
+  <div class="explain">התשובה הנכונה: PC MRI cardiac-gated מדגים כמותית זרימת CSF דרך הפתח שנוצר - הכלי הישיר להערכת פטנטיות ETV. חשוב לזכור: היעדר זרימה נראית באקוודוקט אינו בהכרח כשל, גם ב-ETV מוצלח.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. מהו העיקרון הפיזיקלי שמבדיל בין DWI ל-ADC, ומדוע חשוב לבדוק את שניהם יחד?</div>
+  <button class="opt" data-i="0">DWI רגיש גם לאות T2 הבסיסי (T2 shine-through); ADC "מנקה" זאת ומייצג דיפוזיה טהורה - הגבלה אמיתית דורשת DWI גבוה ו-ADC נמוך יחד</button>
+  <button class="opt" data-i="1">DWI ו-ADC תמיד זהים לחלוטין</button>
+  <button class="opt" data-i="2">ADC דורש ניגוד תוך-ורידי, DWI לא</button>
+  <button class="opt" data-i="3">DWI מודד זרימת דם, ADC מודד דיפוזיה - אין קשר ביניהם</button>
+  <div class="explain">התשובה הנכונה: מפת ADC מחושבת מהשוואת שתי רכישות עם b-values שונים כדי לבטל את השפעת ה-T2 הבסיסי. גרורת שד בפרק (Fig. 12.1) מדגימה בדיוק את המלכודת - DWI בהיר אך ADC לא-נמוך = לא הגבלה אמיתית.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. מהו ה-Acetazolamide stress test, ולמה תגובה "הפוכה" (ירידת CBF) חשובה קלינית?</div>
+  <button class="opt" data-i="0">בדיקה שמעריכה תפקוד כלייתי לפני ניגוד</button>
+  <button class="opt" data-i="1">מעכב אנהידראז פחמתי שמרחיב כלי דם תקינים (עליית CBF 20-50%); ירידה פרדוקסלית ב-CBF ("cerebrovascular steal") מרמזת על רזרבה וסקולרית מוחית ירודה, כמו במויאמויה, ורלוונטית לתכנון רה-וסקולריזציה</button>
+  <button class="opt" data-i="2">בדיקה לזיהוי אלרגיה לגדוליניום</button>
+  <button class="opt" data-i="3">שיטה למדידת נפח CSF בלבד</button>
+  <div class="explain">התשובה הנכונה: אצטזולאמיד מדמה "מבחן מאמץ" וסקולרי מוחי; כלים שכבר מורחבים מקסימלית (בעקבות סטנוזיס כרוני) אינם יכולים להתרחב עוד ומראים ירידה - זהו סמן לסיכון לאירועים איסכמיים עתידיים ומנחה בחירת מטופלים ל-EDAS.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">6. איזה ממצא ב-Vessel Wall Imaging מבדיל בין וסקוליטיס ל-RCVS (Reversible Cerebral Vasoconstriction Syndrome)?</div>
+  <button class="opt" data-i="0">שניהם מראים בדיוק אותו דפוס - אי אפשר להבדיל</button>
+  <button class="opt" data-i="1">RCVS תמיד מראה אנוריזמות מרובות</button>
+  <button class="opt" data-i="2">וסקוליטיס - עיבוי דופן עם האדרה (דלקת פעילה); RCVS - עיבוי דופן עם האדרה מינימלית/ללא (וזוקונסטריקציה חולפת, לא דלקת)</button>
+  <button class="opt" data-i="3">רק DSA יכול להבדיל, לא VWI</button>
+  <div class="explain">התשובה הנכונה: האדרה בדופן הכלי משקפת פיזיולוגית דלקת פעילה (וסקוליטיס), בעוד ב-RCVS ההיצרות היא פונקציונלית-חולפת ללא תהליך דלקתי משמעותי - ולכן ה-VWI תורם ישירות לאבחנה המבדלת, לעיתים מכוון גם לבחירת אתר ביופסיה בוסקוליטיס (דיוק עד 89%).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">13</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>DWI:</b> הגבלת דיפוזיה = אות גבוה + <b>ADC נמוך</b> (שילוב הכרחי). שבץ חריף תוך 30-60 דק'; גם גידולים תאיים, מורסה, אפידרמואיד.</li>
+    <li><b>DTI/טרקטוגרפיה:</b> אניזוטרופיה שברית + מפת צבע (אדום=ימין-שמאל, ירוק=קדמי-אחורי, כחול=עליון-תחתון) → תכנון ניתוחי גידול ליד מסלולים.</li>
+    <li><b>MRA:</b> TOF/PC (ללא ניגוד) מול CE (עם ניגוד); DSA נותר תקן הזהב. 3D TOF - רגישות ~95% לאנוריזמה &gt;3מ"מ.</li>
+    <li><b>PC CSF:</b> כמותי לזרימת CSF - NPH, Chiari, סטנוזיס אקוודוקטלי, מעקב ETV.</li>
+    <li><b>פרפוזיה:</b> CBF=CBV/MTT. ASL ללא ניגוד (CBF ישיר); DSC עם ניגוד (rCBV/rCBF); DCE=Ktrans (חדירות). Mismatch דיפוזיה-פרפוזיה = פנומברה.</li>
+    <li><b>fMRI/BOLD:</b> ↑CBF מעל צריכת O2 → ↓דאוקסיהמוגלובין → ↑אות. מיפוי אלוקוונטי טרום-ניתוחי, משולב עם DTI.</li>
+    <li><b>VWI:</b> האדרת דופן = דלקת/חוסר-יציבות (אנוריזמה, וסקוליטיס); ללא האדרה = RCVS.</li>
+    <li><b>MRS:</b> NAA↓ (נוירון), כולין↑ (ממברנה/גידול), לקטט (אנאירובי). היפוך זווית האנטר → חשד לגידול.</li>
+    <li><b>MRE:</b> קשיחות רקמה - מנינגיומה קשיחה, NPH מרוכך, AD מרוכך.</li>
+    <li><b>PET/MRI:</b> מטבוליזם+אנטומיה בו-זמנית - אפילפסיה MRI-שלילי, הישנות גידול, שבץ.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

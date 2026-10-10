@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 16: נוירוטולוגיה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 16: נוירוטולוגיה <span class="term" dir="ltr">Neurotology</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 1: מבוא לנוירוכירורגיה - P. Ashley Wackym</div>
+
+<p>שלושה עצבים קרניאליים חוצים את עצם הרקה בתוך תעלת שמיעה פנימית אחת (<span dir="ltr" class="term">IAC</span>): עצב השמיעה (קוכלארי), עצב השיווי משקל (וסטיבולרי) ועצב הפנים. כל ניתוח באזור הזווית הצרבלופונטינית (<span dir="ltr" class="term">CPA</span>) - בראש ובראשונה כריתת שוואנומה וסטיבולרית (אקוסטיק נוירומה) - הוא בעצם ניתוח שמתנהל <b>בתוך</b> המרחב הצפוף הזה, ולכן הבנת האנטומיה, הפיזיולוגיה ומבחני התפקוד של שלושת העצבים היא כלי עבודה יומיומי לנוירוכירורג, לא רק ל-ENT. פרק זה סוקר את מערכת השמיעה והשיווי משקל, את בדיקות העזר המבדילות בין פגיעה קוכלארית לרטרוקוכלארית, ואת האבחנה המבדלת של ורטיגו - היקפי מול מרכזי.</p>
+
+<div id="earAnatomyFig">
+<img class="media-img" id="earAnatomyImg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Blausen_0328_EarAnatomy.png?width=500" alt="Ear anatomy diagram" onerror="document.getElementById('earAnatomyFig').style.display='none'">
+<p class="media-cap">אנטומיה של האוזן החיצונית, התיכונה והפנימית (Blausen Medical, Wikimedia Commons). שימו לב שהלבירינת האוזן הפנימית - הקוכלאה והוסטיבולום עם תעלות השיווי משקל - שוכנת עמוק בעצם הפטרוזה, במרחק קצר בלבד מה-IAC.</p>
+</div>
+
+<h2><span class="num">1</span> מנגנון: איך הלבירינת מתרגם תאוצה לסיגנל, ולמה VOR הוא הבדיקה האובייקטיבית המרכזית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>הנחת המוצא:</b> לכל תא שערה וסטיבולרי יש קצב פריקה בסיסי קבוע (כ-80 פעימות/שנייה) <b>משני הצדדים בו-זמנית</b>. המוח "קורא" הפרש בין שני הצדדים - לא את הערך המוחלט - ומפרש אותו כתנועה. כל פתולוגיה שמשנה את ההפרש הזה (ולא רק את הערך המוחלט) תיצור ורטיגו.<br>
+    → <b>תעלות חצי-עגולות (אמפולרי):</b> כל תעלה "מסתכלת" על מישור תאוצה זוויתי אחד. סיבוב הראש ימינה גורם לזרימת אנדולימפה שמוחצת (ampullipetal) את הקופולה בתעלה האופקית הימנית - עלייה בקצב הפריקה - ומושכת (ampullifugal) את הקופולה השמאלית - ירידה בקצב הפריקה. ה<b>הפרש</b> בין הצדדים עובר ב-<span dir="ltr" class="term">VOR</span> (vestibulo-ocular reflex) לגרעיני העצב השלישי והשישי ומזיז את העיניים <b>לאט לכיוון הנגדי</b> לסיבוב (שלב "וסטיבולרי" אטי), ואז קפיצה מהירה מתקנת בחזרה (שלב "מרכזי" מהיר) - זה הניסטגמוס, ושמו נקבע לפי כיוון השלב המהיר.<br>
+    → <b>אובלציה חד-צדדית (כמו שוואנומה שהורסת וסטיבולרי אחד):</b> הצד הבריא "מנצח" כרונית - פריקה גבוהה יותר תמיד מהצד הפגוע, בדיוק כמו בסיבוב אמיתי - ולכן המוח מפרש זאת כסחרור מתמשך = ורטיגו + ניסטגמוס ספונטני עם שלב מהיר <b>לכיוון הצד הבריא</b> (ניסטגמוס "הרסני"). עם הזמן המוח מקזז (compensation) - מנגנון שעובד טוב בהרבה לאובדן <b>מלא</b> ופתאומי מאשר לאובדן <b>חלקי ומשתנה</b> (זה הבסיס לכך שבמניר, כשטיפול תרופתי נכשל, כריתה מלאה של העצב - נוירקטומי - נותנת החלמה טובה יותר מהתערבות חלקית).<br>
+    → <b>אבנים האוטוליתיים (סקולוס + אוטריקל):</b> הסקולוס במישור <b>אנכי</b>, האוטריקל במישור <b>אופקי</b>. זה לא רק אנטומיה - זו הבסיס ל-<span dir="ltr" class="term">VEMP</span> (vestibular evoked myogenic potential): <b>cVEMP</b> (צרווקלי, נמדד בשריר הסטרנוקלידומסטואיד) בודק את הסקולוס ואת העצב הוסטיבולרי <b>התחתון</b>; <b>oVEMP</b> (אוקולרי, נמדד בשריר מתחת לעין) בודק את האוטריקל ואת העצב הוסטיבולרי <b>העליון</b>. ההבחנה הזו קריטית בתכנון ניתוחי: שוואנומה שמקורה בעצב הוסטיבולרי העליון לעומת התחתון מתבטאת בפרופיל VEMP שונה - ויכולה לרמז על יחס הגידול לעצב הפנים (שיושב קרוב לעצב הוסטיבולרי העליון ב-IAC, ראו סעיף 2).</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 780 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>רפלקס הוסטיבולו-אוקולרי (VOR) - מכניזם Push-Pull והניסטגמוס</title>
+  <desc>תרשים זרימה: תאוצה זוויתית, זרימת אנדולימפה, קצב פריקה בשני הצדדים, גרעיני וסטיבולריים, גרעיני III/VI, תנועת עיניים וניסטגמוס</desc>
+  <text x="390" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">סיבוב ראש ימינה: מה קורה בכל תחנה במסלול</text>
+
+  <rect x="10" y="50" width="150" height="60" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="85" y="74" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">תעלה אופקית ימין</text>
+  <text x="85" y="92" text-anchor="middle" font-size="10.5" fill="#1e3a8a">דחיסת קופולה (+ +)</text>
+
+  <rect x="10" y="130" width="150" height="60" rx="8" fill="#fee2e2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="85" y="154" text-anchor="middle" font-size="12" font-weight="700" fill="#7f1d1d">תעלה אופקית שמאל</text>
+  <text x="85" y="172" text-anchor="middle" font-size="10.5" fill="#7f1d1d">משיכת קופולה (− −)</text>
+
+  <defs><marker id="ah1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker></defs>
+  <line x1="162" y1="80" x2="238" y2="105" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+  <line x1="162" y1="160" x2="238" y2="130" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+
+  <rect x="245" y="90" width="150" height="60" rx="8" fill="#f3e8ff" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="320" y="112" text-anchor="middle" font-size="12" font-weight="700" fill="#4c1d95">גרעינים וסטיבולריים</text>
+  <text x="320" y="130" text-anchor="middle" font-size="10" fill="#4c1d95">ימין&gt;שמאל בפריקה</text>
+
+  <line x1="397" y1="120" x2="473" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+  <line x1="397" y1="120" x2="473" y2="150" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+
+  <rect x="480" y="55" width="140" height="55" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="550" y="78" text-anchor="middle" font-size="11.5" font-weight="700" fill="#78350f">גרעין VI (שמאל)</text>
+  <text x="550" y="95" text-anchor="middle" font-size="10" fill="#78350f">ישר חיצוני ←</text>
+
+  <rect x="480" y="130" width="140" height="55" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="550" y="153" text-anchor="middle" font-size="11.5" font-weight="700" fill="#78350f">גרעין III (ימין)</text>
+  <text x="550" y="170" text-anchor="middle" font-size="10" fill="#78350f">ישר מדיאלי ←</text>
+
+  <line x1="622" y1="82" x2="698" y2="100" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+  <line x1="622" y1="157" x2="698" y2="130" stroke="#64748b" stroke-width="2" marker-end="url(#ah1)"/>
+
+  <rect x="650" y="85" width="120" height="70" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="710" y="107" text-anchor="middle" font-size="11.5" font-weight="700" fill="#064e3b">שלב איטי</text>
+  <text x="710" y="122" text-anchor="middle" font-size="10" fill="#064e3b">עיניים ← שמאלה</text>
+  <text x="710" y="137" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b91c1c">שלב מהיר</text>
+  <text x="710" y="150" text-anchor="middle" font-size="10" fill="#b91c1c">תיקון ← ימינה</text>
+
+  <line x1="0" y1="205" x2="780" y2="205" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="40" y="220" width="700" height="95" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="390" y="242" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1f2937">ניסטגמוס נקרא לפי השלב המהיר (המרכזי), לא האיטי (הוסטיבולרי)</text>
+  <text x="390" y="264" text-anchor="middle" font-size="11" fill="#374151">אובלציה וסטיבולרית חד-צדדית (למשל שוואנומה) = "סיבוב מדומה" קבוע לכיוון הצד הבריא</text>
+  <text x="390" y="284" text-anchor="middle" font-size="11" fill="#374151">← ניסטגמוס ספונטני הרסני עם שלב מהיר לכיוון האוזן הבריאה, מוחמר בהבטה לכיוון השלב המהיר</text>
+  <text x="390" y="304" text-anchor="middle" font-size="10.5" fill="#6b7280">cVEMP=סקולוס=וסטיבולרי תחתון &nbsp;&middot;&nbsp; oVEMP=אוטריקל=וסטיבולרי עליון</text>
+</svg>
+
+<h2><span class="num">2</span> אנטומיה: תוכן תעלת השמיעה הפנימית - "7-Up, Coke Down"</h2>
+<p>ה-IAC מכיל ארבעה "תרגילים" מסודרים בשני עמודים (קדמי/אחורי) ושתי קומות (עליון/תחתון), עם מחיצת עצם אנכית דקה שנקראת <span dir="ltr" class="term">Bill's bar</span> המפרידה בין החלק הקדמי-עליון לאחורי-עליון: <b>קדמי-עליון</b> = עצב הפנים (<span dir="ltr">VII</span>); <b>קדמי-תחתון</b> = עצב הקוכלארי; <b>אחורי-עליון</b> = עצב הוסטיבולרי העליון; <b>אחורי-תחתון</b> = עצב הוסטיבולרי התחתון. לכן בגישה טרנסלבירינתית או רטרוסיגמואידית לכריתת שוואנומה וסטיבולרית (שמקורה כמעט תמיד בעצב הוסטיבולרי - עליון או תחתון), עצב הפנים נמצא <b>קדמית</b> לגידול, והבנת המיקום המדויק הזה היא מה שמאפשר לשמר אותו.</p>
+
+<svg class="diagram" viewBox="0 0 560 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>חתך רוחבי של תעלת השמיעה הפנימית (IAC) - פונדוס, מבט מהצד הניתוחי</title>
+  <desc>ריבוע מחולק לארבע תאים: פנים קדמי-עליון, קוכלארי קדמי-תחתון, וסטיבולרי עליון אחורי-עליון, וסטיבולרי תחתון אחורי-תחתון, עם Bill's bar בין הקדמי-עליון לאחורי-עליון</desc>
+  <text x="280" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">IAC Fundus - מבט על פני החתך (אוזן ימין, גישה רטרוסיגמואידית)</text>
+  <text x="280" y="46" text-anchor="middle" font-size="11.5" fill="#6b7280">קדמי מימין לתרשים &middot; עליון בחלק העליון</text>
+
+  <rect x="140" y="70" width="280" height="220" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+  <line x1="140" y1="180" x2="420" y2="180" stroke="#94a3b8" stroke-width="1.5"/>
+
+  <rect x="280" y="70" width="140" height="110" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="350" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#7f1d1d">עצב הפנים</text>
+  <text x="350" y="136" text-anchor="middle" font-size="10.5" fill="#7f1d1d" dir="ltr">Facial (VII)</text>
+  <text x="350" y="153" text-anchor="middle" font-size="10" fill="#7f1d1d">קדמי-עליון</text>
+
+  <rect x="140" y="70" width="140" height="110" fill="#f3e8ff" stroke="#6d28d9" stroke-width="2"/>
+  <text x="210" y="118" text-anchor="middle" font-size="12.5" font-weight="700" fill="#4c1d95">וסטיבולרי עליון</text>
+  <text x="210" y="136" text-anchor="middle" font-size="10" fill="#4c1d95">oVEMP / אוטריקל</text>
+  <text x="210" y="153" text-anchor="middle" font-size="10" fill="#4c1d95">אחורי-עליון</text>
+
+  <rect x="280" y="180" width="140" height="110" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+  <text x="350" y="228" text-anchor="middle" font-size="13" font-weight="700" fill="#1e3a8a">עצב קוכלארי</text>
+  <text x="350" y="246" text-anchor="middle" font-size="10.5" fill="#1e3a8a" dir="ltr">Cochlear</text>
+  <text x="350" y="263" text-anchor="middle" font-size="10" fill="#1e3a8a">קדמי-תחתון</text>
+
+  <rect x="140" y="180" width="140" height="110" fill="#dcfce7" stroke="#047857" stroke-width="2"/>
+  <text x="210" y="228" text-anchor="middle" font-size="12.5" font-weight="700" fill="#064e3b">וסטיבולרי תחתון</text>
+  <text x="210" y="246" text-anchor="middle" font-size="10" fill="#064e3b">cVEMP / סקולוס</text>
+  <text x="210" y="263" text-anchor="middle" font-size="10" fill="#064e3b">אחורי-תחתון</text>
+
+  <line x1="280" y1="70" x2="280" y2="180" stroke="#374151" stroke-width="4"/>
+  <text x="300" y="78" font-size="10" fill="#374151" font-weight="700">Bill's bar</text>
+
+  <text x="280" y="312" text-anchor="middle" font-size="12.5" fill="#374151" font-weight="700">"7-Up, Coke Down": עצב 7 (פנים) למעלה-קדימה; שאר העצבים (קוכלארי) למטה</text>
+</svg>
+
+<p>במבט רוחבי יותר, מיקום ה-IAC ביחס למבנים שכנים (עורק/ורידים לבירינתיים הענפים מה-<span dir="ltr" class="term">AICA</span>, הפלוקולוס, הקורטקס הצרבלרי) הוא מה שמגדיר את שלוש הגישות הניתוחיות לזווית הצרבלופונטינית: <b>רטרוסיגמואידית</b> (משמרת שמיעה, חשיפה מוגבלת של ה-IAC הצדי), <b>בסיס גולגולת אמצעי (middle fossa)</b> (משמרת שמיעה, מתאימה לגידולים קטנים תוך-תעלתיים) ו<b>טרנסלבירינתית</b> (מקריבה שמיעה אבל נותנת חשיפה מלאה ובטוחה ביותר לעצב הפנים לאורך כל ה-IAC) - הבחירה נגזרת מגודל הגידול, שמיעה שיורית, וניסיון המרכז.</p>
+
+<h2><span class="num">3</span> ביטוי קליני: האבחנה המבדלת של ורטיגו - היקפי מול מרכזי</h2>
+<p>השאלה הראשונה בכל מטופל עם ורטיגו: <b>היקפי (וסטיבולרי)</b> או <b>מרכזי (גזע מוח/צרבלום)</b>? בנגע היקפי, הורטיגו והניסטגמוס <b>פרופורציונליים</b> זה לזה ולרוב נלווים לתסמינים שמיעתיים (קרבה אנטומית של הקוכלאה והוסטיבולום); בנגע מרכזי, יכול להיות ניסטגמוס גדול <b>בלי</b> תחושת ורטיגו משמעותית, והתמונה נשלטת ע"י ממצאים גזעיים/צרבלריים נוספים (דיפלופיה, דיסארתריה, אטקסיה, חוסר תחושה צולב). ורטיגו היקפי ספונטני נדיר שנמשך מעל 3 שבועות; ניסטגמוס <b>אנכי או משנה כיוון</b> במבחן תנוחה הוא כמעט תמיד מרכזי.</p>
+
+<div class="table-scroll"><table>
+<tr><th>מצב</th><th>משך האפיזודה</th><th>שמיעה</th><th>ממצא מבדיל</th></tr>
+<tr><td><b>BPPV</b> (ורטיגו תנוחתי פרוקסיזמלי שפיר)</td><td>שניות (&lt;30)</td><td>תקינה</td><td>Dix-Hallpike: לטנטיות 5-10 שניות, ניסטגמוס טורסיונלי+מתעייף; לרוב תעלה אחורית</td></tr>
+<tr><td><b>מחלת מניר</b> (הידרופס אנדולימפטי)</td><td>20 דקות - מספר שעות</td><td>פלוקטואנטית, ↓ בתדרים נמוכים</td><td>שלישיית טריאדה: ורטיגו+טיניטוס+שמיעה יורדת; עד 50% Tumarkin crisis</td></tr>
+<tr><td><b>נויריטיס וסטיבולרי</b></td><td>ימים (שיא 1-3 שבועות)</td><td>תקינה (לא נפגעת)</td><td>ניסטגמוס הרסני ספונטני מתמשך, קלוריק ↓/נעדר בצד הפגוע, בלי אובדן שמיעה</td></tr>
+<tr><td><b>Third window / SSCD</b></td><td>משתנה עם טריגר (קול/לחץ)</td><td>תקינה או קונדוקטיבית קלה</td><td>Tullio phenomenon, אוטופוניה, oVEMP/cVEMP עם סף מופחת ואמפליטודה מוגברת</td></tr>
+<tr><td><b>מיגרנה וסטיבולרית</b></td><td>דקות-ימים</td><td>תקינה</td><td>היסטוריה של מיגרנה; רק 10-30% עם כאב ראש בזמן האפיזודה עצמה</td></tr>
+<tr><td><b>וסטיבולר שוואנומה</b></td><td>לרוב כרוני/לא-וורטיגינוזי</td><td>↓ א-סימטרית, discrimination ירוד מעבר לדרגת האובדן</td><td>&lt;20% מציגים ורטיגו אמיתי; רוב המטופלים חווים חוסר שיווי משקל הדרגתי</td></tr>
+</table></div>
+
+<p><b>ריפוזיציה קנליתית (תמרון Epley)</b> היא הטיפול המיידי היעיל ביותר ל-BPPV: סדרת תנועות ראש שמזיזות את הגבישים (אוטוקוניה) שהתנתקו מהאוטריקל וחסמו תעלה חצי-עגולה חזרה לוסטיבולום, שם הם כבר לא מגיבים לתנועת ראש. שיעורי הצלחה מעל 80% בתמרון בודד.</p>
+
+<h2><span class="num">4</span> אבחנה: בדיקות עזר אובייקטיביות - שמיעה ושיווי משקל</h2>
+<p><b>ABR (Auditory Brainstem Response):</b> גל I = עצב 8 עצמו; גל III = קומפלקס אוליברי עליון בגזע; גל V = קוליקולוס תחתון. בנגע קוכלארי - סף מוגבה אבל ה-latencies וה-replicability בעצימות גבוהה תקינים. בנגע רטרוקוכלארי (שוואנומה) - גל I עלול להישאר תקין אבל גלים מאוחרים (III, V) מתעכבים/נעדרים - זה הסימן המוקדם והחשוב ביותר, ולעיתים מופיע <b>לפני</b> שהאודיוגרם הטהור-טונלי חורג משמעותית מהנורמה.</p>
+<p><b>רפלקס אקוסטי (Acoustic reflex) ו-decay:</b> נעדר/מוגבה בנגע רטרוקוכלארי גם כשאובדן השמיעה הטהור-טוני עדיין קל-בינוני (&lt;60 dB) - זה אחד הסימנים האודיולוגיים המוקדמים ביותר לשוואנומה וסטיבולרית, לפני שינוי ב-ABR.</p>
+<p><b>OAE (Otoacoustic Emissions):</b> תוצר של תאי השערה החיצוניים בקוכלאה. בנגע רטרוקוכלארי טהור, ה-OAE נשאר <b>תקין</b> חרף אובדן שמיעה סנסורינאורלי משמעותי - זה מה שמאפשר להבדיל אובדן קוכלארי (OAE נעדר) מרטרוקוכלארי (OAE תקין, הולכה העצבית פגועה).</p>
+<p><b>בדיקת קלוריק דו-תרמית (Bithermal caloric):</b> בודקת רק את התעלה האופקית - מידה אובייקטיבית של תפקוד הלבירינת בכל אוזן בנפרד. מים חמים (44°C) = זרימה אמפוליפטלית = גירוי מוגבר; מים קרים (30°C) = זרימה אמפוליפוגלית = גירוי מופחת. מכאן המונח <span dir="ltr" class="term">COWS</span> (Cold-Opposite, Warm-Same) - הניסטגמוס (לפי השלב המהיר) פונה הנגדי לאוזן המושקית במים קרים, ולאותו צד באוזן המושקית במים חמים.</p>
+<p><b>VNG/ENG, VEMP ובדיקה רוטטורית</b> משלימות: VNG מודד תנועות עיניים ישירות (gaze, positional, saccade, pursuit); בדיקה רוטטורית רגישה יותר לפגיעה <b>דו-צדדית</b> (הקלוריק הבלתי-מכוון פחות רגיש לכך); VEMP (ראו סעיף 1) בודק ספציפית תפקוד אוטוליתי ועצב וסטיבולרי עליון/תחתון בנפרד.</p>
+
+<h2><span class="num">5</span> טיפול: תרופתי וכירורגי</h2>
+<div class="table-scroll"><table>
+<tr><th>מצב</th><th>קו ראשון</th><th>כשזה נכשל</th></tr>
+<tr><td>BPPV</td><td>תמרון ריפוזיציה (Epley) במרפאה</td><td>תרגילי Brandt-Daroff לבית; לעיתים נדירות כירורגיה (חסימת תעלה) ל-BPPV עמיד שנים</td></tr>
+<tr><td>מחלת מניר</td><td>דיאטה דלת נתרן (1500-2000 מ"ג/יום) ± משתן</td><td>&lt;1% נכשלים → נוירקטומי וסטיבולרי או לבירינתקטומי (אם כבר אין שמיעה שימושית)</td></tr>
+<tr><td>נויריטיס וסטיבולרי</td><td>סטרואידים + תרגילי שיקום וסטיבולרי (מיטיבים קומפנסציה)</td><td>תת-אחוז עם חוסר קומפנסציה כרוני → שיקום וסטיבולרי אינטנסיבי</td></tr>
+<tr><td>SSCD / Third window</td><td>הימנעות מטריגרים + הדמיית CT רקה בהפרדה גבוהה לאישור מיקום הדהיסנס</td><td>גישת בסיס גולגולת אמצעי - "פקק" (plugging) של התעלה העליונה הדהיסנטית</td></tr>
+<tr><td>מיגרנה וסטיבולרית</td><td>טופירמאט/ורפאמיל/בטא-בלוקר/תלת-טבעתי במניעה</td><td>אין אינדיקציה כירורגית - זו מחלה מרכזית</td></tr>
+</table></div>
+
+<div class="key-box">הרציונל לנוירקטומי וסטיבולרי: המוח מקזז (compensation) טוב בהרבה לאובדן וסטיבולרי <b>מלא</b> מאשר לאובדן <b>חלקי ומשתנה</b>. לכן, כשטיפול תרופתי במחלת מניר נכשל, הפתרון הוא אבלציה <b>מלאה</b> ומכוונת של העצב הוסטיבולרי - לא ניסיון "לאזן" חלקית.</div>
+
+<h3>שיקום שמיעה: שתל קוכלארי ושתל גזע מוח שמיעתי</h3>
+<p><b>שתל קוכלארי (Cochlear implant):</b> עוקף תאי שערה פגומים/חסרים וממריד ישירות את העצב הקוכלארי (סיבי גרעין הספיראלי) בעזרת מערך אלקטרודות המוחדר לסקאלה טימפני. קריטריוני התאמה למבוגרים: אובדן שמיעה סנסורינאורלי חמור-עמוק דו-צדדי, תועלת מוגבלת ממכשירי שמיעה, ללא קונטרא-אינדיקציה רפואית, ציפיות ריאליסטיות ותמיכה משפחתית; לילדים - מגיל 9 חודשים ומעלה בתנאים דומים, עם תוכנית חינוכית שמדגישה פיתוח מיומנויות שמיעתיות. שתל קוכלארי להחרשה חד-צדדית (single-sided deafness) הוא התפתחות קלינית חדשה יחסית ומאושרת FDA.</p>
+<p><b>שתל גזע מוח שמיעתי (ABI):</b> כש<b>אין</b> עצב קוכלארי שלם - בעיקר במטופלי נוירופיברומטוזיס מסוג 2 (NF2) עם שוואנומות דו-צדדיות שמחייבות כריתה (ולכן אין מועמדות לשתל קוכלארי) - מערך אלקטרודות מושם ישירות על גרעיני הקוכלאה בגזע המוח, לרוב דרך גישה רטרוסיגמואידית בשילוב עם כריתת הגידול. התוצאות השמיעתיות נחותות לשתל קוכלארי (כי מדובר בעקיפת כל התחנות הפריפריות), אבל מספקות תועלת תקשורתית משמעותית למטופלים שהאלטרנטיבה שלהם היא חרשות מוחלטת.</p>
+
+<h2><span class="num">6</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>"7-Up, Coke Down" ו-"COWS"</h3>
+  <p><b>7-Up, Coke Down:</b> בחתך של ה-IAC, עצב <b>7</b> (הפנים) נמצא "<b>Up</b>" - קדמי-עליון. "Coke" (קוכלארי) נמצא "<b>Down</b>" - קדמי-תחתון. שני העצבים הוסטיבולריים תופסים את החלק האחורי (עליון=סופריור, תחתון=אינפריור). הדימוי: דמייני שאת מזמינה "7-Up" (המשקה) שיושב על המדף הגבוה בקדמת המקרר, ו"קולה" יושבת למטה - קדימה ולמעלה = 7 (פנים); קדימה ולמטה = קולה (קוכלארי).</p>
+  <p class="key-box" style="margin-top:8px"><b>COWS</b> (Cold-Opposite, Warm-Same): בבדיקת קלוריק, מים <b>קרים</b> גורמים לניסטגמוס עם שלב מהיר <b>לכיוון הנגדי</b> לאוזן המושקית; מים <b>חמים</b> - שלב מהיר <b>לאותו צד</b>. זכרי: "קר=מנוגד, חם=תואם".</p>
+</div>
+
+<h2><span class="num">7</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/results?search_query=Dix-Hallpike+maneuver+Epley+canalith+repositioning" target="_blank">Dix-Hallpike Maneuver and Epley Canalith Repositioning</a><span class="tag">YouTube</span><div class="desc">הדגמה של תמרון הבדיקה והטיפול ב-BPPV.</div></li>
+  <li><a href="https://www.youtube.com/results?search_query=cVEMP+oVEMP+testing+vestibular" target="_blank">cVEMP and oVEMP Testing Explained</a><span class="tag">YouTube</span><div class="desc">הסבר על עקרון הבדיקה והבדלי הנתיב בין סקולוס לאוטריקל.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Vestibular_schwannoma" target="_blank">Wikipedia - Vestibular Schwannoma</a><span class="tag">אתר</span><div class="desc">סקירה כללית על שוואנומה וסטיבולרית, הדמיה וגישות ניתוחיות.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Benign_paroxysmal_positional_vertigo" target="_blank">Wikipedia - Benign Paroxysmal Positional Vertigo</a><span class="tag">אתר</span><div class="desc">פרוטוקול אבחנה וטיפול מפורט ב-BPPV.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Superior_canal_dehiscence" target="_blank">Wikipedia - Superior Canal Dehiscence</a><span class="tag">אתר</span><div class="desc">סקירה על third window syndrome וגישות התיקון הכירורגי.</div></li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 52 מגיע עם ירידת שמיעה הדרגתית באוזן ימין במשך שנה, וטינטון מתמשך. הוא מכחיש ורטיגו אמיתי, אבל מתאר "חוסר יציבות" עדין כשהוא הולך בחושך. בבדיקה: אודיוגרם מראה אובדן שמיעה סנסורינאורלי קל (35 dB) בתדרים הגבוהים באוזן ימין, אך ציון הבנת דיבור (speech discrimination) ירוד משמעותית - 58% בלבד (לעומת הצפוי &gt;90% לדרגת אובדן כזו). הרפלקס האקוסטי נעדר באוזן ימין. ABR מראה גל I תקין אך עיכוב משמעותי בגלים III ו-V מימין. MRI עם גדוליניום מדגים גידול תוך-תעלתי קטן (8 מ"מ) ב-IAC הימני.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה האבחנה הסבירה ביותר, ומה הממצא שהפנה לכיוון הזה לפני ההדמיה?</div>
+  <button class="opt" data-i="0">מחלת מניר, כי יש טינטון וירידת שמיעה</button>
+  <button class="opt" data-i="1">נויריטיס וסטיבולרי, כי יש חוסר יציבות</button>
+  <button class="opt" data-i="2">שוואנומה וסטיבולרית - ציון הבנת דיבור ירוד בצורה לא-פרופורציונלית לאובדן הטהור-טוני, רפלקס אקוסטי נעדר, ועיכוב גלי ABR מאוחרים (III,V) עם גל I תקין - קלאסי לנגע רטרוקוכלארי</button>
+  <button class="opt" data-i="3">BPPV, כי יש חוסר יציבות בתנועה</button>
+  <button class="opt" data-i="4">אוטוסקלרוזיס</button>
+  <div class="explain">התשובה הנכונה (3): השילוב של אובדן שמיעה קל יחסית עם הבנת דיבור ירודה משמעותית הוא "דגל אדום" קלאסי לפתולוגיה רטרוקוכלארית - לא קוכלארית. הרפלקס האקוסטי הנעדר והעיכוב בגלי ABR המאוחרים (לא גל I, שמייצג את העצב הפריפרי עצמו) ממקמים את הפגיעה בעצב השמיעה/הגזע התחתון - בדיוק מה שמצופה משוואנומה וסטיבולרית תוך-תעלתית, שמפעילה לחץ על עצב השמיעה הסמוך.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. איזו בדיקה הייתה עוזרת להבחין בין פגיעה קוכלארית לרטרוקוכלארית עוד לפני ה-MRI, בהתבסס על תפקוד תאי השערה החיצוניים?</div>
+  <button class="opt" data-i="0">בדיקת קלוריק דו-תרמית</button>
+  <button class="opt" data-i="1">OAE (Otoacoustic Emissions) - נשאר תקין בפגיעה רטרוקוכלארית טהורה, כי תאי השערה החיצוניים בקוכלאה עצמם לא נפגעו</button>
+  <button class="opt" data-i="2">oVEMP</button>
+  <button class="opt" data-i="3">תמרון Dix-Hallpike</button>
+  <div class="explain">התשובה הנכונה (2): OAE משקף תפקוד תאי שערה חיצוניים בקוכלאה. בנגע רטרוקוכלארי (עצב/גזע) ללא נזק קוכלארי ישיר, ה-OAE יכול להיות תקין לחלוטין חרף אובדן שמיעה סנסורינאורלי משמעותי - בניגוד לנגע קוכלארי טהור, שם ה-OAE נעדר. קלוריק ו-VEMP בודקים תפקוד וסטיבולרי, לא שמיעתי; Dix-Hallpike הוא בדיקת BPPV.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. בתכנון הניתוחי לכריתת הגידול, מה המיקום הצפוי של עצב הפנים ב-IAC ביחס לגידול (שמקורו בעצב וסטיבולרי)?</div>
+  <button class="opt" data-i="0">קדמי-עליון ("7-Up") - הגידול הוסטיבולרי ברוב המקרים אחורי לעצב הפנים</button>
+  <button class="opt" data-i="1">אחורי-תחתון</button>
+  <button class="opt" data-i="2">בדיוק מעל העצב הקוכלארי, ללא קשר לגידול</button>
+  <button class="opt" data-i="3">תמיד נדחק לעבר הצד הצדי של ה-IAC, ללא עקרון קבוע</button>
+  <div class="explain">התשובה הנכונה (1): לפי "7-Up, Coke Down", עצב הפנים תופס את הרביע הקדמי-עליון של ה-IAC, קדמית ל-Bill's bar. שוואנומה וסטיבולרית (ממקור וסטיבולרי עליון או תחתון, שניהם אחוריים) דוחקת את עצב הפנים קדימה ולמעלה - וזיהוי המיקום הזה מראש הוא חלק מהתכנון למזעור הסיכון לפגיעה בעצב הפנים.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">4. איזו בדיקה תעזור לקבוע אם הגידול מקורו בעצב הוסטיבולרי העליון או התחתון - מידע שיכול לרמז על הקרבה לעצב הפנים?</div>
+  <button class="opt" data-i="0">בדיקת קלוריק דו-תרמית בלבד</button>
+  <button class="opt" data-i="1">אודיוגרם טהור-טוני</button>
+  <button class="opt" data-i="2">בדיקת Weber ו-Rinne</button>
+  <button class="opt" data-i="3">צירוף cVEMP (בודק עצב וסטיבולרי תחתון/סקולוס) ו-oVEMP (בודק עצב וסטיבולרי עליון/אוטריקל) - פרופיל אסימטרי בין השניים מרמז על עצב המקור</button>
+  <div class="explain">התשובה הנכונה (4): מכיוון ש-cVEMP משקף ספציפית את תפקוד העצב הוסטיבולרי התחתון (סקולוס) ו-oVEMP את העצב הוסטיבולרי העליון (אוטריקל), פגיעה סלקטיבית באחד מהם (אמפליטודה מופחתת/סף מוגבה) יכולה לרמז מאיזה עצב מקור הגידול צמח - מידע עזר לתכנון הניתוחי, גם אם לא תחליף מלא להדמיה ולממצא תוך-ניתוחי.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. מטופלת אחרת מדווחת שהיא שומעת את הדופק שלה ומרגישה ורטיגו כשהיא שומעת צלילים חזקים (תופעת Tullio) ובזמן התעטשות. ה-CT מדגים דהיסנס בתעלה החצי-עגולה העליונה. מה האבחנה והטיפול המומלץ במקרה סימפטומטי קשה?</div>
+  <button class="opt" data-i="0">מחלת מניר - דיאטה דלת נתרן</button>
+  <button class="opt" data-i="1">נויריטיס וסטיבולרי - סטרואידים</button>
+  <button class="opt" data-i="2">Superior semicircular canal dehiscence (third window syndrome) - גישת בסיס גולגולת אמצעי לסתימת (plugging) התעלה הדהיסנטית</button>
+  <button class="opt" data-i="3">BPPV - תמרון Epley</button>
+  <div class="explain">התשובה הנכונה (3): תופעת Tullio (ורטיגו/ניסטגמוס מקול חזק) וסימפטומים מועצמים ע"י לחץ (התעטשות, שיעול) עם דהיסנס מתועד בתעלה העליונה הם קלאסיים ל-third window syndrome/SSCD. הטיפול הדפיניטיבי במקרים סימפטומטיים קשים הוא תיקון כירורגי - בעיקר גישת בסיס גולגולת אמצעי לסתימת הפגם.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. מטופל עם מחלת מניר שנמשכת שנים נכשל בדיאטה דלת נתרן, משתנים, ושני הזרקות תוך-טימפניות של גנטמיצין, וממשיך לסבול מהתקפי ורטיגו קשים חוזרים עם שמיעה שיורית טובה שהוא רוצה לשמר. מה הצעד המתאים הבא?</div>
+  <button class="opt" data-i="0">לבירינתקטומי כירורגי (הקרבת כל התפקוד הוסטיבולרי והשמיעתי)</button>
+  <button class="opt" data-i="1">נוירקטומי וסטיבולרי סלקטיבי - חותך רק את העצב הוסטיבולרי ומשמר את העצב הקוכלארי ואת השמיעה</button>
+  <button class="opt" data-i="2">המתנה נוספת - רוב המקרים מגיבים בסוף לטיפול תרופתי</button>
+  <button class="opt" data-i="3">שתל קוכלארי</button>
+  <div class="explain">התשובה הנכונה (2): כשטיפול תרופתי מקסימלי (דיאטה, משתנים, ואבלציה כימית תוך-טימפנית) נכשל במחלת מניר, והמטרה היא לשמר שמיעה שיורית טובה, נוירקטומי וסטיבולרי סלקטיבי (לא לבירינתקטומי, שמקריב גם שמיעה) הוא הפתרון: אבלציה מכוונת ומלאה של התפקוד הוסטיבולרי בלבד, מנצלת את העובדה שהמוח מקזז טוב יותר לאובדן מלא מאשר לפלוקטואציה כרונית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>3 עצבים, חדר אחד:</b> פנים, קוכלארי, וסטיבולרי (עליון+תחתון) חולקים את ה-IAC - "7-Up, Coke Down": פנים קדמי-עליון, קוכלארי קדמי-תחתון, וסטיבולריים אחוריים.</li>
+    <li><b>VOR:</b> הפרש קצב פריקה בין שני הצדדים = הסיגנל; אובלציה חד-צדדית = ניסטגמוס ספונטני הרסני עם שלב מהיר לכיוון האוזן הבריאה.</li>
+    <li><b>VEMP:</b> cVEMP=סקולוס=וסטיבולרי תחתון; oVEMP=אוטריקל=וסטיבולרי עליון - עוזר להבדיל מקור שוואנומה ולאבחן third window syndrome (אמפליטודה↑, סף↓).</li>
+    <li><b>היקפי מול מרכזי:</b> היקפי=ורטיגו וניסטגמוס פרופורציונליים, &lt;3 שבועות, לרוב עם סימפטום שמיעתי; מרכזי=לא פרופורציונלי, ניסטגמוס אנכי/משנה-כיוון, סימנים גזעיים/צרבלריים נלווים.</li>
+    <li><b>שוואנומה וסטיבולרית:</b> &lt;20% ורטיגו אמיתי; הבנת דיבור ירודה לא-פרופורציונלית + רפלקס אקוסטי נעדר + עיכוב ABR בגלים מאוחרים (לא גל I) + OAE תקין = חשד רטרוקוכלארי.</li>
+    <li><b>מניר:</b> דיאטה דלת נתרן → משתנים → (נדיר) נוירקטומי וסטיבולרי אם רוצים לשמר שמיעה, לבירינתקטומי אם לא.</li>
+    <li><b>SSCD/Third window:</b> Tullio phenomenon + אוטופוניה + דהיסנס ב-CT = תיקון כירורגי (גישת בסיס גולגולת אמצעי) במקרים סימפטומטיים קשים.</li>
+    <li><b>שיקום שמיעה:</b> שתל קוכלארי כשהעצב הקוכלארי שלם; שתל גזע מוח שמיעתי (ABI) כשאין עצב קוכלארי שימושי - בעיקר ב-NF2 עם שוואנומות דו-צדדיות שנכרתו.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>

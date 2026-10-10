@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 19: המיקרוביום ומערכת העצבים המרכזית</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px; display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+  .topnav .topnav-sep{color:#cbd5e1}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+  .media-img, svg.diagram{cursor:zoom-in; transition:box-shadow .15s}
+  .media-img:hover, svg.diagram:hover{box-shadow:0 0 0 3px #93c5fd}
+  .lightbox-overlay{display:none; position:fixed; inset:0; background:rgba(15,23,42,.86); z-index:9999; align-items:center; justify-content:center; padding:24px; cursor:zoom-out}
+  .lightbox-overlay.show{display:flex}
+  .lightbox-overlay img, .lightbox-overlay svg{max-width:95vw; max-height:90vh; width:auto; height:auto; background:#fff; border-radius:8px; cursor:default}
+  .lightbox-close{position:absolute; top:18px; left:18px; background:#fff; color:#111827; border:none; border-radius:50%; width:38px; height:38px; font-size:20px; line-height:1; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../../index.html" target="_top">בית</a><span class="topnav-sep">&middot;</span><a href="../../index.html" target="_top">נוירוכירורגיה: מהדורה 8</a><span class="topnav-sep">&middot;</span><a href="../summaries.html" target="_top">רשימת הפרקים</a></div>
+
+<h1>פרק 19: המיקרוביום ומערכת העצבים המרכזית <span class="term" dir="ltr">The Microbiome and the Central Nervous System</span></h1>
+<div class="subtitle">מתוך Youmans &amp; Winn Neurological Surgery (מהדורה 8), חלק 1: מבוא לנוירוכירורגיה - Eric A. Sribnick, Kristina A. Kigerl, and Phillip G. Popovich</div>
+
+<p>במשך עשורים נלמד שמחסום הדם-מוח מבודד את המוח "באופן מוחלט" משאר הגוף. הפרק הזה מתאר איך התמונה הזו קרסה: ישנה שיחה דו-כיוונית מתמשכת בין טריליוני המיקרואורגניזמים שחיים במעי לבין מערכת העצבים המרכזית - שיחה שמשפיעה על התפתחות המוח, על התנהגות, ועל מידת ההחמרה הנוירולוגית אחרי פגיעת חוט שדרה (SCI) או חבלת ראש (TBI). ההבנה הזו משנה שאלות קליניות ממשיות: למה מטופל עם SCI מפתח "מעי נוירוגני" שמחמיר את הדלקת התוך-גולגולתית, ולמה אנטיביוטיקה מוקדמת-מדי יכולה לפגוע בהחלמה הנוירולוגית.</p>
+
+<div id="gbaFig">
+<img class="media-img" id="gbaImg" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gut-Brain Axis.svg?width=620" alt="Gut-brain axis diagram" onerror="document.getElementById('gbaFig').style.display='none'">
+<p class="media-cap">ציר המעי-מוח (Gut-Brain Axis, Wikimedia Commons) - תקשורת דו-כיוונית בין המיקרוביוטה במעי, מערכת החיסון, עצב הוואגוס והמוח.</p>
+</div>
+
+<h2><span class="num">1</span> מנגנון: סימביוזה תקינה בין המעי למיקרוביוטה</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>הנחת המוצא:</b> המעי מכיל טריליוני מיקרואורגניזמים (חיידקים, וירוסים, פטריות) שגנום משותף שלהם נקרא <b>המיקרוביום</b>, הנחשף כיום בעיקר באמצעות <b>metagenomic sequencing</b> (ריצוף כל המיקרובים בבת אחת) שמחליף את ריצוף גן 16S rRNA הממוקד-מין. בריאות תקינה דורשת שמירה על שיווי משקל - <b>סימביוזה</b> - בין המיקרוביוטה לאפיתל המעי, הנשענת על שלוש שכבות הגנה:<br>
+    → <b>שכבה 1 - ריר:</b> תאי Goblet מייצרים ריר בשתי שכבות - השכבה החיצונית (קרובה ללומן) עמוסת חיידקים, הפנימית (קרובה לאפיתל) דלילת-חיידקים - כך שהחיידקים נשמרים במרחק מהתאים עצמם.<br>
+    → <b>שכבה 2 - חלבונים אנטיבקטריאליים:</b> קולטני Toll-like על אפיתל המעי מזהים מולקולות מזוהות-פתוגן ומפעילים הפרשת חלבונים אנטימיקרוביאליים אל הריר.<br>
+    → <b>שכבה 3 - סבילות חיסונית אקטיבית:</b> תאים דנדריטיים ב-GALT (Gut-Associated Lymphoid Tissue) "טועמים" חיידקים ומפעילים לימפוציטים להפריש IgA; מקרופאגים של ה-GALT, בשונה ממקרופאגים פריפריים, שומרים על יכולת פגוציטית חזקה <b>בלי</b> לייצר דלקת פתולוגית - זו "סבילות חיסונית" (immune tolerance) אקטיבית, לא פשוט היעדר תגובה.<br>
+    <b>המסקנה הקלינית:</b> כשאיזון זה מופר - <b>דיסביוזיס</b> - שלוש שכבות ההגנה נחלשות בבת אחת: האפיתל "דולף" (leaky gut), תגובות חיסוניות הופכות פתולוגיות, וחיידקים/תוצריהם חוצים את המחסום (translocation) - תהליך שמתחיל לרוב במעי אך משפיע על איברים מרוחקים כולל המוח.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 780 470" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>שלוש שכבות ההגנה של המעי התקין לעומת דיסביוזיס</title>
+  <desc>תרשים משווה: מעי תקין עם שכבת ריר כפולה, חלבונים אנטיבקטריאליים וסבילות חיסונית ב-GALT, לעומת מעי דיסביוטי עם אפיתל דולף וטרנסלוקציה חיידקית</desc>
+  <text x="390" y="28" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">סימביוזה תקינה מול דיסביוזיס במעי</text>
+
+  <text x="195" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#047857">מעי בריא - סימביוזה</text>
+  <rect x="40" y="70" width="310" height="60" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="195" y="92" text-anchor="middle" font-size="10.5" fill="#065f46">ריר כפול: שכבה חוץ עמוסת חיידקים /</text>
+  <text x="195" y="108" text-anchor="middle" font-size="10.5" fill="#065f46">שכבה פנים דלילת-חיידקים - מרחק מהאפיתל</text>
+
+  <rect x="40" y="142" width="310" height="54" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="195" y="163" text-anchor="middle" font-size="10.5" fill="#065f46">TLR על האפיתל → חלבונים</text>
+  <text x="195" y="179" text-anchor="middle" font-size="10.5" fill="#065f46">אנטיבקטריאליים לריר</text>
+
+  <rect x="40" y="208" width="310" height="70" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="1.5"/>
+  <text x="195" y="229" text-anchor="middle" font-size="10.5" fill="#065f46">GALT: תאים דנדריטיים → IgA</text>
+  <text x="195" y="245" text-anchor="middle" font-size="10.5" fill="#065f46">מקרופאגים: פגוציטוזה פעילה</text>
+  <text x="195" y="261" text-anchor="middle" font-size="10.5" font-weight="700" fill="#065f46">בלי דלקת - "סבילות חיסונית"</text>
+
+  <rect x="90" y="300" width="210" height="36" rx="8" fill="#111827"/>
+  <text x="195" y="323" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">אפיתל שלם, אין טרנסלוקציה</text>
+
+  <text x="585" y="56" text-anchor="middle" font-size="13" font-weight="700" fill="#b91c1c">דיסביוזיס - הפרה</text>
+  <rect x="430" y="70" width="310" height="60" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="585" y="92" text-anchor="middle" font-size="10.5" fill="#7f1d1d">שינוי הרכב מיקרוביוטה (למשל</text>
+  <text x="585" y="108" text-anchor="middle" font-size="10.5" fill="#7f1d1d">↓Lactobacillus, ↑Clostridiales)</text>
+
+  <rect x="430" y="142" width="310" height="54" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="585" y="163" text-anchor="middle" font-size="10.5" fill="#7f1d1d">↓חיידקים מייצרי SCFA (בוטיראט)</text>
+  <text x="585" y="179" text-anchor="middle" font-size="10.5" fill="#7f1d1d">→ אנרגיה לאפיתל פוחתת</text>
+
+  <rect x="430" y="208" width="310" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="585" y="229" text-anchor="middle" font-size="10.5" fill="#7f1d1d">סבילות חיסונית קורסת</text>
+  <text x="585" y="245" text-anchor="middle" font-size="10.5" fill="#7f1d1d">דלקת פתולוגית ב-GALT</text>
+  <text x="585" y="261" text-anchor="middle" font-size="10.5" font-weight="700" fill="#7f1d1d">אפיתל "דולף" (leaky gut)</text>
+
+  <rect x="480" y="300" width="210" height="36" rx="8" fill="#b91c1c"/>
+  <text x="585" y="323" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">טרנסלוקציה חיידקית, אנדוטוקסמיה</text>
+
+  <defs><marker id="ahgba" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker></defs>
+  <line x1="300" y1="344" x2="480" y2="344" stroke="#64748b" stroke-width="2" marker-end="url(#ahgba)"/>
+  <rect x="220" y="356" width="340" height="40" rx="8" fill="#1e3a8a"/>
+  <text x="390" y="381" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">הפרת האיזון → השפעה על ה-CNS</text>
+
+  <line x1="195" y1="336" x2="195" y2="404" stroke="#047857" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="585" y1="336" x2="585" y2="404" stroke="#b91c1c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="195" y="420" text-anchor="middle" font-size="10" fill="#6b7280">תפקוד נוירואימוני תקין</text>
+  <text x="585" y="420" text-anchor="middle" font-size="10" fill="#6b7280">דלקת CNS, החמרת SCI/TBI</text>
+</svg>
+
+<h2><span class="num">2</span> ציר דו-כיווני: פגיעת CNS גורמת לדיסביוזיס, ודיסביוזיס מחמירה פגיעת CNS</h2>
+<p>הפרק מדגיש ממצא מרכזי: היחס בין פגיעת CNS לדיסביוזיס אינו חד-כיווני אלא <b>לולאה</b>. כבר 3 שעות אחרי SCI או TBI נצפתה פירוק של אפיתל המעי וטרנסלוקציה חיידקית. ב-SCI עם דיסאוטונומיה, פעילות סימפתטית לא-מוסדרת לכלי המעי מעלה חדירות אפיתלית ומגברת טרנסלוקציה - תהליך שיכול להוביל לאנדוטוקסמיה, דלקת מוגברת ב-GALT, ואף לקולוניזציה של כבד וריאות. במודלים של שבץ MCA, לימפוציטים שמקורם ב-GALT נמצאו באזור הפנומברה - עדות ישירה שתגובות חיסוניות שהחלו במעי יכולות להשפיע על דלקת ה-CNS בפועל.</p>
+
+<div class="table-scroll"><table>
+<tr><th>ניסוי (מודל SCI עכבר)</th><th>תוצאה</th></tr>
+<tr><td>אנטיביוטיקה <b>לפני</b> הפגיעה (יוצרת דיסביוזיס מקדימה)</td><td>החמרת פתולוגיה, דלקת תוך-ספינלית מוגברת, פגיעה בהחלמה ספונטנית</td></tr>
+<tr><td>פרוביוטיקה (חיידקים מייצרי חומצה לקטית) <b>אחרי</b> הפגיעה</td><td>הפחתת נפח הנגע, הפחתת דלקת, שיפור תפקוד תנועתי (BMS)</td></tr>
+<tr><td>עלייה פוסט-פגיעתית ב-Clostridiales (SCI ו-TBI)</td><td>מתואמת עם החמרת החלמה תנועתית כרונית</td></tr>
+<tr><td>אובדן חיידקים מייצרי בוטיראט ב-SCI אנושי</td><td>קשור להתפתחות "מעי נוירוגני" (neurogenic bowel)</td></tr>
+</table></div>
+<div class="key-box">בניסוי המכונן של Kigerl ועמיתיו (2016, איור 19.1): עכברים שקיבלו אנטיביוטיקה <b>שבוע לפני</b> פגיעת חוט שדרה - כך שהגיעו לפגיעה עם מיקרוביוטה מוחלשת - פיתחו נגעים גדולים יותר, פחות שימור חומר לבן, ודלקת תוך-ספינלית חזקה יותר (מקרופאגים CD11b+, לימפוציטים B ו-T) בהשוואה לפגיעת SCI בלבד. זה מוכיח שהמיקרוביוטה הבסיסית (לפני הפגיעה כלל) משפיעה על מידת הנזק הנוירולוגי בפועל - לא רק תגובה משנית לפגיעה.</div>
+
+<h2><span class="num">3</span> עצב הוואגוס: הממסר הישיר בין המעי למוח</h2>
+<p>עצב הוואגוס מעצבב את דופן המוקוזה של מערכת העיכול בשלושה אתרים: בלוטות האנטרום הקיבתי, קצות הווילי, וצומת ה-crypt-villus. מכיוון שקצות העצב ממוקמים <b>מתחת</b> לאפיתל, האינטראקציה עם חיידקי הלומן היא בעיקר <b>עקיפה</b> - דרך דיפוזיה של מטבוליטים (כמו בוטיראט) או דרך תאים אנטרואנדוקריניים. כ-70%-80% מהעצב המעורב (סנסורי-מוטורי) הוא סנסורי: אפרנטים ואגליים נושאים מידע על דלקת ותנאים לא-נוחים למוח, ומסתיימים בעיקרם ב-NTS (nucleus tractus solitarius).</p>
+
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray793.png?width=560" alt="Vagus nerve anatomical illustration (Gray's Anatomy)">
+<p class="media-cap">עצב הוואגוס (עצב קרניאלי X) - איור אנטומי קלאסי מ-Gray's Anatomy (Public Domain, Wikimedia Commons).</p>
+
+<h2><span class="num">4</span> המסלול האנטי-דלקתי הכולינרגי - איך הוואגוס "מרגיע" דלקת מערכתית</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>מנגנון:</b> אפרנטים ואגליים, המופעלים למשל ע"י אנדוטוקסין חיידקי, מפעילים פרויקציות אפרנטיות ואגליות לאיברים מרובים, ובפרט לטחול. בטחול, לימפוציטי T משחררים אצטילכולין שנקשר לקולטני ניקוטין α7 על מקרופאגים טחוליים - וקשירה זו <b>מדכאת</b> איתות דלקתי. זהו <b>המסלול האנטי-דלקתי הכולינרגי</b> (cholinergic anti-inflammatory pathway) - רפלקס עצבי-מהיר השולט בדלקת מערכתית, בנפרד ממסלולים הומורליים איטיים יותר.<br>
+    <b>המסקנה הקלינית:</b> גירוי עצב הוואגוס (VNS) לטיפול באפילפסיה מרכך תגובה דלקתית בדם מלא אצל חלק מהמטופלים; גירויי ואגוס נוסו גם לדלקת מפרקים שגרונית (RA) עם ירידה בתגובה דלקתית ושיפור קליני שנמשך עד 84 יום - עדות ראשונית שרפלקס עצבי בודד יכול להחליף או להשלים טיפול תרופתי אימונו-מדכא.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 780 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <title>המסלול האנטי-דלקתי הכולינרגי</title>
+  <desc>תרשים זרימה: אפרנט ואגלי מופעל על ידי אנדוטוקסין, מאותת ל-NTS, אפרנט ואגלי לטחול משחרר אצטילכולין שנקשר לקולטן α7 על מקרופאג ומדכא דלקת</desc>
+  <text x="390" y="26" text-anchor="middle" font-size="15.5" font-weight="700" fill="#1e3a8a">המסלול האנטי-דלקתי הכולינרגי (Vagal Anti-Inflammatory Reflex)</text>
+
+  <rect x="20" y="54" width="170" height="92" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="105" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#7f1d1d">אנדוטוקסין חיידקי</text>
+  <text x="105" y="96" text-anchor="middle" font-size="10" fill="#7f1d1d">מפעיל אפרנט ואגלי</text>
+  <text x="105" y="114" text-anchor="middle" font-size="10" fill="#7f1d1d">(מהמעי)</text>
+
+  <defs><marker id="ahvn" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker></defs>
+  <line x1="190" y1="100" x2="250" y2="100" stroke="#64748b" stroke-width="2" marker-end="url(#ahvn)"/>
+
+  <rect x="255" y="54" width="170" height="92" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+  <text x="340" y="84" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e3a8a" dir="ltr">NTS</text>
+  <text x="340" y="104" text-anchor="middle" font-size="10" fill="#1e3a8a">(נוקלאוס הבדד בגזע המוח)</text>
+  <text x="340" y="122" text-anchor="middle" font-size="9.5" fill="#1e40af">מקבל, מעבד, מפעיל אפרנט יורד</text>
+
+  <line x1="425" y1="100" x2="485" y2="100" stroke="#64748b" stroke-width="2" marker-end="url(#ahvn)"/>
+
+  <rect x="490" y="54" width="170" height="92" rx="8" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+  <text x="575" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#78350f">אפרנט ואגלי יורד לטחול</text>
+  <text x="575" y="96" text-anchor="middle" font-size="10" fill="#78350f">לימפוציט T משחרר ACh</text>
+  <text x="575" y="114" text-anchor="middle" font-size="9.5" fill="#78350f">(אצטילכולין)</text>
+
+  <line x1="575" y1="146" x2="575" y2="192" stroke="#64748b" stroke-width="2" marker-end="url(#ahvn)"/>
+
+  <rect x="430" y="196" width="290" height="68" rx="8" fill="#f3e8ff" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="575" y="220" text-anchor="middle" font-size="11" font-weight="700" fill="#4c1d95" dir="ltr">ACh → קולטן α7 nicotinic</text>
+  <text x="575" y="238" text-anchor="middle" font-size="10.5" fill="#4c1d95">על מקרופאג טחולי</text>
+  <text x="575" y="254" text-anchor="middle" font-size="10" font-weight="700" fill="#4c1d95">דיכוי איתות דלקתי</text>
+
+  <rect x="40" y="196" width="340" height="68" rx="8" fill="#111827"/>
+  <text x="210" y="220" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">יישום קליני: VNS</text>
+  <text x="210" y="240" text-anchor="middle" font-size="10" fill="#e5e7eb">אפילפסיה (הפחתת דלקת דם) /</text>
+  <text x="210" y="256" text-anchor="middle" font-size="10" fill="#e5e7eb">דלקת מפרקים שגרונית (שיפור עד 84 יום)</text>
+</svg>
+
+<h2><span class="num">5</span> מהמעי להתנהגות: ציר ה-NTS להיפותלמוס ולמערכות מצב-רוח</h2>
+<p>פרויקציות מה-NTS להיפותלמוס, בלוטת היותרת המוח (pituitary), ולאזור הטגמנטום הוונטרלי (VTA) מספקות מצע אנטומי שמסביר כיצד איתות מהמעי משפיע על התנהגות. בניסוי מכונן, עכברים שגודלו ללא חיידקים כלל (germ-free) לעומת עכברים "ספציפיים-נטולי-פתוגן" (SPF) נחשפו לדחק כרוני - עכברי ה-SPF הציגו תגובה התנהגותית מוגברת לדחק ושינוי מוחלש בהורמוני ציר ה-HPA, בהשוואה לעכברי ה-germ-free. בפרויקט פלמי בקנה-מידה גדול (Flemish Gut Flora Project, 1,054 נבדקים) נמצא קשר בין נוכחות מינים קומנסליים (כולל חיידקים מייצרי בוטיראט) לבין איכות חיים גבוהה יותר ושיעורי דיכאון נמוכים יותר - קשר שנשאר משמעותי גם לאחר תיקון למבלבלים.</p>
+<p>כיוון איתות נוסף: קולטני כימו ואגליים קושרים חומצות שומן קצרות (SCFA) כמו בוטיראט המיוצר ע"י חיידקים "פרוביוטיים", ותאים אנטרואנדוקריניים קושרים תוצרי פירוק פחמימות ומפרישים נוירופפטידים הנקשרים לאפרנטים ואגליים - שרשרת שמעבירה מידע על <b>שובע</b> מה-NTS להיפותלמוס (nucleus arcuatus). לעומת זאת, פתובינטים (חיידקים פתוגניים-פוטנציאליים) מפעילים אפרנטים ואגליים באופן אחר: הזרקת Campylobacter jejuni לעכברים הגבירה פעילות עצבית ב-NTS בתוך 4 שעות, והתאמה להתנהגות חקרנית מופחתת וחרדה מוגברת - עדות שאיתות ממקור מיקרוביאלי יכול לשנות התנהגות ישירות דרך אפרנטים ואגליים סנסוריים.</p>
+
+<h2><span class="num">6</span> יחס Firmicutes:Bacteroidetes (F:B) ו-SCFA - מדדים כמותיים למצב המיקרוביוטה</h2>
+<p>שני הפילות העיקריות במעי הגס - Firmicutes ו-Bacteroidetes - משמשות לעתים כסיכום מהיר למצב המיקרוביוטה באמצעות <b>יחס F:B</b>. Bacteroidetes תורם לפירוק פחמימות וליצירת SCFA חיוניים. עלייה ביחס F:B נקשרה במחקרים קליניים מרובים למדד מסת גוף (BMI) גבוה יותר; במודלים של בעלי חיים, עלייה ביחס F:B בתזונה עתירת-סוכר נקשרה לדלקת מעי מוגברת, פגיעה באפיתל, ושינוי (remodeling) באפרנטים ואגליים המתקרנים ל-NTS.</p>
+<div class="table-scroll"><table>
+<tr><th>מדד</th><th>ממצא</th></tr>
+<tr><td>יחס F:B עולה</td><td>מתואם עם BMI גבוה יותר; בעלי חיים: דלקת מעי, פגיעה אפיתלית, שינוי עצבי ואגלי</td></tr>
+<tr><td>יחס F:B בדמנציה</td><td>נמוך יותר בהשוואה לבקרות בריאות (נתונים מוקדמים)</td></tr>
+<tr><td>יחס F:B ב-ALS</td><td>נמוך יותר בהשוואה לבקרות בריאות (נתונים מוקדמים)</td></tr>
+<tr><td>SCFA (בוטיראט) מופרש ע"י קומנסלים</td><td>מקור אנרגיה חיוני לאפיתל המעי; חסרו קשור לדיסביוזיס ול"מעי נוירוגני" ב-SCI אנושי</td></tr>
+</table></div>
+<img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/202004 Gut microbiota.svg?width=600" alt="Gut microbiota composition diagram">
+<p class="media-cap">הרכב המיקרוביוטה במעי - Firmicutes, Bacteroidetes ופילות נוספות (Wikimedia Commons).</p>
+
+<h2><span class="num">7</span> היישום הנוירוכירורגי: למה זה חשוב ב-SCI וב-TBI</h2>
+<p>מבחינה נוירוכירורגית, הפרק מניח תשתית למספר כיווני טיפול אפשריים: (1) <b>הימנעות מאנטיביוטיקה מיותרת לפני/סביב פגיעת CNS</b> כאשר אין אינדיקציה ברורה, בהתבסס על הממצא שדיסביוזיס מוקדמת מחמירה תוצאות נוירולוגיות; (2) <b>תמיכה פרוביוטית פוסט-פגיעה</b> כגישת-עזר אפשרית להפחתת נפח נגע ודלקת, בהתבסס על מודלי SCI בבעלי חיים; (3) <b>ניטור ותמיכה בתפקוד מעי ב-SCI</b> - "מעי נוירוגני" אינו רק סיבוך עיכולי אלא עשוי לשקף/להחמיר דיסביוזיס מערכתית; (4) בעתיד - <b>מניפולציה ישירה של עצב הוואגוס או המיקרוביוטה</b> (פרוביוטיקה ממוקדת, VNS) כדי לרכך דלקת תוך-ספינלית/תוך-מוחית. כל אלה עדיין בשלבי מחקר פרה-קליני ברובם, אך משנים את האופן שבו חושבים על טיפול תומך אחרי פגיעת CNS - לא רק "מה קורה במוח/בחוט השדרה" אלא "מה קורה במעי במקביל".</p>
+
+<h2><span class="num">8</span> טכניקת זכירה</h2>
+<div class="mnemonic">
+  <h3>"שלוש שכבות, שלושה אתרי ואגוס, ושרשרת אחת לטחול"</h3>
+  <p><b>שלוש שכבות ההגנה של המעי</b> - זכרי: <b>ריר</b> (מרחק פיזי) → <b>חלבונים אנטיבקטריאליים</b> (TLR מזהה ומגיב) → <b>סבילות חיסונית פעילה ב-GALT</b> (IgA + מקרופאגים "שלווים"). שלושתן נחלשות יחד בדיסביוזיס.</p>
+  <p class="key-box" style="margin-top:8px"><b>המסלול האנטי-דלקתי הכולינרגי - שרשרת של 4 תחנות:</b> אנדוטוקסין → אפרנט ואגלי ל-NTS → אפרנט ואגלי יורד לטחול → ACh על קולטן α7 במקרופאג = דיכוי דלקת. ארבע תחנות, כיוון אחד ברור: מהמעי, דרך גזע המוח, חזרה לאיבר חיסוני היקפי - "לופ" שלם בלי לעבור כלל בקורטקס.</p>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://www.youtube.com/results?search_query=gut+brain+axis+microbiome+vagus+nerve+explained" target="_blank">The Gut-Brain Axis and the Vagus Nerve Explained</a><span class="tag">YouTube</span><div class="desc">הסבר אנימטיבי על התקשורת הדו-כיוונית בין המעי למוח דרך עצב הוואגוס.</div></li>
+  <li><a href="https://www.youtube.com/results?search_query=cholinergic+anti-inflammatory+pathway+Tracey" target="_blank">Cholinergic Anti-Inflammatory Pathway (Kevin Tracey)</a><span class="tag">YouTube</span><div class="desc">הרצאה על גילוי המסלול האנטי-דלקתי הכולינרגי ויישומיו הקליניים.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Gut%E2%80%93brain_axis" target="_blank">Wikipedia - Gut-Brain Axis</a><span class="tag">אתר</span><div class="desc">סקירה כללית על ציר המעי-מוח ומנגנוני התקשורת העצביים וההורמונליים.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Human_gastrointestinal_microbiota" target="_blank">Wikipedia - Human Gut Microbiota</a><span class="tag">אתר</span><div class="desc">פרטים על הרכב המיקרוביוטה האנושית ותפקידה הפיזיולוגי.</div></li>
+  <li><a href="https://en.wikipedia.org/wiki/Vagus_nerve" target="_blank">Wikipedia - Vagus Nerve</a><span class="tag">אתר</span><div class="desc">אנטומיה ותפקוד עצב הוואגוס, כולל אפרנטים ואגליים ותפקידם בוויסציה.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34 עובר ניתוח דחוף לפגיעת חוט שדרה שלמה בגובה T6 בתאונת דרכים. בשבוע הראשון שלאחר הניתוח הוא מפתח איליוס (ileus) והצוות שוקל מתן אנטיביוטיקה רחבת-טווח "מניעתית" כבר בימים הראשונים, גם ללא עדות לזיהום פעיל, "כדי להיות בטוחים".</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. בהתבסס על מודל ה-SCI בעכברים (Kigerl ואחרים, איור 19.1), מה הסיכון העיקרי במתן אנטיביוטיקה מניעתית מוקדמת מאוד ללא אינדיקציה ברורה?</div>
+  <button class="opt" data-i="0">אין שום סיכון - אנטיביוטיקה מוקדמת תמיד משפרת החלמה נוירולוגית</button>
+  <button class="opt" data-i="1">הסיכון היחיד הוא עלות כספית</button>
+  <button class="opt" data-i="2">דיסביוזיס מוקדמת (הפרעה למיקרוביוטה הבסיסית) נקשרה בניסוי לנגעים גדולים יותר, פחות שימור חומר לבן, ודלקת תוך-ספינלית מוגברת - כך שאנטיביוטיקה לא-מכוונת עלולה להחמיר תוצאה נוירולוגית</button>
+  <button class="opt" data-i="3">אנטיביוטיקה משפיעה רק על המעי ולא יכולה להשפיע על חוט השדרה בשום צורה</button>
+  <div class="explain">התשובה הנכונה (3): בניסוי המכונן, עכברים שקיבלו אנטיביוטיקה לפני פגיעת SCI (וכך הגיעו לפגיעה עם דיסביוזיס מוקדמת) פיתחו נגעים גדולים יותר, פחות שימור חומר לבן ודלקת תוך-ספינלית מוגברת (מקרופאגים, לימפוציטים B ו-T) בהשוואה לפגיעה בלבד. זה לא אומר שאנטיביוטיקה אסורה כשיש אינדיקציה אמיתית (זיהום מוכח), אך מדגיש שמתן "מניעתי" גורף בלי צורך ברור עלול לשבש את המיקרוביוטה הבסיסית ולהחמיר את ההחלמה הנוירולוגית - שיקול שיש לשקול מול הסיכון לזיהום בפועל.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה ההבדל המרכזי בין שתי שכבות הריר שמייצרים תאי Goblet במעי הבריא?</div>
+  <button class="opt" data-i="0">שתי השכבות זהות לגמרי בהרכב ובריכוז החיידקים</button>
+  <button class="opt" data-i="1">השכבה החיצונית (קרובה ללומן) עמוסת חיידקים, ואילו השכבה הפנימית (קרובה לאפיתל) דלילת-חיידקים - כך שהחיידקים נשמרים במרחק מתאי האפיתל עצמם</button>
+  <button class="opt" data-i="2">השכבה הפנימית היא זו שעמוסה בחיידקים, כדי להגן על הלומן</button>
+  <button class="opt" data-i="3">יש רק שכבת ריר אחת במעי הבריא; שתי שכבות מופיעות רק בדיסביוזיס</button>
+  <div class="explain">התשובה הנכונה (2): במעי הבריא, הריר מאורגן בשתי שכבות - החיצונית (יותר קרובה ללומן) מכילה ריכוז חיידקים גבוה יותר, בעוד הפנימית (קרובה לאפיתל) דלילת חיידקים משמעותית. ארגון זה הוא קו ההגנה הראשון - הוא יוצר מרחק פיזי בין רוב המיקרוביוטה לבין תאי האפיתל, עוד לפני שמנגנוני הגנה חיסוניים נכנסים לפעולה.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מה תפקידו הייחודי של המסלול האנטי-דלקתי הכולינרגי (cholinergic anti-inflammatory pathway)?</div>
+  <button class="opt" data-i="0">הוא פועל רק בתוך המוח, ללא קשר לאיברים היקפיים</button>
+  <button class="opt" data-i="1">הוא מחליף לגמרי את מערכת החיסון ההומורלית ואין לו צורך בציטוקינים כלל בשום הקשר</button>
+  <button class="opt" data-i="2">הוא מגביר דלקת מערכתית במכוון, כדי לסייע להילחם בפתוגנים</button>
+  <button class="opt" data-i="3">אפרנטים ואגליים (המופעלים למשל ע"י אנדוטוקסין) מאותתים דרך ה-NTS לאפרנטים ואגליים יורדים לטחול, שם לימפוציטי T משחררים אצטילכולין הנקשר לקולטן α7 ניקוטיני על מקרופאגים, ומדכא איתות דלקתי - רפלקס עצבי-מהיר לוויסות דלקת מערכתית</button>
+  <div class="explain">התשובה הנכונה (4): זהו רפלקס עצבי מהיר ומוגדר היטב: אפרנט ואגלי חש גירוי דלקתי (כמו אנדוטוקסין), מאותת ל-NTS, ומפעיל אפרנט ואגלי יורד לטחול - שם אצטילכולין מלימפוציטי T נקשר לקולטני α7 ניקוטיניים על מקרופאגים טחוליים ומדכא את ייצור הציטוקינים הדלקתיים. זהו בסיס היישום הקליני של VNS באפילפסיה ובדלקת מפרקים שגרונית.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. מה הראה הניסוי שהשווה עכברי germ-free לעכברי specific-pathogen-free (SPF) בחשיפה לדחק כרוני?</div>
+  <button class="opt" data-i="0">עכברי SPF הציגו תגובה התנהגותית מוגברת לדחק ושינוי מוחלש בהורמוני ציר ה-HPA, בהשוואה לעכברי germ-free - כלומר, נוכחות המיקרוביוטה שינתה את תגובת הדחק עצמה</button>
+  <button class="opt" data-i="1">אין שום הבדל בין הקבוצות - המיקרוביוטה לא משפיעה על תגובת דחק</button>
+  <button class="opt" data-i="2">עכברי germ-free הציגו תגובה חזקה יותר לדחק מעכברי SPF</button>
+  <button class="opt" data-i="3">הניסוי נערך רק בבני אדם, לא בעכברים</button>
+  <div class="explain">התשובה הנכונה (1): עכברי SPF (עם מיקרוביוטה תקינה) הציגו תגובה התנהגותית מוגברת ("exaggerated") לדחק כרוני ושינוי מוחלש יותר בהורמוני ציר ה-HPA, בהשוואה לעכברי germ-free (ללא מיקרוביוטה כלל). זו עדות ישירה שהמיקרוביוטה עצמה - לא רק הפתולוגיה שהיא גורמת - משנה את אופן התגובה הפיזיולוגית וההתנהגותית לדחק, ותומכת בכיוון המחקר שמקשר מיקרוביוטה לבריאות הנפשית.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>סימביוזה תקינה:</b> שלוש שכבות הגנה - ריר כפול, חלבונים אנטיבקטריאליים (TLR), וסבילות חיסונית פעילה ב-GALT (IgA + מקרופאגים ללא דלקת).</li>
+    <li><b>ציר דו-כיווני:</b> פגיעת CNS (SCI/TBI) גורמת לדיסביוזיס תוך שעות; דיסביוזיס מקדימה (למשל מאנטיביוטיקה) מחמירה את הנזק הנוירולוגי - לופ, לא חד-כיווני.</li>
+    <li><b>עצב הוואגוס:</b> 70-80% מהסיבים סנסוריים, מסתיימים ב-NTS; אינטראקציה עקיפה עם חיידקי הלומן (מתחת לאפיתל) בעיקר דרך מטבוליטים כמו בוטיראט.</li>
+    <li><b>המסלול האנטי-דלקתי הכולינרגי:</b> אנדוטוקסין → אפרנט ואגלי → NTS → אפרנט ואגלי יורד לטחול → ACh על α7 במקרופאג = דיכוי דלקת; בסיס ל-VNS באפילפסיה וב-RA.</li>
+    <li><b>התנהגות:</b> NTS מקרין להיפותלמוס/VTA; מיקרוביוטה משפיעה על תגובת דחק (HPA) ועל איכות חיים/דיכאון (Flemish Gut Flora Project).</li>
+    <li><b>F:B ratio ו-SCFA:</b> F:B עולה מתואם עם BMI גבוה יותר ועם דלקת מעי; בוטיראט חיוני לאנרגיית אפיתל; חסרו קשור ל"מעי נוירוגני" ב-SCI אנושי.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <button class="lightbox-close" id="lightboxClose" aria-label="סגירה">&times;</button>
+  <div id="lightboxContent"></div>
+</div>
+<script>
+(function(){
+  var overlay = document.getElementById('lightboxOverlay');
+  var content = document.getElementById('lightboxContent');
+  function openLightbox(el){
+    content.innerHTML = '';
+    var clone = el.cloneNode(true);
+    clone.removeAttribute('class');
+    content.appendChild(clone);
+    overlay.classList.add('show');
+  }
+  function closeLightbox(){
+    overlay.classList.remove('show');
+    content.innerHTML = '';
+  }
+  document.querySelectorAll('img.media-img, svg.diagram').forEach(function(el){
+    el.addEventListener('click', function(){ openLightbox(el); });
+  });
+  overlay.addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', function(e){ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+})();
+</script>
+</body>
+</html>
