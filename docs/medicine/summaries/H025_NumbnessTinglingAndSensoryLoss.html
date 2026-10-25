@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl"><head><meta charset="UTF-8"><title>H025 Numbness Tingling and Sensory Loss</title><style>
+  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap');
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  /* בלוק מנגנון/פתופיזיולוגיה */
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  /* הדגשת נקודה חשובה לזכור */
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  /* תמונות/הדמיות - כולל זוג תקין/פתולוגי זה-לצד-זה */
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  /* טבלאות (תרופות, אבחנה מבדלת) */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  /* טכניקות זכירה */
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  /* מהלך ניתוח */
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  /* קישורים חיצוניים */
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  /* מקרה קליני ושאלות תרגול */
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  /* שאלון אינטראקטיבי - לחיצה על תשובה, לא details סטטי. עובד בקובץ נייד ובארטיפקט כאחד. */
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  /* כרטיס-קישור לתמונה/סרטון - להשתמש בזה במקום <img> כשהפלט הוא ארטיפקט ב-Cowork
+     (שם תמונות מקישור חיצוני לא נטענות כי הרשת חסומה בתוך ה-iframe המבודד).
+     בקובץ HTML נייד רגיל, במקום זאת מטמיעים <img src="..."> ישירות - ראו bloc "תמונות/הדמיות". */
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  /* סיכום של הסיכום */
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style></head><body><h1>נימול, עקצוצים ואובדן תחושה (Numbness, Tingling, and Sensory Loss) – הריסון פרק 25</h1>
+<div class="subtitle">Harrison's Principles of Internal Medicine, מהדורה 21 · עמ' 209–213 (עמ' 168–172 בדפוס) · Cardinal Manifestations · סיכום מבוסס על טווח העמודים שהועלה (הפרק ממשיך מעבר לו: גזע מוח, תלמוס, קליפה ופסיכוגני)</div>
+
+<p>תחושה תקינה היא ניטור רציף שכמעט לא מגיע למודעות. תחושה <span class="key">חולנית</span> – בעיקר כואבת – תופסת את תשומת הלב מיד. המטרה הקלינית: לזהות לפי <b>תיאור המטופל</b> את סוג התחושה, למקם את הנגע (קליפה ← תלמוס ← גזע ← חוט שדרה ← שורש ← עצב ← קולטן) ולהבין מה המשמעות.</p>
+
+<h2><span class="num">1</span> תסמינים חיוביים מול שליליים</h2>
+<div class="mechanism"><p class="chain">חיוביים (Positive): עקצוץ (<span dir="ltr" class="term">tingling / pins and needles</span>), גרד, דקירה, חגורה, "ברק" שוטף (<span dir="ltr" class="term">lancinating</span>), צריבה, חשמל. ← נוצרים מ<b>רצפי דחפים אקטופיים</b> באתר עם סף נמוך או רגישות יתר לאורך המסלול ההיקפי או המרכזי. ← מייצגים <b>פעילות יתר</b>, ולכן <b>לא חייבים להיות מלווים בחסר בבדיקה</b>.<br>
+שליליים (Negative): הרגשה מופחתת/נעדרת (נימול, <span dir="ltr" class="term">numbness</span>) + ממצאים בבדיקה. ← <b>סימנים בבדיקה הם תמיד שליליים</b> (מדידה של אובדן).</p></div>
+<div class="key-box">במחלה היקפית צריך לאבד <b>לפחות כמחצית מהאקסונים</b> המעצבבים אזור לפני שחסר ניתן להדגמה בבדיקה. אובדן איטי יכול להיות לא מורגש למטופל וקשה להדגמה; אובדן מהיר מייצר גם תסמינים חיוביים וגם שליליים באופן בולט. בדיקות הולכה עצבית (<span dir="ltr" class="term">NCS</span>) ו-<span dir="ltr" class="term">SSEP</span> חושפות חסר תת-קליני.</div>
+
+<h2><span class="num">2</span> מינוח – הטבלה שחייבים לדעת</h2>
+<table><thead><tr><th>מונח</th><th>משמעות</th></tr></thead><tbody>
+<tr><td><span dir="ltr" class="term">Paresthesia</span></td><td>תחושה חיובית (בדרך כלל עקצוץ), לא כואבת, לעיתים ספונטנית</td></tr>
+<tr><td><span dir="ltr" class="term">Dysesthesia</span></td><td>כל תחושה חריגה, כולל כואבת, עם או בלי גירוי</td></tr>
+<tr><td><span dir="ltr" class="term">Hypesthesia</span></td><td>ירידה בתחושה לגירוי מסוים (לחץ, מגע קל, חם/קר)</td></tr>
+<tr><td><span dir="ltr" class="term">Anesthesia</span></td><td>היעדר מוחלט של תחושת עור (כולל דקירה)</td></tr>
+<tr><td><span dir="ltr" class="term">Hypalgesia / Analgesia</span></td><td>ירידה/היעדר של תחושת כאב (נוציספציה)</td></tr>
+<tr><td><span dir="ltr" class="term">Hyperesthesia</span></td><td>כאב או רגישות מוגברת למגע</td></tr>
+<tr><td><span dir="ltr" class="term">Allodynia</span></td><td>גירוי שאינו כואב נחווה ככואב (למשל קמרטון רוטט)</td></tr>
+<tr><td><span dir="ltr" class="term">Hyperalgesia</span></td><td>כאב חזק לגירוי מזיק קל</td></tr>
+<tr><td><span dir="ltr" class="term">Hyperpathia</span></td><td>מונח כולל: סף מוגבר + תפיסה מאוחרת, אך כשנחווה – כואב באופן מוגזם</td></tr></tbody></table>
+<p><b>הפרעה בתחושה עמוקה</b> (פרופריוספציה – ממרכיבי שרירים, גידים ומפרקים): חוסר שיווי משקל (בעיקר בעיניים עצומות/בחושך), ברדיקינזיה בתנועות עדינות, חוסר יציבות בהליכה = <b><span dir="ltr" class="term">sensory ataxia</span></b>. ממצאים: ירידת תחושת מיקום ורטט, היעדר רפלקסים עמוקים, ו<b><span dir="ltr" class="term">Romberg</span> חיובי</b> (נוטה/נופל בעמידה ברגליים צמודות ועיניים עצומות). בחסר חמור: אי יכולת ללכת/לעמוד/לשבת, ותנועות לא רצוניות רציפות של האצבעות (<span dir="ltr" class="term">pseudoathetosis</span>).</p>
+
+<h2><span class="num">3</span> אנטומיה – שני המסלולים הראשיים ו"למה" הם נבדלים</h2>
+<p>קולטנים: <b>קצוות חופשיים</b> (נוציספטורים לגירוי מזיק, תרמורצפטורים לחם/קר) ו<b>קצוות עטופים</b> (מכנורצפטורים: מגע, לחץ, רטט – למשל גופיפי פצ'יני). לכל סוג יש רגישויות, גודל שדה קלט וקצב הסתגלות משלו. הסיבים האפרנטיים נכנסים דרך <b>הקרן הגבית</b>; גופי התא של הנוירון הראשון נמצאים ב<b>גנגליון השורש הגבי (<span dir="ltr" class="term">DRG</span>)</b>. תחושת הפנים/ראש עוברת במערכת התלת-ענפית.</p>
+<svg class="diagram" viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13">
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#374151"/></marker></defs>
+<text x="380" y="18" text-anchor="middle" font-weight="700">שני המסלולים: איפה חוצים?</text>
+<rect x="30" y="40" width="330" height="270" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+<text x="195" y="62" text-anchor="middle" font-weight="700" fill="#2563eb">Spinothalamic (אנטרולטרלי) – סיבים קטנים</text>
+<text x="195" y="82" text-anchor="middle">כאב · חם/קר · מגע גס</text>
+<rect x="60" y="100" width="130" height="34" rx="5" fill="#fff" stroke="#2563eb"/><text x="125" y="122" text-anchor="middle">קולטן → DRG</text>
+<rect x="60" y="160" width="130" height="34" rx="5" fill="#fff" stroke="#2563eb"/><text x="125" y="182" text-anchor="middle">קרן גבית (סינפסה)</text>
+<rect x="60" y="220" width="130" height="34" rx="5" fill="#fff" stroke="#b91c1c"/><text x="125" y="242" text-anchor="middle" fill="#b91c1c">חוצה מיד (בחוט)</text>
+<rect x="215" y="220" width="130" height="34" rx="5" fill="#fff" stroke="#2563eb"/><text x="280" y="242" text-anchor="middle">עולה → VPL → קליפה</text>
+<path d="M125 134V160M125 194V220M190 237H215" stroke="#374151" fill="none" marker-end="url(#a)"/>
+<text x="195" y="285" text-anchor="middle" font-size="12">נגע בחוט → חסר <tspan font-weight="700">נגדי</tspan> מתחת לרמה</text>
+<rect x="400" y="40" width="330" height="270" rx="8" fill="#ecfdf5" stroke="#047857"/>
+<text x="565" y="62" text-anchor="middle" font-weight="700" fill="#047857">עמוד אחורי–למניסקוס – סיבים גדולים</text>
+<text x="565" y="82" text-anchor="middle">רטט · מיקום · מגע עדין</text>
+<rect x="430" y="100" width="130" height="34" rx="5" fill="#fff" stroke="#047857"/><text x="495" y="122" text-anchor="middle">קולטן → DRG</text>
+<rect x="430" y="160" width="130" height="34" rx="5" fill="#fff" stroke="#047857"/><text x="495" y="182" text-anchor="middle">עולה אפסילטרלית</text>
+<rect x="430" y="220" width="130" height="34" rx="5" fill="#fff" stroke="#b91c1c"/><text x="495" y="242" text-anchor="middle" fill="#b91c1c">חוצה במדולה</text>
+<rect x="585" y="220" width="130" height="34" rx="5" fill="#fff" stroke="#047857"/><text x="650" y="242" text-anchor="middle">Medial lemniscus→VPL</text>
+<path d="M495 134V160M495 194V220M560 237H585" stroke="#374151" fill="none" marker-end="url(#a)"/>
+<text x="565" y="285" text-anchor="middle" font-size="12">נגע בחוט → חסר <tspan font-weight="700">אפסילטרלי</tspan> מתחת לרמה</text>
+</svg>
+<div class="mechanism"><p class="chain"><b>מסלול ספינותלמי (<span dir="ltr" class="term">anterolateral system</span>):</b> סיבים קטנים (לא-מיילינים ומיילין דק) ← כאב, גרד, טמפרטורה ומגע ← סינפסה בקרן הגבית ← <b>חצייה מיידית</b> לעמודים האנטריוריים-לטרליים ההפוכים ← גזע ← <span dir="ltr" class="term">VPL</span> בתלמוס ← קליפת הפריאטל (<span dir="ltr" class="term">postcentral gyrus</span>).<br>
+<b>מסלול עמוד אחורי–למניסקוס (<span dir="ltr" class="term">PC–ML / lemniscal</span>):</b> סיבים גדולים ← מגע עדין, מיקום, קינסתזיה ורטט ← עולה <b>באותו צד</b> בעמודים האחוריים ← סינפסה ב<span dir="ltr" class="term">nucleus gracilis/cuneatus</span> במדולה התחתונה ← נוירון שני <b>חוצה</b> ועולה ב<span dir="ltr" class="term">medial lemniscus</span> ← VPL ← קליפה.</p></div>
+<div class="key-box">סיבי מגע/לחץ/מיקום רבים עולים גם באופן מפושט (דו-צדדי) בעמודים הקדמיים-לטרליים. לכן <b>נגע מלא בעמוד האחורי עשוי לגרום לחסר קטן בבדיקה</b>.</div>
+
+<h2><span class="num">4</span> בדיקה גופנית של תחושה</h2>
+<table><thead><tr><th>תחושה</th><th>כלי</th><th>קולטן</th><th>סיב</th><th>מסלול מרכזי</th></tr></thead><tbody>
+<tr><td>כאב</td><td>סיכה נקייה (נזרקת)</td><td>נוציספטורים</td><td>קטן</td><td>SpTh (נגדי)</td></tr>
+<tr><td>חום / קור</td><td>מתכת חמה/קרה, צינוריות מים</td><td>תרמורצפטורים (נפרדים לחם ולקר – לבדוק שניהם)</td><td>קטן</td><td>SpTh</td></tr>
+<tr><td>מגע</td><td>צמר גפן, מברשת (לא על עור שעיר)</td><td>מכנורצפטורים + קצוות חופשיים</td><td>גדול+קטן</td><td>Lem + D + SpTh</td></tr>
+<tr><td>רטט</td><td>קמרטון 128 Hz</td><td>גופיפי פצ'יני</td><td>גדול</td><td>Lem</td></tr>
+<tr><td>מיקום מפרק</td><td>הזזה פסיבית של האצבע/אגודל הרגל</td><td>קפסולה, גידים, ציר שריר</td><td>גדול</td><td>Lem</td></tr></tbody></table>
+<ul>
+<li><b>עקרונות:</b> עיניים עצומות; להשוות שני צדדים; להתחיל <b>במרכז האזור הפגוע</b> ולנוע רדיאלית עד תחושה תקינה; למפות גבולות ולהשוות לשדות של שורשים ועצבים היקפיים (<span dir="ltr" class="term">dermatomes</span>, איור 25-2/25-3 בספר).</li>
+<li><b>רטט:</b> מבוצע מעל בליטות עצם, מתחילים דיסטלית (פלנקס דיסטלי באגודל הרגל, מלאולי; בידיים – פלנקס דיסטלי) ואם יש ליקוי עוברים פרוקסימלית.</li>
+<li><b>מיקום:</b> מחזיקים את האצבע בצדדיה, מייצבים מפרקים פרוקסימליים; אם טועה – בודקים פרוקסימלית. מיקום פרוקסימלי בכתף: לחבר שתי אצבעות מורה בזרועות פשוטות ועיניים עצומות (שגיאה עד 1 ס"מ תקינה).</li>
+<li><b>מטופל סטופורוטי:</b> רק תגובת הסתייגות (<span dir="ltr" class="term">withdrawal</span>) לצביטה. מטופל לא משתף פעולה: ניתן להעריך פרופריוספציה מביצוע תנועות מאוזנות ומדויקות.</li>
+<li>תלונות שלא מתאימות לאנטומיה + בדיקה אפסית או לא עקבית – לחשוב על רקע פסיכוגני (נושא שהספר מרחיב בו בהמשך הפרק).</li></ul>
+
+<h3>תחושה קורטיקלית (דורשת תחושה ראשונית תקינה)</h3>
+<table><thead><tr><th>בדיקה</th><th>מה בודקים</th><th>ליקוי = </th></tr></thead><tbody>
+<tr><td>הבחנה בשתי נקודות (<span dir="ltr" class="term">2-point discrimination</span>)</td><td>קליפרים; בקצה אצבע ~3 מ"מ תקין</td><td>נגע פריאטלי / תלמו-קורטיקלי</td></tr>
+<tr><td>לוקליזציית מגע</td><td>עיניים עצומות, לזהות אתר המגע</td><td>–</td></tr>
+<tr><td>גירוי דו-צדדי סימולטני</td><td>האם מגע בצד אחד "נכבה" (extinction / neglect)</td><td>נגע פריאטלי בצד הנגדי</td></tr>
+<tr><td>גרפסתזיה (<span dir="ltr" class="term">graphesthesia</span>)</td><td>זיהוי אות/מספר שנכתב על כף היד</td><td>אגרפסתזיה</td></tr>
+<tr><td>סטריאוגנוזיה (<span dir="ltr" class="term">stereognosis</span>)</td><td>זיהוי חפצים (מפתח, מטבע) ביד אחת</td><td>אסטריאוגנוזיה של היד הפגועה</td></tr></tbody></table>
+<div class="key-box">בדיקות קורטיקליות משמעותיות רק כשהתחושה הראשונית <b>תקינה</b> אצל מטופל ער ומשתף פעולה; אם הראשונית פגועה, גם הקורטיקליות בדרך כלל יפגעו. תמיד משווים בין צדדים.</div>
+
+<p><b>בדיקות מעבדה/היסטולוגיה:</b> <span dir="ltr" class="term">Quantitative sensory testing</span> (ספי מגע, רטט, טמפרטורה – שימושי במעקב וניסויים קליניים); <span dir="ltr" class="term">NCS</span> וביופסיית עצב בוחנים סיבים גדולים ומיילינים בגזע העצב אך <b>לא</b> קולטני עור, קצוות חופשיים וסיבים לא-מיילינים/דקים. לכן ל-<b>small-fiber neuropathy</b> משתמשים ב<b>ביופסיית עור</b> (צפיפות סיבים באפידרמיס/דרמיס).</p>
+
+<h2><span class="num">5</span> לוקליזציה לפי הדפוס – הלב של הפרק</h2>
+<table><thead><tr><th>רמת נגע</th><th>דפוס אופייני</th><th>הערות / "למה"</th></tr></thead><tbody>
+<tr><td><b>עצב בודד</b> (<span dir="ltr" class="term">mononeuropathy</span>)</td><td>גבולות חדים לפי שדה העצב; הסימנים מוגבלים לשדה הצפוי, התסמינים עשויים לחרוג ממנו</td><td>דוגמה: דיסתזיות באצבע 5 וחצי אצבע 4 ביד אחת → עצב אולנרי (בד"כ במרפק)</td></tr>
+<tr><td><b>עצבים מרובים</b> (<span dir="ltr" class="term">mononeuritis multiplex</span>)</td><td>טריטוריות נפרדות של עצבים שונים; כשיותר עצבים נפגעים החסר מתמזג וחוקה פולינוירופתיה</td><td>–</td></tr>
+<tr><td><b>שורש</b> (<span dir="ltr" class="term">radiculopathy</span>)</td><td>כאב עמוק, כואב לאורך גזע העצב; בפגיעה בשורש <b>בודד</b> החסר מינימלי/נעדר כי הדרמטומים חופפים מאוד</td><td>L5/S1 (פריצת דיסק) ← סיאטיקה</td></tr>
+<tr><td><b>פולינוירופתיה</b></td><td>חסר מדורג, דיסטלי, סימטרי, <b>תלוי אורך עצב</b> ("גרב וכפפה"): דיסתזיות ואז נימול מתחילים באצבעות הרגליים ועולים; כשהגיעו לברכיים – כבר מופיעים באצבעות הידיים</td><td>אורך האקסון הוא החשוף ביותר → תחילה הדיסטליים</td></tr>
+<tr><td><b>Small-fiber</b></td><td>צריבה, דיסתזיות כואבות, ירידה בדקירה וטמפרטורה; <b>פרופריוספציה, כוח ורפלקסים שמורים</b></td><td>"Sensory dissociation" אם המגע נשמר</td></tr>
+<tr><td><b>Large-fiber</b></td><td>ירידת רטט ומיקום, חוסר שיווי משקל, רפלקסים נעדרים, כוח משתנה; רוב תחושת העור נשמרת; דיסתזיות (אם יש) – עקצוץ/חגורתיות</td><td>sensory ataxia</td></tr>
+<tr><td><b>Sensory neuronopathy (ganglionopathy)</b></td><td>חסר חושי נרחב אך <b>אסימטרי ולא תלוי אורך</b> (פרוקסימלי או דיסטלי, ידיים/רגליים); כאב ונימול ← אטקסיה חושית ← כל המודליות</td><td>פרא-ניאופלסטי, אידיופתי, או אוטואימוני (במיוחד <b>Sjögren</b>)</td></tr></tbody></table>
+
+<svg class="diagram" viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13">
+<defs><marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8z" fill="#374151"/></marker></defs>
+<text x="380" y="18" text-anchor="middle" font-weight="700">מפתח החלטה: האם הדיסתזיות "אקראיות" או לפי שדה אנטומי?</text>
+<rect x="290" y="30" width="180" height="40" rx="6" fill="#fffbeb" stroke="#b45309"/><text x="380" y="55" text-anchor="middle">דיסתזיות חיוביות ללא חסר בבדיקה</text>
+<rect x="40" y="110" width="200" height="70" rx="6" fill="#eff6ff" stroke="#2563eb"/><text x="140" y="132" text-anchor="middle">תואם שדה עצב/שורש מסוים</text><text x="140" y="152" text-anchor="middle" font-weight="700">→ נגע בעצב/שורש הזה</text>
+<rect x="280" y="110" width="200" height="70" rx="6" fill="#ecfdf5" stroke="#047857"/><text x="380" y="132" text-anchor="middle">אקרלי (ידיים+רגליים)</text><text x="380" y="152" text-anchor="middle" font-weight="700">→ סיבה מערכתית / early neuropathy</text>
+<rect x="520" y="110" width="200" height="70" rx="6" fill="#fef2f2" stroke="#b91c1c"/><text x="620" y="132" text-anchor="middle">4 גפיים + רמה בגזע + UMN/סוגרים</text><text x="620" y="152" text-anchor="middle" font-weight="700">→ מיאלופתיה צווארית / גזע</text>
+<path d="M340 70L160 110M380 70V110M420 70L600 110" stroke="#374151" fill="none" marker-end="url(#b)"/>
+</svg>
+<p><b>דיסתזיות אקרליות ללא ממצא:</b> יכולות להיות מערכתיות – למשל <b>היפרוונטילציה</b> (ירידת CO₂ ← אלקלוזיס ← ירידת סידן מיונן ← עצבים נרגזים), או תרופה כמו <b>אצטזולאמיד</b>; יכולות להיות סימן מוקדם של פולינוירופתיה מתפתחת או של מיאלופתיה כמו מחסור ב-<b>B12</b>; ולעיתים אין בסיס מוגדר.</p>
+
+<h2><span class="num">6</span> חוט השדרה – תסמונות לפי "מה נחצה ואיפה"</h2>
+<svg class="diagram" viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13">
+<text x="380" y="18" text-anchor="middle" font-weight="700">Brown-Séquard – המיחתך שמאלי בחוט צווארי/חזי</text>
+<ellipse cx="380" cy="135" rx="120" ry="90" fill="#f9fafb" stroke="#374151"/>
+<path d="M380 45V225" stroke="#9ca3af" stroke-dasharray="4"/>
+<rect x="260" y="40" width="120" height="190" fill="#fecaca" opacity=".5"/>
+<text x="320" y="70" text-anchor="middle" fill="#b91c1c" font-weight="700">צד הנגע</text>
+<text x="320" y="95" text-anchor="middle">עמוד אחורי + קורטיקוספינלי</text>
+<text x="320" y="115" text-anchor="middle">⇒ אפסילטרלי: מיקום/רטט↓, חולשה</text>
+<text x="440" y="150" text-anchor="middle" fill="#2563eb" font-weight="700">הצד הנגדי</text>
+<text x="440" y="172" text-anchor="middle">ספינותלמי חצה</text>
+<text x="440" y="192" text-anchor="middle">⇒ כאב+טמפרטורה↓ מתחת לרמה</text>
+<text x="380" y="250" text-anchor="middle" font-size="12">+ אפשר כאב/היפראסתזיה אפסילטרליים ברמת הנגע</text>
+</svg>
+<ul>
+<li><b>חתך מלא:</b> אובדן כל התחושה מתחת לרמה + אובדן תפקוד שלפוחית/מעי + אובדן מוטורי.</li>
+<li><b>המיחתך (<span dir="ltr" class="term">Brown-Séquard</span>):</b> אפסילטרלית: אובדן פרופריוספציה וכוח; נגדית: אובדן כאב וטמפרטורה.</li>
+<li><b>נימול/עקצוץ בשתי הרגליים</b> מנגע שדרתי – במיוחד אם <b>יש רמה</b> על הגזע. כשכל הגפיים מעורבות – הנגע כנראה בצוואר או בגזע, אלא אם זו פולינוירופתיה. סימני <b>UMN</b> תומכים בנגע מרכזי; <b>רצועה היפראסתטית</b> בגזע מרמזת על הרמה.</li>
+<li><b>אובדן מנותק (Dissociated):</b> אובדן דקירה וטמפרטורה עם שימור מגע קל, מיקום ורטט = מעורבות ספינותלמית. חד-צדדי עם רמה בגזע = נגע שדרתי צידי; <b>דו-צדדי</b> בפגיעה במרכז החוט כמו <b>סירינגומיליה</b> (<span dir="ltr" class="term">syringomyelia</span>) – חצייה של סיבי הספינותלמי במרכז.</li>
+<li><b>עמודים אחוריים / אזור כניסת השורש האחורי:</b> תחושת רצועה סביב הגזע או לחץ הדוק בגפיים. (בהמשך הפרק: סימן Lhermitte בכיפוף צוואר – מעבר לטווח העמודים שהועלה.)</li></ul>
+
+<h2><span class="num">7</span> אבחנה מבדלת ממוקדת: איך מבדילים?</h2>
+<table><thead><tr><th>מצב</th><th>חסר חושי</th><th>רפלקסים</th><th>כוח</th><th>מפתח מבדיל</th></tr></thead><tbody>
+<tr><td>פולינוירופתיה סומטית</td><td>גרב-כפפה, מדורג</td><td>↓ דיסטלית</td><td>דיסטלי</td><td>תלוי אורך, סימטרי</td></tr>
+<tr><td>Small-fiber</td><td>כאב/טמפ' ↓</td><td>תקינים</td><td>תקין</td><td>צריבה; פרופריוספציה שמורה</td></tr>
+<tr><td>Large-fiber</td><td>רטט/מיקום ↓</td><td>נעדרים</td><td>משתנה</td><td>Romberg+, אטקסיה חושית</td></tr>
+<tr><td>Ganglionopathy</td><td>אסימטרי, לא תלוי אורך</td><td>נעדרים</td><td>שמור</td><td>Sjögren / פרא-ניאופלסטי</td></tr>
+<tr><td>מיאלופתיה</td><td>רמה בגזע, dissociated</td><td>↑ מתחת לרמה</td><td>UMN</td><td>סוגרים, בבינסקי</td></tr>
+<tr><td>רדיקולופתיה</td><td>דרמטום; לעיתים מינימלי (חפיפה)</td><td>↓ ברמת השורש</td><td>מיוטום</td><td>כאב ירי לאורך העצב</td></tr>
+<tr><td>Mononeuropathy</td><td>שדה עצב מוגדר</td><td>לפי העצב</td><td>לפי העצב</td><td>גבולות חדים</td></tr></tbody></table>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic"><h3>"קטן חוצה מהר, גדול חוצה מאוחר"</h3>
+<p><b>S</b>pinothalamic = <b>S</b>mall fibers, <b>S</b>hortcut (חוצה מיד בחוט), <b>S</b>harp pain + Sizzling temp. <b>L</b>emniscal = <b>L</b>arge, <b>L</b>ate crossing (במדולה), <b>L</b>ight touch, vibration, position – "<b>V</b>ibe & <b>P</b>osition".</p>
+<p><b>סיפור:</b> שני שליחים עולים בבניין מרובה קומות (החוט). <b>שליח קטן וזריז</b> (ספינותלמי) מחליף מיד לצד השני של הבניין ועולה בדרך הקצרה – מביא "חדשות חמות" (כאב, חום, קור). <b>שליח גדול ושקט</b> (למניסקוס) עולה באותו צד עם החבילות הכבדות (מיקום, רטט) ורק בקומה העליונה (המדולה) מחליף צד. אם הבניין נחתך בצד שמאל – הקטן (שכבר חצה) נשאר חי מימין, הגדול (שטרם חצה) מת משמאל: <b>"שמאל נחתך → שמאל לא יודע איפה, ימין לא מרגיש חם"</b>.</p>
+<svg class="diagram" viewBox="0 0 520 170" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="13">
+<rect x="190" y="10" width="140" height="150" fill="#f3f4f6" stroke="#374151"/>
+<text x="260" y="28" text-anchor="middle">בניין = חוט שדרה</text>
+<circle cx="230" cy="140" r="12" fill="#2563eb"/><text x="230" y="144" text-anchor="middle" fill="#fff">קט</text>
+<path d="M230 128Q230 110 290 100" stroke="#2563eb" fill="none" stroke-width="3"/>
+<circle cx="290" cy="90" r="10" fill="#2563eb"/><text x="290" y="94" text-anchor="middle" fill="#fff" font-size="10">קט</text>
+<circle cx="230" cy="100" r="16" fill="#047857"/><text x="230" y="104" text-anchor="middle" fill="#fff">גד</text>
+<path d="M230 84V45L290 35" stroke="#047857" fill="none" stroke-width="3"/>
+<text x="400" y="100" text-anchor="middle" font-size="12" fill="#2563eb">קטן: חוצה מיד</text>
+<text x="400" y="45" text-anchor="middle" font-size="12" fill="#047857">גדול: חוצה למעלה</text>
+</svg></div>
+
+<h2><span class="num">9</span> קישורים ומקורות להעמקה</h2>
+<p>לא נמצאו בחיפוש מזהי סרטוני YouTube אמיתיים ומאומתים להטמעה, ולכן לא הוטמעו סרטונים (לא ממציאים מזהים). קישורים מאומתים:</p>
+<ul class="resource-list">
+<li><a href="https://litfl.com/brown-sequard-syndrome" target="_blank">LITFL – Brown-Séquard Syndrome</a><div class="desc">סקירה קלינית עם הסבר על מסלולים ומוקדם/מאוחר בהצטלבות.</div></li>
+<li><a href="https://en.wikipedia.org/wiki/Brown-S%C3%A9quard_syndrome" target="_blank">Wikipedia – Brown-Séquard syndrome</a><div class="desc">איורים של המיחתך ושל המסלולים.</div></li>
+<li><a href="https://www.osmosis.org/learn/Brown-Séquard_syndrome:_Year_of_the_Zebra" target="_blank">Osmosis – Brown-Séquard syndrome</a><div class="desc">הסבר חזותי קצר של התסמונת.</div></li>
+<li><a href="https://anatomytool.org/node/60310" target="_blank">AnatomyTOOL – Dermatomes and Cutaneous Nerves</a><div class="desc">מפות דרמטומים ושדות של עצבים עוריים (איור 25-2/25-3 בספר).</div></li></ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3>
+<p>בן 62, סוכרתי שנים רבות, מתלונן על צריבה ועקצוץ בכפות הרגליים שהחל לפני שנתיים והתקדם עד הברכיים; בשבועות האחרונים הופיע גם עקצוץ בקצות אצבעות הידיים. בבדיקה: ירידה בתחושת דקירה וטמפרטורה בגרב-כפפה, רטט ומיקום תקינים, כוח תקין, רפלקסים תקינים. מטופל שני – בת 48 עם חוסר יציבות מתקדם, אצבעות שאינה מרגישה בידה הימנית וגם ברגל שמאל, Romberg חיובי חמור, רפלקסים נעדרים, פסאודואתטוזיס; בתיק: יובש בעיניים ובפה.</p></div>
+<div class="quiz" data-answer="2"><div class="q">1. מה האבחנה המתאימה למטופל הראשון?</div>
+<button class="opt" data-i="0">Large-fiber neuropathy</button><button class="opt" data-i="1">Brown-Séquard</button><button class="opt" data-i="2">Small-fiber (פולינוירופתיה דיסטלית תלויית אורך)</button><button class="opt" data-i="3">Ganglionopathy</button>
+<div class="explain">נכון: כאב וטמפרטורה ↓ עם צריבה, ופרופריוספציה/כוח/רפלקסים שמורים = small-fiber, תלוי אורך (רגליים ראשונות). א': היה Romberg ורפלקסים נעדרים. ב': לא חד-צדדי ולא עם רמה. ד': לא אסימטרי.</div></div>
+<div class="quiz" data-answer="3"><div class="q">2. מה האבחנה למטופלת השנייה ומה הרקע הסביר?</div>
+<button class="opt" data-i="0">פולינוירופתיה סוכרתית</button><button class="opt" data-i="1">רדיקולופתיה L5</button><button class="opt" data-i="2">מיאלופתיה צווארית</button><button class="opt" data-i="3">Sensory neuronopathy; רקע סביר: Sjögren</button>
+<div class="explain">נכון: חסר אסימטרי, לא תלוי אורך, אטקסיה חושית + sicca. א': סימטרית ותלוית אורך. ב': לא דרמטום בודד. ג': אין סימני UMN/רמה.</div></div>
+<div class="quiz" data-answer="1"><div class="q">3. חולה עם אובדן רטט ומיקום ברגל ימין, חולשה ימנית ואובדן כאב וטמפרטורה ברגל שמאל. מה המנגנון?</div>
+<button class="opt" data-i="0">הספינותלמי עולה אפסילטרלית</button><button class="opt" data-i="1">הספינותלמי חוצה מיד בחוט, והעמוד האחורי עולה אפסילטרלית</button><button class="opt" data-i="2">שני המסלולים חוצים בפונס</button><button class="opt" data-i="3">נגע בקליפה השמאלית</button>
+<div class="explain">נכון: Brown-Séquard מימין. א': הפוך. ג': שגוי. ד': קליפה לא תייצר דפוס חצייה כזה עם חולשה ימנית ברגל בלבד.</div></div>
+<div class="quiz" data-answer="0"><div class="q">4. מדוע נגע מלא בעמוד האחורי עלול לגרום לחסר קטן בלבד בבדיקה?</div>
+<button class="opt" data-i="0">כי סיבי מגע/מיקום עולים גם בצורה מפושטת דו-צדדית בעמודים הקדמיים-לטרליים</button><button class="opt" data-i="1">כי רטט אינו עובר שם</button><button class="opt" data-i="2">כי הסיבים חוצים מוקדם</button><button class="opt" data-i="3">כי הסיבים קטנים</button>
+<div class="explain">נכון. ב': רטט עובר שם. ג': הוא חוצה במדולה. ד': הם גדולים.</div></div>
+<div class="quiz" data-answer="2"><div class="q">5. מטופל מתאר עקצוץ בקצות אצבעות הידיים והרגליים אחרי לחץ נפשי, הבדיקה תקינה. מה המנגנון הסביר הראשון לחשוב עליו?</div>
+<button class="opt" data-i="0">ביופסיית עצב</button><button class="opt" data-i="1">Syringomyelia</button><button class="opt" data-i="2">היפרוונטילציה (אלקלוזיס) או תרופה כמו אצטזולאמיד</button><button class="opt" data-i="3">Brown-Séquard</button>
+<div class="explain">נכון: דיסתזיות אקרליות ללא ממצא – סיבות מערכתיות. הנחת Syringomyelia וכו' תדרוש חסר מנותק ורמה.</div></div>
+
+<div class="tldr"><h2><span class="num">11</span> סיכום של הסיכום</h2><ul>
+<li>תסמין חיובי = פעילות יתר (אקטופית), בלי חסר בהכרח; סימנים בבדיקה = תמיד שליליים. נדרש אובדן של ~50% מהאקסונים לממצא.</li>
+<li>Spinothalamic: סיבים קטנים, כאב/טמפרטורה, חוצה מיד בחוט. PC–ML: סיבים גדולים, רטט/מיקום/מגע עדין, חוצה במדולה.</li>
+<li>מגע/מיקום גם עולים מפושטים ← נגע בעמוד אחורי לבדו → חסר קטן.</li>
+<li>בדיקה: מהמרכז החוצה, עיניים עצומות, השוואת צדדים; קמרטון 128 Hz; קורטיקליים רק עם ראשונית תקינה.</li>
+<li>פולינוירופתיה = סימטרי, דיסטלי, תלוי אורך; small-fiber = כאב/טמפ' בלי פרופריוספציה; large-fiber = אטקסיה חושית, Romberg; ganglionopathy = אסימטרי ולא תלוי אורך (Sjögren, פרא-ניאופלסטי).</li>
+<li>שורש בודד: חסר מינימלי (חפיפה) + כאב ירי; מונונוירופתיה: גבול חד לפי עצב.</li>
+<li>Brown-Séquard: אפסילטרלי – מיקום/רטט/כוח; נגדי – כאב/טמפרטורה. סירינגומיליה: dissociated דו-צדדי בגלל חצייה במרכז.</li>
+<li>NCS/ביופסיית עצב לא מעריכים סיבים דקים ← ביופסיית עור.</li></ul></div>
+<script>
+// שאלון לחיץ - עובד בקובץ נייד ובארטיפקט כאחד, בלי ספרייה חיצונית.
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+
+</script></body></html>
