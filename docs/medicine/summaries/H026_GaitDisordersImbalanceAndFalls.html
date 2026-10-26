@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--
+  תבנית בסיס לסיכום רפואי. העתיקי קובץ זה, מלאי את התוכן במקומות המסומנים ב-<!-- TODO -->,
+  והסירי בלוקים לא רלוונטיים (למשל בלוק "ביטוי חזותי" אם אין למחלה מראה אופייני).
+  ה-CSS מוטמע כאן במלואו - אין תלות בקובץ חיצוני.
+-->
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הפרעות הליכה, אי־יציבות ונפילות</title>
+<style>
+  
+  :root{
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Assistant',Arial,'Segoe UI',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  /* בלוק מנגנון/פתופיזיולוגיה */
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  /* הדגשת נקודה חשובה לזכור */
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  /* תמונות/הדמיות - כולל זוג תקין/פתולוגי זה-לצד-זה */
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  /* טבלאות (תרופות, אבחנה מבדלת) */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  /* טכניקות זכירה */
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  /* מהלך ניתוח */
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  /* קישורים חיצוניים */
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  /* מקרה קליני ושאלות תרגול */
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  /* שאלון אינטראקטיבי - לחיצה על תשובה, לא details סטטי. עובד בקובץ נייד ובארטיפקט כאחד. */
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  /* כרטיס-קישור לתמונה/סרטון - להשתמש בזה במקום <img> כשהפלט הוא ארטיפקט ב-Cowork
+     (שם תמונות מקישור חיצוני לא נטענות כי הרשת חסומה בתוך ה-iframe המבודד).
+     בקובץ HTML נייד רגיל, במקום זאת מטמיעים <img src="..."> ישירות - ראו bloc "תמונות/הדמיות". */
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  /* סיכום של הסיכום */
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+</style>
+</head>
+<body>
+<h1>הפרעות הליכה, אי־יציבות ונפילות (<span dir="ltr" class="term">Gait Disorders, Imbalance, and Falls</span>)</h1>
+<div class="subtitle">Harrison's מהדורה 21, פרק 26, עמ' 214–218 · מקור ראשי: הריסון</div>
+
+<p>הליכה על שתי רגליים נראית אוטומטית, אבל היא תוצר של <b>שילוב בין שליטה יציבתית (<span dir="ltr" class="term">postural control</span>) לבין הנעה (<span dir="ltr" class="term">locomotion</span>)</b> שמפוזר לכל גובה במערכת העצבים. לכן כמעט כל מחלה נוירולוגית מתבטאת בהליכה, ולכן <span class="key">הפרעות הליכה הן גורם הסיכון המרכזי לנפילות</span> בקשישים. כ-15% מעל גיל 65 סובלים מהפרעת הליכה, ובגיל ≥85 כ-40%.</p>
+
+<h2><span class="num">2</span> המנגנון – למה הליכה נכשלת</h2>
+<div class="mechanism">
+<p class="chain">מרכזי הפקודה (גזע מוח, מוחון, קדמת המוח) → מפעילים מחוללי דפוס בעמוד השדרה (<span dir="ltr" class="term">spinal pattern generators</span>) → ירידה דרך ה-<span dir="ltr" class="term">reticular formation</span> והמסלולים הוונטרומדיאליים בחוט השדרה → צעד. במקביל, חייבים לשמור על <b>מרכז המסה מעל בסיס התמיכה</b>. אצל פרימטים (בניגוד לבעלי חיים ארבע-רגליים) חוט שדרה מנותק לא מייצר הליכה, ולכן הצעד תלוי במרכזי הליכה ב-<span dir="ltr" class="term">pontine tegmentum</span>, במוח התיכון ובאזור הסובתלמי.</p>
+<p><b>יציבות בעמידה</b> דורשת קלט חושי איכותי משלוש מערכות: ראייה, וסטיבולרית ופרופריוספציה (ציר שרירים ומפרקים). יש יתירות, אבל <span class="key">אובדן של שתיים מתוך שלוש מספיק כדי לפגוע ביציבות</span>. אצל קשישים לעיתים מדובר בפגיעות קטנות מצטברות (ראייה + וסטיבולרי + נוירופתיה). תגובות היציבה האוטומטיות בשרירי הרגל מתחילות כ-110 מילי-שניות אחרי הפרעה.</p>
+<p>רכיב נוסף הוא <b>קשב</b>: הליכה היא "אוטומטית" רק בתנאים רגילים. ב-<span dir="ltr" class="term">dual-task walking</span> (הליכה תוך משימה קוגניטיבית) קשישים עם ירידה בתפקוד ניהולי מתקשים, ולכן הם נופלים כשמסיחים את דעתם.</p>
+<p><b>עיקרון חשוב:</b> הליכה חולה היא תוצר של <b>הפגם העצבי + ההסתגלות התפקודית</b> אליו. לכן הרבה הליכות כושלות נראות דומות (רחב בסיס, צעדים קצרים), והסימן הייחודי נעלם מאחורי ההסתגלות.</p>
+</div>
+<svg class="diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="15">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#374151"/></marker></defs>
+<rect x="700" y="20" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="790" y="46" text-anchor="middle">קורטקס: מטרה, מכשולים</text><text x="790" y="66" text-anchor="middle">ומוח קדמי</text>
+<rect x="470" y="20" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="560" y="46" text-anchor="middle">גזע, מוח תיכון, סובתלמוס</text><text x="560" y="66" text-anchor="middle">מרכזי הליכה</text>
+<rect x="240" y="20" width="180" height="60" rx="8" fill="#eff6ff" stroke="#2563eb"/><text x="330" y="46" text-anchor="middle">חוט שדרה: מחוללי דפוס</text><text x="330" y="66" text-anchor="middle">+ reticulospinal</text>
+<rect x="20" y="20" width="180" height="60" rx="8" fill="#ecfdf5" stroke="#047857"/><text x="110" y="52" text-anchor="middle">צעד</text>
+<line x1="700" y1="50" x2="652" y2="50" stroke="#374151" marker-end="url(#a)"/><line x1="470" y1="50" x2="422" y2="50" stroke="#374151" marker-end="url(#a)"/><line x1="240" y1="50" x2="202" y2="50" stroke="#374151" marker-end="url(#a)"/>
+<rect x="240" y="120" width="420" height="60" rx="8" fill="#fffbeb" stroke="#b45309"/><text x="450" y="145" text-anchor="middle">משוב: ראייה + וסטיבולרי + פרופריוספציה</text><text x="450" y="167" text-anchor="middle">+ מוחון (איזון). חסר 2 מ-3 = חוסר יציבות</text>
+<line x1="450" y1="120" x2="450" y2="86" stroke="#b45309" marker-end="url(#a)" stroke-dasharray="4"/>
+</svg>
+
+<h2><span class="num">3</span> דפוסי הליכה לפי אזור הפגיעה</h2>
+<p>האנטומיה קובעת את הדפוס. הטבלה מרכזת את המסקנות העיקריות מהפרק:</p>
+<table>
+<thead><tr><th>דפוס</th><th>המנגנון / מיקום</th><th>מאפיין</th><th>גורמים אופייניים</th></tr></thead>
+<tbody>
+<tr><td>זהירה (<span dir="ltr" class="term">Cautious</span>)</td><td>הסתגלות לאיום יציבתי, לא ספציפית</td><td>צעד קצר, בסיס רחב, מרכז מסה נמוך, זרועות מורחקות, "כמו על קרח"</td><td>פחד מנפילה; נראית ביותר משליש מהקשישים עם הפרעת הליכה</td></tr>
+<tr><td>ספסטית (<span dir="ltr" class="term">Spastic</span>)</td><td>פגיעה במסלול הקורטיקוספינלי + היפראקטיביות רפלקסים בעמוד השדרה</td><td>נוקשות, <span dir="ltr" class="term">circumduction</span>, גרירת כף הרגל, הליכה על בהונות, "מספריים" (<span dir="ltr" class="term">scissoring</span>) בטונוס אדוקטורים. סימני UMN</td><td>ספינלי: ספונדילוזיס צווארית (קשישים), MS וטראומה (צעירים). מוחי: שבץ, MS, MND, שיתוק מוחין. מוחי: לרוב אסימטרי, מעורבות גפה עליונה ודיסארתריה</td></tr>
+<tr><td>דיסטוניה / Stiff-person</td><td>התכווצויות מתמשכות; ב-SPS אוטואימוני, לורדוזה מוגזמת + הפעלת אנטגוניסטים</td><td>כף רגל ב-plantar flexion ו-inversion; יציבה "עץ"</td><td>דיסטוניה לרוב גנטית</td></tr>
+<tr><td>פרקינסוני</td><td>ירידה בדופמין; גם חוסר כולינרגי ב-<span dir="ltr" class="term">pedunculopontine nucleus</span></td><td>יציבה כפופה, גרירה, ירידה בנדנוד זרוע, <span dir="ltr" class="term">festination</span>, <span dir="ltr" class="term">retropulsion</span>, פנייה <span dir="ltr" class="term">en bloc</span></td><td>PD (שכיחות ~1% מעל 65), פרקינסוניזם תרופתי</td></tr>
+<tr><td>קפיאה (<span dir="ltr" class="term">Freezing</span>)</td><td>היעדר זמני של התקדמות הרגליים למרות כוונה</td><td>מופעל ע"י דלת צרה או קהל; משתפר ב-<span dir="ltr" class="term">visual cueing</span></td><td>~רבע מחולי PD בתוך 5 שנים. גם PSP, MSA, CBD</td></tr>
+<tr><td>פרונטלית (רמה גבוהה)</td><td>הפרעה בשליטה מוטורית גבוהה (לא אפרקסיה אמיתית), לרוב מחלת כלי דם קטנים בחומר לבן</td><td>בסיס רחב, צעד קצר, גרירה, קושי בהתחלה ("<span dir="ltr" class="term">slipping clutch</span>") ובפניות. כוח שמור, בלי קושי לצעוד ללא עמידה</td><td>דמנציה וסקולרית תת-קורטיקלית (&gt;75% עם הפרעת הליכה), NPH, מסות פרונטליות</td></tr>
+<tr><td>אטקסיה מוחונית</td><td>פגיעה במוחון (במיוחד קו האמצע) ובגרעיני הוסטיבולר</td><td>בסיס רחב, חוסר יציבות צדית של הגו, מיקום רגל לא עקבי, אין <span dir="ltr" class="term">tandem</span>, קושי בפניות מוקדם</td><td>שבץ, טראומה, גידול, MSA, ניוון תורשתי, אלכוהול, פרמוטציה ב-fragile X</td></tr>
+<tr><td>אטקסיה חושית</td><td>אובדן פרופריוספציה (סיבים עבים)</td><td>בסיס צר, מביט לרגליים, החמרה בעיניים עצומות (<span dir="ltr" class="term">Romberg</span>) ובחושך</td><td>נוירופתיה, מחסור B12 (ניתן לטיפול), עגבת (tabes), נוירופתיה סנסורית אוטואימונית/פרא-ניאופלסטית</td></tr>
+<tr><td>Steppage / נוירומוסקולרי</td><td>חולשה דיסטלית: foot drop</td><td>הרמת ברך גבוהה, סטירת כף הרגל</td><td>נוירופתיה היקפית. מיופתיה: חולשה פרוקסימלית עם נדנוד אגן</td></tr>
+<tr><td>סטנוזיס מותני</td><td>כיפוף מקטין לחץ על ה-<span dir="ltr" class="term">cauda equina</span></td><td>יציבה כפופה, מדמה פרקינסוניזם מוקדם</td><td></td></tr>
+<tr><td>טוקסי/מטבולי</td><td>אסטריקסיס/מיוקלונוס פוגעים בתמיכה היציבתית</td><td>איבוד שיווי משקל קל, שינויי מצב הכרה</td><td>אי ספיקת כליות/כבד; תרופות מרדימות (נוירולפטיקה, בנזודיאזפינים ארוכי טווח). הפיכים!</td></tr>
+<tr><td>תפקודית</td><td>"פסיכוגנית" לשעבר</td><td>התחלה פתאומית, חוסר עקביות, שיפור בהסחת דעת, <b>נפילות נדירות</b>, אסטזיה-אבזיה, איטיות קיצונית</td><td>להבדיל מאיטיות בדיכאון מז'ורי</td></tr>
+</tbody></table>
+<div class="key-box">פרקינסוניזם וסקולרי (<span dir="ltr" class="term">lower-body</span>) מבדיל מ-PD בכך שפגיעת ההליכה בולטת <b>מוקדם</b> ושני הצדדים מושפעים. ב-PSP היציבה זקופה יותר (לעומת כפופה ב-PD) ונפילות בשנה הראשונה מחשידות ל-PSP.</div>
+
+<h3>טיפול ספציפי בפרקינסוניזם</h3>
+<p>דופמין משפר אורך צעד, נדנוד זרוע, מהירות פנייה והתחלת הליכה. קפיאה של "סוף מנה" משתפרת עם מתן תכוף יותר של תרופות דופמינרגיות או <b>מעכבי MAO-B (rasagiline, selegiline)</b>. מעכבי כולין-אסטראז (donepezil, rivastigmine) הפחיתו שונות הליכה, חוסר יציבות ותדירות נפילות במחקרים ראשוניים, גם בלי ירידה קוגניטיבית, ככל הנראה דרך שיפור הקשב.</p>
+
+<h2><span class="num">4</span> אבחנה – גישה והבחנה בין שלוש ההליכות המבלבלות</h2>
+<p>ההיסטוריה: מתי התחיל ואיך התקדם? התחלה אחרי נפילה היא נפוצה; <b>התקדמות מדורגת/פתאומית = כלי דם</b>; הליכה + דחיפות ואי שליטה בשתן מחשידים למיאלופתיה צווארית או הידרוצפלוס. תמיד לבדוק אלכוהול ותרופות. בבדיקה: צפייה בהליכה, קצב (צעדים לדקה), מהירות ואורך צעד על מרחק קבוע, וקימה מכיסא (הערכה תפקודית טובה ליציבות).</p>
+<table>
+<thead><tr><th>מאפיין</th><th>אטקסיה מוחונית</th><th>אטקסיה חושית</th><th>פרונטלית</th></tr></thead>
+<tbody>
+<tr><td>בסיס תמיכה</td><td>רחב</td><td>צר, מביט למטה</td><td>רחב</td></tr>
+<tr><td>מהירות</td><td>משתנה</td><td>איטית</td><td>איטית מאוד</td></tr>
+<tr><td>צעד</td><td>לא סדיר, מטלטל</td><td>סדיר, סטייה מהנתיב</td><td>קצר, גורר</td></tr>
+<tr><td>Romberg</td><td>+/–</td><td><b>לא יציב, נופל</b></td><td>+/–</td></tr>
+<tr><td>עקב-שוק</td><td><b>חריג</b></td><td>+/–</td><td>תקין</td></tr>
+<tr><td>התחלת הליכה</td><td>תקינה</td><td>תקינה</td><td><b>מהססת</b></td></tr>
+<tr><td>פניות</td><td>לא יציבות</td><td>+/–</td><td>מהוססות, רב-שלביות</td></tr>
+<tr><td>חוסר יציבות יציבתי</td><td>+</td><td>+++</td><td>++++ (קשה לקום מכיסא)</td></tr>
+<tr><td>נפילות</td><td>מאוחר</td><td>תכופות</td><td>תכופות</td></tr>
+</tbody></table>
+<h3>הדמיה</h3>
+<p>MRI רגיש לנגעים וסקולריים/דמיאלינטיים, ומסנן טוב להידרוצפלוס סמוי. ב-<span dir="ltr" class="term">NPH</span>: הרחבת חדרים, <span dir="ltr" class="term">flow void</span> מוגבר סביב האקוודוקט, שינוי בחומר לבן פריוונטריקולרי ו-<span dir="ltr" class="term">high-convexity tightness</span> (הרחבת סדקי סילביוס ביחס לסולקוסים בקונבקסיטי). ניקור מותני/בדיקה דינמית נדרשים לאישור. באטקסיה מוחונית ניוונית MRI מראה היקף וטופוגרפיה של ניוון. חולים עם נפילות חוזרות בסיכון להמטומה סובדורלית. נגעי חומר לבן יכולים להיות ממצא מקרי, אבל עומס גבוה פוגע בשליטה מוחית על הליכה. מיאלופתיה ממושכת ללא סיבה ידועה: בירור מעבדה/הדמיה, והוצאת נגע מבני (גידול, מום כלי דם).</p>
+<div class="key-box">NPH: כל השלישייה (הליכה, שטיון, אי שליטה) לא תמיד קיימת. הליכה פרונטלית היא לרוב הסימן הראשון והבולט.</div>
+
+<h2><span class="num">5</span> אי־יציבות (<span dir="ltr" class="term">Disorders of Balance</span>)</h2>
+<p>איזון הוא <b>מצב דינמי</b> של שליטה במרכז המסה ביחס לרגליים, לכבידה ולמשטח, למרות הפרעות חיצוניות. נדרש קלט ממוחון, וסטיבולרי וסומטוסנסורי; פלט דרך הקורטקס הפרה-מוטורי והמסלולים הקורטיקוספינלי והרטיקולוספינלי לשרירי הגו והגפיים הקרובים.</p>
+<table>
+<thead><tr><th>סוג</th><th>מה אופייני</th></tr></thead>
+<tbody>
+<tr><td>מוחוני</td><td>בדרך כלל <b>אין תלונת סחרחורת</b>, אך שיווי משקל לקוי נראה לעין; ההתקדמות נמדדת בשנים עד איבוד הליכה יציבה</td></tr>
+<tr><td>וסטיבולרי (פרק 22)</td><td>שלישיית: ורטיגו, ניסטגמוס, אי יציבות בעמידה. בפגיעה אוטוטוקסית יכולים להיעדר ורטיגו וניסטגמוס, אך אי יציבות ואי יכולת ניווט בחושך נשארים</td></tr>
+<tr><td>סומטוסנסורי</td><td>חוסר ביטחון, פחד נפילה, Romberg חיובי, קושי בחושך. מקרה קיצוני: נוירופתיה סנסורית אוטואימונית (לעיתים פרא-ניאופלסטית). מפצים בניטור חזותי פעיל</td></tr>
+<tr><td>רמה גבוהה</td><td>קושי באיזון בחיי היום-יום, מודעות מופחתת, נפילות; נפוץ אצל נוטלי תרופות מרדימות</td></tr>
+</tbody></table>
+
+<h2><span class="num">6</span> נפילות</h2>
+<p>מעל שליש מבני &gt;65 בקהילה נופלים בכל שנה, יותר במוסדות. קשישים סובלים מסיבוכים חמורים יותר (אוסטאופורוזיס), ושבר צוואר ירך מוביל לאשפוז, לעיתים למוסד סיעודי, ולעלייה בתמותה בשנה שאחריו. גם פגיעה מוחית/שדרתית אפשרית, ובמיוחד כשהחולה שוכב זמן רב על הרצפה. כ-1 מכל 5 קשישים מגביל פעילות מפחד נפילה.</p>
+<h3>גורמי סיכון (Table 26-3)</h3>
+<table>
+<thead><tr><th>גורם</th><th>RR / OR ממוצע</th></tr></thead>
+<tbody>
+<tr><td>חולשת שרירים</td><td><b>4.4</b></td></tr><tr><td>היסטוריה של נפילות</td><td>3.0</td></tr><tr><td>הפרעת הליכה / הפרעת איזון</td><td>2.9 / 2.9</td></tr><tr><td>שימוש בעזר הליכה</td><td>2.6</td></tr><tr><td>ליקוי ראייה</td><td>2.5</td></tr><tr><td>דלקת מפרקים</td><td>2.4</td></tr><tr><td>פגיעה ב-ADL</td><td>2.3</td></tr><tr><td>דיכאון</td><td>2.2</td></tr><tr><td>פגיעה קוגניטיבית</td><td>1.8</td></tr><tr><td>גיל &gt;80</td><td>1.7</td></tr></tbody></table>
+<p>עוד: <b>פוליפרמסי (4+ תרופות)</b>. גורמים פנימיים (הליכה, איזון) מול חיצוניים (תרופות, סביבה); ריבוי גורמים מעלה סיכון משמעותית.</p>
+<h3>הערכה</h3>
+<p>שאלו כל מבוגר בקהילה אחת לשנה על נפילות ועל פחד נפילה המגביל פעילות. <b><span dir="ltr" class="term">Timed Up and Go</span></b>: קימה מכיסא, הליכה 10 רגל (~3 מ'), פנייה וחזרה לישיבה. <span class="key">היסטוריית נפילות או &gt;12 שניות = סיכון גבוה</span> והמשך הערכה. בהיסטוריה: גורמים מעוררים (סיבוב ראש, קימה), פרודרום (סחרחורת, ורטיגו, פרה-סינקופה, חולשה מוקדית), מצב בסיס; הבחנה בין נפילה <b>מכנית</b> (מעידה, החלקה) לבין נפילה עם גורם פנימי הניתן לתיקון. תרופות בעייתיות: בנזודיאזפינים, אופיואידים, אנטיפסיכוטיים, נוגדי פרכוסים, נוגדי דיכאון, אנטי-אריתמיים, משתנים. איבוד הכרה: סינקופה/פרכוס דורשים בירור לבבי/נוירולוגי (שימו לב: דיווח החולה על שינוי הכרה עלול להיות לא אמין). בבדיקה: לב, לחץ דם אורתוסטטי, אורתופדיה, מצב נפשי, ראייה, כוח וחישה בגפיים תחתונות, טונוס, מוחון והליכה.</p>
+<h3>דפוסי נפילה כרמז אטיולוגי</h3>
+<table>
+<thead><tr><th>דפוס</th><th>תיאור וסיבות</th></tr></thead>
+<tbody>
+<tr><td>Drop attack / קריסה</td><td>איבוד פתאומי של טונוס ("הרגליים פשוט נתנו"). סינקופה/היפוטנסיה אורתוסטטית; נוירולוגית (נדירה): פרכוס אטוני, מיוקלונוס, ציסטה קולואידית של חדר 3 החוסמת את ה-<span dir="ltr" class="term">foramen of Monro</span>. טריגר רגשי = <span dir="ltr" class="term">cataplexy</span>. לא לבלבל עם TIA ורטברובזילרי</td></tr>
+<tr><td>Toppling (כגזע עץ)</td><td>טונוס נשמר אך הגנות יציבה "מנותקות", לעיתים באותו כיוון. מוחון, וסטיבולרי, סימן מוקדם ב-PSP, מאוחר ב-PD, אסטזיה תלמית</td></tr>
+<tr><td>קפיאה</td><td>הרגליים "דבוקות" ומרכז המסה ממשיך = נפילה קדימה; גם festination ב-PD</td></tr>
+<tr><td>אובדן חושי</td><td>קושי בתאורה חלשה ומשטח לא אחיד; מגיבים היטב לשיקום</td></tr>
+<tr><td>חולשה</td><td>קושי לקום מכיסא ולהתאושש מהפרעה; לא מצליחים לקום אחרי נפילה. דקונדישן – ניתן לטיפול</td></tr>
+</tbody></table>
+
+<h2><span class="num">7</span> טיפול ומניעה</h2>
+<p>הגדירו את מנגנון הנפילה, כי ייתכן טיפול ממוקד. <b>רשימת פעולות:</b> מדידת לחץ דם ודופק אורתוסטטיים; סקירת תרופות (גם OTC) והפחתה של אלה שמעלות סיכון; טיפול בקטרקט והימנעות מעדשות מולטיפוקליות; ביקור בית לזיהוי סכנות (תאורה, ידיות אחיזה, משטחים לא מחליקים, ציוד מסייע); תוכניות פעילות גופנית בבית/בקבוצה (חיזוק רגליים ואיזון), פיזיותרפיה ועזרי הליכה; <b>אימון התנגדות בעצימות גבוהה</b> מגדיל מסת שריר גם בגילאי 80-90; אימון שיווי משקל חושי (שיפור תוך שבועות, שמירה עד 6 חודשים עם 10-20 דקות ביום; במיוחד בהפרעות וסטיבולריות וסומטוסנסוריות); <b>טאי צ'י</b> מפחית נפילות ופגיעות גם ב-PD; אימון קוגניטיבי כולל <span dir="ltr" class="term">dual-task</span> משפר ניידות בפגיעה קוגניטיבית. הליכה "זהירה" וחולשה משתפרות פעמים רבות עם פיזיותרפיה עד שמתגלה אבחנה ספציפית יותר.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>שלושת עמודי היציבות: "ר-ו-פ"</h3>
+<p><b>ר</b>איית + <b>ו</b>סטיבולרי + <b>פ</b>רופריוספציה. חסרים שניים - נופלים. בנוסף "מוחון" מתאם את כולם.</p>
+<h3>אטקסיות: "מוחון = מתנדנד, חישה = מביט למטה, פרונטלי = נדבק לרצפה"</h3>
+<p>דמיינו שלושה אנשים על מעבורת: מוחוני מתנדנד כמו מלח שיכור ברגליים פשוקות; החושי עומד בצמידות ומביט לנעליים כי איבד את "הקרקע" בגוף, ובחושך (או עיניים עצומות) הוא פשוט נופל; הפרונטלי נדבק לרצפה כאילו נעליו מרוחות בדבק – קשה לו להתחיל, ואז הוא גורר ברגליים.</p>
+<svg class="diagram" viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" font-family="Arial" font-size="14">
+<rect x="0" y="150" width="500" height="50" fill="#bfdbfe"/>
+<g transform="translate(40,0)"><circle cx="50" cy="60" r="14" fill="#fcd34d"/><line x1="50" y1="74" x2="50" y2="115" stroke="#111827" stroke-width="3"/><line x1="50" y1="115" x2="20" y2="150" stroke="#111827" stroke-width="3"/><line x1="50" y1="115" x2="80" y2="150" stroke="#111827" stroke-width="3"/><text x="50" y="30" text-anchor="middle">מוחוני: מתנדנד</text></g>
+<g transform="translate(200,0)"><circle cx="50" cy="75" r="14" fill="#fcd34d"/><line x1="50" y1="89" x2="50" y2="120" stroke="#111827" stroke-width="3"/><line x1="50" y1="120" x2="45" y2="150" stroke="#111827" stroke-width="3"/><line x1="50" y1="120" x2="57" y2="150" stroke="#111827" stroke-width="3"/><text x="50" y="30" text-anchor="middle">חושי: מביט למטה</text></g>
+<g transform="translate(350,0)"><circle cx="50" cy="60" r="14" fill="#fcd34d"/><line x1="50" y1="74" x2="50" y2="115" stroke="#111827" stroke-width="3"/><line x1="50" y1="115" x2="35" y2="150" stroke="#111827" stroke-width="3"/><line x1="50" y1="115" x2="65" y2="150" stroke="#111827" stroke-width="3"/><ellipse cx="50" cy="158" rx="40" ry="8" fill="#a16207"/><text x="50" y="30" text-anchor="middle">פרונטלי: דבק</text></g>
+</svg>
+<h3>נפילות: "ח-ה-ת-פ"</h3>
+<p>חולשה (4.4, הגבוה ביותר), היסטוריה, תנועה (הליכה/איזון), פוליפרמסי/ראייה. ההיסטוריה של נפילה קודמת היא ניבוי חזק (3.0).</p>
+</div>
+
+<h2><span class="num">9</span> מקורות להרחבה</h2>
+<p>לא אותרו בחיפוש האוטומטי סרטוני YouTube ותמונות מאומתים לנושא זה, ולכן לא הוטמעו (כדי לא להמציא קישורים). קישורים אמיתיים שנמצאו:</p>
+<ul class="resource-list">
+<li><a href="https://geekymedics.com/gait-abnormalities/" target="_blank">Geeky Medics – Gait Abnormalities</a><div class="desc">סקירה עם תיאור כל סוגי ההליכה הלא-תקינה ואופן הבדיקה.</div></li>
+<li><a href="https://www.cdc.gov/steadi/pdf/steadi-assessment-tug-508.pdf" target="_blank">CDC STEADI – Timed Up and Go</a><div class="desc">הנחיות רשמיות לביצוע מבחן TUG ופרשנותו.</div></li>
+<li><a href="https://images.radiopaedia.org/cases/normal-pressure-hydrocephalus-32?lang=gb" target="_blank">Radiopaedia – NPH case 32</a><div class="desc">דוגמת הדמיה אמיתית של NPH.</div></li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case"><h3>וינייטה</h3>
+<p>גבר בן 78, עם יתר לחץ דם ושנים של סוכרת, מגיע לאחר נפילה שלישית בחצי שנה. מתאר שהוא "נדבק לרצפה" בהתחלת הליכה ובפניות ותופס בקירות. אשתו מציינת שבחודשים האחרונים נהיה שכחן וסובל מדחיפות במתן שתן. בבדיקה: בסיס רחב, צעדים קצרים וגוררים, היסוס בהתחלה, כוח גפיים שמור, ללא רעד במנוחה. זמן TUG: 18 שניות. MRI: חדרים מורחבים בצורה לא פרופורציונלית לסולקוסים בקונבקסיטי, ושינויים בחומר לבן סביב החדרים.</p></div>
+<div class="quiz" data-answer="0">
+  <div class="q">1. איזה דפוס הליכה מתאר החולה?</div>
+  <button class="opt" data-i="0">פרונטלית (רמה גבוהה)</button>
+  <button class="opt" data-i="1">אטקסיה חושית</button>
+  <button class="opt" data-i="2">אטקסיה מוחונית</button>
+  <button class="opt" data-i="3">ספסטית</button>
+  <div class="explain">בסיס רחב, צעד קצר וגורר, היסוס בהתחלה ובפניות וכוח שמור = פרונטלית. חושית: בסיס צר ו-Romberg חיובי. מוחונית: התחלה תקינה ושחרור לא סדיר. ספסטית: סימני UMN והליכה נוקשה עם circumduction.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">2. מהי האבחנה הסבירה ביותר, ומה ממצא ה-MRI המחשיד?</div>
+  <button class="opt" data-i="0">NPH, עם high-convexity tightness והרחבת חדרים</button>
+  <button class="opt" data-i="1">מחלת פרקינסון, עם ניוון substantia nigra</button>
+  <button class="opt" data-i="2">אטקסיה מוחונית, עם ניוון vermis</button>
+  <button class="opt" data-i="3">מיאלופתיה צווארית, עם דחיסה שדרתית</button>
+  <div class="explain">שלישיית הליכה, שטיון ואי שליטה + MRI אופייניים = NPH. השלישייה לא תמיד מלאה. פרקינסון אינו מתאים (לא רעד, הליכה פרונטלית). מוחון ומיאלופתיה לא מתאימים לממצאי ההדמיה.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה הצעד הבא לאישור האבחנה?</div>
+  <button class="opt" data-i="0">ניקור מותני או בדיקה דינמית</button>
+  <button class="opt" data-i="1">אלקטרומיוגרפיה</button>
+  <button class="opt" data-i="2">ביופסיית מוח</button>
+  <button class="opt" data-i="3">התחלת levodopa וצפייה</button>
+  <div class="explain">הפרק קובע שדרוש ניקור מותני או בדיקה דינמית לאישור NPH. EMG ללא מקום, ביופסיה פולשנית ללא צורך, ו-levodopa עשוי לשפר מעט בפרקינסוניזם וסקולרי אך לא מאבחן NPH.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. מדוע TUG של 18 שניות משמעותי?</div>
+  <button class="opt" data-i="0">כי מעל 12 שניות מעיד על סיכון גבוה לנפילות</button>
+  <button class="opt" data-i="1">כי מעל 30 שניות הוא התקין</button>
+  <button class="opt" data-i="2">כי הוא מאבחן NPH</button>
+  <button class="opt" data-i="3">כי הוא מודד רק כוח</button>
+  <div class="explain">TUG &gt;12 שניות (או היסטוריית נפילות) = סיכון גבוה, נדרשת הערכה נוספת. הבדיקה לא ספציפית ל-NPH ואינה מודדת רק כוח.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">5. איזה גורם סיכון לנפילות בטבלה בעל הערך הגבוה ביותר?</div>
+  <button class="opt" data-i="0">חולשת שרירים (4.4)</button>
+  <button class="opt" data-i="1">גיל מעל 80 (1.7)</button>
+  <button class="opt" data-i="2">דיכאון (2.2)</button>
+  <button class="opt" data-i="3">פגיעה קוגניטיבית (1.8)</button>
+  <div class="explain">חולשה: RR/OR ממוצע 4.4. שאר האפשרויות נמוכות יותר.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">6. חולה עם ירידה בראייה, נוירופתיה ובעיה וסטיבולרית קלה. למה זה מסוכן מאד?</div>
+  <button class="opt" data-i="0">כי איבדה שתיים או שלוש מערכות חישה ליציבות</button>
+  <button class="opt" data-i="1">כי יש רק מערכת אחת</button>
+  <button class="opt" data-i="2">כי זה גורם לספסטיות</button>
+  <button class="opt" data-i="3">כי אין תפקיד למוחון</button>
+  <div class="explain">אובדן של שתיים מתוך שלוש מערכות (ראייה, וסטיבולרי, פרופריוספציה) מספיק לפגיעה ביציבות. מוחון בהחלט משתתף בשיווי משקל.</div>
+</div>
+
+<div class="tldr"><h2><span class="num">11</span> סיכום של הסיכום</h2><ul>
+<li>הליכה = שליטה יציבתית + הנעה, מפוזרת בכל המערכת העצבית; הפרעה = פגם עצבי + הסתגלות.</li>
+<li>יציבות: ראייה + וסטיבולרי + פרופריוספציה; אובדן 2 מתוך 3 מספיק לפגיעה.</li>
+<li>דפוסים: זהירה, ספסטית, פרקינסונית (קפיאה, festination), פרונטלית (NPH, וסקולרית), מוחונית, חושית (Romberg), steppage, תפקודית.</li>
+<li>NPH: MRI עם חדרים מורחבים ו-high-convexity tightness, אישור בניקור מותני.</li>
+<li>נפילות: &gt;1/3 מעל גיל 65 בשנה; TUG &gt;12 שניות = סיכון גבוה; חולשה = גורם הסיכון החזק ביותר (4.4).</li>
+<li>דפוסי נפילה: drop attack, toppling, קפיאה, חושי, חולשה.</li>
+<li>מניעה: סקירת תרופות, בדיקת אורתוסטטיקה, תאורה ועזרים, חיזוק רגליים ואיזון, טאי צ'י, פיזיותרפיה.</li></ul></div>
+<script>
+// שאלון לחיץ - עובד בקובץ נייד ובארטיפקט כאחד, בלי ספרייה חיצונית.
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+
+// תיבת שאלות חופשיות - רק בגרסת ארטיפקט Cowork (window.cowork קיים שם בלבד).
+// בקובץ HTML נייד רגיל אין window.cowork - אל תכלילו את הבלוק הזה שם.
+</script>
+</body>
+</html>
