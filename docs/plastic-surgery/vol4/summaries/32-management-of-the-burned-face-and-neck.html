@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 32: טיפול בפנים ובצוואר כוויתיים</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 32: טיפול בפנים ובצוואר כוויתיים <span class="term" dir="ltr">Management of the burned face and neck</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 4: Trunk and Lower Extremity | פרק 20 (Section III – Burn Surgery), מאת Vinita Puri ו-Venkateshwaran Narasiman</div>
+
+<p>פרק זה (<span class="term" dir="ltr">Section III – Burn Surgery</span>) סוקר טיפול בכוויות פנים וצוואר: מהטיפול החריף ועד שחזור הצלקות והעיוותים. כוויות הראש, הצוואר והפנים מהוות כ-50% מכלל הכוויות, והן קשורות לזהות, לדיבור, לתפקוד (עפעפיים, שפתיים) ולפגיעה בדרכי נשימה. מטרה: <b>ריפוי מהיר, שליטה בכאב, מניעת כיווצים ושמירה על אזורים אסתטיים</b>.</p>
+
+<h2><span class="num">1</span> אנטומיה ופתופיזיולוגיה – למה פנים מתנהגות אחרת</h2>
+<div class="mechanism">
+  <p class="chain">ואסקולריות עשירה ← פיזור חום מהיר ← הרבה כוויות נשארות <b>חלקיות עובי</b>, ריפוי מהיר ופחות זיהום. אך היא גם מקשה על <b>הערכת העומק</b>, והפנים מכילות הרבה אדנקסות (זקיקי שיער, בלוטות זיעה), שמהן מתרחש האפיתליזציה מחדש.</p>
+  <p>הנזק: ככל שהאנרגיה והמגע ארוכים, העומק גדל ← <b>דנטורציה של קולגן ופקקת בכלי דם</b> (אזור קרישה). עור ורדרד = שטחי, לבן יותר = עמוק. עור דק (עפעפיים, אחורי האוזן ~0.5 מ"מ; ילדים; נשים) ← כוויות עמוקות יותר. <b class="key">ריפוי מעל 3 שבועות ← סיכון לצלקת היפרטרופית</b>; החלטה על ניתוח מתקבלת עד סוף השבוע הראשון (לפי שיקול דעת).</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">כוויה בפנים</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">אספקת דם עשירה</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">עומק לא ודאי</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">קלינית מול Laser Doppler</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">ריפוי &gt; 3 שבועות</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">סיכון להיפרטרופיה</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">כריתה מוקדמת</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">בשבוע הראשון + כיסוי</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<p>כוויית פנים היא "סמן" לפגיעה בדרכי נשימה (<span class="term" dir="ltr">inhalation injury</span> – סיבת תמותה מובילה): יש להחליט מוקדם על אינטובציה/טרכאוטומיה לפני התפתחות בצקת גרון, ולהקפיד למנוע נמק לחץ מהצינור.</p>
+
+<h2><span class="num">2</span> טיפול חריף</h2>
+<table>
+  <thead><tr><th>עומק</th><th>גישה</th></tr></thead>
+  <tbody>
+    <tr><td>אפידרמלית / חלקית שטחית</td><td>ריפוי ספונטני: חבישה פתוחה/טופיקלית (או יריעת קולגן).</td></tr>
+    <tr><td>עמוקה / מלאה</td><td>הערכה וכריתה מוקדמת + כיסוי (תחליף עור, allograft, autograft).</td></tr>
+    <tr><td>לא ודאית (intermediate)</td><td>המחלוקת הגדולה: כריתה מוקדמת מדי → שתל במקום שהיה מחלים יפה; המתנה ארוכה → היפרטרופיה. <b>Laser Doppler</b> ב-48–72 שעות: דיוק 97% מול 70% בשיקול דעת קליני; אפשר גם להמתין 10 ימים.</td></tr>
+  </tbody>
+</table>
+<p><b>עזרה ראשונה:</b> שטיפה ממושכת במים/סליין; בכוויה כימית – נוגדן או מים לפחות שעה (חומצה: ~45 דקות). <b>עיניים:</b> שטיפה ב-BSS (לא מים סטריליים). אחרי כוויות פנים נבדקת תמיד העין (slit lamp, פלואורסצאין). סימן "crow's feet" שלא נפגע מנבא קרנית תקינה.</p>
+
+<h3>חבישות וחומרים טופיקליים</h3>
+<table>
+  <thead><tr><th>חומר</th><th>מנגנון / הערות</th><th>מגבלה/ייחוד</th></tr></thead>
+  <tbody>
+    <tr><td><b>Silver sulfadiazine (SSD)</b></td><td>עמוד התווך בהרבה מרכזים (Fox, 1968).</td><td>עיכוב ריפוי; שילוב עם EGF מפחית זאת.</td></tr>
+    <tr><td><b>Mafenide acetate</b></td><td>חודר לאסקר; טוב באוזניים (סחוס חשוף).</td><td>כאב ביישום.</td></tr>
+    <tr><td><b>Bromelain (NexoBrid)</b></td><td>כריתה אנזימטית; משמר דרמיס; מומלץ בפנים בקונצנזוס.</td><td>מצריך מומחיות.</td></tr>
+    <tr><td><b>קולגן בוביני סינתטי</b></td><td>סביבה סגורה, לחות, פחות כאב; בעמוק נושר תוך 48 שעות ← משמש "מדד עומק".</td><td></td></tr>
+    <tr><td>תחליפי עור</td><td>Integra, Biobrane, TransCyte, Apligraf, Epicel (CEA), amnion; נוחים בילדים.</td><td>עלות וזמינות.</td></tr>
+  </tbody>
+</table>
+<p>חבישה פתוחה מול סגורה: שתי השיטות נתמכות בפנים; סגורה – מעודדת נדידת קרטינוציטים ולחות, פתוחה – דורשת מריחה חוזרת למניעת גלד.</p>
+
+<h2><span class="num">3</span> כריתה מוקדמת – עקרונות</h2>
+<ul>
+  <li><b>כריתה משיקית</b> בשבוע הראשון + כיסוי = סטנדרט. הכלי: דרמטום (Goulian) 0.008 אינץ' (או 0.010–0.012 בלחיים/מצח/צוואר), <b>Versajet</b> באזורים קשים (קנטוס מדיאלי, אוזניים, פילטרום).</li>
+  <li>הכנה: אופטימיזציה המודינמית, מוצרי דם, סיפון חולה ב-reverse Trendelenburg, צינורות מחוץ לשדה, הגנה על העיניים (tarsorrhaphy).</li>
+  <li>סדר: <b>אזור T מרכזי</b> (עפעפיים, אף, שפתיים, סנטר) קודם ← לחיים, מצח, צוואר. נקודת קצה: דימום נקודתי (בעפעפיים – שריר orbicularis oculi).</li>
+  <li>בהסתייגות: <b>לטעות לכיוון כריתה פחותה</b> באף (ala, חוד), סנטר, אוזן; <b>לכרות יחידה אסתטית שלמה</b>; בעומק מעורב – עומק אחיד (למנוע ציסטות/פוליקוליטיס).</li>
+  <li>דימום רב – כריתה בשלבים; אפינפרין בחבישות, אך בזהירות כדי לא לעוות את הערכת נקודת הקצה.</li>
+  <li><b>אוזן</b>: לרוב לא כורתים – אסקר, אנטימיקרוביאלי וחבישה לחה, ללא לחץ (למניעת chondritis).</li>
+</ul>
+<p><b>כיסוי:</b> Allograft זמני (מוסר אחרי שבוע) ← autograft עבה (0.008–0.012). קרקפת = תורם טוב להתאמת צבע. שוליים עם "דארטס" ו-Z-plasty קטנים למניעת רצועות כיווץ. תפרים עדינים (Vicryl/Monocryl), ללא מיש/סיכות; תחבושת ב-tie-over; בצוואר – תבנית גבס ואחר כך צווארון. הזנה בצינור ב-4 ימים לצמצום תנועת הלסת. חלופות: ADM, Integra, MatriDerm, CEA (ספריי תאים תוך 8–10 ימים).</p>
+
+<h2><span class="num">4</span> אזורים ספציפיים בשלב החריף</h2>
+<table>
+  <thead><tr><th>אזור</th><th>עיקר הטיפול</th></tr></thead>
+  <tbody>
+    <tr><td><b>סביב העין</b></td><td>בדיקת עיניים; BSS; שימון; tarsorrhaphy צידי מוקדם בחוסר סגירה; כריתה והשתלה עבה/FT מוקדמת מונעת ectropion, קרטיטיס, כיב קרנית. חשיפה: 4–36% מהכוויות; גורמי סיכון: Pseudomonas/Acinetobacter, 3rd degree, זמן עד התייעצות עיניים, ונטילציה.</td></tr>
+    <tr><td><b>אף ואוזניים</b></td><td>סחוס צמוד לעור ← chondritis אם נחשף; הימנעות מלחץ; סדי סיליקון נגד סטנוזיס.</td></tr>
+    <tr><td><b>שפתיים</b></td><td>שימון (פטרולטום), ניקוי; סדים למניעת <b>microstomia</b>.</td></tr>
+    <tr><td><b>קרקפת</b></td><td>ואסקולרית עשירה ← שמרני. כוויות חשמל גבוהות עם חשיפת גולגולת: פלאפ מקומי/חופשי (למשל ALT) או קדיחת חורים וגרנולציה.</td></tr>
+    <tr><td><b>צוואר</b></td><td>מיקום עם כרית מתחת לשכמות (הארכה), סד/צווארון תרמופלסטי למניעת כיווץ.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">5</span> טיפול בצלקת ושיקום</h2>
+<ul>
+  <li><b>גורמי סיכון לצלקת:</b> זכר, גזע לבן, ריפוי &gt; 21 יום, טיפול שמרני בכוויה עמוקה, חוסר טיפול משלים. לעומת זאת: ריפוי &lt; 10 ימים, כריתה מוקדמת ותחליף עור, והמשך טיפולים משלימים – פחות צלקת.</li>
+  <li><b>בגדי לחץ</b> 15–20 mmHg, 23 שעות ביממה, 6–12 חודשים (שיפור עובי/גמישות 60–85%); יריעות סיליקון (אוקלוזיה והידרציה); מסכות מגע מלא מודפסות 3D; לחות ועיסוי; קרם הגנה.</li>
+  <li>תרגילי פנים ("face yoga"), סדים: אוראליים (microstomia), סיליקון נחירי, סד לאוזן לשימור הסולקוס הרטרו-אוריקולרי.</li>
+  <li><b>שיקום פסיכוסוציאלי</b>: ליווי רציף מהאשפוז, CBT, קבוצות תמיכה ומחנות (burn camps). חשוב לשים לב לפער בין תפיסת המטפל לתפיסת המטופל.</li>
+</ul>
+
+<h2><span class="num">6</span> שחזור פוסט-כוויתי – עקרונות כלליים</h2>
+<div class="mechanism">
+  <p class="chain">קודם <b>לחכות להבשלת הצלקת</b> (אך לא בכיווץ תפקודי: מיקרוסטומיה, ectropion, צוואר – ניתוח מוקדם). <b>צוואר קודם</b> כשיש כיווצים מרובים. הבחנה בין כיווץ <b>intrinsic</b> לכיווץ <b>extrinsic</b> – מתקנים את ה-intrinsic קודם. קביעת ה-<b>"true defect"</b> (הפגם האמיתי) לפי הצד הבריא.</p>
+</div>
+<ul>
+  <li><b>אזורי "blush"</b> (פנים, מאחורי האוזן, צוואר, סופרה-קלביקולרי, זרוע פנימית) – תורם שתלים לצבע/מרקם.</li>
+  <li>עדיפות ל-<b>שתל עובי מלא (FTG)</b> בפנים (פחות התכווצות); אם SSG – עבה. סף גבוה לפלאפים (רקמה אדינמית מסתירה הבעה); עדיפות לפלאפים אזוריים (cervicohumeral, צוואר מורחב) על מרוחקים.</li>
+  <li>תכנון חתכי Z, יחידות אסתטיות (Gonzalez-Ulloa), צילום ותיעוד אחרי כל שלב, שילוב פרוצדורות בישיבה אחת, סדים סדרתיים (serial splintage) ללא רשימת המתנה ארוכה.</li>
+  <li><b>הרחבת רקמות</b>: התאמת צבע, תחושה וכמעט אפס תחלואה בתורם; חסרונות: עלות, זיהום, חשיפה, התחייבות. בלחיים/סנטר תלויה בכבידה ← תפרי התלייה לפריוסט.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">שחרור</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">שורש הכיווץ (intrinsic קודם)</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">שתל עובי מלא</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">או Z-plasty / הרחבה</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">תיקון יתר</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">למניעת כיווץ חוזר</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">סד + עיסוי</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">חודשים עד שנה</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h3>כלים נוספים</h3>
+<table>
+  <thead><tr><th>כלי</th><th>שימוש</th></tr></thead>
+  <tbody>
+    <tr><td>Z-plasty</td><td>הארכת צלקת, שינוי כיוון לאורך קווי מתח (RSTL).</td></tr>
+    <tr><td>Blister graft / שתל דק במיוחד</td><td>היפופיגמנטציה יציבה (כמו ויטיליגו), אחרי דרמברייזן.</td></tr>
+    <tr><td>כריתה סדרתית</td><td>כריתת אליפסה מהאמצע, שומרת על קו התפר בתוך הצלקת.</td></tr>
+    <tr><td>השתלת שומן / לייזר CO2 חלקי / קעקוע / השתלת שיער</td><td>שיפור גמישות, צלקות, הסוואה, קרקפת.</td></tr>
+    <tr><td>קלואידים</td><td>סיליקון + לחץ ← triamcinolone תוך-נגעי (8–12 שבועות) ← 5-FU ← PDL ← כריתה (רדיותרפיה אחרי כריתה במקרים נבחרים; סיכון גבוה להישנות).</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> שחזור לפי אזור</h2>
+<h3>עפעפיים (ectropion / retraction)</h3>
+<p>נפוצות ביותר. עקרונות: לזהות intrinsic/extrinsic; <b>לא לשחרר שני עפעפיים בבת אחת</b> (קודם העליון אם הקרנית חשופה; פער של ~12 שבועות); צד אחד בכל פעם (חבישה סוגרת עין); סף נמוך לשחרור; כיסוי <b>יחידה אסתטית שלמה</b>; חתך מקנטוס מדיאלי ללטרלי עם "זנב דג" (Y) בקצוות; <b>תיקון יתר</b>; שתל דק, ללא שיער, עובי מלא (מאחורי האוזן / סופרה-קלביקולרי / עפעף נגדי); לשמור את השתל הטוב לסוף. תפרים רציפים 6-0 פוליפרופילן (ללא קצוות חופשיים שיפגעו בקרנית); חבישת tulle + קצף + רשת נירוסטה; החלפת חבישה ביום 10; עיסוי ותרגילים; הימנעות משמש 3–6 חודשים; סד לילה. אובדן מלא של עפעף: פלאפ מקומי (nasolabial, Tripier וכו') או פלאפ רדיאלי חופשי.</p>
+<h3>אף</h3>
+<p>נחיר הפוך – שחרור היקפי, turndown ושתל; <b>עמוד אמצעי</b> – פלאפ nasolabial / מצח; חסר מלא: כיסוי (פלאפ מצח paramedian הטוב ביותר), בטנה (turn-down flaps) ותמיכה (סחוס עצמי עדיף על סיליקון/Medpor). <b>חסימת נחיר</b>: הכריתה, שתל, תבנית (stent) לפחות 6 חודשים.</p>
+<h3>לחיים</h3>
+<p>רקמת צוואר = התאמה הטובה ביותר (flaps cervicofacial). עד חצי לחי – רק האזור; יותר – כל היחידה, עם פלאפ מורחב מצוואר/כתף; הימנעות מפלאפים מגושמים (מסכה); פלאפים חופשיים (radial, ALT דק) – מוצא אחרון.</p>
+<h3>שפתיים והפרה-אורלי</h3>
+<ul>
+  <li>הבחנה בין ectropion intrinsic/extrinsic של השפה התחתונה; <b>תיקון יתר</b>; שחזור יחידה אסתטית שלמה; בגברים – רקמה נושאת שיער; שחזור רכס ובקע הפילטרום; <b>הקומיסורה באמצע קו האישון</b>; <b>בילדים – לשחרר גם בלי תפקוד</b> כדי לא לפגוע בצמיחת הלסת.</li>
+  <li><b>מיקרוסטומיה</b>: Z-plasty לרצועות; שחרור Converse (1959) עם הזזה לרוחב של הקומיסורה; סדים.</li>
+  <li><b>Pseudomicrogenia</b>: כריתת הצלקת בסנטר ושתל FT / עור מורחב.</li>
+</ul>
+<h3>צוואר</h3>
+<p>סכנת <b>דרכי אוויר</b>: מיקרוסטומיה, הגבלת הארכה, סטיית קנה. לפני: צילום AP+לטרלי, laryngoscopy; <b>אינטובציית פיברו-אופטיק ערה</b> הבטוחה ביותר; חלופה – שחרור תחת טומסנט ואינטובציה אחרי. טכניקה: כרית בין השכמות; טומסנט; חתך עם "Y" בקצוות; שחרור פלטיזמה; <b>Z-plasty / X-release</b> לקווים; שחרור מלא + שתל SSG עבה/FT לרחבים; תפר בקו הלסת התחתונה/סופרה-קלביקולרי; תבנית גבס/צווארון; חבישה יום 7; צווארון Philadelphia לשנה. פלאפים (מורחב, סופרה-קלביקולרי, ALT, scapular) מונעים צורך בסד ארוך.</p>
+<h3>קרקפת וגבות</h3>
+<p>אלופציה: &lt; 15% – סגירה ראשונית/כריתה סדרתית; 15–50% – reduction + הרחבה; &gt; 50% – פיאה או הרחבה חלקית. Orticochea, Limberg, השתלת שיער. גבות: שחרור הצלקת, Z-plasty, או פלאפ אי של עורק טמפורלי שטחי.</p>
+<h3>אוזן</h3>
+<p>מעורבת בכ-90% מכוויות הפנים. עיוותים: cryptotia, chondritis. עקרונות כמו מולד אך עור גרוע: Antia-Buch, tunnel Converse, סחוס צלעי + TPF (Brent/Nagata).</p>
+
+<h2><span class="num">8</span> כוויות חומצה והיבטים עתידיים</h2>
+<p><b>חומצה</b>: שטיפה ~45 דקות, הסרת בגדים; <b>לא</b> חומרים מכתימים (מסתירים עומק); חבישה אוקלוסיבית; כריתה מוקדמת בעמוק; תחלואה קשה (עיוורון, חסימת אף, microstomia) – תמותה נמוכה. <b>עתיד:</b> תאי גזע (MSC, SVF), ספריי תאים (ReCell), הדפסת 3D לסדים/מסכות/ביו-הדפסה, השתלת פנים (חלקית 2005 בצרפת; מלאה 2010 בספרד) – בחירת מטופל קריטית.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">T-A-S-K</span> – מה לעשות בכוויית פנים</h3>
+  <p>
+    <b>T</b> – <span class="term" dir="ltr">Timing</span> (החלטה על כריתה עד סוף שבוע 1; ריפוי &gt; 3 שבועות = סיכון).<br>
+    <b>A</b> – <span class="term" dir="ltr">Airway &amp; Eyes</span> (אינטובציה מוקדמת, בדיקת עיניים).<br>
+    <b>S</b> – <span class="term" dir="ltr">Subunit</span> (כרות/כסה יחידה אסתטית שלמה).<br>
+    <b>K</b> – <span class="term" dir="ltr">Keep scar in check</span> (לחץ, סיליקון, סדים, פסיכוסוציאלי).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני כרית בד שנשרפה בפינה: אם מקרצפים עמוק מדי (כריתה אגרסיבית) הכרית נשארת שטוחה (עיוות קונטור); אם משאירים יותר מדי זמן, הבד מתכווץ ונוצרים קמטים (היפרטרופיה). לכן מתקנים לפי ה"דוגמה" הנכונה – יחידה שלמה, ובגרסה קלה: "לחתוך פחות באף ובסנטר".</p>
+  <svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+    <title>כרית</title>
+    <rect x="150" y="30" width="200" height="90" rx="14" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <polygon points="150,30 210,30 150,80" fill="#f97316"/>
+    <text x="250" y="80" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">יחידה שלמה</text>
+    <text x="250" y="140" font-size="12" text-anchor="middle" fill="#374151">לא עמוק מדי, לא מאוחר מדי</text>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Burn" target="_blank">Burn – Wikipedia</a>
+    <div class="desc">סיווג עומק כוויות, טיפול ראשוני ומנגנונים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Face_transplant" target="_blank">Face transplant – Wikipedia</a>
+    <div class="desc">היסטוריה, התוויות ושאלות אתיות של השתלת פנים.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 30 הגיע לפני שנה וחצי עם כוויית להבה בפנים ובצוואר שטופלה שמרנית וחלמה אחרי 5 שבועות. כעת קיים כיווץ צוואר חמור המונע הארכה, ectropion של העפעף העליון והתחתון בצד ימין עם דמעת-יתר, ומיקרוסטומיה. הוא מתכוון לעבור "שחרור כולל" בבת אחת.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהי הגישה הנכונה לגבי סדר הניתוחים בוינייטה?</div>
+  <button class="opt" data-i="0">שחרור שני העפעפיים בבת אחת כדי לחסוך ניתוחים</button>
+  <button class="opt" data-i="1">להשאיר את הצוואר לסוף כדי להימנע מאינטובציה קשה</button>
+  <button class="opt" data-i="2">שחרור צוואר קודם; שחרור עפעף אחד בכל פעם (עליון קודם אם יש חשיפת קרנית); לא שני עפעפיים בו-זמנית</button>
+  <button class="opt" data-i="3">לדחות הכול עד הבשלת הצלקת, גם אם הקרנית חשופה</button>
+  <div class="explain">נכון: בכיווצים מרובים הצוואר קודם (לא ניתן לוויכוח), ועפעפיים משחררים בנפרד כדי למנוע עיוורון זמני והתכווצות חוזרת; כשהקרנית חשופה – מתחילים בעליון. הבשלה אינה תקפה לכיווץ תפקודי עם סכנה לקרנית.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. איזו שיטה יעילה יותר לחיזוי עומק כוויה ב-48–72 שעות לפי הפרק?</div>
+  <button class="opt" data-i="0">שיקול דעת קליני בלבד (דיוק ~97%)</button>
+  <button class="opt" data-i="1">ביופסיה מלאה בלבד</button>
+  <button class="opt" data-i="2">צילום חום (thermography) בלבד כסטנדרט</button>
+  <button class="opt" data-i="3">Laser Doppler imaging (דיוק ~97%)</button>
+  <div class="explain">נכון: Laser Doppler ב-48–72 שעות מנבא עומק ב-97% לעומת ~70% בשיקול דעת קליני. יתר השיטות קיימות אך אינן הנקודה שהפרק מדגיש.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהו הסדר הנכון לגבי כיווצים intrinsic ו-extrinsic?</div>
+  <button class="opt" data-i="0">מתקנים קודם את ה-intrinsic; ה-extrinsic ישתפר או ייעלם</button>
+  <button class="opt" data-i="1">מתקנים קודם את ה-extrinsic</button>
+  <button class="opt" data-i="2">תמיד בו-זמנית</button>
+  <button class="opt" data-i="3">אין משמעות להבחנה</button>
+  <div class="explain">נכון: כיווץ intrinsic הוא ההיגוי הסיבתי; שחרורו מקל על ה-extrinsic (למשל כיווץ צוואר שגורם ל-ectropion של שפה תחתונה).</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. באיזה סוג שתל מעדיפים לשחזור פנים אחרי כוויה ולמה?</div>
+  <button class="opt" data-i="0">SSG דק – כי הוא מתכסה מהר</button>
+  <button class="opt" data-i="1">שתל עובי מלא (FTG) – פחות התכווצות משנית ושינויי פיגמנט</button>
+  <button class="opt" data-i="2">פלאפ חופשי בכל מקרה</button>
+  <button class="opt" data-i="3">שתל ממושך מרוחק מהגוף</button>
+  <div class="explain">נכון: FTG נותן מראה טבעי ופחות התכווצות; SSG מתכווץ יותר ונראה מבריק. פלאפים בעלי סף גבוה כי הם אדינמיים ומסתירים הבעה.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו הטיפול הנכון בכוויית חומצה בפנים לפי הפרק?</div>
+  <button class="opt" data-i="0">אנטיביוטיקה מכתימה כדי להבחין בעומק</button>
+  <button class="opt" data-i="1">המתנה 3 שבועות לגלד</button>
+  <button class="opt" data-i="2">שטיפה ממושכת (~45 דקות), חבישה אוקלוסיבית ללא חומרים מכתימים, כריתה מוקדמת בעמוק</button>
+  <button class="opt" data-i="3">שטיפה קצרה של דקה</button>
+  <div class="explain">נכון: חומרים מכתימים מסתירים עומק; שטיפה ממושכת מגבילה נזק; כריתה מוקדמת היא הסטנדרט בעמוק (עם תחלואה גבוהה).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>פנים = ~50% מהכוויות; ואסקולריות ← בדרך כלל חלקיות; סימן לפגיעת דרכי אוויר.</li>
+    <li>ריפוי &gt; 3 שבועות ← היפרטרופיה; החלטת ניתוח עד שבוע 1; Laser Doppler 97%.</li>
+    <li>חבישות: SSD, mafenide (אוזן), bromelain (דרמיס נשמר), קולגן, תחליפי עור.</li>
+    <li>כריתה: דרמטום 0.008, Versajet; T קודם; פחות באף/סנטר/אוזן; יחידה שלמה.</li>
+    <li>טיפול בצלקת: לחץ 15–20 mmHg 23 ש' 6–12 חודשים, סיליקון, סדים, פסיכוסוציאלי.</li>
+    <li>שחזור: לחכות להבשלה (חוץ מתפקודי), intrinsic קודם, FTG, סף גבוה לפלאפים, צוואר קודם.</li>
+    <li>עפעפיים: עליון קודם, לא שניים יחד, תיקון יתר, FT דק; צוואר: אינטובציה ערה, Z/שחרור, צווארון שנה.</li>
+    <li>חומצה: שטיפה ~45 דקות, ללא חומרים מכתימים.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

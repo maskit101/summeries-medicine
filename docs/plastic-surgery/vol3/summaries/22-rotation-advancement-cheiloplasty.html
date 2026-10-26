@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 22: ניתוח סיבוב-קידום של השפה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 22: ניתוח סיבוב-קידום של השפה <span class="term" dir="ltr">Rotation advancement cheiloplasty</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 19.2, מאת Philip Kuo-Ting Chen ו-Lucia Pannuto</div>
+
+<p>זהו פרק טכני-ניתוחי בתוך חלק השסעים (<span class="term" dir="ltr">Section I – Clefts</span>), ומתאר את הגישה המשולבת של Chen ו-Pannuto לתיקון שסע שפה חד-צדדי בשיטת <b>סיבוב-קידום</b> (<span class="term" dir="ltr">rotation advancement</span>) – מהטיפול שלפני הניתוח, דרך הסימון והחתכים, ועד טיפול אחרי הניתוח ותוצאות ארוכות טווח. הגישה מבוססת על ניסיון של 33 שנה באוכלוסייה טאיוואנית, ונבדקה גם באוכלוסיות אחרות.</p>
+
+<h2><span class="num">1</span> הרציונל – למה השיטה בנויה כך</h2>
+<div class="mechanism">
+  <p class="chain">בשסע שפה חד-צדדי שריר ה-<span class="term" dir="ltr">orbicularis peripheralis</span> אינו רציף: הסיבים מוצמדים באופן חריג לבסיס העמוד האמצעי של האף (columellar base) ולבסיס האף (alar base) בצד השסע, ויוצרים <b>משיכה לא מאוזנת</b>. התוצאה: בסיס האף בצד השסע "יורד ונסוג", ה-<span class="term" dir="ltr">Cupid's bow</span> אינו מפולס והאף מעוות.</p>
+  <p>לכן שפה "ארוכה" לכאורה בצד השסע (במיוחד בשסע לא-שלם) היא <b class="key">אשליה</b> – הגובה האמיתי דומה לצד הבריא, והשפה רק נראית ארוכה כי כל המקטע הצידי, כולל בסיס האף, מוסט כלפי מטה. הפתרון איננו לקצר את השפה, אלא <b>לשחרר את השרירים ולהזיז את בסיס האף למעלה ולמרכז</b>.</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגם שרירי</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">אורביקולריס מוצמד חריג</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">משיכה לא מאוזנת</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">בסיס האף נסוג/יורד</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">עיוות</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">Cupid's bow, אף, שפה</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">תיקון</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">שחרור שריר + סידור מחדש</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h2><span class="num">2</span> טיפול לפני הניתוח</h2>
+<p><b>טיפול רב-תחומי</b> (כירורג פלסטי, אורתודנט, קלינאי תקשורת, רופא אף אוזן גרון, פסיכולוג, עובד סוציאלי, ורכז קליני) – אך הצוות משתנה לפי הפתולוגיה: בשסע שפה בלבד אין צורך בהערכת דיבור ולרוב לא באורתודונטיה. חשוב להסביר להורים בביקור הראשון את לוח הזמנים כדי להפחית חרדה.</p>
+<table>
+  <thead><tr><th>שיטה</th><th>מתי</th><th>עיקרי הדברים</th></tr></thead>
+  <tbody>
+    <tr><td><b>NAM – עיצוב נאסו-אלווארי</b> (<span class="term" dir="ltr">nasoalveolar molding</span>)</td><td>שסע שלם של השפה והחך (מתחיל בביקור הראשון)</td><td>מכשיר לוח חך + רכיב אף, התאמות כל 1–2 שבועות, 3–4 חודשים ו-8–9 ביקורים. שתי שיטות: <b>Grayson המותאם</b> (קודם עיצוב מכתשי ואחריו אף) ו-<b>Figueroa המותאם</b> (שניהם במקביל). לשתיהן תוצאה אסתטית דומה; Grayson מצר את הנחיר יותר אך גורם ליותר כיבי מכתש.</td></tr>
+    <tr><td><b>קונפורמר סיליקון אסימטרי</b></td><td>שסע שפה לא-שלם, ושסע שלם של החך הראשוני בלבד</td><td>סט של 5 קונפורמרים (מס' 0–4, תוספת 1 מ"מ גובה), צר יותר בצד השסע; מחליפים לגדול יותר כל 1–2 שבועות ועד הניתוח. מותח את העמוד האמצעי ומעצב את הסחוס הצידי התחתון (<span class="term" dir="ltr">lower lateral cartilage</span>).</td></tr>
+  </tbody>
+</table>
+<p class="key-box">היתרונות הנטענים של NAM (האכלה, עלייה במשקל, צמיחת לסת) שנויים במחלוקת בספרות. לדעת המחברים, המטרה העיקרית של NAM היא <b>שיפור צורת האף</b>, העור והרירית, ופחות גישור על פער המכתש. מעדיפים להשאיר <b>פער מכתש של כ-5 מ"מ</b> (כי מתקנים את החך הקדמי בזמן תיקון השפה).</p>
+<p>בשסע שלם של החך הראשוני בלבד (<span class="term" dir="ltr">UCLA</span>) ה-NAM פחות יעיל: ה-premaxilla בולט ואין שסע מאחוריו שיאפשר דחיפה אחורה – כאן הקונפורמר הסיליקוני עדיף.</p>
+
+<h2><span class="num">3</span> סימון ונקודות ציון</h2>
+<p>הפרק משתמש בקיצורים אנתרופומטריים שחשוב להכיר (בכתיבה: "שמאל" = צד השסע):</p>
+<table>
+  <thead><tr><th>נקודה</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">LS</span></td><td>Labiale superius – אמצע ה-Cupid's bow</td></tr>
+    <tr><td><span class="term" dir="ltr">CPHIR / CPHIL</span></td><td>פסגות ה-Cupid's bow בצד הבריא / בצד השסע של הצד המדיאלי</td></tr>
+    <tr><td><span class="term" dir="ltr">CPHIL′</span></td><td>פסגת ה-Cupid's bow בשפה הצידית בצד השסע – הנקודה שבה ה-vermilion הכי רחב (3–4 מ"מ לרוחב לנקודת המפגש של הקו האדום עם ה-white skin roll)</td></tr>
+    <tr><td><span class="term" dir="ltr">SN</span></td><td>Subnasale – אמצע בסיס העמוד האמצעי</td></tr>
+    <tr><td><span class="term" dir="ltr">CPHSR / CPHSL / CPHSL′</span></td><td>הנקודה העליונה של עמוד הפילטרום; CPHSL′ = הנקודה החדשה אחרי חתך Mohler</td></tr>
+    <tr><td><span class="term" dir="ltr">MNSL / MNSR</span></td><td>הנקודה המדיאלית של ה-nasal sill; MNSL מסומן כ-2 מ"מ לרוחב ל-MNSR (תיקון יתר של רוחב הנחיר)</td></tr>
+    <tr><td><span class="term" dir="ltr">SNLG</span></td><td>הנקודה שבה מפגש העור-רירית באזור הווסטיבולום משנה כיוון</td></tr>
+  </tbody>
+</table>
+<p>עיקרי העקרונות בסימון: ה-white skin roll (<span class="term" dir="ltr">WSR</span>) הרחב ביותר מעל CPHIR (1.5–2 מ"מ בגיל 3–6 חודשים) – רוחבו מועתק לצד השסע ויוצר <b>פלאפ WSR משולש</b> שמפלס את ה-Cupid's bow, משלים חסר ב-WSR ומשחזר את קו המתאר של השפה העליונה (עקרון תת-היחידות של Onizuka). <b>גובה אנכי חשוב אסתטית יותר מאורך אופקי</b>, ולכן לא מקריבים גובה עבור אורך.</p>
+
+<h2><span class="num">4</span> הטכניקה הניתוחית – שלב אחר שלב</h2>
+<h3>א. החתך בצד הבריא (סיבוב)</h3>
+<table>
+  <thead><tr><th>סוג חתך</th><th>מתי</th><th>יתרון/חיסרון</th></tr></thead>
+  <tbody>
+    <tr><td><b>Mohler</b></td><td>הפרש גובה בין שני צדי הפילטרום מעל 2 מ"מ</td><td>קשת מ-CPHIL ל-CPHSL′ ואז back-cut של כ-90° ל-CPHSR; נותן פילטרום בעל עקמומיות טבעית ("תת-יחידה"). לא מתאים לעמוד אמצעי צר (למשל דיספלזיה חציונית של הפנים).</td></tr>
+    <tr><td><b>סיבוב פשוט</b></td><td>הפרש קטן מ-2 מ"מ</td><td>מונע צלקת בצומת האף-שפה; אפשר להמיר ל-Mohler אם הסיבוב לא מספיק.</td></tr>
+  </tbody>
+</table>
+<p>אסור: לחצות את CPHSR (מאריך את השפה בצד הבריא), וה-back-cut של Millard אינו מומלץ (משאיר פגם רחב ונמוך בקדקוד הסיבוב). משחררים את ההצמדות החריגות של השריר לבסיס העמוד האמצעי; הניתוח נבדק בעזרת משיכה כלפי מטה: האם CPHIR ו-CPHIL באותה רמה.</p>
+<h3>ב. פלאפים וחתכים בצד השסע</h3>
+<ul>
+  <li><b>C-flap</b> – עור וריריות מבסיס העמוד האמצעי; ממלא את הפגם שנוצר מחתך Mohler, ובקצהו הצידי משחזר את בסיס העמוד (pedestal). משחרר גם את ה-medial crus footplate שהוסט כלפי מטה.</li>
+  <li><b>L-flap</b> – ברוחב כ-5 מ"מ, מבוסס על שולי המכתש; משמש לשחזור רצפת האף.</li>
+  <li><b>Inferior turbinate (T) flap</b> – רק כשבסיס האף בצד השסע נסוג בכיוון הסגיטלי (בלי NAM): מסובב 90° וממלא את הפגם הרירי של ה-piriform. אם הבסיסים סימטריים אין צורך.</li>
+  <li><b>Vermilion flap</b> – משולש שנלקח מהשפה הצידית ומוכנס מתחת ל-CPHIL, כדי לתקן את <b>חסר ה-vermilion</b> (ולא להוסיף נפח); קצהו לא יחצה את ה-lip tubercle הטבעי.</li>
+  <li><b>הצד הצידי</b> – נשמר ה-nasal sill בכל מחיר (אין חתכים אופקיים מתחת לו או סביב בסיס האף); משחררים את השפה הצידית מהלסת במישור שמעל הפריוסט עד לקרבת ה-infraorbital foramen.</li>
+</ul>
+<h3>ג. שרירים – לב הניתוח</h3>
+<p>שחרור מלא של <b>ההצמדות החריגות</b> לבסיס האף (nasalis, depressor septi, מרימי השפה העליונה והאף) עד גבול העורק האנגולרי כנקודת ציון. השחרור מותח את השריר ו<b class="key">מאריך את השפה בכ-3–4 מ"מ אנכית ואופקית</b> – מה שמפצה על הקיצור הממוצע (3 מ"מ) בצד השסע. תפירת השריר (5-0 PDS): מתחילים ב-key suture בין CPHIL ל-CPHIL′; התפר העליון מעוגן ל<b>קצה הקאודלי של מחיצת האף</b> (<span class="term" dir="ltr">septal anchoring suture</span>) שמושך את השפה הצידית למדיאלי ומרכז את ה-Cupid's bow. התפרים הבאים בצורה חופפת (השריר הצידי מעל המדיאלי, תפרי mattress אנכיים) – מגדיל עובי ומדמה עמוד פילטרום; לכידת הדרמיס באמצע הפילטרום משחזרת את הבקע הפילטרלי.</p>
+<h3>ד. רצפת האף ושחזור האף</h3>
+<ul>
+  <li>סגירה דו-שכבתית של רצפת האף (septal flap + L-flap + ווסטיבולום); בסיס האף מקודם <b>תיקון יתר של 2 מ"מ</b> (נחיר צר ב-2 מ"מ מהצד הבריא כי הוא מתרחב עם הזמן).</li>
+  <li><b>רינופלסטיקה חצי-פתוחה</b> (<span class="term" dir="ltr">semi-open</span>): חתך reverse-U בקצה הנחיר בצד השסע וחתך rim בצד הבריא; שחרור רקמה פיברו-שומנית מה-LLC; הצמדת ה-LLC עם תפרי mattress (5-0 PDS) כשהתפרים 5 מ"מ יותר לרוחב בצד השסע (תיקון יתר).</li>
+  <li><b>שתל סחוס מחיצה ראשוני</b> (כ-3×15 מ"מ) כסד פנימי בקצה האף – משפר גובה נחיר, גובה כיפת האף ויחס גובה/רוחב.</li>
+  <li><b>תפרי alar transfixion</b> (שניים): התחתון סוגר חלל מת ומשטח את הווסטיבולום, העליון תומך ב-LLC ויוצר את ה-alar-facial groove. הסרת כרית השומן מתחת לבסיס האף מפחיתה "קורי" (webbing) ווסטיבולרי.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">NAM / קונפורמר</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">לפני הניתוח</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">ניתוח ~3 חודשים</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">סיבוב-קידום + אף</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">תיקון יתר</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">אף גבוה וצר ב-2 מ"מ</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">קונפורמר סיליקון</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">6–12 חודשים אחרי</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h2><span class="num">5</span> וריאנטים: שסע לא-שלם, מיקרופורם ו-UCLA</h2>
+<table>
+  <thead><tr><th>סוג</th><th>הנקודה המיוחדת</th></tr></thead>
+  <tbody>
+    <tr><td><b>שסע לא-שלם</b></td><td>קשה לעיתים כמו שלם; <b>הטעות הנפוצה</b> – לקצר את השפה הצידית "הארוכה" במקום לשחרר ולהעלות את בסיס האף. בחתך רצפת האף: אם רצפות האף בגובה דומה – חתך רוחבי בקו עור-רירית; אם רצפת הנחיר בצד השסע שקועה – פלאפ turn-over מרצפת האף.</td></tr>
+    <tr><td><b>שסע שלם של החך הראשוני (UCLA)</b></td><td>תוצאות פחות טובות מ-UCLP (premaxilla בולט, אי-סימטריה סגיטלית של בסיס האף, שפה קצרה); משתמשים בגובה האנכי לקביעת CPHIL′ (מזיזים אותה לרוחב), ובפלאפ מחיצה + L-flap לשחזור רצפת האף.</td></tr>
+    <tr><td><b>מיקרופורם</b></td><td>אותה שיטה (סיבוב-קידום מותאם) – שחרור שריר, שחזור עמוד פילטרום, תיקון יתר של הנחיר, ופלאפ WSR מעל CPHIL לתיקון פסגה גבוהה. בוטולינום A בקו התפר משפר את הצלקת.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> טיפול אחרי הניתוח ושימור צורת האף</h2>
+<p>ניקוי קרישים כל 2–4 שעות בגזה ספוגה בסליין (למנוע קרום), שחרור ביום השני, חיתוך תפרים לאחר 5–7 ימים בסדציה (chloral hydrate), ומיד טיפול בצלקת – Micropore ויריעת סיליקון/ג'ל. <b class="key">קונפורמר סיליקון של האף</b> לאחר הניתוח – כל היום במשך 6–12 חודשים (בהחלפת מידה כל 2–3 שבועות) כדי לשמור על תיקון היתר ולמנוע התכווצות וסטנוזיס. ההצלחה תלויה בשיתוף הפעולה של ההורים.</p>
+
+<h2><span class="num">7</span> תוצאות, סיבוכים ו"למה כל זה"</h2>
+<table>
+  <thead><tr><th>מחקר/מדד</th><th>ממצא</th></tr></thead>
+  <tbody>
+    <tr><td>שפה בלי septal anchoring</td><td>אחרי 4+ שנים ה-Cupid's bow סטה לכיוון הצד השסוע → מאז מבצעים תפר עיגון.</td></tr>
+    <tr><td>אף בלי שחרור/סידור סחוס</td><td>בגיל 3 שנים – נחיר וקולומלה קצרים בצד השסע ונחיר רחב יותר; הסימטריה הראשונית נשחקת (relapse).</td></tr>
+    <tr><td>השוואת 4 שיטות (76 מטופלים)</td><td>הטובה ביותר: <b>NAM + רינופלסטיקה חצי-פתוחה + תיקון יתר</b>.</td></tr>
+    <tr><td>שתל סחוס מחיצה</td><td>שיפור מובהק בגובה נחיר, בגובה כיפה וביחס גובה/רוחב.</td></tr>
+    <tr><td>צורך בתיקון משני</td><td>בעבר ~60% ביקשו תיקון לפני בית ספר; בגישה המשולבת – איש לא ב-15 השנים האחרונות. ניתן לדחות תיקון משני לאחר סיום צמיחה.</td></tr>
+    <tr><td>סיבוכים (324 מטופלים, 2018–2020)</td><td>0 פתיחת פצע / זיהום; דימום אחד ממקום תורם של פלאפ הטורבינט; צלקת היפרטרופית ב-2.5%.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">R-A-M-S</span> – ארבעת עמודי התוך של התיקון</h3>
+  <p>
+    <b>R</b> – <span class="term" dir="ltr">Rotation</span> (Mohler אם הפרש &gt; 2 מ"מ, אחרת סיבוב פשוט).<br>
+    <b>A</b> – <span class="term" dir="ltr">Alar base mobilization</span> (שחרור והעלאה, בלי לקצר את השפה).<br>
+    <b>M</b> – <span class="term" dir="ltr">Muscle</span> (שחרור, key suture, עיגון למחיצה, חפיפה).<br>
+    <b>S</b> – <span class="term" dir="ltr">Septal cartilage + splint</span> (תיקון יתר של האף + קונפורמר אחרי).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני אוהל ששני חבלים מושכים אותו לכיוונים שונים: הצד הבריא מעוגן חזק, והצד השסוע נתלה על יתד חלשה ונראה "ארוך" ומשוך למטה. הפתרון איננו לגזור את הבד (לקצר את השפה), אלא לשחרר את החבלים המשובשים (שרירים), להעלות את היתד (בסיס האף) ולעגן אותה היטב לעמוד המרכזי (מחיצת האף). ואז מותחים את הנחיר קצת יותר מדי (תיקון יתר), כי אחרי זמן הבד ישתחרר מעט.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>אוהל וחבלים</title>
+    <polygon points="250,20 120,140 380,140" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <line x1="250" y1="20" x2="250" y2="140" stroke="#047857" stroke-width="4"/>
+    <line x1="380" y1="140" x2="450" y2="165" stroke="#6b7280" stroke-width="3"/>
+    <line x1="120" y1="140" x2="60" y2="178" stroke="#b91c1c" stroke-width="3" stroke-dasharray="6 4"/>
+    <circle cx="450" cy="165" r="6" fill="#6b7280"/>
+    <circle cx="60" cy="178" r="6" fill="#b91c1c"/>
+    <text x="450" y="185" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">צד בריא</text>
+    <text x="60" y="160" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">צד שסוע – יתד נמוכה</text>
+    <text x="250" y="165" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">עיגון למחיצה</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cleft_lip_and_cleft_palate" target="_blank">Cleft lip and cleft palate – Wikipedia</a>
+    <div class="desc">סקירה כללית של אנטומיה, אטיולוגיה וגישות טיפוליות לשסעי שפה וחך.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Nasoalveolar_molding" target="_blank">Nasoalveolar molding – Wikipedia</a>
+    <div class="desc">הסבר קצר על עקרון הטיפול לפני הניתוח.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוק בן 3 חודשים עם שסע שפה חד-צדדי שמאלי שלם שעבר עיצוב נאסו-אלווארי. בבדיקה: הפרש של 3 מ"מ בין גובה הפילטרום בצד הבריא לצד השסוע, בסיס האף בצד השסוע נמוך וצר, והפער במכתש כ-5 מ"מ. המנתח מתכנן סיבוב-קידום, תיקון החך הקדמי בו-זמנית ורינופלסטיקה חצי-פתוחה.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. איזה חתך סיבוב מתאים בוינייטה, ומדוע?</div>
+  <button class="opt" data-i="0">סיבוב פשוט בלבד, כי הפרש בגובה אינו משנה את הבחירה</button>
+  <button class="opt" data-i="1">back-cut של Millard, כי הוא נותן הארכה מקסימלית</button>
+  <button class="opt" data-i="2">חתך Mohler, כי ההפרש בגובה הפילטרום גדול מ-2 מ"מ</button>
+  <button class="opt" data-i="3">חתך מעל CPHSR להארכת השפה בצד הבריא</button>
+  <div class="explain">נכון: מעל 2 מ"מ הפרש – Mohler (קשת ל-CPHSL′ ואז back-cut ~90° ל-CPHSR). סיבוב פשוט שמור להפרש קטן מ-2 מ"מ; Millard back-cut אינו מומלץ (פגם רחב ונמוך); חצייה של CPHSR מאריכה את השפה בצד הבריא ואסורה.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. מהו הרציונל לכך ש"שפה צידית ארוכה" בשסע לא-שלם אינה אמיתית, ומה נכון לעשות?</div>
+  <button class="opt" data-i="0">השפה באמת ארוכה – מקצרים אותה בכריתה אנכית</button>
+  <button class="opt" data-i="1">העור עודף – מבצעים Rose-Thompson</button>
+  <button class="opt" data-i="2">הלסת קצרה – מבצעים הרחבה</button>
+  <button class="opt" data-i="3">המקטע הצידי כולל בסיס האף מוסט למטה – משחררים שרירים ומעלים את בסיס האף</button>
+  <div class="explain">נכון: מדידות תוך-ניתוחיות מראות גובה שווה; הארכות הנראית נובעת מירידה של בסיס האף. קיצור שפה בלי תיקון בסיס האף הוא הטעות השכיחה. Rose-Thompson משטח את רכס הפילטרום ולא מומלץ.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה תפקידו של תפר העיגון למחיצה (septal anchoring suture)?</div>
+  <button class="opt" data-i="0">מושך את השפה הצידית למדיאלי ומרכז את ה-Cupid's bow, ומונע סטייה לצד השסוע</button>
+  <button class="opt" data-i="1">מרחיב את הנחיר בצד השסוע</button>
+  <button class="opt" data-i="2">מחליף את פלאפ הטורבינט</button>
+  <button class="opt" data-i="3">יוצר את ה-alar-facial groove</button>
+  <div class="explain">נכון: במחקר ללא תפר זה ה-Cupid's bow סטה לצד השסוע אחרי 4+ שנים. הרחבת הנחיר אינה מטרה (מתקנים יתר לצר), הטורבינט ו-alar-facial groove נפתרים בדרכים אחרות (תפרי transfixion).</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. מתי נעשה שימוש בפלאפ הטורבינט התחתון (T-flap) ומה תפקידו?</div>
+  <button class="opt" data-i="0">בכל מקרה כדי להאריך את השפה</button>
+  <button class="opt" data-i="1">כשבסיס האף בצד השסע נסוג סגיטלית – ממלא פגם רירי ב-piriform</button>
+  <button class="opt" data-i="2">לשחזור הוורמיליון</button>
+  <button class="opt" data-i="3">רק בשסע דו-צדדי</button>
+  <div class="explain">נכון: ללא NAM, בסיס האף נדחק אחורה ושחרורו משאיר פער רירי שהפלאפ ממלא. אם הבסיסים סימטריים (לרוב אחרי NAM) אין צורך. אינו משפיע על אורך שפה או וורמיליון.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. מהו סידור הטיפול שהוכח כמיטבי להשגת סימטריית האף במחקר ההשוואתי (76 מטופלים)?</div>
+  <button class="opt" data-i="0">רינופלסטיקה סגורה בלבד</button>
+  <button class="opt" data-i="1">NAM בלבד</button>
+  <button class="opt" data-i="2">NAM + רינופלסטיקה חצי-פתוחה + תיקון יתר</button>
+  <button class="opt" data-i="3">NAM + רינופלסטיקה חצי-פתוחה בלי תיקון יתר</button>
+  <div class="explain">נכון: הצירוף עם תיקון יתר השיג את הציונים הטובים ביותר בכל המדדים (גובה נחיר, יחס גובה/רוחב, שטח נחיר). בלי תיקון יתר נשחקת התוצאה עם הזמן (relapse).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>הפתולוגיה: שריר orbicularis מוצמד חריג לבסיס האף והעמוד האמצעי → בסיס האף יורד; "שפה ארוכה" היא אשליה.</li>
+    <li>לפני ניתוח: NAM (Grayson/Figueroa) בשסע שלם; קונפורמר סיליקון בשסע לא-שלם / UCLA; פער מכתש ~5 מ"מ מועדף.</li>
+    <li>חתך: Mohler אם הפרש &gt; 2 מ"מ, אחרת סיבוב פשוט; אסור לחצות CPHSR; בלי back-cut של Millard.</li>
+    <li>פלאפים: C, L, T (רק כשבסיס האף נסוג), WSR (1.5–2 מ"מ) ו-vermilion (לא חוצה את ה-tubercle); שמירה על ה-nasal sill.</li>
+    <li>שריר: שחרור מלא (+3–4 מ"מ), key suture, עיגון למחיצה, חפיפה צידי-על-מדיאלי ללכידת הדרמיס.</li>
+    <li>אף: חצי-פתוח + reverse-U, תפרי LLC, שתל סחוס מחיצה, תפרי transfixion, תיקון יתר (2 מ"מ), קונפורמר 6–12 חודשים.</li>
+    <li>תוצאות: סיבוכים נדירים (צלקת היפרטרופית 2.5%), אין בקשות לתיקון לפני בית ספר בגישה המשולבת.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

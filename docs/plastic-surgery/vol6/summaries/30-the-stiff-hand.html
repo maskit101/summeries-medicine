@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 30: היד הנוקשה</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 30: היד הנוקשה <span class="term" dir="ltr">The stiff hand</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | פרק 30 (Section V – Challenging Disorders), מאת David T. Netscher, Rita E. Baumgartner, Kimberly Goldie Staines ו-Logan W. Carr</div>
+
+<p>נוקשות של היד (<b><span class="term" dir="ltr">stiff hand</span></b>) היא אחת התוצאות השכיחות והמתסכלות ביותר של פגיעה, זיהום או שיתוק זמן ארוך מדי. הפרק מלמד גישה אחת מארגנת: <b class="key">קודם מאבחנים איזה רקמה נעולה (עור, גיד, שריר או מפרק עצמו), ורק אחר כך בוחרים טיפול שמתאים לשלב ההחלמה של הפצע</b>. מי שמטפל "במפרק" כשהבעיה בגיד, או מותח בכוח כשהפצע עדיין בשלב בצקתי, גורם נזק במקום תועלת.</p>
+
+<h2><span class="num">1</span> הגדרות: מה נחשב נוקשות ומה לא</h2>
+<p>נוקשות יכולה להיות <b>מכיווץ בכיפוף</b> (חוסר יכולת להתיישר – <span class="term" dir="ltr">flexion contracture</span>) או <b>מכיווץ בפשיטה</b> (חוסר יכולת להתכופף – <span class="term" dir="ltr">extension contracture</span>), והיא יכולה להיות <b>פעילה</b> (השריר לא מצליח להניע) ו/או <b>סבילה</b> (גם הבודק לא מצליח להניע את המפרק). זה ההבדל הקריטי:</p>
+<table>
+  <thead><tr><th>מצב</th><th>תנועה סבילה</th><th>תנועה פעילה</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>אצבע "עקומה" ללא כיווץ</td><td>מלאה</td><td>חסרה</td><td>פער בכוח (<span class="term" dir="ltr">extension lag</span>), למשל <span class="term" dir="ltr">mallet finger</span> או הידבקות גיד פושט – אין כיווץ מפרקי</td></tr>
+    <tr><td>כיווץ אמיתי</td><td>מוגבלת</td><td>מוגבלת</td><td>הבעיה היא ברקמה שמגבילה את המפרק (בתוך או מסביב)</td></tr>
+  </tbody>
+</table>
+<p>הגורמים מתחלקים לשני מרחבים: <b>בתוך המפרק</b> (עצם, קופסית, רצועות, <span class="term" dir="ltr">volar plate</span>) ו<b>סביב המפרק</b> (עור, פאשיה, שריר, גיד). בבדיקה חובה להרחיב את המבט אל <b>האמה</b>, כי הכופפים והפושטים הארוכים מתחילים שם (דוגמאות: <span class="term" dir="ltr">Volkmann ischemic contracture</span>, הידבקויות אחרי חתך גיד באמה).</p>
+<p>שני מצבים מבלבלים שכדאי להכיר מראש:</p>
+<ul>
+<li><b><span class="term" dir="ltr">Lumbrical plus</span>:</b> חתך של FDP מרחוק למוצא הלומבריקל (או שתל גיד ארוך מדי) מעביר את מוצא הלומבריקל פרוקסימלית; כשהמטופל מנסה לכופף, הלומבריקל נמשך ונוצרת <b>פשיטה פרדוקסלית של ה-PIP</b>.</li>
+<li><b><span class="term" dir="ltr">Quadriga</span>:</b> הידבקות/קיצור/שתל הדוק של FDP של אצבע אחת "קושרת" את שאר ה-FDP כי יש להם מוצא שרירי משותף. לאצבע הפגועה יש כיווץ כיפוף של ה-IP, ובנוסף <b>לאצבעות הסמוכות התקינות אין כיפוף פעיל יעיל</b>, כי הנדידה הפרוקסימלית של הגיד חסומה.</li>
+</ul>
+
+<h2><span class="num">2</span> המנגנון: למה יד פגועה "ננעלת" דווקא בתנוחה הזאת</h2>
+<div class="mechanism">
+<p class="chain">פגיעה / זיהום / קיבוע ארוך ← <b>בצקת</b> (מצטברת בעיקר בגב היד, כי שם הפאשיה רפויה יותר) ← הנוזל ממלא את המפרק ו"בוחר" את הנפח המקסימלי ← המפרקים נעים אל התנוחה שבה <b>הרצועות רפויות ביותר</b> ← סיבים (פיברוזיס) וקיצור רצועות בתנוחה הזאת ← <b>כיווץ קבוע</b>.</p>
+</div>
+<p>התנוחה הרפויה ("תנוחת היד הפגועה" – <span class="term" dir="ltr">negative position</span>):</p>
+<ul>
+<li><b>שורש כף היד:</b> כיפוף (כי סך כוח הכופפים גדול מכוח הפושטים).</li>
+<li><b>אגודל:</b> קירוב (<span class="term" dir="ltr">adduction</span>).</li>
+<li><b>מפרקי MCP:</b> פשיטה.</li>
+<li><b>מפרקי PIP:</b> כיפוף.</li>
+</ul>
+<p><b>למה ה-MCP פשוט נדחף לפשיטה?</b> שני גורמים. (1) ראש המטקרפל אינו כדור אלא בעל צורת <b>גל (cam) עם "ברך" נפחית בצד הכפי</b>: הרדיוס שלו גדול יותר בכיפוף, ולכן הרצועות הצדדיות (collateral) <b>מתוחות ביותר בכיפוף ורפויות ביותר בפשיטה</b>. (2) בפשיטה כמעט מלאה, יש למפרק גם קיבולת נוזל מקסימלית, כך שהבצקת "מנפחת" את המפרק הידראולית אל הפשיטה. לכן המצב ה<b>מוגן</b> של ה-MCP הוא <b>כיפוף</b> (הרצועות נשארות בארכן המקסימלי ולא מתקצרות).</p>
+<p><b>ולמה ה-PIP/DIP מתכופפים?</b> אין "כונן הידראולי" ב-PIP וב-DIP, כי שם כמעט לא משתנה מתיחות הרצועות או קיבולת הנוזל בין כיפוף לפשיטה. התנוחה שלהם היא <b>משנית</b> לתנוחת ה-MCP: כשה-MCP פשוט, המתח בכופפים עולה ובפושטים יורד, ולכן האצבע מתכופפת ב-PIP וב-DIP. אותו עיקרון קורה בכוויה בגב היד, שמושכת את ה-MCP לפשיטה קבועה ואת ה-PIP לכיפוף (<span class="term" dir="ltr">claw</span> אחרי כוויה).</p>
+<div class="key-box">התנוחה ההגנתית היא <b><span class="term" dir="ltr">intrinsic plus</span></b> (או "safe position"): MCP בכיפוף ו-IP בפשיטה. כל יד פגועה חייבת להיות מקובעת כך, כדי שהרצועות לא יתקצרו בתנוחה הלא נכונה.</div>
+
+<svg class="diagram" viewBox="0 0 860 200" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת היווצרות כיווץ אחרי בצקת</title>
+  <rect x="700" y="20" width="150" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="48" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגיעה / זיהום / קיבוע</text>
+  <text x="775" y="68" font-size="12" text-anchor="middle" fill="#7f1d1d">בצקת בגב היד</text>
+  <rect x="480" y="20" width="170" height="64" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="565" y="48" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">נפח נוזל מקסימלי</text>
+  <text x="565" y="68" font-size="12" text-anchor="middle" fill="#1e3a8a">MCP נדחף לפשיטה</text>
+  <rect x="260" y="20" width="170" height="64" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="345" y="48" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מתח כופפים עולה</text>
+  <text x="345" y="68" font-size="12" text-anchor="middle" fill="#78350f">PIP + DIP מתכופפים</text>
+  <rect x="20" y="20" width="190" height="64" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="48" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">פיברוזיס + קיצור רצועות</text>
+  <text x="115" y="68" font-size="12" text-anchor="middle" fill="#4c1d95">כיווץ קבוע</text>
+  <line x1="700" y1="52" x2="656" y2="52" stroke="#374151" stroke-width="2"/><polygon points="650,52 662,46 662,58" fill="#374151"/>
+  <line x1="480" y1="52" x2="436" y2="52" stroke="#374151" stroke-width="2"/><polygon points="430,52 442,46 442,58" fill="#374151"/>
+  <line x1="260" y1="52" x2="216" y2="52" stroke="#374151" stroke-width="2"/><polygon points="210,52 222,46 222,58" fill="#374151"/>
+  <rect x="260" y="120" width="590" height="62" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="555" y="146" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">מניעה: הגבהה, דחיסה, תנועה פעילה (משאבת שרירים) וקיבוע ב-intrinsic plus</text>
+  <text x="555" y="166" font-size="12" text-anchor="middle" fill="#065f46">תנועה היא הכלי היעיל ביותר נגד בצקת</text>
+</svg>
+<p class="figcap">איור: שרשרת הבצקת והכיווץ, ומה שמפסיק אותה.</p>
+
+<h2><span class="num">3</span> אנטומיה פונקציונלית שמסבירה את הנוקשות</h2>
+<h3>איזה רקמה גורמת לכיווץ?</h3>
+<table>
+  <thead><tr><th>רקמה</th><th>דוגמאות לגורם</th></tr></thead>
+  <tbody>
+    <tr><td>עור</td><td>צלקת כוויה, חתך שהחלים בצלקת מתכווצת</td></tr>
+    <tr><td>רקמה תת-עורית</td><td>פיברוזיס אחרי בצקת/לימפדמה ממושכת, <span class="term" dir="ltr">CRPS</span>, מחלות קולגן (סקלרודרמה)</td></tr>
+    <tr><td>פאשיה</td><td>מחלת <span class="term" dir="ltr">Dupuytren</span></td></tr>
+    <tr><td>נדן הגיד הכופף</td><td>קיצור וכיווץ</td></tr>
+    <tr><td>גידים</td><td>הידבקויות של פושטים או כופפים</td></tr>
+    <tr><td>שריר</td><td>Volkmann ischemic contracture, נפיחות ופיברוזיס של האינטרוסיאי אחרי מחץ או שבר מטקרפל</td></tr>
+    <tr><td>Volar plate, רצועות צדדיות, קופסית</td><td>פיברוזיס, קיצור ודבקות לעצם</td></tr>
+    <tr><td>עצם</td><td>עיוות מפרקי או גוף חופשי אחרי שבר/ארתריטיס ("bone block")</td></tr>
+  </tbody>
+</table>
+
+<h3>ה-volar plate: שני מפרקים, שני מנגנונים</h3>
+<ul>
+<li><b>ב-MCP:</b> ה-volar plate "אלסטי" כמו סיבי ספנדקס מצטלבים, ומתרחב. כיווצי כיפוף ב-MCP <b>נדירים</b> בגלל האנטומיה של ה-volar plate והרצועות; כיווצי <b>פשיטה</b> שכיחים (קופסית דורסלית + רצועות צדדיות).</li>
+<li><b>ב-PIP:</b> ה-volar plate הוא מנגנון <b>גלישה</b> שאינו מחובר חזק לפלנקס הפרוקסימלי (אם היה מחובר, לא הייתה פשיטה מלאה). אחרי פגיעה נוצרים שני רצועות מיוחדות, ה-<b><span class="term" dir="ltr">checkrein ligaments</span></b>, בין הצד הפרוקסימלי של ה-volar plate לבין הפלנקס הפרוקסימלי. אלו <b>מבנים פתולוגיים</b>, עבים בבסיס (בצד ה-volar plate) ונצרים לכיוון העצם. הם הגורם המרכזי לכיווץ כיפוף ב-PIP, ולכן שחרורם הוא החלק הראשון בניתוח.</li>
+</ul>
+<h3>סיבה נדירה לכיווץ כיפוף של PIP: <span class="term" dir="ltr">bowstringing</span></h3>
+<p>כשפולי (pulley) נקרע, הגיד הכופף "נמשך כמו מיתר קשת" הרחק מהעצם. זרוע הכוח הממוצעת (<span class="term" dir="ltr">moment arm</span>) גדלה, ולכן חלק מהמרחק שהשריר מושך <b>מתבזבז</b> על מרחק קווי מהעצם במקום על כיפוף. נדרש כוח גדול יותר לכיפוף, והכוח הזה בעצמו מייצר כיווץ. עם הזמן המרחב שמאחורי הגיד (דורסלי) מתמלא ברקמה צלקתית ובצקת, ואז הכיווץ אינו ניתן לתיקון סבילי. ב-MRI רואים את הצלקת הזו, ובניתוח היא <b>צפופה</b> וחייבת להיות מנוקה לגמרי לפני בניית פולי.</p>
+
+<svg class="diagram" viewBox="0 0 860 220" xmlns="http://www.w3.org/2000/svg">
+  <title>ראש מטקרפל בצורת גל והרצועה הצדדית</title>
+  <text x="640" y="24" font-size="14" text-anchor="middle" font-weight="700" fill="#1e3a8a">MCP בכיפוף: הרצועה מתוחה (מצב מוגן)</text>
+  <text x="220" y="24" font-size="14" text-anchor="middle" font-weight="700" fill="#b91c1c">MCP בפשיטה: הרצועה רפויה ומתקצרת</text>
+  <ellipse cx="640" cy="105" rx="46" ry="60" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+  <text x="640" y="110" font-size="12" text-anchor="middle" fill="#78350f">ראש מטקרפל (רדיוס ארוך)</text>
+  <line x1="640" y1="45" x2="560" y2="180" stroke="#047857" stroke-width="4"/>
+  <text x="520" y="200" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">רצועה מתוחה</text>
+  <ellipse cx="220" cy="105" rx="46" ry="46" fill="#fde68a" stroke="#b45309" stroke-width="2"/>
+  <text x="220" y="110" font-size="12" text-anchor="middle" fill="#78350f">ראש מטקרפל (רדיוס קצר)</text>
+  <path d="M220,59 Q170,100 140,170" stroke="#b91c1c" stroke-width="3" fill="none" stroke-dasharray="6,4"/>
+  <text x="120" y="195" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">רצועה רפויה</text>
+</svg>
+<p class="figcap">איור סכמטי (לא בקנה מידה): הראש "הבלוטי" של המטקרפל מותח את הרצועה הצדדית בכיפוף.</p>
+
+<h2><span class="num">4</span> בדיקה גופנית: איך מוצאים איזה רקמה אשמה</h2>
+<p>העיקרון: <b>תמיד בודקים תנועה פעילה וסבילה, ומשנים את מצב המפרק שפרוקסימלי למפרק הנבדק</b>. זה אפקט ה-<span class="term" dir="ltr">see-saw</span>: מבנה שחוצה שני מפרקים הוא מכופף של אחד ופושט של השני. <b>אם הכיווץ נובע מהמפרק עצמו</b> (קופסית, רצועה, עצם), דרגת הכיווץ <b>לא תשתנה</b> עם מצב המפרק הפרוקסימלי. אם היא משתנה, המבנה הנעול חוצה שני מפרקים (גיד או שריר).</p>
+<table>
+  <thead><tr><th>בדיקה</th><th>איך מבצעים</th><th>מה ממצא חיובי אומר</th></tr></thead>
+  <tbody>
+    <tr><td><b>זווית Volkmann</b> (<span class="term" dir="ltr">Volkmann angle</span>)</td><td>מכופפים שורש כף היד עד שהאצבעות נפשטות במלואן, ואז מיישרים את השורש בהדרגה ורואים האצבעות נמשכות לכיפוף (טנודזיס)</td><td>הכיווץ חוצה את השורש (כופפים ארוכים באמה, למשל Volkmann, שיתוק מוחין). הזווית היא זווית הכיפוף שמאפשרת פשיטה מלאה</td></tr>
+    <tr><td><b>בדיקת הידבקות גיד כופף</b></td><td>כיפוף סבילי של MCP משפר פשיטת PIP; החזקת PIP בכיפוף משפרת פשיטת DIP</td><td>הידבקויות בכופפים ברמת המטקרפל / הפלנקס הפרוקסימלי</td></tr>
+    <tr><td><b>Extrinsic tightness test</b> (פושטים חיצוניים)</td><td>כיפוף סבילי של PIP כשה-MCP פשוט, ואז כשה-MCP מכופף</td><td>כיפוף PIP <b>משתפר כשה-MCP פשוט</b> = הידבקות/מתח של הפושט הארוך (הגיד "קצר" מעל ה-MCP)</td></tr>
+    <tr><td><b>Bunnell test</b> (אינטרינזיק)</td><td>כיפוף סבילי של PIP כשה-MCP פשוט, ואז כשה-MCP מכופף</td><td>כיפוף PIP <b>משתפר כשה-MCP מכופף</b> = מתח של מערכת אינטרינזיק (הלומבריקלים והאינטרוסיאים)</td></tr>
+    <tr><td><b><span class="term" dir="ltr">Boyes test</span></b></td><td>פשיטה סבילית של PIP והערכת כיפוף DIP</td><td>כיפוף DIP קשה יותר = קיצור ה-<span class="term" dir="ltr">oblique retinacular ligament</span> (רצועת Landsmeer), פושט פסיבי של DIP ומכופף של PIP</td></tr>
+    <tr><td><b>"<span class="term" dir="ltr">Dupodesis</span>"</b></td><td>כיפוף MCP כדי לראות אם כיווץ PIP הוא תוך-מפרקי או חוץ-מפרקי</td><td>אם הכיווץ משתפר עם כיפוף MCP, המקור חוץ-מפרקי (גיד/צלקת/Dupuytren). אם לא, ה-volar plate/הקופסית</td></tr>
+    <tr><td><b><span class="term" dir="ltr">Hook grip</span></b></td><td>בדיקה פעילה בניתוח</td><td>חושפת מתח אינטרינזיק עדין (לומבריקלים)</td></tr>
+  </tbody>
+</table>
+<div class="key-box">שים לב למלכודת הלשונית: ב-extrinsic tightness test <b>MCP בפשיטה</b> משפר את כיפוף ה-PIP, וב-Bunnell test <b>MCP בכיפוף</b> משפר אותו. אם כיפוף ה-PIP לא משתנה עם מצב ה-MCP, הבעיה במפרק עצמו (קופסית דורסלית).</div>
+
+<h3>אלגוריתם: PIP כפוף שאינו מתיישר</h3>
+<svg class="diagram" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם PIP כפוף</title>
+  <rect x="330" y="10" width="200" height="40" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="430" y="35" font-size="14" text-anchor="middle" font-weight="700" fill="#7f1d1d">PIP כפוף – אינו נפשט</text>
+  <rect x="520" y="90" width="320" height="56" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="680" y="114" font-size="13" text-anchor="middle" font-weight="700" fill="#1e3a8a">פשיטה סבילית מלאה</text>
+  <text x="680" y="133" font-size="12" text-anchor="middle" fill="#1e3a8a">פשיטה פעילה חסרה ← extension lag</text>
+  <rect x="20" y="90" width="320" height="56" rx="8" fill="#fffbeb" stroke="#b45309"/>
+  <text x="180" y="114" font-size="13" text-anchor="middle" font-weight="700" fill="#78350f">גם פשיטה סבילית חסרה</text>
+  <text x="180" y="133" font-size="12" text-anchor="middle" fill="#78350f">מכופפים MCP סבילית ובודקים</text>
+  <rect x="520" y="190" width="320" height="64" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="680" y="214" font-size="12" text-anchor="middle" fill="#4c1d95">הידבקות פושט / סיבה אחרת לחוסר כוח פעיל</text>
+  <text x="680" y="234" font-size="12" text-anchor="middle" fill="#4c1d95">(בודקים גם כיווץ extrinsic flexor)</text>
+  <rect x="190" y="190" width="150" height="64" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="265" y="214" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">פשיטת PIP משתפרת</text>
+  <text x="265" y="234" font-size="12" text-anchor="middle" fill="#065f46">הידבקות כופפים</text>
+  <rect x="20" y="190" width="150" height="64" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="95" y="214" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">אין שינוי</text>
+  <text x="95" y="234" font-size="12" text-anchor="middle" fill="#065f46">כיווץ במפרק (volar plate)</text>
+  <line x1="480" y1="50" x2="680" y2="90" stroke="#374151" stroke-width="2"/><polygon points="680,90 670,80 686,78" fill="#374151"/>
+  <line x1="380" y1="50" x2="180" y2="90" stroke="#374151" stroke-width="2"/><polygon points="180,90 192,86 188,100" fill="#374151"/>
+  <line x1="140" y1="146" x2="95" y2="190" stroke="#374151" stroke-width="2"/><polygon points="95,190 98,178 108,186" fill="#374151"/>
+  <line x1="230" y1="146" x2="265" y2="190" stroke="#374151" stroke-width="2"/><polygon points="265,190 252,182 262,176" fill="#374151"/>
+</svg>
+<p class="figcap">איור: אלגוריתם 30.1 בקצרה. כיפוף סבילי של MCP משפר את פשיטת ה-PIP רק אם הכופפים החיצוניים נדבקו.</p>
+<p>אלגוריתם הפוך (PIP פשוט שאינו מתכופף): אם כיפוף ה-PIP קשה יותר כש<b>MCP פשוט</b> – אינטרינזיק; קשה יותר כש<b>MCP מכופף</b> – פושט חיצוני; אין שינוי – קופסית המפרק. אם הכיפוף הפעיל חסר והסבילי מלא: הידבקות כופפים, <span class="term" dir="ltr">quadriga</span> או <span class="term" dir="ltr">lumbrical plus</span>.</p>
+
+<h2><span class="num">5</span> טיפול לא ניתוחי: עקרונות לפי שלב ההחלמה</h2>
+<div class="mechanism">
+<p class="chain">הטיפול הוא <b>תלוי זמן</b>: שלב בצקתי ← שלב דלקתי ← שלב ייצור קולגן ← צלקת בשלה. טיפול ידני יעיל <b>בעיקר מוקדם</b> (בצקת וקולגן), כשאפשר עדיין לדחוק נוזל ולעצב מחדש קולגן. כשהצלקת בשלה, הסיכוי לתגובה לטיפול שמרני יורד.</p>
+</div>
+<h3>צעד ראשון: להפחית בצקת</h3>
+<ul>
+<li><b>הגבהה</b> ועטיפה / <b>כפפת לחץ</b> (<span class="term" dir="ltr">compression glove</span>) בלחץ מומלץ של בערך <b>35 ± 5 מ"מ כספית</b>, בלי להגביל תנועת מפרקים ועם קצות אצבעות חשופים לתחושה.</li>
+<li><b>התנועה היא הכלי היעיל ביותר:</b> התכווצות שרירים עובדת כמשאבה שמזרימה בצקת מהפריפריה.</li>
+</ul>
+<h3>סדים: איך כוח חיצוני משנה קולגן</h3>
+<p>סד מפעיל כוח <b>לא אלסטי</b> בכיוון התיקון. בהתחלה הוא רק <b>מזיז נוזל</b> ("שלב הרווח המהיר"), ורק אחרי שהבצקת נעקרה, הכוח משפיע על עיצוב מחדש של קולגן. לכן:</p>
+<ul>
+<li>חזרה מהירה של העיוות אחרי הסרת הסד <b>אינה כישלון</b>: זה חזרת הנוזל שנדחק.</li>
+<li>עיצוב קולגן דורש <b>לחץ נמוך וקבוע לאורך זמן</b> (עיקרון <span class="term" dir="ltr">Brand</span>), לא מתיחות קצרות וחזקות לסירוגין. מתיחה סבילית אגרסיבית עלולה לפגוע ברקמה ולהוסיף פיברוזיס וצלקת.</li>
+<li><b><span class="term" dir="ltr">TERT</span> (Total End Range Time)</b>: משך הזמן ביום בקצה טווח התנועה. אופטימלי <b>6–12 שעות ביום</b> בפיזור על 3–4 מפגשים, ולפחות כ-<b>4 חודשים</b> של ענידה לשימור שינוי פלסטי באורך הרקמה.</li>
+<li>חום לח ואולטרסאונד מחזקים את ההשפעה. <b>אולטרסאונד תרמי</b> (רציף, CWUS) מחמם רקמות שטחיות ומגביר זרימת דם; <b>אולטרסאונד פועם</b> (PWUS) ממצב בפיברוזיס עם אפקט קביטציה ורטט מכני שמרכך סיבי קולגן. עדות היעילות של <span class="term" dir="ltr">iontophoresis</span> (מטען יוני להעברת תרופות כמו דקסמתזון) ו-<span class="term" dir="ltr">phonophoresis</span> עדיין לא הוכחה במלואה, וכך גם יעילות יריעות סיליקון.</li>
+</ul>
+
+<h3>טבלת סיכום: איזה טיפול לאיזה כיווץ</h3>
+<table>
+  <thead><tr><th>הבעיה</th><th>עקרון הטיפול</th><th>אמצעי</th></tr></thead>
+  <tbody>
+    <tr><td><b>כיווץ כיפוף PIP</b></td><td>לחץ נמוך ממושך, ושיקום פשיטה פעילה</td><td>סד דינמי 3 נקודות (קפיץ + גומיות לדיוק הכוח), <b>serial casting</b> (זול, אמין, מאפשר תנועה פעילה של DIP ופעילות FDP), סד חסימה ל-MCP שמכוון את כוח הכופפים החיצוניים אל ה-PIP, תרגיל "hook fist"</td></tr>
+    <tr><td><b>extension lag של PIP</b> (אחרי כיווץ ארוך הפושט נחלש)</td><td>להחזיר את ה-<span class="term" dir="ltr">lateral bands</span> למצב דורסלי</td><td><span class="term" dir="ltr">relative motion splint</span>: האצבע הפגועה ב-MCP בכיפוף של כ-<b>20° יותר</b> מהאצבעות הסמוכות (אפשר ליצור עם עט; "yoke splint"). מתיחה סבילית אגרסיבית של PIP במצב של הידבקות פושט בפלנקס הפרוקסימלי עלולה להחליש את ה-central slip</td></tr>
+    <tr><td><b>כיווץ פשיטה PIP</b></td><td>מבדילים בין המפרק, הידבקות פושט ואינטרינזיק</td><td>סדי כיפוף דינמיים/סטטיים מתקדמים (30–60 דקות כמה פעמים ביום), flexion wrap בתחבושת קוהסיבית, מתיחות אינטרינזיק (MCP בהיפר-פשיטה והזזת PIP)</td></tr>
+    <tr><td><b>כיווץ פשיטה MCP</b></td><td>כיפוף מדורג עם זמן ענידה ארוך</td><td>flexion wrap, <span class="term" dir="ltr">casting motion to mobilize stiffness (CMMS)</span> – יציבות מפרקים פרוקסימליים בגבס ותנועה פעילה של המפרק הנוקשה</td></tr>
+    <tr><td>הידבקות גידים</td><td>גלישה דיפרנציאלית</td><td>תרגילי חסימה, 6 עמדות (ראו מטה), <span class="term" dir="ltr">tendon acceleration</span> (טעינה איזומטרית ואז "הצלפה" מהירה), NMES</td></tr>
+  </tbody>
+</table>
+<h3>שש עמדות של גלישת גידים (שורש כף היד ב-neutral)</h3>
+<ol>
+<li><b>פשיטה מלאה</b> (MCP+PIP+DIP פשוטים; פושטים חיצוניים)</li>
+<li><b><span class="term" dir="ltr">Hook fist</span></b> (MCP פשוט, PIP+DIP מכופפים; כופפים חיצוניים)</li>
+<li><b><span class="term" dir="ltr">Intrinsic plus</span></b> (MCP מכופף, IP פשוטים; אינטרינזיק)</li>
+<li><b><span class="term" dir="ltr">Long fist</span></b> (MCP+PIP מכופפים, DIP פשוט; FDS דיפרנציאלי)</li>
+<li><b><span class="term" dir="ltr">Composite fist</span></b> (כולם מכופפים; FDP דיפרנציאלי)</li>
+<li>חזרה לפשיטה מלאה</li>
+</ol>
+<p>שיטות נוספות: <b>מיקוד מוטורי ומוחי</b> – חסימת מפרקים פרוקסימליים, <span class="term" dir="ltr">mirror therapy</span> ("מרמה" את המוח שיש שתי גפיים תקינות), ושילוב NMES בפעולות תפקודיות; חיזוק אינטרינזיק איזומטרי עם ספר מוחזק אנכית כשה-IP פשוטים, בהדרגה עם עובי ומשקל.</p>
+<div class="key-box">רק כשאין התקדמות בטיפול, הצלקות בשלות ורכות, הנפיחות שככה, המטופל <b>מוטיבציה גבוהה</b> ויש כיווץ שבאמת פוגע בתפקוד – שוקלים ניתוח. והמפרק חייב להיות <b>קונגרואנטי וללא ארתריטיס</b>.</div>
+
+<h2><span class="num">6</span> טיפול ניתוחי</h2>
+<h3>הרדמה והכנה</h3>
+<ul>
+<li>עדיפות ל<b>הרדמה מקומית ערה</b> (<span class="term" dir="ltr">wide-awake local anesthesia</span>, <span class="term" dir="ltr">WALANT</span>): הזרקה טומסנטית של <b>לידוקאין עם אפינפרין</b>, שמאפשרת למטופל לכופף ולפשוט פעיל בלי כאב ולמנתח לבדוק את התוצאה בזמן אמת. ניתן לתזמן סדציה לנוחות המטופל בנקודות קריטיות.</li>
+<li>טורניקט בזרוע העליונה אפשרי להמוסטזיס; אחרי שחרורו מחכים ללחץ מקומי עד שהיפרמיה תגובתית ושטף הדם נרגעים.</li>
+<li>בהרדמה אזורית/כללית: בודקים טווח סבילי, ולסימולציית כיפוף פעיל משתמשים ב-<b><span class="term" dir="ltr">FDP pull test</span></b> (חתך פרוקסימלי באמה ומשיכה בגיד הכופף).</li>
+<li>תכנון חתך מראש לפי <b>מחסור אפשרי בעור</b>: לעתים נדרש flap סגירה (למשל flap transposition דורסלי עם graft בתורם).</li>
+</ul>
+<h3>שחרור כיווץ פשיטה ב-MCP</h3>
+<ol>
+<li>חתך דורסלי (לפרק יחיד חתך אורכי מעוקל שמשאיר flap בריא מעל מנגנון הפושט; לכמה מפרקים חתך רוחבי בצוואר המטקרפל).</li>
+<li>טנוליזיס ראשוני של הפושט, גישה לקופסית הדורסלית (הסטת סיבי ה-<span class="term" dir="ltr">sagittal band</span> או חיתוכם ארוכים בצד האולנרי).</li>
+<li>חתך רוחבי בקופסית הדורסלית, המשכו לסיבים הדורסליים ביותר של הרצועות הצדדיות (<span class="term" dir="ltr">collateral</span>), תוך כיפוף סבילי הדרגתי.</li>
+<li><b>יעד: לפחות 70° כיפוף.</b> אם הרצועה הנותרת לא עוברת מעל ה"פלייר" של ראש המטקרפל ומתעורר חשש לאי יציבות, מנתקים אותה ממוצאה במטקרפל. מכניסים אלווטור סביב ראש המטקרפל לכיוון הכפי לשחרור הידבקויות ב-recess הפרוקסימלי של ה-volar plate.</li>
+<li>מחזירים לפשיטה: אם יש "קפיצה" (<span class="term" dir="ltr">jump</span>) לקראת פשיטה מלאה, חותכים עוד את הסיבים הדורסליים של שתי הרצועות עד שהיא נעלמת.</li>
+<li>בסיום בודקים שוב גלישת פושט, מתקנים sagittal band אם נחתך, סוגרים. קיבוע בפין נדיר; מקבעים ב-<b>intrinsic plus לימים ספורים</b> ואז מתחילים תנועה וסד תרמופלסטי לשימור כיפוף בין הטיפולים.</li>
+</ol>
+<p>שימו לב: <b>רוב החולים אינם שומרים את הכיפוף שהושג בניתוח</b>, במיוחד אחרי פגיעת מחץ נרחבת.</p>
+
+<h3>שחרור כיווץ כיפוף ב-PIP</h3>
+<ol>
+<li>חתך volar (<span class="term" dir="ltr">Bruner</span>) או midaxial; מזהים וחולצים את צרור העצב-כלי.</li>
+<li>נדן הכופף מרחוק לפולי A2.</li>
+<li>חותכים את ה-<b>checkreins</b> ממוצאם המשולש על הקצה הפרוקסימלי של ה-volar plate; ממשיכים לרצועות הצדדיות העזר (<span class="term" dir="ltr">accessory collateral</span>) ממוצאן.</li>
+<li>אם עדיין אין פשיטה סבילית מספקת – משחררים את הרצועות הצדדיות העצמיות (<span class="term" dir="ltr">proper collateral</span>) בהדרגה <b>מכפי לדורסלי</b>.</li>
+<li>נמנעים מכוח פשיטה סבילי מופרז שעלול "לשבור" את ה-PIP להיפר-פשיטה ולהוביל ל-<b><span class="term" dir="ltr">swan-neck</span></b> קבוע; מותר להשאיר את המעלות האחרונות לטיפול ו-serial casting.</li>
+<li>סוף: תנועה מוקדם ככל שהפצעים מאפשרים; סד דינמי לפשיטה ביום (למשל קפיץ LMB) וסד סטטי בלילה, לפעמים חודשים. מכשיר קיבוע חיצוני חדש יחסית, <b>Digit Widget</b>, מפעיל מומנט פשיטה מתמשך שהמטופל קובע בגומיות; חשוב שה-MCP לא יהיה בהיפר-פשיטה.</li>
+</ol>
+<h3>שחרור כיווץ פשיטה ב-PIP</h3>
+<ol>
+<li>גישה דורסלית בחתך קורביליניארי (flap גדול, סגירה ללא מתח בכיפוף מלא).</li>
+<li>חותכים את סיבי ה-<span class="term" dir="ltr">transverse retinacular</span> משני הצדדים כדי להרים את מנגנון הפושט בלי לפגוע במשטח העמוק (מוצא ה-central slip).</li>
+<li>טנוליזיס, חתך רוחבי בקופסית הדורסלית, ואז שחרור הדרגתי של הסיבים הדורסליים של הרצועות הצדדיות עד כיפוף סבילי מלא; אם צריך – שחרור הרצועות ממוצאן בפלנקס הפרוקסימלי.</li>
+<li>בניתוח הער בודקים <b>כיפוף פעיל</b> (לשפוט אם נדרש טנוליזיס כופפים), עורכים <b>Bunnell test</b> לאינטרינזיק, ומסיימים ב-<b>hook grip</b> פעיל, שחושף מתח לומבריקל עדין ומורה על הצורך במתיחות אינטרינזיק אחרי הניתוח.</li>
+</ol>
+<div class="key-box">בכל שחרור של כיווץ ב-PIP כדאי לבדוק גם את <b>שלמות מנגנון הפושט</b>: אולי הושגה פשיטה סבילית אך הפעילה לא, ואז נדרש שיקום מנגנון הפושט או שינוי פרוטוקול הטיפול לאחר הניתוח (relative motion splinting).</div>
+
+<h3>טבלה: השוואת שלוש הפרוצדורות</h3>
+<table>
+  <thead><tr><th>כיווץ</th><th>גישה</th><th>הרצועות העיקריות לחיתוך</th><th>יעד / סכנה</th></tr></thead>
+  <tbody>
+    <tr><td><b>פשיטת MCP</b></td><td>דורסלית</td><td>קופסית דורסלית + סיבים דורסליים של collaterals</td><td>≥70° כיפוף; לבדוק "jump" בפשיטה</td></tr>
+    <tr><td><b>כיפוף PIP</b></td><td>volar (Bruner/midaxial)</td><td>checkreins ← accessory ← proper collateral (כפי לדורסלי)</td><td>לא להיפר-פשיטה (swan-neck); לפעמים לסיים בסד/גבס</td></tr>
+    <tr><td><b>פשיטת PIP</b></td><td>דורסלית</td><td>retinacular רוחבי ← קופסית דורסלית ← collaterals דורסליים</td><td>כיפוף סבילי מלא; Bunnell + hook grip</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> שלושה מקרי בוחן מהפרק</h2>
+<table>
+  <thead><tr><th>מקרה</th><th>ממצא / אבחנה</th><th>טיפול</th></tr></thead>
+  <tbody>
+    <tr><td>שחקן הוקי בן 17 אחרי שחרור אצבע מקפצת וזיהום</td><td>כיווץ כיפוף PIP בטבעת; ה-PIP החמיר עם פשיטת MCP (הידבקות כופפים), אך נשאר כיווץ גם בכיפוף מלא של MCP + <b>bowstringing</b> ממושש; MRI אישר</td><td>כישלון טיפול ידני ← WALANT: שחרור הידבקויות כופפים, ניקוי הצלקת שמאחורי הגיד, שחרור checkrein + volar plate, <b>שחזור A2 עם שתל palmaris longus</b>; סד טבעת עם חסימה דורסלית, אחרי 6 שבועות התנגדות. חזרה מלאה לספורט</td></tr>
+    <tr><td>פועל בניין בן 47 אחרי fasciitis נמק</td><td>אחרי כיסוי גב היד ב-flap רדיאלי הפוך: אגרוף לא מלא; תנועת האצבעות לא תלויה במצב השורש ← <b>כיווץ extrinsic extensor</b> מהידבקויות דורסליות</td><td>הרמת ה-flap וטנוליזיס פושטים, שיפור תפקודי משמעותי</td></tr>
+    <tr><td>אישה בת 67 אחרי פגיעה מלאה בצמת הברכיאלית</td><td>החלמה בכתף/מרפק/כופפים ופושטים ארוכים אך בלי טיפול ידני ← כיווץ קירוב אגודל + כיווצי פשיטה MCP ו-IP</td><td>שחרור FDI ו-adductor pollicis, <b>Z-plasty כפול</b> לעומק ה-first web, קפסולקטומיה דורסלית של ה-MCP + שחרור הדרגתי של collaterals, כיפוף סגור של ה-IP, וכיסוי חוסר עור ב-flap transposition עם graft מהמפשעה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">8</span> תוצאות וסיבוכים</h2>
+<ul>
+<li>בניתוח ניתן להשיג פשיטה מלאה של PIP בכ-<b>96%</b> מהמקרים, אך <b>רוב החולים אינם שומרים</b> את התיקון למרות שיקום ממושך. ב-Dupuytren חמור (ממוצע 78° לפני) נצפתה נסיגה לממוצע 36° למרות תיקון מלא בניתוח. לכן ממעטים להחזיר פשיטה נורמלית, אך העיוות משתפר.</li>
+<li>ממחקר רב-מרכזי של 246 שחרורי PIP (45% כיווצי פשיטה): שיפור ממוצע בטווח הכיפוף של <b>28°</b> (מ-19–34° לפני ל-8–62° אחרי).</li>
+<li><b>סיבוכים:</b> נמק שולי של flap דק (במיוחד בצלקות קודמות) והיפרדות פצע ← ריפוי שניוני וצלקת ← נסיגה; שחרור מופרז של volar plate / רצועות או כוח פשיטה מופרז ← subluxation להיפר-פשיטה (swan-neck); בסד לכיווץ כיפוף PIP לא להפעיל לחץ בקצה האצבע אלא <b>סמוך לקפל הכיפוף של ה-DIP</b>, כדי שלא לגרום לבעיית DIP יאטרוגנית. אם הפצע מתחיל להיפתח, עדיף להשהות טיפול לזמן קצר.</li>
+</ul>
+<h3>כיוונים עתידיים</h3>
+<p>החוקרים מתמקדים במניעת נוקשות דרך שינוי הביולוגיה של ריפוי הפצע (בצקת, דלקת, ייצור והבשלת קולגן, כיווץ פצע): ויסות יחס גורמי הגדלה כך שהריפוי יישאר מהיר עם פחות צלקת, ווקטורים (אדנו-ויראליים/ליפוזומליים) להעברת גנים, וממברנות ביו-תואמות שלא מפריעות לתזונת הגיד ומשמשות מחסום בין הגיד לרקמות. כל ניסיון כימי עד כה פגע גם בחוזק הריפוי. <b>תנועה וניהול בצקת</b> נשארו האמצעי המוכח החשוב ביותר, וההתקדמות צפויה להיות הדרגתית.</p>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">W-T-M-P</span> – תנוחת היד הפגועה</h3>
+  <p><b>W</b>rist ← <b>F</b>lexion (שורש מכופף)<br><b>T</b>humb ← <b>A</b>dduction (אגודל מקורב)<br><b>M</b>CP ← <b>E</b>xtension (פשוט)<br><b>P</b>IP ← <b>F</b>lexion (מכופף)</p>
+  <p>ובעברית: <b>"שורש שוקע, אגודל אסור, MCP מתמתח, PIP מתקפל"</b>. התיקון הפוך: <span dir="ltr">intrinsic plus</span> – MCP מכופף (כמו יד שמחזיקה מגש), IP ישרים.</p>
+  <h3>סיפור דמיוני: הבלון והדלת</h3>
+  <p>דמיינו את ה-MCP כ<b>דלת</b> ואת הבצקת כ<b>בלון שמתנפח בחדר</b>. בלון תמיד מתפשט לנפח הגדול ביותר, ושם הדלת נפתחת לרווחה – פשיטה. הכופפים נמתחים, ומושכים את שתי הדלתות הבאות (PIP ו-DIP) לסגירה. אם הדלת נשארת פתוחה זמן רב, ה"צירים" (הרצועות הצדדיות) מתקצרים ומקבעים אותה כך. הפתרון: <b>לחצות את הדלת לחצי סגורה</b> (MCP מכופף, intrinsic plus) לפני שהצירים מתקצרים, ולהוציא את האוויר מהבלון (הגבהה, דחיסה, תנועה).</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>הבלון והדלת</title>
+    <rect x="30" y="30" width="170" height="130" fill="#fff" stroke="#374151" stroke-width="3"/>
+    <circle cx="115" cy="95" r="52" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+    <text x="115" y="100" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">בצקת</text>
+    <line x1="200" y1="30" x2="270" y2="70" stroke="#b45309" stroke-width="6"/>
+    <text x="240" y="115" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">דלת (MCP) נפרצת לפשיטה</text>
+    <line x1="330" y1="30" x2="330" y2="160" stroke="#047857" stroke-width="6" stroke-dasharray="1,0"/>
+    <text x="400" y="100" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">פתרון: דלת חצי סגורה</text>
+    <text x="400" y="120" font-size="12" text-anchor="middle" fill="#065f46">(MCP מכופף)</text>
+  </svg>
+</div>
+<div class="mnemonic">
+  <h3>זכירת הבדיקות: "בנו פנימה, פושט חיצוני"</h3>
+  <p><b>Bunnell</b> ← אינטרינזיק ("בונל בונה בפנים"): PIP מתכופף טוב יותר כש-<b>MCP מכופף</b>.<br><b>Extrinsic extensor tightness</b> ← הפוך: PIP מתכופף טוב יותר כש-<b>MCP פשוט</b>.<br><b>Boyes</b> ← DIP (רצועת Landsmeer): PIP פשוט מקשה על כיפוף DIP.<br><b>Volkmann angle</b> ← כופפים באמה: השורש בכיפוף מאפשר פשיטה של האצבעות.</p>
+</div>
+
+<h2><span class="num">10</span> מקורות מהימנים להעמקה</h2>
+<ul class="resource-list">
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=proximal+interphalangeal+joint+contracture+release" target="_blank" rel="noopener">PubMed – שחרור כיווץ PIP</a><span class="tag">מאגר מאמרים</span><div class="desc">חיפוש במאגר PubMed של ה-NIH: מאמרים על ניתוחי שחרור של PIP ותוצאותיהם.</div></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=checkrein+ligament+proximal+interphalangeal" target="_blank" rel="noopener">PubMed – Checkrein ligaments</a><span class="tag">מאגר מאמרים</span><div class="desc">מאמרי Watson ואחרים על אנטומיה פתולוגית של ה-checkreins.</div></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=relative+motion+splint+extensor" target="_blank" rel="noopener">PubMed – Relative motion splinting</a><span class="tag">מאגר מאמרים</span><div class="desc">עבודות על relative motion (Merritt, Lalonde ואחרים).</div></li>
+  <li><a href="https://www.assh.org/" target="_blank" rel="noopener">ASSH – האגודה האמריקאית לכירורגיית היד</a><span class="tag">אגודה מקצועית</span><div class="desc">חומר חינוכי למטופלים ולרופאים.</div></li>
+  <li>מקור הפרק: Netscher DT et al., <i>The stiff hand</i>, בתוך Neligan, <i>Plastic Surgery</i>, מהדורה 5, כרך 6, פרק 30. הפרק מתבסס בין היתר על Watson 1979, Brand 1993, Merritt 2014, Glasgow 2003.</li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, נגר, נפגע לפני 5 חודשים במחץ ביד ימין עם שבר מטקרפל של האצבע המורה והבצקת נמשכה שבועות בגלל קיבוע ארוך בלי הגבהה. כעת: אצבעות 2–3 אינן נסגרות לאגרוף. אצבע 3: ה-PIP כפוף 40°, <b>פשיטה סבילית של ה-MCP מגבירה את כיווץ ה-PIP</b>, ובכיפוף מלא של ה-MCP עדיין נשאר כיווץ. אין פער בין תנועה פעילה לסבילה. בדיקה בשבוע 12 לא הראתה התקדמות בטיפול ידני, הצלקות רכות והמטופל בעל מוטיבציה מלאה. ה-MRI מראה צלקת בצד הדורסלי של גיד הכופף ו-bowstringing.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מדוע בצקת בגב היד גורמת בדרך כלל לפשיטת MCP וכיפוף PIP?</div>
+  <button class="opt" data-i="0">כי הפושטים חזקים מהכופפים ביד</button>
+  <button class="opt" data-i="1">כי הרצועות הצדדיות של ה-MCP מתוחות ביותר בפשיטה</button>
+  <button class="opt" data-i="2">כי הבצקת מנפחת את ה-MCP הידראולית לפשיטה (קיבולת מקסימלית, רצועות רפויות), והמתח המוגבר בכופפים מכופף את ה-PIP וה-DIP</button>
+  <button class="opt" data-i="3">כי יש כונן הידראולי חזק ב-PIP שדוחף לכיפוף</button>
+  <div class="explain">נכון: ה-MCP בפשיטה הוא נקודת הקיבולת המרבית והרצועות הרפויות ביותר, ולכן הבצקת דוחפת אותו לשם. הפשיטה מעלה מתח בכופפים ומורידה בפושטים ← כיפוף PIP/DIP. (א) סך כוח הכופפים דווקא גדול מהפושטים (גורם לכיפוף השורש). (ב) הפוך: הרצועות מתוחות בכיפוף. (ד) ב-PIP וב-DIP אין כמעט כונן הידראולי, התנוחה שלהם משנית ל-MCP.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">2. בווינייטה: פשיטת MCP מחמירה את כיווץ ה-PIP, ובכיפוף מלא של MCP נשאר כיווץ. מה האבחנה המשוערת?</div>
+  <button class="opt" data-i="0">כיווץ מפרקי בלבד (volar plate), בלי מעורבות גיד</button>
+  <button class="opt" data-i="1">מתח/הידבקות של כופפים חיצוניים, בתוספת כיווץ תוך-מפרקי ו-bowstringing</button>
+  <button class="opt" data-i="2">מתח אינטרינזיק, כי הבעיה משתפרת בכיפוף MCP</button>
+  <button class="opt" data-i="3">extension lag של central slip</button>
+  <div class="explain">נכון: החמרה בפשיטת MCP = מעורבות כופפים חיצוניים (מתיחתם מעל ה-MCP). הכיווץ שנשאר גם בכיפוף מלא של MCP משקף מרכיב נוסף שאינו תלוי ב-MCP: checkrein/volar plate וה-bowstringing. (א) אם היה כיווץ מפרקי בלבד, לא היה שינוי עם MCP. (ג) אינטרינזיק היה משתפר ב-MCP מכופף בבדיקת Bunnell, לא מחמיר בפשיטה. (ד) extension lag הוא חסר פעיל עם סבילי מלא, וכאן יש חסר סבילי.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי המשמעות הקלינית של "שלב הרווח המהיר" בסד, ומה ההנחיה לטיפול?</div>
+  <button class="opt" data-i="0">תחילה נעקר נוזל; עיצוב קולגן דורש לחץ נמוך וקבוע זמן רב (TERT 6–12 שעות, לפחות כ-4 חודשים). חזרה מהירה של העיוות אינה כישלון</button>
+  <button class="opt" data-i="1">מתיחה סבילית חזקה וקצרה נותנת את התוצאה הטובה ביותר</button>
+  <button class="opt" data-i="2">מספיק לענוד סד שבועיים והקולגן כבר מתעצב</button>
+  <button class="opt" data-i="3">יש להימנע מסד ולהסתפק בחום בלבד</button>
+  <div class="explain">נכון: מקור הרווח המהיר הוא תזוזת נוזל; התארכות רקמה פלסטית דורשת עומס נמוך וממושך (Brand) וחודשים. (ב) מתיחה אגרסיבית פוגעת ברקמה ומוסיפה פיברוזיס. (ג) 2 שבועות אינם מספיקים. (ד) חום מסייע אך אינו מחליף סד.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. איזה מהבאים הוא צעד ושלב נכון בניתוח לשחרור כיווץ כיפוף של PIP?</div>
+  <button class="opt" data-i="0">שחרור הרצועות הצדדיות העצמיות תחילה, מהדורסלי לכפי</button>
+  <button class="opt" data-i="1">חיתוך מנגנון הפושט במלואו כדי להגיע לקופסית</button>
+  <button class="opt" data-i="2">פשיטה סבילית אגרסיבית עד פשיטת-יתר כדי לשמר תיקון</button>
+  <button class="opt" data-i="3">חיתוך ה-checkreins, אחר כך הרצועות הצדדיות העזר, ורק במידת הצורך הרצועות הצדדיות העצמיות מכפי לדורסלי</button>
+  <div class="explain">נכון: זה הסדר המדורג. (א) הסדר הפוך ולא נכון, ושחרור עצמיות הוא אחרון. (ב) גישה volar, לא דרך מנגנון הפושט. (ג) פשיטת יתר מובילה ל-swan-neck; את המעלות האחרונות משאירים לטיפול / serial casting.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. בניתוח שחרור כיווץ פשיטה של MCP, מה היעד וכיצד בודקים שהשחרור שלם?</div>
+  <button class="opt" data-i="0">כיפוף של 30°, ללא בדיקה נוספת</button>
+  <button class="opt" data-i="1">כיפוף 90° ואז קיבוע ב-K-wire לשלושה שבועות</button>
+  <button class="opt" data-i="2">לפחות 70° כיפוף; בפשיטה בודקים שאין "קפיצה", ואם יש חותכים עוד את הסיבים הדורסליים של ה-collaterals</button>
+  <button class="opt" data-i="3">שחרור מלא של שתי הרצועות הצדדיות ממוצאן בכל מקרה</button>
+  <div class="explain">נכון: יעד ≥70°, בדיקת jump, והמשך חיתוך הסיבים הדורסליים הדרגתי. (א) נמוך מדי. (ב) קיבוע בפין נדיר, מקבעים ב-intrinsic plus ימים ספורים. (ד) שחרור מלא מסכן יציבות; מנתקים מהמטקרפל רק אם רצועה לא עוברת מעל הפלייר וחוששים מאי-יציבות.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">6. מטופל אחרי שחרור PIP מגיע עם פשיטה סבילית מלאה אך חוסר פשיטה פעילה (extension lag). מה הגישה לשיקום?</div>
+  <button class="opt" data-i="0">מתיחה סבילית חזקה של כיפוף כדי לשפר את הפושט</button>
+  <button class="opt" data-i="1">relative motion splint: האצבע ב-MCP ב-20° יותר כיפוף, להחזיר lateral bands לדורסלי ולחזק את מנגנון הפושט</button>
+  <button class="opt" data-i="2">קיבוע קבוע בפשיטה בגבס</button>
+  <button class="opt" data-i="3">חיתוך נוסף של הרצועות הצדדיות</button>
+  <div class="explain">נכון: במצב של מנגנון פושט מוחלש יש להעלות מתח בפושט החיצוני דרך הסד הזה. (א) מתיחה אגרסיבית מחלישה את ה-central slip. (ג) קיבוע ארוך מוסיף נוקשות. (ד) המפרק כבר משוחרר, הבעיה בפושט.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כיווץ = פגיעה בטווח תנועה סבילי; extension lag = חוסר פעיל בלבד.</li>
+    <li>בצקת ← תנוחה רפויה: שורש בכיפוף, אגודל מקורב, MCP פשוט, PIP כפוף. הגנה: <b>intrinsic plus</b>.</li>
+    <li>ראש מטקרפל בצורת cam: רצועות מתוחות בכיפוף ולכן MCP מוגן בכיפוף; כיווצי כיפוף ב-MCP נדירים.</li>
+    <li>PIP: checkreins הם הגורם לכיווץ כיפוף; bowstringing סיבה נדירה.</li>
+    <li>אבחון לפי see-saw: Volkmann, extrinsic tightness test, Bunnell (MCP מכופף משפר PIP), Boyes, dupodesis.</li>
+    <li>טיפול: בצקת ← תנועה ← סד לחץ נמוך ממושך (TERT 6–12 ש', ≥4 חודשים) לפי שלב ההחלמה; relative motion ל-extension lag.</li>
+    <li>ניתוח כשאין התקדמות, צלקות בשלות, מוטיבציה, מפרק קונגרואנטי: WALANT.</li>
+    <li>MCP ext: ≥70° כיפוף; PIP flexion: checkrein ← accessory ← proper (כפי לדורסלי), בלי swan-neck; PIP ext: retinacular ← capsule ← collaterals דורסליים.</li>
+    <li>תוצאות: פשיטה מלאה בחדר ב-96%, אך רוב החולים מאבדים חלק מהתיקון; מניעה = תנועה + ניהול בצקת.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 23: תיקון Mohler המורחב</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 23: תיקון Mohler המורחב <span class="term" dir="ltr">Extended Mohler repair</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 19.3, מאת Roberto L. Flores</div>
+
+<p>הפרק מתאר את תיקון <b>Mohler-Cutting</b> (<span class="term" dir="ltr">Extended Mohler repair</span>) לשסע שפה חד-צדדי שלם: וריאציה של תיקון סיבוב-קידום של Millard, שבה ה-<b>back cut</b> עובר מהשפה אל ה<b>קולומלה</b> (<span class="term" dir="ltr">columella</span>), כך שהצלקות הסופיות נופלות בדיוק על גבולות תת-היחידות האסתטיות (<span class="term" dir="ltr">subunits</span>) של השפה העליונה. לצד הטכניקה הפרק מציג את "פילוסופיית הטיפול" של המחבר: NAM, ללא הדבקת שפה, תיקון ללא מתח, ניתוח אף ראשוני מוגבל, וסגירת רצפת האף.</p>
+
+<h2><span class="num">1</span> הרציונל – למה ה-back cut עובר לקולומלה</h2>
+<div class="mechanism">
+  <p class="chain">אצל Millard ה-back cut מתעקל מהפילטרום אל עבר העמוד הנגדי, <b>חוצה את גבול תת-היחידה</b> בשליש העליון של השפה. ככל שהשסע רחב יותר, צריך סיבוב כלפי מטה גדול יותר, ה-back cut גדול יותר, והפגם שנוצר ממולא ע"י <b>השפה הצידית</b> – שנמשכת מדיאלית בכוח וגוררת איתה את בסיס האף. התוצאה: <span class="term" dir="ltr">micronostril</span> וצלקת שמפרה את העמוד הפילטרלי.</p>
+  <p>ב-Mohler ה-back cut עובר אל הקולומלה, ולכן גם הפגם שנוצר מסיבוב ה-<span class="term" dir="ltr">Cupid's bow</span> כלפי מטה <b>נמצא בקולומלה</b> ולא בשפה. את הפגם ממלא ה-<span class="term" dir="ltr">C-flap</span> שמסתובב כלפי מעלה. התוצאה דומה ל-<b class="key">Z-plasty א-סימטרי</b> ולא לסיבוב-קידום קלאסי.</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>שרשרת הרציונל</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">back cut בשפה</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">(Millard) חוצה תת-יחידה</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">שפה צידית נמשכת</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">סכנת micronostril</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">back cut בקולומלה</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">הפגם עובר לקולומלה</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">C-flap ממלא</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">צלקת על גבול הפילטרום</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+<p>יתרונות נוספים: (1) <b>הפילטרום נבנה מחדש כיחידה שלמה</b> – עור הקולומלה התחתון הופך לחלקו העליון של הפילטרום; (2) סיבוב ה-C-flap כלפי מעלה מרים את ה-<span class="term" dir="ltr">medial crus</span> השקוע ומאריך את הקולומלה; (3) השפה הצידית אינה משמשת למילוי הפגם, ולכן פחות הסטה מדיאלית של בסיס האף ואין צורך בחתך סביב-כנפי (<span class="term" dir="ltr">perialar</span>) – מספיק חתך קצר כמעט אופקי בבסיס הכנף; (4) <b>גישה מדיאלית</b> לרינופלסטיקה ראשונית דרך קודקוד ה-back cut. הווריאציה של Cutting: הקודקוד מורחב מעט מעבר לקו האמצע של הקולומלה וה-back cut יורד עד עמוד הפילטרום הנגדי, ולא עוד – כך מושג סיבוב מלא בכל שסע חד-צדדי, גם רחב. Millard ביקר את התכנון המקורי של Mohler (הבסיס נעצר בגובה השקע הפילטרלי) כמתאים רק לשסע לא-שלם.</p>
+
+<h2><span class="num">2</span> עקרונות הטיפול (Treatment philosophy)</h2>
+<table>
+  <thead><tr><th>עיקרון</th><th>תוכן</th><th>הנימוק</th></tr></thead>
+  <tbody>
+    <tr><td><b>NAM</b> (<span class="term" dir="ltr">nasoalveolar molding</span>)</td><td>התאמות שבועיות עד דו-שבועיות של לוח המכתש ושל סטנט האף, בדרך כלל 8–10 שבועות בשסע חד-צדדי</td><td>מיישר את מקטעי המכתש, מאריך קולומלה, מגדיל הקרנת קצה האף, מקפל את הסחוס הצידי התחתון (<span class="term" dir="ltr">LLC</span>) לצורתו הטבעית, מזיז שפה תחתונה ובסיס אף למרכז ומרחיב ריפוד פנימי. "מקל" את השסע לפנוטיפ קל. בטווח הארוך: אסתטיקת אף טובה יותר, פחות רוויזיות, ללא פגיעה בצמיחת הפנים הקדמית</td></tr>
+    <tr><td><b>ללא הדבקת שפה</b> (<span class="term" dir="ltr">no lip adhesion</span>)</td><td>ניתוח בשלב אחד</td><td>הדבקה שוללת L-flap, מייצרת צלקת במרכז הזירה, ודורשת הרדמה שנייה. במקומה – <b>שחרור מקיף של הלחי והאף</b> בניתוח הראשי</td></tr>
+    <tr><td><b>ללא מתח</b> (<span class="term" dir="ltr">tension-free</span>)</td><td>משחררים רקמות עד שאין מתח כלל באזורים האסתטיים</td><td>תפר לא מתקן מתח; גם מתח קל גורם לנסיגה (<span class="term" dir="ltr">relapse</span>), צלקות רחבות וניתוחים נוספים</td></tr>
+    <tr><td><b>ניתוח אף ראשוני מוגבל</b></td><td>המירב שינוי במינימום דיסקציה, תיקון יתר קל, ללא כריתת <span class="term" dir="ltr">fibrofat</span> של קצה האף</td><td>הצלקת היא האויב: אף עם צלקות רבות מתקשה בריינופלסטיקה בבגרות</td></tr>
+    <tr><td><b>סגירת רצפת האף</b></td><td>בעת תיקון השפה, מ-vomer ומהדופן הצידית</td><td>בהשתלת עצם מכתשית עתידית זו החלק הקשה ביותר; זיהום השתל בפלורת האף גורם לכישלון</td></tr>
+  </tbody>
+</table>
+<h3>גינגיבופריאוסטופלסטיקה (GPP)</h3>
+<p>"השתל חסר העצם": חיבור קצוות הריריות-פריאוסט של המכתש בתיקון הראשוני כדי לעודד איחוי עצמי. תוארה ע"י <b>Skoog</b> ופופולרית ע"י <b>Millard</b> (עם התקן <span class="term" dir="ltr">Latham</span>). <b>בעד:</b> הצלחה ב-~60% מהשסעים החד-צדדיים, חוסכת ניתוח השתלה. <b>נגד:</b> שיעור הצלחה משתנה בין מוסדות, תלוית טכניקה, ויש דיווחים על פגיעה בצמיחת אמצע הפנים. דיסקציה בכוח מתון עלולה לשבור את עצם המכתש ולהרוס את נבטי השיניים; הדיסקציה מוגבלת לפאות המזיאלית והדיסטלית בלבד, ודורשת יישור מושלם ופער של 1 מ"מ – ולכן <b class="key">NAM הכרחי כתוספת ל-GPP</b>.</p>
+
+<h2><span class="num">3</span> אנטומיה וסימון</h2>
+<h3>הנקודות הקריטיות</h3>
+<ul>
+  <li><b>קעקוע ה-<span class="term" dir="ltr">white roll</span></b> הסטנדרטי: עומק ה-Cupid's bow וגובהו בצד הבריא. הפילטרום לא יסומן רחב מדי – פילטרום רחב דורש back cut גדול (לבנים נטייה לפילטרום צר, ולאסייתים, אפריקאים והיספנים לרחב).</li>
+  <li><b>נקודת ה-white roll בשפה הצידית</b> נקבעת לפי <b>הגובה האנכי</b> של השפה בצד הבריא (~10 מ"מ בגיל 3 חודשים). Millard מדד ממפגש השפתיים לפסגת ה-bow ומעביר לצד השסוע – משחזר רוחב אופקי אך מקריב גובה אנכי; נקודת Noordhoff (רוחב ה-vermilion הגדול ביותר) מניבה גובה קצר בשפה צידית קצרה. פער אנכי של 1–2 מ"מ נראה כבר מטווח שיחה, פער אופקי פחות נראה ומתקן את עצמו עם הזמן.</li>
+  <li><b>ה-back cut מוגדר ע"י שתי נקודות בלבד</b> (קו ישר, לא מעוקל): <b>קודקוד</b> בקולומלה – לפחות 1.5–2 מ"מ מעל בסיס הקולומלה, בערך <b>4/7</b> מרוחב הקולומלה לכיוון הצד הבריא; <b>בסיס</b> בצומת הקולומלה עם השפה העליונה.</li>
+</ul>
+<table>
+  <thead><tr><th>טעות במיקום</th><th>תוצאה</th></tr></thead>
+  <tbody>
+    <tr><td>קודקוד נמוך מדי</td><td>סיבוב כלפי מטה לא מספק</td></tr>
+    <tr><td>קודקוד רחוק מדי לצד השסוע</td><td>C-flap צר שאינו ממלא את הפגם – קולומלה צרה</td></tr>
+    <tr><td>קודקוד רחוק מדי לצד הבריא</td><td>פילטרום צר ולא אסתטי בחלקו העליון</td></tr>
+    <tr><td>בסיס לרוחב לפילטרום</td><td>השפה מתארכת</td></tr>
+    <tr><td>בסיס על הפילטרום אך נמוך מצומת קולומלה-שפה</td><td>צלקות חוצות תת-יחידות של השפה</td></tr>
+  </tbody>
+</table>
+<p>קו מהקודקוד לגובה ה-bow בצד השסוע עם קמירות עדינה בשליש התחתון ("צורת מגן" לפילטרום), עובר <b>מעט לרוחב</b> לנקודת הקעקוע (אחרת הנקודה נחתכת ולא נראית). שולי ה-<span class="term" dir="ltr">M-flap</span> אנכיים ל-white roll; ה-C-flap כולל מקסימום עור בלי רירית. חתך אלכסוני באורך כ-5 מ"מ ממש מתחת ל-white roll הוא החתך המקבל של <b>הפלאפ המשולש של Noordhoff</b>.</p>
+<h3>השפה הצידית</h3>
+<p>קו לאורך קמט בסיס הכנף, <b>בלי חתך סביב-כנפי</b>; אסור להאריך את הקו מדי פנימה אל רצפת הנחיר (<span class="term" dir="ltr">micronostril</span> שקשה לתקן). הקצה המדיאלי של השפה הצידית חוצה את ה-white roll בזווית ישרה (מניעת <span class="term" dir="ltr">notching</span>) ואז מתעקל במהירות לקמט הכנף – כך עולה הגובה האנכי על חשבון האורך האופקי. פלאפ Noordhoff המשולשי מוסיף מלאות ל-vermilion באזור ה-<span class="term" dir="ltr">tubercle</span>, מונע <span class="term" dir="ltr">whistling deformity</span> ומשחזר את הקו האדום (<span class="term" dir="ltr">red line</span>) – חשוב במיוחד באסייתים ובאפרו-אמריקאים. ה-L-flap מסומן עד קצה הסולקוס הגינגיבובוקלי.</p>
+
+<h2><span class="num">4</span> הטכניקה שלב אחר שלב</h2>
+<h3>א. סיבוב ה-Cupid's bow כלפי מטה</h3>
+<p>גיוס M-flap ו-C-flap תוך שמירה על ה-<span class="term" dir="ltr">orbicularis oris</span>; ה-back cut נחתך בעומק הדרמיס בלבד. חתך אופקי בבסיס הקולומלה (בסיס ה-back cut) חוצה את השריר בעובי מלא ומשאיר את הרירית. <b class="key">אם החתך נעשה בקודקוד ה-back cut – חוצים את ה-medial crura!</b> לאחר מכן דיסקציה מתחת לשריר של האלמנט המדיאלי עד בסיס ה-back cut. אם דרוש סיבוב נוסף: חתך רירית מקביל ל-<span class="term" dir="ltr">frenulum</span> ואחריו בצורת "מקל הוקי" – פגם הפרנולום נסגר ב-M-flap. עור האלמנט המדיאלי מנותק מהשריר עד שקע הפילטרום בלבד.</p>
+<h3>ב. ה-L-flap והדופן הצידית</h3>
+<p>דיסקציה של ה-L-flap מהשריר תוך שמירת השריר מתחת לפלאפ Noordhoff (אחרת הוא רפוי וקשה לטיפול). בקרבת הסולקוס עוברים ממישור תת-רירי לתת-פריאוסטלי; נוצרת כיס בשפה התחתונה-צידית של ה-<span class="term" dir="ltr">pyriform aperture</span>. חתך אנכי תוך-אפי בצומת האפיתל הקשקשי-רירית וחתך אופקי ביסוד הדופן הצידית מובילים לכך שה-L-flap <b>נשען על הדופן הצידית של האף ולא על המכתש</b> – מונע פיסטולה אורונזלית ומסייע ל-GPP ולהשתלת מכתש. מרימים גם <span class="term" dir="ltr">vomer flap</span> לסגירת רצפת האף הקדמית.</p>
+<h3>ג. שחרור השפה הצידית</h3>
+<p>חתך סולקוס ושחרור סופרה-פריאוסטלי על פני המקסילה עד לשחרור מוחלט של בסיס הכנף (ללא NAM – עד קצה הקשת העליונה של ארובת העין ולרוחב עד הקנתוס הצידי; חשוב לשחרר גם את הקשר של סחוס האף ל-<span class="term" dir="ltr">pyriform rim</span>). קריטריון: <b>תנועה אורתוטופית ללא כל מתח</b>.</p>
+<h3>ד. שחזור רירית ורצפת האף</h3>
+<p>כל פגמי הרירית נסגרים בפלאפים. ה-L-flap מסתגר לחתך ה-pyriform (מניעת ריפוי בכוונה שנייה ונסיגת העיוות) ועודפו מקוצץ בקפידה. ה-vomer flap נתפר לשפה התחתונה-מדיאלית של ה-L-flap בתפרי mattress אופקיים – חיתום אטום. ברירית הפה חשוב ללא מתח באמצע (מניעת דהיסנס), עם תפרים אלכסוניים בעוצמה יורדת מהצד לאמצע.</p>
+<h3>ה. רינופלסטיקה ראשונית – חלק א׳ (גישה מדיאלית)</h3>
+<p>מספריים של Converse מוכנסים בין ה-medial crura בקודקוד ה-back cut ופותחים בעדינות. חתך <span class="term" dir="ltr">hemi-membranous</span> מזווית המחיצה לרצפת האף בצד השסוע, ומחברים לכיס; דיסקציה מתחת לעור הקצה מעל ה-crura. <b>אין דיסקציה בין LLC לריריה ואין כריתת fibrofat.</b> ה-LLC השקוע מורם ל<b>תיקון יתר</b> בעזרת Ragnell, וה-medial crura מקובעים זה לזה בתפר נספג ארוך טווח (גם מעצב את הקולומלה); אורך הקולומלה בצד השסוע שווה לבריא. בשסע רחב ללא NAM מוסיפים חתך בשולי הנחיר ותפר השעיה בין הסחוס העליון לתחתון.</p>
+<h3>ו. מיקום מחדש של בסיס הכנף</h3>
+<p>פלאפ דרמה-שרירי (<span class="term" dir="ltr">dermomuscular pennant</span>) מעור רצפת האף של בסיס הכנף נתפר ל-<span class="term" dir="ltr">crural footplate</span> בצד הבריא בשני תפרים ארוכי טווח; ניתן לכלול גם את המחיצה הקאודלית ליישור המחיצה הקדמית.</p>
+<h3>ז. תיקון ה-orbicularis oris ושחזור העור</h3>
+<p>עור השפה הצידית נפרד מהשריר עד בסיס הכנף, עודף שריר מקוצץ, והשריר נתפר בתפרים קבורים – אם נקצץ נכון, קצוות העור "ינשקו" זה לזה ללא מתח. הפלאפ של Noordhoff מוכנס, רירית עודפת באלמנט המדיאלי מקוצצת (מניעת מלאות יתר ב-tubercle). <b>ה-C-flap ממלא את כל פגם הקולומלה</b>; נוצר <b>קו צלקת ישר לאורך כל הפילטרום בצד השסוע</b>. הקצה הצידי של ה-C-flap מתחבר לעור בסיס הכנף וסוגר את רצפת הנחיר, <b>בצורת "מדרגה" (stair-step)</b> ביחס לחתך השפה – כדי למנוע התכנסות ארבע פינות עור בבסיס האף (צלקת שקועה). דיסקציה נכונה של ה-C-flap ושל פלאפ רצפת האף מונעת <span class="term" dir="ltr">micronostril</span> גם כשה-C-flap דל.</p>
+<h3>ח. רינופלסטיקה ראשונית – חלק ב׳ (תפרי החזקה פנימיים)</h3>
+<p>תפר mattress אופקי אלכסוני מהנחיר בצד השסוע לנחיר הבריא וחזרה (מרחק 2 מ"מ מאחורי המעבר הראשון) – מרים את ה-LLC השקוע וממדיל את ה-<span class="term" dir="ltr">lateral crus</span>; תיקון יתר חיוני כי המבנה יורד עם הזמן. את ה-<span class="term" dir="ltr">vestibular web</span> מטפלים בתפר ארוך טווח שנכנס מאחורי הרשת, יוצא דרך ה-<span class="term" dir="ltr">alar-facial groove</span> ומתחזר דרך אותו נקב מלעורי לפני הרשת – קשירתו מוחקת את הרשת ומדגישה את החריץ. נדרשים 2–3 תפרים; <b>ללא מייצבים חיצוניים ובלי אריזת אף</b>.</p>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>סדר הניתוח</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">1. סיבוב + חתך שריר</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">בבסיס ה-back cut</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">2. L-flap ושחרור</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">רצפת אף + רירית</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">3. אף + בסיס כנף</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">גישה מדיאלית</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">4. שריר ועור</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">C-flap + תפרי web</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h2><span class="num">5</span> השוואה: Millard מול Mohler-Cutting</h2>
+<table>
+  <thead><tr><th>מאפיין</th><th>Millard</th><th>Mohler-Cutting</th></tr></thead>
+  <tbody>
+    <tr><td>מיקום ה-back cut</td><td>בשפה, מעוקל לעבר העמוד הנגדי</td><td>בקולומלה, ישר, שתי נקודות בלבד</td></tr>
+    <tr><td>הפגם אחרי סיבוב ה-bow</td><td>בשפה – ממולא ע"י השפה הצידית</td><td>בקולומלה – ממולא ע"י ה-C-flap</td></tr>
+    <tr><td>גבולות תת-יחידות</td><td>נפגעים בשליש העליון</td><td>הצלקת נמצאת על גבול הפילטרום</td></tr>
+    <tr><td>סכנת micronostril</td><td>גבוהה בשסע רחב</td><td>נמוכה; חתך כנף קצר בלבד</td></tr>
+    <tr><td>גישה לאף</td><td>אין גישה מדיאלית ייעודית דרך החתך</td><td>מדיאלית דרך קודקוד ה-back cut</td></tr>
+    <tr><td>מורפולוגיה</td><td>סיבוב-קידום</td><td>Z-plasty א-סימטרי</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">6</span> תוצאות וסיבוכים</h2>
+<p>במעקב ארוך טווח (Cutting & Dayan, 2003) גובה השפה בצד השסוע <b>משוחזר</b>. חשוב להסביר להורים: <b class="key">השפה תיראה קצרה בהתחלה, בשיא בשבועות 6–8</b> כשהצלקת הכי בולטת וקשיחה, ובמשך שנה היא מתרככת ומתארכת. עיסוי צלקת מתחיל <b>6 שבועות</b> לאחר הניתוח. הפרק מדגיש ניתוח אחד בלבד אצל המטופל המתואר, גם ללא NAM.</p>
+<table>
+  <thead><tr><th>בעיה</th><th>מנגנון</th><th>מניעה</th></tr></thead>
+  <tbody>
+    <tr><td>Micronostril</td><td>הסטה מדיאלית יתרה של בסיס הכנף, או קו רצפת אף שנמשך פנימה</td><td>הקו לא יחצה למרכז הנחיר; C-flap מספק; ללא חתך סביב-כנפי</td></tr>
+    <tr><td>קולומלה צרה</td><td>C-flap צר מדי (קודקוד קרוב מדי לצד השסוע)</td><td>קודקוד ~4/7 לצד הבריא; כלול מקסימום עור ללא רירית</td></tr>
+    <tr><td>נסיגת העיוות / צלקת רחבה</td><td>מתח בסגירה</td><td>שחרור לחי ואף מלא, ללא הסתמכות על תפרים</td></tr>
+    <tr><td>פילטרום צר בחלקו העליון</td><td>קודקוד רחוק מדי לצד הבריא</td><td>מיקום נכון של שתי נקודות ה-back cut</td></tr>
+    <tr><td>פיסטולה אורונזלית / כישלון השתל</td><td>L-flap על המכתש, רצפת אף פתוחה</td><td>L-flap על הדופן הצידית, vomer flap ורצפה אטומה</td></tr>
+    <tr><td>שפה ארוכה</td><td>בסיס ה-back cut לרוחב לפילטרום</td><td>הבסיס בצומת קולומלה-שפה</td></tr>
+    <tr><td>Notching של white roll</td><td>חתך לא ניצב</td><td>חצייה בזווית ישרה</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">C-O-L-D-S</span> – מה משתנה ב-Mohler</h3>
+  <p>
+    <b>C</b> – <span class="term" dir="ltr">Columella</span>: ה-back cut והפגם עוברים לקולומלה.<br>
+    <b>O</b> – <span class="term" dir="ltr">Orbicularis</span>: חתך שריר בעובי מלא בבסיס ה-back cut (לא בקודקוד!).<br>
+    <b>L</b> – <span class="term" dir="ltr">L-flap</span> על הדופן הצידית של האף, לא על המכתש.<br>
+    <b>D</b> – <span class="term" dir="ltr">Dissection</span> ללא מתח, ללא הדבקת שפה.<br>
+    <b>S</b> – <span class="term" dir="ltr">Subunit</span> scars: הצלקות על גבולות תת-היחידות.
+  </p>
+  <p><b>שתי נקודות ה-back cut:</b> "ארבע שביעיות ושנתיים-בערך" – קודקוד <b>4/7</b> ו-<b>1.5–2 מ"מ</b> מעל בסיס הקולומלה.</p>
+  <h3>סיפור דמיוני: הדלת והמסדרון</h3>
+  <p>דמייני דלת ששקועה בשקע בקיר (ה-Cupid's bow). במקום לחתוך את הקיר ולסתום ממול בטיח שנמשך מהחדר הסמוך (Millard, שגורר את בסיס האף), אנחנו מזיזים את <b>הציר של הדלת למעלה אל התקרה (הקולומלה)</b> – הדלת מסתובבת למטה, והחור שנוצר בתקרה ממולא בלוח תקרה ("C-flap") שמסתובב למעלה. הקיר הסמוך נשאר בלי פגע, והתפר נמצא בדיוק בפינה של הקיר – לא נראה.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>דלת וציר בתקרה</title>
+    <rect x="150" y="30" width="200" height="140" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <rect x="215" y="30" width="70" height="25" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="250" y="47" font-size="12" text-anchor="middle" fill="#1e3a8a" font-weight="700">C-flap</text>
+    <rect x="190" y="75" width="120" height="95" fill="#ecfdf5" stroke="#065f46" stroke-width="2"/>
+    <text x="250" y="130" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">הדלת = Cupid's bow</text>
+    <path d="M250 62 C 330 62, 330 110, 300 120" fill="none" stroke="#b91c1c" stroke-width="3"/>
+    <polygon points="298,120 310,113 308,126" fill="#b91c1c"/>
+    <text x="400" y="85" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">סיבוב כלפי מטה</text>
+    <text x="450" y="49" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">ציר בתקרה</text>
+    <line x1="400" y1="45" x2="296" y2="45" stroke="#374151" stroke-width="2"/>
+    <polygon points="288,45 298,40 298,50" fill="#374151"/>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cleft_lip_and_cleft_palate" target="_blank">Cleft lip and cleft palate – Wikipedia</a>
+    <div class="desc">סקירה כללית של אנטומיה, אטיולוגיה וגישות טיפוליות לשסעי שפה וחך.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Nasoalveolar_molding" target="_blank">Nasoalveolar molding – Wikipedia</a>
+    <div class="desc">עקרון NAM לפני הניתוח.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוק בן 3 חודשים עם שסע שפה חד-צדדי שמאלי <b>שלם ורחב</b>. הוריו לא יכלו להגיע לטיפולי NAM. בבדיקה: פער רחב בשפה ובמכתש, אף מעוות עם שקיעת ה-LLC בצד השסוע, קולומלה קצרה בצד השסוע. המנתח מתכנן תיקון Mohler-Cutting בניתוח אחד בלי הדבקת שפה, כולל ריינופלסטיקה ראשונית וסגירת רצפת האף. במהלך הסימון הוא מגלה שאם יסמן את קודקוד ה-back cut רחוק מדי לצד השסוע, ה-C-flap יהיה צר.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מה היתרון המרכזי של מעבר ה-back cut מהשפה אל הקולומלה?</div>
+  <button class="opt" data-i="0">הוא מקצר את זמן הניתוח</button>
+  <button class="opt" data-i="1">הפגם מהסיבוב כלפי מטה של ה-Cupid's bow עובר לקולומלה וממולא ב-C-flap, והצלקות נופלות על גבולות תת-היחידות</button>
+  <button class="opt" data-i="2">הוא מבטל את הצורך בתיקון שריר</button>
+  <button class="opt" data-i="3">הוא מאפשר שימוש בפלאפ מהשפה הצידית לכל הפגם</button>
+  <div class="explain">נכון: הפגם בקולומלה, C-flap ממלא, הצלקת על הפילטרום. השריר עדיין חייב להיות מתוקן, והשפה הצידית כבר אינה משמשת למילוי (זה בדיוק ההבדל מ-Millard); זמן הניתוח אינו הנימוק.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. איפה מבצעים את החתך האופקי של ה-orbicularis oris, ומדוע?</div>
+  <button class="opt" data-i="0">בקודקוד ה-back cut, כדי לשחרר מקסימום</button>
+  <button class="opt" data-i="1">בשפה הצידית בלבד</button>
+  <button class="opt" data-i="2">בקו האמצע של הפילטרום</button>
+  <button class="opt" data-i="3">בבסיס ה-back cut (צומת קולומלה-שפה), כי בקודקוד יחתכו את ה-medial crura</button>
+  <div class="explain">נכון. בקודקוד – חתך ב-medial crura. חתך בעובי מלא של השריר בבסיס נדרש לסיבוב מלא, עם שימור הרירית. שני המיקומים האחרים אינם משחררים את הסיבוב.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. בוינייטה, מה תוצאת מיקום הקודקוד רחוק מדי לכיוון הצד השסוע?</div>
+  <button class="opt" data-i="0">C-flap צר שאינו ממלא את הפגם – קולומלה צרה</button>
+  <button class="opt" data-i="1">פילטרום צר בחלקו העליון</button>
+  <button class="opt" data-i="2">סיבוב כלפי מטה לא מספק</button>
+  <button class="opt" data-i="3">שפה ארוכה בצד הבריא</button>
+  <div class="explain">נכון. פילטרום צר = קודקוד רחוק מדי לצד הבריא; סיבוב לא מספק = קודקוד נמוך מדי; שפה ארוכה = בסיס ה-back cut לרוחב לפילטרום.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">4. מדוע המחבר נמנע מהדבקת שפה גם בשסע רחב ללא NAM?</div>
+  <button class="opt" data-i="0">כי היא מחמירה את צמיחת המכתש</button>
+  <button class="opt" data-i="1">כי היא מונעת סגירת פיסטולה בדיבור</button>
+  <button class="opt" data-i="2">כי היא שוללת L-flap, יוצרת צלקת במרכז הזירה ודורשת הרדמה שנייה; שחרור לחי ואף מלא משיג את אותה מטרה</button>
+  <button class="opt" data-i="3">כי היא מגדילה את הנחיר</button>
+  <div class="explain">נכון: ארבע הנקודות – L-flap, צלקת, שחרור מלא, חשיפה להרדמה שנייה. האפשרויות האחרות אינן מנימוקי המחבר.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. מדוע סוגרים את רצפת האף בעת תיקון השפה הראשוני?</div>
+  <button class="opt" data-i="0">להשפעה האסתטית המיידית על השפה</button>
+  <button class="opt" data-i="1">כי בהשתלת מכתש עתידית זהו החלק הקשה ביותר, וזיהום השתל בפלורת האף גורם לכישלון; בגיל הרך החשיפה קלה</button>
+  <button class="opt" data-i="2">כי חיבור הרירית מחליף את הצורך בשחרור הלחי</button>
+  <button class="opt" data-i="3">כדי להימנע מ-NAM</button>
+  <div class="explain">נכון: אין לכך השפעה אסתטית על התיקון הראשוני – זו השקעה להשתלת המכתש. אינה תחליף לשחרור ואינה מייתרת NAM.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">6. מה אומרים להורים על מראה השפה בצד השסוע אחרי הניתוח?</div>
+  <button class="opt" data-i="0">השפה קצרה לצמיתות ותצריך רוויזיה</button>
+  <button class="opt" data-i="1">השפה תיראה ארוכה בהתחלה ותתקצר</button>
+  <button class="opt" data-i="2">אין שינוי צפוי</button>
+  <button class="opt" data-i="3">השפה תיראה קצרה, בשיא בשבועות 6–8, ותתארך במהלך כשנה כשהצלקת מתרככת; עיסוי מתחיל בשבוע 6</button>
+  <div class="explain">נכון, לפי Cutting & Dayan: גובה השפה משוחזר לטווח הארוך. הניסוחים האחרים הפוכים או מתעלמים מהתרככות הצלקת.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>Mohler-Cutting = סיבוב-קידום עם back cut בקולומלה: Z-plasty א-סימטרי; הפגם בקולומלה וה-C-flap ממלא; הצלקת על גבולות תת-היחידות.</li>
+    <li>ה-back cut: ישר, שתי נקודות – קודקוד בקולומלה (≥1.5–2 מ"מ מעל הבסיס, ~4/7 לצד הבריא) ובסיס בצומת קולומלה-שפה; מתאים לכל שסע חד-צדדי.</li>
+    <li>חתך השריר בבסיס ה-back cut, לא בקודקוד (medial crura).</li>
+    <li>נקודת ה-white roll בשפה הצידית לפי גובה אנכי של הצד הבריא (~10 מ"מ בגיל 3 חודשים); פלאפ Noordhoff מוסיף נפח ל-tubercle.</li>
+    <li>עקרונות: NAM, בלי הדבקת שפה, ללא מתח (שחרור לחי ואף), ניתוח אף מוגבל, סגירת רצפת האף. GPP שנוי במחלוקת, דורש NAM.</li>
+    <li>L-flap על הדופן הצידית (לא המכתש) + vomer flap; stair-step ברצפת האף.</li>
+    <li>אף: גישה מדיאלית, תיקון יתר של LLC, ללא כריתת fibrofat, תפרי web, בלי אריזה.</li>
+    <li>שפה נראית קצרה בשבועות 6–8 ומתארכת במשך שנה; עיסוי מהשבוע ה-6.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

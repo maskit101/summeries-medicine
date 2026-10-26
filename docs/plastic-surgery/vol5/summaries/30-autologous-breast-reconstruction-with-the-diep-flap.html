@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 30: שחזור שד אוטולוגי עם DIEP flap</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 30: שחזור שד אוטולוגי עם DIEP flap <span class="term" dir="ltr">Autologous breast reconstruction with the DIEP flap</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | פרק 30 (Section II – Reconstructive Breast Surgery), מאת Adrian McArdle ו-Joan E. Lipa</div>
+
+<p>פלאפ ה-<span class="term" dir="ltr">DIEP</span> (<span class="term" dir="ltr">Deep Inferior Epigastric Perforator flap</span>) הוא "תקן הזהב" בשחזור שד אוטולוגי: עור ושומן מהבטן התחתונה המועברים על perforator בודד מה-DIEA, <b>בלי להקריב את שריר ה-rectus abdominis</b>. הוא תואר לראשונה על ידי Koshima ו-Soeda ב-1989, ושימש לשחזור שד על ידי Allen ו-Treece ב-1994.</p>
+
+<h2><span class="num">1</span> התפתחות: למה DIEP ולא TRAM?</h2>
+<div class="mechanism">
+  <p class="chain">VRAM (Robbins 1979) ← TRAM חופשי (Holmström 1979) ← TRAM מוקרב (Hartrampf 1982) ← muscle-sparing TRAM ← <b>DIEP</b>. הרעיון: השריר הוא רק "נשא פסיבי"; מספיק perforator כדי להזרים את העור והשומן. כך נשמרים <b>השריר והעצבים המוטוריים</b> ← פחות בליטות ובקעים (hernia).</p>
+  <p>SIEA flap אינו חותך fascia, אך כלי הדם דק וקצר ו<b>חסר/היפופלסטי בכ-35%</b> ← פחות אמין.</p>
+</div>
+<table>
+  <thead><tr><th>סיווג Nahabedian</th><th>משמעות</th></tr></thead>
+  <tbody>
+    <tr><td>MS-0</td><td>רוחב מלא, אורך חלקי (TRAM)</td></tr>
+    <tr><td>MS-1</td><td>שימור קטע מדיאלי או לטרלי</td></tr>
+    <tr><td>MS-2</td><td>שימור קטעים מדיאלי ולטרלי</td></tr>
+    <tr><td><b>MS-3 (DIEP)</b></td><td>שימור כל השריר</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">2</span> בחירת מטופלת</h2>
+<ul>
+  <li><b>התוויות/שיקולים:</b> שומן מספק בבטן התחתונה; בריאות אופטימלית. <b>BMI &gt; 40</b> – סיכון גבוה מאוד; עישון – שיעור גבוה של נמק עור מסטקטומיה ונמק חלקי, יש להפסיק לפחות 4 שבועות לפני; סוכרת לא מאוזנת/מחלת לב מכבידה.</li>
+  <li><b>צלקות:</b> abdominoplasty קודם = <b>התווית נגד</b> (נחתכו perforators); ליפוסוקציה לא מונעת (בזהירות); צלקת תת-צלעית ← סיכון נמק ליד הצלקת; Pfannenstiel עשויה אף להגדיל perforators עליונים; צלקת קו-אמצע ← כל חצי מזורם עצמאית.</li>
+  <li>בקע/דיאסטזיס – מעיד על חולשה צפויה; קרינה אדג'ובנטית צפויה ← לשקול שחזור מושהה.</li>
+</ul>
+
+<h2><span class="num">3</span> אנטומיה וסקולרית – הלב של הפרק</h2>
+<div class="mechanism">
+  <p class="chain">ה-<span class="term" dir="ltr">DIEA</span> יוצא מה-external iliac, עולה מאחורי ה-rectus, נכנס לשריר ומוציא perforators דרך ה-fascia אל העור. ליווי: venae comitantes. העצבים הבין-צלעיים (אותו מסלול) נכנסים לשריר מעומק, ומתפצלים לענפים מוטוריים ולענף תחושתי שמלווה את ה-perforator.</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">DIEA</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">מקור: iliac חיצוני</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">חדירה לשריר</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">מסלול intramuscular</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">Perforator</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">דרך fascia לעור</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">Perforasome</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">טריטוריית זילוח</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<table>
+  <thead><tr><th>סיווג</th><th>סוגים</th></tr></thead>
+  <tbody>
+    <tr><td>Moon &amp; Taylor</td><td>I – גזע יחיד (29%); II – מתפצל (57%); III – מתפצל לשלושה (14%).</td></tr>
+    <tr><td>Rozen (CTA, 498 דפנות)</td><td>0 (&lt;1%), I (43%), II (48%), III (9%), IV (&lt;1%).</td></tr>
+  </tbody>
+</table>
+<p><b>SIEA:</b> ענף ישיר מה-femoral (2–3 ס"מ מתחת לרצועה האינגווינלית) – קטן יותר, נוטה לעווית, שיעור כישלון גבוה יותר, פחות חוצה קו-אמצע.</p>
+
+<h3>אזורי זילוח (Perfusion zones)</h3>
+<table>
+  <thead><tr><th>מודל</th><th>עיקרון</th></tr></thead>
+  <tbody>
+    <tr><td>Hartrampf</td><td>נכון ל-TRAM מוקרב; <b>לא מדויק ל-DIEP</b> (מספר perforators נמוך).</td></tr>
+    <tr><td><b>Holm-Ninkovic</b> (ICG)</td><td>Zone I = מעל ה-rectus האיפסילטרלי; Zone II = לרוחבו; Zone III = מעל ה-rectus הקונטרלטרלי (חוצה קו אמצע); Zone IV = הצד הרחוק. כלומר Zones II ו-III הפוכים לעומת Hartrampf. מחצית איפסילטרלית – זילוח axial; מחצית קונטרלטרלית – אקראי.</td></tr>
+    <tr><td><b>Perforasome</b></td><td>הטריטוריה של perforator בודד. שורה לטרלית – נוטה לצד האיפסילטרלי; <b>שורה מדיאלית – טריטוריה גדולה ומרכזית</b>, מתאימה לנפח גדול.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> מיפוי perforators</h2>
+<table>
+  <thead><tr><th>שיטה</th><th>יתרונות</th><th>חסרונות</th></tr></thead>
+  <tbody>
+    <tr><td>Hand-held Doppler</td><td>זול, בטוח</td><td>אינו מבדיל axial/intramuscular מ-perforating ← false positives, ספציפיות נמוכה.</td></tr>
+    <tr><td>Color Doppler</td><td>בזמן אמת, זרימה וכיוון</td><td>תלוי מפעיל, איכות נחותה.</td></tr>
+    <tr><td><b>CTA</b> (תקן זהב)</td><td>רגישות/ספציפיות גבוהות, 10 דקות</td><td>קרינה 6–10 mSv.</td></tr>
+    <tr><td><b>MRA</b> (תקן זהב)</td><td>בלי קרינה</td><td>זמן ארוך, אנפילקסיס לגדולינום, קלסטרופוביה.</td></tr>
+    <tr><td>ICG angiography</td><td>אינטרה-אופרטיבי: איתור אזורים תת-מזורמים ← פחות fat necrosis; מעריך גם עור סטקטומיה</td><td>ציוד מיוחד.</td></tr>
+    <tr><td>תרמוגרפיה (DIRT)</td><td>כתמים חמים אחרי אתגר קר</td><td>צריך אימות בדופלר.</td></tr>
+  </tbody>
+</table>
+<p>בחירת perforator: ריכוז גבוה בין 2 ס"מ מעל ל-6 ס"מ מתחת לטבור ו-2–6 ס"מ לרוחב. מועדף <b>perforator מדיאלי</b> (מאפשר זילוח Zones I–III, ומונע דנרבציה של השריר), וריד &gt; 1 מ"מ ועורק פועם; הפלאפ ממורכז על הפרפורטור הדומיננטי. מבחן: <b>סגירה זמנית</b> של perforators אחרים בקלמפים לפני חיתוך.</p>
+
+<h3>הגדלת נפח הפלאפ</h3>
+<ul>
+  <li>הוספת perforators (אותה שורה, מינימום חיתוך סיבים; APEX).</li>
+  <li><b>Turbocharging</b> (אנסטומוזה בין שני פדיקלים בתוך הפלאפ) ו-<b>Supercharging</b> (חיבור כלי נוסף לכלי מקבל נוסף); stacked flaps; bipedicled.</li>
+  <li><b>Delay</b> (קדם-התניה איסכמית 2–3 שבועות); שתל שד בשילוב; ו-"hug flap" להגדלת הקרנה בקוטב התחתון.</li>
+</ul>
+
+<h2><span class="num">5</span> ERAS והכנה</h2>
+<p>צום מוגבל, שתיית פחמימות 2 שעות לפני, מקלחת כלורהקסידין 4%, פרה-מדיקציה (אצטמינופן, celecoxib, pregabalin), תרומבו-פרופילקסיס (הפרין 5000 יח' ואז LMWH לאחר 6 שעות), cefazolin 2 גרם (חוזר 1 גרם/4 ש'), חימום ל-37°C, נוזלים מבוקרי מטרה, ניידות מוקדמת – מקצרים אשפוז וצריכת אופיואידים.</p>
+<p><b>סימון בעמידה:</b> אליפסה: קצה עליון בגבול העליון של הטבור, תחתון בקפל suprapubic, לרוחב לשני ה-ASIS (גובה 12–15 ס"מ, רוחב 30–45 ס"מ); מבחן צביטה (pinch test) לסגירה ללא מתח; צלקת Pfannenstiel ← גבול תחתון.</p>
+
+<h2><span class="num">6</span> הטכניקה הניתוחית</h2>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>תרשים</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">סימון + CTA/MRA</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">מיפוי perforators</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">הרמה</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">suprafascial ← intramuscular ← submuscular</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">מיקרו-אנסטומוזה</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">IMA/IMV</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">עיצוב ו-inset</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">Footprint · Conus · Envelope</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h3>א. הרמת הפלאפ</h3>
+<ul>
+  <li>חתך עליון, דיסקציה עד Scarpa; <b>לא bevel בתחתית</b> (צלקת שקועה) אך bevel לרוחב לקבלת שומן; בידוד ה-<b>SIEV</b> (2–6 ס"מ, קליפ) כ"סירת הצלה" ורידית.</li>
+  <li><b>Suprafascial:</b> מהצדדים למרכז עד גבול ה-rectus; הערכת perforators עם קלמפים.</li>
+  <li><b>Intramuscular</b> (השלב הקשה ביותר): פיצול הסיבים לאורכם, עדיף bipolar; שמירת ענפים מוטוריים; חיתוך ענפי שריר ב-1–2 מ"מ מהכלי.</li>
+  <li><b>Submuscular:</b> מעקב לגזע ה-DIEA, עד לפני מוצא ה-comitantes; לא למשוך את הפדיקל; בצד האחד נשמרת דיסקציה מלאה לפני ניתוק הצד השני ("lifeboat").</li>
+</ul>
+<h3>ב. כלי מקבל</h3>
+<p><b>Internal mammary (IMA/IMV)</b> – מועדפים: קוטר 2.5–3 מ"מ, מדיאלי, פחות רגישים לקרינה; מוצגים בצלע 3 או 4 (שמאל) ו-4 (ימין). ורידים: גדולים יותר מימין (עד 3 מ"מ) ומתפצלים בצלע 4 מימין ו-3 משמאל. חלופות: thoracodorsal, IM perforators, אנסטומוזה רטרוגרדית. כריתת 2–3 ס"מ סחוס צלע. ורידי: תחילה (coupler) כדי שהפלאפ יזרים ויתנקז בו-זמנית.</p>
+<h3>ג. סגירת התורם והטבור</h3>
+<p>סגירת שריר (3-0), fascia קדמית (1-0 לא נספג), TAP block, תיקון diastasis, הטבור (inverted U), סגירה מסורתית עם 2 ניקוזים או <b>progressive tension ללא ניקוז</b> (BMI תקין, fascia חזקה).</p>
+<h3>ד. אוריינטציה, inset ועיצוב (Blondeel "שלושת השלבים")</h3>
+<table>
+  <thead><tr><th>שלב</th><th>תוכן</th></tr></thead>
+  <tbody>
+    <tr><td><b>Footprint</b></td><td>שחזור גבולות השד; ב-delayed – כריתת צלקת הסטקטומיה, IMF ~2 ס"מ גבוה יותר מהשד הנגדי (כי יורד).</td></tr>
+    <tr><td><b>Conus</b></td><td>תחזית הטבור כפולת קונוס; שלושה תפרי קיבוע: קפל בית שחי קדמי, IMF לטרלי, IMF מדיאלי.</td></tr>
+    <tr><td><b>Skin envelope</b></td><td>שימור מקסימום עור שד; deepithelialization; ICG להערכת סטקטומיה.</td></tr>
+  </tbody>
+</table>
+<p>אוריינטציה: בשחזור חד-צדדי פלאפ מהצד הנגדי מסובב בדרך כלל 180° (Zone IV מושלך, III מוערך); footprint ארוך/אנכי – פלאפ נגדי מסובב 90–180°; מרוחב אופקי קצר – פלאפ איפסילטרלי 180°.</p>
+
+<h2><span class="num">7</span> התקדמויות, טיפול אחרי ניתוח וסיבוכים</h2>
+<ul>
+  <li><b>החזרת תחושה</b>: קואפטציה של ענף בין-צלעי קדמי לעצב התחושתי של הפלאפ; משפרת איכות חיים; שד חסר תחושה חשוף לפציעות תרמיות.</li>
+  <li><b>VLNT</b> (העברת בלוטות לימפה עם כלי) – ל-lymphedema; עם בלוטות מפשעה כשרשרת כימרית.</li>
+  <li>גישות פולשניות מינימלית: חתך fascia קצר (~2 ס"מ בלפרוסקופי; &lt;3 ס"מ ברובוטי) לעומת עד 13 ס"מ בפתוח.</li>
+  <li><b>ניטור</b>: קליני (קפילרי, צבע, חום, turgor) + Doppler; כל שעה ב-24 שעות ראשונות, כל שעתיים 24 הבאות, ואז כל 4. שחרור: יום 2–3 (חד-צדדי), 4–5 (דו-צדדי). כאב: אצטמינופן, NSAID ל-5 ימים, נוירומודולטור חודש.</li>
+</ul>
+<table>
+  <thead><tr><th>סיבוך</th><th>שיעור / הערה</th></tr></thead>
+  <tbody>
+    <tr><td>כישלון מלא של הפלאפ</td><td>&lt; 1% במרכזים עתירי נפח</td></tr>
+    <tr><td>כישלון חלקי / fat necrosis</td><td>עד 10%</td></tr>
+    <tr><td>רוויזיית אנסטומוזה</td><td>&lt; 5%</td></tr>
+    <tr><td>זיהום / המטומה</td><td>0–3%</td></tr>
+    <tr><td>חולשת דופן / בליטה / בקע</td><td>0–10%</td></tr>
+    <tr><td>DVT</td><td>~1%</td></tr>
+  </tbody>
+</table>
+<p><b>גודש ורידי:</b> אלגוריתם: הסרת תפרי עור ← שחרור אוריינטציה ← בדיקת פדיקל (קינק, לחץ מצלע/עורק, adventitial bands, פיתול, פקקת) ← אגנט וזואקטיבי (פפאברין) ← <b>העצמת ניקוז</b>: אנסטומוזת SIEV ל-IMV שני/רטרוגרדי; ואז השתלת וריד וכלים חלופיים (thoracoacromial, thoracodorsal, cephalic). רוויזיות משניות לאחר 3–6 חודשים: ליפוסוקציה/כריתה, fat grafting, NAC.</p>
+
+<h2><span class="num">8</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">M-A-P-S</span> – מפת הניתוח</h3>
+  <p>
+    <b>M</b> – <span class="term" dir="ltr">Map</span> (CTA/MRA, בחירת perforator מדיאלי).<br>
+    <b>A</b> – <span class="term" dir="ltr">Anatomy of the pedicle</span> (suprafascial ← intramuscular ← submuscular; שמירת עצבים).<br>
+    <b>P</b> – <span class="term" dir="ltr">Pedicle to IMA/IMV</span> (ורידי קודם).<br>
+    <b>S</b> – <span class="term" dir="ltr">Shape</span> (footprint, conus, envelope).
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני שאת שולפת צינור מים (ה-DIEA) מתוך קיר שריר: אם חותכים את הקיר (TRAM) הבית נחלש ויש בקע; אם פותחים רק חריץ קטן לצינור, הקיר נשאר חזק. הצינור "מלווה" בעצב חשמל דק (העצב המוטורי) – חייבים לא לחתוך אותו. ואז מחברים את הצינור למקור מים חדש בחזה (IMA/IMV) ומעצבים את הענן כמו שד.</p>
+  <svg class="diagram" viewBox="0 0 500 170" xmlns="http://www.w3.org/2000/svg">
+    <title>צינור בקיר</title>
+    <rect x="60" y="40" width="380" height="90" fill="#fee2e2" stroke="#b91c1c" stroke-width="2"/>
+    <rect x="230" y="55" width="40" height="60" fill="#bfdbfe" stroke="#1e3a8a"/>
+    <line x1="250" y1="55" x2="250" y2="10" stroke="#1e3a8a" stroke-width="4"/>
+    <line x1="270" y1="85" x2="320" y2="85" stroke="#d97706" stroke-width="2" stroke-dasharray="4 3"/>
+    <text x="250" y="150" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">קיר שריר נשאר שלם</text>
+    <text x="360" y="80" font-size="11" text-anchor="middle" fill="#92400e">עצב מוטורי – נשמר</text>
+  </svg>
+</div>
+
+<h2><span class="num">9</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Breast_reconstruction" target="_blank">Breast reconstruction – Wikipedia</a>
+    <div class="desc">סקירה כללית על שיטות שחזור שד, כולל פלאפים אוטולוגיים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Perforator_flap" target="_blank">Perforator flap – Wikipedia</a>
+    <div class="desc">רקע על עקרון הפלאפ המבוסס על perforator.</div>
+  </li>
+</ul>
+
+<h2><span class="num">10</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 48, BMI 27, לא מעשנת, עם סרטן שד שמאלי שעברה mastectomy ללא צורך בקרינה, מעוניינת בשחזור אוטולוגי. בבטן אין צלקות פרט ל-Pfannenstiel. ב-CTA: perforator מדיאלי בקוטר 2.6 מ"מ ליד הטבור משמאל ו-perforators לטרליים קטנים מימין. התכנון: שחזור שמאלי מושהה עם DIEP.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. איזה perforator מועדף בשחזור חד-צדדי בוינייטה, ולמה?</div>
+  <button class="opt" data-i="0">perforator לטרלי קטן – בגלל חיתוך פחות שריר</button>
+  <button class="opt" data-i="1">תמיד שני perforators קטנים</button>
+  <button class="opt" data-i="2">perforator מדיאלי גדול – זילוח Zones I–III ופחות דנרבציה של השריר</button>
+  <button class="opt" data-i="3">perforator מה-SIEA בלבד</button>
+  <div class="explain">נכון: שורה מדיאלית נותנת טריטוריה מרכזית גדולה ושומרת על העצב המוטורי. לטרלי מתאים יותר לנפחים קטנים/דו-צדדי. SIEA לא אמין לרוב.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">2. מהי התוצאה של abdominoplasty קודם לגבי DIEP?</div>
+  <button class="opt" data-i="0">אין בעיה, ללא שינוי</button>
+  <button class="opt" data-i="1">מומלץ כי זה מוסיף עור</button>
+  <button class="opt" data-i="2">רק עישון הוא הסיבוך</button>
+  <button class="opt" data-i="3">התווית נגד – perforators נחתכו</button>
+  <div class="explain">נכון: בעבר, ה-perforators שמזרימים את הרקמה התת-עורית נחתכו. ליפוסוקציה לבדה אינה מונעת (בזהירות), וצלקת Pfannenstiel אף עשויה להגדיל perforators.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה ההבדל בין מודל Holm-Ninkovic להרטרמפף?</div>
+  <button class="opt" data-i="0">ב-Holm-Ninkovic Zone II ו-III הפוכים; ספציפי ל-DIEP</button>
+  <button class="opt" data-i="1">Holm-Ninkovic זהה לחלוטין</button>
+  <button class="opt" data-i="2">הרטרמפף ספציפי ל-DIEP</button>
+  <button class="opt" data-i="3">אין הבדל בין הצד האיפסילטרלי והקונטרלטרלי</button>
+  <div class="explain">נכון: ב-DIEP הזילוח קודם לאזור לרוחב ה-rectus האיפסילטרלי (Zone II) ורק אחר כך חוצה את קו האמצע (Zone III).</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">4. מהו סדר האנסטומוזות המקובל ומדוע?</div>
+  <button class="opt" data-i="0">עורקית קודם כדי לקצר זמן איסכמיה</button>
+  <button class="opt" data-i="1">ורידית קודם (coupler), ואחר כך עורקית – כדי שהפלאפ יזרים ויתנקז בו-זמנית</button>
+  <button class="opt" data-i="2">שתיהן בו-זמנית</button>
+  <button class="opt" data-i="3">בלי סדר</button>
+  <div class="explain">נכון: ורידית קודם, כך שאחרי שחרור הקלמפים העורקי הפלאפ מתחיל לזרום ולהתנקז בו-זמנית ופחות גודש.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. גודש ורידי מתמשך אחרי inset; מה הצעד הבא אחרי תיקון הפדיקל?</div>
+  <button class="opt" data-i="0">להסיר את הפלאפ מיד</button>
+  <button class="opt" data-i="1">להמתין 48 שעות</button>
+  <button class="opt" data-i="2">העצמת ניקוז: אנסטומוזת SIEV ל-IMV נוסף/רטרוגרדי</button>
+  <button class="opt" data-i="3">לתת ויטמין C</button>
+  <div class="explain">נכון: אחרי תיקון סיבות הפיכות (קינק, פיתול, פקקת) ואגנטים טופיקליים – אנסטומוזה של ורידים נוספים. הסרה מיידית או המתנה מיותרים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">11</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>DIEP = perforator מה-DIEA, שריר rectus נשמר (MS-3); Koshima 1989, Allen &amp; Treece 1994; "תקן זהב".</li>
+    <li>התוויות/סיכון: BMI &gt; 40, עישון (4 שבועות), abdominoplasty קודם = התווית נגד.</li>
+    <li>Moon &amp; Taylor: I 29%, II 57%, III 14%; SIEA חסר/היפופלסטי ב-35%.</li>
+    <li>Holm-Ninkovic: I מעל rectus, II לרוחבו, III נגדי, IV רחוק; perforasome; מדיאלי = נפח גדול.</li>
+    <li>CTA/MRA = תקן זהב; ICG לזילוח; Doppler = ספציפיות נמוכה.</li>
+    <li>הרמה: suprafascial ← intramuscular ← submuscular; שמירת עצבים; SIEV כ"lifeboat".</li>
+    <li>כלים: IMA/IMV (צלע 3–4); ורידי קודם; עיצוב: footprint · conus · envelope.</li>
+    <li>סיבוכים: כישלון מלא &lt; 1%, חלקי/fat necrosis עד 10%, בליטה/בקע 0–10%, DVT ~1%.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>
