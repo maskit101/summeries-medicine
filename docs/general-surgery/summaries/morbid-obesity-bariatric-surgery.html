@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>השמנת יתר חולנית וניתוחים בריאטריים (Morbid Obesity) — מנגנונים, התוויות, RYGB, שרוול, BPD/DS וסיבוכים</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .book-box{background:#eef2ff; border:1px solid #c7d2fe; border-right:5px solid #4f46e5; border-radius:8px; padding:14px 18px; margin:16px 0}
+  .book-box h3{margin:12px 0 6px; color:#3730a3; font-size:16px}
+  .book-box h3:first-child{margin-top:0}
+  .book-badge{display:inline-block; background:#4f46e5; color:#fff; border-radius:999px; padding:3px 12px; font-size:13px; font-weight:600; margin:0 0 12px}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF של פרק 48 מתוך book/ שימש מקור ראשי (Sabiston, Morbid Obesity, חולץ עם pdftotext, 2026-10-27). השלמות מהרשת: תמונות Wikimedia Commons וסרטוני YouTube שנמצאו בחיפוש אמיתי; עדכונים מעבר לספר מסומנים כ"עדכון"/"השלמה" (ASMBS/IFSO 2022, תסמונת Dumping, Petersen hernia, תרופות GLP-1). -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>השמנת יתר חולנית וניתוחים בריאטריים (Morbid Obesity)</h1>
+<div class="subtitle">פרק 48 בספר Sabiston — הגדרות ואפידמיולוגיה; פתופיזיולוגיה (Set-point, גרלין, MC4R, מיקרוביום) ומחלות נלוות; ניתוח מול טיפול תרופתי (SOS, STAMPEDE); מנגנוני הפעולה — הגבלה, תת-ספיגה, ציר מעי-מוח (גרלין, PYY) וציר מעי-לבלב (GLP-1); התוויות, קונטרא-אינדיקציות והכנה לניתוח; טבעת מתכווננת, מעקף קיבה (RYGB), BPD/DS ושרוול (LSG); טיפול לאחר ניתוח, תוצאות וסיבוכים (דליפה, בקע פנימי, כיב מרגינלי, חסרים תזונתיים); ניתוחים חוזרים ואנדוסקופיה בריאטרית</div>
+<div class="book-badge">📘 נכתב לפי הספר (Sabiston, פרק 48) — 2026-10-27</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p><b>השמנת יתר חולנית (Morbid / Severe obesity)</b> מוגדרת היום כמעט רק לפי <span class="key">BMI ≥40 ק"ג/מ"ר</span> (הגדרות ישנות: 100 ליברות מעל המשקל האידיאלי או פי 2 ממנו). ה-AMA הכירה בהשמנה כ<b>מחלה</b> רק ב-2013. בארה"ב כ-40% מהמבוגרים שמנים (BMI &gt;30) וכ-6.3% עם BMI &gt;40. זו <b>סיבת המוות השנייה שניתנת למניעה</b> אחרי עישון: גבר בן 40 עם השמנה חולנית מאבד בממוצע <b>כ-9 שנות חיים</b>.</p>
+<p>המסר המרכזי של הפרק: <span class="key">טיפול שמרני כמעט אף פעם לא מצליח לטווח ארוך</span> — הסיכוי של אדם עם השמנה חולנית לרדת ולהישאר מתחת ל-BMI 35 בדיאטה בלבד הוא <b>≤3%</b>, בעוד ש<b>ניתוח בריאטרי</b> מוריד משקל באופן מתמשך, מעלים מחלות נלוות ו<b>מאריך חיים</b>. ובכל זאת — מנותחים פחות מ-2% מהזכאים.</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+
+<h3>א. למה אנשים עם השמנה חולנית "לא מצליחים פשוט לאכול פחות"</h3>
+<div class="mechanism">
+<p class="chain">הבעיה המרכזית היא <b>שובע פגום</b>: אדם עם השמנה חולנית רעב באופן מתמשך, וכמות אוכל שמשביעה אדם רזה לא משביעה אותו. ההיפותלמוס מחזיק <b>"נקודת קבע" (Set-point)</b> של מאגרי האנרגיה — כמו תרמוסטט — וכשהיא "מכוונת גבוה", המוח מגביר תיאבון ומוריד הוצאת אנרגיה כדי להגן על המשקל הגבוה.</p>
+<ul>
+  <li><b>גרלין (Ghrelin)</b> — <b>הורמון הרעב היחיד הידוע ממערכת העיכול (Orexigenic)</b>, מופרש מתאי <b>P/D1 בפונדוס הקיבה</b>. עולה לפני ארוחה ויורד אחריה; מפעיל קולטנים בגרעין הקשתי (Arcuate) שמייצרים <b>NPY ו-AgRP</b> ← רעב.</li>
+  <li><span class="key">למה דיאטות נכשלות אחרי ~6 חודשים?</span> דיאטה דלת קלוריות <b>מעלה את רמות הגרלין</b> — הגוף "נלחם" בירידה במשקל ומגביר רעב.</li>
+  <li><b>PYY ו-GLP-1</b> — מופרשים מ<b>תאי L במעי הדיסטלי</b> כשמזון מגיע אליו, ופועלים כ"בלם" על נוירוני NPY (Anorexigenic).</li>
+  <li><b>גנטיקה</b>: נטייה משפחתית ברורה (נדיר שרק בן משפחה אחד חולה). גן <b>FTO</b> קשור להתנהגות אכילה; <b>MC4R</b> (קולטן מלנוקורטין 4, מדכא תיאבון בהיפותלמוס) — <b>הגורם החד-גני השכיח ביותר</b> (תורשה אוטוזומלית דומיננטית). מוטציות חד-גניות אחרות (לפטין/קולטן לפטין, POMC) נדירות ומתבטאות בהשמנה קשה כבר בילדות. שכיחים יותר בהרבה שינויים <b>אפיגנטיים</b> (סביבה ← שינוי בביטוי הגנים בלי שינוי ברצף ה-DNA).</li>
+  <li><b>מיקרוביום</b>: בעכברים, אנטיביוטיקה במינון נמוך מעלה שומן גוף, אינסולין ולפטין — וההשמנה <b>"עוברת" לעכברים סטריליים</b> עם השתלת החיידקים. כלומר, החיידקים המשתנים (ולא האנטיביוטיקה עצמה) גורמים להשמנה. עבודה במשמרות ו-Jet lag משבשים את המקצב היממתי של המיקרוביום.</li>
+</ul>
+</div>
+
+<h3>ב. למה השמנה פוגעת כמעט בכל מערכת בגוף</h3>
+<div class="mechanism">
+<ul>
+  <li><b>תסמונת מטבולית</b> — <b>השמנה מרכזית</b> (היקף מותניים &gt;35 אינץ' באישה / &gt;40 בגבר) + סוכרת סוג 2 (תנגודת לאינסולין) + דיסליפידמיה + יל"ד. המנגנון: <b>ירידה בקליטת אינסולין בכבד ← היפראינסולינמיה סיסטמית ← תנגודת רקמתית</b>. סיכון גבוה למוות קרדיווסקולרי מוקדם.</li>
+  <li><b>סרטן</b> (תירואיד, מעי גס, וושט, קיבה, כליה, לבלב, כיס מרה, שד אחרי חדל-אורח, רחם, שחלה): <b>דלקת כרונית</b> (למשל GERD ← אדנוקרצינומה של הוושט); <b>רקמת שומן מייצרת אסטרוגן</b> (ארומטיזציה) ← רחם, שחלה, שד; <b>אינסולין ו-IGF-1 גבוהים</b> ← גורמי גדילה למעי גס, ערמונית, כליה.</li>
+  <li><b>GERD</b> (20–30%) — <b>לחץ תוך-בטני מוגבר ו-LES מקוצר</b> "דוחפים" חומצה לוושט.</li>
+  <li><b>דום נשימה בשינה (OSA)</b> — 35–94% (רוב העבודות &gt;60%): שומן סביב הלוע קורס בשינה.</li>
+  <li><b>תסמונת היפוונטילציה של השמנה (Pickwickian)</b> — בעיקר ב-<b>BMI &gt;60</b>: בית חזה "כבד" ← היפוונטילציה כרונית ← <b>PaCO₂ גבוה מ-PaO₂</b>, <b>פוליציטמיה</b> (היפוקסיה ← אריתרופויאטין), יל"ד ריאתי ואי-ספיקת לב ימנית. פנים פלתוריות וכחלוניות.</li>
+  <li><b>מפרקים</b> — המחלה הנלווית <b>השכיחה ביותר</b> (&gt;50%); נזק מבני קיים לא יתוקן, אבל כאב משתפר ותותבות ברך/ירך בטוחות יותר אחרי ירידה במשקל.</li>
+  <li>עוד: אסטמה (&gt;25%), יל"ד (&gt;30%), סוכרת (&gt;20%), <b>NASH/NAFLD</b>, אבני מרה, DVT ואי-ספיקה ורידית, <b>Pseudotumor cerebri</b> (לחץ תוך-בטני ← לחץ ורידי מרכזי ← לחץ תוך-גולגולתי), אי-נקיטת שתן במאמץ, בקעים, זיהומי עור ופטרייה, דיכאון ואפליה חברתית.</li>
+</ul>
+</div>
+
+<h3>ג. איך הניתוח עובד — הרבה יותר מ"קיבה קטנה"</h3>
+<div class="mechanism">
+<p class="chain">התאוריה הישנה הסבירה הכל בשני מנגנונים: <b>הגבלה (Restriction)</b> — פחות נפח לאוכל, ו<b>תת-ספיגה (Malabsorption)</b> — עקיפת מעי. אבל הם לא מסבירים את כל ההשפעה: <span class="key">הסוכרת משתפרת כבר ימים אחרי הניתוח, לפני שיש ירידה משמעותית במשקל</span>. ההסבר — שינוי בשני צירים הורמונליים:</p>
+<ul>
+  <li><b>ציר מעי-מוח (Enteroencephalic)</b>: בשרוול (LSG) מוציאים את <b>הפונדוס — מפעל הגרלין</b> ← הגרלין יורד ← פחות רעב. ב-RYGB המזון מגיע מהר למעי הדיסטלי ← <b>PYY עולה</b> (יותר מאשר בשרוול) ← שובע.</li>
+  <li><b>ציר מעי-לבלב (Enteroinsular)</b>: <b>GLP-1</b> הוא <b>אינקרטין</b> מתאי L במעי הדיסטלי — מגביר הפרשת אינסולין, משפר רגישות תאי α ו-β, מדכא גלוקגון ומאט ריקון קיבה. בהשמנה הפרשתו מאוחרת ונמוכה. אחרי RYGB (ופחות אחרי LSG) מזון לא מעוכל "מוצף" למעי הדיסטלי ← <b>זינוק GLP-1</b>. <span class="key">אותה ירידה במשקל בדיאטה בלבד לא מייצרת את זינוק ה-GLP-1</span> — הוכחה לאפקט מטבולי שאינו תלוי במשקל.</li>
+</ul>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>מנגנוני הפעולה של ניתוחים בריאטריים</title>
+  <desc>שני צירים: הוצאת הפונדוס מורידה גרלין ופחות רעב; הגעה מהירה של מזון למעי הדיסטלי מעלה PYY ו-GLP-1 ומשפרת שובע והפרשת אינסולין</desc>
+  <rect x="10" y="8" width="660" height="26" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="26" text-anchor="middle" fill="#1e3a8a" font-weight="700">לא רק "קיבה קטנה": הניתוח משנה את השיחה ההורמונלית בין המעי למוח ולבלב</text>
+  <!-- left chain: fundus -->
+  <rect x="440" y="50" width="220" height="44" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="550" y="70" text-anchor="middle" font-weight="700" fill="#7f1d1d">הוצאת הפונדוס (LSG)</text>
+  <text x="550" y="86" text-anchor="middle" font-size="11">תאי P/D1 = מפעל הגרלין</text>
+  <rect x="440" y="118" width="220" height="40" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="550" y="143" text-anchor="middle" font-weight="700" fill="#78350f">גרלין ↓ ← NPY/AgRP ↓</text>
+  <rect x="440" y="182" width="220" height="40" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="550" y="207" text-anchor="middle" font-weight="700" fill="#065f46">פחות רעב</text>
+  <polygon points="544,96 556,96 550,114" fill="#b91c1c"/>
+  <polygon points="544,160 556,160 550,178" fill="#b45309"/>
+  <!-- right chain: hindgut -->
+  <rect x="20" y="50" width="250" height="44" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+  <text x="145" y="70" text-anchor="middle" font-weight="700" fill="#4c1d95">מזון מגיע מהר למעי הדיסטלי</text>
+  <text x="145" y="86" text-anchor="middle" font-size="11">RYGB &gt; LSG (עקיפת התריסריון)</text>
+  <rect x="20" y="118" width="250" height="40" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="145" y="143" text-anchor="middle" font-weight="700" fill="#78350f">תאי L: PYY ↑ · GLP-1 ↑</text>
+  <rect x="20" y="182" width="120" height="40" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="80" y="207" text-anchor="middle" font-weight="700" fill="#065f46">שובע (PYY)</text>
+  <rect x="150" y="182" width="120" height="40" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="210" y="200" text-anchor="middle" font-weight="700" fill="#065f46">אינסולין ↑</text>
+  <text x="210" y="215" text-anchor="middle" font-size="10.5" fill="#065f46">גלוקגון ↓ (GLP-1)</text>
+  <polygon points="139,96 151,96 145,114" fill="#6d28d9"/>
+  <polygon points="74,160 86,160 80,178" fill="#b45309"/>
+  <polygon points="204,160 216,160 210,178" fill="#b45309"/>
+  <text x="355" y="140" text-anchor="middle" font-size="11.5" fill="#374151">+ הגבלה</text>
+  <text x="355" y="156" text-anchor="middle" font-size="11.5" fill="#374151">+ תת-ספיגה</text>
+  <text x="340" y="244" text-anchor="middle" font-size="11.5" fill="#1e3a8a" font-weight="700">זינוק GLP-1 לא מופיע באותה ירידה במשקל בדיאטה ← אפקט מטבולי בלתי תלוי במשקל</text>
+</svg>
+
+<table>
+<tr><th>ניתוח (Table 48.5)</th><th>הגבלה</th><th>תת-ספיגה</th><th>ציר מעי-מוח</th><th>ציר מעי-לבלב</th></tr>
+<tr><td>טבעת מתכווננת (LAGB) / VBG היסטורי</td><td>++++</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>שרוול (LSG)</td><td>++++</td><td>+</td><td>++++</td><td>++</td></tr>
+<tr><td>מעקף קיבה (RYGB)</td><td>++++</td><td>+++</td><td>++++</td><td>+++</td></tr>
+<tr><td>BPD / Duodenal switch</td><td>++</td><td>++++</td><td>+++</td><td>++++</td></tr>
+</table>
+
+<h2><span class="num">3</span> אנטומיה של הניתוחים — מה בדיוק משנים</h2>
+
+<h3>א. טבעת קיבה מתכווננת (LAGB)</h3>
+<p>טבעת סיליקון מתנפחת שמונחת <b>כ-1 ס"מ מתחת ל-GEJ</b>, ויוצרת כיס קטן מעליה; מחוברת בצינור ל<b>פורט תת-עורי</b> על הפשיה של שריר הישר, שדרכו מוסיפים/מוציאים סליין (1–1.5 מ"ל בכל פעם, יעד ירידה של 1–2 ק"ג בשבוע). גישת ה-<b>Pars flaccida</b> (דרך החלק הדק של הליגמנט הגסטרו-הפטי, על פני השוק הימנית של הסרעפת אל זווית His) היא המועדפת; את הקיר הקדמי של הקיבה <b>מקפלים מעל הטבעת</b> בתפרים כדי למנוע החלקה. יתרון: אין חיתוך ואין תפרי סיכות — תמותה כמעט אפס; חיסרון: כשלון ארוך טווח.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Adjustable_Gastric_Band.png?width=520" alt="טבעת קיבה מתכווננת">
+  <p class="media-cap">טבעת קיבה מתכווננת: הטבעת סביב החלק העליון של הקיבה יוצרת כיס קטן, והצינור מוביל לפורט תת-עורי שדרכו מכווננים את הלחץ. מקור: Wikimedia Commons.</p>
+</figure>
+
+<h3>ב. מעקף קיבה (Roux-en-Y Gastric Bypass, RYGB)</h3>
+<ol>
+  <li><b>חיתוך הג'ג'ונום 30–40 ס"מ מליגמנט Treitz</b> — החלק הפרוקסימלי (שמביא מרה ומיצי לבלב) הוא <b>הלולאה הביליו-פנקריאטית</b>.</li>
+  <li><b>לולאת ה-Roux (Alimentary limb)</b> — 80–120 ס"מ ב-BMI 40–50, כ-150 ס"מ ב-BMI &gt;50 (לפחות 75 ס"מ). אנסטומוזה <b>ג'ג'ונו-ג'ג'ונלית</b> צד-לצד בקצה שלה; מכאן ואילך = <b>Common channel</b>.</li>
+  <li><b>כיס קיבה קטן — 15–20 מ"ל</b> (בעקומה הקטנה העליונה), מופרד לחלוטין משאר הקיבה (Remnant stomach).</li>
+  <li><b>גסטרו-ג'ג'ונוסטומיה</b> — מעלים את ה-Roux <b>לפני המעי הגס (Antecolic, antegastric)</b>: פשוט יותר ומקטין את מספר הפתחים המזנטריים משלושה לאחד. בדיקת דליפה תוך-ניתוחית (אנדוסקופ + אוויר מתחת למים).</li>
+  <li><b>סגירת כל הפתחים המזנטריים</b> בתפר לא נספג — מורידה בקעים פנימיים פי ארבעה ויותר, ומוסיפה כ-4 דקות בלבד.</li>
+</ol>
+<p><b>למה כיס קטן?</b> הכיס נבנה מה<b>קרדיה — אזור שמפריש מעט חומצה</b>; כל ס"מ נוסף באורך הכיס = יותר תאי קיר ← <b>14% יותר סיכון לכיב מרגינלי</b> לכל ס"מ, בלי תועלת בירידה במשקל (כל עוד &lt;25 מ"ל). אותו עיקרון מסביר למה RYGB <b>מרפא GERD ביותר מ-90%</b>: כיס קטן שכמעט לא מייצר חומצה, ומרה מנותבת הרחק מהוושט.</p>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Roux-en-Y_gastric_bypass.png?width=600" alt="מעקף קיבה Roux-en-Y">
+  <p class="media-cap">מעקף קיבה (RYGB): כיס קיבה קטן מחובר ללולאת Roux; שארית הקיבה והתריסריון "נעקפים", ומיצי העיכול מגיעים בלולאה הביליו-פנקריאטית עד האנסטומוזה הג'ג'ונו-ג'ג'ונלית. שימי לב: התריסריון והג'ג'ונום הפרוקסימלי — המקום העיקרי לספיגת <b>ברזל</b> — מחוץ למסלול המזון. מקור: Wikimedia Commons.</p>
+</figure>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/YXR_H1hW208" title="Laparoscopic Roux-en-Y Gastric Bypass (Graphic)" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Laparoscopic Roux-en-Y Gastric Bypass (Graphic) — צוות הבריאטריה של Cleveland Clinic מדגים ניתוח לפרוסקופי אמיתי: יצירת הכיס, לולאת ה-Roux והאנסטומוזות. אזהרה: צילומי ניתוח אמיתיים. מקור: YouTube.</p>
+
+<h3>ג. Biliopancreatic Diversion (BPD) ו-Duodenal Switch (DS)</h3>
+<ul>
+  <li><b>BPD (Scopinaro)</b>: <b>כריתת חצי קיבה דיסטלית</b>; הקיבה מחוברת ל-<b>200–250 ס"מ דיסטליים של האילאום</b>; המרה ומיצי הלבלב מצטרפים רק ב-<b>Common channel של 50 ס"מ</b> לפני המסתם האילאו-צקלי ← שם בלבד נספגים שומן וחלבון.</li>
+  <li><b>DS</b>: פותח כדי להפחית את <b>הכיבים המרגינליים</b> של BPD — במקום כריתת חצי קיבה עושים <b>שרוול</b> ו<b>שומרים על הפילורוס</b>; התריסריון נחתך ~2 ס"מ אחרי הפילורוס ומחובר לאילאום (Duodeno-ileostomy); Common channel <b>100 ס"מ</b>, Alimentary 250 ס"מ. מבצעים גם <b>כולציסטקטומיה</b> (אבנים כמעט ודאיות) ו<b>אפנדקטומיה</b>.</li>
+  <li>בחולים <b>Superobese (BMI &gt;60)</b> — <b>DS בשני שלבים</b>: קודם שרוול בלבד (תחלואה 23% ותמותה 7% ב-DS בשלב אחד באוכלוסייה זו), ואחרי ירידה במשקל — השלב השני. <b>כך בעצם נולד השרוול כניתוח עצמאי.</b></li>
+</ul>
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sleeve_gastrectomy_duodenal_switch.png?width=560" alt="שרוול עם Duodenal switch">
+  <p class="media-cap">Duodenal switch: שרוול קיבה עם שמירת פילורוס, תריסריון שמחובר ישירות לאילאום, ו-Common channel קצר — הניתוח עם תת-הספיגה הגדולה ביותר. מקור: Wikimedia Commons (מבוסס על איור NIH).</p>
+</figure>
+
+<h3>ד. שרוול קיבה (Laparoscopic Sleeve Gastrectomy, LSG)</h3>
+<ul>
+  <li>מפרידים את כל <b>העקומה הגדולה</b> מהאומנטום — <b>מ-3 ס"מ לפני הפילורוס</b> עד <b>זווית His</b>, וחושפים את השוק השמאלית של הסרעפת (לבדוק בקע סרעפתי).</li>
+  <li>מכדררים לאורך העקומה הקטנה על <b>Bougie של 34–40 Fr</b> ויורים סיכות מהאנטרום עד His. Bougie <b>צר מדי ← GERD</b> (מערכת לחץ גבוה); <b>רחב מדי ← חזרה במשקל</b>. הרחבת הקו לתוך האנטרום משפרת ירידה במשקל.</li>
+  <li><span class="key">קריטי: לשמור על כלי ה-Left gastric ועל אספקת הדם של העקומה הקטנה, ולמנוע סיבוב/"ספירלה" של הצינור</span> — אחרת היצרות (בעיקר ב-<b>Incisura angularis</b>) ← לחץ תוך-קיבתי גבוה ← דליפה.</li>
+  <li>יתרונות: פשוט טכנית, <b>שומר פילורוס</b> (אין Dumping), מוריד גרלין, אין כוונונים, <b>אין בקעים פנימיים</b>, מעט תת-ספיגה, ואפשר להמיר אותו ל-RYGB/DS. היום <b>הניתוח השכיח ביותר</b> — 59% מהניתוחים בארה"ב ב-2017 (RYGB 18%, טבעת 2.8%).</li>
+</ul>
+<div class="figure-pair">
+<figure>
+  <span class="label normal">שרוול — הקיבה אחרי הניתוח</span>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sleeve_gastrectomy.png?width=500" alt="שרוול קיבה">
+  <p class="media-cap">שרוול קיבה: נשאר צינור צר לאורך העקומה הקטנה; הפונדוס והעקומה הגדולה (כ-80% מהקיבה) הוצאו. הפילורוס נשמר. מקור: Wikimedia Commons.</p>
+</figure>
+<figure>
+  <span class="label abnormal">מעקף — עקיפת תריסריון</span>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Roux-en-Y_gastric_bypass.png?width=500" alt="מעקף קיבה להשוואה">
+  <p class="media-cap">להשוואה — ב-RYGB הקיבה לא מוצאת אלא "מנותקת" ממסלול המזון, ולכן אי אפשר לבצע ERCP רגיל ואי אפשר לבדוק את שארית הקיבה באנדוסקופיה רגילה. מקור: Wikimedia Commons.</p>
+</figure>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/JLthQ-3bJDY" title="Sleeve Gastrectomy Video - Brigham and Women's Hospital" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Sleeve Gastrectomy — Brigham and Women's Hospital: הדגמת הטכניקה של שרוול קיבה — שחרור העקומה הגדולה, הנחת ה-Bougie ויריות הסיכות. מקור: YouTube.</p>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית — מה מחפשים לפני ניתוח</h2>
+<ul>
+  <li><b>לב</b>: כאב חזה חדש או ירידה בסבולת מאמץ ← הערכה קרדיולוגית ומבחן מאמץ. <b>לא</b> מסיקים "עומס נוזלים" מלחץ ורידי מרכזי וריאתי גבוה — אצל החולים האלה זה המצב הבסיסי.</li>
+  <li><b>OSA</b>: <b>נרדם בנהיגה/בעבודה, עייף אחרי לילה, נחירות, דום נשימה שנצפה</b> ← בדיקת שינה; אם חיובי — <b>CPAP/BiPAP</b> גם אחרי הניתוח. למה זה מסוכן דווקא אחרי הניתוח? <b>אופיאטים</b> מדכאים נשימה ותזוזות נוזלים פוגעות ביציבות.</li>
+  <li><b>Pickwickian</b>: פנים פלתוריות, כחלון, קוצר נשימה במנוחה ← גזים בדם (PaCO₂ &gt; PaO₂), המטוקריט גבוה ← ירידה במשקל ואופטימיזציה <b>לפני</b> הניתוח.</li>
+  <li><b>עור</b>: זיהומי פטרייה ו<b>שינויי סטאזיס ורידי</b> (מעלים מאוד סיכון ל-DVT); בקעי טבור/חתך — <b>מתקנים אחרי הירידה במשקל</b> (עם אבדומינופלסטיה ורשת).</li>
+  <li><b>כבד</b>: <b>NASH</b> — האונה השמאלית הגדולה חוסמת את השדה הלפרוסקופי ← <b>דיאטה דלת פחמימות 5–10 ימים לפני</b> ("כיווץ כבד"); ביופסיה בניתוח אם הכבד נראה חריג. NASH <b>אינו</b> קונטרא-אינדיקציה, אלא אם יש שחמת עם יל"ד פורטלי או דה-קומפנסציה.</li>
+</ul>
+
+<h2><span class="num">5</span> אבחנה — מי מתאים לניתוח ואיך מכינים</h2>
+
+<h3>א. התוויות (Box 48.2)</h3>
+<ul>
+  <li><span class="key">BMI &gt;40, או BMI &gt;35 עם מחלה נלווית שמחמירה בגלל ההשמנה</span>.</li>
+  <li>כישלון טיפול דיאטטי (מתועד, בפיקוח).</li>
+  <li><b>יציבות נפשית</b>, בלי תלות באלכוהול או סמים.</li>
+  <li>הבנה של הניתוח והשלכותיו, מוטיבציה.</li>
+  <li>מצב רפואי שמאפשר לשרוד את הניתוח.</li>
+</ul>
+<p>ה-ADA: ניתוח מטבולי כאופציה לסוכרת סוג 2 ב-BMI &gt;40 (<b>&gt;37.5 באסייתים</b>) כשטיפול שמרני נכשל. ה-FDA אישר טבעת גם ב-BMI 30–34 עם מחלה נלווית.</p>
+<div class="key-box"><i>עדכון (ASMBS/IFSO 2022, לא בספר):</i> ההנחיות העדכניות ממליצות על ניתוח ב-<b>BMI ≥35 ללא קשר למחלות נלוות</b>, ושוקלים ב-<b>BMI 30–34.9 עם מחלה מטבולית</b> (בעיקר סוכרת לא מאוזנת); באסייתים הספים נמוכים יותר (שוקלים מ-BMI ≥27.5). גם הספר מציין שה-SOS הראה ש<b>BMI לא ניבא</b> את התועלת, אבל <b>היפראינסולינמיה בצום</b> כן.</div>
+
+<h3>ב. קונטרא-אינדיקציות</h3>
+<table>
+<tr><th>סוג</th><th>מה</th><th>למה</th></tr>
+<tr><td><b>מוחלטת</b></td><td><b>Prader-Willi</b></td><td>הרעב הבלתי נשלט הוא היפותלמי — שום ניתוח לא משנה אותו</td></tr>
+<tr><td><b>מוחלטת</b></td><td>חוסר יכולת ללכת</td><td>לא יוכל להחלים בשלב הירידה המהירה במשקל</td></tr>
+<tr><td>יחסית</td><td>אי-ספיקה סופנית של לב/ריאות</td><td>לא ירוויח את התועלת של אורך חיים</td></tr>
+<tr><td>לטבעת (LAGB)</td><td>שחמת, יל"ד פורטלי, מחלות רקמת חיבור אוטואימוניות, IBD, צורך בסטרואידים כרוני</td><td>סיכון לזיהום/שחיקה של גוף זר</td></tr>
+<tr><td>גיל</td><td>מתבגרים — אחרי קפיצת הגדילה; מבוגרים — לפי גיל "פיזיולוגי"</td><td>Teen-LABS: אין תמותה, <b>הפוגה בסוכרת ב-95%</b> (לעומת 50–70% במבוגרים — "שנות-ליברה" פחות הפיכות)</td></tr>
+</table>
+<p>מעל <b>500 ליברות (~227 ק"ג)</b> — סיכון מוגבר, ציוד (CT, שולחן) לא מתאים; הכותבים דורשים ירידה למשקל זה לפני ניתוח. גורמי סיכון לתמותה ניתוחית (צרפת): <b>גבר</b>, <b>גיל &gt;50</b>, סוכרת; מרכזים עם נפח גבוה — תמותה נמוכה יותר. <b>מיומנות המנתח</b> היא המנבא החזק ביותר לסיבוכים (Birkmeyer: רבעון עליון — תמותה 0.05% מול 0.26%).</p>
+
+<h3>ג. הכנה לניתוח</h3>
+<ul>
+  <li><b>צוות רב-תחומי</b>: מנתח, תזונאית, מרדים, פסיכיאטר/פסיכולוג, מתאמת, רופא משפחה ויועצים. הדרכה <b>חובה</b>.</li>
+  <li><b>אנטיביוטיקה</b>: <b>Cephalosporin דור ראשון (Cefazolin) במינון מותאם למשקל</b>, פחות מ-24 שעות.</li>
+  <li><b>מניעת VTE</b>: ניעות מוקדמת + SCD + <b>LMWH</b> (פחות VTE מהפרין לא מפוצל — MBSC). <b>סיכון גבוה</b> (DVT קודם, כיבי סטאזיס, יל"ד ריאתי, Pickwickian, ניתוח חוזר) — LMWH פעמיים ביום <b>שבועיים</b>. מסנן IVC — רק בסיכון קיצוני ובנוסף לטיפול.</li>
+  <li><b>אבני מרה</b>: אחרי RYGB — אבנים/בוצה ב-<b>~30%</b> (ירידה מהירה במשקל ← כולסטרול רווי במרה + התכווצות כיס ירודה). אם יש אבנים — <b>כולציסטקטומיה באותו ניתוח</b>; כיס תקין — <b>Ursodiol 300 מ"ג ×2 ליום ל-6 חודשים</b> (מוריד ל-3%). בניתוחי תת-ספיגה — כולציסטקטומיה שגרתית. <b>למה ב-RYGB חשוב במיוחד?</b> כי <b>ERCP רגיל בלתי אפשרי</b> אחריו.</li>
+  <li><b>EGD לפני הניתוח</b> — בכל חולה עם תסמיני GERD (Barrett, בקע סרעפתי, ובדיקת הקיבה שתיעקף). 7.6% מהבדיקות שינו/דחו את הניתוח ← שוקלים גם בא-תסמיניים.</li>
+  <li>סוכרת — לאזן לפני הניתוח; <b>קריאטינין</b> כבדיקת סקר לתפקוד כליות.</li>
+  <li><b>ציוד</b>: שולחן הידראולי עד 800 ליברות, רצועות ו-Footboard (תנוחת <b>Reverse Trendelenburg</b> חדה), טרוקרים ומשדכים ארוכים, מפשק כבד קבוע לשולחן, שרוולי ל"ד רחבים.</li>
+</ul>
+
+<h2><span class="num">6</span> טיפול — תוצאות, טיפול לאחר ניתוח וסיבוכים</h2>
+
+<h3>א. הראיות: ניתוח מול טיפול תרופתי</h3>
+<ul>
+  <li><b>SOS (Swedish Obese Subjects)</b> — 2010 מנותחים מול 2037 ביקורות, מעקב &gt;15 שנה (98.9%): ירידה של <b>18% מול 1%</b> במשקל, <b>תמותה ירדה ב-29% (HR 0.71)</b>; פחות אוטמי לב (HR 0.56); בסוכרתיים — <b>ירידה של 80% בתמותה השנתית</b>. סיבת המוות השכיחה — סרטן (פחות בקבוצת הניתוח).</li>
+  <li><b>Adams</b> (7925 RYGB): ירידה בתמותה מכל סיבה (40% במעקב 7 שנים); אבל <b>מתחת לגיל 35 — עלייה במוות מסיבות חיצוניות</b> (HR 2.53, בעיקר בצעירות).</li>
+  <li><b>STAMPEDE</b> (RCT, סוכרתיים BMI 27–43): HbA1c ירד <b>2–3.5%</b> בניתוח מול 1–1.5% בטיפול תרופתי אינטנסיבי; HbA1c &lt;6% ב-29% (RYGB) / 23% (LSG) מול 5%. מחלה מיקרו-וסקולרית — 16.9% מול 34.7% (נפרופתיה −59%).</li>
+  <li><span class="key">צד אפל: עלייה בסיכון להתאבדות ופגיעה עצמית</span> אחרי ניתוח (בעיקר RYGB) — לא סיבה לא לנתח, אבל מחייב <b>הערכה נפשית לפני</b> ו<b>מעקב אחרי</b> (במיוחד שימוש בחומרים — שינוי בפרמקוקינטיקה של אלכוהול).</li>
+</ul>
+
+<h3>ב. השוואת הניתוחים</h3>
+<table>
+<tr><th>ניתוח</th><th>EWL (ירידה מהעודף)</th><th>תמותה</th><th>נקודות מפתח</th></tr>
+<tr><td><b>LAGB</b></td><td>~45%</td><td>~0%</td><td>10 שנים: פחות ירידה (27 מול 42 ק"ג), <b>ניתוח חוזר 31% מול 8%</b>; בצרפת — 71% עברו ניתוח רוויזיה עד 7 שנים. הכותבים <b>כבר לא מבצעים</b></td></tr>
+<tr><td><b>LSG</b></td><td>~49–58%</td><td>0.08–0.12%</td><td>מעט חסרים תזונתיים; <b>GERD חדש/מחמיר</b> = הסיבה העיקרית להמרה ל-RYGB (7/10 ניתוחים חוזרים ב-SLEEVEPASS)</td></tr>
+<tr><td><b>RYGB</b></td><td>~57–67%</td><td>0.1–0.3%</td><td>"תקן הזהב" הוותיק; טוב יותר ל-<b>GERD</b> (הפוגה 60% מול 25%) וליל"ד (SLEEVEPASS); LDL נמוך יותר</td></tr>
+<tr><td><b>BPD/DS</b></td><td>65–74% (הגבוה ביותר)</td><td>עד ~1.9%</td><td>הפוגה בסוכרת 87.5%; אבל חסר <b>ויטמין D 89%, K 65%, אבץ 65%</b>, תת-תזונה חלבונית, 2–4 יציאות מסריחות ביום; &lt;1% מהניתוחים</td></tr>
+</table>
+<p><b>SLEEVEPASS ו-SM-BOSS</b> (RCT, 5 שנים): <b>אין הבדל משמעותי</b> בין שרוול למעקף בירידה במשקל, סוכרת, איכות חיים וסיבוכים מאוחרים; RYGB עדיף ב-GERD (ובחלק מהעבודות בל"ד ו-LDL).</p>
+
+<h3>ג. טיפול שגרתי אחרי הניתוח</h3>
+<ul>
+  <li><b>ERAS</b>: משככי כאב לא-אופיאטיים (PCA בצורך), הגבלת נוזלים (~4 מ"ל/ק"ג/שעה בלפרוסקופיה), <b>ניעות מוקדמת</b>; שרוול — לילה אחד ושחרור על דיאטה נוזלית מלאה; RYGB — ~2 ימים; טבעת — לילה אחד.</li>
+  <li>מיעוט שתן תוך-ניתוחי — צפוי (פנאומופריטונאום). <b>צורך גבוה בנוזלים + אוליגוריה + טכיקרדיה = חשד לבעיה תוך-בטנית</b>.</li>
+  <li>אחרי BPD/DS: מולטי-ויטמין, <b>לפחות 2 גר' סידן ליום</b>, ויטמינים מסיסי שומן (A, D, K) חודשית, ומעקב חלבון. סוכרים פשוטים, אלכוהול ושומנים קצרי-שרשרת <b>נספגים היטב</b> — "נשנושים מתוקים" יחזירו משקל.</li>
+</ul>
+
+<h3>ד. סיבוכים — מה, למה ואיך מטפלים</h3>
+<table>
+<tr><th>סיבוך</th><th>למה קורה</th><th>איך מזהים</th><th>טיפול</th></tr>
+<tr><td><b>דליפה (Leak)</b> — הסיבוך המפחיד ביותר</td><td><b>מוקדמת (≤2 ימים)</b>: תקלה במשדך/טראומה לרקמה. <b>מאוחרת</b> (בעיקר בשרוול, 1–4 שבועות): <b>איסכמיה + לחץ תוך-קיבתי גבוה</b> מעל היצרות דיסטלית (Incisura); לרוב <b>בשליש הפרוקסימלי</b> של קו הסיכות</td><td><span class="key">טכיקרדיה מתמשכת (לעתים עם טכיפנאה או אי-שקט) היא לעתים הסימן היחיד</span> — לחולה שמן לרוב אין חום או פריטוניטיס בבדיקה. CT עם ניגוד פומי, או לפרוסקופיה אבחנתית</td><td>ניקוז (מלעורי מונחה CT או ניתוחי), צום + TPN + אנטיביוטיקה; אנדוסקופית: <b>סטנט מכוסה</b> (6 שבועות, הצלחה ~90%, נדידה בעייתית), OTSC לפיסטולה &lt;1 ס"מ, <b>Endo-VAC</b>, Double pigtail לניקוז פנימי</td></tr>
+<tr><td><b>בקע פנימי / חסימת מעי</b> (RYGB)</td><td>מעי נכנס דרך פתחים מזנטריים (בעיקר אחרי ירידה במשקל כשהשומן המזנטרי "נעלם") ← <b>חסימה עם סכנת חנק</b></td><td><b>CT עם ניגוד פומי ו-IV</b> — שארית קיבה מורחבת, Swirl במזנטריום, וולבולוס של ה-Roux</td><td><span class="key">כל חסימת מעי דק אחרי RYGB = ניתוח</span> — לפני שהלולאה הביליו-פנקריאטית ושארית הקיבה (לולאה סגורה) מתנפחות ונקרעות. מניעה: סגירת פתחים + Antecolic</td></tr>
+<tr><td><b>היצרות הגסטרו-ג'ג'ונוסטומיה</b></td><td>2–14%; שכיח יותר במשדך מעגלי</td><td>4–6 שבועות אחרי: אי-סבילות מתקדמת למוצקים ← נוזלים</td><td><b>הרחבה בבלון אנדוסקופית</b> (לא יותר מ-3–5 מ"מ בפעם); ניתוח רק אם יש כיב מרגינלי. בשרוול — היצרות ב-Incisura: בלון/סטנט, לעתים המרה ל-RYGB</td></tr>
+<tr><td><b>כיב מרגינלי</b></td><td>2–10%; חומצה על רירית ג'ג'ונלית שאין לה הגנה: <b>כיס גדול</b> (יותר תאי קיר), <b>H. pylori</b>, <b>NSAIDs</b>, עישון, <b>פיסטולה גסטרו-גסטרית</b> (חומצה משארית הקיבה)</td><td>כאב אפיגסטרי "קודח" מתמשך</td><td><b>PPI</b> והפסקת NSAIDs; פיסטולה — ניתוח לחיתוכה. מניעה: טיפול ב-H. pylori לפני הניתוח</td></tr>
+<tr><td><b>חוסר ברזל</b></td><td>ברזל נספג בעיקר ב<b>תריסריון ובג'ג'ונום הפרוקסימלי</b> — שנעקפים; ובלי חומצה Fe³⁺ לא מומר ל-Fe²⁺</td><td>חוסר ב-15–40%, אנמיה עד 20%</td><td>ברזל פומי (Gluconate נספג טוב יותר בסביבה לא חומצית)</td></tr>
+<tr><td><b>חוסר B12</b></td><td>15–20%; <b>ערבוב מאוחר עם Intrinsic factor</b> (שמיוצר בשארית הקיבה שנעקפה) ← ספיגה לא יעילה באילאום הסופי</td><td>לרוב בלי אנמיה</td><td>חוסר יכול להתפתח <b>למרות</b> מינון פומי גבוה ← תכשיר עם IF, תת-לשוני, תרסיס לאף או זריקות</td></tr>
+<tr><td><b>Wernicke</b></td><td>הקאות ממושכות ← <b>חוסר תיאמין (B1)</b> (מאגרים קטנים)</td><td>בלבול, אטקסיה, אופתלמופלגיה</td><td><b>תיאמין IV לפני גלוקוז</b> בכל הקאות קשות — מניעה; נזק נוירולוגי עלול לא לחלוף</td></tr>
+<tr><td><b>VTE / PE</b></td><td>השמנה + ניתוח בטני + חוסר ניעות</td><td>17% מהמוות; עדות ל-VTE עד 80% מהנפטרים</td><td>מניעה: LMWH + SCD + ניעות (ירד ל-0.23%)</td></tr>
+<tr><td><b>טבעת: החלקה, שחיקה, הרחבת וושט</b></td><td>הפונדוס "מטפס" דרך הטבעת; גוף זר שוחק</td><td>דיספגיה, רגורגיטציה, צרבת, אספירציה; <b>בצילום בטן הטבעת לא באוריינטציה התקינה (בין 2 ל-7 לפי השעון)</b> אלא אופקית/אנכית; בליעת בריום מאשרת. 67–78% עם הפרעת פריסטלטיקה בוושט</td><td>ריקון הטבעת; הוצאה או רוויזיה. החלקה עם חנק קיבה — <b>ניתוח דחוף</b></td></tr>
+<tr><td><b>BPD/DS: תת-תזונה חלבונית</b></td><td>Common channel קצר</td><td>12%, לרוב בחודשים הראשונים; גם חסרי A, D, K, E</td><td>אשפוז ו-<b>TPN 2–3 שבועות</b>; לעתים ניתוח להארכת ה-Common channel או היפוך</td></tr>
+<tr><td><b>דיכאון קשה</b></td><td>שכיח באוכלוסייה זו</td><td>החולה מפסיק לאכול — "ירידה מצוינת" שמסתירה תת-תזונה</td><td>זיהוי מוקדם; תמיכה נפשית</td></tr>
+</table>
+<div class="key-box"><i>השלמה (לא מפורט בספר, נשאל הרבה):</i> <b>תסמונת Dumping</b> אחרי RYGB — <b>מוקדמת</b> (10–30 דק'): מזון היפראוסמולרי בג'ג'ונום ← שאיבת נוזל ללומן ← כאב, שלשול, דפיקות לב, הסמקה; <b>מאוחרת</b> (1–3 שעות): ספיגה מהירה של סוכר ← שיא אינסולין (מוגבר ע"י GLP-1) ← <b>היפוגליקמיה</b>. טיפול: ארוחות קטנות, להימנע מסוכרים פשוטים, להפריד שתייה מאוכל; Acarbose/Octreotide בעמידים. <b>Petersen hernia</b> — הבקע הפנימי דרך הפתח שבין מזנטריום ה-Roux למזו-קולון הרוחבי.</div>
+
+<div class="surgery">
+<h4>מהלך הניתוח — מעקף קיבה לפרוסקופי (LRYGB)</h4>
+<p><b>הכנה:</b> הערכה רב-תחומית, איזון סוכרת, CPAP אם OSA, EGD אם GERD, טיפול ב-H. pylori, דיאטה לכיווץ הכבד 5–10 ימים, Cefazolin במינון משקל, LMWH ו-SCD, שולחן מתאים ורצועות לתנוחת Reverse Trendelenburg.</p>
+<ol>
+  <li>טרוקר ראשון בתת-צלעי שמאלי (אופטי או עם להב), השאר תחת ראייה.</li>
+  <li>הרמת האומנטום, זיהוי <b>Treitz</b>, חיתוך הג'ג'ונום 30–40 ס"מ ממנו; מדידת לולאת Roux (80–150 ס"מ) ו<b>ג'ג'ונו-ג'ג'ונוסטומיה</b> צד-לצד; סגירת הפתח המזנטרי (Purse-string 2-0 Polypropylene).</li>
+  <li>מפשק כבד, Reverse Trendelenburg; פתיחת הצפק בזווית His; כניסה ל-Lesser sac 3–4 ס"מ מתחת ל-GEJ; יצירת <b>כיס 15–20 מ"ל</b> ביריות משדך.</li>
+  <li><b>גסטרו-ג'ג'ונוסטומיה</b> (Antecolic antegastric) — משדך מעגלי (Anvil דרך הפה), ליניארי או תפירה ידנית — <b>התוצאות דומות; המיומנות והמהירות של המנתח קובעות</b>.</li>
+  <li><b>בדיקת דליפה</b>: האנסטומוזה מתחת לסליין, חסימת ה-Roux, אוויר דרך אנדוסקופ — מחפשים בועות.</li>
+</ol>
+<h4>הנקודות הקריטיות</h4>
+<ul>
+  <li><b>כיס קטן</b> (כיב מרגינלי), <b>סגירת כל הפתחים המזנטריים</b> (בקע פנימי), אנסטומוזה אטומה ובלי מתח (דליפה).</li>
+  <li>ניתוח איטי (חציון 139 דק' מול 86) — <b>יותר סיבוכים</b> (כולל VTE) גם אחרי תיקון לגורמים אחרים.</li>
+  <li>בשרוול: לא להצר ב-Incisura, לא לסובב, לשמור על Left gastric; לגבי חיזוק קו הסיכות (Buttressing) — הראיות לא חד-משמעיות (בחלק מהעבודות אף יותר דליפות).</li>
+</ul>
+<h4>החלמה ומעקב</h4>
+<p>~2 ימי אשפוז; דיאטה נוזלית ← רכה ← מוצקה; מולטי-ויטמין, ברזל, B12, סידן ו-D לכל החיים; Ursodiol 6 חודשים; הימנעות מ-NSAIDs. <b>דגלים אדומים</b>: <b>טכיקרדיה &gt;120</b>, קוצר נשימה, כאב גובר (דליפה/PE); כאב בטן קוליקי/הקאות (בקע פנימי); אי-סבילות למוצקים אחרי 4–6 שבועות (היצרות); כאב אפיגסטרי מתמשך (כיב מרגינלי); הקאות ממושכות (תיאמין!).</p>
+</div>
+
+<h3>ה. ניתוחים חוזרים ואנדוסקופיה בריאטרית</h3>
+<ul>
+  <li><b>כשלון</b>: ירידה לא מספקת, מחלות נלוות שלא נפתרו, תופעות לוואי, או סיבוכים. ב-BOLD — רק <b>6.3%</b> עברו ניתוח חוזר (4.4% מתקנים, 1.9% המרות). חולה ש"נכשל" בניתוח <b>שלם ותקין אנטומית</b> — בסיכון גבוה להיכשל גם בשני. טעות של מנתח לא-בריאטרי: לתקן את הסיבוך בלי לשמר את ההגבלה ← חזרה למשקל המקורי.</li>
+  <li><b>חזרה במשקל (10–15%)</b>: <b>הקטנת פתח הגסטרו-ג'ג'ונוסטומיה בתפירה אנדוסקופית</b> + ייעוץ תזונתי.</li>
+  <li><b>טיפולים אנדוסקופיים ראשוניים</b> (בין טיפול שמרני לניתוח): <b>בלון תוך-קיבתי</b> (Orbera — 6 חודשים, ירידה של 30–50 ליברות), <b>Endoscopic sleeve gastroplasty</b> (תפירת דפנות הקיבה לצינור), Liners ומגנטים — "לעולם לא יהיו יעילים כמו ניתוח", אבל יכולים לשמש <b>גשר</b>.</li>
+</ul>
+<div class="key-box"><i>עדכון (לא בספר):</i> תרופות מבוססות אינקרטינים — <b>Semaglutide</b> (אגוניסט GLP-1) ו-<b>Tirzepatide</b> (אגוניסט כפול GIP/GLP-1) — משיגות ירידה ממוצעת של כ-15–20% ממשקל הגוף במחקרים גדולים (STEP, SURMOUNT). הן מחקות חלק מהמנגנון ההורמונלי של הניתוח, אבל דורשות טיפול מתמשך (הפסקה ← חזרה במשקל), והניתוח עדיין משיג את הירידה הגדולה והעמידה ביותר. משמשות גם לפני ניתוח ולחזרה במשקל אחריו.</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/NnmMACEmr4E" title="Gastric Sleeve vs Gastric Bypass" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Gastric Sleeve vs Gastric Bypass — מנתח בריאטרי (Nabeel Obeid, M.D.) משווה בין שני הניתוחים: אנטומיה, מנגנון, ירידה במשקל, GERD וסיבוכים. מקור: YouTube.</p>
+
+<h3>ו. טבלת תרופות פרי-אופרטיביות</h3>
+<table>
+<tr><th>תרופה</th><th>מנגנון / סוג</th><th>נגד מה / למה</th><th>איך זה פותר את הבעיה הספציפית</th><th>אזהרות</th></tr>
+<tr><td><b>Cefazolin</b> (Cephalosporin דור 1)</td><td>β-lactam — מעכב בניית דופן התא</td><td>גראם חיוביים (<i>S. aureus</i>, סטרפטוקוקים — פלורת עור) וחלק מהגראם שליליים</td><td>מניעת זיהום פצע ואתר ניתוח; <b>מינון מותאם משקל</b> (2–3 גר') כי נפח הפיזור גדול; &lt;24 שעות</td><td>אלרגיה ל-β-lactam (Clindamycin/Vancomycin כחלופה)</td></tr>
+<tr><td><b>Enoxaparin</b> (LMWH)</td><td>מגביר את Antithrombin ← עיכוב בעיקר של Factor Xa</td><td>מניעת DVT/PE</td><td>PE = 17% מהמוות; עדיף על UFH; בסיכון גבוה — פעמיים ביום לשבועיים</td><td>דימום; אי-ספיקת כליות; מינון לפי משקל</td></tr>
+<tr><td><b>Ursodiol</b> (UDCA)</td><td>חומצת מרה הידרופילית — מורידה הפרשת כולסטרול למרה ורוויה</td><td>מניעת אבני מרה בשלב הירידה המהירה</td><td>300 מ"ג ×2 ליום ל-6 חודשים ← אבנים ב-3% במקום ~30%</td><td>שלשול; היענות</td></tr>
+<tr><td><b>PPI</b> (Omeprazole/Pantoprazole)</td><td>עיכוב H⁺/K⁺-ATPase</td><td>כיב מרגינלי</td><td>מוריד חומצה על הרירית הג'ג'ונלית הלא-מוגנת</td><td>בשימוש ממושך — ספיגת ברזל/B12/סידן ירודה</td></tr>
+<tr><td><b>Thiamine</b> (B1) IV</td><td>קו-פקטור לאנזימי מטבוליזם הגלוקוז</td><td>Wernicke</td><td>בהקאות ממושכות — <b>לפני</b> מתן גלוקוז (גלוקוז "שורף" את מעט התיאמין שנותר)</td><td>—</td></tr>
+<tr><td><b>Iron, B12, Calcium citrate + Vit D</b></td><td>החלפה</td><td>חסרים אחרי RYGB / BPD-DS</td><td>B12 תת-לשוני/בזריקה כשאין IF; סידן <b>ציטראט</b> (לא תלוי חומצה)</td><td>מעקב רמות לכל החיים</td></tr>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>🧠 ראשי תיבות (מקוריים)</h3>
+<p><b>סיבוכי המעקף — "LIMBS"</b> (המעקף "מגדל איברים חדשים"):</p>
+<ul>
+  <li><b>L</b>eak — דליפה: טכיקרדיה היא הסימן היחיד.</li>
+  <li><b>I</b>nternal hernia — כל חסימה = ניתוח.</li>
+  <li><b>M</b>arginal ulcer — כיס גדול, NSAIDs, עישון, H. pylori, פיסטולה.</li>
+  <li><b>B</b>12 + Iron (<b>B</b>ypassed duodenum) — חסרים.</li>
+  <li><b>S</b>tenosis — 4–6 שבועות, בלון.</li>
+</ul>
+<p><b>מי מתאים — "40 לבד, 35 עם חבר"</b>: BMI 40 מספיק לבד; ב-35 צריך "חבר" — מחלה נלווית. (ולפי העדכון: היום 35 כבר מספיק גם לבד.)</p>
+<p><b>מנגנון השרוול מול המעקף</b>: <b>שרוול "שוטף את הגרלין"</b> (מוציא את הפונדוס); <b>מעקף "שולח מכתב מוקדם ל-L"</b> (מזון מגיע מהר לתאי L ← GLP-1/PYY).</p>
+<p><b>מתי שרוול עדיף</b>: <b>"ICE-T"</b> — <b>I</b>BD/Crohn ו-<b>I</b>ron deficiency, <b>C</b>ardiac failure / תרופות קריטיות, <b>E</b>xtra NSAIDs (דלקת פרקים), <b>T</b>ransplant (אימונוסופרסיה) — כולם צריכים ספיגה יציבה או קיבה שלמה. ו<b>מתי מעקף עדיף — GERD</b>.</p>
+</div>
+
+<div class="mnemonic">
+<h3>📖 סיפור דמיוני — "העיר עם הכביש העוקף"</h3>
+<p>העיר <b>בטנונה</b> סבלה מפקקים: משאיות אוכל נכנסו בלי הפסקה, כי <b>שומר השער גרלין</b> מהשכונה <b>פונדוס</b> צעק כל הזמן "עוד! עוד!". ראש העיר בנה <b>כביש עוקף (Roux)</b>: המשאיות נכנסות לחניון קטנטן (כיס של 15 מ"ל), ומשם ישר לרחובות הרחוקים של העיר — שם יושבים <b>השוטרים L</b>, שמרימים שלטי <b>"מספיק!" (PYY)</b> ומתקשרים ל<b>מפעל האינסולין</b> בלבל (GLP-1). אבל לכביש העוקף יש מחיר: הוא עוקף את <b>שוק הברזל</b> בתריסריון, ואת <b>משרד ה-IF</b> שמנפיק אישורי כניסה ל-<b>B12</b>. ובצמתים החדשים נשארו <b>חורים בגדר</b> (פתחים מזנטריים) — אם לא סוגרים אותם, מכוניות נתקעות בפנים (בקע פנימי). בעיר השכנה בחרו פתרון אחר: פשוט <b>הרסו את השכונה של גרלין</b> (שרוול) — פחות צעקות, אבל הכביש הראשי נעשה צר ובלחץ, והעשן חוזר למעלה (GERD).</p>
+<svg class="diagram" viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>העיר עם הכביש העוקף</title>
+  <desc>חניון קטן מוביל בכביש עוקף לשוטרים L, תוך עקיפת שוק הברזל ומשרד ה-IF; חורים בגדר מסמנים בקע פנימי</desc>
+  <rect x="540" y="20" width="120" height="50" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="600" y="42" text-anchor="middle" font-weight="700" fill="#7f1d1d">חניון 15 מ"ל</text>
+  <text x="600" y="60" text-anchor="middle" font-size="11">(הכיס)</text>
+  <rect x="330" y="20" width="170" height="50" rx="8" fill="#f3f4f6" stroke="#6b7280" stroke-dasharray="5 3"/>
+  <text x="415" y="40" text-anchor="middle" font-weight="700" fill="#374151">שכונת פונדוס — גרלין 📢</text>
+  <text x="415" y="58" text-anchor="middle" font-size="11" fill="#374151">מנותקת מהמסלול</text>
+  <rect x="330" y="90" width="170" height="44" rx="8" fill="#fef3c7" stroke="#b45309" stroke-dasharray="5 3"/>
+  <text x="415" y="110" text-anchor="middle" font-weight="700" fill="#78350f">שוק הברזל + משרד IF</text>
+  <text x="415" y="126" text-anchor="middle" font-size="11" fill="#78350f">נעקפים ← חסר Fe ו-B12</text>
+  <path d="M540 60 C 470 180, 240 190, 150 150" stroke="#047857" stroke-width="5" fill="none"/>
+  <polygon points="140,146 156,140 154,158" fill="#047857"/>
+  <text x="330" y="200" text-anchor="middle" fill="#047857" font-weight="700">הכביש העוקף (Roux limb)</text>
+  <rect x="20" y="110" width="120" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="80" y="134" text-anchor="middle" font-weight="700" fill="#065f46">שוטרי L 👮</text>
+  <text x="80" y="152" text-anchor="middle" font-size="11" fill="#065f46">"מספיק!" (PYY)</text>
+  <text x="80" y="168" text-anchor="middle" font-size="11" fill="#065f46">☎ לבלב (GLP-1)</text>
+  <text x="250" y="150" font-size="16">🕳️</text>
+  <text x="262" y="132" text-anchor="middle" font-size="11" fill="#b91c1c">חור בגדר = בקע פנימי</text>
+  <rect x="20" y="20" width="200" height="50" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="120" y="42" text-anchor="middle" font-weight="700" fill="#1e3a8a">עיר שכנה: הרסו את פונדוס</text>
+  <text x="120" y="60" text-anchor="middle" font-size="11" fill="#1e3a8a">(שרוול) ← כביש צר בלחץ ← GERD</text>
+</svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Roux-en-Y_gastric_bypass.png" target="_blank">Wikimedia Commons — Roux-en-Y gastric bypass.png</a><div class="desc">איור של מעקף קיבה (מוטמע בסעיף 3ב). יש גם גרסת SVG.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Sleeve_gastrectomy.png" target="_blank">Wikimedia Commons — Sleeve gastrectomy.png</a><div class="desc">איור שרוול קיבה (מוטמע בסעיף 3ד).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Sleeve_gastrectomy_duodenal_switch.png" target="_blank">Wikimedia Commons — Sleeve gastrectomy duodenal switch.png</a><div class="desc">איור Duodenal switch (מוטמע בסעיף 3ג).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Adjustable_Gastric_Band.png" target="_blank">Wikimedia Commons — Adjustable Gastric Band.png</a><div class="desc">איור טבעת מתכווננת (מוטמע בסעיף 3א).</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Sleeve_gastrectomy_diagram_(according_IFSO_and_French_HAS).svg" target="_blank">Wikimedia Commons — Sleeve gastrectomy diagram (IFSO/HAS)</a><div class="desc">השלמה: תרשים שרוול לפי IFSO.</div></li>
+  <li><a href="https://niddk.nih.gov/health-information/weight-management/bariatric-surgery/types" target="_blank">NIDDK — Types of Weight-loss Surgery</a><div class="desc">סקירה ממשלתית קצרה של שרוול, מעקף וטבעת עם איורים.</div></li>
+  <li><a href="https://radiopaedia.org/cases/roux-en-y-gastric-bypass-procedure" target="_blank">Radiopaedia — Roux-en-Y gastric bypass procedure</a><div class="desc">תרשים של שני המסלולים האפשריים של לולאת ה-Roux (Antecolic / Retrocolic).</div></li>
+  <li><a href="https://www.youtube.com/watch?v=YXR_H1hW208" target="_blank">Cleveland Clinic — Laparoscopic Roux-en-Y Gastric Bypass (Graphic)</a><div class="desc">מוטמע בסעיף 3ב.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=JLthQ-3bJDY" target="_blank">Brigham and Women's — Sleeve Gastrectomy</a><div class="desc">מוטמע בסעיף 3ד.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=NnmMACEmr4E" target="_blank">Gastric Sleeve vs Gastric Bypass</a><div class="desc">מוטמע בסעיף 6ה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=6HnvrTKLT4M" target="_blank">Laparoscopic Roux-en-Y Gastric Bypass: step by step</a><div class="desc">השלמה: הרצאה שלב-אחר-שלב של הטכניקה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=qrpKP6NkeYc" target="_blank">Laparoscopic Sleeve Gastrectomy — Step by Step (Dr R K Mishra)</a><div class="desc">השלמה: שרוול לפרוסקופי צעד-אחר-צעד.</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>🩺 המקרה</h3>
+<p>אישה בת 44, <b>BMI 43</b>, עם <b>סוכרת סוג 2</b> (HbA1c 8.9% על Metformin ואינסולין), יל"ד ו<b>צרבות יומיות</b> למרות PPI. ניסתה שלוש דיאטות בפיקוח — ירדה כל פעם 8 ק"ג ו"הרעב חזר" תוך חצי שנה. בעלה מספר שהיא <b>נוחרת ונעצרת בנשימה</b> בלילה, והיא נרדמת בישיבות.</p>
+<p><b>בבירור:</b> בדיקת שינה — OSA בינונית-קשה. US — <b>אבני מרה</b> א-תסמיניות. EGD — <b>בקע סרעפתי 3 ס"מ</b> ו-Esophagitis LA-B; ביופסיה — <b>H. pylori חיובי</b>.</p>
+<p><b>הוחלט:</b> מעקף קיבה לפרוסקופי. <b>ביום 2 אחרי הניתוח</b>: דופק <b>128</b>, נשימות 26, חרדה ותחושת "משהו לא בסדר". חום 37.4. הבטן רכה עם רגישות קלה בלבד. שתן 20 מ"ל/שעה למרות נוזלים.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. למה הדיאטות שלה נכשלו שוב ושוב אחרי כחצי שנה?</div>
+  <button class="opt" data-i="0">חוסר כוח רצון — בעיה התנהגותית בלבד</button>
+  <button class="opt" data-i="1">ירידה קלורית מעלה את הגרלין מהפונדוס ומפעילה את ה-Set-point ההיפותלמי (NPY/AgRP) — המוח "מגן" על המשקל הגבוה</button>
+  <button class="opt" data-i="2">דיאטה מעלה GLP-1 ולכן מגבירה רעב</button>
+  <button class="opt" data-i="3">דיאטה מורידה את מספר תאי השומן ולכן הם מתמלאים מחדש</button>
+  <div class="explain">נכון (2): הספר מסביר שגרלין עולה אחרי דיאטות דלות קלוריות — מנגנון סביר לכישלון אחרי ~6 חודשים; ה-Set-point מגביר תיאבון. (1) השמנה מוכרת כמחלה, לא "כוח רצון". (3) GLP-1 הוא מדכא תיאבון, ולא עולה בדיאטה כמו אחרי מעקף. (4) מספר תאי השומן לא יורד בדיאטה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. למה בחולה הזו דווקא מעקף (RYGB) עדיף על שרוול?</div>
+  <button class="opt" data-i="0">כי שרוול אסור בסוכרת</button>
+  <button class="opt" data-i="1">כי מעקף בטוח יותר ועם פחות חסרים תזונתיים</button>
+  <button class="opt" data-i="2">כי ב-BMI 43 שרוול לא מוריד משקל</button>
+  <button class="opt" data-i="3">כי יש לה GERD עם בקע סרעפתי — שרוול יוצר מערכת לחץ גבוה שמחמירה ריפלוקס, ואילו במעקף הכיס הקטן כמעט לא מייצר חומצה והמרה מנותבת הרחק (הפוגה &gt;90% בתסמינים); יתרון גם בסוכרת (GLP-1)</button>
+  <div class="explain">נכון (4): GERD = הסיבה העיקרית להמרת שרוול למעקף (7/10 מהניתוחים החוזרים ב-SLEEVEPASS); הפוגת GERD 60% מול 25%. (1) שרוול מצוין גם בסוכרת (STAMPEDE). (2) הפוך — במעקף יותר חסרים (ברזל, B12). (3) שרוול מוריד ~49–58% מהעודף.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. מה עושים עם אבני המרה וה-H. pylori?</div>
+  <button class="opt" data-i="0">כולציסטקטומיה באותו ניתוח (אחרי מעקף אי אפשר לבצע ERCP רגיל), וטיפול להכחדת H. pylori לפני הניתוח (מוריד כיב מרגינלי)</button>
+  <button class="opt" data-i="1">מתעלמים מאבנים א-תסמיניות; H. pylori לא רלוונטי כי הקיבה נעקפת</button>
+  <button class="opt" data-i="2">Ursodiol בלבד במקום כולציסטקטומיה; H. pylori מטפלים רק אם יופיע כיב</button>
+  <button class="opt" data-i="3">כולציסטקטומיה רק אחרי שתושג ירידה במשקל</button>
+  <div class="explain">נכון (1): הספר — אם יש אבנים, רוב המנתחים מסירים את כיס המרה בו-זמנית; Ursodiol שמור לכיס <b>תקין</b>. טיפול ב-H. pylori לפני הניתוח מוריד כיבים מרגינליים. (2) ERCP בלתי אפשרי אחרי RYGB — אבן בצינור תהיה בעיה קשה. (3) Ursodiol מונע אבנים חדשות, לא מטפל בקיימות. (4) בדיוק בשלב הירידה המהירה הסיכון עולה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. ביום 2: דופק 128, טכיפנאה, חרדה ואוליגוריה, בלי חום משמעותי ועם בטן רכה. מה הצעד הנכון?</div>
+  <button class="opt" data-i="0">להרגיע — בחולה שמן אין פריטוניטיס, ולכן אין דליפה</button>
+  <button class="opt" data-i="1">Furosemide לאוליגוריה ומעקב</button>
+  <button class="opt" data-i="2">חשד גבוה לדליפה (או PE): בירור דחוף — CT עם ניגוד פומי (ו-CTA לשלילת PE לפי הצורך), ובחולה לא יציב/ספק — לפרוסקופיה אבחנתית; החייאה ואנטיביוטיקה</button>
+  <button class="opt" data-i="3">להמתין 48 שעות ולחזור על ספירת דם</button>
+  <div class="explain">נכון (3): <b>טכיקרדיה מתמשכת היא לעתים הסימן היחיד</b> לדליפה בחולה שמן — חום וסימני צפק עלולים להיעדר. צורך מוגבר בנוזלים + אוליגוריה + טכיקרדיה = בעיה תוך-בטנית. (1) זו בדיוק המלכודת. (2) משתנים לפני החייאה מספקת — טעות. (4) עיכוב ← אלח דם.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. שנתיים אחרי (ירדה 40 ק"ג) — כאבי בטן קוליקיים והקאות. CT: Swirl במזנטריום ושארית קיבה מורחבת. מה האבחנה והטיפול?</div>
+  <button class="opt" data-i="0">היצרות האנסטומוזה — הרחבה בבלון</button>
+  <button class="opt" data-i="1">בקע פנימי עם חסימה (לולאה סגורה) — ניתוח דחוף לרדוקציה וסגירת הפתחים, לפני ששארית הקיבה והלולאה הביליו-פנקריאטית יתנפחו וייקרעו</button>
+  <button class="opt" data-i="2">כיב מרגינלי — PPI</button>
+  <button class="opt" data-i="3">חסימה מהידבקויות — זונדה וטיפול שמרני 72 שעות</button>
+  <div class="explain">נכון (2): אחרי RYGB <b>כל חסימת מעי דק = ניתוח</b>; ירידה במשקל מגדילה את הפתחים המזנטריים. שארית קיבה מורחבת = הלולאה הביליו-פנקריאטית חסומה — לולאה סגורה שעלולה להתפוצץ בקו הסיכות. (1) היצרות מופיעה אחרי 4–6 שבועות עם אי-סבילות למוצקים. (3) כיב — כאב קודח מתמשך, לא חסימה. (4) הטיפול השמרני המקובל בחסימה מהידבקויות <b>לא מתאים</b> כאן.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. בבדיקות מעקב: Hb 10.1, MCV 74, פריטין נמוך, B12 גבולי למרות כדור B12 פומי יומי. מה ההסבר?</div>
+  <button class="opt" data-i="0">דימום ממאירות — חובה קולונוסקופיה מיידית כהסבר יחיד</button>
+  <button class="opt" data-i="1">חוסר היענות בלבד</button>
+  <button class="opt" data-i="2">ברזל נספג בעיקר בתריסריון ובג'ג'ונום הפרוקסימלי — שנעקפו (ובלי חומצה Fe³⁺ לא מומר); B12 — ערבוב מאוחר עם Intrinsic factor משארית הקיבה ← ספיגה לא יעילה גם במינון פומי ← B12 בזריקה/תת-לשוני</button>
+  <button class="opt" data-i="3">תת-ספיגה של שומן — כמו ב-BPD</button>
+  <div class="explain">נכון (3): חוסר ברזל 15–40% ואנמיה עד 20% אחרי RYGB; חוסר B12 15–20% ויכול להתפתח למרות מינון פומי גבוה. (1) בירור לדימום רלוונטי לפי הקשר, אבל ההסבר האנטומי הוא העיקר כאן. (2) לא נדרש להסביר. (4) תת-ספיגת שומן וויטמינים מסיסי שומן אופיינית ל-BPD/DS.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li><b>Morbid obesity</b> = BMI ≥40; סיבת מוות מונעת #2; דיאטה — ≤3% הצלחה ארוכת טווח.</li>
+    <li>מנגנון: <b>שובע פגום</b>, Set-point; <b>גרלין</b> (P/D1, פונדוס) — הורמון הרעב היחיד, עולה אחרי דיאטה; <b>MC4R</b> — הגורם החד-גני השכיח; מיקרוביום.</li>
+    <li>נלוות: מפרקים (#1, &gt;50%), OSA, אסטמה, יל"ד, סוכרת, GERD (לחץ + LES קצר), NASH, אבנים, סרטן (אסטרוגן, IGF-1, דלקת), Pickwickian (PaCO₂ &gt; PaO₂, פוליציטמיה).</li>
+    <li>ראיות: <b>SOS — תמותה −29%</b>; STAMPEDE — HbA1c −2–3.5%; סיכון מוגבר להתאבדות ← מעקב נפשי.</li>
+    <li>מנגנון הניתוח: הגבלה + תת-ספיגה + <b>גרלין ↓ (שרוול)</b> + <b>PYY/GLP-1 ↑ (מעקף)</b> — אפקט על סוכרת שאינו תלוי במשקל.</li>
+    <li>התוויות: <b>BMI &gt;40, או &gt;35 + מחלה נלווית</b>, כישלון דיאטה, יציבות נפשית. <i>עדכון 2022: ≥35 לבד; 30–34.9 עם מחלה מטבולית.</i> קונטרא: <b>Prader-Willi</b>, לא מתהלך, אי-ספיקה סופנית.</li>
+    <li>הכנה: Cefazolin במינון משקל &lt;24 ש'; LMWH + SCD; אבנים ← כולציסטקטומיה; כיס תקין ← <b>Ursodiol 300×2 × 6 חודשים</b>; EGD ב-GERD; CPAP; דיאטה לכיווץ כבד.</li>
+    <li><b>RYGB</b>: כיס 15–20 מ"ל, BP limb 30–40 ס"מ מ-Treitz, Roux 80–150 ס"מ, Antecolic, <b>סגירת פתחים</b>. מרפא GERD.</li>
+    <li><b>LSG</b> (הכי שכיח, ~60%): Bougie 34–40 Fr, 3 ס"מ מהפילורוס עד His, לשמור Left gastric, לא להצר ב-Incisura; GERD = חסרון עיקרי. עדיף ב-IBD, השתלה, NSAIDs, אי-ספיקת לב, חסרים קיימים.</li>
+    <li><b>BPD/DS</b>: Common channel 50/100 ס"מ, EWL הגבוה ביותר, חסרי A/D/K/אבץ, תת-תזונה חלבונית 12% (TPN). <b>LAGB</b>: תמותה ~0, אבל החלקה/שחיקה/הרחבת וושט, 31% ניתוח חוזר — כמעט נזנח.</li>
+    <li><b>דליפה</b>: <b>טכיקרדיה = לעתים הסימן היחיד</b>; שרוול — שליש פרוקסימלי, 1–4 שבועות; ניקוז, TPN, סטנט/Endo-VAC.</li>
+    <li><b>LIMBS</b>: Leak, Internal hernia (כל חסימה = ניתוח; CT), Marginal ulcer (2–10%; כיס גדול, NSAIDs, עישון, H. pylori, פיסטולה גסטרו-גסטרית; PPI), B12/ברזל, Stenosis (4–6 שבועות, בלון).</li>
+    <li>הקאות ממושכות ← <b>תיאמין IV</b> (Wernicke). VTE — 17% מהמוות. מיומנות ומהירות המנתח = מנבא הסיבוכים החזק ביותר.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
