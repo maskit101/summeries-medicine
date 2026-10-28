@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>הקיבה (Stomach) — פיזיולוגיה, כיב פפטי, H. pylori, סיבוכים וניתוחים, Zollinger-Ellison, סרטן קיבה, לימפומה, GIST ו-NET</title>
+<style>
+  :root{color-scheme:light;
+    --ink:#1f2937; --sub:#4b5563; --line:#e5e7eb;
+    --blue:#2563eb; --blue-bg:#eff6ff;
+    --amber:#b45309; --amber-bg:#fffbeb;
+    --green:#047857; --green-bg:#ecfdf5;
+    --purple:#6d28d9; --purple-bg:#f5f3ff;
+    --red:#b91c1c;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:var(--ink); line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid var(--blue); padding-bottom:12px}
+  .subtitle{color:var(--sub); font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:var(--blue); color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:var(--sub)}
+
+  .mechanism{background:var(--blue-bg); border-right:4px solid var(--blue); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:var(--amber-bg); border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:var(--amber)}
+
+  figure{margin:16px 0; text-align:center}
+  figure img{max-width:100%; border-radius:8px; border:1px solid var(--line)}
+  figcaption{font-size:14px; color:var(--sub); margin-top:6px; text-align:right}
+  figcaption a{color:var(--blue)}
+  .figure-pair{display:flex; gap:16px; flex-wrap:wrap}
+  .figure-pair figure{flex:1; min-width:220px}
+  .figure-pair .label{display:inline-block; font-size:12.5px; font-weight:700; padding:2px 8px;
+    border-radius:4px; margin-bottom:4px}
+  .figure-pair .label.normal{background:var(--green-bg); color:var(--green)}
+  .figure-pair .label.abnormal{background:#fef2f2; color:var(--red)}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid var(--line); padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:var(--green-bg); border-right:4px solid var(--green); padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:var(--green)}
+
+  .surgery{background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin:14px 0}
+  .surgery h4{margin:14px 0 4px; font-size:16px}
+  .surgery h4:first-child{margin-top:0}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid var(--line)}
+  .resource-list a{color:var(--blue); font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:var(--sub); font-size:14.5px}
+
+  .case{background:var(--purple-bg); border-right:4px solid var(--purple); padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:var(--purple)}
+
+  .quiz{border:1px solid var(--line); border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:var(--ink)}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:var(--green-bg); border-color:var(--green); font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .link-card{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:8px;
+    padding:12px 14px; margin:10px 0; text-decoration:none; color:inherit; background:#fafafa}
+  .link-card:hover{background:#f3f4f6}
+  .link-card .ico{font-size:22px; flex-shrink:0}
+  .link-card .t{font-weight:700; color:var(--blue)}
+  .link-card .d{font-size:13.5px; color:var(--sub); margin-top:2px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid var(--line); border-radius:8px; margin:14px 0}
+  .book-box{background:#eef2ff; border:1px solid #c7d2fe; border-right:5px solid #4f46e5; border-radius:8px; padding:14px 18px; margin:16px 0}
+  .book-box h3{margin:12px 0 6px; color:#3730a3; font-size:16px}
+  .book-box h3:first-child{margin-top:0}
+  .book-badge{display:inline-block; background:#4f46e5; color:#fff; border-radius:999px; padding:3px 12px; font-size:13px; font-weight:600; margin:0 0 12px}
+</style>
+</head>
+<body>
+
+<!-- מקור: ה-PDF של פרק 49 מתוך book/ שימש מקור ראשי (Sabiston, Stomach, חולץ עם pdftotext, 2026-10-28). השלמות מהרשת: תמונות Wikimedia Commons וסרטוני YouTube שנמצאו בחיפוש אמיתי; עדכונים מעבר לספר מסומנים כ"עדכון"/"השלמה" (ACG 2024 ל-H. pylori, אימונותרפיה ו-Zolbetuximab בסרטן קיבה מתקדם). -->
+
+<div style="max-width:880px;margin:0 auto;padding:10px 24px 0;display:flex;gap:16px;font-size:13px;flex-wrap:wrap">
+  <a href="../../index.html" target="_top" style="color:#6b7280;text-decoration:none;font-weight:600">&#8592; כל הנושאים</a>
+  <a href="../index.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🩺 כירורגיה — עמוד הבית</a>
+  <a href="../summaries.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">📄 כל הסיכומים</a>
+  <a href="../flashcards/study.html" target="_top" style="color:#2563eb;text-decoration:none;font-weight:600">🗂️ כרטיסיות תרגול</a>
+</div>
+
+<p style="margin:0 0 14px"><a href="../index.html" style="color:#2563eb; font-weight:600; text-decoration:none">← חזרה לעמוד הראשי (כל הנושאים)</a></p>
+<h1>הקיבה (Stomach) — כיב פפטי, סרטן קיבה וגידולים נוספים</h1>
+<div class="subtitle">פרק 49 בספר Sabiston — אנטומיה (אספקת דם, עצב הוואגוס, ניקוז לימפתי); פיזיולוגיה של הפרשת חומצה (גסטרין, סומטוסטטין, היסטמין, תא ECL) ותנועתיות (גסטרופרזיס); מחלה פפטית — H. pylori ו-NSAIDs, סיווג Johnson, אבחנה וטיפול תרופתי; סיבוכים (דימום, ניקוב, חסימת מוצא) וניתוחים (Vagotomy, Antrectomy, Billroth); Zollinger-Ellison; דלקת קיבה מסטרס; תסמונות אחרי כריתת קיבה; סרטן קיבה (גורמי סיכון, Lauren, TNM, בירור, כריתה אנדוסקופית, D2, טיפול פרי-אופרטיבי); לימפומה ו-MALT; GIST; NET; Ménétrier, Mallory-Weiss, Dieulafoy, ווריסים בקיבה, וולבולוס ובזואר</div>
+<div class="book-badge">📘 נכתב לפי הספר (Sabiston, פרק 49) — 2026-10-28</div>
+
+<h2><span class="num">1</span> פתיח</h2>
+<p>הקיבה היא <b>מאגר, מערבל ומעבדה כימית</b>: היא מאחסנת ארוחה, טוחנת מוצקים לחלקיקים <b>קטנים מ-1 מ"מ</b>, ומתחילה פירוק חלבונים בעזרת חומצה ופפסין. הפרק עוסק בשלושה עולמות כירורגיים: <b>מחלה פפטית (PUD)</b> — שבה תפקיד המנתח השתנה מניתוחי חומצה אלקטיביים לטיפול כמעט רק ב<b>סיבוכים</b> (דימום, ניקוב, חסימה); <b>סרטן קיבה</b> — סיבת המוות ה-2 מסרטן בעולם (כ-5 בשכיחות), שמאובחן לרוב מאוחר; ו<b>גידולים ונגעים אחרים</b> (לימפומה, GIST, NET, Dieulafoy, וולבולוס).</p>
+<p>המסר המרכזי: <span class="key">רוב הכיבים נגרמים מ-H. pylori או NSAIDs, ולכן ריפוי = הכחדת החיידק/הפסקת התרופה</span>, ו<span class="key">כל כיב קיבה הוא סרטן עד שהוכח אחרת</span> (בניגוד לכיב תריסריון, שבו ממאירות נדירה מאוד).</p>
+
+<h2><span class="num">2</span> המנגנון - למה זה קורה</h2>
+
+<h3>א. איך הקיבה מחליטה כמה חומצה להפריש</h3>
+<div class="mechanism">
+<p class="chain">תא הקיר (Parietal cell) הוא "מפעל החומצה": משאבת <b>H⁺/K⁺-ATPase</b> שלו מוציאה מימן ללומן כנגד מפל ריכוז של <b>פי מיליון</b> — ולכן שליש מנפח התא הוא מיטוכונדריות. שלושה "מפתחות" מדליקים אותו:</p>
+<ul>
+  <li><b>אצטילכולין (ACh)</b> מעצב הוואגוס ← קולטן <b>M3</b> (דרך Ca²⁺). בנוסף הוא מגרה תאי G ו-ECL ו<b>מדכא</b> את תאי D (הבלם).</li>
+  <li><b>גסטרין</b> מ<b>תאי G באנטרום</b> ← קולטן CCK-B. משתחרר בתגובה ל<b>מתיחה, חלבון ו-GRP (Bombesin)</b>. פועל מעט ישירות, ובעיקר דרך <b>תא ה-ECL</b>.</li>
+  <li><b>היסטמין</b> מתאי <b>ECL</b> (Enterochromaffin-like) שיושבים צמוד לתאי הקיר ← קולטן <b>H2</b> (דרך cAMP). <span class="key">תא ה-ECL הוא "המגבר המרכזי"</span>: חוסמי H2 מבטלים כמעט לגמרי גם את התגובה לגסטרין ול-ACh.</li>
+  <li><b>הבלם — סומטוסטטין</b> מתאי D: משתחרר כש<b>pH באנטרום יורד מתחת ל-3</b>, ומעכב גסטרין, היסטמין ותא הקיר עצמו. זהו לולאת המשוב השלילי.</li>
+</ul>
+<p><b>שלושה שלבים בארוחה:</b> <b>צפלי</b> (ריח/מחשבה ← וואגוס; הכי אינטנסיבי אבל קצר — 20–30%), <b>קיבתי</b> (חלבון + מתיחה ← גסטרין ורפלקס וזו-וגאלי; <b>60–70%</b>), <b>מעיי</b> (כימוס בתריסריון; 5–10%).</p>
+<p><b>למה זה חשוב קלינית?</b> PPI הם <b>Prodrugs</b> שמופעלים רק ב-pH חומצי בתעלה ההפרשתית, ונקשרים <b>קוולנטית ובלתי הפיך</b> לציסטאין במשאבה ← ההשפעה נמשכת עד שנבנות משאבות חדשות. לכן <b>שילוב PPI עם נוגדי חומצה/H2 עלול להחליש את ה-PPI</b>. וכשאין חומצה (PPI, אטרופיה, אנמיה מזיקה, וגוטומיה) — תאי D "שותקים" ← <b>הגסטרין עולה באופן מתאים</b>. ב<b>גסטרינומה</b>, לעומת זאת, הגסטרין עולה <b>באופן לא מתאים</b>, למרות חומצה גבוהה.</p>
+</div>
+
+<svg class="diagram" viewBox="0 0 680 290" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>ויסות הפרשת החומצה בקיבה</title>
+  <desc>הוואגוס, תאי G, D ו-ECL ותא הקיר; סומטוסטטין כבלם; PPI וחוסמי H2 כנקודות חסימה</desc>
+  <rect x="10" y="8" width="660" height="26" rx="6" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="340" y="26" text-anchor="middle" fill="#1e3a8a" font-weight="700">שלושה מפתחות (ACh, גסטרין, היסטמין) ובלם אחד (סומטוסטטין) — ונקודת סיום אחת: H⁺/K⁺-ATPase</text>
+  <rect x="510" y="50" width="150" height="44" rx="8" fill="#ede9fe" stroke="#6d28d9"/>
+  <text x="585" y="70" text-anchor="middle" font-weight="700" fill="#4c1d95">וואגוס (ACh)</text>
+  <text x="585" y="86" text-anchor="middle" font-size="11">שלב צפלי · M3</text>
+  <rect x="300" y="50" width="160" height="44" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="380" y="70" text-anchor="middle" font-weight="700" fill="#78350f">תא G (אנטרום)</text>
+  <text x="380" y="86" text-anchor="middle" font-size="11">גסטרין ← חלבון, מתיחה</text>
+  <rect x="40" y="50" width="200" height="44" rx="8" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="140" y="70" text-anchor="middle" font-weight="700" fill="#7f1d1d">תא D — סומטוסטטין</text>
+  <text x="140" y="86" text-anchor="middle" font-size="11">מופעל ב-pH &lt; 3 (בלם)</text>
+  <rect x="300" y="135" width="160" height="44" rx="8" fill="#fef3c7" stroke="#b45309"/>
+  <text x="380" y="155" text-anchor="middle" font-weight="700" fill="#78350f">תא ECL</text>
+  <text x="380" y="171" text-anchor="middle" font-size="11">היסטמין (המגבר)</text>
+  <rect x="250" y="220" width="260" height="50" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="380" y="241" text-anchor="middle" font-weight="700" fill="#065f46">תא הקיר — H⁺/K⁺-ATPase</text>
+  <text x="380" y="259" text-anchor="middle" font-size="11" fill="#065f46">HCl + Intrinsic factor</text>
+  <!-- arrows -->
+  <line x1="380" y1="94" x2="380" y2="129" stroke="#b45309" stroke-width="2"/><polygon points="374,128 386,128 380,136" fill="#b45309"/>
+  <line x1="380" y1="179" x2="380" y2="214" stroke="#b45309" stroke-width="2"/><polygon points="374,213 386,213 380,221" fill="#b45309"/>
+  <text x="392" y="200" font-size="11" fill="#78350f">H2</text>
+  <line x1="560" y1="94" x2="470" y2="225" stroke="#6d28d9" stroke-width="2"/><polygon points="466,218 476,224 466,230" fill="#6d28d9"/>
+  <text x="530" y="170" font-size="11" fill="#4c1d95">M3</text>
+  <line x1="530" y1="94" x2="462" y2="148" stroke="#6d28d9" stroke-width="2"/><polygon points="460,141 466,151 456,153" fill="#6d28d9"/>
+  <line x1="300" y1="72" x2="246" y2="72" stroke="#b91c1c" stroke-width="2"/>
+  <text x="272" y="64" text-anchor="middle" font-size="13" fill="#b91c1c" font-weight="700">⊣</text>
+  <line x1="140" y1="94" x2="290" y2="150" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="200" y="135" font-size="11" fill="#b91c1c">⊣ היסטמין</text>
+  <line x1="120" y1="94" x2="250" y2="235" stroke="#b91c1c" stroke-width="2" stroke-dasharray="5 3"/>
+  <text x="120" y="200" font-size="11" fill="#b91c1c">⊣ תא הקיר</text>
+  <rect x="520" y="225" width="150" height="40" rx="6" fill="#fff" stroke="#047857"/>
+  <text x="595" y="241" text-anchor="middle" font-size="11" fill="#065f46" font-weight="700">PPI = חוסם את המשאבה</text>
+  <text x="595" y="256" text-anchor="middle" font-size="11" fill="#065f46">H2 blocker = חוסם את המגבר</text>
+  <text x="120" y="282" text-anchor="middle" font-size="11" fill="#7f1d1d">חומצה נמוכה ← D שקט ← גסטרין ↑ (PPI, אטרופיה)</text>
+</svg>
+
+<h3>ב. למה נוצר כיב — מאזן בין "תוקפים" ל"מגינים"</h3>
+<div class="mechanism">
+<p class="chain">כיב פפטי = פגם ברירית שחודר <b>דרך ה-Muscularis mucosae</b> (שחיקה/Erosion נשארת שטחית לה). הוא נוצר כשה"תוקפים" (חומצה, פפסין, H. pylori, NSAIDs, עישון, אלכוהול, ריפלוקס מרה, איסכמיה) גוברים על ה"מגינים" (ריר + ביקרבונט, זרימת דם, פרוסטגלנדינים, התחדשות תאים).</p>
+<ul>
+  <li><b>שכבת ההגנה</b>: ג'ל ריר (85% מים) + ביקרבונט ← <b>pH 2 בלומן אבל ~7 על פני התא</b>. כשהזרימה יורדת ביותר מ-75% — נזק קשה, שמוחמר בנוכחות חומצה. אחרי פגיעה, תאים שכנים "זוחלים" לכסות את הפגם (<b>Restitution</b>).</li>
+  <li><b>NSAIDs ואספירין</b> — פגיעה כפולה: (1) <b>עיכוב COX</b> ← פחות פרוסטגלנדינים ← פחות ריר, ביקרבונט וזרימת דם; (2) <b>"מלכודת יונים"</b>: בחומצה הם לא מיוננים וחודרים לתא, בציטוזול הנייטרלי הם מתיוננים ו<b>"נתקעים"</b> בפנים ← רעילות ישירה. סיכון לאירוע GI משמעותי <b>1–4% לשנה</b>; כיבי NSAID — בעיקר <b>בקיבה</b>, לרוב <b>בלי גסטריטיס</b>, ולא חוזרים אחרי הפסקה.</li>
+  <li><b>H. pylori</b> — חיידק <b>גראם שלילי, ספירלי, עם שוטונים, מיקרואירופילי</b>, שחי רק על אפיתל מסוג קיבה (גם במטפלזיה בתריסריון, Barrett, Meckel). הנשק העיקרי: <b>Urease</b> ← מפרק אוריאה לאמוניה וביקרבונט ← "ענן" בסיסי סביב החיידק. ארבעה מנגנוני נזק:
+    <ol>
+      <li><b>רעלנים מקומיים</b> — אמוניה, ציטוטוקסינים (CagA מגביר אלימות), מוצינאז שמפרק ריר, פוספוליפזות, PAF (תרומבוזה במיקרו-צירקולציה).</li>
+      <li><b>תגובה חיסונית</b> — נויטרופילים ומונוציטים ← ציטוקינים ורדיקלים חופשיים. זו <b>דלקת שמונעת מהחיידק עצמו</b> — לא דלקת "סטרילית" שהופכת לחיידקית; החיידק נמצא שם מההתחלה.</li>
+      <li><b>שיבוש ההורמונים</b> — זיהום באנטרום ← <b>פחות סומטוסטטין מתאי D</b> ← <b>גסטרין ↑</b> ← עם הזמן <b>יתר חומצה</b> (אפקט טרופי על ECL ו-G). אבל אם הזיהום הורס את בלוטות גוף הקיבה ← <b>אטרופיה ותת-חומצה</b>.</li>
+      <li><b>מטפלזיה קיבתית בתריסריון</b> — החומצה העודפת "מלמדת" את רירית התריסריון להפוך לרירית קיבה (הגנה), ו-H. pylori מתיישב עליה ← דואודניטיס ← <b>כיב תריסריון</b>.</li>
+    </ol>
+  </li>
+</ul>
+<p><b>החיבור לסרטן ולימפומה:</b> זיהום כרוני ← גסטריטיס אטרופית ← <b>מטפלזיה מעיית ← דיספלזיה ← אדנוקרצינומה מסוג מעיי</b> (IARC: <b>קרצינוגן ודאי</b>, ~פי 6 בסיכון). ובמסלול אחר — גירוי לימפוציטי מתמשך ← <b>לימפומת MALT</b> שנסוגה ב-<b>&gt;75%</b> אחרי הכחדת החיידק.</p>
+</div>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/u94FEb_69G4" title="Peptic Ulcer Disease Nursing, Pathophysiology, Treatment" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Peptic Ulcer Disease — Pathophysiology, Treatment: סקירה מאוירת של מנגנון הכיב (H. pylori, NSAIDs), תסמינים, סיבוכים וטיפול. מקור: YouTube (ערוץ הוראה לסיעוד/רפואה).</p>
+
+<h3>ג. גסטרופרזיס ו"קוצב הקיבה"</h3>
+<div class="mechanism">
+<p>תאי <b>Cajal</b> בעקומה הגדולה באמצע הגוף יוצרים <b>גלים איטיים של 3 לדקה</b>; בצום — <b>MMC</b> כל 90–120 דקות "מנקה" את הקיבה (נשמר גם אחרי וגוטומיה). אחרי ארוחה — <b>הרפיה קבלנית (Receptive relaxation)</b> והתאמה (Accommodation) של הפונדוס, <b>בתיווך הוואגוס</b>. לכן אחרי וגוטומיה: <span class="key">נוזלים מתרוקנים מהר מדי ומוצקים לאט מדי</span>.</p>
+<p><b>גסטרופרזיס</b>: אידיופתי (~חצי), <b>סוכרת</b> (היפרגליקמיה עצמה מחלישה את האנטרום ומכווצת את הפילורוס), ויראלי, נוירולוגי, תרופות (אופיואידים, CCB, TCA). אבחנה: קודם <b>שלילת חסימה מכנית</b> (EGD + CT/MR), ואז <b>מיפוי ריקון קיבה</b> — שארית ב-4 שעות: <b>10–15% קל, 15–35% בינוני, &gt;35% קשה</b>. טיפול: ארוחות קטנות דלות שומן וסיבים ← <b>Metoclopramide</b> (D2 אנטגוניסט, קו ראשון) ← <b>Erythromycin/Azithromycin</b> (אגוניסטים למוטילין). עמידים: Pyloroplasty/Pyloromyotomy, G-POEM, קוצב קיבתי, גסטרוסטומיה לניקוז + ג'ג'ונוסטומיה להזנה.</p>
+</div>
+
+<h2><span class="num">3</span> אנטומיה, היסטולוגיה ופיזיולוגיה</h2>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gray1046.png?width=520" alt="אנטומיה של הקיבה - Gray's Anatomy">
+  <p class="media-cap">הקיבה לפי Gray's Anatomy: קרדיה, פונדוס, גוף, עקומה קטנה וגדולה, ואזור הפילורוס. שימי לב ל-Incisura angularis — הגבול בין הגוף לאנטרום, המקום הקלאסי לכיב Johnson I. מקור: Wikimedia Commons (נחלת הכלל).</p>
+</figure>
+
+<ul>
+  <li><b>חלוקה</b>: קרדיה ← פונדוס (הנקודה הגבוהה, "רפויה") ← גוף ← (Incisura angularis) ← אנטרום ← פילורוס. הקיבה קבועה ב-GEJ ובפילורוס, והאמצע ניע — מה שמאפשר <b>וולבולוס</b>.</li>
+  <li><b>אספקת דם</b> — בעיקר מ<b>הגזע הצליאקי</b>: <b>Left gastric</b> (הגדול ביותר) ו-Right gastric בעקומה הקטנה; <b>Left gastroepiploic</b> (מ-Splenic) ו-<b>Right gastroepiploic</b> (מ-GDA) בעקומה הגדולה; ועוד <b>Short gastrics</b> ו-Inferior phrenic. <span class="key">הקיבה שורדת קשירה של 3 מתוך 4 העורקים</span> כל עוד הקשתות לאורך העקומות שלמות. <b>15–20%</b> — <b>עורק כבדי שמאלי חריג מה-Left gastric</b>: קשירה פרוקסימלית ← איסכמיה של האונה השמאלית.</li>
+  <li><b>ורידים</b>: Left gastric (<b>Coronary vein</b>) ו-Right gastric ← וריד הפורטה; Right gastroepiploic ← SMV; Left gastroepiploic ← Splenic (חשוב בווריסים בקיבה).</li>
+  <li><b>לימפה</b>: 4 אזורים שמתנקזים לקשריות הצליאקיות ולצינור החזה; גידול יכול לשלוח גרורות <b>לכל אחד מהאזורים</b> ללא קשר למיקומו, ויש <b>פלקסוס תת-רירי עשיר</b> ← תאים ממאירים מיקרוסקופיים <b>סנטימטרים</b> מהגידול הנראה (מכאן שוליים רחבים).</li>
+  <li><b>וואגוס</b>: ב-GEJ — <b>שמאלי קדמי, ימני אחורי</b> (LARP). השמאלי נותן ענף כבדי וממשיך כ<b>עצב Latarjet</b> הקדמי; הימני נותן ענף צליאקי. <b>"העצב הפושע של Grassi"</b> — הענף הראשון של הוואגוס האחורי; אם לא נחתך ← כיב חוזר. 90% מסיבי הוואגוס <b>אפרנטיים</b>.</li>
+  <li><b>שכבות הדופן</b>: סרוזה ← Muscularis propria (3 שכבות; השכבה ה<b>מעגלית האמצעית</b> היא היחידה השלמה ומתעבה לסוגר הפילורי) ← <b>תת-רירית — השכבה החזקה ביותר</b> (מחזיקה תפרים), עם כלי דם ולימפה ← רירית. ה-<b>Muscularis mucosae</b> מגדירה את הגבול בין סרטן חודרני ללא-חודרני.</li>
+</ul>
+
+<table>
+<tr><th>תא (Table 49.1)</th><th>מיקום</th><th>מה מפריש</th><th>רלוונטיות קלינית</th></tr>
+<tr><td><b>Parietal</b></td><td>גוף/פונדוס</td><td>HCl + <b>Intrinsic factor</b></td><td>אחרי גסטרקטומיה טוטאלית/אנמיה מזיקה — B12 לכל החיים; PPI <b>לא</b> חוסמים IF</td></tr>
+<tr><td><b>Chief</b></td><td>גוף</td><td>פפסינוגן</td><td>פפסין פעיל ב-pH 1.5–2, ~20% מעיכול החלבון</td></tr>
+<tr><td><b>G</b></td><td>אנטרום</td><td>גסטרין</td><td>אנטרקטומיה מסירה את מקור הגסטרין</td></tr>
+<tr><td><b>D</b></td><td>גוף + אנטרום</td><td>סומטוסטטין</td><td>הבלם; מופחת ב-H. pylori</td></tr>
+<tr><td><b>ECL</b></td><td>גוף</td><td>היסטמין</td><td>היפרגסטרינמיה כרונית ← היפרפלזיה ← NET (קרצינואיד)</td></tr>
+<tr><td><b>Endocrine (P/D1)</b></td><td>גוף/פונדוס</td><td>גרלין</td><td>רעב; יורד אחרי שרוול/מעקף</td></tr>
+<tr><td>Surface mucous</td><td>מפושט</td><td>ריר, ביקרבונט, PG</td><td>NSAIDs ו-H. pylori פוגעים בשכבה</td></tr>
+</table>
+
+<h2><span class="num">4</span> ביטוי קליני ובדיקה גופנית</h2>
+<table>
+<tr><th>מצב</th><th>התמונה הקלאסית</th><th>רמז בבדיקה/בהיסטוריה</th></tr>
+<tr><td><b>כיב תריסריון</b></td><td>כאב אפיגסטרי ממוקד, <b>משתפר באוכל</b>, עונתי (אביב/סתיו); רוב החולים א-תסמיניים</td><td>כאב <b>שהופך קבוע/מקרין לגב</b> = חדירה ללבלב; צפקת מפושטת = ניקוב חופשי</td></tr>
+<tr><td><b>כיב קיבה</b></td><td>גיל 55–65, כאב/דימום/חסימה; לעתים פיסטולה גסטרו-קולית</td><td><b>הסיבוך השכיח — ניקוב</b> (קיר קדמי של העקומה הקטנה); דימום בקשישים קשה יותר</td></tr>
+<tr><td><b>ניקוב</b></td><td>כאב <b>פתאומי וקשה</b> באפיגסטריום שיכול <b>להשתפר זמנית</b> אחרי כמה שעות</td><td>אוויר חופשי מתחת לסרעפת, בטן "קרשית"</td></tr>
+<tr><td><b>חסימת מוצא קיבה</b></td><td>שובע מוקדם, הקאות של מזון לא מעוכל, ירידה במשקל</td><td><b>Succussion splash</b>; <b>אלקלוזיס מטבולית היפוכלורמית היפוקלמית</b></td></tr>
+<tr><td><b>סרטן קיבה</b></td><td>כאב אפיגסטרי <b>קבוע שלא משתפר באוכל</b>, שובע מוקדם, ירידה במשקל, אנמיה (40%)</td><td>קשריות: <b>Virchow</b> (על-בריחית שמאלית), <b>Irish</b> (בית שחי), <b>Sister Mary Joseph</b> (טבור); <b>Krukenberg</b> (שחלה), <b>Blumer shelf</b> (מדף ברקטלית); כבד מוגדל, מיימת</td></tr>
+<tr><td><b>Dieulafoy</b></td><td><b>המטמזיס מסיבי, פתאומי וללא כאב</b></td><td>גבר, מחלות לב/כליה/סוכרת</td></tr>
+<tr><td><b>וולבולוס</b></td><td><b>Borchardt triad</b>: כאב עליון פתאומי וקשה, <b>ניסיונות הקאה עם מעט תוכן</b>, <b>אי-אפשר להעביר זונדה</b></td><td>בקע פרא-וושטי</td></tr>
+</table>
+
+<div class="key-box">למה בחסימת מוצא קיבה מתפתחת <b>אלקלוזיס היפוכלורמית היפוקלמית</b>? ההקאות מאבדות HCl ← כלור ↓ ו-HCO₃⁻ ↑. הכליה מנסה לשמר נפח דרך אלדוסטרון ← שומרת Na⁺ ומפרישה K⁺ ו-H⁺ ("<b>שתן חומצי פרדוקסלי</b>") ← ההיפוקלמיה והאלקלוזיס מחמירות. התיקון: <b>סליין 0.9% + אשלגן</b> (הכלור הוא שמאפשר לכליה להפריש ביקרבונט).</div>
+
+<h2><span class="num">5</span> אבחנה</h2>
+
+<h3>א. בדיקות ל-H. pylori</h3>
+<table>
+<tr><th>בדיקה</th><th>מה בעצם בודקים</th><th>רגישות/סגוליות</th><th>מתי משתמשים</th></tr>
+<tr><td><b>Urease מהיר (CLO)</b></td><td>ביופסיה מגוף ואנטרום בתוך ג'ל עם אוריאה ואינדיקטור pH; אם יש Urease ← אמוניה ← שינוי צבע תוך שעה</td><td>&gt;90% / 95–100%</td><td>כשממילא עושים EGD</td></tr>
+<tr><td><b>היסטולוגיה</b></td><td>צביעה (H&amp;E, Giemsa, כסף) — רואים את החיידק ואת חומרת הגסטריטיס</td><td>~95% / 99% — <b>המדויקת ביותר גם תחת PPI</b></td><td>EGD; יקרה יותר</td></tr>
+<tr><td>תרבית</td><td>גידול החיידק</td><td>~80% / 100%</td><td>לבדיקת רגישות לאנטיביוטיקה (3–5 ימים)</td></tr>
+<tr><td><b>בדיקת נשיפה (UBT)</b></td><td>שותים אוריאה מסומנת בפחמן (¹³C/¹⁴C); ה-Urease מפרק אותה ל-CO₂ מסומן שנמדד בנשיפה — דוגם את <b>כל הקיבה</b></td><td>&gt;95% / &gt;95%</td><td>אבחנה ו<b>אישור הכחדה</b></td></tr>
+<tr><td><b>אנטיגן בצואה</b></td><td>נוגדנים מונוקלונליים לאנטיגן החיידק בצואה</td><td>&gt;90%</td><td>אבחנה ואישור הכחדה — <b>הכי משתלם</b></td></tr>
+<tr><td>סרולוגיה (IgG)</td><td>נוגדנים בדם</td><td>90% / 76–96%</td><td><b>נשארת חיובית שנה+ אחרי ריפוי</b> ← לא לבדיקת הצלחת טיפול</td></tr>
+</table>
+<div class="key-box">PPI, H2 ואנטיביוטיקה <b>מורידים רגישות</b> של כל הבדיקות התלויות בחיידק חי (Urease, UBT, אנטיגן): להפסיק <b>אנטיביוטיקה 4 שבועות ו-PPI שבועיים</b> לפני, ולבדוק הכחדה <b>≥4 שבועות</b> אחרי סיום הטיפול. גם <b>דימום פעיל</b> מוריד רגישות — תוצאה שלילית בדימום לא שוללת.</div>
+
+<h3>ב. הדמיה ואנדוסקופיה בכיב</h3>
+<ul>
+  <li><b>EGD = בדיקת הבחירה</b>: רואה את הכיב (&gt;90%), מאפשרת <b>ביופסיה</b> ו<b>טיפול</b> (דימום, חסימה), ומזהה גורמים אחרים (וושטיט, גסטריטיס).</li>
+  <li><span class="key">כל כיב קיבה — ביופסיה, רצוי מ-4 הרביעים</span>: ביופסיה אחת מזהה סרטן רק ב-70%, ארבע — 95%, שבע — 98%. כיב <b>גדול, עם שוליים לא סדירים/מורמים (Heaped-up)</b> — חשוד יותר. גם ב-<b>בליעת בריום</b> כ-5% מהכיבים ש"נראים שפירים" ממאירים. כיב קיבה — EGD חוזרת לוידוא ריפוי.</li>
+  <li><b>מעבדה</b>: CBC, תפקודי כבד, קריאטינין, עמילאז, <b>סידן</b>; <b>גסטרין בצום</b> בכיב עמיד לטיפול או לפני ניתוח.</li>
+</ul>
+
+<div class="figure-pair">
+<figure>
+  <span class="label abnormal">כיב עם כלי דם גלוי</span>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gastric_ulcer_2.jpg?width=420" alt="כיב קיבה עם כלי דם גלוי">
+  <p class="media-cap">כיב קיבה עם <b>כלי דם גלוי (Visible vessel)</b> — Forrest IIa, סיכון של כ-50% לדימום חוזר ← טיפול אנדוסקופי. מקור: Wikimedia Commons.</p>
+</figure>
+<figure>
+  <span class="label abnormal">"כיב" שהתברר כסרטן</span>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gastric_ulcer_3.jpg?width=420" alt="כיב קיבה שהתברר כסרטן קיבה">
+  <p class="media-cap">כיב קיבה שבביופסיה <b>התברר כאדנוקרצינומה</b> — הסיבה לביופסיות מרובות מכל כיב קיבה. מקור: Wikimedia Commons.</p>
+</figure>
+</div>
+
+<h3>ג. סיווג Johnson לכיבי קיבה (Table 49.3) — קובע את הניתוח</h3>
+<table>
+<tr><th>סוג</th><th>מיקום</th><th>חומצה</th><th>שכיחות</th><th>השלכה ניתוחית</th></tr>
+<tr><td><b>I</b></td><td>עקומה קטנה ב-<b>Incisura</b> (אזור המעבר גוף-אנטרום)</td><td>נמוכה-תקינה</td><td>~60%</td><td>אנטרקטומיה כולל הכיב, <b>בלי וגוטומיה</b></td></tr>
+<tr><td><b>II</b></td><td>גוף הקיבה <b>+ כיב תריסריון</b></td><td><b>גבוהה</b></td><td>~15%</td><td>אנטרקטומיה <b>+ וגוטומיה</b></td></tr>
+<tr><td><b>III</b></td><td><b>פרה-פילורי</b></td><td><b>גבוהה</b></td><td>~20%</td><td>אנטרקטומיה <b>+ וגוטומיה</b></td></tr>
+<tr><td><b>IV</b></td><td><b>גבוה בעקומה הקטנה ליד GEJ</b></td><td>תקינה</td><td>&lt;10%</td><td>בלי וגוטומיה (כריתה קשה טכנית)</td></tr>
+<tr><td><b>V</b></td><td>בכל מקום</td><td>תקינה — <b>NSAIDs</b></td><td>—</td><td>הפסקת NSAIDs</td></tr>
+</table>
+
+<h3>ד. Forrest — סיכון לדימום חוזר (Table 49.4)</h3>
+<table>
+<tr><th>Forrest</th><th>מראה</th><th>דימום חוזר</th><th>מה עושים</th></tr>
+<tr><td><b>Ia</b></td><td>דימום פועם (Spurting)</td><td><b>90%</b></td><td rowspan="3"><b>טיפול אנדוסקופי</b> (תרמי/קליפס/סקלרוזנט; אדרנלין רק <b>כתוספת</b>) + PPI IV</td></tr>
+<tr><td><b>Ib</b></td><td>דימום מחלחל (Oozing)</td><td>10–20%</td></tr>
+<tr><td><b>IIa</b></td><td><b>כלי דם גלוי</b></td><td><b>50%</b></td></tr>
+<tr><td><b>IIb</b></td><td>קריש דבוק</td><td>25–30%</td><td>הסרת קריש וטיפול לפי הבסיס (שיקול)</td></tr>
+<tr><td>IIc</td><td>כתם פיגמנט שטוח</td><td>5–10%</td><td rowspan="2"><b>ללא</b> טיפול אנדוסקופי — PPI פומי + H. pylori</td></tr>
+<tr><td>III</td><td>בסיס נקי</td><td>3–5%</td></tr>
+</table>
+
+<h3>ה. גסטרינומה (Zollinger-Ellison) — ההבחנה בהיפרגסטרינמיה</h3>
+<table>
+<tr><th>היפרגסטרינמיה "מתאימה" (חומצה נמוכה)</th><th>היפרגסטרינמיה "לא מתאימה" (חומצה גבוהה)</th></tr>
+<tr><td>PPI (השכיח ביותר!), גסטריטיס אטרופית, אנמיה מזיקה, אחרי וגוטומיה, סרטן קיבה, אי-ספיקת כליות (פינוי ↓)</td><td><b>ZES</b>, היפרפלזיה של תאי G, <b>Retained antrum</b> (אנטרום שנשאר על הגדם התריסריוני אחרי Billroth II — שטוף בסיס ולכן מפריש בלי בלם), חסימת מוצא, מעי קצר</td></tr>
+</table>
+<ul>
+  <li><b>ZES</b> = יתר חומצה + PUD קשה (לעתים מרובה/במקום חריג, כמו תריסריון דיסטלי/ג'ג'ונום) + גסטרינומה; גם <b>שלשול</b> (חומצה מנטרלת את ליפאז הלבלב ← סטאטוריאה) וקפלי קיבה עבים (אפקט טרופי).</li>
+  <li><b>גסטרין בצום &gt;1000 pg/mL = אבחנתי</b>; באזור האפור (&gt;200) — <b>מבחן סקרטין</b>: עלייה של <b>&gt;200 pg/mL</b> = גסטרינומה. <i>למה?</i> סקרטין <b>מדכא</b> גסטרין מתאי G תקינים, אבל <b>מגרה</b> תאי גסטרינומה (שמבטאים קולטן לסקרטין) — תגובה "פרדוקסלית".</li>
+  <li><b>20–30% חלק מ-MEN1</b> ← לבדוק PTH, סידן מיונן ופרולקטין.</li>
+  <li>מיקום: <b>משולש הגסטרינומה (Passaro)</b> — צומת ציסטי-כולדוכוס, צוואר-גוף הלבלב, מעבר D2-D3; רובם ב<b>תריסריון (D1–D2)</b> וראש הלבלב. הדמיה: CT/MRI תלת-פאזי ← סינטיגרפיה לקולטני סומטוסטטין / EUS (<i>השלמה: היום Ga-68 DOTATATE PET</i>) ← אקספלורציה.</li>
+</ul>
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/TTM5yFHDMoM" title="Gastrinoma (Zollinger-Ellison Syndrome or ZES) - Endocrinology and Pathology" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Gastrinoma (Zollinger-Ellison Syndrome) — Endocrinology and Pathology: מנגנון ההיפרגסטרינמיה האוטונומית, הקשר ל-MEN1, מבחן הסקרטין והטיפול. מקור: YouTube.</p>
+
+<h2><span class="num">6</span> טיפול</h2>
+
+<h3>א. טיפול תרופתי בכיב ובהכחדת H. pylori</h3>
+<table>
+<tr><th>תרופה</th><th>מנגנון / סוג</th><th>נגד מה</th><th>איך זה פותר את הבעיה</th><th>אזהרות / קונטרא-אינדיקציות</th></tr>
+<tr><td><b>PPI</b> — Omeprazole (Losec), Pantoprazole, Esomeprazole (Nexium)</td><td>Prodrug שמופעל בחומצה ונקשר <b>בלתי הפיך</b> ל-H⁺/K⁺-ATPase</td><td>חומצה</td><td>ריפוי <b>85% ב-4 שבועות, 96% ב-8</b>; מעלה pH כך שהאנטיביוטיקות יציבות ופעילות יותר</td><td>לא לשלב עם נוגדי חומצה; ארוך טווח — חסר B12/מגנזיום, C. difficile, דלקת ריאות, פוליפים של בלוטות פונדוס</td></tr>
+<tr><td>חוסמי H2 — Famotidine (החזק), Cimetidine (החלש)</td><td>חוסמים קולטן H2 על תא הקיר ("המגבר")</td><td>חומצה</td><td>70–80% ריפוי ב-4 שבועות — פחות מ-PPI</td><td>Cimetidine — מעכב CYP450, גינקומסטיה</td></tr>
+<tr><td><b>Clarithromycin</b></td><td>מקרוליד — נקשר ל-50S הריבוזום</td><td>H. pylori (גראם שלילי) — <b>עמידות גוברת</b></td><td>הורג את החיידק ← מונע חזרת כיב</td><td>עמידות &gt;15% באזור או חשיפה קודמת למקרוליד ← <b>לא להשתמש</b>; QT, אינטראקציות</td></tr>
+<tr><td><b>Amoxicillin</b></td><td>β-lactam — מעכב בניית דופן</td><td>H. pylori (עמידות נדירה)</td><td>בסיס יציב בטריפל</td><td>אלרגיה לפניצילין ← Metronidazole במקום</td></tr>
+<tr><td><b>Metronidazole</b> (Flagyl)</td><td>ניטרואימידזול — פוגע ב-DNA באנאירובים/מיקרואירופילים</td><td>H. pylori, אנאירובים</td><td>חלק מהמרובע ומחלופת האלרגיה</td><td>תגובת דיסולפירם עם אלכוהול; טעם מתכתי</td></tr>
+<tr><td><b>Bismuth subsalicylate</b> + <b>Tetracycline</b></td><td>ביסמוט — רעיל ישירות לחיידק ומצפה את הכיב; טטרציקלין — 30S</td><td>H. pylori</td><td>"המרובע" — עוקף עמידות לקלריתרומיצין</td><td>צואה שחורה (לא מלנה!); טטרציקלין — הריון וילדים</td></tr>
+<tr><td>Sucralfate</td><td>מלח אלומיניום של סוכרוז סולפט — מתפלמר ב-pH חומצי ומצפה את בסיס הכיב ~6 שעות</td><td>—</td><td>מגן מכני, מרכז FGF</td><td>לא בהנחיות לכיב H. pylori; אלומיניום באי-ספיקת כליות</td></tr>
+</table>
+
+<div class="mechanism">
+<p><b>משטרי קו ראשון לפי הספר (Box 49.1, ACG 2017)</b> — ההחלטה לפי <b>אלרגיה לפניצילין</b> ו<b>סיכון לעמידות למקרולידים</b>:</p>
+<ul>
+  <li><b>אין אלרגיה, אין סיכון למקרוליד</b>: טריפל קלריתרומיצין (<b>PPI + Clarithromycin + Amoxicillin</b>) <b>14 יום</b>, או מרובע ביסמוט, או Concomitant.</li>
+  <li><b>סיכון למקרוליד</b> (חשיפה קודמת / עמידות מקומית &gt;15%): <b>מרובע ביסמוט</b> (PPI + Bismuth + Tetracycline + Metronidazole) <b>10–14 יום</b>, או טריפל לבופלוקסצין.</li>
+  <li><b>אלרגיה לפניצילין</b>: מרובע ביסמוט, או טריפל קלריתרומיצין עם Metronidazole במקום Amoxicillin.</li>
+  <li><b>אלרגיה + סיכון למקרוליד</b>: מרובע ביסמוט בלבד. כישלון (~20%): משטר עם אנטיביוטיקות אחרות; חלופות הצלה — Levofloxacin או Rifabutin.</li>
+</ul>
+<p>הכחדה: ריפוי ראשוני ~90% ו<b>הישנות רק ~2%</b> — ולכן מטרת האנטיביוטיקה היא בעיקר <b>מניעת חזרה</b>, וה-PPI — ריפוי מהיר. PPI אחזקה: כיב <b>&gt;2 ס"מ</b>, עמיד/חוזר, כישלון הכחדה או צורך ב-NSAIDs.</p>
+</div>
+<div class="key-box"><i>עדכון (ACG 2024, לא בספר):</i> בצפון אמריקה <b>מרובע ביסמוט 14 יום הוא הבחירה המועדפת</b> כשאין בדיקת רגישות; טריפל קלריתרומיצין רק כשידוע שהזן רגיש; אושרו גם משטרים מבוססי <b>Vonoprazan</b> (חוסם משאבה תחרותי לאשלגן — P-CAB) עם Amoxicillin. בישראל עמידות לקלריתרומיצין גבוהה — יש להתאים לפרוטוקול המקומי.</div>
+
+<h3>ב. סיבוכים — מה עושה המנתח</h3>
+<div class="mechanism">
+<p><b>גורמי סיכון לכיב מסובך</b>: NSAIDs, H. pylori, כיב &gt;1 ס"מ. <b>Box 49.2</b>: עמיד — Parietal cell vagotomy ± אנטרקטומיה; דימום — <b>תפירת הכלי</b> + טיפול ב-H. pylori; ניקוב — <b>טלאי</b> + H. pylori; חסימה — <b>שלילת ממאירות</b> + גסטרו-ג'ג'ונוסטומיה + H. pylori.</p>
+</div>
+
+<h4>1. דימום (תמותה 6–10%)</h4>
+<ul>
+  <li>החייאה (2 ורידים רחבים, דם לפי הצורך), <b>PPI IV מיד</b> — גם לפני האנדוסקופיה. זונדה: <b>דם אדום טרי</b> = סיכון גבוה; <b>מרה בלי דם</b> = כנראה מקור מתחת ל-Treitz.</li>
+  <li><b>EGD תוך 24 שעות</b>; Forrest כמו בטבלה; <b>אין Second-look שגרתי</b>. PPI אחרי טיפול: <b>מינון גבוה לסירוגין שקול לעירוי רציף</b> (עדכני).</li>
+  <li>דימום חוזר ← EGD חוזרת ← <b>אמבוליזציה</b> (בחולה יציב/מועמד ניתוחי גרוע; יותר דימום חוזר מניתוח) ← <b>ניתוח</b> (5–10%): כישלון אנדוסקופי, חוסר יציבות, או צורך מתמשך בדם.</li>
+  <li><span class="key">הכלי המדמם האופייני: GDA</span> — מכיב ב<b>דופן האחורית</b> של הבולבוס.</li>
+</ul>
+
+<h4>2. ניקוב (2–10% מ-PUD, תמותה עד 30% — הגבוהה מכל הסיבוכים)</h4>
+<ul>
+  <li>אוויר חופשי בצילום חזה עמידה; אם אין — <b>CT עם ניגוד פומי</b>. אנטיביוטיקה נגד <b>מתגים גראם שליליים מעיים, אנאירובים ופלורת פה</b> (למשל Ceftriaxone + Metronidazole או Piperacillin-tazobactam — לפי רגישות מקומית).</li>
+  <li><b>טיפול שמרני</b> אפשרי רק בחולה יציב, תסמינים מקומיים, ו<b>בליעת ניגוד מסיס במים שמוכיחה שהניקוב אטום</b> (50–75% נמנעים מניתוח) — אבל עיכוב בניתוח מעלה תמותה.</li>
+  <li><b>&lt;1 ס"מ</b>: סגירה ראשונית + אומנטום. <b>גדול/שוליים פיברוטיים</b>: <b>טלאי Graham</b>. <b>&gt;3 ס"מ</b>: רקמה בריאה (אומנטום/סרוזה של Roux) + <b>Pyloric exclusion</b> + גסטרו-ג'ג'ונוסטומיה, או דואודנוסטומיה, או אנטרקטומיה.</li>
+  <li><b>לפרוסקופיה</b> (מטא-אנליזה של 7 RCT): פחות תחלואה וזיהומי פצע ואשפוז קצר, ללא הבדל בדליפה/תמותה — <b>עדיפה בחולה יציב בידיים מנוסות</b>.</li>
+  <li>ניתוח מוריד חומצה בזמן התיקון — רק ב-H. pylori שלילי, NSAIDs שאי אפשר להפסיק, או כישלון טיפול קודם. <b>EGD אחרי 6–8 שבועות</b> (ממאירות, ריפוי, H. pylori) — חשוב במיוחד בכיב קיבה.</li>
+</ul>
+
+<h4>3. חסימת מוצא קיבה</h4>
+<ul>
+  <li><b>לא מצב חירום</b>: זונדה, תיקון נוזלים/אלקטרוליטים (סליין + K), הערכת תזונה. <span class="key">הסיבה השכיחה ביותר לחסימת מוצא היא סרטן קיבה</span> ← EGD וביופסיה תמיד.</li>
+  <li>קו ראשון: <b>הרחבה אנדוסקופית (± סטנט) + הכחדת H. pylori</b>. עמיד: <b>אנטרקטומיה + וגוטומיה</b>, או (בהרבה הצטלקות) וגוטומיה + ניקוז (Jaboulay / גסטרו-ג'ג'ונוסטומיה).</li>
+</ul>
+
+<h4>4. כיב עמיד (Intractable)</h4>
+<p>כשלון ריפוי אחרי <b>8–12 שבועות</b> או חזרה אחרי הפסקה. לוודא: היענות, <b>הכחדה מתועדת</b>, <b>הפסקת NSAIDs</b> (כולל אספירין "נסתר"), <b>גסטרין בצום</b> (ZES), ובכיב קיבה — <b>ממאירות</b> (וגם Crohn, סרקואיד).</p>
+
+<div class="surgery">
+<h4>מהלך הניתוח — תפירת כיב תריסריון מדמם וטלאי Graham</h4>
+<p><b>הכנה:</b> החייאה ותיקון קרישה; דם מוצלב; PPI IV; אנטיביוטיקה מניעתית (בניקוב — טיפולית); זונדה; הסכמה לאפשרות של כריתה.</p>
+<ol>
+  <li>חתך אמצעי עליון (בחולה לא יציב — תמיד פתוח).</li>
+  <li><b>דימום</b>: <b>Kocher maneuver</b> לניוד התריסריון ← פתיחה <b>אורכית</b> של הדופן הקדמית של הבולבוס (אפשר להמשיך דרך הפילורוס) ← <b>תפר U בשלוש נקודות</b>: עליון ותחתון קושרים את ה-GDA, <b>מדיאלי</b> חוסם את הענף הרוחבי ללבלב (Transverse pancreatic) ← ודא המוסטזיס ← <b>סגירה רוחבית</b> (Heineke-Mikulicz — כדי לא להצר).</li>
+  <li><b>ניקוב</b>: תפרי Stay בריאים פרוקסימלית ודיסטלית לפגם ← "לשון" של אומנטום מתחת לתפרים ← קשירה מעל האומנטום (Graham המקורי לא סוגר את הפגם עצמו). שטיפה נרחבת.</li>
+</ol>
+<h4>הנקודות הקריטיות</h4>
+<ul>
+  <li><span class="key">לא לכלול את ה-CBD בתפר ה-GDA</span> — לזהות אותו בגשש דרך הפפילה או כולנגיוגרפיה תוך-ניתוחית.</li>
+  <li>לא למשוך תפרים דרך רקמה פיברוטית תחת מתח — זה מה שמוביל לדליפה; אומנטום <b>מאוורר היטב</b>.</li>
+  <li>ביופסיה מכל כיב <b>קיבה</b> (Fig. 49.10): Graham/תפירה/מעקף + ביופסיה בחולה לא יציב; אנטרקטומיה כולל הכיב בחולה יציב (+ וגוטומיה ב-II/III).</li>
+</ul>
+<h4>החלמה ומעקב</h4>
+<p>ניקוז זונדה; נקזים עד שאכילה לא משנה את תפוקתם; צילום ניגוד <b>לא שגרתי</b> — רק בחשד לדליפה. הכחדת H. pylori; EGD אחרי 6–8 שבועות. <b>דגלים אדומים</b>: חום, טכיקרדיה, כאב גובר או נקז מרתי (דליפה); המטמזיס/מלנה (דימום חוזר); הקאות (חסימה בצלקת).</p>
+</div>
+
+<h3>ג. ניתוחים מורידי חומצה (נדירים היום, נשאלים הרבה)</h3>
+<table>
+<tr><th>ניתוח</th><th>מה חותכים</th><th>ניקוז?</th><th>הישנות כיב</th><th>תופעות לוואי</th></tr>
+<tr><td><b>Truncal vagotomy</b></td><td>שני הגזעים <b>מעל</b> הענפים הכבדי והצליאקי, ליד GEJ</td><td><b>כן</b> (Heineke-Mikulicz / Finney / Jaboulay / GJ) — כי הוואגוס מרפה את הפילורוס</td><td>בינונית</td><td>Dumping, שלשול</td></tr>
+<tr><td>Selective vagotomy</td><td><b>מתחת</b> לענפים הכבדי והצליאקי</td><td>כן</td><td>גבוהה יותר</td><td>— <b>ננטש</b></td></tr>
+<tr><td><b>Highly selective</b> (Parietal cell / Proximal gastric)</td><td>רק ה-<b>Crow's feet</b> לגוף ולפונדוס; עד 7 ס"מ מהפילורוס ו-5 ס"מ מעל GEJ; שומרים על עצב Latarjet לאנטרום</td><td><b>לא</b> — משאבת האנטרום שלמה</td><td>10–15% (תלוי מנתח; Grassi!)</td><td><b>הכי מעט</b> Dumping/שלשול</td></tr>
+<tr><td><b>Truncal vagotomy + Antrectomy</b></td><td>וואגוס + מקור הגסטרין</td><td>שחזור B-I / B-II / Roux</td><td><b>0–2%</b> (הנמוכה)</td><td>~20% תסמונות אחרי ניתוח; תמותה 1–2%</td></tr>
+</table>
+<p><b>ירידה בחומצה המקסימלית</b>: וגוטומיה ~50%, וגוטומיה + אנטרקטומיה ~85%. <b>שחזור</b>: בשפיר מעדיפים <b>Billroth I</b> (גסטרו-דואודנוסטומיה) — אין Retained antrum, דליפת גדם או Afferent loop; <b>Billroth II</b> — כשהתריסריון מצולק (לולאה <b>רטרו-קולית קצרה</b> להפחתת Afferent loop); <b>Roux-en-Y</b> — פחות ריפלוקס מרה, ומומלץ אחרי כריתה דיסטלית.</p>
+
+<h3>ד. דלקת קיבה מסטרס (Stress gastritis)</h3>
+<ul>
+  <li>שחיקות שטחיות מרובות, <b>בפונדוס/בקיבה הפרוקסימלית</b>, תוך 1–2 ימים מטראומה/הלם/אלח דם/אי-ספיקה נשימתית. <b>Cushing ulcer</b> — פגיעת CNS עם לחץ תוך-גולגולתי ← גירוי וגאלי ← יתר חומצה; <b>Curling ulcer</b> — כוויות <b>&gt;30% BSA</b> ← איסכמיה ברירית.</li>
+  <li>מנגנון: בעיקר <b>איסכמיה רירית</b> ← כשל ההגנה; החומצה עצמה <b>לא מוגברת</b> בדרך כלל, אבל <b>נוכחותה הכרחית</b>.</li>
+  <li><b>מניעה רק בסיכון גבוה</b>: שני הגורמים החזקים — <b>קואגולופתיה</b> ו<b>הנשמה &gt;48 שעות</b>; גם PUD/דימום בשנה האחרונה, פגיעת CNS, כוויות, ספסיס. <b>הזנה אנטרלית מוקדמת</b> מגינה. אם מונעים — <b>PPI</b>. מחיר: דלקת ריאות נוזוקומיאלית ו-<b>C. difficile</b>; מניעה מורידה דימום אבל <b>לא תמותה</b>.</li>
+  <li>דימום קשה: PPI IV, EGD; <b>Vasopressin</b> לעורק ה-Left gastric/אמבוליזציה (לא במחלת לב/כבד); ניתוח — גסטרוטומיה קדמית ארוכה, תפרי 8 עמוקים לנקודות מדממות, ובחולה יציב Truncal vagotomy + Pyloroplasty; גסטרקטומיה טוטאלית — רק בדימום מאיים על חיים.</li>
+</ul>
+
+<h3>ה. תסמונות אחרי כריתת קיבה (20–25% אחרי ניתוחי כיב)</h3>
+<table>
+<tr><th>תסמונת</th><th>מנגנון</th><th>מה רואים</th><th>טיפול</th></tr>
+<tr><td><b>Dumping מוקדם</b> (&lt;30 דק')</td><td>אובדן הפילורוס/המאגר ← בולוס <b>היפראוסמולרי</b> במעי הדק ← <b>שאיבת נוזל ללומן</b> + שחרור סרוטונין, ברדיקינין, נוירוטנסין</td><td>כאב, שלשול, נפיחות + <b>וזומוטורי</b>: הזעה, דפיקות לב, סחרחורת, עילפון</td><td><b>דיאטה</b>: ארוחות קטנות עשירות בחלבון/שומן/סיבים, בלי סוכר פשוט, <b>להפריד שתייה מאוכל</b>; <b>Octreotide</b> (המחקרי ביותר, יקר); ניתוח — המרה ל-Roux-en-Y</td></tr>
+<tr><td><b>Dumping מאוחר</b> (1–3 שעות)</td><td>פחמימות נספגות מהר ← היפרגליקמיה ← <b>שיא אינסולין מוגזם</b> ← <b>היפוגליקמיה</b> ← קטכולאמינים</td><td>הזעה, רעד, בלבול, טכיקרדיה</td><td>כמו מוקדם; פחמימות מורכבות</td></tr>
+<tr><td><b>Afferent loop</b> (B-II)</td><td>חסימה חלקית של הלולאה המביאה ← מרה ומיצי לבלב מצטברים ← מתיחה ← "התרוקנות" בכוח לקיבה</td><td>כאב שלאחריו <b>הקאה מרתית קשתית שמביאה הקלה מיידית</b>; כרוני — Blind loop: חסר B12, תת-ספיגת שומן</td><td><b>ניתוח</b> (סכנת נמק/פיצוץ גדם): המרה ל-B-I, Braun entero-enterostomy, או Roux-en-Y</td></tr>
+<tr><td>Efferent loop</td><td>לרוב בקע רטרו-אנסטומוטי; &gt;50% בחודש הראשון</td><td>כאב קוליקי ב-LUQ, הקאה מרתית, התנפחות; ניגוד לא נכנס ללולאה</td><td>ניתוח — רדוקציה וסגירת המרווח</td></tr>
+<tr><td><b>Alkaline reflux gastritis</b></td><td>ריפלוקס מרה (בעיקר B-II)</td><td>כאב אפיגסטרי קבוע, הקאה מרתית <b>שלא מקלה</b>, ירידה במשקל; רירית אדומה ושבירה</td><td>תרופות לא יעילות ← <b>המרה ל-Roux-en-Y עם לולאה &gt;40 ס"מ</b></td></tr>
+<tr><td>Gastric atony</td><td>אחרי Truncal/Selective — אובדן משאבת האנטרום</td><td>מוצקים נשארים שעות; מיפוי ריקון</td><td>Metoclopramide, Erythromycin; נדיר — גסטרקטומיה</td></tr>
+<tr><td><b>מטבולי</b></td><td>ברזל (&gt;30%; פחות חומצה וספיגה בתריסריון), B12 (אין IF), סידן/ויטמין D (אוסטאופורוזיס אחרי 4–5 שנים)</td><td>אנמיה מיקרו- או מקרוציטית, שברים</td><td>ברזל; <b>B12 לכל החיים אחרי כריתה תת-טוטאלית</b>; סידן + D; A/D/E/K כשהתריסריון נעקף</td></tr>
+</table>
+
+<h3>ו. סרטן קיבה — אדנוקרצינומה</h3>
+<div class="mechanism">
+<p><b>גורמי סיכון</b>: <b>H. pylori</b> (CagA+), מזון <b>מלוח/מעושן/ניטרטים</b> (← N-nitroso; פירות וירקות — ויטמין C סופח אותם; <b>המקרר</b> הוריד את השכיחות), עישון (×1.5), גבר, מעמד נמוך, <b>ניתוח קיבה קודם</b>, <b>אנמיה מזיקה</b>, <b>EBV</b> והשמנה (קרדיה), קרינה קודמת, <b>פוליפים אדנומטוטיים</b> (&gt;30% ממאירות). ייתכן קשר ל-PPI ממושך בנוכחות H. pylori (אטרופיה של הגוף).</p>
+<p><b>תורשה</b>: <b>Hereditary diffuse gastric cancer — CDH1 (E-cadherin)</b>: 60–70% סיכון לאורך החיים ← <b>גסטרקטומיה מניעתית לפני גיל 30</b> + סקר לסרטן שד <b>לובולרי</b>. (הגידולים צומחים <b>מתחת לרירית תקינה</b> ← אנדוסקופיית סקר מפספסת.) גם FAP, Li-Fraumeni (p53), Lynch, Peutz-Jeghers.</p>
+<p><b>פוליפים</b>: <b>Fundic gland</b> — קשורים ל-PPI, שפירים, לא דורשים מעקב; <b>היפרפלסטיים</b> — H. pylori, &lt;2% ממאירות; <b>אדנומה</b> — &gt;30%, כריתה אנדוסקופית; &gt;2 ס"מ/ישיבה/חודרני ← ניתוח. כל פוליפ בודד <b>&gt;1 ס"מ</b> ← כריתה מלאה.</p>
+</div>
+
+<table>
+<tr><th>Lauren (Table 49.5)</th><th>Intestinal</th><th>Diffuse</th></tr>
+<tr><td>גורם</td><td><b>סביבתי</b> (H. pylori), אטרופיה ← מטפלזיה מעיית</td><td><b>משפחתי/גנטי</b>, סוג דם A, ↓ E-cadherin</td></tr>
+<tr><td>מי</td><td>גברים &gt; נשים, מבוגרים</td><td>נשים ≥ גברים, צעירים יותר</td></tr>
+<tr><td>היסטולוגיה</td><td><b>יוצר בלוטות</b>, ממוין היטב</td><td><b>תאי טבעת חותם (Signet ring)</b>, ללא בלוטות; <b>Linitis plastica</b> (Borrmann 4)</td></tr>
+<tr><td>פיזור</td><td><b>המטוגני</b> (כבד)</td><td><b>טרנסמורלי ולימפתי</b>, תת-רירי; גרורות צפקיות</td></tr>
+<tr><td>פרוגנוזה</td><td>טובה יותר</td><td>גרועה יותר</td></tr>
+</table>
+
+<figure>
+  <img class="media-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Adenocarcinoma_of_the_stomach.jpg?width=520" alt="אדנוקרצינומה של הקיבה באנדוסקופיה">
+  <p class="media-cap">אדנוקרצינומה של הקיבה במבט אנדוסקופי — מסה כיבית עם שוליים לא סדירים ומורמים, בניגוד לכיב שפיר עם שוליים חלקים וקפלים שמתכנסים אליו. NCCN: <b>6–8 ביופסיות</b> מאזורים שונים. מקור: Wikimedia Commons.</p>
+</figure>
+
+<h4>בירור ושלבים</h4>
+<ul>
+  <li><b>EGD + ביופסיות</b> (נגעים ≤2 ס"מ — אפשר EMR/ESD כבר באבחון).</li>
+  <li><b>EUS</b> — המדויק ביותר ל-<b>T</b> (5 שכבות: 1–3 = רירית/תת-רירית ← T1; שכבה 4 = Muscularis propria ← T2; גבול לא סדיר ← T3; אובדן הקו הבהיר החמישי (סרוזה) ← T4a) ולקשריות + FNA.</li>
+  <li><b>CT חזה-בטן-אגן</b> — חובה, בעיקר לגרורות. <b>PET/CT</b> — שקול ב-&gt;T1 בלי גרורות (פחות טוב בסוג Diffuse/מוצין).</li>
+  <li><span class="key">לפרוסקופיה מבצעת (Staging laparoscopy)</span> ב-<b>T2 ומעלה</b> — 20–30% עם גרורות צפקיות שלא נראו ב-CT; שטיפה לציטולוגיה (ציטולוגיה חיובית = M1).</li>
+  <li><b>TNM (AJCC 8)</b>: T1a = Lamina propria/MM, T1b = תת-רירית, T2 = Muscularis propria, T3 = תת-סרוזה, T4a = סרוזה, T4b = איברים סמוכים. N1 = 1–2, N2 = 3–6, N3a = 7–15, N3b ≥16. <b>לפחות 16 קשריות</b> לשלב מדויק. <b>Siewert</b> לגידולי GEJ: I–II מטופלים כמו וושט; III — כמו קיבה.</li>
+  <li><b>R0</b> = שוליים נקיים מיקרוסקופית — <b>רק אחריו יש הישרדות ארוכת טווח</b>.</li>
+</ul>
+
+<div class="video-embed"><iframe src="https://www.youtube.com/embed/WjP2gm-VK1A" title="Medical School Pathology: Pathophysiology of Gastric Malignancies" allowfullscreen loading="lazy"></iframe></div>
+<p class="video-cap">Pathophysiology of Gastric Malignancies — הרצאת פתולוגיה לסטודנטים: אדנוקרצינומה מסוג מעיי מול Diffuse (מסלול H. pylori ← מטפלזיה מול E-cadherin), ולימפומה של הקיבה. מקור: YouTube.</p>
+
+<h4>טיפול</h4>
+<ul>
+  <li><b>כריתה אנדוסקופית (Box 49.4)</b>: <b>Intestinal type, מוגבל לרירית, ללא חדירה לימפו-וסקולרית, ללא כיב, &lt;2 ס"מ</b> ← סיכון לקשריות 0.2%. EMR (הרמה בסליין + לולאה) או ESD (סימון, הזרקה, סכין — לנגעים גדולים יותר, יותר ניקובים). שוליים עמוקים חיוביים/LVI/חדירה לתת-רירית ← גסטרקטומיה.</li>
+  <li><b>גידול דיסטלי</b> (גוף/אנטרום): <b>גסטרקטומיה דיסטלית</b>; שוליים פרוקסימליים <b>2–3 ס"מ במוקדם, 4–6 ס"מ במתקדם</b> (התפשטות תוך-דופנית); <b>Frozen section</b> לפני השחזור; <b>Roux-en-Y</b> — פחות ריפלוקס מרה ואיכות חיים טובה יותר.</li>
+  <li><b>גידול פרוקסימלי</b> (פונדוס/קרדיה): רוב המנתחים — <b>גסטרקטומיה טוטאלית + Roux-en-Y esophagojejunostomy</b> (בפרוקסימלית — יותר היצרות וריפלוקס).</li>
+  <li><b>D2</b> (תחנות 1–12a, <b>בלי</b> כריתת טחול/זנב לבלב שגרתית — הן שגרמו לתמותה העודפת בעבר): <b>הסטנדרט</b> (NCCN/ESMO; Cochrane HR 0.81 להישרדות ספציפית). D1 = תחנות 1–7 (פרי-גסטריות); D3 = עד פרא-אאורטליות — <b>אין תועלת</b>.</li>
+  <li><b>לפרוסקופיה</b> — שקולה לפתוח ב-Stage I (LOC-1); ERAS — בלי זונדה ונקזים שגרתיים.</li>
+  <li><b>טיפול פרי-אופרטיבי</b>: <b>MAGIC</b> (ECF לפני ואחרי) — הישרדות 5 שנים 36% מול 23%; <b>FLOT4</b> (Docetaxel, Oxaliplatin, Leucovorin, 5-FU) — חציון הישרדות <b>50 מול 35 חודשים</b> ← הסטנדרט. אדג'ובנטי אחרי D2: <b>CLASSIC</b> (CAPOX). קרינה — בעיקר כשהלימפדנקטומיה פחות מ-D2 (INT-0116 נפגע מ-54% D0).</li>
+  <li><b>מתקדם/גרורתי</b> (~50%): כימותרפיה דו-תרופתית (5-FU + פלטינום); <b>HER2 (~20%) ← Trastuzumab</b> (ToGA) — לבדוק HER2 בכל גרורתי; PD-L1 — Nivolumab/Pembrolizumab. פליאציה: סטנט, GJ, PEG לניקוז, קרינה/אמבוליזציה לדימום. <b>לא לבצע כריתה פליאטיבית בחולה א-תסמיני</b>.</li>
+  <li>הישרדות 5 שנים כוללת ~30%; מוקדם &gt;80%; גרורתי ~5%. הישנות 30–90%, רובן בשנתיים הראשונות (כבד, צפק).</li>
+</ul>
+<div class="key-box"><i>עדכון (לא בספר):</i> בסרטן קיבה מתקדם HER2-שלילי — <b>Nivolumab + כימותרפיה</b> בקו ראשון (CheckMate 649), ו-<b>Zolbetuximab</b> (נוגדן נגד Claudin 18.2, אישור FDA 2024) לגידולים CLDN18.2-חיוביים. בטיפול הפרי-אופרטיבי נבחנת תוספת אימונותרפיה ל-FLOT (MATTERHORN — Durvalumab, 2025). בגידולי dMMR/MSI-H — אימונותרפיה יעילה במיוחד.</div>
+
+<h3>ז. לימפומה, GIST, NET</h3>
+<table>
+<tr><th>גידול</th><th>מאפיינים</th><th>אבחנה</th><th>טיפול</th></tr>
+<tr><td><b>DLBCL</b> (45–60% מלימפומות הקיבה)</td><td>הקיבה = האתר <b>החוץ-קשרי השכיח</b>; אנטרום; גיל 60–70</td><td>EGD + ביופסיה (לעתים תת-רירי ← EUS), PET/CT, מח עצם; Lugano</td><td><b>R-CHOP</b>; ניתוח <b>לא</b> מוסיף — רק לסיבוכים (דימום, ניקוב 5% בכימו, חסימה)</td></tr>
+<tr><td><b>MALT</b> (40–50%)</td><td>Low grade, כמעט תמיד H. pylori; t(11;18) ← NF-κB</td><td>כנ"ל + H. pylori (היסטולוגיה, ואם שלילי — סרולוגיה)</td><td><b>הכחדת H. pylori</b> ← הפוגה &gt;75%; EGD אחרי חודשיים ואז כל חצי שנה ל-3 שנים. כישלון צפוי: טרנסמורלי, קשריות, t(11;18), BCL-10 ← קרינה/כימו</td></tr>
+<tr><td><b>GIST</b></td><td>מ<b>תאי Cajal</b>; <b>KIT (CD117)</b> ~95%, אחרת <b>PDGFRA</b>; קיבה 40–60%; NF1, Carney-Stratakis</td><td>גוש <b>תת-רירי</b> חלק ±כיב מרכזי; ביופסיה רגילה דלה ← <b>EUS-FNA</b>; ביופסיה טרום-ניתוחית <b>לא נדרשת</b> אם נתיח ממילא; CD117/CD34/DOG1</td><td>כריתה <b>R0 בלי לימפדנקטומיה</b> (גרורות לקשריות נדירות), <b>בלי לקרוע</b>; &gt;2 ס"מ או תסמיני ← כריתה; &lt;2 ס"מ בלי סימני סיכון ← מעקב EUS. פרוגנוזה = <b>גודל + מיטוזות</b>. <b>Imatinib</b> אדג'ובנטי <b>3 שנים</b> בסיכון גבוה (SSG XVIII); נאו-אדג'ובנטי לגבולי; קו שני Sunitinib, Regorafenib</td></tr>
+<tr><td><b>NET סוג 1</b> (70–80%)</td><td>אטרופיה/<b>אנמיה מזיקה</b> ← חומצה ↓ ← גסטרין ↑ ← היפרפלזיה ECL; מרובים, קטנים</td><td>EGD, Chromogranin A</td><td>כריתה אנדוסקופית; לשקול <b>אנטרקטומיה</b> (מסירה את מקור הגסטרין); פרוגנוזה מצוינת</td></tr>
+<tr><td>NET סוג 2 (5–10%)</td><td><b>ZES/MEN1</b>, חומצה ↑, גסטרין ↑</td><td>כנ"ל</td><td>כריתת NET + <b>הגסטרינומה</b></td></tr>
+<tr><td><b>NET סוג 3</b> (10–15%)</td><td>ספורדי, גסטרין <b>תקין</b>, בודד וגדול</td><td>CT/MRI לגרורות</td><td><b>כריתה אונקולוגית + לימפדנקטומיה</b>; 5 שנים 25–30%</td></tr>
+</table>
+
+<h3>ח. נגעים נוספים</h3>
+<ul>
+  <li><b>Ménétrier</b>: קפלים ענקיים ("מוחיים") בגוף/פונדוס, <b>האנטרום נחסך</b>; היפרפלזיה פובאולרית, פחות תאי קיר ← <b>תת-חומצה</b>, <b>איבוד חלבון</b> (בצקות), עודף ריר; TGF-α ↑; CMV בילדים, H. pylori במבוגרים. ביופסיה (שלילת סרטן/לימפומה); עמיד/דיספלזיה ← גסטרקטומיה טוטאלית; מעקב EGD כל 1–2 שנים.</li>
+  <li><b>Mallory-Weiss</b>: קרע <b>רירי</b> מהקאות/שיעול, <b>גבוה בעקומה הקטנה ב-GEJ</b>; 10–15% מדימומים עליונים, רובם נעצרים; אנדוסקופיה (קליפס, צריבה, גומיות); ניתוח נדיר — גסטרוטומיה ותפירה.</li>
+  <li><b>Dieulafoy</b>: עורק תת-רירי <b>גדול (1–3 מ"מ) ופתלתל ללא כיב</b>, פגם רירי זעיר של 2–5 מ"מ בסביבה תקינה, ליד GEJ בעקומה הקטנה. אנדוסקופיה מזהה ב-80% (לעתים צריך כמה) ← טיפול אנדוסקופי; <b>לסמן בקעקוע</b>; ניתוח — <b>כריתת טריז</b>.</li>
+  <li><b>ווריסים בקיבה</b>: יתר לחץ פורטלי, או <b>Sinistral (שמאלי) — פקקת וריד הטחול</b> (לרוב מ<b>פנקראטיטיס</b>) ← ווריסים <b>מבודדים בפונדוס</b> ← <b>כריתת טחול מרפאת</b> (לאשר את הפקקת בהדמיה קודם!). בפורטלי: כמו ווריסים בוושט; דבק ציאנואקרילט, TIPS (פחות יעיל כשיש שאנט גסטרו-רנלי, שקיים ב-60–85%), <b>BRTO</b> (סגירת השאנט בבלון + סקלרוזנט; מחיר — החמרת ווריסים בוושט).</li>
+  <li><b>וולבולוס</b>: <b>אורגנו-אקסיאלי</b> (ציר ארוך, ~2/3, חריף, עם פגם סרעפתי/בקע פרא-וושטי) מול <b>מזנטרו-אקסיאלי</b> (ציר קצר, ~1/3, חלקי וחוזר). Borchardt; צילום — "בועה" כדורית עם מפלס בחזה/בטן עליונה; CT. <b>חירום</b>: זונדה (לפעמים מתיר) ← ניתוח: הסטה, תיקון הסרעפת ± פונדופליקציה, כריתה אם נמק; בלי פגם — גסטרופקסיה; בסיכון ניתוחי גבוה — הסטה אנדוסקופית + <b>שני PEG</b>.</li>
+  <li><b>בזואר</b>: פיטו- (צמחי, השכיח), טריכו- (שיער), פרמקו-; בחולים עם הפרעת תנועתיות/ניתוח קיבה קודם. המסה — פירוק כימי (קולה, צלולאז, Papain — זהירות היפרנתרמיה, N-acetylcysteine); <b>טריכובזואר עמיד לפירוק</b>; אנדוסקופיה לריסוק; ניתוח — כשלון/סיבוך.</li>
+</ul>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+<h3>🧠 ראשי תיבות</h3>
+<p><b>סיווג Johnson — "1-אינציזורה, 2-שניים, 3-שער, 4-קומה רביעית, 5-כדורים"</b> (מקורי):</p>
+<ul>
+  <li><b>I</b> — <b>I</b>ncisura (הכי שכיח, חומצה נמוכה).</li>
+  <li><b>II</b> — <b>שניים</b>: כיב קיבה + כיב תריסריון ← חומצה גבוהה.</li>
+  <li><b>III</b> — <b>שער</b> (פרה-פילורי) ← חומצה גבוהה.</li>
+  <li><b>IV</b> — <b>"קומה רביעית"</b>: גבוה, ליד GEJ.</li>
+  <li><b>V</b> — כדורים (NSAIDs), בכל מקום.</li>
+  <li>➜ <b>"2 ו-3 צריכים וואגוס"</b> — רק בסוגים עם יתר חומצה מוסיפים וגוטומיה.</li>
+</ul>
+<p><b>וואגוס ב-GEJ — "LARP"</b> (ידוע): <b>L</b>eft <b>A</b>nterior, <b>R</b>ight <b>P</b>osterior. והאחורי מסתיר את "<b>הפושע</b>" (Grassi).</p>
+<p><b>Forrest — "1 פועם/מחלחל, 2 גלוי/קריש/כתם, 3 נקי"</b>: <b>Ia–IIa = מטפלים</b> ("עד הכלי הגלוי — עושים").</p>
+<p><b>קשריות סרטן הקיבה — "VISK-B"</b>: <b>V</b>irchow, <b>I</b>rish, <b>S</b>ister Mary Joseph, <b>K</b>rukenberg, <b>B</b>lumer shelf.</p>
+<p><b>Lauren — "Intestinal = Industry, Diffuse = DNA"</b>: מעיי — סביבה (H. pylori, מלח), בלוטות, כבד; Diffuse — גנים (CDH1), טבעת חותם, צפק.</p>
+<p><b>Borchardt — "כאב, הקאה יבשה, זונדה תקועה"</b>.</p>
+</div>
+
+<div class="mnemonic">
+<h3>📖 סיפור דמיוני — "מפעל החומצה של קיבה בע"מ"</h3>
+<p>במפעל <b>קיבה בע"מ</b> עובדים אלפי <b>פועלי קיר</b> שממלאים חביות חומצה. לפועלים יש שלושה בוסים: <b>מנהל הוואגוס</b> שצועק ברמקול כבר כשמריחים פיצה (שלב צפלי), <b>מנהלת G</b> מהאנטרום שמתעוררת כשמגיעות משאיות חלבון, ו<b>מנהל המשמרת ECL</b> שיושב צמוד לפועלים — ושני הבוסים האחרים בעיקר <b>מתקשרים אליו</b> (היסטמין). ב<b>מחלקת הבטיחות</b> יושבת <b>מפקחת D</b>: כשהחומצה עוברת את הסימון (pH&lt;3) היא לוחצת על הבלם.</p>
+<p>יום אחד מגיע <b>פריץ הליקו</b>, ספירלי עם מטריית אמוניה. הוא <b>מרדים את מפקחת D</b> ← מנהלת G צועקת בלי הפסקה ← עודף חומצה זורם למחסן השכן (<b>התריסריון</b>), שבונה לעצמו "קירות קיבה" כדי לשרוד — ופריץ עובר לגור גם שם. חור בקיר המחסן (<b>כיב</b>) — ומתחת עובר צינור הלחץ <b>GDA</b>. כשהוא מתפוצץ, השרברב (<b>המנתח</b>) פותח את דלת המחסן לאורך, סוגר את הצינור <b>בשלוש תפירות</b> — וזהירות לא לתפור את צינור המרה ששוכן ממש לידו. ובסוף, סוגרים את הדלת <b>לרוחב</b>, כדי שהמסדרון לא ייצר.</p>
+<p>ובמחסן הראשי? כשמתגלה חור בקיר הקיבה עצמה — <b>תמיד בודקים שזה לא פולש (סרטן)</b> שחפר אותו, בארבע פינות.</p>
+<svg class="diagram" viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial" font-size="12.5">
+  <title>מפעל החומצה של קיבה בע"מ</title>
+  <desc>שלושה בוסים מפעילים את הפועלים, מפקחת D היא הבלם, פריץ הליקו מרדים אותה ועודף חומצה זורם למחסן התריסריון עם צינור GDA</desc>
+  <rect x="440" y="15" width="225" height="120" rx="10" fill="#fef3c7" stroke="#b45309"/>
+  <text x="552" y="36" text-anchor="middle" font-weight="700" fill="#78350f">מפעל קיבה בע"מ 🏭</text>
+  <text x="552" y="58" text-anchor="middle" font-size="11.5">📢 וואגוס · 🚚 מנהלת G</text>
+  <text x="552" y="78" text-anchor="middle" font-size="11.5">☎ מנהל משמרת ECL ← פועלי קיר</text>
+  <text x="552" y="100" text-anchor="middle" font-size="11.5" fill="#b91c1c">🛑 מפקחת D (בלם) — 😴</text>
+  <text x="552" y="122" text-anchor="middle" font-size="11.5" fill="#6d28d9">🌀 פריץ הליקו + מטריית אמוניה</text>
+  <path d="M440 110 C 380 130, 340 150, 300 160" stroke="#b91c1c" stroke-width="4" fill="none"/>
+  <polygon points="292,163 304,152 307,166" fill="#b91c1c"/>
+  <text x="370" y="158" text-anchor="middle" font-size="11" fill="#b91c1c">עודף חומצה</text>
+  <rect x="60" y="120" width="235" height="95" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="177" y="142" text-anchor="middle" font-weight="700" fill="#1e3a8a">מחסן התריסריון 📦</text>
+  <text x="177" y="162" text-anchor="middle" font-size="11.5">חור בקיר (כיב) מעל צינור GDA 💥</text>
+  <text x="177" y="182" text-anchor="middle" font-size="11.5" fill="#047857">🧵 3 תפרים · לא לתפור את צינור המרה</text>
+  <text x="177" y="202" text-anchor="middle" font-size="11.5" fill="#047857">דלת: נפתחת לאורך, נסגרת לרוחב</text>
+  <rect x="60" y="20" width="235" height="70" rx="10" fill="#fee2e2" stroke="#b91c1c"/>
+  <text x="177" y="44" text-anchor="middle" font-weight="700" fill="#7f1d1d">חור בקיר הקיבה עצמה?</text>
+  <text x="177" y="66" text-anchor="middle" font-size="11.5" fill="#7f1d1d">🔍 4 פינות — לשלול פולש (סרטן)</text>
+</svg>
+</div>
+
+<h2><span class="num">8</span> תמונות וסרטונים נוספים</h2>
+<ul class="resource-list">
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gray1046.png" target="_blank">Wikimedia Commons — Gray1046.png</a><div class="desc">אנטומיה של הקיבה (Gray's Anatomy) — מוטמע בסעיף 3.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gastric_ulcer_2.jpg" target="_blank">Wikimedia Commons — Gastric ulcer 2.jpg</a><div class="desc">כיב קיבה עם כלי דם גלוי — מוטמע בסעיף 5ב.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gastric_ulcer_3.jpg" target="_blank">Wikimedia Commons — Gastric ulcer 3.jpg</a><div class="desc">כיב קיבה שהתברר בביופסיה כסרטן — מוטמע בסעיף 5ב.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Adenocarcinoma_of_the_stomach.jpg" target="_blank">Wikimedia Commons — Adenocarcinoma of the stomach.jpg</a><div class="desc">אדנוקרצינומה במבט אנדוסקופי — מוטמע בסעיף 6ו.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/File:Gastric_Ulcer_Antrum.jpg" target="_blank">Wikimedia Commons — Gastric Ulcer Antrum.jpg</a><div class="desc">השלמה: כיבים מרובים באנטרום ב-EGD.</div></li>
+  <li><a href="https://commons.wikimedia.org/wiki/Category:Endoscopic_images_of_stomach_cancer" target="_blank">Wikimedia Commons — Endoscopic images of stomach cancer</a><div class="desc">השלמה: אוסף תמונות אנדוסקופיות של סרטן קיבה להשוואה.</div></li>
+  <li><a href="https://www.osmosis.org/learn/Peptic_ulcer" target="_blank">Osmosis — Peptic ulcer</a><div class="desc">סרטון קצר ומאויר על מנגנון הכיב, H. pylori, NSAIDs ו-ZES (באתר Osmosis).</div></li>
+  <li><a href="https://www.osmosis.org/learn/Gastric_cancer" target="_blank">Osmosis — Gastric cancer</a><div class="desc">אדנוקרצינומה מסוג מעיי מול Diffuse, גורמי סיכון וקשריות (באתר Osmosis).</div></li>
+  <li><a href="https://www.youtube.com/watch?v=u94FEb_69G4" target="_blank">YouTube — Peptic Ulcer Disease: Pathophysiology, Treatment</a><div class="desc">מוטמע בסעיף 2ב.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=TTM5yFHDMoM" target="_blank">YouTube — Gastrinoma (Zollinger-Ellison Syndrome)</a><div class="desc">מוטמע בסעיף 5ה.</div></li>
+  <li><a href="https://www.youtube.com/watch?v=WjP2gm-VK1A" target="_blank">YouTube — Pathophysiology of Gastric Malignancies</a><div class="desc">מוטמע בסעיף 6ו.</div></li>
+  <li><a href="https://www.sages.org/video/re-do-laparoscopic-grahams-patch-repair-of-a-perforated-duodenal-ulcer/" target="_blank">SAGES Video Library — Laparoscopic Graham's patch repair</a><div class="desc">השלמה: סרטון ניתוח אמיתי של טלאי Graham לפרוסקופי (מקרה חוזר) מספריית SAGES.</div></li>
+  <li><a href="https://websurg.com/en/doi/vd01en7372" target="_blank">WebSurg — Laparoscopic distal gastrectomy with D2 lymphadenectomy</a><div class="desc">השלמה: גסטרקטומיה דיסטלית לפרוסקופית עם D2 ושחזור Billroth I (דורש הרשמה חינמית).</div></li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+<h3>🩺 המקרה</h3>
+<p>גבר בן 64 עם <b>אוסטאוארתריטיס בברכיים</b> שנוטל <b>Ibuprofen</b> יומיומי כבר שנה, מעשן. סיפר על כאב אפיגסטרי "מכרסם" חודשים, <b>שהשתפר אחרי אוכל</b>. הלילה: <b>שתי יציאות שחורות כזפת</b> ועילפון בשירותים. במיון: דופק 118, ל"ד 92/58, Hb 7.9, BUN מוגבר מאוד ביחס לקריאטינין. זונדה מעלה <b>דם אדום טרי</b>.</p>
+<p>לאחר החייאה ו-PPI IV: EGD — כיב 1.5 ס"מ ב<b>דופן האחורית של הבולבוס התריסריוני</b> עם <b>כלי דם גלוי בולט</b>, ללא דימום פעיל. ביופסיות אנטרום — <b>H. pylori חיובי</b>. החולה <b>אלרגי לפניצילין</b> וקיבל <b>Clarithromycin</b> לפני שנה לדלקת ריאות.</p>
+<p><b>36 שעות אחרי טיפול אנדוסקופי מוצלח</b> — המטמזיס חוזר וירידת ל"ד; EGD שנייה נכשלת, והחולה נלקח לניתוח.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה סיווג Forrest של הכיב, ומה הצעד הנכון ב-EGD הראשונה?</div>
+  <button class="opt" data-i="0">Forrest III — PPI פומי ושחרור</button>
+  <button class="opt" data-i="1">Forrest IIc — הזרקת אדרנלין בלבד</button>
+  <button class="opt" data-i="2">Forrest IIa (כלי גלוי, ~50% דימום חוזר) — טיפול אנדוסקופי (קליפס/תרמי, אדרנלין רק כתוספת) + PPI IV במינון גבוה</button>
+  <button class="opt" data-i="3">Forrest Ia — ניתוח מיידי בלי ניסיון אנדוסקופי</button>
+  <div class="explain">נכון (3): כלי דם גלוי = IIa, סיכון של כ-50% לדימום חוזר ← טיפול אנדוסקופי. אדרנלין כ<b>מונותרפיה לא מומלץ</b> (דימום חוזר גבוה). (1) III = בסיס נקי. (2) IIc = כתם פיגמנט, לא מטפלים. (4) Ia = דימום פועם — וגם בו מתחילים באנדוסקופיה.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. בניתוח — איזה כלי צפוי לדמם, ומהי הסכנה העיקרית בתפירתו?</div>
+  <button class="opt" data-i="0">ה-GDA (כיב אחורי) — תפר U בשלוש נקודות דרך דואודנוטומיה אורכית, בזהירות לא לכלול את ה-CBD; סגירה רוחבית</button>
+  <button class="opt" data-i="1">ה-Left gastric — קשירה פרוקסימלית בלי חשש</button>
+  <button class="opt" data-i="2">ה-Short gastrics — כריתת טחול</button>
+  <button class="opt" data-i="3">ה-Right gastroepiploic — סגירה אורכית של הדואודנוטומיה</button>
+  <div class="explain">נכון (1): כיב בדופן האחורית של הבולבוס שוחק את ה-GDA. תפרים עליון ותחתון + מדיאלי (Transverse pancreatic). ה-CBD עובר ממש קרוב — לזהות בגשש/כולנגיוגרפיה. סגירה <b>רוחבית</b> מונעת היצרות. (2) Left gastric רלוונטי לכיבים גבוהים בעקומה הקטנה/Dieulafoy, ו-15–20% עם כבדי שמאלי חריג. (3) לא קשור. (4) סגירה אורכית מצרה.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. איזה משטר הכחדה מתאים לו לפי הספר?</div>
+  <button class="opt" data-i="0">PPI + Clarithromycin + Amoxicillin ל-7 ימים</button>
+  <button class="opt" data-i="1">PPI + Clarithromycin + Metronidazole ל-14 יום</button>
+  <button class="opt" data-i="2">Levofloxacin + Amoxicillin + PPI</button>
+  <button class="opt" data-i="3">מרובע ביסמוט: PPI + Bismuth + Tetracycline + Metronidazole ל-10–14 יום</button>
+  <div class="explain">נכון (4): אלרגיה לפניצילין <b>וגם</b> חשיפה קודמת למקרוליד ← מרובע ביסמוט בלבד (Box 49.1). (1) גם אמוקסיצילין וגם קלריתרומיצין פסולים, ו-7 ימים קצר מדי. (2) מתאים לאלרגיה <b>בלי</b> חשיפה למקרוליד. (3) מכיל אמוקסיצילין.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. איך ומתי מוודאים הכחדה?</div>
+  <button class="opt" data-i="0">סרולוגיה IgG שבוע אחרי סיום הטיפול</button>
+  <button class="opt" data-i="1">בדיקת נשיפה או אנטיגן בצואה ≥4 שבועות אחרי סיום האנטיביוטיקה, ואחרי הפסקת PPI לשבועיים</button>
+  <button class="opt" data-i="2">אין צורך — שיעור ההצלחה כמעט 100%</button>
+  <button class="opt" data-i="3">Urease מהיר מביופסיה בזמן שהוא עדיין נוטל PPI</button>
+  <div class="explain">נכון (2): UBT ואנטיגן בצואה הן הבדיקות המועדפות למעקב; בדיקה מוקדמת או תחת PPI ← <b>שלילי כוזב</b>. (1) סרולוגיה נשארת חיובית שנה+. (3) ~20% נכשלים — חובה לבדוק. (4) PPI מוריד רגישות Urease.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. שלוש שנים אחר כך (ממשיך NSAIDs למרות ההמלצה): הקאות של אוכל מיום קודם, ירידה של 8 ק"ג, Succussion splash. Na 134, K 2.9, Cl 86, HCO₃ 36, pH שתן 5. מה המצב החומצי-בסיסי ומה הצעד הראשון?</div>
+  <button class="opt" data-i="0">חמצת מטבולית — ביקרבונט IV</button>
+  <button class="opt" data-i="1">אלקלוזיס נשימתית — ניתוח דחוף</button>
+  <button class="opt" data-i="2">אלקלוזיס מטבולית היפוכלורמית היפוקלמית עם שתן חומצי פרדוקסלי — זונדה, סליין 0.9% + KCl, ואז EGD לשלילת סרטן (הסיבה השכיחה לחסימת מוצא)</button>
+  <button class="opt" data-i="3">אלקלוזיס מטבולית — Furosemide ו-גסטרו-ג'ג'ונוסטומיה מיידית</button>
+  <div class="explain">נכון (3): איבוד HCl ← כלור ↓ ו-HCO₃ ↑; אלדוסטרון שומר Na ומפריש K ו-H ← שתן חומצי פרדוקסלי. כלור + אשלגן מתקנים. חסימת מוצא <b>אינה מצב חירום</b> ו<b>סרטן הוא הסיבה השכיחה</b> ← EGD לפני כל ניתוח. (1)(2) שגוי. (4) משתנים מחמירים; ניתוח לפני בירור — טעות.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">6. ב-EGD נמצא גם כיב 2.5 ס"מ בעקומה הקטנה ב-Incisura. אחרי 12 שבועות של PPI, הכחדה מתועדת והפסקת NSAIDs — הכיב לא נרפא. מה עושים?</div>
+  <button class="opt" data-i="0">ביופסיות חוזרות מרובות (4 רביעים) לשלילת ממאירות; אם שפיר ועמיד — כריתה (אנטרקטומיה כולל הכיב, ללא וגוטומיה — Johnson I)</button>
+  <button class="opt" data-i="1">Highly selective vagotomy — כי זה כיב עם יתר חומצה</button>
+  <button class="opt" data-i="2">להמשיך PPI לכל החיים בלי בירור נוסף</button>
+  <button class="opt" data-i="3">Truncal vagotomy + Pyloroplasty בלבד, בלי ביופסיה</button>
+  <div class="explain">נכון (1): כיב קיבה שלא נרפא בעידן H. pylori = <b>חשד לממאירות</b> (Fig. 49.9); ביופסיה אחת — 70%, ארבע — 95%. Johnson I = חומצה נמוכה-תקינה ← <b>אין צורך בוגוטומיה</b>. (2)(4) וגוטומיה מיועדת לסוגים II/III. (3) המשך טיפול בלי ביופסיה עלול להחמיץ סרטן.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>דם: Left gastric (הגדול; 15–20% כבדי שמאלי חריג), Right gastric, Gastroepiploics (ימני מ-GDA), Short gastrics; שורדת קשירת 3/4. וואגוס: <b>LARP</b>, Latarjet, <b>Grassi</b>. תת-רירית = השכבה החזקה.</li>
+    <li>חומצה: ACh (M3), גסטרין (G, אנטרום) ו<b>היסטמין (ECL = המגבר, H2)</b> ← H⁺/K⁺-ATPase; <b>סומטוסטטין (D) = בלם ב-pH &lt;3</b>. PPI — Prodrug, קשר בלתי הפיך. חומצה נמוכה ← גסטרין ↑ (PPI = הסיבה השכיחה).</li>
+    <li>PUD: <b>H. pylori</b> (Urease, D ↓ ← גסטרין ↑, מטפלזיה בתריסריון) ו-<b>NSAIDs</b> (COX ↓ + מלכודת יונים; בעיקר קיבה, בלי גסטריטיס).</li>
+    <li>בדיקות: היסטולוגיה — המדויקת; UBT/אנטיגן — אבחנה ומעקב (≥4 שבועות, PPI off שבועיים); סרולוגיה — לא למעקב.</li>
+    <li>הכחדה: טריפל (PPI+Clari+Amox) 14 יום אם אין סיכון למקרוליד; <b>מרובע ביסמוט</b> באלרגיה/עמידות (ACG 2024: מועדף). הישנות אחרי הכחדה ~2%.</li>
+    <li><b>Johnson</b>: I Incisura, II +תריסריון, III פרה-פילורי (II/III = חומצה ↑ ← +וגוטומיה), IV גבוה, V NSAIDs. <b>כל כיב קיבה — ביופסיה מ-4 רביעים</b>.</li>
+    <li>דימום: PPI IV, EGD &lt;24 ש', <b>Forrest Ia/Ib/IIa = טיפול</b> (אדרנלין לא לבד); ניתוח 5–10% — <b>GDA</b>, תפר 3 נקודות, להיזהר מה-CBD.</li>
+    <li>ניקוב: אוויר חופשי/CT; &lt;1 ס"מ סגירה + אומנטום, <b>Graham</b>, &gt;3 ס"מ Pyloric exclusion; לפרוסקופיה בחולה יציב; EGD אחרי 6–8 שבועות.</li>
+    <li>חסימת מוצא: <b>אלקלוזיס היפוכלורמית היפוקלמית</b> (שתן חומצי פרדוקסלי) ← סליין + K; <b>סרטן הוא הסיבה השכיחה</b>; הרחבה + H. pylori.</li>
+    <li>ניתוחים: Truncal (+ניקוז), Highly selective (בלי ניקוז, הכי מעט תופעות, 10–15% הישנות), Vagotomy + Antrectomy (0–2%). B-I עדיף בשפיר; Roux — פחות ריפלוקס מרה.</li>
+    <li><b>ZES</b>: גסטרין &gt;1000 / סקרטין ↑ &gt;200; MEN1 (20–30%); משולש הגסטרינומה; PPI במינון גבוה; כריתה + ≥10 קשריות.</li>
+    <li>Stress gastritis: פונדוס; Cushing (CNS), Curling (כוויות &gt;30%); מניעה ב<b>קואגולופתיה והנשמה &gt;48 ש'</b> — PPI; הזנה אנטרלית.</li>
+    <li>אחרי כריתה: Dumping מוקדם (אוסמוטי, &lt;30 דק') / מאוחר (היפוגליקמיה, 1–3 ש'); Afferent loop — הקאה מרתית קשתית שמקלה; Alkaline reflux — Roux &gt;40 ס"מ; ברזל, B12, סידן.</li>
+    <li>סרטן קיבה: H. pylori, מלח/ניטרטים, CDH1 (גסטרקטומיה מניעתית &lt;30); Lauren — Intestinal (סביבה, בלוטות, כבד) מול Diffuse (טבעת חותם, Linitis plastica, צפק); <b>VISK-B</b>.</li>
+    <li>בירור: EGD + 6–8 ביופסיות, <b>EUS (T)</b>, CT, PET, <b>לפרוסקופיה ב-T2+</b> (20–30% צפק); ≥16 קשריות; R0.</li>
+    <li>טיפול: EMR/ESD (Intestinal, רירית, &lt;2 ס"מ, בלי כיב/LVI); דיסטלי — שוליים 4–6 ס"מ, Roux; פרוקסימלי — טוטאלית; <b>D2 בלי כריתת טחול</b>; <b>FLOT פרי-אופרטיבי</b>; HER2 — Trastuzumab; 5 שנים ~30%.</li>
+    <li>לימפומה: DLBCL — R-CHOP (ניתוח רק לסיבוכים); <b>MALT — הכחדת H. pylori</b> (&gt;75%). <b>GIST</b>: Cajal, KIT/CD117, R0 בלי לימפדנקטומיה ובלי קריעה, גודל + מיטוזות, Imatinib 3 שנים. <b>NET</b>: 1 — אנמיה מזיקה (מצוין), 2 — ZES/MEN1, 3 — ספורדי (גרוע).</li>
+    <li>Dieulafoy — עורק גדול בלי כיב, דימום מסיבי ללא כאב, קעקוע/כריתת טריז; ווריסים מבודדים בפונדוס + פנקראטיטיס = <b>פקקת וריד הטחול ← כריתת טחול</b>; וולבולוס — <b>Borchardt</b>, חירום; Ménétrier — קפלים ענקיים, אנטרום נחסך, איבוד חלבון.</li>
+  </ul>
+</div>
+
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
