@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 32: שחזור שד אוטולוגי עם פלאפ SIEA</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 32: שחזור שד אוטולוגי עם פלאפ SIEA <span class="term" dir="ltr">Autologous breast reconstruction with the superficial inferior epigastric artery (SIEA) flap</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 5: Breast | פרק 32 (Section II – Reconstructive Breast Surgery), מאת Pierre Chevray</div>
+
+<p>פלאפ ה-<span class="term" dir="ltr">SIEA</span> (<span class="term" dir="ltr">Superficial Inferior Epigastric Artery flap</span>) הוא <b>פלאפ עור ושומן בלבד (adipocutaneous)</b> מהבטן התחתונה, כמו ה-TRAM וה-DIEP, אך מוזרם מעורק <b>שטחי</b> שאינו עובר דרך שריר או נדן. לכן <b>אין פגיעה בנדן הקדמי ובשריר ה-rectus</b> ותחלואת אתר התורם מינימלית. בפועל זהו "פלאפ abdominoplasty אמיתי" (תואר לראשונה לשחזור שד ב-1991). המחיר: <b>עורק קטן וחסר עקביות ושיעור אובדן פלאפ גבוה</b>. הפרק, בעמדת המחבר, ביקורתי: הפלאפ מושך על הנייר, אך לרוב לא כדאי.</p>
+
+<div class="key-box">הנקודה המרכזית של הפרק: יתרון אחד (אתר תורם נקי מפגיעה בשריר ובנדן) מול חיסרון בטיחותי (אובדן פלאפ מלא ~<b>6%</b> ב-SIEA לעומת ~<b>0.5%</b> ב-DIEP בניסיון המחבר), <b>בלי יתרון בשד המשוחזר</b>.</div>
+
+<h2><span class="num">1</span> אנטומיה: מה מיוחד בפדיקל של ה-SIEA</h2>
+<ul>
+  <li><b>העורק (SIEA)</b> יוצא מה-<span class="term" dir="ltr">femoral artery</span>, מתעקל מעלה דרך ה-<span class="term" dir="ltr">inguinal fascia</span> ורץ בשומן התת-עורי. הוא <b>לא מחוררים שריר</b> ולכן "לא perforator flap" במובן הקפדני.</li>
+  <li><b>הווריד (SIEV)</b> נמצא בכמעט כל המטופלות, בערך <b>שליש</b> מהמרחק על הקו שבין ה-<span class="term" dir="ltr">pubic symphysis</span> ל-<span class="term" dir="ltr">ASIS</span>. העורק לרוב מעט לטרלי לווריד ומתפצל ממנו בכיוון עמוק (באזור ה-inguinal fascia).</li>
+  <li>ה-SIEV היא המערכת הוורידית <b>הדומיננטית</b> של עור ושומן הבטן התחתונה, ולכן הניקוז הוורידי של הפלאפ <b>אמין וחזק</b> (יתרון!). לפעמים משתמשים בו ל-<span class="term" dir="ltr">supercharging</span> של DIEP שסובל מגודש ורידי.</li>
+  <li><b>ה-<span class="term" dir="ltr">SCIA</span></b> (superficial circumflex iliac artery) קיים בעקביות בכ-<b>שני שלישים</b> מהמרחק על אותו קו, ואילו SIEA משמעותי קיים רק במיעוט המטופלות ומיקומו משתנה בשליש האמצעי של הקו.</li>
+</ul>
+
+<h3>אורך, קוטר ואנגיוזום</h3>
+<table>
+  <thead><tr><th>מאפיין</th><th>SIEA</th><th>DIEP / free TRAM</th></tr></thead>
+  <tbody>
+    <tr><td>קוטר העורק</td><td>לרוב קטן; נדרש <b>&ge; 1.5 מ"מ חיצוני</b> (נמצא בכ-שליש מהמטופלות)</td><td>גדול יותר, התאמה טובה ל-IMA</td></tr>
+    <tr><td>אורך הפדיקל</td><td>כ-<b>7 ס"מ</b>, קצר</td><td>&gt; <b>10 ס"מ</b></td></tr>
+    <tr><td>נוכחות</td><td>65% בניתוחי גופות; מתאים בכ-30% מהמטופלות בניסיון המחבר</td><td>עקבי</td></tr>
+    <tr><td>אנגיוזום (שטח הזילוח)</td><td>קטן יותר, משתנה בין אנשים</td><td>גדול יותר</td></tr>
+    <tr><td>ניקוז ורידי</td><td>SIEV דומיננטי ואמין</td><td>DIEV; לעיתים גודש ורידי</td></tr>
+    <tr><td>פגיעה בשריר/נדן</td><td><b>אין</b></td><td>יש (DIEP פחות מ-TRAM)</td></tr>
+    <tr><td>אובדן פלאפ מלא</td><td><b>~6%</b>, כמעט כולו על רקע פקק עורקי</td><td>DIEP: <b>0.5%</b>, בעיקר פקק ורידי</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">2</span> המנגנון: למה פלאפ עם פחות פגיעה בתורם נכשל יותר?</h2>
+<div class="mechanism">
+  <p class="chain">עורק SIEA קטן (~1.5-2.2 מ"מ) ← מחוברים אותו לעורק ה-<span class="term" dir="ltr">IMA</span> הגדול והלחץ בו גבוה ← <b>אי-התאמת קוטר</b>, כאשר הדם זורם <b>מכלי גדול לכלי קטן</b> (כיוון לא נוח לאנסטומוזה) ← זרימה טורבולנטית ו"צוואר בקבוק" באנסטומוזה ← <b>פקק עורקי</b> ← אובדן פלאפ. בנוסף נראה ש-SIEA נוטה ל-<b>עווית עורקית (spasm)</b> מעבר לבעיית הקוטר בלבד.</p>
+  <p>הסבר פיזיקלי (ידע כללי, לא מהפרק): לפי חוק Poiseuille ההתנגדות לזרימה עולה לפי <b>1/r&#8308;</b>, ולכן קוטר קטן פי 2 מעלה התנגדות פי 16, ושינוי קטן ברדיוס (עווית, קינק, פגם באינטימה) מספיק לסגירה. הפרק עצמו אומר: "יש תכונה מהותית של ה-SIEA, מעבר לקוטר, התורמת לעווית ולפקק", ואינו מפרט את הסיבה.</p>
+</div>
+<svg class="diagram" viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg"><title>אי-התאמת קוטר בין IMA ל-SIEA</title>
+<rect x="520" y="20" width="220" height="70" rx="8" fill="#eff6ff" stroke="#1e3a8a" stroke-width="2"/>
+<text x="630" y="50" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">IMA – כלי מקבל</text>
+<text x="630" y="72" font-size="12" text-anchor="middle" fill="#1e3a8a">רחב, זרימה חזקה</text>
+<rect x="250" y="43" width="230" height="24" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+<text x="365" y="60" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">SIEA – צר ופגיע לעווית</text>
+<line x1="520" y1="55" x2="490" y2="55" stroke="#374151" stroke-width="2"/>
+<polygon points="480,55 490,49 490,61" fill="#374151"/>
+<rect x="20" y="20" width="190" height="70" rx="8" fill="#fffbeb" stroke="#78350f" stroke-width="2"/>
+<text x="115" y="50" font-size="14" text-anchor="middle" fill="#78350f" font-weight="700">פקק עורקי ← אובדן</text>
+<text x="115" y="72" font-size="12" text-anchor="middle" fill="#78350f">~6% בהשוואה ל-0.5% ב-DIEP</text>
+<line x1="250" y1="55" x2="220" y2="55" stroke="#374151" stroke-width="2"/>
+<polygon points="210,55 220,49 220,61" fill="#374151"/>
+</svg>
+<p class="figcap">הכיוון: כלי גדול (IMA) מזרים אל כלי צר (SIEA) – אנסטומוזה לא נוחה, פגיעה לפקק</p>
+<p><b>התמודדות בניתוח:</b> חיתוך אלכסוני (<span class="term" dir="ltr">spatulation</span>) של ה-SIEA להרחבת פתח האנסטומוזה, או אנסטומוזה <span class="term" dir="ltr">end-to-side</span> ל-IMA, או שימוש ב-<span class="term" dir="ltr">IM perforator</span> (קוטר דומה ל-SIEA). אלה מקטינים את הבעיה אך <b>לא מבטלים אותה</b>: שיעור הפקק העורקי נשאר גבוה בהרבה מאנסטומוזת DIEA-IMA.</p>
+
+<h2><span class="num">3</span> אינדיקציות, הערכה טרום-ניתוחית ומתי לא</h2>
+<ul>
+  <li>הערכה כמו ב-TRAM/DIEP: סבילות הרדמה כללית של <b>5-12 שעות</b>, ללא מצב היפרקואגולבילי ידוע. <b>Tamoxifen</b> מופסק חודש לפני. נפח הבטן מספיק לשד הרצוי.</li>
+  <li><b>הדמיה:</b> CT או MR angiography יכולים לאתר SIEA, אך המחבר <b>אינו משתמש</b> בהדמיה טרום-ניתוחית (ההחלטה נעשית תוך-ניתוחית לפי קוטר וזרימה).</li>
+  <li><b>עישון</b> מגדיל סיבוכי ריפוי, אך לא ידוע כמעלה אובדן פלאפ מלא ב-SIEA.</li>
+</ul>
+<table>
+  <thead><tr><th>מצב</th><th>משמעות ל-SIEA</th><th>למה</th></tr></thead>
+  <tbody>
+    <tr><td>Abdominoplasty / panniculectomy בעבר</td><td><b>התוויית נגד</b> לכל פלאפ חופשי מהבטן התחתונה</td><td>הכלים נותקו והזילוח השתנה</td></tr>
+    <tr><td>חתך נמוך רוחבי (<span class="term" dir="ltr">Pfannenstiel</span>: קיסרי, כריתת רחם)</td><td><b>התוויית נגד</b> אלא אם SIEA ו-SIEV הוכחו פתוחים בהדמיה</td><td>החתך כמעט תמיד חותך את ה-SIEV וסביר שגם את ה-SIEA, אך <b>לא</b> את ה-DIEA (עמוק יותר) – ולכן ל-DIEP זה בסדר</td></tr>
+    <tr><td>שאיבת שומן בעבר</td><td>התוויית נגד יחסית</td><td>פגיעה אפשרית בכלים השטחיים</td></tr>
+    <tr><td>השמנה עם שכבת שומן עבה מאוד</td><td>קושי להגיע לכלים ב-IM</td><td>הפדיקל קצר</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> הניתוח: אלגוריתם תוך-ניתוחי ושלבי ההרמה</h2>
+<h3>הכנה</h3>
+<p>סימון בעמידה (קו אמצע, IMF, אליפסת הבטן); <b>pinch test</b> להבטחת סגירה. הפרוטוקול הטרום-ניתוחי: <span class="term" dir="ltr">celecoxib</span> ו-<span class="term" dir="ltr">gabapentin</span> (ERAS, מינימום נרקוטיקה). הרדמה כללית, חתך הבטן התחתון נעשה <b>ראשון</b>.</p>
+
+<h3>זהירות בחתך הראשון</h3>
+<p>הכלים שטחיים: <b>ב-SIEV, ובעיקר אצל רזות, הווריד נמצא ישר מתחת לדרמיס</b>. חתך ללא זהירות עלול לחתוך את הפדיקל, ובכך לבטל את האפשרות לפלאפ.</p>
+
+<h3>האלגוריתם (Algorithm 32.1)</h3>
+<svg class="diagram" viewBox="0 0 760 330" xmlns="http://www.w3.org/2000/svg"><title>אלגוריתם בחירה תוך-ניתוחי</title>
+<rect x="590" y="15" width="150" height="62" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="42" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">SIEA+SIEV קיימים?</text>
+<text x="665" y="61" font-size="11.5" text-anchor="middle" fill="#4c1d95">דופק נמוש</text>
+<rect x="400" y="15" width="150" height="62" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="42" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">קוטר חיצוני</text>
+<text x="475" y="61" font-size="11.5" text-anchor="middle" fill="#1e3a8a">&ge; 1.5 מ"מ?</text>
+<line x1="590" y1="46" x2="560" y2="46" stroke="#374151" stroke-width="2"/>
+<polygon points="550,46 560,40 560,52" fill="#374151"/>
+<text x="575" y="36" font-size="11" text-anchor="middle" fill="#065f46">כן</text>
+<rect x="210" y="15" width="150" height="62" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="42" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">דיסקציה לשורש</text>
+<text x="285" y="61" font-size="11.5" text-anchor="middle" fill="#78350f">+ הידוק זמני של DIEP</text>
+<line x1="400" y1="46" x2="370" y2="46" stroke="#374151" stroke-width="2"/>
+<polygon points="360,46 370,40 370,52" fill="#374151"/>
+<text x="385" y="36" font-size="11" text-anchor="middle" fill="#065f46">כן</text>
+<rect x="20" y="15" width="150" height="62" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="42" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">הפלאפ מזורם?</text>
+<text x="95" y="61" font-size="11.5" text-anchor="middle" fill="#065f46">ובשטח מספק?</text>
+<line x1="210" y1="46" x2="180" y2="46" stroke="#374151" stroke-width="2"/>
+<polygon points="170,46 180,40 180,52" fill="#374151"/>
+<rect x="400" y="150" width="340" height="56" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+<text x="570" y="174" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">לא קיימים / קטנים מ-1.5 מ"מ / אין דופק</text>
+<text x="570" y="193" font-size="12" text-anchor="middle" fill="#7f1d1d">לא משתמשים ב-SIEA: ממשיכים ל-DIEP או MS-TRAM</text>
+<line x1="665" y1="77" x2="665" y2="140" stroke="#374151" stroke-width="2" stroke-dasharray="4 3"/>
+<polygon points="665,150 659,140 671,140" fill="#374151"/>
+<text x="690" y="115" font-size="11" fill="#7f1d1d">לא</text>
+<rect x="400" y="250" width="340" height="56" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="570" y="274" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">כן: ממשיכים עם SIEA (מנתקים DIEP perforators)</text>
+<text x="570" y="293" font-size="12" text-anchor="middle" fill="#065f46">לא: קושרים SIEA+SIEV וחוזרים ל-DIEP</text>
+<line x1="95" y1="77" x2="95" y2="278" stroke="#374151" stroke-width="2" stroke-dasharray="4 3"/>
+<line x1="95" y1="278" x2="390" y2="278" stroke="#374151" stroke-width="2" stroke-dasharray="4 3"/>
+<polygon points="400,278 390,272 390,284" fill="#374151"/>
+</svg>
+<p class="figcap">אלגוריתם הבחירה התוך-ניתוחי, מותאם מהפרק (Algorithm 32.1)</p>
+<div class="key-box">הגישה של המחבר: <b>תמיד "מגבים" עם DIEP</b>. מנתחים את ה-perforators של ה-DIEP ומהדקים אותם זמנית, בודקים אם ה-SIEA מזרים את כל הפלאפ (בדיקה קלינית, חיתוך 1 מ"מ עור מכמה קצוות לבדיקת דימום אדום בהיר בלי גודש ורידי; ICG אפשרי אך המחבר לא השתמש). אם לא – קושרים SIEA+SIEV ועוברים ל-DIEP.</div>
+
+<h3>הרמה</h3>
+<ul>
+  <li>דיסקציה של ה-SIEA וה-SIEV <b>אל שורשם</b> (femoral artery/vein; ה-SIEV מתנקז לרוב ל-saphenous bulb, והוא מתחבר לפעמים עם ה-<span class="term" dir="ltr">SCIV</span> לפני כן).</li>
+  <li>האכזבה: ה-SIEA <b>אינו מתרחב משמעותית</b> ככל שמתקרבים לשורש, כך שלא ניתן "להרוויח" קוטר על ידי דיסקציה גבוהה יותר.</li>
+</ul>
+
+<h3>הכנת כלי מקבל</h3>
+<ul>
+  <li>כמו ב-DIEP/TRAM, עם התאמות: כריתת <b>2.5 ס"מ מדיאליים של סחוס הצלע ה-4 (או ה-5)</b> ושריר בין-צלעי 4 (במקום חלל 3), כי ה-IMA בחלל 4 <b>צר יותר ← התאמת קוטר טובה יותר</b> ל-SIEA.</li>
+  <li>החשיפה צריכה להגיע עד שולי הסטרנום: ה-IM vein לעיתים כ-1 ס"מ בלבד מהסטרנום. החשיפה הרחבה מאפשרת להוציא את הכלים רחוק יותר לפגוש פדיקל קצר.</li>
+  <li><span class="term" dir="ltr">IM perforator</span> בחלל 2 או 3 קיים בכ-<b>17%</b> מהמטופלות, בגודל מתאים ל-SIEA; חוסך כריתת סחוס וזמן.</li>
+  <li><b>כלי thoracodorsal</b> אפשריים אך הפדיקל כנראה לא יגיע, או שיהיה קשה להכניס את הפלאפ מדיאלית מספיק ללא שתל וריד.</li>
+</ul>
+
+<h3>Inset וניטור</h3>
+<ul>
+  <li>הפלאפ מסובב 90° כך שקצה החיתוך האנכי (העבה ביותר) מונח לאורך ה-IMF. לכן נדרש SIEA <b>קונטרלטרלי</b> לשד המשוחזר כדי שהפדיקל יגיע ל-IM; עם thoracodorsal – SIEA איפסילטרלי.</li>
+  <li>עיצוב: ללא תפרי תליה או "קונוס". מתאימים את ה"טביעת הרגל" של השד על ידי קיבוע ה-IMF ב-<span class="term" dir="ltr">PDS 2-0</span>; אם נפח הפלאפ קטן מהמעטפת – מעלים את ה-IMF כדי למנוע חלל עליון ("<span class="term" dir="ltr">rock-in-a-sock</span>").</li>
+  <li><b>ניטור:</b> <span class="term" dir="ltr">venous coupler</span> עם Doppler פנימי משולב מאפשר זיהוי מיידי של חסימת זרימה ורידית בזמן ה-inset (קינק, פיתול, לחץ) ותיקון בו במקום. תמיד משאירים גם skin paddle חיצוני כי ה-Doppler הפנימי עלול להיכשל.</li>
+  <li>2 ניקוזים בכל שד, 2 בכל אתר תורם.</li>
+</ul>
+
+<h2><span class="num">5</span> טיפול לאחר הניתוח</h2>
+<table>
+  <thead><tr><th>תרופה / אמצעי</th><th>מינון / עיתוי (לפי הפרק)</th><th>מנגנון ומטרה</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Aspirin</span></td><td>325 מ"ג פומי מיד אחרי הניתוח, יומי עד השחרור</td><td>חוסם COX-1 בטסיות ← פחות <span class="term" dir="ltr">thromboxane A2</span> ← פחות הצטברות טסיות באנסטומוזה</td></tr>
+    <tr><td><span class="term" dir="ltr">Enoxaparin</span> (Lovenox)</td><td>40 מ"ג תת-עורי, מנה ראשונה ב-17:00 ביום 1</td><td>LMWH: מעכב פקטור Xa דרך antithrombin ← מניעת DVT. המחבר <b>לא משתמש בהפרין</b></td></tr>
+    <tr><td><span class="term" dir="ltr">Celecoxib</span> + <span class="term" dir="ltr">gabapentin</span></td><td>לפני הניתוח, ואז כל 6 ו-8 שעות; 7 ימים אחרי שחרור</td><td>COX-2 מעכב ← פחות פרוסטגלנדינים (כאב); gabapentin ← חוסם תת-יחידת &alpha;2&delta; של תעלות סידן ← מפחית שחרור נוירוטרנסמיטרים כאב. מטרה: מינימום נרקוטיקה</td></tr>
+    <tr><td><span class="term" dir="ltr">Liposomal bupivacaine</span></td><td>חסימות שדה בסוף הניתוח</td><td>הרדמה מקומית ארוכת טווח (בליעה איטית מליפוזומים)</td></tr>
+    <tr><td>ניטור פלאפ</td><td>כל <b>שעה</b> ב-20-24 שעות, אחר כך כל שעתיים; Doppler פנימי מוסר ביום 3</td><td>זיהוי מוקדם של חסימה</td></tr>
+    <tr><td>בדיקות דם</td><td><b>אין</b>, אלא אם יש תסמינים</td><td>בחירת המחבר</td></tr>
+  </tbody>
+</table>
+<p>לא נדרשת טיפול נמרץ, אלא יחידה עם סיעוד המסוגל לבדוק פלאפ שעתית. רוב המטופלות משתחררות ביום 3 (חלקן ביום 2). <b>אין PCA נרקוטי.</b> ביקורים 1 ו-2 שבועות אחרי שחרור; סימטריה ושחזור פטמה בניתוח משני אחרי 3 חודשים ומעלה (כולל כריתת ה-skin paddle ו-dog-ears).</p>
+
+<h2><span class="num">6</span> טבלת השוואה לשינון: SIEA מול DIEP מול free TRAM</h2>
+<table>
+  <thead><tr><th></th><th>SIEA</th><th>DIEP</th><th>free TRAM</th></tr></thead>
+  <tbody>
+    <tr><td>שריר/נדן</td><td>לא נפגעים</td><td>נדן נפתח, שריר נשמר</td><td>נדן + קטע שריר</td></tr>
+    <tr><td>עורק</td><td>SIEA קטן</td><td>DIEA גדול</td><td>DIEA גדול</td></tr>
+    <tr><td>אובדן פלאפ (ניסיון המחבר)</td><td>~6% (עורקי)</td><td>0.5% (ורידי)</td><td>נמוך כמו DIEP</td></tr>
+    <tr><td>יתרון בשד</td><td>אין</td><td>-</td><td>-</td></tr>
+    <tr><td>תחלואת תורם</td><td>הנמוכה ביותר</td><td>נמוכה</td><td>גבוהה יותר</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">7</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">S-I-E-A</span> – למה זה בעייתי</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Small</span>: עורק קטן, נדרש &ge; 1.5 מ"מ (רק ~שליש מהמטופלות), פדיקל קצר (~7 ס"מ).<br>
+    <b>I</b> – <span class="term" dir="ltr">Inconsistent</span>: אנטומיה לא עקבית; קיים ב-65% בגופות, ובכ-30% מתאים בפועל.<br>
+    <b>E</b> – <span class="term" dir="ltr">Early thrombosis</span>: פקק/עווית עורקית ← אובדן ~6% מול 0.5% ב-DIEP.<br>
+    <b>A</b> – <span class="term" dir="ltr">Abdominal wall spared</span>: היתרון היחיד, אין פגיעה בנדן ובשריר.
+  </p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני <b>צינור גינה דק</b> (ה-SIEA) שמחוברים בכוח אל <b>ברז כיבוי אש ענק</b> (ה-IMA). הברז מתפרץ בלחץ, הצינור הדק מתכווץ, מתכופף ו"נתקע" (עווית ופקק). הצינור הדק לא פוגע בגינה שמסביב (הבטן נשארת שלמה), אבל המים לא תמיד מגיעים לשיח. ולצדו <b>סירת הצלה גדולה</b> (ה-SIEV) שמנקזת את הכול בקלות.</p>
+  <svg class="diagram" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+    <title>צינור גינה דק מול ברז כיבוי</title>
+    <rect x="360" y="40" width="120" height="70" rx="10" fill="#dbeafe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="420" y="80" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">ברז ענק = IMA</text>
+    <rect x="130" y="68" width="230" height="14" rx="6" fill="#fecaca" stroke="#b91c1c" stroke-width="2"/>
+    <text x="245" y="60" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">צינור דק = SIEA</text>
+    <path d="M200 82 Q215 108 232 82" fill="none" stroke="#b91c1c" stroke-width="3"/>
+    <text x="215" y="125" font-size="11" text-anchor="middle" fill="#7f1d1d">קינק / עווית</text>
+    <rect x="20" y="40" width="110" height="70" rx="10" fill="#dcfce7" stroke="#166534" stroke-width="2"/>
+    <text x="75" y="80" font-size="13" text-anchor="middle" fill="#166534" font-weight="700">שיח = הפלאפ</text>
+  </svg>
+</div>
+
+<h2><span class="num">8</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Breast_reconstruction" target="_blank" rel="noopener">Breast reconstruction – Wikipedia</a>
+    <div class="desc">סקירה כללית על שיטות שחזור שד, כולל פלאפים אוטולוגיים.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Perforator_flap" target="_blank" rel="noopener">Perforator flap – Wikipedia</a>
+    <div class="desc">רקע על עקרון הפלאפ המבוסס על perforator, בהשוואה לפלאפ שטחי כמו SIEA.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Hagen%E2%80%93Poiseuille_equation" target="_blank" rel="noopener">Hagen-Poiseuille equation – Wikipedia</a>
+    <div class="desc">הסבר על התלות ברדיוס בחזקה רביעית בהתנגדות לזרימה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">9</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>אישה בת 52, BMI 26, לא מעשנת, לפני מסטקטומיה שמאלית ושחזור מיידי. היא סבלה בעבר מניתוח קיסרי דרך חתך Pfannenstiel. בניתוח, אחרי חשיפת כלי הבטן הימניים, ה-SIEA נמוש בבירור אך קוטרו החיצוני 1.2 מ"מ. בחשיפת ה-IM מתברר שיש גם IM perforator בחלל 2.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה הבעיה העיקרית בניתוח SIEA לפי הפרק, ומה ההסבר המנגנוני?</div>
+  <button class="opt" data-i="0">גודש ורידי כי ה-SIEV קטן</button>
+  <button class="opt" data-i="1">פגיעה בנדן הקדמי ובקע</button>
+  <button class="opt" data-i="2">פקק עורקי (ואובדן פלאפ ~6%) בשל עורק קטן, אי-התאמה ל-IMA ונטייה לעווית</button>
+  <button class="opt" data-i="3">שחזור לא סימטרי בגלל נפח קטן</button>
+  <div class="explain">נכון: הסיכון העורקי הוא החיסרון המרכזי. א: ה-SIEV דווקא דומיננטי ואמין. ב: זה היתרון, אין פגיעה בנדן. ד: אין יתרון/חיסרון בשד עצמו לעומת TRAM/DIEP.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. מה ההחלטה בוינייטה לגבי ה-SIEA בקוטר 1.2 מ"מ?</div>
+  <button class="opt" data-i="0">ממשיכים עם SIEA ומבצעים spatulation</button>
+  <button class="opt" data-i="1">לא משתמשים ב-SIEA (דרוש &ge; 1.5 מ"מ) ועוברים ל-DIEP / MS-TRAM</button>
+  <button class="opt" data-i="2">משתמשים בהפרין ובאנסטומוזה end-to-side</button>
+  <button class="opt" data-i="3">מנתחים ל-thoracodorsal</button>
+  <div class="explain">נכון: קריטריון המחבר הוא &ge; 1.5 מ"מ ודופק נמוש. spatulation ו-end-to-side מקלים אך לא פותרים עורק קטן מדי.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מדוע חתך Pfannenstiel מונע SIEA אך לרוב לא DIEP?</div>
+  <button class="opt" data-i="0">הוא פוגע בשריר ה-rectus</button>
+  <button class="opt" data-i="1">הוא פוגע ב-IMA</button>
+  <button class="opt" data-i="2">הוא תמיד חותך את ה-DIEA</button>
+  <button class="opt" data-i="3">הוא חותך את ה-SIEV וסביר גם את ה-SIEA (שטחיים), אך בדרך כלל לא את ה-DIEA העמוק</button>
+  <div class="explain">נכון: הכלים השטחיים נחתכים בחתך נמוך שטחי; הכלים העמוקים נשמרים. לכן ב-SIEA הוא התוויית נגד אלא אם הכלים הוכחו פתוחים בהדמיה.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. לאיזה חלל בין-צלעי וכלי מקבל נוטה המחבר ב-SIEA, ולמה?</div>
+  <button class="opt" data-i="0">חלל 4 (IMA צר יותר ← התאמה טובה יותר), או IM perforator (17%)</button>
+  <button class="opt" data-i="1">חלל 3 כמו ב-DIEP, כי ה-IMA רחב יותר</button>
+  <button class="opt" data-i="2">תמיד thoracodorsal</button>
+  <button class="opt" data-i="3">החלל אינו משנה</button>
+  <div class="explain">נכון: ה-IMA בחלל 4 דק יותר ולכן מתאים לעורק קטן. thoracodorsal רחוק והפדיקל הקצר לא יגיע בלי שתל.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. איזו קביעה נכונה לגבי הפדיקל והשד לאחר SIEA?</div>
+  <button class="opt" data-i="0">הפדיקל ארוך מ-10 ס"מ ומתאים ל-thoracodorsal</button>
+  <button class="opt" data-i="1">ה-SIEA קונטרלטרלי לא מגיע ל-IM</button>
+  <button class="opt" data-i="2">הפדיקל כ-7 ס"מ; ב-inset הסבוב 90° נדרש SIEA קונטרלטרלי אל ה-IM, ואין יתרון בשד לעומת DIEP/TRAM</button>
+  <button class="opt" data-i="3">נדרש תמיד שתל שריר</button>
+  <div class="explain">נכון: פדיקל קצר (~7 ס"מ מול &gt;10 ב-DIEP). ב-inset עם סיבוב 90° צריך את הצד הקונטרלטרלי; ל-thoracodorsal נבחר צד איפסילטרלי. אין יתרון אסתטי בשד.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. מה הטיפול התרופתי הנוגד-טסיות/קרישה בפרוטוקול של המחבר?</div>
+  <button class="opt" data-i="0">הפרין IV רציף</button>
+  <button class="opt" data-i="1">Aspirin 325 מ"ג מיום הניתוח + enoxaparin 40 מ"ג מיום 1, בלי הפרין</button>
+  <button class="opt" data-i="2">אין טיפול תרופתי</button>
+  <button class="opt" data-i="3">Clopidogrel בלבד</button>
+  <div class="explain">נכון: הפרוטוקול כולל אספירין ו-enoxaparin תת-עורי. המחבר מציין במפורש שאינו משתמש באנטיקואגולציה פורמלית עם הפרין.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">10</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>SIEA = פלאפ עור ושומן בלבד מהבטן התחתונה; בלי פגיעה בנדן ושריר; "לא perforator flap".</li>
+    <li>יתרון: תחלואת תורם מינימלית; SIEV דומיננטי ואמין לניקוז.</li>
+    <li>חיסרון: עורק קטן (נדרש &ge; 1.5 מ"מ, ~שליש מהמטופלות), פדיקל ~7 ס"מ, אנטומיה לא עקבית (65% בגופות), אנגיוזום קטן.</li>
+    <li>אובדן פלאפ מלא ~6% (פקק עורקי) מול 0.5% ב-DIEP (פקק ורידי); אין יתרון בשד.</li>
+    <li>מנגנון: אי-התאמת קוטר ל-IMA, זרימה מכלי גדול לקטן, ונטייה לעווית.</li>
+    <li>התמודדות: spatulation, end-to-side, IM perforator; כלי מקבל IMA בחלל 4.</li>
+    <li>התוויות נגד: abdominoplasty/panniculectomy; Pfannenstiel (אלא אם הכלים הוכחו בהדמיה); שאיבת שומן יחסית.</li>
+    <li>אלגוריתם: SIEA+SIEV, &ge; 1.5 מ"מ ודופק, דיסקציה לשורש, clamp DIEP, בדיקת זילוח, אחרת DIEP/MS-TRAM.</li>
+    <li>Inset: סיבוב 90°, SIEA קונטרלטרלי ל-IM; coupler עם Doppler פנימי + skin paddle חיצוני.</li>
+    <li>אחרי: ניטור שעתי 20-24 ש', aspirin 325, enoxaparin 40, ERAS ללא נרקוטיקה; שחרור ביום 3.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

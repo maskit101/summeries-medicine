@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 32: מום מולד של היד I</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 32: מום מולד של היד I – אמבריולוגיה, סיווג ועקרונות <span class="term" dir="ltr">Congenital hand I</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | חלק VI: Congenital Disorders | מאת Tonkin ו-Oberg</div>
+
+<p>ילד שנולד עם יד חריגה מציב שלוש שאלות: <b>למה זה קרה</b> (אמבריולוגיה ומולקולה), <b>איך קוראים לזה</b> (סיווג משותף לרופא, לגנטיקאי ולמנתח) ו<b>מה עושים ומתי</b> (עקרונות טיפול). הפרק הוא ה"שפה והמפה" של כל פרקי היד המולדת הבאים: מי שמבין באיזה ציר ובאיזה שלב התפתחות נפגעה היד, מבין גם מה קשור למה (למשל למה יש תסמונות לב עם אגודל חסר) ומסוגל להסביר להורים. המסר המרכזי: <b class="key">סיווג OMT מחליף את סיווג Swanson, ובנוי על ציר ההתפתחות שנפגע ועל העיתוי, ולא רק על מראה היד</b>.</p>
+
+<h2><span class="num">1</span> אמבריולוגיה: איך נבנית יד</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>יום ~26 (שבוע 4, Carnegie 12):</b> נצן הגפה העליונה (<span class="term" dir="ltr">upper limb bud</span>) מופיע כבליטה על דופן הגוף מול סומיטים 9–12 (C5–C8). הוא עשוי מזודרם של לוח לטרלי סומטי (שלד) מכוסה אקטודרם; שרירים וכלי דם נכנסים מהסומיטים.<br>
+    <b>יום ~33:</b> הקצה הדיסטלי נעשה "משוט" (<span class="term" dir="ltr">hand plate</span>); <b>סוף שבוע 5</b> הוא נראה בבירור.<br>
+    <b>ימים 44–46:</b> אצבעות נפרדות; <b>יום ~51:</b> מפרקי המרפק והשורש גלויים; <b>יום 56 (סוף שבוע 8):</b> כל התבנית המורפולוגית מוכנה.
+  </p>
+</div>
+<p>צמיחת הנצן והתמיינותו מתוארות לפי <b>שלושה צירים</b>, ולכל ציר "מרכז איתות" (<span class="term" dir="ltr">signaling center</span>) משלו. הלוגיקה: כל מרכז הוא אזור קטן שמפריש מורפוגן ואומר לתאי המזודרם הלא-ממוינים שמתחתיו (אזור ההתקדמות, <span class="term" dir="ltr">progress zone, PZ</span>) מי הם ולאן הם הולכים.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>ציר</th><th>מרכז איתות</th><th>מולקולות עיקריות</th><th>ניסוי קלאסי</th><th>מה קורה כשהוא נפגע</th></tr></thead>
+  <tbody>
+    <tr><td><b>פרוקסימו-דיסטלי</b> (כתף ← אצבעות)</td><td><b>AER</b> – רכס אקטודרמלי אפיקלי (<span class="term" dir="ltr">apical ectodermal ridge</span>), בגבול הגבי-הוולרי</td><td>Wnt3 ← Fgf10 (מזודרם) ↔ Fgf2/4/8/9/17 (AER): לולאה הדדית</td><td>הסרת AER בעוף: קטיעת הגפה; מתן Fgf במקומה משחזר גדילה</td><td><b>חסר Wnt3/Fgf10: טטרה-מליה</b> (אין גפות); פגיעה ב-AER: <b>קטיעה רוחבית</b>; AER לא תקין ביד: סדק ידני (SHFM)</td></tr>
+    <tr><td><b>רדיו-אולנרי</b> (קדמי-אחורי)</td><td><b>ZPA</b> – אזור פעילות מקטב (<span class="term" dir="ltr">zone of polarizing activity</span>), בשולי האולנה הדיסטליים</td><td><b>Shh</b> (Sonic hedgehog); Gli3</td><td>הסרת ZPA: אובדן אולנה ואצבעות אולנריות; השתלה לצד הרדיאלי: <b>שיקוף</b> – אצבעות אולנריות כפולות</td><td>חסר Shh: אין אולנה ואין אצבעות; עודף/מיקום חריג: <b>פוליקטיליה, יד מראה (ulnar dimelia)</b>, אגודל תלת-פרקי</td></tr>
+    <tr><td><b>דורסו-וולרי</b> (גב ← כף)</td><td>האקטודרם הגבי</td><td>En1 (וולרי) מגביל את <b>Wnt7a</b> לגב; Wnt7a ← <b>Lmx1b</b> במזודרם</td><td>השתלת אקטודרם גבי לצד הוולרי: מבנים גביים בצד הוולרי</td><td>איבוד גבי-ליות: <b>Nail-patella</b> (LMX1B); <b>dimelia</b> גבי/וולרי (ציפורן בכף היד)</td></tr>
+  </tbody>
+</table></div>
+<p>המרכזים אינם עצמאיים: <b>Shh ו-Fgf מזינים זה את זה</b> (לולאה הדדית) – הסרת AER מפילה את Shh והסרת ZPA מפילה את Fgf; ו-Wnt7a/Lmx1b מסייעים לשמור על Shh. לכן פגיעה במרכז אחד כמעט תמיד משנה גם את האחרים, וזו הסיבה שהסיווג מדבר על "הציר העיקרי שנפגע" ולא על ציר בלעדי.</p>
+
+<svg class="diagram" viewBox="0 0 880 250" xmlns="http://www.w3.org/2000/svg">
+  <title>שרשרת ההתהוות המולקולרית של הנצן</title>
+  <rect x="690" y="40" width="160" height="80" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="68" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">Tbx5</text>
+  <text x="770" y="90" font-size="12" text-anchor="middle" fill="#7f1d1d">שדה הגפה העליונה</text>
+  <text x="770" y="108" font-size="11" text-anchor="middle" fill="#7f1d1d">(Holt-Oram אם פגום)</text>
+
+  <rect x="470" y="40" width="160" height="80" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="550" y="68" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">Fgf10 + Wnt3</text>
+  <text x="550" y="90" font-size="12" text-anchor="middle" fill="#1e3a8a">מזודרם + אקטודרם</text>
+  <text x="550" y="108" font-size="11" text-anchor="middle" fill="#1e3a8a">(חסר: טטרה-מליה)</text>
+
+  <rect x="250" y="40" width="160" height="80" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="330" y="68" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">AER</text>
+  <text x="330" y="90" font-size="12" text-anchor="middle" fill="#065f46">Fgf2/4/8/9/17</text>
+  <text x="330" y="108" font-size="11" text-anchor="middle" fill="#065f46">גדילה פרוקסימו-דיסטלית</text>
+
+  <rect x="30" y="40" width="160" height="80" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="110" y="68" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">ZPA ← Shh</text>
+  <text x="110" y="90" font-size="12" text-anchor="middle" fill="#4c1d95">קוטביות רדיו-אולנרית</text>
+  <text x="110" y="108" font-size="11" text-anchor="middle" fill="#4c1d95">לולאה הדדית עם AER</text>
+
+  <line x1="690" y1="80" x2="630" y2="80" stroke="#374151" stroke-width="2"/>
+  <polygon points="630,80 642,74 642,86" fill="#374151"/>
+  <line x1="470" y1="80" x2="410" y2="80" stroke="#374151" stroke-width="2"/>
+  <polygon points="410,80 422,74 422,86" fill="#374151"/>
+  <line x1="250" y1="80" x2="190" y2="80" stroke="#374151" stroke-width="2"/>
+  <polygon points="190,80 202,74 202,86" fill="#374151"/>
+
+  <rect x="30" y="160" width="820" height="70" rx="8" fill="#fffbeb" stroke="#d97706"/>
+  <text x="440" y="188" font-size="13" text-anchor="middle" fill="#92400e" font-weight="700">במקביל: Wnt7a (אקטודרם גבי) ← Lmx1b (מזודרם) = ציר גב/כף, ושומר על Shh</text>
+  <text x="440" y="212" font-size="12" text-anchor="middle" fill="#92400e">תא במזודרם מקבל "כתובת" משלושת הצירים יחד – ולכן פגיעה בציר אחד מטשטשת גם את האחרים</text>
+</svg>
+<p class="figcap">איור סכמטי: התחלת הנצן ורשת האיתות (עיבוד של תיאור הפרק).</p>
+
+<h3>איך נקבע מספר האצבעות וצורתן</h3>
+<ul>
+<li><b>מספר ספרות</b> נקבע במישור היד בדגם מסוג טיורינג (<span class="term" dir="ltr">Turing</span>): <b>Bmp = מפעיל</b>, <b>Wnt = מעכב</b>; שניהם מכוונים ל-<span class="term" dir="ltr">Sox9</span> (מבשר סחוס). הרעש ההתחלתי מתייצב לתבנית של 5 אצבעות לסירוגין עם רווחים. גורמי Hox/Gli מגבילים את מספר הספרות: איבודם ← יותר ספרות (פוליקטיליה). <span class="term" dir="ltr">Fmn1</span> מגביל Bmp; מוטציה ← עודף Bmp ← סינוסטוזיס רדיואולנרי ואוליגוסינדקטיליה.</li>
+<li><b>זהות הספרה:</b> Shh/Gli3 יחד עם Hoxd/Hoxa, בשיפוע מאולנרי לרדיאלי. Bmp בקצה הספרה (<span class="term" dir="ltr">phalanx-forming region</span>) משלים את הזהות, האורך ומיקום המפרקים.</li>
+<li><b>הפרדת האצבעות:</b> Bmp בין-ספרתי מפעיל <b>מוות תאי מתוכנת (אפופטוזיס)</b> ומדכא Fgf ב-AER שמעליו. אם האפופטוזיס לא קורה ← <b>סינדקטיליה</b>. סינדקטיליה, פוליקטיליה וסדק קשורים פתוגנטית כי כולם נובעים משיבוש אותה רשת.</li>
+<li><b>הפלנקס הדיסטלי</b> מסומן ב-Msx1 (מזודרם) ו-Sp8 (אקטודרם) ומתגרם בדרך מיוחדת (גם ממברנלית) – לכן רכיבי הקצה (ציפורן, פלנקס סופי) עשויים להישאר גם כשהאמצע חסר (סימברכידקטיליה).</li>
+</ul>
+
+<h3>התמיינות הרקמות: מי מתפתח מתי ומה מתקלקל</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>רקמה</th><th>מנגנון עיקרי</th><th>עיתוי / סדר</th><th>הקשר הקליני</th></tr></thead>
+  <tbody>
+    <tr><td><b>כלי דם</b></td><td>אנגיובלסטים (<span class="term" dir="ltr">Tal-1, Flk1</span>) ← רשת פרימיטיבית ← עיצוב לפי VEGF; עורקים מסומנים ב-<span class="term" dir="ltr">Ephrin B2</span>, ורידים ב-<span class="term" dir="ltr">Eph-B4</span></td><td>פרוקסימלי ← דיסטלי; אולנרי מתמיין לפני רדיאלי. <b>מרבית אנומליות כלי הדם נוצרות בשלבים 17–21 (ימים 41–52)</b></td><td>העורק המדיאני בולט בהתחלה ואז מצטמק ומזין רק את עצב המדיאנוס; הצד הרדיאלי נשאר זמן רב עם רשת נימית פרימיטיבית</td></tr>
+    <tr><td><b>שלד</b></td><td><b>Sox9</b> ← התעבות מזנכימלית ← Sox5/6 ← אנלאגה סחוסית. מפרקים: Wnt14 ו-Gdf5 ב-<span class="term" dir="ltr">interzone</span> ← cavitation. אחר כך התגרמות אנדוכונדרלית (Runx2, Ihh, Osterix)</td><td>פרוקסימלי ← דיסטלי: סינוסטוזיס רדיוהומרלי מתרחש <b>מוקדם</b> יותר מפוליקטיליה/סינדקטיליה. לכל מטקרפל/פלנקס מרכז ראשוני (דיאפיזה) ומרכז משני אחד (לאחר הלידה)</td><td>פגמי עצם = בעיית Sox9 והתקדמות פרוקסימלית-דיסטלית</td></tr>
+    <tr><td><b>שריר וגיד</b></td><td>מיוציטים מהדרמומיוטום (<span class="term" dir="ltr">Pax3, c-Met, Lbx1</span>) נמשכים ע"י גורם פיזור; <b>פרימורדיום גיד</b> (PTP, ITP, DTP) מכוון את השריר. Lmx1b בגידים הגביים מעצב את חיבורי המיישרים. 3 גלי מיוגנזה כולל תאי לווין</td><td>פרוקסימלי ← דיסטלי; שרירי אמה שטחיים לפני עמוקים; שרירי כף יד (5 שכבות) מסביב לשלב 17</td><td>שרירים/גידים חריגים באנומליות שונות של היד והאגודל</td></tr>
+    <tr><td><b>עצבים</b></td><td>נוירוני מוטור מוגדרים ע"י <b>Shh</b> (נוטוקורד/floor plate) ו-FoxP1; Lim1 ← תא גבי (מיישרים), Isl1 ← וולרי (מכופפים). חושיים מ-DRG (נוירל קרסט)</td><td>העצבוב מפגר אחרי המיגרציה של השריר; שורשים C4–T1 ← פלקסוס ← 3 חוטים ← עצבים</td><td>בשלב המיוגנזה השנייה נדרשים אנדפלייט ותקשורת עצב-שריר להישרדות שרירים ועצבים</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">עיקרון זמן: <b>כל שרשרת הפיתוח ממשיכה מפרוקסימלי לדיסטלי</b>. נזק מוקדם (שבוע 4–5) פוגע בגפה כולה (למשל טטרה-מליה, פוקומליה); נזק מאוחר (שבוע 6–8) פוגע רק במישור היד (סינדקטיליה, פוליקטיליה). גורמים סביבתיים: <b>תלידומיד</b> (שנות ה-60), קרינה, זיהומים וחסרים תזונתיים; פגיעה ישירה ב-AER ← קטיעה רוחבית.</div>
+
+<h2><span class="num">2</span> סיווג: מ-Swanson ל-OMT</h2>
+<h3>המונחים הדיסמורפולוגיים</h3>
+<table>
+  <thead><tr><th>מונח</th><th>הגדרה</th><th>דוגמה</th></tr></thead>
+  <tbody>
+    <tr><td><b>Malformation</b> (מום)</td><td>היווצרות לא תקינה של רקמה בגלל <b>היווצרות תאים לא תקינה</b></td><td>רוב האנומליות: סימברכידקטיליה, חסר רדיוס, פוליקטיליה</td></tr>
+    <tr><td><b>Deformation</b> (עיוות)</td><td>פגיעה בתאים ש<b>כבר נוצרו תקין</b> (כולל disruption – הרס רקמה קיימת)</td><td>רצף טבעות לחץ (constriction ring / amniotic band)</td></tr>
+    <tr><td><b>Dysplasia</b></td><td>חוסר ארגון תקין של תאים לרקמה</td><td>מקרודקטיליה, גידולים, ארתרוגריפוזיס</td></tr>
+    <tr><td><b>Syndrome</b></td><td>קבוצת ממצאים נלווים, נרשמת בנפרד</td><td>Holt-Oram, Apert, Poland</td></tr>
+  </tbody>
+</table>
+
+<h3>למה Swanson כבר לא מספיק</h3>
+<ul>
+<li>אומץ ע"י IFSSH ב-1976, מבוסס על ידע אמבריולוגי של שנות ה-60 ועל <b>מראה</b>: כשל היווצרות, כשל התמיינות, כפילות, צמיחת-יתר, תת-צמיחה, טבעות לחץ ועוד.</li>
+<li><b>היווצרות והתמיינות מתרחשות במקביל</b>, כך שלעיתים אי אפשר להכריע מה מהן נפגע. "כפילות", "תת-צמיחה" ו"צמיחת יתר" רק מתארים מראה.</li>
+<li><b>סדק יד מרכזי (cleft hand)</b> סווג כ"חסר אורכי מרכזי" אך אין ציר מרכזי בגפה; הוא קשור פתוגנטית ל-<b>סינדקטיליה ופוליקטיליה</b> (מיורה, אוגינו) ונגרם מפגם ב-AER.</li>
+<li>סינפוליקטיליה (סינדקטיליה סוג II) נגרמת ע"י <b>HOXD13</b> (2q31–32); סדק יד – לוקוס אחר. אותו פנוטיפ יכול לנבוע מגנים שונים, ולכן אי אפשר לסווג לפי מראה בלבד.</li>
+<li>2014: ועדת IFSSH המליצה <b>להחליף את Swanson ב-OMT</b> (Oberg-Manske-Tonkin); עדכון 2020 ע"י Goldfarb ושות'.</li>
+</ul>
+
+<h3>מבנה OMT</h3>
+<svg class="diagram" viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg">
+  <title>מבנה סיווג OMT</title>
+  <rect x="330" y="10" width="220" height="44" rx="8" fill="#111827" stroke="#111827"/>
+  <text x="440" y="38" font-size="14" text-anchor="middle" fill="#fff" font-weight="700">אנומליה מולדת של הגפה העליונה</text>
+
+  <rect x="690" y="100" width="170" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="128" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">I. Malformations</text>
+  <text x="775" y="150" font-size="11" text-anchor="middle" fill="#7f1d1d">היווצרות תאים לא תקינה</text>
+
+  <rect x="470" y="100" width="170" height="70" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="555" y="128" font-size="14" text-anchor="middle" fill="#1e3a8a" font-weight="700">II. Deformations</text>
+  <text x="555" y="150" font-size="11" text-anchor="middle" fill="#1e3a8a">רקמה תקינה שנפגעה</text>
+
+  <rect x="250" y="100" width="170" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="335" y="128" font-size="14" text-anchor="middle" fill="#065f46" font-weight="700">III. Dysplasias</text>
+  <text x="335" y="150" font-size="11" text-anchor="middle" fill="#065f46">ארגון רקמה לקוי</text>
+
+  <rect x="30" y="100" width="170" height="70" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="115" y="128" font-size="14" text-anchor="middle" fill="#4c1d95" font-weight="700">IV. Syndromes</text>
+  <text x="115" y="150" font-size="11" text-anchor="middle" fill="#4c1d95">נרשמת בנפרד + מספר MIM</text>
+
+  <rect x="570" y="225" width="290" height="85" rx="8" fill="#fffbeb" stroke="#d97706"/>
+  <text x="715" y="251" font-size="13" text-anchor="middle" fill="#92400e" font-weight="700">IA: הגפה כולה – abnormal axis formation</text>
+  <text x="715" y="271" font-size="11" text-anchor="middle" fill="#92400e">(תבנית מוקדמת של הגפה)</text>
+  <text x="715" y="293" font-size="11" text-anchor="middle" fill="#92400e">IB: מישור היד – abnormal axis differentiation</text>
+
+  <rect x="230" y="225" width="300" height="85" rx="8" fill="#f8fafc" stroke="#64748b"/>
+  <text x="380" y="251" font-size="13" text-anchor="middle" fill="#1f2937" font-weight="700">בתוך כל אחד: הציר העיקרי שנפגע</text>
+  <text x="380" y="273" font-size="11" text-anchor="middle" fill="#1f2937">1 פרוקסימו-דיסטלי | 2 רדיו-אולנרי | 3 דורסו-וולרי</text>
+  <text x="380" y="293" font-size="11" text-anchor="middle" fill="#1f2937">4 ציר לא מוגדר (למשל סינדקטיליה פשוטה)</text>
+
+  <line x1="775" y1="170" x2="775" y2="225" stroke="#374151" stroke-width="2"/>
+  <polygon points="775,225 769,213 781,213" fill="#374151"/>
+  <line x1="570" y1="267" x2="530" y2="267" stroke="#374151" stroke-width="2"/>
+  <polygon points="530,267 542,261 542,273" fill="#374151"/>
+</svg>
+<p class="figcap">מבנה כללי של OMT: קבוצת מום מתחלקת לפי היקף (IA/IB) ולפי ציר.</p>
+
+<div class="table-scroll"><table>
+  <thead><tr><th>קבוצה (OMT)</th><th>ציר</th><th>דוגמאות</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="3"><b>IA – הגפה כולה</b></td><td>פרוקסימו-דיסטלי</td><td>Brachymelia; ספקטרום סימברכידקטיליה (כולל Poland); קטיעה רוחבית (אין אלמנטים אקטודרמליים); <b>פוקומליה</b> (intersegmental); כפילות הגפה כולה</td></tr>
+    <tr><td>רדיו-אולנרי</td><td>חסר רדיאלי אורכי (RLD), חסר אולנרי אורכי, ulnar dimelia, סינוסטוזיס רדיוהומרלי/רדיואולנרי, פריקת ראש הרדיוס, Madelung</td></tr>
+    <tr><td>דורסו-וולרי / לא מוגדר</td><td>dimelia וולרי/דורסלי; Sprengel (כתף לא יורדת)</td></tr>
+    <tr><td rowspan="4"><b>IB – מישור היד בלבד</b></td><td>פרוקסימו-דיסטלי</td><td>Brachydactyly; סימברכידקטיליה (עם אלמנטים אקטודרמליים); <b>סדק יד / SHFM</b> (הועבר לציר זה ב-2020 בגלל הקשר ל-AER)</td></tr>
+    <tr><td>רדיו-אולנרי</td><td>היפופלזיית אגודל, פוליקטיליה רדיאלית ואולנרית, <b>אגודל תלת-פרקי</b> ויד בעלת 5 אצבעות, יד מראה</td></tr>
+    <tr><td>דורסו-וולרי</td><td>dimelia דורסלי (ציפורן בכף היד), dimelia וולרי (ציפורן חסרה)</td></tr>
+    <tr><td>לא מוגדר</td><td><b>סינדקטיליה</b> פשוטה/מורכבת, קלינודקטיליה, Kirner, סימפלנגיזם, Apert, סינפוליקטיליה</td></tr>
+    <tr><td><b>II – Deformations</b></td><td>—</td><td>רצף טבעות לחץ (constriction ring). אגודל מדליק (pediatric trigger thumb) כבר לא נחשב מולד</td></tr>
+    <tr><td><b>III – Dysplasias</b></td><td>—</td><td>צמיחה חריגה (hemihypertrophy, מקרודקטיליה); גידולים (המנגיומה, NF, אוסטאוכונדרומטוזיס); <b>התכווצויות מולדות</b> (ארתרוגריפוזיס, קמפטודקטיליה)</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">יתרונות OMT: שפה אחידה, מצביע על אתר ועיתוי הפגיעה, ומאפשר רישום של <b>כל</b> האבחנות של ילד (אנומליות שאינן קשורות נרשמות בנפרד; פוליקטיליה+סינדקטיליה+סדק = אבחנה אחת: cleft hand complex), והסינדרום נרשם בנפרד לצד האנומליה (למשל Holt-Oram + חסר רדיאלי). נבדק בעבר במהימנות בין-מעריכים ובתוך-מעריך. <b>הסיווג הניתוחי הפנימי נשמר</b>: RLD דרגות 0–4, היפופלזיית אגודל Blauth 1–5 (בפרקים הבאים).</div>
+
+<h2><span class="num">3</span> הערכת הילד והמשפחה</h2>
+<div class="mechanism">
+<p class="chain"><b>עיקרון:</b> היד היא "נורמלית" בעיני הילד – תפיסת החריגות מתפתחת מהסביבה, והילד משקף את עמדת ההורים והצוות. לכן הסבר אמבריולוגי להורים הוא חלק מהטיפול. מטרת הניתוח: <b>אחיזה ודיוק פונקציונליים, ואחר כך מראה</b>.</p>
+</div>
+<ul>
+<li><b>המרפאה:</b> שקטה וחמה, מעט פנים בפגישה ראשונה, גישה לריפוי בעיסוק/פיזיותרפיה. ההורים צריכים לשמוע: סיבה ומנגנון, סיכון חוזר (באחים ובילדי המטופל), איזו מוגבלות צפויה, ואילו ניתוחים ומתי; תמונות לפני/אחרי עוזרות.</li>
+<li><b>אנמנזה:</b> הריון (אירועים, מיקום העובר ברחם, צורת לידה, משקל), היסטוריה משפחתית (תורשה), האם נבדקו מערכות אחרות.</li>
+<li><b>בדיקה:</b> צפייה בילד משחק לפני מגע; בדיקה כללית (פנים, אוזניים, עמוד שדרה, רגליים, חזה) וכל ארבע הגפיים. טיפ: לבדוק את יד האם קודם. לחפש קפלי עור חסרים, ROM מוגבל וחוסר יציבות. סימנים עדינים: סינדקטיליה של web שני ברגליים ← אולי web שלישי קל בידיים; אגודל היפופלסטי בצד אחד ← שינוי עדין בצד השני. <b>מתעדים:</b> שרטוט, מדידות היקף, צילום.</li>
+<li><b>אבני דרך:</b> ביד של יילוד האגודל בתוך כף היד; אחיזה אולנרית ← פינצ'ר רדיאלי; <b>פינצ'ר בערך בגיל 9–10 חודשים</b>, שרבוט ~13–15 חודשים; דומיננטיות ברורה בערך עד גיל 5.</li>
+</ul>
+<div class="table-scroll"><table>
+  <thead><tr><th>בדיקה</th><th>מה מבקשים ולמה</th><th>מגבלות</th></tr></thead>
+  <tbody>
+    <tr><td><b>צילום רנטגן</b></td><td>עיקרי; ממוקד לאנומליה ואם צריך סקר שלד; <b>לחזור עליו סמוך לניתוח</b></td><td>שלד לא בוגר: למשל Wassel 1 מול 2 תלוי בהתגרמות; גיל עצם לפי <b>Greulich-Pyle</b> (השוואה לאטלס) או <b>Tanner-Whitehouse</b> (19 עצמות); בנות מבשילות ~שנתיים לפני בנים; הבדלי גזע; תת-תזונה מעכבת</td></tr>
+    <tr><td><b>US</b></td><td>ללא קרינה, זול, מראה קווי סחוס טרם התגרמות</td><td>תלוי מפעיל</td></tr>
+    <tr><td><b>CT / MRI</b></td><td>מקרים מורכבים</td><td>דורשים סדציה/הרדמה</td></tr>
+    <tr><td><b>אנגיוגרפיה / MRA / Doppler</b></td><td>לפני העברת רקמה ממוקרוכלי דם, כמו העברת בוהן</td><td>נדיר</td></tr>
+    <tr><td><b>הערכת מערכות</b></td><td>הד לב, אולטרסאונד כליות, בדיקות דם: חיוני כי יש קשר גבוה לאנומליות נלוות</td><td>—</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">חסר רדיאלי אורכי: חשבו על <b>Holt-Oram</b> (לב, TBX5), <b>TAR</b> (thrombocytopenia absent radius), <b>אנמיית Fanconi</b>, ו-<b>VACTERLS</b>. הבדיקה השגרתית: אקו לב, אולטרסאונד כליות, בדיקות דם.</div>
+
+<h2><span class="num">4</span> עקרונות הטיפול הניתוחי</h2>
+<p>שאלת היסוד: <b>"האם ניתוח משחזר צפוי לשפר תפקוד ו/או מראה בסיכון מזערי?"</b> – העובדה שחלק חסר או חריג אינה אינדיקציה בפני עצמה.</p>
+<ul>
+<li><b>תפקוד:</b> כתף-מרפק-אמה יציבים ממקמים את היד; היד זקוקה לאגודל נייד מול שאר היד, אצבעות אולנריות לאחיזה ורדיאליות לצביטה מדויקת. שואלים: האם מספר וגודל האצבעות הולמים, יש עיוות, חוסר יציבות, האם שיפור תנועה יועיל. הסרת אצבע עודפת – בקשה פשוטה; <b>pollicization</b> לאגודל סוג 3 (Blauth) – הורים מפחדים מ"4 אצבעות". אם חלק משולב בפעילות הילד, גם בצורה לא יעילה, עדיף להמליץ על שחזור ולא על הסרה.</li>
+<li>לא תמיד אפשר להחזיר תפקוד נורמלי: Wassel 1 עלול להישאר עם חוסר יציבות/הגבלת IP; pollicization לא יוצרת אגודל תקין; שחרור אגודל מדליק – שימוש ומראה תקינים; קלינודקטיליה של הזרת אולי ללא חסר תפקודי ולכן זהירות; קמפטודקטיליה: שיפור בהארכה על חשבון כיפוף מלא.</li>
+<li><b>מראה:</b> הידיים ביטוי ותקשורת; עיוות לעיתים בולט יותר מחסר. שיפור מראה הוא "בעיני המתבונן", ושאלונים לאחר ניתוח מוטים (אשמה, אחריות להחלטה). <b>המנתח לא כופה עמדה.</b> העברת בוהן בסימברכידקטיליה – מחלוקת קלאסית.</li>
+<li><b>עיתוי:</b> מאזנים בין קושי טכני בגיל צעיר לבין רצון לתוצאה מוקדמת לפני שדפוסי שימוש נקבעים; פלסטיות קורטיקלית מאפשרת הסתגלות גם בגיל מבוגר. ספק באינדיקציה או בקשת ההורים לדחות ← עדיף להמתין; אם הרווח רק קוסמטי – אולי הילד יחליט לבד. <b>התקדמות עיוות = סיבה להקדים.</b> רצוי לסיים רוב הניתוחים לפני גיל בית ספר. יוצאים מן הכלל: תיקונים קלים ב-Apert והארכת אמה ב-RLD בגיל מבוגר.</li>
+<li>תוצאה מוצלחת עלולה להיפגע מ<b>הישנות עיוות, צמיחה לא מספקת/יתר, חוסר יציבות או חוסר תנועה</b>; גורמים כאלה מתקנים כבר בניתוח הראשון. ההורים מעודדים בתקווה אך לא בציפיות לא ריאליות.</li>
+</ul>
+<div class="table-scroll"><table>
+  <thead><tr><th>מצב</th><th>ניתוח</th><th>גיל מקובל</th></tr></thead>
+  <tbody>
+    <tr><td><b>טבעת לחץ עם סכנה לאצבע (digit at risk)</b></td><td>שחרור</td><td><b>מיידי</b></td></tr>
+    <tr><td>Floating digit (אצבע תלויה)</td><td>כריתה</td><td>~3 חודשים</td></tr>
+    <tr><td>סינדקטיליה פשוטה / אגודל / אצבעות באורך שונה עם קשר גרמי</td><td>שחרור</td><td>12 / 6 / 6 חודשים</td></tr>
+    <tr><td>Apert (אקרוסינדקטיליה)</td><td>שחרורים רצופים דו-צדדיים</td><td>מתחילים בגיל 6 חודשים</td></tr>
+    <tr><td>אקרוסינדקטיליה בטבעות לחץ</td><td>שחרור</td><td>6 חודשים</td></tr>
+    <tr><td>כפל אגודל; פוליקטיליה אולנרית/מרכזית</td><td>שחזור</td><td>12 חודשים</td></tr>
+    <tr><td>אגודל חסר/לא מספק; היפופלזיית אגודל; חסר מרכזי</td><td>Pollicization / שחזור</td><td>12–18 חודשים</td></tr>
+    <tr><td>סימברכידקטיליה</td><td>העברת פלנקס מבוהן / העברת בוהן ממוקרוכירורגית</td><td>12–24 חודשים / 2–3 שנים</td></tr>
+    <tr><td>חסר רדיאלי אורכי</td><td>Distraction / ייצוב</td><td>3–6 / 6–12 חודשים</td></tr>
+    <tr><td>קלינודקטיליה</td><td>Physeolysis / אוסטאוטומיה</td><td>4–6 שנים / מאוחר</td></tr>
+    <tr><td>קמפטודקטיליה</td><td>שחרור רקמות רכות / עם שינויי מפרק – שחרור והעברות</td><td>12–18 חודשים / אחרי גיל 2</td></tr>
+    <tr><td>אגודל מדליק</td><td>שחרור</td><td>אחרי 12 חודשים</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">5</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>שלושת הצירים: F-S-W</h3>
+  <p>
+    <b>F</b> – <span class="term" dir="ltr">Fgf / AER</span> = ציר <b>F</b>ar: כמה רחוק הגפה גדלה (פרוקסימו-דיסטלי). חסר = קטיעה.<br>
+    <b>S</b> – <span class="term" dir="ltr">Shh / ZPA</span> = <b>S</b>ide: צד האצבע הקטנה (רדיו-אולנרי). עודף/מיקום שגוי = פוליקטיליה ויד מראה.<br>
+    <b>W</b> – <span class="term" dir="ltr">Wnt7a ← Lmx1b</span> = <b>W</b>rist-back: גב היד (דורסו-וולרי). חסר = ציפורן בכף.
+  </p>
+  <h3>ראשי תיבות לסיווג: M-D-D-S</h3>
+  <p><b>M</b>alformation (תאים לא נוצרו תקין), <b>D</b>eformation (נוצרו תקין, נפגעו אח"כ), <b>D</b>ysplasia (ארגון), <b>S</b>yndrome (נרשם בנפרד).</p>
+  <h3>סיפור דמיוני: שף וצלחת</h3>
+  <p>דמיינו שף (ה-AER) שדוחף כדור בצק (הנצן) קדימה (Far). לצד הצלחת עומד עוזר שאומר "<b>שששש</b>" (Shh) וקובע איפה האצבע הקטנה, ובחלק העליון של הבצק מדביק סימן "W" לציון הגב. אם השף נעלם באמצע – הבצק נעצר (קטיעה); אם העוזר עומד בצד הלא נכון – נקבל אצבעות כפולות מצד שגוי.</p>
+  <svg class="diagram" viewBox="0 0 520 210" xmlns="http://www.w3.org/2000/svg">
+    <title>שף וצלחת: שלושת הצירים</title>
+    <rect x="150" y="75" width="220" height="60" rx="30" fill="#fde68a" stroke="#b45309"/>
+    <text x="260" y="110" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">נצן (בצק)</text>
+    <line x1="150" y1="105" x2="70" y2="105" stroke="#2563eb" stroke-width="3"/>
+    <polygon points="70,105 82,99 82,111" fill="#2563eb"/>
+    <text x="110" y="92" font-size="12" text-anchor="middle" fill="#1e3a8a">Far (AER)</text>
+    <line x1="260" y1="135" x2="260" y2="180" stroke="#6d28d9" stroke-width="3"/>
+    <polygon points="260,180 254,168 266,168" fill="#6d28d9"/>
+    <text x="260" y="198" font-size="12" text-anchor="middle" fill="#4c1d95">Side (Shh): אולנרי</text>
+    <line x1="260" y1="75" x2="260" y2="32" stroke="#047857" stroke-width="3"/>
+    <polygon points="260,32 254,44 266,44" fill="#047857"/>
+    <text x="260" y="20" font-size="12" text-anchor="middle" fill="#065f46">Wrist-back (Wnt7a): גב</text>
+  </svg>
+</div>
+
+<h2><span class="num">6</span> מקורות להרחבה</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.omim.org/" target="_blank">OMIM – Online Mendelian Inheritance in Man</a>
+    <div class="desc">מאגר התסמונות הגנטיות שהפרק מפנה אליו עם מספרי MIM (Holt-Oram, Apert, Nail-patella ועוד).</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Goldfarb+Oberg-Manske-Tonkin+classification+2020" target="_blank">PubMed – Goldfarb et al., OMT classification update 2020 (J Hand Surg Am)</a>
+    <div class="desc">עדכון 2020 של סיווג OMT, שעליו מבוסס Box 32.1 בפרק.</div>
+  </li>
+</ul>
+
+<h2><span class="num">7</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוק בן 3 חודשים נולד עם אגודל קטן וחסר יציבות ביד שמאל, אמה קצרה וסטיה רדיאלית של היד. בהיסטוריה המשפחתית לאחיו הבכור יש מום ביד דומה ופגם מחיצה בלב. צילום מראה היעדר חלקי של הרדיוס, והאצבעות נראות תקינות. ההורים שואלים למה זה קרה ומה צפוי.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. לפי סיווג OMT, באיזו קבוצה ובאיזה ציר נמצאת האנומליה העיקרית של הילד (חסר רדיאלי אורכי)?</div>
+  <button class="opt" data-i="0">Deformation, ציר פרוקסימו-דיסטלי</button>
+  <button class="opt" data-i="1">Malformation, ציר רדיו-אולנרי (IA אם כל הגפה מעורבת)</button>
+  <button class="opt" data-i="2">Dysplasia, ציר דורסו-וולרי</button>
+  <button class="opt" data-i="3">Syndrome בלבד, ללא אנומליה נפרדת</button>
+  <div class="explain">חסר רדיאלי אורכי הוא מום (malformation) בציר הרדיו-אולנרי (קבוצה IA כשהגפה כולה מעורבת, IB כשרק מישור היד). Deformation (תשובה 1) מתייחס לרקמה שנוצרה תקין ונפגעה (טבעות לחץ). Dysplasia (תשובה 3) – צמיחה/ארגון חריגים. בתסמונת נרשמות שתיהן: גם הסינדרום וגם האנומליה (תשובה 4 שגויה).</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">2. בהינתן הקשר לאנומליה לבבית, איזו תסמונת היא החשד העיקרי, ואיזה גן קשור?</div>
+  <button class="opt" data-i="0">Apert – FGFR2</button>
+  <button class="opt" data-i="1">Nail-patella – LMX1B</button>
+  <button class="opt" data-i="2">Liebenberg – PITX1</button>
+  <button class="opt" data-i="3">Holt-Oram – TBX5</button>
+  <div class="explain">TBX5 מתבטא בשדה הגפה העליונה וגם בלב; מוטציה גורמת ל-Holt-Oram (אנומליות לב וגפה עליונה). Apert (תשובה 1) כרוך בסינדקטיליה. Nail-patella (תשובה 2) הוא ציר דורסו-וולרי. Liebenberg (תשובה 3) – העברת רגל לזרוע בגלל PITX1.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה מרכז איתות אחראי על הציר הרדיו-אולנרי, ואיזו מולקולה מפרישה?</div>
+  <button class="opt" data-i="0">ZPA – Sonic hedgehog</button>
+  <button class="opt" data-i="1">AER – Fgf8</button>
+  <button class="opt" data-i="2">אקטודרם גבי – Wnt7a</button>
+  <button class="opt" data-i="3">Progress zone – Sox9</button>
+  <div class="explain">ה-ZPA בשולי האולנה מפריש Shh ומגדיר רדיו-אולנריות; השתלתו לצד הרדיאלי יוצרת אצבעות אולנריות משוכפלות. AER ו-Fgf (תשובה 2) אחראים לצמיחה פרוקסימו-דיסטלית. Wnt7a (תשובה 3) – ציר גב/כף. Sox9 (תשובה 4) הוא גורם שעתוק ליצירת סחוס ואינו מרכז איתות.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">4. מה ההבדל בין סימברכידקטיליה לקטיעה רוחבית (transverse deficiency) לפי OMT?</div>
+  <button class="opt" data-i="0">אין הבדל – שמות שונים לאותו מצב</button>
+  <button class="opt" data-i="1">סימברכידקטיליה היא deformation בעוד קטיעה היא malformation</button>
+  <button class="opt" data-i="2">בסימברכידקטיליה נשארים אלמנטים אקטודרמליים (ציפורן/שרידי פלנקס סופי); בקטיעה רוחבית אין</button>
+  <button class="opt" data-i="3">סימברכידקטיליה תמיד דו-צדדית ובעלת שרירים חסרים</button>
+  <div class="explain">OMT מבדיל לפי קיום אלמנטים אקטודרמליים: בסימברכידקטיליה החסר הוא בין-מקטעי (הפלנקס האמצעי) והקצה (ציפורן, שרידי פלנקס דיסטלי) נשמר; בקטיעה רוחבית אין. שתיהן malformations בציר הפרוקסימו-דיסטלי (תשובה 2 שגויה).</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. הורים מבקשים לדחות שחרור אגודל מדליק (pediatric trigger thumb) של ילד בן שנה "כי אולי תהיה טכנולוגיה חדשה". מהי הגישה לפי הפרק?</div>
+  <button class="opt" data-i="0">לנתח מיד, בכל גיל</button>
+  <button class="opt" data-i="1">שחרור אחרי גיל 12 חודשים ככלל; לעודד תקווה אך לא ציפיות לא ריאליות, ולא לדחות לאין קץ</button>
+  <button class="opt" data-i="2">להמתין עד גיל בית ספר אחרת התוצאה גרועה</button>
+  <button class="opt" data-i="3">להימנע מניתוח כי זה נחשב מום מולד קלאסי</button>
+  <div class="explain">לפי טבלת העיתוי, שחרור אגודל מדליק נעשה אחרי 12 חודשים. הפרק מדגיש שהמנתח מעודד תקווה אך מרסן ציפיות, וההחלטה אינה נעשית קלה יותר עם הזמן. אין צורך לנתח מיד (תשובה 1) או לחכות לבית ספר (תשובה 3). אגודל מדליק מוגדר כיום כמצב נרכש ולא כמום מולד (תשובה 4 שגויה).</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">8</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>נצן גפה עליונה: יום ~26, סומיטים C5–8; משוט יד ~יום 33; אצבעות נפרדות ימים 44–46; גפה שלמה ביום 56.</li>
+    <li>שלושה צירים ← שלושה מרכזים: <b>AER (Fgf)</b> פרוקסימו-דיסטלי; <b>ZPA (Shh)</b> רדיו-אולנרי; <b>Wnt7a/Lmx1b</b> דורסו-וולרי. לולאת Shh–Fgf הדדית.</li>
+    <li>Tbx5 ← Fgf10+Wnt3 ← AER. חסר Wnt3/Fgf10 = טטרה-מליה; פגיעת AER = קטיעה; Tbx5 = Holt-Oram.</li>
+    <li>ספרות: דגם Turing (Bmp מפעיל, Wnt מעכב), Sox9; אפופטוזיס בין-ספרתי ע"י Bmp; כשל = סינדקטיליה.</li>
+    <li>כלי דם: אנומליות בשלבים 17–21; שלד: Sox9 פרוקסימלי ← דיסטלי; שריר ועצב בעקבותיו.</li>
+    <li>מונחים: Malformation / Deformation / Dysplasia / Syndrome.</li>
+    <li>Swanson (1976, IFSSH) מבוסס מראה ← הוחלף ע"י OMT (2014; עדכון 2020): IA הגפה כולה, IB היד בלבד, לפי הציר העיקרי; סדק יד עבר לציר פרוקסימו-דיסטלי.</li>
+    <li>הערכה: משפחה, הריון, תורשה, בדיקת כל המערכות (לב, כליה, דם), צילום (גיל עצם: Greulich-Pyle, Tanner-Whitehouse).</li>
+    <li>ניתוח: האם משפר תפקוד/מראה בסיכון מזערי? עיתוי: טבעת חונקת מיידי; סינדקטיליה 6–12 חודשים; pollicization 12–18 חודשים; רצוי לפני בית ספר.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

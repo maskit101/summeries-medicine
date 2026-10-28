@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 25: תיקון שסע שפה דו-צדדי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 25: תיקון שסע שפה דו-צדדי <span class="term" dir="ltr">Repair of bilateral cleft lip</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 20, מאת John B. Mulliken ו-Daniel M. Balkin</div>
+
+<p>שסע שפה דו-צדדי (<span class="term" dir="ltr">bilateral cleft lip</span>) נחשב מאז <b>Brown</b> ל"קשה פי שניים לתיקון ובעל תוצאה טובה בחצי". הפרק טוען שזה כבר לא הכרחי: בזכות שני חידושים &ndash; <b class="key">מניפולציה אורתופדית-דנטופציאלית של הפרה-מקסילה לפני הניתוח</b> ו<b class="key">תיקון סינכרוני של השפה והאף בבת אחת</b> &ndash; אפשר להגיע לתוצאה השווה ואף עולה על שסע חד-צדדי שלם. היתרון היחיד של הדו-צדדי על פני החד-צדדי הוא <b>סימטריה</b>.</p>
+
+<h2><span class="num">1</span> חמשת העקרונות &ndash; ולמה דווקא הם</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>#</th><th>עיקרון</th><th>הרציונל (מה קורה אם מדלגים)</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><b>שמירה על סימטריה</b> נזולביאלית</td><td>כל הבדל קטן בין הצדדים מתגדל עם הגדילה</td></tr>
+    <tr><td>2</td><td><b>המשכיות שרירית</b> ראשונית (טבעת <span class="term" dir="ltr">orbicularis oris</span> שלמה)</td><td>בלעדיה: בליטות לטרליות בעת פיפוף, התרחבות פילטרום, התרחקות בסיסי הכנפיים (interalar widening)</td></tr>
+    <tr><td>3</td><td>עיצוב <b>דש פילטרלי</b> בגודל וצורה מתאימים</td><td>הפילטרום מתארך ומתרחב מהר, במיוחד בצומת קולומלה-שפה</td></tr>
+    <tr><td>4</td><td>בניית ה-<b>median tubercle</b> מאלמנטים <b>לטרליים</b> (vermilion-mucosa)</td><td>בפרולביום אין white roll; הוורמיליון שנשמר שם חיוור ולא גדל לגובה מלא</td></tr>
+    <tr><td>5</td><td><b>מיקום סחוסי הכנף התחתונים (LLC)</b> ופיסול קצה האף והקולומלה</td><td>הקולומלה "החסרה" היא אשליה: <b>"The columella is in the nose"</b></td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">עקרונות 1-4 הוגדרו ואושרו לאורך השנים; <b>עיקרון 5 הוא השינוי האסטרטגי</b> &ndash; תיקון האף ראשוני ולא משני, ללא "גיוס" עור שפה לקולומלה (בניגוד ל-forked flap של Millard).</div>
+
+<h2><span class="num">2</span> המנגנון: שלושה ממדים + ממד רביעי (גדילה)</h2>
+<div class="mechanism">
+  <p class="chain">סימני הנזולביאלי של השסע המתוקן = <b>תיקון תלת-ממדי</b> + <b>עיוות בממד הרביעי (זמן)</b> ← תכונות <b>מהירות גדילה</b> (רוחב אף, גובה אף, תוויות השפה, interalar, רוחב הפילטרום) מגיעות ל-75%-90% מגודל המבוגר כבר בגיל 5 ← תכונות <b>איטיות</b> (<b>הקרנת קצה האף ואורך הקולומלה</b>) מגיעות רק לכ-2/3 ← לכן <b class="key">מה שגדל מהר נבנה קטן, מה שגדל לאט נבנה גדול מהנורמה</b>.</p>
+</div>
+<ul>
+  <li>הפילטרום אחרי תיקון קלאסי התרחב פי <b>2.5</b> בחלקו העליון ופי <b>2</b> בין פסגות ה-Cupid's bow עד גיל 5 &ndash; לכן הדש הפילטרלי נבנה צר: <b>אורך (sn-ls) 6-7 מ"מ; רוחב 2 מ"מ בצומת קולומלה-שפה ו-3.5-4 מ"מ בין פסגות ה-bow</b>.</li>
+  <li><b>חריג: ה-median tubercle</b>. בנורמה הוא גדל מהר (87% ממידת המבוגר בגיל 5), אך אחרי תיקון הוא "מפגר". לכן נבנה <b>מלא ככל האפשר</b> (באנתרופומטריה: בממוצע <b>155%</b> מהנורמה; הקרנת האף 130%, הקולומלה 167%).</li>
+  <li>החשיפה ההיסטורית: תיקון שפה בלבד <b>מחמיר</b> את עיוות האף &ndash; קצה רחב, הקרוס המדיאלי נמשך אחורה-למטה, ה-genua מתקפלים ("<span class="term" dir="ltr">recurvatum</span>"/"<span class="term" dir="ltr">cat's knees</span>") והסחוס הצונח יוצר רכס/רשת ווסטיבולרית.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>שרשרת העיוות</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פרה-מקסילה בולטת</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">ללא רצף שרירי</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">LLC מפוצלים</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">"קולומלה קצרה" מדומה</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">גדילה לא שווה</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">מהיר מול איטי (4D)</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">תיקון סינכרוני</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">שפה + אף + תכנון לגדילה</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+<p class="figcap">מהעיוות המבני, דרך הבנת הגדילה, אל אסטרטגיית התיקון.</p>
+
+<h2><span class="num">3</span> אנטומיה, סיווג ושכיחות</h2>
+<p>שסע דו-צדדי מהווה כשליש מכלל סוגי השסעים בסדרת המחבר. ההיארעות בעוברים שונה מהלידה (חלק מהעוברים אינם בני קיימא עקב מומים נלווים). בלידה רק כ-10% מהילודים עם שסע שפה/חך הם עם מום נלווה, אך <b>שסע דו-צדדי שפה/חך שכיח יותר בתסמונות</b>: <b>van der Woude, CHARGE, ectodermal dysplasias</b> &ndash; אבחון מוקדם משפיע על רצף הניתוחים.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>צורה אנטומית</th><th>שכיחות</th><th>מאפיינים</th></tr></thead>
+  <tbody>
+    <tr><td><b>סימטרי שלם</b> (bilateral complete)</td><td>~50%</td><td>כמעט תמיד עם שסע שלם של החך המשני; פרה-מקסילה בולטת</td></tr>
+    <tr><td><b>סימטרי לא-שלם</b></td><td>~25%</td><td>חריץ מינורי/ללא בקשת המכתש, חך משני שלם; הקל ביותר לתיקון</td></tr>
+    <tr><td><b>א-סימטרי</b> (שלם/לא-שלם)</td><td>~25%</td><td>שונות רבה בחך; הצד הקטן מסווג לפי Yuzuriha-Mulliken</td></tr>
+  </tbody>
+</table></div>
+<h3>הצד "הקל" באסימטרי &ndash; סיווג לפי חומרת הפירוד ב-vermilion-cutaneous junction</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>סוג</th><th>הגדרה</th><th>אסטרטגיה</th></tr></thead>
+  <tbody>
+    <tr><td><b>Minor-form</b></td><td>בקשת ה-Cupid's bow גבוהה ב-3-5 מ"מ; עד 50% מגובה העור; חסר ורמיליון מדיאלית; tubercle היפופלסטי</td><td>תיקון בילטרלי <b>סינכרוני</b></td></tr>
+    <tr><td><b>Microform</b></td><td>חריץ ב-junction; פסגת bow גבוהה &lt;3 מ"מ; סטייה קלה של בסיס כנף (1-2 מ"מ)</td><td>בדרך כלל דחייה עד סגירת הצד הגדול</td></tr>
+    <tr><td><b>Mini-microform</b></td><td>הפרעה ב-white roll בלי העלאת bow; חריץ קל בקצה</td><td>לרוב דחייה / כריתה אנכית <span class="term" dir="ltr">lenticular</span></td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">4</span> אורתופדיה דנטופציאלית לפני הניתוח</h2>
+<p><b>הרציונל:</b> הפרה-מקסילה בולטת מונעת סגירה ללא מתח; אחרי מרכוז וחזרה (retrusion) אפשר לתכנן דש פילטרלי בפרופורציות נכונות, למקם את סחוסי האף אנטומית, לסגור את שסעי המכתש (גינגיבופריאוסטופלסטיה) ולייצב את קשת השיניים &ndash; ולצמצם עיוותים נזולביאליים בצמיחה המהירה.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>מאפיין</th><th>פסיבי: NAM (Grayson, Cutting)</th><th>אקטיבי: Latham</th></tr></thead>
+  <tbody>
+    <tr><td>עיקרון</td><td>פלטת עם נעילה בתחתיות (undercuts), לחץ דיפרנציאלי על הקטעים המקסילריים; קלטת מהפרולביום/לחיים מחזירה את הפרה-מקסילה; נבט אקרילי מרים את הנחיריים</td><td>מתקן מוצמד (pinned) לקטעי החך בהרדמה כללית; שרשרת אלסטית + בורג עם ratchet שההורים מסובבים יומית</td></tr>
+    <tr><td>משך</td><td>ארוך, איטי, עבודה אינטנסיבית (שבועית)</td><td>~6-8 שבועות (ביקורים בשבועות 1, 3, 5)</td></tr>
+    <tr><td>יתרון</td><td>מעצב גם את האף (מותח קולומלה ותחבושת); ללא הרדמה</td><td>יעיל בתיקון מישור סגיטלי ובסיבוב הפרה-מקסילה; מרחיב את הקטעים הקדמיים</td></tr>
+    <tr><td>חסרונות / סיבוכים</td><td>דלקת רירית, שלפוחיות בלחיים, קושי בהאכלה, כיב בצומת קולומלה-שפה אם הרצועה הפרולבילית הדוקה מדי; סכנת הינתקות ופגיעה בנתיב אוויר &ndash; לכן <b>חור 5 מ"מ במרכז הפלטה</b> (תינוקות נושמים דרך האף חובה עד גיל ~3 חודשים)</td><td>דורש הרדמה; ויכוח על מקסילה נסוגה (critics) &ndash; המחבר: חלק מהנסיגה בלתי נמנעת ומתוקנת ב-Le Fort I</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">סדר העדיפויות לפי המחבר: <b>נראות נזולביאלית ודיבור קודמים</b> לחשש מעכבת גדילה אמצע-הפנים. נסיגת מקסילה צפויה ותתוקן במעמד אחר (קידום Le Fort I + onlay אלופלסטי למלאות הלחי).</div>
+
+<h2><span class="num">5</span> הניתוח הסינכרוני &ndash; שלב אחרי שלב</h2>
+<p>גיל טיפוסי <b>5-6 חודשים</b>; זהו תיקון ראשון בבוקר, והניתוח היחיד של היום (עבודה איטית וללא הפרעות). עושים אותו בשלבים שמתחלפים בין השפה לאף.</p>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>שלבי הניתוח</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">1. סימון ודיסקציה</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">דש פילטרלי, שחרור לטרלי</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">2. מכתש + שפה</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">GPP, שריר, tubercle</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">3. סחוסי האף</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">semi-open, תפרי מזרן</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">4. כנפיים + עור</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">cinch, סגירת הפילטרום</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+<h3>סימון</h3>
+<p>מרקר: <b>צבע ירוק מבריק (brilliant green, tincture)</b> ולא methylene blue מימי; קיסם מושחז; נקודות ציון אנתרופומטריות (prn, c, sn, al, cphs, cphi, ls, sto) <b>מקועקעות</b>. דש פילטרלי עם דפנות מעט קעורות (צפי לקשת עם הגדילה) + דשי אגף (<span class="term" dir="ltr">flanking flaps</span>) <b>מנוטרלי אפיתל</b> שנשכבים מתחת לשפה הלטרלית ומדמים עמודי פילטרום ומוסיפים רוחב ואספקת דם.</p>
+<h3>דיסקציה ומכתש</h3>
+<ul>
+  <li>הרמת הדש הפילטרלי (מתחת לשכבות התת-עוריות) עד ה-ANS; השארת התקשרויות סיביות לשמירת זווית קולומלה-שפה.</li>
+  <li>ניתוק האלמנטים הלטרליים מבסיסי הכנף ומה-piriform; <b>שחרור נרחב בפלנה סופרה-פריאוסטלית</b> מעל המלר (אצבע על שפת הארובה להגנת העין) &ndash; קריטי למזעור מתח.</li>
+  <li>סגירת רצפות האף, <b>גינגיבופריאוסטופלסטיה (GPP)</b> לייצוב קשת השיניים ולמניעת פיסטולות אורונזליות; גזירת רצועת הוורמיליון הפרולבילית ותפירת שארית הרירית גבוה לפריאוסט הפרה-מקסילה (בונה את דופן אחורית של הסולקוס).</li>
+</ul>
+<h3>שפה ושריר</h3>
+<ul>
+  <li>סגירת סולקוסים כשהשפה הלטרלית נמשכת מדיאלית (back-cut בקצה).</li>
+  <li><b>תפרי שריר בקצה-לקצה</b> מלמטה למעלה (PDS), והתפר העליון ל<b>פריאוסט ה-ANS</b> (polypropylene).</li>
+  <li><b>בניית ה-median tubercle</b> מדשי white roll-vermilion-mucosa לטרליים, תפר chromic ~3 מ"מ מדיאלית לפסגת ה-bow; הדש ה"מיותר" נגזם בהדרגה בנטייה להשאיר <b>יותר מדי</b> &ndash; כדי למנוע raphe מחורץ.</li>
+</ul>
+<h3>האף</h3>
+<ul>
+  <li><b>גישה semi-open</b> דרך חתכי rim דו-צדדיים; כריתת רקמה פיברו-שומנית משטח הסחוסים; חשיפה עד ה-ULC.</li>
+  <li><b>תפר מזרן אופקי 4-0 PDS בין ה-genua</b> (interdomal), ותפרי מזרן להשעיית ה-LLC על ה-ULC (intercartilaginous) &ndash; ללא קשירה עד שכל התפרים במקומם.</li>
+  <li>גזימת <b>C-flaps</b> בבסיס הקולומלה (3-5 מ"מ), קידום בסיסי הכנף מדיאלית וסיבוב אנדונזלי.</li>
+  <li><b>Cinch suture</b> (polypropylene) דרך הדרמיס בבסיסי הכנף מתחת לדש הפילטרלי &ndash; <b>interalar &lt;25 מ"מ</b> (נורמה לזכר 6-12 חודשים: 26 מ"מ).</li>
+  <li>תפרי הפרה-מקסילה לפריאוסט נקשרים לבסיסי הכנף: <b>מדמים את ה-depressor alae nasi</b>, יוצרים צורת <span class="term" dir="ltr">cyma</span> ל-sill ומונעים הגבהת כנף בחיוך והתרחבות לאחר הניתוח.</li>
+  <li>כריתה חצי-סהר של עור דומלי עודף בחתך rim (ועד לצדי הקולומלה); כריתה <span class="term" dir="ltr">lenticular</span> של רשת הווסטיבולום.</li>
+</ul>
+<h3>סיום והחלמה</h3>
+<ul>
+  <li>הדש הפילטרלי מוחדר לידית ה-Cupid's bow; סגירה ללא מתח בתפרי דרמיס וממשקי עור.</li>
+  <li><b>אנתרופומטריה מיידית</b> אחרי התיקון מתועדת: sn-c נבנה ~5-6 מ"מ (נורמה 4.7 ± 0.8).</li>
+  <li>Stents: 1 ס"מ של צינור סיליקון 19G עטוף Xeroform לכל נחיר ל-<b>48 שעות</b> (סטנט ממושך יזיק ל-sills).</li>
+  <li><b>Logan bow</b> להגנה + קרח; שחרור ביום 2; הסרת תפרים בעור ביום 6 (הרדמה קלה); Steri-Strip ל-6 שבועות; עיסוי ומקדם קרינה (sunblock).</li>
+</ul>
+
+<h2><span class="num">6</span> וריאנטים אנטומיים והתאמת האסטרטגיה</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>וריאנט</th><th>המאפיינים / הבעיה</th><th>אסטרטגיה</th></tr></thead>
+  <tbody>
+    <tr><td><b>הגעה מאוחרת</b> (שלם דו-צדדי בגיל מאוחר)</td><td>פרה-מקסילה נוקשה, אין אפשרות להזיז; לעיתים אין זמינות לאורתופדיה</td><td>(1) <b>set-back</b> של הפרה-מקסילה + תיקון נזולביאלי, או (2) set-back + <b>palatoplasty</b> (הבטוח יותר &ndash; רק "איסתמוס" צר של רירית מחיצה מזין את הפרה-מקסילה אחרי חתכי GPP וכריתת הצוואר)</td></tr>
+    <tr><td><b>Binderoid</b></td><td>היפוטלוריזם, מחיצה קצרה, ANS חסרה, קולומלה חרוטית; פרה-מקסילה פעוטה וגמישה (שן אחת); ורמיליון דק</td><td>לרוב ללא אורתופדיה; <b>סבירות גבוהה לניתוחים משניים</b>: דרמיס-גרפט ל-tubercle, שתלי סחוס לקצה, קידום מקסילה, שתל costochondral</td></tr>
+    <tr><td><b>שלם עם חך משני שלם</b></td><td>הפרה-מקסילה מוצקה (אין צורך באורתופדיה)</td><td>אם אינה בולטת מדי: תיקון סינכרוני + סגירת פגם אחורי; GPP נדחה לשמירת אספקת דם. אם בולטת &ndash; set-back וסגירה בשלב ראשון, תיקון נזולביאלי בשלב שני</td></tr>
+    <tr><td><b>סימטרי לא-שלם</b></td><td>הקל ביותר; השפעת המכתש/חך קטנה</td><td>אותו עיקרון; tubercle בדרך כלל מדשי white roll לטרליים; רק אם הקולומלה קצרה והכנפיים מפוצלות &ndash; מיקום LLC; <b>narrowing של interalar תמיד נדרש</b></td></tr>
+    <tr><td><b>אסימטרי</b></td><td>כדי "לאזן" שדה: הצד השלם מקבל DFO ואדהזיה + GPP ובכך הופך ללא-שלם</td><td>ואז תיקון סינכרוני (אם הצד השני minor/ לא-שלם); בצד השלם <b>מגזימים</b> בתיקון, ועם microform &ndash; תיקון מושהה (double unilimb Z-plasty). פער ורמיליון נפתר ב-unilimb Z-plasty</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">7</span> תוצאות, מדידה ושיעורי ריוויזיה</h2>
+<ul>
+  <li><b>אנתרופומטריה ישירה</b> (Farkas; Vernier/Castroviejo calipers) = "תקן הזהב"; קשה בילד &lt;5 שנים. אינטרה-אופרטיבית משמשת כבסיס. <b>פוטוגרמטריה דו-ממדית</b> מוגבלת (הגדלה, זווית); <b>פוטוגרמטריה תלת-ממדית</b> (למשל Vectra) היא השיטה החדשה והמדויקת.</li>
+  <li>צילום: חזית, תת-סנטרי (submental, ממפה את האף) וצד &ndash; <b>לא</b> תוך כדי הרדמה עם צינור אנדוטרכיאלי.</li>
+  <li>עקבי עם העיצוב: <b>interalar</b> נבנה צר ונשאר בטווח הנורמה העליון; הקולומלה והקרנת קצה האף ארוכות מעט וגדלות במקביל לנורמה; הפילטרום נשאר מעט קצר; tubercle מתנרמל לאט ולעיתים דורש <b>שתל דרמיס-שומן</b> (בזמן השתלת עצם במכתש, גיל 9-11, מהאגן האחורי).</li>
+  <li><b>שיעורי ריוויזיה</b> (50 ילדים לא-סינדרומטיים): <b>33% בשלם שפה/חך</b> לעומת <b>12% בשלם שפה/מכתש עם חך שלם</b>. הריוויזיה השכיחה: resuspension של רירית גינגיבולבילית שצנחה (נפתרה ע"י גזימת ורמיליון פרולבילי ותפירה לפריאוסט); הרחבת interalar שכיחה אך נדירה לריוויזיה בילדות.</li>
+  <li>מטרת המחבר: <b>העור של השפה לא צריך להיפתח שוב</b>; ייתכנו מיקום מחדש של סחוס האף, התאמת קו הקצה הרירי (mucosal free margin) ולעיתים צמצום רוחב.</li>
+  <li>בקבוצת א-סימטרי: ריוויזיה נמוכה ביותר עם <b>minor-form</b> בצד הקל (כי תיקון סינכרוני משיג סימטריה); גבוהה ביותר עם <b>mini-microform</b> (כי קשה להשיג סימטריה ראשונית).</li>
+  <li><b>קידום מקסילה (Le Fort I)</b> בבגרות: ~<b>75%</b> בשלם דו-צדדי שפה/חך ו-~50% בצורות האחרות במחלקת המחבר.</li>
+  <li>גיל הערכה לריוויזיה: <b>גן ילדים</b> &ndash; אסימטריות גם מתעצמות בהתבגרות.</li>
+</ul>
+
+<h2><span class="num">8</span> השוואה: הגישה הישנה מול הסינכרונית</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>מאפיין</th><th>גישה ישנה (מדורגת, forked flap)</th><th>גישה סינכרונית (Mulliken)</th></tr></thead>
+  <tbody>
+    <tr><td>פרה-מקסילה</td><td>כריתה/set-back או חבישות לחץ</td><td>אורתופדיה דנטופציאלית (NAM/Latham) לפני הניתוח</td></tr>
+    <tr><td>קולומלה</td><td>הארכה מעור פרולבילי / שפתי ("forked flap")</td><td>מיקום LLC + פיסול רקמת קצה האף ("הקולומלה באף")</td></tr>
+    <tr><td>שריר</td><td>לעיתים מתעלמים</td><td>המשכיות orbicularis ראשונית</td></tr>
+    <tr><td>Tubercle</td><td>ורמיליון פרולבילי (דק, ללא white roll) &rarr; "whistling lip"</td><td>דשי ורמיליון-מוקוזה לטרליים</td></tr>
+    <tr><td>צלקות</td><td>צלקת עוברת בצומת קולומלה-שפה &rarr; קמט נזולביאלי; חוסר "dimple"</td><td>ללא פגיעה בצומת; דימוי של עמודי פילטרום</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: "SMART" &ndash; 5 העקרונות</h3>
+  <p>
+    <b>S</b>ymmetry &ndash; סימטריה<br>
+    <b>M</b>uscle continuity &ndash; המשכיות שרירית<br>
+    <b>A</b>(proper) philtral flap &ndash; דש פילטרלי בגודל נכון (צר!)<br>
+    <b>R</b>aphe/median tubercle &ndash; tubercle מאלמנטים לטרליים (ורמיליון, לא פרולביום)<br>
+    <b>T</b>ip &amp; columella (LLC) &ndash; "הקולומלה באף"<br>
+  </p>
+  <p><b>כלל הגדילה:</b> "מי שרץ מהר נולד קטן" (פילטרום, interalar) &ndash; "מי שזוחל נולד גדול" (קצה האף, קולומלה). <b>חריג:</b> tubercle &ndash; גדל מהר אך אחרי ניתוח מפגר &rarr; בונים <b>מלא מדי</b>.</p>
+  <h3>סיפור דמיוני: הפסל והשיש החי</h3>
+  <p>פסל (המנתח) מפסל פנים משיש &ndash; אבל השיש <b>חי וגדל</b>. לפני הכל הוא מזיז את האף הבולט באמצעות "נדנדה" קטנה (פלטת NAM) שמחזירה את הבליטה למקומה. הוא יודע שהמצח ירוץ מהר ולכן מפסל אותו קטן, והאף יזחל ולכן הוא מפסל אותו גדול. ואת "מרכז הפה" (tubercle) הוא ממלא בשיש עודף כי ידוע שהוא ידלדל. הוא לא מביא שיש מבחוץ לעיצוב האף &ndash; <b>האף כבר יושב בתוך הגוש</b>.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>הפסל והשיש החי</title>
+    <rect x="170" y="50" width="160" height="120" rx="10" fill="#e5e7eb" stroke="#374151" stroke-width="2"/>
+    <polygon points="250,70 232,120 268,120" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <text x="250" y="40" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">"האף כבר בתוך הגוש"</text>
+    <rect x="215" y="135" width="70" height="18" rx="6" fill="#fecaca" stroke="#7f1d1d"/>
+    <text x="250" y="148" font-size="11" text-anchor="middle" fill="#7f1d1d" font-weight="700">tubercle מלא</text>
+    <text x="400" y="100" font-size="12" fill="#1e3a8a" font-weight="700">פילטרום: קטן</text>
+    <text x="400" y="125" font-size="12" fill="#065f46" font-weight="700">קולומלה: גדולה</text>
+    <text x="90" y="105" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">NAM = נדנדה</text>
+    <line x1="140" y1="105" x2="168" y2="105" stroke="#374151" stroke-width="2"/>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cleft_lip_and_cleft_palate" target="_blank">Cleft lip and cleft palate &ndash; Wikipedia</a>
+    <div class="desc">סקירה כללית של אטיולוגיה, סיווג וטיפול בשסעי שפה וחך.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=Yuzuriha+Oh+Mulliken+asymmetrical+bilateral+cleft+lip" target="_blank">Yuzuriha S, Oh AK, Mulliken JB. Asymmetrical bilateral cleft lip. Plast Reconstr Surg 2008;122:1494-1504 (חיפוש PubMed)</a>
+    <div class="desc">המאמר שמגדיר את האלגוריתם לשסע א-סימטרי ואת סיווג minor / micro / mini-microform.</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוקת בת 5 חודשים נולדה עם <b>שסע שפה, מכתש וחך דו-צדדי שלם</b>. הפרה-מקסילה בולטת וקדימה, קולומלה נראית "קצרה מאוד". אחרי 6 שבועות במתקן אורתופדי הפרה-מקסילה התמרכזה. המנתח מתכנן תיקון סינכרוני שפה-אף. בדף התכנון: דש פילטרלי ברוחב 2 מ"מ בבסיס ו-3.5-4 מ"מ בפסגות, ו-tubercle מלא מוורמיליון הצדדי.</p>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע הדש הפילטרלי נבנה צר יחסית, ואילו הקולומלה וקצה האף מוגדלים?</div>
+  <button class="opt" data-i="0">כי הפילטרום גדל לאט והקולומלה גדלה מהר</button>
+  <button class="opt" data-i="1">כי תכונות מהירות גדילה (פילטרום, interalar) מתרחבות הרבה אחרי הניתוח, ואילו הקרנת הקצה והקולומלה גדלות לאט ומגיעות רק לכ-2/3 בגיל 5</button>
+  <button class="opt" data-i="2">כי הדש הפילטרלי חייב להיות צר כדי לכסות את הפרה-מקסילה</button>
+  <button class="opt" data-i="3">כדי למנוע מתח בתפר האף</button>
+  <div class="explain">נכון. מה שגדל מהר נבנה קטן, ומה שגדל לאט נבנה גדול מהנורמה (4D). האפשרות הראשונה הפוכה. האחרות אינן הרציונל במאמר.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה הסיבה לכך שה-median tubercle נבנה מדשי vermilion-mucosa <b>לטרליים</b> ובכמות "מוגזמת"?</div>
+  <button class="opt" data-i="0">כי הוורמיליון הפרולבילי עבה מדי</button>
+  <button class="opt" data-i="1">כי הפרולביום מכיל white roll מלא ולכן אין צורך בו</button>
+  <button class="opt" data-i="2">כי בפרולביום אין white roll והוורמיליון שנשאר חיוור ואינו גדל לגובה מלא; וה-tubercle אחרי תיקון מפגר בגדילה</button>
+  <button class="opt" data-i="3">כדי להימנע מצלקת בקו האמצע</button>
+  <div class="explain">נכון. הפרולביום חסר white roll; הוורמיליון שבו חיוור ולא גדל, מה שמוביל ל-whistling lip deformity. לכן בונים tubercle מאלמנטים לטרליים ומלא (~155% מהנורמה).</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">3. מהי הסיבה לחור בקוטר 5 מ"מ במרכז פלטת ה-NAM?</div>
+  <button class="opt" data-i="0">תינוקות נושמים דרך האף חובה עד גיל ~3 חודשים; אם הפלטה מתנתקת ומשתלת באוויר, החור שומר נתיב אוויר</button>
+  <button class="opt" data-i="1">לאפשר האכלה דרך הפלטה</button>
+  <button class="opt" data-i="2">להפחית משקל המתקן</button>
+  <button class="opt" data-i="3">לאפשר ניקוי פעם בשבוע</button>
+  <div class="explain">נכון. הסיכון של חסימת נתיב אוויר בהינתקות הפלטה הוא הסיבה לחור. שאר התשובות אינן הרציונל.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">4. במעמד הניתוח: מה תפקיד תפרי הפרה-מקסילה הקשורים לבסיסי הכנפיים ("cinch" ותפר פריאוסט)?</div>
+  <button class="opt" data-i="0">הם מאריכים את הקולומלה</button>
+  <button class="opt" data-i="1">הם סוגרים את רצפת האף</button>
+  <button class="opt" data-i="2">הם מרחיבים את הנחיריים</button>
+  <button class="opt" data-i="3">מדמים את ה-depressor alae nasi, יוצרים צורת cyma של ה-sill, מונעים הגבהת כנף בחיוך ומצמצמים התרחבות של interalar</button>
+  <div class="explain">נכון. ה-cinch משלים את הפעולה: interalar &lt;25 מ"מ. אורך הקולומלה מושג בעיקר ע"י מיקום LLC; רצפות האף נסגרות קודם.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">5. ילד בן שנה עם שסע דו-צדדי שלם שהגיע לראשונה, הפרה-מקסילה נוקשה ובולטת, ואין אפשרות לאורתופדיה. איזו אפשרות היא הבטוחה יותר?</div>
+  <button class="opt" data-i="0">set-back של הפרה-מקסילה עם GPP ותיקון נזולביאלי באותו מעמד</button>
+  <button class="opt" data-i="1">set-back של הפרה-מקסילה יחד עם GPP ו-palatoplasty (ותיקון שפה מאוחר על בסיס מקסילרי יציב)</button>
+  <button class="opt" data-i="2">תיקון שפה עם חבישות לחץ בלבד</button>
+  <button class="opt" data-i="3">כריתת הפרה-מקסילה</button>
+  <div class="explain">נכון. אחרי חתכי GPP וכריתת הצוואר רק איסתמוס צר של רירית המחיצה מזין את הפרה-מקסילה, ולכן הגישה עם palatoplasty (ושפה בשלב מאוחר) בטוחה יותר ומתאימה כשדיבור הוא עדיפות. כריתה אינה בשימוש מודרני.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>5 עקרונות: סימטריה; המשכיות orbicularis; דש פילטרלי נכון; tubercle מאלמנטים לטרליים; מיקום LLC ופיסול קצה/קולומלה (<b>"הקולומלה באף"</b>).</li>
+    <li>4D: מהיר גדילה &rarr; בונים קטן (פילטרום, interalar); איטי &rarr; גדול (קצה האף, קולומלה); tubercle &rarr; מלא מאוד.</li>
+    <li>דש פילטרלי: אורך 6-7 מ"מ; רוחב 2 מ"מ (בצומת) / 3.5-4 מ"מ (בפסגות); דפנות מעט קעורות; flanking flaps מנוטרלי אפיתל.</li>
+    <li>התפלגות: סימטרי שלם 50%, סימטרי לא-שלם 25%, אסימטרי 25%; תסמונות: van der Woude, CHARGE, ectodermal dysplasia.</li>
+    <li>DFO לפני הניתוח: NAM (פסיבי, חור 5 מ"מ) או Latham (אקטיבי, 6-8 שבועות); מאפשר GPP ותיקון סינכרוני.</li>
+    <li>ניתוח: סימון ב-brilliant green; שחרור סופרה-פריאוסטלי; GPP; שריר קצה-לקצה + ANS; tubercle לטרלי; semi-open + תפרי מזרן ל-LLC; cinch &lt;25 מ"מ.</li>
+    <li>לאחר: stents 48 שעות; Logan bow; שחרור יום 2; הסרת תפרים יום 6; Steri-Strip 6 שבועות.</li>
+    <li>וריאנטים: מאוחר &rarr; set-back (עדיף עם palatoplasty); binderoid &rarr; ריוויזיות רבות; חך שלם &rarr; אין צורך ב-DFO; אסימטרי &rarr; DFO+GPP לצד השלם ואז תיקון סינכרוני.</li>
+    <li>ריוויזיה: 33% (שלם שפה/חך) לעומת 12% (חך שלם); Le Fort I ב-~75% בשלם; העור של השפה לא צריך להיפתח מחדש.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 31: היד הכואבת</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 31: היד הכואבת <span class="term" dir="ltr">The painful hand</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 6: Hand and Upper Limb | חלק V: Challenging Disorders | מאת Brown, Berridge, Hazell, Ramanuj ו-Quick</div>
+
+<p>כאב נוירופתי פוסט-טראומטי הוא אחד האתגרים הקשים בכירורגיית היד: הוא חמור, עמיד לטיפול, נוטה להפוך לכרוני ופוגע בתפקוד ובנפש. הפרק בונה "מסלול קליני" שלם: אנמנזה, בדיקה, אבחנות כירורגיות שלא תמיד מזוהות, טיפול שמרני (פיזיקלי, פסיכולוגי, תרופתי) ולבסוף ארגז כלים ניתוחי. המסר המרכזי: <b class="key">תווית "CRPS" נוחה מדי – לעיתים קרובות מסתתרת מאחוריה נגעים עצביים שניתנים לטיפול ניתוחי</b>.</p>
+
+<h2><span class="num">1</span> מושגי יסוד: נוסיספציה מול כאב נוירופתי</h2>
+<div class="mechanism">
+  <p class="chain">
+    <b>כאב</b> (הגדרת <span class="term" dir="ltr">IASP</span>): חוויה חושית ורגשית לא נעימה הקשורה (או דומה לזו הקשורה) בנזק רקמתי ממשי או פוטנציאלי – לכל כאב יש תמיד רכיב חושי <i>וגם</i> רגשי.<br>
+    <b>נוסיספציה (<span class="term" dir="ltr">nociception</span>):</b> התהליך העצבי של גילוי, קידוד והעברת גירוי מזיק; כאב נוסיספטיבי נובע ממערכת סומטוסנסורית <b>תקינה</b>.<br>
+    <b>כאב נוירופתי:</b> נובע ממערכת סומטוסנסורית <b>לא תקינה</b>. זהו תיאור קליני ולא אבחנה – זהו <b class="key">סימפטום ולא מחלה</b>, ויש לחפש את הפתולוגיה שמייצרת אותו.
+  </p>
+</div>
+<table>
+  <thead><tr><th>מאפיין</th><th>סימפטומים ספונטניים</th><th>סימפטומים מעוררים (<span class="term" dir="ltr">evoked</span>)</th></tr></thead>
+  <tbody>
+    <tr><td>הגדרה</td><td>מופיעים ללא גירוי חיצוני</td><td>נוצרים בעקבות גירוי מכני חיצוני</td></tr>
+    <tr><td>דוגמאות</td><td>התקפי כאב דוקר (<span class="term" dir="ltr">lancinating</span>) במנוחה, צריבה, "זרם חשמלי"</td><td>אלודיניה (<span class="term" dir="ltr">allodynia</span>) – כאב מגירוי לא מכאיב; היפראלגזיה (<span class="term" dir="ltr">hyperalgesia</span>); דיסאסתזיה</td></tr>
+  </tbody>
+</table>
+<p>כאב נוירופתי, בניגוד לנוסיספטיבי: חמור יותר, עמיד לטיפול, נוטה להתכרן, פוגע יותר בנפש ובתפקוד, ולעיתים קרובות מלווה בפתולוגיה פסיכולוגית.</p>
+
+<h2><span class="num">2</span> הערכה: אנמנזה ובדיקה</h2>
+<h3>מנגנון הפגיעה</h3>
+<ul>
+<li><b>פצע חודר:</b> כל חתך על מהלך עצב מחשיד; הכוח שחתך עור עלול לפגוע גם במבנים עמוקים, והצלקת עצמה עלולה לחנוק עצב משנית.</li>
+<li><b>פגיעה סגורה (קהה):</b> אנרגיה נמוכה מול גבוהה (נפילה מגובה עמידה מול התנגשות מהירה). אנרגיה גבוהה היא <i>סמן</i> לאנרגיה שספגו העצבים (שבר/פגיעת מפרק). מנגנונים: מתיחה אורכית, דחיסה (רקמות או המטומה) ופיתול – לעיתים עם "אזור פגיעה" (zone of injury) בכל הרקמות.</li>
+</ul>
+<div class="mnemonic">
+  <h3>SOCRATES – אנמנזת כאב</h3>
+  <p>
+    <b>S</b> – <span class="term" dir="ltr">Site</span> (איפה, אפשר להצביע?)<br>
+    <b>O</b> – <span class="term" dir="ltr">Onset</span> (מתי התחיל, מה עשית)<br>
+    <b>C</b> – <span class="term" dir="ltr">Character</span> (חד, בוער, חשמלי)<br>
+    <b>R</b> – <span class="term" dir="ltr">Radiation</span> (האם מקרין)<br>
+    <b>A</b> – <span class="term" dir="ltr">Associated features</span> (שינוי בגודל, תחושה, הזעה, צבע)<br>
+    <b>T</b> – <span class="term" dir="ltr">Timing</span> (קבוע/מתנדנד, שינוי לאורך היום)<br>
+    <b>E</b> – <span class="term" dir="ltr">Exacerbating/relieving factors</span><br>
+    <b>S</b> – <span class="term" dir="ltr">Severity</span> (0–10: עכשיו, במיטבו, בגרוע ביותר)
+  </p>
+</div>
+<p>כדאי לשאול גם מה המטופל חושב שגרם לכאב – זה חושף חששות. מיפוי הכאב נעשה ב-<span class="term" dir="ltr">body chart</span>. עוצמת כאב נמדדת ב-<span class="term" dir="ltr">VAS/NRS</span>, אך איכות הכאב (דוקר, חשמלי, בוער) מזוהה בשאלונים: <span class="term" dir="ltr">LANSS, PainDetect, McGill, Brief Pain Inventory</span>, ובנוסף מדדי איכות חיים (HRQoL), כי כאב נוירופתי פוגע באיכות החיים יותר מכאב לא-נוירופתי.</p>
+<h3>בדיקה גופנית</h3>
+<ul>
+<li><b>מראה:</b> שינויים טרופיים וסימפתטיים (עור, צבע, שיער, ציפורניים, הזעה), אטרופיית שריר, תנוחה דיסטונית.</li>
+<li><b>תחושה:</b> מגע קל, רגישות עמוקה בלחיצת שריר; תיעוד אלודיניה, דיסאסתזיה והיפראלגזיה.</li>
+<li><b>מוטוריקה:</b> כוח, עיכוב בגלל כאב, קואורדינציה, קו-קונטרקציה, טונוס.</li>
+<li><b>סימן הופמן-טינל</b> לאורך מהלך העצב (מדיסטלי לפרוקסימלי): חיובי = מאתר את נקודת הפתולוגיה המייצרת כאב.</li>
+</ul>
+<p>בדיקות עזר עלולות להיות לא חד-משמעיות, ולכן נדרש שיקול דעת קליני שמצמצם את כל הממצאים לאבחנה (או קבוצת אבחנות) סבירה.</p>
+
+<h2><span class="num">3</span> האבחנות: למה כואב ומה מבדיל ביניהן</h2>
+<p>הפרק מדגיש אבחנות פחות מוכרות שנכנסות לעיתים "תחת הכותרת" של <span class="term" dir="ltr">CRPS</span> ולכן לא מופנות לטיפול כירורגי. כולן מתחילות בשרשרת סיבתית דומה: <b>פגיעה בעצב ← סביבה כימית/מכנית פתולוגית ← התפרקות עצבית אקטופית וגירוי ← כאב</b>.</p>
+<svg class="diagram" viewBox="0 0 860 300" xmlns="http://www.w3.org/2000/svg">
+  <title>גורלות עצב פגוע וסוגי כאב נוירופתי</title>
+  <rect x="690" y="115" width="160" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="770" y="145" font-size="14" text-anchor="middle" fill="#7f1d1d" font-weight="700">פגיעה בעצב</text>
+  <text x="770" y="166" font-size="12" text-anchor="middle" fill="#7f1d1d">מנגנון: חודר / קהה</text>
+
+  <rect x="260" y="10" width="360" height="75" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="440" y="36" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">העצב ברציפות, תקוע בצלקת</text>
+  <text x="440" y="56" font-size="12" text-anchor="middle" fill="#1e3a8a">נוירוסטנלגיה: מתח/היפוקסיה, סימן מפתח = אלודיניה</text>
+  <text x="440" y="74" font-size="11" text-anchor="middle" fill="#1e3a8a">(לפני כן: נוריטיס מדלקת)</text>
+
+  <rect x="260" y="112" width="360" height="75" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="440" y="138" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">רציפות אקסונלית נשברה</text>
+  <text x="440" y="158" font-size="12" text-anchor="middle" fill="#065f46">נוירומה כואבת (SPTN): ספונטני ו/או מעורר</text>
+  <text x="440" y="176" font-size="11" text-anchor="middle" fill="#065f46">הכאב "מוקרן" לאזור העור האלחוש</text>
+
+  <rect x="260" y="215" width="360" height="75" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="440" y="241" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">עקירת שורש עצבי מחוט השדרה</text>
+  <text x="440" y="261" font-size="12" text-anchor="middle" fill="#4c1d95">Deafferentation: כאב בוער, מיידי, נגע טרום-גנגליוני</text>
+  <text x="440" y="279" font-size="11" text-anchor="middle" fill="#4c1d95">DREZ מטפל בנוירונים היפראקטיביים</text>
+
+  <line x1="690" y1="135" x2="620" y2="55" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,55 633,57 627,67" fill="#374151"/>
+  <line x1="690" y1="150" x2="620" y2="150" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,150 632,144 632,156" fill="#374151"/>
+  <line x1="690" y1="165" x2="620" y2="245" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,245 626,234 633,243" fill="#374151"/>
+</svg>
+
+<table>
+  <thead><tr><th>אבחנה</th><th>מנגנון</th><th>מה מאפיין</th><th>הטיפול הלוגי</th></tr></thead>
+  <tbody>
+    <tr><td><b>נוריטיס (<span class="term" dir="ltr">neuritis</span>)</b></td><td>דלקת עצב: ציטוקינים, הורמונים; בצקת ← דחיסה פנימית (ירידה בנקז ורידי, כמו תסמונת מדור) וחיצונית</td><td>הפרעה בכל שלבי ההחלמה: <i>percussive</i> (היפר-אקוטי), דלקת אחרי פגיעה, או כרונית מצלקת מתכווצת (כוויה כימית/תרמית/קרינה)</td><td>טיפול בדלקת, בהמשך שחרור הצלקת</td></tr>
+    <tr><td><b>נוירוסטנלגיה</b></td><td>עצב ברציפות עטוף בצלקת: קשירה (tethering) ← ריכוז מתח ← היפוקסיה, איסכמיה וציטוקינים ← הולכה חסומה ולבסוף איבוד אקסונלי</td><td><b class="key">אלודיניה = סימן מפתח</b>; מעידה שהעצב ברציפות (אם יש תחושה, גם משובשת, העצב לא נחתך)</td><td>נוירוליזה</td></tr>
+    <tr><td><b>נוירומה כואבת פוסט-טראומטית (<span class="term" dir="ltr">SPTN</span>)</b></td><td>נוירומה היא תגובה ביולוגית רגילה של הגדם הפרוקסימלי כשאקסונים לא מגיעים לגדם הדיסטלי. כואבת כשנוצרת סביבה פתולוגית: צלקת בתוך הנוירומה, דחיסה חיצונית, NGF מהעור</td><td>ספונטנית (הצתה עצמית) ו/או מעוררת (פגיעה לחץ/מתיחה); הסימן Hoffmann-Tinel חיובי; כאב מקרין לאזור אלחוש</td><td>חיבור מחדש או העתקה</td></tr>
+    <tr><td><b>עקירת שורש (<span class="term" dir="ltr">avulsion</span>)</b></td><td>משיכה מנתקת שורשים מחוט השדרה; גוף התא החושי (גנגליון הרגל הגבית) שמור אך מנותק, ולכן EMG: שריר מנותק עם פוטנציאלים חושיים תקינים באזור אלחוש. שיבוש בקרנית האחורית/Lissauer/Substantia gelatinosa</td><td>פגיעה בפלקסוס העליון (C5-6 עמיד יותר לעקירה) מול עקירת C8-T1. כאב בוער ("יד בוערת", "מים רותחים") מיידי (עד 8 שבועות). בסדרת Parry: 98 מ-108 עם עקירה סבלו מכאב לעומת 0 מ-167 עם נגע דיסטלי לגנגליון</td><td>החזרת שורש (תוך 4 שבועות) / DREZ</td></tr>
+    <tr><td><b>קאוזלגיה (<span class="term" dir="ltr">causalgia</span>)</b></td><td>פגיעה באנרגיה גבוהה, בדרך כלל עצב + כלי דם. ייתכן החמרה מתמדת של פגיעת העצב מצלקת והעברת רעידות מזרימה סוערת בכלי פגוע</td><td>כאב חמור קבוע, אלודיניה אפילו לתנועת אוויר או רעש חזק</td><td>דקומפרסיה כירורגית – לעיתים שיפור מהיר ומשמעותי</td></tr>
+    <tr><td><b>CRPS</b></td><td>לא הובן במלואו; ללא קורלציה בין חומרת הטראומה לבין התפתחות; ב-9% אין טראומה מקדימה</td><td>אבחנה של <b>שלילה</b> לפי <b>Budapest Criteria</b> לאחר ששללו את האבחנות שלמעלה. הפרק מזהיר: לעיתים מאובחן CRPS למרות פצע מעל עצב וסימן Tinel חיובי</td><td>פיזיותרפיה, פסיכולוגיה, תרופות; לא ניתוח לפני שלילת נגע מקומי</td></tr>
+    <tr><td><b>נוירופתיה לא טראומטית</b></td><td>סוכרתית, דלקתית, דמיאלינציה; יכולה לתרום לכאב אחרי טראומה</td><td>מחוץ להיקף הפרק</td><td>לעיתים ניתוח (למשל שחרור דחיסה)</td></tr>
+  </tbody>
+</table>
+<p class="key-box">שורה תחתונה לאבחנה: <b>אלודיניה</b> = העצב ברציפות (נוירוסטנלגיה); <b>עצב חתוך</b> = אין תחושה באזור אך הכאב "מוקרן" אליו מהנוירומה; <b>כאב בוער מוקדם אחרי פגיעה פלקסוס חמורה</b> = עקירת שורשים. רק אחרי כל אלה: CRPS.</p>
+
+<h2><span class="num">4</span> טיפול שמרני רב-תחומי</h2>
+<div class="mechanism">
+<p class="chain">טיפול בתרופות ופיזיותרפיה מכוון בעיקר ל<b>שליטה בסימפטום</b>, בעוד הניתוח מכוון ל<b>סיבה</b>. הכאב הנוירופתי הוא גם חוויה רגשית: <b class="key">דיכאון וחרדה נפוצים מאוד</b> (לפחות אבחנה פסיכיאטרית אחת ב-22–78% מהסובלים מכאב מתמשך) ולכן נדרש צוות רב-תחומי.</p>
+</div>
+<h3>פיזיקלי</h3>
+<ul>
+<li>שיקום חושי (<span class="term" dir="ltr">sensory re-education</span>) ו-<span class="term" dir="ltr">Graded Motor Imagery</span> עם משוב ראייה במראה (<span class="term" dir="ltr">mirror visual feedback</span>) – נולד בכאב איבר פנטום, מועבר לפגיעות עצב היקפית ופלקסוס.</li>
+<li>Mindfulness, הרפיה, pacing, סד/אורתוזה. <span class="term" dir="ltr">TENS</span>: ראיות באיכות נמוכה מאוד (Cochrane) – לא ברור שיעיל.</li>
+<li>חינוך מטופל: הימנעות מפעילות היא סבירה בכאב חריף אך מזיקה בכאב מתמשך (מעגל פסיביות, חרדה, חוסר אונים).</li>
+</ul>
+<h3>פסיכולוגי</h3>
+<ul>
+<li>מדדים: <b><span class="term" dir="ltr">PCS</span></b> (Pain Catastrophizing Scale – חשיבה קטסטרופלית, מנבאת מוגבלות וכאב כרוני אחרי ניתוח) ו-<b><span class="term" dir="ltr">PSEQ</span></b> (Pain Self-Efficacy – היכולת לפעול למרות הכאב; מנבא טוב ביותר תגובה לשיקום).</li>
+<li>מטרות הטיפול: להחזיר תפקוד, לשפר איכות חיים ולטפל בהפרעה נלווית – <b>גם בלי להעלים את הכאב</b>.</li>
+<li><b>CBT</b> (מחשבות, רגשות, התנהגות): הטיפול הנחקר ביותר; ויעילות דומה לטיפול תרופתי/פרוצדורלי בכאב ועדיפות על פניהם בתפקוד. <b>ACT</b> (קבלה ומחויבות לערכים): אפקט קטן על עוצמת הכאב, בינוני על תפקוד, לא עדיף על CBT ועם נשירה גבוהה יותר.</li>
+<li>הפניה לבריאות הנפש: הפרעה פסיכולוגית בולטת, מחשבות אובדניות/התנהגות ממכרת, דרישות יתר ממערכת הבריאות, מוגבלות העולה על הממצאים הפיזיים, או שוקלים SCS/תוכנית כאב. אבחון פסיכולוגי מתאים בשימוש ב-SOCRATES מותאם (Symptoms, Onset, Course, Response, Associated, Timing, Exacerbating, Suicidality).</li>
+</ul>
+<h3>תרופתי</h3>
+<p>לפי NICE CG173: קו ראשון – אחת מארבע התרופות: <b>amitriptyline, duloxetine, gabapentin, pregabalin</b>; אם לא יעילה או לא נסבלת – מעבר לאחת הנותרות. אפקט סביר בלבד: יעילות בפחות ממחצית החולים.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>תרופה</th><th>מנגנון</th><th>איך זה עוזר לכאב נוירופתי</th><th>זהירות / קונטרא-אינדיקציות עיקריות</th></tr></thead>
+  <tbody>
+    <tr><td><b>Gabapentin / Pregabalin</b> (Neurontin / Lyrica)</td><td>נקשרות לתת-יחידה α2δ של תעלות סידן תלויות מתח ומפחיתות שחרור גלוטמט</td><td>מדכאות נוירונים היפר-מעוררים (הצתה אקטופית ו-sensitization מרכזי)</td><td>ישנוניות, סחרחורת, בצקת; התאמת מינון בכשל כלייתי; סיכון להתעללות/תלות; דיכוי נשימה בשילוב עם אופיואידים</td></tr>
+    <tr><td><b>Amitriptyline / Nortriptyline</b> (TCA)</td><td>עיכוב ספיגה חוזרת של נוראדרנלין וסרוטונין (+ חסימת תעלות נתרן)</td><td>הגברת מסלולי כאב מעכבים יורדים; האפקט האנלגטי בלתי תלוי באפקט נוגד הדיכאון, במינון נמוך</td><td>הפרעות הולכה/MI לאחרונה, גלאוקומה זווית סגורה, אצירת שתן, אפקט אנטיכולינרגי; קרדיוטוקסיות</td></tr>
+    <tr><td><b>Duloxetine</b> (Cymbalta)</td><td>SNRI</td><td>כנ"ל; ייתכן יתרון בשילוב עם גבפנטינואיד</td><td>אין לשלב עם MAOI; יתר לחץ דם לא מאוזן, מחלת כבד; בחילה</td></tr>
+    <tr><td><b>Capsaicin 8%</b> (פלסטר)</td><td>אגוניסט TRPV1 ← דה-תפקוד סיבי C מקומי</td><td>אלודיניה עורית (שיפור 25–30%); מתאים לכאב מקומי</td><td>צריבה מקומית; ריכוז נמוך – ראיות לא מספיקות</td></tr>
+    <tr><td><b>NSAIDs / אופיואידים</b></td><td>COX / קולטני μ</td><td>לא יעילים בכאב נוירופתי מבוסס; ל-NSAIDs יתכן יתרון תיאורטי בדלקת החריפה אחרי פגיעה</td><td>אופיואידים: תלות, סבילות, הכאבת-יתר (sensitization מרכזי); להתחיל רק עם תוכנית להפסקה</td></tr>
+    <tr><td><b>Ketamine</b> (עירוי)</td><td>חסם NMDA</td><td>מפחית wind-up מרכזי</td><td>שימוש במסגרת שירות כאב כרוני ולא ככלי ראשוני בפגיעה חריפה</td></tr>
+  </tbody>
+</table></div>
+<p>שילוב תרופות מעלה סיכון לקרדיוטוקסיות ודיכוי CNS/נשימה – נדרשת טיטרציה אישית. מומלץ לטפל במרכז מתמחה, ולהכיר את מקורות המידע (מדיה חברתית) שהמטופל נחשף אליהם.</p>
+
+<h2><span class="num">5</span> הטיפול הניתוחי – "ארגז כלים"</h2>
+<div class="mechanism">
+<p class="chain"><b>עקרונות Willner & Low:</b> (1) להסיר את הגורם; (2) לקדם החלמה/התחדשות; (3) לתקן את המיקרו-סביבה של העצב; (4) להחזיר מסלולי אפרנטי; (5) לאפנן מסלולים מעכבים מרכזיים; (6) להפחית פעילות סימפתטית יתר.</p>
+<p>מטרות הניתוח: לאשר/לבסס אבחנה, להחזיר רציפות לעצב קרוע, להסיר גורם שדוחס/מעוות העצב. <b class="key">אין לצפות שכל מטופל ישתפר רק בניתוח</b>.</p>
+</div>
+<h3>נוירוליזה (נוירוסטנלגיה)</h3>
+<p>שחרור העצב מצלקת. <b>חיצונית:</b> חיתוך רקמה מקשרת מחוץ לאפינוריום – משפר החלקה והאספקה. <b>פנימית:</b> שחרור צלקת בתוך האפינוריום/פרינוריום. ממצאי ניתוח: עצב קשור, דחוס, איסכמי, התנפחות פרה-סטנוטית; לאחר השחרור – חזרת זילוח (ריקון והתמלאות נימים). חשוב לצפות לבצקת הריפרפוזיה ולעשות דקומפרסיה מניעתית של אזורי לחץ קרובים. קלינית ההחלמה יכולה לקרות בין שעות לחודשים; מקרי Birch על חסימת הולכה (נוירפרקסיה) הראו הקלה בתוך ימים.</p>
+<h3>טיפול בנוירומה כואבת</h3>
+<ul>
+<li><b>מטרה ראשונה:</b> לשחזר רציפות אנטומית (תיקון ראשוני או שתל). שתל עצב חושי מחייב להקריב עצב חושי אחר; אלוגרפט אפשרי לפערים קצרים.</li>
+<li>אם אי אפשר: <b>העתקת הנוירומה</b> לסביבה תומכת. ההחלטה תלויה בכאב <b>ספונטני</b> מול <b>מעורר בלבד</b>:</li>
+<li><b>ספונטני:</b> כריתת הנוירומה (לאחר חסימת תעלות נתרן פרוקסימלית, bupivacaine) והעתקת הגדם הנחתך ללא מתח לתוך שריר.</li>
+<li><b>מעורר בלבד:</b> שחרור והעתקה בלי לפגוע בנוירומה היציבה; מקום: מישור עמוק, ליד שריר, הרחק מעור, ללא המטומה.</li>
+<li><b>עקרון הניסוי של Mackinnon בפרימטים:</b> נוירומה בתוך שריר קטנה יותר, פחות צלקת, התחדשות מסודרת; סמוך לעור – נוירומה גדולה, מצולקת, מסועפת לעור ← מקור כאב.</li>
+<li>טכניקות משלימות: מכסה סיליקון, שתל אפינוריאלי "שתל לשום מקום" שמרוקן את ההתחדשות. מטה-אנליזה (Poppler, 54 מחקרים): ראיות באיכות נמוכה, אך ירידה משמעותית בכאב ברוב המטופלים.</li>
+</ul>
+<h3>TMR – Targeted Muscle Reinnervation</h3>
+<p>במטופלי קטיעה: כאב פנטום (80%) וכאב נוירומה בגדם (68%) מגבילים תותבת. העצבים המעורבים הגדולים (donors) מחוברים לעצבים מוטוריים קטנים לשרירים שהתנתקו (recipients) – "מטרה" דה-אינרבית שמושכת את ההתחדשות (ניורוטרופיזם). ניתן להשתמש בתיקון "offset". דוגמה: העצבים הפקטורליים כמקבלים לעצבי median ו-ulnar.</p>
+<h3>עקירת שורשים: ניתוח</h3>
+<ul>
+<li><b>החזרת שורש (<span class="term" dir="ltr">root re-implantation</span>):</b> שתל עצב (לרוב radial שטחי/medial antebrachial cutaneous) תפור לשורש העקור ומושתל 1-2 מ"מ לחוט השדרה (פיברין גלו). משחרר כאב ושיפורו מתואם עם חזרת פעילות שרירית.</li>
+<li><b>התוויות:</b> עקירת 5 שורשים; אין אלטרנטיבה (העברת עצב חוץ-פלקסלית); עמוד שדרה יציב; תוך <b>4 שבועות</b> מהפגיעה (לפני גליוזיס).</li>
+<li><b>DREZ-tomy</b> (Lissauer tractotomy): הרס נוירונים היפר-אקטיביים בקרן האחורית (lamina V) בכאב עקירה כרוני; <b>בידי צוות נוירוכירורגי מנוסה בלבד</b>.</li>
+</ul>
+<svg class="diagram" viewBox="0 0 860 280" xmlns="http://www.w3.org/2000/svg">
+  <title>אלגוריתם לטיפול בנוירומה כואבת</title>
+  <rect x="700" y="100" width="150" height="70" rx="8" fill="#fef2f2" stroke="#b91c1c"/>
+  <text x="775" y="130" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">נוירומה כואבת</text>
+  <text x="775" y="150" font-size="12" text-anchor="middle" fill="#7f1d1d">כריתה/ניקוי</text>
+
+  <rect x="430" y="100" width="190" height="70" rx="8" fill="#ecfdf5" stroke="#047857"/>
+  <text x="525" y="128" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">אפשר לשחזר רציפות?</text>
+  <text x="525" y="148" font-size="12" text-anchor="middle" fill="#065f46">תיקון / שתל / אלוגרפט</text>
+
+  <rect x="150" y="20" width="240" height="75" rx="8" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="270" y="45" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">לא + כאב ספונטני</text>
+  <text x="270" y="65" font-size="12" text-anchor="middle" fill="#1e3a8a">כריתה מעל חסימה והעתקה לשריר</text>
+  <text x="270" y="82" font-size="11" text-anchor="middle" fill="#1e3a8a">ללא מתח, TMR בקטועים</text>
+
+  <rect x="150" y="185" width="240" height="75" rx="8" fill="#f5f3ff" stroke="#6d28d9"/>
+  <text x="270" y="210" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">לא + כאב מעורר בלבד</text>
+  <text x="270" y="230" font-size="12" text-anchor="middle" fill="#4c1d95">שחרור והעתקה בלי כריתה</text>
+  <text x="270" y="247" font-size="11" text-anchor="middle" fill="#4c1d95">רקמה עמוקה, הרחק מעור</text>
+
+  <line x1="700" y1="135" x2="620" y2="135" stroke="#374151" stroke-width="2"/>
+  <polygon points="620,135 632,129 632,141" fill="#374151"/>
+  <line x1="430" y1="120" x2="390" y2="75" stroke="#374151" stroke-width="2"/>
+  <polygon points="390,75 396,87 403,81" fill="#374151"/>
+  <line x1="430" y1="150" x2="390" y2="205" stroke="#374151" stroke-width="2"/>
+  <polygon points="390,205 397,194 404,200" fill="#374151"/>
+</svg>
+<h3>היבטים תוך-ניתוחיים</h3>
+<ul>
+<li>הסכמה לכל האפשרויות (ההחלטה לרוב מתקבלת בזמן הניתוח); זהירות במיקום – מטופלים אלה רגישים מאוד לנזק נוסף.</li>
+<li>הכנה לשתל (תורם); בדיקות גירוי וצירוף-נגע (<span class="term" dir="ltr">cross-lesional studies</span>): הולכה דיסטלית = חסימת הולכה ולא נגע דגנרטיבי.</li>
+<li>חתך רחב, ללא חתך על מהלך השתל; בסוף – רקמה חלקה תחת העור, שומן סאבדרמלי עם פאשיה גולשת.</li>
+</ul>
+
+<h2><span class="num">6</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">N-N-N-A-C</span> של הסיבות הכירורגיות</h3>
+  <p>
+    <b>N</b> – <span class="term" dir="ltr">Neuritis</span> (דלקת)<br>
+    <b>N</b> – <span class="term" dir="ltr">Neurostenalgia</span> (צלקת חונקת, אלודיניה)<br>
+    <b>N</b> – <span class="term" dir="ltr">Neuroma</span> (SPTN)<br>
+    <b>A</b> – <span class="term" dir="ltr">Avulsion</span> (עקירת שורש)<br>
+    <b>C</b> – <span class="term" dir="ltr">Causalgia</span> ואז CRPS רק כשכל השאר נשללו
+  </p>
+  <h3>סיפור דמיוני: הכבל והצלקת</h3>
+  <p>דמייני כבל חשמל (העצב) שעבר דרך קיר שהתקשה (הצלקת): הוא נמתח, מתחמם וניצנץ (נוירוסטנלגיה). כשהכבל נחתך, הקצה מתפתל לכדור קוצני של חוטים (נוירומה) שמתחשמל כל פעם שנוגעים בו; אם נחבא בקיר העור – כל מגע מכאיב. הפתרון: חשמלאי שמנקה את הקיר (נוירוליזה), או מחבר את הקצה למתג מבודד בלב שריר עמוק ושקט (העתקה). ואם הכבל נתלש מהלוח הראשי בקיר של הבית (עקירת שורש) – כל הלוח נשרף ("יד בוערת").</p>
+  <svg class="diagram" viewBox="0 0 520 190" xmlns="http://www.w3.org/2000/svg">
+    <title>הכבל והצלקת</title>
+    <rect x="215" y="20" width="90" height="150" fill="#d1d5db" stroke="#6b7280"/>
+    <text x="260" y="95" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">צלקת</text>
+    <line x1="20" y1="95" x2="215" y2="95" stroke="#2563eb" stroke-width="5"/>
+    <line x1="305" y1="95" x2="420" y2="95" stroke="#2563eb" stroke-width="5"/>
+    <circle cx="450" cy="95" r="22" fill="#fbbf24" stroke="#78350f"/>
+    <text x="450" y="99" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">נוירומה</text>
+    <text x="110" y="80" font-size="11" text-anchor="middle" fill="#1e3a8a">עצב</text>
+    <path d="M240,60 l8,-12 l-4,0 l8,-12" stroke="#b91c1c" stroke-width="2" fill="none"/>
+  </svg>
+</div>
+
+<h2><span class="num">7</span> מקורות להרחבה</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://www.nice.org.uk/guidance/cg173" target="_blank">NICE CG173 – Neuropathic pain in adults: pharmacological management</a>
+    <div class="desc">ההנחיה הבריטית שהפרק מסתמך עליה לטיפול התרופתי (קו ראשון: amitriptyline, duloxetine, gabapentin, pregabalin).</div>
+  </li>
+  <li>
+    <a href="https://www.iasp-pain.org/resources/terminology/" target="_blank">IASP – Terminology</a>
+    <div class="desc">הגדרות רשמיות: כאב נוירופתי, אלודיניה, היפראלגזיה, דיסאסתזיה.</div>
+  </li>
+</ul>
+
+<h2><span class="num">8</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 34, נפצע בסכין בחלקו הגבי של האמה לפני 5 חודשים; לאחר תפירה פתח כאב בוער וחשמלי בגב כף היד וחוץ האגודל, שמחמיר בנגיעה בבגד. הוא מאובחן כ-CRPS ומקבל פיזיותרפיה ללא הועיל. בבדיקה: צלקת מעל מהלך הענף הרדיאלי השטחי, אזור אלחוש מעל העצם וסימן Hoffmann-Tinel חיובי בגובה הצלקת ומקרין לאגודל. אלודיניה אינה קיימת באזור האלחוש.</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">1. מה האבחנה הסבירה ביותר במטופל שבוינייטה?</div>
+  <button class="opt" data-i="0">CRPS מסוג I</button>
+  <button class="opt" data-i="1">עקירת שורש C6</button>
+  <button class="opt" data-i="2">נוירומה כואבת פוסט-טראומטית (SPTN) של הענף הרדיאלי השטחי</button>
+  <button class="opt" data-i="3">נוריטיס פרקוסיבי בלבד</button>
+  <div class="explain">פצע מעל עצב, אלחוש אזורי וסימן Tinel חיובי מקרין לאזור ההזנה – אלה ממצאי נוירומה (עצב חתוך). הפרק מזהיר מאבחנה אוטומטית של CRPS כשיש פצע וסימן Tinel (תשובה 1). עקירת שורש מתאימה למנגנון משיכה בפגיעת פלקסוס, לא לפצע סכין (תשובה 2). נוריטיס פרקוסיבי הוא כאב מתכה בהיפר-אקוטי, ולא יסביר נוירומה עם אלחוש (תשובה 4).</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">2. איזה סימן קליני מעיד שהעצב עדיין ברציפות ונתקע בצלקת (נוירוסטנלגיה)?</div>
+  <button class="opt" data-i="0">אלודיניה</button>
+  <button class="opt" data-i="1">אלחוש מוחלט באזור העצב</button>
+  <button class="opt" data-i="2">אטרופיה שרירית חריפה בלבד</button>
+  <button class="opt" data-i="3">אין סימן ספציפי</button>
+  <div class="explain">אלודיניה היא הסימן הקרדינלי: אם אפשר לחוש (גם בעיוות), העצב לא נחתך. אלחוש מוחלט (תשובה 2) מצביע על עצב חתוך. אטרופיה (תשובה 3) אינה ספציפית. תשובה 4 שגויה, כי יש סימן בולט.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">3. נוירומה כואבת עם כאב ספונטני בלבד שלא ניתן לשחזר ברציפות. מהו הטיפול המתאים לפי הפרק?</div>
+  <button class="opt" data-i="0">שחרור והעתקה בלי כריתה של הנוירומה</button>
+  <button class="opt" data-i="1">DREZ-tomy</button>
+  <button class="opt" data-i="2">הזרקת קורטיקוסטרואיד לנוירומה בלבד</button>
+  <button class="opt" data-i="3">כריתת הנוירומה (לאחר חסימת נתרן פרוקסימלית) והעתקת הגדם החדש ללא מתח לתוך שריר</button>
+  <div class="explain">בכאב ספונטני יש להסיר את מחולל הכאב ולהעתיק את הגדם לסביבה תומכת. שחרור והעתקה ללא כריתה (תשובה 1) מיועד לכאב מעורר בלבד. DREZ (תשובה 2) הוא לעקירת שורש. הזרקת סטרואיד (תשובה 3) אינה טיפול מוצע בפרק.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">4. מהם ההתוויות להחזרת שורש עצבי (root re-implantation) אחרי עקירה?</div>
+  <button class="opt" data-i="0">כל עקירה של שורש יחיד בכל זמן</button>
+  <button class="opt" data-i="1">עקירה של 5 שורשים, ללא אלטרנטיבה כמו העברת עצב, עמוד שדרה יציב, ותוך 4 שבועות</button>
+  <button class="opt" data-i="2">מעל 6 חודשים מהפגיעה, כשהכאב כרוני</button>
+  <button class="opt" data-i="3">רק בחולים עם חוסר יציבות בעמוד השדרה</button>
+  <div class="explain">הפרק מונה: עקירת 5 שורשים, חוסר אלטרנטיבה, עמוד שדרה יציב (הגישה מערערת יציבות) ותוך 4 שבועות (לפני גליוזיס). תשובה 1 רחבה מדי; תשובה 3 סותרת את חלון הזמן; תשובה 4 הפוכה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">5. איזו תרופה היא קו ראשון בכאב נוירופתי לפי NICE CG173?</div>
+  <button class="opt" data-i="0">Morphine</button>
+  <button class="opt" data-i="1">Ibuprofen</button>
+  <button class="opt" data-i="2">Amitriptyline, duloxetine, gabapentin או pregabalin</button>
+  <button class="opt" data-i="3">קפסאיצין בריכוז נמוך</button>
+  <div class="explain">ארבע התרופות הללו הן קו ראשון, עם מעבר לאחרת אם לא יעילה או לא נסבלת. אופיואידים (תשובה 1) ו-NSAIDs (תשובה 2) אינם יעילים בכאב נוירופתי מבוסס ובעלי סיכונים; קפסאיצין בריכוז נמוך (תשובה 4) – ראיות לא מספקות.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">9</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>כאב נוירופתי = סימפטום של מערכת סומטוסנסורית לא תקינה; יש לחפש גורם. מופיע כספונטני ו/או מעורר.</li>
+    <li>אנמנזה SOCRATES, שאלונים (LANSS, PainDetect), בדיקה: טרופיות, תחושה, מוטוריקה, Hoffmann-Tinel.</li>
+    <li>אבחנות: נוריטיס, נוירוסטנלגיה (אלודיניה), נוירומה (SPTN), עקירת שורש (כאב בוער מיידי), קאוזלגיה (דקומפרסיה), CRPS (שלילה, Budapest).</li>
+    <li>שמרני: פיזיקלי (GMI, מראה), פסיכולוגי (CBT, PCS, PSEQ), תרופות קו ראשון: amitriptyline, duloxetine, gabapentin, pregabalin; לא NSAIDs/אופיואידים.</li>
+    <li>ניתוח: נוירוליזה; נוירומה: שחזור רציפות או העתקה לשריר (ספונטני – כריתה; מעורר – שחרור והעתקה); TMR בקטועים; החזרת שורש תוך 4 שבועות ב-5 שורשים; DREZ לכאב עקירה.</li>
+    <li>הצלחה = שיפור כאב, תפקוד והפרעה פסיכולוגית; לא תמיד העלמת הכאב.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>

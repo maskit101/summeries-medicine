@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 24: קירוב תת-יחידות אנטומיות בשסע שפה חד-צדדי</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 24: גישת קירוב תת-היחידות האנטומיות לתיקון שסע שפה חד-צדדי <span class="term" dir="ltr">Anatomic subunit approximation</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 3: Craniofacial, Head and Neck, Pediatric | פרק 19.4, מאת Raymond W. Tse ו-David M. Fisher</div>
+
+<p>התיקון של <b>Fisher</b> (2005) הוא תיקון <b>מבוסס נקודות ציון</b> (<span class="term" dir="ltr">landmark-based</span>) שמתאפיין ב"<b class="key">מדוד פעמיים, חתוך פעם אחת</b>" (<span class="term" dir="ltr">measure twice, cut once</span>), בניגוד לתיקונים של "חתוך תוך כדי תנועה" (<span class="term" dir="ltr">cut-as-you-go</span>). זהו היברידי: מרכיבים מ-Noordhoff (שהוא שינוי של Millard), מ-Thomson (שינוי של Tennison-Randall) והשראה מעקרון תת-היחידות של Burget ו-Menick בשחזור האף. הצלקת נופלת <b>על התפרים בין תת-היחידות</b>, והתכנון מסתגל מעצמו לכל שסע לאורך הספקטרום: מיקרופורם, לא-שלם, שלם עם Simonart band ושלם.</p>
+
+<h2><span class="num">1</span> למה העיוות קורה – ולמה הוא אשליה אופטית</h2>
+<div class="mechanism">
+  <p class="chain">גדילה לא-מזווגת של הפרה-מקסילה (<span class="term" dir="ltr">uncoupled premaxillary growth</span>, לפי Latham) ← <b>ה-ANS סוטה</b> מהקו האמצעי ← עמוד הקולומלה והפילטרום ובסיס הכנף בצד התקין (<span class="term" dir="ltr">non-cleft</span>) נסחפים החוצה, למעלה וקדימה ← בסיס הכנף בצד השסוע <b>נסוג אחורה</b> (אך נשאר במיקום מדיאלי-לטרלי תקין) ← התמוטטות סחוס הכנף והקודקוד (<span class="term" dir="ltr">alar dome</span>) בצד השסוע.</p>
+</div>
+<p><b>האשליה האופטית</b> (Mulliken, Fig 19.4.3): במבט ראשון נראה שבסיס הכנף השסוע הוסט לטרלית ולכן "צריך לקדם אותו מדיאלית". אבל כשמשתמשים בקווי ייחוס, מתברר שהבעיה היא <b>סטיית הקולומלה ובסיס הכנף התקין</b> מהקו האמצעי, בתוספת <b>נסיגה</b> של בסיס הכנף השסוע. לכן התיקון הוא: <b>סיבוב כלפי מטה והסטה לקו האמצע של הקולומלה ובסיס הכנף התקין</b>, ו<b>קידום קדמי של בסיס הכנף השסוע בלי שינוי בעמדתו המדיאלית-לטרלית</b>. ניתוח תלת-ממדי הראה שמידת ההסטות תלויה במידת הסטיית ה-ANS.</p>
+<div class="key-box">גם הצד "התקין" אינו נורמלי ואינו סטטי: ככל שה-sill השסוע מתרחב, ה-sill התקין מצטמצם; ככל שקודקוד הכנף השסוע קורס, הקודקוד התקין מתרומם ו"מרובע" (<span class="term" dir="ltr">boxy</span>). אחרי תיקון נכון ה-sill התקין מתרחב, העמוד הפילטרלי מתקצר, ה-footplate נעשה שטוח והקודקוד מתרכך. לכן התכנון חייב להתייחס לשני הצדדים ("יין ויאנג").</div>
+
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>שרשרת העיוות</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#fef2f2" stroke="#7f1d1d"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#7f1d1d" font-weight="700">פרה-מקסילה לא מזווגת</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#7f1d1d">ANS סוטה מהאמצע</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">צד תקין נסחף</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">קולומלה + בסיס כנף</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">צד שסוע נסוג</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">בסיס כנף לאחור</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">קריסת הקודקוד</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">עיוות "מתפתל" של האף</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+
+<h2><span class="num">2</span> תת-יחידות, מינוח ומטרות הניתוח</h2>
+<p>בניגוד לתרשימים ישנים, כאן <b>הרירית (mucosa), ה-vermilion (השפה האדומה היבשה) וה-cutaneous roll (ה-"white roll")</b> הן כל אחת תת-יחידה נפרדת; בנוסף <b>הרכס הפילטרלי</b> (<span class="term" dir="ltr">philtral ridge</span>) הוא תת-יחידה עם גבול מדיאלי ולטרלי. האלמנט המדיאלי נגזר מהפרומיננציה הפרונטונזלית, והלטרלי מהמקסילרית.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>ממד</th><th>מטרה מקומית (Local)</th><th>מטרה גלובלית (Global)</th></tr></thead>
+  <tbody>
+    <tr><td><b>צורה (Form)</b></td><td>Cupid's bow בגודל וצורה מתאימים; "pout" של השפה ושימור צורת "J" של ה-orbicularis</td><td>תיקון קריסת הקודקוד של האף</td></tr>
+    <tr><td><b>יישור (Alignment)</b></td><td>המשכיות של ה-white roll, ה-vermilion ושולי הרירית</td><td>מרכוז הפילטרום והקולומלה</td></tr>
+    <tr><td><b>איזון (Balance)</b></td><td>הארכת גובה השפה המדיאלית בצד השסוע; נחיריים דומים בגודל ובצורה</td><td>השוואת בסיסי הכנף בשלושה ממדים ביחס לפנים</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">3</span> המכניקה: איך מרוויחים גובה</h2>
+<div class="mechanism">
+  <p class="chain"><b>גובה השפה המדיאלית תמיד חסר</b> בצד השסוע ← סוגרים מעוין (diamond) כקו ישר ← <b class="key">אפקט Rose-Thompson</b>: סגירה בקו ישר "מגייסת" רוחב ומייצרת גובה ← אם עדיין חסר גובה, מוסיפים <b>משולש תחתון קטן</b> (<span class="term" dir="ltr">inferior triangle</span>) מעל ה-cutaneous roll.</p>
+</div>
+<ul>
+  <li><b>הבדל מ-Tennison-Randall:</b> המשולש קטן (בזכות Rose-Thompson), ממוקם בצל הקער הפילטרלי מעל קמירות ה-roll, וקו הסגירה עולה <b>מקביל לעמוד הפילטרלי התקין</b> במקום לחצות תת-יחידות.</li>
+  <li>המתח נמצא <b>מעל</b> ה-cutaneous roll – כך נשמר ומודגש ה-pout. ה-roll מקורב קצה-לקצה.</li>
+  <li>כמו Onizuka: התכנון עוקב אחר קמט הקולומלה-שפה וממשיך לאורך ה-footplates.</li>
+  <li><b>נקודת Noordhoff (cphi″) היא נקודה קבועה</b>, שאינה נודדת: שם מתחיל המעבר מרקמה תקינה לרקמה מתדלדלת (hypoplastic). בתיקון סיבוב-קידום הנקודה נחשבת משתנה ונדחקת לטרלית – מרוויחים גובה אך על חשבון רוחב וביטחון המלאות ("אקורדיון": האדום מדלדל ו"מתגלגל" פנימה).</li>
+  <li>הצלקת בחלק העליון של השפה ממוקמת <b>בין</b> זו של סיבוב-קידום (C-flap מושלך/נודד לתוך ה-sill) לזו של המשולש התחתון (יותר עור לטרלי מושלך). שני האלמנטים חולקים את "מחיר" הרקמה המושלכת.</li>
+</ul>
+<table>
+  <thead><tr><th>מאפיין</th><th>סיבוב-קידום (Millard)</th><th>משולש תחתון (Tennison-Randall)</th><th>קירוב תת-יחידות</th></tr></thead>
+  <tbody>
+    <tr><td>הנקודה הלטרלית</td><td>משתנה, נודדת לטרלית</td><td>—</td><td>קבועה: Noordhoff</td></tr>
+    <tr><td>מקור הגובה</td><td>סיבוב + גובה מהלטרלי</td><td>משולש גדול</td><td>Rose-Thompson + משולש קטן</td></tr>
+    <tr><td>מיקום הצלקת בשפה העליונה</td><td>מדיאלית יותר (C-flap)</td><td>לטרלית יותר</td><td>בינוני</td></tr>
+    <tr><td>עקיבה אחר גבולות</td><td>חלקית</td><td>חוצה תת-יחידות</td><td>על גבולות תת-היחידות</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">4</span> נקודות הציון (Landmarks) – טבלת מפתח</h2>
+<p>הסימון מתחיל מהמבנים באמצע, ממשיך לצד התקין, ואז <b>משקף</b> את הנקודות לצד השסוע (שבו הן פחות ברורות).</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>נקודה</th><th>סימון</th><th>הגדרה</th></tr></thead>
+  <tbody>
+    <tr><td><span class="term" dir="ltr">Subnasale</span></td><td>sn</td><td>מרכז הקולומלה בצומת הקולומלה-שפה</td></tr>
+    <tr><td><span class="term" dir="ltr">Crista philtri superioris</span></td><td>cphs / cphs′</td><td>הקצה העליון של העמוד הפילטרלי, בשפה המדיאלית של הרכס בצומת עם קמט הקולומלה-שפה; cphs′ נבחר במרחק זהה מ-sn</td></tr>
+    <tr><td><span class="term" dir="ltr">Subalare</span></td><td>sbal / sbal′</td><td>הנקודה התחתונה ביותר של הכנף לאורך קמט הכנף-שפה</td></tr>
+    <tr><td><span class="term" dir="ltr">Alar insertion</span></td><td>ai / ai′</td><td>צומת שפת הנחיר עם ה-sill; מוצאים אותה לפי החזרת האור לאורך שפת הכנף</td></tr>
+    <tr><td><span class="term" dir="ltr">Sill margin</span></td><td>X, X′, X″</td><td>X: מפגש קמט הקולומלה-sill וקמט הכנף-sill בצד התקין; X′ (מדיאלי) ו-X″ (לטרלי) בצד השסוע – <b>נקודות סגירת האף</b></td></tr>
+    <tr><td><span class="term" dir="ltr">Labiale superioris</span></td><td>ls</td><td>הנקודה הנמוכה (מרכז) של Cupid's bow</td></tr>
+    <tr><td><span class="term" dir="ltr">Crista philtri inferioris</span></td><td>cphi, cphi′, cphi″</td><td>פסגות ה-bow. cphi התקין – היכן שהחלק הישר של ה-bow פוגש את הקמור (גבול מדיאלי של הרכס). cphi′ – השתקפות לפי מרחק זהה מ-ls. cphi″ – נקודת Noordhoff</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">נקודת cphi התקינה <b>אינה הנקודה הגבוהה ביותר</b> של עקומת השפה אלא המעבר מישר לקמור. אל תרחיבי את ה-Cupid's bow יתר על המידה (Pearl 4).</div>
+<h3>נקודות האף – מגדירות את ההצלחה</h3>
+<ul>
+  <li>נקודות האף נקבעות <b>כשהעיוות מתוקן ידנית</b> (פילטרום מרוכז, בסיס כנף שסוע מקודם, הקודקוד נתמך ברטרקטור), בניגוד לנקודות השפה שנקבעות במנוחה.</li>
+  <li>מזהים קודם את הצד התקין, ואז X′ ו-X″ בצד השסוע מוגדרים כך ש: מרחק sn-cphs′ ל-X′ שווה למרחק sn-cphs ל-X; ומרחק sbal′-ai′ ל-X″ שווה ל-sbal-ai ל-X.</li>
+  <li>אימות: קירוב ידני של X′ ו-X″ חייב לתת <b>נחיריים שווי היקף</b> ו<b>בסיס אף סימטרי</b>, עם תיקון אנכי נכון.</li>
+  <li>אם רצפת האף שלמה (לא-שלם או Simonart band): ניתן למדוד את היקפי הנחיריים בעזרת <b>urethral sounds</b> (היקף = קוטר × π). כריתת רצפת האף (X′ עד X″) <b>לא תעלה על הפרש ההיקפים</b> (הפרש קטרים × 3) – אחרת <span class="term" dir="ltr">micronostril</span>.</li>
+</ul>
+
+<h2><span class="num">5</span> תכנון השפה: "חבר את הנקודות" ומדידת המשולש</h2>
+<h3>השפה המדיאלית</h3>
+<p>התכנון כמעט קבוע בין מקרים: מחברים X′–cphs′ (לאורך ה-sill), cphs′–cphi′ (עמוד הפילטרום) וחתך אנכי לשפה חוצה roll, vermilion וקו אדום ב-cphi′. החתך האחרון ניצב לשפה כדי שהזווית עם חתך העמוד תיפתח עם החיתוך (Rose-Thompson). חתך פתיחה קטן מעל ה-roll ייצר את גובה המשולש. חתך נוסף לאורך הקו האדום יאפשר הוספת vermilion.</p>
+<h3>דשא ה-vermilion הלטרלי</h3>
+<p>גובה ה-vermilion מתחת ל-cphi″ בצד הלטרלי דומה בדרך כלל לזה שמתחת ל-cphi התקין, ואילו בצד המדיאלי (מתחת ל-cphi′) <b>הוא כמעט תמיד חסר</b> (חוץ מכמה מיקרופורם). לכן הגובה החסר (v) מועבר לצד הלטרלי, והיתר משמש כבסיס של דש משולש לטרלי שמגדיל את ה-vermilion המדיאלי.</p>
+<h3>המשולש התחתון הלטרלי – החישוב</h3>
+<div class="table-scroll"><table>
+  <thead><tr><th>סימון</th><th>משמעות</th><th>איך נמדד</th></tr></thead>
+  <tbody>
+    <tr><td><b>a</b></td><td>גובה שפה כולל (Total)</td><td>גובה פילטרלי בצד התקין (cphi–cphs) <b>במנוחה</b></td></tr>
+    <tr><td><b>b</b></td><td>גובה שפה גדול (Greater)</td><td>גובה פילטרלי בצד השסוע (cphi′–cphs′) <b>עם משיכה עדינה כלפי מטה</b> לסימולציית שחרור ותיקון השריר</td></tr>
+    <tr><td><b>c</b></td><td>גובה שפה קטן (Lesser) – בסיס המשולש</td><td><b class="key">c = a − b − 1 מ"מ</b> (1 מ"מ = הגובה שמרוויחים מ-Rose-Thompson)</td></tr>
+    <tr><td><b>s</b></td><td>זרוע ה-sill ("third height")</td><td>אורך cphs′–X′ על השפה המדיאלית</td></tr>
+  </tbody>
+</table></div>
+<p>בסיס המשולש השווה-צלעות בדרך כלל <b>1–1.5 מ"מ</b>, ולכל היותר 2.5 מ"מ. במיקרו-שסעים לא-שלמים ייתכן שהמשולש אינו נחוץ.</p>
+<h3>התאמת השפה הלטרלית: "זרועות" שנפתחות ונסגרות</h3>
+<p>גובה השפה הלטרלי (מ-X″ עד קצה ה-roll ב-cphi″) משתנה. התכנון מתאים את הזרועות <b>s, b, c</b> ואת הזוויות ביניהן אל הגובה הזמין:</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>גובה שפה לטרלית</th><th>שכיח ב...</th><th>עיצוב</th></tr></thead>
+  <tbody>
+    <tr><td><b>קצר</b></td><td>שסע שלם</td><td>זוויות חדות; חתך b אופקי יותר, קצהו עשוי להיות <b>חופף</b> לחתך העליון של המשולש; זרוע s קצרה</td></tr>
+    <tr><td><b>בינוני</b></td><td>שלם עם Simonart band, חלק מהלא-שלמים</td><td>b אנכי יותר, משולש אופקי יותר; זווית s–b תואמת לזו של המדיאלי</td></tr>
+    <tr><td><b>גבוה מדי</b></td><td>לא-שלם / מיקרופורם</td><td><b>כריתת טריז אנכי</b> מתחת ל-X″ כך שהצלקת תשכב בקמט הכנף וקצה הטריז לא יעבור את subalare</td></tr>
+  </tbody>
+</table></div>
+<div class="key-box">טעות נפוצה: לפתוח את הזווית בין s ל-b כדי "לאכסן" גובה לטרלי עודף. זה יוצר תצורה קהה שלא תואמת את המדיאלי, מעוות את גבולות תת-היחידות ו<b>דוחף את בסיס הכנף למעלה</b> – מצב שכמעט בלתי אפשרי לתקן משניוני. <b>שלושה סימנים לגובה עודף:</b> (1) Noordhoff נמוך מ-cphi התקין; (2) cphi″–sbal′ שווה או גדול מ-cphi–sbal; (3) הזווית s–b לא תואמת למדיאלי (החשוב ביותר).</div>
+<p><b>החיבור:</b> בשסע לא-שלם – כריתת טריז מעל X′ ו-X″ עד קודקוד ברצפת האף; בשסע שלם – חתכים מ-X′/X″ לתוך האף לאורך שולי השסע לסגירת רצפת האף, וחתך בקפל הבוקאלי העליון בצד הלטרלי. אם יש band – חותכים אותו ובונים מחדש את הרצפה והרירית.</p>
+
+<h2><span class="num">6</span> ביצוע הניתוח – סדר, נקודות בקרה (Checkpoints) ורינופלסטיקה</h2>
+<svg class="diagram" viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg"><title>סדר הניתוח</title>
+<rect x="590" y="20" width="150" height="60" rx="8" fill="#f5f3ff" stroke="#4c1d95"/>
+<text x="665" y="46" font-size="13" text-anchor="middle" fill="#4c1d95" font-weight="700">1. שפה מדיאלית</text>
+<text x="665" y="65" font-size="11.5" text-anchor="middle" fill="#4c1d95">חתכים, שריר, CP 1-2</text>
+<rect x="400" y="20" width="150" height="60" rx="8" fill="#eff6ff" stroke="#1e3a8a"/>
+<text x="475" y="46" font-size="13" text-anchor="middle" fill="#1e3a8a" font-weight="700">2. שפה לטרלית</text>
+<text x="475" y="65" font-size="11.5" text-anchor="middle" fill="#1e3a8a">CP 3, שחרור שריר</text>
+<line x1="590" y1="50" x2="560" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="550,50 560,44 560,56" fill="#374151"/>
+<rect x="210" y="20" width="150" height="60" rx="8" fill="#fffbeb" stroke="#78350f"/>
+<text x="285" y="46" font-size="13" text-anchor="middle" fill="#78350f" font-weight="700">3. יסוד האף</text>
+<text x="285" y="65" font-size="11.5" text-anchor="middle" fill="#78350f">דופן, מחיצה, רצפה</text>
+<line x1="400" y1="50" x2="370" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="360,50 370,44 370,56" fill="#374151"/>
+<rect x="20" y="20" width="150" height="60" rx="8" fill="#ecfdf5" stroke="#065f46"/>
+<text x="95" y="46" font-size="13" text-anchor="middle" fill="#065f46" font-weight="700">4. סגירה</text>
+<text x="95" y="65" font-size="11.5" text-anchor="middle" fill="#065f46">רירית, שריר, עור</text>
+<line x1="210" y1="50" x2="180" y2="50" stroke="#374151" stroke-width="2"/>
+<polygon points="170,50 180,44 180,56" fill="#374151"/>
+</svg>
+<h3>שפה מדיאלית תחילה: שחרור ומדידה חוזרת</h3>
+<p>חתכי עור ורירית בסכין, כריתת הרקמה השולית במספריים, עם דגש על <b>חתך נקי על פני ה-roll</b>. ה-orbicularis מנותק מהרירית ורק פחות מ-1 מ"מ מהעור (שימור קער הפילטרום). הקפדה על דיסקציה אגרסיבית מתחת לקולומלה ושחרור מהמכתש יוצרים "משולש ריק" (<span class="term" dir="ltr">empty triangle</span>) שבו יושב אחר כך שריר מהשפה הלטרלית, ומאפשר לשפה המדיאלית להסתובב כלפי מטה.</p>
+<ul>
+  <li><b>Checkpoint 1:</b> מרכזים את הקולומלה לקו האמצע (פורספס בנחיר התקין מדמה את מתח תיקון השריר העליון) ומושכים עדינות את שולי השפה כלפי מטה (מדמה את מתח השריר התחתון + Rose-Thompson). אם ה-bow ישתטח בלי מתיחה – חתך הפתיחה מעל ה-roll מיותר (נדיר). אחרת עושים אותו.</li>
+  <li><b>Checkpoint 2:</b> ה-bow חייב להתיישר בקלות. מודדים את הפגם המשולש שנוצר, ואם הוא שונה מהמתוכנן – <b>מסמנים מחדש את גודל המשולש הלטרלי כך שיתאים בדיוק</b>. מאמתים גם שהסימונים הלטרליים תואמים לשחרור המדיאלי.</li>
+  <li><b>Checkpoint 3:</b> לפני חתכי הלטרלי מאמתים את X′ ו-X″: קירוב ידני חייב לתת היקפי נחיריים ומיקום בסיסי כנף מאוזנים. אם צריך – מתקנים X″. בשסע שלם כדאי לגייס את השפה הלטרלית (חתך בקפל הבוקאלי ודיסקציה סופרה-פריאוסטלית) לפני כן.</li>
+</ul>
+<h3>שפה לטרלית</h3>
+<p>דיסקציית שריר נעשית בצביטה בין האצבעות (המוסטזיס, קונטר-טרקציה). הדיסקציה לטרלית יותר אגרסיבית, מעבר לבסיס הכנף, כך שנוצר <b>"משולש ריק" שאינו מכיל שריר</b> לטרלי לבסיס הכנף – וכך השריר מגויס להשתלה בבסיס הקולומלה. דיסקציה סופרה-פריאוסטלית משחררת את בסיס הכנף מהמקסילה, ו<b>רשת הוסטיבולום</b> (<span class="term" dir="ltr">vestibular web</span>: שפה קאודלית של ה-lateral crus, הסחוסים האקססוריים והפריכונדריום) משוחררת מ-piriform rim, ונדרש "אורתוטופי" ללא מתח.</p>
+
+<h3>רינופלסטיקה ראשונית מבוססת יסוד (Foundation-based)</h3>
+<p>העיקרון: <b>"קודם יסוד מפולס, ואחר כך הגג"</b>. סחוסי הקצה (LLC) פגיעים לפגיעה יאטרוגנית בגיל צעיר, והצלקת מקשה על ריאוויזיה – לכן <b>לא מבצעים דיסקציה ישירה של קצה האף</b>, אלא מתקנים את הבסיס.</p>
+<div class="table-scroll"><table>
+  <thead><tr><th>רכיב</th><th>מה עושים</th><th>הנימוק</th></tr></thead>
+  <tbody>
+    <tr><td><b>דופן אף לטרלית</b></td><td>שחרור סופרה-פריאוסטלי לאורך ה-piriform aperture; בשסע חמור – <b>דש קידום של מוקוזה-פריאוסט הדופן הלטרלית</b> (חתך לאורך שולי השסע + back cut עד בסיס הטורבינט התחתון), מתקדם יחד עם בסיס הכנף</td><td>רצף שכבת סגירה אפית על פני פגם המכתש, מקל השתלה מכתשית עתידית; מותיר את הפגם בקמרון העצמי</td></tr>
+    <tr><td><b>מחיצה</b></td><td>בדיקת המחיצה הקאודלית ביחס לאמצע הפנים; ניתוח מחיצה ראשוני דרך חתך השפה המדיאלי: ניתוק התקשרויות <span class="term" dir="ltr">septospinal</span>, דיסקציה תת-פריכונדריאלית בצד התקין. אלטרנטיבה: שחרור עקיף (פריוסט רצפות האף)</td><td>החזרת המחיצה לקו האמצע; מתח סגירת רצפת האף מייצב אותה</td></tr>
+    <tr><td><b>רצפה</b></td><td>שלם: כריתת טריז מצומצם. פתוח עם apex בחך הקשה: קירוב מוקוזה-פריאוסט. פתוח בלי apex (שלם של שפה וחך): סגירה עד כמה שהדש מגיע, מ-vomer-septum, מאחור לקדמה</td><td>X′ ו-X″ חייבים להתיישר ללא מתח</td></tr>
+    <tr><td><b>קודקוד ווסטיבולום</b></td><td>מבפנים, פורספס מניחים את הקודקוד קדמית-מדיאלית (ללא חתך/דיסקציה); תפרי plication של <b>internal nasal valve</b> (חפיפה LLC/ULC באזור ה-scroll) ו-<b>alar transfixion</b> לסגירת חלל מת ושימור הקידום</td><td>נעשה לפני סגירה מלאה של הרצפה, קל יותר טכנית</td></tr>
+  </tbody>
+</table></div>
+
+<h3>סגירה: שריר, רירית ועור</h3>
+<ul>
+  <li><b>סדר:</b> רירית (מהסולקוס אל קצה חופשי ועד הצומת vermilion-mucosa) ← שריר ← עור. התקדמות <b>מלמעלה למטה ומעמוק לשטחי</b>, כמו וילון תלוי, כדי לשמר את צורת ה-"J" של ה-<span class="term" dir="ltr">pars marginalis</span> של ה-orbicularis.</li>
+  <li>שריר לטרלי שהיה מחובר לבסיס הכנף נתפר למילוי החלל מתחת לקולומלה. זה לא "קידום מדיאלי" אלא פועל כ-<b class="key">alar cinch stitch</b>: הקולומלה ובסיס הכנף התקין זזים לאמצע, ובסיס הכנף השסוע זוחל קדימה. ה"משולש הריק" הלטרלי יוצר שקע קל לטרלי לבסיס הכנף במקום בליטה. קידום יתר מדלל את המלאות הלטרלית; תת-קידום משאיר קולומלה לא מרוכזת.</li>
+  <li>מתח קל בעור מעל ה-roll מותר ואף מחזק את ה-pout.</li>
+  <li><b>חומרי תפר:</b> 5-0/6-0 נספג (polyglactin או poliglecaprone) לשריר, רירית ודרמיס; <b>PDS</b> (נספג לאט) למחיצה, internal valve ו-alar transfixion; עור: 7-0 polypropylene (להסרה בהרדמה) או 6-0 poliglecaprone רציף תוך-עורי בעמוד הפילטרלי + 8-0 polyglactin מקוטע.</li>
+</ul>
+<div class="key-box">הגרסה "הפשוטה" לתיקון מיקרופורם: אם X′ ו-X″ חופפים והאף סימטרי – אין צורך בחתכי השפה העליונים, והתיקון התחתון מצטמצם לקצה (<span class="term" dir="ltr">unilimb Z-plasty</span> של Mulliken).</div>
+
+<h2><span class="num">7</span> החלטה לפי סוג השסע (Algorithm 19.4.1)</h2>
+<div class="table-scroll"><table>
+  <thead><tr><th>סוג שסע</th><th>תכנון שפה</th><th>דיסקציה</th><th>אף</th></tr></thead>
+  <tbody>
+    <tr><td><b>מיקרופורם</b></td><td>אם האף סימטרי – ללא חתכים עליונים; תיקון תחתון נגמר בקצה</td><td>שריר ככל שצריך מעלה</td><td>ניתוח מחיצה נדיר</td></tr>
+    <tr><td><b>לא-שלם</b></td><td>לרוב <b>טריז אנכי</b> בשפה הלטרלית לגובה עודף</td><td>חתך סולקוס בדרך כלל לא נחוץ; אם בסיס הכנף נשאר נסוג – דיסקציית piriform ושחרור שרשרת הסחוסים האקססוריים</td><td>ניתוח מחיצה</td></tr>
+    <tr><td><b>שלם + band</b></td><td>תכנון מסתגל לגובה לטרלי משתנה</td><td>חתך סולקוס, piriform, מקסילה קדמית רחבה</td><td>מחיצה, רצפה, דופן לטרלית</td></tr>
+    <tr><td><b>שלם</b></td><td>גובה לטרלי קצר; b ומשולש חופפים</td><td>כנ"ל</td><td>מחיצה, רצפה, דופן לטרלית</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="num">8</span> נקודות מפתח ומלכודות (Pearls & Pitfalls)</h2>
+<table>
+  <thead><tr><th>#</th><th>עיקרון</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>אף אחד מהצדדים אינו נורמלי; מזהים נקודות תוך כדי <b>תיקון ידני</b> של העיוות (מרכוז קולומלה, קידום בסיס כנף שסוע).</td></tr>
+    <tr><td>2</td><td>התכנון מבוסס על הצורה המתוקנת המצופה.</td></tr>
+    <tr><td>3</td><td><b>אין להתפשר על נקודות הציון כדי לפצות על חוסר גובה לטרלי</b>: אסור להעלות את X″ (פוגע במיקום האנכי של בסיס הכנף), ואסור להזיז את cphi″ לטרלית מעבר ל-Noordhoff (השלכה מוגזמת, מתח, אובדן מלאות). משנים את <b>התצורה</b> של האלמנטים הלטרליים.</td></tr>
+    <tr><td>4</td><td>לא להרחיב יתר את ה-Cupid's bow.</td></tr>
+    <tr><td>5</td><td>לא לחשוש לכרות עודף אנכי, במיוחד בלא-שלם: גובה יתר = אסימטריה או <b>העתקת בסיס הכנף כלפי מעלה</b>.</td></tr>
+    <tr><td>6</td><td>להשתמש ב-Checkpoints.</td></tr>
+    <tr><td>7</td><td>קביעת נקודות סגירת האף היא החלק הקשה והקריטי ביותר. נטייה: הנחיר השסוע נעשה <b>רחב מדי בשסע שלם וצר מדי בלא-שלם</b>. מיקום קפלי (cephalic) של בסיס הכנף כמעט בלתי הפיך. אם יש ספק, אפשר לבצע את השחרורים לפני חתכי השפה הלטרלית ולדחות את חתכי ה-sill הסופיים.</td></tr>
+  </tbody>
+</table>
+
+<h2><span class="num">9</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>זיכרון: שלוש הבדיקות (Checkpoints) ונוסחת המשולש</h3>
+  <p>
+    <b>קודם מדיאלי</b> – תמיד מתחילים משפה מדיאלית, ורק אז לטרלית.<br>
+    <b>CP1</b> – האם צריך חתך פתיחה מעל ה-roll?<br>
+    <b>CP2</b> – איזה משולש מיישר את ה-bow? התאימי את הלטרלי לגודל בפועל.<br>
+    <b>CP3</b> – האם X′ ו-X″ נותנים נחיריים וכנפיים מאוזנים?
+  </p>
+  <p><b>נוסחת המשולש:</b> "<b>a פחות b פחות מילימטר</b>" – c = a − b − 1.<br>
+  <b>שלוש הזרועות הלטרליות:</b> s (sill), b (greater), c (lesser) – מהגדול לקטן: sill, גובה גדול, גובה קטן.<br>
+  <b>הנקודה הקבועה:</b> Noordhoff לא זזה – "נורדהוף לא נודד".</p>
+  <h3>סיפור דמיוני: החייט והחליפה</h3>
+  <p>החייט (המנתח) לא חותך בד לפני שמדד פעמיים (landmarks). הוא מצמיד סיכות על הכתפיים (cphs, cphi) ועל שני צדי הגוף (X′, X″), מלביש את הלקוח ומתקן את הכתף שנפלה (בדיקה ידנית) לפני שהוא גוזר. אם השרוול הצדדי ארוך מדי – הוא <b>לא</b> מותח את הכתף למעלה כדי לפצות, אלא <b>גוזר טריז</b> מהבד העודף. המתפרות עוברות בדיוק בקפלים הטבעיים של הבגד (גבולות תת-היחידות), ושם אי אפשר לראות אותן.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>החייט והחליפה</title>
+    <rect x="170" y="30" width="160" height="140" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="2"/>
+    <circle cx="190" cy="40" r="6" fill="#b91c1c"/><circle cx="310" cy="40" r="6" fill="#b91c1c"/>
+    <text x="250" y="25" font-size="12" text-anchor="middle" fill="#7f1d1d" font-weight="700">סיכות = נקודות ציון</text>
+    <line x1="250" y1="40" x2="250" y2="170" stroke="#065f46" stroke-width="2" stroke-dasharray="5,4"/>
+    <text x="250" y="110" font-size="12" text-anchor="middle" fill="#065f46" font-weight="700">מדוד פעמיים</text>
+    <polygon points="330,80 400,80 330,130" fill="#bfdbfe" stroke="#1e3a8a" stroke-width="2"/>
+    <text x="410" y="105" font-size="12" fill="#1e3a8a" font-weight="700">טריז עודף נכרת</text>
+    <text x="90" y="105" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">התפר בקפל</text>
+    <line x1="140" y1="105" x2="168" y2="105" stroke="#374151" stroke-width="2"/>
+  </svg>
+</div>
+
+<h2><span class="num">10</span> מקורות נוספים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Cleft_lip_and_cleft_palate" target="_blank">Cleft lip and cleft palate – Wikipedia</a>
+    <div class="desc">סקירה כללית של אנטומיה, אטיולוגיה וגישות טיפוליות לשסעי שפה וחך.</div>
+  </li>
+  <li>
+    <a href="https://en.wikipedia.org/wiki/Nasoalveolar_molding" target="_blank">Nasoalveolar molding – Wikipedia</a>
+    <div class="desc">עקרון NAM לפני הניתוח.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/15988247/" target="_blank">Fisher DM. Unilateral cleft lip repair: an anatomical subunit approximation technique. Plast Reconstr Surg 2005;116:61-71</a>
+    <div class="desc">התיאור המקורי של הטכניקה (PubMed).</div>
+  </li>
+</ul>
+
+<h2><span class="num">11</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>תינוקת בת 4 חודשים עם <b>שסע שפה חד-צדדי שמאלי לא-שלם</b> (רצפת אף שלמה). אחרי סימון ה-landmarks בעזרת תיקון ידני של האף, מתברר שגובה השפה הלטרלית (cphi″–sbal′) <b>גדול מזה של הצד התקין</b>, Noordhoff נמוך מ-cphi התקין, והזווית בין זרוע ה-s לזרוע ה-b בשפה הלטרלית הייתה קהה יותר מהזווית המקבילה במדיאלית. גובה השפה בצד התקין (a) מדוד 9 מ"מ בעוד שבצד השסוע בעת משיכה כלפי מטה (b) הוא 7.5 מ"מ. המנתח שוקל כיצד לתכנן את הלטרלי ואיך לגשת לאף.</p>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">1. מהו גודל בסיס המשולש התחתון (c) המחושב בוינייטה?</div>
+  <button class="opt" data-i="0">0 מ"מ, אין צורך במשולש</button>
+  <button class="opt" data-i="1">1.5 מ"מ</button>
+  <button class="opt" data-i="2">0.5 מ"מ (c = 9 − 7.5 − 1)</button>
+  <button class="opt" data-i="3">1 מ"מ</button>
+  <div class="explain">נכון: c = a − b − 1 מ"מ = 9 − 7.5 − 1 = 0.5 מ"מ (ה-1 מ"מ הוא הגובה שמרוויחים מאפקט Rose-Thompson). 1.5 הוא הפרש הגבהים ללא ההפחתה; 1 מ"מ הוא ערך שגוי של הנוסחה; ודאי שלא "0" – נותר גובה חסר.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">2. כיצד יש לטפל בגובה הלטרלי העודף בוינייטה?</div>
+  <button class="opt" data-i="0">לפתוח את הזווית בין s ל-b כדי לאכסן את הגובה</button>
+  <button class="opt" data-i="1">לכרות טריז אנכי מתחת ל-X″ כך שהצלקת תשכב בקמט הכנף ולא תעבור את subalare</button>
+  <button class="opt" data-i="2">להזיז את cphi″ לטרלית מעבר ל-Noordhoff</button>
+  <button class="opt" data-i="3">להעלות את X″ כדי להשתמש בגובה</button>
+  <div class="explain">נכון: במיוחד בלא-שלם. פתיחת הזווית יוצרת תצורה קהה, מעוותת תת-יחידות ודוחפת את בסיס הכנף למעלה. הזזת cphi″ לטרלית מבזבזת רוחב ומלאות. העלאת X″ פוגעת במיקום האנכי של בסיס הכנף.</div>
+</div>
+<div class="quiz" data-answer="3">
+  <div class="q">3. מהי הנקודה שהיא "קבועה" בתיקון זה, בניגוד לסיבוב-קידום?</div>
+  <button class="opt" data-i="0">Subnasale</button>
+  <button class="opt" data-i="1">cphs′</button>
+  <button class="opt" data-i="2">X″</button>
+  <button class="opt" data-i="3">cphi″ (נקודת Noordhoff) – מעבר מרקמה תקינה לרקמה hypoplastic</button>
+  <div class="explain">נכון. בסיבוב-קידום הנקודה הלטרלית משתנה ונודדת לטרלית (גובה על חשבון רוחב ומלאות). X″ וגם cphs′ מוגדרים בעזרת מדידה ולא "קבועים" אנטומית באותו מובן; sn הוא נקודת אמצע.</div>
+</div>
+<div class="quiz" data-answer="0">
+  <div class="q">4. מה הסיבה לכך שנקודות סגירת האף (X′, X″) נקבעות כשהעיוות מתוקן ידנית?</div>
+  <button class="opt" data-i="0">התכנון מבוסס על הצורה המתוקנת הצפויה; הנחיריים ובסיסי הכנף חייבים להיות סימטריים אחרי הקירוב</button>
+  <button class="opt" data-i="1">כי קשה לראות את הנקודות במנוחה בגלל דימום</button>
+  <button class="opt" data-i="2">כי הצד התקין נורמלי לחלוטין ואינו משתנה</button>
+  <button class="opt" data-i="3">כדי להימנע ממדידת היקפי הנחיריים</button>
+  <div class="explain">נכון (Pearl 2). אפשרות "הצד התקין נורמלי" שגויה – הצד התקין אינו נורמלי ומשתנה עם הניתוח; אפשרות "להימנע ממדידה" שגויה – ניתן אף למדוד היקפים בעזרת sounds.</div>
+</div>
+<div class="quiz" data-answer="2">
+  <div class="q">5. מה תפקיד תפר השריר הלטרלי שמוחדר לבסיס הקולומלה?</div>
+  <button class="opt" data-i="0">קידום מדיאלי של בסיס הכנף השסוע</button>
+  <button class="opt" data-i="1">הארכת ה-vermilion</button>
+  <button class="opt" data-i="2">פועל כ-alar cinch stitch: הקולומלה ובסיס הכנף התקין זזים למרכז ובסיס הכנף השסוע זוחל קדימה</button>
+  <button class="opt" data-i="3">סגירת רצפת האף</button>
+  <div class="explain">נכון. לא קידום מדיאלי של בסיס הכנף השסוע (הוא רק מתקדם קדימה, ללא שינוי מדיאלי-לטרלי). ה-vermilion מטופל בדש לטרלי נפרד; הרצפה נסגרת בנפרד. קידום יתר דולל את המלאות הלטרלית.</div>
+</div>
+<div class="quiz" data-answer="1">
+  <div class="q">6. מהו הרציונל לרינופלסטיקה "מבוססת יסוד" (foundation-based) במקום דיסקציה ישירה של סחוסי הקצה?</div>
+  <button class="opt" data-i="0">סחוסי הקצה קשים מדי לגישה דרך השפה</button>
+  <button class="opt" data-i="1">סחוסי ה-LLC פגיעים לפגיעה יאטרוגנית בגיל צעיר והצלקת מקשה על ריאוויזיה; מתקנים תחילה את בסיס האף (דופן, מחיצה, רצפה)</button>
+  <button class="opt" data-i="2">כי אין צורך לתקן את האף בשסע חד-צדדי</button>
+  <button class="opt" data-i="3">כדי להאריך את הניתוח</button>
+  <div class="explain">נכון: "קודם יסוד מפולס, אחר כך גג". האפשרויות האחרות לא מנימוקי המחברים.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">12</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>Fisher: תיקון מבוסס landmarks, "מדוד פעמיים חתוך פעם", הצלקת על גבולות תת-היחידות; מתאים לכל הספקטרום (מיקרופורם עד שלם).</li>
+    <li>העיוות: גדילה לא-מזווגת של הפרה-מקסילה ← קולומלה ובסיס כנף תקין נסחפים; בסיס כנף שסוע <b>נסוג</b>. תיקון: מרכוז + קידום קדמי (בלי שינוי מדיאלי-לטרלי).</li>
+    <li>גובה: Rose-Thompson + משולש קטן; <b>c = a − b − 1 מ"מ</b> (בסיס בד"כ 1–1.5, מקס' 2.5).</li>
+    <li>Noordhoff (cphi″) קבוע; X′/X″ נקבעים לפי קמטי sill בהתאם ל-X בצד התקין, כשהעיוות מתוקן ידנית; כריתת sill ≤ הפרש היקפי נחיריים.</li>
+    <li>שפה לטרלית: קצרה (שלם) – זוויות חדות/חפיפה; גבוהה (לא-שלם) – <b>טריז אנכי</b>, לא פתיחת זווית.</li>
+    <li>3 Checkpoints: (1) צריך חתך פתיחה? (2) גודל המשולש; (3) X′/X″ ויישור.</li>
+    <li>רינופלסטיקה יסודית: דופן לטרלית (דש מוקוזה-פריאוסט), מחיצה, רצפה; plication ו-alar transfixion; ללא דיסקציית קצה.</li>
+    <li>שריר: הלטרלי ממלא את החלל שמתחת לקולומלה – alar cinch stitch; שמירה על צורת J של ה-pars marginalis.</li>
+    <li>טעויות: הזזת נקודות לפיצוי, ביטול X″ גבוה, bow רחב מדי, נחיר רחב מדי בשלם / צר מדי בלא-שלם.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>
