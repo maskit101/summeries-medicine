@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>פרק 35: נקודת מבט העורכים - האף</title>
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI','Arial Hebrew','Assistant',sans-serif; direction:rtl; text-align:right;
+    max-width:880px; margin:0 auto; padding:32px 24px 80px;
+    color:#1f2937; line-height:1.75; font-size:17px; background:#fff;
+  }
+  h1{font-size:30px; margin:0 0 6px; border-bottom:3px solid #2563eb; padding-bottom:12px}
+  .subtitle{color:#4b5563; font-size:16px; margin-bottom:32px}
+  h2{font-size:22px; margin:40px 0 12px; display:flex; align-items:center; gap:8px}
+  h2 .num{display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px;
+    border-radius:50%; background:#2563eb; color:#fff; font-size:15px; flex-shrink:0}
+  h3{font-size:18px; margin:20px 0 8px}
+  p{margin:10px 0}
+  .term{unicode-bidi:isolate; font-weight:600; color:#4b5563}
+  .topnav{margin-bottom:18px; font-size:14.5px}
+  .topnav a{color:#2563eb; text-decoration:none; font-weight:600}
+  .topnav a:hover{text-decoration:underline}
+
+  .mechanism{background:#eff6ff; border-right:4px solid #2563eb; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .mechanism .chain{font-weight:600}
+
+  .key{background:linear-gradient(transparent 60%, #fde68a 60%); font-weight:600}
+  .key-box{background:#fffbeb; border:1px solid #fcd34d; border-radius:6px; padding:12px 16px; margin:12px 0}
+  .key-box::before{content:"חשוב לזכור: "; font-weight:700; color:#b45309}
+
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:15px}
+  th,td{border:1px solid #e5e7eb; padding:8px 10px; text-align:right; vertical-align:top}
+  th{background:#f3f4f6}
+
+  .mnemonic{background:#ecfdf5; border-right:4px solid #047857; padding:14px 18px; border-radius:6px; margin:14px 0}
+  .mnemonic h3{margin-top:0; color:#047857}
+
+  .resource-list{list-style:none; padding:0}
+  .resource-list li{padding:10px 0; border-bottom:1px solid #e5e7eb}
+  .resource-list a{color:#2563eb; font-weight:600; text-decoration:none}
+  .resource-list a:hover{text-decoration:underline}
+  .resource-list .desc{color:#4b5563; font-size:14.5px}
+
+  .case{background:#f5f3ff; border-right:4px solid #6d28d9; padding:16px 20px; border-radius:6px; margin:14px 0}
+  .case h3{margin-top:0; color:#6d28d9}
+
+  .quiz{border:1px solid #e5e7eb; border-radius:8px; padding:14px 18px; margin:12px 0}
+  .quiz .q{font-weight:600; margin-bottom:10px}
+  .quiz .opt{display:block; width:100%; text-align:right; padding:9px 12px; margin:6px 0;
+    border:1px solid #e5e7eb; border-radius:6px; background:#fff; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937}
+  .quiz .opt:hover{background:#f8fafc}
+  .quiz .opt.correct{background:#ecfdf5; border-color:#047857; font-weight:600}
+  .quiz .opt.wrong{background:#fef2f2; border-color:#b91c1c}
+  .quiz .opt[disabled]{cursor:default}
+  .quiz .explain{margin-top:10px; background:#f8fafc; border-radius:6px; padding:10px 12px; font-size:15px; display:none}
+  .quiz .explain.show{display:block}
+
+  .resource-list .tag{display:inline-block; font-size:12px; background:#eef2ff; color:#3730a3; border-radius:4px; padding:1px 6px; margin-inline-start:8px}
+
+  .tldr{background:#111827; color:#f9fafb; border-radius:10px; padding:22px 24px; margin-top:44px}
+  .tldr h2{color:#fff; margin-top:0}
+  .tldr h2 .num{background:#fff; color:#111827}
+  .tldr ul{margin:8px 0 0; padding-inline-start:20px}
+  .tldr li{margin:6px 0}
+
+  svg.diagram{width:100%; height:auto; background:#fff; border:1px solid #e5e7eb; border-radius:8px; margin:14px 0}
+  .figcap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px}
+
+  .table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; margin:14px 0}
+  .table-scroll table{margin:0}
+
+  .media-img{width:100%; height:auto; border-radius:8px; border:1px solid #e5e7eb; margin:12px 0; display:block}
+  .media-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+  .video-embed{position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; margin:14px 0; border:1px solid #e5e7eb}
+  .video-embed iframe{position:absolute; top:0; left:0; width:100%; height:100%; border:0}
+  .video-cap{font-size:13.5px; color:#6b7280; text-align:center; margin-top:-6px; margin-bottom:12px}
+
+  @media (max-width:600px){
+    body{padding:20px 14px 60px; font-size:16px}
+    h1{font-size:24px}
+    h2{font-size:19px}
+  }
+</style>
+<style id="readbar-css">
+  #readbar{position:sticky; top:0; z-index:50; display:flex; flex-wrap:wrap; gap:8px; align-items:center; background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:8px 10px; margin:0 0 16px; font-size:13.5px}
+  #readbar button,#readbar select{font-family:inherit; font-size:13.5px; border:1px solid #cbd5e1; background:#fff; border-radius:8px; padding:6px 12px; cursor:pointer; color:#1f2937}
+  #readbar button:hover{background:#eef2ff}
+  #readbar .rb-msg{color:#b45309; font-size:12.5px}
+  .tts-now{background:#fef9c3 !important; outline:2px solid #fde047; border-radius:4px}
+  @media print{
+    #readbar,.topnav,.quiz{display:none !important}
+    body{background:#fff !important; max-width:none !important; padding:0 !important; margin:0 12mm !important}
+    .bookfig,figure,table,.key-box,.mechanism,.mnemonic,.case,.diagram{break-inside:avoid; page-break-inside:avoid}
+    h2,h3{break-after:avoid; page-break-after:avoid}
+    a{color:inherit; text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav"><a href="../../index.html" target="_top">🏠 לדף הראשי</a> &nbsp;·&nbsp; <a href="../summaries.html" target="_top">&#8592; חזרה לרשימת כל הסיכומים</a></div>
+<div id="readbar" dir="rtl">
+  <button type="button" id="rbPlay">🔊 הקראה</button>
+  <button type="button" id="rbPause" style="display:none">⏸️ השהה</button>
+  <button type="button" id="rbStop" style="display:none">⏹️ עצור</button>
+  <select id="rbRate" title="מהירות הקראה"><option value="0.8">איטי</option><option value="1" selected>רגיל</option><option value="1.25">מהיר</option><option value="1.5">מהיר מאוד</option></select>
+  <button type="button" id="rbPdf" title="בחרי 'שמור כ-PDF' בחלון ההדפסה">📄 הורדה כ-PDF</button>
+  <button type="button" id="rbPrint">🖨️ הדפסה</button>
+  <span class="rb-msg" id="rbMsg"></span>
+</div>
+
+<h1>פרק 35: נקודת מבט העורכים - האף <span class="term" dir="ltr">Editors' Perspective: Nose</span></h1>
+<div class="subtitle">מתוך Plastic Surgery, Neligan – כרך 2: Aesthetic Surgery | פתיח לסעיף ניתוחי האף (Section II), מאת Alan Matarasso, עמ' 716</div>
+
+<p>פרק "נקודת מבט" של עמוד אחד, שפותח את פרקי הרינופלסטיקה בספר. הוא אינו מלמד טכניקה, אלא קובע <b>תפיסת עולם</b>: למה ניתוח האף נחשב למורכב ביותר בכירורגיה אסתטית, על מה המנתחים חלוקים ועל מה כבר יש הסכמה, ומה לקוחות הפרקים הבאים - כולל <b>ניהול המטופל</b> לאורך תקופת הנפיחות הארוכה.</p>
+
+<h2><span class="num">1</span> למה האף הוא "ניתוח הפסגה"?</h2>
+<div class="mechanism">
+  <p class="chain">אנטומיה עשירה בניואנסים + קשר הדוק בין <b>צורה לתפקוד</b> + ניתוח משולב של אסתטיקה ונתיב אוויר + תוצאות שמתבררות <b>מיד ובעיכוב</b> = ניתוח שאין לו אח ורע באסתטיקה.</p>
+</div>
+<ul>
+<li><b>ניואנסים אנטומיים</b> רבים ומינוח מורכב - קיימות אגודות וכנסים נפרדים להכשרת מנתחים ברינופלסטיקה.</li>
+<li><b>צורה ותפקוד</b> (<span class="term" dir="ltr">form and function</span>) שלובים: שינוי אסתטי עלול לפגוע בנשימה, ושינוי תפקודי משנה את המראה.</li>
+<li><b>סיבה ותוצאה</b> (<span class="term" dir="ltr">cause and effect</span>) מופיעות מיד אך גם בעיכוב של חודשים ושנים - מה שנעשה בחדר הניתוח מתבטא הרבה אחרי.</li>
+<li>האף הוא לעיתים קרובות <b>המאפיין המגדיר</b> של פני המטופל, והניתוח נעשה לרוב בגיל צעיר - המטופל "חי עם התוצאה כל חייו".</li>
+<li>כל ניתוח אלקטיבי נושא נטל: מנתחים <b>מטופל בריא</b> ללא אינדיקציה הכרחית ושואפים ל"שלמות" <b>סובייקטיבית</b>. בניתוח אף הנטל הזה <b>גדול עוד יותר</b>.</li>
+</ul>
+<div class="key-box">בניתוח אף חייבים לזהות, ליישב ולשלוט <b>בו-זמנית</b> ברכיב האסתטי וברכיב התפקודי. ניתוח שמשפר רק אחד מהם נחשב כשל.</div>
+
+<h2><span class="num">2</span> במה חלוקים המנתחים - ובמה אין מחלוקת</h2>
+<p>לפי הפרק, תומכי שיטות שונות מעלים מחלוקות רבות, ובכל זאת <b>מנתחים רבים משיגים תוצאות משביעות רצון בטכניקות שונות</b>. אין "שיטה אחת נכונה", ויש מכנה משותף.</p>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>נושא</th><th>הצדדים</th></tr></thead>
+  <tbody>
+    <tr><td>גישה</td><td>פתוחה (<span class="term" dir="ltr">open</span>) מול סגורה (<span class="term" dir="ltr">closed</span>)</td></tr>
+    <tr><td>סדר השלבים</td><td>באיזה סדר מבצעים את מהלכי הניתוח</td></tr>
+    <tr><td>שיקום ועיצוב</td><td>סוג ומקור ההשתלות (<span class="term" dir="ltr">grafts</span>) מול תפרי עיצוב (<span class="term" dir="ltr">reshaping sutures</span>)</td></tr>
+    <tr><td>טמפונדה</td><td>האם לדחוס את האף (<span class="term" dir="ltr">packing</span>) או לא</td></tr>
+    <tr><td>ניהול לאחר הניתוח</td><td>פרוטוקול טיפול והחלמה</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>המסקנה שכבר מוסכמת: לא לכרות בנדיבות</h3>
+<svg class="diagram" viewBox="0 0 880 230" xmlns="http://www.w3.org/2000/svg">
+  <title>ממצב הפחתת הסחוסים האגרסיבית לגישה השימורית</title>
+  <!-- RTL chain: right (old) -> middle -> left (modern); arrowheads at smaller-x end -->
+  <rect x="610" y="45" width="240" height="140" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="730" y="73" font-size="15" text-anchor="middle" fill="#7f1d1d" font-weight="700">שנות ה-70 וה-80</text>
+  <text x="730" y="105" font-size="13" text-anchor="middle" fill="#374151">הפחתה אגרסיבית</text>
+  <text x="730" y="127" font-size="13" text-anchor="middle" fill="#374151">של סחוס (reduction)</text>
+  <text x="730" y="155" font-size="12" text-anchor="middle" fill="#7f1d1d">תמיכה נחלשת - בעיות מאוחרות</text>
+  <line x1="605" y1="115" x2="585" y2="115" stroke="#6b7280" stroke-width="4"/>
+  <polygon points="567,115 585,106 585,124" fill="#6b7280"/>
+  <rect x="320" y="45" width="240" height="140" rx="10" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+  <text x="440" y="73" font-size="15" text-anchor="middle" fill="#78350f" font-weight="700">הלקח</text>
+  <text x="440" y="105" font-size="13" text-anchor="middle" fill="#374151">להימנע מכריתת-יתר</text>
+  <text x="440" y="127" font-size="13" text-anchor="middle" fill="#374151">ולשמר סחוס טבעי</text>
+  <line x1="315" y1="115" x2="295" y2="115" stroke="#6b7280" stroke-width="4"/>
+  <polygon points="277,115 295,106 295,124" fill="#6b7280"/>
+  <rect x="30" y="45" width="240" height="140" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="150" y="73" font-size="15" text-anchor="middle" fill="#065f46" font-weight="700">כיום</text>
+  <text x="150" y="105" font-size="13" text-anchor="middle" fill="#374151">שימור סחוס + השתלות</text>
+  <text x="150" y="127" font-size="13" text-anchor="middle" fill="#374151">לפי אינדיקציה</text>
+  <text x="150" y="155" font-size="12" text-anchor="middle" fill="#374151">+ עיצוב בתפרים</text>
+</svg>
+<p class="figcap">התפתחות העיקרון המרכזי: מצמצום אגרסיבי של סחוס לשימור, הוספה וגיבוש בתפרים.</p>
+<ul>
+<li>טכניקות <b>הפחתה אגרסיבית של סחוס</b> (<span class="term" dir="ltr">aggressive cartilage reduction</span>) שנראו בשנות ה-70 וה-80 - <b class="key">יש להימנע מהן</b>.</li>
+<li>במקומן: <b>שימור סחוס טבעי</b> (<span class="term" dir="ltr">native cartilage</span>) ככל האפשר, <b>הוספת השתלות סחוס</b> כשיש אינדיקציה, ושילוב <b>טכניקות עיצוב בתפרים</b> (<span class="term" dir="ltr">suture reshaping</span>).</li>
+<li>למרות שכל ניתוח אף שונה במעט, יש <b>מהלכי יסוד</b> (<span class="term" dir="ltr">fundamental maneuvers</span>) המתאימים לרינופלסטיקה ראשונית לא-טראומטית, ואפשר לשלוט בהם ולהשתמש בהם כ<b>תבנית</b>.</li>
+</ul>
+
+<h3>מדוע הפחתה אגרסיבית מזיקה? (הסבר מנגנוני - השלמה מעבר לפרק)</h3>
+<div class="mechanism">
+  <p class="chain">סחוס הוא שלד התמיכה של האף ← כריתת-יתר מחלישה את התמיכה ← במהלך ההחלמה הרקמה הרכה מתכווצת (צלקת, <span class="term" dir="ltr">scar contracture</span>) ← כוחות הצלקת והלחץ בזמן שאיפה פועלים על שלד חלש ← קריסה, עיוות וחסימת נשימה שמתגלים לעיתים רק <b>חודשים עד שנים</b> לאחר מכן.</p>
+</div>
+<p>זו הסיבה להדגשת הפרק שסיבה ותוצאה מופיעות "גם בעיכוב": תוצאה שנראית מצוינת בשבוע השישי עלולה להידרדר, ובתיקון משני אין תמיד סחוס זמין להשתלה. (השלמה כללית - ראו פרק 40 על רינופלסטיקה משנית וקישורי PubMed למטה.)</p>
+
+<h2><span class="num">3</span> חידושים עכשוויים שהפרק מזכיר</h2>
+<ul>
+<li><b>רינופלסטיקה משמרת גב</b> (<span class="term" dir="ltr">dorsal preservation rhinoplasty</span>): גישה המשמרת את הצורה המהותית של הגב ובמקום לכרות את הדורסום "דוחפים למטה" את הפירמידה האפית; לעיתים בעזרת מכשור <b>פיאזואלקטרי</b> (<span class="term" dir="ltr">piezoelectric</span>) לסייע ב-<span class="term" dir="ltr">pushdown</span> של הפירמידה.</li>
+<li><b>הזרקות לא-ניתוחיות ופילרים</b> (<span class="term" dir="ltr">non-surgical injections / fillers</span>) כאפשרות לשיפור האף בניתוח ראשוני וגם משני.</li>
+<li>הפרקים בספר נשענים על ניסיון של מנתחים בכירים: "רוב הדברים אינם נוצרים מאפס; הרפואה והכירורגיה בונות על ידע קודם בהתקדמות הדרגתית".</li>
+</ul>
+
+<h2><span class="num">4</span> מטופל מנוהל = תוצאה מצליחה</h2>
+<p>אחת התובנות החשובות בפרק אינה טכנית כלל: <b>נפיחות לאחר רינופלסטיקה ידועה כארוכת-טווח</b>. במשך כל התקופה הזו המטופל רואה את עצמו, שופט את התוצאה ולעיתים נאחז בה - וזה עלול <b>לחבל גם בתוצאה מצוינת</b>.</p>
+<svg class="diagram" viewBox="0 0 880 200" xmlns="http://www.w3.org/2000/svg">
+  <title>תוצאה טובה מול שביעות רצון</title>
+  <rect x="470" y="40" width="380" height="120" rx="10" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+  <text x="660" y="72" font-size="15" text-anchor="middle" fill="#065f46" font-weight="700">תוצאה טובה + ניהול מטופל טוב</text>
+  <text x="660" y="100" font-size="13" text-anchor="middle" fill="#374151">טייפ, סד, הזרקות, הסברים</text>
+  <text x="660" y="125" font-size="14" text-anchor="middle" fill="#047857" font-weight="700">מטופל מרוצה</text>
+  <rect x="30" y="40" width="380" height="120" rx="10" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+  <text x="220" y="72" font-size="15" text-anchor="middle" fill="#7f1d1d" font-weight="700">תוצאה טובה + ניהול חסר</text>
+  <text x="220" y="100" font-size="13" text-anchor="middle" fill="#374151">נפיחות ממושכת, התבוננות, אובססיה</text>
+  <text x="220" y="125" font-size="14" text-anchor="middle" fill="#b91c1c" font-weight="700">מטופל לא מרוצה</text>
+</svg>
+<p class="figcap">"A happy patient with a good result" לעומת "an unhappy patient with a good result" - ההבדל הוא לעיתים ניהול ההחלמה.</p>
+<ul>
+<li>עצות המחברים בפרקים הבאים על <b>שימוש מסייע בטייפ (<span class="term" dir="ltr">tape</span>), סדים (<span class="term" dir="ltr">splints</span>) והזרקות</b> עשויות להכריע בין מטופל מרוצה למטופל לא מרוצה - גם כשהתוצאה הניתוחית זהה.</li>
+<li>הקורא הקשוב "יפיק ניסיון של קריירה שלמה" שלא ניתן לצבור בניסוי וטעייה בפרקטיקה היומיומית.</li>
+</ul>
+
+<h2><span class="num">5</span> טכניקות זכירה</h2>
+<div class="mnemonic">
+  <h3>ראשי תיבות: <span dir="ltr">P-G-S-M</span> - עקרונות הרינופלסטיקה המודרנית</h3>
+  <p>
+    <b>P</b> - <span class="term" dir="ltr">Preserve</span> סחוס טבעי (בלי כריתת-יתר).<br>
+    <b>G</b> - <span class="term" dir="ltr">Graft</span> כשיש אינדיקציה (תמיכה/צורה).<br>
+    <b>S</b> - <span class="term" dir="ltr">Suture</span> reshaping - עיצוב בתפרים.<br>
+    <b>M</b> - <span class="term" dir="ltr">Manage</span> את המטופל לאורך הנפיחות (טייפ, סד, הזרקות, הסברים).
+  </p>
+  <p>(ראשי התיבות הם אמצעי עזר מקורי ואינם מופיעים בפרק.)</p>
+  <h3>סיפור דמיוני</h3>
+  <p>דמייני אוהל. האף הוא אוהל עם מוטות (הסחוסים). בשנות ה-80 היו "מקצצים" מוטות כדי שהאוהל ייראה קטן - ואחרי עונה של רוחות (צלקת והחלמה) האוהל קרס. היום בונאי האוהל <b>שומר</b> על המוטות המקוריים, <b>מוסיף</b> מוט כשחסר, <b>קושר</b> בחבל כדי לעצב - ואת הדיירים (המטופלים) מדריך לא להציץ ולבדוק כל שעה בזמן שהבד עדיין נוטה לזוז.</p>
+  <svg class="diagram" viewBox="0 0 500 190" xmlns="http://www.w3.org/2000/svg">
+    <title>אוהל, מוטות וחבל</title>
+    <polygon points="250,25 90,150 410,150" fill="#bfdbfe" stroke="#1d4ed8" stroke-width="3"/>
+    <line x1="250" y1="25" x2="250" y2="150" stroke="#6b7280" stroke-width="6"/>
+    <line x1="170" y1="88" x2="330" y2="88" stroke="#b45309" stroke-width="3" stroke-dasharray="6 4"/>
+    <text x="250" y="18" font-size="12" text-anchor="middle" fill="#374151" font-weight="700">מוט = סחוס (P)</text>
+    <text x="250" y="172" font-size="12" text-anchor="middle" fill="#78350f" font-weight="700">חבל = תפר עיצוב (S) | מוט חדש = השתלה (G) | דיירים = מטופל (M)</text>
+  </svg>
+</div>
+
+<h2><span class="num">6</span> מקורות נוספים ומהימנים</h2>
+<ul class="resource-list">
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=dorsal+preservation+rhinoplasty" target="_blank">PubMed - dorsal preservation rhinoplasty</a>
+    <div class="desc">חיפוש מאמרים מקוריים וסקירות על רינופלסטיקה משמרת גב ושימוש בפיאזו.</div>
+  </li>
+  <li>
+    <a href="https://pubmed.ncbi.nlm.nih.gov/?term=rhinoplasty+cartilage+preservation+suture+techniques" target="_blank">PubMed - rhinoplasty cartilage preservation / suture techniques</a>
+    <div class="desc">חיפוש ספרות על שימור סחוס, השתלות ותפרי עיצוב.</div>
+  </li>
+  <li>
+    <a href="https://www.ncbi.nlm.nih.gov/books/?term=rhinoplasty" target="_blank">NCBI Bookshelf (StatPearls) - rhinoplasty</a>
+    <div class="desc">פרקי ייחוס תמציתיים על רינופלסטיקה, אנטומיה ואינדיקציות.</div>
+  </li>
+</ul>
+
+<h2><span class="num">7</span> מקרה קליני ותרגול</h2>
+<div class="case">
+  <h3>וינייטה</h3>
+  <p>גבר בן 24 מבקש רינופלסטיקה אחרי שחבר מספר לו על "ניתוח שהסיר לו את כל הבליטה". בבדיקה: גבנון קל בגב ובקצה האף מעט נפול. הוא נושם היטב. מנתח צעיר מציע "להוריד" גב באופן נרחב ולכרות סחוס קצה כדי לצמצם. מנתח ותיק מציע לשמר סחוס, להשתמש בהשתלה אם יהיה צורך, ולהסביר מראש שהנפיחות עשויה להימשך זמן רב.</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">1. מדוע ניתוח האף נחשב לפי הפרק למורכב ביותר בכירורגיה אסתטית?</div>
+  <button class="opt" data-i="0">כי הוא ארוך ביותר מבחינת זמן ניתוח</button>
+  <button class="opt" data-i="1">בגלל ניואנסים אנטומיים רבים, קשר צורה-תפקוד, ניתוח אסתטי ושל נתיב אוויר, ותוצאות מיידיות ומאוחרות</button>
+  <button class="opt" data-i="2">כי הוא תמיד דורש הרדמה כללית</button>
+  <button class="opt" data-i="3">כי הוא נעשה רק במטופלים עם פתולוגיה</button>
+  <div class="explain">הפרק מדגיש את שילוב הרכיבים האסתטי והתפקודי, את האנטומיה העשירה, ואת התוצאות המיידיות והמאוחרות, ואת העובדה שהאף הוא המאפיין המגדיר של הפנים. אורך הניתוח והרדמה אינם הנימוק, והניתוח הוא אלקטיבי בגוף בריא.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">2. מה נקבע בפרק לגבי טכניקות הפחתה אגרסיבית של סחוס משנות ה-70 וה-80?</div>
+  <button class="opt" data-i="0">הן עדיין הסטנדרט המועדף</button>
+  <button class="opt" data-i="1">הן מתאימות רק לניתוח משני</button>
+  <button class="opt" data-i="2">יש להימנע מהן, תוך שימור סחוס טבעי, הוספת השתלות לפי אינדיקציה ושילוב תפרי עיצוב</button>
+  <button class="opt" data-i="3">הן הוחלפו בלעדית בהזרקות</button>
+  <div class="explain">הפרק קובע שהוכח כי יש להימנע מהפחתה אגרסיבית ולשמר סחוס, להוסיף השתלות לפי הצורך ולהשתמש בתפרי עיצוב. תשובה 1 הפוכה, תשובה 2 ו-4 אינן נתמכות בטקסט.</div>
+</div>
+
+<div class="quiz" data-answer="0">
+  <div class="q">3. איזה מהבאים נחשב לפי הפרק "מחלוקת" שבה מנתחים שונים משיגים תוצאות משביעות רצון?</div>
+  <button class="opt" data-i="0">גישה פתוחה מול סגורה, סדר השלבים, סוג ההשתלות או התפרים, טמפונדה והטיפול לאחר הניתוח</button>
+  <button class="opt" data-i="1">האם בכלל לשמור על התפקוד הנשימתי</button>
+  <button class="opt" data-i="2">האם לבצע ניתוח ללא הכרת האנטומיה</button>
+  <button class="opt" data-i="3">האם הפחתה אגרסיבית עדיפה</button>
+  <div class="explain">הפרק מונה במפורש פתוח/סגור, סדר שלבים, מקורות השתלה ותפרים, אריזת האף והטיפול לאחר הניתוח כנושאי מחלוקת. שאר האפשרויות אינן נושאי מחלוקת ולא כך מוצגות.</div>
+</div>
+
+<div class="quiz" data-answer="3">
+  <div class="q">4. מהי "רינופלסטיקה משמרת גב" (dorsal preservation) כפי שמוזכרת בפרק?</div>
+  <button class="opt" data-i="0">כריתה מלאה של הגב והחלפתו בהשתלה</button>
+  <button class="opt" data-i="1">טכניקה שבה מזריקים פילר בלבד, בלי ניתוח</button>
+  <button class="opt" data-i="2">טכניקה לתיקון כשל בניתוח משני בלבד</button>
+  <button class="opt" data-i="3">שיטה שמשמרת את הצורה המהותית של הגב, לעיתים בעזרת מכשור פיאזואלקטרי לדחיפת הפירמידה כלפי מטה (pushdown)</button>
+  <div class="explain">הפרק מתאר חידוש עכשווי שמשמר את הצורה המהותית של הדורסום, לעיתים עם פיאזו. פילרים הם אפשרות נפרדת, ולא פתרון בלעדי או רק למשני.</div>
+</div>
+
+<div class="quiz" data-answer="1">
+  <div class="q">5. במטופל בווינייטה, איזו גישה תואמת ביותר את תפיסת הפרק?</div>
+  <button class="opt" data-i="0">הפחתה נרחבת של הגב וכריתת סחוס קצה אגרסיבית כדי להבטיח אף קטן</button>
+  <button class="opt" data-i="1">שימור סחוס טבעי, השתלה לפי אינדיקציה, תפרי עיצוב והכנת המטופל לנפיחות ארוכה תוך מעקב וניהול ציפיות</button>
+  <button class="opt" data-i="2">לבחור בניתוח הקצר ביותר כדי להתאים לציפיות</button>
+  <button class="opt" data-i="3">להימנע מכל הסבר כדי לא להלחיץ את המטופל</button>
+  <div class="explain">הפרק מדגיש שימור, השתלה ותפרים, ובנוסף ניהול המטופל לאורך נפיחות ממושכת. תשובה 1 מתארת את הגישה שננטשה. תשובות 3 ו-4 אינן הצורך: אורך הניתוח אינו מדד, וחסר מידע מחבל בתוצאה.</div>
+</div>
+
+<div class="quiz" data-answer="2">
+  <div class="q">6. מהו המסר של "מטופל מרוצה עם תוצאה טובה מול מטופל לא מרוצה עם תוצאה טובה"?</div>
+  <button class="opt" data-i="0">התוצאה הניתוחית היא הדבר היחיד שקובע שביעות רצון</button>
+  <button class="opt" data-i="1">מטופל לא מרוצה תמיד מעיד על טעות טכנית</button>
+  <button class="opt" data-i="2">ניהול התקופה הארוכה של הנפיחות (הדרכה, טייפ, סד, הזרקות) עשוי להכריע בין שני המצבים גם כשהתוצאה הניתוחית זהה</button>
+  <button class="opt" data-i="3">יש להימנע מלהראות למטופל תמונות</button>
+  <div class="explain">הפרק מדגיש שנפיחות ארוכה והתבוננות מתמשכת יכולים לחבל גם בתוצאה מצוינת, ושעצות על טייפ, סדים והזרקות יכולות להכריע. תשובה 1 מתעלמת מכך, תשובה 2 שגויה כי התוצאה יכולה להיות טובה, ותשובה 4 אינה מופיעה.</div>
+</div>
+
+<div class="tldr">
+  <h2><span class="num">8</span> סיכום של הסיכום</h2>
+  <ul>
+    <li>ניתוח אף = <b>המורכב ביותר באסתטיקה</b>: אנטומיה, צורה+תפקוד, תוצאות מיידיות ומאוחרות, המאפיין המגדיר של הפנים.</li>
+    <li>נטל מוסרי גבוה: מטופל בריא, אינדיקציה אלקטיבית, "שלמות" סובייקטיבית, חיים עם התוצאה.</li>
+    <li>מחלוקות: פתוח/סגור, סדר שלבים, השתלות/תפרים, טמפונדה, טיפול לאחר ניתוח - ומנתחים משיגים תוצאות טובות בשיטות שונות.</li>
+    <li><b>הוסכם</b>: להימנע מהפחתה אגרסיבית של סחוס (שנות ה-70-80); <b>לשמר</b> סחוס, <b>להוסיף</b> השתלות לפי אינדיקציה, <b>תפרי עיצוב</b>.</li>
+    <li>יש מהלכי יסוד שמשמשים תבנית לרינופלסטיקה ראשונית לא-טראומטית.</li>
+    <li>חידושים: <b>dorsal preservation</b> (לעיתים עם פיאזו) והזרקות/פילרים לשיפור ראשוני ומשני.</li>
+    <li>נפיחות ארוכה: <b>ניהול המטופל</b> (טייפ, סד, הזרקות, ציפיות) קובע אם תוצאה טובה = מטופל מרוצה.</li>
+  </ul>
+</div>
+
+<script>
+document.querySelectorAll('.quiz').forEach(function(q){
+  var correct = parseInt(q.getAttribute('data-answer'), 10);
+  var explain = q.querySelector('.explain');
+  q.querySelectorAll('.opt').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var i = parseInt(btn.getAttribute('data-i'), 10);
+      q.querySelectorAll('.opt').forEach(function(b){ b.disabled = true; });
+      if (i === correct) { btn.classList.add('correct'); }
+      else {
+        btn.classList.add('wrong');
+        q.querySelector('.opt[data-i="'+correct+'"]').classList.add('correct');
+      }
+      explain.classList.add('show');
+    });
+  });
+});
+</script>
+
+<script>
+document.querySelectorAll('table').forEach(function(t){
+  if(t.closest('.table-scroll')) return;
+  var wrap = document.createElement('div');
+  wrap.className = 'table-scroll';
+  t.parentNode.insertBefore(wrap, t);
+  wrap.appendChild(t);
+});
+</script>
+<script id="readbar-js">
+(function(){
+  var synth=window.speechSynthesis, queue=[], idx=0, token=0, paused=false, voice=null;
+  var $=function(i){return document.getElementById(i)};
+  var play=$('rbPlay'),pause=$('rbPause'),stop=$('rbStop'),msg=$('rbMsg');
+  function pickVoice(){
+    if(!synth) return;
+    var vs=synth.getVoices();
+    voice=vs.filter(function(v){return /^he/i.test(v.lang)})[0]||null;
+  }
+  if(synth){pickVoice(); synth.onvoiceschanged=pickVoice;}
+  function blocks(){
+    var out=[];
+    document.querySelectorAll('h1,h2,h3,p,li,.tldr,.explain,td,th').forEach(function(el){
+      if(el.closest('#readbar,.topnav,.quiz,script,style,svg,figcaption')) return;
+      if(el.matches('li,td,th') && el.querySelector('p,li,td')) return;
+      if(el.matches('p') && el.closest('li')) return;
+      var t=(el.innerText||'').replace(/\s+/g,' ').trim();
+      if(t.length>1) out.push({el:el,text:t});
+    });
+    return out;
+  }
+  function chunks(t){
+    var parts=t.split(/(?<=[.!?:;])\s+/), res=[], cur='';
+    parts.forEach(function(p){
+      if((cur+' '+p).length>170 && cur){res.push(cur);cur=p;} else cur=(cur?cur+' ':'')+p;
+    });
+    if(cur) res.push(cur);
+    return res;
+  }
+  function ui(state){
+    play.style.display=state==='idle'?'':'none';
+    pause.style.display=state==='idle'?'none':'';
+    stop.style.display=state==='idle'?'none':'';
+    pause.textContent=paused?'▶️ המשך':'⏸️ השהה';
+  }
+  function clearHi(){document.querySelectorAll('.tts-now').forEach(function(e){e.classList.remove('tts-now')})}
+  function speakNext(my){
+    if(my!==token) return;
+    if(idx>=queue.length){clearHi();ui('idle');return;}
+    var item=queue[idx];
+    clearHi(); item.el.classList.add('tts-now');
+    try{item.el.scrollIntoView({block:'center',behavior:'smooth'});}catch(e){}
+    var cs=chunks(item.text), ci=0;
+    (function next(){
+      if(my!==token) return;
+      if(ci>=cs.length){idx++;speakNext(my);return;}
+      var u=new SpeechSynthesisUtterance(cs[ci++]);
+      u.lang=voice?voice.lang:'he-IL'; if(voice) u.voice=voice;
+      u.rate=parseFloat($('rbRate').value)||1;
+      u.onend=next; u.onerror=function(){ if(my===token) next(); };
+      synth.speak(u);
+    })();
+  }
+  play.addEventListener('click',function(){
+    if(!synth){msg.textContent='הדפדפן לא תומך בהקראה';return;}
+    pickVoice();
+    if(!voice){msg.textContent='לא נמצא קול עברי במכשיר – ההקראה עשויה להישמע לא תקינה (אפשר להתקין קול עברי בהגדרות המערכת)';}
+    else msg.textContent='';
+    synth.cancel(); token++; paused=false;
+    queue=blocks(); idx=0; ui('playing'); speakNext(token);
+  });
+  pause.addEventListener('click',function(){
+    if(paused){synth.resume();paused=false;} else {synth.pause();paused=true;}
+    ui('playing');
+  });
+  stop.addEventListener('click',function(){token++;synth.cancel();paused=false;clearHi();ui('idle');});
+  $('rbRate').addEventListener('change',function(){
+    if(!synth||!synth.speaking||paused) return;
+    // restart current block at new speed
+    var cur=idx; token++; synth.cancel(); queue=queue; idx=cur; speakNext(token);
+  });
+  function doPrint(){ try{window.focus();}catch(e){} window.print(); }
+  $('rbPrint').addEventListener('click',doPrint);
+  $('rbPdf').addEventListener('click',function(){
+    msg.textContent='בחלון שנפתח בחרי יעד "שמירה כ-PDF" (Save as PDF) ולחצי שמירה.';
+    setTimeout(doPrint,150);
+  });
+  window.addEventListener('beforeunload',function(){if(synth) synth.cancel();});
+})();
+</script>
+</body>
+</html>
